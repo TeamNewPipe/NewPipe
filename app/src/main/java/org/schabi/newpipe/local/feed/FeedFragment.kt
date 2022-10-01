@@ -101,6 +101,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private lateinit var groupAdapter: GroupieAdapter
     @State @JvmField var showPlayedItems: Boolean = true
     @State @JvmField var showFutureItems: Boolean = true
+    @State @JvmField var showShorts: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -141,6 +142,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
         showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
         showFutureItems = viewModel.getShowFutureItemsFromPreferences()
+        showShorts = viewModel.getShowShortsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
         groupAdapter = GroupieAdapter().apply {
@@ -217,6 +219,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         inflater.inflate(R.menu.menu_feed_fragment, menu)
         updateTogglePlayedItemsButton(menu.findItem(R.id.menu_item_feed_toggle_played_items))
         updateToggleFutureItemsButton(menu.findItem(R.id.menu_item_feed_toggle_future_items))
+        updateToggleShortsButton(menu.findItem(R.id.menu_item_feed_toggle_shorts))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -251,6 +254,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             updateToggleFutureItemsButton(item)
             viewModel.toggleFutureItems(showFutureItems)
             viewModel.saveShowFutureItemsToPreferences(showFutureItems)
+        } else if (item.itemId == R.id.menu_item_feed_toggle_shorts) {
+            showShorts = !item.isChecked
+            updateToggleShortsButton(item)
+            viewModel.toggleShorts(showShorts)
+            viewModel.saveShowShortsToPreferences(showShorts)
         }
 
         return super.onOptionsItemSelected(item)
@@ -312,6 +320,23 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     R.string.feed_toggle_hide_future_items
                 else
                     R.string.feed_toggle_show_future_items
+            )
+        )
+    }
+
+    private fun updateToggleShortsButton(menuItem: MenuItem) {
+        menuItem.isChecked = showShorts
+        menuItem.icon = AppCompatResources.getDrawable(
+            requireContext(),
+            R.drawable.ic_youtube_shorts
+        )
+        MenuItemCompat.setTooltipText(
+            menuItem,
+            getString(
+                if (showShorts)
+                    R.string.feed_toggle_hide_shorts
+                else
+                    R.string.feed_toggle_show_shorts
             )
         )
     }

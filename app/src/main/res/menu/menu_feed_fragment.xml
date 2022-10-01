@@ -20,10 +20,20 @@
         android:title="@string/feed_toggle_show_future_items"
         app:showAsAction="ifRoom" />
 
+
+    <item
+        android:id="@+id/menu_item_feed_toggle_shorts"
+        android:orderInCategory="4"
+        android:checkable="true"
+        android:checked="true"
+        android:icon="@drawable/ic_youtube_shorts"
+        android:title="@string/feed_toggle_show_shorts"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/menu_item_feed_help"
         android:icon="@drawable/ic_help"
         android:title="@string/fast_mode"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         app:showAsAction="ifRoom" />
 </menu>
