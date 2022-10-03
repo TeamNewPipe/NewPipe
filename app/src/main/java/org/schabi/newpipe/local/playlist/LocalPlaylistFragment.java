@@ -381,10 +381,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .flatMapSingle(playlist -> Single.just(playlist.stream()
                         .map(PlaylistStreamEntry::getStreamEntity)
-                        .map(StreamEntity::getUrl)
-                        .collect(Collectors.joining("\n"))))
+                        .map(streamEntity -> streamEntity.getTitle() + " " + streamEntity.getUrl())
+                        .collect(Collectors.joining("\n\n"))))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(urlsText -> ShareUtils.shareText(requireContext(), name, urlsText),
+                .subscribe(urlsText -> ShareUtils.shareText(
+                        requireContext(), name, name + " \n\n" + urlsText),
                         throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
     }
 
