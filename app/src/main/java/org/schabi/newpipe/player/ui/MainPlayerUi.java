@@ -67,6 +67,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 
@@ -681,12 +683,13 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private OnScrollBelowItemsListener getQueueScrollListener() {
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(context);
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(final RecyclerView recyclerView) {
                 @Nullable final PlayQueue playQueue = player.getPlayQueue();
                 if (playQueue != null && !playQueue.isComplete()) {
-                    playQueue.fetch();
+                    playQueue.fetch(infoItem -> FilterUtils.filter(infoItem, filterOptions));
                 } else if (binding != null) {
                     binding.itemsList.clearOnScrollListeners();
                 }

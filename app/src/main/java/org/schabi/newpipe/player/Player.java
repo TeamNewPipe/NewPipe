@@ -118,22 +118,17 @@ import org.schabi.newpipe.player.ui.PlayerUiList;
 import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DeviceUtils;
-import org.schabi.newpipe.util.FilterOptions;
-import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.SponsorBlockSegment;
-import org.schabi.newpipe.views.ExpandableSurfaceView;
-import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.VideoSegment;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -1178,14 +1173,6 @@ public final class Player implements PlaybackListener, Listener {
         if (playWhenReady) {
             audioReactor.requestAudioFocus();
         }
-
-        // TODO: check/fix
-        if (playerListener != null) {
-            playerListener.onPlayerPrepared(this);
-        }
-
-        // TODO: check/fix
-        markSegments(currentItem, binding.playbackSeekBar, context);
     }
 
     private void onBlocked() {
@@ -1635,10 +1622,6 @@ public final class Player implements PlaybackListener, Listener {
 
         currentItem = item;
 
-        if (playerListener != null) {
-            playerListener.onPlayQueueItemChanged(currentItem);
-        }
-
         if (playQueueIndex != playQueue.getIndex()) {
             // wrong window (this should be impossible, as this method is called with
             // `item=playQueue.getItem()`, so the index of that item must be equal to `getIndex()`)
@@ -1883,13 +1866,21 @@ public final class Player implements PlaybackListener, Listener {
         loadCurrentThumbnail(info.getThumbnailUrl());
         registerStreamViewed();
 
+        final boolean isSponsorBlockEnabled = getPrefs().getBoolean(
+                context.getString(R.string.sponsor_block_enable_key), false);
+        final Set<String> uploaderWhitelist = getPrefs().getStringSet(
+                context.getString(R.string.sponsor_block_whitelist_key), null);
+
+        if (uploaderWhitelist != null && uploaderWhitelist.contains(info.getUploaderName())) {
+            setSponsorBlockMode(SponsorBlockMode.IGNORE);
+        } else {
+            setSponsorBlockMode(isSponsorBlockEnabled
+                    ? SponsorBlockMode.ENABLED
+                    : SponsorBlockMode.DISABLED);
+        }
+
         notifyMetadataUpdateToListeners();
         UIs.call(playerUi -> playerUi.onMetadataChanged(info));
-
-        // TODO: check/fix
-        if (playerListener != null) {
-            playerListener.onPlayerMetadataChanged(this);
-        }
     }
 
     @NonNull

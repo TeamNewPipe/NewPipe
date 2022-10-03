@@ -15,9 +15,6 @@ import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
@@ -28,10 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -43,8 +39,7 @@ public final class DownloaderImpl extends Downloader {
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY =
             "youtube_restricted_mode_key";
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE = "PREF=f2=8000000";
-    public static final String YOUTUBE_SIGN_IN_COOKIE_KEY
-            = "youtube_sign_in_key";
+    public static final String YOUTUBE_SIGN_IN_COOKIE_KEY = "youtube_sign_in_key";
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 
     private static DownloaderImpl instance;

@@ -86,8 +86,8 @@ public class RepliesHandler {
                                   ListExtractor.InfoItemsPage<CommentsInfoItem>
                                           commentsInfoItemInfoItemsPage) {
 
-                final List<CommentsInfoItem> actualList
-                        = commentsInfoItemInfoItemsPage.getItems();
+                final List<CommentsInfoItem> actualList =
+                        commentsInfoItemInfoItemsPage.getItems();
 
                 cachedReplies.addAll(actualList);
                 addRepliesToUI(parentInfoItem);
@@ -156,8 +156,8 @@ public class RepliesHandler {
                 infoItem -> true
         );
 
-        final SingleObserver<CommentsInfo> singleInfoRepliesInfoObserver
-                = repliesInfoObserver(context, parentInfoItem);
+        final SingleObserver<CommentsInfo> singleInfoRepliesInfoObserver =
+                repliesInfoObserver(context, parentInfoItem);
 
         parentInfoSingle
                 .subscribeOn(Schedulers.io())
