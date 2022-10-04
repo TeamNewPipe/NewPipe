@@ -445,13 +445,20 @@ public final class VideoDetailFragment
     @Override
     public void onPictureInPictureModeChanged(final boolean isInPictureInPictureMode) {
         final int visibility = isInPictureInPictureMode ? View.GONE : View.VISIBLE;
+
+        // Hide thumbnail view controls to avoid black bars in PiP
+        for (int i = 0; i < binding.detailThumbnailRootLayout.getChildCount(); i++) {
+            final var child = binding.detailThumbnailRootLayout.getChildAt(i);
+            if (child != binding.playerPlaceholder) {
+                child.setVisibility(visibility);
+            }
+        }
+
+        // Hide other controls
         binding.overlayLayout.setVisibility(visibility);
         binding.tabLayout.setVisibility(visibility);
         binding.detailContentRootLayout.setVisibility(visibility);
         binding.viewPager.setVisibility(visibility);
-        if (binding.relatedItemsLayout != null) {
-            binding.relatedItemsLayout.setVisibility(visibility);
-        }
         player.UIs().get(VideoPlayerUi.class).ifPresent(ui ->
                 ui.togglePictureInPictureMode(isInPictureInPictureMode));
     }
