@@ -459,6 +459,11 @@ public final class VideoDetailFragment
         binding.tabLayout.setVisibility(visibility);
         binding.detailContentRootLayout.setVisibility(visibility);
         binding.viewPager.setVisibility(visibility);
+
+        // Hide related videos sidebar on tablets
+        if (binding.relatedItemsLayout != null) {
+            binding.relatedItemsLayout.setVisibility(visibility);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
