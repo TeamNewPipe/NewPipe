@@ -459,8 +459,6 @@ public final class VideoDetailFragment
         binding.tabLayout.setVisibility(visibility);
         binding.detailContentRootLayout.setVisibility(visibility);
         binding.viewPager.setVisibility(visibility);
-        player.UIs().get(VideoPlayerUi.class).ifPresent(ui ->
-                ui.togglePictureInPictureMode(isInPictureInPictureMode));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1076,9 +1074,6 @@ public final class VideoDetailFragment
     private void openPopupPlayer(final boolean append) {
         if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(requireActivity())) {
             PictureInPictureHelper.enterPictureInPictureMode(requireActivity());
-            player.setRecovery();
-            player.UIs().get(VideoPlayerUi.class)
-                    .ifPresent(ui -> ui.togglePictureInPictureMode(true));
         } else {
             openPreNougatPopupPlayer(append);
         }
