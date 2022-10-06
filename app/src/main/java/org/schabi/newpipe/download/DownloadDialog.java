@@ -145,6 +145,12 @@ public class DownloadDialog extends DialogFragment
     // Instance creation
     //////////////////////////////////////////////////////////////////////////*/
 
+    public DownloadDialog() {
+        // Just an empty default no-arg ctor to keep Fragment.instantiate() happy
+        // otherwise InstantiationException will be thrown when fragment is recreated
+        // TODO: Maybe use a custom FragmentFactory instead?
+    }
+
     /**
      * Create a new download dialog with the video, audio and subtitle streams from the provided
      * stream info. Video streams and video-only streams will be put into a single list menu,
