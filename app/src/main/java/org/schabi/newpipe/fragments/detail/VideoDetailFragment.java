@@ -2460,8 +2460,13 @@ public final class VideoDetailFragment
     }
 
     // helpers to check the state of player and playerService
-    public boolean isPlayerAvailable() {
+    boolean isPlayerAvailable() {
         return player != null;
+    }
+
+    public boolean isPlayerPlayingAndExpanded() {
+        return player != null && player.isPlaying()
+                && bottomSheetState == BottomSheetBehavior.STATE_EXPANDED;
     }
 
     boolean isPlayerServiceAvailable() {
