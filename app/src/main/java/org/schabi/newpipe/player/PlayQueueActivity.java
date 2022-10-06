@@ -212,7 +212,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
                 if (player == null || player.getPlayQueue() == null || player.exoPlayerIsNull()) {
                     unbind();
-                    finish();
                 } else {
                     onQueueUpdate(player.getPlayQueue());
                     buildComponents();
