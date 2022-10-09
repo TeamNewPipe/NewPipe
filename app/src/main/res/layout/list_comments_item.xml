@@ -20,7 +20,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="@dimen/comment_item_avatar_right_margin"
         android:focusable="false"
-        android:src="@drawable/placeholder_person"
+        app:srcCompat="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
@@ -32,7 +32,7 @@
         android:layout_marginRight="@dimen/video_item_detail_pinned_right_margin"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_pinned_comment_view_description"
-        android:src="@drawable/ic_pin"
+        app:srcCompat="@drawable/ic_pin"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -69,7 +69,7 @@
         android:layout_below="@id/itemCommentContentView"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
-        android:src="@drawable/ic_thumb_up" />
+        app:srcCompat="@drawable/ic_thumb_up" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_up_count_view"
@@ -92,7 +92,7 @@
         android:layout_marginLeft="@dimen/video_item_detail_heart_margin"
         android:layout_toRightOf="@+id/detail_thumbs_up_count_view"
         android:contentDescription="@string/detail_heart_img_view_description"
-        android:src="@drawable/ic_heart"
+        app:srcCompat="@drawable/ic_heart"
         android:visibility="gone"
         tools:visibility="visible" />
 

@@ -19,8 +19,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="3dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"
+        app:srcCompat="@drawable/placeholder_person"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView

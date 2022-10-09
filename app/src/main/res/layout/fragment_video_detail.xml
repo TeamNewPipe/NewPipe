@@ -41,9 +41,9 @@
                         android:id="@+id/detail_thumbnail_image_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="200dp"
                         android:background="?windowBackground"
                         android:contentDescription="@string/detail_thumbnail_view_description"
+                        android:minHeight="200dp"
                         android:scaleType="fitCenter"
                         tools:ignore="RtlHardcoded"
                         tools:layout_height="200dp"
@@ -55,8 +55,8 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_play_arrow_shadow"
                         android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_play_arrow_shadow"
                         tools:ignore="ContentDescription"
                         tools:visibility="visible" />
 
@@ -187,7 +187,7 @@
                         android:layout_gravity="top|end"
                         android:layout_marginTop="11dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_expand_more"
+                        app:srcCompat="@drawable/ic_expand_more"
                         tools:ignore="ContentDescription" />
 
                 </FrameLayout>
@@ -258,8 +258,8 @@
                                     android:layout_width="@dimen/video_item_detail_uploader_image_size"
                                     android:layout_height="@dimen/video_item_detail_uploader_image_size"
                                     android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                                    android:src="@drawable/placeholder_person"
-                                    app:shapeAppearance="@style/CircularImageView" />
+                                    app:shapeAppearance="@style/CircularImageView"
+                                    app:srcCompat="@drawable/placeholder_person" />
 
                                 <com.google.android.material.imageview.ShapeableImageView
                                     android:id="@+id/detail_sub_channel_thumbnail_view"
@@ -267,9 +267,9 @@
                                     android:layout_height="@dimen/video_item_detail_sub_channel_image_size"
                                     android:layout_gravity="bottom|right"
                                     android:contentDescription="@string/detail_sub_channel_thumbnail_view_description"
-                                    android:src="@drawable/placeholder_person"
                                     android:visibility="gone"
                                     app:shapeAppearance="@style/CircularImageView"
+                                    app:srcCompat="@drawable/placeholder_person"
                                     tools:ignore="RtlHardcoded"
                                     tools:visibility="visible" />
 
@@ -344,7 +344,7 @@
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"
                                 android:contentDescription="@string/detail_likes_img_view_description"
-                                android:src="@drawable/ic_thumb_up" />
+                                app:srcCompat="@drawable/ic_thumb_up" />
 
                             <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/detail_thumbs_up_count_view"
@@ -368,7 +368,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_toRightOf="@id/detail_thumbs_up_count_view"
                                 android:contentDescription="@string/detail_dislikes_img_view_description"
-                                android:src="@drawable/ic_thumb_down"
+                                app:srcCompat="@drawable/ic_thumb_down"
                                 tools:ignore="RtlHardcoded" />
 
                             <org.schabi.newpipe.views.NewPipeTextView
@@ -586,19 +586,19 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:paddingBottom="48dp"/>
+            android:paddingBottom="48dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            app:tabIndicatorGravity="top"
-            app:tabIconTint="?attr/colorAccent"
+            app:elevation="16dp"
             app:tabBackground="?attr/windowBackground"
             app:tabGravity="fill"
-            app:elevation="16dp"/>
+            app:tabIconTint="?attr/colorAccent"
+            app:tabIndicatorGravity="top" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -680,7 +680,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_list"
+                app:srcCompat="@drawable/ic_list"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageButton
@@ -688,11 +688,11 @@
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
-                android:padding="10dp"
-                android:scaleType="center"
                 android:focusable="true"
                 android:focusedByDefault="true"
-                android:src="@drawable/ic_play_arrow"
+                android:padding="10dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_play_arrow"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageButton
@@ -702,7 +702,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_close"
+                app:srcCompat="@drawable/ic_close"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </LinearLayout>

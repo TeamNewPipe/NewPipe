@@ -41,8 +41,8 @@
         android:id="@+id/seek_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_above="@id/metadata"
+        android:layout_centerInParent="true"
         android:background="#c0000000"
         android:paddingLeft="30dp"
         android:paddingTop="5dp"
@@ -99,10 +99,10 @@
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/playback_controls"
         android:orientation="horizontal"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:layout_above="@+id/playback_controls">
+        android:paddingRight="12dp">
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/current_time"
@@ -157,9 +157,9 @@
         android:id="@+id/playback_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
 
         <ImageButton
@@ -174,11 +174,11 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_repeat"
-            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_repeat"
+            app:tint="?attr/colorAccent"
             tools:ignore="ContentDescription" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/control_backward"
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -189,8 +189,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_previous"
-            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_previous"
+            app:tint="?attr/colorAccent"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -204,8 +204,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_rewind"
-            android:tint="?attr/colorAccent" />
+            app:srcCompat="@drawable/exo_controls_rewind"
+            app:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/control_play_pause"
@@ -219,8 +219,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_pause"
-            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_pause"
+            app:tint="?attr/colorAccent"
             tools:ignore="ContentDescription" />
 
         <ProgressBar
@@ -238,10 +238,9 @@
             android:indeterminate="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:tint="?attr/colorAccent"
             android:visibility="invisible"
+            app:tint="?attr/colorAccent"
             tools:visibility="visible" />
-
 
         <ImageButton
             android:id="@+id/control_fast_forward"
@@ -254,10 +253,10 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_fastforward"
-            android:tint="?attr/colorAccent" />
+            app:srcCompat="@drawable/exo_controls_fastforward"
+            app:tint="?attr/colorAccent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/control_forward"
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -268,8 +267,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_next"
-            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_next"
+            app:tint="?attr/colorAccent"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -284,8 +283,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_shuffle"
-            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_shuffle"
+            app:tint="?attr/colorAccent"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
