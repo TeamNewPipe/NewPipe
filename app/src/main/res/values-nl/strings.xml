@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
-    <string name="no_player_found">Geen speler met streamondersteuning gevonden. VLC installeren\?</string>
+    <string name="no_player_found">Geen videospeler met streamondersteuning gevonden. VLC installeren\?</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
     <string name="open_in_browser">Openen in browser</string>

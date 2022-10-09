@@ -173,7 +173,7 @@
     <string name="file_name_empty_error">Nama berkas tidak boleh kosong</string>
     <string name="error_occurred_detail">Telah terjadi galat: %1$s</string>
     <string name="search_no_results">Tidak ada hasil</string>
-    <string name="empty_subscription_feed_subtitle">Tidak ada apapun disini selain jangkrik</string>
+    <string name="empty_subscription_feed_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
     <string name="no_subscribers">Tidak ada pelanggan</string>
     <plurals name="subscribers">
@@ -309,7 +309,7 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Karena itu, apl tidak mengumpulkan data apapun tanpa persetujuan Anda.
+    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Oleh karena itu, aplikasi initidak mengumpulkan data apa pun tanpa persetujuan Anda.
 \nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika Anda mengirimkan laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
@@ -704,5 +704,7 @@
     <string name="select_quality_external_players">Pilih kualitas untuk pemain eksternal</string>
     <string name="unknown_format">Format tidak diketahui</string>
     <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
-    <string name="feed_toggle_show_future_items">Tampilkan video mendatang</string>
+    <string name="feed_toggle_show_future_items">Tampilkan item mendatang</string>
+    <string name="feed_toggle_hide_played_items">Sembunyikan item yang telah ditonton</string>
+    <string name="feed_toggle_hide_future_items">Sembunyikan item mendatang</string>
 </resources>

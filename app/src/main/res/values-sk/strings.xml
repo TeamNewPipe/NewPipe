@@ -685,7 +685,7 @@
     <string name="show_crash_the_player_title">Zobraziť „zlyhať prehrávač“</string>
     <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
     <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
-\nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework.</string>
+\nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Pripnutý komentár</string>
     <string name="crash_the_player">Zlyhanie prehrávača</string>
     <string name="error_report_channel_name">Nahlásenie chyby</string>
@@ -730,5 +730,7 @@
     <string name="streams_not_yet_supported_removed">Streamy nepodporované sťahovačom sa nezobrazujú</string>
     <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
     <string name="unknown_quality">Neznáma kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobraziť budúce videá</string>
+    <string name="feed_toggle_show_future_items">Zobraziť budúce položky</string>
+    <string name="feed_toggle_hide_played_items">Skryť videné položky</string>
+    <string name="feed_toggle_hide_future_items">Skryť nasledujúce položky</string>
 </resources>

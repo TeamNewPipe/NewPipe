@@ -4,4 +4,23 @@
 - Deshacer la eliminación de descargas #1472 
 - Opción de descarga en el menú de compartir #1498
 - Añadida la opción de compartir en el menú de pulsación larga #1454 
-- Minimizar el reproductor principal al salir #1354
+- Minimizar el reproductor principal al salir #1354 
+- Actualización de la versión de la biblioteca y corrección de la copia de seguridad de la base de datos #1510 
+- Actualización de ExoPlayer 2.8.2 #1392
+  - Se ha rediseñado el diálogo de control de la velocidad de reproducción para que admita diferentes tamaños de paso para un cambio de velocidad más rápido.
+  - Se ha añadido una opción para avanzar rápidamente durante los silencios en el control de la velocidad de reproducción. Esto debería ser útil para los audiolibros y ciertos géneros musicales, y puede traer una verdadera experiencia sin problemas (y puede romper una canción con muchos silencios =\).  
+  - Se ha refactorizado la resolución de la fuente de medios para permitir pasar los metadatos junto a los medios internamente en el reproductor, en lugar de hacerlo manualmente. Ahora tenemos una única fuente de metadatos y está directamente disponible cuando se inicia la reproducción.
+  - Se ha corregido que los metadatos de las listas de reproducción remotas no se actualizan cuando hay nuevos metadatos disponibles al abrir el fragmento de la lista de reproducción.
+  - Varias correcciones de la interfaz de usuario: #1383, los controles de notificación del reproductor en segundo plano ahora siempre son blancos, es más fácil apagar el reproductor emergente mediante el lanzamiento
+- Usar nuevo extractor con arquitectura refactorizada para multiservicio
+
+### Correcciones
+
+- Arreglo #1440 Diseño de información de vídeo roto #1491 
+- Arreglo del historial de visualización #1497
+  - #1495, actualizando los metadatos (miniatura, título y recuento de vídeos) en cuanto el usuario accede a la lista de reproducción 
+  - #1475, registrando una vista en la base de datos cuando el usuario inicia un vídeo en un reproductor externo en el fragmento de detalle.
+- Arreglar el tiempo de espera de Creen en caso de modo emergente. #1463 (Arreglado #640)
+- Arreglo del reproductor de vídeo principal #1509 
+  - [#1412] Corregido el modo de repetición que provoca NPE en el reproductor cuando se recibe una nueva intención mientras la actividad del reproductor está en segundo plano.
+  - Corregido que al minimizar el reproductor a la ventana emergente no se destruye el reproductor cuando el permiso de la ventana emergente no está concedido.

@@ -743,5 +743,7 @@
     <string name="select_quality_external_players">בחירת איכות לנגנים חיצוניים</string>
     <string name="unknown_format">תצורה לא מוכרת</string>
     <string name="progressive_load_interval_title">גודל משך טעינת נגינה</string>
-    <string name="feed_toggle_show_future_items">הצגת סרטונים עתידיים</string>
+    <string name="feed_toggle_show_future_items">הצגת פריטים עתידיים</string>
+    <string name="feed_toggle_hide_played_items">הסתרת פריטים במעקב</string>
+    <string name="feed_toggle_hide_future_items">הסתרת פריטים עתידיים</string>
 </resources>

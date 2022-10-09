@@ -734,5 +734,7 @@
     <string name="select_quality_external_players">Выберите качество для внешних плееров</string>
     <string name="unknown_quality">Неизвестное качество</string>
     <string name="progressive_load_interval_title">Размер предварительной загрузки</string>
-    <string name="feed_toggle_show_future_items">Показывать будущие видео</string>
+    <string name="feed_toggle_show_future_items">Показывать будущие элементы</string>
+    <string name="feed_toggle_hide_played_items">Скрыть проигранные</string>
+    <string name="feed_toggle_hide_future_items">Скрывать будущие видео</string>
 </resources>

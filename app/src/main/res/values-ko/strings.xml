@@ -13,10 +13,10 @@
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="download_path_title">비디오 다운로드 폴더</string>
     <string name="download_path_summary">다운로드된 비디오 파일이 이 곳에 저장됩니다</string>
-    <string name="download_path_dialog_title">비디오 파일 다운로드 폴더 선택</string>
+    <string name="download_path_dialog_title">비디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
-    <string name="kore_not_found">Kore를 설치할까요\?</string>
+    <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요\?</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi 미디어 센터를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
@@ -34,14 +34,14 @@
     <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
     <string name="download_path_audio_title">오디오 다운로드 폴더</string>
     <string name="download_path_audio_summary">다운로드된 오디오 파일이 이 곳에 저장됩니다</string>
-    <string name="download_path_audio_dialog_title">오디오 파일 다운로드 폴더 선택</string>
+    <string name="download_path_audio_dialog_title">오디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="theme_title">테마</string>
     <string name="dark_theme_title">어두운 테마</string>
     <string name="light_theme_title">밝은 테마</string>
     <string name="settings_category_appearance_title">외관</string>
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
     <string name="network_error">네트워크 오류</string>
-    <string name="main_bg_subtitle">\"검색\" 버튼을 눌러서 시작하세요.</string>
+    <string name="main_bg_subtitle">돋보기를 탭하여 시작합니다.</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠 보여주기</string>
     <string name="duration_live">라이브</string>
@@ -73,7 +73,7 @@
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
-    <string name="subscription_change_failed">구독 여부를 변경할 수 없음</string>
+    <string name="subscription_change_failed">구독을 변경할 수 없습니다</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
     <string name="tab_subscriptions">구독</string>
     <string name="fragment_feed_title">새로운 영상</string>
@@ -81,7 +81,7 @@
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
-    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 영상을 재생할 수 있습니다</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
     <string name="black_theme_title">검은 테마</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
@@ -92,7 +92,7 @@
     <string name="enable_search_history_summary">검색 기록을 기기에 저장합니다</string>
     <string name="enable_watch_history_title">기록 보기</string>
     <string name="enable_watch_history_summary">시청했던 비디오 기록을 저장합니다</string>
-    <string name="resume_on_audio_focus_gain_title">재생 재개</string>
+    <string name="resume_on_audio_focus_gain_title">이어서 재생</string>
     <string name="resume_on_audio_focus_gain_summary">중단 후 계속 재생(예: 전화 통화)</string>
     <string name="show_hold_to_append_title">\"길게 눌러 대기열에 추가하기\" 팁 표시</string>
     <string name="show_hold_to_append_summary">비디오 \"세부사항:\"에서 배경 또는 팝업 버튼을 누를 때 팁 표시</string>
@@ -114,7 +114,7 @@
     <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
     <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
     <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
-    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n컨텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 시간:\\n패키지:\\n버전:\\nOS 버전:</string>
+    <string name="info_labels">무엇:\\n요청:\\n콘텐츠 언어:\\n콘텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 시간:\\n패키지:\\n버전:\\nOS 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
     <string name="short_thousand">천</string>
@@ -157,7 +157,7 @@
     <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 더 나아지도록 도와주세요!</string>
     <string name="view_on_github">GitHub에서 보기</string>
     <string name="donation_title">기부</string>
-    <string name="donation_encouragement">NewPipe는 최고의 사용자 경험을 제공하기 위해 자유 시간을 보내는 자원 봉사자에 의해 개발되었습니다. 개발자가 커피 한 잔을 즐기면서 NewPipe를 더욱 개선할 수 있도록 지원해주세요.</string>
+    <string name="donation_encouragement">여러분들의 더 나은 경험을 위해 많은 사람들이 NewPipe를 개발하는데 노력을 기울이고 있습니다. NewPipe에 참여하는 개발자들이 커피 한 잔을 즐길 수 있도록 기부해주세요.</string>
     <string name="give_back">보답하기</string>
     <string name="website_title">웹사이트</string>
     <string name="website_encouragement">NewPipe에 관한 더 많은 정보를 얻으려면 웹사이트를 방문하세요.</string>
@@ -188,7 +188,7 @@
     <string name="tab_bookmarks">재생목록 북마크</string>
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
-    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다. 5, 15, 25초 탐색은 이 기능과 같이 작동하지 않습니다</string>
+    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다. 5,15 또는 25초 탐색기능은 같이 동작하지 않습니다.</string>
     <string name="auto_queue_title">다음 스트림을 자동 대기열에 추가</string>
     <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
@@ -320,7 +320,7 @@
     <string name="unsubscribe">구독 취소</string>
     <string name="tab_choose">탭 선택</string>
     <string name="volume_gesture_control_title">제스처 음량 조작</string>
-    <string name="volume_gesture_control_summary">제스처를 사용하여 플레이어 볼륨 제어</string>
+    <string name="volume_gesture_control_summary">제스처를 사용하여 재생기 볼륨 제어하기</string>
     <string name="brightness_gesture_control_title">제스처 밝기 조작</string>
     <string name="brightness_gesture_control_summary">제스처를 사용하여 플레이어 밝기 제어</string>
     <string name="settings_category_updates_title">업데이트</string>
@@ -340,7 +340,7 @@
     <string name="minimize_on_exit_popup_description">팝업 플레이어로 최소화</string>
     <string name="playback_step">단계</string>
     <string name="playback_reset">초기화</string>
-    <string name="saved_tabs_invalid_json">저장된 탭을 읽을 수 없으므로 기본 탭 사용</string>
+    <string name="saved_tabs_invalid_json">저장된 탭을 읽을 수 없으므로, 기본 탭을 사용합니다</string>
     <string name="restore_defaults">초기화</string>
     <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
     <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
@@ -416,16 +416,16 @@
     <plurals name="videos">
         <item quantity="other">%s 동영상</item>
     </plurals>
-    <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
+    <string name="enable_queue_limit_desc">한 번에 하나씩 다운로드 합니다</string>
     <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
     <string name="default_kiosk_page_summary">기본 키오스크</string>
-    <string name="no_one_watching">시청자가 없음</string>
+    <string name="no_one_watching">시청자 없음</string>
     <plurals name="watching">
-        <item quantity="other">%s 시청</item>
+        <item quantity="other">%s명 시청중</item>
     </plurals>
-    <string name="no_one_listening">듣고 있는 사람 없음</string>
+    <string name="no_one_listening">청취자 없음</string>
     <plurals name="listening">
-        <item quantity="other">%s 듣는사람</item>
+        <item quantity="other">%s명 청취중</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">앱이 다시 시작되면 언어가 변경됩니다</string>
     <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
@@ -476,7 +476,7 @@
     <string name="notification_action_0_title">첫번째 버튼</string>
     <string name="notification_scale_to_square_image_summary">알림에 표시된 비디오 썸네일을 16:9에서 1:1 화면비로 자릅니다</string>
     <string name="notification_scale_to_square_image_title">1:1 화면비로 썸네일 자르기</string>
-    <string name="search_showing_result_for">%s에 대한 검색 결과</string>
+    <string name="search_showing_result_for">검색된 개수: %s</string>
     <string name="notification_action_shuffle">셔플</string>
     <string name="notification_action_repeat">연속 재생</string>
     <string name="playlist_page_summary">재생목록 페이지</string>
@@ -505,19 +505,19 @@
     <string name="notification_action_3_title">네번째 버튼</string>
     <string name="notification_action_2_title">세번째 버튼</string>
     <string name="notification_action_1_title">두번째 버튼</string>
-    <string name="permission_display_over_apps">다른 앱 위에 표시되는 권한 부여</string>
+    <string name="permission_display_over_apps">다른 앱 위에 표시할 수 있는 권한 부여</string>
     <string name="show_meta_info_title">메타 정보 표시</string>
     <string name="notification_colorize_title">색상화된 알림</string>
     <string name="clear_queue_confirmation_description">활성 플레이어 대기열 교체</string>
-    <string name="open_with">파일 열기</string>
+    <string name="open_with">다음으로 열기</string>
     <string name="mark_as_watched">시청한 것으로 처리</string>
     <string name="show_description_summary">비활성화하면 비디오 설명과 추가 정보를 표시하지 않습니다</string>
-    <string name="show_description_title">설명 표시</string>
-    <string name="clear_queue_confirmation_summary">원래 플레이어에서 다른 플레이어로 바꾸면 대기열이 지워집니다</string>
+    <string name="show_description_title">설명 표시하기</string>
+    <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다.</string>
     <string name="night_theme_title">어두운 테마</string>
     <string name="notification_actions_at_most_three">최대 3개까지 축소 알림에 표시될 항목을 고를 수 있습니다!</string>
-    <string name="notification_actions_summary">아래 항목을 터치해서 편집하세요. 위에서부터 체크된 3개 항목은 축소 알림일 때도 표시됩니다</string>
-    <string name="youtube_restricted_mode_enabled_title">유튜브의 \"제한 모드\"를 활성화</string>
+    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하십시오. 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택합니다.</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
     <string name="hash_channel_description">비디오 해싱 진행 알림</string>
     <string name="streams_notification_channel_name">새로운 스트림</string>
     <string name="streams_notification_channel_description">구독에서 새 스트림이 있을 때 알림</string>
@@ -528,7 +528,7 @@
     <string name="youtube_restricted_mode_enabled_summary">유튜브는 잔인할 수 있는 컨텐츠를 숨겨주는 \"제한 모드\"를 제공합니다</string>
     <string name="clear_cookie_title">reCAPTCHA 쿠키 비우기</string>
     <string name="crash_the_player">플레이어 크래시 발생</string>
-    <string name="notification_action_nothing">없음</string>
+    <string name="notification_action_nothing">존재하지 않음</string>
     <string name="start_main_player_fullscreen_title">전체화면으로 주 플레이어 시작</string>
     <string name="hash_channel_name">비디오 해시 알림</string>
     <string name="error_report_open_issue_button_text">GitHub에 보고</string>
@@ -666,12 +666,12 @@
     <string name="auto_device_theme_title">자동 (장치 테마)</string>
     <string name="detail_pinned_comment_view_description">고정된 댓글</string>
     <string name="featured">추천</string>
-    <string name="feed_toggle_show_future_items">향후 동영상 표시</string>
+    <string name="feed_toggle_show_future_items">향후 항목 표시하기</string>
     <string name="unknown_format">알 수 없는 형식</string>
     <string name="select_quality_external_players">외부 플레이어의 품질 선택</string>
     <string name="no_video_streams_available_for_external_players">외부 플레이어에 사용할 수 있는 비디오 스트림이 없음</string>
     <string name="show_meta_info_summary">스트림 작성자, 스트림 콘텐츠 또는 검색 요청에 대한 추가 정보가 있는 메타 정보 상자를 숨기려면 끄세요</string>
-    <string name="progressive_load_interval_summary">로드 간격 크기를 변경합니다 (현재 %s). 값이 낮을수록 초기 비디오 로딩 속도가 빨라질 수 있습니다. 변경하려면 플레이어를 다시 시작해야 합니다.</string>
+    <string name="progressive_load_interval_summary">불러오기 간격 크기를 변경합니다 (현재 %s). 값이 낮을수록 초기 비디오 로딩 속도가 빨라질 수 있습니다. 변경하려면 플레이어를 다시 시작해야 합니다</string>
     <string name="error_report_open_github_notice">충돌에 대해 논의하는 문제가 이미 존재하는지 확인하세요. 중복 티켓을 생성할 때 실제 버그를 수정하는 데 시간을 할애할 수 있습니다.</string>
     <string name="create_error_notification">오류 알림 생성</string>
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
@@ -687,10 +687,10 @@
     <string name="night_theme_summary">좋아하는 밤 테마 선택 — %s</string>
     <string name="download_has_started">다운로드가 시작되었습니다</string>
     <string name="description_select_note">이제 설명 내에서 텍스트를 선택할 수 있습니다. 선택 모드에서는 페이지가 깜박이고 링크를 클릭할 수 없는 경우가 있습니다.</string>
-    <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. 
-\n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오.</string>
-    <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다. 
-\n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하세요.</string>
+    <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
+\n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
+    <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
+\n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
     <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하십니까\? 그렇다면 빠른 로딩을 활성화해 보십시오 (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다). 
 \n 
 \nNewPipe는 두 가지 피드 로딩 전략을 제공합니다: 
@@ -705,4 +705,6 @@
     <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다. 
 \n 
 \n이후 버전에서 지원될 예정입니다.</string>
+    <string name="feed_toggle_hide_played_items">감시한 항목 숨기기</string>
+    <string name="feed_toggle_hide_future_items">향후 항목 숨기기</string>
 </resources>

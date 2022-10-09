@@ -738,5 +738,7 @@
     <string name="select_quality_external_players">Wybierz jakość dla zewnętrznych odtwarzaczy</string>
     <string name="unknown_format">Nieznany format</string>
     <string name="unknown_quality">Nieznana jakość</string>
-    <string name="feed_toggle_show_future_items">Pokaż przyszłe wideo</string>
+    <string name="feed_toggle_show_future_items">Pokaż przyszłe pozycje</string>
+    <string name="feed_toggle_hide_played_items">Ukryj obejrzane pozycje</string>
+    <string name="feed_toggle_hide_future_items">Ukryj przyszłe pozycje</string>
 </resources>

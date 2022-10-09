@@ -703,6 +703,8 @@
     <string name="no_video_streams_available_for_external_players">没有视频流可用于外部播放器</string>
     <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
     <string name="unknown_quality">未知画质</string>
-    <string name="progressive_load_interval_title">回放加载间隔大小</string>
-    <string name="feed_toggle_show_future_items">显示未来视频</string>
+    <string name="progressive_load_interval_title">播放加载间隔大小</string>
+    <string name="feed_toggle_show_future_items">显示未来项目</string>
+    <string name="feed_toggle_hide_played_items">隐藏看过的项目</string>
+    <string name="feed_toggle_hide_future_items">隐藏未来项目</string>
 </resources>
