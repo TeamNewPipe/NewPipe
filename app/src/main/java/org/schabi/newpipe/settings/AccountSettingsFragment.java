@@ -58,6 +58,16 @@ public class AccountSettingsFragment extends PreferenceFragmentCompat {
             return true;
         });
 
+        final Preference youTubeIncludeCookiesInSearchPreference =
+                findPreference(getString(R.string.youtube_include_cookies_in_search_key));
+        assert youTubeIncludeCookiesInSearchPreference != null;
+        youTubeIncludeCookiesInSearchPreference
+                .setOnPreferenceChangeListener((Preference p, Object newValue) -> {
+                    DownloaderImpl.getInstance().updateIncludeCookiesInSearchingSettingWithValue(
+                            (boolean) newValue);
+                    return true;
+                });
+
         final Preference youTubeClearCookiesPreference =
                 findPreference(getString(R.string.youtube_clear_cookies_settings_key));
         assert youTubeClearCookiesPreference != null;

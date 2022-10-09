@@ -13,6 +13,14 @@
             android:title="@string/youtube_sign_in_settings_title"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/youtube_include_cookies_in_search_key"
+            android:summary="@string/youtube_include_cookies_in_search_summary"
+            android:title="@string/youtube_include_cookies_in_search_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <Preference
             android:key="@string/youtube_clear_cookies_settings_key"
             android:title="@string/youtube_clear_cookies_settings_title"

@@ -46,6 +46,7 @@ public final class DownloaderImpl extends Downloader {
     private final Map<String, String> mCookies;
     private final OkHttpClient client;
     private Integer customTimeout;
+    private boolean includeCookiesWhenSearching;
 
     private DownloaderImpl(final OkHttpClient.Builder builder) {
         this.client = builder
@@ -133,6 +134,20 @@ public final class DownloaderImpl extends Downloader {
         InfoCache.getInstance().clearCache();
     }
 
+    // TODO: this sucks, do better
+    public void updateIncludeCookiesInSearchingSettingWithContext(final Context context) {
+        includeCookiesWhenSearching =
+                PreferenceManager
+                        .getDefaultSharedPreferences(context)
+                        .getBoolean(context.getString(
+                                R.string.youtube_include_cookies_in_search_key), false);
+    }
+
+    // TODO: this sucks, do better
+    public void updateIncludeCookiesInSearchingSettingWithValue(final boolean value) {
+        includeCookiesWhenSearching = value;
+    }
+
     public void updateYoutubeSignInCookies(final Context context) {
         final String cookies = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString("youtube_cookies", null);
@@ -182,30 +197,32 @@ public final class DownloaderImpl extends Downloader {
         if (!cookies.isEmpty()) {
             requestBuilder.addHeader("Cookie", cookies);
 
-            // TODO: do better
+            // TODO: clean this stuff up
             if (url.contains(YOUTUBE_DOMAIN)) {
-                final Pattern pattern = Pattern.compile("SAPISID=(.*?)($|;)");
-                final Matcher matcher = pattern.matcher(cookies);
-                if (matcher.find()) {
-                    final String sApiSid = matcher.group(1);
-                    final String originUrl = "https://www.youtube.com";
-                    final long timestampMs = Instant.now().getEpochSecond() * 1000;
-                    final String authStr = timestampMs + " " + sApiSid + " " + originUrl;
+                if (!url.contains("/search") || includeCookiesWhenSearching) {
+                    final Pattern pattern = Pattern.compile("SAPISID=(.*?)($|;)");
+                    final Matcher matcher = pattern.matcher(cookies);
+                    if (matcher.find()) {
+                        final String sApiSid = matcher.group(1);
+                        final String originUrl = "https://www.youtube.com";
+                        final long timestampMs = Instant.now().getEpochSecond() * 1000;
+                        final String authStr = timestampMs + " " + sApiSid + " " + originUrl;
 
-                    try {
-                        final MessageDigest digest = MessageDigest.getInstance("SHA-1");
-                        digest.reset();
-                        digest.update(authStr.getBytes("utf8"));
-                        final String authStrSha1 =
-                                String.format("%040x", new BigInteger(1, digest.digest()));
+                        try {
+                            final MessageDigest digest = MessageDigest.getInstance("SHA-1");
+                            digest.reset();
+                            digest.update(authStr.getBytes("utf8"));
+                            final String authStrSha1 =
+                                    String.format("%040x", new BigInteger(1, digest.digest()));
 
-                        requestBuilder.addHeader(
-                                "Authorization",
-                                "SAPISIDHASH " + timestampMs + "_" + authStrSha1);
-                        requestBuilder.addHeader("X-Origin", originUrl);
-                        requestBuilder.addHeader("X-Youtube-Client-Name", "1");
-                    } catch (final NoSuchAlgorithmException e) {
-                        e.printStackTrace();
+                            requestBuilder.addHeader(
+                                    "Authorization",
+                                    "SAPISIDHASH " + timestampMs + "_" + authStrSha1);
+                            requestBuilder.addHeader("X-Origin", originUrl);
+                            requestBuilder.addHeader("X-Youtube-Client-Name", "1");
+                        } catch (final NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

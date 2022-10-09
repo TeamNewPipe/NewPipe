@@ -1373,5 +1373,6 @@
     <string name="player_notification_screen_key">player_notification_screen</string>
 
     <string name="youtube_sign_in_settings_key">youtube_sign_in_settings_key</string>
+    <string name="youtube_include_cookies_in_search_key">youtube_include_cookies_in_search_key</string>
     <string name="youtube_clear_cookies_settings_key">youtube_clear_cookies_settings_key</string>
 </resources>
