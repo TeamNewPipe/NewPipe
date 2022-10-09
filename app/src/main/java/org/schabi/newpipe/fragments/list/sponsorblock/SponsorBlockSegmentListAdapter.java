@@ -74,6 +74,9 @@ public class SponsorBlockSegmentListAdapter extends
         private Disposable voteSubscriber;
         private String segmentUuid;
         private boolean isVoting;
+        private boolean hasUpVoted;
+        private boolean hasDownVoted;
+        private boolean hasResetVote;
 
         public SponsorBlockSegmentItemViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -154,6 +157,21 @@ public class SponsorBlockSegmentListAdapter extends
                 voteSubscriber.dispose();
             }
 
+            // these 3 checks prevent the user from continuously spamming votes
+            // (not entirely sure if we need this)
+
+            if (value == 0 && hasDownVoted) {
+                return;
+            }
+
+            if (value == 1 && hasUpVoted) {
+                return;
+            }
+
+            if (value == 20 && hasResetVote) {
+                return;
+            }
+
             final Context context = itemView.getContext();
 
             voteSubscriber = Single.fromCallable(() -> {
@@ -168,12 +186,21 @@ public class SponsorBlockSegmentListAdapter extends
                         if (!result) {
                             toastMessage = "Failed to vote on segment";
                         } else if (value == 0) {
+                            hasDownVoted = true;
+                            hasUpVoted = false;
+                            hasResetVote = false;
                             toastMessage = context.getString(
                                     R.string.sponsor_block_segment_voted_down_toast);
                         } else if (value == 1) {
+                            hasDownVoted = false;
+                            hasUpVoted = true;
+                            hasResetVote = false;
                             toastMessage = context.getString(
-                                    R.string.sponsor_block_segment_voted_down_toast);
+                                    R.string.sponsor_block_segment_voted_up_toast);
                         } else if (value == 20) {
+                            hasDownVoted = false;
+                            hasUpVoted = false;
+                            hasResetVote = true;
                             toastMessage = context.getString(
                                     R.string.sponsor_block_segment_reset_vote_toast);
                         } else {

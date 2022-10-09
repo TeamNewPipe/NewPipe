@@ -76,12 +76,17 @@
     </Space>
 
     <!-- vote up -->
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/item_segment_vote_up_imageview"
-        android:layout_width="@dimen/video_item_detail_like_image_width"
-        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_width="18sp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_thumb_up" />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Up-vote segment"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_thumb_up" />
 
     <Space
         android:layout_width="18dp"
@@ -91,9 +96,14 @@
     <!-- vote down -->
     <ImageView
         android:id="@+id/item_segment_vote_down_imageview"
-        android:layout_width="@dimen/video_item_detail_like_image_width"
-        android:layout_height="@dimen/video_item_detail_like_image_height"
+        android:layout_width="18sp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_thumb_down" />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Down-vote segment"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_thumb_down" />
 
 </LinearLayout>

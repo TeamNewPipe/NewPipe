@@ -830,7 +830,7 @@
     <string name="sponsor_block_reset_colors_toast">Colors reset</string>
     <string name="sponsor_block_segment_voted_up_toast">Up-voted segment</string>
     <string name="sponsor_block_segment_voted_down_toast">Down-voted segment</string>
-    <string name="sponsor_block_segment_reset_vote_toast">Reset vote for segment</string>
+    <string name="sponsor_block_segment_reset_vote_toast">Voting reset for segment</string>
     <!-- ReturnYouTubeDislike -->
     <string name="ryd_home_page_title">View Website</string>
     <string name="ryd_home_page_summary">View the official RYD website.</string>
