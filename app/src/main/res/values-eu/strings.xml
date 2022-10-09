@@ -673,12 +673,12 @@
     <string name="manual_update_description">Bilatu bertsio berriak eskuz</string>
     <string name="feed_new_items">Elementu berriak jarioan</string>
     <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
-\nMesedez, instalatu Storage Access Framework-ekin bateragarria den fitxategi kudeatzaile bat.</string>
+\nMesedez, instalatu Storage Access Framework-ekin bateragarria den fitxategi kudeatzaile bat</string>
     <string name="detail_pinned_comment_view_description">Ainguratutako iruzkina</string>
     <string name="crash_the_player">Itxi erreproduzigailua</string>
     <string name="checking_updates_toast">Eguneraketak bilatzen…</string>
     <string name="no_appropriate_file_manager_message">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
-\nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan.</string>
+\nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan</string>
     <string name="show_crash_the_player_summary">Erreproduzigailua erabiltzean ustekabean ixteko aukera ematen du</string>
     <string name="show_error_snackbar">Erakutsi errore barra bat</string>
     <string name="create_error_notification">Sortu errore jakinarazpen bat</string>
@@ -693,7 +693,7 @@
     <string name="you_successfully_subscribed">Kanal honetara harpidetu zara</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Txandakatu denak</string>
-    <string name="progressive_load_interval_summary">Aldatu karga maiztasun tamaina (unean %s). Balio txikiago batek bideoaren hasierako karga azkartu dezake. Erreproduzigailuaren berrabiarazte bat behar du.</string>
+    <string name="progressive_load_interval_summary">Aldatu karga maiztasun tamaina (unean %s). Balio txikiago batek bideoaren hasierako karga azkartu dezake. Erreproduzigailuaren berrabiaraztea behar du</string>
     <string name="enable_streams_notifications_summary">Harpidetzen jario berriei buruz jakinarazi</string>
     <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik\?</string>
     <string name="streams_notification_channel_description">Harpidetzentzako jario berrien jakinarazpenak</string>
@@ -716,6 +716,8 @@
     <string name="no_video_streams_available_for_external_players">Ez dago kanpoko erreproduzigailu batengatik onartuta dagoen bideo jariorik</string>
     <string name="unknown_format">Formatu ezezaguna</string>
     <string name="unknown_quality">Kalitate ezezaguna</string>
-    <string name="feed_toggle_show_future_items">Erakutsi etorkizuneko bideoak</string>
+    <string name="feed_toggle_show_future_items">Erakutsi etorkizuneko elementuak</string>
     <string name="select_quality_external_players">Hautatu kanpoko erreproduzigailuen kalitatea</string>
+    <string name="feed_toggle_hide_future_items">Ezkutatu etorkizuneko elementuak</string>
+    <string name="feed_toggle_hide_played_items">Ezkutatu ikusitako elementuak</string>
 </resources>

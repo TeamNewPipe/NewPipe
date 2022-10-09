@@ -699,7 +699,7 @@
     <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
     <string name="settings_category_player_notification_summary">Nastavit oznámení o právě přehrávaném streamu</string>
     <string name="enable_streams_notifications_title">Oznámení o nových streamech</string>
-    <string name="enable_streams_notifications_summary">Oznámit o nových strýmech od vašich odběrů</string>
+    <string name="enable_streams_notifications_summary">Oznámit o nových streamech od vašich odběrů</string>
     <string name="streams_notifications_interval_title">Frekvence kontroly</string>
     <string name="any_network">Jakákoli síť</string>
     <string name="streams_notifications_network_title">Nutné síťové připojení</string>
@@ -727,8 +727,10 @@
     <string name="no_audio_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné zvukové streamy</string>
     <string name="unknown_format">Neznámý formát</string>
     <string name="unknown_quality">Neznámá kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobrazit nadcházející videa</string>
+    <string name="feed_toggle_show_future_items">Zobrazit nadcházející položky</string>
     <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné video streamy</string>
+    <string name="feed_toggle_hide_played_items">Skrýt zhlédnuté položky</string>
+    <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
 </resources>

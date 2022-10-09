@@ -729,6 +729,8 @@
     <string name="unknown_format">Formato desconhecido</string>
     <string name="unknown_quality">Qualidade desconhecida</string>
     <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é suportada por reprodutores externos</string>
-    <string name="feed_toggle_show_future_items">Mostrar vídeos futuros</string>
+    <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
+    <string name="feed_toggle_hide_played_items">Ocultar artigos vistos</string>
+    <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
 </resources>

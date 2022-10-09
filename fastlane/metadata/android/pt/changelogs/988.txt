@@ -1,0 +1,2 @@
+[YouTube] Correção do erro "Não foi possível obter nenhum stream" ao tentar reproduzir qualquer vídeo
+[YouTube] Correção "O seguinte conteúdo não está disponível nesta aplicação" mensagem mostrada em vez do vídeo solicitado

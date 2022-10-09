@@ -664,9 +664,9 @@
     <string name="show_error_snackbar">スナックバーにエラーを表示</string>
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
-\nStorage Access Frameworkと互換性のあるファイルマネージャをインストールしてください。</string>
+\nStorage Access Framework と互換性のあるファイルマネージャをインストールしてください</string>
     <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。
-\nファイルマネージャをインストールするか、ダウンロード設定で\'%s\'を無効にすることをお試しください。</string>
+\nファイルマネージャをインストールするか、ダウンロード設定で \'%s\' を無効にすることをお試しください</string>
     <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
@@ -691,7 +691,7 @@
     <string name="streams_notification_channel_name">新しいストリーム</string>
     <string name="notifications">通知</string>
     <string name="settings_category_player_notification_summary">現在再生しているストリームの通知を構成</string>
-    <string name="progressive_load_interval_summary">読み込み間隔を変更します (現在 %s)。小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です。</string>
+    <string name="progressive_load_interval_summary">読み込み間隔を変更します (現在 %s)。小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です</string>
     <string name="streams_notifications_network_title">必要なネットワークの種類</string>
     <string name="percent">パーセント</string>
     <string name="semitone">半音</string>
@@ -699,10 +699,11 @@
     <string name="progressive_load_interval_title">データの読み込み間隔</string>
     <string name="unknown_format">未知の形式</string>
     <string name="unknown_quality">未知の品質</string>
-    <string name="streams_not_yet_supported_removed">サポートされてない動画は表示されていません</string>
-    <string name="selected_stream_external_player_not_supported">選択された動画は外部プレイヤーではサポートされていません</string>
-    <string name="no_audio_streams_available_for_external_players">外部プレイヤーで利用できる音声情報がありません</string>
-    <string name="no_video_streams_available_for_external_players">外部プレイヤーで利用できる映像情報がありません</string>
+    <string name="streams_not_yet_supported_removed">ダウンローダーによってサポートされてない動画は表示されません</string>
+    <string name="selected_stream_external_player_not_supported">選択された動画は外部プレイヤーによってサポートされていません</string>
+    <string name="no_audio_streams_available_for_external_players">外部プレイヤーで利用可能な音声ストリームがありません</string>
+    <string name="no_video_streams_available_for_external_players">外部プレイヤーで利用可能な動画ストリームがありません</string>
     <string name="select_quality_external_players">外部プレイヤーでの品質を選択</string>
     <string name="feed_toggle_show_future_items">次の動画を表示する</string>
+    <string name="feed_toggle_hide_played_items">再生済みを隠す</string>
 </resources>

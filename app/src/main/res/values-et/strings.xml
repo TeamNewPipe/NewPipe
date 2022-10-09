@@ -193,7 +193,7 @@
     <string name="no_available_dir">Vali määra allalaadimiste kataloog hiljem sätetes</string>
     <string name="msg_popup_permission">Need õigused on vajalikud
 \nhüpikakna avamiseks</string>
-    <string name="one_item_deleted">Kustutati 1 element.</string>
+    <string name="one_item_deleted">1 üksus kustutatud.</string>
     <string name="settings_category_downloads_title">Laadi alla</string>
     <string name="settings_file_charset_title">Lubatud tähemärgid failinimedes</string>
     <string name="settings_file_replacement_character_summary">Vigased tähemärgid asendatakse selle väärtusega</string>
@@ -216,7 +216,7 @@
     <string name="read_full_license">Loe litsentsi</string>
     <string name="title_activity_history">Ajalugu</string>
     <string name="action_history">Ajalugu</string>
-    <string name="delete_item_search_history">Kas kustutada see kirje otsinguajaloost?</string>
+    <string name="delete_item_search_history">Kas kustutame selle kirje otsinguajaloost\?</string>
     <string name="title_last_played">Viimati esitatud</string>
     <string name="title_most_played">Enim esitatud</string>
     <string name="main_page_content">Avalehe sisu</string>
@@ -607,8 +607,8 @@
     <string name="low_quality_smaller">Madalam kvaliteet (väiksem)</string>
     <string name="high_quality_larger">Parem kvaliteet (suurem)</string>
     <string name="seekbar_preview_thumbnail_title">Otsinguriba pisipildivaates</string>
-    <string name="show_original_time_ago_summary">Teenuste algne tekstid on nähtavad voo elementides</string>
-    <string name="show_original_time_ago_title">Kuva elementide algupärane aeg</string>
+    <string name="show_original_time_ago_summary">Teenuste algtekstid on nähtavad voo elementides</string>
+    <string name="show_original_time_ago_title">Kuva üksuste algupärane aeg</string>
     <string name="comments_are_disabled">Kommentaarid on välja lülitatud</string>
     <string name="error_report_open_github_notice">Palun kontrolli kas sinu kogetud krahhi käsitlev vearaport on juba olemas. Luues korduvraporteid võtad meilt aega, mida saaksime kulutada tegelike vigade parandamiseks.</string>
     <string name="peertube_instance_add_exists">Instants on juba olemas</string>
@@ -650,7 +650,7 @@
     <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
-    <string name="main_page_content_swipe_remove">Kirje eemaldamiseks viipa</string>
+    <string name="main_page_content_swipe_remove">Üksuse eemaldamiseks viipa</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Kustutasin %1$s allalaadimise</item>
         <item quantity="other">Kustutasin %1$s allalaadimist</item>
@@ -678,13 +678,13 @@
     <string name="error_report_notification_toast">Tekkis viga, vaata vastavat teadet</string>
     <string name="create_error_notification">Koosta veateade</string>
     <string name="no_appropriate_file_manager_message">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
-\nPalun paigalda nutiseadmesse failihaldur või proovi allalaadimiste seadistustest „%s“ välja lülitada.</string>
+\nPalun paigalda nutiseadmesse failihaldur või proovi allalaadimiste seadistustest „%s“ välja lülitada</string>
     <string name="no_appropriate_file_manager_message_android_10">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
-\nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
+\nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer\'i vaikimisi väärtused</string>
-    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist.</string>
+    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist</string>
     <string name="settings_category_player_notification_title">Meediamängija teavitused</string>
     <string name="notifications_disabled">Teavitused pole kasutusel</string>
     <string name="streams_notifications_interval_title">Kontrollimise sagedus</string>
@@ -717,5 +717,7 @@
     <string name="percent">Protsent</string>
     <string name="semitone">Pooltoon</string>
     <string name="progressive_load_interval_title">Taasesituseks vajalike andmete laadimise samm</string>
-    <string name="feed_toggle_show_future_items">Näita tulevasi videoid</string>
+    <string name="feed_toggle_show_future_items">Näita tulevasi üksuseid</string>
+    <string name="feed_toggle_hide_future_items">Peida tulevased üksused</string>
+    <string name="feed_toggle_hide_played_items">Peida vaadatud üksused</string>
 </resources>

@@ -704,5 +704,7 @@
     <string name="no_video_streams_available_for_external_players">沒有可用於外部播放程式的視訊串流</string>
     <string name="select_quality_external_players">選取外部播放程式的畫質</string>
     <string name="progressive_load_interval_title">播放載入間隔大小</string>
-    <string name="feed_toggle_show_future_items">顯示未來影片</string>
+    <string name="feed_toggle_show_future_items">顯示未來項目</string>
+    <string name="feed_toggle_hide_future_items">隱藏未來項目</string>
+    <string name="feed_toggle_hide_played_items">隱藏已觀看的項目</string>
 </resources>

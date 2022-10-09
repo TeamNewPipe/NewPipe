@@ -589,7 +589,7 @@
     <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
-    <string name="related_items_tab_description">Verwandte Streams</string>
+    <string name="related_items_tab_description">Verwandte Elemente</string>
     <string name="comments_tab_description">Kommentare</string>
     <string name="show_description_summary">Ausschalten, um Videobeschreibung und Zusatzinformationen auszublenden</string>
     <string name="show_description_title">Beschreibung anzeigen</string>
@@ -717,5 +717,7 @@
     <string name="streams_not_yet_supported_removed">Streams, die noch nicht vom Downloader unterstützt werden, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="feed_toggle_show_future_items">Zukünftige Videos anzeigen</string>
+    <string name="feed_toggle_show_future_items">Zukünftige Elemente anzeigen</string>
+    <string name="feed_toggle_hide_played_items">Angesehene Elemente ausblenden</string>
+    <string name="feed_toggle_hide_future_items">Zukünftige Elemente ausblenden</string>
 </resources>

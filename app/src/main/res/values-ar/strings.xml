@@ -769,5 +769,7 @@
     <string name="unknown_format">تنسيق غير معروف</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
-    <string name="feed_toggle_show_future_items">عرض مقاطع الفيديو المستقبلية</string>
+    <string name="feed_toggle_show_future_items">عرض العناصر المستقبلية</string>
+    <string name="feed_toggle_hide_future_items">إخفاء العناصر المستقبلية</string>
+    <string name="feed_toggle_hide_played_items">إخفاء العناصر التي تمت مشاهدتها</string>
 </resources>

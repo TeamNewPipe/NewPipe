@@ -555,7 +555,7 @@
     <string name="feed_update_threshold_option_always_update">Altid opdater</string>
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
     <string name="feed_toggle_show_played_items">Vis sete elementer</string>
-    <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land</string>
+    <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
     <string name="remove_watched_popup_warning">Videoer på playlisten som allerede er blevet set fjernes.
 \nDette kan ikke fortrydes!</string>
@@ -653,4 +653,6 @@
     <string name="show_crash_the_player_title">Vis \"crash afspilleren\"</string>
     <string name="crash_the_app">Crash appen</string>
     <string name="show_crash_the_player_summary">Vis et crash alternativ når afspilleren er i brug</string>
+    <string name="show_error_snackbar">Vis en fejl snackbar</string>
+    <string name="downloads_storage_use_saf_title">Brug system mappevælger (SAF)</string>
 </resources>

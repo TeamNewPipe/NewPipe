@@ -717,5 +717,7 @@
     <string name="unknown_format">Naməlum format</string>
     <string name="unknown_quality">Naməlum keyfiyyət</string>
     <string name="progressive_load_interval_title">Oynatma yükləmə intervalı həcmi</string>
-    <string name="feed_toggle_show_future_items">Gələcək videoları göstərin</string>
+    <string name="feed_toggle_show_future_items">Gələcək elementləri göstərin</string>
+    <string name="feed_toggle_hide_played_items">Baxılan elementləri gizlədin</string>
+    <string name="feed_toggle_hide_future_items">Gələcək elementləri gizlədin</string>
 </resources>

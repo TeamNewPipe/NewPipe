@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Prema na lupa para comezar.</string>
     <string name="upload_date_text">Publicado o día %1$s</string>
     <string name="no_player_found">Non foi encontrado ningún reprodutor. Quere instalar o VLC\?</string>
-    <string name="no_player_found_toast">Non foi encontrado ningún reprodutor (pode instalar o VLC para o reproducir).</string>
+    <string name="no_player_found_toast">Non se atopou ningún reprodutor de transmisión (podes instalar VLC para reproducilo).</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -334,8 +334,8 @@
     <string name="minimize_on_exit_popup_description">Minimizar o reprodutor popup</string>
     <string name="local">Limitado</string>
     <string name="peertube_instance_add_https_only">Só son compatibles os URLs HTTPS</string>
-    <string name="volume_gesture_control_title">Control xestual do volume</string>
-    <string name="show_comments_summary">Desactíveo para agochar os comentarios</string>
+    <string name="volume_gesture_control_title">Control por xestos do volume</string>
+    <string name="show_comments_summary">Desactiva para agochalos comentarios</string>
     <string name="enable_playback_resume_title">Retomar a reprodución</string>
     <string name="playlist_page_summary">Páxina das listas de reprodución</string>
     <string name="video_detail_by">Por %s</string>
@@ -455,7 +455,7 @@
     <string name="app_update_notification_content_text">Prema para descargar</string>
     <string name="app_update_notification_content_title">A actualización de NewPipe está dispoñible!</string>
     <string name="auto">Automático</string>
-    <string name="enable_playback_state_lists_summary">Amosar indicadores de posición de reprodución en listas</string>
+    <string name="enable_playback_state_lists_summary">Mostra os indicadores de posición de reprodución nas listas</string>
     <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>
     <string name="grid">Rede</string>
     <string name="list">Lista</string>
@@ -534,8 +534,8 @@
     <string name="enable_playback_state_lists_title">Posicións nas listas</string>
     <string name="enable_playback_resume_summary">Restaurar a última posición de reprodución</string>
     <string name="brightness_gesture_control_title">Control do xesto de brillo</string>
-    <string name="volume_gesture_control_summary">Use xestos para controlar o volume do reprodutor</string>
-    <string name="show_comments_title">Amosar comentarios</string>
+    <string name="volume_gesture_control_summary">Use xestos para controlalo volume do reprodutor</string>
+    <string name="show_comments_title">Ensinalos comentarios</string>
     <string name="seek_duration_title">Duración da busca rápida cara a adiante / cara atrás</string>
     <string name="tab_choose">Elixir lapela</string>
     <string name="unsubscribe">Darse de baixa</string>
@@ -657,9 +657,10 @@
     <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
     <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
     <string name="main_page_content_swipe_remove">Deslice os elementos para removelos</string>
-    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción. Instala un xestor de ficheiros ou intenta desactivar \'%s\' na configuración de descarga</string>
-    <string name="no_appropriate_file_manager_message_android_10">Non foi atopado ningún xestor de arquivos adecuado para esta acción.
-\nPor favor instale un compatíbel co Sistema de Acceso ao Almacenamento.</string>
+    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
+\nPor favor instala un xestor de ficheiros ou intenta desactivar \'%s\' na configuración de descarga</string>
+    <string name="no_appropriate_file_manager_message_android_10">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
+\nPor favor instala un xestor de ficheiros compatible con Storage Access Framework</string>
     <string name="detail_heart_img_view_description">Valorado polo creador</string>
     <string name="error_report_notification_toast">Ocorreu un erro, vexa a notificación</string>
     <string name="auto_queue_toggle">Auto-enfileirar</string>
@@ -673,7 +674,7 @@
     <string name="manual_update_description">Procurar manualmente novas versións</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
-    <string name="progressive_load_interval_summary">Cambia o tamaño do intervalo de carga (actualmente %s). Un valor menor pode acelerar o carregamento do vídeo. Cambios poden precisar un reinicio do reprodutor.</string>
+    <string name="progressive_load_interval_summary">Cambial dimensión do intervalo de carga (actualmente %s). Un valor máis baixo pode alixeirala carga inicial do vídeo. Os cambios requiren un reinicio da aplicacion</string>
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
     <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
@@ -715,6 +716,8 @@
     <string name="progressive_load_interval_title">Tamaño do intervalo de carregamento da reprodución</string>
     <string name="selected_stream_external_player_not_supported">As emisións seleccionadas non son soportadas polos reprodutores externos</string>
     <string name="no_video_streams_available_for_external_players">Non hai emisións de vídeo dispoñíbeis para reprodutores externos</string>
-    <string name="feed_toggle_show_future_items">Ver futuros vídeos</string>
+    <string name="feed_toggle_show_future_items">Mostrar elementos próximos</string>
     <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
+    <string name="feed_toggle_hide_future_items">Ocultar elementos próximos</string>
+    <string name="feed_toggle_hide_played_items">Ocultalos elementos xa ollados</string>
 </resources>

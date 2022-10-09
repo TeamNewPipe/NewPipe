@@ -1,0 +1,3 @@
+- [YouTube] Corrigido o carregamento infinito ao tentar reproduzir qualquer vídeo 
+- [YouTube] Corrigido a limitação em alguns vídeos 
+- Atualizado a biblioteca do jsoup para 1.15.3, que inclui uma correção de segurança
