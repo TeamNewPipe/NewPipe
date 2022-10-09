@@ -26,6 +26,8 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
