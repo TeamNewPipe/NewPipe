@@ -114,6 +114,11 @@ public class RouterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        ThemeHelper.setDayNightMode(this);
+        setTheme(ThemeHelper.isLightThemeSelected(this)
+                ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
+        Localization.assureCorrectAppLanguage(this);
+
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
 
@@ -125,11 +130,6 @@ public class RouterActivity extends AppCompatActivity {
                 finish();
             }
         }
-
-        ThemeHelper.setDayNightMode(this);
-        setTheme(ThemeHelper.isLightThemeSelected(this)
-                ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
-        Localization.assureCorrectAppLanguage(this);
     }
 
     @Override
