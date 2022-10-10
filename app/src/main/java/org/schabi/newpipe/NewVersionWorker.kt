@@ -47,8 +47,10 @@ class NewVersionWorker(
             if (inputData.getBoolean(IS_MANUAL, false)) {
                 // Show toast stating that the app is up-to-date if the update check was manual.
                 ContextCompat.getMainExecutor(applicationContext).execute {
-                    Toast.makeText(applicationContext, R.string.app_update_unavailable_toast,
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext, R.string.app_update_unavailable_toast,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             return
@@ -66,10 +68,14 @@ class NewVersionWorker(
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-            .setContentTitle(applicationContext.getString(
-                    R.string.app_update_available_notification_title))
-            .setContentText(applicationContext.getString(
-                    R.string.app_update_available_notification_text, versionName))
+            .setContentTitle(
+                applicationContext.getString(R.string.app_update_available_notification_title)
+            )
+            .setContentText(
+                applicationContext.getString(
+                    R.string.app_update_available_notification_text, versionName
+                )
+            )
 
         val notificationManager = NotificationManagerCompat.from(applicationContext)
         notificationManager.notify(2000, notificationBuilder.build())
