@@ -397,7 +397,8 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener(dialog -> {
-                    if (!selectionIsDownload && !selectionIsAddToPlaylist) {
+                    if (!selectionIsDownload && !selectionIsAddToPlaylist
+                            && !isChangingConfigurations()) { // allow recreate on screen rotate
                         finish();
                     }
                 })
