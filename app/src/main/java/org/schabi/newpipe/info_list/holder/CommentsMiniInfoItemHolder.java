@@ -95,7 +95,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
         commentText = item.getCommentText();
-        itemContentView.setText(commentText);
+        itemContentView.setText(commentText, TextView.BufferType.SPANNABLE);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
