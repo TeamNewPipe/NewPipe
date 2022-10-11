@@ -155,4 +155,12 @@
 
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
+    <!-- custom Chip style for SearchFilterDialogFragment -->
+    <style name="ChipSearchFilter" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="checkedIconEnabled">false</item>
+        <item name="checkedIcon">@null</item>
+        <item name="chipBackgroundColor">@color/mtrl_search_filter_chip_background_color</item>
+        <item name="chipStrokeWidth">0.1dp</item>
+    </style>
+
 </resources>

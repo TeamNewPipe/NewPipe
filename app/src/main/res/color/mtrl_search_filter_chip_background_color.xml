@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- adding more contrast than @color/mtrl_chip_background_color if a Chip is selected -->
+  <item android:alpha="0.30" android:color="?attr/colorOnSurface" android:state_enabled="true" android:state_selected="true"/>
+  <item android:alpha="0.18" android:color="?attr/colorOnSurface" android:state_enabled="true" android:state_checked="true"/>
+  <!-- 12% of 87% opacity -->
+  <item android:alpha="0.10" android:color="?attr/colorOnSurface" android:state_enabled="true"/>
+  <item android:alpha="0.12" android:color="?attr/colorOnSurface"/>
+</selector>
