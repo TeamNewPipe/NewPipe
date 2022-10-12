@@ -746,5 +746,5 @@
     <string name="select_quality_external_players">Select quality for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
-    <string name="empty_subscription_feed_subtitle">You can import and export subscriptions using the three-dot menu</string>
+    <string name="empty_subscription_feed_subtitle">Import or export subscriptions using the 3-dot menu.</string>
 </resources>
