@@ -1,0 +1,19 @@
+### Nouveau
+- Suppression et partage par appui long dans les abonnements #1516
+- Interface utilisateur pour tablettes et disposition de la liste en grille #1617
+
+### Améliorations
+- Stockage/recharge du dernier rapport d'aspect utilisé #1748
+- Activation de la disposition linéaire dans l'activité Téléchargements avec les noms complets des vidéos #1771
+- Suppression et partage des abonnements directement à partir de l'onglet abonnements #1516
+- La mise en file d'attente déclenche désormais la lecture de la vidéo si la file d'attente de lecture est déjà terminée #1783
+- Paramètres distincts pour les gestes de volume et de luminosité #1644
+- Ajout de la prise en charge de la localisation #1792
+
+### Corrections
+- Analyse de l'heure pour le format . , afin que NewPipe puisse être utilisé en Finlande.
+- Compte d'abonnement
+- Ajout permission de service de premier plan pour les appareils API 28+ #1830
+
+### Bugs connus
+- État de lecture ne peut être enregistré sur Android P

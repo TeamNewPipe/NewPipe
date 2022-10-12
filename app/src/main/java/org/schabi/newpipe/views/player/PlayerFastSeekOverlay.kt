@@ -12,8 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.START
 import androidx.constraintlayout.widget.ConstraintSet
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
-import org.schabi.newpipe.player.event.DisplayPortion
-import org.schabi.newpipe.player.event.DoubleTapListener
+import org.schabi.newpipe.player.gesture.DisplayPortion
+import org.schabi.newpipe.player.gesture.DoubleTapListener
 
 class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), DoubleTapListener {
@@ -38,14 +38,14 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
     private var performListener: PerformListener? = null
 
-    fun performListener(listener: PerformListener) = apply {
+    fun performListener(listener: PerformListener?) = apply {
         performListener = listener
     }
 
     private var seekSecondsSupplier: () -> Int = { 0 }
 
-    fun seekSecondsSupplier(supplier: () -> Int) = apply {
-        seekSecondsSupplier = supplier
+    fun seekSecondsSupplier(supplier: (() -> Int)?) = apply {
+        seekSecondsSupplier = supplier ?: { 0 }
     }
 
     // Indicates whether this (double) tap is the first of a series

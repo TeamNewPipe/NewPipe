@@ -1,0 +1,13 @@
+Nový
+- Skupiny předplatného a tříděné kanály
+- Tlačítko ztlumení zvuku v přehrávačích
+
+Vylepšené stránky
+- Povoleno otevírání odkazů na music.youtube.com a media.ccc.de v aplikaci NewPipe
+- Přemístění dvou nastavení ze vzhledu do obsahu
+- Skrytí možností vyhledávání po 5, 15 a 25 sekundách, pokud je povoleno nepřesné vyhledávání
+
+Opraveno
+- některá videa WebM nelze zobrazit
+- zálohování databáze v systému Android P
+- pád při sdílení staženého souboru

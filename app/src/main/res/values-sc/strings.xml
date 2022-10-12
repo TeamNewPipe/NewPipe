@@ -549,7 +549,7 @@
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
     <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
-    <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
+    <string name="notification_scale_to_square_image_summary">Sega sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>
     <string name="notification_action_repeat">Repite</string>
@@ -559,7 +559,7 @@
     <string name="notification_action_2_title">Su de tres butones de atzione</string>
     <string name="notification_action_1_title">Su de duos butones de atzione</string>
     <string name="notification_action_0_title">Su de unu butone de atzione</string>
-    <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
+    <string name="notification_scale_to_square_image_title">Sega sa miniadura in formadu 1:1</string>
     <string name="show_memory_leaks">Ammustra sas pèrdidas de memòria</string>
     <string name="enqueued">Annànghidu a sa lista</string>
     <string name="enqueue_stream">Pone in lista</string>
@@ -632,7 +632,6 @@
 \nCheres bogare s\'iscritzione a custu canale\?</string>
     <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
     <string name="feed_load_error">Errore carrighende su flussu</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
     <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
     <string name="off">Istudadu</string>
@@ -676,15 +675,15 @@
     <string name="create_error_notification">Crea una notìfica de errore</string>
     <string name="feed_new_items">Elementos noos de su flussu</string>
     <string name="no_appropriate_file_manager_message">No est istadu agatadu perunu gestore de documentos pro custa atzione.
-\nPro praghere installa·nde unu o proa a inabilitare \'%s\' in sas impostatziones de iscarrigamentu.</string>
+\nPro praghere installa·nde unu o proa a inabilitare \'%s\' in sas impostatziones de iscarrigamentu</string>
     <string name="show_crash_the_player_title">Ammustra \"faghe serrare su riproduidore\"</string>
     <string name="no_appropriate_file_manager_message_android_10">No est istadu agatadu perunu gestore de documentos pro custa atzione.
-\nPro praghere installa unu gestore de documentos cumpatìbile cun su \"Sistema de Atzessu a s\'Archiviatzione\".</string>
+\nPro praghere installa unu gestore de documentos cumpatìbile cun su \"Sistema de Atzessu a s\'Archiviatzione\"</string>
     <string name="crash_the_player">Faghe serrare su riproduidore</string>
     <string name="detail_pinned_comment_view_description">Cummentu apicadu</string>
     <string name="leak_canary_not_available">LeakCanary no est a disponimentu</string>
     <string name="progressive_load_interval_exoplayer_default">Valore ExoPlayer predefinidu</string>
-    <string name="progressive_load_interval_summary">Muda sa mannària de s\'intervallu de carrigamentu (in custu momentu %s). Unu valore prus bassu diat pòdere allestrare su carrigamentu de incumintzu de su vìdeu. Sas modìficas tenent bisòngiu de torrare a allùghere su riproduidore.</string>
+    <string name="progressive_load_interval_summary">Muda sa mannària de s\'intervallu de carrigamentu (in custu momentu %s). Unu valore prus bassu diat pòdere allestrare su carrigamentu de incumintzu de su vìdeu. Sas modìficas tenent bisòngiu de torrare a allùghere su riproduidore</string>
     <string name="settings_category_player_notification_summary">Cunfigura sa notìfica de su flussu in cursu de riprodutzione</string>
     <string name="streams_notification_channel_description">Notìficas de flussos noos dae sas iscritziones</string>
     <plurals name="new_streams">
@@ -709,4 +708,15 @@
     <string name="delete_downloaded_files_confirm">Iscantzellare totu sos archìvios iscarrigados dae su discu\?</string>
     <string name="percent">Pertzentuale</string>
     <string name="semitone">Semitonu</string>
+    <string name="select_quality_external_players">Seletziona sa calidade pro sos letores esternos</string>
+    <string name="streams_not_yet_supported_removed">Sos flussos chi non sunt galu suportados dae s\'iscarrigadore non sunt ammustrados</string>
+    <string name="no_audio_streams_available_for_external_players">Non b\'est perunu flussu sonoru a disponimentu pro letores esternos</string>
+    <string name="no_video_streams_available_for_external_players">Non bi sunt flussos de vìdeu a disponimentu pro letores esternos</string>
+    <string name="unknown_format">Formadu disconnotu</string>
+    <string name="unknown_quality">Calidade disconnota</string>
+    <string name="selected_stream_external_player_not_supported">Su flussu seletzionadu no est galu suportadu dae letores esternos</string>
+    <string name="progressive_load_interval_title">Mannària de s\'intervallu de carrigamentu de sa riprodutzione</string>
+    <string name="feed_toggle_show_future_items">Ammustra sos elementos imbenientes</string>
+    <string name="feed_toggle_hide_played_items">Cua sos elementos pompiados</string>
+    <string name="feed_toggle_hide_future_items">Cua sos elementos imbenientes</string>
 </resources>

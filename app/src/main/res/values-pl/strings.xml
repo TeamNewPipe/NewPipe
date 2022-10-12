@@ -574,8 +574,8 @@
     <string name="notification_action_2_title">Przycisk trzeciej akcji</string>
     <string name="notification_action_1_title">Przycisk drugiej akcji</string>
     <string name="notification_action_0_title">Przycisk pierwszej akcji</string>
-    <string name="notification_scale_to_square_image_summary">Skaluj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16:9 do 1:1 (może powodować zniekształcenia)</string>
-    <string name="notification_scale_to_square_image_title">Skaluj miniaturę do proporcji 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Przycinaj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16:9 do 1:1</string>
+    <string name="notification_scale_to_square_image_title">Przycinaj miniaturę do proporcji 1:1</string>
     <string name="enqueued">Dodano do kolejki</string>
     <string name="enqueue_stream">Dodaj do kolejki</string>
     <string name="show_memory_leaks">Pokaż wycieki pamięci</string>
@@ -645,7 +645,6 @@
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
     <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Systemowy selektor folderów (SAF) nie jest obsługiwany przez system Android KitKat i niższy</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-na), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>
@@ -731,4 +730,14 @@
     <string name="toggle_all">Przełącz wszystkie</string>
     <string name="percent">Procent</string>
     <string name="semitone">Półton</string>
+    <string name="selected_stream_external_player_not_supported">Wybrany strumień nie jest obsługiwany przez zewnętrzne odtwarzacze</string>
+    <string name="streams_not_yet_supported_removed">Strumienie, których jeszcze nie da się pobrać, nie są wyświetlane</string>
+    <string name="no_audio_streams_available_for_external_players">Brak dostępnych strumieni audio dla zewnętrznych odtwarzaczy</string>
+    <string name="no_video_streams_available_for_external_players">Brak dostępnych strumieni wideo dla zewnętrznych odtwarzaczy</string>
+    <string name="select_quality_external_players">Wybierz jakość dla zewnętrznych odtwarzaczy</string>
+    <string name="unknown_format">Nieznany format</string>
+    <string name="unknown_quality">Nieznana jakość</string>
+    <string name="feed_toggle_show_future_items">Pokaż przyszłe pozycje</string>
+    <string name="feed_toggle_hide_played_items">Ukryj obejrzane pozycje</string>
+    <string name="feed_toggle_hide_future_items">Ukryj przyszłe pozycje</string>
 </resources>

@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
@@ -21,16 +20,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.math.MathUtils;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DialogPlaybackParameterBinding;
-import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.SliderStrategy;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -149,7 +148,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         assureCorrectAppLanguage(getContext());
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        binding = DialogPlaybackParameterBinding.inflate(LayoutInflater.from(getContext()));
+        binding = DialogPlaybackParameterBinding.inflate(getLayoutInflater());
         initUI();
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
@@ -207,7 +206,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                     ? View.VISIBLE
                     : View.GONE);
             animateRotation(binding.pitchToogleControlModes,
-                    Player.DEFAULT_CONTROLS_DURATION,
+                    VideoPlayerUi.DEFAULT_CONTROLS_DURATION,
                     isCurrentlyVisible ? 180 : 0);
         });
 
@@ -334,10 +333,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private Map<Boolean, TextView> getPitchControlModeComponentMappings() {
-        final Map<Boolean, TextView> mappings = new HashMap<>();
-        mappings.put(PITCH_CTRL_MODE_PERCENT, binding.pitchControlModePercent);
-        mappings.put(PITCH_CTRL_MODE_SEMITONE, binding.pitchControlModeSemitone);
-        return mappings;
+        return Map.of(PITCH_CTRL_MODE_PERCENT, binding.pitchControlModePercent,
+                PITCH_CTRL_MODE_SEMITONE, binding.pitchControlModeSemitone);
     }
 
     private void changePitchControlMode(final boolean semitones) {
@@ -407,13 +404,11 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private Map<Double, TextView> getStepSizeComponentMappings() {
-        final Map<Double, TextView> mappings = new HashMap<>();
-        mappings.put(STEP_1_PERCENT_VALUE, binding.stepSizeOnePercent);
-        mappings.put(STEP_5_PERCENT_VALUE, binding.stepSizeFivePercent);
-        mappings.put(STEP_10_PERCENT_VALUE, binding.stepSizeTenPercent);
-        mappings.put(STEP_25_PERCENT_VALUE, binding.stepSizeTwentyFivePercent);
-        mappings.put(STEP_100_PERCENT_VALUE, binding.stepSizeOneHundredPercent);
-        return mappings;
+        return Map.of(STEP_1_PERCENT_VALUE, binding.stepSizeOnePercent,
+                STEP_5_PERCENT_VALUE, binding.stepSizeFivePercent,
+                STEP_10_PERCENT_VALUE, binding.stepSizeTenPercent,
+                STEP_25_PERCENT_VALUE, binding.stepSizeTwentyFivePercent,
+                STEP_100_PERCENT_VALUE, binding.stepSizeOneHundredPercent);
     }
 
     private void setStepSizeToUI(final double newStepSize) {
@@ -532,7 +527,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void setAndUpdateTempo(final double newTempo) {
-        this.tempo = calcValidTempo(newTempo);
+        this.tempo = MathUtils.clamp(newTempo, MIN_PITCH_OR_SPEED, MAX_PITCH_OR_SPEED);
 
         binding.tempoSeekbar.setProgress(QUADRATIC_STRATEGY.progressOf(tempo));
         setText(binding.tempoCurrentText, PlayerHelper::formatSpeed, tempo);
@@ -551,13 +546,8 @@ public class PlaybackParameterDialog extends DialogFragment {
                 pitchPercent);
     }
 
-    private double calcValidTempo(final double newTempo) {
-        return Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newTempo));
-    }
-
     private double calcValidPitch(final double newPitch) {
-        final double calcPitch =
-                Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newPitch));
+        final double calcPitch = MathUtils.clamp(newPitch, MIN_PITCH_OR_SPEED, MAX_PITCH_OR_SPEED);
 
         if (!isCurrentPitchControlModeSemitone()) {
             return calcPitch;

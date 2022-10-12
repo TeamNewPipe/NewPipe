@@ -172,9 +172,10 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         try {
             final StreamInfoTag tag = StreamInfoTag.of(info);
             if (!info.getHlsUrl().isEmpty()) {
-                return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.TYPE_HLS, tag);
+                return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
             } else if (!info.getDashMpdUrl().isEmpty()) {
-                return buildLiveMediaSource(dataSource, info.getDashMpdUrl(), C.TYPE_DASH, tag);
+                return buildLiveMediaSource(
+                        dataSource, info.getDashMpdUrl(), C.CONTENT_TYPE_DASH, tag);
             }
         } catch (final Exception e) {
             Log.w(TAG, "Error when generating live media source, falling back to standard sources",
@@ -190,17 +191,17 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                             final MediaItemTag metadata) throws ResolverException {
         final MediaSource.Factory factory;
         switch (type) {
-            case C.TYPE_SS:
+            case C.CONTENT_TYPE_SS:
                 factory = dataSource.getLiveSsMediaSourceFactory();
                 break;
-            case C.TYPE_DASH:
+            case C.CONTENT_TYPE_DASH:
                 factory = dataSource.getLiveDashMediaSourceFactory();
                 break;
-            case C.TYPE_HLS:
+            case C.CONTENT_TYPE_HLS:
                 factory = dataSource.getLiveHlsMediaSourceFactory();
                 break;
-            case C.TYPE_OTHER:
-            case C.TYPE_RTSP:
+            case C.CONTENT_TYPE_OTHER:
+            case C.CONTENT_TYPE_RTSP:
             default:
                 throw new ResolverException("Unsupported type: " + type);
         }

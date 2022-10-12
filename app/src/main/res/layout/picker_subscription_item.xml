@@ -22,7 +22,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:shapeAppearance="@style/CircularImageView"
-            tools:src="@drawable/buddy_channel_item" />
+            tools:src="@drawable/placeholder_person" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title_view"
@@ -52,8 +52,8 @@
             android:layout_gravity="top|center_horizontal"
             android:layout_marginTop="4dp"
             android:scaleType="centerInside"
+            android:src="@drawable/ic_done"
             app:tint="@color/white"
-            app:srcCompat="@drawable/ic_done"
             tools:ignore="ContentDescription" />
     </FrameLayout>
 </FrameLayout>

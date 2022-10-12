@@ -1,6 +1,6 @@
 name: Bug report
 description: Create a bug report to help us improve
-labels: [bug]
+labels: [bug, needs triage]
 body:
   - type: markdown
     attributes:
@@ -17,6 +17,8 @@ body:
         - label: "I am able to reproduce the bug with the [latest version](https://github.com/TeamNewPipe/NewPipe/releases/latest)."
           required: true
         - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+          required: true
+        - label: "I have read the [FAQ](https://newpipe.net/FAQ/) and my problem isn't listed."
           required: true
         - label: "I have taken the time to fill in all the required details. I understand that the bug report will be dismissed otherwise."
           required: true
@@ -40,7 +42,7 @@ body:
       label: Steps to reproduce the bug
       description: |
         What did you do for the bug to show up?
-        
+
         If you can't cause the bug to show up again reliably (and hence don't have a proper set of steps to give us), please still try to give as many details as possible on how you think you encountered the bug.
       placeholder: |
         1. Go to '...'
@@ -69,11 +71,11 @@ body:
       label: Screenshots/Screen recordings
       description: |
         A picture or video is worth a thousand words.
-        
+
         If applicable, add screenshots or a screen recording to help explain your problem.
         GitHub supports uploading them directly in the text box.
         If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link to an image/video hoster here instead.
-        
+
         :heavy_exclamation_mark: DON'T POST SCREENSHOTS OF THE ERROR PAGE.
         Instead, follow the instructions in the "Logs" section below.
 

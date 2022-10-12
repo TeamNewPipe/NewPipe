@@ -2,11 +2,23 @@
 - Stängde av burgarmeny ikonens animation #1486
 - Ångra radering av nedladdningar #1472
 - Nedladdningsalternativ i delningsmenyn #1498
-- La till delningsalternativet i menyn för långa tryckningar #1454
-- Och mer...
+- Lade till delningsalternativet i menyn för långa tryckningar #1454
+- Minimerar huvudsplearen vid avslut #1354 
+- Uppdatering av biblioteksversion samt åtgärd av databasbackup #1510 
+- Uppdatering av ExoPlayer 2.8.2  #1392
+  - Omarbetad kontroll för uppspelningshastighet för att stödja olika stegstorlekar för snabbare hastighetsändring.
+  - Lade till växelkontroll för att snabbspola vid tystnad i uppspelningens hastighetskontroll. Detta borde vara underlätta vid uppspelning av ljudböcker och vissa musikgenres och kan bidra till en sömlös upplevelse ( och kan pajja en låt med massa tystnad =\\).
+  - Omskrivning av källmedias upplösning för att tillåta samtidig rörelse av metadata internt i spelaren, hellre än att utföra detta manuellt. Nu finns endast en källa för metadata som är omedelbart tillgängig så snart uppspelning sker.
+  - Åtgärdat att fjärrspellistors metadata inte uppdateras när nytt metadata är tillgänligt vid öppning av spelliststdelar.
+  - Diverse åtgärder av användargränssnitt: #1383, aviseringar för bakgrundsspelaren är nu alltid vita, lättare att stänga popup-spelare via "flinging"
+- Nyttja ny extraherare med omskriven arkitektur för stöd av flera tjänster
 
-### Fixade
-- Fixade #1440 Trasig layout för videoinformation #1491
+### Åtgärdade
+- Åtgärdade #1440 Trasig layout för videoinformation #1491
 - Visningshistorik fix #1497
-- #1495, genom att uppdatera metadata (miniatyrbild, titel och videoantal) så snart användaren får tillgång till spellistan. - #1475
-- Och mer...
+- #1495, genom att uppdatera metadata (miniatyrbild, titel och videoantal) så snart användaren får tillgång till spellistan. 
+  - #1475, genom att skapa en vy i databasen när användaren startar en video i extern spelare för detaljfragment.
+- Åtgärdade tidsgräns för fönster som är i popup-läge. #1463 (Fixed #640)
+- Åtgärd av primär videospelare #1509 
+  - [#1412] Åtgärdade upprepningsläge vilket orsakade "null-pointer-exception" i spelaren när ny avsikt mottas för spelare som arbetar i bakgrunden.
+  - Åtgärdade att spelare utan popup-behörighet inte kraschar vid minimering till popupstorlek av fönstret.

@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="3dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/buddy"
+        android:src="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 

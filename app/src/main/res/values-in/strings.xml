@@ -121,7 +121,7 @@
     <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-    <string name="subscribe_button_title">Subscribe</string>
+    <string name="subscribe_button_title">Berlangganan</string>
     <string name="subscribed_button_title">Disubscribe</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
@@ -173,6 +173,7 @@
     <string name="file_name_empty_error">Nama berkas tidak boleh kosong</string>
     <string name="error_occurred_detail">Telah terjadi galat: %1$s</string>
     <string name="search_no_results">Tidak ada hasil</string>
+    <string name="empty_subscription_feed_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
     <string name="no_subscribers">Tidak ada pelanggan</string>
     <plurals name="subscribers">
@@ -308,7 +309,7 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Karena itu, apl tidak mengumpulkan data apapun tanpa persetujuan Anda.
+    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Oleh karena itu, aplikasi initidak mengumpulkan data apa pun tanpa persetujuan Anda.
 \nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika Anda mengirimkan laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
@@ -549,7 +550,7 @@
     <string name="notification_action_2_title">Tombol tindakan ketiga</string>
     <string name="notification_action_1_title">Tombol tindakan kedua</string>
     <string name="notification_action_0_title">Tombol tindakan pertama</string>
-    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
+    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1</string>
     <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
     <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
     <string name="enqueued">Ditambahkan</string>
@@ -622,7 +623,6 @@
     <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
     <string name="feed_load_error">Galat memuat langganan</string>
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' tidak didukung pada Android KitKat dan yang lebih rendah</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
     <string name="no_dir_yet">Belum ada folder unduhan, pilih folder unduhan sekarang</string>
     <string name="off">Nonaktif</string>
@@ -664,15 +664,15 @@
     <string name="error_report_notification_toast">Sebuah kegalatan terjadi, lihat notifikasinya</string>
     <string name="show_error_snackbar">Menampilkan sebuah snackbar kegalatan</string>
     <string name="create_error_notification">Buat sebuah notifikasi kegalatan</string>
-    <string name="no_appropriate_file_manager_message">Tidak ada manajer file yang ditemukan untuk tindakan ini.
-\nMohon instal sebuah manajer file atau coba menonaktifkan \'%s\' di pengaturan unduhan.</string>
+    <string name="no_appropriate_file_manager_message">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini.
+\nSilakan pasang pengelola berkas atau coba nonaktifkan \'%s\' di pengaturan unduhan</string>
     <string name="error_report_notification_title">NewPipe mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
-    <string name="no_appropriate_file_manager_message_android_10">Tidak ada manajer file yang ditemukan untuk tindakan ini.
-\nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini.
+\nSilakan pasang pengelola berkas yang kompatibel dengan Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
     <string name="progressive_load_interval_exoplayer_default">Default ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Sebuah nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Membutuhkan sebuah pemulaian ulang pada pemain.</string>
+    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Perubahan membutuhkan pemutar dimulai ulang</string>
     <string name="loading_stream_details">Memuat detail stream…</string>
     <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
     <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>
@@ -696,4 +696,15 @@
     <string name="you_successfully_subscribed">Anda sekarang berlangganan ke channel ini</string>
     <string name="semitone">Semiton</string>
     <string name="percent">Persen</string>
+    <string name="selected_stream_external_player_not_supported">Stream yang dipilih tidak didukung oleh pemain eksternal</string>
+    <string name="no_video_streams_available_for_external_players">Tidak ada stream video yang tersedia untuk pemain eksternal</string>
+    <string name="unknown_quality">Kualitas tidak diketahui</string>
+    <string name="streams_not_yet_supported_removed">Stream yang belum didukung oleh pengunduh tidak ditampilkan</string>
+    <string name="no_audio_streams_available_for_external_players">Tidak ada stream audio yang tersedia untuk pemain eksternal</string>
+    <string name="select_quality_external_players">Pilih kualitas untuk pemain eksternal</string>
+    <string name="unknown_format">Format tidak diketahui</string>
+    <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
+    <string name="feed_toggle_show_future_items">Tampilkan item mendatang</string>
+    <string name="feed_toggle_hide_played_items">Sembunyikan item yang telah ditonton</string>
+    <string name="feed_toggle_hide_future_items">Sembunyikan item mendatang</string>
 </resources>

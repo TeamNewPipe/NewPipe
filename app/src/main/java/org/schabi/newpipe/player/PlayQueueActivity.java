@@ -29,6 +29,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityPlayerQueueControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -51,7 +52,7 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
-    protected Player player;
+    private Player player;
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
@@ -126,13 +127,13 @@ public final class PlayQueueActivity extends AppCompatActivity
                 NavigationHelper.openSettings(this);
                 return true;
             case R.id.action_append_playlist:
-                player.onAddToPlaylistClicked(getSupportFragmentManager());
+                PlaylistDialog.showForPlayQueue(player, getSupportFragmentManager());
                 return true;
             case R.id.action_playback_speed:
                 openPlaybackParameterDialog();
                 return true;
             case R.id.action_mute:
-                player.onMuteUnmuteButtonClicked();
+                player.toggleMute();
                 return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
@@ -168,7 +169,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private void bind() {
-        final Intent bindIntent = new Intent(this, MainPlayer.class);
+        final Intent bindIntent = new Intent(this, PlayerService.class);
         final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
         if (!success) {
             unbindService(serviceConnection);
@@ -184,10 +185,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 player.removeActivityListener(this);
             }
 
-            if (player != null && player.getPlayQueueAdapter() != null) {
-                player.getPlayQueueAdapter().unsetSelectedListener();
-            }
-            queueControlBinding.playQueue.setAdapter(null);
+            onQueueUpdate(null);
             if (itemTouchHelper != null) {
                 itemTouchHelper.attachToRecyclerView(null);
             }
@@ -208,17 +206,14 @@ public final class PlayQueueActivity extends AppCompatActivity
             public void onServiceConnected(final ComponentName name, final IBinder service) {
                 Log.d(TAG, "Player service is connected");
 
-                if (service instanceof PlayerServiceBinder) {
-                    player = ((PlayerServiceBinder) service).getPlayerInstance();
-                } else if (service instanceof MainPlayer.LocalBinder) {
-                    player = ((MainPlayer.LocalBinder) service).getPlayer();
+                if (service instanceof PlayerService.LocalBinder) {
+                    player = ((PlayerService.LocalBinder) service).getPlayer();
                 }
 
-                if (player == null || player.getPlayQueue() == null
-                        || player.getPlayQueueAdapter() == null || player.exoPlayerIsNull()) {
+                if (player == null || player.getPlayQueue() == null || player.exoPlayerIsNull()) {
                     unbind();
-                    finish();
                 } else {
+                    onQueueUpdate(player.getPlayQueue());
                     buildComponents();
                     if (player != null) {
                         player.setActivityListener(PlayQueueActivity.this);
@@ -241,7 +236,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private void buildQueue() {
         queueControlBinding.playQueue.setLayoutManager(new LinearLayoutManager(this));
-        queueControlBinding.playQueue.setAdapter(player.getPlayQueueAdapter());
         queueControlBinding.playQueue.setClickable(true);
         queueControlBinding.playQueue.setLongClickable(true);
         queueControlBinding.playQueue.clearOnScrollListeners();
@@ -249,8 +243,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(queueControlBinding.playQueue);
-
-        player.getPlayQueueAdapter().setSelectedListener(getOnSelectedListener());
     }
 
     private void buildMetadata() {
@@ -370,7 +362,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
 
         if (view.getId() == queueControlBinding.controlRepeat.getId()) {
-            player.onRepeatClicked();
+            player.cycleNextRepeatMode();
         } else if (view.getId() == queueControlBinding.controlBackward.getId()) {
             player.playPrevious();
         } else if (view.getId() == queueControlBinding.controlFastRewind.getId()) {
@@ -382,7 +374,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         } else if (view.getId() == queueControlBinding.controlForward.getId()) {
             player.playNext();
         } else if (view.getId() == queueControlBinding.controlShuffle.getId()) {
-            player.onShuffleClicked();
+            player.toggleShuffleModeEnabled();
         } else if (view.getId() == queueControlBinding.metadata.getId()) {
             scrollToSelected();
         } else if (view.getId() == queueControlBinding.liveSync.getId()) {
@@ -445,7 +437,14 @@ public final class PlayQueueActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onQueueUpdate(final PlayQueue queue) {
+    public void onQueueUpdate(@Nullable final PlayQueue queue) {
+        if (queue == null) {
+            queueControlBinding.playQueue.setAdapter(null);
+        } else {
+            final PlayQueueAdapter adapter = new PlayQueueAdapter(this, queue);
+            adapter.setSelectedListener(getOnSelectedListener());
+            queueControlBinding.playQueue.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -454,7 +453,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         onStateChanged(state);
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
-        onMaybePlaybackAdapterChanged();
         onMaybeMuteChanged();
     }
 
@@ -579,17 +577,6 @@ public final class PlayQueueActivity extends AppCompatActivity
                 final MenuItem item = menu.findItem(R.id.action_playback_speed);
                 item.setTitle(formatSpeed(parameters.speed));
             }
-        }
-    }
-
-    private void onMaybePlaybackAdapterChanged() {
-        if (player == null) {
-            return;
-        }
-        final PlayQueueAdapter maybeNewAdapter = player.getPlayQueueAdapter();
-        if (maybeNewAdapter != null
-                && queueControlBinding.playQueue.getAdapter() != maybeNewAdapter) {
-            queueControlBinding.playQueue.setAdapter(maybeNewAdapter);
         }
     }
 

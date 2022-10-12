@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.mediaitem;
 import android.net.Uri;
 
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaItem.RequestMetadata;
 import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.Player;
 
@@ -76,7 +77,6 @@ public interface MediaItemTag {
     @NonNull
     default MediaItem asMediaItem() {
         final MediaMetadata mediaMetadata = new MediaMetadata.Builder()
-                .setMediaUri(Uri.parse(getStreamUrl()))
                 .setArtworkUri(Uri.parse(getThumbnailUrl()))
                 .setArtist(getUploaderName())
                 .setDescription(getTitle())
@@ -84,10 +84,15 @@ public interface MediaItemTag {
                 .setTitle(getTitle())
                 .build();
 
+        final RequestMetadata requestMetaData = new RequestMetadata.Builder()
+                .setMediaUri(Uri.parse(getStreamUrl()))
+                .build();
+
         return MediaItem.fromUri(getStreamUrl())
                 .buildUpon()
                 .setMediaId(makeMediaId())
                 .setMediaMetadata(mediaMetadata)
+                .setRequestMetadata(requestMetaData)
                 .setTag(this)
                 .build();
     }

@@ -1,0 +1,7 @@
+Opción de detalles de canal añadida a menú de pulsación larga.
+Función añadida de cambiar Nombre de Lista de Reproducción desde su interfaz.
+Permitir al usuario pausar video almacenando en memoria intermedia.
+Se ha pulido el tema blanco.
+Solapamiento corregido de fuentes al usar un tamaño mayor de fuente.
+Ausencia de video corregida en dispositivos Formuler y Zephier.
+Se han corregido varios fallos.

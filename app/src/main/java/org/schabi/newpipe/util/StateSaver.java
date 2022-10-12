@@ -46,8 +46,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class StateSaver {
     public static final String KEY_SAVED_STATE = "key_saved_state";
-    private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER
-            = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER =
+            new ConcurrentHashMap<>();
     private static final String TAG = "StateSaver";
     private static final String CACHE_DIR_NAME = "state_cache";
     private static String cacheDirPath;
@@ -107,8 +107,8 @@ public final class StateSaver {
         }
 
         try {
-            Queue<Object> savedObjects
-                    = STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
+            Queue<Object> savedObjects =
+                    STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
             if (savedObjects != null) {
                 writeRead.readFrom(savedObjects);
                 if (MainActivity.DEBUG) {

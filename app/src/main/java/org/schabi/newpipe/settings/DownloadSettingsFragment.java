@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -31,8 +33,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
@@ -66,16 +66,10 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         prefStorageAsk = findPreference(downloadStorageAsk);
 
         final SwitchPreferenceCompat prefUseSaf = findPreference(storageUseSafPreference);
-        prefUseSaf.setDefaultValue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
         prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             prefUseSaf.setEnabled(false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                prefUseSaf.setSummary(R.string.downloads_storage_use_saf_summary_api_29);
-            } else {
-                prefUseSaf.setSummary(R.string.downloads_storage_use_saf_summary_api_19);
-            }
+            prefUseSaf.setSummary(R.string.downloads_storage_use_saf_summary_api_29);
             prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary_no_saf_notice);
         }
 
@@ -253,8 +247,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         forgetSAFTree(context, defaultPreferences.getString(key, ""));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && !FilePickerActivityHelper.isOwnFileUri(context, uri)) {
+        if (!FilePickerActivityHelper.isOwnFileUri(context, uri)) {
             // steps to acquire the selected path:
             //     1. acquire permissions on the new save path
             //     2. save the new path, if step(2) was successful
@@ -262,8 +255,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 context.grantUriPermission(context.getPackageName(), uri,
                         StoredDirectoryHelper.PERMISSION_FLAGS);
 
-                final StoredDirectoryHelper mainStorage
-                        = new StoredDirectoryHelper(context, uri, null);
+                final StoredDirectoryHelper mainStorage =
+                        new StoredDirectoryHelper(context, uri, null);
                 Log.i(TAG, "Acquiring tree success from " + uri.toString());
 
                 if (!mainStorage.canWrite()) {

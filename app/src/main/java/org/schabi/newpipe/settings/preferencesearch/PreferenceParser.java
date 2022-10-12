@@ -9,13 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.util.Localization;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Parses the corresponding preference-file(s).
@@ -54,7 +54,7 @@ public class PreferenceParser {
                 if (xpp.getEventType() == XmlPullParser.START_TAG) {
                     final PreferenceSearchItem result = parseSearchResult(
                             xpp,
-                            joinBreadcrumbs(breadcrumbs),
+                            Localization.concatenateStrings(" > ", breadcrumbs),
                             resId
                     );
 
@@ -80,12 +80,6 @@ public class PreferenceParser {
             Log.w(TAG, "Failed to parse resid=" + resId, e);
         }
         return results;
-    }
-
-    private String joinBreadcrumbs(final List<String> breadcrumbs) {
-        return breadcrumbs.stream()
-                .filter(crumb -> !TextUtils.isEmpty(crumb))
-                .collect(Collectors.joining(" > "));
     }
 
     private String getAttribute(

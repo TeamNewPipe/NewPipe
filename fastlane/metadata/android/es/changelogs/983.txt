@@ -1,0 +1,9 @@
+Añadir una nueva interfaz de usuario y comportamiento de doble pulsación para buscar
+Hacer que se pueda buscar en los ajustes
+Resaltar los comentarios anclados como tales
+Añadir compatibilidad con aplicaciones abiertas para la instancia PeerTube de la FSFE
+Añadir notificaciones de error
+Arreglar la repetición del primer elemento de la cola al cambiar de jugador
+Esperar más tiempo en el búfer durante las transmisiones en directo antes de fallar
+Corregir el orden de los resultados de la búsqueda local
+Arreglar los campos de elementos vacíos en la cola de reproducción

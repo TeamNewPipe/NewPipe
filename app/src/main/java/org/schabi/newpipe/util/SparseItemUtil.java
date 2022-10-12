@@ -97,10 +97,10 @@ public final class SparseItemUtil {
      * @param url       url of the stream to load
      * @param callback  callback to be called with the result
      */
-    private static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
-                                                         final int serviceId,
-                                                         @NonNull final String url,
-                                                         final Consumer<StreamInfo> callback) {
+    public static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
+                                                        final int serviceId,
+                                                        @NonNull final String url,
+                                                        final Consumer<StreamInfo> callback) {
         Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show();
         ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .subscribeOn(Schedulers.io())

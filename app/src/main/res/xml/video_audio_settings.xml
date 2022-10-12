@@ -8,30 +8,30 @@
         android:entries="@array/resolution_list_description"
         android:entryValues="@array/resolution_list_values"
         android:key="@string/default_resolution_key"
-        android:summary="%s"
         android:title="@string/default_resolution_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/default_popup_resolution_value"
         android:entries="@array/resolution_list_description"
         android:entryValues="@array/resolution_list_values"
         android:key="@string/default_popup_resolution_key"
-        android:summary="%s"
         android:title="@string/default_popup_resolution_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/limit_mobile_data_usage_value"
         android:entries="@array/limit_data_usage_description_list"
         android:entryValues="@array/limit_data_usage_values_list"
         android:key="@string/limit_mobile_data_usage_key"
-        android:summary="%s"
         android:title="@string/limit_mobile_data_usage_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
@@ -46,20 +46,20 @@
         android:entries="@array/video_format_description_list"
         android:entryValues="@array/video_format_values_list"
         android:key="@string/default_video_format_key"
-        android:summary="%s"
         android:title="@string/default_video_format_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/default_audio_format_value"
         android:entries="@array/audio_format_description_list"
         android:entryValues="@array/audio_format_values_list"
         android:key="@string/default_audio_format_key"
-        android:summary="%s"
         android:title="@string/default_audio_format_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/progressive_load_interval_default_value"
@@ -107,10 +107,10 @@
             android:entries="@array/seekbar_preview_thumbnail_type_description"
             android:entryValues="@array/seekbar_preview_thumbnail_type_key"
             android:key="@string/seekbar_preview_thumbnail_key"
-            android:summary="%s"
             android:title="@string/seekbar_preview_thumbnail_title"
             app:singleLineTitle="false"
-            app:iconSpaceReserved="false" />
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
@@ -211,10 +211,10 @@
             android:entries="@array/seek_duration_description"
             android:entryValues="@array/seek_duration_value"
             android:key="@string/seek_duration_key"
-            android:summary="%s"
             android:title="@string/seek_duration_title"
             app:singleLineTitle="false"
-            app:iconSpaceReserved="false" />
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"

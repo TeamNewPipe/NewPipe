@@ -1,0 +1,9 @@
+Nový
+- Přidání podpory pro komentáře SoundCloud
+- Přidání nastavení omezeného režimu YouTube
+- Zobrazení podrobností o nadřazeném kanálu PeerTube
+
+Vylepšené stránky
+- Zobrazení tlačítka Kore pouze pro podporované služby
+- Blokování gest přehrávače, která začínají na panelu NavigationBar nebo StatusBar
+- Změna barvy pozadí tlačítek opakování a přihlášení k odběru na základě barvy služby

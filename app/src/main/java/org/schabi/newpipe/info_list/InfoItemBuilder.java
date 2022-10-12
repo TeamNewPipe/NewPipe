@@ -67,8 +67,8 @@ public class InfoItemBuilder {
     public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
                           final HistoryRecordManager historyRecordManager,
                           final boolean useMiniVariant) {
-        final InfoItemHolder holder
-                = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
+        final InfoItemHolder holder =
+                holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
         holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }

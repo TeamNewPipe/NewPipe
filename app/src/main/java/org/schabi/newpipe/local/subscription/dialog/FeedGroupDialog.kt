@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.core.widget.ImageViewCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -124,21 +122,15 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         _feedGroupCreateBinding = DialogFeedGroupCreateBinding.bind(view)
         _searchLayoutBinding = feedGroupCreateBinding.subscriptionsHeaderSearchContainer
 
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // KitKat doesn't apply container's theme to <include> content
-            val contrastColor = AppCompatResources.getColorStateList(requireContext(), R.color.contrastColor)
-            searchLayoutBinding.toolbarSearchEditText.setTextColor(contrastColor)
-            searchLayoutBinding.toolbarSearchEditText.setHintTextColor(contrastColor.withAlpha(128))
-            ImageViewCompat.setImageTintList(searchLayoutBinding.toolbarSearchClearIcon, contrastColor)
-        }
-
         viewModel = ViewModelProvider(
             this,
-            FeedGroupDialogViewModel.Factory(
+            FeedGroupDialogViewModel.getFactory(
                 requireContext(),
-                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
+                groupId,
+                subscriptionsCurrentSearchQuery,
+                subscriptionsShowOnlyUngrouped
             )
-        ).get(FeedGroupDialogViewModel::class.java)
+        )[FeedGroupDialogViewModel::class.java]
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
         viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) {

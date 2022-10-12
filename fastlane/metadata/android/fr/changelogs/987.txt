@@ -1,0 +1,8 @@
+Nouveautés
+• Prise en charge d'autres méthodes de diffusion que le HTTP progressif : temps de chargement plus rapide, corrections pour PeerTube et SoundCloud, lecture des nouveaux flux en directs de YouTube
+• Bouton pour ajouter une liste de lecture distante à une locale
+• Prévisualisation d'images lors d'un partage pour Andoid 10+
+
+Améliorations
+• Amélioration de la boîte de dialogue des paramètres de la lecture
+• Déplacement des boutons importation/exportation vers le menu à trois points

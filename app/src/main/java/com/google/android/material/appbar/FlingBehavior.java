@@ -14,7 +14,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import org.schabi.newpipe.R;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 
 // See https://stackoverflow.com/questions/56849221#57997489
@@ -27,7 +26,7 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
 
     private boolean allowScroll = true;
     private final Rect globalRect = new Rect();
-    private final List<Integer> skipInterceptionOfElements = Arrays.asList(
+    private final List<Integer> skipInterceptionOfElements = List.of(
             R.id.itemsListPanel, R.id.playbackSeekBar,
             R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
 
@@ -67,7 +66,7 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
                                          @NonNull final AppBarLayout child,
                                          @NonNull final MotionEvent ev) {
-        for (final Integer element : skipInterceptionOfElements) {
+        for (final int element : skipInterceptionOfElements) {
             final View view = child.findViewById(element);
             if (view != null) {
                 final boolean visible = view.getGlobalVisibleRect(globalRect);
@@ -132,8 +131,8 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
         try {
             final Class<?> headerBehaviorType = this.getClass().getSuperclass().getSuperclass();
             if (headerBehaviorType != null) {
-                final Field field
-                        = headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
+                final Field field =
+                        headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
                 field.setAccessible(true);
                 return field;
             }

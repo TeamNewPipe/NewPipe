@@ -3,10 +3,10 @@ package org.schabi.newpipe.database.playlist;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public interface PlaylistLocalItem extends LocalItem {
     String getOrderingName();
@@ -14,14 +14,9 @@ public interface PlaylistLocalItem extends LocalItem {
     static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
-        final List<PlaylistLocalItem> items = new ArrayList<>(
-                localPlaylists.size() + remotePlaylists.size());
-        items.addAll(localPlaylists);
-        items.addAll(remotePlaylists);
-
-        Collections.sort(items, Comparator.comparing(PlaylistLocalItem::getOrderingName,
-                Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
-
-        return items;
+        return Stream.concat(localPlaylists.stream(), remotePlaylists.stream())
+                .sorted(Comparator.comparing(PlaylistLocalItem::getOrderingName,
+                        Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)))
+                .collect(Collectors.toList());
     }
 }

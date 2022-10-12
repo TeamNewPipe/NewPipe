@@ -1,0 +1,14 @@
+Novinka:
+- Přidat novou službu: Bandcamp
+
+Vylepšeno:
+- Přidána možnost, aby aplikace následovala motiv zařízení
+- Předcházení některým pádům zobrazením vylepšeného panelu chyb
+- Zobrazení více informací o tom, proč je obsah nedostupný
+- Hardwarové tlačítko mezerníku spouští přehrávání/pauzu
+- Zobrazení přípitku "Stahování zahájeno"
+
+Opraveno:
+- Oprava velmi malé miniatury v detailech videa při přehrávání na pozadí
+- Oprava prázdného názvu v minimalizovaném přehrávači
+-

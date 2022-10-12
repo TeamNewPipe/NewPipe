@@ -1,0 +1,8 @@
+### Vylepšení
+- Přidáni možnosti omezení kvality videa při použití mobilních dat. #1339
+- Zapamatování jasu pro relaci. #1442
+- Zlepšený výkon pro stahování se slabším CPU #1431
+- Přidána (fungující) podpora pro mediální relace #1433
+
+### Oprava
+- Opraveno selhání aplikace při otevření stáhnutých souborů (oprava je nyní k dispozici pro vydané sestavy. #1441

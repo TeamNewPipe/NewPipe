@@ -39,8 +39,8 @@ final class CacheFactory implements DataSource.Factory {
                 .createDataSource();
 
         final FileDataSource fileSource = new FileDataSource();
-        final CacheDataSink dataSink
-                = new CacheDataSink(cache, PlayerHelper.getPreferredFileSize());
+        final CacheDataSink dataSink =
+                new CacheDataSink(cache, PlayerHelper.getPreferredFileSize());
         return new CacheDataSource(cache, dataSource, fileSource, dataSink, CACHE_FLAGS, null);
     }
 }

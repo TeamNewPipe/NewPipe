@@ -1,5 +1,4 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"

@@ -497,8 +497,8 @@
     <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>
     <string name="notification_action_1_title">Κουμπί δεύτερης ενέργειας</string>
     <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
-    <string name="notification_scale_to_square_image_summary">Κλιμάκωση της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1 (μπορεί να προκαλέσει παραμορφώσεις)</string>
-    <string name="notification_scale_to_square_image_title">Κλιμάκωση μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί).
 \n
@@ -631,7 +631,6 @@
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
     <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το SAF υποστηρίζεται</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» δεν υποστηρίζεται σε Android KitKat και παλαιότερο</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
     <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
     <string name="metadata_host">Host</string>
@@ -676,15 +675,15 @@
     <string name="error_report_notification_toast">Συνέβη ένα σφάλμα. Δείτε την ειδοποίηση</string>
     <string name="create_error_notification">Δημιουργία ειδοποίησης σφάλματος</string>
     <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
-\nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων.</string>
+\nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων</string>
     <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
-\nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης.</string>
+\nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης</string>
     <string name="error_report_notification_title">Το NewPipe παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
     <string name="show_error_snackbar">Εμφάνιση μιας snackbar σφάλματος</string>
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
     <string name="leak_canary_not_available">Το LeakCanary δεν είναι διαθέσιμο</string>
     <string name="progressive_load_interval_exoplayer_default">Εξ\' ορισμού ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης (επί του παρόντος είναι %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική φόρτωση βίντεο. Οι αλλαγές απαιτούν επανεκκίνηση της εφαρμογής.</string>
+    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης (επί του παρόντος είναι %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική φόρτωση βίντεο. Οι αλλαγές απαιτούν επανεκκίνηση της εφαρμογής</string>
     <string name="notifications">Ειδοποιήσεις</string>
     <plurals name="new_streams">
         <item quantity="one">%s νέα ροή</item>
@@ -709,4 +708,15 @@
     <string name="toggle_all">Εναλλαγή όλων</string>
     <string name="percent">Τοις εκατό</string>
     <string name="semitone">Ημιτόνιο</string>
+    <string name="streams_not_yet_supported_removed">Οι ροές που δεν υποστηρίζονται ακόμα από τον λήπτη δεν εμφανίζονται</string>
+    <string name="selected_stream_external_player_not_supported">Η επιλεγμένη ροή δεν υποστηρίζεται από εξωτερικούς αναπαραγωγούς</string>
+    <string name="no_audio_streams_available_for_external_players">Δεν διατίθενται ροές ήχου για εξωτερικούς αναπαραγωγούς</string>
+    <string name="no_video_streams_available_for_external_players">Δεν διατίθενται ροές βίντεο για εξωτερικούς αναπαραγωγούς</string>
+    <string name="select_quality_external_players">Επιλογή ποιότητας εξωτερικών αναπαραγωγών</string>
+    <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
+    <string name="unknown_quality">Άγνωστη ποιότητα</string>
+    <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
+    <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών αντικειμένων</string>
+    <string name="feed_toggle_hide_played_items">Απόκρυψη θεαθέντων</string>
+    <string name="feed_toggle_hide_future_items">Απόκρυψη μελλοντικών αντικειμένων</string>
 </resources>

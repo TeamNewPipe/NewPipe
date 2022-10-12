@@ -1,0 +1,12 @@
+Neu
+- Unterstützung anderer Übertragungsmethoden als progressives HTTP: schnellere Ladezeit der Wiedergabe, Korrekturen für PeerTube und SoundCloud, Wiedergabe von kürzlich beendeten YouTube-Livestreams
+- Schaltfläche "Hinzufügen" zum Hinzufügen einer entfernten Wiedergabeliste zu einer lokalen Wiedergabeliste
+- Bildvorschau im Android 10+ Teilen-Dialog
+
+Verbesserte
+- Verbesserung des Dialogs für Wiedergabewerte
+- Import/Export-Schaltflächen für Abonnements in das Drei-Punkte-Menü verschieben
+
+Behoben
+- Fix: Entfernen vollständig angesehener Videos aus der Wiedergabeliste
+- Repariert das Thema des Freigabemenüs und den Eintrag "Zur Wiedergabeliste hinzufügen"

@@ -31,6 +31,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -65,11 +66,11 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in ";
 
-    public static final String ERROR_GITHUB_ISSUE_URL
-            = "https://github.com/TeamNewPipe/NewPipe/issues";
+    public static final String ERROR_GITHUB_ISSUE_URL =
+            "https://github.com/TeamNewPipe/NewPipe/issues";
 
-    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER
-            = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
     private ErrorInfo errorInfo;
@@ -182,14 +183,9 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String formErrorText(final String[] el) {
-        final StringBuilder text = new StringBuilder();
-        if (el != null) {
-            for (final String e : el) {
-                text.append("-------------------------------------\n").append(e);
-            }
-        }
-        text.append("-------------------------------------");
-        return text.toString();
+        final String separator = "-------------------------------------";
+        return Arrays.stream(el)
+                .collect(Collectors.joining(separator + "\n", separator + "\n", separator));
     }
 
     /**

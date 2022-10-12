@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -115,18 +116,18 @@ class FeedGroupDialogViewModel(
 
     data class Filter(val query: String, val showOnlyUngrouped: Boolean)
 
-    class Factory(
-        private val context: Context,
-        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        private val initialQuery: String = "",
-        private val initialShowOnlyUngrouped: Boolean = false
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedGroupDialogViewModel(
-                context.applicationContext,
-                groupId, initialQuery, initialShowOnlyUngrouped
-            ) as T
+    companion object {
+        fun getFactory(
+            context: Context,
+            groupId: Long,
+            initialQuery: String,
+            initialShowOnlyUngrouped: Boolean
+        ) = viewModelFactory {
+            initializer {
+                FeedGroupDialogViewModel(
+                    context.applicationContext, groupId, initialQuery, initialShowOnlyUngrouped
+                )
+            }
         }
     }
 }

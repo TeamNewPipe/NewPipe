@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -18,8 +17,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail_playlist"
+        android:scaleType="fitStart"
+        android:src="@drawable/placeholder_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -27,9 +26,11 @@
         android:layout_width="45dp"
         android:layout_height="match_parent"
         android:layout_alignTop="@id/itemThumbnailView"
-        android:layout_alignRight="@id/itemThumbnailView"
+        android:layout_alignEnd="@id/itemThumbnailView"
         android:layout_alignBottom="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
+        android:drawableTop="@drawable/ic_playlist_play"
+        android:drawableTint="@color/duration_text_color"
         android:gravity="center"
         android:paddingTop="4dp"
         android:paddingBottom="6dp"
@@ -37,9 +38,6 @@
         android:textColor="@color/duration_text_color"
         android:textSize="@dimen/video_item_search_duration_text_size"
         android:textStyle="bold"
-        app:drawableTint="@color/duration_text_color"
-        app:drawableTopCompat="@drawable/ic_playlist_play"
-        tools:ignore="RtlHardcoded"
         tools:text="3141" />
 
     <org.schabi.newpipe.views.NewPipeTextView

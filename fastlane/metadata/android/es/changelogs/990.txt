@@ -1,0 +1,15 @@
+Esta versión deja de soportar Android 4.4 KitKat, ¡ahora la versión mínima es Android 5 Lollipop!
+
+Nuevos
+- Descarga desde menú de pulsación larga
+- Ocultar futuros vídeos en feed
+- Compartir listas de reproducción locales
+
+Mejorados
+- Refactorización de código de reproductor en componentes pequeños: menos RAM usada, menos errores
+- Mejorar el modo de escala de miniaturas
+- Vectorizar marcadores de posición de imágenes
+
+Corregidos
+- Arreglos varios con notificación de reproductor: antigua/falta información de medios, miniatura distorsionada
+- Arreglo pantalla completa usa 1/4 de pantalla

@@ -14,8 +14,8 @@
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/video_item_grid_thumbnail_image_width"
         android:layout_height="@dimen/video_item_grid_thumbnail_image_height"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder_thumbnail_video"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.util.LinkifyCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -23,11 +24,11 @@ import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.TimestampExtractor;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.external_communication.TimestampExtractor;
 
-import java.util.regex.Matcher;
+import java.util.Objects;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final String TAG = "CommentsMiniIIHolder";
@@ -39,34 +40,13 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final int commentVerticalPadding;
 
     private final RelativeLayout itemRoot;
-    public final ImageView itemThumbnailView;
+    private final ImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;
 
     private String commentText;
     private String streamUrl;
-
-    private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
-        @Override
-        public String transformUrl(final Matcher match, final String url) {
-            try {
-                final TimestampExtractor.TimestampMatchDTO timestampMatchDTO =
-                        TimestampExtractor.getTimestampFromMatcher(match, commentText);
-
-                if (timestampMatchDTO == null) {
-                    return url;
-                }
-
-                return streamUrl + url.replace(
-                        match.group(0),
-                        "#timestamp=" + timestampMatchDTO.seconds());
-            } catch (final Exception ex) {
-                Log.e(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
-                return url;
-            }
-        }
-    };
 
     CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                                final ViewGroup parent) {
@@ -115,7 +95,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
         commentText = item.getCommentText();
-        itemContentView.setText(commentText);
+        itemContentView.setText(commentText, TextView.BufferType.SPANNABLE);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
@@ -204,8 +184,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         boolean hasEllipsis = false;
 
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            final int endOfLastLine
-                    = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
+            final int endOfLastLine = itemContentView
+                    .getLayout()
+                    .getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);
@@ -242,14 +223,21 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void linkify() {
-        Linkify.addLinks(
-                itemContentView,
-                Linkify.WEB_URLS);
-        Linkify.addLinks(
-                itemContentView,
-                TimestampExtractor.TIMESTAMPS_PATTERN,
-                null,
-                null,
-                timestampLink);
+        LinkifyCompat.addLinks(itemContentView, Linkify.WEB_URLS);
+        LinkifyCompat.addLinks(itemContentView, TimestampExtractor.TIMESTAMPS_PATTERN, null, null,
+                (match, url) -> {
+                    try {
+                        final var timestampMatch = TimestampExtractor
+                                .getTimestampFromMatcher(match, commentText);
+                        if (timestampMatch == null) {
+                            return url;
+                        }
+                        return streamUrl + url.replace(Objects.requireNonNull(match.group(0)),
+                                "#timestamp=" + timestampMatch.seconds());
+                    } catch (final Exception ex) {
+                        Log.e(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
+                        return url;
+                    }
+                });
     }
 }

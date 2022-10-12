@@ -17,7 +17,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="3dp"
         android:layout_marginRight="15dp"
-        android:src="@drawable/buddy_channel_item"
+        android:src="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
@@ -39,7 +39,7 @@
         android:layout_below="@id/itemCommentContentView"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
-        app:srcCompat="@drawable/ic_thumb_up" />
+        android:src="@drawable/ic_thumb_up" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_up_count_view"
@@ -53,33 +53,6 @@
         android:textSize="@dimen/video_item_detail_likes_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="12M" />
-
-    <!--we can uncomment below code if we need dislike button and count in future-->
-
-    <!--<ImageView
-        android:id="@+id/detail_thumbs_down_img_view"
-        android:layout_width="@dimen/video_item_detail_like_image_width"
-        android:layout_height="@dimen/video_item_detail_like_image_height"
-        android:layout_below="@id/itemCommentContentView"
-        android:layout_marginLeft="12dp"
-        android:layout_toRightOf="@id/detail_thumbs_up_count_view"
-        android:contentDescription="@string/detail_dislikes_img_view_description"
-        app:srcCompat="?attr/thumbs_down"
-        tools:ignore="RtlHardcoded" />
-
-    <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/detail_thumbs_down_count_view"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/video_item_detail_like_image_height"
-        android:layout_below="@id/itemCommentContentView"
-        android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-        android:layout_toRightOf="@id/detail_thumbs_down_img_view"
-        android:gravity="center_vertical"
-        android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/video_item_detail_likes_text_size"
-        tools:ignore="RtlHardcoded"
-        tools:text="10K" />-->
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemPublishedTime"

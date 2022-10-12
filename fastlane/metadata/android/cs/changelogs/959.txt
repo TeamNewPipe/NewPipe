@@ -1,0 +1,3 @@
+Opravena nekonečná smyčka pádů po otevření hlášení chyb.
+Aktualizován seznam instancí PeerTube, které lze automaticky otevřít pomocí NewPipe.
+Aktualizovány překlady.

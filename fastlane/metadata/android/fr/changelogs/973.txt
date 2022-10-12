@@ -1,0 +1,4 @@
+Correctifs
+• Correction des vignettes et des titres qui sont coupés dans la mise en page en vue grille, dû à un calcul erroné du nombre de vidéos pouvant tenir dans une rangée.
+• Correction de la boîte de dialogue de téléchargement qui disparaît sans rien faire si elle est ouverte à partir du menu de partage
+• Maj d'une bibliothèque liée à l'ouverture d'activités externes telles que le sélecteur de fichiers du framewok d'accès stockage

@@ -45,7 +45,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:padding="0.7dp"
-                android:src="@drawable/buddy"
+                android:src="@drawable/placeholder_person"
                 app:shapeAppearance="@style/CircularImageView"
                 app:strokeColor="#ffffff"
                 app:strokeWidth="1dp" />

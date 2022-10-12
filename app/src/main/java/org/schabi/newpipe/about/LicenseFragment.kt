@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.schabi.newpipe.R
-import org.schabi.newpipe.about.LicenseFragmentHelper.showLicense
 import org.schabi.newpipe.databinding.FragmentLicensesBinding
 import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding
 

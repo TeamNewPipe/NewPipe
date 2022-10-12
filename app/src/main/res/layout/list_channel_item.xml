@@ -64,7 +64,7 @@
         android:layout_height="@dimen/video_item_search_avatar_image_height"
         android:layout_marginLeft="@dimen/video_item_search_avatar_left_margin"
         android:layout_marginRight="@dimen/video_item_search_avatar_right_margin"
-        android:src="@drawable/buddy"
+        android:src="@drawable/placeholder_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/itemTitleView"
         app:layout_constraintHorizontal_bias="0.5"

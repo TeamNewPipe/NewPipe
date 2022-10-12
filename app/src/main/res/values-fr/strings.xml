@@ -6,7 +6,7 @@
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
     <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des vidéos</string>
-    <string name="download_path_summary">Les fichiers vidéo téléchargés sont stockées ici</string>
+    <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l’application Kore manquante \?</string>
     <string name="no_player_found">Aucun lecteur de flux trouvé. Installer VLC \?</string>
@@ -99,7 +99,7 @@
     <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire des vidéos 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
-    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
     <string name="clear">Effacer</string>
     <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
@@ -550,7 +550,7 @@
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
-    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer la liste de lecture</string>
+    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une liste de lecture</string>
     <string name="notification_action_nothing">Rien</string>
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>
@@ -562,8 +562,8 @@
     <string name="notification_action_2_title">Troisième bouton d’action</string>
     <string name="notification_action_1_title">Deuxième bouton d’action</string>
     <string name="notification_action_0_title">Premier bouton d’action</string>
-    <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
-    <string name="notification_scale_to_square_image_title">Redimensionner la miniature au format 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Recadrer la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1</string>
+    <string name="notification_scale_to_square_image_title">Recadrer la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
     <string name="enqueued">Ajouté à la file d’attente</string>
     <string name="enqueue_stream">Ajouter à la file d’attente</string>
@@ -639,7 +639,6 @@
 \nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
     <string name="downloads_storage_use_saf_summary_api_29">À partir d’Android 10, seule « l’Infrastructure d’accès au stockage  » est prise en charge</string>
-    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n’est pas prise en charge par Android KitKat et les versions antérieures</string>
     <string name="feed_load_error_fast_unknown">Le mode flux rapide ne fournit pas plus d’info à ce sujet.</string>
     <string name="comments_are_disabled">Les commentaires sont désactivés</string>
     <string name="dont_show">Ne pas afficher</string>
@@ -663,8 +662,8 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Ajouter à la liste de lecture</string>
-    <string name="enqueued_next">Suivant dans la liste de lecture</string>
+    <string name="enqueue_next_stream">Lire consécutivement</string>
+    <string name="enqueued_next">Flux placé à la suite</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
@@ -679,13 +678,13 @@
     <string name="error_report_notification_toast">Une erreur s\'est produite, voir la notification</string>
     <string name="create_error_notification">Créer une notification d\'erreur</string>
     <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
-\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage.</string>
+\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage</string>
     <string name="show_error_snackbar">Afficher une barre d’erreur</string>
-    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
-\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
+    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver « %s » dans les paramètres de téléchargement</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
-    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos. Changer cette valeur nécessite de redémarrer le lecteur</string>
     <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
     <string name="streams_notification_channel_name">Nouveaux flux</string>
     <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>
@@ -711,4 +710,15 @@
     <string name="toggle_all">Tout basculer</string>
     <string name="percent">Pourcent</string>
     <string name="semitone">Demi-ton</string>
+    <string name="streams_not_yet_supported_removed">Les flux qui ne sont pas encore supportés ne sont pas montrés</string>
+    <string name="no_audio_streams_available_for_external_players">Aucun flux audio n\'est disponible pour les lecteurs externes</string>
+    <string name="select_quality_external_players">Sélectionner la qualité pour les lecteurs externes</string>
+    <string name="unknown_format">Format inconnu</string>
+    <string name="unknown_quality">Qualité inconnue</string>
+    <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
+    <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
+    <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
+    <string name="feed_toggle_show_future_items">Afficher les futurs éléments</string>
+    <string name="feed_toggle_hide_played_items">Masquer les éléments visionnés</string>
+    <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
 </resources>

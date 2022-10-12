@@ -161,6 +161,7 @@
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
+    <string name="empty_subscription_feed_subtitle">Nichts hier, außer dem Zirpen der Grillen</string>
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen\?</string>
     <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Einen Kanal auswählen</string>
@@ -372,7 +373,7 @@
     <string name="post_processing">Nachbearbeitung</string>
     <string name="enqueue">In Wiedergabe einreihen</string>
     <string name="permission_denied">System verweigert den Zugriff</string>
-    <string name="download_failed">Herunterladen fehlgeschlagen</string>
+    <string name="download_failed">Download fehlgeschlagen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
     <string name="overwrite">Überschreiben</string>
     <string name="overwrite_unrelated_warning">Eine Datei mit diesem Namen existiert bereits</string>
@@ -557,8 +558,8 @@
     <string name="notification_action_2_title">Dritte Aktionstaste</string>
     <string name="notification_action_1_title">Zweite Aktionstaste</string>
     <string name="notification_action_0_title">Erste Aktionstaste</string>
-    <string name="notification_scale_to_square_image_summary">Skaliert das in der Benachrichtigung angezeigte Vorschaubild von 16:9 auf ein 1:1 Seitenverhältnis (kann zu Verzerrungen führen)</string>
-    <string name="notification_scale_to_square_image_title">Vorschaubild auf 1:1 Seitenverhältnis skalieren</string>
+    <string name="notification_scale_to_square_image_summary">Beschneidet das in der Benachrichtigung angezeigte Video-Vorschaubild von 16:9 auf ein 1:1 Seitenverhältnis</string>
+    <string name="notification_scale_to_square_image_title">Vorschaubild auf 1:1 Seitenverhältnis zuschneiden</string>
     <string name="notification_action_shuffle">Zufällig</string>
     <string name="notification_action_buffering">Puffern</string>
     <string name="notification_action_repeat">Wiederholen</string>
@@ -588,7 +589,7 @@
     <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
-    <string name="related_items_tab_description">Verwandte Streams</string>
+    <string name="related_items_tab_description">Verwandte Elemente</string>
     <string name="comments_tab_description">Kommentare</string>
     <string name="show_description_summary">Ausschalten, um Videobeschreibung und Zusatzinformationen auszublenden</string>
     <string name="show_description_title">Beschreibung anzeigen</string>
@@ -637,7 +638,6 @@
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
     <string name="open_website_license">Webseite öffnen</string>
     <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Das „Storage Access Framework“ wird auf Android KitKat und niedriger nicht unterstützt</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
     <string name="feed_load_error">Fehler beim Laden des Feeds</string>
     <string name="feed_load_error_account_info">Konnte Feed für \'%s\' nicht laden.</string>
@@ -680,12 +680,12 @@
     <string name="create_error_notification">Eine Fehlermeldung erstellen</string>
     <string name="show_error_snackbar">Fehler-Kurzmeldung anzeigen</string>
     <string name="no_appropriate_file_manager_message">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
-\nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren.</string>
+\nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren</string>
     <string name="no_appropriate_file_manager_message_android_10">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
-\nBitte installiere einen Storage Access Framework kompatiblen Dateimanager.</string>
+\nBitte installiere einen Storage Access Framework kompatiblen Dateimanager</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
-    <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players.</string>
+    <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
@@ -709,4 +709,15 @@
     <string name="streams_notifications_interval_title">Prüfintervall</string>
     <string name="percent">Prozent</string>
     <string name="semitone">Halbton</string>
+    <string name="no_video_streams_available_for_external_players">Keine Videostreams für externe Player verfügbar</string>
+    <string name="select_quality_external_players">Qualität für externe Player auswählen</string>
+    <string name="unknown_format">Unbekanntes Format</string>
+    <string name="no_audio_streams_available_for_external_players">Keine Audiostreams für externe Player verfügbar</string>
+    <string name="unknown_quality">Unbekannte Qualität</string>
+    <string name="streams_not_yet_supported_removed">Streams, die noch nicht vom Downloader unterstützt werden, werden nicht angezeigt</string>
+    <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
+    <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
+    <string name="feed_toggle_show_future_items">Zukünftige Elemente anzeigen</string>
+    <string name="feed_toggle_hide_played_items">Angesehene Elemente ausblenden</string>
+    <string name="feed_toggle_hide_future_items">Zukünftige Elemente ausblenden</string>
 </resources>

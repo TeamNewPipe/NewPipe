@@ -38,11 +38,11 @@
             android:contentDescription="@string/description_select_enable"
             android:focusable="true"
             android:padding="5dp"
+            android:src="@drawable/ic_select_all"
             app:layout_constraintBottom_toTopOf="@+id/barrier"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_select_all" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
