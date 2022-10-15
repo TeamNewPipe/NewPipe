@@ -669,13 +669,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void openAddToPlaylistDialog() {
-        // Getting the stream info usually takes a moment
-        // Notifying the user here to ensure that no confusion arises
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.processing_may_take_a_moment),
-                Toast.LENGTH_SHORT)
-                .show();
+        pleaseWait();
 
         disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                 .subscribeOn(Schedulers.io())
@@ -705,6 +699,8 @@ public class RouterActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     private void openDownloadDialog() {
+        pleaseWait();
+
         disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -717,6 +713,16 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
                 }, throwable -> showUnsupportedUrlDialog(currentUrl)));
+    }
+
+    private void pleaseWait() {
+        // Getting the stream info usually takes a moment
+        // Notifying the user here to ensure that no confusion arises
+        Toast.makeText(
+                        getApplicationContext(),
+                        getString(R.string.processing_may_take_a_moment),
+                        Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override
