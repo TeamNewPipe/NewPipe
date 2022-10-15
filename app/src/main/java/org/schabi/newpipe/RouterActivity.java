@@ -161,6 +161,14 @@ public class RouterActivity extends AppCompatActivity {
         disposables.clear();
     }
 
+    @Override
+    public void finish() {
+        // allow the activity to recreate in case orientation changes
+        if (!isChangingConfigurations()) {
+            super.finish();
+        }
+    }
+
     private void handleUrl(final String url) {
         disposables.add(Observable
                 .fromCallable(() -> {
