@@ -31,6 +31,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.math.MathUtils;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
@@ -151,7 +152,32 @@ public class RouterActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        handleUrl(currentUrl);
+        // FragmentManager will take care to recreate DialogFragments when screen rotates
+        // currently that's namely PlaylistDialog or DownloadDialog
+        // We used to .setOnDismissListener(dialog ->finish()); when creating those Dialogs
+        // but those callbacks won't survive a config change
+        // Try an alternate approach to hook into FragmentManager instead, to that effect
+        // (courtesy of https://stackoverflow.com/a/44028453)
+        final FragmentManager fm = getSupportFragmentManager();
+        fm.registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentViewDestroyed(@NonNull final FragmentManager fm,
+                                                @NonNull final Fragment f) {
+                super.onFragmentViewDestroyed(fm, f);
+                if (fm.getFragments().isEmpty()) {
+                    // No more Dialog, we're done
+                    finish();
+                }
+            }
+        }, false);
+
+        // Don't overlap the DialogFragment after rotating the screen
+        // If there's no DialogFragment, we're either starting afresh
+        // or we didn't make it to PlaylistDialog or DownloadDialog before the orientation change
+        if (fm.getFragments().isEmpty()) {
+            // Start over from scratch
+            handleUrl(currentUrl);
+        }
     }
 
     @Override
@@ -659,12 +685,12 @@ public class RouterActivity extends AppCompatActivity {
                                 getThemeWrapperContext(),
                                 List.of(new StreamEntity(info)),
                                 playlistDialog -> {
-                                    playlistDialog.setOnDismissListener(dialog -> finish());
+                                    // to be handled by FragmentManager
+                                    // playlistDialog.setOnDismissListener(dialog ->finish());
 
-                                    playlistDialog.show(
-                                            this.getSupportFragmentManager(),
-                                            "addToPlaylistDialog"
-                                    );
+                                    final FragmentManager fm = getSupportFragmentManager();
+                                    playlistDialog.show(fm, "addToPlaylistDialog");
+                                    fm.executePendingTransactions();
                                 }
                         ),
                         throwable -> handleError(this, new ErrorInfo(
@@ -684,7 +710,8 @@ public class RouterActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
                     final DownloadDialog downloadDialog = new DownloadDialog(this, result);
-                    downloadDialog.setOnDismissListener(dialog -> finish());
+                    // to be handled by FragmentManager since listener would be gone when recreated
+                    // playlistDialog.setOnDismissListener(dialog ->finish());
 
                     final FragmentManager fm = getSupportFragmentManager();
                     downloadDialog.show(fm, "downloadDialog");
