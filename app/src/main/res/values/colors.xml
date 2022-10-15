@@ -3,6 +3,7 @@
 
     <color name="contrastColor">@color/black</color>
     <color name="defaultIconTint">@color/black</color>
+    <color name="youtubePrimaryColour">@color/light_youtube_primary_color</color>
 
     <color name="ic_launcher_background">#CD201F</color>
 

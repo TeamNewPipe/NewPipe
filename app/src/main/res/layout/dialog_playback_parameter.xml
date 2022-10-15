@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,13 +35,24 @@
             android:layout_marginTop="1dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/tempoStepDownButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                app:srcCompat="@drawable/ic_circle_button"
+                tools:ignore="ContentDescription" />
+
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/tempoStepDown"
-                android:layout_width="wrap_content"
+                android:layout_width="42dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -64,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="14dp"
                     android:gravity="center"
                     android:text="-.--x"
                     android:textColor="?attr/colorAccent"
@@ -88,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="14dp"
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
@@ -105,13 +117,22 @@
                     tools:progress="50" />
             </RelativeLayout>
 
+            <ImageView
+                android:id="@+id/tempoStepUpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                app:srcCompat="@drawable/ic_circle_button"
+                tools:ignore="ContentDescription" />
+
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/tempoStepUp"
-                android:layout_width="wrap_content"
+                android:layout_width="42dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="6dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
@@ -173,6 +194,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -185,6 +207,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -206,13 +229,24 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/pitchPercentStepDownButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
+                    app:srcCompat="@drawable/ic_circle_button"
+                    tools:ignore="ContentDescription" />
+
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchPercentStepDown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="42dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
                     android:background="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/youtubePrimaryColour"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -237,7 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="13dp"
                         android:gravity="center"
                         android:text="---%"
                         android:textColor="?attr/colorAccent"
@@ -261,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="13dp"
                         android:gravity="center"
                         android:text="---%"
                         android:textColor="?attr/colorAccent"
@@ -278,14 +312,24 @@
                         tools:progress="50" />
                 </RelativeLayout>
 
+                <ImageView
+                    android:id="@+id/pitchPercentStepUpButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="0dp"
+                    app:srcCompat="@drawable/ic_circle_button"
+                    tools:ignore="ContentDescription" />
+
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchPercentStepUp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="42dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="6dp"
                     android:background="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/youtubePrimaryColour"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -303,13 +347,28 @@
                 android:orientation="horizontal"
                 tools:visibility="gone">
 
+                <ImageView
+                    android:id="@+id/pitchSemitoneStepDownButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="6dp"
+                    app:srcCompat="@drawable/ic_circle_button"
+                    tools:ignore="ContentDescription" />
+
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchSemitoneStepDown"
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
+                    android:layout_alignParentStart="false"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="9dp"
                     android:background="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/youtubePrimaryColour"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -334,7 +393,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="14dp"
                         android:gravity="center"
                         android:text="-12"
                         android:textColor="?attr/colorAccent"
@@ -348,15 +407,15 @@
                         android:gravity="center"
                         android:textColor="?attr/colorAccent"
                         android:textStyle="bold"
-                        tools:text="0"
-                        tools:ignore="RelativeOverlap" />
+                        tools:ignore="RelativeOverlap"
+                        tools:text="0" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/pitchSemitoneMaximumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="14dp"
                         android:gravity="center"
                         android:text="+12"
                         android:textColor="?attr/colorAccent"
@@ -373,14 +432,31 @@
                         android:progress="12" />
                 </RelativeLayout>
 
+                <ImageView
+                    android:id="@+id/pitchSemitoneStepUpButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="6dp"
+                    app:srcCompat="@drawable/ic_circle_button"
+                    tools:ignore="ContentDescription" />
+
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchSemitoneStepUp"
                     android:layout_width="24dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="4dp"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="6dp"
                     android:background="?attr/selectableItemBackground"
+                    android:backgroundTint="@color/youtubePrimaryColour"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -427,6 +503,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -439,6 +516,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -451,6 +529,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -463,6 +542,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -475,6 +555,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/youtubePrimaryColour"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
