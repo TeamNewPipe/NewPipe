@@ -16,6 +16,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -119,6 +120,14 @@ public class RouterActivity extends AppCompatActivity {
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
         Localization.assureCorrectAppLanguage(this);
+
+        // Pass-through touch events to background activities
+        // so that our transparent window won't lock UI in the mean time
+        // network request is underway before showing PlaylistDialog or DownloadDialog
+        // (courtesy of https://stackoverflow.com/a/10606141)
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
