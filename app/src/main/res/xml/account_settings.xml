@@ -8,6 +8,11 @@
         app:iconSpaceReserved="false">
 
         <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/youtube_account_settings_summary"
+            android:selectable="false"/>
+
+        <Preference
             android:key="@string/youtube_sign_in_settings_key"
             android:summary="@string/youtube_sign_in_settings_summary"
             android:title="@string/youtube_sign_in_settings_title"

@@ -883,7 +883,8 @@
     <string name="disable_error_reports_title">Disable Error Reporting</string>
     <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
 
-    <string name="youtube_sign_in_settings_summary">Opens a web browser to let you sign-in to YouTube.</string>
+    <string name="youtube_account_settings_summary">If you find things aren\'t working as expected, simply try signing in again. Sometimes this fails to extract the cookie immediately after signing in.</string>
+    <string name="youtube_sign_in_settings_summary">Open a web browser to let you sign-in to YouTube.</string>
     <string name="youtube_sign_in_settings_title">Sign-in</string>
     <string name="youtube_include_cookies_in_search_summary">Include login cookies in search requests. This means your search results will be mixed with semi-related video recommendations. This may also affect future recommendations because YouTube uses login cookies to track your search behavior.</string>
     <string name="youtube_include_cookies_in_search_title">Use cookies while searching</string>
