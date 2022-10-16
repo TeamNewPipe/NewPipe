@@ -299,37 +299,41 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
             String toastText = "";
 
             switch (sponsorBlockSegment.category) {
-                case "sponsor":
+                case SPONSOR:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_sponsor_toast);
                     break;
-                case "intro":
+                case INTRO:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_intro_toast);
                     break;
-                case "outro":
+                case OUTRO:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_outro_toast);
                     break;
-                case "interaction":
+                case INTERACTION:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_interaction_toast);
                     break;
-                case "selfpromo":
+                case SELF_PROMO:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_self_promo_toast);
                     break;
-                case "music_offtopic":
+                case NON_MUSIC:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_non_music_toast);
                     break;
-                case "preview":
+                case PREVIEW:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_preview_toast);
                     break;
-                case "filler":
+                case FILLER:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_filler_toast);
+                    break;
+                case PENDING:
+                    toastText = context
+                            .getString(R.string.sponsor_block_skip_pending_toast);
                     break;
             }
 

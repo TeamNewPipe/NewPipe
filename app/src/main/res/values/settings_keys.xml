@@ -434,8 +434,9 @@
     <string name="sponsor_block_category_preview_color_key" translatable="false">sponsor_block_category_preview_color</string>
     <string name="sponsor_block_category_filler_key" translatable="false">sponsor_block_category_filler</string>
     <string name="sponsor_block_category_filler_color_key" translatable="false">sponsor_block_category_filler_color</string>
+    <string name="sponsor_block_category_pending_key" translatable="false">sponsor_block_category_pending_key</string>
+    <string name="sponsor_block_category_pending_color_key" translatable="false">sponsor_block_category_pending_color_key</string>
     <string name="sponsor_block_whitelist_key" translatable="false">sponsor_block_whitelist</string>
-    <string name="sponsor_block_username_key" translatable="false">sponsor_block_username</string>
     <string name="sponsor_block_clear_whitelist_key" translatable="false">sponsor_block_clear_whitelist</string>
 
     <!-- ReturnYouTubeDislike -->

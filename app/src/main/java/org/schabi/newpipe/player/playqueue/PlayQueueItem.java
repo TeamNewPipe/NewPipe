@@ -10,6 +10,8 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -37,7 +39,7 @@ public class PlayQueueItem implements Serializable {
     private long recoveryPosition;
     private Throwable error;
 
-    private SponsorBlockSegment[] sponsorBlockSegments;
+    private ArrayList<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
 
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
@@ -142,11 +144,36 @@ public class PlayQueueItem implements Serializable {
         isAutoQueued = autoQueued;
     }
 
-    public SponsorBlockSegment[] getSponsorBlockSegments() {
+    public ArrayList<SponsorBlockSegment> getSponsorBlockSegments() {
         return sponsorBlockSegments;
     }
 
     public void setSponsorBlockSegments(final SponsorBlockSegment[] value) {
-        this.sponsorBlockSegments = value;
+        sponsorBlockSegments.clear();
+        Collections.addAll(sponsorBlockSegments, value);
+    }
+
+    public boolean addSponsorBlockSegment(final SponsorBlockSegment sponsorBlockSegment) {
+        return sponsorBlockSegments.add(sponsorBlockSegment);
+    }
+
+    public boolean removeSponsorBlockSegment(final SponsorBlockSegment sponsorBlockSegment) {
+        return sponsorBlockSegments.remove(sponsorBlockSegment);
+    }
+
+    public boolean removeSponsorBlockSegment(final String uuid) {
+        SponsorBlockSegment target = null;
+        for (final SponsorBlockSegment segment : sponsorBlockSegments) {
+            if (segment.uuid.equals(uuid)) {
+                target = segment;
+                break;
+            }
+        }
+
+        if (target != null) {
+            return removeSponsorBlockSegment(target);
+        }
+
+        return false;
     }
 }

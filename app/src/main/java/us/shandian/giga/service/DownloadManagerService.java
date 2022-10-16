@@ -430,7 +430,7 @@ public class DownloadManagerService extends Service {
                             .value("UUID", sponsorBlockSegment.uuid)
                             .value("start", sponsorBlockSegment.startTime)
                             .value("end", sponsorBlockSegment.endTime)
-                            .value("category", sponsorBlockSegment.category)
+                            .value("category", sponsorBlockSegment.category.ordinal())
                             .end();
                 }
                 writer.end().end();

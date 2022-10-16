@@ -127,6 +127,9 @@ public abstract class PlayerUi {
     public void onPrepared() {
     }
 
+    public void onMarkSeekbarRequested() {
+    }
+
     public void onBlocked() {
     }
 

@@ -1052,7 +1052,7 @@ public final class VideoDetailFragment
         }
 
         if (showSponsorBlock) {
-            sponsorBlockFragment = new SponsorBlockFragment(player, playQueue);
+            sponsorBlockFragment = new SponsorBlockFragment(player);
             pageAdapter.updateItem(SPONSOR_BLOCK_TAB_TAG, sponsorBlockFragment);
         }
 
@@ -1893,7 +1893,7 @@ public final class VideoDetailFragment
 
         if (stackPeek != null) {
             if (sponsorBlockFragment != null) {
-                sponsorBlockFragment.update(player, playQueue);
+                sponsorBlockFragment.updateWithPlayer(player);
             }
         }
 
@@ -1959,7 +1959,7 @@ public final class VideoDetailFragment
         }
 
         if (sponsorBlockFragment != null) {
-            sponsorBlockFragment.update(player, playQueue);
+            sponsorBlockFragment.updateWithPlayer(player);
         }
 
         updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());

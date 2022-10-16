@@ -24,6 +24,7 @@
         <Preference
             android:key="@string/youtube_clear_cookies_settings_key"
             android:title="@string/youtube_clear_cookies_settings_title"
+            android:summary="@string/youtube_clear_cookies_settings_summary"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>

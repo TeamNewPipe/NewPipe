@@ -6,16 +6,7 @@
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     tools:context=".fragments.list.sponsorblock.SponsorBlockFragment">
-    <!--
-        TODO:
-            - submit segment
-                - skip forward/backward 1 frame
-                - set beginning of new segment
-                - set end of new segment
-                - submit
-                    - choose a category
-                    - confirm/submit segment
-    -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,19 +15,110 @@
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/skipping_is_enabled_switch"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Skip marked segments" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/channel_is_whitelisted_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Whitelist channel" />
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/sponsor_block_controls_mark_segment_start"
+                android:layout_width="55dp"
+                android:layout_height="@dimen/detail_control_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/sponsor_block_mark_the_start_of_a_segment"
+                android:drawableTop="@drawable/ic_chevron_right"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingVertical="@dimen/detail_control_padding"
+                android:text="@string/start"
+                android:textSize="@dimen/detail_control_text_size" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/sponsor_block_controls_mark_segment_end"
+                android:layout_width="55dp"
+                android:layout_height="@dimen/detail_control_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/sponsor_block_mark_the_end_of_a_segment"
+                android:drawableTop="@drawable/ic_chevron_left"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingVertical="@dimen/detail_control_padding"
+                android:text="@string/end"
+                android:textSize="@dimen/detail_control_text_size" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/sponsor_block_controls_segment_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="00:00:00"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:textAlignment="center"
+                    android:text="-"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/sponsor_block_controls_segment_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="00:00:00"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/sponsor_block_controls_clear_segment"
+                android:layout_width="55dp"
+                android:layout_height="@dimen/detail_control_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/sponsor_block_clear_segment"
+                android:drawableTop="@drawable/ic_delete"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingVertical="@dimen/detail_control_padding"
+                android:text="@string/clear"
+                android:textSize="@dimen/detail_control_text_size" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/sponsor_block_controls_submit_segment"
+                android:layout_width="55dp"
+                android:layout_height="@dimen/detail_control_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/sponsor_block_submit_segment"
+                android:drawableTop="@drawable/ic_upload"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingVertical="@dimen/detail_control_padding"
+                android:text="@string/submit"
+                android:textSize="@dimen/detail_control_text_size" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -44,21 +126,25 @@
             android:layout_marginBottom="16dp"
             android:background="?android:attr/listDivider" />
 
-        <!-- TODO: uncomment when ready -->
-<!--        <org.schabi.newpipe.views.NewPipeTextView-->
-<!--            android:id="@+id/detail_upload_date_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:textStyle="bold"-->
-<!--            tools:text="Segments" />-->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/skipping_is_enabled_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/sponsor_block_skip_marked_segments" />
 
-<!--        <Button-->
-<!--            android:id="@+id/submit_new_segment_button"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:text="Add Segment" />-->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/channel_is_whitelisted_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/sponsor_block_whitelist_channel" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/listDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/segment_list"

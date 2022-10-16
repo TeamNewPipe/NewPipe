@@ -6,7 +6,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_sponsor_title">
+        android:title="@string/sponsor_block_category_sponsor">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -30,7 +30,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_intro_title">
+        android:title="@string/sponsor_block_category_intro">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -54,7 +54,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_outro_title">
+        android:title="@string/sponsor_block_category_outro">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -78,7 +78,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_interaction_title">
+        android:title="@string/sponsor_block_category_interaction">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -102,7 +102,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_self_promo_title">
+        android:title="@string/sponsor_block_category_self_promo">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -126,7 +126,7 @@
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_non_music_title">
+        android:title="@string/sponsor_block_category_non_music">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -150,7 +150,7 @@
     
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_preview_title">
+        android:title="@string/sponsor_block_category_preview">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -174,7 +174,7 @@
     
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
-        android:title="@string/settings_category_sponsor_block_category_filler_title">
+        android:title="@string/sponsor_block_category_filler">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -192,6 +192,23 @@
             android:dependency="@string/sponsor_block_category_filler_key"
             android:defaultValue="@color/filler_segment"
             android:key="@string/sponsor_block_category_filler_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/sponsor_block_category_pending">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_pending_summary"
+            android:selectable="false"/>
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="@color/pending_segment"
+            android:key="@string/sponsor_block_category_pending_color_key"
             android:title="@string/settings_category_sponsor_block_category_color"/>
 
     </PreferenceCategory>

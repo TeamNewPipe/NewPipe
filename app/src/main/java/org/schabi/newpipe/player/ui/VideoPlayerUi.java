@@ -745,6 +745,10 @@ public abstract class VideoPlayerUi extends PlayerUi
         super.onPrepared();
         setVideoDurationToControls((int) player.getExoPlayer().getDuration());
         binding.playbackSpeed.setText(formatSpeed(player.getPlaybackSpeed()));
+    }
+
+    @Override
+    public void onMarkSeekbarRequested() {
         markSegments(player.getCurrentItem(), binding.playbackSeekBar, context);
     }
 

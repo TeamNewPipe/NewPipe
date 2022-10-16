@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list.sponsorblock;
 
+import static org.schabi.newpipe.util.TimeUtils.millisecondsToString;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.util.SponsorBlockCategory;
 import org.schabi.newpipe.util.SponsorBlockSegment;
 import org.schabi.newpipe.util.SponsorBlockUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -27,19 +31,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class SponsorBlockSegmentListAdapter extends
         RecyclerView.Adapter<SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder> {
     private final Context context;
-    private final ArrayList<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
+    private ArrayList<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
 
     public SponsorBlockSegmentListAdapter(final Context context) {
         this.context = context;
     }
 
-    public void setItems(final SponsorBlockSegment[] items) {
-        this.sponsorBlockSegments.clear();
-
-        if (items != null) {
-            Collections.addAll(this.sponsorBlockSegments, items);
+    public void setItems(final ArrayList<SponsorBlockSegment> items) {
+        if (items == null) {
+            sponsorBlockSegments.clear();
+        } else {
+            sponsorBlockSegments = items;
         }
-
         notifyDataSetChanged();
     }
 
@@ -71,6 +74,8 @@ public class SponsorBlockSegmentListAdapter extends
         private final TextView itemSegmentNameTextView;
         private final TextView itemSegmentStartTimeTextView;
         private final TextView itemSegmentEndTimeTextView;
+        private final ImageView itemSegmentVoteUpImageView;
+        private final ImageView itemSegmentVoteDownImageView;
         private Disposable voteSubscriber;
         private String segmentUuid;
         private boolean isVoting;
@@ -92,37 +97,39 @@ public class SponsorBlockSegmentListAdapter extends
             //  1 = up
             //  0 = down
             //  20 = reset
-            final ImageView segmentVoteUpImageView =
+            itemSegmentVoteUpImageView =
                     itemView.findViewById(R.id.item_segment_vote_up_imageview);
-            segmentVoteUpImageView.setOnClickListener(v -> vote(1));
-            segmentVoteUpImageView.setOnLongClickListener(v -> {
+            itemSegmentVoteUpImageView.setOnClickListener(v -> vote(1));
+            itemSegmentVoteUpImageView.setOnLongClickListener(v -> {
                 vote(20);
                 return true;
             });
-            final ImageView segmentVoteDownImageView =
+            itemSegmentVoteDownImageView =
                     itemView.findViewById(R.id.item_segment_vote_down_imageview);
-            segmentVoteDownImageView.setOnClickListener(v -> vote(0));
-            segmentVoteDownImageView.setOnLongClickListener(v -> {
+            itemSegmentVoteDownImageView.setOnClickListener(v -> vote(0));
+            itemSegmentVoteDownImageView.setOnLongClickListener(v -> {
                 vote(20);
                 return true;
             });
         }
 
         private void updateFrom(final SponsorBlockSegment sponsorBlockSegment) {
+            final Context context = itemView.getContext();
+
             // uuid
             segmentUuid = sponsorBlockSegment.uuid;
 
             // category color
             final Integer segmentColor =
-                    SponsorBlockUtils.parseSegmentCategory(
-                            sponsorBlockSegment.category, itemView.getContext());
+                    SponsorBlockUtils.parseColorFromSegmentCategory(
+                            sponsorBlockSegment.category, context);
             if (segmentColor != null) {
                 itemSegmentColorView.setBackgroundColor(segmentColor);
             }
 
             // category name
             final String friendlyCategoryName =
-                    SponsorBlockUtils.getFriendlyCategoryName(sponsorBlockSegment.category);
+                    sponsorBlockSegment.category.getFriendlyName(context);
             itemSegmentNameTextView.setText(friendlyCategoryName);
 
             // from
@@ -132,16 +139,13 @@ public class SponsorBlockSegmentListAdapter extends
             // to
             final String endText = millisecondsToString(sponsorBlockSegment.endTime);
             itemSegmentEndTimeTextView.setText(endText);
-        }
 
-        // TODO: move this somewhere else (like some generic utility helper method location)
-        private String millisecondsToString(final double milliseconds) {
-            final int seconds = (int) (milliseconds / 1000) % 60;
-            final int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
-            final int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
-
-            return String.format(Locale.getDefault(),
-                    "%02d:%02d:%02d", hours, minutes, seconds);
+            if (sponsorBlockSegment.category == SponsorBlockCategory.PENDING
+                    || sponsorBlockSegment.uuid.equals("TEMP")
+                    || sponsorBlockSegment.uuid.equals("")) {
+                itemSegmentVoteUpImageView.setVisibility(View.INVISIBLE);
+                itemSegmentVoteDownImageView.setVisibility(View.INVISIBLE);
+            }
         }
 
         private void vote(final int value) {
@@ -176,15 +180,19 @@ public class SponsorBlockSegmentListAdapter extends
 
             voteSubscriber = Single.fromCallable(() -> {
                         isVoting = true;
-                        return SponsorBlockUtils.submitSegmentVote(context, segmentUuid, value);
+                        return SponsorBlockUtils.submitSponsorBlockSegmentVote(
+                                context, segmentUuid, value);
                     })
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(result -> {
+                    .subscribe(response -> {
                         isVoting = false;
-                        final String toastMessage;
-                        if (!result) {
-                            toastMessage = "Failed to vote on segment";
+                        String toastMessage;
+                        if (response.responseCode() != 200) {
+                            toastMessage = response.responseMessage();
+                            if (toastMessage.equals("")) {
+                                toastMessage = "Error " + response.responseCode();
+                            }
                         } else if (value == 0) {
                             hasDownVoted = true;
                             hasUpVoted = false;
@@ -209,6 +217,13 @@ public class SponsorBlockSegmentListAdapter extends
                         Toast.makeText(context,
                                 toastMessage,
                                 Toast.LENGTH_SHORT).show();
+                    }, throwable -> {
+                        if (throwable instanceof NullPointerException) {
+                            return;
+                        }
+                        ErrorUtil.showSnackbar(context,
+                                new ErrorInfo(throwable, UserAction.SUBSCRIPTION_UPDATE,
+                                        "Submit vote for SponsorBlock segment"));
                     });
         }
     }

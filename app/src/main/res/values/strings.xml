@@ -152,22 +152,15 @@
     <string name="settings_category_sponsor_block_categories_reset_colors_title">Reset Colors</string>
     <string name="settings_category_sponsor_block_category_enable_title">Enable</string>
     <string name="settings_category_sponsor_block_category_color">Seek Bar Color</string>
-    <string name="settings_category_sponsor_block_category_sponsor_title">Sponsor</string>
     <string name="settings_category_sponsor_block_category_sponsor_summary">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shoutouts to causes/creators/websites/products they like.</string>
-    <string name="settings_category_sponsor_block_category_intro_title">Intermission/Intro Animation</string>
     <string name="settings_category_sponsor_block_category_intro_summary">An interval without actual content. Could be a pause, static frame, repeating animation. This should not be used for transitions containing information or be used on music videos.</string>
-    <string name="settings_category_sponsor_block_category_outro_title">Endcards/Credits</string>
     <string name="settings_category_sponsor_block_category_outro_summary">Credits or when the YouTube endcards appear. Not for spoken conclusions. This should not include useful content. This should not be used on music videos.</string>
-    <string name="settings_category_sponsor_block_category_interaction_title">Interaction Reminds (Subscribe)</string>
     <string name="settings_category_sponsor_block_category_interaction_summary">When there is a short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should be under self promotion instead.</string>
-    <string name="settings_category_sponsor_block_category_self_promo_title">Unpaid/Self Promotion</string>
     <string name="settings_category_sponsor_block_category_self_promo_summary">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with.</string>
-    <string name="settings_category_sponsor_block_category_non_music_title">Music: Non-Music Section</string>
     <string name="settings_category_sponsor_block_category_non_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
-    <string name="settings_category_sponsor_block_category_preview_title">Preview/Recap</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Quick recap of previous episodes, or a preview of what\'s coming up later in the current video. Meant for edited together clips, not for spoken summaries.</string>
-    <string name="settings_category_sponsor_block_category_filler_title">Filler Tangent/Jokes</string>
     <string name="settings_category_sponsor_block_category_filler_summary">This is for tangential scenes added only for filler or humor that are not required to understand the main content of the video.</string>
+    <string name="settings_category_sponsor_block_category_pending_summary">Represents a new segment ready to be submitted.</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -197,6 +190,7 @@
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
     <string name="clear">Clear</string>
+    <string name="submit">Submit</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
     <string name="file_deleted">File deleted</string>
@@ -340,6 +334,7 @@
     </plurals>
     <!-- Missions -->
     <string name="start">Start</string>
+    <string name="end">End</string>
     <string name="pause">Pause</string>
     <string name="create">Create</string>
     <string name="delete">Delete</string>
@@ -792,6 +787,15 @@
     <string name="collapse">Hide Replies</string>
     <!-- SponsorBlock -->
     <string name="sponsor_block">SponsorBlock</string>
+    <string name="sponsor_block_category_sponsor">Sponsor</string>
+    <string name="sponsor_block_category_intro">Intermission/Intro Animation</string>
+    <string name="sponsor_block_category_outro">Endcards/Credits</string>
+    <string name="sponsor_block_category_interaction">Interaction Reminds (Subscribe)</string>
+    <string name="sponsor_block_category_self_promo">Unpaid/Self Promotion</string>
+    <string name="sponsor_block_category_non_music">Music: Non-Music Section</string>
+    <string name="sponsor_block_category_preview">Preview/Recap</string>
+    <string name="sponsor_block_category_filler">Filler Tangent/Jokes</string>
+    <string name="sponsor_block_category_pending">Pending</string>
     <string name="sponsor_block_home_page_title">View Website</string>
     <string name="sponsor_block_home_page_summary">View the official SponsorBlock website.</string>
     <string name="sponsor_block_enable_title">Enable SponsorBlock</string>
@@ -815,10 +819,9 @@
     <string name="sponsor_block_skip_non_music_toast">Skipped non-music</string>
     <string name="sponsor_block_skip_preview_toast">Skipped preview/recap</string>
     <string name="sponsor_block_skip_filler_toast">Skipped filler</string>
+    <string name="sponsor_block_skip_pending_toast">Skipped pending segment</string>
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
-    <string name="sponsor_block_username_title">Username</string>
     <string name="sponsor_block_clear_whitelist_title">Clear Whitelist</string>
-    <string name="sponsor_block_username_summary">Set an optional username for submitting segments and votes. Leave empty for anonymous submissions.</string>
     <string name="sponsor_block_clear_whitelist_summary">Clear the list of uploaders SponsorBlock will ignore.</string>
     <string name="sponsor_block_enabled_toast">SponsorBlock enabled</string>
     <string name="sponsor_block_disabled_toast">SponsorBlock disabled</string>
@@ -831,6 +834,14 @@
     <string name="sponsor_block_segment_voted_up_toast">Up-voted segment</string>
     <string name="sponsor_block_segment_voted_down_toast">Down-voted segment</string>
     <string name="sponsor_block_segment_reset_vote_toast">Voting reset for segment</string>
+    <string name="sponsor_block_invalid_start_toast">Invalid start location</string>
+    <string name="sponsor_block_invalid_end_toast">Invalid end location</string>
+    <string name="sponsor_block_marked_start_toast">Marked start of segment</string>
+    <string name="sponsor_block_marked_end_toast">Marked end of segment</string>
+    <string name="sponsor_block_missing_times_toast">Missing start/end time(s)</string>
+    <string name="sponsor_block_select_a_category">Select a category</string>
+    <string name="sponsor_block_clear_marked_segment_prompt">Are you sure you want to clear your new segment?</string>
+    <string name="sponsor_block_upload_success_message">Your segment has been submitted.\n\nIt might take some time for your submission to appear in the video the next time you open it.</string>
     <!-- ReturnYouTubeDislike -->
     <string name="ryd_home_page_title">View Website</string>
     <string name="ryd_home_page_summary">View the official RYD website.</string>
@@ -874,8 +885,15 @@
 
     <string name="youtube_sign_in_settings_summary">Opens a web browser to let you sign-in to YouTube.</string>
     <string name="youtube_sign_in_settings_title">Sign-in</string>
-    <string name="youtube_include_cookies_in_search_summary">If enabled, your login cookie will be included in the search request. This will make your search queries affect your video recommendations. This also means your search results will be mixed with semi-related video recommendations.</string>
+    <string name="youtube_include_cookies_in_search_summary">Include login cookies in search requests. This means your search results will be mixed with semi-related video recommendations. This may also affect future recommendations because YouTube uses login cookies to track your search behavior.</string>
     <string name="youtube_include_cookies_in_search_title">Use cookies while searching</string>
+    <string name="youtube_clear_cookies_settings_summary">Remove any YouTube login cookies associated with NewPipe.</string>
     <string name="youtube_clear_cookies_settings_title">Clear cookies</string>
     <string name="youtube_clear_cookies_prompt">Are you sure you want to clear cookies for this site?</string>
+    <string name="sponsor_block_mark_the_start_of_a_segment">Mark the start of a segment</string>
+    <string name="sponsor_block_mark_the_end_of_a_segment">Mark the end of a segment</string>
+    <string name="sponsor_block_clear_segment">Clear segment</string>
+    <string name="sponsor_block_submit_segment">Submit segment</string>
+    <string name="sponsor_block_skip_marked_segments">Skip marked segments</string>
+    <string name="sponsor_block_whitelist_channel">Whitelist channel</string>
 </resources>

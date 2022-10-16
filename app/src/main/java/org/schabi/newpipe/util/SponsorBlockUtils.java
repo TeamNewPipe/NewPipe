@@ -13,12 +13,12 @@ import androidx.preference.PreferenceManager;
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.utils.RandomStringFromAlphabetGenerator;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -37,9 +37,9 @@ public final class SponsorBlockUtils {
     private static final Application APP = App.getApp();
     private static final String TAG = SponsorBlockUtils.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
-    private static Random numberGenerator = new SecureRandom();
     private static final String ALPHABET =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static final Random NUMBER_GENERATOR = new SecureRandom();
 
     private SponsorBlockUtils() {
     }
@@ -86,29 +86,29 @@ public final class SponsorBlockUtils {
         final ArrayList<String> categoryParamList = new ArrayList<>();
 
         if (includeSponsorCategory) {
-            categoryParamList.add("sponsor");
+            categoryParamList.add(SponsorBlockCategory.SPONSOR.getApiName());
         }
         if (includeIntroCategory) {
-            categoryParamList.add("intro");
+            categoryParamList.add(SponsorBlockCategory.INTRO.getApiName());
         }
         if (includeOutroCategory) {
-            categoryParamList.add("outro");
+            categoryParamList.add(SponsorBlockCategory.OUTRO.getApiName());
         }
         if (includeInteractionCategory) {
-            categoryParamList.add("interaction");
+            categoryParamList.add(SponsorBlockCategory.INTERACTION.getApiName());
         }
         if (includeSelfPromoCategory) {
-            categoryParamList.add("selfpromo");
+            categoryParamList.add(SponsorBlockCategory.SELF_PROMO.getApiName());
         }
         if (includeMusicCategory) {
-            categoryParamList.add("music_offtopic");
+            categoryParamList.add(SponsorBlockCategory.NON_MUSIC.getApiName());
         }
         if (includePreviewCategory) {
-            categoryParamList.add("preview");
+            categoryParamList.add(SponsorBlockCategory.PREVIEW.getApiName());
         }
 
         if (includeFillerCategory) {
-            categoryParamList.add("filler");
+            categoryParamList.add(SponsorBlockCategory.FILLER.getApiName());
         }
 
         if (categoryParamList.size() == 0) {
@@ -182,7 +182,8 @@ public final class SponsorBlockUtils {
                 final String category = jObj2.getString("category");
 
                 final SponsorBlockSegment sponsorBlockSegment =
-                        new SponsorBlockSegment(uuid, startTime, endTime, category);
+                        new SponsorBlockSegment(uuid, startTime, endTime,
+                                SponsorBlockCategory.fromApiName(category));
                 result.add(sponsorBlockSegment);
             }
         }
@@ -220,94 +221,68 @@ public final class SponsorBlockUtils {
         }
     }
 
-    public static Integer parseSegmentCategory(
-            final String category,
+    public static Integer parseColorFromSegmentCategory(
+            final SponsorBlockCategory category,
             final Context context
     ) {
-        String key;
+        final String key;
         final String colorStr;
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         switch (category) {
-            case "sponsor":
-                key = context.getString(R.string.sponsor_block_category_sponsor_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_sponsor_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.sponsor_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "intro":
-                key = context.getString(R.string.sponsor_block_category_intro_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_intro_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.intro_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "outro":
-                key = context.getString(R.string.sponsor_block_category_outro_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_outro_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.outro_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "interaction":
-                key = context.getString(R.string.sponsor_block_category_interaction_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_interaction_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.interaction_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "selfpromo":
-                key = context.getString(R.string.sponsor_block_category_self_promo_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.self_promo_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "music_offtopic":
-                key = context.getString(R.string.sponsor_block_category_non_music_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_non_music_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.non_music_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "preview":
-                key = context.getString(R.string.sponsor_block_category_preview_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_preview_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.preview_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "filler":
-                key = context.getString(R.string.sponsor_block_category_filler_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_filler_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.filler_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
+            case SPONSOR:
+                key = context.getString(R.string.sponsor_block_category_sponsor_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.sponsor_segment)
+                        : Color.parseColor(colorStr);
+            case INTRO:
+                key = context.getString(R.string.sponsor_block_category_intro_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.intro_segment)
+                        : Color.parseColor(colorStr);
+            case OUTRO:
+                key = context.getString(R.string.sponsor_block_category_outro_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.outro_segment)
+                        : Color.parseColor(colorStr);
+            case INTERACTION:
+                key = context.getString(R.string.sponsor_block_category_interaction_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.interaction_segment)
+                        : Color.parseColor(colorStr);
+            case SELF_PROMO:
+                key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.self_promo_segment)
+                        : Color.parseColor(colorStr);
+            case NON_MUSIC:
+                key = context.getString(R.string.sponsor_block_category_non_music_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.non_music_segment)
+                        : Color.parseColor(colorStr);
+            case PREVIEW:
+                key = context.getString(R.string.sponsor_block_category_preview_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.preview_segment)
+                        : Color.parseColor(colorStr);
+            case FILLER:
+                key = context.getString(R.string.sponsor_block_category_filler_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.filler_segment)
+                        : Color.parseColor(colorStr);
+            case PENDING:
+                key = context.getString(R.string.sponsor_block_category_pending_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.pending_segment)
+                        : Color.parseColor(colorStr);
         }
 
         return null;
@@ -324,14 +299,16 @@ public final class SponsorBlockUtils {
             return;
         }
 
-        final SponsorBlockSegment[] sponsorBlockSegments = currentItem.getSponsorBlockSegments();
+        final ArrayList<SponsorBlockSegment> sponsorBlockSegments =
+                currentItem.getSponsorBlockSegments();
 
-        if (sponsorBlockSegments == null || sponsorBlockSegments.length == 0) {
+        if (sponsorBlockSegments == null || sponsorBlockSegments.size() == 0) {
             return;
         }
 
         for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
-            final Integer color = parseSegmentCategory(sponsorBlockSegment.category, context);
+            final Integer color = parseColorFromSegmentCategory(
+                    sponsorBlockSegment.category, context);
 
             // if null, then this category should not be marked
             if (color == null) {
@@ -350,70 +327,77 @@ public final class SponsorBlockUtils {
         seekBar.drawMarkers();
     }
 
-    // TODO: translate?
-    public static String getFriendlyCategoryName(final String category) {
-        switch (category) {
-            case "sponsor":
-                return "Sponsor";
-            case "intro":
-                return "Intro";
-            case "outro":
-                return "Outro";
-            case "interaction":
-                return "Interaction";
-            case "selfpromo":
-                return "Self Promo";
-            case "music_offtopic":
-                return "Non-music";
-            case "preview":
-                return "Preview";
-            case "filler":
-                return "Filler";
+    public static Response submitSponsorBlockSegment(
+            final Context context,
+            final StreamInfo streamInfo,
+            final SponsorBlockSegment segment) {
+        if (segment.category == SponsorBlockCategory.PENDING) {
+            return null;
         }
 
-        return null;
-    }
-
-    public static boolean submitSegmentVote(final Context context,
-                                            final String uuid,
-                                            final int vote) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
         final String apiUrl = prefs.getString(context
                 .getString(R.string.sponsor_block_api_url_key), null);
-        String userId = prefs.getString(
-                context.getString(R.string.sponsor_block_username_key), null);
-
-        if (userId == null) {
-            userId = RandomStringFromAlphabetGenerator.generate(
-                    ALPHABET, 32, numberGenerator);
-        }
-
         if (apiUrl == null || apiUrl.isEmpty()) {
-            return false;
+            return null;
         }
 
+        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")) {
+            return null;
+        }
+
+        final String localUserId =
+                RandomStringFromAlphabetGenerator.generate(ALPHABET, 32, NUMBER_GENERATOR);
+
+        final double startInSeconds = segment.startTime / 1000.0;
+        final double endInSeconds = segment.endTime / 1000.0;
+
+        final String url = apiUrl + "skipSegments?"
+                + "videoID=" + streamInfo.getId()
+                + "&startTime=" + startInSeconds
+                + "&endTime=" + endInSeconds
+                + "&category=" + segment.category.getApiName()
+                + "&userID=" + localUserId
+                + "&userAgent=Mozilla/5.0";
         try {
-            // @formatter:off
-            DownloaderImpl
-                    .getInstance()
-                    .post(apiUrl + "voteOnSponsorTime",
-                            null,
-                            JsonWriter.string()
-                                        .object()
-                                            .value("UUID", uuid)
-                                            .value("userID", userId)
-                                            .value("type", vote)
-                                        .end()
-                                    .done()
-                                    .getBytes())
-                    .responseBody();
-            // @formatter:on
-            return true;
+            return DownloaderImpl.getInstance().post(url, null, new byte[0]);
         } catch (final Exception ex) {
             if (DEBUG) {
                 Log.w(TAG, Log.getStackTraceString(ex));
             }
-            return false;
+
+            return null;
         }
+    }
+
+    public static Response submitSponsorBlockSegmentVote(final Context context,
+                                                         final String uuid,
+                                                         final int vote) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        final String apiUrl = prefs.getString(context
+                .getString(R.string.sponsor_block_api_url_key), null);
+        if (apiUrl == null || apiUrl.isEmpty()) {
+            return null;
+        }
+
+        final String localUserId =
+                RandomStringFromAlphabetGenerator.generate(ALPHABET, 32, NUMBER_GENERATOR);
+
+        final String url = apiUrl + "voteOnSponsorTime?"
+                + "UUID=" + uuid
+                + "&userID=" + localUserId
+                + "&type=" + vote;
+
+        try {
+            return DownloaderImpl.getInstance().post(url, null, new byte[0]);
+        } catch (final Exception ex) {
+            if (DEBUG) {
+                Log.w(TAG, Log.getStackTraceString(ex));
+            }
+        }
+
+        return null;
     }
 }
