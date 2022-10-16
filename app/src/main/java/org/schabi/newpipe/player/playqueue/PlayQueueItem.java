@@ -150,7 +150,10 @@ public class PlayQueueItem implements Serializable {
 
     public void setSponsorBlockSegments(final SponsorBlockSegment[] value) {
         sponsorBlockSegments.clear();
-        Collections.addAll(sponsorBlockSegments, value);
+
+        if (value.length > 0) {
+            Collections.addAll(sponsorBlockSegments, value);
+        }
     }
 
     public boolean addSponsorBlockSegment(final SponsorBlockSegment sponsorBlockSegment) {

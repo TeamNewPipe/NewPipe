@@ -54,7 +54,7 @@ public final class SponsorBlockUtils {
                 .getString(R.string.sponsor_block_enable_key), false);
 
         if (!isSponsorBlockEnabled) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         final String apiUrl = prefs.getString(context
@@ -63,7 +63,7 @@ public final class SponsorBlockUtils {
         if (!streamInfo.getUrl().startsWith("https://www.youtube.com")
                 || apiUrl == null
                 || apiUrl.isEmpty()) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         final boolean includeSponsorCategory = prefs.getBoolean(context
@@ -112,7 +112,7 @@ public final class SponsorBlockUtils {
         }
 
         if (categoryParamList.size() == 0) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
@@ -121,14 +121,14 @@ public final class SponsorBlockUtils {
         final String videoIdHash = toSha256(streamInfo.getId());
 
         if (videoIdHash == null) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         final String params = "skipSegments/" + videoIdHash.substring(0, 4)
                 + "?categories=" + categoryParams;
 
         if (!isConnected()) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         JsonArray responseArray = null;
@@ -150,7 +150,7 @@ public final class SponsorBlockUtils {
         }
 
         if (responseArray == null) {
-            return null;
+            return new SponsorBlockSegment[0];
         }
 
         final ArrayList<SponsorBlockSegment> result = new ArrayList<>();
