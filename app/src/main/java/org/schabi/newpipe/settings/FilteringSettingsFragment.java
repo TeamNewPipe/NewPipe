@@ -34,7 +34,7 @@ public class FilteringSettingsFragment
                     new AlertDialog
                             .Builder(context)
                             .setMessage(R.string.filter_settings_reset_prompt_message)
-                            .setNegativeButton(R.string.no, null)
+                            .setNegativeButton(R.string.cancel, null)
                             .setPositiveButton(R.string.yes, (dialog, which) -> {
                                 resetFilters();
                                 dialog.dismiss();

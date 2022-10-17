@@ -1,16 +1,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="Accounts">
+    <Preference
+        app:iconSpaceReserved="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:summary="@string/account_settings_summary"/>
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="YouTube"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false">
-
-        <Preference
-            app:iconSpaceReserved="false"
-            android:summary="@string/youtube_account_settings_summary"
-            android:selectable="false"/>
 
         <Preference
             android:key="@string/youtube_sign_in_settings_key"

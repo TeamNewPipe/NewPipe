@@ -74,7 +74,6 @@ public class AccountSettingsFragment extends PreferenceFragmentCompat {
         youTubeClearCookiesPreference.setOnPreferenceClickListener((Preference p) -> {
             new AlertDialog.Builder(requireContext())
                     .setMessage(R.string.youtube_clear_cookies_prompt)
-                    .setCancelable(true)
                     .setNegativeButton(R.string.cancel, null)
                     .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                         setCookies("youtube", null);

@@ -70,9 +70,7 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
                         Toast.makeText(p.getContext(), R.string.sponsor_block_reset_colors_toast,
                                 Toast.LENGTH_SHORT).show();
                     })
-                    .setNegativeButton(R.string.no, (dialog, which) -> {
-                        dialog.dismiss();
-                    })
+                    .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                     .show();
             return true;
         });
