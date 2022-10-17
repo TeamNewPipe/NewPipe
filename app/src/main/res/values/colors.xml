@@ -89,6 +89,7 @@
     <color name="intro_segment">#00ffff</color>
     <color name="outro_segment">#0202ed</color>
     <color name="interaction_segment">#cc00ff</color>
+    <color name="highlight_segment">#ff1983</color>
     <color name="self_promo_segment">#ffff00</color>
     <color name="non_music_segment">#ff9900</color>
     <color name="preview_segment">#008fd6</color>

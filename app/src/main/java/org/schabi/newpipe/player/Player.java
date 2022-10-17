@@ -122,6 +122,7 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.SponsorBlockAction;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.SponsorBlockSegment;
 import org.schabi.newpipe.util.StreamTypeUtil;
@@ -981,6 +982,9 @@ public final class Player implements PlaybackListener, Listener {
                     case INTERACTION:
                         toastText = context
                                 .getString(R.string.sponsor_block_skip_interaction_toast);
+                        break;
+                    case HIGHLIGHT:
+                        // ignored (this should never happen)
                         break;
                     case SELF_PROMO:
                         toastText = context
@@ -2414,6 +2418,10 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
+            if (sponsorBlockSegment.action != SponsorBlockAction.SKIP) {
+                continue;
+            }
+
             if (progress < sponsorBlockSegment.startTime) {
                 continue;
             }

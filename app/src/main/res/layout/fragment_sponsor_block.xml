@@ -64,6 +64,9 @@
                     android:id="@+id/sponsor_block_controls_segment_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground"
                     android:textAlignment="center"
                     android:text="00:00:00"
                     tools:ignore="HardcodedText" />
@@ -79,6 +82,9 @@
                     android:id="@+id/sponsor_block_controls_segment_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground"
                     android:textAlignment="center"
                     android:text="00:00:00"
                     tools:ignore="HardcodedText" />

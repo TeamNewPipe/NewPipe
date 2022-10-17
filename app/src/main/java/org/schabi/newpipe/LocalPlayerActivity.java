@@ -23,6 +23,7 @@ import com.grack.nanojson.JsonParser;
 import org.schabi.newpipe.player.LocalPlayer;
 import org.schabi.newpipe.player.LocalPlayerListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
+import org.schabi.newpipe.util.SponsorBlockAction;
 import org.schabi.newpipe.util.SponsorBlockCategory;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.SponsorBlockSegment;
@@ -135,6 +136,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
     private static SponsorBlockSegment[] parseSponsorBlockSegmentsFromIntent(final Intent intent) {
         final List<SponsorBlockSegment> result = new ArrayList<>();
         final SponsorBlockCategory[] categoryValues = SponsorBlockCategory.values();
+        final SponsorBlockAction[] actionValues = SponsorBlockAction.values();
 
         final String segmentsJson = intent.getStringExtra("segments");
         if (segmentsJson != null && segmentsJson.length() > 0) {
@@ -148,8 +150,10 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
                     final double endTime = itemObject.getDouble("end");
                     final SponsorBlockCategory category =
                             categoryValues[itemObject.getInt("category")];
+                    final SponsorBlockAction action =
+                            actionValues[itemObject.getInt("action")];
                     final SponsorBlockSegment sponsorBlockSegment =
-                            new SponsorBlockSegment(uuid, startTime, endTime, category);
+                            new SponsorBlockSegment(uuid, startTime, endTime, category, action);
                     result.add(sponsorBlockSegment);
                 }
             } catch (final Exception e) {

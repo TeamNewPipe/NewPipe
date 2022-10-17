@@ -26,6 +26,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.util.SponsorBlockAction;
 import org.schabi.newpipe.util.SponsorBlockCategory;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.SponsorBlockSegment;
@@ -43,7 +44,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SponsorBlockFragment
         extends Fragment
-        implements CompoundButton.OnCheckedChangeListener {
+        implements CompoundButton.OnCheckedChangeListener,
+        SponsorBlockSeekListener {
     FragmentSponsorBlockBinding binding;
     private Player currentPlayer;
     private Integer markedStartTime = null;
@@ -63,7 +65,7 @@ public class SponsorBlockFragment
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
 
-        segmentListAdapter = new SponsorBlockSegmentListAdapter(context);
+        segmentListAdapter = new SponsorBlockSegmentListAdapter(context, this);
         segmentListAdapter.setItems(sponsorBlockSegments);
     }
 
@@ -82,6 +84,10 @@ public class SponsorBlockFragment
         binding = FragmentSponsorBlockBinding.inflate(inflater, container, false);
         binding.sponsorBlockControlsMarkSegmentStart.setOnClickListener(v -> doMark(true));
         binding.sponsorBlockControlsMarkSegmentEnd.setOnClickListener(v -> doMark(false));
+        binding.sponsorBlockControlsSegmentStart.setOnClickListener(v ->
+                doPendingSegmentSeek(true));
+        binding.sponsorBlockControlsSegmentEnd.setOnClickListener(v ->
+                doPendingSegmentSeek(false));
         binding.sponsorBlockControlsClearSegment.setOnClickListener(v -> doClear());
         binding.sponsorBlockControlsSubmitSegment.setOnClickListener(v -> doSubmit());
         binding.skippingIsEnabledSwitch.setOnCheckedChangeListener(this);
@@ -236,7 +242,8 @@ public class SponsorBlockFragment
                     "TEMP",
                     markedStartTime,
                     markedEndTime,
-                    SponsorBlockCategory.PENDING);
+                    SponsorBlockCategory.PENDING,
+                    SponsorBlockAction.SKIP);
 
             currentItem.addSponsorBlockSegment(segment);
 
@@ -288,6 +295,14 @@ public class SponsorBlockFragment
                 .show();
     }
 
+    private void doPendingSegmentSeek(final boolean isStart) {
+        if (isStart && markedStartTime != null) {
+            onSeekToRequested((long) markedStartTime);
+        } else if (markedEndTime != null) {
+            onSeekToRequested((long) markedEndTime);
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private void doSubmit() {
         final Optional<StreamInfo> currentStreamInfo = currentPlayer.getCurrentStreamInfo();
@@ -317,14 +332,19 @@ public class SponsorBlockFragment
                 SponsorBlockCategory.INTRO.getFriendlyName(context),
                 SponsorBlockCategory.OUTRO.getFriendlyName(context),
                 SponsorBlockCategory.INTERACTION.getFriendlyName(context),
+                SponsorBlockCategory.HIGHLIGHT.getFriendlyName(context),
                 SponsorBlockCategory.SELF_PROMO.getFriendlyName(context),
                 SponsorBlockCategory.NON_MUSIC.getFriendlyName(context),
                 SponsorBlockCategory.PREVIEW.getFriendlyName(context),
                 SponsorBlockCategory.FILLER.getFriendlyName(context)
         }, (dialog, which) -> {
             final SponsorBlockCategory category = SponsorBlockCategory.values()[which];
+            final SponsorBlockAction action = category == SponsorBlockCategory.HIGHLIGHT
+                    ? SponsorBlockAction.POI
+                    : SponsorBlockAction.SKIP;
             final SponsorBlockSegment newSegment =
-                    new SponsorBlockSegment("", markedStartTime, markedEndTime, category);
+                    new SponsorBlockSegment(
+                            "", markedStartTime, markedEndTime, category, action);
             submitSegmentSubscriber =
                     Single.fromCallable(() ->
                                     SponsorBlockUtils.submitSponsorBlockSegment(
@@ -375,5 +395,10 @@ public class SponsorBlockFragment
             dialog.dismiss();
         });
         builder.show();
+    }
+
+    @Override
+    public void onSeekToRequested(final long positionMillis) {
+        currentPlayer.seekTo(positionMillis);
     }
 }

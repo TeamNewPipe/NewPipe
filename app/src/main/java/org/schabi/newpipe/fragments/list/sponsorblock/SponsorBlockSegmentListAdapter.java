@@ -22,6 +22,7 @@ import org.schabi.newpipe.util.SponsorBlockSegment;
 import org.schabi.newpipe.util.SponsorBlockUtils;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -32,9 +33,12 @@ public class SponsorBlockSegmentListAdapter extends
         RecyclerView.Adapter<SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder> {
     private final Context context;
     private ArrayList<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
+    private final SponsorBlockSeekListener listener;
 
-    public SponsorBlockSegmentListAdapter(final Context context) {
+    public SponsorBlockSegmentListAdapter(final Context context,
+                                          final SponsorBlockSeekListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     public void setItems(final ArrayList<SponsorBlockSegment> items) {
@@ -43,6 +47,21 @@ public class SponsorBlockSegmentListAdapter extends
         } else {
             sponsorBlockSegments = items;
         }
+
+        // find the first "highlight" segment (if it exists) and move it to the top
+        if (sponsorBlockSegments.size() > 0) {
+            final Optional<SponsorBlockSegment> highlightSegment =
+                    sponsorBlockSegments
+                            .stream()
+                            .filter(x -> x.category == SponsorBlockCategory.HIGHLIGHT)
+                            .findFirst();
+
+            if (highlightSegment.isPresent()) {
+                sponsorBlockSegments.remove(highlightSegment.get());
+                sponsorBlockSegments.add(0, highlightSegment.get());
+            }
+        }
+
         notifyDataSetChanged();
     }
 
@@ -50,10 +69,10 @@ public class SponsorBlockSegmentListAdapter extends
     @Override
     public SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder onCreateViewHolder(
             @NonNull final ViewGroup parent, final int viewType) {
-        return new SponsorBlockSegmentItemViewHolder(
-                LayoutInflater
-                        .from(context)
-                        .inflate(R.layout.list_segments_item, parent, false));
+        final View itemView = LayoutInflater
+                .from(context)
+                .inflate(R.layout.list_segments_item, parent, false);
+        return new SponsorBlockSegmentItemViewHolder(itemView, listener);
     }
 
     @Override
@@ -71,6 +90,7 @@ public class SponsorBlockSegmentListAdapter extends
 
     public static class SponsorBlockSegmentItemViewHolder extends RecyclerView.ViewHolder {
         private final View itemSegmentColorView;
+        private final ImageView itemSegmentSkipToHighlight;
         private final TextView itemSegmentNameTextView;
         private final TextView itemSegmentStartTimeTextView;
         private final TextView itemSegmentEndTimeTextView;
@@ -82,16 +102,35 @@ public class SponsorBlockSegmentListAdapter extends
         private boolean hasUpVoted;
         private boolean hasDownVoted;
         private boolean hasResetVote;
+        private SponsorBlockSegment currentSponsorBlockSegment;
 
-        public SponsorBlockSegmentItemViewHolder(@NonNull final View itemView) {
+        public SponsorBlockSegmentItemViewHolder(
+                @NonNull final View itemView,
+                final SponsorBlockSeekListener listener) {
             super(itemView);
 
             itemSegmentColorView = itemView.findViewById(R.id.item_segment_color_view);
+            itemSegmentSkipToHighlight = itemView.findViewById(R.id.item_segment_skip_to_highlight);
+            itemSegmentSkipToHighlight.setOnClickListener(v -> {
+                if (currentSponsorBlockSegment != null && listener != null) {
+                    listener.onSeekToRequested((long) currentSponsorBlockSegment.startTime);
+                }
+            });
             itemSegmentNameTextView = itemView.findViewById(
                     R.id.item_segment_category_name_textview);
             itemSegmentStartTimeTextView = itemView.findViewById(
                     R.id.item_segment_start_time_textview);
+            itemSegmentStartTimeTextView.setOnClickListener(v -> {
+                if (currentSponsorBlockSegment != null && listener != null) {
+                    listener.onSeekToRequested((long) currentSponsorBlockSegment.startTime);
+                }
+            });
             itemSegmentEndTimeTextView = itemView.findViewById(R.id.item_segment_end_time_textview);
+            itemSegmentEndTimeTextView.setOnClickListener(v -> {
+                if (currentSponsorBlockSegment != null && listener != null) {
+                    listener.onSeekToRequested((long) currentSponsorBlockSegment.endTime);
+                }
+            });
 
             // voting
             //  1 = up
@@ -114,6 +153,8 @@ public class SponsorBlockSegmentListAdapter extends
         }
 
         private void updateFrom(final SponsorBlockSegment sponsorBlockSegment) {
+            currentSponsorBlockSegment = sponsorBlockSegment;
+
             final Context context = itemView.getContext();
 
             // uuid
@@ -125,6 +166,15 @@ public class SponsorBlockSegmentListAdapter extends
                             sponsorBlockSegment.category, context);
             if (segmentColor != null) {
                 itemSegmentColorView.setBackgroundColor(segmentColor);
+            }
+
+            // skip to highlight
+            if (sponsorBlockSegment.category == SponsorBlockCategory.HIGHLIGHT) {
+                itemSegmentColorView.setVisibility(View.GONE);
+                itemSegmentSkipToHighlight.setVisibility(View.VISIBLE);
+            } else {
+                itemSegmentColorView.setVisibility(View.VISIBLE);
+                itemSegmentSkipToHighlight.setVisibility(View.GONE);
             }
 
             // category name

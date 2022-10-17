@@ -20,6 +20,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.util.SponsorBlockAction;
 import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -315,6 +316,9 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
                     toastText = context
                             .getString(R.string.sponsor_block_skip_interaction_toast);
                     break;
+                case HIGHLIGHT:
+                    // ignored (this should never happen)
+                    break;
                 case SELF_PROMO:
                     toastText = context
                             .getString(R.string.sponsor_block_skip_self_promo_toast);
@@ -360,6 +364,10 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
         }
 
         for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
+            if (sponsorBlockSegment.action != SponsorBlockAction.SKIP) {
+                continue;
+            }
+
             if (progress < sponsorBlockSegment.startTime) {
                 continue;
             }

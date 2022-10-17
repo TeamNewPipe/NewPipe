@@ -66,6 +66,8 @@ public final class SponsorBlockUtils {
             return new SponsorBlockSegment[0];
         }
 
+        final String videoId = streamInfo.getId();
+
         final boolean includeSponsorCategory = prefs.getBoolean(context
                 .getString(R.string.sponsor_block_category_sponsor_key), false);
         final boolean includeIntroCategory = prefs.getBoolean(context
@@ -74,6 +76,8 @@ public final class SponsorBlockUtils {
                 .getString(R.string.sponsor_block_category_outro_key), false);
         final boolean includeInteractionCategory = prefs.getBoolean(context
                 .getString(R.string.sponsor_block_category_interaction_key), false);
+        final boolean includeHighlightCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_highlight_key), false);
         final boolean includeSelfPromoCategory = prefs.getBoolean(context
                 .getString(R.string.sponsor_block_category_self_promo_key), false);
         final boolean includeMusicCategory = prefs.getBoolean(context
@@ -97,6 +101,9 @@ public final class SponsorBlockUtils {
         if (includeInteractionCategory) {
             categoryParamList.add(SponsorBlockCategory.INTERACTION.getApiName());
         }
+        if (includeHighlightCategory) {
+            categoryParamList.add(SponsorBlockCategory.HIGHLIGHT.getApiName());
+        }
         if (includeSelfPromoCategory) {
             categoryParamList.add(SponsorBlockCategory.SELF_PROMO.getApiName());
         }
@@ -118,14 +125,19 @@ public final class SponsorBlockUtils {
         String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
         categoryParams = URLEncoder.encode(categoryParams, "utf-8");
 
-        final String videoIdHash = toSha256(streamInfo.getId());
+        String actionParams = "[\"skip\",\"poi\"]";
+        actionParams = URLEncoder.encode(actionParams, "utf-8");
+
+        final String videoIdHash = toSha256(videoId);
 
         if (videoIdHash == null) {
             return new SponsorBlockSegment[0];
         }
 
-        final String params = "skipSegments/" + videoIdHash.substring(0, 4)
-                + "?categories=" + categoryParams;
+        final String url = apiUrl + "skipSegments/" + videoIdHash.substring(0, 4)
+                + "?categories=" + categoryParams
+                + "&actionTypes=" + actionParams
+                + "&userAgent=Mozilla/5.0";
 
         if (!isConnected()) {
             return new SponsorBlockSegment[0];
@@ -138,7 +150,7 @@ public final class SponsorBlockUtils {
                     DownloaderImpl
                             .getInstance()
                             .setCustomTimeout(3)
-                            .get(apiUrl + params)
+                            .get(url)
                             .responseBody();
 
             responseArray = JsonParser.array().from(responseBody);
@@ -159,7 +171,7 @@ public final class SponsorBlockUtils {
             final JsonObject jObj1 = (JsonObject) obj1;
 
             final String responseVideoId = jObj1.getString("videoID");
-            if (!responseVideoId.equals(streamInfo.getId())) {
+            if (!responseVideoId.equals(videoId)) {
                 continue;
             }
 
@@ -180,10 +192,12 @@ public final class SponsorBlockUtils {
                 final double startTime = segmentInfo.getDouble(0) * 1000;
                 final double endTime = segmentInfo.getDouble(1) * 1000;
                 final String category = jObj2.getString("category");
+                final String action = jObj2.getString("actionType");
 
                 final SponsorBlockSegment sponsorBlockSegment =
                         new SponsorBlockSegment(uuid, startTime, endTime,
-                                SponsorBlockCategory.fromApiName(category));
+                                SponsorBlockCategory.fromApiName(category),
+                                SponsorBlockAction.fromApiName(action));
                 result.add(sponsorBlockSegment);
             }
         }
@@ -252,6 +266,12 @@ public final class SponsorBlockUtils {
                 colorStr = prefs.getString(key, null);
                 return colorStr == null
                         ? context.getResources().getColor(R.color.interaction_segment)
+                        : Color.parseColor(colorStr);
+            case HIGHLIGHT:
+                key = context.getString(R.string.sponsor_block_category_highlight_color_key);
+                colorStr = prefs.getString(key, null);
+                return colorStr == null
+                        ? context.getResources().getColor(R.color.highlight_segment)
                         : Color.parseColor(colorStr);
             case SELF_PROMO:
                 key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
@@ -347,19 +367,28 @@ public final class SponsorBlockUtils {
             return null;
         }
 
+        final String videoId = streamInfo.getId();
+
         final String localUserId =
                 RandomStringFromAlphabetGenerator.generate(ALPHABET, 32, NUMBER_GENERATOR);
 
+        final String actionType = segment.category == SponsorBlockCategory.HIGHLIGHT
+                ? "poi"
+                : "skip";
+
         final double startInSeconds = segment.startTime / 1000.0;
-        final double endInSeconds = segment.endTime / 1000.0;
+        final double endInSeconds = segment.category == SponsorBlockCategory.HIGHLIGHT
+                ? startInSeconds
+                : segment.endTime / 1000.0;
 
         final String url = apiUrl + "skipSegments?"
-                + "videoID=" + streamInfo.getId()
+                + "videoID=" + videoId
                 + "&startTime=" + startInSeconds
                 + "&endTime=" + endInSeconds
                 + "&category=" + segment.category.getApiName()
                 + "&userID=" + localUserId
-                + "&userAgent=Mozilla/5.0";
+                + "&userAgent=Mozilla/5.0"
+                + "&actionType=" + actionType;
         try {
             return DownloaderImpl.getInstance().post(url, null, new byte[0]);
         } catch (final Exception ex) {

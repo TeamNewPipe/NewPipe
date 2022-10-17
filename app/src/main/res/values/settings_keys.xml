@@ -426,6 +426,8 @@
     <string name="sponsor_block_category_outro_color_key" translatable="false">sponsor_block_category_outro_color</string>
     <string name="sponsor_block_category_interaction_key" translatable="false">sponsor_block_category_interaction</string>
     <string name="sponsor_block_category_interaction_color_key" translatable="false">sponsor_block_category_interaction_color</string>
+    <string name="sponsor_block_category_highlight_key" translatable="false">sponsor_block_category_highlight</string>
+    <string name="sponsor_block_category_highlight_color_key" translatable="false">sponsor_block_category_highlight_color</string>
     <string name="sponsor_block_category_self_promo_key" translatable="false">sponsor_block_category_self_promo</string>
     <string name="sponsor_block_category_self_promo_color_key" translatable="false">sponsor_block_category_self_promo_color</string>
     <string name="sponsor_block_category_non_music_key" translatable="false">sponsor_block_category_music</string>

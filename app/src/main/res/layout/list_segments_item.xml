@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -9,20 +8,29 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:orientation="horizontal">
-    <!--
-        TODO:
-            - click timestamps to auto-disable skipping, and jump to point in video
-                - find "TimestampExtractor.TIMESTAMPS_PATTERN" when
-                  figuring out how to implement jumping to a time stamp
-            - vote submission via API
-    -->
     <!-- segment color -->
-    <View
-        android:id="@+id/item_segment_color_view"
-        android:layout_width="6dp"
-        android:layout_height="6dp"
-        android:layout_gravity="center_vertical"
-        android:background="@color/black" />
+    <RelativeLayout
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_gravity="center">
+        <View
+            android:id="@+id/item_segment_color_view"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@color/black"
+            android:layout_centerInParent="true"/>
+        <!-- skip to highlight -->
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/item_segment_skip_to_highlight"
+            android:layout_width="20sp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Skip to highlight"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_fast_forward" />
+    </RelativeLayout>
 
     <Space
         android:layout_width="16dp"
@@ -34,6 +42,7 @@
         android:id="@+id/item_segment_category_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:maxWidth="100dp"
         android:textAlignment="center"
         tools:text="Sponsor" />
@@ -53,6 +62,9 @@
             android:id="@+id/item_segment_start_time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:textAlignment="center"
             tools:text="00:00:00" />
         <TextView
@@ -66,6 +78,9 @@
             android:id="@+id/item_segment_end_time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:textAlignment="center"
             tools:text="99:99:99" />
     </LinearLayout>

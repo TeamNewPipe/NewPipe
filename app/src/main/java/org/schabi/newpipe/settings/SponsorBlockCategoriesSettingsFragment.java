@@ -47,6 +47,9 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
                                 R.string.sponsor_block_category_interaction_color_key,
                                 R.color.interaction_segment);
                         setColorPreference(editor,
+                                R.string.sponsor_block_category_highlight_color_key,
+                                R.color.highlight_segment);
+                        setColorPreference(editor,
                                 R.string.sponsor_block_category_self_promo_color_key,
                                 R.color.self_promo_segment);
                         setColorPreference(editor,

@@ -9,6 +9,7 @@ public enum SponsorBlockCategory {
     INTRO("intro"),
     OUTRO("outro"),
     INTERACTION("interaction"),
+    HIGHLIGHT("poi_highlight"),
     SELF_PROMO("selfpromo"),
     NON_MUSIC("music_offtopic"),
     PREVIEW("preview"),
@@ -31,6 +32,8 @@ public enum SponsorBlockCategory {
                 return SponsorBlockCategory.OUTRO;
             case "interaction":
                 return SponsorBlockCategory.INTERACTION;
+            case "poi_highlight":
+                return SponsorBlockCategory.HIGHLIGHT;
             case "selfpromo":
                 return SponsorBlockCategory.SELF_PROMO;
             case "music_offtopic":
@@ -58,6 +61,9 @@ public enum SponsorBlockCategory {
             case INTERACTION:
                 return context.getString(
                         R.string.sponsor_block_category_interaction);
+            case HIGHLIGHT:
+                return context.getString(
+                        R.string.sponsor_block_category_highlight);
             case SELF_PROMO:
                 return context.getString(
                         R.string.sponsor_block_category_self_promo);

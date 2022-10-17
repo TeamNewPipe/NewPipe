@@ -156,6 +156,7 @@
     <string name="settings_category_sponsor_block_category_intro_summary">An interval without actual content. Could be a pause, static frame, repeating animation. This should not be used for transitions containing information or be used on music videos.</string>
     <string name="settings_category_sponsor_block_category_outro_summary">Credits or when the YouTube endcards appear. Not for spoken conclusions. This should not include useful content. This should not be used on music videos.</string>
     <string name="settings_category_sponsor_block_category_interaction_summary">When there is a short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should be under self promotion instead.</string>
+    <string name="settings_category_sponsor_block_category_highlight_summary">The part of the video that most people are looking for. Similar to "Video starts at x" comments.</string>
     <string name="settings_category_sponsor_block_category_self_promo_summary">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with.</string>
     <string name="settings_category_sponsor_block_category_non_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Quick recap of previous episodes, or a preview of what\'s coming up later in the current video. Meant for edited together clips, not for spoken summaries.</string>
@@ -790,7 +791,8 @@
     <string name="sponsor_block_category_sponsor">Sponsor</string>
     <string name="sponsor_block_category_intro">Intermission/Intro Animation</string>
     <string name="sponsor_block_category_outro">Endcards/Credits</string>
-    <string name="sponsor_block_category_interaction">Interaction Reminds (Subscribe)</string>
+    <string name="sponsor_block_category_interaction">Interaction Reminders (Subscribe)</string>
+    <string name="sponsor_block_category_highlight">Highlight</string>
     <string name="sponsor_block_category_self_promo">Unpaid/Self Promotion</string>
     <string name="sponsor_block_category_non_music">Music: Non-Music Section</string>
     <string name="sponsor_block_category_preview">Preview/Recap</string>
