@@ -75,9 +75,8 @@ class FeedViewModel(
         .map { (event, showPlayedItems, showFutureItems, showShorts, notLoadedCount, oldestUpdate) ->
             val streamItems = if (event is SuccessResultEvent || event is IdleEvent)
                 feedDatabaseManager
-                    .getStreams(groupId, showPlayedItems, showFutureItems)
+                    .getStreams(groupId, showPlayedItems, showFutureItems, showShorts)
                     .blockingGet(arrayListOf())
-                    .filter { s -> showShorts || s.stream.duration > 0 }
             else
                 arrayListOf()
 

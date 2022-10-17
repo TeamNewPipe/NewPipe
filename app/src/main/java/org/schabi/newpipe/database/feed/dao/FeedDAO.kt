@@ -67,6 +67,10 @@ abstract class FeedDAO {
             OR s.stream_type = 'AUDIO_LIVE_STREAM'
         )
         AND (
+            :includeShortFormContent
+            OR s.is_short_form_content = 0
+        )
+        AND (
             :uploadDateBefore IS NULL
             OR s.upload_date IS NULL
             OR s.upload_date < :uploadDateBefore
@@ -79,6 +83,7 @@ abstract class FeedDAO {
     abstract fun getStreams(
         groupId: Long,
         includePlayed: Boolean,
+        includeShortFormContent: Boolean,
         uploadDateBefore: OffsetDateTime?
     ): Maybe<List<StreamWithState>>
 

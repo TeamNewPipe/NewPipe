@@ -84,6 +84,11 @@ class DatabaseMigrationTest {
             true, Migrations.MIGRATION_4_5
         )
 
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
+            true, Migrations.MIGRATION_5_6
+        )
+
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
 
@@ -102,6 +107,7 @@ class DatabaseMigrationTest {
         assertNull(streamFromMigratedDatabase.textualUploadDate)
         assertNull(streamFromMigratedDatabase.uploadDate)
         assertNull(streamFromMigratedDatabase.isUploadDateApproximation)
+        assertNull(streamFromMigratedDatabase.isShortFormContent)
 
         val secondStreamFromMigratedDatabase = listFromDB[1]
         assertEquals(DEFAULT_SECOND_SERVICE_ID, secondStreamFromMigratedDatabase.serviceId)
@@ -116,6 +122,7 @@ class DatabaseMigrationTest {
         assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
         assertNull(secondStreamFromMigratedDatabase.uploadDate)
         assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
+        assertNull(secondStreamFromMigratedDatabase.isShortFormContent)
     }
 
     private fun getMigratedDatabase(): AppDatabase {
