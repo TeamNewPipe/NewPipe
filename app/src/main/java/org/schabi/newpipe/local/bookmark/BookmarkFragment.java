@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +25,7 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -30,7 +34,9 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import icepick.State;
@@ -48,6 +54,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private CompositeDisposable disposables = new CompositeDisposable();
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
+
+    public ArrayList<PlaylistMetadataEntry> checkedList = new ArrayList<PlaylistMetadataEntry>();
+    public boolean merger = false;
+    public TextView debugText;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -98,6 +108,49 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
+        debugText = activity.findViewById(R.id.debugSelect);
+
+        final Button mergeAll = activity.findViewById(R.id.mergeButton);
+        mergeAll.setOnClickListener(v -> {
+
+            final ArrayList<StreamEntity> allStreams = new ArrayList<StreamEntity>();
+            for (int i = 0; i < checkedList.size(); i++) {
+                final List<StreamEntity> streamList = localPlaylistManager.getPlaylistStreamsEntity(
+                        checkedList.get(i).uid).blockingFirst();
+                allStreams.addAll(streamList);
+            }
+
+            showMergeDialog(allStreams);
+
+
+        });
+        final Button deleteAll = activity.findViewById(R.id.deleteButton);
+        deleteAll.setOnClickListener(v -> {
+            String names = "Delete the Following Playlists? : ";
+            for (int i = 0; i < checkedList.size(); i++) {
+                names = names + ", " + checkedList.get(i).name;
+            }
+            showDeleteDialog(names,
+                    localPlaylistManager.deleteMultiPlaylists(checkedList));
+            checkedList.clear();
+        });
+        final Button multiSelect = activity.findViewById(R.id.multiButton);
+        multiSelect.setOnClickListener(v -> {
+            if (multiSelect.getText().equals("select")) {
+                merger = true;
+                multiSelect.setText("deselect all");
+                activity.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
+                activity.findViewById(R.id.mergeButton).setVisibility(View.VISIBLE);
+            } else {
+                merger = false;
+                multiSelect.setText("select");
+                activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
+                activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
+                checkedList.clear();
+            }
+            printSelectedList();
+        });
+
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
@@ -105,9 +158,17 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
-                            entry.name);
-
+                    if (merger) {
+                        if (!checkedList.contains(entry)) {
+                            checkedList.add(entry);
+                        } else {
+                            checkedList.remove(entry);
+                        }
+                        printSelectedList();
+                    } else {
+                        NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
+                                entry.name);
+                    }
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
                     NavigationHelper.openPlaylistFragment(
@@ -126,6 +187,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
                 }
             }
+
         });
     }
 
@@ -278,6 +340,39 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .show();
     }
 
+    private void showMergeDialog(final ArrayList<StreamEntity> streams) {
+        if (activity == null || disposables == null) {
+            return;
+        }
+        final DialogEditTextBinding dialogBinding =
+                DialogEditTextBinding.inflate(getLayoutInflater());
+        dialogBinding.getRoot().getContext().setTheme(ThemeHelper.getDialogTheme(requireContext()));
+        dialogBinding.dialogEditText.setHint(R.string.name);
+        dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.merge_playlists)
+                .setMessage(R.string.delete_playlist_warning)
+                .setView(dialogBinding.getRoot())
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.merge, (dialog, i) -> {
+        final String name = dialogBinding.dialogEditText.getText().toString();
+        final Toast successToast = Toast.makeText(getActivity(),
+                R.string.playlist_creation_success,
+                Toast.LENGTH_SHORT);
+
+        localPlaylistManager.createPlaylist(name, streams)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(longs -> successToast.show());
+        localPlaylistManager.deleteMultiPlaylists(checkedList)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ignored -> { /*Do nothing on success*/ });
+
+        deselectAll();
+    }).show();
+    }
+
     private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
         if (activity == null || disposables == null) {
             return;
@@ -290,12 +385,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setPositiveButton(R.string.delete, (dialog, i) ->
                         disposables.add(deleteReactor
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(ignored -> { /*Do nothing on success*/ }, throwable ->
+                                .subscribe(ignored -> { /*Do nothing on success*/
+                                    deselectAll(); }, throwable ->
                                         showError(new ErrorInfo(throwable,
                                                 UserAction.REQUESTED_BOOKMARK,
                                                 "Deleting playlist")))))
                 .setNegativeButton(R.string.cancel, null)
                 .show();
+
     }
 
     private void changeLocalPlaylistName(final long id, final String name) {
@@ -316,6 +413,24 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                 UserAction.REQUESTED_BOOKMARK,
                                 "Changing playlist name")));
         disposables.add(disposable);
+    }
+
+    private void printSelectedList() {
+        String names = "Selected: ";
+        for (int i = 0; i < checkedList.size(); i++) {
+            names = names + ", " + checkedList.get(i).name;
+        }
+        debugText.setText(names);
+    }
+
+    private void deselectAll() {
+        merger = false;
+        final Button multiSelect = activity.findViewById(R.id.multiButton);
+        multiSelect.setText("select");
+        activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
+        activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
+        checkedList.clear();
+        printSelectedList();
     }
 }
 

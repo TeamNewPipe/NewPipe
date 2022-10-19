@@ -90,8 +90,23 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
 
+    public Flowable<List<StreamEntity>> getPlaylistStreamsEntity(final long playlistId) {
+        return playlistStreamTable.getOrderedStreamsOfEntity(playlistId)
+                .subscribeOn(Schedulers.io());
+    }
+
     public Single<Integer> deletePlaylist(final long playlistId) {
         return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Single<Integer> deleteMultiPlaylists(
+            final ArrayList<PlaylistMetadataEntry> playlistIds) {
+        final ArrayList<Long> allId = new ArrayList<>();
+        for (int i = 0; i < playlistIds.size(); i++) {
+            allId.add(playlistIds.get(i).uid);
+        }
+        return Single.fromCallable(() -> playlistTable.deleteMultiplePlaylists(allId))
                 .subscribeOn(Schedulers.io());
     }
 

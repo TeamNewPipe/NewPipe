@@ -6,6 +6,7 @@ import androidx.room.Query;
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
@@ -33,6 +34,9 @@ public interface PlaylistDAO extends BasicDAO<PlaylistEntity> {
 
     @Query("DELETE FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " = :playlistId")
     int deletePlaylist(long playlistId);
+
+    @Query("DELETE FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " IN(:playlistIds)")
+    int deleteMultiplePlaylists(ArrayList<Long> playlistIds);
 
     @Query("SELECT COUNT(*) FROM " + PLAYLIST_TABLE)
     Flowable<Long> getCount();

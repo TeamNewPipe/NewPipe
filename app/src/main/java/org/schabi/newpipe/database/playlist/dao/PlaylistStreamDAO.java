@@ -9,6 +9,7 @@ import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 
 import java.util.List;
 
@@ -72,6 +73,26 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
 
             + " ORDER BY " + JOIN_INDEX + " ASC")
     Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
+
+    @RewriteQueriesToDropUnusedColumns
+    @Transaction
+    @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN "
+            // get ids of streams of the given playlist
+            + "(SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX
+            + " FROM " + PLAYLIST_STREAM_JOIN_TABLE
+            + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId)"
+
+            // then merge with the stream metadata
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            + STREAM_PROGRESS_MILLIS
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
+
+            + " ORDER BY " + JOIN_INDEX + " ASC")
+    Flowable<List<StreamEntity>> getOrderedStreamsOfEntity(long playlistId);
 
     @Transaction
     @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " + PLAYLIST_THUMBNAIL_URL + ", "
