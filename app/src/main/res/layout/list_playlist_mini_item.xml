@@ -42,7 +42,7 @@
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/itemThumbnailView"
@@ -64,5 +64,13 @@
         android:textSize="@dimen/video_item_search_uploader_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="Uploader" />
+
+    <CheckBox
+        android:id="@+id/selectCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/itemTitleView" />
 
 </RelativeLayout>

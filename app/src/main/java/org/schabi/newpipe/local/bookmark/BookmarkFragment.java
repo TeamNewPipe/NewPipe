@@ -55,9 +55,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
 
-    public ArrayList<PlaylistMetadataEntry> checkedList = new ArrayList<PlaylistMetadataEntry>();
-    public boolean merger = false;
-    public TextView debugText;
+    public static ArrayList<PlaylistMetadataEntry> checkedList =
+            new ArrayList<PlaylistMetadataEntry>();
+    public static boolean merger = false;
+//    public TextView debugText;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -108,22 +109,19 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
-        debugText = activity.findViewById(R.id.debugSelect);
+//        debugText = activity.findViewById(R.id.debugSelect);
 
         final Button mergeAll = activity.findViewById(R.id.mergeButton);
         mergeAll.setOnClickListener(v -> {
-
             final ArrayList<StreamEntity> allStreams = new ArrayList<StreamEntity>();
             for (int i = 0; i < checkedList.size(); i++) {
                 final List<StreamEntity> streamList = localPlaylistManager.getPlaylistStreamsEntity(
                         checkedList.get(i).uid).blockingFirst();
                 allStreams.addAll(streamList);
             }
-
             showMergeDialog(allStreams);
-
-
         });
+
         final Button deleteAll = activity.findViewById(R.id.deleteButton);
         deleteAll.setOnClickListener(v -> {
             String names = "Delete the Following Playlists? : ";
@@ -134,8 +132,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     localPlaylistManager.deleteMultiPlaylists(checkedList));
             checkedList.clear();
         });
+
         final Button multiSelect = activity.findViewById(R.id.multiButton);
         multiSelect.setOnClickListener(v -> {
+
+            itemListAdapter.notifyDataSetChanged();
+
             if (multiSelect.getText().equals("select")) {
                 merger = true;
                 multiSelect.setText("deselect all");
@@ -152,10 +154,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         });
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
+
             @Override
             public void selected(final LocalItem selectedItem) {
                 final FragmentManager fragmentManager = getFM();
-
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
                     if (merger) {
@@ -420,7 +422,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         for (int i = 0; i < checkedList.size(); i++) {
             names = names + ", " + checkedList.get(i).name;
         }
-        debugText.setText(names);
+//        debugText.setText(names);
     }
 
     private void deselectAll() {
@@ -431,6 +433,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
         checkedList.clear();
         printSelectedList();
+    }
+
+    public ArrayList<PlaylistMetadataEntry> getSelectedList() {
+        return checkedList;
     }
 }
 

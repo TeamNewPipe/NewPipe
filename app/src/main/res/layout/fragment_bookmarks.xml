@@ -41,12 +41,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/debugSelect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" " />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/items_list"
             android:layout_width="match_parent"
