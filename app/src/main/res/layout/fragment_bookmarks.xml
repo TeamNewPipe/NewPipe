@@ -18,26 +18,32 @@
 
             <Button
                 android:id="@+id/mergeButton"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="merge" />
+                android:background="@color/transparent_background_color"
+                android:text="merge"
+                android:textColor="@color/black_settings_accent_color"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/deleteButton"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="delete" />
+                android:background="@color/transparent_background_color"
+                android:text="delete"
+                android:textColor="@color/black_settings_accent_color"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/multiButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="select" />
+                android:background="@color/transparent_background_color"
+                android:text="select"
+                android:textColor="@color/bluegray" />
 
         </LinearLayout>
 

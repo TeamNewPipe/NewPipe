@@ -3,8 +3,10 @@ package org.schabi.newpipe.local.playlist;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
@@ -28,8 +30,23 @@ public class RemotePlaylistManager {
                 .subscribeOn(Schedulers.io());
     }
 
+    public Flowable<List<StreamEntity>> getPlaylistStreamsEntity(final long playlistId) {
+        return playlistRemoteTable.getOrderedStreamsOfEntity(playlistId)
+                .subscribeOn(Schedulers.io());
+    }
+
     public Single<Integer> deletePlaylist(final long playlistId) {
         return Single.fromCallable(() -> playlistRemoteTable.deletePlaylist(playlistId))
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Single<Integer> deleteMultiPlaylists(
+            final ArrayList<PlaylistRemoteEntity> playlistIds) {
+        final ArrayList<Long> allId = new ArrayList<>();
+        for (int i = 0; i < playlistIds.size(); i++) {
+            allId.add(playlistIds.get(i).getUid());
+        }
+        return Single.fromCallable(() -> playlistRemoteTable.deleteMultiplePlaylists(allId))
                 .subscribeOn(Schedulers.io());
     }
 

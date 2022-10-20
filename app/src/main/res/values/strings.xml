@@ -445,6 +445,8 @@
     <string name="merge_playlists">Merge these playlists?</string>
     <string name="merge">merge</string>
     <string name="delete_playlist_warning">This will delete all selected playlists.</string>
+    <string name="select">select</string>
+    <string name="deselect">deselect all</string>
     <!-- Players -->
     <string name="caption_none">No Captions</string>
     <string name="resize_fit">Fit</string>

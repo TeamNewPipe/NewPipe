@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -55,10 +54,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
 
-    public static ArrayList<PlaylistMetadataEntry> checkedList =
-            new ArrayList<PlaylistMetadataEntry>();
+    public ArrayList<PlaylistMetadataEntry> checkedList = new ArrayList<>();
+    public ArrayList<PlaylistRemoteEntity> checkedList2 = new ArrayList<>();
     public static boolean merger = false;
-//    public TextView debugText;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -109,14 +107,17 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
-//        debugText = activity.findViewById(R.id.debugSelect);
-
         final Button mergeAll = activity.findViewById(R.id.mergeButton);
         mergeAll.setOnClickListener(v -> {
-            final ArrayList<StreamEntity> allStreams = new ArrayList<StreamEntity>();
+            final ArrayList<StreamEntity> allStreams = new ArrayList<>();
             for (int i = 0; i < checkedList.size(); i++) {
                 final List<StreamEntity> streamList = localPlaylistManager.getPlaylistStreamsEntity(
                         checkedList.get(i).uid).blockingFirst();
+                allStreams.addAll(streamList);
+            }
+            for (int i = 0; i < checkedList2.size(); i++) {
+                final List<StreamEntity> streamList = remotePlaylistManager
+                        .getPlaylistStreamsEntity(checkedList2.get(i).getUid()).blockingFirst();
                 allStreams.addAll(streamList);
             }
             showMergeDialog(allStreams);
@@ -124,13 +125,26 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         final Button deleteAll = activity.findViewById(R.id.deleteButton);
         deleteAll.setOnClickListener(v -> {
-            String names = "Delete the Following Playlists? : ";
+            final StringBuilder names = new StringBuilder(
+                    "Delete the Following Playlists? : ");
+            final StringBuilder names2 = new StringBuilder(
+                    "Unsubscribe from the Following Playlists? : ");
             for (int i = 0; i < checkedList.size(); i++) {
-                names = names + ", " + checkedList.get(i).name;
+                names.append(checkedList.get(i).name).append(", ");
             }
-            showDeleteDialog(names,
-                    localPlaylistManager.deleteMultiPlaylists(checkedList));
-            checkedList.clear();
+            for (int i = 0; i < checkedList2.size(); i++) {
+                names2.append(checkedList2.get(i).getName()).append(", ");
+            }
+
+            if (!checkedList.isEmpty()) {
+                showDeleteDialog(names.toString(), localPlaylistManager.
+                        deleteMultiPlaylists(checkedList));
+            }
+            if (!checkedList2.isEmpty()) {
+                showDeleteDialog(names2.toString(), remotePlaylistManager.
+                        deleteMultiPlaylists(checkedList2));
+            }
+
         });
 
         final Button multiSelect = activity.findViewById(R.id.multiButton);
@@ -140,17 +154,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             if (multiSelect.getText().equals("select")) {
                 merger = true;
-                multiSelect.setText("deselect all");
+                multiSelect.setText(R.string.deselect);
                 activity.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.VISIBLE);
             } else {
                 merger = false;
-                multiSelect.setText("select");
+                multiSelect.setText(R.string.select);
                 activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
                 checkedList.clear();
             }
-            printSelectedList();
         });
 
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
@@ -166,18 +179,25 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                         } else {
                             checkedList.remove(entry);
                         }
-                        printSelectedList();
                     } else {
                         NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
                                 entry.name);
                     }
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                    NavigationHelper.openPlaylistFragment(
-                            fragmentManager,
-                            entry.getServiceId(),
-                            entry.getUrl(),
-                            entry.getName());
+                    if (merger) {
+                        if (!checkedList2.contains(entry)) {
+                            checkedList2.add(entry);
+                        } else {
+                            checkedList2.remove(entry);
+                        }
+                    } else {
+                        NavigationHelper.openPlaylistFragment(
+                                fragmentManager,
+                                entry.getServiceId(),
+                                entry.getUrl(),
+                                entry.getName());
+                    }
                 }
             }
 
@@ -189,7 +209,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
                 }
             }
-
         });
     }
 
@@ -250,7 +269,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<PlaylistLocalItem>> getPlaylistsSubscriber() {
-        return new Subscriber<List<PlaylistLocalItem>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
@@ -370,6 +389,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         localPlaylistManager.deleteMultiPlaylists(checkedList)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> { /*Do nothing on success*/ });
+        remotePlaylistManager.deleteMultiPlaylists(checkedList2)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ignored -> { /*Do nothing on success*/ });
 
         deselectAll();
     }).show();
@@ -379,7 +401,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (activity == null || disposables == null) {
             return;
         }
-
         new AlertDialog.Builder(activity)
                 .setTitle(name)
                 .setMessage(R.string.delete_playlist_prompt)
@@ -394,7 +415,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                                 "Deleting playlist")))))
                 .setNegativeButton(R.string.cancel, null)
                 .show();
-
     }
 
     private void changeLocalPlaylistName(final long id, final String name) {
@@ -417,26 +437,17 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         disposables.add(disposable);
     }
 
-    private void printSelectedList() {
-        String names = "Selected: ";
-        for (int i = 0; i < checkedList.size(); i++) {
-            names = names + ", " + checkedList.get(i).name;
-        }
-//        debugText.setText(names);
-    }
 
     private void deselectAll() {
         merger = false;
         final Button multiSelect = activity.findViewById(R.id.multiButton);
-        multiSelect.setText("select");
+        multiSelect.setText(R.string.select);
         activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
         activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
         checkedList.clear();
-        printSelectedList();
+        checkedList2.clear();
+        itemListAdapter.notifyDataSetChanged();
     }
 
-    public ArrayList<PlaylistMetadataEntry> getSelectedList() {
-        return checkedList;
-    }
 }
 
