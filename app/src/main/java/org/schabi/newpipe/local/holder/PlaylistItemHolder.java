@@ -41,7 +41,7 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
                                final DateTimeFormatter dateTimeFormatter) {
-        if (!BookmarkFragment.merger) {
+        if (!BookmarkFragment.isMultiSelect) {
             selectCheckBox.setChecked(false);
             selectCheckBox.setVisibility(View.INVISIBLE);
         } else {
@@ -52,7 +52,7 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
             if (itemBuilder.getOnItemSelectedListener() != null) {
                 itemBuilder.getOnItemSelectedListener().selected(localItem);
             }
-            if (BookmarkFragment.merger) {
+            if (BookmarkFragment.isMultiSelect) {
                 if (selectCheckBox.isChecked()) {
                     selectCheckBox.setChecked(false);
                 } else {

@@ -54,9 +54,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
 
-    public ArrayList<PlaylistMetadataEntry> checkedList = new ArrayList<>();
-    public ArrayList<PlaylistRemoteEntity> checkedList2 = new ArrayList<>();
-    public static boolean merger = false;
+    public ArrayList<PlaylistMetadataEntry> selectedLocalPlaylists = new ArrayList<>();
+    public ArrayList<PlaylistRemoteEntity> selectedRemotePlaylists = new ArrayList<>();
+    public static boolean isMultiSelect = false;
+
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -109,42 +110,47 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         final Button mergeAll = activity.findViewById(R.id.mergeButton);
         mergeAll.setOnClickListener(v -> {
-            final ArrayList<StreamEntity> allStreams = new ArrayList<>();
-            for (int i = 0; i < checkedList.size(); i++) {
-                final List<StreamEntity> streamList = localPlaylistManager.getPlaylistStreamsEntity(
-                        checkedList.get(i).uid).blockingFirst();
-                allStreams.addAll(streamList);
+            if (selectedRemotePlaylists.isEmpty() && !selectedLocalPlaylists.isEmpty()
+            && selectedLocalPlaylists.size() + selectedRemotePlaylists.size() >= 2) {
+                final ArrayList<StreamEntity> allStreams = new ArrayList<>();
+                for (int i = 0; i < selectedLocalPlaylists.size(); i++) {
+                    final List<StreamEntity> streamList = localPlaylistManager
+                            .getPlaylistStreamsEntity(
+                            selectedLocalPlaylists.get(i).uid).blockingFirst();
+                    allStreams.addAll(streamList);
+                }
+                for (int i = 0; i < selectedRemotePlaylists.size(); i++) {
+                    final List<StreamEntity> streamList = remotePlaylistManager
+                            .getPlaylistStreamsEntity(selectedRemotePlaylists.get(i)
+                                    .getUid()).blockingFirst();
+                    allStreams.addAll(streamList);
+                }
+                showMergeDialog(allStreams);
+            } else if (!selectedRemotePlaylists.isEmpty()) {
+                Toast.makeText(activity, "Cannot Merge Someone Else's Playlist", Toast
+                        .LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity, "Not Enough Playlists Selected", Toast
+                        .LENGTH_SHORT).show();
             }
-            for (int i = 0; i < checkedList2.size(); i++) {
-                final List<StreamEntity> streamList = remotePlaylistManager
-                        .getPlaylistStreamsEntity(checkedList2.get(i).getUid()).blockingFirst();
-                allStreams.addAll(streamList);
-            }
-            showMergeDialog(allStreams);
         });
 
         final Button deleteAll = activity.findViewById(R.id.deleteButton);
         deleteAll.setOnClickListener(v -> {
-            final StringBuilder names = new StringBuilder(
-                    "Delete the Following Playlists? : ");
-            final StringBuilder names2 = new StringBuilder(
-                    "Unsubscribe from the Following Playlists? : ");
-            for (int i = 0; i < checkedList.size(); i++) {
-                names.append(checkedList.get(i).name).append(", ");
+            if (!selectedRemotePlaylists.isEmpty() || !selectedLocalPlaylists.isEmpty()) {
+                final String deleteLocalString = "Delete Selected Playlists?";
+                final String deleteRemoteString = "Delete Selected Playlists?";
+                if (!selectedLocalPlaylists.isEmpty()) {
+                    showDeleteDialog(deleteLocalString, localPlaylistManager.
+                            deleteMultiPlaylists(selectedLocalPlaylists));
+                }
+                if (!selectedRemotePlaylists.isEmpty()) {
+                    showDeleteDialog(deleteRemoteString, remotePlaylistManager.
+                            deleteMultiPlaylists(selectedRemotePlaylists));
+                }
+            } else {
+                Toast.makeText(activity, "No Playlists Selected", Toast.LENGTH_SHORT).show();
             }
-            for (int i = 0; i < checkedList2.size(); i++) {
-                names2.append(checkedList2.get(i).getName()).append(", ");
-            }
-
-            if (!checkedList.isEmpty()) {
-                showDeleteDialog(names.toString(), localPlaylistManager.
-                        deleteMultiPlaylists(checkedList));
-            }
-            if (!checkedList2.isEmpty()) {
-                showDeleteDialog(names2.toString(), remotePlaylistManager.
-                        deleteMultiPlaylists(checkedList2));
-            }
-
         });
 
         final Button multiSelect = activity.findViewById(R.id.multiButton);
@@ -153,16 +159,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             itemListAdapter.notifyDataSetChanged();
 
             if (multiSelect.getText().equals("select")) {
-                merger = true;
+                isMultiSelect = true;
                 multiSelect.setText(R.string.deselect);
                 activity.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.VISIBLE);
             } else {
-                merger = false;
+                isMultiSelect = false;
                 multiSelect.setText(R.string.select);
                 activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
-                checkedList.clear();
+                selectedLocalPlaylists.clear();
             }
         });
 
@@ -173,11 +179,11 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final FragmentManager fragmentManager = getFM();
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                    if (merger) {
-                        if (!checkedList.contains(entry)) {
-                            checkedList.add(entry);
+                    if (isMultiSelect) {
+                        if (!selectedLocalPlaylists.contains(entry)) {
+                            selectedLocalPlaylists.add(entry);
                         } else {
-                            checkedList.remove(entry);
+                            selectedLocalPlaylists.remove(entry);
                         }
                     } else {
                         NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
@@ -185,11 +191,11 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     }
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                    if (merger) {
-                        if (!checkedList2.contains(entry)) {
-                            checkedList2.add(entry);
+                    if (isMultiSelect) {
+                        if (!selectedRemotePlaylists.contains(entry)) {
+                            selectedRemotePlaylists.add(entry);
                         } else {
-                            checkedList2.remove(entry);
+                            selectedRemotePlaylists.remove(entry);
                         }
                     } else {
                         NavigationHelper.openPlaylistFragment(
@@ -386,10 +392,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         localPlaylistManager.createPlaylist(name, streams)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(longs -> successToast.show());
-        localPlaylistManager.deleteMultiPlaylists(checkedList)
+        localPlaylistManager.deleteMultiPlaylists(selectedLocalPlaylists)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> { /*Do nothing on success*/ });
-        remotePlaylistManager.deleteMultiPlaylists(checkedList2)
+        remotePlaylistManager.deleteMultiPlaylists(selectedRemotePlaylists)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> { /*Do nothing on success*/ });
 
@@ -439,13 +445,13 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
 
     private void deselectAll() {
-        merger = false;
+        isMultiSelect = false;
         final Button multiSelect = activity.findViewById(R.id.multiButton);
         multiSelect.setText(R.string.select);
         activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
         activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
-        checkedList.clear();
-        checkedList2.clear();
+        selectedLocalPlaylists.clear();
+        selectedRemotePlaylists.clear();
         itemListAdapter.notifyDataSetChanged();
     }
 
