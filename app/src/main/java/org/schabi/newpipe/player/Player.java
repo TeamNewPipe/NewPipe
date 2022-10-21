@@ -1407,6 +1407,12 @@ public final class Player implements PlaybackListener, Listener {
                 break;
             case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
             case ERROR_CODE_IO_BAD_HTTP_STATUS:
+                isCatchableException = true;
+                // Clears metadata cache and then reloads playback
+                InfoCache.getInstance().clearCache();
+                setRecovery();
+                reloadPlayQueueManager();
+                break;
             case ERROR_CODE_IO_FILE_NOT_FOUND:
             case ERROR_CODE_IO_NO_PERMISSION:
             case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
