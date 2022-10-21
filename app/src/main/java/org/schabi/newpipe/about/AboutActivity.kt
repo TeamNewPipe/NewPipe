@@ -32,6 +32,9 @@ class AboutActivity : AppCompatActivity() {
         setSupportActionBar(aboutBinding.aboutToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+//        val button = findViewById<View>(R.id.faq_link) as Button
+//        button.setOnClickListener(myListener)
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         val mAboutStateAdapter = AboutStateAdapter(this)
@@ -44,6 +47,12 @@ class AboutActivity : AppCompatActivity() {
             tab.setText(mAboutStateAdapter.getPageTitle(position))
         }.attach()
     }
+
+//    private val myListener = View.OnClickListener {
+//        val uri = Uri.parse("https://www.anu.edu.au/")
+//        val intent = Intent(Intent.ACTION_VIEW, uri)
+//        startActivity(intent)
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -78,6 +87,7 @@ class AboutActivity : AppCompatActivity() {
                 aboutDonationLink.openLink(R.string.donation_url)
                 aboutWebsiteLink.openLink(R.string.website_url)
                 aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
+                faqLink.openLink(R.string.faq_url)
                 return root
             }
         }
