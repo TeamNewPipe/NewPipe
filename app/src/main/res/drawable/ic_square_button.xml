@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="46dp"
+    android:width="46dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    android:tint="@color/youtubePrimaryColour" >
+    <path
+        android:pathData="M 0,0 L 100,0 0,100 z"
+        android:fillColor="#FF000000" />
+</vector>

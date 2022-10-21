@@ -40,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="0dp"
-                app:srcCompat="@drawable/ic_circle_button"
+                android:layout_marginStart="4dp"
+                app:srcCompat="@drawable/ic_square_button"
                 tools:ignore="ContentDescription" />
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -122,8 +122,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="0dp"
-                app:srcCompat="@drawable/ic_circle_button"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_square_button"
                 tools:ignore="ContentDescription" />
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -234,8 +234,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="0dp"
-                    app:srcCompat="@drawable/ic_circle_button"
+                    android:layout_marginStart="4dp"
+                    app:srcCompat="@drawable/ic_square_button"
                     tools:ignore="ContentDescription" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
@@ -317,8 +317,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="0dp"
-                    app:srcCompat="@drawable/ic_circle_button"
+                    android:layout_marginEnd="4dp"
+                    app:srcCompat="@drawable/ic_square_button"
                     tools:ignore="ContentDescription" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
