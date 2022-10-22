@@ -119,12 +119,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                             selectedLocalPlaylists.get(i).uid).blockingFirst();
                     allStreams.addAll(streamList);
                 }
-                for (int i = 0; i < selectedRemotePlaylists.size(); i++) {
-                    final List<StreamEntity> streamList = remotePlaylistManager
-                            .getPlaylistStreamsEntity(selectedRemotePlaylists.get(i)
-                                    .getUid()).blockingFirst();
-                    allStreams.addAll(streamList);
-                }
                 showMergeDialog(allStreams);
             } else if (!selectedRemotePlaylists.isEmpty()) {
                 Toast.makeText(activity, "Cannot Merge Someone Else's Playlist", Toast
