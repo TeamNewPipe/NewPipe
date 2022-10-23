@@ -26,7 +26,7 @@ public final class ChannelTabs {
             case Channels:
                 return R.string.show_channel_tabs_channels;
             case Albums:
-                break;
+                return R.string.show_channel_tabs_albums;
         }
         return -1;
     }
