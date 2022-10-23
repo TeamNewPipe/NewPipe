@@ -246,6 +246,11 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull private final SharedPreferences prefs;
     @NonNull private final HistoryRecordManager recordManager;
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Error states
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private int badHttpStatusRetry = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -1407,11 +1412,16 @@ public final class Player implements PlaybackListener, Listener {
                 break;
             case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
             case ERROR_CODE_IO_BAD_HTTP_STATUS:
-                isCatchableException = true;
-                // Clears metadata cache and then reloads playback
-                InfoCache.getInstance().clearCache();
-                setRecovery();
-                reloadPlayQueueManager();
+                if (badHttpStatusRetry < 3) {
+                    badHttpStatusRetry += 1;
+                    isCatchableException = true;
+                    // Clears metadata cache and then reloads playback
+                    InfoCache.getInstance().clearCache();
+                    setRecovery();
+                    reloadPlayQueueManager();
+                } else {
+                    isCatchableException = false;
+                }
                 break;
             case ERROR_CODE_IO_FILE_NOT_FOUND:
             case ERROR_CODE_IO_NO_PERMISSION:
