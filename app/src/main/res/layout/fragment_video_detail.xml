@@ -269,7 +269,7 @@
                         android:layout_gravity="bottom"
                         android:lines="1"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         tools:ignore="RtlHardcoded"
                         tools:text="2,816,821,505 views" />
 
@@ -310,6 +310,7 @@
                     tools:visibility="visible">
 
                     <!--DETAIL-->
+
                     <LinearLayout
                         android:id="@+id/detail_uploader_root_layout"
                         android:layout_width="match_parent"
@@ -347,7 +348,7 @@
                         </FrameLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginStart="8dp"
                             android:gravity="center_vertical"
@@ -384,6 +385,26 @@
                                 tools:text="Uploader" />
 
                         </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/channel_subscribe_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|end"
+                                android:text="@string/subscribe_button_title"
+                                android:textSize="@dimen/channel_rss_title_size"
+                                android:theme="@style/ServiceColoredButton"
+                                android:visibility="visible"
+                                tools:ignore="RtlHardcoded"
+                                tools:visibility="visible" />
+                        </RelativeLayout>
+
+
                     </LinearLayout>
 
                     <!-- CONTROLS -->
