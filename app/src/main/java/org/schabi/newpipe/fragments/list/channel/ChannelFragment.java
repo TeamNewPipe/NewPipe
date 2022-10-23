@@ -276,7 +276,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
                 final String description = currentInfo.getDescription();
                 if (description != null && !description.isEmpty()) {
                     tabAdapter.addFragment(
-                            ChannelInfoFragment.getInstance(description), "Info");
+                            ChannelInfoFragment.getInstance(currentInfo), "Info");
                 }
             }
         }

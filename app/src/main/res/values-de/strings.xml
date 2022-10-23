@@ -620,6 +620,7 @@
     <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
     <string name="metadata_host">Server</string>
     <string name="metadata_support">Unterstützung</string>
+    <string name="metadata_subscribers">Abonnenten</string>
     <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
     <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
     <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
