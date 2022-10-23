@@ -80,4 +80,22 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             ActivityCompat.recreate(getActivity());
         }
     }
+
+    public void resetToDefault() {
+        final String themeKey = getString(R.string.theme_key);
+        final String startThemeKey = defaultPreferences
+                .getString(themeKey, getString(R.string.default_theme_value));
+        final String autoDeviceThemeKey = getString(R.string.auto_device_theme_key);
+        if (startThemeKey.equals(autoDeviceThemeKey)) {
+            applyThemeChange(startThemeKey, themeKey, autoDeviceThemeKey);
+            } else {
+            if (startThemeKey.equals(R.string.light_theme_key)) {
+                removePreference(getString(R.string.light_theme_key));
+            } else if (startThemeKey.equals(R.string.dark_theme_key)) {
+                removePreference(getString(R.string.dark_theme_key));
+            } else {
+                removePreference(getString(R.string.black_theme_key));
+            }
+        }
+    }
 }

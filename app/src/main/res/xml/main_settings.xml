@@ -53,4 +53,12 @@
         android:key="@string/debug_pref_screen_key"
         android:title="@string/settings_category_debug_title"
         app:iconSpaceReserved="false" />
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.ResetSettingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_replay"
+        android:key="@string/reset_pref_screen_key"
+        android:title="@string/settings_category_reset_title"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>
