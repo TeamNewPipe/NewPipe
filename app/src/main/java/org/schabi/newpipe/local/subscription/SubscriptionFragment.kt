@@ -269,6 +269,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter)
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
+                R.drawable.ic_list,
                 R.drawable.ic_sort,
                 menuItemOnClickListener = ::openReorderDialog
             )

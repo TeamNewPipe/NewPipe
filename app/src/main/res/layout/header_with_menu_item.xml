@@ -23,6 +23,14 @@
         tools:text="Header" />
 
     <ImageButton
+        android:id="@+id/header_menu_item2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:src="@drawable/ic_bookmark" />
+
+    <ImageButton
         android:id="@+id/header_menu_item"
         android:layout_width="24dp"
         android:layout_height="24dp"

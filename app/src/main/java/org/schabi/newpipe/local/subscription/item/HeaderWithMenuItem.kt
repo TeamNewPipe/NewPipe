@@ -11,8 +11,10 @@ import org.schabi.newpipe.databinding.HeaderWithMenuItemBinding
 class HeaderWithMenuItem(
     val title: String,
     @DrawableRes val itemIcon: Int = 0,
+    @DrawableRes val itemIconListView: Int = 0,
     var showMenuItem: Boolean = true,
     private val onClickListener: (() -> Unit)? = null,
+    private val onClickListenerListView: (() -> Unit)? = null,
     private val menuItemOnClickListener: (() -> Unit)? = null
 ) : BindableItem<HeaderWithMenuItemBinding>() {
     companion object {
@@ -32,10 +34,14 @@ class HeaderWithMenuItem(
 
     override fun bind(viewBinding: HeaderWithMenuItemBinding, position: Int) {
         viewBinding.headerTitle.text = title
-        viewBinding.headerMenuItem.setImageResource(itemIcon)
+        viewBinding.headerMenuItem2.setImageResource(itemIcon)
+        viewBinding.headerMenuItem.setImageResource(itemIconListView)
 
         val listener = onClickListener?.let { OnClickListener { onClickListener.invoke() } }
         viewBinding.root.setOnClickListener(listener)
+
+        val listenerListView = onClickListenerListView?.let { OnClickListener { onClickListenerListView.invoke() } }
+        viewBinding.root.setOnClickListener(listenerListView)
 
         val menuItemListener = menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
         viewBinding.headerMenuItem.setOnClickListener(menuItemListener)
