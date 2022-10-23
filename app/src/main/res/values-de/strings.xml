@@ -772,6 +772,7 @@
     <string name="channel_tab_shorts">Shorts</string>
     <string name="channel_tab_playlists">Wiedergabelisten</string>
     <string name="channel_tab_channels">Kanäle</string>
+    <string name="channel_tab_albums">Alben</string>
     <string name="channel_tab_info">Info</string>
     <string name="show_channel_tabs">Tabs auf den Kanalseiten</string>
     <string name="show_channel_tabs_summary">Welche Tabs auf den Kanalseiten angezeigt werden</string>

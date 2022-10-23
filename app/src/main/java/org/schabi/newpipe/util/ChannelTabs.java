@@ -25,6 +25,8 @@ public final class ChannelTabs {
                 return R.string.show_channel_tabs_shorts;
             case Channels:
                 return R.string.show_channel_tabs_channels;
+            case Albums:
+                break;
         }
         return -1;
     }
@@ -40,6 +42,8 @@ public final class ChannelTabs {
                 return R.string.channel_tab_shorts;
             case Channels:
                 return R.string.channel_tab_channels;
+            case Albums:
+                return R.string.channel_tab_albums;
         }
         return R.string.unknown_content;
     }
