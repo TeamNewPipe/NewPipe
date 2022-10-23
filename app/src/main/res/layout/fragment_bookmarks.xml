@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent_background_color"
+                android:backgroundTint="@color/white"
                 android:text="merge"
                 android:textColor="@color/black_settings_accent_color"
                 android:visibility="invisible" />
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent_background_color"
+                android:backgroundTint="@color/white"
                 android:text="delete"
                 android:textColor="@color/black_settings_accent_color"
                 android:visibility="invisible" />
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/transparent_background_color"
+                android:backgroundTint="@color/white"
                 android:text="select"
                 android:textColor="@color/bluegray" />
 

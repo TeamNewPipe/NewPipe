@@ -54,8 +54,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
 
-    public ArrayList<PlaylistMetadataEntry> selectedLocalPlaylists = new ArrayList<>();
-    public ArrayList<PlaylistRemoteEntity> selectedRemotePlaylists = new ArrayList<>();
+    private ArrayList<PlaylistMetadataEntry> selectedLocalPlaylists = new ArrayList<>();
+    private ArrayList<PlaylistRemoteEntity> selectedRemotePlaylists = new ArrayList<>();
     public static boolean isMultiSelect = false;
 
 
@@ -132,16 +132,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         final Button deleteAll = activity.findViewById(R.id.deleteButton);
         deleteAll.setOnClickListener(v -> {
             if (!selectedRemotePlaylists.isEmpty() || !selectedLocalPlaylists.isEmpty()) {
-                final String deleteLocalString = "Delete Selected Playlists?";
-                final String deleteRemoteString = "Delete Selected Playlists?";
-                if (!selectedLocalPlaylists.isEmpty()) {
-                    showDeleteDialog(deleteLocalString, localPlaylistManager.
-                            deleteMultiPlaylists(selectedLocalPlaylists));
-                }
-                if (!selectedRemotePlaylists.isEmpty()) {
-                    showDeleteDialog(deleteRemoteString, remotePlaylistManager.
-                            deleteMultiPlaylists(selectedRemotePlaylists));
-                }
+                showMultiDeleteDialog();
             } else {
                 Toast.makeText(activity, "No Playlists Selected", Toast.LENGTH_SHORT).show();
             }
@@ -158,11 +149,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 activity.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.VISIBLE);
             } else {
-                isMultiSelect = false;
-                multiSelect.setText(R.string.select);
-                activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
-                activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
-                selectedLocalPlaylists.clear();
+                deselectAll();
             }
         });
 
@@ -380,7 +367,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setPositiveButton(R.string.merge, (dialog, i) -> {
         final String name = dialogBinding.dialogEditText.getText().toString();
         final Toast successToast = Toast.makeText(getActivity(),
-                R.string.playlist_creation_success,
+                R.string.playlists_merged,
                 Toast.LENGTH_SHORT);
 
         localPlaylistManager.createPlaylist(name, streams)
@@ -395,6 +382,31 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         deselectAll();
     }).show();
+    }
+
+    private void showMultiDeleteDialog() {
+        if (activity == null || disposables == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.delete_playlist_prompt_multi)
+                .setMessage(R.string.delete_playlist_warning)
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialog, i) -> {
+                    final Toast successToast = Toast.makeText(getActivity(),
+                            R.string.deleted,
+                            Toast.LENGTH_SHORT);
+
+                    localPlaylistManager.deleteMultiPlaylists(selectedLocalPlaylists)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(longs -> successToast.show());
+                    remotePlaylistManager.deleteMultiPlaylists(selectedRemotePlaylists)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(longs -> successToast.show());
+                    deselectAll();
+                }).show();
     }
 
     private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
