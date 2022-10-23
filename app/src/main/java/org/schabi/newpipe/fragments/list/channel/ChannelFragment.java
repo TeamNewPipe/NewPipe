@@ -21,6 +21,7 @@ import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.linkhandler.ChannelTabHandler;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.detail.TabAdapter;
@@ -247,20 +248,36 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    private boolean isContentUnsupported() {
+        for (final Throwable throwable : currentInfo.getErrors()) {
+            if (throwable instanceof ContentNotSupportedException) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void updateTabs() {
         tabAdapter.clearAllItems();
 
         if (currentInfo != null) {
-            tabAdapter.addFragment(ChannelVideosFragment.getInstance(currentInfo), "Videos");
-
-            for (final ChannelTabHandler tab : currentInfo.getTabs()) {
+            if (isContentUnsupported()) {
+                showEmptyState();
+                binding.errorContentNotSupported.setVisibility(View.VISIBLE);
+            } else {
                 tabAdapter.addFragment(
-                        ChannelTabFragment.getInstance(serviceId, tab), tab.getTab().name());
-            }
+                        ChannelVideosFragment.getInstance(currentInfo), "Videos");
 
-            final String description = currentInfo.getDescription();
-            if (!description.isEmpty()) {
-                tabAdapter.addFragment(ChannelInfoFragment.getInstance(description), "Info");
+                for (final ChannelTabHandler tab : currentInfo.getTabs()) {
+                    tabAdapter.addFragment(
+                            ChannelTabFragment.getInstance(serviceId, tab), tab.getTab().name());
+                }
+
+                final String description = currentInfo.getDescription();
+                if (description != null && !description.isEmpty()) {
+                    tabAdapter.addFragment(
+                            ChannelInfoFragment.getInstance(description), "Info");
+                }
             }
         }
 
@@ -296,11 +313,11 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     }
 
     @Override
-    public void handleResult(@NonNull final ChannelInfo info) {
-        super.handleResult(info);
+    public void handleResult(@NonNull final ChannelInfo result) {
+        super.handleResult(result);
+        currentInfo = result;
+        setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
-        currentInfo = info;
-        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
         updateTabs();
         updateRssButton();
         monitorSubscription();

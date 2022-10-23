@@ -30,6 +30,38 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
+    <LinearLayout
+        android:id="@+id/empty_state_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingTop="90dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/channel_kaomoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:text="(︶︹︺)"
+            android:textSize="35sp"
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/error_content_not_supported"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/content_not_supported"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"

@@ -132,13 +132,13 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_channel_videos, container, false);
+        channelBinding = FragmentChannelVideosBinding.inflate(inflater, container, false);
+        return channelBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-        channelBinding = FragmentChannelVideosBinding.bind(rootView);
         showContentNotSupportedIfNeeded();
     }
 
