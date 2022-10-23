@@ -72,4 +72,19 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
+    <Button
+        android:id="@+id/error_openinbrowser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/error_openinbrowser"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:theme="@style/ServiceColoredButton"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
 </LinearLayout>

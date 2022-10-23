@@ -2,12 +2,14 @@ package org.schabi.newpipe.error
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding4.view.clicks
@@ -52,6 +54,8 @@ class ErrorPanelHelper(
         errorPanelRoot.findViewById(R.id.error_action_button)
     private val errorRetryButton: Button =
         errorPanelRoot.findViewById(R.id.error_retry_button)
+    private val errorOpenbrowserButton: Button =
+        errorPanelRoot.findViewById(R.id.error_openinbrowser)
 
     private var errorDisposable: Disposable? = null
 
@@ -69,18 +73,16 @@ class ErrorPanelHelper(
         errorServiceExplanationTextView.isVisible = false
         errorActionButton.isVisible = false
         errorRetryButton.isVisible = false
+        errorOpenbrowserButton.isVisible = false
     }
 
     fun showError(errorInfo: ErrorInfo) {
-
         if (errorInfo.throwable != null && errorInfo.throwable!!.isInterruptedCaused) {
             if (DEBUG) {
                 Log.w(TAG, "onError() isInterruptedCaused! = [$errorInfo.throwable]")
             }
             return
         }
-
-        ensureDefaultVisibility()
 
         if (errorInfo.throwable is ReCaptchaException) {
             errorTextView.setText(R.string.recaptcha_request_toast)
@@ -99,6 +101,7 @@ class ErrorPanelHelper(
             }
 
             errorRetryButton.isVisible = true
+            errorOpenbrowserButton.isVisible = true
         } else if (errorInfo.throwable is AccountTerminatedException) {
             errorTextView.setText(R.string.account_terminated)
 
@@ -127,6 +130,12 @@ class ErrorPanelHelper(
             ) {
                 // show retry button only for content which is not unavailable or unsupported
                 errorRetryButton.isVisible = true
+                errorOpenbrowserButton.isVisible = true
+                errorOpenbrowserButton.setOnClickListener {
+                    val uriUrl = Uri.parse(errorInfo.request)
+                    val intent = Intent(Intent.ACTION_VIEW, uriUrl)
+                    context.startActivity(intent)
+                }
             }
         }
 
