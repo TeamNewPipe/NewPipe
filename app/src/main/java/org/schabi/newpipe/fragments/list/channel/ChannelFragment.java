@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.tabs.TabLayout;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.NotificationMode;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -58,6 +60,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     private Disposable subscriptionMonitor;
     private final CompositeDisposable disposables = new CompositeDisposable();
     private SubscriptionManager subscriptionManager;
+    private int lastTab;
 
     private MenuItem menuRssButton;
     private MenuItem menuNotifyButton;
@@ -94,10 +97,16 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        if (savedInstanceState != null) {
+            lastTab = savedInstanceState.getInt("LastTab");
+        } else {
+            lastTab = 0;
+        }
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(final @NonNull Context context) {
         super.onAttach(context);
         subscriptionManager = new SubscriptionManager(activity);
     }
@@ -117,6 +126,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+    }
+
+    @Override
+    public void onSaveInstanceState(final @NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("LastTab", binding.tabLayout.getSelectedTabPosition());
     }
 
     @Override
@@ -284,8 +299,8 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
                 }
 
                 final String description = currentInfo.getDescription();
-                if (description != null && !description.isEmpty() &&
-                        ChannelTabs.showChannelTab(
+                if (description != null && !description.isEmpty()
+                        && ChannelTabs.showChannelTab(
                                 context, preferences, R.string.show_channel_tabs_info)) {
                     tabAdapter.addFragment(
                             ChannelInfoFragment.getInstance(currentInfo), "Info");
@@ -297,6 +312,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
 
         for (int i = 0; i < tabAdapter.getCount(); i++) {
             binding.tabLayout.getTabAt(i).setText(tabAdapter.getItemTitle(i));
+        }
+
+        // Restore previously selected tab
+        final TabLayout.Tab ltab = binding.tabLayout.getTabAt(lastTab);
+        if (ltab != null) {
+            binding.tabLayout.selectTab(ltab);
         }
     }
 

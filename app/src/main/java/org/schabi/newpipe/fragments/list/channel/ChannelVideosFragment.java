@@ -117,7 +117,7 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(false);
     }

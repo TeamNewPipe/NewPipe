@@ -10,7 +10,10 @@ import org.schabi.newpipe.extractor.linkhandler.ChannelTabHandler.Tab;
 
 import java.util.Set;
 
-public class ChannelTabs {
+public final class ChannelTabs {
+    private ChannelTabs() {
+    }
+
     @StringRes
     private static int getShowTabKey(final Tab tab) {
         switch (tab) {

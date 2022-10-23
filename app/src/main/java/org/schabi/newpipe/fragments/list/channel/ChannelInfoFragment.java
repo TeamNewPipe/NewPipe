@@ -79,7 +79,7 @@ public class ChannelInfoFragment extends BaseFragment {
 
     private void setupMetadata(final LayoutInflater inflater,
                                final LinearLayout layout) {
-        Context context = getContext();
+        final Context context = getContext();
 
         if (channelInfo.getSubscriberCount() != UNKNOWN_SUBSCRIBER_COUNT) {
             addMetadataItem(inflater, layout, R.string.metadata_subscribers,
