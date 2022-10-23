@@ -274,6 +274,26 @@
     <string name="main_tabs_position_key">main_tabs_position</string>
 
     <!-- Content & History -->
+    <string name="show_channel_tabs_key">channel_tabs</string>
+    <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
+    <string name="show_channel_tabs_livestreams">show_channel_tabs_live</string>
+    <string name="show_channel_tabs_shorts">show_channel_tabs_shorts</string>
+    <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
+    <string name="show_channel_tabs_info">show_channel_tabs_info</string>
+    <string-array name="show_channel_tabs_value_list">
+        <item>@string/show_channel_tabs_playlists</item>
+        <item>@string/show_channel_tabs_livestreams</item>
+        <item>@string/show_channel_tabs_shorts</item>
+        <item>@string/show_channel_tabs_channels</item>
+        <item>@string/show_channel_tabs_info</item>
+    </string-array>
+    <string-array name="show_channel_tabs_description_list">
+        <item>@string/channel_tab_playlists</item>
+        <item>@string/channel_tab_livestreams</item>
+        <item>@string/channel_tab_shorts</item>
+        <item>@string/channel_tab_channels</item>
+        <item>@string/channel_tab_info</item>
+    </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
     <string name="show_local_search_suggestions_key">show_local_search_suggestions</string>
     <string name="show_remote_search_suggestions_key">show_remote_search_suggestions</string>

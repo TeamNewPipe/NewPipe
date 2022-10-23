@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list.channel;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.NotificationMode;
@@ -27,6 +29,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.detail.TabAdapter;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.util.ChannelTabs;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -268,13 +271,22 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
                 tabAdapter.addFragment(
                         ChannelVideosFragment.getInstance(currentInfo), "Videos");
 
+                final Context context = getContext();
+                final SharedPreferences preferences = PreferenceManager
+                        .getDefaultSharedPreferences(context);
+
                 for (final ChannelTabHandler tab : currentInfo.getTabs()) {
-                    tabAdapter.addFragment(
-                            ChannelTabFragment.getInstance(serviceId, tab), tab.getTab().name());
+                    if (ChannelTabs.showChannelTab(context, preferences, tab.getTab())) {
+                        tabAdapter.addFragment(
+                                ChannelTabFragment.getInstance(serviceId, tab),
+                                context.getString(ChannelTabs.getTranslationKey(tab.getTab())));
+                    }
                 }
 
                 final String description = currentInfo.getDescription();
-                if (description != null && !description.isEmpty()) {
+                if (description != null && !description.isEmpty() &&
+                        ChannelTabs.showChannelTab(
+                                context, preferences, R.string.show_channel_tabs_info)) {
                     tabAdapter.addFragment(
                             ChannelInfoFragment.getInstance(currentInfo), "Info");
                 }
