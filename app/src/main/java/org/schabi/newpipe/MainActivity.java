@@ -763,6 +763,10 @@ public class MainActivity extends AppCompatActivity {
                         NavigationHelper.openPlaylistFragment(getSupportFragmentManager(),
                                 serviceId, url, title);
                         break;
+                    case SEARCH:
+                        NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId,
+                                intent.getStringExtra(Constants.KEY_SEARCH_STRING));
+                        break;
                 }
             } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
                 String searchString = intent.getStringExtra(Constants.KEY_SEARCH_STRING);

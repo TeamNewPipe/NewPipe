@@ -657,6 +657,20 @@ public final class NavigationHelper {
         return mIntent;
     }
 
+    private static Intent getOpenSearchIntent(final Context context, final String url,
+                                              final int serviceId,
+                                              final StreamingService.LinkType type,
+                                              final String searchString) {
+        final Intent mIntent = new Intent(context, MainActivity.class);
+        mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
+        mIntent.putExtra(Constants.KEY_URL, url);
+        mIntent.putExtra(Constants.KEY_LINK_TYPE, type);
+        mIntent.putExtra(Constants.KEY_SEARCH_STRING, searchString);
+        return mIntent;
+    }
+
+
+
     public static Intent getIntentByLink(final Context context, final String url)
             throws ExtractionException {
         return getIntentByLink(context, NewPipe.getServiceByUrl(url), url);
@@ -670,6 +684,11 @@ public final class NavigationHelper {
         if (linkType == StreamingService.LinkType.NONE) {
             throw new ExtractionException("Url not known to service. service=" + service
                     + " url=" + url);
+        }
+
+        if (linkType == StreamingService.LinkType.SEARCH) {
+            return getOpenSearchIntent(context, url, service.getServiceId(),
+                    linkType, service.getIdByUrl(url));
         }
 
         return getOpenIntent(context, url, service.getServiceId(), linkType);
