@@ -2,6 +2,8 @@ package org.schabi.newpipe.fragments.list.channel;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +46,12 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,

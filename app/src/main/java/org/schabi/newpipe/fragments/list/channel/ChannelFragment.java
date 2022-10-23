@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.NotificationMode;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -21,14 +24,21 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.linkhandler.ChannelTabHandler;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.detail.TabAdapter;
+import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
+import java.util.List;
+
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
@@ -41,8 +51,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
 
     private ChannelInfo currentInfo;
     private Disposable currentWorker;
+    private Disposable subscriptionMonitor;
+    private final CompositeDisposable disposables = new CompositeDisposable();
+    private SubscriptionManager subscriptionManager;
 
     private MenuItem menuRssButton;
+    private MenuItem menuNotifyButton;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -79,6 +93,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        subscriptionManager = new SubscriptionManager(activity);
+    }
+
+    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
@@ -98,6 +118,13 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+        if (subscriptionMonitor != null) {
+            subscriptionMonitor.dispose();
+        }
+        disposables.clear();
         binding = null;
     }
 
@@ -116,12 +143,19 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
         menuRssButton = menu.findItem(R.id.menu_item_rss);
+        menuNotifyButton = menu.findItem(R.id.menu_item_notify);
         updateRssButton();
+        monitorSubscription();
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_item_notify:
+                final boolean value = !item.isChecked();
+                item.setEnabled(false);
+                setNotify(value);
+                break;
             case R.id.action_settings:
                 NavigationHelper.openSettings(requireContext());
                 break;
@@ -151,6 +185,62 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
         if (currentInfo != null && menuRssButton != null) {
             menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.getFeedUrl()));
         }
+    }
+
+    private void monitorSubscription() {
+        if (currentInfo != null) {
+            final Observable<List<SubscriptionEntity>> observable = subscriptionManager
+                    .subscriptionTable()
+                    .getSubscriptionFlowable(currentInfo.getServiceId(), currentInfo.getUrl())
+                    .toObservable();
+
+            if (subscriptionMonitor != null) {
+                subscriptionMonitor.dispose();
+            }
+            subscriptionMonitor = observable
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(getSubscribeUpdateMonitor());
+        }
+    }
+
+    private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor() {
+        return (List<SubscriptionEntity> subscriptionEntities) -> {
+            if (subscriptionEntities.isEmpty()) {
+                updateNotifyButton(null);
+            } else {
+                final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                updateNotifyButton(subscription);
+            }
+        };
+    }
+
+    private void updateNotifyButton(@Nullable final SubscriptionEntity subscription) {
+        if (menuNotifyButton == null) {
+            return;
+        }
+        if (subscription != null) {
+            menuNotifyButton.setEnabled(
+                    NotificationHelper.areNewStreamsNotificationsEnabled(requireContext())
+            );
+            menuNotifyButton.setChecked(
+                    subscription.getNotificationMode() == NotificationMode.ENABLED
+            );
+        }
+
+        menuNotifyButton.setVisible(subscription != null);
+    }
+
+    private void setNotify(final boolean isEnabled) {
+        disposables.add(
+                subscriptionManager
+                        .updateNotificationMode(
+                                currentInfo.getServiceId(),
+                                currentInfo.getUrl(),
+                                isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -213,5 +303,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
         updateTabs();
         updateRssButton();
+        monitorSubscription();
     }
 }

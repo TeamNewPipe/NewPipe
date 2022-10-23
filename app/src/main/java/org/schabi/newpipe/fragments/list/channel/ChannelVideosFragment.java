@@ -11,16 +11,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -51,7 +47,6 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -89,8 +84,6 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
     private ChannelHeaderBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
 
-    private MenuItem menuNotifyButton;
-
     public static ChannelVideosFragment getInstance(@NonNull final ChannelInfo channelInfo) {
         final ChannelVideosFragment instance = new ChannelVideosFragment();
         instance.setInitialData(channelInfo.getServiceId(), channelInfo.getUrl(),
@@ -122,6 +115,12 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
 
     @Override
     public void onAttach(@NonNull final Context context) {
@@ -174,71 +173,6 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
 
         headerBinding.subChannelTitleView.setOnClickListener(this);
         headerBinding.subChannelAvatarView.setOnClickListener(this);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Menu
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull final Menu menu,
-                                    @NonNull final MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        final ActionBar supportActionBar = activity.getSupportActionBar();
-        if (useAsFrontPage && supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(false);
-        } else {
-            inflater.inflate(R.menu.menu_channel_videos, menu);
-
-            if (DEBUG) {
-                Log.d(TAG, "onCreateOptionsMenu() called with: "
-                        + "menu = [" + menu + "], inflater = [" + inflater + "]");
-            }
-            menuNotifyButton = menu.findItem(R.id.menu_item_notify);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_notify:
-                final boolean value = !item.isChecked();
-                item.setEnabled(false);
-                setNotify(value);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
-
-    private void updateNotifyButton(@Nullable final SubscriptionEntity subscription) {
-        if (menuNotifyButton == null) {
-            return;
-        }
-        if (subscription != null) {
-            menuNotifyButton.setEnabled(
-                    NotificationHelper.areNewStreamsNotificationsEnabled(requireContext())
-            );
-            menuNotifyButton.setChecked(
-                    subscription.getNotificationMode() == NotificationMode.ENABLED
-            );
-        }
-
-        menuNotifyButton.setVisible(subscription != null);
-    }
-
-    private void setNotify(final boolean isEnabled) {
-        disposables.add(
-                subscriptionManager
-                        .updateNotificationMode(
-                                currentInfo.getServiceId(),
-                                currentInfo.getUrl(),
-                                isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe()
-        );
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -357,7 +291,6 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
-                updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));
             } else {
@@ -365,7 +298,6 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
                     Log.d(TAG, "Found subscription to this channel!");
                 }
                 final SubscriptionEntity subscription = subscriptionEntities.get(0);
-                updateNotifyButton(subscription);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnUnsubscribe(subscription));
             }
@@ -416,6 +348,19 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
                 .setAction(R.string.get_notified, v -> setNotify(true))
                 .setActionTextColor(Color.YELLOW)
                 .show();
+    }
+
+    private void setNotify(final boolean isEnabled) {
+        disposables.add(
+                subscriptionManager
+                        .updateNotificationMode(
+                                currentInfo.getServiceId(),
+                                currentInfo.getUrl(),
+                                isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -501,8 +446,6 @@ public class ChannelVideosFragment extends BaseListInfoFragment<StreamInfoItem, 
         } else {
             headerBinding.subChannelTitleView.setVisibility(View.GONE);
         }
-
-        // updateRssButton();
 
         // PlaylistControls should be visible only if there is some item in
         // infoListAdapter other than header
