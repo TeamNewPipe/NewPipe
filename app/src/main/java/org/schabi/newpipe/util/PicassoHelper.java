@@ -100,11 +100,17 @@ public final class PicassoHelper {
     }
 
     public static RequestCreator loadThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video);
+        if (url == null) {
+            return loadImageDefault(null, R.drawable.placeholder_thumbnail_close); // close thumbnail if url is empty
+        }
+        return loadImageDefault(url, R.drawable.placeholder_thumbnail_hourglass);
     }
 
     public static RequestCreator loadDetailsThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video, false);
+        if (url == null) {
+            return loadImageDefault(null, R.drawable.placeholder_thumbnail_close); // close thumbnail if url is empty
+        }
+        return loadImageDefault(url, R.drawable.placeholder_thumbnail_hourglass, false);
     }
 
     public static RequestCreator loadBanner(final String url) {
