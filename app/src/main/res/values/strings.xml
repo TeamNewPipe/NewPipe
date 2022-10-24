@@ -29,6 +29,7 @@
     <string name="subscription_change_failed">Could not change subscription</string>
     <string name="subscription_update_failed">Could not update subscription</string>
     <string name="show_info">Show info</string>
+    <string name="tab_trending_music">Trending Music</string>
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarked Playlists</string>
     <string name="tab_choose">Choose Tab</string>

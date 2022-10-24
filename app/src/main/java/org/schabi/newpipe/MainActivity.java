@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_BOOKMARKS = -3;
     private static final int ITEM_ID_DOWNLOADS = -4;
     private static final int ITEM_ID_HISTORY = -5;
+    private static final int ITEM_ID_TRENDING_MUSIC = -6;
     private static final int ITEM_ID_SETTINGS = 0;
     private static final int ITEM_ID_ABOUT = 1;
 
@@ -225,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(KioskTranslator.getKioskIcon(ks));
             kioskId++;
         }
-
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
                         R.string.tab_subscriptions)
@@ -242,6 +242,10 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
+        drawerLayoutBinding.navigation.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_TRENDING_MUSIC, ORDER,
+                        R.string.tab_trending_music)
+                .setIcon(R.drawable.ic_trending_up);
 
         //Settings and About
         drawerLayoutBinding.navigation.getMenu()
