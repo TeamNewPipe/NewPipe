@@ -251,7 +251,6 @@
     <string name="error_report_open_github_notice">Please check whether an issue discussing your crash already exists. When creating duplicate tickets, you take time from us which we could spend with fixing the actual bug.</string>
     <string name="error_snackbar_message">Sorry, something went wrong.</string>
     <string name="error_snackbar_action">Report</string>
-    <string name="error_openinbrowser">Open in Browser</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
     <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>

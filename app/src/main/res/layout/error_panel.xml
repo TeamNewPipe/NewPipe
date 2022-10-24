@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -33,8 +33,8 @@
         android:id="@+id/error_message_service_explanation_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="4dp"
+        android:gravity="center"
         android:text="@string/general_error"
         android:textSize="16sp"
         android:textStyle="italic"
@@ -73,12 +73,12 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/error_openinbrowser"
+        android:id="@+id/error_open_in_browser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="-4dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/error_openinbrowser"
+        android:text="@string/open_in_browser"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
