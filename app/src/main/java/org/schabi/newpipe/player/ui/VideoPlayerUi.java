@@ -83,6 +83,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -99,7 +100,7 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     // other constants (TODO remove playback speeds and use normal menu for popup, too)
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f};
-
+    private String updatedResolution;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -143,7 +144,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     //region Constructor, setup, destroy
 
     protected VideoPlayerUi(@NonNull final Player player,
-                         @NonNull final PlayerBinding playerBinding) {
+                            @NonNull final PlayerBinding playerBinding) {
         super(player);
         binding = playerBinding;
         setupFromView();
@@ -1056,7 +1057,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
         final VideoStream selectedVideoStream = player.getSelectedVideoStream();
         if (selectedVideoStream != null) {
-            binding.qualityTextView.setText(selectedVideoStream.getResolution());
+            binding.qualityTextView.setText(Objects.requireNonNullElseGet(
+                    updatedResolution, selectedVideoStream::getResolution));
         }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
@@ -1206,7 +1208,7 @@ public abstract class VideoPlayerUi extends PlayerUi
             player.setRecovery();
             player.setPlaybackQuality(newResolution);
             player.reloadPlayQueueManager();
-
+            updatedResolution = newResolution;
             binding.qualityTextView.setText(menuItem.getTitle());
             return true;
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
