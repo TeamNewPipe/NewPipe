@@ -82,8 +82,10 @@ class ErrorInfo(
 
         fun throwableListToStringList(throwableList: List<Throwable>) =
             throwableList.map { it.stackTraceToString() }.toTypedArray()
+
         private fun getInfoServiceName(info: Info?) =
             if (info == null) SERVICE_NONE else ServiceHelper.getNameOfServiceById(info.serviceId)
+
         @StringRes
         private fun getMessageStringId(
             throwable: Throwable?,
