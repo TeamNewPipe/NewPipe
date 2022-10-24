@@ -76,6 +76,7 @@ class ErrorPanelHelper(
     }
 
     fun showError(errorInfo: ErrorInfo) {
+
         if (errorInfo.throwable != null && errorInfo.throwable!!.isInterruptedCaused) {
             if (DEBUG) {
                 Log.w(TAG, "onError() isInterruptedCaused! = [$errorInfo.throwable]")
