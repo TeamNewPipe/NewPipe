@@ -26,7 +26,7 @@ class FeedGroupCarouselDecoration(context: Context) : RecyclerView.ItemDecoratio
 
         outRect.set(marginBetweenItems, marginTopBottom, 0, marginTopBottom)
 
-        if (childAdapterPosition == 0) {
+        if (childAdapterPosition >= 0) {
             outRect.left = marginStartEnd
         } else if (childAdapterPosition == childAdapterCount - 1) {
             outRect.right = marginStartEnd

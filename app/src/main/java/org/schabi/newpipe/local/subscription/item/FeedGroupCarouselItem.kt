@@ -36,7 +36,7 @@ class FeedGroupCarouselItem(
     override fun initializeViewBinding(view: View): FeedItemCarouselBinding {
         val viewHolder = FeedItemCarouselBinding.bind(view)
 
-        linearLayoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+        linearLayoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
 
         viewHolder.recyclerView.apply {
             layoutManager = linearLayoutManager
