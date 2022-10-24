@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk 31
-    buildToolsVersion '31.0.0'
+    namespace 'org.schabi.newpipe'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
