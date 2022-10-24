@@ -356,10 +356,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         binding.itemsList.adapter = groupAdapter
 
-        //TODO: change viewModel or create another one
+        // TODO: change viewModel or create another one
         viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroups) }
+        viewModel.feedGroupsVerticalLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroupsVertical) }
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
@@ -480,6 +481,18 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         if (feedGroupsListState != null) {
             feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
             feedGroupsListState = null
+        }
+
+        feedGroupsSortMenuItem.showMenuItem = groups.size > 1
+        binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
+    }
+
+    private fun handleFeedGroupsVertical(groups: List<Group>) {
+        feedGroupsSection.update(groups)
+
+        if (feedGroupsListState != null) {
+            feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
+            feedGroupsListVerticalState = null
         }
 
         feedGroupsSortMenuItem.showMenuItem = groups.size > 1

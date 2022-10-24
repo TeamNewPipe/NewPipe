@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardVerticalItem
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.util.concurrent.TimeUnit
 
@@ -18,8 +19,10 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
 
     private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
     private val mutableFeedGroupsLiveData = MutableLiveData<List<Group>>()
+    private val mutableFeedGroupsVerticalLiveData = MutableLiveData<List<Group>>()
     val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
     val feedGroupsLiveData: LiveData<List<Group>> = mutableFeedGroupsLiveData
+    val feedGroupsVerticalLiveData: LiveData<List<Group>> = mutableFeedGroupsVerticalLiveData
 
     private var feedGroupItemsDisposable = feedDatabaseManager.groups()
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -27,6 +30,15 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         .subscribeOn(Schedulers.io())
         .subscribe(
             { mutableFeedGroupsLiveData.postValue(it) },
+            { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
+        )
+
+    private var feedGroupVerticalItemsDisposable = feedDatabaseManager.groups()
+        .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
+        .map { it.map(::FeedGroupCardVerticalItem) }
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { mutableFeedGroupsVerticalLiveData.postValue(it) },
             { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
         )
 
@@ -43,6 +55,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         super.onCleared()
         stateItemsDisposable.dispose()
         feedGroupItemsDisposable.dispose()
+        feedGroupVerticalItemsDisposable.dispose()
     }
 
     sealed class SubscriptionState {
