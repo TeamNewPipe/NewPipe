@@ -1111,6 +1111,7 @@
         <item>hy</item>
         <item>ia</item>
         <item>in</item>
+        <item>is</item>
         <item>it</item>
         <item>ja</item>
         <item>jv</item>
@@ -1119,7 +1120,9 @@
         <item>ko</item>
         <item>ku</item>
         <item>lt</item>
+        <item>lv</item>
         <item>mk</item>
+        <item>ml</item>
         <item>ms</item>
         <item>nb-no</item>
         <item>ne</item>
@@ -1153,9 +1156,6 @@
         <item>zh-cn</item>
         <item>zh-hk</item>
         <item>zh-tw</item>
-        <item>is</item>
-        <item>lv</item>
-        <item>ml</item>
     </string-array>
     <string-array name="app_language_name">
         <item>@string/systems_language</item>
@@ -1193,6 +1193,7 @@
         <item>Հայերեն</item>
         <item>Interlingua</item>
         <item>Bahasa Indonesia</item>
+        <item>Íslenska</item>
         <item>Italiano</item>
         <item>日本語</item>
         <item>ꦧꦱꦗꦮ</item>
@@ -1201,7 +1202,9 @@
         <item>한국어</item>
         <item>کوردی</item>
         <item>Lietuvių kalba</item>
+        <item>latviski</item>
         <item>македонски јазик</item>
+        <item>മലയാളം</item>
         <item>Bahasa Melayu</item>
         <item>Norsk bokmål</item>
         <item>Nनेपाली</item>
@@ -1235,9 +1238,6 @@
         <item>简体中文</item>
         <item>繁體中文（廣東話）</item>
         <item>正體中文</item>
-        <item>Íslenska</item>
-        <item>latviski</item>
-        <item>മലയാളം</item>
     </string-array>
 
     <!-- Limit mobile data usage  -->
