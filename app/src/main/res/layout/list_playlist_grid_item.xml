@@ -71,8 +71,10 @@
         android:id="@+id/selectCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/itemTitleView"
-        android:visibility="invisible"
-        android:clickable="false" />
+        android:layout_marginStart="-163dp"
+        android:layout_toEndOf="@+id/itemUploaderView"
+        android:buttonTint="@color/black_settings_accent_color"
+        android:clickable="false"
+        android:visibility="invisible" />
 
 </RelativeLayout>

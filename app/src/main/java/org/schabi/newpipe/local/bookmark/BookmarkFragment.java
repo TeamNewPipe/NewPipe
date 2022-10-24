@@ -352,6 +352,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (activity == null || disposables == null) {
             return;
         }
+
         final DialogEditTextBinding dialogBinding =
                 DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.getRoot().getContext().setTheme(ThemeHelper.getDialogTheme(requireContext()));
@@ -381,7 +382,20 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .subscribe(ignored -> { /*Do nothing on success*/ });
 
         deselectAll();
-    }).show();
+    })
+                .setNeutralButton(R.string.merge_no_delete, (dialog, i) -> {
+                    final String name = dialogBinding.dialogEditText.getText().toString();
+                    final Toast successToast = Toast.makeText(getActivity(),
+                            R.string.playlists_merged,
+                            Toast.LENGTH_SHORT);
+
+                    localPlaylistManager.createPlaylist(name, streams)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(longs -> successToast.show());
+
+                    deselectAll();
+                })
+                .show();
     }
 
     private void showMultiDeleteDialog() {
