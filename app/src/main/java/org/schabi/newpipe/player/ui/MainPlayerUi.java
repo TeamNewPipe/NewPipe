@@ -52,6 +52,7 @@ import org.schabi.newpipe.extractor.stream.StreamSegment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
+import org.schabi.newpipe.info_list.StreamSegmentItem;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.Player;
@@ -69,6 +70,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -644,7 +646,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private void buildSegments() {
         binding.itemsList.setAdapter(segmentAdapter);
         binding.itemsList.setClickable(true);
-        binding.itemsList.setLongClickable(false);
+        binding.itemsList.setLongClickable(true);
 
         binding.itemsList.clearOnScrollListeners();
         if (itemTouchHelper != null) {
@@ -696,10 +698,24 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private StreamSegmentAdapter.StreamSegmentListener getStreamSegmentListener() {
-        return (item, seconds) -> {
-            segmentAdapter.selectSegment(item);
-            player.seekTo(seconds * 1000L);
-            player.triggerProgressUpdate();
+        return new StreamSegmentAdapter.StreamSegmentListener() {
+            @Override
+            public void onItemClick(@NonNull final StreamSegmentItem item, final int seconds) {
+                segmentAdapter.selectSegment(item);
+                player.seekTo(seconds * 1000L);
+                player.triggerProgressUpdate();
+            }
+
+            @Override
+            public void onItemLongClick(@NonNull final StreamSegmentItem item, final int seconds) {
+                final PlayQueueItem currentItem = player.getCurrentItem();
+                if (currentItem != null) {
+                    String videoUrl = player.getVideoUrl();
+                    videoUrl += ("&t=" + seconds);
+                    ShareUtils.shareText(context, currentItem.getTitle(),
+                            videoUrl, currentItem.getThumbnailUrl());
+                }
+            }
         };
     }
 
