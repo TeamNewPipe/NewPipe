@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Parcelable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.viewbinding.BindableItem
 import com.xwray.groupie.viewbinding.GroupieViewHolder
@@ -14,7 +13,8 @@ import org.schabi.newpipe.local.subscription.decoration.FeedGroupCarouselDecorat
 
 class FeedGroupCarouselItem(
     context: Context,
-    private val carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>
+    private val carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>,
+    private var listView: Int
 ) : BindableItem<FeedItemCarouselBinding>() {
     private val feedGroupCarouselDecoration = FeedGroupCarouselDecoration(context)
 
@@ -36,7 +36,7 @@ class FeedGroupCarouselItem(
     override fun initializeViewBinding(view: View): FeedItemCarouselBinding {
         val viewHolder = FeedItemCarouselBinding.bind(view)
 
-        linearLayoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
+        linearLayoutManager = LinearLayoutManager(view.context, listView, false)
 
         viewHolder.recyclerView.apply {
             layoutManager = linearLayoutManager

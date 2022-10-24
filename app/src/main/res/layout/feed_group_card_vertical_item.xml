@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="388dp"
     android:layout_height="48dp"
     android:layout_gravity="center_vertical"
     android:clickable="true"
@@ -20,7 +20,7 @@
             android:layout_width="51dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
-            android:paddingTop="2dp"
+            android:paddingTop="8dp"
             android:paddingBottom="2dp"
             android:scaleType="centerInside"
             tools:ignore="ContentDescription"
@@ -29,7 +29,7 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
@@ -40,4 +40,5 @@
             android:textStyle="bold"
             tools:text="ALL" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
