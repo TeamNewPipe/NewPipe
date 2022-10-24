@@ -80,6 +80,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
+    private var listView: Boolean = false
 
     private val requestExportLauncher =
         registerForActivityResult(StartActivityForResult(), this::requestExportResult)
@@ -124,6 +125,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         super.onPause()
         itemsListState = binding.itemsList.layoutManager?.onSaveInstanceState()
         feedGroupsListState = feedGroupsCarousel?.onSaveInstanceState()
+        feedGroupsListVerticalState = feedGroupsCarousel?.onSaveInstanceState()
     }
 
     override fun onDestroy() {
@@ -252,6 +254,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // ////////////////////////////////////////////////////////////////////////
 
     private fun setupInitialLayout() {
+        listView = false
         Section().apply {
             val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
@@ -301,6 +304,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun changeLayout() {
+        listView = true
         Section().apply {
             val carouselAdapter2 = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
@@ -476,27 +480,31 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun handleFeedGroups(groups: List<Group>) {
-        feedGroupsSection.update(groups)
+        if (!listView) {
+            feedGroupsSection.update(groups)
 
-        if (feedGroupsListState != null) {
-            feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
-            feedGroupsListState = null
+            if (feedGroupsListState != null) {
+                feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
+                feedGroupsListState = null
+            }
+
+            feedGroupsSortMenuItem.showMenuItem = groups.size > 1
+            binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
         }
-
-        feedGroupsSortMenuItem.showMenuItem = groups.size > 1
-        binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
     private fun handleFeedGroupsVertical(groups: List<Group>) {
-        feedGroupsSection.update(groups)
+        if (listView) {
+            feedGroupsSection.update(groups)
 
-        if (feedGroupsListState != null) {
-            feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
-            feedGroupsListVerticalState = null
+            if (feedGroupsListVerticalState != null) {
+                feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListVerticalState)
+                feedGroupsListVerticalState = null
+            }
+
+            feedGroupsSortMenuItem.showMenuItem = groups.size > 1
+            binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
         }
-
-        feedGroupsSortMenuItem.showMenuItem = groups.size > 1
-        binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
     }
 
     // /////////////////////////////////////////////////////////////////////////
