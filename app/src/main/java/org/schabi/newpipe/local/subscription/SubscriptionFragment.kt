@@ -221,6 +221,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         FeedGroupReorderDialog().show(parentFragmentManager, null)
     }
 
+    private fun temp() {
+        println("This button is clicked")
+    }
+
     private fun requestExportResult(result: ActivityResult) {
         if (result.data != null && result.resultCode == Activity.RESULT_OK) {
             activity.startService(
@@ -271,6 +275,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 getString(R.string.feed_groups_header_title),
                 R.drawable.ic_list,
                 R.drawable.ic_sort,
+                listViewOnClickListener = ::temp,
                 menuItemOnClickListener = ::openReorderDialog
             )
             add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))

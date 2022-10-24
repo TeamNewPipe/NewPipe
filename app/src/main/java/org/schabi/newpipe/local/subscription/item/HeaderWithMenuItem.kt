@@ -14,7 +14,7 @@ class HeaderWithMenuItem(
     @DrawableRes val itemIconListView: Int = 0,
     var showMenuItem: Boolean = true,
     private val onClickListener: (() -> Unit)? = null,
-    private val onClickListenerListView: (() -> Unit)? = null,
+    private val listViewOnClickListener: (() -> Unit)? = null,
     private val menuItemOnClickListener: (() -> Unit)? = null
 ) : BindableItem<HeaderWithMenuItemBinding>() {
     companion object {
@@ -40,8 +40,8 @@ class HeaderWithMenuItem(
         val listener = onClickListener?.let { OnClickListener { onClickListener.invoke() } }
         viewBinding.root.setOnClickListener(listener)
 
-        val listenerListView = onClickListenerListView?.let { OnClickListener { onClickListenerListView.invoke() } }
-        viewBinding.root.setOnClickListener(listenerListView)
+        val listViewListener = listViewOnClickListener?.let { OnClickListener { listViewOnClickListener.invoke() } }
+        viewBinding.headerMenuItem2.setOnClickListener(listViewListener)
 
         val menuItemListener = menuItemOnClickListener?.let { OnClickListener { menuItemOnClickListener.invoke() } }
         viewBinding.headerMenuItem.setOnClickListener(menuItemListener)
