@@ -45,6 +45,7 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupAddItemVertical
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardVerticalItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
@@ -306,16 +307,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private fun changeLayout() {
         listView = true
         Section().apply {
-            val carouselAdapter2 = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
+            val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
-            carouselAdapter2.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
-            carouselAdapter2.add(feedGroupsSection)
-            carouselAdapter2.add(FeedGroupAddItem())
+            carouselAdapter.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
+            carouselAdapter.add(feedGroupsSection)
+            carouselAdapter.add(FeedGroupAddItemVertical())
 
-            carouselAdapter2.setOnItemClickListener { item, _ ->
+            carouselAdapter.setOnItemClickListener { item, _ ->
                 listenerFeedVerticalGroups.selected(item)
             }
-            carouselAdapter2.setOnItemLongClickListener { item, _ ->
+            carouselAdapter.setOnItemLongClickListener { item, _ ->
                 if (item is FeedGroupCardVerticalItem) {
                     if (item.groupId == FeedGroupEntity.GROUP_ALL_ID) {
                         return@setOnItemLongClickListener false
@@ -324,7 +325,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listenerFeedVerticalGroups.held(item)
                 return@setOnItemLongClickListener true
             }
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter2, RecyclerView.VERTICAL)
+            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL)
 
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
@@ -360,7 +361,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         binding.itemsList.adapter = groupAdapter
 
-        // TODO: change viewModel or create another one
         viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroups) }
@@ -427,7 +427,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         override fun selected(selectedItem: Item<*>?) {
             when (selectedItem) {
                 is FeedGroupCardVerticalItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
-                is FeedGroupAddItem -> FeedGroupDialog.newInstance().show(fm, null)
+                is FeedGroupAddItemVertical -> FeedGroupDialog.newInstance().show(fm, null)
             }
         }
 
