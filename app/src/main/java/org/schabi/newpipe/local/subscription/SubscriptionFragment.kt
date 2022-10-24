@@ -45,7 +45,7 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
-import org.schabi.newpipe.local.subscription.item.FeedGroupAddItemVertical
+import org.schabi.newpipe.local.subscription.item.FeedGroupAddVerticalItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardVerticalItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
@@ -78,10 +78,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
     private val feedGroupsSection = Section()
+    private val feedGroupsVerticalSection = Section()
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
+    private var feedGroupsVerticalCarousel: FeedGroupCarouselItem? = null
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
-    private var listView: Boolean = false
+    private var defaultListView: Boolean = true
 
     private val requestExportLauncher =
         registerForActivityResult(StartActivityForResult(), this::requestExportResult)
@@ -255,7 +257,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // ////////////////////////////////////////////////////////////////////////
 
     private fun setupInitialLayout() {
-        listView = false
+        defaultListView = true
         Section().apply {
             val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
@@ -302,16 +304,17 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listOf(subscriptionsSection)
             )
         )
+        view?.let { initViews(it, savedInstanceState = Bundle()) }
     }
 
     private fun changeLayout() {
-        listView = true
+        defaultListView = false
         Section().apply {
             val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
             carouselAdapter.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
-            carouselAdapter.add(feedGroupsSection)
-            carouselAdapter.add(FeedGroupAddItemVertical())
+            carouselAdapter.add(feedGroupsVerticalSection)
+            carouselAdapter.add(FeedGroupAddVerticalItem())
 
             carouselAdapter.setOnItemClickListener { item, _ ->
                 listenerFeedVerticalGroups.selected(item)
@@ -325,7 +328,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listenerFeedVerticalGroups.held(item)
                 return@setOnItemLongClickListener true
             }
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL)
+            feedGroupsVerticalCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL)
 
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
@@ -334,7 +337,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listViewOnClickListener = ::setupInitialLayout,
                 menuItemOnClickListener = ::openReorderDialog
             )
-            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
+            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsVerticalCarousel)))
             groupAdapter.clear()
             groupAdapter.add(this)
         }
@@ -349,6 +352,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listOf(subscriptionsSection)
             )
         )
+        view?.let { initViews(it, savedInstanceState = Bundle()) }
     }
 
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
@@ -427,7 +431,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         override fun selected(selectedItem: Item<*>?) {
             when (selectedItem) {
                 is FeedGroupCardVerticalItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
-                is FeedGroupAddItemVertical -> FeedGroupDialog.newInstance().show(fm, null)
+                is FeedGroupAddVerticalItem -> FeedGroupDialog.newInstance().show(fm, null)
             }
         }
 
@@ -480,7 +484,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun handleFeedGroups(groups: List<Group>) {
-        if (!listView) {
+        if (defaultListView) {
             feedGroupsSection.update(groups)
 
             if (feedGroupsListState != null) {
@@ -494,11 +498,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun handleFeedGroupsVertical(groups: List<Group>) {
-        if (listView) {
-            feedGroupsSection.update(groups)
+        if (!defaultListView) {
+            feedGroupsVerticalSection.update(groups)
 
             if (feedGroupsListVerticalState != null) {
-                feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListVerticalState)
+                feedGroupsVerticalCarousel?.onRestoreInstanceState(feedGroupsListVerticalState)
                 feedGroupsListVerticalState = null
             }
 
