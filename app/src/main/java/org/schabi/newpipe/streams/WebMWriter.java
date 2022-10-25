@@ -27,7 +27,7 @@ public class WebMWriter implements Closeable {
     private static final int CUE_RESERVE_SIZE = 65535;
     private static final byte MINIMUM_EBML_VOID_SIZE = 4;
 
-    private WebMReader.WebMTrack[] infoTracks;
+    private WebMTrack[] infoTracks;
     private SharpStream[] sourceTracks;
 
     private WebMReader[] readers;

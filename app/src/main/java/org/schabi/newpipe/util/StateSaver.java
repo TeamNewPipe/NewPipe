@@ -92,7 +92,7 @@ public final class StateSaver {
 
     /**
      * Try to restore the state from memory and disk,
-     * using the {@link StateSaver.WriteRead#readFrom(Queue)} from the writeRead.
+     * using the {@link WriteRead#readFrom(Queue)} from the writeRead.
      *
      * @param savedState
      * @param writeRead
@@ -176,7 +176,7 @@ public final class StateSaver {
 
     /**
      * If it's not changing configuration (i.e. rotating screen),
-     * try to write the state from {@link StateSaver.WriteRead#writeTo(Queue)}
+     * try to write the state from {@link WriteRead#writeTo(Queue)}
      * to the file with the name of prefixFileName + suffixFileName,
      * in a cache folder got from the {@link #init(Context)}.
      * <p>

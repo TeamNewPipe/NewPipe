@@ -94,7 +94,7 @@ public class DownloadRunnable extends Thread {
                         continue;
                     }
 
-                    throw new DownloadMission.HttpError(416);
+                    throw new HttpError(416);
                 }
 
                 retry = false;
@@ -104,7 +104,7 @@ public class DownloadRunnable extends Thread {
                     if (DEBUG) {
                         Log.e(TAG, mId + ":Unsupported " + mConn.getResponseCode());
                     }
-                    mMission.notifyError(new DownloadMission.HttpError(mConn.getResponseCode()));
+                    mMission.notifyError(new HttpError(mConn.getResponseCode()));
                     break;
                 }
 

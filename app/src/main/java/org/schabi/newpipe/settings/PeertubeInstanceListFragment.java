@@ -339,14 +339,14 @@ public class PeertubeInstanceListFragment extends Fragment {
 
         @NonNull
         @Override
-        public InstanceListAdapter.TabViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+        public TabViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                                     final int viewType) {
-            return new InstanceListAdapter.TabViewHolder(ItemInstanceBinding.inflate(inflater,
+            return new TabViewHolder(ItemInstanceBinding.inflate(inflater,
                     parent, false));
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final InstanceListAdapter.TabViewHolder holder,
+        public void onBindViewHolder(@NonNull final TabViewHolder holder,
                                      final int position) {
             holder.bind(position);
         }

@@ -20,7 +20,7 @@ import us.shandian.giga.get.Mission;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 /**
- * SQLite helper to store finished {@link us.shandian.giga.get.FinishedMission}'s
+ * SQLite helper to store finished {@link FinishedMission}'s
  */
 public class FinishedMissionStore extends SQLiteOpenHelper {
 

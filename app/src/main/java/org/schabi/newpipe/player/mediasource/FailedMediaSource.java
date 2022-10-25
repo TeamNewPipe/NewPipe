@@ -121,7 +121,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
      * {@link com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)}.
      *
      * @throws IOException An error which will always result in
-     * {@link com.google.android.exoplayer2.PlaybackException#ERROR_CODE_IO_UNSPECIFIED}.
+     * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED}.
      */
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {

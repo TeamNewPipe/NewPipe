@@ -837,7 +837,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
 
-    class ViewHolderItem extends RecyclerView.ViewHolder {
+    class ViewHolderItem extends ViewHolder {
         DownloadManager.MissionItem item;
 
         TextView status;
@@ -980,7 +980,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
-    static class ViewHolderHeader extends RecyclerView.ViewHolder {
+    static class ViewHolderHeader extends ViewHolder {
         TextView header;
 
         ViewHolderHeader(View view) {

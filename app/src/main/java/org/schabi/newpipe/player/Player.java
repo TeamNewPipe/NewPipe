@@ -1358,7 +1358,7 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Errors
     /**
-     * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
+     * Process exceptions produced by {@link ExoPlayer ExoPlayer}.
      * <p>There are multiple types of errors:</p>
      * <ul>
      * <li>{@link PlaybackException#ERROR_CODE_BEHIND_LIVE_WINDOW BEHIND_LIVE_WINDOW}:
@@ -1383,7 +1383,7 @@ public final class Player implements PlaybackListener, Listener {
      * For any error above that is <b>not</b> explicitly <b>catchable</b>, the player will
      * create a notification so users are aware.
      * </ul>
-     * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
+     * @see Listener#onPlayerError(PlaybackException)
      * */
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should

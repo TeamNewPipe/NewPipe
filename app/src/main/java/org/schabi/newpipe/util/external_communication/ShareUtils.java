@@ -163,12 +163,12 @@ public final class ShareUtils {
     /**
      * Open the system chooser to launch an intent.
      * <p>
-     * This method opens an {@link android.content.Intent#ACTION_CHOOSER} of the intent putted
+     * This method opens an {@link Intent#ACTION_CHOOSER} of the intent putted
      * as the intent param. If the setTitleChooser boolean is true, the string "Open with" will be
      * set as the title of the system chooser.
-     * For Android P and higher, title for {@link android.content.Intent#ACTION_SEND} system
+     * For Android P and higher, title for {@link Intent#ACTION_SEND} system
      * choosers must be set on this intent, not on the
-     * {@link android.content.Intent#ACTION_CHOOSER} intent.
+     * {@link Intent#ACTION_CHOOSER} intent.
      *
      * @param context         the context to use
      * @param intent          the intent to open

@@ -23,12 +23,12 @@ public final class StreamInfoTag implements MediaItemTag {
     @NonNull
     private final StreamInfo streamInfo;
     @Nullable
-    private final MediaItemTag.Quality quality;
+    private final Quality quality;
     @Nullable
     private final Object extras;
 
     private StreamInfoTag(@NonNull final StreamInfo streamInfo,
-                          @Nullable final MediaItemTag.Quality quality,
+                          @Nullable final Quality quality,
                           @Nullable final Object extras) {
         this.streamInfo = streamInfo;
         this.quality = quality;

@@ -42,7 +42,7 @@ public final class SparseItemUtil {
      * @param item     item which is checked and eventually loaded completely
      * @param callback callback to call with the single play queue built from the original item if
      *                 all info was available, otherwise from the fetched {@link
-     *                 org.schabi.newpipe.extractor.stream.StreamInfo}
+     *                 StreamInfo}
      */
     public static void fetchItemInfoIfSparse(@NonNull final Context context,
                                              @NonNull final StreamInfoItem item,
@@ -72,7 +72,7 @@ public final class SparseItemUtil {
      * @param uploaderUrl uploaderUrl of the item; if null or empty will be fetched
      * @param callback    callback to be called with either the original uploaderUrl, if it was a
      *                    valid url, otherwise with the uploader url obtained by fetching the {@link
-     *                    org.schabi.newpipe.extractor.stream.StreamInfo} corresponding to the item
+     *                    StreamInfo} corresponding to the item
      */
     public static void fetchUploaderUrlIfSparse(@NonNull final Context context,
                                                 final int serviceId,
