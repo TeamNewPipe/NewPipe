@@ -503,12 +503,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         setVideoCount(itemListAdapter.getItemsList().size());
 
-        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
-        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
+            NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
+            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+        });
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
+            NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
+            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+        });
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
+            NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
+            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+        });
 
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
