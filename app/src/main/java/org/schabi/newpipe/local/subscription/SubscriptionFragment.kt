@@ -41,11 +41,8 @@ import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
-import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
-import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
-import org.schabi.newpipe.local.subscription.item.FeedGroupAddVerticalItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardVerticalItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
@@ -226,8 +223,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         )
     }
 
-    private fun openReorderDialog() {
-        FeedGroupReorderDialog().show(parentFragmentManager, null)
+    private fun openAddDialog() {
+        FeedGroupDialog.newInstance().show(fm, null)
     }
 
     private fun requestExportResult(result: ActivityResult) {
@@ -261,7 +258,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
             carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
             carouselAdapter.add(feedGroupsSection)
-            carouselAdapter.add(FeedGroupAddItem())
 
             carouselAdapter.setOnItemClickListener { item, _ ->
                 listenerFeedGroups.selected(item)
@@ -281,9 +277,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
                 R.drawable.ic_list,
-                R.drawable.ic_sort,
+                R.drawable.ic_add,
                 listViewOnClickListener = ::changeVerticalLayout,
-                menuItemOnClickListener = ::openReorderDialog
+                menuItemOnClickListener = ::openAddDialog
             )
 
             add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
@@ -312,7 +308,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
             carouselAdapter.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
             carouselAdapter.add(feedGroupsSection)
-            carouselAdapter.add(FeedGroupAddVerticalItem())
 
             carouselAdapter.setOnItemClickListener { item, _ ->
                 listenerFeedVerticalGroups.selected(item)
@@ -331,9 +326,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
                 R.drawable.ic_apps,
-                R.drawable.ic_sort,
+                R.drawable.ic_add,
                 listViewOnClickListener = ::setupInitialLayout,
-                menuItemOnClickListener = ::openReorderDialog
+                menuItemOnClickListener = ::openAddDialog
             )
             add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
             groupAdapter.clear()
@@ -414,7 +409,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         override fun selected(selectedItem: Item<*>?) {
             when (selectedItem) {
                 is FeedGroupCardItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
-                is FeedGroupAddItem -> FeedGroupDialog.newInstance().show(fm, null)
             }
         }
 
@@ -429,7 +423,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         override fun selected(selectedItem: Item<*>?) {
             when (selectedItem) {
                 is FeedGroupCardVerticalItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
-                is FeedGroupAddVerticalItem -> FeedGroupDialog.newInstance().show(fm, null)
             }
         }
 
