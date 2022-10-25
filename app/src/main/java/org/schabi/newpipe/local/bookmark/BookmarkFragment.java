@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -84,6 +84,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (!useAsFrontPage) {
             setTitle(activity.getString(R.string.tab_bookmarks));
         }
+
         return inflater.inflate(R.layout.fragment_bookmarks, container, false);
     }
 
@@ -108,7 +109,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
-        final Button mergeAll = activity.findViewById(R.id.mergeButton);
+        final ImageButton mergeAll = activity.findViewById(R.id.mergeButton);
         mergeAll.setOnClickListener(v -> {
             if (selectedRemotePlaylists.isEmpty() && !selectedLocalPlaylists.isEmpty()
             && selectedLocalPlaylists.size() + selectedRemotePlaylists.size() >= 2) {
@@ -121,7 +122,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 }
                 showMergeDialog(allStreams);
             } else if (!selectedRemotePlaylists.isEmpty()) {
-                Toast.makeText(activity, "Cannot Merge Someone Else's Playlist", Toast
+                Toast.makeText(activity, "Only Locally Created Playlists Can be Merged", Toast
                         .LENGTH_SHORT).show();
             } else {
                 Toast.makeText(activity, "Not Enough Playlists Selected", Toast
@@ -129,7 +130,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             }
         });
 
-        final Button deleteAll = activity.findViewById(R.id.deleteButton);
+        final ImageButton deleteAll = activity.findViewById(R.id.deleteButton);
         deleteAll.setOnClickListener(v -> {
             if (!selectedRemotePlaylists.isEmpty() || !selectedLocalPlaylists.isEmpty()) {
                 showMultiDeleteDialog();
@@ -138,14 +139,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             }
         });
 
-        final Button multiSelect = activity.findViewById(R.id.multiButton);
+        final ImageButton multiSelect = activity.findViewById(R.id.multiButton);
         multiSelect.setOnClickListener(v -> {
 
             itemListAdapter.notifyDataSetChanged();
 
-            if (multiSelect.getText().equals("select")) {
+            if (!isMultiSelect) {
                 isMultiSelect = true;
-                multiSelect.setText(R.string.deselect);
+                multiSelect.setImageResource(R.drawable.ic_cancel);
                 activity.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.mergeButton).setVisibility(View.VISIBLE);
             } else {
@@ -361,16 +362,15 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         new AlertDialog.Builder(activity)
                 .setTitle(R.string.merge_playlists)
-                .setMessage(R.string.delete_playlist_warning)
+                .setMessage(R.string.merge_playlist_warning)
                 .setView(dialogBinding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.merge, (dialog, i) -> {
+                .setNeutralButton(R.string.merge_and_delete, (dialog, i) -> {
         final String name = dialogBinding.dialogEditText.getText().toString();
         final Toast successToast = Toast.makeText(getActivity(),
-                R.string.playlists_merged,
+                R.string.playlists_merged_and_delete,
                 Toast.LENGTH_SHORT);
-
         localPlaylistManager.createPlaylist(name, streams)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(longs -> successToast.show());
@@ -380,10 +380,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         remotePlaylistManager.deleteMultiPlaylists(selectedRemotePlaylists)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> { /*Do nothing on success*/ });
-
         deselectAll();
     })
-                .setNeutralButton(R.string.merge_no_delete, (dialog, i) -> {
+                .setPositiveButton(R.string.merge, (dialog, i) -> {
+
                     final String name = dialogBinding.dialogEditText.getText().toString();
                     final Toast successToast = Toast.makeText(getActivity(),
                             R.string.playlists_merged,
@@ -466,8 +466,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
     private void deselectAll() {
         isMultiSelect = false;
-        final Button multiSelect = activity.findViewById(R.id.multiButton);
-        multiSelect.setText(R.string.select);
+        final ImageButton multiSelect = activity.findViewById(R.id.multiButton);
+        multiSelect.setImageResource(R.drawable.ic_select_all);
         activity.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
         activity.findViewById(R.id.mergeButton).setVisibility(View.INVISIBLE);
         selectedLocalPlaylists.clear();

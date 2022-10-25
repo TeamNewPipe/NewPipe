@@ -14,36 +14,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:gravity="right"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/mergeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:backgroundTint="@color/white"
-                android:text="merge"
-                android:textColor="@color/black_settings_accent_color"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_merge"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="invisible"
                 android:backgroundTint="@color/white"
-                android:text="delete"
-                android:textColor="@color/black_settings_accent_color"
-                android:visibility="invisible" />
+                app:srcCompat="@drawable/ic_delete"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/multiButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:backgroundTint="@color/white"
-                android:text="select"
-                android:textColor="@color/bluegray" />
+                app:srcCompat="@drawable/ic_select_all"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </LinearLayout>
 

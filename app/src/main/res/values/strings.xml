@@ -444,11 +444,13 @@
     <string name="playlist_no_uploader">Auto-generated (no uploader found)</string>
     <string name="merge_playlists">Merge these playlists?</string>
     <string name="merge">merge</string>
-    <string name="merge_no_delete">merge: no delete</string>
+    <string name="merge_and_delete">merge and delete</string>
     <string name="playlists_merged">Playlists Merged</string>
-    <string name="deleted">deleted</string>
+    <string name="playlists_merged_and_delete">Playlists Merged and Deleted</string>
+    <string name="deleted">Deleted</string>
     <string name="delete_playlist_prompt_multi">Delete these playlist\?</string>
     <string name="delete_playlist_warning">This will delete all selected playlists.</string>
+    <string name="merge_playlist_warning">You can choose whether or not to delete the original playlists after merging.</string>
     <string name="select">select</string>
     <string name="deselect">cancel</string>
     <!-- Players -->
