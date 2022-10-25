@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.subscription.item
 import android.content.Context
 import android.os.Parcelable
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.viewbinding.BindableItem
@@ -43,7 +44,7 @@ class FeedGroupCarouselItem(
             adapter = carouselAdapter
             addItemDecoration(feedGroupCarouselDecoration)
         }
-
+        viewHolder.recyclerView.setLayoutManager(GridLayoutManager(view.context, 3))
         return viewHolder
     }
 

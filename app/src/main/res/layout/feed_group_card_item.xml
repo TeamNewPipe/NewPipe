@@ -2,9 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="64dp"
-    android:layout_height="48dp"
-    android:layout_gravity="center_vertical"
+    android:layout_width="112dp"
+    android:layout_height="75dp"
+    android:layout_gravity="center"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
@@ -25,6 +25,8 @@
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:scaleType="fitCenter"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
             tools:ignore="ContentDescription"
             tools:src="@drawable/ic_fastfood" />
 
@@ -39,7 +41,7 @@
             android:padding="2dp"
             android:textAllCaps="false"
             android:textColor="?attr/colorAccent"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:ignore="SmallSp"
             tools:text="ALL" />
