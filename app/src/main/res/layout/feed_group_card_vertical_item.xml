@@ -17,10 +17,10 @@
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="51dp"
-            android:layout_height="64dp"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:paddingTop="8dp"
+            android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:scaleType="centerInside"
             tools:ignore="ContentDescription"
@@ -31,12 +31,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ellipsize="end"
-            android:gravity="start"
+            android:background="?attr/card_item_contrast_color"
+            android:gravity="center_vertical"
             android:maxLines="1"
-            android:padding="2dp"
+            android:padding="10dp"
             android:textAllCaps="false"
             android:textColor="?attr/colorAccent"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="ALL" />
     </LinearLayout>
