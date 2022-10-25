@@ -75,7 +75,7 @@ public class DownloadRunnableFallback extends Thread {
                 mMission.notifyProgress(-start);
                 start = 0;
                 mRetryCount--;
-                throw new HttpError(416);
+                throw new DownloadMission.HttpError(416);
             }
 
             // secondary check for the file length

@@ -64,7 +64,7 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * An {@link HttpDataSource} that uses Android's {@link HttpURLConnection}, based on
- * {@link DefaultHttpDataSource}, for YouTube streams.
+ * {@link com.google.android.exoplayer2.upstream.DefaultHttpDataSource}, for YouTube streams.
  *
  * <p>
  * It adds more headers to {@code videoplayback} URLs, such as {@code Origin}, {@code Referer}
@@ -73,7 +73,7 @@ import java.util.zip.GZIPInputStream;
  * </p>
  *
  * There are many unused methods in this class because everything was copied from {@link
- * DefaultHttpDataSource} with as little changes as possible.
+ * com.google.android.exoplayer2.upstream.DefaultHttpDataSource} with as little changes as possible.
  * SonarQube warnings were also suppressed for the same reason.
  */
 @SuppressWarnings({"squid:S3011", "squid:S4738"})
@@ -197,7 +197,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
 
         /**
          * Sets a content type {@link Predicate}. If a content type is rejected by the predicate
-         * then a {@link InvalidContentTypeException} is thrown from
+         * then a {@link HttpDataSource.InvalidContentTypeException} is thrown from
          * {@link YoutubeHttpDataSource#open(DataSpec)}.
          *
          * <p>

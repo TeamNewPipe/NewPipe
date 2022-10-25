@@ -45,7 +45,7 @@ public class ChooseTabsFragment extends Fragment {
     private TabsManager tabsManager;
 
     private final List<Tab> tabList = new ArrayList<>();
-    private SelectedTabsAdapter selectedTabsAdapter;
+    private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -316,7 +316,7 @@ public class ChooseTabsFragment extends Fragment {
     }
 
     private class SelectedTabsAdapter
-            extends RecyclerView.Adapter<SelectedTabsAdapter.TabViewHolder> {
+            extends RecyclerView.Adapter<ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
         private final ItemTouchHelper itemTouchHelper;
 
@@ -332,15 +332,15 @@ public class ChooseTabsFragment extends Fragment {
 
         @NonNull
         @Override
-        public TabViewHolder onCreateViewHolder(
+        public ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder onCreateViewHolder(
                 @NonNull final ViewGroup parent, final int viewType) {
             final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
-            return new TabViewHolder(view);
+            return new ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(
-                @NonNull final TabViewHolder holder,
+                @NonNull final ChooseTabsFragment.SelectedTabsAdapter.TabViewHolder holder,
                 final int position) {
             holder.bind(position, holder);
         }

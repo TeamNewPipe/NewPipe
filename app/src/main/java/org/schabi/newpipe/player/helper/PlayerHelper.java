@@ -280,11 +280,11 @@ public final class PlayerHelper {
 
     public static boolean isAutoplayAllowedByUser(@NonNull final Context context) {
         switch (PlayerHelper.getAutoplayType(context)) {
-            case AutoplayType.AUTOPLAY_TYPE_NEVER:
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
                 return false;
-            case AutoplayType.AUTOPLAY_TYPE_WIFI:
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
                 return !ListHelper.isMeteredNetwork(context);
-            case AutoplayType.AUTOPLAY_TYPE_ALWAYS:
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
             default:
                 return true;
         }
@@ -382,7 +382,7 @@ public final class PlayerHelper {
     public static boolean globalScreenOrientationLocked(final Context context) {
         // 1: Screen orientation changes using accelerometer
         // 0: Screen orientation is locked
-        return Settings.System.getInt(
+        return android.provider.Settings.System.getInt(
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 

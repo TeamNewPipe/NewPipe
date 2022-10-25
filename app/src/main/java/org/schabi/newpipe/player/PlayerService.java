@@ -41,7 +41,7 @@ public final class PlayerService extends Service {
 
     private Player player;
 
-    private final IBinder mBinder = new LocalBinder();
+    private final IBinder mBinder = new PlayerService.LocalBinder();
 
 
     /*//////////////////////////////////////////////////////////////////////////

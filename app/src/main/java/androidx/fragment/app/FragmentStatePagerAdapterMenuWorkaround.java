@@ -35,7 +35,7 @@ import java.util.ArrayList;
 // TODO: Replace this deprecated class with its ViewPager2 counterpart
 
 /**
- * This is a copy from {@link FragmentStatePagerAdapter}.
+ * This is a copy from {@link androidx.fragment.app.FragmentStatePagerAdapter}.
  * <p>
  * It includes a workaround to fix the menu visibility when the adapter is restored.
  * </p>

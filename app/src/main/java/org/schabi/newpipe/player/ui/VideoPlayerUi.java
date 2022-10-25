@@ -1425,7 +1425,7 @@ public abstract class VideoPlayerUi extends PlayerUi
                     break;
                 }
 
-                if (player.getCurrentState() == Player.STATE_BLOCKED) {
+                if (player.getCurrentState() == org.schabi.newpipe.player.Player.STATE_BLOCKED) {
                     return true;
                 }
 
