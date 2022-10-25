@@ -35,9 +35,11 @@ import org.schabi.newpipe.util.ChannelTabs;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
+import java.util.Queue;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -47,7 +49,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
+public class ChannelFragment extends BaseStateFragment<ChannelInfo>
+        implements StateSaver.WriteRead {
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
@@ -97,12 +100,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        if (savedInstanceState != null) {
-            lastTab = savedInstanceState.getInt("LastTab");
-        } else {
-            lastTab = 0;
-        }
     }
 
     @Override
@@ -126,12 +123,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
-    }
-
-    @Override
-    public void onSaveInstanceState(final @NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("LastTab", binding.tabLayout.getSelectedTabPosition());
     }
 
     @Override
@@ -301,7 +292,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
                 final String description = currentInfo.getDescription();
                 if (description != null && !description.isEmpty()
                         && ChannelTabs.showChannelTab(
-                                context, preferences, R.string.show_channel_tabs_info)) {
+                        context, preferences, R.string.show_channel_tabs_info)) {
                     tabAdapter.addFragment(
                             ChannelInfoFragment.getInstance(currentInfo), "Info");
                 }
@@ -318,6 +309,40 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo> {
         final TabLayout.Tab ltab = binding.tabLayout.getTabAt(lastTab);
         if (ltab != null) {
             binding.tabLayout.selectTab(ltab);
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public String generateSuffix() {
+        return null;
+    }
+
+    @Override
+    public void writeTo(final Queue<Object> objectsToSave) {
+        objectsToSave.add(currentInfo);
+        if (binding != null) {
+            objectsToSave.add(binding.tabLayout.getSelectedTabPosition());
+        } else {
+            objectsToSave.add(0);
+        }
+    }
+
+    @Override
+    public void readFrom(@NonNull final Queue<Object> savedObjects) {
+        currentInfo = (ChannelInfo) savedObjects.poll();
+        lastTab = (Integer) savedObjects.poll();
+    }
+
+    @Override
+    protected void doInitialLoadLogic() {
+        if (currentInfo == null) {
+            startLoading(false);
+        } else {
+            handleResult(currentInfo);
         }
     }
 

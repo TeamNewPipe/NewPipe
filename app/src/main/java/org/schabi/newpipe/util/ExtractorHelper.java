@@ -158,7 +158,8 @@ public final class ExtractorHelper {
                                                        final boolean forceLoad) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId,
-                tabHandler.getUrl() + tabHandler.getTab().name(), InfoItem.InfoType.CHANNEL,
+                tabHandler.getUrl() + "/"
+                        + tabHandler.getTab().name(), InfoItem.InfoType.CHANNEL,
                 Single.fromCallable(() ->
                         ChannelTabInfo.getInfo(NewPipe.getService(serviceId), tabHandler)));
     }
