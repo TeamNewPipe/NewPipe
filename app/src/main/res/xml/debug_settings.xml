@@ -72,7 +72,6 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
     <Preference
-        android:icon="@drawable/ic_replay"
         android:key="@string/reset_settings"
         android:title="@string/settings_category_reset_title"
         app:iconSpaceReserved="false" />
