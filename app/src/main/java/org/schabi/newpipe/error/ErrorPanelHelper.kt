@@ -132,8 +132,8 @@ class ErrorPanelHelper(
             ) {
                 // show retry button only for content which is not unavailable or unsupported
                 errorRetryButton.isVisible = true
-                showAndSetOpenInBrowserButtonAction(errorInfo)
             }
+            showAndSetOpenInBrowserButtonAction(errorInfo)
         }
 
         setRootVisible()
