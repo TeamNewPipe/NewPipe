@@ -306,6 +306,10 @@ public class MainActivity extends AppCompatActivity {
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
+            case ITEM_ID_TRENDING_MUSIC:
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(),
+                        ITEM_ID_TRENDING_MUSIC, "Trending Music");
+                break;
             default:
                 final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
                 final StreamingService service = NewPipe.getService(currentServiceId);
