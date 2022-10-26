@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -505,17 +506,25 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
             NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
-            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            if (PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            }
         });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
             NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
-            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            if (PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            }
         });
         playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
             NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
-            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            if (PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+            }
         });
-
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
             return true;
