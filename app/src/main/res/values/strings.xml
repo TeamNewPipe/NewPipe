@@ -367,7 +367,7 @@
     <string name="read_full_license">Read license</string>
     <string name="faq_title">Frequently asked questions</string>
     <string name="faq_description">If you\'re facing any problems with using the app, make sure reading these is the first thing you do.</string>
-    <string name="faq">view on website</string>
+    <string name="faq">View on website</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
