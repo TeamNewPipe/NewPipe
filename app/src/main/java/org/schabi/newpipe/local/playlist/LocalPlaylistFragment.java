@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -503,13 +504,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         setVideoCount(itemListAdapter.getItemsList().size());
 
-        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
-        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
-
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
+            NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
+            showHoldToAppendTipIfNeeded();
+        });
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
+            NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
+            showHoldToAppendTipIfNeeded();
+        });
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
+            NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
+            showHoldToAppendTipIfNeeded();
+        });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
             return true;
@@ -521,6 +527,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         });
 
         hideLoading();
+    }
+
+    private void showHoldToAppendTipIfNeeded() {
+        if (PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
