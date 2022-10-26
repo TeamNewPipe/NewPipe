@@ -103,7 +103,7 @@ class ErrorPanelHelper(
             }
 
             errorRetryButton.isVisible = true
-            errorOpenInBrowserButton.isVisible = true
+            showAndSetOpenInBrowserButtonAction(errorInfo)
         } else if (errorInfo.throwable is AccountTerminatedException) {
             errorTextView.setText(R.string.account_terminated)
 
@@ -132,10 +132,7 @@ class ErrorPanelHelper(
             ) {
                 // show retry button only for content which is not unavailable or unsupported
                 errorRetryButton.isVisible = true
-                errorOpenInBrowserButton.isVisible = true
-                errorOpenInBrowserButton.setOnClickListener {
-                    ShareUtils.openUrlInBrowser(context, errorInfo.request, true)
-                }
+                showAndSetOpenInBrowserButtonAction(errorInfo)
             }
         }
 
@@ -152,6 +149,15 @@ class ErrorPanelHelper(
         errorActionButton.isVisible = true
         errorActionButton.setText(resid)
         errorActionButton.setOnClickListener(listener)
+    }
+
+    fun showAndSetOpenInBrowserButtonAction(
+        errorInfo: ErrorInfo
+    ) {
+        errorOpenInBrowserButton.isVisible = true
+        errorOpenInBrowserButton.setOnClickListener {
+            ShareUtils.openUrlInBrowser(context, errorInfo.request, true)
+        }
     }
 
     fun showTextError(errorString: String) {

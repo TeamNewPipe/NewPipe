@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
+
         android:text="@string/retry"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -76,8 +76,7 @@
         android:id="@+id/error_open_in_browser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/open_in_browser"
         android:textAlignment="center"
         android:textAllCaps="true"
