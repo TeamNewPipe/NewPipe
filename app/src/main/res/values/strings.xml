@@ -366,7 +366,7 @@
     <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
     <string name="faq_title">Frequently asked questions</string>
-    <string name="faq_description">If you\'re facing any problems with using the app, make sure reading these is the first thing you do.</string>
+    <string name="faq_description">If you are having trouble using the app, be sure to check out these answers to common questions!</string>
     <string name="faq">View on website</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
