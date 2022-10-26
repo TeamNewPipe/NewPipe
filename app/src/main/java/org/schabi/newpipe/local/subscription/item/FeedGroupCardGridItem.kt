@@ -4,14 +4,14 @@ import android.view.View
 import com.xwray.groupie.viewbinding.BindableItem
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.databinding.FeedGroupCardVerticalItemBinding
+import org.schabi.newpipe.databinding.FeedGroupCardGridItemBinding
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 
-data class FeedGroupCardVerticalItem(
+data class FeedGroupCardGridItem(
     val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     val name: String,
-    val icon: FeedGroupIcon
-) : BindableItem<FeedGroupCardVerticalItemBinding>() {
+    val icon: FeedGroupIcon,
+) : BindableItem<FeedGroupCardGridItemBinding>() {
     constructor (feedGroupEntity: FeedGroupEntity) : this(feedGroupEntity.uid, feedGroupEntity.name, feedGroupEntity.icon)
 
     override fun getId(): Long {
@@ -21,12 +21,12 @@ data class FeedGroupCardVerticalItem(
         }
     }
 
-    override fun getLayout(): Int = R.layout.feed_group_card_vertical_item
+    override fun getLayout(): Int = R.layout.feed_group_card_grid_item
 
-    override fun bind(viewBinding: FeedGroupCardVerticalItemBinding, position: Int) {
+    override fun bind(viewBinding: FeedGroupCardGridItemBinding, position: Int) {
         viewBinding.title.text = name
         viewBinding.icon.setImageResource(icon.getDrawableRes())
     }
 
-    override fun initializeViewBinding(view: View) = FeedGroupCardVerticalItemBinding.bind(view)
+    override fun initializeViewBinding(view: View) = FeedGroupCardGridItemBinding.bind(view)
 }

@@ -23,18 +23,18 @@
         tools:text="Header" />
 
     <ImageButton
-        android:id="@+id/header_menu_item2"
+        android:id="@+id/header_toggle_view_mode"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        tools:src="@drawable/ic_bookmark" />
+        tools:src="@drawable/ic_apps" />
 
     <ImageButton
-        android:id="@+id/header_menu_item"
+        android:id="@+id/header_sort"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        tools:src="@drawable/ic_bookmark" />
+        android:src="@drawable/ic_sort" />
 </LinearLayout>
