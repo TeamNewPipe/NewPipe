@@ -506,24 +506,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
             NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
-            if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
-            }
+            showHoldToAppendTipIfNeeded();
         });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
             NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
-            if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
-            }
+            showHoldToAppendTipIfNeeded();
         });
         playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
             NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
-            if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-                Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
-            }
+            showHoldToAppendTipIfNeeded();
         });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
@@ -536,6 +527,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         });
 
         hideLoading();
+    }
+
+    private void showHoldToAppendTipIfNeeded() {
+        if (PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
