@@ -2,56 +2,59 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="388dp"
-    android:layout_height="48dp"
-    android:layout_gravity="center_vertical"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="?attr/card_item_background_color">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="3dp"
+    android:minHeight="?listPreferredItemHeightSmall"
+    android:orientation="horizontal"
+    app:cardBackgroundColor="?attr/card_item_background_color"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_gravity="center_vertical">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/icon"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:scaleType="centerInside"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/ic_fastfood" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title"
-            android:layout_width="270dp"
-            android:layout_height="match_parent"
-            android:background="?attr/card_item_contrast_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toLeftOf="@+id/handle"
+            android:layout_toRightOf="@+id/icon"
             android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:textColor="?attr/colorAccent"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="ALL" />
+            android:maxLines="2"
+            android:textAppearance="?textAppearanceListItem"
+            tools:ignore="RtlHardcoded"
+            tools:text="Lorem ipsum dolor sit amet" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/handle"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="?attr/card_item_contrast_color"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:paddingLeft="16dp"
             android:paddingTop="12dp"
             android:paddingRight="16dp"
             android:paddingBottom="12dp"
             android:src="@drawable/ic_drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded" />
-    </LinearLayout>
-
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

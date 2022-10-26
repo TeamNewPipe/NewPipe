@@ -20,11 +20,13 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.Section
+import com.xwray.groupie.TouchCallback
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import icepick.State
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -62,8 +64,7 @@ import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -84,6 +85,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         registerForActivityResult(StartActivityForResult(), this::requestExportResult)
     private val requestImportLauncher =
         registerForActivityResult(StartActivityForResult(), this::requestImportResult)
+    private val itemTouchHelper = ItemTouchHelper(getItemTouchCallback())
 
     @State
     @JvmField
@@ -96,6 +98,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     @State
     @JvmField
     var feedGroupsListVerticalState: Parcelable? = null
+
+    @State
+    @JvmField
+    var groupOrderedIdList = ArrayList<Long>()
 
     init {
         setHasOptionsMenu(true)
@@ -306,22 +312,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         Section().apply {
             val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
 
-            carouselAdapter.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
+            carouselAdapter.add(FeedGroupCardVerticalItem(-1, getString(R.string.all), FeedGroupIcon.RSS, itemTouchHelper))
             carouselAdapter.add(feedGroupsSection)
-
-            carouselAdapter.setOnItemClickListener { item, _ ->
-                listenerFeedVerticalGroups.selected(item)
-            }
-            carouselAdapter.setOnItemLongClickListener { item, _ ->
-                if (item is FeedGroupCardVerticalItem) {
-                    if (item.groupId == FeedGroupEntity.GROUP_ALL_ID) {
-                        return@setOnItemLongClickListener false
-                    }
-                }
-                listenerFeedVerticalGroups.held(item)
-                return@setOnItemLongClickListener true
-            }
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL, false)
 
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
@@ -362,6 +354,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
         viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroups) }
         viewModel.feedGroupsVerticalLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroupsVertical) }
+        viewModel.eventLiveData.observe(viewLifecycleOwner) {
+            when (it) { SubscriptionViewModel.Event.SuccessEvent -> viewModel.updateOrder(groupOrderedIdList) }
+        }
+        itemTouchHelper.attachToRecyclerView(binding.itemsList)
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
@@ -488,17 +484,23 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    private fun handleFeedGroupsVertical(groups: List<Group>) {
+    private fun handleFeedGroupsVertical(groups: List<FeedGroupEntity>) {
         if (!defaultListView) {
-            feedGroupsSection.update(groups)
+            val groupList: List<FeedGroupEntity>
 
             if (feedGroupsListVerticalState != null) {
                 feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListVerticalState)
                 feedGroupsListVerticalState = null
             }
 
-            feedGroupsSortMenuItem.showMenuItem = groups.size > 1
-            binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
+            if (groupOrderedIdList.isEmpty()) {
+                groupList = groups
+                groupOrderedIdList.addAll(groupList.map { it.uid })
+            } else {
+                groupList = groups.sortedBy { groupOrderedIdList.indexOf(it.uid) }
+            }
+
+            groupAdapter.update(groupList.map { FeedGroupCardVerticalItem(it, itemTouchHelper) })
         }
     }
 
@@ -518,5 +520,28 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     companion object {
         const val JSON_MIME_TYPE = "application/json"
+    }
+
+    private fun getItemTouchCallback(): ItemTouchHelper.SimpleCallback {
+        return object : TouchCallback() {
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                source: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val sourceIndex = source.bindingAdapterPosition
+                val targetIndex = target.bindingAdapterPosition
+
+                groupAdapter.notifyItemMoved(sourceIndex, targetIndex)
+                Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)
+                viewModel.updateOrder(groupOrderedIdList)
+                return true
+            }
+
+            override fun isLongPressDragEnabled(): Boolean = false
+            override fun isItemViewSwipeEnabled(): Boolean = false
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {}
+        }
     }
 }

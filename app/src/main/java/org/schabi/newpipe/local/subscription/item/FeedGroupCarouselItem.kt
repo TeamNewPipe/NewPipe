@@ -45,7 +45,7 @@ class FeedGroupCarouselItem(
             adapter = carouselAdapter
             addItemDecoration(feedGroupCarouselDecoration)
         }
-        if (isGridLayout) viewHolder.recyclerView.setLayoutManager(GridLayoutManager(view.context, 3))
+        if (isGridLayout) viewHolder.recyclerView.layoutManager = GridLayoutManager(view.context, 3)
         return viewHolder
     }
 
