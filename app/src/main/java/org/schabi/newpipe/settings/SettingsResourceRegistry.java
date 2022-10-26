@@ -30,7 +30,6 @@ public final class SettingsResourceRegistry {
 
     private SettingsResourceRegistry() {
         add(MainSettingsFragment.class, R.xml.main_settings).setSearchable(false);
-
         add(AppearanceSettingsFragment.class, R.xml.appearance_settings);
         add(ContentSettingsFragment.class, R.xml.content_settings);
         add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
@@ -41,7 +40,6 @@ public final class SettingsResourceRegistry {
         add(UpdateSettingsFragment.class, R.xml.update_settings);
         add(VideoAudioSettingsFragment.class, R.xml.video_audio_settings);
         add(ExoPlayerSettingsFragment.class, R.xml.exoplayer_settings);
-        add(ResetSettingsFragment.class, R.xml.main_settings);
     }
 
     private SettingRegistryEntry add(

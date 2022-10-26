@@ -10,7 +10,9 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Optional;
 
@@ -35,6 +37,8 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
                 findPreference(getString(R.string.show_error_snackbar_key));
         final Preference createErrorNotificationPreference =
                 findPreference(getString(R.string.create_error_notification_key));
+        final Preference resetSettings =
+                findPreference(getString(R.string.reset_settings));
 
         assert allowHeapDumpingPreference != null;
         assert showMemoryLeaksPreference != null;
@@ -84,6 +88,15 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         createErrorNotificationPreference.setOnPreferenceClickListener(preference -> {
             ErrorUtil.createNotification(requireContext(),
                     new ErrorInfo(new RuntimeException(DUMMY), UserAction.UI_ERROR, DUMMY));
+            return true;
+        });
+
+        // reset appearance to light theme
+        resetSettings.setOnPreferenceClickListener(preference -> {
+            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
+            defaultPreferences.edit().putString(getString(R.string.theme_key),
+                    getString(R.string.light_theme_key)).apply();
+            ThemeHelper.setDayNightMode(requireContext(), "light_theme");
             return true;
         });
     }
