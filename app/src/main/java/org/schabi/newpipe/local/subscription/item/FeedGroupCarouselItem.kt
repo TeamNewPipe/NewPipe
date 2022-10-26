@@ -15,7 +15,8 @@ import org.schabi.newpipe.local.subscription.decoration.FeedGroupCarouselDecorat
 class FeedGroupCarouselItem(
     context: Context,
     private val carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>,
-    private var listView: Int
+    private var listView: Int,
+    private var isGridLayout: Boolean
 ) : BindableItem<FeedItemCarouselBinding>() {
     private val feedGroupCarouselDecoration = FeedGroupCarouselDecoration(context)
 
@@ -44,7 +45,8 @@ class FeedGroupCarouselItem(
             adapter = carouselAdapter
             addItemDecoration(feedGroupCarouselDecoration)
         }
-        viewHolder.recyclerView.setLayoutManager(GridLayoutManager(view.context, 3))
+        if (isGridLayout)
+            viewHolder.recyclerView.setLayoutManager(GridLayoutManager(view.context, 3))
         return viewHolder
     }
 

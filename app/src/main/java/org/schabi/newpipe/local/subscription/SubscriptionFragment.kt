@@ -276,7 +276,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 return@setOnItemLongClickListener true
             }
 
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.HORIZONTAL)
+            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.HORIZONTAL, true)
 
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
@@ -326,7 +326,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 listenerFeedVerticalGroups.held(item)
                 return@setOnItemLongClickListener true
             }
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL)
+            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter, RecyclerView.VERTICAL, false)
 
             feedGroupsSortMenuItem = HeaderWithMenuItem(
                 getString(R.string.feed_groups_header_title),
