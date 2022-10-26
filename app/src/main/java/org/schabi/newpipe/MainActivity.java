@@ -242,10 +242,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_TRENDING_MUSIC, ORDER,
-                        R.string.tab_trending_music)
-                .setIcon(R.drawable.ic_trending_up);
 
         //Settings and About
         drawerLayoutBinding.navigation.getMenu()
@@ -305,10 +301,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
-                break;
-            case ITEM_ID_TRENDING_MUSIC:
-                NavigationHelper.openKioskFragment(getSupportFragmentManager(),
-                        ITEM_ID_TRENDING_MUSIC, "Trending Music");
                 break;
             default:
                 final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
