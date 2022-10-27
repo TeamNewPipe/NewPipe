@@ -214,7 +214,7 @@
     <string name="title_activity_about">Σχετικά με το NewPipe</string>
     <string name="title_licenses">Άδειες Τρίτων</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>
-    <string name="tab_about">Περί</string>
+    <string name="tab_about">Πληροφορίες &amp; Συχνές Ερωτήσεις</string>
     <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή Android, για την αναπαραγωγή πολυμέσων από το διαδίκτυο.</string>
     <string name="contribution_title">Συνεισφέρετε</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής, η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
@@ -720,4 +720,7 @@
     <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών αντικειμένων</string>
     <string name="feed_toggle_hide_played_items">Απόκρυψη θεαθέντων</string>
     <string name="feed_toggle_hide_future_items">Απόκρυψη μελλοντικών αντικειμένων</string>
+    <string name="faq_title">Συχνές ερωτήσεις</string>
+    <string name="faq">Προβολή στην ιστοσελίδα</string>
+    <string name="faq_description">Εάν αντιμετωπίζετε προβλήματα με τη χρήση της εφαρμογής, φροντίστε να ελέγξετε αυτές τις απαντήσεις σε συνήθεις ερωτήσεις!</string>
 </resources>

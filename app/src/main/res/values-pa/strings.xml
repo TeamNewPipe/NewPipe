@@ -100,7 +100,7 @@
     <string name="always">ਹਮੇਸ਼ਾ</string>
     <string name="just_once">ਸਿਰਫ਼ ਇਸ ਬਾਰ</string>
     <string name="file">ਫਾਈਲ</string>
-    <string name="notification_channel_name">NewPipe ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
+    <string name="notification_channel_name">ਨਿਊ ਪਾਈਪ ਨੋਟ</string>
     <string name="notification_channel_description">NewPipe ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਸੂਚਨਾਵਾਂ</string>
     <string name="unknown_content">ਅਣਜਾਣ</string>
     <string name="switch_to_background">ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਬਦਲੋ</string>
@@ -357,7 +357,7 @@
     <string name="paused">ਰੁਕਿਆ</string>
     <string name="queued">ਕਤਾਰਬੱਧ</string>
     <string name="post_processing">Post-processing</string>
-    <string name="enqueue">ਕਤਾਰ</string>
+    <string name="enqueue">ਕਤਾਰ ਕਰੋ</string>
     <string name="permission_denied">ਸਿਸਟਮ ਦੁਆਰਾ ਕਾਰਵਾਈ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ</string>
     <string name="download_failed">ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ</string>
     <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ Generate ਕਰੋ</string>
@@ -592,7 +592,7 @@
     <string name="peertube_instance_url_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਪੀਰਟਿਊਬ ਸਥਿਤੀਆਂ ਚੁਣੋ</string>
     <string name="peertube_instance_url_title">ਪੀਰਟਿਊਬ ਸਥਿਤੀਆਂ</string>
     <string name="unsupported_url_dialog_message">URL ਪਛਾਣ ਨਹੀਂ ਹੋਇਆ। ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ਼ ਖੋਲ੍ਹਣਾ ਹੈ\?</string>
-    <string name="auto_queue_toggle">ਆਪ-ਮੁਖ਼ਤਾਰ ਕਤਾਰ</string>
+    <string name="auto_queue_toggle">ਆਪ-ਮੁਖ਼ਤਾਰ ਕਤਾਰ ਕਰਦੇ</string>
     <string name="show_meta_info_summary">ਸਟ੍ਰੀਮ ਦੇ ਕਰਤਾ, ਸਮੱਗਰੀ ਜਾਂ ਖੋਜ ਬੇਨਤੀ ਵਾਲੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਬਕਸਿਆਂ ਵਾਲ਼ੀ ਮੈਟਾ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿਓ।</string>
     <string name="show_meta_info_title">ਮੈਟਾ ਜਾਣਕਾਰੀ ਦਿਖਾਓ</string>
     <string name="show_description_summary">ਵਿਡੀਉ ਵੇਰਵਾ ਅਤੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸ ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿਓ</string>
@@ -615,4 +615,12 @@
     <string name="notification_action_2_title">ਤੀਜਾ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_1_title">ਦੂਜਾ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_0_title">ਪਹਿਲਾ ਕਾਰਵਾਈ ਬਟਨ</string>
+    <string name="dont_show">ਨਹੀਂ ਵੇਖੋ</string>
+    <string name="on">ਰਾਲੂ</string>
+    <string name="enumeration_comma">,</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">ਡਾਉਨਲੋਡ ਕੀਤਾ</item>
+        <item quantity="other">%s ਡਾਉਨਲੋਡ ਕੀਤੇ</item>
+    </plurals>
+    <string name="off">ਬੰਦ ਕਰਨ</string>
 </resources>

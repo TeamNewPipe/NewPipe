@@ -112,7 +112,7 @@
     <string name="tab_subscriptions">Abonnements</string>
     <string name="settings_category_downloads_title">Téléchargement</string>
     <string name="title_licenses">Licences tierce partie</string>
-    <string name="tab_about">À propos</string>
+    <string name="tab_about">À propos &amp; FAQ</string>
     <string name="tab_licenses">Licences</string>
     <string name="app_description">Lecteur multimédia libre et léger pour Android.</string>
     <string name="view_on_github">Voir sur GitHub</string>
@@ -147,16 +147,19 @@
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonné</item>
+        <item quantity="many">%s abonnés</item>
         <item quantity="other">%s abonnés</item>
     </plurals>
     <string name="no_views">Aucune vue</string>
     <plurals name="views">
         <item quantity="one">%s vue</item>
+        <item quantity="many">%s vues</item>
         <item quantity="other">%s vues</item>
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
         <item quantity="one">%s vidéo</item>
+        <item quantity="many">%s vidéos</item>
         <item quantity="other">%s vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
@@ -425,11 +428,13 @@
     <string name="no_one_watching">Personne ne regarde</string>
     <plurals name="watching">
         <item quantity="one">%s spectateur</item>
+        <item quantity="many">%s spectateurs</item>
         <item quantity="other">%s spectateurs</item>
     </plurals>
     <string name="no_one_listening">Personne n’écoute</string>
     <plurals name="listening">
         <item quantity="one">%s auditeur</item>
+        <item quantity="many">%s auditeurs</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
@@ -462,19 +467,23 @@
     <string name="unmute">Remettre le son</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
+        <item quantity="many">%d secondes</item>
         <item quantity="other">%d secondes</item>
     </plurals>
     <!-- Time duration plurals -->
     <plurals name="minutes">
         <item quantity="one">%d minute</item>
+        <item quantity="many">%d minutes</item>
         <item quantity="other">%d minutes</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d heure</item>
+        <item quantity="many">%d heures</item>
         <item quantity="other">%d heures</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d jour</item>
+        <item quantity="many">%d jours</item>
         <item quantity="other">%d jours</item>
     </plurals>
     <!-- feed -->
@@ -488,6 +497,7 @@
     <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d sélectionné</item>
+        <item quantity="many">%d sélectionnés</item>
         <item quantity="other">%d sélectionnés</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
@@ -654,11 +664,13 @@
     <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s téléchargement supprimé</item>
+        <item quantity="many">%1$s téléchargements supprimés</item>
         <item quantity="other">%1$s téléchargements supprimés</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Téléchargement terminé</item>
-        <item quantity="other">%s téléchargements terminés</item>
+        <item quantity="many">%s Téléchargements terminés</item>
+        <item quantity="other">%s Téléchargements terminés</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
@@ -693,6 +705,7 @@
     <string name="loading_stream_details">Chargement des détails du flux…</string>
     <plurals name="new_streams">
         <item quantity="one">%s nouveau flux</item>
+        <item quantity="many">%s nouveaux flux</item>
         <item quantity="other">%s nouveaux flux</item>
     </plurals>
     <string name="streams_notifications_network_title">Connexion réseau requise</string>
@@ -722,4 +735,7 @@
     <string name="feed_toggle_show_future_items">Afficher les futurs éléments</string>
     <string name="feed_toggle_hide_played_items">Masquer les éléments visionnés</string>
     <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
+    <string name="faq_title">Foire aux questions</string>
+    <string name="faq">Voir sur le site web</string>
+    <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
 </resources>

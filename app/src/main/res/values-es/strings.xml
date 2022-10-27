@@ -79,7 +79,7 @@
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
-    <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del sistema operativo:</string>
+    <string name="info_labels">Qué:\\nSolicitar:\\nIntenga de contenido:\\nPaíse de contenido:\\nIdiomaño de la aplicación:\\nServicio:\\nTiempo de GTT:\\nPaquete:\\nVersión:\\nVersion de SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="short_thousand">k</string>

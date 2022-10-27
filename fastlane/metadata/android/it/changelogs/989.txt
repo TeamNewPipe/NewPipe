@@ -1,0 +1,3 @@
+• [YouTube] Corretto il caricamento infinito quando si tenta di riprodurre qualsiasi video
+• [YouTube] Corretto il throttling di alcuni video
+• Aggiornata la libreria jsoup a 1.15.3, che include una correzione di sicurezza
