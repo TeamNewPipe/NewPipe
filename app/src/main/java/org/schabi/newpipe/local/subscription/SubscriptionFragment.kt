@@ -250,6 +250,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
         binding.itemsList.adapter = groupAdapter
+        binding.itemsList.itemAnimator = null
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
