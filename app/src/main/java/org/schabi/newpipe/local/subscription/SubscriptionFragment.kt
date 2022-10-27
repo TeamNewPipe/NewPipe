@@ -423,6 +423,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         feedGroupsSortMenuItem.showSortButton = groups.size > 1
         feedGroupsSortMenuItem.listViewMode = listViewMode
         binding.itemsList.post {
+            if (context == null) {
+                // since this part was posted to the next UI cycle, the fragment might have been
+                // removed in the meantime
+                return@post
+            }
+
             feedGroupsCarousel.notifyChanged(FeedGroupCarouselItem.PAYLOAD_UPDATE_LIST_VIEW_MODE)
             feedGroupsSortMenuItem.notifyChanged(GroupsHeader.PAYLOAD_UPDATE_ICONS)
 
