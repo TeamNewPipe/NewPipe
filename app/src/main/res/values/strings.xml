@@ -751,4 +751,5 @@
     <string name="unknown_quality">Unknown quality</string>
     <string name="feed_toggle_show_future_items">Show future items</string>
     <string name="feed_toggle_hide_future_items">Hide future items</string>
+    <string name="sort">Sort</string>
 </resources>
