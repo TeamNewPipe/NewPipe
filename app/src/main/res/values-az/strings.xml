@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxunun.</string>
+    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxun.</string>
     <string name="upload_date_text">%1$s tarixində yayımlanıb</string>
     <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" yüklənilsin\?</string>
     <string name="no_player_found_toast">Yayım oynadıcı tapılmadı (baxmaq üçün \"VLC\"\'ni yükləyə bilərsiniz).</string>
     <string name="install">Yükləyin</string>
     <string name="cancel">İmtina</string>
-    <string name="open_in_browser">Brauzerdə açın</string>
+    <string name="open_in_browser">Brauzerdə aç</string>
     <string name="share">Paylaşın</string>
     <string name="download">Endirin</string>
     <string name="controls_download_desc">Yayım faylını endirin</string>
     <string name="search">Axtarın</string>
     <string name="settings">Tənzimləmələr</string>
-    <string name="did_you_mean">Bunu demək istədiniz: \"%1$s\"\?</string>
+    <string name="did_you_mean">Bunu nəzərdə tuturdunuz: \"%1$s\"\?</string>
     <string name="share_dialog_title">...ilə paylaşın</string>
     <string name="use_external_video_player_title">Xarici video oynadıcı istifadə edin</string>
     <string name="use_external_video_player_summary">Bəzi keyfiyyət seçimlərində səsi silir</string>
@@ -45,8 +45,8 @@
     <string name="dark_theme_title">Qaranlıq</string>
     <string name="black_theme_title">Qara</string>
     <string name="unsubscribe">Abunəlikdən çıxın</string>
-    <string name="open_in_popup_mode">Ani pəncərə rejimində açın</string>
-    <string name="autoplay_title">Avto-oynatma</string>
+    <string name="open_in_popup_mode">Ani pəncərə rejimində aç</string>
+    <string name="autoplay_title">Avtomatik oynatma</string>
     <string name="download_dialog_title">Endirin</string>
     <string name="resume_on_audio_focus_gain_summary">Fasilələrdən sonra (məsələn, telefon zəngləri) oynatmağa davam etdirin</string>
     <string name="resume_on_audio_focus_gain_title">Oynatmanı davam etdir</string>
@@ -90,7 +90,7 @@
     <string name="notification_action_0_title">Birinci fəaliyyət düyməsi</string>
     <string name="show_higher_resolutions_summary">Yalnız bəzi cihazlar 2K/4K videoları oynada bilir</string>
     <string name="default_popup_resolution_title">Defolt ani pəncərə keyfiyyəti</string>
-    <string name="controls_add_to_playlist_title">Əlavə Edin</string>
+    <string name="controls_add_to_playlist_title">Əlavə Et</string>
     <string name="controls_popup_title">Ani Pəncərə</string>
     <string name="tab_choose">Tabı Seçin</string>
     <string name="subscription_update_failed">Abunəliyi yeniləmək alınmadı</string>
@@ -138,7 +138,7 @@
     <string name="restricted_video">Bu video yaş məhdudiyyətlidir.
 \n
 \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
-    <string name="youtube_restricted_mode_enabled_summary">\"YouTube\" böyüklər üçün potensial məzmunu gizləyən \"Məhdud Rejim\" təmin edir</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
     <string name="peertube_instance_url_title">\"PeerTube\" serverləri</string>
     <string name="download_thumbnail_title">Miniatürləri yükləyin</string>
     <string name="notification_actions_at_most_three">Siz yığcam bildirişdə göstərilməsi üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
@@ -168,7 +168,7 @@
     <string name="best_resolution">Ən yaxşı keyfiyyət</string>
     <string name="clear">Təmizləyin</string>
     <string name="disabled">Qeyri-aktivdir</string>
-    <string name="artists">Rəssamlar</string>
+    <string name="artists">Sənətkarlar</string>
     <string name="albums">Albomlar</string>
     <string name="songs">Mahnılar</string>
     <string name="events">Hadisələr</string>
@@ -199,14 +199,14 @@
     <string name="no_channel_subscribed_yet">Hələ ki, kanal abunəliyi yoxdur</string>
     <string name="select_a_channel">Kanal seçin</string>
     <string name="channel_page_summary">Kanal Səhifəsi</string>
-    <string name="default_kiosk_page_summary">İlkin Köşk</string>
+    <string name="default_kiosk_page_summary">Defolt Köşk</string>
     <string name="kiosk_page_summary">Köşk Səhifəsi</string>
     <string name="blank_page_summary">Boş Səhifə</string>
-    <string name="main_page_content_summary">Ana səhifədə hansı tablar göstərilir</string>
-    <string name="main_page_content">Ana səhifənin məzmunu</string>
+    <string name="main_page_content_summary">Əsas səhifədə hansı tablar göstərilir</string>
+    <string name="main_page_content">Əsas səhifənin məzmunu</string>
     <string name="updates_setting_description">Yeni versiya mövcud olduqda tətbiq yeniləməsini xatırlatmaq üçün bildiriş göstər</string>
     <string name="updates_setting_title">Yeniləmələr</string>
-    <string name="limit_mobile_data_usage_title">Mobil internet istifadə edərkən görüntü keyfiyyətini məhdudlaşdırın</string>
+    <string name="limit_mobile_data_usage_title">Mobil internet istifadə edərkən görüntü keyfiyyətini məhdudlaşdır</string>
     <string name="limit_data_usage_none_description">Limitsiz</string>
     <string name="one_item_deleted">1 element silindi.</string>
     <string name="peertube_instance_add_title">Server əlavə edin</string>
@@ -217,7 +217,7 @@
     <string name="start_downloads">Endirmələrə başla</string>
     <string name="pause_downloads">Endirmələrə fasilə verin</string>
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
-    <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanacağı soruşulacaq.
+    <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
 \nXarici SD karta yükləmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
     <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Çərçivəsi \' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem defoltu</string>
@@ -261,7 +261,7 @@
     <string name="network_error">Şəbəkə xətası</string>
     <string name="download_to_sdcard_error_message">Xarici SD karta endirmək mümkün deyil. Endirmə qovluğunun yeri sıfırlansın\?</string>
     <string name="download_to_sdcard_error_title">Xarici yaddaş əlçatan deyil</string>
-    <string name="clear_views_history_summary">Oynadılmış yayımların tarixçəsini və oynatma mövqelərini silir</string>
+    <string name="clear_views_history_summary">Oynadılmış yayımlar tarixçəsini və oynatma mövqelərini silir</string>
     <string name="show_meta_info_title">Üst məlumatı göstər</string>
     <string name="show_description_summary">Video açıqlamasını və əlavə məlumatı gizlətmək üçün söndürün</string>
     <string name="show_description_title">Açıqlamanı göstər</string>
@@ -273,7 +273,7 @@
     <string name="video">Video</string>
     <string name="related_items_tab_description">Əlaqədar yayımlar</string>
     <string name="mark_as_watched">Baxılmış kimi işarələ</string>
-    <string name="open_with">...ilə açın</string>
+    <string name="open_with">...ilə aç</string>
     <string name="night_theme_title">Gecə Mövzusu</string>
     <string name="popup_remember_size_pos_title">Ani pəncərə xüsusiyyətlərini xatırla</string>
     <string name="popup_remember_size_pos_summary">Ani pəncərənin son ölçüsü və mövqeyini xatırla</string>
@@ -287,7 +287,7 @@
     <string name="player_recoverable_failure">Oynadıcı xətası bərpa edilir</string>
     <string name="player_unrecoverable_failure">Bərpa olunmayan oynatma xətası baş verdi</string>
     <string name="ok">Oldu</string>
-    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətidir.
+    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir.
 \nYaş məhdudiyyəti olan videolarla bağlı yeni YouTube siyasətlərinə görə, NewPipe bu cür video yayımlara daxil ola və oynada bilməz.</string>
     <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə verin</string>
@@ -347,13 +347,13 @@
     <string name="website_encouragement">Əlavə məlumat və xəbərlər üçün NewPipe Veb saytına daxil olun.</string>
     <string name="privacy_policy_title">NewPipe\'ın Məxfilik Siyasəti</string>
     <string name="privacy_policy_encouragement">NewPipe layihəsi məxfiliyinizə çox ciddi yanaşır. Buna görə də, tətbiq sizin razılığınız olmadan heç bir məlumat toplamır.
-\nNewPipe\'ın məxfilik siyasəti qəza hesabatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlandığını ətraflı izah edir.</string>
+\nNewPipe\'ın məxfilik siyasəti qəza hesabatı göndərdiyiniz zaman hansı məlumatların göndərildiyini və saxlanıldığını ətraflı izah edir.</string>
     <string name="read_privacy_policy">Məxfilik siyasətini oxuyun</string>
     <string name="app_license_title">NewPipe\'ın Lisenziyası</string>
     <string name="action_history">Tarixçə</string>
     <string name="delete_item_search_history">Bu elementi axtarış tarixçəsindən silmək istəyirsiniz\?</string>
     <string name="title_last_played">Son Oynadılan</string>
-    <string name="title_most_played">Ən çox oynadılan</string>
+    <string name="title_most_played">Ən Çox Oynadılan</string>
     <string name="select_a_kiosk">Köşk seçin</string>
     <string name="import_complete_toast">İdxal edildi</string>
     <string name="no_valid_zip_file">Etibarlı ZIP faylı yoxdur</string>
@@ -462,14 +462,14 @@
     <string name="error_http_not_found">Tapılmadı</string>
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanacağı soruşulacaq</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq</string>
     <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Çərçivəsi\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
     <string name="select_night_theme_toast">Sevdiyiniz gecə mövzusunu aşağıda seçə bilərsiniz</string>
-    <string name="notification_colorize_summary">Android\'in bildiriş rəngini miniatürdəki əsas rəngə uyğun fərdiləşdirməsini təmin edin(qeyd edək ki, bu, bütün cihazlarda mövcud deyil)</string>
+    <string name="notification_colorize_summary">Android\'in bildiriş rəngini miniatürdəki əsas rəngə uyğun fərdiləşdirilməsini təmin edin(qeyd edək ki, bu, bütün cihazlarda mövcud deyil)</string>
     <string name="view_on_github">GitHub\'da Baxın</string>
     <string name="donation_title">İanə Edin</string>
-    <string name="donation_encouragement">NewPipe, sizə ən yaxşı istifadəçi təcrübəsini göstərmək üçün boş vaxtlarını sərf edən könüllülər tərəfindən hazırlanmışdır. Tərtibatçılara bir fincan qəhvə içərkən NewPipe\'ı daha da yaxşılaşdırmağa kömək etmək üçün kömək edin.</string>
+    <string name="donation_encouragement">NewPipe, sizə ən yaxşı istifadəçi təcrübəsini göstərmək üçün boş vaxtlarını sərf edən könüllülər tərəfindən hazırlanmışdır. Tərtibatçılara bir fincan qəhvə içərkən NewPipe-ı daha da yaxşılaşdırmağa ianə etməklə kömək edin.</string>
     <string name="most_liked">Ən çox bəyənildi</string>
     <string name="enqueued">Növbəyə salındı</string>
     <string name="preferred_open_action_settings_summary">Məzmunu açarkən defolt hərəkət — %s</string>
@@ -492,10 +492,10 @@
 \nBu kanala abunəlikdən çıxmaq istəyirsiniz\?</string>
     <string name="feed_toggle_show_played_items">Baxılmış elementləri göstərin</string>
     <string name="featured">Seçilmiş</string>
-    <string name="drawer_close">Çəkməcəni Bağlayın</string>
+    <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>
     <string name="hash_channel_description">Video fayl xülasəsi prosesi üçün bildirişlər</string>
-    <string name="on">Açın</string>
+    <string name="on">Aç</string>
     <string name="notification_scale_to_square_image_title">Miniatürü 1:1 aspekt nisbətinə kəsin</string>
     <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdirin (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndürün</string>
@@ -509,10 +509,10 @@
     <string name="subtitle_activity_recaptcha">Həll edildikdə \"Bitdi\" düyməsini basın</string>
     <string name="select_a_playlist">Pleylist seçin</string>
     <string name="error_unable_to_load_comments">Şərhləri yükləmək mümkün olmadı</string>
-    <string name="trending">Populyar</string>
+    <string name="trending">Trenddə olan</string>
     <string name="play_queue_audio_settings">Səs Tənzimləmələri</string>
     <string name="preferred_player_fetcher_notification_title">Məlumat əldə edilir…</string>
-    <string name="show_original_time_ago_title">Elementlərdə əvvəlki vaxtı göstərin</string>
+    <string name="show_original_time_ago_title">Elementlərdə orijinal əvvəlki vaxtı göstərin</string>
     <string name="enable_disposed_exceptions_title">Yaşam dövrəsi xaricindəki xətaları bildirin</string>
     <string name="show_image_indicators_title">Şəkil göstəricilərini göstərin</string>
     <string name="show_image_indicators_summary">Şəkillərin üzərində mənbəsini göstərən Pikasso rəngli lentləri göstərin: şəbəkə üçün qırmızı, disk üçün mavi və yaddaş üçün yaşıl</string>
@@ -521,7 +521,7 @@
     <string name="error_progress_lost">Fayl silindiyi üçün irəliləyiş itirildi</string>
     <string name="max_retry_desc">Endirməni ləğv etməzdən əvvəl ümumi cəhdlərin sayı</string>
     <string name="pause_downloads_on_mobile">Ölçülmüş şəbəkələrdə dayandır</string>
-    <string name="enable_queue_limit">Endirmə növbəsini məhdudlaşdırın</string>
+    <string name="enable_queue_limit">Endirmə növbəsini məhdudlaşdır</string>
     <string name="enable_queue_limit_desc">Eyni vaxtda ancaq bir endirmə həyata keçiriləcək</string>
     <string name="account_terminated">Hesab ləğv edildi</string>
     <string name="service_provides_reason">%s bu səbəbi təmin edir:</string>
@@ -532,7 +532,7 @@
     <string name="description_select_enable">Açıqlamadakı mətni seçməyi aktivləşdirin</string>
     <string name="metadata_tags">Teqlər</string>
     <string name="tablet_mode_title">Planşet rejimi</string>
-    <string name="off">Bağlayın</string>
+    <string name="off">Bağla</string>
     <string name="detail_heart_img_view_description">Yaradıcısından ürəkləndi</string>
     <string name="open_website_license">Veb saytı açın</string>
     <plurals name="views">
@@ -585,7 +585,7 @@
     <string name="playlist_add_stream_success">Pleylistə salındı</string>
     <string name="mute">Səsi bağla</string>
     <string name="popup_player">Ani pəncərə oynadıcı</string>
-    <string name="drawer_open">Çəkməcəni Açın</string>
+    <string name="drawer_open">Çəkməcəni Aç</string>
     <string name="hold_to_append">Növbəyə saxlamaq üçün basılı tutun</string>
     <string name="play_queue_remove">Silin</string>
     <string name="app_description">Android\'də pulsuz yüngül yayımlayıcı.</string>
@@ -664,7 +664,7 @@
     <string name="settings_file_charset_title">Fayl adlarında icazə verilən simvollar</string>
     <string name="title_activity_about">NewPipe Haqqında</string>
     <string name="tab_licenses">Lisenziyalar</string>
-    <string name="app_license">NewPipe müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (sizin seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziyasının şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
+    <string name="app_license">NewPipe müəllif hüquqlu sərbəst tətbiqdir: Siz onu istədiyiniz zaman istifadə edə, öyrənə, paylaşa və təkmilləşdirə bilərsiniz. Xüsusilə, siz Lisenziyanın 3-cü versiyası və ya (seçiminizə görə) hər hansı sonrakı versiyada Azad Proqram Təminatı Fondu tərəfindən dərc edilən GNU Ümumi İctimai Lisenziyanın şərtlərinə uyğun olaraq onu yenidən paylaya və/yaxud dəyişdirə bilərsiniz.</string>
     <string name="export_complete_toast">İxrac edildi</string>
     <string name="main_page_content_swipe_remove">Elementləri silmək üçün sürüşdürün</string>
     <string name="no_playlist_bookmarked_yet">Hələ,əlfəcinlənmiş pleylistlər yoxdur</string>
@@ -681,7 +681,7 @@
 \n
 \n1. Bu URL\'ə keçin: %1$s
 \n2. Soruşulduqda daxil olun
-\n3.\"Bütün Məlumatlar Daxildir\",sonra \"Heçbirini Seçmə\", yalnız \"abunəliklər\"i seçin və \"OK\" kliklə
+\n3.\"Bütün Məlumatlar Daxildir\",sonra \"Heçbirini Seçmə\", yalnız \"abunəliklər\"i seçin və \"Oldu\" kliklə
 \n4. \"Növbəti addım\"üzərinə klikləyin, sonra isə \"İxrac Yarat\" üzərinə klikləyin
 \n5. Görünəndən sonra \"Endirin\"düyməsini basın
 \n6. Aşağıdakı FAYLI İDXAL ET düyməsinə klikləyin və endirilmiş .zip faylını seçin

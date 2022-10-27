@@ -96,7 +96,7 @@
     <string name="show_higher_resolutions_title">Tampilkan kualitas yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya perangkat tertentu saja yang bisa memutar video 2K/4K</string>
     <string name="controls_background_title">Latar Belakang</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Munculan</string>
     <string name="clear">Bersihkan</string>
     <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
@@ -200,7 +200,7 @@
     <string name="kiosk_page_summary">Halaman Kiosk</string>
     <string name="channel_page_summary">Halaman Channel</string>
     <string name="select_a_channel">Pilih channel</string>
-    <string name="no_channel_subscribed_yet">Belum ada langganan channel</string>
+    <string name="no_channel_subscribed_yet">Belum ada langganan saluran</string>
     <string name="select_a_kiosk">Pilih kiosk</string>
     <string name="export_complete_toast">Diekspor</string>
     <string name="import_complete_toast">Diimpor</string>
@@ -260,7 +260,7 @@
     <string name="auto_queue_title">Putar otomatis video berikutnya</string>
     <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
-    <string name="tab_subscriptions">Subscription</string>
+    <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
@@ -677,7 +677,7 @@
     <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
     <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>
     <string name="any_network">Jaringan apa saja</string>
-    <string name="get_notified">Beritahu saya</string>
+    <string name="get_notified">Beri tahu saya</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Alih semua</string>
     <plurals name="new_streams">
@@ -692,7 +692,7 @@
     <string name="streams_notification_channel_name">Stream baru</string>
     <string name="streams_notification_channel_description">Notifikasi tentang stream baru untuk langganan</string>
     <string name="enable_streams_notifications_title">Notifikasi stream baru</string>
-    <string name="enable_streams_notifications_summary">Beritahu tentang stream baru dari notifikasi</string>
+    <string name="enable_streams_notifications_summary">Beri tahu tentang stream baru dari notifikasi</string>
     <string name="you_successfully_subscribed">Anda sekarang berlangganan ke channel ini</string>
     <string name="semitone">Semiton</string>
     <string name="percent">Persen</string>

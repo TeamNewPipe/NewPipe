@@ -1,0 +1,4 @@
+0.17.2ko aldaketak
+
+Konpondu
+• Konpondu ez zegoen bideorik erabilgarri

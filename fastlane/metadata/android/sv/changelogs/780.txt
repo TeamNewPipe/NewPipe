@@ -1,0 +1,11 @@
+Ändringar i 0.17.3
+
+Förbättrat
+- Lägg till möjligheten att rensa uppspelningstillstånd #2550
+- Visa dolda kataloger i filväljaren #2591
+- Stöd för URL:er från `invidio.us`-instanser som öppnas med NewPipe #2488 
+- Lägg till stöd för webbadresser för `music.youtube.com` TeamNewPipe/NewPipeExtractor#194
+
+Fixade
+- [YouTube] Fastställande av att liveströmmar inte fungerade TeamNewPipe/NewPipeExtractor#195
+- Fastställt prestandaproblem i android pie när man laddar ner en stream #2592

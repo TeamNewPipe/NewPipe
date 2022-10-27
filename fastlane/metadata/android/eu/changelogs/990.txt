@@ -1,0 +1,15 @@
+Bertsio honek Android 4.4 KitKat onartzeari uzten dio, orain gutxieneko bertsioa Android 5 Lollipop da!
+
+Berria
+• Ukipen-luzeko menutik deskargatu
+• Jarioan etorkizuneko bideoak ezkutatu
+• Erreprodukzio-zerrenda lokalak partekatu
+
+Hobetua
+• Errefaktatu erreproduzigailuaren kodea osagai txikietan.
+• Miniaturen eskala-modua hobetu
+• Irudi leku-markak bektorizatu
+
+Konponduta
+• Erreproduzigailuaren jakinarazpenekin hainbat arazo konpondu
+• Pantaila osoak pantailaren 1/4 erabiltzen du

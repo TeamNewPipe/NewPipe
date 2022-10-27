@@ -1,0 +1,8 @@
+#### Förbättringar
+* Olika förbättringar av nedladdaren (#1944 av @kapodamy):
+  * Kontrollera om iteratorn är initialiserad (rättar #2031).
+  * Tillåter att nedladdningar med felet "post-processing failed" (efterbearbetning misslyckades) kan göras om i den nya muxern.
+  * Den nya MPEG-4-mixern fixar icke-synkrona video- och ljudströmmar (#2039).
+
+### Fixat
+* YouTube live streams slutar spelas upp efter en kort tid (#1996 av @yausername)

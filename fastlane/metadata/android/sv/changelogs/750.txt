@@ -1,0 +1,14 @@
+Nytt
+Uppspelning återupptas #2288
+Förbättringar av nedladdaren #2149 
+
+
+Förbättrad
+- Gör menyer med lång tryckning konsekventa #2368
+
+Fixat
+- Kraschar inte när kontrollen av appuppdatering misslyckas (GitHub-version) #2423 
+- Fixade nedladdningar som fastnade på 99,9 % #2440
+- Uppdatera metadata för uppspelningsköer #2453 
+- [SoundCloud] Fastställd krasch vid laddning av spellistor TeamNewPipe/NewPipeExtractor#170
+- YouTube] Fast varaktighet kan inte pareras TeamNewPipe/NewPipeExtractor#177

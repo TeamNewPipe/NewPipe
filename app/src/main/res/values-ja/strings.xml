@@ -704,6 +704,7 @@
     <string name="no_audio_streams_available_for_external_players">外部プレイヤーで利用可能な音声ストリームがありません</string>
     <string name="no_video_streams_available_for_external_players">外部プレイヤーで利用可能な動画ストリームがありません</string>
     <string name="select_quality_external_players">外部プレイヤーでの品質を選択</string>
-    <string name="feed_toggle_show_future_items">次の動画を表示する</string>
+    <string name="feed_toggle_show_future_items">次のアイテムを表示する</string>
     <string name="feed_toggle_hide_played_items">再生済みを隠す</string>
+    <string name="feed_toggle_hide_future_items">次のアイテムを隠す</string>
 </resources>

@@ -1,0 +1,11 @@
+### Improvements
+* downloaded files can now be opened with one click
+* drop support for android 4.1 - 4.3
+* remove streams from current play queue by swiping them to the right
+* remove auto queued stream when a new stream is enqueued manually
+* Postprocessing for downloads and implement missing features
+
+### Fixed
+* Fix crash with default resolution set to best and limited mobile data resolution
+* pop-up player crash fixed
+* NPE when trying to open background player
