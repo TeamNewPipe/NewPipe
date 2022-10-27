@@ -24,7 +24,7 @@ data class FeedGroupEntity(
     var icon: FeedGroupIcon,
 
     @ColumnInfo(name = SORT_ORDER)
-    var sortOrder: Long = -1,
+    var sortOrder: Long = -1
 ) {
     companion object {
         const val FEED_GROUP_TABLE = "feed_group"
