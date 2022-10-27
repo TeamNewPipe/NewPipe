@@ -413,16 +413,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private fun handleFeedGroups(groups: List<Group>) {
         val listViewMode = viewModel.getListViewMode()
 
-        carouselAdapter.clear()
-        carouselAdapter.add(if (listViewMode) FeedGroupAddNewItem() else FeedGroupAddNewGridItem())
-        carouselAdapter.add(
-            if (listViewMode)
-                FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS)
-            else
-                FeedGroupCardGridItem(-1, getString(R.string.all), FeedGroupIcon.RSS)
-        )
-        carouselAdapter.addAll(groups)
-
         if (feedGroupsCarouselState != null) {
             feedGroupsCarousel.onRestoreInstanceState(feedGroupsCarouselState)
             feedGroupsCarouselState = null
@@ -434,6 +424,19 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         binding.itemsList.post {
             feedGroupsCarousel.notifyChanged(FeedGroupCarouselItem.PAYLOAD_UPDATE_LIST_VIEW_MODE)
             feedGroupsSortMenuItem.notifyChanged(GroupsHeader.PAYLOAD_UPDATE_ICONS)
+
+            // update items here to prevent flickering
+            carouselAdapter.apply {
+                clear()
+                if (listViewMode) {
+                    add(FeedGroupAddNewItem())
+                    add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
+                } else {
+                    add(FeedGroupAddNewGridItem())
+                    add(FeedGroupCardGridItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
+                }
+                addAll(groups)
+            }
         }
     }
 
