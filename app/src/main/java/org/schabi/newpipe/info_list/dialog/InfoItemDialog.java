@@ -252,10 +252,10 @@ public final class InfoItemDialog {
          * @return the current {@link Builder} instance
          */
         public Builder addEnqueueEntriesIfNeeded() {
-            if (PlayerHolder.getInstance().isPlayQueueReady()) {
+            if (PlayerHolder.INSTANCE.isPlayQueueReady()) {
                 addEntry(StreamDialogDefaultEntry.ENQUEUE);
 
-                if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                if (PlayerHolder.INSTANCE.getQueueSize() > 1) {
                     addEntry(StreamDialogDefaultEntry.ENQUEUE_NEXT);
                 }
             }

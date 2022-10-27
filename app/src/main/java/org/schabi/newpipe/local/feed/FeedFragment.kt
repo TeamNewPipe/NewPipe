@@ -399,7 +399,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
                     requireContext(), fm,
-                    stream.serviceId, stream.url, stream.title, null, false
+                    stream.serviceId, stream.url, stream.title,
+                    true, false
                 )
             }
         }

@@ -73,7 +73,6 @@ public final class PlayerService extends Service {
             return START_NOT_STICKY;
         }
 
-        player.handleIntent(intent);
         player.UIs().get(MediaSessionPlayerUi.class)
                 .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
 

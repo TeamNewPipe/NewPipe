@@ -47,6 +47,7 @@ import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.bind.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Localization;
@@ -175,7 +176,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     final StreamEntity item =
                             ((PlaylistStreamEntry) selectedItem).getStreamEntity();
                     NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                            item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
+                            item.getServiceId(), item.getUrl(), item.getTitle(), true, false);
                 }
             }
 
@@ -505,24 +506,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         setVideoCount(itemListAdapter.getItemsList().size());
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
-            NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
+            NavigationHelper.openMainPlayerWithDetail(activity, getPlayQueue());
             showHoldToAppendTipIfNeeded();
         });
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
-            NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
+            PlayerHolder.INSTANCE.start(PlayerType.POPUP, getPlayQueue());
             showHoldToAppendTipIfNeeded();
         });
         playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
-            NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
+            PlayerHolder.INSTANCE.start(PlayerType.AUDIO, getPlayQueue());
             showHoldToAppendTipIfNeeded();
         });
+
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
+            PlayerHolder.INSTANCE.startOrEnqueue(PlayerType.POPUP, getPlayQueue());
             return true;
         });
-
         playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
+            PlayerHolder.INSTANCE.startOrEnqueue(PlayerType.AUDIO, getPlayQueue());
             return true;
         });
 
@@ -792,8 +793,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             dialogBuilder
                     .setAction(
                             StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
+                            (f, i) -> PlayerHolder.INSTANCE.start(PlayerType.AUDIO,
+                                    getPlayQueueStartingAt(item)))
                     .setAction(
                             StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
                             (f, i) ->

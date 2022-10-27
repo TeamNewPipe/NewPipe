@@ -62,8 +62,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.PlayerType;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.bind.PlayerHolder;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -90,8 +90,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -630,7 +628,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         // ...the player is not running or in normal Video-mode/type
-        final PlayerType playerType = PlayerHolder.getInstance().getType();
+        final PlayerType playerType = PlayerHolder.INSTANCE.getType();
         return playerType == null || playerType == PlayerType.MAIN;
     }
 
@@ -738,7 +736,7 @@ public class RouterActivity extends AppCompatActivity {
 
         public static final String KEY_CHOICE = "key_choice";
         private static final int ID = 456;
-        private Disposable fetcher;
+        private final CompositeDisposable disposables = new CompositeDisposable();
 
         public FetcherService() {
             super(FetcherService.class.getSimpleName());
@@ -765,8 +763,8 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         public void handleChoice(final Choice choice) {
-            Single<? extends Info> single = null;
-            UserAction userAction = UserAction.SOMETHING_ELSE;
+            final Single<? extends Info> single;
+            final UserAction userAction;
 
             switch (choice.linkType) {
                 case STREAM:
@@ -781,73 +779,68 @@ public class RouterActivity extends AppCompatActivity {
                     single = ExtractorHelper.getPlaylistInfo(choice.serviceId, choice.url, false);
                     userAction = UserAction.REQUESTED_PLAYLIST;
                     break;
+                default:
+                    return;
             }
 
-
-            if (single != null) {
-                final UserAction finalUserAction = userAction;
-                final Consumer<Info> resultHandler = getResultHandler(choice);
-                fetcher = single
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(info -> {
-                            resultHandler.accept(info);
-                            if (fetcher != null) {
-                                fetcher.dispose();
-                            }
-                        }, throwable -> handleError(this, new ErrorInfo(throwable, finalUserAction,
-                                choice.url + " opened with " + choice.playerChoice,
-                                choice.serviceId)));
-            }
+            disposables.add(single
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            info -> handleResult(choice, info),
+                            throwable -> handleError(this, new ErrorInfo(throwable, userAction,
+                                    choice.url + " opened with " + choice.playerChoice,
+                                    choice.serviceId))
+                    ));
         }
 
-        public Consumer<Info> getResultHandler(final Choice choice) {
-            return info -> {
-                final String videoPlayerKey = getString(R.string.video_player_key);
-                final String backgroundPlayerKey = getString(R.string.background_player_key);
-                final String popupPlayerKey = getString(R.string.popup_player_key);
+        public void handleResult(final Choice choice, final Info info) {
+            final String videoPlayerKey = getString(R.string.video_player_key);
+            final String backgroundPlayerKey = getString(R.string.background_player_key);
+            final String popupPlayerKey = getString(R.string.popup_player_key);
 
-                final SharedPreferences preferences = PreferenceManager
-                        .getDefaultSharedPreferences(this);
-                final boolean isExtVideoEnabled = preferences.getBoolean(
-                        getString(R.string.use_external_video_player_key), false);
-                final boolean isExtAudioEnabled = preferences.getBoolean(
-                        getString(R.string.use_external_audio_player_key), false);
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            final boolean isExtVideoEnabled = preferences.getBoolean(
+                    getString(R.string.use_external_video_player_key), false);
+            final boolean isExtAudioEnabled = preferences.getBoolean(
+                    getString(R.string.use_external_audio_player_key), false);
 
-                final PlayQueue playQueue;
-                if (info instanceof StreamInfo) {
-                    if (choice.playerChoice.equals(backgroundPlayerKey) && isExtAudioEnabled) {
-                        NavigationHelper.playOnExternalAudioPlayer(this, (StreamInfo) info);
-                        return;
-                    } else if (choice.playerChoice.equals(videoPlayerKey) && isExtVideoEnabled) {
-                        NavigationHelper.playOnExternalVideoPlayer(this, (StreamInfo) info);
-                        return;
-                    }
-                    playQueue = new SinglePlayQueue((StreamInfo) info);
-                } else if (info instanceof ChannelInfo) {
-                    playQueue = new ChannelPlayQueue((ChannelInfo) info);
-                } else if (info instanceof PlaylistInfo) {
-                    playQueue = new PlaylistPlayQueue((PlaylistInfo) info);
-                } else {
+            final PlayQueue playQueue;
+            if (info instanceof StreamInfo) {
+                if (choice.playerChoice.equals(backgroundPlayerKey) && isExtAudioEnabled) {
+                    NavigationHelper.playOnExternalAudioPlayer(this, (StreamInfo) info);
+                    return;
+                } else if (choice.playerChoice.equals(videoPlayerKey) && isExtVideoEnabled) {
+                    NavigationHelper.playOnExternalVideoPlayer(this, (StreamInfo) info);
                     return;
                 }
+                playQueue = new SinglePlayQueue((StreamInfo) info);
+            } else if (info instanceof ChannelInfo) {
+                playQueue = new ChannelPlayQueue((ChannelInfo) info);
+            } else if (info instanceof PlaylistInfo) {
+                playQueue = new PlaylistPlayQueue((PlaylistInfo) info);
+            } else {
+                return;
+            }
 
-                if (choice.playerChoice.equals(videoPlayerKey)) {
-                    NavigationHelper.playOnMainPlayer(this, playQueue, false);
-                } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
-                    NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
-                } else if (choice.playerChoice.equals(popupPlayerKey)) {
-                    NavigationHelper.playOnPopupPlayer(this, playQueue, true);
-                }
-            };
+            final PlayerType playerType;
+            if (choice.playerChoice.equals(backgroundPlayerKey)) {
+                playerType = PlayerType.AUDIO;
+            } else if (choice.playerChoice.equals(popupPlayerKey)) {
+                playerType = PlayerType.POPUP;
+            } else {
+                playerType = PlayerType.MAIN;
+                // TODO start video detail fragment
+            }
+
+            PlayerHolder.INSTANCE.start(playerType, playQueue);
         }
 
         @Override
         public void onDestroy() {
             super.onDestroy();
             ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
-            if (fetcher != null) {
-                fetcher.dispose();
-            }
+            disposables.dispose();
         }
 
         private NotificationCompat.Builder createNotification() {

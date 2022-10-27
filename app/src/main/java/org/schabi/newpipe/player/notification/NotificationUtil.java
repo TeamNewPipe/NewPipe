@@ -344,8 +344,7 @@ public final class NotificationUtil {
             return NavigationHelper.getPlayQueueActivityIntent(player.getContext());
         } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
-            final Intent intent = NavigationHelper.getPlayerIntent(
-                    player.getContext(), MainActivity.class, null, true);
+            final Intent intent = new Intent(player.getContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);

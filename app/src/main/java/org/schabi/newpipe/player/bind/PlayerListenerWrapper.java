@@ -111,11 +111,9 @@ public class PlayerListenerWrapper implements PlayerServiceExtendedEventListener
     }
 
     @Override
-    public void onServiceConnected(final Player player,
-                                   final PlayerService playerService,
-                                   final boolean playAfterConnect) {
+    public void onServiceConnected(final Player player, final PlayerService playerService) {
         if (listener != null) {
-            listener.onServiceConnected(player, playerService, playAfterConnect);
+            listener.onServiceConnected(player, playerService);
         }
     }
 

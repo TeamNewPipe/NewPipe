@@ -47,12 +47,6 @@ public abstract class PlayerUi {
 
 
     /**
-     * Called after the player received an intent and processed it.
-     */
-    public void setupAfterIntent() {
-    }
-
-    /**
      * Called right after the exoplayer instance is constructed, or right after this UI is
      * constructed if the exoplayer is already available then. Note that the exoplayer instance
      * could be built and destroyed multiple times during the lifetime of the player, so this method

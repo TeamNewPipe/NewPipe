@@ -147,6 +147,10 @@ public abstract class VideoPlayerUi extends PlayerUi
         super(player);
         binding = playerBinding;
         setupFromView();
+        setupElementsVisibility();
+        setupElementsSize(context.getResources());
+        binding.getRoot().setVisibility(View.VISIBLE);
+        binding.playPauseButton.requestFocus();
     }
 
     public void setupFromView() {
@@ -348,15 +352,6 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.fastSeekOverlay
                 .seekSecondsSupplier(null)
                 .performListener(null);
-    }
-
-    @Override
-    public void setupAfterIntent() {
-        super.setupAfterIntent();
-        setupElementsVisibility();
-        setupElementsSize(context.getResources());
-        binding.getRoot().setVisibility(View.VISIBLE);
-        binding.playPauseButton.requestFocus();
     }
 
     @Override
@@ -1354,8 +1349,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         } else if (v.getId() == binding.openInBrowser.getId()) {
             onOpenInBrowserClicked();
         } else if (v.getId() == binding.fullScreenButton.getId()) {
-            player.setRecovery();
-            NavigationHelper.playOnMainPlayer(context, player.getPlayQueue(), true);
+            // forceDirectlyFullscreen=true since this is a fullscreen button
+            NavigationHelper.switchToMainPlayerWithDetail(context, true);
             return;
         } else if (v.getId() == binding.switchMute.getId()) {
             player.toggleMute();

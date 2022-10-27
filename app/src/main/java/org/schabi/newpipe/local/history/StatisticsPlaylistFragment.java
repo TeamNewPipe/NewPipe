@@ -30,6 +30,8 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.bind.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.settings.HistorySettingsFragment;
@@ -142,7 +144,7 @@ public class StatisticsPlaylistFragment
                     final StreamEntity item =
                             ((StreamStatisticsEntry) selectedItem).getStreamEntity();
                     NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                            item.getServiceId(), item.getUrl(), item.getTitle(), null, false);
+                            item.getServiceId(), item.getUrl(), item.getTitle(), true, false);
                 }
             }
 
@@ -277,11 +279,11 @@ public class StatisticsPlaylistFragment
         }
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.openMainPlayerWithDetail(activity, getPlayQueue()));
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
+                PlayerHolder.INSTANCE.start(PlayerType.POPUP, getPlayQueue()));
         playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
+                PlayerHolder.INSTANCE.start(PlayerType.AUDIO, getPlayQueue()));
         headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
 
         hideLoading();
@@ -340,8 +342,8 @@ public class StatisticsPlaylistFragment
                                     Math.max(itemListAdapter.getItemsList().indexOf(item), 0)))
                     .setAction(
                             StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
+                            (f, i) -> PlayerHolder.INSTANCE.start(PlayerType.AUDIO,
+                                    getPlayQueueStartingAt(item)))
                     .create()
                     .show();
         } catch (final IllegalArgumentException e) {

@@ -742,18 +742,14 @@ public class MainActivity extends AppCompatActivity {
                 assert linkType != null;
                 switch (linkType) {
                     case STREAM:
-                        final String intentCacheKey = intent.getStringExtra(
-                                Player.PLAY_QUEUE_KEY);
-                        final PlayQueue playQueue = intentCacheKey != null
-                                ? SerializedCache.getInstance()
-                                .take(intentCacheKey, PlayQueue.class)
-                                : null;
+                        final boolean playWhenLoadedIfPossible = intent.getBooleanExtra(
+                                Constants.KEY_PLAY_WHEN_LOADED_IF_POSSIBLE, true);
+                        final boolean forceDirectlyFullscreen = intent.getBooleanExtra(
+                                Constants.KEY_FORCE_DIRECTLY_FULLSCREEN, false);
 
-                        final boolean switchingPlayers = intent.getBooleanExtra(
-                                VideoDetailFragment.KEY_SWITCHING_PLAYERS, false);
-                        NavigationHelper.openVideoDetailFragment(
-                                getApplicationContext(), getSupportFragmentManager(),
-                                serviceId, url, title, playQueue, switchingPlayers);
+                        NavigationHelper.openVideoDetailFragment(getApplicationContext(),
+                                getSupportFragmentManager(), serviceId, url, title,
+                                playWhenLoadedIfPossible, forceDirectlyFullscreen);
                         break;
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
@@ -802,7 +798,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.INSTANCE.isPlayerOpen()) {
             // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {

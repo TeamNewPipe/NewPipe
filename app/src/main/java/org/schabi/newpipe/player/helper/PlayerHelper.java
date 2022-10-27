@@ -45,6 +45,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.lang.annotation.Retention;
@@ -475,11 +476,10 @@ public final class PlayerHelper {
         return newResizeMode;
     }
 
-    public static PlaybackParameters retrievePlaybackParametersFromPrefs(final Player player) {
-        final float speed = player.getPrefs().getFloat(player.getContext().getString(
-                R.string.playback_speed_key), player.getPlaybackSpeed());
-        final float pitch = player.getPrefs().getFloat(player.getContext().getString(
-                R.string.playback_pitch_key), player.getPlaybackPitch());
+    public static PlaybackParameters retrievePlaybackParametersFromPrefs(final Context context) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final float speed = prefs.getFloat(context.getString(R.string.playback_speed_key), 1.0f);
+        final float pitch = prefs.getFloat(context.getString(R.string.playback_pitch_key), 1.0f);
         return new PlaybackParameters(speed, pitch);
     }
 

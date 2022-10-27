@@ -55,6 +55,7 @@ import org.schabi.newpipe.info_list.StreamSegmentAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
 import org.schabi.newpipe.player.gesture.MainPlayerGestureListener;
@@ -105,29 +106,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public MainPlayerUi(@NonNull final Player player,
                         @NonNull final PlayerBinding playerBinding) {
         super(player, playerBinding);
-    }
-
-    /**
-     * Open fullscreen on tablets where the option to have the main player start automatically in
-     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
-     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
-     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
-     */
-    private void directlyOpenFullscreenIfNeeded() {
-        if (PlayerHelper.isStartMainPlayerFullscreenEnabled(player.getService())
-                && DeviceUtils.isTablet(player.getService())
-                && PlayerHelper.globalScreenOrientationLocked(player.getService())) {
-            player.getFragmentListener().ifPresent(
-                    PlayerServiceEventListener::onScreenRotationButtonClicked);
-        }
-    }
-
-    @Override
-    public void setupAfterIntent() {
-        // needed for tablets, check the function for a better explanation
-        directlyOpenFullscreenIfNeeded();
-
-        super.setupAfterIntent();
 
         initVideoPlayer();
         // Android TV: without it focus will frame the whole player
@@ -349,10 +327,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                     player.useVideoSource(false);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
-                    getParentActivity().ifPresent(activity -> {
-                        player.setRecovery();
-                        NavigationHelper.playOnPopupPlayer(activity, player.getPlayQueue(), true);
-                    });
+                    player.changeType(PlayerType.POPUP);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_NONE: default:
                     player.pause();

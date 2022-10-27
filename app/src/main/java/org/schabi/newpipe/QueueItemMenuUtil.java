@@ -46,9 +46,8 @@ public final class QueueItemMenuUtil {
                     return true;
                 case R.id.menu_item_details:
                     // playQueue is null since we don't want any queue change
-                    NavigationHelper.openVideoDetail(context, item.getServiceId(),
-                            item.getUrl(), item.getTitle(), null,
-                            false);
+                    NavigationHelper.openVideoDetail(context,
+                            item.getServiceId(), item.getUrl(), item.getTitle(), false, false);
                     return true;
                 case R.id.menu_item_append_playlist:
                     PlaylistDialog.createCorrespondingDialog(

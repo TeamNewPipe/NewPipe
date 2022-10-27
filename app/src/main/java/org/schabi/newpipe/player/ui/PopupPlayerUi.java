@@ -91,11 +91,6 @@ public final class PopupPlayerUi extends VideoPlayerUi {
                          @NonNull final PlayerBinding playerBinding) {
         super(player, playerBinding);
         windowManager = ContextCompat.getSystemService(context, WindowManager.class);
-    }
-
-    @Override
-    public void setupAfterIntent() {
-        super.setupAfterIntent();
         initPopup();
         initPopupCloseOverlay();
     }

@@ -29,9 +29,7 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
@@ -100,11 +98,13 @@ import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.helper.PlayerState;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
+import org.schabi.newpipe.player.playqueue.EmptyPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
@@ -117,9 +117,7 @@ import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ListHelper;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
-import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
 import java.util.List;
@@ -149,20 +147,6 @@ public final class Player implements PlaybackListener, Listener {
     public static final int STATE_COMPLETED = 128;
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Intent
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public static final String REPEAT_MODE = "repeat_mode";
-    public static final String PLAYBACK_QUALITY = "playback_quality";
-    public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String ENQUEUE = "enqueue";
-    public static final String ENQUEUE_NEXT = "enqueue_next";
-    public static final String RESUME_PLAYBACK = "resume_playback";
-    public static final String PLAY_WHEN_READY = "play_when_ready";
-    public static final String PLAYER_TYPE = "player_type";
-    public static final String IS_MUTED = "is_muted";
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Time constants
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -180,8 +164,7 @@ public final class Player implements PlaybackListener, Listener {
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    // play queue might be null e.g. while player is starting
-    @Nullable private PlayQueue playQueue;
+    @NonNull private PlayQueue playQueue = new EmptyPlayQueue();
 
     @Nullable private MediaSourceManager playQueueManager;
 
@@ -304,145 +287,9 @@ public final class Player implements PlaybackListener, Listener {
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Playback initialization via intent
+    // Initialization
     //////////////////////////////////////////////////////////////////////////*/
-    //region Playback initialization via intent
-
-    @SuppressWarnings("MethodLength")
-    public void handleIntent(@NonNull final Intent intent) {
-        // fail fast if no play queue was provided
-        final String queueCache = intent.getStringExtra(PLAY_QUEUE_KEY);
-        if (queueCache == null) {
-            return;
-        }
-        final PlayQueue newQueue = SerializedCache.getInstance().take(queueCache, PlayQueue.class);
-        if (newQueue == null) {
-            return;
-        }
-
-        final PlayerType oldPlayerType = playerType;
-        playerType = PlayerType.retrieveFromIntent(intent);
-        initUIsForCurrentPlayerType();
-        // We need to setup audioOnly before super(), see "sourceOf"
-        isAudioOnly = audioPlayerSelected();
-
-        if (intent.hasExtra(PLAYBACK_QUALITY)) {
-            setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
-        }
-
-        // Resolve enqueue intents
-        if (intent.getBooleanExtra(ENQUEUE, false) && playQueue != null) {
-            playQueue.append(newQueue.getStreams());
-            return;
-
-        // Resolve enqueue next intents
-        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
-            final int currentIndex = playQueue.getIndex();
-            playQueue.append(newQueue.getStreams());
-            playQueue.move(playQueue.size() - 1, currentIndex + 1);
-            return;
-        }
-
-        final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
-        final float playbackSpeed = savedParameters.speed;
-        final float playbackPitch = savedParameters.pitch;
-        final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
-                R.string.playback_skip_silence_key), getPlaybackSkipSilence());
-
-        final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
-        final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
-        final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
-        final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
-
-        /*
-         * TODO As seen in #7427 this does not work:
-         * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
-         * 1. User pressed on a timestamp link and the same video should be rewound to the timestamp
-         * 2. User changed a player from, for example. main to popup, or from audio to main, etc
-         * 3. User chose to resume a video based on a saved timestamp from history of played videos
-         * In those cases time will be saved because re-init of the play queue is a not an instant
-         *  task and requires network calls
-         * */
-        // seek to timestamp if stream is already playing
-        if (!exoPlayerIsNull()
-                && newQueue.size() == 1 && newQueue.getItem() != null
-                && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
-                && newQueue.getItem().getUrl().equals(playQueue.getItem().getUrl())
-                && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-            // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry in this case
-            if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
-            }
-            simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
-            simpleExoPlayer.setPlayWhenReady(playWhenReady);
-
-        } else if (!exoPlayerIsNull()
-                && samePlayQueue
-                && playQueue != null
-                && !playQueue.isDisposed()) {
-            // Do not re-init the same PlayQueue. Save time
-            // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry in this case
-            if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
-            }
-            simpleExoPlayer.setPlayWhenReady(playWhenReady);
-
-        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
-                && isPlaybackResumeEnabled(this)
-                && !samePlayQueue
-                && !newQueue.isEmpty()
-                && newQueue.getItem() != null
-                && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
-            databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    // Do not place initPlayback() in doFinally() because
-                    // it restarts playback after destroy()
-                    //.doFinally()
-                    .subscribe(
-                            state -> {
-                                if (!state.isFinished(newQueue.getItem().getDuration())) {
-                                    // resume playback only if the stream was not played to the end
-                                    newQueue.setRecovery(newQueue.getIndex(),
-                                            state.getProgressMillis());
-                                }
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
-                            },
-                            error -> {
-                                if (DEBUG) {
-                                    Log.w(TAG, "Failed to start playback", error);
-                                }
-                                // In case any error we can start playback without history
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
-                            },
-                            () -> {
-                                // Completed but not found in history
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
-                            }
-                    ));
-        } else {
-            // Good to go...
-            // In a case of equal PlayQueues we can re-init old one but only when it is disposed
-            initPlayback(samePlayQueue ? playQueue : newQueue, repeatMode, playbackSpeed,
-                    playbackPitch, playbackSkipSilence, playWhenReady, isMuted);
-        }
-
-        if (oldPlayerType != playerType && playQueue != null) {
-            // If playerType changes from one to another we should reload the player
-            // (to disable/enable video stream or to set quality)
-            setRecovery();
-            reloadPlayQueueManager();
-        }
-
-        UIs.call(PlayerUi::setupAfterIntent);
-        NavigationHelper.sendPlayerStartedEvent(context);
-    }
+    //region Initialization
 
     private void initUIsForCurrentPlayerType() {
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
@@ -476,40 +323,30 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
-    private void initPlayback(@NonNull final PlayQueue queue,
-                              @RepeatMode final int repeatMode,
-                              final float playbackSpeed,
-                              final float playbackPitch,
-                              final boolean playbackSkipSilence,
-                              final boolean playOnReady,
-                              final boolean isMuted) {
-        destroyPlayer();
-        initPlayer(playOnReady);
-        setRepeatMode(repeatMode);
-        setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
+    private void initPlayback() {
+        final PlayerState previousState = PlayerState.from(this);
+        if (DEBUG) {
+            Log.d(TAG, "initPlayback() called, previousState = [" + previousState + "]");
+        }
 
-        playQueue = queue;
+        destroyPlayer();
+        initPlayer();
+        previousState.restore(this);
+
         playQueue.init();
         reloadPlayQueueManager();
 
         UIs.call(PlayerUi::initPlayback);
-
-        simpleExoPlayer.setVolume(isMuted ? 0 : 1);
         notifyQueueUpdateToListeners();
     }
 
-    private void initPlayer(final boolean playOnReady) {
-        if (DEBUG) {
-            Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");
-        }
-
+    private void initPlayer() {
         simpleExoPlayer = new ExoPlayer.Builder(context, renderFactory)
                 .setTrackSelector(trackSelector)
                 .setLoadControl(loadController)
                 .setUsePlatformDiagnostics(false)
                 .build();
         simpleExoPlayer.addListener(this);
-        simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
@@ -536,6 +373,74 @@ public final class Player implements PlaybackListener, Listener {
     //endregion
 
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Actions
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Actions
+
+    /**
+     * Initializes the player, changing state before calling this if the exoplayer is null will
+     * do nothing.
+     * @param newQueue
+     */
+    public void changePlayQueue(final PlayQueue newQueue) {
+        if (DEBUG) {
+            Log.d(TAG, "changePlayQueue() changing queue from " + playQueue + " to " + newQueue);
+        }
+
+        if (newQueue.size() == 1 && newQueue.getItem() != null
+                && playQueue.size() == 1 && playQueue.getItem() != null
+                && newQueue.getItem().getUrl().equals(playQueue.getItem().getUrl())
+                && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+            // The state might be "IDLE" because playback stopped or failed, so we should retry.
+            if (simpleExoPlayer.getPlaybackState()
+                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
+                simpleExoPlayer.prepare();
+            }
+            simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
+
+        } else if (!exoPlayerIsNull()
+                && playQueue.equals(newQueue)
+                && !playQueue.isDisposed()) {
+            // Do not re-init the same PlayQueue to save time.
+            // The state might be "IDLE" because playback stopped or failed, so we should retry.
+            if (simpleExoPlayer.getPlaybackState()
+                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
+                simpleExoPlayer.prepare();
+            }
+
+        } else {
+            // TODO cambia play queue
+            playQueue.dispose();
+            playQueue = newQueue;
+            initPlayback();
+        }
+    }
+
+    public void changeType(final PlayerType newType) {
+        if (DEBUG) {
+            Log.d(TAG, "changeType() changing type from " + playerType + " to " + newType);
+        }
+
+        if (newType != playerType) {
+            playerType = newType;
+
+            // We need to setup audioOnly before super(), see "sourceOf" TODO what?
+            isAudioOnly = audioPlayerSelected();
+
+            // If playerType changes from one to another we should reload the player
+            // (to disable/enable video stream or to set quality)
+            setRecovery();
+            if (playQueue.getBroadcastReceiver() != null) {
+                reloadPlayQueueManager();
+            }
+        }
+
+        initUIsForCurrentPlayerType();
+    }
+    //endregion
+
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Destroy and recovery
@@ -556,9 +461,7 @@ public final class Player implements PlaybackListener, Listener {
         if (isProgressLoopRunning()) {
             stopProgressLoop();
         }
-        if (playQueue != null) {
-            playQueue.dispose();
-        }
+        playQueue.dispose();
         if (audioReactor != null) {
             audioReactor.dispose();
         }
@@ -614,10 +517,7 @@ public final class Player implements PlaybackListener, Listener {
         if (playQueueManager != null) {
             playQueueManager.dispose();
         }
-
-        if (playQueue != null) {
-            playQueueManager = new MediaSourceManager(this, playQueue);
-        }
+        playQueueManager = new MediaSourceManager(this, playQueue);
     }
 
     @Override // own playback listener
@@ -2227,7 +2127,6 @@ public final class Player implements PlaybackListener, Listener {
     }
 
 
-    @Nullable
     public PlayQueue getPlayQueue() {
         return playQueue;
     }

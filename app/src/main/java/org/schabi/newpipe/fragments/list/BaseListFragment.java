@@ -373,7 +373,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         onItemSelected(selectedItem);
         NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
                 selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
-                null, false);
+                true, false);
     }
 
     protected void onScrollToBottom() {

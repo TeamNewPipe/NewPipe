@@ -14,6 +14,9 @@ const val KEY_LINK_TYPE = "key_link_type"
 const val KEY_OPEN_SEARCH = "key_open_search"
 const val KEY_SEARCH_STRING = "key_search_string"
 
+const val KEY_PLAY_WHEN_LOADED_IF_POSSIBLE = "play_when_loaded_if_possible"
+const val KEY_FORCE_DIRECTLY_FULLSCREEN = "force_directly_fullscreen"
+
 const val KEY_THEME_CHANGE = "key_theme_change"
 const val KEY_MAIN_PAGE_CHANGE = "key_main_page_change"
 

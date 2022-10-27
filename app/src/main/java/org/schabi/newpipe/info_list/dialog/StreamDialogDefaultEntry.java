@@ -16,6 +16,8 @@ import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.bind.PlayerHolder;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -50,8 +52,7 @@ public enum StreamDialogDefaultEntry {
      * Enqueues the stream automatically to the current PlayerType.
      */
     ENQUEUE(R.string.enqueue_stream, (fragment, item) ->
-            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.enqueueOnPlayer(fragment.getContext(), singlePlayQueue))
+            fetchItemInfoIfSparse(fragment.requireContext(), item, PlayerHolder.INSTANCE::enqueue)
     ),
 
     /**
@@ -60,17 +61,16 @@ public enum StreamDialogDefaultEntry {
      */
     ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) ->
             fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), singlePlayQueue))
+                PlayerHolder.INSTANCE.enqueueNext(singlePlayQueue.getItem()))
     ),
 
     START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) ->
             fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.playOnBackgroundPlayer(
-                        fragment.getContext(), singlePlayQueue, true))),
+                PlayerHolder.INSTANCE.start(PlayerType.AUDIO, singlePlayQueue))),
 
     START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) ->
             fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
-                NavigationHelper.playOnPopupPlayer(fragment.getContext(), singlePlayQueue, true))),
+                PlayerHolder.INSTANCE.start(PlayerType.POPUP, singlePlayQueue))),
 
     SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
         throw new UnsupportedOperationException("This needs to be implemented manually "

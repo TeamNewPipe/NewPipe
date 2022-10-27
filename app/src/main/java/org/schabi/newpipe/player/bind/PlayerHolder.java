@@ -12,26 +12,31 @@ import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.playqueue.EmptyPlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-public final class PlayerHolder {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-    private PlayerHolder() {
-    }
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-    private static PlayerHolder instance;
-    public static synchronized PlayerHolder getInstance() {
-        if (PlayerHolder.instance == null) {
-            PlayerHolder.instance = new PlayerHolder();
-        }
-        return PlayerHolder.instance;
-    }
+public enum PlayerHolder {
+    INSTANCE;
 
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = PlayerHolder.class.getSimpleName();
+
 
     private final PlayerListenerWrapper listenerWrapper =
             new PlayerListenerWrapper(() -> unbind(getCommonContext()));
@@ -40,6 +45,15 @@ public final class PlayerHolder {
     private boolean bound;
     @Nullable private PlayerService playerService;
     @Nullable private Player player;
+
+    private final List<Consumer<Player>> actionsWhenConnected = new ArrayList<>();
+    private final CompositeDisposable disposables = new CompositeDisposable();
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Utils
 
     /**
      * Returns the current {@link PlayerType} of the {@link PlayerService} service,
@@ -75,10 +89,6 @@ public final class PlayerHolder {
         return player != null && player.getPlayQueue() != null;
     }
 
-    public boolean isBound() {
-        return bound;
-    }
-
     public int getQueueSize() {
         if (player == null || player.getPlayQueue() == null) {
             // player play queue might be null e.g. while player is starting
@@ -86,26 +96,33 @@ public final class PlayerHolder {
         }
         return player.getPlayQueue().size();
     }
+    //endregion
 
-    // helper to handle context in common place as using the same
-    // context to bind/unbind a service is crucial
-    private Context getCommonContext() {
-        return App.getApp();
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Service
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Service
+
+    public boolean isBound() {
+        return bound;
     }
 
-    public void startService(final boolean playAfterConnect,
-                             final PlayerServiceExtendedEventListener newListener) {
-        final Context context = getCommonContext();
-        setListener(newListener);
+    private void startService() {
         if (bound) {
             return;
         }
-        // startService() can be called concurrently and it will give a random crashes
-        // and NullPointerExceptions inside the service because the service will be
-        // bound twice. Prevent it with unbinding first
+
+        // clear actions to execute on connection
+        disposables.clear();
+        actionsWhenConnected.clear();
+
+        // startPlayerService() can be called concurrently and it will give random crashes and
+        // NullPointerExceptions inside the service because the service will be bound twice. Prevent
+        // it with unbinding first
+        final Context context = getCommonContext();
         unbind(context);
         ContextCompat.startForegroundService(context, new Intent(context, PlayerService.class));
-        serviceConnection.doPlayAfterConnect(playAfterConnect);
         bind(context);
     }
 
@@ -120,11 +137,103 @@ public final class PlayerHolder {
 
         // Force reload data from service
         if (player != null) {
-            listenerWrapper.onServiceConnected(player, playerService, false);
+            listenerWrapper.onServiceConnected(player, playerService);
             startPlayerListener();
         }
     }
 
+    public Optional<Player> getPlayer() {
+        return Optional.ofNullable(player);
+    }
+    //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Starting and modifying the player
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Starting and modifying the player
+
+    public void start(final PlayerType type, final PlayQueue queue) {
+        startService();
+        loadStreamStateAndRunAction(queue, (player, queueWithStreamState) -> {
+            player.changeType(type);
+            player.changePlayQueue(queueWithStreamState);
+        });
+    }
+
+    public void startWithoutResuming(final PlayerType type, final PlayQueue queue) {
+        startService();
+        runAction(player -> {
+            player.changeType(type);
+            player.changePlayQueue(queue);
+        });
+    }
+
+    public void enqueue(final PlayQueue queue) {
+        runAction(player -> player.getPlayQueue().append(queue.getStreams()));
+    }
+
+    public void enqueueNext(final PlayQueueItem playQueueItem) {
+        runAction(player -> {
+            final PlayQueue playerQueue = player.getPlayQueue();
+            final int currentIndex = playerQueue.getIndex();
+            playerQueue.append(List.of(playQueueItem));
+            playerQueue.move(playerQueue.size() - 1, currentIndex + 1);
+        });
+    }
+
+    public void startOrEnqueue(final PlayerType type, final PlayQueue queue) {
+        if (bound) {
+            runAction(player -> player.changeType(type));
+            enqueue(queue);
+        } else {
+            startWithoutResuming(type, queue);
+        }
+    }
+
+    public void runAction(final Consumer<Player> action) {
+        if (player != null) {
+            action.accept(player);
+        } else if (bound) {
+            // if the service is bound but the player is null, the player is still starting
+            actionsWhenConnected.add(action);
+        } else {
+            Log.e(TAG, "Ignoring action to run while player not connected and not starting",
+                    new Exception()); // include stack trace
+        }
+    }
+
+    private void loadStreamStateAndRunAction(final PlayQueue queue,
+                                             final BiConsumer<Player, PlayQueue> action) {
+        final Runnable whenQueueReady = () -> runAction(player -> action.accept(player, queue));
+
+        disposables.add(new HistoryRecordManager(getCommonContext())
+                .loadStreamState(Objects.requireNonNull(queue.getItem()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(streamStateEntity -> {
+                            queue.setRecovery(queue.getIndex(), streamStateEntity.getProgressMillis());
+                            whenQueueReady.run();
+                        }, e -> {
+                            Log.e(TAG, "Couldn't load stream state for " + queue.getItem().getUrl(), e);
+                            whenQueueReady.run();
+                        },
+                        // make sure to run the action even when there is no state!
+                        whenQueueReady::run));
+    }
+    //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Helpers
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Helpers
+
+    /**
+     * @return the context to use to bind/unbind a service, where having a common context is crucial
+     */
+    private Context getCommonContext() {
+        return App.getApp();
+    }
 
     private void bind(final Context context) {
         if (DEBUG) {
@@ -132,10 +241,10 @@ public final class PlayerHolder {
         }
 
         final Intent serviceIntent = new Intent(context, PlayerService.class);
-        bound = context.bindService(serviceIntent, serviceConnection,
-                Context.BIND_AUTO_CREATE);
+        bound = context.bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
         if (!bound) {
-            context.unbindService(serviceConnection);
+            // this should never happen, according to the docs of `bindService()`
+            Log.e(TAG, "Could not bind player service");
         }
     }
 
@@ -168,12 +277,6 @@ public final class PlayerHolder {
 
     class PlayerServiceConnection implements ServiceConnection {
 
-        private boolean playAfterConnect = false;
-
-        public void doPlayAfterConnect(final boolean playAfterConnection) {
-            this.playAfterConnect = playAfterConnection;
-        }
-
         @Override
         public void onServiceDisconnected(final ComponentName compName) {
             if (DEBUG) {
@@ -193,8 +296,11 @@ public final class PlayerHolder {
 
             playerService = localBinder.getService();
             player = localBinder.getPlayer();
-            listenerWrapper.onServiceConnected(player, playerService, playAfterConnect);
+
+            listenerWrapper.onServiceConnected(player, playerService);
+            actionsWhenConnected.stream().forEach(action -> action.accept(player));
             startPlayerListener();
         }
     }
+    //endregion
 }

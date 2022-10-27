@@ -44,6 +44,7 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.bind.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -543,23 +544,20 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         updateSubscription(result);
         monitorSubscription(result);
 
-        playlistControlBinding.playlistCtrlPlayAllButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnMainPlayer(activity, getPlayQueue()));
-        playlistControlBinding.playlistCtrlPlayPopupButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnPopupPlayer(activity, getPlayQueue(), false));
-        playlistControlBinding.playlistCtrlPlayBgButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnBackgroundPlayer(activity, getPlayQueue(), false));
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
+                NavigationHelper.openMainPlayerWithDetail(activity, getPlayQueue()));
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
+                PlayerHolder.INSTANCE.start(PlayerType.POPUP, getPlayQueue()));
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
+                PlayerHolder.INSTANCE.start(PlayerType.AUDIO, getPlayQueue()));
 
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
+            PlayerHolder.INSTANCE.startOrEnqueue(PlayerType.POPUP, getPlayQueue());
             return true;
         });
 
         playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
+            PlayerHolder.INSTANCE.startOrEnqueue(PlayerType.AUDIO, getPlayQueue());
             return true;
         });
     }

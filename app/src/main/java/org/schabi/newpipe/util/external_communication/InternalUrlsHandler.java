@@ -15,7 +15,9 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.bind.PlayerHolder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -158,9 +160,19 @@ public final class InternalUrlsHandler {
         disposables.add(single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    final PlayQueue playQueue =
-                            new SinglePlayQueue(info, seconds * 1000L);
-                    NavigationHelper.playOnPopupPlayer(context, playQueue, false);
+                    if (PlayerHolder.INSTANCE.isBound()) {
+                        PlayerHolder.INSTANCE.runAction(player -> {
+                            final PlayQueueItem item = player.getPlayQueue().getItem();
+                            if (item != null && item.getUrl().equals(cleanUrl)) {
+                                player.seekTo(seconds * 1000L);
+                            } else {
+                                player.changePlayQueue(new SinglePlayQueue(info, seconds * 1000L));
+                            }
+                        });
+                    } else {
+                        PlayerHolder.INSTANCE.start(PlayerType.POPUP,
+                                new SinglePlayQueue(info, seconds * 1000L));
+                    }
                 }, throwable -> {
                     if (DEBUG) {
                         Log.e(TAG, "Could not play on popup: " + url, throwable);

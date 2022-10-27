@@ -139,20 +139,17 @@ public final class PlayQueueActivity extends AppCompatActivity
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
             case R.id.action_switch_main:
-                this.player.setRecovery();
-                NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+                NavigationHelper.switchToMainPlayerWithDetail(this, false);
                 return true;
             case R.id.action_switch_popup:
                 if (PermissionHelper.isPopupEnabled(this)) {
-                    this.player.setRecovery();
-                    NavigationHelper.playOnPopupPlayer(this, player.getPlayQueue(), true);
+                    player.changeType(PlayerType.POPUP);
                 } else {
                     PermissionHelper.showPopupEnablementToast(this);
                 }
                 return true;
             case R.id.action_switch_background:
-                this.player.setRecovery();
-                NavigationHelper.playOnBackgroundPlayer(this, player.getPlayQueue(), true);
+                player.changeType(PlayerType.AUDIO);
                 return true;
         }
         return super.onOptionsItemSelected(item);
