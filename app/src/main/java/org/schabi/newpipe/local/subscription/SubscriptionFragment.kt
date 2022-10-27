@@ -414,6 +414,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val listViewMode = viewModel.getListViewMode()
 
         carouselAdapter.clear()
+        carouselAdapter.add(if (listViewMode) FeedGroupAddNewItem() else FeedGroupAddNewGridItem())
         carouselAdapter.add(
             if (listViewMode)
                 FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS)
@@ -421,7 +422,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 FeedGroupCardGridItem(-1, getString(R.string.all), FeedGroupIcon.RSS)
         )
         carouselAdapter.addAll(groups)
-        carouselAdapter.add(if (listViewMode) FeedGroupAddNewItem() else FeedGroupAddNewGridItem())
 
         if (feedGroupsCarouselState != null) {
             feedGroupsCarousel.onRestoreInstanceState(feedGroupsCarouselState)
