@@ -159,7 +159,7 @@ public class DownloadDialog extends DialogFragment
      * @param context the context to use just to obtain preferences and strings (will not be stored)
      * @param info    the info from which to obtain downloadable streams and other info (e.g. title)
      */
-    public DownloadDialog(final Context context, @NonNull final StreamInfo info) {
+    public DownloadDialog(@NonNull final Context context, @NonNull final StreamInfo info) {
         this.currentInfo = info;
 
         // TODO: Adapt this code when the downloader support other types of stream deliveries
