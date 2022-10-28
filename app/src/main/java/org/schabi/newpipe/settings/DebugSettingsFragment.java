@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -98,31 +97,27 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         // A dialogue will pop up to confirm if user intends to reset all settings
         assert resetSettings != null;
         resetSettings.setOnPreferenceClickListener(preference -> {
+            // Show Alert Dialogue
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Resetting all settings will discard "
                     + "all of your preferred settings and restarts the app. "
                     + "Are you sure you want to proceed?");
             builder.setCancelable(true);
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    NavigationHelper.restartApp(getActivity());
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                // Deletes all shared preferences xml files.
+                final SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(requireContext());
+                sharedPreferences.edit().clear().apply();
+                // Restarts the app
+                if (getActivity() == null) {
+                    return;
                 }
+                NavigationHelper.restartApp(getActivity());
             });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                }
+            builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
             });
             final AlertDialog alertDialog = builder.create();
             alertDialog.show();
-
-            // delete all shared preferences xml files.
-            final SharedPreferences sharedPreferences =
-                    PreferenceManager.getDefaultSharedPreferences(requireContext());
-            sharedPreferences.edit().clear().apply();
-
-
             return true;
         });
     }
