@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,9 +12,8 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
-import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Optional;
 
@@ -91,12 +92,30 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        // reset appearance to light theme
+        // Resets all settings by deleting shared preference and restarting the app
+        // A dialogue will pop up to confirm if user intends to reset all settings
         resetSettings.setOnPreferenceClickListener(preference -> {
-            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
-            defaultPreferences.edit().putString(getString(R.string.theme_key),
-                    getString(R.string.light_theme_key)).apply();
-            ThemeHelper.setDayNightMode(requireContext(), "light_theme");
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Resetting all settings will discard "
+                    + "all of your preferred settings and restarts the app. "
+                    + "Are you sure you want to do this?");
+            builder.setCancelable(true);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialogInterface, final int i) {
+                    NavigationHelper.restartApp(getActivity());
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialogInterface, final int i) {
+                }
+            });
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+//            SharedPreferences sharedPreferences =
+//                    PreferenceManager.getDefaultSharedPreferences(requireContext());
+//            sharedPreferences = null;
             return true;
         });
     }
