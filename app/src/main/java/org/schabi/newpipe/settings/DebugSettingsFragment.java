@@ -98,7 +98,7 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Resetting all settings will discard "
                     + "all of your preferred settings and restarts the app. "
-                    + "Are you sure you want to do this?");
+                    + "Are you sure you want to proceed?");
             builder.setCancelable(true);
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
