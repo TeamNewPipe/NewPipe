@@ -22,6 +22,7 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 
 * NewPipe is translated via [Weblate](https://hosted.weblate.org/projects/newpipe/strings/). Log in there with your GitHub account, or register.
 * Add the language you want to translate if it is not there already: see [How to add a new language](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-add-a-new-language-to-NewPipe) in the wiki.
+* NewPipe uses the [PrettyTime](https://github.com/ocpsoft/prettytime) library to display localized versions of dates and times. It needs to be translated, too. Read [these instructions to add a new language](https://www.ocpsoft.org/prettytime/#section-14) and [this issue](https://github.com/TeamNewPipe/NewPipe/issues/9134) for more info.
 
 ## Code contribution
 
