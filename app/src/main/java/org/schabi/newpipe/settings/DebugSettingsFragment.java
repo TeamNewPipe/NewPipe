@@ -3,9 +3,11 @@ package org.schabi.newpipe.settings;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -94,6 +96,7 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
 
         // Resets all settings by deleting shared preference and restarting the app
         // A dialogue will pop up to confirm if user intends to reset all settings
+        assert resetSettings != null;
         resetSettings.setOnPreferenceClickListener(preference -> {
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Resetting all settings will discard "
@@ -113,9 +116,13 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
             });
             final AlertDialog alertDialog = builder.create();
             alertDialog.show();
-//            SharedPreferences sharedPreferences =
-//                    PreferenceManager.getDefaultSharedPreferences(requireContext());
-//            sharedPreferences = null;
+
+            // delete all shared preferences xml files.
+            final SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(requireContext());
+            sharedPreferences.edit().clear().apply();
+
+
             return true;
         });
     }
