@@ -26,7 +26,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.fragments.list.comments.CommentReplyDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -247,6 +246,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
+    protected void onItemCallback(final InfoItem selectedItem) throws Exception {
+        if (DEBUG) {
+            Log.d(TAG, "onItemCallback() called with: selectedItem = [" + selectedItem + "]");
+        }
+    }
+
     @Override
     protected void initListeners() {
         super.initListeners();
@@ -286,8 +291,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
         infoListAdapter.setOnCommentsReplyListener(selectedItem -> {
             try {
-                onItemSelected(selectedItem);
-                CommentReplyDialog.show(getFM(), selectedItem);
+                onItemCallback(selectedItem);
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening comment reply fragment", e);
             }

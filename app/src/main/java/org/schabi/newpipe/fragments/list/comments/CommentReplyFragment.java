@@ -9,39 +9,45 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
+import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
+import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.util.Constants;
 
-public class CommentReplyDialog extends BottomSheetDialogFragment {
+import java.io.IOException;
+
+public class CommentReplyFragment extends BaseFragment implements BackPressable {
 
     private int serviceId = Constants.NO_SERVICE_ID;
     private String name;
     private String url;
     private CommentsInfoItem comment;
     private Page replies;
+    private CommentsFragment.Callback replyCallback;
 
-    public static CommentReplyDialog getInstance(final int serviceId, final String url,
-                                                 final String name,
-                                                 final CommentsInfoItem comment,
-                                                 final Page replies) throws Exception {
-        final CommentReplyDialog instance = new CommentReplyDialog();
+    public static CommentReplyFragment getInstance(
+            final int serviceId, final String url,
+            final String name,
+            final CommentsInfoItem comment,
+            final Page replies,
+            final CommentsFragment.Callback replyCallback
+    ) throws IOException, ClassNotFoundException {
+        final CommentReplyFragment instance = new CommentReplyFragment();
+        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, comment, replies);
         return instance;
     }
 
-    public static void show(
-            final FragmentManager fragmentManager,
-            final CommentsInfoItem comment) throws Exception {
-        final Page reply = comment.getReplies();
-        final CommentReplyDialog instance = getInstance(comment.getServiceId(),
-                comment.getUrl(), comment.getName(), comment, reply);
-        instance.show(fragmentManager, instance.getTag());
+    public static CommentsFragmentContainer newInstance(final int serviceId, final String url,
+                                                        final String name) {
+        final CommentsFragmentContainer fragment = new CommentsFragmentContainer();
+        fragment.serviceId = serviceId;
+        fragment.url = url;
+        fragment.name = name;
+        return new CommentsFragmentContainer();
     }
 
     @Nullable
@@ -49,19 +55,15 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.dialog_comment_reply, container,
+        final View view = inflater.inflate(R.layout.fragment_comments_reply, container,
                 false);
-        if (serviceId == Constants.NO_SERVICE_ID) {
-            dismiss();
-            return view;
-        }
         final ImageButton backButton = view.findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> dismiss());
+        backButton.setOnClickListener(v -> closeSelf());
         final CommentsFragment commentsFragment = CommentsFragment.getInstance(
-                serviceId, url, name, comment
+                serviceId, url, name, comment, replyCallback
         );
         final CommentsFragment commentsReplyFragment = CommentsFragment.getInstance(
-                serviceId, url, name, replies
+                serviceId, url, name, replies, replyCallback
         );
         getChildFragmentManager().beginTransaction()
                 .add(R.id.commentFragment, commentsFragment).commit();
@@ -72,7 +74,8 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
 
     protected void setInitialData(final int sid, final String u, final String title,
                                   final CommentsInfoItem preComment,
-                                  final Page repliesPage) throws Exception {
+                                  final Page repliesPage
+    ) throws IOException, ClassNotFoundException {
         this.serviceId = sid;
         this.url = u;
         this.name = !TextUtils.isEmpty(title) ? title : "";
@@ -80,5 +83,15 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
         this.comment = CommentUtils.clone(preComment);
         comment.setReplies(null);
         this.replies = repliesPage;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        closeSelf();
+        return true;
+    }
+
+    private void closeSelf() {
+        getFM().beginTransaction().remove(this).commit();
     }
 }

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
@@ -34,27 +35,45 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     private TextView emptyStateDesc;
 
+    private Callback replyCallback;
+
     public static CommentsFragment getInstance(final int serviceId, final String url,
-                                               final String name) {
+                                               final String name,
+                                               final Callback replyCallback) {
         final CommentsFragment instance = new CommentsFragment();
+        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, null, null);
         return instance;
     }
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name,
-                                               final CommentsInfoItem preComment) {
+                                               final CommentsInfoItem preComment,
+                                               final Callback replyCallback) {
         final CommentsFragment instance = new CommentsFragment();
+        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, null, preComment);
         return instance;
     }
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name,
-                                               final Page replyPage) {
+                                               final Page replyPage,
+                                               final Callback replyCallback) {
         final CommentsFragment instance = new CommentsFragment();
+        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, replyPage, null);
         return instance;
+    }
+
+    public interface Callback {
+        void replyClick(CommentsInfoItem selectedItem) throws Exception;
+    }
+
+    @Override
+    protected void onItemCallback(final InfoItem selectedItem) throws Exception {
+        super.onItemCallback(selectedItem);
+        replyCallback.replyClick((CommentsInfoItem) selectedItem);
     }
 
     public CommentsFragment() {
