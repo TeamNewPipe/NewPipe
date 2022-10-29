@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -27,8 +28,6 @@ public class CommentsFragmentContainer extends BaseFragment {
     @State
     protected String name;
 
-    private final CommentsFragment.Callback replyCallback = this::setFragment;
-
     public static CommentsFragmentContainer getInstance(
             final int serviceId, final String url, final String name) {
         final CommentsFragmentContainer fragment = new CommentsFragmentContainer();
@@ -43,25 +42,27 @@ public class CommentsFragmentContainer extends BaseFragment {
             final LayoutInflater inflater, @Nullable final ViewGroup container,
             final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_container, container, false);
-        setFragment(serviceId, url, name);
+        setFragment(getFM(), serviceId, url, name);
         return view;
     }
 
-    public void setFragment(final int sid, final String u, final String title) {
+    public static void setFragment(
+            final FragmentManager fm,
+            final int sid, final String u, final String title) {
         final CommentsFragment fragment = CommentsFragment.getInstance(
-                sid, u, title, replyCallback
+                sid, u, title
         );
-        getFM().beginTransaction().add(R.id.fragment_container_view, fragment).commit();
+        fm.beginTransaction().add(R.id.fragment_container_view, fragment).commit();
     }
 
-    public void setFragment(
-            final CommentsInfoItem comment
+    public static void setFragment(
+            final FragmentManager fm, final CommentsInfoItem comment
     ) throws IOException, ClassNotFoundException {
         final Page reply = comment.getReplies();
         final CommentReplyFragment fragment = CommentReplyFragment.getInstance(
                 comment.getServiceId(), comment.getUrl(),
-                comment.getName(), comment, reply, replyCallback
+                comment.getName(), comment, reply
         );
-        getFM().beginTransaction().add(R.id.fragment_container_view, fragment).commit();
+        fm.beginTransaction().add(R.id.fragment_container_view, fragment).commit();
     }
 }

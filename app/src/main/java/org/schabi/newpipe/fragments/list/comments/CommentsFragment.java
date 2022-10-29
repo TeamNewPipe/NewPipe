@@ -35,45 +35,33 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     private TextView emptyStateDesc;
 
-    private Callback replyCallback;
-
     public static CommentsFragment getInstance(final int serviceId, final String url,
-                                               final String name,
-                                               final Callback replyCallback) {
+                                               final String name) {
         final CommentsFragment instance = new CommentsFragment();
-        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, null, null);
         return instance;
     }
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name,
-                                               final CommentsInfoItem preComment,
-                                               final Callback replyCallback) {
+                                               final CommentsInfoItem preComment) {
         final CommentsFragment instance = new CommentsFragment();
-        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, null, preComment);
         return instance;
     }
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name,
-                                               final Page replyPage,
-                                               final Callback replyCallback) {
+                                               final Page replyPage) {
         final CommentsFragment instance = new CommentsFragment();
-        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, replyPage, null);
         return instance;
-    }
-
-    public interface Callback {
-        void replyClick(CommentsInfoItem selectedItem) throws Exception;
     }
 
     @Override
     protected void onItemCallback(final InfoItem selectedItem) throws Exception {
         super.onItemCallback(selectedItem);
-        replyCallback.replyClick((CommentsInfoItem) selectedItem);
+        CommentsFragmentContainer.setFragment(getFM(), (CommentsInfoItem) selectedItem);
     }
 
     public CommentsFragment() {

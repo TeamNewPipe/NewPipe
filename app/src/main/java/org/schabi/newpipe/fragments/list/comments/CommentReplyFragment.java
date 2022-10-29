@@ -19,24 +19,28 @@ import org.schabi.newpipe.util.Constants;
 
 import java.io.IOException;
 
+import icepick.State;
+
 public class CommentReplyFragment extends BaseFragment implements BackPressable {
 
-    private int serviceId = Constants.NO_SERVICE_ID;
-    private String name;
-    private String url;
-    private CommentsInfoItem comment;
-    private Page replies;
-    private CommentsFragment.Callback replyCallback;
+    @State
+    protected int serviceId = Constants.NO_SERVICE_ID;
+    @State
+    protected String name;
+    @State
+    protected String url;
+    @State
+    protected CommentsInfoItem comment;
+    @State
+    protected Page replies;
 
     public static CommentReplyFragment getInstance(
             final int serviceId, final String url,
             final String name,
             final CommentsInfoItem comment,
-            final Page replies,
-            final CommentsFragment.Callback replyCallback
+            final Page replies
     ) throws IOException, ClassNotFoundException {
         final CommentReplyFragment instance = new CommentReplyFragment();
-        instance.replyCallback = replyCallback;
         instance.setInitialData(serviceId, url, name, comment, replies);
         return instance;
     }
@@ -60,10 +64,10 @@ public class CommentReplyFragment extends BaseFragment implements BackPressable 
         final ImageButton backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> closeSelf());
         final CommentsFragment commentsFragment = CommentsFragment.getInstance(
-                serviceId, url, name, comment, replyCallback
+                serviceId, url, name, comment
         );
         final CommentsFragment commentsReplyFragment = CommentsFragment.getInstance(
-                serviceId, url, name, replies, replyCallback
+                serviceId, url, name, replies
         );
         getChildFragmentManager().beginTransaction()
                 .add(R.id.commentFragment, commentsFragment).commit();
