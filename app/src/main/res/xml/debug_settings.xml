@@ -74,5 +74,6 @@
     <Preference
         android:key="@string/reset_settings"
         android:title="@string/settings_category_reset_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>
