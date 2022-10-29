@@ -130,7 +130,10 @@
     <string name="unsupported_url_dialog_message">Could not recognize the URL. Open with another app?</string>
     <string name="default_content_country_title">Default content country</string>
     <string name="content_language_title">Default content language</string>
-    <string name="show_comment_reply">Show Replies</string>
+    <plurals name="replies">
+        <item quantity="one">%s Reply</item>
+        <item quantity="other">%s Replies</item>
+    </plurals>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="peertube_instance_url_help">Find the instances you like on %s</string>

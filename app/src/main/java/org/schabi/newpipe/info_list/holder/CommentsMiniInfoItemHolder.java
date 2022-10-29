@@ -148,6 +148,11 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemContentReplyButton.setOnClickListener(
                     view -> itemBuilder.getOnCommentsReplyListener().selected(item)
             );
+            final int replyCount = item.getReplyCount();
+            itemContentReplyButton.setText(
+                    itemView.getContext().getResources().getQuantityString(
+                            R.plurals.replies, replyCount, replyCount
+                    ));
         } else {
             itemContentReplyButton.setVisibility(View.GONE);
         }
