@@ -99,11 +99,9 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         resetSettings.setOnPreferenceClickListener(preference -> {
             // Show Alert Dialogue
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("Resetting all settings will discard "
-                    + "all of your preferred settings and restarts the app. "
-                    + "Are you sure you want to proceed?");
+            builder.setMessage(R.string.reset_all_settings);
             builder.setCancelable(true);
-            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+            builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                 // Deletes all shared preferences xml files.
                 final SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(requireContext());
@@ -114,7 +112,7 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
                 }
                 NavigationHelper.restartApp(getActivity());
             });
-            builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+            builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
             });
             final AlertDialog alertDialog = builder.create();
             alertDialog.show();
