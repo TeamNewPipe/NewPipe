@@ -716,6 +716,8 @@
     <string name="streams_not_yet_supported_removed">Videoströmmar som ännu inte stöds av nedladdaren visas inte</string>
     <string name="progressive_load_interval_title">Inläsningsintervalls storlek</string>
     <string name="select_quality_external_players">Välj kvalitet för externa spelare</string>
-    <string name="feed_toggle_show_future_items">Visa framtida videor</string>
+    <string name="feed_toggle_show_future_items">Visa framtida objekt</string>
     <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
+    <string name="feed_toggle_hide_future_items">Göm framtida objekt</string>
+    <string name="feed_toggle_hide_played_items">Göm sedda objekt</string>
 </resources>

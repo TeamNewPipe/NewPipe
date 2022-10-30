@@ -1,0 +1,14 @@
+# Ändringslogg för v0.13.7
+
+### Fixat
+- Löser problem med sorteringsfilter i v0.13.6
+
+# Ändringslogg för v0.13.6
+
+### Förbättringar
+
+- Inaktivera animation av ikonerna i burgarmenyn #1486 
+- Ångra radering av nedladdningar #1472 
+- Nedladdningsalternativ i delningsmenyn #1498
+- Minimera huvudspelaren vid avslut #1354 
+  - Omarbetat dialogrutan för kontroll av uppspelningshastighet för att stödja olika stegstorlekar för snabbare hastighetsändring.

@@ -1,0 +1,12 @@
+#### Nytt
+- Användargränssnitt för surfplattor och layout för rutnätslistor #1617 
+
+#### Förbättringar
+- Lagrar och laddar om det senast använda bildförhållandet #1748 
+- Ta bort och dela prenumerationer direkt från prenumerationsfliken #1516 
+- Separata inställningar för volym och ljusstyrka #1644
+- Lägg till stöd för lokalisering #1792
+
+#### Fixat
+- Fixa tidsparsning för . format, så att NewPipe kan användas i Finland.
+- Fixa antalet prenumerationer

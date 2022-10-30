@@ -188,7 +188,7 @@
     <string name="tab_bookmarks">재생목록 북마크</string>
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
-    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다. 5,15 또는 25초 탐색기능은 같이 동작하지 않습니다.</string>
+    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다. 5, 15 또는 25초 탐색기능은 같이 동작하지 않음</string>
     <string name="auto_queue_title">다음 스트림을 자동 대기열에 추가</string>
     <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
@@ -513,10 +513,10 @@
     <string name="mark_as_watched">시청한 것으로 처리</string>
     <string name="show_description_summary">비활성화하면 비디오 설명과 추가 정보를 표시하지 않습니다</string>
     <string name="show_description_title">설명 표시하기</string>
-    <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다.</string>
+    <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있음</string>
     <string name="night_theme_title">어두운 테마</string>
     <string name="notification_actions_at_most_three">최대 3개까지 축소 알림에 표시될 항목을 고를 수 있습니다!</string>
-    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하십시오. 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택합니다.</string>
+    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하세요. 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
     <string name="hash_channel_description">비디오 해싱 진행 알림</string>
     <string name="streams_notification_channel_name">새로운 스트림</string>

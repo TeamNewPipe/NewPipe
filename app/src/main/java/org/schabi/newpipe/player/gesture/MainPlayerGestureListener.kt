@@ -7,6 +7,7 @@ import android.view.View.OnTouchListener
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.math.MathUtils
 import androidx.core.view.isVisible
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
@@ -18,8 +19,6 @@ import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import org.schabi.newpipe.util.ThemeHelper.getAndroidDimenPx
 import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
 
 /**
  * GestureListener for the player
@@ -114,7 +113,7 @@ class MainPlayerGestureListener(
 
         // Update progress bar
         val oldBrightness = layoutParams.screenBrightness
-        bar.progress = (bar.max * max(0f, min(1f, oldBrightness))).toInt()
+        bar.progress = (bar.max * MathUtils.clamp(oldBrightness, 0f, 1f)).toInt()
         bar.incrementProgressBy(distanceY.toInt())
 
         // Update brightness

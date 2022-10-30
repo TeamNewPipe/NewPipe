@@ -1,0 +1,16 @@
+### New
+- Long-tap delete and share in subscriptions
+- Tablet UI and grid list layout
+
+### Improvements
+- store and reload the last used aspect ratio
+- Enable linear layout in Downloads activity with full video names
+- Separate settings for volume and brightness gestures
+- Add support for Localization
+
+### Fixes
+- NewPipe can be used in Finland
+- Fix subscription count
+
+### Known Bugs
+- Playback state can not be saved on Android P

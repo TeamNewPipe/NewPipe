@@ -1,0 +1,11 @@
+<h4>Improvements</h4>
+<ul>
+<li>make links in comments clickable, increase text size</li>
+<li>seek on clicking timestamp links in comments</li>
+<li>add playlist to queue when long clicking on &#39;Background&#39; in playlist window</li>
+</ul>
+<h4>Fixed</h4>
+<ul>
+<li>fixed youtube subscription import: ignore ones with invalid url and keep ones with empty title</li>
+<li>fix invalid YouTube url: signature tag name is not always "signature" preventing streams from loading</li>
+</ul>

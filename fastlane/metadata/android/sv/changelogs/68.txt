@@ -1,0 +1,19 @@
+# Ändringar i v0.14.1
+
+### Fixat
+- Rättad beskrivning länk som inte extraherade bra #1657
+
+# Ändringar i v0.14.0
+
+#### Nytt
+- Ny utformning av lådan #1461
+- Ny anpassningsbar förstasida #1461
+
+#### Förbättringar
+- Nytt sätt att stänga popup-spelaren #1597
+
+### Fixat
+- Löser fel när antalet prenumerationer inte är tillgängligt. Stänger #1649.
+  - Visa "Prenumerantantalet är inte tillgängligt" i dessa fall.
+  - Fixa sökfältet som inte är statiskt utformat.
+  - Fixa länkar i videobeskrivningen.
