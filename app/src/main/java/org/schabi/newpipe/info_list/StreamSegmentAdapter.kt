@@ -61,5 +61,6 @@ class StreamSegmentAdapter(
 
     interface StreamSegmentListener {
         fun onItemClick(item: StreamSegmentItem, seconds: Int)
+        fun onItemLongClick(item: StreamSegmentItem, seconds: Int)
     }
 }
