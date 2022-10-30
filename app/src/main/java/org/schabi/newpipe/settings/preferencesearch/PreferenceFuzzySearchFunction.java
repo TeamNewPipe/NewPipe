@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings.preferencesearch;
 
 import android.text.TextUtils;
+import android.util.Pair;
 
 import org.apache.commons.text.similarity.FuzzyScore;
 
@@ -8,6 +9,7 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PreferenceFuzzySearchFunction
@@ -72,39 +74,22 @@ public class PreferenceFuzzySearchFunction
         );
 
         private final PreferenceSearchItem item;
-        private final float score;
+        private final double score;
 
-        FuzzySearchSpecificDTO(
-                final PreferenceSearchItem item,
-                final String keyword) {
+        FuzzySearchSpecificDTO(final PreferenceSearchItem item, final String keyword) {
             this.item = item;
-
-            float attributeScoreSum = 0;
-            int countOfAttributesWithScore = 0;
-            for (final Map.Entry<Function<PreferenceSearchItem, String>, Float> we
-                    : WEIGHT_MAP.entrySet()) {
-                final String valueToProcess = we.getKey().apply(item);
-                if (valueToProcess.isEmpty()) {
-                    continue;
-                }
-
-                attributeScoreSum +=
-                        FUZZY_SCORE.fuzzyScore(valueToProcess, keyword) * we.getValue();
-                countOfAttributesWithScore++;
-            }
-
-            if (countOfAttributesWithScore != 0) {
-                this.score = attributeScoreSum / countOfAttributesWithScore;
-            } else {
-                this.score = 0;
-            }
+            this.score = WEIGHT_MAP.entrySet().stream()
+                    .map(entry -> new Pair<>(entry.getKey().apply(item), entry.getValue()))
+                    .filter(pair -> !pair.first.isEmpty())
+                    .collect(Collectors.averagingDouble(pair ->
+                            FUZZY_SCORE.fuzzyScore(pair.first, keyword) * pair.second));
         }
 
         public PreferenceSearchItem getItem() {
             return item;
         }
 
-        public float getScore() {
+        public double getScore() {
             return score;
         }
     }
