@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.ui;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED;
@@ -61,6 +62,7 @@ import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
 import org.schabi.newpipe.player.gesture.MainPlayerGestureListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -708,6 +710,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
             @Override
             public void onItemLongClick(@NonNull final StreamSegmentItem item, final int seconds) {
+                @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
+                if (currentMetadata == null
+                        || currentMetadata.getServiceId() != YouTube.getServiceId()) {
+                    return;
+                }
+
                 final PlayQueueItem currentItem = player.getCurrentItem();
                 if (currentItem != null) {
                     String videoUrl = player.getVideoUrl();
