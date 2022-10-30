@@ -1426,6 +1426,7 @@ public final class Player implements PlaybackListener, Listener {
                 isCatchableException = true;
                 simpleExoPlayer.pause();
                 onPaused();
+                ErrorUtil.showErrorToast(context, "No internet connection available");
                 break;
             case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
             case ERROR_CODE_UNSPECIFIED:
