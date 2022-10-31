@@ -61,7 +61,7 @@
     <string name="all">الجميع</string>
     <string name="video">الفيديو</string>
     <string name="settings_category_downloads_title">التنزيل</string>
-    <string name="tab_about">عن التطبيق</string>
+    <string name="tab_about">حول التطبيق &amp; الأسئلة الشائعة</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
@@ -772,4 +772,8 @@
     <string name="feed_toggle_show_future_items">عرض العناصر المستقبلية</string>
     <string name="feed_toggle_hide_future_items">إخفاء العناصر المستقبلية</string>
     <string name="feed_toggle_hide_played_items">إخفاء العناصر التي تمت مشاهدتها</string>
+    <string name="faq_title">أسئلة مكررة</string>
+    <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
+    <string name="faq">مشاهدة على الموقع</string>
+    <string name="sort">فرز</string>
 </resources>

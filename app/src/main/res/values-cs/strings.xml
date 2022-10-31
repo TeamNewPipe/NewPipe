@@ -153,7 +153,7 @@
     <string name="title_activity_about">O NewPipe</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaci</string>
+    <string name="tab_about">O aplikaci a ČKD</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Svobodné a nenáročné streamování v Androidu.</string>
     <string name="view_on_github">Zobraz na GitHubu</string>
@@ -450,7 +450,7 @@
     <string name="local">Místní</string>
     <string name="recently_added">Přidány nedávno</string>
     <string name="most_liked">Nejoblíbenější</string>
-    <string name="playlist_no_uploader">Autogenerovány (uploader nenalezen)</string>
+    <string name="playlist_no_uploader">Automaticky vygenerováno (autor nenalezen)</string>
     <string name="recovering">obnovuji</string>
     <string name="error_download_resource_gone">Toto stahování nelze obnovit</string>
     <string name="choose_instance_prompt">Vyberte instanci</string>
@@ -733,4 +733,8 @@
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné video streamy</string>
     <string name="feed_toggle_hide_played_items">Skrýt zhlédnuté položky</string>
     <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
+    <string name="faq_title">Často kladené dotazy</string>
+    <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
+    <string name="faq">Zobrazit na webu</string>
+    <string name="sort">Řazení</string>
 </resources>

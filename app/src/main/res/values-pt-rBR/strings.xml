@@ -73,7 +73,7 @@
     <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="msg_threads">Threads</string>
     <string name="no_available_dir">Por favor, defina uma pasta de download depois nas configurações</string>
-    <string name="no_player_found">Sem player de vídeo. Instalar VLC\?</string>
+    <string name="no_player_found">Sem reprodutor de vídeo. Instalar VLC\?</string>
     <string name="parsing_error">O site não pôde ser analisado</string>
     <string name="play_audio">Áudio</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
@@ -106,7 +106,7 @@
     <string name="show_search_suggestions_summary">Escolha as sugestões a serem exibidas enquanto estiver buscando</string>
     <string name="best_resolution">Melhor resolução</string>
     <string name="title_licenses">Licenças de Terceiros</string>
-    <string name="tab_about">Sobre</string>
+    <string name="tab_about">Sobre &amp; FAQ</string>
     <string name="tab_licenses">Licenças</string>
     <string name="app_description">Stream leve e livre no Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
@@ -189,7 +189,7 @@
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
-    <string name="no_player_found_toast">Sem player de vídeo (você pode instalar o VLC).</string>
+    <string name="no_player_found_toast">Sem reprodutor de vídeo (você pode instalar o VLC).</string>
     <string name="default_content_country_title">País padrão do conteúdo</string>
     <string name="always">Sempre</string>
     <string name="just_once">Uma vez</string>
@@ -720,4 +720,8 @@
     <string name="feed_toggle_show_future_items">Mostrar itens futuros</string>
     <string name="feed_toggle_hide_future_items">Ocultar itens futuros</string>
     <string name="feed_toggle_hide_played_items">Ocultar itens assistidos</string>
+    <string name="faq">Visualizar no site</string>
+    <string name="faq_description">Se você está com problemas ao usar o aplicativo, confira estas respostas para perguntas comuns!</string>
+    <string name="faq_title">Perguntas frequentes</string>
+    <string name="sort">Classificar</string>
 </resources>

@@ -210,7 +210,7 @@
     <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="title_licenses">Licenzas de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>
-    <string name="tab_about">Sobre</string>
+    <string name="tab_about">Sobre e preguntas frecuentes</string>
     <string name="tab_licenses">Licenzas</string>
     <string name="app_description">Reprodutor lixeiro e libre para Android.</string>
     <string name="contribution_title">Colaborar</string>
@@ -720,4 +720,7 @@
     <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos próximos</string>
     <string name="feed_toggle_hide_played_items">Ocultalos elementos xa ollados</string>
+    <string name="faq">Ver na páxina web</string>
+    <string name="faq_title">Preguntas máis frecuentes</string>
+    <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
 </resources>

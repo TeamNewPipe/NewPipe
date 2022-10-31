@@ -163,7 +163,7 @@
     <string name="title_activity_about">על אודות NewPipe</string>
     <string name="title_licenses">רישיונות צד שלישי</string>
     <string name="copyright" formatted="true">© %1$s ע״י %2$s תחת %3$s</string>
-    <string name="tab_about">על אודות</string>
+    <string name="tab_about">על אודות ושו״ת</string>
     <string name="tab_licenses">רישיונות</string>
     <string name="app_description">נגן קל וחופשי להזרמת מדיה עבור Android.</string>
     <string name="contribution_title">התנדבות</string>
@@ -746,4 +746,8 @@
     <string name="feed_toggle_show_future_items">הצגת פריטים עתידיים</string>
     <string name="feed_toggle_hide_played_items">הסתרת פריטים במעקב</string>
     <string name="feed_toggle_hide_future_items">הסתרת פריטים עתידיים</string>
+    <string name="sort">מיון</string>
+    <string name="faq">הצגה באתר</string>
+    <string name="faq_title">תשובות לשאלות נפוצות</string>
+    <string name="faq_description">אם נתקלת בתקלות כשניסית להשתמש ביישומון, כדאי לעיין בתשובות לשאלות הנפוצות!</string>
 </resources>
