@@ -845,4 +845,66 @@
     </plurals>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
+
+    <!-- begin - strings for search filter feature (NewPipeExtractor Services) -->
+    <string name="search_filters_10_30_min">10–30 min</string>
+    <string name="search_filters_2_10_min">2–10 min</string>
+    <string name="search_filters_360">360°</string>
+    <string name="search_filters_3d">3D</string>
+    <string name="search_filters_4_20_min">4–20 min</string>
+    <string name="search_filters_4k">4K</string>
+    <string name="search_filters_added">Added</string>
+    <string name="search_filters_artists_and_labels">artists &amp; labels</string>
+    <string name="search_filters_any_time">Any time</string>
+    <string name="search_filters_ascending">Ascending</string>
+    <string name="search_filters_ccommons">Creative Commons</string>
+    <string name="search_filters_creation_date">Creation date</string>
+    <string name="search_filters_date">Date</string>
+    <string name="search_filters_duration">Duration</string>
+    <string name="search_filters_features">Features</string>
+    <string name="search_filters_greater_30_min">&gt; 30 min</string>
+    <string name="search_filters_hd">HD</string>
+    <string name="search_filters_hdr">HDR</string>
+    <string name="search_filters_kind">Kind</string>
+    <string name="search_filters_last_30_days">Last 30 days</string>
+    <string name="search_filters_last_7_days">Last 7 days</string>
+    <string name="search_filters_last_hour">Last hour</string>
+    <string name="search_filters_last_year">last year</string>
+    <string name="search_filters_length">Length</string>
+    <string name="search_filters_less_2_min">&lt; 2 min</string>
+    <string name="search_filters_license">License</string>
+    <string name="search_filters_location">Location</string>
+    <string name="search_filters_long_greater_10_min">Long (&gt; 10 min)</string>
+    <string name="search_filters_medium_4_10_min">Medium (4–10 min)</string>
+    <string name="search_filters_no">No</string>
+    <string name="search_filters_over_20_min">Over 20 min</string>
+    <string name="search_filters_past_day">Past day</string>
+    <string name="search_filters_past_hour">Past hour</string>
+    <string name="search_filters_past_month">Past month</string>
+    <string name="search_filters_past_week">Past week</string>
+    <string name="search_filters_past_year">Past year</string>
+    <string name="search_filters_publish_date">Publish date</string>
+    <string name="search_filters_published">Published</string>
+    <string name="search_filters_purchased">Purchased</string>
+    <string name="search_filters_rating">Rating</string>
+    <string name="search_filters_relevance">Relevance</string>
+    <string name="search_filters_sensitive">Sensitive</string>
+    <string name="search_filters_sepiasearch">SepiaSearch</string>
+    <string name="search_filters_short_less_4_min">Short (&lt; 4 min)</string>
+    <string name="search_filters_sort_by">Sort by</string>
+    <string name="search_filters_sort_order">Sort order</string>
+    <string name="search_filters_subtitles">Subtitles</string>
+    <string name="search_filters_to_modify_commercially">To modify commercially</string>
+    <string name="search_filters_today">Today</string>
+    <string name="search_filters_under_4_min">Under 4 min</string>
+    <string name="search_filters_upload_date">Upload Date</string>
+    <string name="search_filters_views">Views</string>
+    <string name="search_filters_vod_videos">VOD videos</string>
+    <string name="search_filters_vr180">VR180</string>
+    <string name="search_filters_this_month">This month</string>
+    <string name="search_filters_this_week">This week</string>
+    <string name="search_filters_this_year">This year</string>
+    <string name="search_filters_yes">Yes</string>
+    <string name="search_filters_youtube_music">YouTube Music</string>
+    <!-- end - strings for search filter feature (NewPipeExtractor Services) -->
 </resources>
