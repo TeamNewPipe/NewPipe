@@ -144,7 +144,7 @@
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="title_licenses">第三方授權</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發佈</string>
-    <string name="tab_about">關於</string>
+    <string name="tab_about">關於與常見問題</string>
     <string name="tab_licenses">授權條款</string>
     <string name="app_description">Android 上自由且輕巧的串流播放器。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
@@ -707,4 +707,8 @@
     <string name="feed_toggle_show_future_items">顯示未來項目</string>
     <string name="feed_toggle_hide_future_items">隱藏未來項目</string>
     <string name="feed_toggle_hide_played_items">隱藏已觀看的項目</string>
+    <string name="faq_title">常見問題</string>
+    <string name="faq">在網站上檢視</string>
+    <string name="sort">排序</string>
+    <string name="faq_description">若您在使用此應用程式時遇到任何問題，請務必先看看常見問題的答案！</string>
 </resources>

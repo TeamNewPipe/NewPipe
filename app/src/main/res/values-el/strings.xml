@@ -723,4 +723,5 @@
     <string name="faq_title">Συχνές ερωτήσεις</string>
     <string name="faq">Προβολή στην ιστοσελίδα</string>
     <string name="faq_description">Εάν αντιμετωπίζετε προβλήματα με τη χρήση της εφαρμογής, φροντίστε να ελέγξετε αυτές τις απαντήσεις σε συνήθεις ερωτήσεις!</string>
+    <string name="sort">Ταξινόμηση</string>
 </resources>

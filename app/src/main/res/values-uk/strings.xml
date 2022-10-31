@@ -194,7 +194,7 @@
     <string name="dismiss">Відхилити</string>
     <string name="rename">Перейменувати</string>
     <string name="title_licenses">Ліцензії третіх сторін</string>
-    <string name="tab_about">Про застосунок</string>
+    <string name="tab_about">Про застосунок і ЧаП</string>
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
     <string name="settings_category_debug_title">Зневадження</string>
@@ -737,4 +737,8 @@
     <string name="feed_toggle_show_future_items">Показати наступні елементи</string>
     <string name="feed_toggle_hide_played_items">Сховати переглянуті елементи</string>
     <string name="feed_toggle_hide_future_items">Сховати майбутні елементи</string>
+    <string name="faq">Переглянути на сайті</string>
+    <string name="faq_title">Поширені запитання</string>
+    <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
+    <string name="sort">Сортувати</string>
 </resources>

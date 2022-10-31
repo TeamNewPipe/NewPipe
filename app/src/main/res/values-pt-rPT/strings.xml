@@ -720,4 +720,7 @@
     <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
     <string name="feed_toggle_hide_played_items">Ocultar artigos vistos</string>
     <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
+    <string name="faq_title">Perguntas frequentes</string>
+    <string name="faq_description">Se tem problemas a usar a app, veja estas respostas para perguntas frequentes!</string>
+    <string name="faq">Ver no sítio web</string>
 </resources>

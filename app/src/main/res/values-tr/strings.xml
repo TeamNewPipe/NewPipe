@@ -108,7 +108,7 @@
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
     <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
-    <string name="tab_about">Hakkında</string>
+    <string name="tab_about">Hakkında &amp; SSS</string>
     <string name="tab_licenses">Lisanslar</string>
     <string name="app_description">Android\'de özgür ve hafif bir oynatıcı.</string>
     <string name="view_on_github">GitHub\'da Görüntüle</string>
@@ -717,7 +717,11 @@
     <string name="unknown_format">Bilinmeyen biçim</string>
     <string name="unknown_quality">Bilinmeyen nitelik</string>
     <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
-    <string name="feed_toggle_show_future_items">Gelecekteki video öğelerini göster</string>
-    <string name="feed_toggle_hide_future_items">Gelecekteki öğeleri gizle</string>
-    <string name="feed_toggle_hide_played_items">İzlenen öğeleri gizle</string>
+    <string name="feed_toggle_show_future_items">Gelecekteki ögeleri göster</string>
+    <string name="feed_toggle_hide_future_items">Gelecekteki ögeleri gizle</string>
+    <string name="feed_toggle_hide_played_items">İzlenen ögeleri gizle</string>
+    <string name="faq_title">Sık Sorulan Sorular</string>
+    <string name="faq">Web sitesinde görüntüle</string>
+    <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
+    <string name="sort">Sırala</string>
 </resources>

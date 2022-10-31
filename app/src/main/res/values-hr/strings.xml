@@ -127,7 +127,7 @@
     <string name="title_activity_about">O NewPipeu</string>
     <string name="title_licenses">Licence treće strane</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaciji</string>
+    <string name="tab_about">O aplikaciji i ČPP</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Slobodan i mali YouTube program za Android.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
@@ -569,9 +569,9 @@
 \nNadamo se da će biti podržan u budućoj verziji.</string>
     <string name="show_thumbnail_summary">Koristi sličicu za pozadinu zaključanog ekrana i za obavijesti</string>
     <string name="show_thumbnail_title">Prikaži sličicu</string>
-    <string name="show_original_time_ago_title">Prikaži izvorno vrijeme elemenata</string>
+    <string name="show_original_time_ago_title">Prikaži izvorno vrijeme stavki</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework” omogućuje preuzimanje na SD karticu</string>
-    <string name="show_original_time_ago_summary">Izvorni tekstovi usluga bit će vidljivi u elementima prijenosa</string>
+    <string name="show_original_time_ago_summary">Izvorni tekstovi usluga bit će vidljivi u stavkama prijenosa</string>
     <string name="feed_use_dedicated_fetch_method_summary">Dostupno je u nekim uslugama. Obično je puno brže, ali može dohvatiti ograničenu količinu stavki i često nepotpune podatke (npr. bez trajanja, vrste stavke, bez stanja uživo)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Misliš da je učitavanje feeda presporo\? Ako da, pokušaj omogućiti brzo učitavanje (možeš ga promijeniti u postavkama ili pritiskom na donji gumb).
 \n
@@ -579,7 +579,7 @@
 \n• Dohvaćanje cijelog pretplatničkog kanala, što je sporo, ali cjelovito.
 \n• Korištenje namjenske krajnje točke usluge, što je brzo, ali obično nepotpuno.
 \n
-\nRazlika je u tome što brzom načinu obično nedostaju neke informacije, poput trajanja ili vrste predmeta (ne može razlikovati videa uživo od običnih videa), a možda će vratiti i manje predmeta.
+\nRazlika je u tome što pri brzom načinu obično nedostaju neke informacije, poput trajanja ili vrste stavki (ne može razlikovati videa uživo od običnih videa), a možda će vratiti i manje stavki.
 \n
 \nYouTube je primjer usluge koja nudi ovaj brzi način sa svojim RSS feedom.
 \n
@@ -590,7 +590,7 @@
     <string name="recent">Nedavni</string>
     <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru streama, sadržaju streama ili zahtjevu za pretraživanje</string>
     <string name="show_meta_info_title">Prikaži metapodatke</string>
-    <string name="related_items_tab_description">Povezani predmeti</string>
+    <string name="related_items_tab_description">Povezane stavke</string>
     <string name="no_app_to_open_intent">Nijedan program na tvom uređaju ovo ne može otvoriti</string>
     <string name="chapters">Poglavlja</string>
     <string name="description_tab_description">Opis</string>
@@ -679,7 +679,7 @@
     <string name="local_search_suggestions">Prijedlozi lokalne pretrage</string>
     <string name="manual_update_title">Traži nove verzije</string>
     <string name="start_main_player_fullscreen_summary">Nemoj pokretati videa u mini playeru, već izravno pokreni cjeloekranski prikaz, ako je automatsko okretanje zaključano. Mini playeru i dalje možeš pristupiti napuštanjem cjeloekranskog prikaza</string>
-    <string name="feed_new_items">Novi elementi feeda</string>
+    <string name="feed_new_items">Nove stavke feeda</string>
     <string name="error_report_channel_name">Obavijest o prijavi greške</string>
     <string name="error_report_channel_description">Obavijesti za prijavu grešaka</string>
     <string name="create_error_notification">Stvori obavijest o grešci</string>
@@ -709,7 +709,7 @@
     <string name="progressive_load_interval_default">Zadano za ExoPlayer</string>
     <string name="get_notified">Primaj obavijesti</string>
     <string name="no_appropriate_file_manager_message">Za ovu radnju nije pronađen odgovarajući upravljač datoteka.
-\nInstaliraj upravljač datoteka ili pokušaj onemogućiti „%s” u postavkama preuzimanja.</string>
+\nInstaliraj upravljač datoteka ili pokušaj onemogućiti „%s” u postavkama preuzimanja</string>
     <string name="detail_pinned_comment_view_description">Prikvačeni komentar</string>
     <string name="show_crash_the_player_summary">Prikazuje opciju prekida rada kad se player koristi</string>
     <string name="show_crash_the_player_title">Prikaži „Prekini rad playera”</string>
@@ -718,7 +718,7 @@
     <string name="semitone">Poluton</string>
     <string name="streams_not_yet_supported_removed">Streamovi koje program za preuzimanje još ne podržava se ne prikazuju</string>
     <string name="selected_stream_external_player_not_supported">Vanjski playeri ne podržavaju odabrani stream</string>
-    <string name="progressive_load_interval_summary">Promijeni veličinu intervala učitavanja (trenutačno %s). Niža vrijednost može ubrzati početno učitavanje videa. Promjene zahtijevaju ponovno pokretanje playera.</string>
+    <string name="progressive_load_interval_summary">Promijeni veličinu intervala učitavanja (trenutačno %s). Niža vrijednost može ubrzati početno učitavanje videa. Promjene zahtijevaju ponovno pokretanje playera</string>
     <plurals name="new_streams">
         <item quantity="one">%s novi stream</item>
         <item quantity="few">%s nova streama</item>
@@ -730,7 +730,9 @@
     <string name="no_audio_streams_available_for_external_players">Nijedan stream audiosnimaka nije dostupan za vanjske playere</string>
     <string name="no_video_streams_available_for_external_players">Nijedan video stream nije dostupan za vanjske playere</string>
     <string name="select_quality_external_players">Odaberi kvalitetu za vanjske playere</string>
-    <string name="feed_toggle_show_future_items">Prikaži buduća videa</string>
+    <string name="feed_toggle_show_future_items">Prikaži buduće stavke</string>
     <string name="no_appropriate_file_manager_message_android_10">Za ovu radnju nije pronađen odgovrajući upravljač datoteka.
-\nInstaliraj „Storage Access Framework” kompatibilni upravljač datoteka.</string>
+\nInstaliraj „Storage Access Framework” kompatibilni upravljač datoteka</string>
+    <string name="feed_toggle_hide_future_items">Sakrij buduće stavke</string>
+    <string name="feed_toggle_hide_played_items">Sakrij pogledane stavke</string>
 </resources>

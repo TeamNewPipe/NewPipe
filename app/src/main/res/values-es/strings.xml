@@ -108,7 +108,7 @@
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
-    <string name="tab_about">Acerca de</string>
+    <string name="tab_about">FAQ &amp; Acerca de</string>
     <string name="tab_licenses">Licencias</string>
     <string name="app_description">Reproducción de transmisiones ligera y libre para Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
@@ -736,4 +736,7 @@
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
     <string name="feed_toggle_hide_played_items">Ocultar los elementos mirados</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos futuros</string>
+    <string name="faq">Ver en la página web</string>
+    <string name="faq_title">Preguntas frecuentes</string>
+    <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
 </resources>

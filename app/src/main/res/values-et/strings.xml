@@ -203,7 +203,7 @@
     <string name="toast_no_player">Selle faili esitamiseks puudub rakendus</string>
     <string name="title_activity_about">NewPipe rakendusest</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
-    <string name="tab_about">Programmist</string>
+    <string name="tab_about">Rakenduse teave ja KKK</string>
     <string name="tab_licenses">Litsentsid</string>
     <string name="contribution_title">Panusta</string>
     <string name="view_on_github">Vaata GitHubis</string>
@@ -720,4 +720,8 @@
     <string name="feed_toggle_show_future_items">Näita tulevasi üksuseid</string>
     <string name="feed_toggle_hide_future_items">Peida tulevased üksused</string>
     <string name="feed_toggle_hide_played_items">Peida vaadatud üksused</string>
+    <string name="faq_title">Korduma kippuvad küsimused</string>
+    <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>
+    <string name="faq">Edasi loe veebisaidist</string>
+    <string name="sort">Sortimine</string>
 </resources>

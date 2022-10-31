@@ -663,7 +663,7 @@
     <string name="high_quality_larger">Высокое качество (крупнее)</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
-    <string name="mark_as_watched">Пометить проигранными</string>
+    <string name="mark_as_watched">Пометить просмотренными</string>
     <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
@@ -737,4 +737,8 @@
     <string name="feed_toggle_show_future_items">Показывать будущие элементы</string>
     <string name="feed_toggle_hide_played_items">Скрыть проигранные</string>
     <string name="feed_toggle_hide_future_items">Скрывать будущие видео</string>
+    <string name="faq_title">Ответы на частые вопросы</string>
+    <string name="faq_description">Если у вас возникли проблемы с использованием приложения, обязательно ознакомьтесь с ответами на распространенные вопросы!</string>
+    <string name="faq">Посмотреть на вебсайте</string>
+    <string name="sort">Сортировка</string>
 </resources>

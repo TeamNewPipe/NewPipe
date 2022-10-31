@@ -339,7 +339,7 @@
     <string name="settings_file_replacement_character_title">Əvəzedici xarakter</string>
     <string name="charset_most_special_characters">Ən xüsusi simvollar</string>
     <string name="title_licenses">Üçüncü Tərəf Lisenziyaları</string>
-    <string name="tab_about">Haqqında</string>
+    <string name="tab_about">Haqqında &amp; T-TSS</string>
     <string name="contribution_title">Töhfə Verin</string>
     <string name="contribution_encouragement">Fikirlərinizin olub-olmaması, tərcümə, dizayn dəyişiklikləri, kodun təmizlənməsi və ya real ağırlıqlı kod dəyişiklikləri və.s kömək həmişə xoşdur. Nə qədər çox edilsə, bir o qədər yaxşı olar!</string>
     <string name="give_back">İanə Edin</string>
@@ -530,7 +530,7 @@
     <string name="metadata_category">Kateqoriya</string>
     <string name="metadata_privacy_internal">Daxili</string>
     <string name="description_select_enable">Açıqlamadakı mətni seçməyi aktivləşdirin</string>
-    <string name="metadata_tags">Teqlər</string>
+    <string name="metadata_tags">Etiketlər</string>
     <string name="tablet_mode_title">Planşet rejimi</string>
     <string name="off">Bağla</string>
     <string name="detail_heart_img_view_description">Yaradıcısından ürəkləndi</string>
@@ -720,4 +720,8 @@
     <string name="feed_toggle_show_future_items">Gələcək elementləri göstərin</string>
     <string name="feed_toggle_hide_played_items">Baxılan elementləri gizlədin</string>
     <string name="feed_toggle_hide_future_items">Gələcək elementləri gizlədin</string>
+    <string name="faq_description">Tətbiqdən istifadə etməkdə çətinlik çəkirsinizsə, ümumi suallara bu cavabların yoxlanıldığına əmin ol!</string>
+    <string name="faq_title">Tez-tez soruşulan suallar</string>
+    <string name="faq">Veb Saytında baxın</string>
+    <string name="sort">Çeşidlə</string>
 </resources>

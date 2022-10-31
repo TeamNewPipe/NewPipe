@@ -559,7 +559,7 @@
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
-    <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
+    <string name="auto_queue_toggle">Lire automatiquement</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une liste de lecture</string>
     <string name="notification_action_nothing">Rien</string>
@@ -732,10 +732,11 @@
     <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
     <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
     <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
-    <string name="feed_toggle_show_future_items">Afficher les futurs éléments</string>
+    <string name="feed_toggle_show_future_items">Afficher les éléments à venir</string>
     <string name="feed_toggle_hide_played_items">Masquer les éléments visionnés</string>
     <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
     <string name="faq_title">Foire aux questions</string>
     <string name="faq">Voir sur le site web</string>
     <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
+    <string name="sort">Trier</string>
 </resources>

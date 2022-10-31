@@ -113,7 +113,7 @@
     <string name="title_activity_about">Tentang NewPipe</string>
     <string name="title_licenses">Lisensi pihak ketiga</string>
     <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
-    <string name="tab_about">Tentang</string>
+    <string name="tab_about">Tentang &amp; FAQ</string>
     <string name="tab_licenses">Lisensi</string>
     <string name="app_description">Aplikasi video daring yang bebas dan ringan untuk Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
@@ -707,4 +707,8 @@
     <string name="feed_toggle_show_future_items">Tampilkan item mendatang</string>
     <string name="feed_toggle_hide_played_items">Sembunyikan item yang telah ditonton</string>
     <string name="feed_toggle_hide_future_items">Sembunyikan item mendatang</string>
+    <string name="faq_title">Pertanyaan yang sering diajukan</string>
+    <string name="faq_description">Jika Anda mengalami masalah menggunakan aplikasi, pastikan untuk melihat jawaban untuk pertanyaan yang umum!</string>
+    <string name="faq">Tampilkan di situs web</string>
+    <string name="sort">Urutan</string>
 </resources>

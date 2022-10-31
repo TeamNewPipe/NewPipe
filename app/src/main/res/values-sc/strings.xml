@@ -105,7 +105,7 @@
     <string name="contribution_title">Contribui</string>
     <string name="app_description">Riprodutzione lìbera e lèbia de trasmissiones (streaming) in Android.</string>
     <string name="tab_licenses">Litzèntzias</string>
-    <string name="tab_about">Informatziones</string>
+    <string name="tab_about">Informatziones e PF</string>
     <string name="copyright">© %1$s de %2$s cun litzèntzia %3$s</string>
     <string name="title_licenses">Litzèntzias de tertzas partes</string>
     <string name="title_activity_about">In subra de NewPipe</string>
@@ -720,4 +720,8 @@
     <string name="feed_toggle_show_future_items">Ammustra sos elementos imbenientes</string>
     <string name="feed_toggle_hide_played_items">Cua sos elementos pompiados</string>
     <string name="feed_toggle_hide_future_items">Cua sos elementos imbenientes</string>
+    <string name="faq_title">Preguntas fitianas</string>
+    <string name="faq_description">Si ses tenende problemas impreende s\'aplicatzione assegura·ti de consultare custas rispostas a preguntas fitianas!</string>
+    <string name="faq">Pòmpia in su situ web</string>
+    <string name="sort">Òrdina</string>
 </resources>

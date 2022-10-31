@@ -237,7 +237,7 @@
     <string name="playlist_creation_success">Afspeellijst gecreëerd</string>
     <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
     <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd.</string>
-    <string name="caption_none">Geen bijschriften</string>
+    <string name="caption_none">Geen ondertitels</string>
     <string name="resize_fit">Inpassen</string>
     <string name="resize_fill">Opvullen</string>
     <string name="resize_zoom">Inzoomen</string>
@@ -297,8 +297,8 @@
     <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
     <string name="preferred_open_action_settings_summary">Standaardactie bij openen van inhoud — %s</string>
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
-    <string name="caption_setting_title">Bijschriften</string>
-    <string name="caption_setting_description">Bijschriftgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
+    <string name="caption_setting_title">Ondertitels</string>
+    <string name="caption_setting_description">Ondertitelgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
     <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van bekeken video\'s en afspeelposities</string>
@@ -678,12 +678,12 @@
     <string name="create_error_notification">Maak een foutmelding</string>
     <string name="show_error_snackbar">Korte foutmelding weergeven</string>
     <string name="no_appropriate_file_manager_message">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
-\nInstalleer een bestandsbeheerder of probeer \'%s\' uit te schakelen in de download instellingen.</string>
+\nInstalleer een bestandsbeheerder of probeer \'%s\' uit te schakelen in de download instellingen</string>
     <string name="no_appropriate_file_manager_message_android_10">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
-\nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework.</string>
+\nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Vastgemaakt commentaar</string>
     <string name="leak_canary_not_available">LeakCanary is niet beschikbaar</string>
-    <string name="progressive_load_interval_summary">Verander de laad interval tijd (nu %s). Een lagere waarde kan het initiële laden van de video versnellen. De wijziging vereist een herstart van de speler.</string>
+    <string name="progressive_load_interval_summary">Verander de laad interval tijd (nu %s). Een lagere waarde kan het initiële laden van de video versnellen. De wijziging vereist een herstart van de speler</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standaard</string>
     <string name="settings_category_player_notification_title">Speler melding</string>
     <string name="settings_category_player_notification_summary">Configureer meldingen van de huidige spelende stream</string>
@@ -717,5 +717,10 @@
     <string name="select_quality_external_players">Selecteer kwaliteit voor externe spelers</string>
     <string name="unknown_format">Onbekend formaat</string>
     <string name="progressive_load_interval_title">Intervalgrootte tijdens afspelen</string>
-    <string name="feed_toggle_show_future_items">Toon toekomstige video\'s</string>
+    <string name="feed_toggle_show_future_items">Toon toekomstige objecten</string>
+    <string name="feed_toggle_hide_played_items">Verberg bekeken objecten</string>
+    <string name="feed_toggle_hide_future_items">Verberg toekomstige objecten</string>
+    <string name="faq_title">Veelgestelde vragen</string>
+    <string name="faq_description">Als u problemen ondervindt bij het gebruik van de app, bekijk dan deze antwoorden op veelgestelde vragen!</string>
+    <string name="faq">Bekijk op de website</string>
 </resources>
