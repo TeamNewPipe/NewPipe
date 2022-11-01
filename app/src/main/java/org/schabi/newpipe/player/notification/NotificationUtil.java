@@ -9,6 +9,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
@@ -19,11 +20,15 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+import static androidx.media.app.NotificationCompat.MediaStyle;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
@@ -37,8 +42,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 
 /**
  * This is a utility class for player notifications.
- *
- * @author cool-student
  */
 public final class NotificationUtil {
     private static final String TAG = NotificationUtil.class.getSimpleName();
@@ -76,6 +79,19 @@ public final class NotificationUtil {
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
+    public synchronized void updateThumbnail() {
+        if (notificationBuilder != null) {
+            if (DEBUG) {
+                Log.d(TAG, "updateThumbnail() called with thumbnail = [" + Integer.toHexString(
+                        Optional.ofNullable(player.getThumbnail()).map(Objects::hashCode).orElse(0))
+                        + "], title = [" + player.getVideoTitle() + "]");
+            }
+
+            setLargeIcon(notificationBuilder);
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+        }
+    }
+
     private synchronized NotificationCompat.Builder createNotification() {
         if (DEBUG) {
             Log.d(TAG, "createNotification()");
@@ -101,9 +117,13 @@ public final class NotificationUtil {
                 player.getContext(), player.getPrefs(), nonNothingSlotCount);
         final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
 
-        builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                    .setMediaSession(player.getMediaSessionManager().getSessionToken())
-                    .setShowActionsInCompactView(compactSlots))
+        final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
+        player.UIs()
+                .get(MediaSessionPlayerUi.class)
+                .flatMap(MediaSessionPlayerUi::getSessionToken)
+                .ifPresent(mediaStyle::setMediaSession);
+
+        builder.setStyle(mediaStyle)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
@@ -115,6 +135,9 @@ public final class NotificationUtil {
                         player.getContext().getString(R.string.notification_colorize_key), true))
                 .setDeleteIntent(PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
+
+        // set the initial value for the video thumbnail, updatable with updateNotificationThumbnail
+        setLargeIcon(builder);
 
         return builder;
     }
@@ -133,12 +156,8 @@ public final class NotificationUtil {
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
+
         updateActions(notificationBuilder);
-        final boolean showThumbnail = player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.show_thumbnail_key), true);
-        if (showThumbnail) {
-            setLargeIcon(notificationBuilder);
-        }
     }
 
 
@@ -340,17 +359,26 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     private void setLargeIcon(final NotificationCompat.Builder builder) {
+        final boolean showThumbnail = player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.show_thumbnail_key), true);
+        final Bitmap thumbnail = player.getThumbnail();
+        if (thumbnail == null || !showThumbnail) {
+            // since the builder is reused, make sure the thumbnail is unset if there is not one
+            builder.setLargeIcon(null);
+            return;
+        }
+
         final boolean scaleImageToSquareAspectRatio = player.getPrefs().getBoolean(
                 player.getContext().getString(R.string.scale_to_square_image_in_notifications_key),
                 false);
         if (scaleImageToSquareAspectRatio) {
-            builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
+            builder.setLargeIcon(getBitmapWithSquareAspectRatio(thumbnail));
         } else {
-            builder.setLargeIcon(player.getThumbnail());
+            builder.setLargeIcon(thumbnail);
         }
     }
 
-    private Bitmap getBitmapWithSquareAspectRatio(final Bitmap bitmap) {
+    private Bitmap getBitmapWithSquareAspectRatio(@NonNull final Bitmap bitmap) {
         // Find the smaller dimension and then take a center portion of the image that
         // has that size.
         final int w = bitmap.getWidth();

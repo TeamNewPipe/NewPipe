@@ -1,0 +1,15 @@
+Da questa versione la versione minima è Android 5 Lollipop!
+
+Novità
+• Download dal menu a pressione prolungata
+• Nascondi i video futuri tra le iscrizioni
+• Condivisione di playlist locali
+
+Miglioramenti
+• Rifattorizzazione del codice del player in piccoli componenti
+• Miglioramento della modalità di scala delle miniature
+• Vettorializzazione dei segnaposto delle immagini
+
+Correzioni
+• Corretti vari problemi con la notifica del player
+• Corretto il fullscreen che utilizza 1/4 dello schermo

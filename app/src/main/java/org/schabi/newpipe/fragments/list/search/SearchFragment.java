@@ -200,7 +200,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         showLocalSuggestions = NewPipeSettings.showLocalSearchSuggestions(activity, prefs);
         showRemoteSuggestions = NewPipeSettings.showRemoteSearchSuggestions(activity, prefs);
 
-        suggestionListAdapter = new SuggestionListAdapter(activity);
+        suggestionListAdapter = new SuggestionListAdapter();
         historyRecordManager = new HistoryRecordManager(context);
     }
 
@@ -340,6 +340,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.initViews(rootView, savedInstanceState);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
+        // animations are just strange and useless, since the suggestions keep changing too much
+        searchBinding.suggestionsList.setItemAnimator(null);
         new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(@NonNull final RecyclerView recyclerView,
@@ -530,7 +532,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchBinding.correctSuggestion.setVisibility(View.GONE);
 
             searchEditText.setText("");
-            suggestionListAdapter.setItems(new ArrayList<>());
+            suggestionListAdapter.submitList(null);
             showKeyboardSearch();
         });
 
@@ -944,8 +946,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "handleSuggestions() called with: suggestions = [" + suggestions + "]");
         }
-        searchBinding.suggestionsList.smoothScrollToPosition(0);
-        searchBinding.suggestionsList.post(() -> suggestionListAdapter.setItems(suggestions));
+        suggestionListAdapter.submitList(suggestions,
+                () -> searchBinding.suggestionsList.scrollToPosition(0));
 
         if (suggestionsPanelVisible && isErrorPanelVisible()) {
             hideLoading();
@@ -1066,14 +1068,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return 0;
         }
 
-        final SuggestionItem item = suggestionListAdapter.getItem(position);
+        final SuggestionItem item = suggestionListAdapter.getCurrentList().get(position);
         return item.fromHistory ? makeMovementFlags(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) : 0;
     }
 
     public void onSuggestionItemSwiped(@NonNull final RecyclerView.ViewHolder viewHolder) {
         final int position = viewHolder.getBindingAdapterPosition();
-        final String query = suggestionListAdapter.getItem(position).query;
+        final String query = suggestionListAdapter.getCurrentList().get(position).query;
         final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

@@ -1,0 +1,2 @@
+[YouTube] Videonu başlatmağa başladıqda "Heç bir yayım əldə etmək mümkün olmadı" xətası aradan qaldırıldı
+[YouTube] Vide sorğusu əvəzinə "Bu məzmun bu tətbiqdə əlçatan deyil" xətası aradan qaldırıldı

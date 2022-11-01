@@ -1,0 +1,8 @@
+- Soporte añadido para capítulos en controles del reproductor
+- [PeerTube] Añadida la búsqueda de Sepia
+- Botón compartir reañadido en vista detalles de vídeo y descripción de secuencia movida a diseño de pestaña
+- Desactivar restauración de brillo si gesto de brillo desactivado
+- Añadido el elemento de lista para reproducir vídeo en kodi
+- Fallo corregido si no hay navegador por defecto en ciertos dispositivos, diálogos compartir mejorados
+- Alternar reproducción/pausa con botón de espacio de hardware en reproductor de pantalla completa
+- [media.ccc.de] Varias correcciones y mejoras

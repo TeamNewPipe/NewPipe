@@ -207,8 +207,8 @@
     <string name="notification_action_2_title">மூன்றாம் செயல் பொத்தான்</string>
     <string name="notification_action_1_title">இரண்டாம் செயல் பொத்தான்</string>
     <string name="notification_action_0_title">முதல் செயல் பொத்தான்</string>
-    <string name="notification_scale_to_square_image_summary">அறிவிப்பில் தெரியும் காணொளி சிறுபடத்தை 16: 9 முதல் 1: 1 அம்ச விகிதம் வரை அளவிடு (சிதைவுகளை அறிமுகப்படுத்தலாம்)</string>
-    <string name="notification_scale_to_square_image_title">சிறுபடத்தை 1: 1 அம்ச விகிதத்திற்கு அளவிடு</string>
+    <string name="notification_scale_to_square_image_summary">அறிவிப்பில் தெரியும் காணொளி முகப்புபடத்தை 16: 9 முதல் 1: 1 அம்ச விகிதம் வரை அளவிட்டு பிரித்து எது</string>
+    <string name="notification_scale_to_square_image_title">அட்டைப் படத்தை 1:1 விகிதத்தில் செதுக்கவும்</string>
     <string name="search_showing_result_for">%s :க்கான முடிவுகளைக் காட்டுகிறது</string>
     <string name="open_with">இதனுடன் திற</string>
     <string name="tab_about">பற்றி</string>
@@ -359,4 +359,20 @@
     <string name="feed_group_dialog_select_subscriptions">சந்தாக்களைத் தேர்ந்தெடு</string>
     <string name="settings_file_replacement_character_summary">செல்லா வரியுருக்கள் இம்மதிப்புடன் மாற்றீடுசெய்யப்படும்</string>
     <string name="preferred_open_action_settings_title">நயமான \'திற\' செயல்</string>
+    <string name="progressive_load_interval_title">பின்னணி சுழற்சியின் கால அளவு</string>
+    <string name="settings_category_player_notification_title">பிளேயர் அறிவிப்பு</string>
+    <string name="settings_category_player_notification_summary">தற்போதைய இயங்கும் ஸ்ட்ரீம் அறிவிப்பை உள்ளமைக்கவும்</string>
+    <string name="show_hold_to_append_summary">\"விவரங்கள்:\" வீடியோவில் பின்னணி அல்லது பாப்அப் பட்டனை அழுத்தும் போது உதவிக்குறிப்பைக் காட்டு</string>
+    <string name="auto_queue_summary">தொடர்புடைய ஸ்ட்ரீமைச் சேர்ப்பதன் மூலம் (மீண்டும் நிகழாத) பிளேபேக் வரிசையைத் தொடரவும்</string>
+    <string name="progressive_load_interval_summary">சுமை இடைவெளி அளவை மாற்றவும் (தற்போது %s). குறைந்த மதிப்பு ஆரம்ப வீடியோ ஏற்றுதலை விரைவுபடுத்தலாம். மாற்றங்களுக்கு பிளேயர் மறுதொடக்கம் தேவை</string>
+    <string name="show_age_restricted_content_summary">வயது வரம்பு (18+ போன்ற) இருப்பதால், குழந்தைகளுக்குப் பொருத்தமற்ற உள்ளடக்கத்தைக் காட்டு</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube \"கட்டுப்படுத்தப்பட்ட பயன்முறையை\" வழங்குகிறது, இது முதிர்ந்த உள்ளடக்கத்தை மறைக்கிறது</string>
+    <string name="notifications">அறிவிப்புகள்</string>
+    <string name="hash_channel_name">வீடியோ ஹாஷ் அறிவிப்பு</string>
+    <string name="streams_notification_channel_name">புதிய நீரோடைகள்</string>
+    <string name="youtube_signature_deobfuscation_error">வீடியோ URL கையொப்பத்தை நீக்க முடியவில்லை</string>
+    <string name="hash_channel_description">வீடியோ ஹேஷிங் முன்னேற்றத்திற்கான அறிவிப்புகள்</string>
+    <string name="streams_notification_channel_description">சந்தாவுக்கான புதிய ஸ்ட்ரீம்கள் பற்றிய அறிவிப்புகள்</string>
+    <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது.
+\nவயது வரம்புக்குட்பட்ட வீடியோக்கள் கொண்ட புதிய YouTube கொள்கைகள் காரணமாக, NewPipe ஆல் அதன் எந்த வீடியோ ஸ்ட்ரீம்களையும் அணுக முடியாது, இதனால் அதை இயக்க முடியவில்லை.</string>
 </resources>

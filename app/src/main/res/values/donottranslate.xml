@@ -21,6 +21,7 @@
     <string name="donation_url">https://newpipe.net/donate/</string>
     <string name="website_url">https://newpipe.net/</string>
     <string name="privacy_policy_url">https://newpipe.net/legal/privacy/</string>
+    <string name="faq_url">https://newpipe.net/FAQ/</string>
     <string name="service_kiosk_string">%1$s/%2$s</string>
     <string name="youtube">YouTube</string>
     <string name="soundcloud">SoundCloud</string>

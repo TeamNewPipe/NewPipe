@@ -1,0 +1,28 @@
+# Journal des modifications de la v0.13.6
+
+### Améliorations
+
+- L'animation de l'icône du menu « hamburger » a été désactivée  #1486 
+- Annulation de la suppression des téléchargements #1472 
+- Option de téléchargement dans le menu de partage #1498
+- Ajout d'une option de partage dans le menu "long tap" #1454 
+- Réduction du lecteur principal à la sortie #1354 
+- Mise à jour de la version de la bibliothèque et correction de la sauvegarde de la base de données #1510 
+- Mise à jour de ExoPlayer 2.8.2 #1392
+  - La boîte de dialogue de contrôle de la vitesse de lecture a été retravaillée pour prendre en charge différentes tailles de pas pour un changement de vitesse plus rapide.
+  - Ajout d'une option d'avance rapide pendant les silences dans le contrôle de la vitesse de lecture. Cela devrait être utile pour les livres audio et certains genres musicaux, et peut apporter une véritable expérience transparente (et peut casser une chanson avec beaucoup de silences =\\).  
+  - Refonte de la résolution des sources de médias pour permettre le passage des métadonnées avec les médias en interne dans le lecteur, plutôt que de le faire manuellement. Maintenant, nous avons une seule source de métadonnées et elles sont directement disponibles lorsque la lecture commence.
+  - Correction des métadonnées des listes de lecture distantes qui ne sont pas mises à jour lorsque de nouvelles métadonnées sont disponibles lors de l'ouverture du fragment de liste de lecture.
+  - Diverses corrections de l'interface utilisateur : #1383, les contrôles de notification du lecteur en arrière-plan sont maintenant toujours blancs, il est plus facile de fermer le lecteur popup en le lançant.
+- Utilisation d'un nouvel extracteur avec une architecture remaniée pour le multiservice.
+
+### Corrections
+
+- Correction #1440 Disposition des informations vidéo cassée #1491 
+- Correction de l'historique des vues #1497
+  - #1495, en mettant à jour les métadonnées (vignette, titre et nombre de vidéos) dès que l'utilisateur accède à la liste de lecture. 
+  - #1475, en enregistrant une vue dans la base de données lorsque l'utilisateur lance une vidéo sur un lecteur externe sur le fragment de détail.
+- Correction du timeout de la fenêtre en cas de mode popup. #1463 (Corrigé #640)
+- Correction du lecteur vidéo principal #1509 
+  - Correction du mode répétition entraînant un NPE du lecteur lorsqu'une nouvelle intention est reçue alors que l'activité du lecteur est en arrière-plan.
+  - Correction de la réduction du lecteur en popup ne détruisant pas le lecteur lorsque la permission de popup n'est pas accordée.

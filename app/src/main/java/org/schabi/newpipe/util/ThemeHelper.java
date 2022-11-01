@@ -349,7 +349,7 @@ public final class ThemeHelper {
             return false;
         } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
             return true;
-        } else {
+        } else /* listMode.equals("auto") */ {
             final Configuration configuration = context.getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
                     && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);

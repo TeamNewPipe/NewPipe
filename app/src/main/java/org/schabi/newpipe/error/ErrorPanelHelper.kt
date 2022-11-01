@@ -30,6 +30,7 @@ import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.isInterruptedCaused
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(
@@ -52,6 +53,8 @@ class ErrorPanelHelper(
         errorPanelRoot.findViewById(R.id.error_action_button)
     private val errorRetryButton: Button =
         errorPanelRoot.findViewById(R.id.error_retry_button)
+    private val errorOpenInBrowserButton: Button =
+        errorPanelRoot.findViewById(R.id.error_open_in_browser)
 
     private var errorDisposable: Disposable? = null
 
@@ -69,6 +72,7 @@ class ErrorPanelHelper(
         errorServiceExplanationTextView.isVisible = false
         errorActionButton.isVisible = false
         errorRetryButton.isVisible = false
+        errorOpenInBrowserButton.isVisible = false
     }
 
     fun showError(errorInfo: ErrorInfo) {
@@ -99,6 +103,7 @@ class ErrorPanelHelper(
             }
 
             errorRetryButton.isVisible = true
+            showAndSetOpenInBrowserButtonAction(errorInfo)
         } else if (errorInfo.throwable is AccountTerminatedException) {
             errorTextView.setText(R.string.account_terminated)
 
@@ -128,6 +133,7 @@ class ErrorPanelHelper(
                 // show retry button only for content which is not unavailable or unsupported
                 errorRetryButton.isVisible = true
             }
+            showAndSetOpenInBrowserButtonAction(errorInfo)
         }
 
         setRootVisible()
@@ -143,6 +149,15 @@ class ErrorPanelHelper(
         errorActionButton.isVisible = true
         errorActionButton.setText(resid)
         errorActionButton.setOnClickListener(listener)
+    }
+
+    fun showAndSetOpenInBrowserButtonAction(
+        errorInfo: ErrorInfo
+    ) {
+        errorOpenInBrowserButton.isVisible = true
+        errorOpenInBrowserButton.setOnClickListener {
+            ShareUtils.openUrlInBrowser(context, errorInfo.request, true)
+        }
     }
 
     fun showTextError(errorString: String) {

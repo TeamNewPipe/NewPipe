@@ -233,4 +233,16 @@
     <string name="show_higher_resolutions_summary">Solmente alicun apparatos pote reproducer videos 2K/4K</string>
     <string name="start_main_player_fullscreen_title">Initiar le reproductor principal in schermo plen</string>
     <string name="peertube_instance_add_https_only">Solmente le URLs HTTPS es supportate</string>
+    <string name="notification_action_repeat">Repeter</string>
+    <string name="notification_action_shuffle">Aleatori</string>
+    <string name="notification_action_buffering">Cargante fe</string>
+    <string name="metadata_privacy">Privacitate</string>
+    <string name="metadata_licence">Licentia</string>
+    <string name="download_has_started">Comenciava le discarga</string>
+    <string name="metadata_privacy_private">Private</string>
+    <string name="open_website_license">Aperir le sito web</string>
+    <string name="video_detail_by">Per %s</string>
+    <string name="feed_toggle_show_future_items">Monstrar le videos futur</string>
+    <string name="radio">Radio</string>
+    <string name="channel_created_by">Create per %s</string>
 </resources>

@@ -1,0 +1,15 @@
+To wydanie znosi wsparcie dla Androida 4.4 KitKat, teraz min. wersja to Android 5 Lollipop!
+
+Nowe
+• Pobier. z menu długiego naciśnięcia
+• Ukryw. przyszłych wideo w kanale
+• Udostęp. lokalnych playlist
+
+Ulepszone
+• Refaktor. kodu odtwarzacza: mniejsze zużycie RAM-u, mniej błędów
+• Skalowanie miniatur
+• Wektoryzacja obrazków zastępczych
+
+Naprawione
+• Różne problemy z powiadomieniem odtwarzacza: nieaktualne/brakujące info o multimediach, zniekształcona miniatura
+• Pełny ekran zajmujący 1/4 ekranu

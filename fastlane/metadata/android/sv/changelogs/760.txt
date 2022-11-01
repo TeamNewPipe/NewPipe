@@ -1,0 +1,20 @@
+Ändringar i 0.17.1
+
+Fixat
+- Fixa försvinnande knappar i nedladdningsvyn när man byter app #2487
+- Fixa att uppspelningspositionen sparas även om bevakningshistoriken är inaktiverad.
+
+
+
+Ändringar i 0.17.0
+
+Nytt
+Återupptagning av uppspelning #2288
+Förbättringar av nedladdaren #2149 
+
+Förbättrad
+- Gör menyer med långtryckning konsekventa #2368
+
+Fixat
+- Kraschar inte när kontrollen av appuppdatering misslyckas (GitHub-version) #2423 
+- Fixade nedladdningar som fastnade på 99,9 % #2440

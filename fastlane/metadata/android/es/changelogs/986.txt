@@ -1,0 +1,16 @@
+Nuevos
+- Notificaciones de nuevos flujos
+- Transición perfecta entre fondo y reproductores de vídeo
+- Cambio de tono por semitonos
+- Añadir cola de reproductor principal a lista de reproducción
+
+Mejorías
+- Recordar el tamaño del paso de velocidad/tono
+- Mitigar el largo buffering inicial en el reproductor de vídeo
+- Mejor interfaz de usuario de reproductor para Android TV
+- Confirmar antes de borrar todos los archivos descargados
+
+Corregidos
+- Arreglar botón multimedia no oculta controles de reproductor
+- Corregir reinicio reproducción al cambiar tipo de reproductor
+- Arreglar rotación de diálogo de lista de reproducción

@@ -1,0 +1,2 @@
+Jedná se o opravnou verzi, která aktualizuje NewPipe tak, aby opět umožňovala používání služby SoundCloud bez větších potíží.
+V extraktoru se nyní používá rozhraní API SoundCloud v2 a byla vylepšena detekce neplatných ID klientů.

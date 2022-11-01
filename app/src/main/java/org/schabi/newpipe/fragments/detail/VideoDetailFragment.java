@@ -183,6 +183,8 @@ public final class VideoDetailFragment
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
+    int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+    @State
     protected boolean autoPlayEnabled = true;
 
     @Nullable
@@ -272,7 +274,7 @@ public final class VideoDetailFragment
 
     public static VideoDetailFragment getInstanceInCollapsedState() {
         final VideoDetailFragment instance = new VideoDetailFragment();
-        instance.bottomSheetState = BottomSheetBehavior.STATE_COLLAPSED;
+        instance.updateBottomSheetState(BottomSheetBehavior.STATE_COLLAPSED);
         return instance;
     }
 
@@ -510,12 +512,18 @@ public final class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                autoPlayEnabled = true; // forcefully start playing
-                // FIXME Workaround #7427
-                if (isPlayerAvailable()) {
-                    player.setRecovery();
+                // make sure not to open any player if there is nothing currently loaded!
+                // FIXME removing this `if` causes the player service to start correctly, then stop,
+                //  then restart badly without calling `startForeground()`, causing a crash when
+                //  later closing the detail fragment
+                if (currentInfo != null) {
+                    autoPlayEnabled = true; // forcefully start playing
+                    // FIXME Workaround #7427
+                    if (isPlayerAvailable()) {
+                        player.setRecovery();
+                    }
+                    openVideoPlayerAutoFullscreen();
                 }
-                openVideoPlayerAutoFullscreen();
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndSecondaryControls();
@@ -524,6 +532,9 @@ public final class VideoDetailFragment
             case R.id.overlay_metadata_layout:
             case R.id.overlay_buttons_layout:
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                break;
+            case R.id.overlay_play_queue_button:
+                NavigationHelper.openPlayQueue(getContext());
                 break;
             case R.id.overlay_play_pause_button:
                 if (playerIsNotStopped()) {
@@ -683,6 +694,7 @@ public final class VideoDetailFragment
         binding.overlayMetadataLayout.setOnClickListener(this);
         binding.overlayMetadataLayout.setOnLongClickListener(this);
         binding.overlayButtonsLayout.setOnClickListener(this);
+        binding.overlayPlayQueueButton.setOnClickListener(this);
         binding.overlayCloseButton.setOnClickListener(this);
         binding.overlayPlayPauseButton.setOnClickListener(this);
 
@@ -1182,7 +1194,7 @@ public final class VideoDetailFragment
             // doesn't tell which state it was settling to, and thus the bottom sheet settles to
             // STATE_COLLAPSED. This can be solved by manually setting the state that will be
             // restored (i.e. bottomSheetState) to STATE_EXPANDED.
-            bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+            updateBottomSheetState(BottomSheetBehavior.STATE_EXPANDED);
             // toggle landscape in order to open directly in fullscreen
             onScreenRotationButtonClicked();
         }
@@ -1232,7 +1244,7 @@ public final class VideoDetailFragment
         }
 
         final PlayQueue queue = setupPlayQueueForIntent(false);
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
                 PlayerService.class, queue, true, autoPlayEnabled);
@@ -1313,21 +1325,33 @@ public final class VideoDetailFragment
                 && PlayerHelper.isAutoplayAllowedByUser(requireContext());
     }
 
-    private void addVideoPlayerView() {
-        if (!isPlayerAvailable() || getView() == null) {
-            return;
+    private void tryAddVideoPlayerView() {
+        if (isPlayerAvailable() && getView() != null) {
+            // Setup the surface view height, so that it fits the video correctly; this is done also
+            // here, and not only in the Handler, to avoid a choppy fullscreen rotation animation.
+            setHeightThumbnail();
         }
-        setHeightThumbnail();
 
-        // Prevent from re-adding a view multiple times
-        new Handler(Looper.getMainLooper()).post(() ->
-                player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
-                    if (binding != null) {
-                        playerUi.removeViewFromParent();
-                        binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
-                        playerUi.setupVideoSurfaceIfNeeded();
-                    }
-                }));
+        // do all the null checks in the posted lambda, too, since the player, the binding and the
+        // view could be set or unset before the lambda gets executed on the next main thread cycle
+        new Handler(Looper.getMainLooper()).post(() -> {
+            if (!isPlayerAvailable() || getView() == null) {
+                return;
+            }
+
+            // setup the surface view height, so that it fits the video correctly
+            setHeightThumbnail();
+
+            player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
+                // sometimes binding would be null here, even though getView() != null above u.u
+                if (binding != null) {
+                    // prevent from re-adding a view multiple times
+                    playerUi.removeViewFromParent();
+                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+                    playerUi.setupVideoSurfaceIfNeeded();
+                }
+            });
+        });
     }
 
     private void removeVideoPlayerView() {
@@ -1796,7 +1820,7 @@ public final class VideoDetailFragment
 
     @Override
     public void onViewCreated() {
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
     }
 
     @Override
@@ -1938,7 +1962,7 @@ public final class VideoDetailFragment
         }
         scrollToTop();
 
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
     }
 
     @Override
@@ -2284,7 +2308,9 @@ public final class VideoDetailFragment
 
         final FrameLayout bottomSheetLayout = activity.findViewById(R.id.fragment_player_holder);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
-        bottomSheetBehavior.setState(bottomSheetState);
+        bottomSheetBehavior.setState(lastStableBottomSheetState);
+        updateBottomSheetState(lastStableBottomSheetState);
+
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false);
@@ -2300,7 +2326,7 @@ public final class VideoDetailFragment
         bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
-                bottomSheetState = newState;
+                updateBottomSheetState(newState);
 
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
@@ -2416,6 +2442,7 @@ public final class VideoDetailFragment
         binding.overlayMetadataLayout.setClickable(enable);
         binding.overlayMetadataLayout.setLongClickable(enable);
         binding.overlayButtonsLayout.setClickable(enable);
+        binding.overlayPlayQueueButton.setClickable(enable);
         binding.overlayPlayPauseButton.setClickable(enable);
         binding.overlayCloseButton.setClickable(enable);
     }
@@ -2440,5 +2467,13 @@ public final class VideoDetailFragment
 
         return player.UIs().get(VideoPlayerUi.class)
                 .map(playerUi -> playerUi.getBinding().getRoot());
+    }
+
+    private void updateBottomSheetState(final int newState) {
+        bottomSheetState = newState;
+        if (newState != BottomSheetBehavior.STATE_DRAGGING
+                && newState != BottomSheetBehavior.STATE_SETTLING) {
+            lastStableBottomSheetState = newState;
+        }
     }
 }

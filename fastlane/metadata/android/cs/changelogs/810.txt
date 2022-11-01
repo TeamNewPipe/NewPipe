@@ -1,0 +1,8 @@
+Nový
+- Zobrazení miniatury videa na zamykací obrazovce při přehrávání na pozadí
+
+Vylepšená stránka
+- Přidání místního seznamu skladeb do fronty při dlouhém stisknutí tlačítka na pozadí / vyskakovacího tlačítka
+- Umožnit posouvání karet hlavní stránky a jejich skrytí, pokud je k dispozici pouze jedna karta
+- Omezit počet aktualizací miniatur oznámení v přehrávači na pozadí
+- Přidání fiktivní miniatury pro prázdné místní seznamy skladeb

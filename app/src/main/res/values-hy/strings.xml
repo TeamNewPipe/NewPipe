@@ -217,4 +217,7 @@
     <string name="metadata_privacy_public">Հանրային</string>
     <string name="metadata_tags">Պիտակներ</string>
     <string name="notifications_disabled">Ծանուցումները անջատված են</string>
+    <string name="empty_subscription_feed_subtitle">Ոչինչ բացի դատարկությունից</string>
+    <string name="retry">Կրկին փորձել</string>
+    <string name="feed_new_items">Հոսքի նորերը</string>
 </resources>

@@ -1,0 +1,19 @@
+Nouveautée :
+• Affiche la miniature de la vidéo sur l'écran de verrouillage lorsqu'elle est lu en arrière-plan
+
+Améliorations :
+• Ajout de la liste de lecture locale à la file d'attente lors d'une pression longue sur le bouton arrière-plan / flottant
+• Possibilité de faire défiler les onglets de la page principale et les masquent lorsqu'il n'y a qu'un seul onglet
+• Limite le nombre de mises à jour de la miniature des notifications avec le lecteur en arrière-plan
+• Ajout d'une miniature fictive pour les listes de lecture locales vides
+• Utilisation de l'extension de fichier *.opus au lieu de *.webm et affiche « opus » pour le nom du format au lieu de « WebM Opus » dans la liste déroulante de téléchargement.
+• Ajout d'un bouton pour supprimer les fichiers téléchargés ou l'historique de téléchargements dans les « Téléchargements »
+• [YouTube] Ajout de la prise en charge des liens de chaînes /c/shortened_url
+
+Corrections :
+• Correction de plusieurs problèmes lors du partage d'une vidéo sur NewPipe et du téléchargement direct de ses flux
+• Correction de l'accès du lecteur hors de son fil de création
+• Correction de la pagination des résultats de recherche
+• [YouTube] Correction de null résultant en une erreur NPE
+• [YouTube] Correction de l'affichage des commentaires lors de l'ouverture d'une url invidio.us
+• [SoundCloud] client_id mis à jour

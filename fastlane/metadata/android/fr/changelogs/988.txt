@@ -1,0 +1,2 @@
+[YouTube] Correction de l'erreur « Impossible d'obtenir un flux » lors de la lecture d'une vidéo
+[YouTube] Correction du message « Le contenu suivant n'est pas disponible sur cette application. » affiché à la place de la vidéo demandée

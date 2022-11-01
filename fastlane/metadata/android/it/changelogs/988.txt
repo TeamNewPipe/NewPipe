@@ -1,0 +1,2 @@
+[YouTube] Corretto l'errore "Impossibile ottenere alcun flusso" quando si tenta di riprodurre qualsiasi video
+[YouTube] Corretto il messaggio "Il contenuto seguente non è disponibile su questa applicazione." mostrato al posto del video richiesto

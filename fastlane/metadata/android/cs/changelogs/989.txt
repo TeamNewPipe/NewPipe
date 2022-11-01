@@ -1,0 +1,3 @@
+• [YouTube] Oprava nekonečného načítání při pokusu přehrát jakékoli video
+• [YouTube] Oprava omezování výkonu u některých videí
+• Aktualizace knihovny jsoup na verzi 1.15.3, která obsahuje bezpečnostní opravu

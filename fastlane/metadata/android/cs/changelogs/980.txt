@@ -1,0 +1,13 @@
+Nový
+- Přidání možnosti "Přidat do seznamu skladeb" do nabídky sdílení
+- Přidána podpora pro krátké odkazy na y2u.be a PeerTube
+
+Vylepšené stránky
+- Kompaktnější ovládání rychlosti přehrávání
+- Kanál nyní zvýrazňuje nové položky
+- Možnost "Zobrazit sledované položky" ve feedu je nyní uložena
+
+Opraveno
+- Opravena extrakce lajků a dislajků na YouTube
+- Opraveno automatické přehrávání po návratu z pozadí
+A mnoho dalšího

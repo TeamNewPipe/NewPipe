@@ -18,10 +18,10 @@
 		android:entries="@array/streams_notifications_interval_description"
 		android:entryValues="@array/streams_notifications_interval_values"
 		android:key="@string/streams_notifications_interval_key"
-		android:summary="%s"
 		android:title="@string/streams_notifications_interval_title"
 		app:singleLineTitle="false"
-		app:iconSpaceReserved="false" />
+		app:iconSpaceReserved="false"
+		app:useSimpleSummaryProvider="true" />
 
 	<ListPreference
 		android:defaultValue="@string/streams_notifications_network_default"
@@ -29,10 +29,10 @@
 		android:entries="@array/streams_notifications_network_description"
 		android:entryValues="@array/streams_notifications_network_values"
 		android:key="@string/streams_notifications_network_key"
-		android:summary="%s"
 		android:title="@string/streams_notifications_network_title"
 		app:singleLineTitle="false"
-		app:iconSpaceReserved="false" />
+		app:iconSpaceReserved="false"
+		app:useSimpleSummaryProvider="true" />
 
 	<Preference
 		android:fragment="org.schabi.newpipe.settings.notifications.NotificationModeConfigFragment"

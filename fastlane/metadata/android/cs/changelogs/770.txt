@@ -1,0 +1,4 @@
+Změny ve verzi 0.17.2
+
+Oprava
+- Oprava nebylo k dispozici žádné video
