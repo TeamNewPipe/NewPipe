@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Common dimensions -->
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_nano">2dp</dimen>
+
     <!-- Menu Drawer Dimensions -->
     <dimen name="drawer_header_content_min_height">120dp</dimen>
     <dimen name="drawer_header_padding_top">16dp</dimen>

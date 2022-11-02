@@ -69,6 +69,7 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.BaseStateFragment
+import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
@@ -80,6 +81,7 @@ import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
+import org.schabi.newpipe.util.ThemeHelper.getItemViewMode
 import org.schabi.newpipe.util.ThemeHelper.resolveDrawable
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
@@ -416,11 +418,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     @SuppressLint("StringFormatMatches")
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
-
-        val itemVersion = if (shouldUseGridLayout(context)) {
-            StreamItem.ItemVersion.GRID
-        } else {
-            StreamItem.ItemVersion.NORMAL
+        val itemVersion = when (getItemViewMode(requireContext())) {
+            ItemViewMode.GRID -> StreamItem.ItemVersion.GRID
+            ItemViewMode.CARD -> StreamItem.ItemVersion.CARD
+            else -> StreamItem.ItemVersion.NORMAL
         }
         loadedState.items.forEach { it.itemVersion = itemVersion }
 
