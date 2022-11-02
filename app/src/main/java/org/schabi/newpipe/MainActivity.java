@@ -507,7 +507,7 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.fragment_player_holder);
         if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(this)
                 && currentFragment instanceof VideoDetailFragment
-                && ((VideoDetailFragment) currentFragment).isPlayerPlayingAndExpanded()) {
+                && ((VideoDetailFragment) currentFragment).canEnterAndroidPipMode()) {
             PictureInPictureHelper.enterPictureInPictureMode(this);
         }
     }

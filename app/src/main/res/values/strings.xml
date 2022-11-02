@@ -158,6 +158,7 @@
     <string name="settings_category_player_popup_summary">Configure popup player mode</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
+    <string name="popup_not_available">Popup playback not available in this mode / while paused</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Show age restricted content</string>
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>

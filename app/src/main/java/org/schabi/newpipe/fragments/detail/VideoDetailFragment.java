@@ -1077,8 +1077,13 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(requireActivity())) {
-            PictureInPictureHelper.enterPictureInPictureMode(requireActivity());
+        final var activity = requireActivity();
+        if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(activity)) {
+            if (canEnterAndroidPipMode()) {
+                PictureInPictureHelper.enterPictureInPictureMode(activity);
+            } else {
+                Toast.makeText(activity, R.string.popup_not_available, Toast.LENGTH_SHORT).show();
+            }
         } else {
             openPreNougatPopupPlayer(append);
         }
@@ -2464,9 +2469,11 @@ public final class VideoDetailFragment
         return player != null;
     }
 
-    public boolean isPlayerPlayingAndExpanded() {
+    public boolean canEnterAndroidPipMode() {
+        final var playerType = playerHolder.getType();
         return player != null && player.isPlaying()
-                && bottomSheetState == BottomSheetBehavior.STATE_EXPANDED;
+                && bottomSheetState == BottomSheetBehavior.STATE_EXPANDED
+                && playerType != null && playerType != PlayerType.AUDIO;
     }
 
     boolean isPlayerServiceAvailable() {
