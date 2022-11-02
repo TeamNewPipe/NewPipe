@@ -1695,26 +1695,25 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void saveStreamProgressState(final long progressMillis) {
-        //noinspection SimplifyOptionalCallChains
-        if (!getCurrentStreamInfo().isPresent()
-                || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
-                    + ", currentMetadata=[" + getCurrentStreamInfo().get().getName() + "]");
-        }
+        getCurrentStreamInfo().ifPresent(info -> {
+            if (!prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+                return;
+            }
+            if (DEBUG) {
+                Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
+                        + ", currentMetadata=[" + info.getName() + "]");
+            }
 
-        databaseUpdateDisposable
-                .add(recordManager.saveStreamState(getCurrentStreamInfo().get(), progressMillis)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(e -> {
-                    if (DEBUG) {
-                        e.printStackTrace();
-                    }
-                })
-                .onErrorComplete()
-                .subscribe());
+            databaseUpdateDisposable.add(recordManager.saveStreamState(info, progressMillis)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError(e -> {
+                        if (DEBUG) {
+                            e.printStackTrace();
+                        }
+                    })
+                    .onErrorComplete()
+                    .subscribe());
+        });
     }
 
     public void saveStreamProgressState() {
@@ -2036,40 +2035,35 @@ public final class Player implements PlaybackListener, Listener {
         // in livestreams) so we will be not able to execute the block below.
         // Reload the play queue manager in this case, which is the behavior when we don't know the
         // index of the video renderer or playQueueManagerReloadingNeeded returns true.
-        final Optional<StreamInfo> optCurrentStreamInfo = getCurrentStreamInfo();
-        if (!optCurrentStreamInfo.isPresent()) {
-            reloadPlayQueueManager();
-            setRecovery();
-            return;
-        }
+        getCurrentStreamInfo().ifPresentOrElse(info -> {
+            // In the case we don't know the source type, fallback to the one with video with audio
+            // or audio-only source.
+            final SourceType sourceType = videoResolver.getStreamSourceType()
+                    .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-        final StreamInfo info = optCurrentStreamInfo.get();
+            if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
+                reloadPlayQueueManager();
+            } else {
+                if (StreamTypeUtil.isAudio(info.getStreamType())) {
+                    // Nothing to do more than setting the recovery position
+                    setRecovery();
+                    return;
+                }
 
-        // In the case we don't know the source type, fallback to the one with video with audio or
-        // audio-only source.
-        final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
-                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
+                final var parametersBuilder = trackSelector.buildUponParameters();
 
-        if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
-            reloadPlayQueueManager();
-        } else {
-            if (StreamTypeUtil.isAudio(info.getStreamType())) {
-                // Nothing to do more than setting the recovery position
-                setRecovery();
-                return;
+                // Enable/disable the video track and the ability to select subtitles
+                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
+                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
+
+                trackSelector.setParameters(parametersBuilder);
             }
 
-            final DefaultTrackSelector.Parameters.Builder parametersBuilder =
-                    trackSelector.buildUponParameters();
-
-            // Enable/disable the video track and the ability to select subtitles
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
-
-            trackSelector.setParameters(parametersBuilder);
-        }
-
-        setRecovery();
+            setRecovery();
+        }, () -> {
+            reloadPlayQueueManager();
+            setRecovery();
+        });
     }
 
     /**

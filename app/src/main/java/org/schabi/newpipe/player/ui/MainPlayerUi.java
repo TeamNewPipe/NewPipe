@@ -74,6 +74,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -746,15 +747,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private int getNearestStreamSegmentPosition(final long playbackPosition) {
-        //noinspection SimplifyOptionalCallChains
-        if (!player.getCurrentStreamInfo().isPresent()) {
-            return 0;
-        }
-
         int nearestPosition = 0;
         final List<StreamSegment> segments = player.getCurrentStreamInfo()
-                .get()
-                .getStreamSegments();
+                .map(StreamInfo::getStreamSegments)
+                .orElse(Collections.emptyList());
 
         for (int i = 0; i < segments.size(); i++) {
             if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {

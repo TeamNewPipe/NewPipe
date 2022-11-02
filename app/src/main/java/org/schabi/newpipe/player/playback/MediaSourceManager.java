@@ -423,7 +423,7 @@ public class MediaSourceManager {
     private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
         return stream.getStream().map(streamInfo -> {
             final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
-            if (source == null || !MediaItemTag.from(source.getMediaItem()).isPresent()) {
+            if (source == null || MediaItemTag.from(source.getMediaItem()).isEmpty()) {
                 final String message = "Unable to resolve source from stream info. "
                         + "URL: " + stream.getUrl() + ", "
                         + "audio count: " + streamInfo.getAudioStreams().size() + ", "

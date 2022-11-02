@@ -566,7 +566,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         SeekbarPreviewThumbnailHelper
                 .tryResizeAndSetSeekbarPreviewThumbnail(
                         player.getContext(),
-                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
+                        seekbarPreviewThumbnailHolder.getBitmapAt(progress).orElse(null),
                         binding.currentSeekbarPreviewThumbnail,
                         binding.subtitleView::getWidth);
 
@@ -982,61 +982,56 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     private void updateStreamRelatedViews() {
-        //noinspection SimplifyOptionalCallChains
-        if (!player.getCurrentStreamInfo().isPresent()) {
-            return;
-        }
-        final StreamInfo info = player.getCurrentStreamInfo().get();
+        player.getCurrentStreamInfo().ifPresent(info -> {
+            binding.qualityTextView.setVisibility(View.GONE);
+            binding.playbackSpeed.setVisibility(View.GONE);
 
-        binding.qualityTextView.setVisibility(View.GONE);
-        binding.playbackSpeed.setVisibility(View.GONE);
+            binding.playbackEndTime.setVisibility(View.GONE);
+            binding.playbackLiveSync.setVisibility(View.GONE);
 
-        binding.playbackEndTime.setVisibility(View.GONE);
-        binding.playbackLiveSync.setVisibility(View.GONE);
-
-        switch (info.getStreamType()) {
-            case AUDIO_STREAM:
-            case POST_LIVE_AUDIO_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
-
-            case AUDIO_LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.VISIBLE);
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case VIDEO_STREAM:
-            case POST_LIVE_STREAM:
-                //noinspection SimplifyOptionalCallChains
-                if (player.getCurrentMetadata() != null
-                        && !player.getCurrentMetadata().getMaybeQuality().isPresent()
-                        || (info.getVideoStreams().isEmpty()
-                        && info.getVideoOnlyStreams().isEmpty())) {
+            switch (info.getStreamType()) {
+                case AUDIO_STREAM:
+                case POST_LIVE_AUDIO_STREAM:
+                    binding.surfaceView.setVisibility(View.GONE);
+                    binding.endScreen.setVisibility(View.VISIBLE);
+                    binding.playbackEndTime.setVisibility(View.VISIBLE);
                     break;
-                }
 
-                buildQualityMenu();
+                case AUDIO_LIVE_STREAM:
+                    binding.surfaceView.setVisibility(View.GONE);
+                    binding.endScreen.setVisibility(View.VISIBLE);
+                    binding.playbackLiveSync.setVisibility(View.VISIBLE);
+                    break;
 
-                binding.qualityTextView.setVisibility(View.VISIBLE);
-                binding.surfaceView.setVisibility(View.VISIBLE);
-                // fallthrough
-            default:
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
-        }
+                case LIVE_STREAM:
+                    binding.surfaceView.setVisibility(View.VISIBLE);
+                    binding.endScreen.setVisibility(View.GONE);
+                    binding.playbackLiveSync.setVisibility(View.VISIBLE);
+                    break;
 
-        buildPlaybackSpeedMenu();
-        binding.playbackSpeed.setVisibility(View.VISIBLE);
+                case VIDEO_STREAM:
+                case POST_LIVE_STREAM:
+                    if (player.getCurrentMetadata() != null
+                            && player.getCurrentMetadata().getMaybeQuality().isEmpty()
+                            || (info.getVideoStreams().isEmpty()
+                            && info.getVideoOnlyStreams().isEmpty())) {
+                        break;
+                    }
+
+                    buildQualityMenu();
+
+                    binding.qualityTextView.setVisibility(View.VISIBLE);
+                    binding.surfaceView.setVisibility(View.VISIBLE);
+                    // fallthrough
+                default:
+                    binding.endScreen.setVisibility(View.GONE);
+                    binding.playbackEndTime.setVisibility(View.VISIBLE);
+                    break;
+            }
+
+            buildPlaybackSpeedMenu();
+            binding.playbackSpeed.setVisibility(View.VISIBLE);
+        });
     }
     //endregion
 
@@ -1198,8 +1193,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
             final int menuItemIndex = menuItem.getItemId();
             @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-            //noinspection SimplifyOptionalCallChains
-            if (currentMetadata == null || !currentMetadata.getMaybeQuality().isPresent()) {
+            if (currentMetadata == null || currentMetadata.getMaybeQuality().isEmpty()) {
                 return true;
             }
 
@@ -1300,9 +1294,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         // Build UI
         buildCaptionMenu(availableLanguages);
-        //noinspection SimplifyOptionalCallChains
         if (player.getTrackSelector().getParameters().getRendererDisabled(
-                player.getCaptionRendererIndex()) || !selectedTracks.isPresent()) {
+                player.getCaptionRendererIndex()) || selectedTracks.isEmpty()) {
             binding.captionTextView.setText(R.string.caption_none);
         } else {
             binding.captionTextView.setText(selectedTracks.get().language);
