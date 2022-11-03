@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
 
-import com.google.android.exoplayer2.source.MediaSource;
-
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -27,6 +25,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -422,21 +421,24 @@ public class MediaSourceManager {
 
     private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
         return stream.getStream().map(streamInfo -> {
-            final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
-            if (source == null || MediaItemTag.from(source.getMediaItem()).isEmpty()) {
-                final String message = "Unable to resolve source from stream info. "
-                        + "URL: " + stream.getUrl() + ", "
-                        + "audio count: " + streamInfo.getAudioStreams().size() + ", "
-                        + "video count: " + streamInfo.getVideoOnlyStreams().size() + ", "
-                        + streamInfo.getVideoStreams().size();
-                return (ManagedMediaSource)
-                        FailedMediaSource.of(stream, new MediaSourceResolutionException(message));
-            }
+            final var source = playbackListener.sourceOf(stream, streamInfo);
 
-            final MediaItemTag tag = MediaItemTag.from(source.getMediaItem()).get();
-            final long expiration = System.currentTimeMillis()
-                    + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
-            return new LoadedMediaSource(source, tag, stream, expiration);
+            return Optional.ofNullable(source)
+                    .flatMap(source1 -> MediaItemTag.from(source1.getMediaItem()))
+                    .<ManagedMediaSource>map(tag -> {
+                        final long expiration = System.currentTimeMillis()
+                                + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
+                        return new LoadedMediaSource(source, tag, stream, expiration);
+                    })
+                    .orElseGet(() -> {
+                        final String message = "Unable to resolve source from stream info. "
+                                + "URL: " + stream.getUrl() + ", "
+                                + "audio count: " + streamInfo.getAudioStreams().size() + ", "
+                                + "video count: " + streamInfo.getVideoOnlyStreams().size() + ", "
+                                + streamInfo.getVideoStreams().size();
+                        return FailedMediaSource.of(stream, new MediaSourceResolutionException(
+                                message));
+                    });
         }).onErrorReturn(throwable -> {
             if (throwable instanceof ExtractionException) {
                 return FailedMediaSource.of(stream, new StreamInfoLoadException(throwable));

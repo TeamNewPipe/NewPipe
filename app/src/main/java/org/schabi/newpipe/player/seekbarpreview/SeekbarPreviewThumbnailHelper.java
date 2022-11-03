@@ -90,9 +90,8 @@ public final class SeekbarPreviewThumbnailHelper {
             final float scaleFactor = (float) newWidth / srcWidth;
             final int newHeight = (int) (previewThumbnail.getHeight() * scaleFactor);
 
-            currentSeekbarPreviewThumbnail.setImageBitmap(
-                    BitmapCompat.createScaledBitmap(previewThumbnail, newWidth, newHeight, null,
-                            true));
+            currentSeekbarPreviewThumbnail.setImageBitmap(BitmapCompat
+                    .createScaledBitmap(previewThumbnail, newWidth, newHeight, null, true));
         } catch (final Exception ex) {
             Log.e(TAG, "Failed to resize and set seekbar preview thumbnail", ex);
             currentSeekbarPreviewThumbnail.setVisibility(View.GONE);

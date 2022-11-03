@@ -862,14 +862,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     @Override
     protected void onPlaybackSpeedClicked() {
-        final AppCompatActivity activity = getParentActivity().orElse(null);
-        if (activity == null) {
-            return;
-        }
-
-        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
-                player.getPlaybackSkipSilence(), player::setPlaybackParameters)
-                .show(activity.getSupportFragmentManager(), null);
+        getParentActivity().ifPresent(activity ->
+                PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                                player.getPlaybackPitch(), player.getPlaybackSkipSilence(),
+                                player::setPlaybackParameters)
+                        .show(activity.getSupportFragmentManager(), null));
     }
 
     @Override
@@ -969,22 +966,22 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
 
+    private Optional<Context> getParentContext() {
+        return Optional.ofNullable(binding.getRoot().getParent())
+                .filter(ViewGroup.class::isInstance)
+                .map(parent -> ((ViewGroup) parent).getContext());
+    }
+
     public Optional<AppCompatActivity> getParentActivity() {
-        final ViewParent rootParent = binding.getRoot().getParent();
-        if (rootParent instanceof ViewGroup) {
-            final Context activity = ((ViewGroup) rootParent).getContext();
-            if (activity instanceof AppCompatActivity) {
-                return Optional.of((AppCompatActivity) activity);
-            }
-        }
-        return Optional.empty();
+        return getParentContext()
+                .filter(AppCompatActivity.class::isInstance)
+                .map(AppCompatActivity.class::cast);
     }
 
     public boolean isLandscape() {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
-        return DeviceUtils.isLandscape(
-                getParentActivity().map(Context.class::cast).orElse(player.getService()));
+        return DeviceUtils.isLandscape(getParentContext().orElse(player.getService()));
     }
     //endregion
 }

@@ -2423,23 +2423,20 @@ public final class VideoDetailFragment
 
     // helpers to check the state of player and playerService
     boolean isPlayerAvailable() {
-        return (player != null);
+        return player != null;
     }
 
     boolean isPlayerServiceAvailable() {
-        return (playerService != null);
+        return playerService != null;
     }
 
     boolean isPlayerAndPlayerServiceAvailable() {
-        return (player != null && playerService != null);
+        return player != null && playerService != null;
     }
 
     public Optional<View> getRoot() {
-        if (player == null) {
-            return Optional.empty();
-        }
-
-        return player.UIs().get(VideoPlayerUi.class)
+        return Optional.ofNullable(player)
+                .flatMap(player1 -> player1.UIs().get(VideoPlayerUi.class))
                 .map(playerUi -> playerUi.getBinding().getRoot());
     }
 

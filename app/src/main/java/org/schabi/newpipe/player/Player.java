@@ -1877,21 +1877,16 @@ public final class Player implements PlaybackListener, Listener {
 
     @Nullable
     public VideoStream getSelectedVideoStream() {
-        @Nullable final MediaItemTag.Quality quality = Optional.ofNullable(currentMetadata)
+        return Optional.ofNullable(currentMetadata)
                 .flatMap(MediaItemTag::getMaybeQuality)
+                .filter(quality -> {
+                    final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
+                    return selectedStreamIndex >= 0
+                            && selectedStreamIndex < quality.getSortedVideoStreams().size();
+                })
+                .map(quality -> quality.getSortedVideoStreams()
+                        .get(quality.getSelectedVideoStreamIndex()))
                 .orElse(null);
-        if (quality == null) {
-            return null;
-        }
-
-        final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
-        final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
-
-        if (selectedStreamIndex >= 0 && availableStreams.size() > selectedStreamIndex) {
-            return availableStreams.get(selectedStreamIndex);
-        } else {
-            return null;
-        }
     }
     //endregion
 
