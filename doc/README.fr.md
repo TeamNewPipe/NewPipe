@@ -13,7 +13,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#captures-d-écran">Captures d'écran</a> &bull; <a href="#services-supportés">Services Supportés</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribuer">Contribuer</a> &bull; <a href="#dons">Dons</a> &bull; <a href="#licence">Licence</a></p>
+<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#services-supportés">Services Supportés</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribuer">Contribuer</a> &bull; <a href="#dons">Dons</a> &bull; <a href="#licence">Licence</a></p>
 <p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
@@ -89,7 +89,7 @@ De plus, puisqu'il s'agit de logiciels libres et gratuits, ni l'application ni l
 <!-- Hidden span to keep old links compatible. You should remove this span if you're translating the README into another language.-->
 <span id="updates"></span>
 
-## Installation and updates
+## Installation et mises à jour
 Vous pouvez installer NewPipe en utilisant l'une de ces méthodes:
  1. Ajoutez notre dépôt dans F-Droid et l'installer de là. Les instruction sont ici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Téléchargez l'APK depuis les [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) et l'installer.
