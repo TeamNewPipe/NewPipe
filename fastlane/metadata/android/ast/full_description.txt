@@ -1,0 +1,1 @@
+NewPipe ye una aplicación llibre y gratuita que nun usa nin les biblioteques del framework de Google nin l'API de YouTube, namás analiza'l sitiu web pa recoyer la información que precisa. Poro, esta aplicación pue usase en preseos que nun tengan los servicios de Google instalaos. Tampoco ye necesaria una cuenta pa usar NewPipe.

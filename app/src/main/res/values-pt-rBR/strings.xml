@@ -146,16 +146,19 @@
     <string name="no_subscribers">Nenhum inscrito</string>
     <plurals name="subscribers">
         <item quantity="one">%s inscrito</item>
+        <item quantity="many">%s inscritos</item>
         <item quantity="other">%s inscritos</item>
     </plurals>
     <string name="no_views">Sem visualizações</string>
     <plurals name="views">
         <item quantity="one">%s visualização</item>
+        <item quantity="many">%s visualizações</item>
         <item quantity="other">%s visualizações</item>
     </plurals>
     <string name="no_videos">Nenhum vídeo</string>
     <plurals name="videos">
         <item quantity="one">%s vídeo</item>
+        <item quantity="many">%s vídeos</item>
         <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="settings_category_player_title">Player</string>
@@ -425,11 +428,13 @@
     <string name="no_one_watching">Ninguém está vendo</string>
     <plurals name="watching">
         <item quantity="one">%s assistindo</item>
+        <item quantity="many">%s assistindo</item>
         <item quantity="other">%s estão vendo</item>
     </plurals>
     <string name="no_one_listening">Ninguém está ouvindo</string>
     <plurals name="listening">
         <item quantity="one">%s ouvinte</item>
+        <item quantity="many">%s ouvintes</item>
         <item quantity="other">%s ouvintes</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">O idioma será alterado após reiniciar o app</string>
@@ -459,6 +464,7 @@
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>
+        <item quantity="many">%d segundos</item>
         <item quantity="other">%d segundos</item>
     </plurals>
     <string name="new_seek_duration_toast">Devido a limitações do ExoPlayer, a duração do avanço foi definida para %d segundos</string>
@@ -467,14 +473,17 @@
     <string name="help">Ajuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minutos</item>
         <item quantity="other">%d minutos</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d hora</item>
+        <item quantity="many">%d horas</item>
         <item quantity="other">%d horas</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d dia</item>
+        <item quantity="many">%d dias</item>
         <item quantity="other">%d dias</item>
     </plurals>
     <string name="feed_groups_header_title">Grupo de canais</string>
@@ -486,6 +495,7 @@
     <string name="feed_group_dialog_empty_selection">Nenhuma inscrição selecionada</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
+        <item quantity="many">%d selecionadas</item>
         <item quantity="other">%d selecionadas</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nome do grupo está vazio</string>
@@ -649,10 +659,12 @@
     <string name="show_image_indicators_summary">Exibir fitas coloridas no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download apagado</item>
+        <item quantity="many">%1$s downloads apagados</item>
         <item quantity="other">%1$s downloads apagados</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Download concluído</item>
+        <item quantity="many">%s downloads concluídos</item>
         <item quantity="other">%s downloads concluídos</item>
     </plurals>
     <string name="show_image_indicators_title">Exibir indicadores com imagem</string>
@@ -701,6 +713,7 @@
     <string name="loading_stream_details">Carregando detalhes da transmissão…</string>
     <plurals name="new_streams">
         <item quantity="one">%s nova transmissão</item>
+        <item quantity="many">%s novas transmissões</item>
         <item quantity="other">%s novas transmissões</item>
     </plurals>
     <string name="check_new_streams">Executar verificação de novas transmissões</string>
