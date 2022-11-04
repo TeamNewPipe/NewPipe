@@ -13,7 +13,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
-import org.schabi.newpipe.extractor.linkhandler.ChannelTabHandler;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -27,10 +27,10 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     protected int serviceId = Constants.NO_SERVICE_ID;
 
     @State
-    protected ChannelTabHandler tabHandler;
+    protected ListLinkHandler tabHandler;
 
     public static ChannelTabFragment getInstance(final int serviceId,
-                                                 final ChannelTabHandler tabHandler) {
+                                                 final ListLinkHandler tabHandler) {
         final ChannelTabFragment instance = new ChannelTabFragment();
         instance.serviceId = serviceId;
         instance.tabHandler = tabHandler;

@@ -6,43 +6,43 @@ import android.content.SharedPreferences;
 import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.linkhandler.ChannelTabHandler.Tab;
+import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 
 import java.util.Set;
 
-public final class ChannelTabs {
-    private ChannelTabs() {
+public final class ChannelTabHelper {
+    private ChannelTabHelper() {
     }
 
     @StringRes
-    private static int getShowTabKey(final Tab tab) {
+    private static int getShowTabKey(final String tab) {
         switch (tab) {
-            case Playlists:
+            case ChannelTabs.PLAYLISTS:
                 return R.string.show_channel_tabs_playlists;
-            case Livestreams:
+            case ChannelTabs.LIVESTREAMS:
                 return R.string.show_channel_tabs_livestreams;
-            case Shorts:
+            case ChannelTabs.SHORTS:
                 return R.string.show_channel_tabs_shorts;
-            case Channels:
+            case ChannelTabs.CHANNELS:
                 return R.string.show_channel_tabs_channels;
-            case Albums:
+            case ChannelTabs.ALBUMS:
                 return R.string.show_channel_tabs_albums;
         }
         return -1;
     }
 
     @StringRes
-    public static int getTranslationKey(final Tab tab) {
+    public static int getTranslationKey(final String tab) {
         switch (tab) {
-            case Playlists:
+            case ChannelTabs.PLAYLISTS:
                 return R.string.channel_tab_playlists;
-            case Livestreams:
+            case ChannelTabs.LIVESTREAMS:
                 return R.string.channel_tab_livestreams;
-            case Shorts:
+            case ChannelTabs.SHORTS:
                 return R.string.channel_tab_shorts;
-            case Channels:
+            case ChannelTabs.CHANNELS:
                 return R.string.channel_tab_channels;
-            case Albums:
+            case ChannelTabs.ALBUMS:
                 return R.string.channel_tab_albums;
         }
         return R.string.unknown_content;
@@ -62,8 +62,8 @@ public final class ChannelTabs {
 
     public static boolean showChannelTab(final Context context,
                                          final SharedPreferences sharedPreferences,
-                                         final Tab tab) {
-        final int key = ChannelTabs.getShowTabKey(tab);
+                                         final String tab) {
+        final int key = ChannelTabHelper.getShowTabKey(tab);
         if (key == -1) {
             return false;
         }
