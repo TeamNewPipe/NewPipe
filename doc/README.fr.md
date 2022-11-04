@@ -64,7 +64,7 @@ De plus, puisqu'il s'agit de logiciels libres et gratuits, ni l'application ni l
 ### Fonctionnalités
 
 * Regarder des vidéos à des résolutions allant jusqu'à la 4K
-* Écouter de l'audio en arrière-plan, ne chargant que le flux audio pour économiser des données
+* Écouter de l'audio en arrière-plan, en ne chargant que le flux audio pour économiser des données
 * Mode Popup (lecteur floattant, aka Picture-in-Picture)
 * Regarder des flux en direct
 * Afficher/masquer les sous-titres
@@ -91,7 +91,7 @@ De plus, puisqu'il s'agit de logiciels libres et gratuits, ni l'application ni l
 
 ## Installation et mises à jour
 Vous pouvez installer NewPipe en utilisant l'une de ces méthodes:
- 1. Ajoutez notre dépôt dans F-Droid et l'installer de là. Les instruction sont ici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
+ 1. Ajoutez notre dépôt dans F-Droid et l'installer de là. Les instructions sont ici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Téléchargez l'APK depuis les [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) et l'installer.
  3. Mettez à jour via F-Droid. C'est la méthode la plus lente pour avoir des mises à jour, car F-Droid doit détecter les changements, construire l'APK lui-même, le signer puis enfin publier la mise à jour.
  4. Construisez un APK de débug vous-même. C'est la façon la plus rapide d'avoir des nouvelles fonctionnalités sur votre appareil, mais c'est bien plus compliqué, c'est pour ça que nous vous recommandons d'utiliser une des autres méthodes.
@@ -100,7 +100,7 @@ Vous pouvez installer NewPipe en utilisant l'une de ces méthodes:
 Nous recommandons la méthode 1 pour la plupart des utilisateurs. Les APKs installés en suivant les méthodes 1 ou 2 sont compatibles les uns avec les autres (ce qui signifie que si vous installez NewPipe en utilisant une de ces deux méthodes, vous pouvez également mettre à jour NewPipe en utilisant l'autre), mais pas avec ceux installés en utilisant la méthode 3. Cela est dû au fait que la même clé de signature (la notre) est utilisée pour les méthodes 1 et 2, mais une différente clé (celle de F-Droid) est utilisée pour la 3. Construire un APK de débug en utilisant la méthode 4 ne requiert aucune clé. Les clés de signature aident à assurer que l'utilisateur ne s'est pas fait avoir et installe une mise à jour frauduleuse de l'app. Lorsque la méthode 5 est utilisée, chaque APK est signé avec une clé unique et aléatoire générée par les GitHub Actio,s; vous ne pouvez donc pas les mettres à jour. Vous devrez alors sauvegarder et restaurer les données de l'application à chaque fois que vous voudrez utiliser un nouvel APK.
 
 Entre temps, si vous voulez changer de source pour une raison quelconque (par exemple, la fonctionnalité de base de NewPipe est cassée et F-Droid n'a pas encore la dernière mise à jour), nous vous recommandons de suivre cette procédure :
-1. Sauvegardez vos données via Settings > Content > Export Database pour conserver votre historique, vos abonnements et vos listes de lectiure.
+1. Sauvegardez vos données via Settings > Content > Export Database pour conserver votre historique, vos abonnements et vos listes de lecture.
 2. Désinstallez NewPipe
 3. Téléchargez l'APK depuis la nouvelle source et installez le.
 4. Restaurez les données de l'étape 1 via Settings > Content > Import Database
