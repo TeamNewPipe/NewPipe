@@ -43,11 +43,11 @@
 NewPipe supporte actuellement ces services:
 
 <!-- We link to the service websites separately to avoid people accidentally opening a website they didn't want to. -->
-* YouTube ([website](https://www.youtube.com/)) et YouTube Music ([website](https://music.youtube.com/)) ([wiki](https://fr.wikipedia.org/wiki/YouTube))
-* PeerTube ([website](https://joinpeertube.org/)) et toutes ses instances (regardez le site web pour savoir ce que cela signifie !) ([wiki](https://fr.wikipedia.org/wiki/PeerTube))
-* Bandcamp ([website](https://bandcamp.com/)) ([wiki](https://fr.wikipedia.org/wiki/Bandcamp))
-* SoundCloud ([website](https://soundcloud.com/)) ([wiki](https://fr.wikipedia.org/wiki/SoundCloud))
-* media.ccc.de ([website](https://media.ccc.de/)) ([wiki](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
+* YouTube ([site web](https://www.youtube.com/)) et YouTube Music ([site web](https://music.youtube.com/)) ([wiki](https://fr.wikipedia.org/wiki/YouTube))
+* PeerTube ([site web](https://joinpeertube.org/)) et toutes ses instances (regardez le site web pour savoir ce que cela signifie !) ([wiki](https://fr.wikipedia.org/wiki/PeerTube))
+* Bandcamp ([site web](https://bandcamp.com/)) ([wiki](https://fr.wikipedia.org/wiki/Bandcamp))
+* SoundCloud ([site web](https://soundcloud.com/)) ([wiki](https://fr.wikipedia.org/wiki/SoundCloud))
+* media.ccc.de ([site web](https://media.ccc.de/)) ([wiki](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
 
 Comme vous pouvez le constater, NewPipe supporte de multiples services vidéo et audio. Bien que cela ait commencé avec YouTube, d'autres personnes ont ajouté de nouveaux services au fil des ans, rendant NewPipe de plus en plus polyvalent !
 
