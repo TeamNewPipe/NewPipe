@@ -24,11 +24,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
-        android:theme="@style/OpeningTheme"
         android:resizeableActivity="true"
+        android:theme="@style/OpeningTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
@@ -39,7 +40,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="androidx.media.session.MediaButtonReceiver">
+        <receiver
+            android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -47,7 +50,7 @@
 
         <service
             android:name=".player.PlayerService"
-            android:exported="false"
+            android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -56,15 +59,18 @@
 
         <activity
             android:name=".player.PlayQueueActivity"
+            android:exported="false"
             android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
 
         <activity
             android:name=".settings.SettingsActivity"
+            android:exported="false"
             android:label="@string/settings" />
 
         <activity
             android:name=".about.AboutActivity"
+            android:exported="false"
             android:label="@string/title_activity_about" />
 
         <service android:name=".local.subscription.services.SubscriptionsImportService" />
@@ -73,6 +79,7 @@
 
         <activity
             android:name=".PanicResponderActivity"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:theme="@android:style/Theme.NoDisplay">
@@ -85,13 +92,18 @@
 
         <activity
             android:name=".ExitActivity"
+            android:exported="false"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".error.ErrorActivity" />
+
+        <activity
+            android:name=".error.ErrorActivity"
+            android:exported="false" />
 
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
+            android:exported="false"
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
@@ -99,6 +111,7 @@
 
         <activity
             android:name=".util.FilePickerActivityHelper"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/FilePickerThemeDark">
             <intent-filter>
@@ -109,6 +122,7 @@
 
         <activity
             android:name=".error.ReCaptchaActivity"
+            android:exported="false"
             android:label="@string/recaptcha" />
 
         <provider
@@ -124,6 +138,7 @@
         <activity
             android:name=".RouterActivity"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:label="@string/preferred_open_action_share_menu_title"
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
@@ -354,30 +369,30 @@
 
             <!-- Bandcamp filter for tracks, albums and playlists -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="*.bandcamp.com"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="*.bandcamp.com" />
             </intent-filter>
 
             <!-- Bandcamp filter for radio -->
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:sspPattern="bandcamp.com/?show=*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:sspPattern="bandcamp.com/?show=*" />
             </intent-filter>
 
         </activity>
@@ -386,11 +401,17 @@
             android:exported="false" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->
-        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
         <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
-        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
+        <meta-data
+            android:name="com.samsung.android.keepalive.density"
+            android:value="true" />
         <!-- Version >= 3.0. DeX Dual Mode support -->
-        <meta-data android:name="com.samsung.android.multidisplay.keep_process_alive" android:value="true"/>
+        <meta-data
+            android:name="com.samsung.android.multidisplay.keep_process_alive"
+            android:value="true" />
     </application>
 </manifest>
