@@ -5,25 +5,45 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.Group
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
+import org.schabi.newpipe.util.ThemeHelper
 import java.util.concurrent.TimeUnit
 
 class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(application)
     private var subscriptionManager = SubscriptionManager(application)
 
-    private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
-    private val mutableFeedGroupsLiveData = MutableLiveData<List<Group>>()
-    val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
-    val feedGroupsLiveData: LiveData<List<Group>> = mutableFeedGroupsLiveData
+    // true -> list view, false -> grid view
+    private val listViewMode = BehaviorProcessor.createDefault(
+        !ThemeHelper.shouldUseGridLayout(application)
+    )
+    private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
-    private var feedGroupItemsDisposable = feedDatabaseManager.groups()
+    private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
+    private val mutableFeedGroupsLiveData = MutableLiveData<Pair<List<Group>, Boolean>>()
+    val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
+    val feedGroupsLiveData: LiveData<Pair<List<Group>, Boolean>> = mutableFeedGroupsLiveData
+
+    private var feedGroupItemsDisposable = Flowable
+        .combineLatest(
+            feedDatabaseManager.groups(),
+            listViewModeFlowable,
+            ::Pair
+        )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
-        .map { it.map(::FeedGroupCardItem) }
+        .map { (feedGroups, listViewMode) ->
+            Pair(
+                feedGroups.map(if (listViewMode) ::FeedGroupCardItem else ::FeedGroupCardGridItem),
+                listViewMode
+            )
+        }
         .subscribeOn(Schedulers.io())
         .subscribe(
             { mutableFeedGroupsLiveData.postValue(it) },
@@ -43,6 +63,14 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         super.onCleared()
         stateItemsDisposable.dispose()
         feedGroupItemsDisposable.dispose()
+    }
+
+    fun setListViewMode(newListViewMode: Boolean) {
+        listViewMode.onNext(newListViewMode)
+    }
+
+    fun getListViewMode(): Boolean {
+        return listViewMode.value ?: true
     }
 
     sealed class SubscriptionState {

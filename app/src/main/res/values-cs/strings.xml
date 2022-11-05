@@ -9,7 +9,7 @@
     <string name="download">Stáhnout</string>
     <string name="search">Hledat</string>
     <string name="settings">Nastavení</string>
-    <string name="did_you_mean">Mysleli jste \"%1$s\"\?</string>
+    <string name="did_you_mean">Mysleli jste „%1$s“\?</string>
     <string name="share_dialog_title">Sdílet s</string>
     <string name="use_external_video_player_title">Použít externí video přehrávač</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
@@ -22,7 +22,7 @@
     <string name="download_path_title">Adresář pro stažená videa</string>
     <string name="download_path_summary">Stažená videa jsou uložena tady</string>
     <string name="download_path_dialog_title">Zvolte adresář pro stažená videa</string>
-    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
+    <string name="show_play_with_kodi_title">Zobrazit možnost „Přehrát pomocí Kodi“</string>
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Výchozí formát zvuku</string>
@@ -53,7 +53,7 @@
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
-    <string name="msg_running_detail">Stiskni pro detaily</string>
+    <string name="msg_running_detail">Klepněte pro podrobnosti</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_name">Jméno souboru</string>
     <string name="msg_threads">Vlákna</string>
@@ -153,7 +153,7 @@
     <string name="title_activity_about">O NewPipe</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaci</string>
+    <string name="tab_about">O aplikaci a ČKD</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Svobodné a nenáročné streamování v Androidu.</string>
     <string name="view_on_github">Zobraz na GitHubu</string>
@@ -163,8 +163,8 @@
     <string name="contribution_title">Podílet se</string>
     <string name="title_activity_history">Historie</string>
     <string name="action_history">Historie</string>
-    <string name="show_hold_to_append_title">Zobrazit tip \"Podržet pro vložení do fronty\"</string>
-    <string name="show_hold_to_append_summary">Ukázat tip po stisku na pozadí nebo na popup tlačítko v \"Podrobnostech\" o videu</string>
+    <string name="show_hold_to_append_title">Zobrazit tip „Podržet pro vložení do fronty“</string>
+    <string name="show_hold_to_append_summary">Zobrazit tip po klepnutí na pozadí nebo na vyskakovací tlačítko v „Podrobnostech“ videa</string>
     <string name="play_all">Přehrát vše</string>
     <string name="player_stream_failure">Tento stream nelze přehrát</string>
     <string name="player_unrecoverable_failure">Došlo k neobnovitelné chybě přehrávače</string>
@@ -274,20 +274,20 @@
     <string name="previous_export">Předchozí export</string>
     <string name="subscriptions_import_unsuccessful">Odběry nelze importovat</string>
     <string name="subscriptions_export_unsuccessful">Odběry nelze exportovat</string>
-    <string name="import_youtube_instructions">Importovat YouTube odběry z Google:
+    <string name="import_youtube_instructions">Importovat odběry YouTube z exportu dat Google:
 \n
-\n1. Přejděte na tuto URL adresu: %1$s
-\n2. Na vyžádání se přihlašte
-\n3. Klikněte na \"Jsou zahrnuta všechna data\", \"Zrušit výběr všech\" a pak vyberte jen \"odběry\" a klikněte na OK
-\n4. Klikněte na \"Další krok\" a pak na \"Vytvořit export\"
-\n5. Vyčkejte než se objeví tlačítko \"Stáhnout\" a klikněte na něj
-\n6. Klikněte IMPORTOVAT SOUBOR a vyberte stažený .zip soubor z předchozího kroku
-\n7. [Pokud se import .zip souboru nezdaří] Rozbalte soubor .csv (měl by to být soubor \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), stiskněte IMPORTOVAT SOUBOR níže a vyberte rozbalený csv soubor</string>
-    <string name="import_soundcloud_instructions">Importovat SoundCloud profil zadáním URL adresy nebo vašeho ID: 
-\n 
-\n1. Ve svém prohlížeči povolte \"režim pro PC\" (pro mobilní zařízení není stránka dostupná) 
-\n2. Přejděte na tuto URL adresu: %1$s 
-\n3. Na vyžádání se přihlašte
+\n1. Přejděte na tuto adresu URL: %1$s
+\n2. Při požádání se přihlaste
+\n3. Klikněte na „Jsou zahrnuta všechna data“, poté na „Zrušit výběr všech“ a poté vyberte jen \"odběry\" a klikněte na OK
+\n4. Klikněte na „Další krok“ a poté na „Vytvořit export“
+\n5. Vyčkejte, než se objeví tlačítko „Stáhnout“ a klikněte na něj
+\n6. Klepněte na IMPORTOVAT SOUBOR níže a vyberte stažený soubor .zip
+\n7. [Pokud se import .zip souboru nezdaří] Rozbalte soubor .csv (měl by se nacházet v „YouTube and YouTube Music/subscriptions/subscriptions.csv“), klepněte na IMPORTOVAT SOUBOR níže a vyberte rozbalený soubor csv</string>
+    <string name="import_soundcloud_instructions">Importovat profil SoundCloud zadáním adresy URL nebo vašeho ID:
+\n
+\n1. Ve svém prohlížeči povolte „režim pro PC“ (pro mobilní zařízení není stránka dostupná)
+\n2. Přejděte na tuto adresu URL: %1$s
+\n3. Při požádání se přihlaste
 \n4. Zkopírujte URL adresu profilu, na kterou jste byli přesměrováni.</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Pamatujte, že tato operace může být náročná na data. 
@@ -416,7 +416,7 @@
     <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory uložit.
 \nAktivujte výběr systémového adresáře (SAF), chcete-li stáhnout soubor na externí SD kartu</string>
     <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu</string>
+    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány</string>
     <string name="error_timeout">Timeout spojení</string>
@@ -450,7 +450,7 @@
     <string name="local">Místní</string>
     <string name="recently_added">Přidány nedávno</string>
     <string name="most_liked">Nejoblíbenější</string>
-    <string name="playlist_no_uploader">Autogenerovány (uploader nenalezen)</string>
+    <string name="playlist_no_uploader">Automaticky vygenerováno (autor nenalezen)</string>
     <string name="recovering">obnovuji</string>
     <string name="error_download_resource_gone">Toto stahování nelze obnovit</string>
     <string name="choose_instance_prompt">Vyberte instanci</string>
@@ -459,7 +459,7 @@
     <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
     <string name="app_language_title">Jazyk aplikace</string>
     <string name="systems_language">Jazyk systému</string>
-    <string name="subtitle_activity_recaptcha">Po vyřešení stiskni \"Hotovo\"</string>
+    <string name="subtitle_activity_recaptcha">Po vyřešení klepněte na „Hotovo“</string>
     <string name="recaptcha_done_button">Hotovo</string>
     <string name="videos_string">Videa</string>
     <plurals name="seconds">
@@ -528,17 +528,17 @@
     <string name="artists">Umělci</string>
     <string name="albums">Alba</string>
     <string name="songs">Písně</string>
-    <string name="restricted_video">Toto je video s věkovým omezením.
+    <string name="restricted_video">Toto video má věkové omezení.
 \n
-\nPokud ho chcete vidět, povolte \"%1$s\" v Nastavení.</string>
+\nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti shlédnutá videa</string>
     <string name="remove_watched_popup_title">Odstranit shlédnutá videa\?</string>
     <string name="remove_watched">Odstranit shlédnutá</string>
     <string name="remove_watched_popup_warning">Videa, která jste shlédli před a po jejich doplnění do playlistu, budou odstraněna.
 \nJste se jisti\? Nelze zvrátit!</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
-    <string name="show_original_time_ago_title">U položek ukázat původní čas \"před\"</string>
-    <string name="youtube_restricted_mode_enabled_title">Zapnout \"Omezený režim YouTube\"</string>
+    <string name="show_original_time_ago_title">U položek zobrazit původní čas</string>
+    <string name="youtube_restricted_mode_enabled_title">Zapnout „Omezený režim“ YouTube</string>
     <string name="video_detail_by">Od %s</string>
     <string name="channel_created_by">Vytvořil %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ikona kanálu</string>
@@ -578,7 +578,7 @@
     <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookies reCAPTCHA byly vymazány</string>
     <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Omezený režim\", který skrývá potenciální obsahy pro dospělé</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje „Omezený režim“, který skrývá potenciální obsah pro dospělé</string>
     <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+)</string>
     <string name="notification_colorize_summary">Nechte Android přizpůsobit barvu oznámení podle hlavní barvy v miniatuře (není k dispozici na všech zařízeních)</string>
     <string name="notification_colorize_title">Přibarvit oznámení</string>
@@ -642,7 +642,7 @@
 \nChcete zrušit objednávku tohoto kanálu\?</string>
     <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
     <string name="feed_load_error">Chyba při načítání feedu</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Počínaje Android 10 je podporován pouze \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Počínaje systémem Android 10 je podporován pouze „Storage Access Framework“</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Budete dotázáni, kde uložit každý stažený soubor</string>
     <string name="no_dir_yet">Adresář pro stažené soubory dosud nenastaven, zvolte, prosím, výchozí adresář nyní</string>
     <string name="off">Vypnuto</string>
@@ -682,7 +682,7 @@
     <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
-    <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
+    <string name="show_crash_the_player_title">Zobrazit „Shodit přehrávač“</string>
     <string name="feed_new_items">Nové položky</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
 \nNainstalujte správce souborů kompatibilní se Storage Access Framework</string>
@@ -699,7 +699,7 @@
     <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
     <string name="settings_category_player_notification_summary">Nastavit oznámení o právě přehrávaném streamu</string>
     <string name="enable_streams_notifications_title">Oznámení o nových streamech</string>
-    <string name="enable_streams_notifications_summary">Oznámit o nových strýmech od vašich odběrů</string>
+    <string name="enable_streams_notifications_summary">Oznámit o nových streamech od vašich odběrů</string>
     <string name="streams_notifications_interval_title">Frekvence kontroly</string>
     <string name="any_network">Jakákoli síť</string>
     <string name="streams_notifications_network_title">Nutné síťové připojení</string>
@@ -727,8 +727,14 @@
     <string name="no_audio_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné zvukové streamy</string>
     <string name="unknown_format">Neznámý formát</string>
     <string name="unknown_quality">Neznámá kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobrazit nadcházející videa</string>
+    <string name="feed_toggle_show_future_items">Zobrazit nadcházející položky</string>
     <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné video streamy</string>
+    <string name="feed_toggle_hide_played_items">Skrýt zhlédnuté položky</string>
+    <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
+    <string name="faq_title">Často kladené dotazy</string>
+    <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
+    <string name="faq">Zobrazit na webu</string>
+    <string name="sort">Řazení</string>
 </resources>

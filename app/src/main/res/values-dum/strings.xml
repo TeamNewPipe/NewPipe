@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="upload_date_text">Gepubliceerd op %1$s</string>
+    <string name="no_player_found">Geen stream player gevonden. Installeer VLC\?</string>
+    <string name="no_player_found_toast">Geen stream player gevonden (je kunt VLC installeren om het af te spelen).</string>
+    <string name="install">Installeer</string>
+    <string name="cancel">Annuleren</string>
+    <string name="open_in_browser">Openen in browser</string>
+    <string name="download">Download</string>
+    <string name="controls_download_desc">Download stream bestand</string>
+    <string name="search">Zoeken</string>
+    <string name="settings">Instellingen</string>
+    <string name="use_external_video_player_summary">Verwijderd audio bij sommige resoluties</string>
+    <string name="use_external_audio_player_title">Gebruik externe audio player</string>
+    <string name="subscribe_button_title">Abonneren</string>
+    <string name="subscribed_button_title">Geabonneerd</string>
+    <string name="unsubscribe">Deabonneren</string>
+    <string name="did_you_mean">Bedoel je \"%1$s\"\?</string>
+    <string name="subscription_update_failed">Kon abonnement niet bijwerken</string>
+    <string name="show_info">Toon informatie</string>
+    <string name="tab_subscriptions">Abonnementen</string>
+    <string name="ok">OK</string>
+    <string name="mark_as_watched">Markeer als bekeken</string>
+    <string name="open_in_popup_mode">Openen in popup mode</string>
+    <string name="open_with">Openen met</string>
+    <string name="share">Delen</string>
+    <string name="search_showing_result_for">Toont resultaten voor: %s</string>
+    <string name="share_dialog_title">Delen met</string>
+    <string name="main_bg_subtitle">Tap op de vergrootglas om te beginnen.</string>
+    <string name="use_external_video_player_title">Gebruik een externe video player</string>
+    <string name="channel_unsubscribed">Kanaal gedeabonneerd</string>
+    <string name="subscription_change_failed">Kon abonnement niet aanpassen</string>
+</resources>

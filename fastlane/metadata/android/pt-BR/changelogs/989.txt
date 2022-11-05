@@ -1,0 +1,3 @@
+• [YouTube] Corrigido carregamento quando tentava reproduzir qualquer vídeo
+• [YouTube] Corrigido a aceleração em alguns vídeos
+• Atualização da biblioteca jsoup para 1.15.3, que inclue uma correção de segurança

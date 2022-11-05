@@ -112,7 +112,7 @@
     <string name="tab_subscriptions">Abonnements</string>
     <string name="settings_category_downloads_title">Téléchargement</string>
     <string name="title_licenses">Licences tierce partie</string>
-    <string name="tab_about">À propos</string>
+    <string name="tab_about">À propos &amp; FAQ</string>
     <string name="tab_licenses">Licences</string>
     <string name="app_description">Lecteur multimédia libre et léger pour Android.</string>
     <string name="view_on_github">Voir sur GitHub</string>
@@ -147,16 +147,19 @@
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonné</item>
+        <item quantity="many">%s abonnés</item>
         <item quantity="other">%s abonnés</item>
     </plurals>
     <string name="no_views">Aucune vue</string>
     <plurals name="views">
         <item quantity="one">%s vue</item>
+        <item quantity="many">%s vues</item>
         <item quantity="other">%s vues</item>
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
         <item quantity="one">%s vidéo</item>
+        <item quantity="many">%s vidéos</item>
         <item quantity="other">%s vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
@@ -425,11 +428,13 @@
     <string name="no_one_watching">Personne ne regarde</string>
     <plurals name="watching">
         <item quantity="one">%s spectateur</item>
+        <item quantity="many">%s spectateurs</item>
         <item quantity="other">%s spectateurs</item>
     </plurals>
     <string name="no_one_listening">Personne n’écoute</string>
     <plurals name="listening">
         <item quantity="one">%s auditeur</item>
+        <item quantity="many">%s auditeurs</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
@@ -462,19 +467,23 @@
     <string name="unmute">Remettre le son</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
+        <item quantity="many">%d secondes</item>
         <item quantity="other">%d secondes</item>
     </plurals>
     <!-- Time duration plurals -->
     <plurals name="minutes">
         <item quantity="one">%d minute</item>
+        <item quantity="many">%d minutes</item>
         <item quantity="other">%d minutes</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d heure</item>
+        <item quantity="many">%d heures</item>
         <item quantity="other">%d heures</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d jour</item>
+        <item quantity="many">%d jours</item>
         <item quantity="other">%d jours</item>
     </plurals>
     <!-- feed -->
@@ -488,6 +497,7 @@
     <string name="feed_group_dialog_empty_selection">Aucun abonnement sélectionné</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d sélectionné</item>
+        <item quantity="many">%d sélectionnés</item>
         <item quantity="other">%d sélectionnés</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nom de groupe vide</string>
@@ -549,7 +559,7 @@
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
-    <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
+    <string name="auto_queue_toggle">Lire automatiquement</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une liste de lecture</string>
     <string name="notification_action_nothing">Rien</string>
@@ -654,11 +664,13 @@
     <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s téléchargement supprimé</item>
+        <item quantity="many">%1$s téléchargements supprimés</item>
         <item quantity="other">%1$s téléchargements supprimés</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Téléchargement terminé</item>
-        <item quantity="other">%s téléchargements terminés</item>
+        <item quantity="many">%s Téléchargements terminés</item>
+        <item quantity="other">%s Téléchargements terminés</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
@@ -679,13 +691,13 @@
     <string name="error_report_notification_toast">Une erreur s\'est produite, voir la notification</string>
     <string name="create_error_notification">Créer une notification d\'erreur</string>
     <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
-\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage.</string>
+\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage</string>
     <string name="show_error_snackbar">Afficher une barre d’erreur</string>
-    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
-\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
+    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver « %s » dans les paramètres de téléchargement</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
-    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos. Changer cette valeur nécessite de redémarrer le lecteur</string>
     <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
     <string name="streams_notification_channel_name">Nouveaux flux</string>
     <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>
@@ -693,6 +705,7 @@
     <string name="loading_stream_details">Chargement des détails du flux…</string>
     <plurals name="new_streams">
         <item quantity="one">%s nouveau flux</item>
+        <item quantity="many">%s nouveaux flux</item>
         <item quantity="other">%s nouveaux flux</item>
     </plurals>
     <string name="streams_notifications_network_title">Connexion réseau requise</string>
@@ -719,5 +732,11 @@
     <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
     <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
     <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
-    <string name="feed_toggle_show_future_items">Afficher les futures vidéos</string>
+    <string name="feed_toggle_show_future_items">Afficher les éléments à venir</string>
+    <string name="feed_toggle_hide_played_items">Masquer les éléments visionnés</string>
+    <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
+    <string name="faq_title">Foire aux questions</string>
+    <string name="faq">Voir sur le site web</string>
+    <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
+    <string name="sort">Trier</string>
 </resources>

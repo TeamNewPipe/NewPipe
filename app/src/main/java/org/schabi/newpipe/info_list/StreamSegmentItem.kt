@@ -41,6 +41,7 @@ class StreamSegmentItem(
         viewHolder.root.findViewById<TextView>(R.id.textViewStartSeconds).text =
             Localization.getDurationString(item.startTimeSeconds.toLong())
         viewHolder.root.setOnClickListener { onClick.onItemClick(this, item.startTimeSeconds) }
+        viewHolder.root.setOnLongClickListener { onClick.onItemLongClick(this, item.startTimeSeconds); true }
         viewHolder.root.isSelected = isSelected
     }
 

@@ -160,7 +160,7 @@
     <string name="title_activity_about">Apie NewPipe</string>
     <string name="title_licenses">Trečiųjų šalių licencijos</string>
     <string name="copyright" formatted="true">© %1$s %2$s pagal %3$s</string>
-    <string name="tab_about">Apie</string>
+    <string name="tab_about">Apie ir DUK</string>
     <string name="tab_licenses">Licencijos</string>
     <string name="app_description">Nemokama, atviro kodo transliacijų peržiūros programėlė Android sistemai.</string>
     <string name="contribution_title">Prisidėti</string>
@@ -370,8 +370,8 @@
     <string name="notification_action_2_title">Trečias veiksmo mygtukas</string>
     <string name="notification_action_1_title">Antras veiksmo mygtukas</string>
     <string name="notification_action_0_title">Pirmas veiksmo mygtukas</string>
-    <string name="notification_scale_to_square_image_summary">Pakeisti video miniatiūrų rodomų pranešime kraštinių santykį iš 16:9 į 1:1 (gali būti iškraipoma)</string>
-    <string name="notification_scale_to_square_image_title">Pakeisti miniatiūrų dydi 1:1 santykiu</string>
+    <string name="notification_scale_to_square_image_summary">Apkirpti video miniatiūrų rodomų pranešime kraštinių santykį iš 16:9 į 1:1</string>
+    <string name="notification_scale_to_square_image_title">Apkirpti miniatiūrų dydi 1:1 santykiu</string>
     <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
     <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
     <string name="peertube_instance_add_fail">Netinkama kopija</string>
@@ -627,7 +627,7 @@
     <string name="metadata_privacy_private">Privatus</string>
     <string name="metadata_privacy_unlisted">Neįtrauktas į sąrašą</string>
     <string name="metadata_thumbnail_url">Paveikslėlio URL</string>
-    <string name="metadata_host">Host</string>
+    <string name="metadata_host">Serveris</string>
     <string name="metadata_support">Pagalba</string>
     <string name="metadata_language">Kalba</string>
     <string name="metadata_age_limit">Amžiaus limitas</string>
@@ -684,15 +684,57 @@
     <string name="show_crash_the_player_summary">Naudojant grotuvą rodo lūžio parinkty</string>
     <string name="show_error_snackbar">Rodyti klaidos juostą</string>
     <string name="detail_pinned_comment_view_description">Prisegtas komentaras</string>
-    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė.
-\nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė. 
+\nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle</string>
     <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
-    <string name="show_crash_the_player_title">Rodyti „grotuvas užlūžo“</string>
+    <string name="show_crash_the_player_title">Rodyti „Grotuvas užlūžo“</string>
     <string name="create_error_notification">Sukurti klaidos pranešimą</string>
     <string name="error_report_notification_title">NewPipe susidūrė su klaida, paspauskite norėdami pranešti</string>
-    <string name="no_appropriate_file_manager_message">Šiam veiksmui nerastas tinkama failų tvarkyklė.
-\nĮdiekite failų tvarkyklę arba pabandykite išjungti „%s“ parsiuntimo nustatymuose.</string>
+    <string name="no_appropriate_file_manager_message">Šiam veiksmui nebuvo rasta tinkama failų tvarkyklė.
+\nĮdiekite failų tvarkyklę arba pabandykite išjungti \"%s\" atsisiuntimo nustatymuose</string>
     <string name="crash_the_player">Užlūžo</string>
     <string name="error_report_channel_name">Klaidos pranešimo pranešimas</string>
     <string name="error_report_notification_toast">Įvyko klaida, peržiūrėti pranešimą</string>
+    <string name="settings_category_player_notification_summary">Konfigūruoti pranešimą apie dabartinę rodomą transliaciją</string>
+    <string name="notifications">Pranešimai</string>
+    <string name="check_new_streams">Paleiskite naujų transliacijų tikrinimą</string>
+    <string name="enable_streams_notifications_summary">Pranešti apie naujas transliacijas iš prenumeratų</string>
+    <string name="streams_notifications_interval_title">Tikrinimo dažnumas</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Perjungti viską</string>
+    <string name="enable_streams_notifications_title">Pranešimai apie naujas transliacijas</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nauja transliacija</item>
+        <item quantity="few">%s naujos transliacijos</item>
+        <item quantity="other">%s naujų transliacijų</item>
+    </plurals>
+    <string name="get_notified">Gaukite pranešimą</string>
+    <string name="you_successfully_subscribed">Dabar užsiprenumeravote šį kanalą</string>
+    <string name="feed_toggle_show_future_items">Rodyti būsimus elementus</string>
+    <string name="streams_notifications_network_title">Reikalingas tinklo ryšys</string>
+    <string name="streams_not_yet_supported_removed">Transliacijos, kurių dar nepalaiko atsisiuntimo programa, nerodomos</string>
+    <string name="unknown_format">Nežinomas formatas</string>
+    <string name="feed_toggle_hide_future_items">Slėpti būsimus elementus</string>
+    <string name="any_network">Bet koks tinklas</string>
+    <string name="delete_downloaded_files_confirm">Ištrinti visus atsisiųstus failus iš disko\?</string>
+    <string name="settings_category_player_notification_title">Grotuvo pranešimas</string>
+    <string name="streams_notification_channel_description">Pranešimai apie naujas transliacijas prenumeratoms</string>
+    <string name="streams_notification_channel_name">Naujos transliacijos</string>
+    <string name="loading_stream_details">Įkeliama išsami transliacijos informacija…</string>
+    <string name="progressive_load_interval_summary">Pakeiskite pakrovimo intervalo dydį (šiuo metu %s). Mažesnė vertė gali pagreitinti pradinį vaizdo įrašo įkėlimą. Dėl pakeitimų reikia iš naujo paleisti grotuvą</string>
+    <string name="percent">Procentai</string>
+    <string name="semitone">Pustonis</string>
+    <string name="progressive_load_interval_title">Atkūrimo pakrovimo intervalo dydis</string>
+    <string name="no_video_streams_available_for_external_players">Išoriniams grotuvams vaizdo transliacijos nepasiekiamos</string>
+    <string name="selected_stream_external_player_not_supported">Pasirinktos transliacijos išoriniai grotuvai nepalaiko</string>
+    <string name="no_audio_streams_available_for_external_players">Išoriniams grotuvams garso transliacijos nepasiekiamos</string>
+    <string name="select_quality_external_players">Pasirinkite kokybę skirtą išoriniams grotuvams</string>
+    <string name="feed_toggle_hide_played_items">Slėpti peržiūrėtus elementus</string>
+    <string name="notifications_disabled">Pranešimai yra išjungti</string>
+    <string name="progressive_load_interval_exoplayer_default">„ExoPlayer“ numatytasis</string>
+    <string name="unknown_quality">Nežinoma kokybė</string>
+    <string name="faq_title">Dažniausiai užduodami klausimai</string>
+    <string name="faq">Žiūrėti svetainėje</string>
+    <string name="faq_description">Jei kyla sunkumų naudojantis programėle, būtinai peržiūrėkite šiuos atsakymus į dažniausiai užduodamus klausimus!</string>
+    <string name="sort">Rikiuoti</string>
 </resources>

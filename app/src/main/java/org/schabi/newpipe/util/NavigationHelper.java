@@ -639,6 +639,11 @@ public final class NavigationHelper {
         return intent;
     }
 
+    public static void openPlayQueue(final Context context) {
+        final Intent intent = new Intent(context, PlayQueueActivity.class);
+        context.startActivity(intent);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/
