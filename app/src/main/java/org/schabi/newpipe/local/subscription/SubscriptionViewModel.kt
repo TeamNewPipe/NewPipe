@@ -27,9 +27,9 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
     private val mutableStateLiveData = MutableLiveData<SubscriptionState>()
-    private val mutableFeedGroupsLiveData = MutableLiveData<List<Group>>()
+    private val mutableFeedGroupsLiveData = MutableLiveData<Pair<List<Group>, Boolean>>()
     val stateLiveData: LiveData<SubscriptionState> = mutableStateLiveData
-    val feedGroupsLiveData: LiveData<List<Group>> = mutableFeedGroupsLiveData
+    val feedGroupsLiveData: LiveData<Pair<List<Group>, Boolean>> = mutableFeedGroupsLiveData
 
     private var feedGroupItemsDisposable = Flowable
         .combineLatest(
@@ -39,7 +39,10 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .map { (feedGroups, listViewMode) ->
-            feedGroups.map(if (listViewMode) ::FeedGroupCardItem else ::FeedGroupCardGridItem)
+            Pair(
+                feedGroups.map(if (listViewMode) ::FeedGroupCardItem else ::FeedGroupCardGridItem),
+                listViewMode
+            )
         }
         .subscribeOn(Schedulers.io())
         .subscribe(
