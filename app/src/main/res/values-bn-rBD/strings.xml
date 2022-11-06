@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">শুরু করতে আতস কাঁচটিতে টাচ করুন।</string>
+    <string name="main_bg_subtitle">শুরু করতে আতস কাঁচটিতে টিপ দাও।</string>
     <string name="upload_date_text">%1$s তারিখে প্রকাশিত</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার নেই। VLC ইনস্টল করতে চান\?</string>
     <string name="install">ইনস্টল</string>

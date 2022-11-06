@@ -1,0 +1,13 @@
+Yeni 
+• Xəta panelində "Brauzerdə aç" düyməsini əlavə et
+• Kanal qruplarını siyahı kimi göstərmək üçün seçim əlavə et
+• [YouTube] Vaxt möhürü URL-ni paylaşmaq üçün yayım seqmentlərinə uzun kliklə
+• Mini oynadıcıya oynatma növbəsi düyməsini əlavə et
+
+Təkmilləşdirildi
+• İslandiya lokalizasiyası əlavə edildi və bir çox digər tərcümələr yeniləndi
+• Bir çox daxili təkmilləşdirmələr
+
+Düzəldildi
+• Çoxsaylı qəzalar düzəldilib
+• [YouTube] Bəzi ölkələrdə yükləmə kanallarını, qeyri-müəyyən axın və müvəqqəti oynatma problemlərini həll et

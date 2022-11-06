@@ -1,0 +1,13 @@
+Aldaketak 0.17.1ean
+
+Berria
+• Thai lokalizazioa
+• Lehengoan gelditu zineneko errekak berrabiarazi.
+• Biltegira sartzeko esparrua erabili deskargak kanpoko SD-txarteletan gordetzeko.
+
+Hobetua
+• Gehitu hemen jotzen hastea prentsa luzeko menuetan erreprodukzio zerrendetarako
+• Gehitu etengailua SAF/Legacy File Picker
+
+Konponketak
+• Konpondu erreprodukzio-posizioa gordeta dago, nahiz eta erlojuaren historia desaktibatuta egon.

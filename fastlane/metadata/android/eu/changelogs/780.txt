@@ -1,0 +1,12 @@
+Changes in 0.17.3
+
+Improved
+• Added option to clear playback states #2550
+• Show hidden directories in the file picker #2591
+• Support URLs from `invidio.us` instances to be opened with NewPipe  #2488 
+• Add support for `music.youtube.com` URLs TeamNewPipe/NewPipeExtractor#194
+
+Fixed
+• [YouTube] Fixed 'java.lang.IllegalArgumentException #192
+• [YouTube] Fixed live streams not working TeamNewPipe/NewPipeExtractor#195
+• Fixed performance problem in android pie when downloading a stream #2592

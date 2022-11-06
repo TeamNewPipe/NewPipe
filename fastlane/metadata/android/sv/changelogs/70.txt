@@ -1,0 +1,9 @@
+OBSERVERA: Denna version är förmodligen en bugfest, precis som den förra. Men på grund av den fullständiga avstängningen sedan den 17. är en trasig version bättre än ingen version. Eller hur? ¯\_(ツ)_/¯
+
+### Förbättringar
+* nedladdade filer kan nu öppnas med ett klick #1879 
+* ta bort strömmar från den aktuella uppspelningskön genom att svepa dem till höger #1915 
+* ta bort automatiskt köade strömmar när en ny ström köas manuellt #1878 
+
+#### Fixat
+* Popup-spelare krasch fixad #1874

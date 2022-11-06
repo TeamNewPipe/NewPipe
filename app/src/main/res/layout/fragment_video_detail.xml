@@ -674,6 +674,16 @@
             tools:ignore="RtlHardcoded">
 
             <ImageButton
+                android:id="@+id/overlay_play_queue_button"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:padding="10dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_list"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <ImageButton
                 android:id="@+id/overlay_play_pause_button"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"

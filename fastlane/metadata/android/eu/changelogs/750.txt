@@ -1,0 +1,17 @@
+New
+Playback resume
+• Resume streams where you stopped last time
+Downloader Enhancements
+• Use Storage Access Framework to store downloads on external SD-cards
+• New mp4 muxer
+• Respect metered networks
+
+
+Improved
+• Handle (auto)rotation changes during activity lifecycle
+• Make long-press menus consistent
+
+Fixed
+• Fixed selected subtitle track name not being shown
+• Do not crash when check for app update fails
+• Fixed downloads stuck at 99.9%

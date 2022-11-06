@@ -111,7 +111,7 @@
     <string name="tab_licenses">Lizenzen</string>
     <string name="read_full_license">Lizenz lesen</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
-    <string name="tab_about">Über</string>
+    <string name="tab_about">Über &amp; FAQ</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
@@ -126,7 +126,7 @@
     <string name="subscribe_button_title">Abonnieren</string>
     <string name="subscribed_button_title">Abonniert</string>
     <string name="channel_unsubscribed">Kanal deabonniert</string>
-    <string name="tab_subscriptions">Abos</string>
+    <string name="tab_subscriptions">Abonnements</string>
     <string name="fragment_feed_title">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
@@ -323,7 +323,7 @@
 \nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
-    <string name="minimize_on_exit_title">Beim Appwechsel minimieren</string>
+    <string name="minimize_on_exit_title">Beim App-wechsel minimieren</string>
     <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Für die Wiedergabe im Hintergrund minimieren</string>
@@ -496,8 +496,8 @@
     <string name="feed_update_threshold_option_always_update">Immer aktualisieren</string>
     <string name="feed_groups_header_title">Kanalgruppen</string>
     <string name="feed_subscription_not_loaded_count">Nicht geladen: %d</string>
-    <string name="feed_notification_loading">Feed wird geladen …</string>
-    <string name="feed_processing_message">Feed wird verarbeitet …</string>
+    <string name="feed_notification_loading">Lade Feed …</string>
+    <string name="feed_processing_message">Verarbeite Feed …</string>
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_group_dialog_select_subscriptions">Abonnements auswählen</string>
     <string name="feed_group_dialog_empty_selection">Kein Abonnement ausgewählt</string>
@@ -589,7 +589,7 @@
     <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
-    <string name="related_items_tab_description">Verwandte Streams</string>
+    <string name="related_items_tab_description">Verwandte Elemente</string>
     <string name="comments_tab_description">Kommentare</string>
     <string name="show_description_summary">Ausschalten, um Videobeschreibung und Zusatzinformationen auszublenden</string>
     <string name="show_description_title">Beschreibung anzeigen</string>
@@ -665,7 +665,7 @@
     <string name="start_main_player_fullscreen_title">Hauptplayer im Vollbildmodus starten</string>
     <string name="enqueued_next">Als Nächstes eingereiht</string>
     <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
-    <string name="processing_may_take_a_moment">Verarbeitung … Kann einen Moment dauern</string>
+    <string name="processing_may_take_a_moment">Verarbeite … Kann einen Moment dauern</string>
     <string name="manual_update_title">Nach Aktualisierungen suchen</string>
     <string name="checking_updates_toast">Suche nach Aktualisierungen …</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
@@ -714,8 +714,14 @@
     <string name="unknown_format">Unbekanntes Format</string>
     <string name="no_audio_streams_available_for_external_players">Keine Audiostreams für externe Player verfügbar</string>
     <string name="unknown_quality">Unbekannte Qualität</string>
-    <string name="streams_not_yet_supported_removed">Streams, die noch nicht vom Downloader unterstützt werden, werden nicht angezeigt</string>
+    <string name="streams_not_yet_supported_removed">Streams, die der Downloader noch nicht unterstützt, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="feed_toggle_show_future_items">Zukünftige Videos anzeigen</string>
+    <string name="feed_toggle_show_future_items">Zukünftige Elemente anzeigen</string>
+    <string name="feed_toggle_hide_played_items">Angesehene Elemente ausblenden</string>
+    <string name="feed_toggle_hide_future_items">Zukünftige Elemente ausblenden</string>
+    <string name="faq">Auf der Webseite ansehen</string>
+    <string name="faq_title">Häufig gestellte Fragen</string>
+    <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
+    <string name="sort">Sortieren</string>
 </resources>

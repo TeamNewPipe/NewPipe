@@ -8,10 +8,10 @@
         android:entries="@array/theme_description_list"
         android:entryValues="@array/theme_values_list"
         android:key="@string/theme_key"
-        android:summary="%s"
         android:title="@string/theme_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/default_night_theme_value"
@@ -44,20 +44,20 @@
         android:entries="@array/tablet_mode_description"
         android:entryValues="@array/tablet_mode_values"
         android:key="@string/tablet_mode_key"
-        android:summary="%s"
         android:title="@string/tablet_mode_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <ListPreference
         android:defaultValue="@string/list_view_mode_value"
         android:entries="@array/list_view_mode_description"
         android:entryValues="@array/list_view_mode_values"
         android:key="@string/list_view_mode_key"
-        android:summary="%s"
         android:title="@string/list_view_mode"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <Preference
         android:key="@string/caption_settings_key"

@@ -91,7 +91,7 @@
     <string name="error_details_headline">Ayrıntılar:</string>
     <string name="short_thousand">b</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">M</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
     <string name="title_activity_recaptcha">reCAPTCHA formu</string>
@@ -108,10 +108,10 @@
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
     <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
-    <string name="tab_about">Hakkında</string>
+    <string name="tab_about">Hakkında &amp; SSS</string>
     <string name="tab_licenses">Lisanslar</string>
     <string name="app_description">Android\'de özgür ve hafif bir oynatıcı.</string>
-    <string name="view_on_github">GitHub\'da görüntüle</string>
+    <string name="view_on_github">GitHub\'da Görüntüle</string>
     <string name="app_license_title">NewPipe\'ın Lisansı</string>
     <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği ya da gerçek köklü kod değişikleri olsun yardımınıza her zaman açığız. Ne kadar çok yapılırsa o kadar iyi olur!</string>
     <string name="read_full_license">Lisansı oku</string>
@@ -213,7 +213,7 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">Yer İmlerine Eklenen Oynatma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
@@ -238,13 +238,13 @@
     <string name="resize_fill">Doldur</string>
     <string name="resize_zoom">Yakınlaştır</string>
     <string name="settings_category_debug_title">Hata ayıklama</string>
-    <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
+    <string name="caption_auto_generated">Otomatik oluşturulan</string>
     <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıtlamamasına neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır</string>
-    <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
+    <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
     <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlanacak (yinelemeyen) oynatma sırasını sürdür</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böylesi klasör yok</string>
@@ -292,7 +292,7 @@
     <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
     <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
-    <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
+    <string name="preferred_open_action_settings_summary">Paylaşma ekranında tanımlı eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
     <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
@@ -351,7 +351,7 @@
     <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
-    <string name="auto">Kendiliğinden</string>
+    <string name="auto">Otomatik</string>
     <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
@@ -385,7 +385,7 @@
     <string name="missions_header_pending">Beklemede</string>
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
-    <string name="autoplay_title">Kendiliğinden oynat</string>
+    <string name="autoplay_title">Otomatik oynatma</string>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
     <string name="close">Kapat</string>
@@ -445,7 +445,7 @@
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>
     <string name="most_liked">En çok beğenilen</string>
-    <string name="playlist_no_uploader">Kendiliğinden oluşturulan (yükleyen bulunamadı)</string>
+    <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Oluşum seçin</string>
@@ -542,10 +542,10 @@
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi</string>
-    <string name="autoplay_summary">Oynatmayı kendiliğinden başlat — %s</string>
+    <string name="autoplay_summary">Oynatmayı otomatik başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
     <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
-    <string name="auto_queue_toggle">Kendiliğinden kuyrukla</string>
+    <string name="auto_queue_toggle">Otomatik kuyruğa alma</string>
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
     <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
     <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
@@ -602,7 +602,7 @@
     <string name="download_has_started">İndirme başladı</string>
     <string name="select_night_theme_toast">Gözde gece temanızı aşağıdan seçebilirsiniz</string>
     <string name="night_theme_summary">Gözde gece temanızı seçin — %s</string>
-    <string name="auto_device_theme_title">Kendiliğinden (aygıt teması)</string>
+    <string name="auto_device_theme_title">Otomatik (cihaz teması)</string>
     <string name="night_theme_title">Gece Teması</string>
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
     <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
@@ -659,7 +659,7 @@
         <item quantity="other">%s indirme tamamlandı</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
-    <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişmeye devam edebilirsiniz</string>
+    <string name="start_main_player_fullscreen_summary">Videoları mini oynatıcıda başlatmayın, otomatik döndürme kilitliyse doğrudan tam ekran moduna geçin. Tam ekrandan çıkarak mini oynatıcıya erişmeye devam edebilirsiniz</string>
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
     <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
     <string name="enqueued_next">Sonraki sıraya eklendi</string>
@@ -717,5 +717,11 @@
     <string name="unknown_format">Bilinmeyen biçim</string>
     <string name="unknown_quality">Bilinmeyen nitelik</string>
     <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
-    <string name="feed_toggle_show_future_items">Gelecekteki videoları göster</string>
+    <string name="feed_toggle_show_future_items">Gelecekteki ögeleri göster</string>
+    <string name="feed_toggle_hide_future_items">Gelecekteki ögeleri gizle</string>
+    <string name="feed_toggle_hide_played_items">İzlenen ögeleri gizle</string>
+    <string name="faq_title">Sık Sorulan Sorular</string>
+    <string name="faq">Web sitesinde görüntüle</string>
+    <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
+    <string name="sort">Sırala</string>
 </resources>

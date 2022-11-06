@@ -1,0 +1,1 @@
+Corrigido execução de verificação para uma nova versão do NewPipe. Essa verificação era executada muito cedo algumas vezes e logo levava o aplicativo a crashar. Isso deve estar corrigido agora.

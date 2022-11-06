@@ -22,13 +22,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.Section
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import icepick.State
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.schabi.newpipe.R
-import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
 import org.schabi.newpipe.databinding.DialogTitleBinding
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
@@ -43,11 +42,13 @@ import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialog
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
-import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupAddNewGridItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupAddNewItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
-import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem
-import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
+import org.schabi.newpipe.local.subscription.item.GroupsHeader
+import org.schabi.newpipe.local.subscription.item.Header
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
@@ -74,9 +75,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
-    private val feedGroupsSection = Section()
-    private var feedGroupsCarousel: FeedGroupCarouselItem? = null
-    private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
+    private lateinit var carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>
+    private lateinit var feedGroupsCarousel: FeedGroupCarouselItem
+    private lateinit var feedGroupsSortMenuItem: GroupsHeader
     private val subscriptionsSection = Section()
 
     private val requestExportLauncher =
@@ -90,7 +91,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     @State
     @JvmField
-    var feedGroupsListState: Parcelable? = null
+    var feedGroupsCarouselState: Parcelable? = null
 
     init {
         setHasOptionsMenu(true)
@@ -99,11 +100,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // /////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
     // /////////////////////////////////////////////////////////////////////////
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setupInitialLayout()
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -117,7 +113,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun onPause() {
         super.onPause()
         itemsListState = binding.itemsList.layoutManager?.onSaveInstanceState()
-        feedGroupsListState = feedGroupsCarousel?.onSaveInstanceState()
+        feedGroupsCarouselState = feedGroupsCarousel.onSaveInstanceState()
     }
 
     override fun onDestroy() {
@@ -184,7 +180,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         menuItem: MenuItem,
         onClick: Runnable
     ): MenuItem {
-        menuItem.setOnMenuItemClickListener { _ ->
+        menuItem.setOnMenuItemClickListener {
             onClick.run()
             true
         }
@@ -245,51 +241,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     // Fragment Views
     // ////////////////////////////////////////////////////////////////////////
 
-    private fun setupInitialLayout() {
-        Section().apply {
-            val carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
-
-            carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
-            carouselAdapter.add(feedGroupsSection)
-            carouselAdapter.add(FeedGroupAddItem())
-
-            carouselAdapter.setOnItemClickListener { item, _ ->
-                listenerFeedGroups.selected(item)
-            }
-            carouselAdapter.setOnItemLongClickListener { item, _ ->
-                if (item is FeedGroupCardItem) {
-                    if (item.groupId == FeedGroupEntity.GROUP_ALL_ID) {
-                        return@setOnItemLongClickListener false
-                    }
-                }
-                listenerFeedGroups.held(item)
-                return@setOnItemLongClickListener true
-            }
-
-            feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter)
-            feedGroupsSortMenuItem = HeaderWithMenuItem(
-                getString(R.string.feed_groups_header_title),
-                R.drawable.ic_sort,
-                menuItemOnClickListener = ::openReorderDialog
-            )
-            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
-
-            groupAdapter.add(this)
-        }
-
-        subscriptionsSection.setPlaceholder(EmptyPlaceholderItem())
-        subscriptionsSection.setHideWhenEmpty(true)
-
-        groupAdapter.add(
-            Section(
-                HeaderWithMenuItem(
-                    getString(R.string.tab_subscriptions)
-                ),
-                listOf(subscriptionsSection)
-            )
-        )
-    }
-
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
         super.initViews(rootView, savedInstanceState)
         _binding = FragmentSubscriptionBinding.bind(rootView)
@@ -299,10 +250,81 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
         binding.itemsList.adapter = groupAdapter
+        binding.itemsList.itemAnimator = null
 
-        viewModel = ViewModelProvider(this).get(SubscriptionViewModel::class.java)
+        viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
-        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) { it?.let(this::handleFeedGroups) }
+        viewModel.feedGroupsLiveData.observe(viewLifecycleOwner) {
+            it?.let { (groups, listViewMode) ->
+                handleFeedGroups(groups, listViewMode)
+            }
+        }
+
+        setupInitialLayout()
+    }
+
+    private fun setupInitialLayout() {
+        Section().apply {
+            carouselAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
+
+            carouselAdapter.setOnItemClickListener { item, _ ->
+                when (item) {
+                    is FeedGroupCardItem ->
+                        NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+                    is FeedGroupCardGridItem ->
+                        NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
+                    is FeedGroupAddNewItem ->
+                        FeedGroupDialog.newInstance().show(fm, null)
+                    is FeedGroupAddNewGridItem ->
+                        FeedGroupDialog.newInstance().show(fm, null)
+                }
+            }
+            carouselAdapter.setOnItemLongClickListener { item, _ ->
+                if ((item is FeedGroupCardItem && item.groupId == GROUP_ALL_ID) ||
+                    (item is FeedGroupCardGridItem && item.groupId == GROUP_ALL_ID)
+                ) {
+                    return@setOnItemLongClickListener false
+                }
+
+                when (item) {
+                    is FeedGroupCardItem ->
+                        FeedGroupDialog.newInstance(item.groupId).show(fm, null)
+                    is FeedGroupCardGridItem ->
+                        FeedGroupDialog.newInstance(item.groupId).show(fm, null)
+                }
+                return@setOnItemLongClickListener true
+            }
+
+            feedGroupsCarousel = FeedGroupCarouselItem(
+                carouselAdapter = carouselAdapter,
+                listViewMode = viewModel.getListViewMode()
+            )
+
+            feedGroupsSortMenuItem = GroupsHeader(
+                title = getString(R.string.feed_groups_header_title),
+                onSortClicked = ::openReorderDialog,
+                onToggleListViewModeClicked = ::toggleListViewMode,
+                listViewMode = viewModel.getListViewMode(),
+            )
+
+            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
+            groupAdapter.clear()
+            groupAdapter.add(this)
+        }
+
+        subscriptionsSection.setPlaceholder(EmptyPlaceholderItem())
+        subscriptionsSection.setHideWhenEmpty(true)
+
+        groupAdapter.add(
+            Section(
+                Header(getString(R.string.tab_subscriptions)),
+                listOf(subscriptionsSection)
+            )
+        )
+    }
+
+    private fun toggleListViewMode() {
+        viewModel.setListViewMode(!viewModel.getListViewMode())
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
@@ -346,21 +368,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun doInitialLoadLogic() = Unit
     override fun startLoading(forceLoad: Boolean) = Unit
 
-    private val listenerFeedGroups = object : OnClickGesture<Item<*>> {
-        override fun selected(selectedItem: Item<*>?) {
-            when (selectedItem) {
-                is FeedGroupCardItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
-                is FeedGroupAddItem -> FeedGroupDialog.newInstance().show(fm, null)
-            }
-        }
-
-        override fun held(selectedItem: Item<*>?) {
-            when (selectedItem) {
-                is FeedGroupCardItem -> FeedGroupDialog.newInstance(selectedItem.groupId).show(fm, null)
-            }
-        }
-    }
-
     private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem> {
         override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(
             fm,
@@ -402,16 +409,38 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    private fun handleFeedGroups(groups: List<Group>) {
-        feedGroupsSection.update(groups)
-
-        if (feedGroupsListState != null) {
-            feedGroupsCarousel?.onRestoreInstanceState(feedGroupsListState)
-            feedGroupsListState = null
+    private fun handleFeedGroups(groups: List<Group>, listViewMode: Boolean) {
+        if (feedGroupsCarouselState != null) {
+            feedGroupsCarousel.onRestoreInstanceState(feedGroupsCarouselState)
+            feedGroupsCarouselState = null
         }
 
-        feedGroupsSortMenuItem.showMenuItem = groups.size > 1
-        binding.itemsList.post { feedGroupsSortMenuItem.notifyChanged(PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM) }
+        binding.itemsList.post {
+            if (context == null) {
+                // since this part was posted to the next UI cycle, the fragment might have been
+                // removed in the meantime
+                return@post
+            }
+
+            feedGroupsCarousel.listViewMode = listViewMode
+            feedGroupsSortMenuItem.showSortButton = groups.size > 1
+            feedGroupsSortMenuItem.listViewMode = listViewMode
+            feedGroupsCarousel.notifyChanged(FeedGroupCarouselItem.PAYLOAD_UPDATE_LIST_VIEW_MODE)
+            feedGroupsSortMenuItem.notifyChanged(GroupsHeader.PAYLOAD_UPDATE_ICONS)
+
+            // update items here to prevent flickering
+            carouselAdapter.apply {
+                clear()
+                if (listViewMode) {
+                    add(FeedGroupAddNewItem())
+                    add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.RSS))
+                } else {
+                    add(FeedGroupAddNewGridItem())
+                    add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.RSS))
+                }
+                addAll(groups)
+            }
+        }
     }
 
     // /////////////////////////////////////////////////////////////////////////

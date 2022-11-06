@@ -1,0 +1,17 @@
+# changes of v0.14.1
+### New
+- New Drawer design
+- New customizable front page
+
+### Improvements
+- Reworked Gesture controls
+- New way to close the popup player
+
+### Fixed
+- Fix error when subscription count is not available.
+  - Show "Subscriber count not available" in those cases
+- Fix NPE when a YouTube playlist is empty
+  - Fix Cyclic search result
+  - Fix YT Premium video are not blocked correctly
+  - Fix Videos sometimes not loading (due to DASH parsing)
+  - Fix links in video description.

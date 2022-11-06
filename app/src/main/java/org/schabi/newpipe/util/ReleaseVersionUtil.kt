@@ -100,13 +100,11 @@ object ReleaseVersionUtil {
      * @return Epoch second of expiry date time
      */
     fun coerceUpdateCheckExpiry(expiryString: String?): Long {
-        val now = ZonedDateTime.now()
-        return expiryString?.let {
-            var expiry =
-                ZonedDateTime.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(expiryString))
-            expiry = maxOf(expiry, now.plusHours(6))
-            expiry = minOf(expiry, now.plusHours(72))
-            expiry.toEpochSecond()
-        } ?: now.plusHours(6).toEpochSecond()
+        val nowPlus6Hours = ZonedDateTime.now().plusHours(6)
+        val expiry = expiryString?.let {
+            ZonedDateTime.from(DateTimeFormatter.RFC_1123_DATE_TIME.parse(it))
+                .coerceIn(nowPlus6Hours, nowPlus6Hours.plusHours(66))
+        } ?: nowPlus6Hours
+        return expiry.toEpochSecond()
     }
 }

@@ -124,11 +124,13 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         viewModel = ViewModelProvider(
             this,
-            FeedGroupDialogViewModel.Factory(
+            FeedGroupDialogViewModel.getFactory(
                 requireContext(),
-                groupId, subscriptionsCurrentSearchQuery, subscriptionsShowOnlyUngrouped
+                groupId,
+                subscriptionsCurrentSearchQuery,
+                subscriptionsShowOnlyUngrouped
             )
-        ).get(FeedGroupDialogViewModel::class.java)
+        )[FeedGroupDialogViewModel::class.java]
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
         viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) {
