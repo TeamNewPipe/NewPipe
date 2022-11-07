@@ -26,8 +26,8 @@
         android:orderInCategory="4"
         android:checkable="true"
         android:checked="true"
-        android:icon="@drawable/ic_youtube_shorts"
-        android:title="@string/feed_toggle_show_shorts"
+        android:icon="@drawable/ic_short_form_content"
+        android:title="@string/feed_toggle_show_short_form_content"
         app:showAsAction="ifRoom" />
 
     <item

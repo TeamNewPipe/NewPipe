@@ -101,7 +101,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private lateinit var groupAdapter: GroupieAdapter
     @State @JvmField var showPlayedItems: Boolean = true
     @State @JvmField var showFutureItems: Boolean = true
-    @State @JvmField var showShorts: Boolean = true
+    @State @JvmField var showShortFormContent: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -142,7 +142,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
         showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
         showFutureItems = viewModel.getShowFutureItemsFromPreferences()
-        showShorts = viewModel.getShowShortsFromPreferences()
+        showShortFormContent = viewModel.getShowShortFormContentFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
         groupAdapter = GroupieAdapter().apply {
@@ -255,10 +255,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             viewModel.toggleFutureItems(showFutureItems)
             viewModel.saveShowFutureItemsToPreferences(showFutureItems)
         } else if (item.itemId == R.id.menu_item_feed_toggle_shorts) {
-            showShorts = !item.isChecked
+            showShortFormContent = !item.isChecked
             updateToggleShortsButton(item)
-            viewModel.toggleShorts(showShorts)
-            viewModel.saveShowShortsToPreferences(showShorts)
+            viewModel.toggleShortFormContent(showShortFormContent)
+            viewModel.saveShowShortFormContentToPreferences(showShortFormContent)
         }
 
         return super.onOptionsItemSelected(item)
@@ -325,18 +325,18 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun updateToggleShortsButton(menuItem: MenuItem) {
-        menuItem.isChecked = showShorts
+        menuItem.isChecked = showShortFormContent
         menuItem.icon = AppCompatResources.getDrawable(
             requireContext(),
-            R.drawable.ic_youtube_shorts
+            if (showShortFormContent) R.drawable.ic_short_form_content else R.drawable.ic_short_form_content_off
         )
         MenuItemCompat.setTooltipText(
             menuItem,
             getString(
-                if (showShorts)
-                    R.string.feed_toggle_hide_shorts
+                if (showShortFormContent)
+                    R.string.feed_toggle_hide_short_form_content
                 else
-                    R.string.feed_toggle_show_shorts
+                    R.string.feed_toggle_show_short_form_content
             )
         )
     }

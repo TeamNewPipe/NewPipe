@@ -757,6 +757,6 @@
     <string name="feed_toggle_show_future_items">Show future items</string>
     <string name="feed_toggle_hide_future_items">Hide future items</string>
     <string name="sort">Sort</string>
-    <string name="feed_toggle_hide_shorts">Hide Shorts</string>
-    <string name="feed_toggle_show_shorts">Show Shorts</string>
+    <string name="feed_toggle_hide_short_form_content">Hide short-form content</string>
+    <string name="feed_toggle_show_short_form_content">Show short-form content</string>
 </resources>
