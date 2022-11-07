@@ -9,8 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        android:elevation="@dimen/player_main_top_padding"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize">
 
