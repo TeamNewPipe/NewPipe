@@ -192,8 +192,8 @@ public final class Migrations {
     public static final Migration MIGRATION_5_6 = new Migration(DB_VER_5, DB_VER_6) {
         @Override
         public void migrate(@NonNull final SupportSQLiteDatabase database) {
-            database.execSQL(
-                    "ALTER TABLE streams ADD COLUMN is_short_form_content"
+            database.execSQL("ALTER TABLE `streams` ADD COLUMN `is_short_form_content` "
+                    + "INTEGER DEFAULT null"
             );
         }
     };
