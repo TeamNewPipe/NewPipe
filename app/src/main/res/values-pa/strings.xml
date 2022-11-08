@@ -19,7 +19,7 @@
     <string name="use_external_video_player_summary">ਕੁਝ ਰੈਜ਼ੋਲੂਸ਼ਨਾਂ \'ਤੇ ਆਵਾਜ਼ ਨੂੰ ਹਟਾ ਦਿੰਦਾ ਹੈ</string>
     <string name="use_external_audio_player_title">ਬਾਹਰੀ ਆਡੀਓ ਪਲੇਅਰ ਵਰਤੋ</string>
     <string name="subscribe_button_title">ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
-    <string name="subscribed_button_title">ਸਬਸਕ੍ਰਾਈਬ ਹੋ ਗਿਆ</string>
+    <string name="subscribed_button_title">ਸਬਸਕ੍ਰਾਈਬ ਹੈ</string>
     <string name="channel_unsubscribed">ਚੈਨਲ ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਹੋ ਗਿਆ</string>
     <string name="subscription_change_failed">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਬਦਲਣ ਵਿੱਚ ਨਾਕਾਮੀ</string>
     <string name="show_info">ਜਾਣਕਾਰੀ ਵਿਖਾਓ</string>
@@ -185,7 +185,7 @@
     <string name="msg_name">ਫਾਈਲ ਦਾ ਨਾਮ</string>
     <string name="msg_threads">ਥਰੈੱਡ</string>
     <string name="msg_error">ਤਰੁੱਟੀ</string>
-    <string name="msg_running">ਨਿਊਪਾਈਪ ਡਾਊਨਲੋਡ ਕਰ ਰਿਹਾ ਹੈ</string>
+    <string name="msg_running">ਨਿਊਪਾਈਪ ਡਾਊਨਲੋਡ ਕਰ ਰਹੀ ਹੈ</string>
     <string name="msg_running_detail">ਵੇਰਵਿਆਂ ਲਈ ਖੋਲੋ</string>
     <string name="msg_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…</string>
     <string name="msg_copied">ਕਲਿਪ-ਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
