@@ -1,0 +1,13 @@
+Nové
+• Přidáno tlačítko „Otevřít v prohlížeči“ do panelu chyb
+• Přidána možnost zobrazit skupiny kanálů jako seznam
+• [YouTube] Dlouhým klepnutím na segmenty streamu lze sdílet URL časového razítka
+• Přidání tlačítka fronty přehrávání do minipřehrávače
+
+Vylepšeno
+• Přidána islandská lokalizace a aktualizovány další překlady
+• Mnoho interních vylepšení
+
+Opraveno
+• Oprava několika pádů
+• [YouTube] Oprava načítání kanálů, nevyhrazeného kanálu a řešení problémů s přehráváním v některých zemích
