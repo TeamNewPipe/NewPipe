@@ -1,0 +1,10 @@
+### Miglioramenti
+* Aggiungi la notifica di aggiornamento dell'app per la build di GitHub (#1608 di @krtkush)
+* Vari miglioramenti al downloader (#1944 di @kapodamy):
+  * aggiungi icone bianche mancanti e usa il modo hardcore per cambiare i colori delle icone
+  * controlla se l'iteratore è inizializzato (correzioni #2031)
+  * consente di riprovare i download con l'errore "post-elaborazione non riuscita" nel nuovo muxer
+  * nuovo muxer MPEG-4 che corregge flussi video e audio non sincroni (#2039)
+
+### Fisso
+* I live streaming di YouTube smettono di essere riprodotti dopo poco tempo (#1996 di @yausername)

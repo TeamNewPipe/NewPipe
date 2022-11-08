@@ -1,0 +1,4 @@
+Correzione rapida
+• Risolto il problema con le miniature e i titoli tagliati nel layout della griglia, a causa di un calcolo errato di quanti video possono stare in una riga
+• Risolto il problema con la finestra di dialogo di download che scompariva senza fare nulla se aperta dal menu di condivisione
+• Aggiornare una libreria relativa all'apertura di attività esterne come il selettore di file di Storage Access Framework

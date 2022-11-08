@@ -1,0 +1,9 @@
+Aggiungi nuova interfaccia utente e comportamento del doppio tocco per cercare
+Rendi le impostazioni ricercabili
+Evidenzia i commenti bloccati in quanto tali
+Aggiungi il supporto open-with-app per l'istanza PeerTube di FSFE
+Aggiungi notifiche di errore
+Risolto il problema con la riproduzione del primo elemento della coda al cambio del giocatore
+Attendi più tempo durante il buffering durante i live streaming prima di fallire
+Correggi l'ordine dei risultati della ricerca locale
+Correggi i campi degli oggetti vuoti nella coda di gioco

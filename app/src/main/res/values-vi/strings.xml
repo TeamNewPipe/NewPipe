@@ -67,7 +67,7 @@
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
-    <string name="sorry_string">:( Lmao, app đã xảy ra lỗi. Hãy lướt xuống dưới để xem lỗi.</string>
+    <string name="sorry_string">Hmm, app đã xảy ra lỗi, lướt xuống để xem lỗi.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
     <string name="error_snackbar_message">Xin lỗi, đã xảy ra sự cố.</string>
     <string name="error_snackbar_action">Báo cáo</string>
@@ -76,7 +76,7 @@
     <string name="info_labels">Loại lỗi:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
-    <string name="detail_thumbnail_view_description">Xem video, thời lượng:</string>
+    <string name="detail_thumbnail_view_description">Video xem, thời lượng:</string>
     <string name="detail_uploader_thumbnail_view_description">Hình thu nhỏ của avatar người tải lên</string>
     <string name="detail_likes_img_view_description">Lượt thích</string>
     <string name="detail_dislikes_img_view_description">Lượt không thích</string>
@@ -106,12 +106,12 @@
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
-    <string name="tab_about">Thông tin</string>
+    <string name="tab_about">Thông tin &amp; Các câu hỏi</string>
     <string name="tab_licenses">Giấy phép</string>
-    <string name="app_description">Trình phát video nhẹ và mã nguồn mở cho Android.</string>
+    <string name="app_description">Trình phát video YT nhẹ, mã nguồn mở và không quảng cáo cho Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
     <string name="app_license_title">Giấy phép của NewPipe</string>
-    <string name="contribution_encouragement">Sự đóng góp của bạn luôn được hoan nghênh – kể cả khi bạn dịch, thay đổi giao diện, dọn code hay thay đổi những thứ khác, sự giúp đỡ của bạn vẫn đáng được trân trọng. Bạn càng làm nhiều, ứng dụng này sẽ càng tốt hơn bao giờ hết (Miễn đừng dịch vớ vẩn là được, nhé) !</string>
+    <string name="contribution_encouragement">Sự đóng góp của bạn luôn được hoan nghênh – kể cả khi bạn dịch, thay đổi giao diện, dọn code, thêm tính năng hay thay đổi những thứ khác, sự giúp đỡ của bạn vẫn đáng được trân trọng. Bạn càng làm nhiều, ứng dụng này sẽ càng tốt hơn bao giờ hết !</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
@@ -191,7 +191,7 @@
     <string name="file_name_empty_error">Tên tệp không được để trống</string>
     <string name="error_occurred_detail">Đã xảy ra lỗi: %1$s</string>
     <string name="no_streams_available_download">Không có luồng nào để tải về</string>
-    <string name="empty_subscription_feed_subtitle">Không có gì cả</string>
+    <string name="empty_subscription_feed_subtitle">Không có gì cả :P</string>
     <string name="detail_drag_description">Kéo để sắp xếp lại</string>
     <string name="no_subscribers">Không có người đăng ký</string>
     <plurals name="subscribers">
@@ -244,7 +244,7 @@
     <string name="could_not_import_all_files">Cảnh báo: Không thể nhập tất cả các tệp.</string>
     <string name="override_current_data">Thao tác này sẽ ghi đè cài đặt hiện tại của bạn.</string>
     <string name="import_settings">Bạn cũng muốn nhập cài đặt?</string>
-    <string name="trending">Thịnh hành :D</string>
+    <string name="trending">Thịnh hành</string>
     <string name="new_and_hot">Mới và đang hot</string>
     <string name="play_queue_remove">Loại bỏ</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
@@ -439,7 +439,7 @@
 \nBạn có chắc không\? Video sẽ không thể hồi phục được!</string>
     <string name="remove_watched_popup_title">Xóa video đã xem\?</string>
     <string name="remove_watched">Xóa video đã xem</string>
-    <string name="systems_language">Mặt định hệ thống</string>
+    <string name="systems_language">Mặc định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
     <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
@@ -668,8 +668,8 @@
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
     <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
-\nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống.</string>
-    <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải (tầm khoảng %s). Để ở giá trị thấp hơn có thể sẽ tăng tốc độ tải video hơn ban đầu. Khởi động lại trình phát để áp dụng thay đổi.</string>
+\nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống</string>
+    <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải (tầm khoảng %s). Để ở giá trị thấp hơn có thể sẽ tăng tốc độ tải video hơn ban đầu. Khởi động lại trình phát để áp dụng thay đổi</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer mặc định</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>
@@ -677,7 +677,7 @@
     <string name="settings_category_player_notification_summary">Thiết lập thông báo hiện đang phát</string>
     <string name="notifications">Thông báo</string>
     <string name="streams_notification_channel_name">Luồng truyền mới</string>
-    <string name="streams_notification_channel_description">Thông báo về luồng truyền mới đối với mục đăng ký</string>
+    <string name="streams_notification_channel_description">Thông báo về video mới đối với mục đăng ký</string>
     <plurals name="new_streams">
         <item quantity="other">%s luồng truyền mới</item>
     </plurals>
@@ -705,4 +705,10 @@
     <string name="unknown_quality">Độ phân giải không xác định</string>
     <string name="progressive_load_interval_title">Kích thước khoảng thời gian tải</string>
     <string name="feed_toggle_show_future_items">Hiện video đề xuất</string>
+    <string name="feed_toggle_hide_future_items">Ẩn video đề xuất</string>
+    <string name="sort">Thể loại</string>
+    <string name="faq_title">Câu hỏi thường gặp</string>
+    <string name="faq">Xem trên website</string>
+    <string name="faq_description">Nếu bạn gặp rắc rối khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
+    <string name="feed_toggle_hide_played_items">Ẩn các video đã xem</string>
 </resources>

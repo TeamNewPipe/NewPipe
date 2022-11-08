@@ -1,0 +1,15 @@
+Ez a kiadás dobja az Android 4.4 KitKat támogatását, mostantól legalább Android 5 Lollipop szükséges.
+
+Újdonságok
+• Letöltés a hosszú érintéses menüből
+• Jövőbeli videók elrejtése
+• Helyi lejátszási listák megosztása
+
+Fejlesztések
+• A lejátszó kódjának refaktorálása: kevesebb RAM használat, kevesebb hiba
+• A bélyegképek skálázási módjának fejlesztése
+• Helykitöltő képek vektorosítása
+
+Javítások
+• Különböző lejátszóértesítési problémák javítása
+• A teljes képernyős megjelenítés javítása

@@ -1,0 +1,16 @@
+Nuovo
+• Notifiche per nuovi flussi
+• Passaggio senza interruzioni tra i lettori video e in background
+• Modificare l'intonazione per semitoni
+• Aggiungi la coda del giocatore principale a una playlist
+
+Migliorato
+• Ricorda la dimensione del passo di velocità/passo
+• Mitiga il lungo buffering iniziale nel video player
+• Migliora l'interfaccia utente del lettore per Android TV
+• Conferma prima di eliminare tutti i file scaricati
+
+Fisso
+• Risolto il problema con il pulsante multimediale che non nascondeva i controlli del lettore
+• Correzione del ripristino della riproduzione al cambio del tipo di lettore
+• Risolto il problema con la rotazione della finestra di dialogo della playlist

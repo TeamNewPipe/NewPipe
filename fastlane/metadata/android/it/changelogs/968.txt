@@ -1,0 +1,7 @@
+Aggiunta l'opzione dei dettagli del canale al menu a pressione prolungata.
+Aggiunta la funzionalità per rinominare il nome della playlist dall'interfaccia della playlist.
+Consenti all'utente di mettere in pausa durante il buffering di un video.
+Lucidato il tema bianco.
+Corretti i caratteri sovrapposti quando si utilizza una dimensione del carattere più grande.
+Risolto nessun video sui dispositivi Formuler e Zephier.
+Risolti vari arresti anomali.

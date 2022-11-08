@@ -1,0 +1,3 @@
+• [YouTube] A videók végtelenségig tartó betöltésének javítása
+• [YouTube] Egyes videóknál előforduló visszafogás javítása
+• Frissítés a jsoup programkönyvtár 1.15.3-as verziójára, amely biztonsági javítást tartalmaz

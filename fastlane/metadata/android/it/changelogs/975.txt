@@ -1,0 +1,17 @@
+Nuovo
+• Mostra un'anteprima in miniatura durante la ricerca
+• Rileva commenti disabilitati
+• Consenti di contrassegnare un elemento del feed come guardato
+• Mostra cuori di commento
+
+Migliorato
+• Migliora il layout dei metadati e dei tag
+• Applicare il colore del servizio ai componenti dell'interfaccia utente
+
+Fisso
+• Risolto il problema con la miniatura nel mini player
+• Risolto il problema del buffering infinito sugli elementi della coda duplicati
+• Alcuni giocatori correzioni come rotazione e chiusura più veloce
+• Risolto il problema con ReCAPTCHA che rimaneva caricato in background
+• Disattiva i clic durante l'aggiornamento del feed
+• Risolti alcuni arresti anomali del downloader

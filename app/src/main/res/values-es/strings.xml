@@ -48,7 +48,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toca en «Buscar» para comenzar.</string>
+    <string name="main_bg_subtitle">Toque la lupa para comenzar.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -732,11 +732,12 @@
     <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
     <string name="unknown_format">Formato desconocido</string>
     <string name="unknown_quality">Calidad desconocida</string>
-    <string name="feed_toggle_show_future_items">Mostrar videos futuros</string>
+    <string name="feed_toggle_show_future_items">Mostrar elementos futuros</string>
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
     <string name="feed_toggle_hide_played_items">Ocultar los elementos mirados</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos futuros</string>
     <string name="faq">Ver en la página web</string>
     <string name="faq_title">Preguntas frecuentes</string>
     <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
+    <string name="sort">Ordenar</string>
 </resources>

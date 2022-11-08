@@ -202,7 +202,7 @@
     <string name="charset_most_special_characters">Legtöbb speciális karakter</string>
     <string name="toast_no_player">Nincs a fájl lejátszásához szükséges alkalmazás telepítve</string>
     <string name="title_activity_about">A NewPipe névjegye</string>
-    <string name="tab_about">Névjegy</string>
+    <string name="tab_about">Névjegy és GYIK</string>
     <string name="tab_licenses">Licencek</string>
     <string name="app_description">Szabad, egyszerű közvetítésnézés Androidon.</string>
     <string name="contribution_title">Közreműködés</string>
@@ -708,8 +708,8 @@
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer alapértelmezett</string>
     <string name="you_successfully_subscribed">Feliratkoztál erre a csatornára</string>
     <string name="enumeration_comma">,</string>
-    <string name="streams_not_yet_supported_removed">Azok az élő adások melyek nem támogatottak a letöltő által, rejtve vannak.</string>
-    <string name="selected_stream_external_player_not_supported">A választott élő adást nem lehet külső lejátszóval lejátszani.</string>
+    <string name="streams_not_yet_supported_removed">Azok az élő adások melyek nem támogatottak a letöltő által, rejtve vannak</string>
+    <string name="selected_stream_external_player_not_supported">A választott élő adást nem lehet külső lejátszóval lejátszani</string>
     <string name="toggle_all">Összes váltása</string>
     <string name="no_audio_streams_available_for_external_players">Külső lejátszók számára nem érhető el az hang csatorna</string>
     <string name="no_video_streams_available_for_external_players">Külső lejátszók számára nem érhető el videó</string>
@@ -717,5 +717,11 @@
     <string name="unknown_format">Ismeretlen formátum</string>
     <string name="unknown_quality">Ismeretlen minőség</string>
     <string name="semitone">Félhang</string>
-    <string name="feed_toggle_show_future_items">Jövőbeli videók megjelenítése</string>
+    <string name="feed_toggle_show_future_items">Jövőbeli elemek megjelenítése</string>
+    <string name="feed_toggle_hide_future_items">Jövőbeli elemek elrejtése</string>
+    <string name="faq_title">Gyakran ismételt kérdések</string>
+    <string name="faq">Megtekintés a weboldalon</string>
+    <string name="sort">Rendezés</string>
+    <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat.</string>
+    <string name="feed_toggle_hide_played_items">Megnézett elemek elrejtése</string>
 </resources>
