@@ -108,7 +108,7 @@
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="title_licenses">第三方版權協議</string>
     <string name="copyright" formatted="true">© %1$s %2$s 版權所有，根據 %3$s 嘅條款授權</string>
-    <string name="tab_about">關於</string>
+    <string name="tab_about">跋記</string>
     <string name="tab_licenses">版權協議</string>
     <string name="app_description">喺 Android 上盡享自由輕便串流。</string>
     <string name="view_on_github">去 GitHub 睇下</string>
@@ -709,4 +709,5 @@
     <string name="feed_toggle_hide_future_items">未夠鐘上畫嘅項目就收埋</string>
     <string name="faq">去網站睇下</string>
     <string name="sort">排序</string>
+    <string name="faq_title">常見問題</string>
 </resources>

@@ -1,0 +1,22 @@
+Nuovo
+Riprendi la riproduzione #2288
+• Riprendi gli stream dal punto in cui ti sei fermato l'ultima volta
+Miglioramenti del downloader #2149
+• Utilizzare Storage Access Framework per archiviare i download su schede SD esterne
+• Nuovo mixer mp4
+• Modificare facoltativamente la directory di download prima di avviare un download
+• Rispettare le reti a consumo
+
+
+Migliorato
+• Rimosse le stringhe gema #2295
+• Gestire le modifiche alla rotazione (automatica) durante il ciclo di vita dell'attività #2444
+• Rendi coerenti i menu a lunga pressione #2368
+
+Fisso
+• Risolto il problema con il nome della traccia dei sottotitoli selezionata che non veniva mostrato #2394
+• Non arrestarsi in modo anomalo quando il controllo dell'aggiornamento dell'app non riesce (versione GitHub) #2423
+• Risolti i download bloccati al 99,9% #2440
+• Aggiorna i metadati della coda di riproduzione #2453
+• [SoundCloud] Risolto crash durante il caricamento delle playlist TeamNewPipe/NewPipeExtractor#170
+• [YouTube] La durata fissa non può essere modificata TeamNewPipe/NewPipeExtractor#177

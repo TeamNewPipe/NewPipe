@@ -1,0 +1,14 @@
+Nuovo:
+• Aggiungi un nuovo servizio: Bandcamp
+
+Migliorato:
+• Aggiungi un'opzione per fare in modo che l'app segua il tema del dispositivo
+• Prevenire alcuni arresti anomali mostrando un pannello di errore migliorato
+• Mostra ulteriori informazioni sul motivo per cui il contenuto non è disponibile
+• Il pulsante dello spazio hardware attiva la riproduzione/pausa
+• Mostra il brindisi "Download iniziato".
+
+Fisso:
+• Correzione di miniature molto piccole nei dettagli del video durante la riproduzione in background
+• Risolto il problema con il titolo vuoto nel lettore ridotto a icona
+• Risolto il problema con l'ultima modalità di ridimensionamento che non veniva ripristinata correttamente

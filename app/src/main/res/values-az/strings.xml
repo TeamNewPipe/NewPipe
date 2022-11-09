@@ -215,7 +215,7 @@
     <string name="confirm_prompt">Endirmə tarixçənizi təmizləmək və ya endirilmiş bütün faylları silmək istəyirsiniz\?</string>
     <string name="clear_download_history">Endirmə tarixçəsini təmizlə</string>
     <string name="start_downloads">Endirmələrə başla</string>
-    <string name="pause_downloads">Endirmələrə fasilə verin</string>
+    <string name="pause_downloads">Endirmələri dayandır</string>
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
     <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
 \nXarici SD karta yükləmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
@@ -325,7 +325,7 @@
     <string name="no_videos">Video yoxdur</string>
     <string name="comments_are_disabled">Şərhlər qeyri-aktivdir</string>
     <string name="start">Başladın</string>
-    <string name="pause">Dayandırın</string>
+    <string name="pause">Dayandır</string>
     <string name="checksum">Təsdiqləmə</string>
     <string name="dismiss">İmtina</string>
     <string name="msg_error">Xəta</string>

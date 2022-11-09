@@ -1,0 +1,25 @@
+ATTENZIONE: Questa versione probabilmente è un bugfest, proprio come l'ultima. Tuttavia, a causa dell'arresto completo dalla 17. una versione non funzionante è meglio di nessuna versione. Destra? ¯\_(ツ)_/¯
+
+### Miglioramenti
+* i file scaricati possono ora essere aperti con un clic #1879
+* drop supporto per Android 4.1 - 4.3 #1884
+* rimuovi il vecchio giocatore #1884
+* rimuovi gli stream dalla coda di riproduzione corrente facendoli scorrere verso destra #1915
+* rimuove il flusso in coda automaticamente quando un nuovo flusso viene accodato manualmente #1878
+* Post-elaborazione per i download e implementazione delle funzionalità mancanti #1759 di @kapodamy
+  * Infrastruttura di post-elaborazione
+  * Corretta gestione degli errori "infrastruttura" (per downloader)
+  * Coda invece di download multipli
+  * Sposta i download serializzati in sospeso (file `.giga`) nei dati dell'app
+  * Implementare il numero massimo di tentativi di download
+  * Sospensione corretta del download multi-thread
+  * Interrompi i download quando passi alla rete mobile (non funziona mai, vedi 2° punto)
+  * Salva il conteggio dei thread per i prossimi download
+  * Risolte molte incoerenze
+
+### Fisso
+* Risolto l'arresto anomalo con la risoluzione predefinita impostata sulla risoluzione dei dati mobili migliore e limitata #1835
+* arresto anomalo del lettore pop-up risolto #1874
+* NPE quando si tenta di aprire il giocatore in background #1901
+* Risolto il problema con l'inserimento di nuovi flussi quando l'accodamento automatico è abilitato #1878
+* Risolto il problema del decypering shuttown
