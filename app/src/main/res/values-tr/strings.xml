@@ -292,7 +292,7 @@
     <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
     <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
-    <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
+    <string name="preferred_open_action_settings_summary">Paylaşma ekranında tanımlı eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
     <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
