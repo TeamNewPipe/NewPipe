@@ -25,7 +25,6 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static android.content.Context.INPUT_SERVICE;
@@ -98,27 +97,29 @@ public final class DeviceUtils {
      * @param context the context to use for services and config.
      * @return true if the Android device is in desktop mode or using DeX.
      */
-    public static boolean isDesktopMode(final Context context) {
+    @SuppressWarnings("JavaReflectionMemberAccess")
+    public static boolean isDesktopMode(@NonNull final Context context) {
         // Adapted from https://stackoverflow.com/a/64615568
         // to check for all input devices that have an active cursor
         final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
         for (final int id : im.getInputDeviceIds()) {
             final InputDevice inputDevice = im.getInputDevice(id);
-            if (
-                    inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
-                            || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
-                            || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
-                            || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
-                            || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)
-            ) {
+            if (inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
+                    || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
+                    || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
+                    || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
+                    || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)) {
                 return true;
             }
         }
 
-        if (ContextCompat.getSystemService(context, UiModeManager.class)
-                .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
+        final UiModeManager uiModeManager =
+                ContextCompat.getSystemService(context, UiModeManager.class);
+        if (uiModeManager != null
+                && uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
             return true;
         }
+
         // DeX check for standalone and multi-window mode, from:
         // https://developer.samsung.com/samsung-dex/modify-optimizing.html
         try {
@@ -131,12 +132,14 @@ public final class DeviceUtils {
             if (semDesktopModeEnabledConst == currentMode) {
                 return true;
             }
-        } catch (final NoSuchFieldException | IllegalAccessException e) {
-            // empty
+        } catch (final NoSuchFieldException | IllegalAccessException ignored) {
+            // Device doesn't seem to support DeX
         }
+
         @SuppressLint("WrongConstant") final Object desktopModeManager = context
                 .getApplicationContext()
                 .getSystemService("desktopmode");
+
         if (desktopModeManager != null) {
             try {
                 final Method getDesktopModeStateMethod = desktopModeManager.getClass()
@@ -151,11 +154,12 @@ public final class DeviceUtils {
                         .getDeclaredField("ENABLED").getInt(desktopModeStateClass)) {
                     return true;
                 }
-            } catch (NoSuchFieldException | NoSuchMethodException
-                    | IllegalAccessException | InvocationTargetException e) {
-                // Device does not support DeX 3.0
+            } catch (final Exception ignored) {
+                // Device does not support DeX 3.0 or something went wrong when trying to determine
+                // if it supports this feature
             }
         }
+
         return false;
     }
 
