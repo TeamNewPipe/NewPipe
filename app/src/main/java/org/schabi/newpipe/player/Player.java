@@ -108,8 +108,8 @@ import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
+import org.schabi.newpipe.player.resolver.SourceType;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUiList;
@@ -1858,25 +1858,37 @@ public final class Player implements PlaybackListener, Listener {
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         if (audioPlayerSelected()) {
+            if (info.getAudioStreams().isEmpty()) {
+                /* No audio stream to play in background, instead of preventing playback, use the
+                video resolver which will fetch unfortunately the video in background (and
+                subtitles if they are enabled too) by using the default video resolution */
+                return videoResolver.resolve(info);
+            }
+
+            // Use the audio resolver if there is an audio stream available for background playback
             return audioResolver.resolve(info);
         }
 
-        if (isAudioOnly && videoResolver.getStreamSourceType().orElse(
-                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY)
-                == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY) {
-            // If the current info has only video streams with audio and if the stream is played as
-            // audio, we need to use the audio resolver, otherwise the video stream will be played
-            // in background.
+        if (isAudioOnly && info.getVideoOnlyStreams().isEmpty()
+                && !info.getAudioStreams().isEmpty()) {
+            /* If the info we need to resolve has no video-only streams, has an audio stream and if
+            the current stream is played as audio, we need to use the audio resolver, otherwise
+            the video stream would be played in background. In this case, the play queue manager
+            might be reloaded if the info has video streams with audio when switching to a video
+            player. */
             return audioResolver.resolve(info);
         }
 
-        // Even if the stream is played in background, we need to use the video resolver if the
-        // info played is separated video-only and audio-only streams; otherwise, if the audio
-        // resolver was called when the app was in background, the app will only stream audio when
-        // the user come back to the app and will never fetch the video stream.
-        // Note that the video is not fetched when the app is in background because the video
-        // renderer is fully disabled (see useVideoSource method), except for HLS streams
-        // (see https://github.com/google/ExoPlayer/issues/9282).
+        /* Even if the stream is played in background, we need to use the video resolver if the
+        info played has video-only and audio-only streams or only video with audio
+        streams; otherwise, respectively, if the audio resolver was called when the app was in
+        background, the app would only stream audio when the user come back to the app and would
+        never fetch the video stream, or throw an exception because no audio-only source is
+        available.
+
+        Note that the video is not fetched when the app is in background because the video track
+        type is fully disabled (see useVideoSource method), except for HLS streams
+        (see https://github.com/google/ExoPlayer/issues/9282). */
         return videoResolver.resolve(info);
     }
 
@@ -2045,37 +2057,28 @@ public final class Player implements PlaybackListener, Listener {
         // Reload the play queue manager in this case, which is the behavior when we don't know the
         // index of the video renderer or playQueueManagerReloadingNeeded returns true.
         final Optional<StreamInfo> optCurrentStreamInfo = getCurrentStreamInfo();
-        if (!optCurrentStreamInfo.isPresent()) {
+        if (!optCurrentStreamInfo.isPresent() || currentMetadata == null) {
             reloadPlayQueueManager();
             setRecovery();
             return;
         }
 
-        final StreamInfo info = optCurrentStreamInfo.get();
-
-        // In the case we don't know the source type, fallback to the one with video with audio or
-        // audio-only source.
-        final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
-                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
-
-        if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
+        if (playQueueManagerReloadingNeeded(currentMetadata.getSourceType(),
+                optCurrentStreamInfo.get(), getVideoRendererIndex())) {
             reloadPlayQueueManager();
-        } else {
-            if (StreamTypeUtil.isAudio(info.getStreamType())) {
-                // Nothing to do more than setting the recovery position
-                setRecovery();
-                return;
-            }
-
-            final DefaultTrackSelector.Parameters.Builder parametersBuilder =
-                    trackSelector.buildUponParameters();
-
-            // Enable/disable the video track and the ability to select subtitles
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
-
-            trackSelector.setParameters(parametersBuilder);
         }
+
+        // Always disable and enable video and subtitles track types to fix video and subtitles
+        // track disabling issues in very rare cases, such as playing a content in audio mode
+        // (not in the real background player) and then playing a content which has audio-only
+        // streams and no video-only streams, but video with embedded audio streams
+        simpleExoPlayer.setTrackSelectionParameters(
+                simpleExoPlayer.getTrackSelectionParameters()
+                        .buildUpon()
+                        // Enable/disable the video track and the ability to select subtitles
+                        .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled)
+                        .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled)
+                        .build());
 
         setRecovery();
     }
@@ -2092,7 +2095,7 @@ public final class Player implements PlaybackListener, Listener {
      *     {@link StreamType#AUDIO_LIVE_STREAM audio live stream}, or a
      *     {@link StreamType#POST_LIVE_AUDIO_STREAM ended audio live stream};</li>
      *     <li>the content is a {@link StreamType#LIVE_STREAM live stream} and the source type is a
-     *     {@link SourceType#LIVE_STREAM live source};</li>
+     *     {@link SourceType#MANIFEST manifest source};</li>
      *     <li>the content's source is {@link SourceType#VIDEO_WITH_SEPARATED_AUDIO a video stream
      *     with a separated audio source} or has no audio-only streams available <b>and</b> is a
      *     {@link StreamType#VIDEO_STREAM video stream}, an
@@ -2118,11 +2121,11 @@ public final class Player implements PlaybackListener, Listener {
             return true;
         }
 
-        // The content is an audio stream, an audio live stream, or a live stream with a live
+        // The content is an audio stream, an audio live stream, or a live stream with a manifest
         // source: it's not needed to reload the play queue manager because the stream source will
         // be the same
         if (isStreamTypeAudio || (streamType == StreamType.LIVE_STREAM
-                && sourceType == SourceType.LIVE_STREAM)) {
+                && sourceType == SourceType.MANIFEST)) {
             return false;
         }
 
@@ -2132,7 +2135,7 @@ public final class Player implements PlaybackListener, Listener {
         // audio stream available: it's probably not needed to reload the play queue manager
         // because the stream source will be probably the same as the current played
         if (sourceType == SourceType.VIDEO_WITH_SEPARATED_AUDIO
-                || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+                || (sourceType == SourceType.VIDEO_WITH_AUDIO
                     && isNullOrEmpty(streamInfo.getAudioStreams()))) {
             // It's not needed to reload the play queue manager only if the content's stream type
             // is a video stream, a live stream or an ended live stream
