@@ -2289,11 +2289,11 @@ public final class Player implements PlaybackListener, Listener, AnalyticsListen
 
     private boolean isLive() {
         try {
-            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentMediaItemDynamic();
+            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentMediaItemLive();
         } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
-                Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
+                Log.d(TAG, "player.isCurrentMediaItemLive() failed: ", e);
             }
             return false;
         }
