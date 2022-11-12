@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.Tracks;
@@ -158,7 +159,7 @@ public abstract class PlayerUi {
      * @see com.google.android.exoplayer2.Player.Listener#onTracksChanged(Tracks)
      * @param currentTracks the available tracks information
      */
-    public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
+    public void onTracksChanged(@NonNull final Tracks currentTracks) {
     }
 
     /**
@@ -208,5 +209,15 @@ public abstract class PlayerUi {
      * @see com.google.android.exoplayer2.Player.Listener#onVideoSizeChanged
      */
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
+    }
+
+    /**
+     * @param format the new video {@link Format} being consumed by a video renderer used by
+     *               ExoPlayer
+     * @see com.google.android.exoplayer2.analytics.AnalyticsListener#onVideoInputFormatChanged(
+     * com.google.android.exoplayer2.analytics.AnalyticsListener.EventTime, Format,
+     * com.google.android.exoplayer2.decoder.DecoderReuseEvaluation)
+     */
+    public void onVideoInputFormatChanged(@NonNull final Format format) {
     }
 }

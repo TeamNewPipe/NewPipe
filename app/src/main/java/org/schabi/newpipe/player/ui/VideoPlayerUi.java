@@ -5,6 +5,7 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
+import static org.schabi.newpipe.player.Player.MAX_HEIGHT_ALLOWED_WITHOUT_HIGH_RESOLUTIONS;
 import static org.schabi.newpipe.player.Player.RENDERER_UNAVAILABLE;
 import static org.schabi.newpipe.player.Player.STATE_BUFFERING;
 import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
@@ -27,6 +28,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -53,7 +55,9 @@ import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.Tracks;
+import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.TrackSelectionOverride;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.video.VideoSize;
@@ -82,6 +86,7 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -123,6 +128,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     private PopupMenu qualityPopupMenu;
     protected PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
+    private final List<Pair<Tracks.Group, Format>> videoFormats = new ArrayList<>();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -170,6 +176,8 @@ public abstract class VideoPlayerUi extends PlayerUi
                 R.style.DarkPopupMenu);
 
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
+        qualityPopupMenu.setOnMenuItemClickListener(this);
+        qualityPopupMenu.setOnDismissListener(this);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
@@ -1001,6 +1009,7 @@ public abstract class VideoPlayerUi extends PlayerUi
                 binding.surfaceView.setVisibility(View.VISIBLE);
                 binding.endScreen.setVisibility(View.GONE);
                 binding.playbackLiveSync.setVisibility(View.VISIBLE);
+                binding.qualityTextView.setVisibility(View.VISIBLE);
                 break;
 
             case VIDEO_STREAM:
@@ -1013,7 +1022,9 @@ public abstract class VideoPlayerUi extends PlayerUi
                     break;
                 }
 
-                buildQualityMenu();
+                if (!player.isCurrentSourceTypeManifest()) {
+                    buildQualityMenu();
+                }
 
                 binding.qualityTextView.setVisibility(View.VISIBLE);
                 binding.surfaceView.setVisibility(View.VISIBLE);
@@ -1039,7 +1050,9 @@ public abstract class VideoPlayerUi extends PlayerUi
         if (qualityPopupMenu == null) {
             return;
         }
-        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
+
+        final Menu menu = qualityPopupMenu.getMenu();
+        menu.removeGroup(POPUP_MENU_ID_QUALITY);
 
         final List<VideoStream> availableStreams = Optional.ofNullable(player.getCurrentMetadata())
                 .flatMap(MediaItemTag::getMaybeQuality)
@@ -1051,15 +1064,61 @@ public abstract class VideoPlayerUi extends PlayerUi
 
         for (int i = 0; i < availableStreams.size(); i++) {
             final VideoStream videoStream = availableStreams.get(i);
-            qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
-                    .getNameById(videoStream.getFormatId()) + " " + videoStream.getResolution());
+            menu.add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat.getNameById(
+                    videoStream.getFormatId()) + " " + videoStream.getResolution());
         }
+
         final VideoStream selectedVideoStream = player.getSelectedVideoStream();
         if (selectedVideoStream != null) {
             binding.qualityTextView.setText(selectedVideoStream.getResolution());
         }
-        qualityPopupMenu.setOnMenuItemClickListener(this);
-        qualityPopupMenu.setOnDismissListener(this);
+    }
+
+    /**
+     * Get a resolution string from a given {@link Format}.
+     *
+     * <p>
+     * The string returned will be one of these third possibilities:
+     * <ul>
+     *     <li>
+     *         <p>the height of the {@link Format} and its frame rate (if its value is more than
+     *         30). Values returned are values such as {@code 480p} or {@code 720p60};</p>
+     *     </li>
+     *     <li>
+     *         <p>if the height of the {@link Format} is unknown, its bitrate will be used. Values
+     *         returned are values such as {@code 596495bps} or {@code 782766bps};</p>
+     *     </li>
+     *     <li>
+     *         <p>if the bitrate of the {@link Format} is also unknown, the unknown quality string
+     *         is returned.</p>
+     *     </li>
+     * </ul>
+     * </p>
+     *
+     * @param format a {@link Format} on which applying the method
+     * @return the resolution string described above
+     */
+    @NonNull
+    private String getResolutionStringFromFormat(@NonNull final Format format) {
+        if (format.height == Format.NO_VALUE) {
+            // If height is unknown, use the bitrate as a last resort
+            return format.bitrate + "bps";
+        } else if (format.frameRate != Format.NO_VALUE) {
+            final StringBuilder resolutionStringBuilder = new StringBuilder(
+                    String.valueOf(format.height));
+            resolutionStringBuilder.append("p");
+
+            final int frameRate = Math.round(format.frameRate);
+            if (frameRate > 30) {
+                resolutionStringBuilder.append(frameRate);
+            }
+
+            return resolutionStringBuilder.toString();
+        }
+
+        // We don't have information to distinguish format's quality, return an unknown quality
+        // string as a last resort
+        return context.getString(R.string.unknown_quality);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -1147,7 +1206,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         // Only set preferred language if it does not match the user preference,
-        // otherwise there might be an infinite cycle at onTextTracksChanged.
+        // otherwise there might be an infinite cycle at onTracksChanged.
         final List<String> selectedPreferredLanguages =
                 player.getTrackSelector().getParameters().preferredTextLanguages;
         if (!selectedPreferredLanguages.contains(userPreferredLanguage)) {
@@ -1188,27 +1247,13 @@ public abstract class VideoPlayerUi extends PlayerUi
 
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
             final int menuItemIndex = menuItem.getItemId();
-            @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-            //noinspection SimplifyOptionalCallChains
-            if (currentMetadata == null || !currentMetadata.getMaybeQuality().isPresent()) {
-                return true;
-            }
-
-            final MediaItemTag.Quality quality = currentMetadata.getMaybeQuality().get();
-            final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
-            final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
-            if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
-                return true;
-            }
-
             player.saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).getResolution();
-            player.setRecovery();
-            player.setPlaybackQuality(newResolution);
-            player.reloadPlayQueueManager();
 
-            binding.qualityTextView.setText(menuItem.getTitle());
-            return true;
+            if (player.isCurrentSourceTypeManifest()) {
+                updateVideoQualityForManifestSources(menuItemIndex);
+            } else {
+                updateVideoQualityForManualSources(menuItem, menuItemIndex);
+            }
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
             final int speedIndex = menuItem.getItemId();
             final float speed = PLAYBACK_SPEEDS[speedIndex];
@@ -1217,7 +1262,59 @@ public abstract class VideoPlayerUi extends PlayerUi
             binding.playbackSpeed.setText(formatSpeed(speed));
         }
 
-        return false;
+        return true;
+    }
+
+    private void updateVideoQualityForManualSources(@NonNull final MenuItem menuItem,
+                                                    final int menuItemIndex) {
+        @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
+        //noinspection SimplifyOptionalCallChains
+        if (currentMetadata == null || !currentMetadata.getMaybeQuality().isPresent()) {
+            return;
+        }
+
+        final MediaItemTag.Quality quality = currentMetadata.getMaybeQuality().get();
+        final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
+        final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
+        if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
+            return;
+        }
+
+        final String newResolution = availableStreams.get(menuItemIndex).getResolution();
+        player.setRecovery();
+        player.setPlaybackQuality(newResolution);
+        player.reloadPlayQueueManager();
+
+        binding.qualityTextView.setText(menuItem.getTitle());
+    }
+
+    private void updateVideoQualityForManifestSources(final int menuItemIndex) {
+        // A menu item cannot be negative, but can be out of the bounds of the list if the list has
+        // been updated just after the quality item click has been made
+        // Don't do anything if the index is out of bounds
+        if (menuItemIndex >= videoFormats.size()) {
+            return;
+        }
+
+        final Pair<Tracks.Group, Format> videoFormat = videoFormats.get(menuItemIndex);
+        final TrackGroup trackGroup = videoFormat.first.getMediaTrackGroup();
+        final int formatIndex = trackGroup.indexOf(videoFormat.second);
+
+        // If the format is not available in its track group, it should be not available anymore
+        // and cannot be set as an override
+        if (formatIndex == C.INDEX_UNSET) {
+            return;
+        }
+
+        player.getTrackSelector()
+                .setParameters(player.getTrackSelector()
+                        .buildUponParameters()
+                        // Remove video size constraints, used to set the default resolution
+                        .clearVideoSizeConstraints()
+                        // Remove existing video overrides, made when a manual quality selection
+                        .clearOverridesOfType(C.TRACK_TYPE_VIDEO)
+                        // Add the new manual quality selection
+                        .addOverride(new TrackSelectionOverride(trackGroup, formatIndex)));
     }
 
     /**
@@ -1254,17 +1351,78 @@ public abstract class VideoPlayerUi extends PlayerUi
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Captions (text tracks)
+    // Tracks (video and text tracks)
     //////////////////////////////////////////////////////////////////////////*/
-    //region Captions (text tracks)
+    //region Tracks (video and text tracks)
 
     @Override
-    public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
-        super.onTextTracksChanged(currentTracks);
+    public void onTracksChanged(@NonNull final Tracks currentTracks) {
+        super.onTracksChanged(currentTracks);
+        onVideoTracksChanged(currentTracks);
+        onTextTracksChanged(currentTracks);
+    }
 
+    private void onVideoTracksChanged(@NonNull final Tracks currentTracks) {
+        if (!player.isCurrentSourceTypeManifest()
+                || player.getTrackSelector().getCurrentMappedTrackInfo() == null
+                || !currentTracks.containsType(C.TRACK_TYPE_VIDEO)
+                || !currentTracks.isTypeSupported(C.TRACK_TYPE_VIDEO, true)) {
+            return;
+        }
+
+        final boolean hideHigherResolutions = player.areHigherResolutionsHidden();
+
+        videoFormats.clear();
+        // Extract all video tracks
+        currentTracks.getGroups()
+                .stream()
+                .filter(trackGroupInfo -> C.TRACK_TYPE_VIDEO == trackGroupInfo.getType())
+                .forEach(group -> {
+                    for (int i = 0; i < group.length; i++) {
+                        final Format format = group.getTrackFormat(i);
+                        if (hideHigherResolutions
+                                && format.height >= MAX_HEIGHT_ALLOWED_WITHOUT_HIGH_RESOLUTIONS) {
+                            // User asked to not show higher resolutions, so we are preventing to
+                            // select the ones which are >= 1080p
+                            continue;
+                        }
+
+                        videoFormats.add(new Pair<>(group, format));
+                    }
+                });
+
+        videoFormats.sort((pair1, pair2) -> {
+            if (pair1.second.height != Format.NO_VALUE && pair2.second.height != Format.NO_VALUE) {
+                // Negate the return to have a descending order of streams, like on normal video
+                // sources
+                return -Integer.compare(pair1.second.height, pair2.second.height);
+            }
+
+            // Fallback to bitrates in the case height of streams is unknown
+            // Negate the return to have a descending order of streams, like on normal video sources
+            return -Integer.compare(pair1.second.bitrate, pair2.second.bitrate);
+        });
+
+        buildQualityMenuForManifestSources();
+    }
+
+    private void buildQualityMenuForManifestSources() {
+        if (qualityPopupMenu == null) {
+            return;
+        }
+
+        final Menu menu = qualityPopupMenu.getMenu();
+        menu.removeGroup(POPUP_MENU_ID_QUALITY);
+        for (int i = 0; i < videoFormats.size(); i++) {
+            menu.add(POPUP_MENU_ID_QUALITY, i, Menu.NONE,
+                    getResolutionStringFromFormat(videoFormats.get(i).second));
+        }
+    }
+
+    private void onTextTracksChanged(@NonNull final Tracks currentTracks) {
         final boolean trackTypeTextSupported = !currentTracks.containsType(C.TRACK_TYPE_TEXT)
                 || currentTracks.isTypeSupported(C.TRACK_TYPE_TEXT, false);
-        if (getPlayer().getTrackSelector().getCurrentMappedTrackInfo() == null
+        if (player.getTrackSelector().getCurrentMappedTrackInfo() == null
                 || !trackTypeTextSupported) {
             binding.captionTextView.setVisibility(View.GONE);
             return;
@@ -1300,6 +1458,13 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
         binding.captionTextView.setVisibility(
                 availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void onVideoInputFormatChanged(@NonNull final Format format) {
+        if (player.isCurrentSourceTypeManifest()) {
+            binding.qualityTextView.setText(getResolutionStringFromFormat(format));
+        }
     }
 
     @Override
