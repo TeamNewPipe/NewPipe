@@ -1664,9 +1664,10 @@ public final class Player implements PlaybackListener, Listener, AnalyticsListen
         }
 
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT_MILLIS milliseconds,
-         * restart current track. Also restart the track if the current track
-         * is the first in a queue.*/
-        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS
+        restart current track (not applicable for livestreams, otherwise the play queue offset
+        would never be called on livestreams with a long DVR time).
+        Also restart the track if the current track is the first in a queue. */
+        if ((!isLive() && simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS)
                 || playQueue.getIndex() == 0) {
             seekToDefault();
             playQueue.offsetIndex(0);
