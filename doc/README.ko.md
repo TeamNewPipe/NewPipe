@@ -19,11 +19,11 @@
 
 *Read this in other languages: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
 
-<b>경고: 이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GITHUB 저장소에서 ISSUE를 열람하여 주십시오.</b>
+<b>경고: 이 버전은 베타 버전이므로, 버그가 발생할 수 있습니다. 만약 버그가 발생했다면, 우리의 GitHub 저장소에서 Issue를 열람하여 주십시오.</b>
 
-<b>NEWPIPE 또는 이것의 FORK을 구글 플레이스토어에 올리는 것은 그들의 이용약관을 위반합니다.</b>
+<b>NewPipe 또는 NewPipe의 포크를 구글 플레이 스토어에 올리는 것은 그들의 이용약관을 위반합니다.</b>
 
-## Screenshots
+## 스크린샷 
 
 [<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
 [<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
@@ -38,11 +38,11 @@
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
-## Description
+## 설명 
 
-NewPipe는 어떤 구글 프레임워크 라이브러리나, 유튜브 API를 사용하지 않습니다. 웹사이트는 단지 필요한 정보를 가져오기 위해 구문 분석 됩니다. 따라서 이 앱은 구글 서비스의 설치 없이 기기에서 사용될 수 있습니다. 또한, 카피레프트 자유 소프트웨어인 NewPipe를 사용하기 위해 유튜브 계정이 필요하지 않습니다.
+NewPipe는 구글 프레임워크 라이브러리나, 유튜브 API를 사용하지 않습니다. 웹사이트는 단지 필요한 정보를 가져오기 위해 구문 분석 됩니다. 따라서 이 앱은 구글 서비스의 설치 없이 기기에서 사용될 수 있습니다. 또한, 카피레프트 자유 소프트웨어인 NewPipe를 사용하기 위해 유튜브 계정이 필요하지 않습니다.
 
-### Features
+### 기능
 
 * 영상 검색
 * 영상의 일반적인 정보 표시
@@ -72,9 +72,9 @@ NewPipe는 어떤 구글 프레임워크 라이브러리나, 유튜브 API를 �
 * 실시간 방송 지원
 * 댓글 표시
 
-### Supported Services
+### 지원되는 서비스
 
-NewPipe는 여러가지 서비스를 지원합니다. 우리의 [문서](https://teamnewpipe.github.io/documentation/)는 새로운 서비스가 앱과 추출기에 어떻게 추가될 수 있는지에 대한 더 많은 정보를 제공합니다. 만약 새로운 서비스를 추가하고자 한다면, 우리에게 연락해 주시기 바랍니다. 현재 지원되는 서비스:
+NewPipe는 여러 가지 서비스를 지원합니다. 우리의 [문서](https://teamnewpipe.github.io/documentation/)는 새로운 서비스가 앱과 추출기에 어떻게 추가될 수 있는지에 대한 더 많은 정보를 제공합니다. 만약 새로운 서비스를 추가하고자 한다면, 우리에게 연락해 주시기 바랍니다. 현재 지원되는 서비스:
 
 * YouTube
 * SoundCloud \[beta\]
@@ -93,16 +93,16 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
  4. F-Droid를 통해 업데이트 할 수 있습니다. F-Droid는 변화를 인식하고, 스스로 APK를 생성하고, 이것에 서명하고, 사용자들에서 업데이트를 전달해야만 하기 때문에,
  이것은 업데이트를 받는 가장 느린 방법입니다.
 
-우리는 대부분의 사용자에게 2번쨰 방법을 추천합니다. 방법 2 또는 3을 사용하여 설치된 APK는 서로 호환되지만, 방법 4를 사용하여 설치된 것들과는 호환되지 않습니다. 이것은 방법 2 또는 3에서는 같은 (우리의)서명 키가 사용되지만, 방법 4에서는 다른 (F-Droid의)서명 키가 사용되기 때문입니다. 방법 1을 사용하여 디버그 APK를 생성하는 것에서는 키가 완전히 제외됩니다. 서명 키는 사용자가 앱에 악의적인 업데이트를 설치하는 것에 대해 속지 않도록 보장하는 것을 도와줍니다.
+우리는 대부분의 사용자에게 2번째 방법을 추천합니다. 방법 2 또는 3을 사용하여 설치된 APK는 서로 호환되지만, 방법 4를 사용하여 설치된 것들과는 호환되지 않습니다. 이것은 방법 2 또는 3에서는 같은 (우리의) 서명 키가 사용되지만, 방법 4에서는 다른 (F-Droid의) 서명 키가 사용되기 때문입니다. 방법 1을 사용하여 디버그 APK를 생성하는 것에서는 키가 완전히 제외됩니다. 서명 키는 사용자가 앱에 악의적인 업데이트를 설치하는 것에 대해 속지 않도록 보장하는 것을 도와줍니다.
 
-한편, 만약 어떠한 이유(예. NewPipe의 핵심 기능이 손상되었고 F-Droid가 아직 업데이트를 가지지 않는 경우) 때문에 소스를 바꾸길 원한다면, 
+한편, 만약 어떠한 이유 (예: NewPipe의 핵심 기능이 손상되었고 F-Droid가 아직 업데이트를 가지지 않는 경우) 때문에 소스를 바꾸길 원한다면, 
 우리는 다음과 같은 절차를 따르는 것을 권장합니다:
 1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
 2. NewPipe를 삭제하십시오.
 3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
 4. Step 1의 Settings > Content > Import Database 을 통해 데이터를 불러오십시오.
 
-## Contribution
+## 기여
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
 더 많이 수행될수록 더 많이 발전할 수 있습니다! 
 
@@ -113,7 +113,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 </a>
 
 ## Donate
-만약 NewPipe가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. NewPipe에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 [웹사이트](https://newpipe.net/donate)를 방문하여 주십시오.
+만약 NewPipe가 마음에 들었다면, 우리는 기부에 대해 기꺼이 환영합니다. Bitcoin을 보내거나, Bountysource 또는 Liberapay를 통해 기부할 수 있습니다. NewPipe에 기부하는 것에 대한 자세한 정보를 원한다면, 우리의 [웹사이트](https://newpipe.net/donate)를 방문하여 주십시오.
 
 <table>
   <tr>
@@ -133,12 +133,12 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
   </tr>
 </table>
 
-## Privacy Policy
+## 개인정보 보호 정책
 
 NewPipe 프로젝트는 미디어 웹 서비스를 사용하는 것에 대한 사적의, 익명의 경험을 제공하는 것을 목표로 하고 있습니다.
-그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보보호정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.net/legal/privacy/)에서 확인할 수 있습니다.
+그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보 보호 정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.net/legal/privacy/)에서 확인할 수 있습니다.
 
-## License
+## 라이선스
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe는 자유 소프트웨어입니다: 당신의 마음대로 이것을 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 
