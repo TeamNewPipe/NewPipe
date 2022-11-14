@@ -1,0 +1,2 @@
+- Risolto il problema con la ripresa della riproduzione
+- Miglioramenti per garantire che il servizio che determina se NewPipe deve verificare la presenza di una nuova versione controlli non sia avviato in background

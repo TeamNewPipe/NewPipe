@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player.notification;
 
 import android.annotation.SuppressLint;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
@@ -22,6 +21,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PendingIntentCompat;
 
 import java.util.List;
 import java.util.Objects;
@@ -133,8 +133,8 @@ public final class NotificationUtil {
                         R.color.dark_background_color))
                 .setColorized(player.getPrefs().getBoolean(
                         player.getContext().getString(R.string.notification_colorize_key), true))
-                .setDeleteIntent(PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
-                        new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
+                .setDeleteIntent(PendingIntentCompat.getBroadcast(player.getContext(),
+                        NOTIFICATION_ID, new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
         // set the initial value for the video thumbnail, updatable with updateNotificationThumbnail
         setLargeIcon(builder);
@@ -151,7 +151,7 @@ public final class NotificationUtil {
         }
 
         // also update content intent, in case the user switched players
-        notificationBuilder.setContentIntent(PendingIntent.getActivity(player.getContext(),
+        notificationBuilder.setContentIntent(PendingIntentCompat.getActivity(player.getContext(),
                 NOTIFICATION_ID, getIntentForNotification(), FLAG_UPDATE_CURRENT));
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
@@ -334,7 +334,7 @@ public final class NotificationUtil {
                                                 @StringRes final int title,
                                                 final String intentAction) {
         return new NotificationCompat.Action(drawable, player.getContext().getString(title),
-                PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
+                PendingIntentCompat.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(intentAction), FLAG_UPDATE_CURRENT));
     }
 

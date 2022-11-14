@@ -107,7 +107,7 @@
 \nper utilizzare il lettore popup</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="copyright" formatted="true">© %1$s di %2$s protetto da licenza %3$s</string>
-    <string name="tab_about">Informazioni</string>
+    <string name="tab_about">Info e domande frequenti</string>
     <string name="tab_licenses">Licenze</string>
     <string name="app_description">Streaming libero e leggero su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
@@ -733,4 +733,8 @@
     <string name="feed_toggle_show_future_items">Mostra elementi futuri</string>
     <string name="feed_toggle_hide_played_items">Nascondi elementi visti</string>
     <string name="feed_toggle_hide_future_items">Nascondi elementi futuri</string>
+    <string name="faq_title">Domande frequenti</string>
+    <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>
+    <string name="sort">Ordina</string>
+    <string name="faq">Visualizza sul sito</string>
 </resources>

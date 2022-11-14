@@ -1,0 +1,2 @@
+Rimosso il supporto MediaParser per correggere la mancata ripresa della riproduzione dopo il buffering su Android 11+.
+Tunneling multimediale disabilitato su Philips QM16XE per risolvere i problemi di riproduzione.

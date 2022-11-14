@@ -5,4 +5,4 @@
 - Pievienot visu par GDPR #1420
 
 ### Salabots
-- Lejupielādētājs: Salabot avāriju, ielādējot nepabeigtas lejupielādes no .giga failiem #1407
+- Lejupielādētājs: Salabota aplikācijas nobrukšana, ielādējot nepabeigtas lejupielādes no .giga failiem #1407

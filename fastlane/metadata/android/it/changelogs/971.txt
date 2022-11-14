@@ -1,0 +1,3 @@
+Correzione rapida
+• Aumenta il buffer per la riproduzione dopo il rebuffer
+• Risolto crash su tablet e TV quando si fa clic sull'icona della coda di riproduzione nel lettore

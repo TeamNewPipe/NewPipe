@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">ଆରମ୍ଭ କରିବା ପାଇଁ \"ସର୍ଚ୍ଚ\" ବଟନ କୁ ଦବାନ୍ତୁ</string>
+    <string name="main_bg_subtitle">ଆରମ୍ଭ କରିବା ପାଇଁ \"ସର୍ଚ୍ଚ\" ବଟନ କୁ ଦବାନ୍ତୁ ।</string>
     <string name="systems_language">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
     <string name="rename_playlist">ନାମ ବଦଳାନ୍ତୁ</string>
     <string name="off">ବନ୍ଦ</string>
@@ -36,4 +36,20 @@
         <item quantity="other">%d ଦିନ</item>
     </plurals>
     <string name="feed_create_new_group_button_title">ନୂଆ</string>
+    <string name="upload_date_text">%1$s ରେ ପ୍ରକାଶିତ</string>
+    <string name="no_player_found">କୌଣସି ଷ୍ଟ୍ରିମ୍ ପ୍ଲେୟାର୍ ମିଳିଲା ନାହିଁ | VLC ସଂସ୍ଥାପନ କରନ୍ତୁ \?</string>
+    <string name="no_player_found_toast">କୌଣସି ଷ୍ଟ୍ରୀମ ପ୍ଲେୟାର ନାହିଁ ।</string>
+    <string name="install">ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
+    <string name="open_in_popup_mode">ପପ୍ଅପ୍ ମୋଡ୍ ରେ ଖୋଲନ୍ତୁ</string>
+    <string name="open_with">ଏଥିରେ ଖୋଲନ୍ତୁ</string>
+    <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
+    <string name="mark_as_watched">ଦେଖାଯାଇଥିବା ପରି ଚିହ୍ନିତ କର</string>
+    <string name="download">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="settings">ସେଟିଂ</string>
+    <string name="did_you_mean">ତୁମେ ଏହା ଚାଂହ କି \"%1$s\"\?</string>
+    <string name="controls_download_desc">ଫାଇଲ୍ ଡାଉନଲୋଡ କରନ୍ତୁ</string>
+    <string name="share">ପଠାନ୍ତୁ</string>
+    <string name="search">ସନ୍ଧାନ</string>
+    <string name="ok">ଠିକ୍ ଅଛି</string>
+    <string name="open_in_browser">ବ୍ରାଉଜରରେ ଖୋଲନ୍ତୁ</string>
 </resources>

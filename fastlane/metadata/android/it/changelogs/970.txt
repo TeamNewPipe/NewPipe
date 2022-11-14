@@ -1,0 +1,11 @@
+Nuovo
+• Mostra i metadati del contenuto (tag, categorie, licenza, ...) sotto la descrizione
+• Aggiunta l'opzione "Mostra dettagli canale" nelle playlist remote (non locali).
+• Aggiunta l'opzione "Apri nel browser" al menu a pressione prolungata
+
+Fisso
+• Risolto crash di rotazione nella pagina dei dettagli del video
+• Risolto il problema con il pulsante "Gioca con Kodi" nel lettore che richiedeva sempre di installare Kore
+• Correzione e miglioramento dell'impostazione dei percorsi di importazione ed esportazione
+• [YouTube] Risolto commento come il conteggio
+E altro ancora

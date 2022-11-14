@@ -1,0 +1,9 @@
+Migliorato
+
+• Aggiunta la data di caricamento e il conteggio delle visualizzazioni sugli elementi della griglia di flusso
+• Miglioramenti al layout dell'intestazione del cassetto
+
+Fisso
+
+• Risolto il problema con il pulsante muto che causava arresti anomali su API 19
+• Risolto il problema con il download di video lunghi 1080p 60fps

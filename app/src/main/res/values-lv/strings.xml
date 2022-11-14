@@ -684,4 +684,17 @@
     <string name="crash_the_player">Avarēt atskaņotāju</string>
     <string name="settings_category_player_notification_summary">Pielāgojiet pašlaik atskaņotās plūsmas notifikāciju</string>
     <string name="settings_category_player_notification_title">Atskaņotāja notifikācija</string>
+    <string name="streams_notification_channel_name">Jaunās tiešraides</string>
+    <string name="error_report_notification_toast">Radās kļūda, detalizētāku informāciju skatiet paziņojumā</string>
+    <plurals name="new_streams">
+        <item quantity="zero">%s jauna tiešraide</item>
+        <item quantity="one">%s jauna tiešraide</item>
+        <item quantity="other">%s jaunas tiešraides</item>
+    </plurals>
+    <string name="streams_notification_channel_description">Paziņojumi par jaunām tiešraidēm abonementos</string>
+    <string name="faq_title">Bieži uzdotie jautājumi</string>
+    <string name="error_report_channel_description">Paziņojumi, lai ziņotu par kļūdām</string>
+    <string name="error_report_channel_name">Kļūdas ziņojuma paziņojums</string>
+    <string name="progressive_load_interval_title">Atskaņošanas ielādēšanas intervāla lielums</string>
+    <string name="error_report_notification_title">NewPipe radās kļūdu, pieskarieties, lai ziņotu</string>
 </resources>

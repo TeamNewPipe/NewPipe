@@ -736,4 +736,5 @@
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq">Ver no site</string>
     <string name="faq_description">Se está a ter problemas a usar a aplicação, veja estas respostas para perguntas mais comuns!</string>
+    <string name="sort">Ordenação</string>
 </resources>

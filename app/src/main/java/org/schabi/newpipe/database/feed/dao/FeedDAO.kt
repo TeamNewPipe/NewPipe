@@ -48,7 +48,10 @@ abstract class FeedDAO {
         ON s.uid = f.stream_id
 
         LEFT JOIN feed_group_subscription_join fgs
-        ON fgs.subscription_id = f.subscription_id
+        ON (
+            :groupId <> ${FeedGroupEntity.GROUP_ALL_ID}
+            AND fgs.subscription_id = f.subscription_id
+        )
 
         WHERE (
             :groupId = ${FeedGroupEntity.GROUP_ALL_ID}

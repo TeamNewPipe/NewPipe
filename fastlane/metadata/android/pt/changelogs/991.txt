@@ -1,0 +1,13 @@
+Novo
+•Botão "Abrir no navegador" no painel de erros
+•Opção para mostrar grupos de canais como lista
+•[YouTube] Clique longo nos segmentos de transmissão para partilhar o URL com a data/hora
+•Botão de fila de reprodução no mini reprodutor
+
+Melhorado
+•Nova localização em islandês e outras traduções atualizadas
+•Muitas melhorias internas
+
+Corrigido
+•Várias falhas
+•[YouTube] Correção no carregamento de canais, feeds não dedicados e solução alternativa de problemas de reprodução em alguns países
