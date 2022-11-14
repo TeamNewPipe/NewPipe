@@ -127,7 +127,7 @@
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslisenser</string>
     <string name="copyright" formatted="true">© %1$s av %2$s lisensiert %3$s</string>
-    <string name="tab_about">Om</string>
+    <string name="tab_about">Om og Ofte stilte spørsmål</string>
     <string name="tab_licenses">Lisenser</string>
     <string name="app_description">Fri lett strømming på Android.</string>
     <string name="resume_on_audio_focus_gain_title">Fortsett avspilling</string>
@@ -271,7 +271,7 @@
 \n
 \nØnsker du å fortsette?</string>
     <string name="playback_speed_control">Fartskontroller for avspilling</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Hastighet</string>
     <string name="playback_pitch">Tonehøyde</string>
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
     <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
@@ -284,7 +284,7 @@
     <string name="one_item_deleted">Ett element slettet.</string>
     <string name="toast_no_player">Inget program installert for avspilling av denne filen</string>
     <string name="caption_setting_title">Undertekster</string>
-    <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
+    <string name="caption_setting_description">Endre spillerens undertekststørrelse og bakgrunnsstiler. Krever omstart av appen for å tre i kraft</string>
     <string name="app_license">NewPipe er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
@@ -293,10 +293,11 @@
 \n
 \n1. Gå til denne nettadressen: %1$s
 \n2. Logg inn når forespurt
-\n3. Klikk på «All data inkludert\", så på «Fravelg alt», så på kun «Abonnementer», og klikk så «OK».
-\n4. Klikk på «Neste steg» og så på «Opprett eksport»
-\n5. Klikk på «Last ned»-knappen etter den vises, og
-\n6. Fra nedlastet takeout.zip, pakk ut .json-filen (vanligvis under «YouTube og YouTube Music/subscriptions/subscriptions.json» og importer den her.</string>
+\n3. Klikk på \"All data inkludert\", så på \"Fjern merket for alle\", så på kun \"Abonnementer\", og klikk så \"OK\"
+\n4. Klikk på \"Neste steg\" og så på \"Opprett eksport\"
+\n5. Klikk på \"Last ned\"-knappen etter den vises%1$s
+\n6. Klikk på IMPORTER FIL under og velg den nedlastede .zip filen
+\n7. [Dersom .zip importen feiler] Pakk ut .csv filen (vanligvis under \"YouTube og YouTube Music/subscriptions/subscriptions.csv\"), klikk på IMPORTER FIL under og velg den utpakkede csv filen</string>
     <string name="import_soundcloud_instructions">Importer en SoundCloud-profil ved å skrive enten nettadressen eller din ID:
 \n
 \n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter)
@@ -412,7 +413,8 @@
     <string name="start_downloads">Start nedlastinger</string>
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
-    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
+    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres
+\nAktiver system mappe velgeren (SAF) dersom du vil laste ned til et eksternt SD kort</string>
     <string name="downloads_storage_use_saf_title">Bruk systemmappevelger (SAF)</string>
     <string name="downloads_storage_use_saf_summary">«Lagringstilgangsrammeverk» (SAF) tillater nedlasting til eksternt SD-kort.</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
@@ -481,7 +483,7 @@
     <string name="feed_update_threshold_option_always_update">Alltid oppdater</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valgt</item>
-        <item quantity="other">%d valgt</item>
+        <item quantity="other">%d valgte</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Ingen abonnement valgt</string>
     <string name="feed_group_dialog_select_subscriptions">Velg abonnementer</string>
@@ -510,7 +512,7 @@
     <string name="wifi_only">Kun på Wi-Fi</string>
     <string name="select_a_playlist">Velg en spilleliste</string>
     <string name="error_report_open_issue_button_text">Innrapporter på GitHub</string>
-    <string name="auto_queue_toggle">Legg i kø automatisk</string>
+    <string name="auto_queue_toggle">Automatisk køstilling</string>
     <string name="clear_queue_confirmation_description">Den aktive spillerkøen blir erstattet</string>
     <string name="clear_queue_confirmation_summary">Bytte fra en spiller til en annen kan erstatte køen din</string>
     <string name="clear_queue_confirmation_title">Be om bekreftelse før du tømmer køen</string>
@@ -533,7 +535,7 @@
     <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
     <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre</string>
-    <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
+    <string name="notification_scale_to_square_image_summary">Beskjær videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, eller sanntidsstatus).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
     <string name="feed_update_threshold_summary">Tid siden siste oppdatering før et abonnement vurderes utdatert — %s</string>
@@ -558,7 +560,7 @@
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="notification_action_1_title">Andre handlingstast</string>
     <string name="notification_action_0_title">Første handlingstast</string>
-    <string name="notification_scale_to_square_image_title">Skaler miniatyrbildet til 1: 1-sideforhold</string>
+    <string name="notification_scale_to_square_image_title">Beskjær miniatyrbildet til sideforholdet 1:1</string>
     <string name="notification_action_nothing">Ingenting</string>
     <string name="show_memory_leaks">Vis minnelekkasjer</string>
     <string name="enqueued">Satt i kø</string>
@@ -659,8 +661,8 @@
     <string name="show_image_indicators_title">Vis bildeindikatorer</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
-    <string name="enqueue_next_stream">Spill etterpå</string>
-    <string name="enqueued_next">Spill etterpå</string>
+    <string name="enqueue_next_stream">Still i kø neste</string>
+    <string name="enqueued_next">I kø neste</string>
     <string name="manual_update_title">Se etter oppdateringer</string>
     <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
     <string name="crash_the_player">Krasj avspilleren</string>
@@ -669,15 +671,19 @@
     <string name="feed_new_items">Nye informasjonskanalelementer</string>
     <string name="checking_updates_toast">Ser etter oppdateringer …</string>
     <string name="show_crash_the_player_summary">Viser et krasjalternativ ved bruk av avspilleren</string>
-    <string name="error_report_notification_toast">Det oppstod en feil. Sjekk merknaden.</string>
+    <string name="error_report_notification_toast">Det oppsto en feil, se varselet</string>
     <string name="detail_pinned_comment_view_description">Festet kommentar</string>
     <string name="error_report_channel_name">Feilrapport-merknad</string>
     <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
-    <string name="error_report_notification_title">NewPipe-feil. Trykk for å rapportere.</string>
+    <string name="error_report_notification_title">NewPipe oppdaget en feil, trykk for å rapportere</string>
     <string name="create_error_notification">Opprett en feilmerknad</string>
     <string name="show_error_snackbar">Vis et feil-alternativsfelt</string>
-    <string name="no_appropriate_file_manager_message">Installer en filbehandler først, eller skru av «%s» i nedlastingsinnstillingene.</string>
-    <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
+    <string name="no_appropriate_file_manager_message">Ingen passende filbehandler ble funnet for denne handlingen.
+\nVennligst installer en filbehandler, eller prøv å skru av \'%s\' i nedlastingsinnstillingene</string>
+    <string name="no_appropriate_file_manager_message_android_10">Ingen passende filbehandler ble funnet for denne handlingen.
+\nVennligst installer en Storage Access Framework kompatibel filbehandler</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
+    <string name="progressive_load_interval_title">Intervallstørrelse for avspillingsinnlasting</string>
+    <string name="progressive_load_interval_summary">Bytt avspillinginnlastingens intervallstørrelse (for øyeblikket %s). En lavere verdi kan øke hastigheten på den første videoinnlastingen. Endringer krever en omstart av spilleren</string>
 </resources>

@@ -1,0 +1,10 @@
+• Aggiunta l'opzione per aprire direttamente il giocatore a schermo intero
+• Consenti di scegliere quali tipi di suggerimenti di ricerca mostrare
+• Tema scuro ora più scuro + aggiunta schermata iniziale scura
+• Selettore file migliorato per eliminare i file indesiderati
+• Risolto il problema con l'importazione degli abbonamenti YouTube
+• La riproduzione di uno streaming richiede di toccare nuovamente il pulsante di riproduzione
+• Risolto il problema con la chiusura della sessione audio
+• [Android TV] Risolti i salti lunghi della barra di ricerca quando si utilizza un DPad
+
+Per vedere ulteriori modifiche, visualizza il registro delle modifiche (e il post del blog) dalla scheda Collegamenti in basso.

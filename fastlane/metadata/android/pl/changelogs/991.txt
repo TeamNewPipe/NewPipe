@@ -1,0 +1,13 @@
+Nowe
+• Przycisk „Otwórz w przeglądarce” w panelu błędów
+• Opcja wyświetlania grup kanałów jako listy
+• [YouTube] Długie naciśnięcie segmentu strumienia, aby udostępnić URL ze znacznikiem czasu
+• Przycisk kolejki odtwarzania dla miniodtwarzacza
+
+Ulepszone
+• Dodano islandzkie tłumaczenie i zaktualizowano wiele innych
+• Wiele wewnętrznych ulepszeń
+
+Naprawione
+• Wiele awarii
+• [YouTube] Problemy z ładowaniem kanałów, niededykowanymi kanałami i obejściem odtwarzania w niektórych krajach

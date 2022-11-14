@@ -119,4 +119,5 @@
     <string name="enable_playback_resume_summary">پچھلی پلےبیک ستھتی توں مُڑ چلاؤ</string>
     <string name="settings_category_appearance_title">دِکھ</string>
     <string name="peertube_instance_add_https_only">صرف ایچ‌ٹی‌ٹی‌پی‌ایس نال کڑی دا پتہ ہی ماݨنیوگ ہن</string>
+    <string name="mark_as_watched">ویکھیا جا چُکیا چنت کرو</string>
 </resources>

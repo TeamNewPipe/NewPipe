@@ -10,7 +10,7 @@ import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.util.DeviceUtils
-import java.lang.Integer.max
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
 
 class FeedGroupCarouselItem(
     private val carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>,
@@ -71,10 +71,7 @@ class FeedGroupCarouselItem(
         carouselLayoutManager = if (listViewMode) {
             LinearLayoutManager(context)
         } else {
-            GridLayoutManager(
-                context,
-                max(1, viewBinding.recyclerView.width / DeviceUtils.dpToPx(112, context))
-            )
+            GridLayoutManager(context, getGridSpanCount(context, DeviceUtils.dpToPx(112, context)))
         }
 
         viewBinding.recyclerView.apply {

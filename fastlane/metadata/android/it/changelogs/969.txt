@@ -1,0 +1,8 @@
+• Consenti installazione su memoria esterna
+• [Bandcamp] Aggiunto supporto per la visualizzazione dei primi tre commenti su uno stream
+• Mostra l'avviso "download iniziato" solo all'avvio del download
+• Non impostare il cookie reCaptcha quando non ci sono cookie memorizzati
+• [Player] Migliora le prestazioni della cache
+• [Giocatore] Risolto il problema con il giocatore che non giocava automaticamente
+• Ignora le precedenti Snackbar quando si eliminano i download
+• Risolto il problema con il tentativo di eliminare l'oggetto non nell'elenco

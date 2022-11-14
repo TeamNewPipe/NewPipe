@@ -47,6 +47,7 @@ import us.shandian.giga.get.MissionRecoveryInfo;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PendingIntentCompat;
 
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
@@ -142,7 +143,7 @@ public class DownloadManagerService extends Service {
         Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
                 .setAction(Intent.ACTION_MAIN);
 
-        mOpenDownloadList = PendingIntent.getActivity(this, 0,
+        mOpenDownloadList = PendingIntentCompat.getActivity(this, 0,
                 openDownloadListIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -484,7 +485,8 @@ public class DownloadManagerService extends Service {
 
     private PendingIntent makePendingIntent(String action) {
         Intent intent = new Intent(this, DownloadManagerService.class).setAction(action);
-        return PendingIntent.getService(this, intent.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntentCompat.getService(this, intent.hashCode(), intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private void manageLock(boolean acquire) {

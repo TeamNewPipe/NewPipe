@@ -1,0 +1,1 @@
+Risolto il problema con l'esecuzione del controllo per una nuova versione di NewPipe. Questo controllo è stato eseguito troppo presto a volte e quindi ha portato a un arresto anomalo dell'app. Dovrebbe essere risolto ora.

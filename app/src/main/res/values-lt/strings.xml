@@ -736,4 +736,5 @@
     <string name="faq_title">Dažniausiai užduodami klausimai</string>
     <string name="faq">Žiūrėti svetainėje</string>
     <string name="faq_description">Jei kyla sunkumų naudojantis programėle, būtinai peržiūrėkite šiuos atsakymus į dažniausiai užduodamus klausimus!</string>
+    <string name="sort">Rikiuoti</string>
 </resources>

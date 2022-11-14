@@ -1,0 +1,10 @@
+• Aggiunto un pulsante "play next" al menu a pressione prolungata
+• Aggiunto il prefisso del percorso dei cortometraggi di YouTube al filtro dell'intento
+• Importazione impostazioni fisse
+• Scambia la posizione della barra di ricerca con i pulsanti del giocatore nella schermata della coda
+• Varie correzioni relative a MediasessionManager
+• Risolto il problema con la barra di ricerca non completata dopo la fine del video
+• Tunneling multimediale disabilitato su RealtekATV
+• Area cliccabile dei pulsanti del giocatore ridotta a icona espansa
+
+Per vedere ulteriori modifiche, visualizza il registro delle modifiche (e il post del blog) dalla scheda Collegamenti in basso.

@@ -56,7 +56,6 @@ import java.util.stream.Collectors;
  */
 
 public final class Localization {
-
     public static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
@@ -76,16 +75,8 @@ public final class Localization {
 
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
             final Context context) {
-        final String contentLanguage = PreferenceManager
-                .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_language_key),
-                        context.getString(R.string.default_localization_key));
-        if (contentLanguage.equals(context.getString(R.string.default_localization_key))) {
-            return org.schabi.newpipe.extractor.localization.Localization
-                    .fromLocale(Locale.getDefault());
-        }
         return org.schabi.newpipe.extractor.localization.Localization
-                .fromLocalizationCode(contentLanguage);
+                .fromLocale(getPreferredLocale(context));
     }
 
     public static ContentCountry getPreferredContentCountry(final Context context) {
@@ -99,22 +90,11 @@ public final class Localization {
     }
 
     public static Locale getPreferredLocale(final Context context) {
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return getLocaleFromPrefs(context, R.string.content_language_key);
+    }
 
-        final String languageCode = sp.getString(context.getString(R.string.content_language_key),
-                context.getString(R.string.default_localization_key));
-
-        try {
-            if (languageCode.length() == 2) {
-                return new Locale(languageCode);
-            } else if (languageCode.contains("_")) {
-                final String country = languageCode.substring(languageCode.indexOf("_"));
-                return new Locale(languageCode.substring(0, 2), country);
-            }
-        } catch (final Exception ignored) {
-        }
-
-        return Locale.getDefault();
+    public static Locale getAppLocale(final Context context) {
+        return getLocaleFromPrefs(context, R.string.app_language_key);
     }
 
     public static String localizeNumber(final Context context, final long number) {
@@ -183,13 +163,13 @@ public final class Localization {
 
         final double value = (double) count;
         if (count >= 1000000000) {
-            return localizeNumber(context, round(value / 1000000000, 1))
+            return localizeNumber(context, round(value / 1000000000))
                     + context.getString(R.string.short_billion);
         } else if (count >= 1000000) {
-            return localizeNumber(context, round(value / 1000000, 1))
+            return localizeNumber(context, round(value / 1000000))
                     + context.getString(R.string.short_million);
         } else if (count >= 1000) {
-            return localizeNumber(context, round(value / 1000, 1))
+            return localizeNumber(context, round(value / 1000))
                     + context.getString(R.string.short_thousand);
         } else {
             return localizeNumber(context, value);
@@ -224,21 +204,6 @@ public final class Localization {
     public static String deletedDownloadCount(final Context context, final int deletedCount) {
         return getQuantity(context, R.plurals.deleted_downloads_toast, 0,
                 deletedCount, shortCount(context, deletedCount));
-    }
-
-    private static String getQuantity(final Context context, @PluralsRes final int pluralId,
-                                      @StringRes final int zeroCaseStringId, final long count,
-                                      final String formattedCount) {
-        if (count == 0) {
-            return context.getString(zeroCaseStringId);
-        }
-
-        // As we use the already formatted count
-        // is not the responsibility of this method handle long numbers
-        // (it probably will fall in the "other" category,
-        // or some language have some specific rule... then we have to change it)
-        final int safeCount = (int) MathUtils.clamp(count, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
     public static String getDurationString(final long duration) {
@@ -314,37 +279,42 @@ public final class Localization {
         return prettyTime.formatUnrounded(offsetDateTime);
     }
 
-    private static void changeAppLanguage(final Locale loc, final Resources res) {
+    public static void assureCorrectAppLanguage(final Context c) {
+        final Resources res = c.getResources();
         final DisplayMetrics dm = res.getDisplayMetrics();
         final Configuration conf = res.getConfiguration();
-        conf.setLocale(loc);
+        conf.setLocale(getAppLocale(c));
         res.updateConfiguration(conf, dm);
     }
 
-    public static Locale getAppLocale(final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
-        final Locale loc;
-        if (lang.equals(context.getString(R.string.default_localization_key))) {
-            loc = Locale.getDefault();
-        } else if (lang.matches(".*-.*")) {
-            //to differentiate different versions of the language
-            //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
-            final String[] localisation = lang.split("-");
-            lang = localisation[0];
-            final String country = localisation[1];
-            loc = new Locale(lang, country);
+    private static Locale getLocaleFromPrefs(final Context context, @StringRes final int prefKey) {
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final String defaultKey = context.getString(R.string.default_localization_key);
+        final String languageCode = sp.getString(context.getString(prefKey), defaultKey);
+
+        if (languageCode.equals(defaultKey)) {
+            return Locale.getDefault();
         } else {
-            loc = new Locale(lang);
+            return Locale.forLanguageTag(languageCode);
         }
-        return loc;
     }
 
-    public static void assureCorrectAppLanguage(final Context c) {
-        changeAppLanguage(getAppLocale(c), c.getResources());
+    private static double round(final double value) {
+        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
     }
 
-    private static double round(final double value, final int places) {
-        return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
+    private static String getQuantity(final Context context, @PluralsRes final int pluralId,
+                                      @StringRes final int zeroCaseStringId, final long count,
+                                      final String formattedCount) {
+        if (count == 0) {
+            return context.getString(zeroCaseStringId);
+        }
+
+        // As we use the already formatted count
+        // is not the responsibility of this method handle long numbers
+        // (it probably will fall in the "other" category,
+        // or some language have some specific rule... then we have to change it)
+        final int safeCount = (int) MathUtils.clamp(count, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 }

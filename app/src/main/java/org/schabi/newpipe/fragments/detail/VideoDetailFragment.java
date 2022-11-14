@@ -248,6 +248,7 @@ public final class VideoDetailFragment
             autoPlayEnabled = true; // forcefully start playing
             openVideoPlayerAutoFullscreen();
         }
+        updateOverlayPlayQueueButtonVisibility();
     }
 
     @Override
@@ -336,6 +337,8 @@ public final class VideoDetailFragment
         }
 
         activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
+
+        updateOverlayPlayQueueButtonVisibility();
 
         setupBrightness();
 
@@ -639,19 +642,7 @@ public final class VideoDetailFragment
                         ? View.VISIBLE
                         : View.GONE
         );
-
-        if (DeviceUtils.isTv(getContext())) {
-            // remove ripple effects from detail controls
-            final int transparent = ContextCompat.getColor(requireContext(),
-                    R.color.transparent_background_color);
-            binding.detailControlsPlaylistAppend.setBackgroundColor(transparent);
-            binding.detailControlsBackground.setBackgroundColor(transparent);
-            binding.detailControlsPopup.setBackgroundColor(transparent);
-            binding.detailControlsDownload.setBackgroundColor(transparent);
-            binding.detailControlsShare.setBackgroundColor(transparent);
-            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent);
-            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent);
-        }
+        accommodateForTvAndDesktopMode();
     }
 
     @Override
@@ -1820,6 +1811,14 @@ public final class VideoDetailFragment
                     + title + "], playQueue = [" + playQueue + "]");
         }
 
+        // Register broadcast receiver to listen to playQueue changes
+        // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
+        if (playQueue != null && playQueue.getBroadcastReceiver() != null) {
+            playQueue.getBroadcastReceiver().subscribe(
+                    event -> updateOverlayPlayQueueButtonVisibility()
+            );
+        }
+
         // This should be the only place where we push data to stack.
         // It will allow to have live instance of PlayQueue with actual information about
         // deleted/added items inside Channel/Playlist queue and makes possible to have
@@ -1926,6 +1925,7 @@ public final class VideoDetailFragment
                     currentInfo.getUploaderName(),
                     currentInfo.getThumbnailUrl());
         }
+        updateOverlayPlayQueueButtonVisibility();
     }
 
     @Override
@@ -2103,6 +2103,30 @@ public final class VideoDetailFragment
             }
             lp.screenBrightness = brightnessLevel;
             activity.getWindow().setAttributes(lp);
+        }
+    }
+
+    /**
+     * Make changes to the UI to accommodate for better usability on bigger screens such as TVs
+     * or in Android's desktop mode (DeX etc).
+     */
+    private void accommodateForTvAndDesktopMode() {
+        if (DeviceUtils.isTv(getContext())) {
+            // remove ripple effects from detail controls
+            final int transparent = ContextCompat.getColor(requireContext(),
+                    R.color.transparent_background_color);
+            binding.detailControlsPlaylistAppend.setBackgroundColor(transparent);
+            binding.detailControlsBackground.setBackgroundColor(transparent);
+            binding.detailControlsPopup.setBackgroundColor(transparent);
+            binding.detailControlsDownload.setBackgroundColor(transparent);
+            binding.detailControlsShare.setBackgroundColor(transparent);
+            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent);
+            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent);
+        }
+        if (DeviceUtils.isDesktopMode(getContext())) {
+            // Remove the "hover" overlay (since it is visible on all mouse events and interferes
+            // with the video content being played)
+            binding.detailThumbnailRootLayout.setForeground(null);
         }
     }
 
@@ -2390,6 +2414,18 @@ public final class VideoDetailFragment
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
+    }
+
+    private void updateOverlayPlayQueueButtonVisibility() {
+        final boolean isPlayQueueEmpty =
+                player == null // no player => no play queue :)
+                        || player.getPlayQueue() == null
+                        || player.getPlayQueue().isEmpty();
+        if (binding != null) {
+            // binding is null when rotating the device...
+            binding.overlayPlayQueueButton.setVisibility(
+                    isPlayQueueEmpty ? View.GONE : View.VISIBLE);
+        }
     }
 
     private void updateOverlayData(@Nullable final String overlayTitle,

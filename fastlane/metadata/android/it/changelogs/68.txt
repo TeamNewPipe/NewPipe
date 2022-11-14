@@ -1,0 +1,31 @@
+# modifiche della v0.14.1
+
+### Fisso
+- Risolto il problema con la decrittografia dell'URL del video n. 1659
+- Corretto il collegamento alla descrizione che non estrae bene #1657
+
+# modifiche della v0.14.0
+
+### Nuovo
+- Nuovo design del cassetto #1461
+- Nuova prima pagina personalizzabile #1461
+
+### Miglioramenti
+- Controlli dei gesti rielaborati #1604
+- Nuovo modo per chiudere il popup player #1597
+
+### Fisso
+- Risolto l'errore quando il conteggio delle iscrizioni non è disponibile. Chiude #1649.
+  - Mostra "Conteggio iscritti non disponibile" in questi casi
+- Risolto NPE quando una playlist di YouTube è vuota
+- Soluzione rapida per i chioschi in SoundCloud
+- Refactor e correzione di bug #1623
+  - Risolto il risultato della ricerca ciclica n. 1562
+  - Risolto il problema con la barra di ricerca non disposta staticamente
+  - Risolto il problema con i video YT Premium non bloccati correttamente
+  - Risolto il problema con i video che a volte non venivano caricati (a causa dell'analisi DASH)
+  - Correggi i collegamenti nella descrizione del video
+  - Mostra avviso quando qualcuno tenta di scaricare su sdcard esterna
+  - non correggi il rapporto sui trigger di eccezione mostrati
+  - miniatura non mostrata nel lettore in background per Android 8.1 [vedi qui](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Risolto il problema con la registrazione del ricevitore di trasmissione. Chiude #1641.

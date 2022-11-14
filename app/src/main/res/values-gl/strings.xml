@@ -723,4 +723,5 @@
     <string name="faq">Ver na páxina web</string>
     <string name="faq_title">Preguntas máis frecuentes</string>
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
+    <string name="sort">Ordenar</string>
 </resources>
