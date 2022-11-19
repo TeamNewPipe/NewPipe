@@ -50,6 +50,9 @@ public final class DeviceUtils {
     // Philips QM16XE
     private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
             && Build.DEVICE.equals("QM16XE_U");
+    // Sony Bravia
+    private static final boolean BRAVIA_VH1 = Build.VERSION.SDK_INT == 29
+            && Build.DEVICE.equals("BRAVIA_VH1");
 
     private DeviceUtils() {
     }
@@ -215,7 +218,8 @@ public final class DeviceUtils {
         return !HI3798MV200
                 && !CVT_MT5886_EU_1G
                 && !REALTEKATV
-                && !QM16XE_U;
+                && !QM16XE_U
+                && !BRAVIA_VH1;
     }
 
     public static boolean isLandscape(final Context context) {
