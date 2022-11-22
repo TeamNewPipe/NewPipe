@@ -404,7 +404,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .firstElement()
                 .zipWith(historyIdsMaybe, (playlist, historyStreamIds) -> {
                     // Remove Watched, Functionality data
-                    final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    final List<PlaylistStreamEntry> itemsToKeep = new ArrayList<>();
                     final boolean isThumbnailPermanent = playlistManager
                             .getIsPlaylistThumbnailPermanent(playlistId);
                     boolean thumbnailVideoRemoved = false;
@@ -415,7 +415,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                     playlistItem.getStreamId());
 
                             if (indexInHistory < 0) {
-                                notWatchedItems.add(playlistItem);
+                                itemsToKeep.add(playlistItem);
                             } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
@@ -436,7 +436,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                             if (indexInHistory < 0 || (streamStateEntity != null
                                     && !streamStateEntity.isFinished(duration))) {
-                                notWatchedItems.add(playlistItem);
+                                itemsToKeep.add(playlistItem);
                             } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
@@ -445,17 +445,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         }
                     }
 
-                    return new Pair<>(notWatchedItems, thumbnailVideoRemoved);
+                    return new Pair<>(itemsToKeep, thumbnailVideoRemoved);
                 });
 
         disposables.add(streamsMaybe.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(flow -> {
-                    final List<PlaylistStreamEntry> notWatchedItems = flow.first;
+                    final List<PlaylistStreamEntry> itemsToKeep = flow.first;
                     final boolean thumbnailVideoRemoved = flow.second;
 
                     itemListAdapter.clearStreamItemList();
-                    itemListAdapter.addItems(notWatchedItems);
+                    itemListAdapter.addItems(itemsToKeep);
                     saveChanges();
 
                     if (thumbnailVideoRemoved) {
