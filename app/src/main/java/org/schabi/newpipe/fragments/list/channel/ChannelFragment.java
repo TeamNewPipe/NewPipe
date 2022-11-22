@@ -100,6 +100,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        if (savedInstanceState != null) {
+            lastTab = savedInstanceState.getInt("LastTab");
+        } else {
+            lastTab = 0;
+        }
     }
 
     @Override
@@ -123,6 +129,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+    }
+
+    @Override
+    public void onSaveInstanceState(final @NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("LastTab", binding.tabLayout.getSelectedTabPosition());
     }
 
     @Override
