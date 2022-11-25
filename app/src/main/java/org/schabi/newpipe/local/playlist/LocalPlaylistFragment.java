@@ -73,6 +73,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
+    private static final int VIDEO_ID_NO_LONGER_IN_PLAYLIST = -1;
+
     @State
     protected Long playlistId;
     @State
@@ -472,6 +474,49 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         "Removing watched videos, partially watched=" + removePartiallyWatched))));
     }
 
+    /**
+     * If the current thumbnail has changed but the video is still the same, this method will update
+     * the playlist thumbnail accordingly.
+     *
+     * @param currentItems List of items currently in the playlist
+     * @param updatedItems List of items that will replace the current items in the playlist
+     */
+    private void updateCurrentThumbnail(@NonNull final List<LocalItem> currentItems,
+                                        @NonNull final List<PlaylistStreamEntry> updatedItems) {
+
+        final String playlistThumbnail = playlistManager.getPlaylistThumbnail(playlistId);
+        long streamId = VIDEO_ID_NO_LONGER_IN_PLAYLIST;
+
+        // Find the streamId of the current thumbnail video
+        for (final LocalItem item : currentItems) {
+            if (playlistThumbnail.equals(((PlaylistStreamEntry) item).getStreamEntity()
+                    .getThumbnailUrl())) {
+                streamId = ((PlaylistStreamEntry) item).getStreamId();
+            }
+        }
+
+        if (streamId == VIDEO_ID_NO_LONGER_IN_PLAYLIST) {
+            return;
+        }
+
+        // If the video has a different thumbnail now, update the playlist thumbnail accordingly
+        for (final PlaylistStreamEntry item : updatedItems) {
+
+            if (streamId == item.getStreamId()
+                    && !playlistThumbnail.equals(item.getStreamEntity().getThumbnailUrl())) {
+                final String newThumbnailUrl = item.getStreamEntity().getThumbnailUrl();
+
+                final Disposable disposable = playlistManager
+                        .changePlaylistThumbnail(playlistId, newThumbnailUrl)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(ignored -> Log.d(TAG, "Updating current thumbnail with new"
+                                + "url=[" + newThumbnailUrl + "]"));
+                disposables.add(disposable);
+            }
+
+        }
+    }
+
     @Override
     public void handleResult(@NonNull final List<PlaylistStreamEntry> result) {
         super.handleResult(result);
@@ -479,6 +524,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
+        updateCurrentThumbnail(itemListAdapter.getItemsList(), result);
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
