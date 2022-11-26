@@ -602,9 +602,6 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         player.saveWasPlaying();
-        if (player.isPlaying()) {
-            player.getExoPlayer().pause();
-        }
 
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
