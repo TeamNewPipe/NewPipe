@@ -314,7 +314,10 @@ public final class ShareUtils {
         }
 
         clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
-        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+        if (Build.VERSION.SDK_INT < 33) {
+            // Android 13 has its own "copied to clipboard" dialog
+            Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

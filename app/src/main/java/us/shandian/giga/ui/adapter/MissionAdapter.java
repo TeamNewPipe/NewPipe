@@ -693,7 +693,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                                 .subscribeOn(Schedulers.computation())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(result -> {
-                                    Utility.copyToClipboard(mContext, result);
+                                    ShareUtils.copyToClipboard(mContext, result);
                                     notificationManager.cancel(HASH_NOTIFICATION_ID);
                                 })
                 );
