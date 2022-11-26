@@ -16,7 +16,7 @@ public final class SerializedUtils {
     @NonNull
     public static <T extends Serializable> T clone(@NonNull final T item,
                                                    @NonNull final Class<T> type
-    ) throws IOException, SecurityException, NullPointerException, ClassNotFoundException {
+    ) throws IOException, SecurityException, ClassNotFoundException {
         final ByteArrayOutputStream bytesOutput = new ByteArrayOutputStream();
         try (ObjectOutputStream objectOutput = new ObjectOutputStream(bytesOutput)) {
             objectOutput.writeObject(item);
