@@ -131,8 +131,8 @@
     <string name="default_content_country_title">Default content country</string>
     <string name="content_language_title">Default content language</string>
     <plurals name="replies">
-        <item quantity="one">%s Reply</item>
-        <item quantity="other">%s Replies</item>
+        <item quantity="one">%s reply</item>
+        <item quantity="other">%s replies</item>
     </plurals>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
