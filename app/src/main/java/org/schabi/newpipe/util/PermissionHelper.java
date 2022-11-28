@@ -21,6 +21,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
 public final class PermissionHelper {
+    public static final int POST_NOTIFICATIONS_REQUEST_CODE = 779;
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
     public static final int DOWNLOADS_REQUEST_CODE = 777;
 
@@ -71,8 +72,7 @@ public final class PermissionHelper {
 
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    requestCode);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestCode);
 
             // PERMISSION_WRITE_STORAGE is an
             // app-defined int constant. The callback method gets the
@@ -83,6 +83,18 @@ public final class PermissionHelper {
         return true;
     }
 
+    public static boolean checkPostNotificationsPermission(final Activity activity,
+                                                           final int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity,
+                    new String[] {Manifest.permission.POST_NOTIFICATIONS}, requestCode);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * In order to be able to draw over other apps,
