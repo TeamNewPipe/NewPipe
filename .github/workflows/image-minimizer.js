@@ -55,6 +55,7 @@ module.exports = async ({github, context}) => {
             return match;
         }
         
+        let probeAspectRatio = 0;
         let shouldModify = false;
         try {
             console.log(`Probing ${g2}`);
@@ -76,7 +77,8 @@ module.exports = async ({github, context}) => {
             }
             console.log(`Probing resulted in ${probeResult.width}x${probeResult.height}px`);
             
-            shouldModify = probeResult.height > IMG_MAX_HEIGHT_PX && (probeResult.width / probeResult.height) < MIN_ASPECT_RATIO;
+            probeAspectRatio = probeResult.width / probeResult.height;
+            shouldModify = probeResult.height > IMG_MAX_HEIGHT_PX && probeAspectRatio < MIN_ASPECT_RATIO;
         } catch(e) {
             console.log('Probing failed:', e);
             // Immediately abort
@@ -86,7 +88,7 @@ module.exports = async ({github, context}) => {
         if (shouldModify) {
             wasMatchModified = true;
             console.log(`Modifying match '${match}'`);
-            return `<img alt="${g1}" src="${g2}" height=${IMG_MAX_HEIGHT_PX} />`;
+            return `<img alt="${g1}" src="${g2}" width=${Math.min(600, (IMG_MAX_HEIGHT_PX * probeAspectRatio).toFixed(0))} />`;
         }
         
         console.log(`Match '${match}' is ok/will not be modified`);
