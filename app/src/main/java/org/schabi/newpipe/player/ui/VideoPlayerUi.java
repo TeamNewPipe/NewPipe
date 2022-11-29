@@ -42,6 +42,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.graphics.BitmapCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
@@ -455,10 +456,11 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         final float endScreenHeight = calculateMaxEndScreenThumbnailHeight(thumbnail);
-        final Bitmap endScreenBitmap = Bitmap.createScaledBitmap(
+        final Bitmap endScreenBitmap = BitmapCompat.createScaledBitmap(
                 thumbnail,
                 (int) (thumbnail.getWidth() / (thumbnail.getHeight() / endScreenHeight)),
                 (int) endScreenHeight,
+                null,
                 true);
 
         if (DEBUG) {
