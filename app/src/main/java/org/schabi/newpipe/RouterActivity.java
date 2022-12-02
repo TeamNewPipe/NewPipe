@@ -124,10 +124,20 @@ public class RouterActivity extends AppCompatActivity {
         // Pass-through touch events to background activities
         // so that our transparent window won't lock UI in the mean time
         // network request is underway before showing PlaylistDialog or DownloadDialog
-        // (courtesy of https://stackoverflow.com/a/10606141)
+        // (ref: https://stackoverflow.com/a/10606141)
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        // Android never fails to impress us with a list of new restrictions per API.
+        // Starting with S (Android 12) one of the prerequisite conditions has to be met
+        // before the FLAG_NOT_TOUCHABLE flag is allowed to kick in:
+        // @see WindowManager.LayoutParams#FLAG_NOT_TOUCHABLE
+        // For our present purpose it seems we can just set LayoutParams.alpha to 0
+        // on the strength of "4. Fully transparent windows" without affecting the scrim of dialogs
+        final WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.alpha = 0f;
+        getWindow().setAttributes(params);
 
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
