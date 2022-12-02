@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
@@ -776,7 +777,10 @@ public class RouterActivity extends AppCompatActivity {
             }
             if (isPaused) {
                 buffer.add(runnable);
-                if (!getActivityContext().isChangingConfigurations()) {
+                // this trick doesn't seem to work on Android 10+ (API 29)
+                // which places restrictions on starting activities from the background
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+                        && !getActivityContext().isChangingConfigurations()) {
                     // try to bring the activity back to front if minimised
                     final Intent i = new Intent(getActivityContext(), RouterActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
