@@ -83,9 +83,11 @@ import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.io.Serializable;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import icepick.Icepick;
 import icepick.State;
@@ -300,7 +302,7 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    private void showUnsupportedUrlDialog(final String url) {
+    protected void showUnsupportedUrlDialog(final String url) {
         final Context context = getThemeWrapperContext();
         new AlertDialog.Builder(context)
                 .setTitle(R.string.unsupported_url)
@@ -587,7 +589,7 @@ public class RouterActivity extends AppCompatActivity {
         return returnedItems;
     }
 
-    private Context getThemeWrapperContext() {
+    protected Context getThemeWrapperContext() {
         return new ContextThemeWrapper(this, ThemeHelper.isLightThemeSelected(this)
                 ? R.style.LightTheme : R.style.DarkTheme);
     }
@@ -694,54 +696,175 @@ public class RouterActivity extends AppCompatActivity {
         return playerType == null || playerType == PlayerType.MAIN;
     }
 
+    public static class PersistentFragment extends Fragment {
+        private WeakReference<AppCompatActivity> context;
+        private boolean isPaused = true;
+        private final Vector<ResultRunnable> buffer = new Vector<>();
+        private final CompositeDisposable disposables = new CompositeDisposable();
+
+        public interface ResultRunnable {
+            void run(AppCompatActivity context);
+        }
+
+        @Override
+        public void onAttach(@NonNull final Context activityContext) {
+            super.onAttach(activityContext);
+            context = new WeakReference<>((AppCompatActivity) activityContext);
+        }
+
+        @SuppressWarnings("deprecation")
+        @Override
+        public void onCreate(final Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setRetainInstance(true);
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            disposables.clear();
+        }
+
+        @Override
+        public void onPause() {
+            isPaused = true;
+            super.onPause();
+        }
+
+        @Override
+        public void onResume() {
+            isPaused = false;
+            playback();
+            super.onResume();
+        }
+
+        private AppCompatActivity getActivityContext() {
+            return context == null ? null : context.get();
+        }
+
+        // guard against IllegalStateException in calling DialogFragment.show() whilst in background
+        // (which could happen, say, when the user pressed the home button while waiting for
+        // the network request to return) when it internally calls FragmentTransaction.commit()
+        // after the FragmentManager has saved its states (isStateSaved() == true)
+        // (ref: https://stackoverflow.com/a/39813506)
+        private void playback() {
+            if (activityGone()) {
+                done();
+            }
+            if (buffer.size() == 0 || isPaused) {
+                return;
+            }
+            while (buffer.size() > 0) {
+                final ResultRunnable runnable = buffer.elementAt(0);
+                buffer.removeElementAt(0);
+                getActivityContext().runOnUiThread(() -> {
+                    // execute queued task with new context, in case activity has been recreated
+                    runnable.run(getActivityContext());
+                });
+            }
+            done();
+        }
+        private boolean activityGone() {
+            return getActivityContext() == null || getActivityContext().isFinishing();
+        }
+
+        // a DefaultLifecycleObserver is probably a good candidate here, but for now
+        // let's stick with a vanilla approach to avoid pulling in an extra artifact just for this
+        private void runOnVisible(final ResultRunnable runnable) {
+            if (activityGone()) {
+                done();
+            }
+            if (isPaused) {
+                buffer.add(runnable);
+                if (!getActivityContext().isChangingConfigurations()) {
+                    // try to bring the activity back to front if minimised
+                    final Intent i = new Intent(getActivityContext(), RouterActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(i);
+                }
+            } else {
+                getActivityContext().runOnUiThread(() -> {
+                    runnable.run(getActivityContext());
+                    done();
+                });
+            }
+        }
+
+        private void done() {
+            if (getActivityContext() != null) {
+                getActivityContext().getSupportFragmentManager()
+                        .beginTransaction().remove(this).commit();
+            }
+        }
+
+        @SuppressLint("CheckResult")
+        protected void openDownloadDialog(final int currentServiceId, final String currentUrl) {
+            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result ->
+                        runOnVisible(ctx -> {
+                            final FragmentManager fm = ctx.getSupportFragmentManager();
+                            final DownloadDialog downloadDialog = new DownloadDialog(ctx, result);
+                            // dismiss listener to be handled by FragmentManager
+                            downloadDialog.show(fm, "downloadDialog");
+                        }
+                    ), throwable -> runOnVisible(ctx ->
+                            ((RouterActivity) ctx).showUnsupportedUrlDialog(currentUrl))));
+        }
+
+        private void openAddToPlaylistDialog(final int currentServiceId, final String currentUrl) {
+            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            info -> runOnVisible(ctx ->
+                                    PlaylistDialog.createCorrespondingDialog(
+                                    ((RouterActivity) ctx).getThemeWrapperContext(),
+                                    List.of(new StreamEntity(info)),
+                                    playlistDialog -> {
+                                        // dismiss listener to be handled by FragmentManager
+                                        final FragmentManager fm = ctx.getSupportFragmentManager();
+                                        playlistDialog.show(fm, "addToPlaylistDialog");
+                                    }
+                            )),
+                            throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
+                                    throwable,
+                                    UserAction.REQUESTED_STREAM,
+                                    "Tried to add " + currentUrl + " to a playlist",
+                                    ((RouterActivity) ctx).currentService.getServiceId())
+                            ))
+                    )
+            );
+        }
+    }
+
     private void openAddToPlaylistDialog() {
         pleaseWait();
 
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        info -> PlaylistDialog.createCorrespondingDialog(
-                                getThemeWrapperContext(),
-                                List.of(new StreamEntity(info)),
-                                playlistDialog -> {
-                                    // to be handled by FragmentManager
-                                    // playlistDialog.setOnDismissListener(dialog ->finish());
-
-                                    final FragmentManager fm = getSupportFragmentManager();
-                                    playlistDialog.show(fm, "addToPlaylistDialog");
-                                    fm.executePendingTransactions();
-                                }
-                        ),
-                        throwable -> handleError(this, new ErrorInfo(
-                                throwable,
-                                UserAction.REQUESTED_STREAM,
-                                "Tried to add " + currentUrl + " to a playlist",
-                                currentService.getServiceId())
-                        )
-                )
-        );
+        getPersistFragment().openAddToPlaylistDialog(currentServiceId, currentUrl);
     }
 
-    @SuppressLint("CheckResult")
     private void openDownloadDialog() {
         pleaseWait();
 
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    final DownloadDialog downloadDialog = new DownloadDialog(this, result);
-                    // to be handled by FragmentManager since listener would be gone when recreated
-                    // playlistDialog.setOnDismissListener(dialog ->finish());
-
-                    final FragmentManager fm = getSupportFragmentManager();
-                    downloadDialog.show(fm, "downloadDialog");
-                    fm.executePendingTransactions();
-                }, throwable -> showUnsupportedUrlDialog(currentUrl)));
+        getPersistFragment().openDownloadDialog(currentServiceId, currentUrl);
     }
 
-    private void pleaseWait() {
+    private PersistentFragment getPersistFragment() {
+        final FragmentManager fm = getSupportFragmentManager();
+        PersistentFragment persistFragment =
+                (PersistentFragment) fm.findFragmentByTag("PERSIST_FRAGMENT");
+        if (persistFragment == null) {
+            persistFragment = new PersistentFragment();
+            fm.beginTransaction()
+                    .add(persistFragment, "PERSIST_FRAGMENT")
+                    .commitNow();
+        }
+        return persistFragment;
+    }
+
+    protected void pleaseWait() {
         // Getting the stream info usually takes a moment
         // Notifying the user here to ensure that no confusion arises
         Toast.makeText(
