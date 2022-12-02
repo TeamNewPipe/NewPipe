@@ -758,10 +758,10 @@ public class RouterActivity extends AppCompatActivity {
             while (buffer.size() > 0) {
                 final ResultRunnable runnable = buffer.elementAt(0);
                 buffer.removeElementAt(0);
-                getActivityContext().runOnUiThread(() -> {
+                getActivityContext().runOnUiThread(() ->
                     // execute queued task with new context, in case activity has been recreated
-                    runnable.run(getActivityContext());
-                });
+                    runnable.run(getActivityContext())
+                );
             }
             done();
         }
