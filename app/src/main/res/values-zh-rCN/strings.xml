@@ -41,7 +41,7 @@
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_history_title">历史记录与缓存</string>
     <string name="undo">撤销</string>
-    <string name="play_all">全部播放</string>
+    <string name="play_all">播放全部</string>
     <string name="always">总是</string>
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>

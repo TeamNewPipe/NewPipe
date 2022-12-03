@@ -16,7 +16,7 @@
     <string name="download_path_title">Тека для завантаження відео</string>
     <string name="download_path_dialog_title">Виберіть теку для завантаження відеофайлів</string>
     <string name="download_path_audio_dialog_title">Виберіть теку для завантаження аудіофайлів</string>
-    <string name="download_path_summary">Шлях до теки зі завантаженими відео</string>
+    <string name="download_path_summary">Шлях до теки із завантаженими відео</string>
     <string name="download_path_audio_title">Тека для завантаження аудіо</string>
     <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
     <string name="default_resolution_title">Типова роздільність</string>
@@ -293,7 +293,7 @@
 \n
 \nБажаєте продовжити\?</string>
     <string name="download_thumbnail_title">Завантажувати ескізи</string>
-    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік та внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень</string>
+    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік і внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">Видалити всі кешовані дані вебсторінок</string>
@@ -405,7 +405,7 @@
     <string name="watch_history_states_deleted">Позиції відтворення видалено</string>
     <string name="missing_file">Файл переміщено або видалено</string>
     <string name="overwrite_failed">не можу перезаписати файл</string>
-    <string name="download_already_pending">Завантаження з такою назвою вже є в черзі</string>
+    <string name="download_already_pending">Завантаження з такою назвою вже додано в чергу</string>
     <string name="error_postprocessing_stopped">NewPipe був закритий під час роботи над файлом</string>
     <string name="error_insufficient_storage">На пристрої не залишилося вільного місця</string>
     <string name="error_progress_lost">Прогрес втрачено через видалення файлу</string>

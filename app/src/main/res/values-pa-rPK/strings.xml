@@ -120,4 +120,11 @@
     <string name="settings_category_appearance_title">دِکھ</string>
     <string name="peertube_instance_add_https_only">صرف ایچ‌ٹی‌ٹی‌پی‌ایس نال کڑی دا پتہ ہی ماݨنیوگ ہن</string>
     <string name="mark_as_watched">ویکھیا جا چُکیا چنت کرو</string>
+    <string name="content">سمگری</string>
+    <string name="artists">کلاکار</string>
+    <string name="disabled">بند کیتا</string>
+    <string name="clear">مٹاؤ</string>
+    <string name="file">فائل</string>
+    <string name="undo">موڑو</string>
+    <string name="always">ہمیشہ</string>
 </resources>

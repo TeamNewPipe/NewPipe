@@ -53,7 +53,7 @@
     <string name="app_update_notification_channel_description">Tilkynningar fyrir nýjar útgáfur NewPipe</string>
     <string name="clear_cookie_summary">Hreinsa vefkökur sem NewPipe geymir þegar þú leysir reCAPTCHA</string>
     <string name="error_report_notification_title">NewPipe rakst á villu, pikkaðu til að tilkynna</string>
-    <string name="tab_about">Um</string>
+    <string name="tab_about">Um okkur og algengar spurningar</string>
     <string name="subscribe_button_title">Gerast áskrifandi</string>
     <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2K/4K myndbönd</string>
     <string name="play_with_kodi_title">Spila með Kodi</string>
@@ -717,4 +717,8 @@
     <string name="no_audio_streams_available_for_external_players">Engir hljóðstraumar eru í boði fyrir ytri spilara</string>
     <string name="select_quality_external_players">Veldu gæði fyrir ytri spilara</string>
     <string name="feed_toggle_show_future_items">Sýna framtíðaratriði</string>
+    <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
+    <string name="faq_title">Algengar spurningar</string>
+    <string name="faq">Skoða á vefsíðu</string>
+    <string name="sort">Raða</string>
 </resources>

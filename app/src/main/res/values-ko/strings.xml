@@ -150,7 +150,7 @@
     <string name="title_activity_about">NewPipe에 대해서</string>
     <string name="title_licenses">제3자 라이센스</string>
     <string name="copyright" formatted="true">© %3$s 하에서 %2$s 에 의한 %1$s</string>
-    <string name="tab_about">NewPipe 정보</string>
+    <string name="tab_about">정보 및 자주 묻는 질문들</string>
     <string name="tab_licenses">라이센스</string>
     <string name="app_description">가볍고 빠른 자유 안드로이드 스트리밍 앱입니다.</string>
     <string name="contribution_title">기여</string>

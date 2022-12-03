@@ -1,8 +1,8 @@
-### Mga pagpapabuti
-- Pag-import/export ng mga setting #1333 
-- Bawas na overdraw (nakakabuti sa performance) #1371 
-- Mga pagpapaganda sa code #1375 
-- Mga bagay-bagay tungkol sa GDPR #1420
+### Mga Pagpapabuti
+- Mag-import/export ng mga setting #1333
+- Bawasan ang pag-overdraw (nakabubuti sa pagtakbo ng app) #1371
+- Ilan pang mga pagpapahusay #1375
+- Mga bagay tungkol sa GDPR #1420
 
-### Inayos
-- Downloader: Ayusin ang pag-crash tuwing binubuksan ang mga .giga file na hindi pa tapos i-download #1407
+### Mga Pagsasaayos
+- Pang-download: Iwasan ang pag-crash kapag pinoproseso ang mga hindi pa natatapos na download mula sa mga .giga file #1407

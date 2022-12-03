@@ -13,3 +13,5 @@ Melhorado
 Fixo
 • Desync de áudio/vídeo
 • [PeerTube] Gerir comentários apagados
+
+e mais

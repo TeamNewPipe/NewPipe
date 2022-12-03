@@ -178,7 +178,7 @@
     <string name="charset_most_special_characters">مهم‌ترین نویسه‌های خاص</string>
     <string name="toast_no_player">کاره‌ای برای پخش این پرونده نصب نشده است</string>
     <string name="title_activity_about">درباره نیوپایپ</string>
-    <string name="tab_about">درباره</string>
+    <string name="tab_about">درباره و سوالات‌متداول</string>
     <string name="tab_licenses">پروانه‌ها</string>
     <string name="app_description">پخش‌کننده آزاد سبُک برای اندروید.</string>
     <string name="contribution_title">مشارکت</string>
@@ -287,7 +287,7 @@
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
-    <string name="info_labels">چه:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان کاره:\\nخدمت:\\nزمان GMT\\nبسته:T:\\nنگارش:\\nنگارش س.ع:</string>
+    <string name="info_labels">چی:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان اپ:\\nخدمت:\\nزمان GMT\\nپکیج:T:\\nنسخه:\\nنسخه‌اندروید:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
     <string name="recaptcha_request_toast">نیاز به چالش ری‌کپچا است</string>
     <string name="msg_popup_permission">این اجازه برای گشودن در حالت
@@ -720,4 +720,8 @@
     <string name="feed_toggle_show_future_items">نمایش موارد آینده</string>
     <string name="feed_toggle_hide_future_items">نهفتن موارد آینده</string>
     <string name="feed_toggle_hide_played_items">نهفتن موارد دیده شده</string>
+    <string name="faq_title">سوالات متداول</string>
+    <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
+    <string name="faq">نمایش در وبسایت</string>
+    <string name="sort">ترتیب</string>
 </resources>

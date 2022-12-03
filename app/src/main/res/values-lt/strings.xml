@@ -118,7 +118,7 @@
     <string name="subscription_change_failed">Negalima keisti prenumeratos</string>
     <string name="subscription_update_failed">Negalima atnaujinti prenumeratos</string>
     <string name="tab_subscriptions">Prenumeratos</string>
-    <string name="fragment_feed_title">Kas Naujo</string>
+    <string name="fragment_feed_title">Kas naujo</string>
     <string name="enable_search_history_title">Ieškoti istorijoje</string>
     <string name="enable_search_history_summary">Saugoti paieškos užklausas vietinėje atmintyje</string>
     <string name="enable_watch_history_title">Žiūrėjimo istorija</string>
@@ -436,7 +436,7 @@
     <string name="generate_unique_name">Generuoti unikalų vardą</string>
     <string name="playback_speed_control">Atkūrimo greičio valdymas</string>
     <string name="show_thumbnail_title">Rodyti miniatiūrą</string>
-    <string name="feed_groups_header_title">Kanalo grupės</string>
+    <string name="feed_groups_header_title">Kanalų grupės</string>
     <plurals name="days">
         <item quantity="one">%d diena</item>
         <item quantity="few">%d dienos</item>
@@ -463,7 +463,7 @@
     <string name="recent">Paskutiniai</string>
     <string name="never">Niekada</string>
     <string name="settings_category_feed_title">Kanalas</string>
-    <string name="feed_create_new_group_button_title">Naujas</string>
+    <string name="feed_create_new_group_button_title">Nauja</string>
     <string name="recovering">atstatoma</string>
     <string name="close">Užverti</string>
     <string name="stop">Sustabdyti</string>
