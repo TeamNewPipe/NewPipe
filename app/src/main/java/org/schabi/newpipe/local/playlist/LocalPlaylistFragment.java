@@ -406,6 +406,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     // Remove Watched, Functionality data
                     final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
+                    //TODO: add blocker here
 
                     if (removePartiallyWatched) {
                         for (final var playlistItem : playlist) {
@@ -590,6 +591,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
+        //TODO add blocker here
+
         final Toast successToast = Toast.makeText(getActivity(),
                 R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
@@ -610,7 +613,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void updateThumbnailUrl() {
         final String newThumbnailUrl;
-
+        //TODO: add blocker here
         if (!itemListAdapter.getItemsList().isEmpty()) {
             newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
                     .getStreamEntity().getThumbnailUrl();

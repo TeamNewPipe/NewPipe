@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.bookmark;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -23,6 +24,7 @@ import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
+import org.schabi.newpipe.databinding.DialogTitleBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
@@ -256,6 +258,37 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
+
+        //TODO
+
+        final DialogTitleBinding dialogBinding =
+                DialogTitleBinding.inflate(LayoutInflater.from(requireContext()));
+
+        dialogBinding.itemRoot.setVisibility(View.GONE);
+        dialogBinding.itemTitleView.setVisibility(View.GONE);
+        dialogBinding.itemAdditionalDetails.setVisibility(View.GONE);
+        final String[] items = new String[]{"Delete", "Rename", "Thumbnail"};
+        final DialogInterface.OnClickListener action = (d, index) -> {
+            switch (index) {
+                case 0: showRenameDialog(selectedItem);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
+        };
+
+        //TODO add rename dialog
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        builder.setItems(items, action)
+                .create()
+                .show();
+    }
+
+    private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
         final DialogEditTextBinding dialogBinding =
                 DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);

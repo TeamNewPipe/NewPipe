@@ -15,6 +15,7 @@ public class PlaylistEntity {
     public static final String PLAYLIST_ID = "uid";
     public static final String PLAYLIST_NAME = "name";
     public static final String PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
+    //TODO: add field
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = PLAYLIST_ID)
