@@ -751,6 +751,7 @@ public class RouterActivity extends AppCompatActivity {
         private void playback() {
             if (activityGone()) {
                 done();
+                return;
             }
             if (buffer.size() == 0 || isPaused) {
                 return;
@@ -774,6 +775,7 @@ public class RouterActivity extends AppCompatActivity {
         private void runOnVisible(final ResultRunnable runnable) {
             if (activityGone()) {
                 done();
+                return;
             }
             if (isPaused) {
                 buffer.add(runnable);
