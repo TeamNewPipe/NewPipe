@@ -145,7 +145,7 @@
     <string name="detail_likes_img_view_description">Duimen</string>
     <string name="detail_dislikes_img_view_description">Duimen omlaag</string>
     <string name="search_no_results">Geen resultaten</string>
-    <string name="empty_subscription_feed_subtitle">Helemaal niets hier te zien</string>
+    <string name="empty_list_subtitle">Helemaal niets hier te zien</string>
     <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
     <string name="video">Video</string>
     <string name="audio">Geluid</string>

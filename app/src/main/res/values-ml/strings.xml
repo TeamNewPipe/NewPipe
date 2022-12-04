@@ -192,7 +192,7 @@
     <string name="audio">ഓഡിയോ</string>
     <string name="video">വീഡിയോ</string>
     <string name="detail_drag_description">പുനക്രമീകരിക്കാൻ വലിച്ചിടുക</string>
-    <string name="empty_subscription_feed_subtitle">നോക്കേണ്ടടാ ഉണ്ണി ഇവിടെ ഒന്നും ഇല്ല</string>
+    <string name="empty_list_subtitle">നോക്കേണ്ടടാ ഉണ്ണി ഇവിടെ ഒന്നും ഇല്ല</string>
     <string name="search_no_results">ഫലങ്ങൾ ലഭ്യമല്ല</string>
     <string name="detail_dislikes_img_view_description">ഡിസ്ലൈക്കുകൾ</string>
     <string name="detail_likes_img_view_description">ലൈക്കുകൾ</string>

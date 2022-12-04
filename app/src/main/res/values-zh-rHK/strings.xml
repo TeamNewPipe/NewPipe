@@ -533,7 +533,7 @@
     <string name="enqueued_next">攝咗做下個等陣播</string>
     <string name="settings_category_player_behavior_title">點做法</string>
     <string name="hash_channel_description">影片雜湊進度嘅通知</string>
-    <string name="empty_subscription_feed_subtitle">大笪地</string>
+    <string name="empty_list_subtitle">大笪地</string>
     <string name="clear_search_history_title">抹走搜尋紀錄</string>
     <string name="clear_search_history_summary">刪除搜尋關鍵字嘅紀錄</string>
     <string name="delete_search_history_alert">係咪要全部剷走晒搜尋嘅紀錄？</string>

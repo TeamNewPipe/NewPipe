@@ -178,7 +178,7 @@
     <string name="detail_likes_img_view_description">मनपर्दो</string>
     <string name="detail_dislikes_img_view_description">मन नपर्ने</string>
     <string name="search_no_results">कुनै परिणामहरु छैनन्</string>
-    <string name="empty_subscription_feed_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
+    <string name="empty_list_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
     <string name="detail_drag_description">पुन: क्रमबद्ध गर्न तान्नुहोस्</string>
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>

@@ -198,7 +198,7 @@
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
     <string name="settings_category_debug_title">Зневадження</string>
-    <string name="empty_subscription_feed_subtitle">Нічого немає… чути лише цвіркунів</string>
+    <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
     <plurals name="views">
         <item quantity="one">%s перегляд</item>

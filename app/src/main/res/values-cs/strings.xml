@@ -124,7 +124,7 @@
     <string name="notification_channel_name">Oznámení NewPipe</string>
     <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
-    <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
+    <string name="empty_list_subtitle">Je tu sranda jak v márnici</string>
     <string name="short_billion">mld.</string>
     <string name="no_subscribers">Žádní odběratelé</string>
     <plurals name="subscribers">

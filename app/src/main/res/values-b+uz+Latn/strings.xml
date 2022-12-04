@@ -281,7 +281,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Qayta tartiblash uchun tortish</string>
-    <string name="empty_subscription_feed_subtitle">Bu erda kriketlardan boshqa hech narsa yo\'q</string>
+    <string name="empty_list_subtitle">Bu erda kriketlardan boshqa hech narsa yo\'q</string>
     <string name="search_no_results">Natija yo\'q</string>
     <string name="detail_dislikes_img_view_description">Dislayklar</string>
     <string name="detail_likes_img_view_description">Layklar</string>

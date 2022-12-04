@@ -296,7 +296,7 @@
     <string name="copyright" formatted="true">© %1$s توسط %2$s تحت %3$s</string>
     <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
     <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ نیوپایپ</string>
-    <string name="empty_subscription_feed_subtitle">چیزی جز کریکت اینجا نیست</string>
+    <string name="empty_list_subtitle">چیزی جز کریکت اینجا نیست</string>
     <string name="no_subscribers">فاقد مشترک</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
     <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>

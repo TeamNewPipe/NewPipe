@@ -87,7 +87,7 @@
     <string name="error_details_headline">விவரங்கள்:</string>
     <string name="detail_likes_img_view_description">விருப்பங்கள்</string>
     <string name="search_no_results">முடிவுகள் இல்லை</string>
-    <string name="empty_subscription_feed_subtitle">எந்த முடிவுகளும் இல்லை</string>
+    <string name="empty_list_subtitle">எந்த முடிவுகளும் இல்லை</string>
     <string name="detail_drag_description">இழுத்து வரிசைமாற்று</string>
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>

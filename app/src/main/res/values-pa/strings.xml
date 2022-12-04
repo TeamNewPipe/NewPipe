@@ -151,7 +151,7 @@
     <string name="detail_likes_img_view_description">ਪਸੰਦਾਂ</string>
     <string name="detail_dislikes_img_view_description">ਨਾਪਸੰਦਾਂ</string>
     <string name="search_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
-    <string name="empty_subscription_feed_subtitle">ਇਥੇ ਦਾ ਸੁੰਨਾਪਨ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
+    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਸੁੰਨਾਪਨ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
     <string name="detail_drag_description">ਮੁੜ-ਕ੍ਰਮਬੱਧ ਕਰਨ ਲਈ ਡਰੈਗ ਕਰੋ</string>
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>

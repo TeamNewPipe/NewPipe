@@ -125,7 +125,7 @@
     <string name="notification_channel_name">Notificare NewPipe</string>
     <string name="notification_channel_description">Notificări pentru playerul NewPipe</string>
     <string name="search_no_results">Fără rezultate</string>
-    <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
+    <string name="empty_list_subtitle">Nimic aici în afară de sunetul greierilor</string>
     <string name="no_subscribers">Fără abonați</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonat</item>

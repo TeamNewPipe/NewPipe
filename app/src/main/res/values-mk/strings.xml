@@ -144,7 +144,7 @@
     <string name="detail_likes_img_view_description">Допаѓања</string>
     <string name="detail_dislikes_img_view_description">Недопаѓања</string>
     <string name="search_no_results">Нема резултати</string>
-    <string name="empty_subscription_feed_subtitle">Тука Е Празно :(</string>
+    <string name="empty_list_subtitle">Тука Е Празно :(</string>
     <string name="detail_drag_description">Влечи за да разместиш</string>
     <string name="video">Видео</string>
     <string name="audio">Звук</string>

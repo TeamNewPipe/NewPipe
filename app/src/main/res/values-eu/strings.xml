@@ -142,7 +142,7 @@
     <string name="undo">Desegin</string>
     <string name="notification_channel_description">NewPipe erreproduzigailuaren jakinarazpenak</string>
     <string name="search_no_results">Emaitzarik ez</string>
-    <string name="empty_subscription_feed_subtitle">Kilkerrak besterik ez daude hemen</string>
+    <string name="empty_list_subtitle">Kilkerrak besterik ez daude hemen</string>
     <string name="no_subscribers">Harpidedunik ez</string>
     <plurals name="subscribers">
         <item quantity="one">Harpidedun %s</item>

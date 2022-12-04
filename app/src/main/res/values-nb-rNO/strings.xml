@@ -137,7 +137,7 @@
     <string name="settings_category_history_title">Historikk og mellomlagring</string>
     <string name="undo">Angre</string>
     <string name="search_no_results">Ingen resultater</string>
-    <string name="empty_subscription_feed_subtitle">Bare ufisk her</string>
+    <string name="empty_list_subtitle">Bare ufisk her</string>
     <string name="no_subscribers">Ingen abonnenter</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnent</item>

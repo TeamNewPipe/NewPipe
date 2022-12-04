@@ -173,7 +173,7 @@
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
     <string name="search_no_results">Tiada keputusan</string>
-    <string name="empty_subscription_feed_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
+    <string name="empty_list_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
     <string name="detail_drag_description">Seret untuk menyusun semula</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>

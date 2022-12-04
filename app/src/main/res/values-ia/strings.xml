@@ -196,7 +196,7 @@
     <string name="no_subscribers">Nulle subscriptores</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
-    <string name="empty_subscription_feed_subtitle">Nihil contentos ci</string>
+    <string name="empty_list_subtitle">Nihil contentos ci</string>
     <string name="search_no_results">Nulle resultatos</string>
     <string name="description_tab_description">Description</string>
     <string name="related_items_tab_description">Fluxos associate</string>

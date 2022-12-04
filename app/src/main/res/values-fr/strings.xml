@@ -143,7 +143,7 @@
     <string name="settings_category_history_title">Historique et cache</string>
     <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
-    <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
+    <string name="empty_list_subtitle">Aucun contenu</string>
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonné</item>

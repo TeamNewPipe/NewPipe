@@ -288,7 +288,7 @@
     <string name="title_activity_history">Historio</string>
     <string name="action_history">Historio</string>
     <string name="search_no_results">Neniuj rezultoj</string>
-    <string name="empty_subscription_feed_subtitle">Neniu enhavo</string>
+    <string name="empty_list_subtitle">Neniu enhavo</string>
     <string name="no_subscribers">Neniuj abonantoj</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonanto</item>

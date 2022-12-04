@@ -56,7 +56,7 @@
     <string name="audio">Deng</string>
     <string name="video">Vîdyo</string>
     <string name="detail_drag_description">Drag bikin da ku ji nû ve sererast bikin</string>
-    <string name="empty_subscription_feed_subtitle">Li vir ji xeynî krikan pê ve tiştek tune</string>
+    <string name="empty_list_subtitle">Li vir ji xeynî krikan pê ve tiştek tune</string>
     <string name="search_no_results">Encam tune</string>
     <string name="description_tab_description">Terîf</string>
     <string name="related_items_tab_description">Çemên pêwendîdar</string>

@@ -167,7 +167,7 @@
     <string name="detail_likes_img_view_description">ชอบ</string>
     <string name="detail_dislikes_img_view_description">ไม่ชอบ</string>
     <string name="search_no_results">ไม่มีผลลัพธ์</string>
-    <string name="empty_subscription_feed_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
+    <string name="empty_list_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
     <string name="detail_drag_description">ลากเพื่อจัดลำดับใหม่</string>
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>

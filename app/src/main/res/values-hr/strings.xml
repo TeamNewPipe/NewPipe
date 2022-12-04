@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Povijest i predmemorija</string>
     <string name="undo">Poništi</string>
     <string name="search_no_results">Nema rezultata</string>
-    <string name="empty_subscription_feed_subtitle">Ovdje nema ništa osim cvrčaka</string>
+    <string name="empty_list_subtitle">Ovdje nema ništa osim cvrčaka</string>
     <string name="no_subscribers">Nema pretplatnika</string>
     <plurals name="subscribers">
         <item quantity="one">%s pretplatnik</item>

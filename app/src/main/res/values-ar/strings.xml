@@ -114,7 +114,7 @@
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
-    <string name="empty_subscription_feed_subtitle">لا شيء هنا سوى الصراصير</string>
+    <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="short_thousand">ألف</string>

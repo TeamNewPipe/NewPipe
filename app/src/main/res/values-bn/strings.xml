@@ -342,7 +342,7 @@
     <string name="no_one_listening">কেউ শুনছে না</string>
     <string name="no_one_watching">কেউ দেখছে না</string>
     <string name="drawer_header_description">সেবাটি পরিবর্তন করো, বর্তমানে নির্বাচিত:</string>
-    <string name="empty_subscription_feed_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
+    <string name="empty_list_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
     <string name="invalid_source">এই ধরনের কোন ফাইল/বিষয়বস্তুর উৎস নেই</string>
     <string name="player_unrecoverable_failure">অপুনরুদ্ধারযোগ্য প্লেয়ার ত্রুটি ঘটেছে</string>
     <string name="peertube_instance_add_fail">ইন্সট্যান্সটি যাচাই করা যায়নি</string>

@@ -125,7 +125,7 @@
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
-    <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
+    <string name="empty_list_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
         <item quantity="other">%s 位訂閱者</item>

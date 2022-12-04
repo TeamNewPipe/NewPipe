@@ -131,7 +131,7 @@
     <string name="detail_likes_img_view_description">بەدڵبوون</string>
     <string name="detail_dislikes_img_view_description">بەدڵنەبوون</string>
     <string name="search_no_results">هیچ ئەنجامێک نییە</string>
-    <string name="empty_subscription_feed_subtitle">هیچ شتێک لێرەدا نییە</string>
+    <string name="empty_list_subtitle">هیچ شتێک لێرەدا نییە</string>
     <string name="detail_drag_description">ڕاکێشان بۆ دووبارە داواکردنەوە</string>
     <string name="video">ڤیدیۆ</string>
     <string name="audio">دەنگ</string>

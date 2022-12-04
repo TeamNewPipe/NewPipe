@@ -474,7 +474,7 @@
     <string name="saved_tabs_invalid_json">ସଞ୍ଚିତ ଟ୍ୟାବଗୁଡିକ ପଢ଼ି ପାରିଲା ନାହିଁ, ତେଣୁ ଡିଫଲ୍ଟଗୁଡିକ ବ୍ୟବହାର କରି</string>
     <string name="info_labels">କଣ:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS ସଂସ୍କରଣ:</string>
     <string name="search_no_results">କୌଣସି ଫଳାଫଳ ନାହିଁ</string>
-    <string name="empty_subscription_feed_subtitle">ଏଠାରେ କ୍ରିକେଟ୍ ବ୍ୟତୀତ ଆଉ କିଛି ନାହିଁ</string>
+    <string name="empty_list_subtitle">ଏଠାରେ କ୍ରିକେଟ୍ ବ୍ୟତୀତ ଆଉ କିଛି ନାହିଁ</string>
     <string name="retry">ପୁନଃଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="no_comments">କିଛି କହିବାର ନାହିଁ</string>
     <string name="website_title">ୱେବସାଇଟ୍</string>

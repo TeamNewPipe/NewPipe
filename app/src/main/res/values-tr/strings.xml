@@ -142,7 +142,7 @@
     <string name="notification_channel_name">NewPipe bildirimi</string>
     <string name="notification_channel_description">NewPipe oynatıcısı için bildirimler</string>
     <string name="search_no_results">Sonuç yok</string>
-    <string name="empty_subscription_feed_subtitle">Burada cırcır böceklerinden başka bir şey yok</string>
+    <string name="empty_list_subtitle">Burada cırcır böceklerinden başka bir şey yok</string>
     <string name="no_subscribers">Abone yok</string>
     <plurals name="subscribers">
         <item quantity="one">%s abone</item>

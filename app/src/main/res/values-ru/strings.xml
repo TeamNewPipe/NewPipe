@@ -147,7 +147,7 @@
     <string name="settings_category_history_title">История и кэш</string>
     <string name="undo">Отмена</string>
     <string name="search_no_results">Нет результатов</string>
-    <string name="empty_subscription_feed_subtitle">Ничего нет</string>
+    <string name="empty_list_subtitle">Ничего нет</string>
     <string name="no_subscribers">Нет подписчиков</string>
     <plurals name="subscribers">
         <item quantity="one">%s подписчик</item>

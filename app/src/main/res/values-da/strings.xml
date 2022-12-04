@@ -312,7 +312,7 @@
     <string name="error_postprocessing_failed">Efterbehandling fejlede</string>
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
-    <string name="empty_subscription_feed_subtitle">Intet at se her</string>
+    <string name="empty_list_subtitle">Intet at se her</string>
     <string name="short_thousand">t</string>
     <string name="short_million">mio.</string>
     <string name="short_billion">mia.</string>

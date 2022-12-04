@@ -138,7 +138,7 @@
     <string name="notification_channel_name">Њупајп обавештење</string>
     <string name="notification_channel_description">Обавештења за Њупајп плејере у позадини и искачућем прозору</string>
     <string name="search_no_results">Нема резултата</string>
-    <string name="empty_subscription_feed_subtitle">Нема ничега овде осим цврчака</string>
+    <string name="empty_list_subtitle">Нема ничега овде осим цврчака</string>
     <string name="no_subscribers">Нема пратилаца</string>
     <plurals name="subscribers">
         <item quantity="one">%s пратилац</item>
