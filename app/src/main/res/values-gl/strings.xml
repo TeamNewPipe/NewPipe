@@ -502,7 +502,6 @@
     <string name="missing_file">Ficheiro movido ou eliminado</string>
     <string name="download_to_sdcard_error_message">Non é posible descargar na tarxeta SD externa. Restaurar a localización do cartafol de descarga\?</string>
     <string name="download_to_sdcard_error_title">Non hai dispoñible almacenamento externo</string>
-    <string name="help">Axuda</string>
     <string name="watch_history_states_deleted">Elimináronse as posicións de reprodución</string>
     <string name="delete_playback_states_alert">Eliminas todas as posicións de reprodución\?</string>
     <string name="clear_playback_states_summary">Elimina todas as posicións de reprodución</string>

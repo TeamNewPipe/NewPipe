@@ -478,7 +478,6 @@
     <string name="network_error">Fallu de la rede</string>
     <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
     <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
-    <string name="help">Ayuda</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>

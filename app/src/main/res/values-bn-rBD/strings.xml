@@ -230,7 +230,6 @@
     <string name="player_recoverable_failure">প্লেয়ার এর এরর থেকে বেরিয়ে আসুন</string>
     <string name="player_stream_failure">স্ট্রিম টি চালানো গেল না</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
-    <string name="help">সাহায্য</string>
     <string name="search_history_deleted">অনুসন্ধান ইতিহাস মোছা হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>

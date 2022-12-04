@@ -469,7 +469,6 @@
     <string name="new_seek_duration_toast">Devido a limitações do ExoPlayer, a duração do avanço foi definida para %d segundos</string>
     <string name="mute">Desativar som</string>
     <string name="unmute">Ativar som</string>
-    <string name="help">Ajuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>

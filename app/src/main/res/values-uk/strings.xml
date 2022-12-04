@@ -484,7 +484,6 @@
     <string name="mute">Вимкнути звук</string>
     <string name="unmute">Увімкнути звук</string>
     <string name="local">Локальне</string>
-    <string name="help">Допомога</string>
     <string name="videos_string">Відео</string>
     <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
     <string name="content_not_supported">NewPipe ще не підтримує цей вміст.

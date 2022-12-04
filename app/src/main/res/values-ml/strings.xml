@@ -233,7 +233,6 @@
     <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>
     <string name="download_to_sdcard_error_title">എസ്ഡി സൗകര്യം ലഭ്യമല്ല</string>
     <string name="general_error">പിശക്</string>
-    <string name="help">സഹായം</string>
     <string name="search_history_deleted">സെർച്ച് ചരിത്രം നീക്കം ചെയ്തു</string>
     <string name="delete_search_history_alert">സെർച്ച് ചരിത്രം നീക്കം ചെയ്യട്ടെയോ\?</string>
     <string name="clear_search_history_summary">സെർച്ച് കീവേർഡുകളെ നീക്കം ചെയ്യും</string>

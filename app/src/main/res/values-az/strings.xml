@@ -177,7 +177,6 @@
     <string name="videos_string">Videolar</string>
     <string name="playlists">Pleylistlər</string>
     <string name="general_error">Xəta</string>
-    <string name="help">Kömək</string>
     <string name="search_history_deleted">Axtarış tarixçəsi silindi</string>
     <string name="delete_search_history_alert">Bütün axtarış tarixçəsi silinsin\?</string>
     <string name="clear_search_history_summary">Axtarışdakı açar sözlərin tarixçəsini silir</string>

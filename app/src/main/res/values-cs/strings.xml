@@ -469,7 +469,6 @@
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
     <string name="mute">Ztišit</string>
     <string name="unmute">Obnovit hlasitost</string>
-    <string name="help">Nápověda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuta</item>
         <item quantity="few">%d minuty</item>

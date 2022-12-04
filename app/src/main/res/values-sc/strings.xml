@@ -381,7 +381,6 @@
     <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>
     <string name="download_to_sdcard_error_title">Memòria esterna non disponìbile</string>
     <string name="general_error">Errore</string>
-    <string name="help">Agiudu</string>
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
     <string name="clear_search_history_title">Iscantzella sa cronologia de chirca</string>

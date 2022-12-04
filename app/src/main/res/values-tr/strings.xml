@@ -463,7 +463,6 @@
     <string name="new_seek_duration_toast">ExoPlayer kısıtlamaları gereği konumlama süresi %d saniyeye belirlenmiştir</string>
     <string name="mute">Sessize al</string>
     <string name="unmute">Sesi aç</string>
-    <string name="help">Yardım</string>
     <plurals name="minutes">
         <item quantity="one">%d dakika</item>
         <item quantity="other">%d dakika</item>

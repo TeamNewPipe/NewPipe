@@ -400,7 +400,6 @@
     <string name="player_recoverable_failure">Obnavljanje od napake predvajanika</string>
     <string name="player_unrecoverable_failure">Prišlo je do neobnovljive napake v predvajalniku</string>
     <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
-    <string name="help">Pomoč</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
     <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani.</string>
     <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>

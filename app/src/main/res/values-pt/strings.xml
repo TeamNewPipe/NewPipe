@@ -517,7 +517,6 @@
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="unmute">Ativar som</string>
     <string name="mute">Sem som</string>
-    <string name="help">Ajuda</string>
     <string name="videos_string">Vídeos</string>
     <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
 \n 

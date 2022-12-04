@@ -151,7 +151,6 @@
     <string name="light_theme_title">Ljós</string>
     <string name="undo">Afturkalla</string>
     <string name="always">Alltaf</string>
-    <string name="help">Hjálp</string>
     <string name="general_error">Villa</string>
     <string name="use_external_video_player_summary">Fjarlægir hljóð í sumum upplausnum</string>
     <string name="subscription_change_failed">Gat ekki breytt áskrift</string>

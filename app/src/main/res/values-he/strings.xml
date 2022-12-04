@@ -475,7 +475,6 @@
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>
     <string name="unmute">ביטול השתקה</string>
-    <string name="help">עזרה</string>
     <plurals name="minutes">
         <item quantity="one">דקה</item>
         <item quantity="two">שתי דקות</item>

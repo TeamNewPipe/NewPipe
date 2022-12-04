@@ -455,7 +455,7 @@
         <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
-    <string name="help">Bantuan</string>
+
     <plurals name="minutes">
         <item quantity="other">%d menit</item>
     </plurals>

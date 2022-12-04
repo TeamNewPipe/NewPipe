@@ -367,7 +367,6 @@
     <string name="missing_file">Tiedosto siirretty tai poistettu</string>
     <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti\?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
-    <string name="help">Ohje</string>
     <string name="app_update_notification_channel_description">Ilmoitukset uusista NewPipe-versioista</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
     <string name="file_deleted">Tiedosto poistettu</string>
