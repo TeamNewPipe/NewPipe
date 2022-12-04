@@ -151,7 +151,7 @@
     <string name="player_stream_failure">Nie udało się odtworzyć tego strumienia</string>
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
+    <string name="empty_list_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>

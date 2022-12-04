@@ -156,7 +156,7 @@
     <string name="detail_likes_img_view_description">Gosto</string>
     <string name="detail_dislikes_img_view_description">Non gosto</string>
     <string name="search_no_results">Non hai resultados</string>
-    <string name="empty_subscription_feed_subtitle">Nada que ver aquí</string>
+    <string name="empty_list_subtitle">Nada que ver aquí</string>
     <string name="detail_drag_description">Arrastre para reordenar</string>
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>

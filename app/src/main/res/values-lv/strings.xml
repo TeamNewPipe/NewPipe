@@ -144,7 +144,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Velciet, lai mainītu secību</string>
-    <string name="empty_subscription_feed_subtitle">Šeit nekā nav, tikai sienāži</string>
+    <string name="empty_list_subtitle">Šeit nekā nav, tikai sienāži</string>
     <string name="search_no_results">Nav resultātu</string>
     <string name="description_tab_description">Apraksts</string>
     <string name="related_items_tab_description">Līdzīgi video</string>

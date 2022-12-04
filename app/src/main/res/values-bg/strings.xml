@@ -106,7 +106,7 @@
     <string name="detail_likes_img_view_description">Харесвания</string>
     <string name="detail_dislikes_img_view_description">Нехаресвания</string>
     <string name="search_no_results">Няма резултати</string>
-    <string name="empty_subscription_feed_subtitle">Тук няма нищо</string>
+    <string name="empty_list_subtitle">Тук няма нищо</string>
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Опитай отново</string>

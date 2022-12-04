@@ -44,7 +44,7 @@
     <string name="title_activity_about">Um NewPipe</string>
     <string name="channel_unsubscribed">Áskrift hætt</string>
     <string name="unsubscribe">Hætta áskrift</string>
-    <string name="empty_subscription_feed_subtitle">Allt er tómt</string>
+    <string name="empty_list_subtitle">Allt er tómt</string>
     <string name="app_license">NewPipe er „copyleft“ frjáls hugbúnaður: Þú getur notað, rannsakað, deilt og bætt honum að vild. Þú getur endurdreift og breytt því samkvæmt skilmálum GNU GPL notendaleyfi eins og það er gefið út af Frjálsa Hugbúnaðarstofnuninni, annað hvort útgáfu 3 af leyfinu, eða (að eigin vali) hvaða síðari útgáfu sem er.</string>
     <string name="subscribed_button_title">Í áskrift</string>
     <string name="tab_bookmarks">Bókamerktir spilunarlistar</string>

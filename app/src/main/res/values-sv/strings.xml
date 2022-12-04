@@ -109,7 +109,7 @@
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
-    <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
+    <string name="empty_list_subtitle">Här va\' det tomt</string>
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>

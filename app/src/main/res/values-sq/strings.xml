@@ -306,7 +306,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Tërhiqe për të ri-radhitur</string>
-    <string name="empty_subscription_feed_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
+    <string name="empty_list_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
     <string name="search_no_results">Nuk ka rezultate</string>
     <string name="detail_dislikes_img_view_description">Mospëlqimet</string>
     <string name="detail_likes_img_view_description">Pëlqimet</string>

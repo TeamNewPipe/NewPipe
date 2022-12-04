@@ -165,7 +165,7 @@
     <string name="detail_likes_img_view_description">M\'agrada</string>
     <string name="detail_dislikes_img_view_description">No m\'agrada</string>
     <string name="search_no_results">Cap resultat</string>
-    <string name="empty_subscription_feed_subtitle">No hi ha res aquí</string>
+    <string name="empty_list_subtitle">No hi ha res aquí</string>
     <string name="retry">Torna a provar</string>
     <string name="no_subscribers">Cap subscripció</string>
     <string name="no_views">Cap reproducció</string>

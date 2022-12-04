@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Geschiedenis en cache</string>
     <string name="undo">Ongedaan maken</string>
     <string name="search_no_results">Geen resultaten</string>
-    <string name="empty_subscription_feed_subtitle">Niets, maar dan ook niets te zien</string>
+    <string name="empty_list_subtitle">Niets, maar dan ook niets te zien</string>
     <string name="no_subscribers">Geen abonnees</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnee</item>

@@ -280,7 +280,7 @@
     <string name="video_streams_empty">Video yayımı tapılmadı</string>
     <string name="comments_tab_description">Şərhlər</string>
     <string name="description_tab_description">Açıqlama</string>
-    <string name="empty_subscription_feed_subtitle">Burada kriketlərdən başqa heç nə yoxdur</string>
+    <string name="empty_list_subtitle">Burada kriketlərdən başqa heç nə yoxdur</string>
     <string name="search_no_results">Nəticə yoxdur</string>
     <string name="restore_defaults">İlkin tənzimləmələri qaytar</string>
     <string name="missing_file">Fayl köçürüldü və ya silindi</string>

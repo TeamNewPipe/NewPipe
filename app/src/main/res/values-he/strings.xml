@@ -109,7 +109,7 @@
     <string name="detail_likes_img_view_description">אהבו</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
     <string name="search_no_results">אין תוצאות</string>
-    <string name="empty_subscription_feed_subtitle">אין כאן כלום מלבד צרצרים</string>
+    <string name="empty_list_subtitle">אין כאן כלום מלבד צרצרים</string>
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>

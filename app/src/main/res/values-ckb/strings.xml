@@ -387,7 +387,7 @@
     <string name="most_liked">زۆرترین بەدڵ</string>
     <string name="delete">سڕینەوە</string>
     <string name="default_video_format_title">جۆری بنەڕەتی ڤیدیۆ</string>
-    <string name="empty_subscription_feed_subtitle">هیچ شتێک لێرەدا نییە</string>
+    <string name="empty_list_subtitle">هیچ شتێک لێرەدا نییە</string>
     <string name="clear">سڕینەوە</string>
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="bookmark_playlist">نیشانه‌كردنی خشته‌لێدان</string>

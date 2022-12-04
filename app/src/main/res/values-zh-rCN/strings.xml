@@ -196,7 +196,7 @@
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="default_video_format_title">默认视频格式</string>
     <string name="settings_category_player_behavior_title">行为</string>
-    <string name="empty_subscription_feed_subtitle">空空如也</string>
+    <string name="empty_list_subtitle">空空如也</string>
     <string name="no_views">无人观看过</string>
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>

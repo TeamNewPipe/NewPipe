@@ -240,7 +240,7 @@
     <string name="related_items_tab_description">დაკავშირებული ნივთები</string>
     <string name="description_tab_description">აღწერა</string>
     <string name="search_no_results">არანაირი შედეგი</string>
-    <string name="empty_subscription_feed_subtitle">აქ არაფერია კრიკეტების გარდა</string>
+    <string name="empty_list_subtitle">აქ არაფერია კრიკეტების გარდა</string>
     <string name="detail_drag_description">გადაიტანეთ ხელახლა შეკვეთისთვის</string>
     <string name="video">ვიდეო</string>
     <string name="audio">აუდიო</string>

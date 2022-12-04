@@ -99,7 +99,7 @@
     <string name="detail_likes_img_view_description">Tykkäykset</string>
     <string name="detail_dislikes_img_view_description">Ei-tykkäykset</string>
     <string name="search_no_results">Ei tuloksia</string>
-    <string name="empty_subscription_feed_subtitle">Tyhjää täynnä</string>
+    <string name="empty_list_subtitle">Tyhjää täynnä</string>
     <string name="video">Video</string>
     <string name="audio">Ääni</string>
     <string name="retry">Toista uudelleen</string>

@@ -364,7 +364,7 @@
     <string name="error_report_notification_toast">সমস্যা হয়েছে, নোটিফিকেশন দেখুন</string>
     <string name="copy_for_github">তৈরিকৃত রিপোর্ট কপি করো</string>
     <string name="related_items_tab_description">সম্পর্কিত আইটেমসমূহ</string>
-    <string name="empty_subscription_feed_subtitle">ঝিঁঝিঁপোকা ছাড়া এখানে কিছু নেই</string>
+    <string name="empty_list_subtitle">ঝিঁঝিঁপোকা ছাড়া এখানে কিছু নেই</string>
     <string name="detail_drag_description">পুনর্বিন্যাস্ত করতে টান দিন</string>
     <string name="subscribers_count_not_available">গ্রাহকসংখ্যা সুলভ নয়</string>
     <string name="no_one_watching">কেউ দেখছে না</string>

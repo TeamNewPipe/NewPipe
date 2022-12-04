@@ -152,7 +152,7 @@
     <string name="detail_likes_img_view_description">Meeldib</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
     <string name="search_no_results">Tulemusi pole</string>
-    <string name="empty_subscription_feed_subtitle">Siin pole veel midagi</string>
+    <string name="empty_list_subtitle">Siin pole veel midagi</string>
     <string name="detail_drag_description">Lohista järjestuse muutmiseks</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>

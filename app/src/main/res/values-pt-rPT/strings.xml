@@ -357,7 +357,7 @@
     <string name="best_resolution">Melhor resolução</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="stop">Parar</string>
-    <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
+    <string name="empty_list_subtitle">Aqui não há nada para ver</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="limit_data_usage_none_description">Sem limite</string>
     <string name="general_error">Erro</string>

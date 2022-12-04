@@ -157,7 +157,7 @@
     <string name="detail_likes_img_view_description">Спадабалася</string>
     <string name="detail_dislikes_img_view_description">Не спадабалася</string>
     <string name="search_no_results">Няма вынікаў</string>
-    <string name="empty_subscription_feed_subtitle">Нічога няма</string>
+    <string name="empty_list_subtitle">Нічога няма</string>
     <string name="detail_drag_description">Перацягніце, каб змяніць парадак</string>
     <string name="video">Відэа</string>
     <string name="audio">Аўдыё</string>

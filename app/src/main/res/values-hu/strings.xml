@@ -167,7 +167,7 @@
     <string name="file_name_empty_error">A fájlnév nem lehet üres</string>
     <string name="error_occurred_detail">Hiba történt: %1$s</string>
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
-    <string name="empty_subscription_feed_subtitle">Nincs itt semmi pár tücskön kívül</string>
+    <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
     <string name="short_thousand">e</string>
     <string name="short_million">m</string>

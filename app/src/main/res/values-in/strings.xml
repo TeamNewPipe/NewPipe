@@ -173,7 +173,7 @@
     <string name="file_name_empty_error">Nama berkas tidak boleh kosong</string>
     <string name="error_occurred_detail">Telah terjadi galat: %1$s</string>
     <string name="search_no_results">Tidak ada hasil</string>
-    <string name="empty_subscription_feed_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
+    <string name="empty_list_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
     <string name="no_subscribers">Tidak ada pelanggan</string>
     <plurals name="subscribers">

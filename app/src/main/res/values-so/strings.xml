@@ -252,7 +252,7 @@
     <string name="audio">Dhagaysi</string>
     <string name="video">Muuqaal</string>
     <string name="detail_drag_description">Farta ku jiid si aad ukala hormariso</string>
-    <string name="empty_subscription_feed_subtitle">meel madhan</string>
+    <string name="empty_list_subtitle">meel madhan</string>
     <string name="search_no_results">natiijo lama helin</string>
     <string name="detail_dislikes_img_view_description">intaan ka helin</string>
     <string name="detail_likes_img_view_description">inta ka heshay</string>

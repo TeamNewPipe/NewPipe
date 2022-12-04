@@ -288,7 +288,7 @@
     <string name="resize_fill">全画面</string>
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です</string>
-    <string name="empty_subscription_feed_subtitle">何もありません</string>
+    <string name="empty_list_subtitle">何もありません</string>
     <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート:
 \n
 \n1. この URL を開きます: %1$s

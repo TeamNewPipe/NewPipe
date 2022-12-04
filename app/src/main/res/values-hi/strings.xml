@@ -123,7 +123,7 @@
     <string name="detail_likes_img_view_description">पसंद</string>
     <string name="detail_dislikes_img_view_description">नापसंद</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
-    <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
+    <string name="empty_list_subtitle">यंहा कुछ नहीं है</string>
     <string name="video">विडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
