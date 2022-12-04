@@ -463,7 +463,6 @@
     <string name="error_report_open_issue_button_text">Багрэпарт на GitHub</string>
     <string name="copy_for_github">Скапіруйце адфарматаваны багрэпарт</string>
     <string name="permission_display_over_apps">Дайце дазвол на адлюстраванне паверх іншых праграм</string>
-    <string name="help">Дапамога</string>
     <string name="delete_playback_states_alert">Выдаліць усе пазіцыі прайгравання\?</string>
     <string name="clear_playback_states_title">Выдаліць пазіцыі прайгравання</string>
     <string name="clear_cookie_title">Ачысціць reCAPTCHA cookies</string>

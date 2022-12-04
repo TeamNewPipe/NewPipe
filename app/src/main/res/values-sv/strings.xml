@@ -398,7 +398,6 @@
     <string name="peertube_instance_add_https_only">Endast HTTPS-URL:er stöds</string>
     <string name="peertube_instance_add_exists">Instansen finns redan</string>
     <string name="videos_string">Videor</string>
-    <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelningspositioner</string>
     <string name="missing_file">Filen har flyttats eller tagits bort</string>

@@ -215,7 +215,6 @@
     <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas\?</string>
     <string name="download_to_sdcard_error_title">Immagazinage externe non disponibile</string>
     <string name="general_error">Error</string>
-    <string name="help">Adjuta</string>
     <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction\?</string>
     <string name="clear_playback_states_summary">Dele tote le positiones de reproduction</string>
     <string name="use_inexact_seek_title">Usar le recerca rapide e inexacte</string>

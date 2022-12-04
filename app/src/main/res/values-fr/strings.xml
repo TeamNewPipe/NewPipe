@@ -521,7 +521,6 @@
 \nYouTube est un exemple de service qui offre une méthode rapide avec son flux RSS.
 \n
 \nDonc le choix se résume à ce que vous préférez : la rapidité ou des informations précises.</string>
-    <string name="help">Aide</string>
     <string name="content_not_supported">Ce contenu n’est pas encore pris en charge par NewPipe.
 \n
 \nNous espérons qu’il le sera dans une future version.</string>

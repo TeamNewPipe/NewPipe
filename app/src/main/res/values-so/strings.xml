@@ -296,7 +296,6 @@
     <string name="download_to_sdcard_error_message">Ku dajinta kaydka dibadda (mimoriga) suurtogal ma aha. Dib u fadhiisi khaanada wax lagu dajiyo\?</string>
     <string name="download_to_sdcard_error_title">Kaydka dibadda lama heli karo</string>
     <string name="general_error">Khalad</string>
-    <string name="help">Caawin</string>
     <string name="search_history_deleted">Wixii la raadiyay waa la tirtiray</string>
     <string name="delete_search_history_alert">Tirtir dhamaan wixii la raadiyay\?</string>
     <string name="clear_search_history_summary">Wuxuu tirtiraa kaydka wixii lagu qoray xaga raadinta</string>

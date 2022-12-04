@@ -463,7 +463,6 @@
         <item quantity="other">%s người xem</item>
     </plurals>
     <string name="permission_display_over_apps">Cho phép hiển thị trên các ứng dụng khác</string>
-    <string name="help">Trợ giúp</string>
     <string name="artists">Nghệ sĩ</string>
     <string name="albums">Album</string>
     <string name="songs">Bài hát</string>

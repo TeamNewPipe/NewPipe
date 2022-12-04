@@ -104,7 +104,6 @@
     <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>
     <string name="download_to_sdcard_error_title">Depoya derveyî tune</string>
     <string name="general_error">Şaşî</string>
-    <string name="help">Alîkarî</string>
     <string name="search_history_deleted">Dîroka lêgerînê hate jêbirin.</string>
     <string name="delete_search_history_alert">Dîroka tevahî lêgerînê jê bibe\?</string>
     <string name="clear_search_history_summary">Dîroka peyvên sereke yên lêgerînê jê dike</string>

@@ -496,7 +496,6 @@
     <string name="new_seek_duration_toast">Pro ExoPlayer limoj, la serĉa daŭro estas metita %d sekundojn</string>
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
-    <string name="help">Helpo</string>
     <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per NewPipe.\n\nĜi espereble estos en sekvanta versio.</string>
     <string name="infinite_videos">∞ filmetoj</string>
     <string name="more_than_100_videos">100+ filmetoj</string>

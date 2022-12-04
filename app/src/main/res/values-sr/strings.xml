@@ -437,7 +437,6 @@
     <string name="external_player_unsupported_link_type">Спољни плејери не подржавају ове врсте веза</string>
     <string name="download_to_sdcard_error_message">Преузимање на спољну СД картицу није могуће. Ресетовати локацију фасцикле за преузимање\?</string>
     <string name="download_to_sdcard_error_title">Спољно складиште није доступно</string>
-    <string name="help">Помоћ</string>
     <string name="search_history_deleted">Историја претраге је обрисана</string>
     <string name="delete_search_history_alert">Да обришем целу историју претраге\?</string>
     <string name="clear_search_history_summary">Брише историју кључних речи за претрагу</string>

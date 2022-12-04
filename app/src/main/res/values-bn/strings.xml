@@ -145,7 +145,6 @@
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="general_error">ত্রুটি</string>
-    <string name="help">সাহায্য</string>
     <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>

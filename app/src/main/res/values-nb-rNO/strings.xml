@@ -462,7 +462,6 @@
     </plurals>
     <string name="mute">Forstum</string>
     <string name="unmute">Opphev forstumming</string>
-    <string name="help">Hjelp</string>
     <plurals name="minutes">
         <item quantity="one">%d minutt</item>
         <item quantity="other">%d minutter</item>

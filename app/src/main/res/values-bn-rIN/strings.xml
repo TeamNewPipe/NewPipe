@@ -196,7 +196,6 @@
     <string name="donation_title">দান করুন</string>
     <string name="create">তৈরি করুন</string>
     <string name="retry">পুনরায় চেষ্টা করুন</string>
-    <string name="help">সাহায্য</string>
     <string name="watch_history_deleted">দেখার ইতিহাস মুছে গেছে</string>
     <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন\?</string>
     <string name="clear_views_history_title">দেখার ইতিহাস মুছে ফেলুন</string>

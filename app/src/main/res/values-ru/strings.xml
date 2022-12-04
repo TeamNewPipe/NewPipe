@@ -475,7 +475,6 @@
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
     <string name="unmute">Включить звук</string>
-    <string name="help">Помощь</string>
     <string name="feed_group_dialog_empty_name">Введите имя группы</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d выбрана</item>

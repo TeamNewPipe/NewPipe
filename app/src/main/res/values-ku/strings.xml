@@ -462,7 +462,6 @@
     <string name="new_seek_duration_toast">بەهۆی ExoPlayer ەوە ماوەی بردنەپێش و بردنەپاش لە %d چرکەدا دیاریکرا</string>
     <string name="mute">کپ</string>
     <string name="unmute">کپ نەکردن</string>
-    <string name="help">یارمەتی</string>
     <plurals name="minutes">
         <item quantity="one">%d خولەک</item>
         <item quantity="other">%d خولەك</item>

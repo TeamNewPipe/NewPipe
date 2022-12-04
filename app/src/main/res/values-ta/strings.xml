@@ -241,7 +241,6 @@
     <string name="watch_history_states_deleted">இயக்கக குறியிடங்கள் அழிக்கப்பட்டன</string>
     <string name="description_tab_description">விவரிப்பு</string>
     <string name="albums">தொகுப்புகள்</string>
-    <string name="help">உதவி</string>
     <string name="artists">கலைஞர்கள்</string>
     <string name="videos_string">காணொளிகள்</string>
     <string name="peertube_instance_add_https_only">HTTPS உரலிகள் மட்டுமே ஆதரிக்கப்படுகின்றன</string>

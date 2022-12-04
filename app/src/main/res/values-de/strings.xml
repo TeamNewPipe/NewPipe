@@ -472,7 +472,6 @@
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
     <string name="mute">Stummschaltung</string>
     <string name="unmute">Stummschaltung aufheben</string>
-    <string name="help">Hilfe</string>
     <plurals name="minutes">
         <item quantity="one">%d Minute</item>
         <item quantity="other">%d Minuten</item>

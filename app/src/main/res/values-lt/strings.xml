@@ -293,7 +293,6 @@
     <string name="missing_file">Failas perkeltas ar ištrintas</string>
     <string name="download_to_sdcard_error_message">Įrašyti į išorinę SD kortelę nepavyko. Atstatyti atsisiuntimo aplanką\?</string>
     <string name="download_to_sdcard_error_title">Išorinė saugykla neprieinama</string>
-    <string name="help">Žinynas</string>
     <string name="search_history_deleted">Paieškos istorija pašalinta</string>
     <string name="delete_search_history_alert">Išvalyti visą paieškos istoriją\?</string>
     <string name="clear_search_history_summary">Išvalo paieškos istoriją</string>

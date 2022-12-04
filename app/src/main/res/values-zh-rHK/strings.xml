@@ -217,7 +217,6 @@
     <string name="enable_watch_history_summary">記低睇過嘅影片</string>
     <string name="autoplay_title">自動播放</string>
     <string name="settings_category_updates_title">更新</string>
-    <string name="help">說明</string>
     <string name="youtube_restricted_mode_enabled_title">開啟 YouTube 嘅「嚴格篩選模式」</string>
     <string name="no_streams_available_download">冇串流下載得到</string>
     <string name="permission_display_over_apps">畀權限去喺其他 app 上面顯示</string>

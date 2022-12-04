@@ -409,7 +409,6 @@
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
     <string name="download_to_sdcard_error_title">Magazina e jashtme u padisponueshme</string>
     <string name="general_error">Gabim</string>
-    <string name="help">Ndihmë</string>
     <string name="search_history_deleted">Historiku i kërkimeve u fshi</string>
     <string name="delete_search_history_alert">Doni të fshini të gjithë historikun e kërkimeve\?</string>
     <string name="clear_search_history_summary">Fshin historikun e fjalëve kyçe të kërkuara</string>

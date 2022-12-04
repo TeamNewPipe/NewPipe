@@ -325,7 +325,6 @@
     <string name="download_to_sdcard_error_message">Tashqi SD-kartaga yuklab olishning iloji yo\'q. Yuklash papkasining joylashuvi tiklansinmi\?</string>
     <string name="download_to_sdcard_error_title">Tashqi xotira mavjud emas</string>
     <string name="general_error">Xato</string>
-    <string name="help">Yordam</string>
     <string name="search_history_deleted">Qidiruv tarixi o\'chirildi.</string>
     <string name="delete_search_history_alert">Butun qidiruv tarixi o\'chirilsinmi\?</string>
     <string name="clear_search_history_summary">Qidiruv kalit so\'zlar tarixini o\'chiradi</string>

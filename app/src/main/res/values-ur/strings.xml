@@ -455,7 +455,6 @@
     <string name="error_report_open_issue_button_text">گِٹ ہب میں اطلاع دیں</string>
     <string name="copy_for_github">فارمیٹڈ رپورٹ کو کاپی کریں</string>
     <string name="permission_display_over_apps">دوسرے ایپس پر نظر آنے کی اجازت دیں</string>
-    <string name="help">مدد</string>
     <string name="clear_cookie_summary">ان کوکیز کو صاف کریں جنہیں نیو پائپ ری کیپچا حل کرنے کے دوران جمع کرتا ہے</string>
     <string name="recaptcha_cookies_cleared">ری کیپچا کوکیز صاف ہوئیں</string>
     <string name="clear_cookie_title">ری کیپچا کوکیز کو صاف کریں</string>

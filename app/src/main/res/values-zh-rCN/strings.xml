@@ -457,7 +457,6 @@
     <string name="new_seek_duration_toast">由于 ExoPlayer 的限制，寻址间隔置为 %d 秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
-    <string name="help">帮助</string>
     <plurals name="minutes">
         <item quantity="other">%d 分钟</item>
     </plurals>

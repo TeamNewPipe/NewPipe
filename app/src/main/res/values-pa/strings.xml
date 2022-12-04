@@ -572,7 +572,6 @@
     <string name="comments_tab_description">ਟਿੱਪਣੀਆਂ</string>
     <string name="error_report_open_issue_button_text">ਗਿਟਹੱਬ \'ਤੇ ਜਾ ਕੇ ਇਤਲਾਹ ਦਿਓ</string>
     <string name="permission_display_over_apps">ਦੂਜੀਆਂ ਐਪਾਂ ਦੇ ਉੱਤੇ ਵਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
-    <string name="help">ਮਦਦ</string>
     <string name="delete_playback_states_alert">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਣੀਆਂ ਹਨ\?</string>
     <string name="clear_playback_states_summary">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="clear_playback_states_title">ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਓ</string>

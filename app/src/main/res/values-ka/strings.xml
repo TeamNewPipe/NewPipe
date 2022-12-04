@@ -198,7 +198,6 @@
     <string name="watch_history_states_deleted">დაკვრის პოზიციები წაშლილია</string>
     <string name="clear_search_history_summary">წაშლის საძიებო საკვანძო სიტყვების ისტორიას</string>
     <string name="delete_search_history_alert">წაშალოთ მთელი ძიების ისტორია\?</string>
-    <string name="help">დახმარება</string>
     <string name="download_to_sdcard_error_title">გარე მეხსიერება მიუწვდომელია</string>
     <string name="network_error">Ქსელის შეცდომა</string>
     <string name="could_not_load_thumbnails">ყველა ესკიზის ჩატვირთვა ვერ მოხერხდა</string>

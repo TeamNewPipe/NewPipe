@@ -523,7 +523,6 @@
         <item quantity="few">%d minuty</item>
         <item quantity="many">%d minut</item>
     </plurals>
-    <string name="help">Pomoc</string>
     <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
 \n
 \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>

@@ -199,7 +199,6 @@
     <string name="download_to_sdcard_error_message">Lejupielādēt uz SD karti nav iespējams. Atiestatīt lejupielāžu mapes lokāciju\?</string>
     <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
-    <string name="help">Palīdzība</string>
     <string name="search_history_deleted">Meklēšanas vēsture izdzēsta</string>
     <string name="delete_search_history_alert">Izdzēsy visu meklēšanas vēsturi\?</string>
     <string name="clear_search_history_summary">Izdzēš meklēto vārdu vēsturi</string>

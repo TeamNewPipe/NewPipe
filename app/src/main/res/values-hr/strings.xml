@@ -428,7 +428,6 @@
     <string name="videos_string">Videa</string>
     <string name="mute">Isključi zvuk</string>
     <string name="unmute">Uključi</string>
-    <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda …</string>
     <string name="feed_group_dialog_delete_message">Želiš li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Nova</string>
