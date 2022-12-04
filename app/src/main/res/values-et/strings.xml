@@ -358,8 +358,7 @@
     <string name="list">Nimekiri</string>
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe värskendus on saadaval!</string>
-    <string name="app_update_notification_content_text">Allalaadimiseks puuduta</string>
+    <string name="app_update_available_notification_title">NewPipe värskendus on saadaval!</string>
     <string name="missions_header_finished">Lõpetatud</string>
     <string name="missions_header_pending">Ootel</string>
     <string name="paused">peatatud</string>

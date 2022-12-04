@@ -349,8 +349,7 @@
     <string name="list">Список</string>
     <string name="grid">Решетка</string>
     <string name="auto">Автоматски</string>
-    <string name="app_update_notification_content_title">NewPipe ажурирање е достапно!</string>
-    <string name="app_update_notification_content_text">Допри за преземање</string>
+    <string name="app_update_available_notification_title">NewPipe ажурирање е достапно!</string>
     <string name="missions_header_finished">Завршено</string>
     <string name="missions_header_pending">Во очекување</string>
     <string name="paused">Паузирано</string>

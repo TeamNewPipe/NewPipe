@@ -359,8 +359,7 @@
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
-    <string name="app_update_notification_content_text">Toque para descarregar</string>
+    <string name="app_update_available_notification_title">Atualização NewPipe disponível!</string>
     <string name="missions_header_finished">Terminada</string>
     <string name="paused">em pausa</string>
     <string name="queued">na fila</string>

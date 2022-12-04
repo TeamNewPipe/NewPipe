@@ -344,8 +344,7 @@
     <string name="paused">in pàusa</string>
     <string name="missions_header_pending">In isetu</string>
     <string name="missions_header_finished">Acabadu</string>
-    <string name="app_update_notification_content_text">Toca pro iscarrigare</string>
-    <string name="app_update_notification_content_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
+    <string name="app_update_available_notification_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
     <string name="auto">Automàtica</string>
     <string name="grid">Grìllia</string>
     <string name="list">Lista</string>

@@ -331,8 +331,7 @@
     <string name="list">รายการ</string>
     <string name="grid">ตาราง</string>
     <string name="auto">อัตโนมัติ</string>
-    <string name="app_update_notification_content_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
-    <string name="app_update_notification_content_text">แตะเพื่อดาวน์โหลด</string>
+    <string name="app_update_available_notification_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
     <string name="missions_header_finished">เสร็จแล้ว</string>
     <string name="missions_header_pending">อยู่ในคิว</string>
     <string name="paused">หยุดชั่วคราว</string>

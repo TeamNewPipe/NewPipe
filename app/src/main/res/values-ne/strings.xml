@@ -356,8 +356,7 @@
     <string name="list">सूची</string>
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
-    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
-    <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
+    <string name="app_update_available_notification_title">NewPipe अपडेट उपलब्ध छ!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
     <string name="paused">पज</string>

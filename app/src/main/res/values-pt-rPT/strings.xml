@@ -151,7 +151,6 @@
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>
     <string name="content">Conteúdo</string>
@@ -244,7 +243,7 @@
     <string name="grid">Grelha</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
+    <string name="app_update_available_notification_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>

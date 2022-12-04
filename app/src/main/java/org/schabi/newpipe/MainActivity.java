@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
             // Start the worker which is checking all conditions
             // and eventually searching for a new version.
-            NewVersionWorker.enqueueNewVersionCheckingWork(app);
+            NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
         }
     }
 

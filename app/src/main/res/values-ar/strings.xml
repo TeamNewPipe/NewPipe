@@ -370,8 +370,7 @@
     <string name="list">القائمة</string>
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
-    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
-    <string name="app_update_notification_content_text">اضغط لتنزيل</string>
+    <string name="app_update_available_notification_title">تحديث NewPipe متاح!</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>
     <string name="paused">متوقف</string>

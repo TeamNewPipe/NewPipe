@@ -354,8 +354,7 @@
     <string name="list">Danh sách</string>
     <string name="grid">Lưới</string>
     <string name="auto">Tự động</string>
-    <string name="app_update_notification_content_title">Đã có bản cập nhật mới!</string>
-    <string name="app_update_notification_content_text">Nhấn để tải về</string>
+    <string name="app_update_available_notification_title">Đã có bản cập nhật mới!</string>
     <string name="missions_header_finished">Xong</string>
     <string name="paused">đã tạm dừng</string>
     <string name="queued">trong hàng đợi</string>

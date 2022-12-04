@@ -388,8 +388,7 @@
     <string name="list">Listo</string>
     <string name="grid">Krado</string>
     <string name="auto">Aŭto</string>
-    <string name="app_update_notification_content_title">Ĝisdatigo de NewPipe havebla!</string>
-    <string name="app_update_notification_content_text">Premi por elŝuti</string>
+    <string name="app_update_available_notification_title">Ĝisdatigo de NewPipe havebla!</string>
     <string name="missions_header_finished">Finita</string>
     <string name="missions_header_pending">Pritraktata</string>
     <string name="paused">Paŭzigita</string>

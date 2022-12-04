@@ -150,7 +150,7 @@
     <string name="systems_language">Predefinite del systema</string>
     <string name="app_language_title">Lingua del application</string>
     <string name="feed_update_threshold_option_always_update">Actualisar sempre</string>
-    <string name="app_update_notification_content_title">Il ha un actualisation de NewPipe disponibile!</string>
+    <string name="app_update_available_notification_title">Il ha un actualisation de NewPipe disponibile!</string>
     <string name="updates_setting_description">Monstrar un notification pro requestar le actualisation del application quando un nove version es disponibile</string>
     <string name="updates_setting_title">Actualisationes</string>
     <string name="open_in_popup_mode">Aperir in modo emergente</string>

@@ -420,8 +420,7 @@
     <string name="paused">താൽക്കാലികമായി നിർത്തി</string>
     <string name="missions_header_pending">ശേഷിക്കുന്നു</string>
     <string name="missions_header_finished">പൂർത്തിയായി</string>
-    <string name="app_update_notification_content_text">ഡൗൺലോഡുചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
-    <string name="app_update_notification_content_title">ന്യൂപൈപ്പ് അപ്‌ഡേറ്റ് ലഭ്യമാണ്!</string>
+    <string name="app_update_available_notification_title">ന്യൂപൈപ്പ് അപ്‌ഡേറ്റ് ലഭ്യമാണ്!</string>
     <string name="auto">ഓട്ടോ</string>
     <string name="grid">ഗ്രിഡ്</string>
     <string name="list">ലിസ്റ്റ്</string>

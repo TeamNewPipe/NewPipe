@@ -355,8 +355,7 @@
     <string name="list">ਲਿਸਟ</string>
     <string name="grid">ਗਰਿੱਡ</string>
     <string name="auto">ਆਟੋ</string>
-    <string name="app_update_notification_content_title">ਨਿਊ-ਪਾਈਪ ਦੀ ਅਪਡੇਟ ਉਪਲਬੱਧ ਹੈ!</string>
-    <string name="app_update_notification_content_text">ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਦਬਾਓ</string>
+    <string name="app_update_available_notification_title">ਨਿਊ-ਪਾਈਪ ਦੀ ਅਪਡੇਟ ਉਪਲਬੱਧ ਹੈ!</string>
     <string name="missions_header_finished">ਮੁਕੰਮਲ ਹੋਇਆ</string>
     <string name="missions_header_pending">ਬਕਾਇਆ</string>
     <string name="paused">ਰੁਕਿਆ</string>

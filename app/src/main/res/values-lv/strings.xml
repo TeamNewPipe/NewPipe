@@ -447,8 +447,7 @@
     <string name="paused">Pausēts</string>
     <string name="missions_header_pending">Gaida</string>
     <string name="missions_header_finished">Pabeigts</string>
-    <string name="app_update_notification_content_text">Nospiediet, lai lejupielādētu</string>
-    <string name="app_update_notification_content_title">Ir pieejams Newpipe atjauninājums!</string>
+    <string name="app_update_available_notification_title">Ir pieejams Newpipe atjauninājums!</string>
     <string name="auto">Automātiski</string>
     <string name="grid">Tīkls</string>
     <string name="list">Saraksts</string>

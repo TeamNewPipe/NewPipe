@@ -569,7 +569,7 @@
     <string name="feed_oldest_subscription_update">Paskutinis atnaujinimas: %s</string>
     <string name="downloads_storage_ask_title">Klausti kur parsiųsti</string>
     <string name="overwrite_failed">failo perrašyti nepavyko</string>
-    <string name="app_update_notification_content_title">Prieinamas NewPipe atnaujinimas!</string>
+    <string name="app_update_available_notification_title">Prieinamas NewPipe atnaujinimas!</string>
     <string name="minimize_on_exit_title">Perjungiant programą sumažinti</string>
     <string name="unhook_checkbox">Atkabinti (gali iškraipyti)</string>
     <string name="subscriptions_export_unsuccessful">Nepavyko eksportuoti prenumeratų</string>
@@ -585,7 +585,6 @@
     <string name="delete_downloaded_files">Pašalinti parsiųstus failus</string>
     <string name="choose_instance_prompt">Pasirinkite kopiją</string>
     <string name="enable_queue_limit">Riboti parsiuntimų eilę</string>
-    <string name="app_update_notification_content_text">Paspauskite parsiuntimui</string>
     <string name="list_view_mode">Sąrašo rodinio režimas</string>
     <string name="skip_silence_checkbox">Prasukti kai nieko negroja</string>
     <string name="playlist_page_summary">Grojaraščio puslapis</string>

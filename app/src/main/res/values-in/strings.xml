@@ -352,8 +352,7 @@
     <string name="list">Daftar</string>
     <string name="grid">Kisi</string>
     <string name="auto">Otomatis</string>
-    <string name="app_update_notification_content_title">Pembaruan NewPipe telah tersedia!</string>
-    <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
+    <string name="app_update_available_notification_title">Pembaruan NewPipe telah tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>

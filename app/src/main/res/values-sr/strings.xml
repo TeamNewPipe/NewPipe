@@ -268,8 +268,7 @@
     <string name="paused">паузирано</string>
     <string name="missions_header_pending">На чекању</string>
     <string name="missions_header_finished">Завршено</string>
-    <string name="app_update_notification_content_text">Тапните за преузимање</string>
-    <string name="app_update_notification_content_title">Доступно је ажурирање за ЊуПајп!</string>
+    <string name="app_update_available_notification_title">Доступно је ажурирање за ЊуПајп!</string>
     <string name="auto">аутоматски</string>
     <string name="grid">мрежа</string>
     <string name="list">листа</string>

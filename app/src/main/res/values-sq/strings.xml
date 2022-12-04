@@ -110,8 +110,7 @@
     <string name="queued">e shtuar në radhë</string>
     <string name="paused">ndalur</string>
     <string name="missions_header_finished">Përfunduar</string>
-    <string name="app_update_notification_content_text">Shtyp për të shkarkuar</string>
-    <string name="app_update_notification_content_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
+    <string name="app_update_available_notification_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
     <string name="list_view_mode">Pamja e listës</string>

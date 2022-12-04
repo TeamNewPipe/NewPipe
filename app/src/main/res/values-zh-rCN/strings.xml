@@ -59,7 +59,7 @@
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">有新版本时，显示通知提示更新应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">NewPipe 可更新！</string>
+    <string name="app_update_available_notification_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清空数据</string>
@@ -366,7 +366,6 @@
     <string name="updates_setting_title">更新</string>
     <string name="list">列表</string>
     <string name="auto">自动</string>
-    <string name="app_update_notification_content_text">点击下载</string>
     <string name="post_processing">处理中</string>
     <string name="generate_unique_name">生成唯一名称</string>
     <string name="overwrite">覆盖</string>

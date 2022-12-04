@@ -355,8 +355,7 @@
     <string name="list">Lista</string>
     <string name="grid">Rutnät</string>
     <string name="auto">Automatiskt</string>
-    <string name="app_update_notification_content_title">En NewPipe-uppdatering är tillgänglig!</string>
-    <string name="app_update_notification_content_text">Tryck för att hämta</string>
+    <string name="app_update_available_notification_title">En NewPipe-uppdatering är tillgänglig!</string>
     <string name="missions_header_finished">Färdig</string>
     <string name="paused">pausad</string>
     <string name="queued">köad</string>

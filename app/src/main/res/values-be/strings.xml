@@ -355,8 +355,7 @@
     <string name="list">Спіс</string>
     <string name="grid">Сетка</string>
     <string name="auto">Аўтаматычна</string>
-    <string name="app_update_notification_content_title">Даступна абнаўленне NewPipe!</string>
-    <string name="app_update_notification_content_text">Націсніце для загрузкі</string>
+    <string name="app_update_available_notification_title">Даступна абнаўленне NewPipe!</string>
     <string name="missions_header_finished">Скончана</string>
     <string name="missions_header_pending">У чарзе</string>
     <string name="paused">прыпынена</string>

@@ -424,8 +424,7 @@
     <string name="paused">sekinî</string>
     <string name="missions_header_pending">Nexelas</string>
     <string name="missions_header_finished">Qediya</string>
-    <string name="app_update_notification_content_text">Tap bikin dakêşin</string>
-    <string name="app_update_notification_content_title">Nûvekirina NewPipe heye!</string>
+    <string name="app_update_available_notification_title">Nûvekirina NewPipe heye!</string>
     <string name="auto">Jixweber</string>
     <string name="grid">Qefes</string>
     <string name="list">Rêzok</string>

@@ -310,8 +310,7 @@
     <string name="updates_setting_description">Prikaži obavijest i zatraži aktualiziranje programa kad je dostupna nova verzija</string>
     <string name="list">Popis</string>
     <string name="grid">Popločeno</string>
-    <string name="app_update_notification_content_title">Dostupna je nova verzija za NewPipe!</string>
-    <string name="app_update_notification_content_text">Dodirni za preuzimanje</string>
+    <string name="app_update_available_notification_title">Dostupna je nova verzija za NewPipe!</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="show_error">Prikaži pogrešku</string>
     <string name="download_thumbnail_summary">Isključi za sprečavanje učitavanja sličica, čime se štedi korištenje podataka i memorije. Promjene čiste predmemoriju slika radne memorije i diska</string>

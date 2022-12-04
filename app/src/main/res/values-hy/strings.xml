@@ -83,7 +83,7 @@
         <item quantity="other">%d րոպե</item>
     </plurals>
     <string name="feed_groups_header_title">Ալիքների խմբեր</string>
-    <string name="app_update_notification_content_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
+    <string name="app_update_available_notification_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
     <string name="list">Ցանկ</string>
     <string name="never">Երբեք</string>
     <string name="minimize_on_exit_none_description">Ոչինչ</string>

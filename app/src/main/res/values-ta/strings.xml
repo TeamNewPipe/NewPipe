@@ -303,7 +303,6 @@
     <string name="download_already_pending">இப்பெயருடன் ஒரு பதிவிறக்கம் நிலுவையிலுள்ளது</string>
     <string name="no_available_dir">பின்னர் பதிவிறக்க அடைவை அமைவில் வரையறுக்கவும்</string>
     <string name="settings_category_downloads_title">பதிவிறக்கம்</string>
-    <string name="app_update_notification_content_text">பதிவிறக்க தட்டு</string>
     <string name="max_retry_desc">பதிவிறக்கத்தை ரத்துசெய்வதற்கு முன் செய்யவேண்டிய அதிகபட்ச முயற்சிகள்</string>
     <plurals name="download_finished_notification">
         <item quantity="one">பதிவிறக்கம் முடிந்தது</item>
@@ -317,7 +316,7 @@
     <string name="error_download_resource_gone">இப்பதிவிறக்கத்தை மீட்டெடுக்க முடியவில்லை</string>
     <string name="main_page_content_swipe_remove">உருப்படிகளை அகற்ற அவற்றைத் தேய்</string>
     <string name="create_error_notification">பிழை அறிவிப்பைப் படை</string>
-    <string name="app_update_notification_content_title">NewPipe புதுப்பிப்பு கிடைக்கிறது!</string>
+    <string name="app_update_available_notification_title">NewPipe புதுப்பிப்பு கிடைக்கிறது!</string>
     <string name="wifi_only">அருகலையில் மட்டும்</string>
     <string name="never">ஒருபோதுமில்லை</string>
     <string name="list_view_mode">பட்டியல் பார்வை முறை</string>
