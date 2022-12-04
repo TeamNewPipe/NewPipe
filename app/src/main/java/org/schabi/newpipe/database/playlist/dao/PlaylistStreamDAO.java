@@ -26,6 +26,7 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PL
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_THUMBNAIL_URL;
+import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID_ALIAS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
@@ -48,6 +49,16 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     @Query("DELETE FROM " + PLAYLIST_STREAM_JOIN_TABLE
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     void deleteBatch(long playlistId);
+
+    @Query("SELECT COALESCE(COUNT(*), 0)"
+            + " FROM " + STREAM_TABLE
+            + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId "
+            + " AND " + STREAM_URL + " = :streamURL"
+    )
+    Flowable<Integer> getDuplicates(long playlistId, String streamURL);
+
 
     @Query("SELECT COALESCE(MAX(" + JOIN_INDEX + "), -1)"
             + " FROM " + PLAYLIST_STREAM_JOIN_TABLE

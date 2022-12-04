@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.dialog;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,6 +129,19 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
                                     @NonNull final PlaylistMetadataEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
+
+        final int numOfDuplicates = manager.getPlaylistDuplicates(playlist.uid,
+                        streams.get(0).getUrl()).blockingFirst();
+        if (numOfDuplicates > 0) {
+            createDuplicateDialog(numOfDuplicates, manager, playlist, streams);
+        } else {
+            addStreamToPlaylist(manager, playlist, streams);
+        }
+    }
+
+    private void addStreamToPlaylist(@NonNull final LocalPlaylistManager manager,
+                                     @NonNull final PlaylistMetadataEntry playlist,
+                                     @NonNull final List<StreamEntity> streams) {
         final Toast successToast = Toast.makeText(getContext(),
                 R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
@@ -142,7 +156,23 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistDisposables.add(manager.appendToPlaylist(playlist.uid, streams)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> successToast.show()));
-
         requireDialog().dismiss();
+    }
+
+    private void createDuplicateDialog(final int duplicates,
+                                       @NonNull final LocalPlaylistManager manager,
+                                       @NonNull final PlaylistMetadataEntry playlist,
+                                       @NonNull final List<StreamEntity> streams) {
+        //TODO: change color
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+        builder.setTitle(R.string.duplicate_stream_in_playlist_title);
+        builder.setMessage(getString(R.string.duplicate_stream_in_playlist_description,
+                duplicates));
+
+        builder.setPositiveButton(android.R.string.yes, (dialog, i) -> {
+            addStreamToPlaylist(manager, playlist, streams);
+        });
+        builder.setNeutralButton(R.string.cancel, null);
+        builder.create().show();
     }
 }
