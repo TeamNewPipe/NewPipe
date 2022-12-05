@@ -767,11 +767,6 @@ public final class VideoDetailFragment
             Log.d(TAG, "onBackPressed() called");
         }
 
-        // when queue should be ignored, directly skip checks and let MainActivity handle everything
-        if (ignoreQueue) {
-            return false;
-        }
-
         // If we are in fullscreen mode just exit from it via first back press
         if (isFullscreen()) {
             if (!DeviceUtils.isTablet(activity)) {
@@ -780,6 +775,11 @@ public final class VideoDetailFragment
             restoreDefaultOrientation();
             setAutoPlay(false);
             return true;
+        }
+
+        // when queue should be ignored, directly skip checks and let MainActivity handle everything
+        if (ignoreQueue) {
+            return false;
         }
 
         // If we have something in history of played items we replay it here
