@@ -1,0 +1,6 @@
+Opraven pád, ke kterému docházelo při změně pořadí skupin kanálů.
+Opraveno získávání dalších videí YouTube z kanálů a seznamů skladeb.
+Opraveno získávání komentářů YouTube.
+Přidána podpora podcest /watch/, /v/ a /w/ v adresách URL YouTube.
+Opraveno získávání id klienta služby SoundCloud a obsahu s geografickým omezením.
+Přidána lokalizace do severní kurdštiny.

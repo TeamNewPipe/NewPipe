@@ -147,16 +147,19 @@
     <string name="no_subscribers">Nessun iscritto</string>
     <plurals name="subscribers">
         <item quantity="one">%s iscritto</item>
+        <item quantity="many">%s iscritti</item>
         <item quantity="other">%s iscritti</item>
     </plurals>
     <string name="no_views">Nessuna visualizzazione</string>
     <plurals name="views">
         <item quantity="one">%s visualizzazione</item>
+        <item quantity="many">%s visualizzazioni</item>
         <item quantity="other">%s visualizzazioni</item>
     </plurals>
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
+        <item quantity="many">%s video</item>
         <item quantity="other">%s video</item>
     </plurals>
     <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
@@ -424,11 +427,13 @@
     <string name="no_one_watching">Nessuno sta guardando</string>
     <plurals name="watching">
         <item quantity="one">%s sta guardando</item>
+        <item quantity="many">%s stanno guardando</item>
         <item quantity="other">%s stanno guardando</item>
     </plurals>
     <string name="no_one_listening">Nessuno sta ascoltando</string>
     <plurals name="listening">
         <item quantity="one">%s ascoltatore</item>
+        <item quantity="many">%s ascoltatori</item>
         <item quantity="other">%s ascoltatori</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione</string>
@@ -459,6 +464,7 @@
     <string name="videos_string">Video</string>
     <plurals name="seconds">
         <item quantity="one">%d secondo</item>
+        <item quantity="many">%d secondi</item>
         <item quantity="other">%d secondi</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa delle limitazioni di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
@@ -467,14 +473,17 @@
     <string name="help">Aiuto</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minuti</item>
         <item quantity="other">%d minuti</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d ora</item>
+        <item quantity="many">%d ore</item>
         <item quantity="other">%d ore</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d giorno</item>
+        <item quantity="many">%d giorni</item>
         <item quantity="other">%d giorni</item>
     </plurals>
     <string name="feed_groups_header_title">Gruppi di canali</string>
@@ -486,6 +495,7 @@
     <string name="feed_group_dialog_empty_selection">Nessuna iscrizione selezionata</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selezionato</item>
+        <item quantity="many">%d selezionati</item>
         <item quantity="other">%d selezionati</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">Eliminare questo gruppo\?</string>
@@ -560,8 +570,8 @@
     <string name="notification_action_shuffle">Casuale</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
-    <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
-    <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="notification_scale_to_square_image_title">Ritaglia copertina con proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Ritaglia la copertina del video mostrata nella notifica, cambiando la proporzione da 16:9 a 1:1</string>
     <string name="show_memory_leaks">Mostra memory leak</string>
     <string name="enqueued">Aggiunto alla coda</string>
     <string name="enqueue_stream">Accoda</string>
@@ -652,10 +662,12 @@
     <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download eliminato</item>
+        <item quantity="many">%1$s download eliminati</item>
         <item quantity="other">%1$s download eliminati</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Download completato</item>
+        <item quantity="many">%s download completati</item>
         <item quantity="other">%s download completati</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Scorri gli elementi per rimuoverli</string>
@@ -674,17 +686,17 @@
     <string name="error_report_notification_title">NewPipe ha riscontrato un errore, tocca per segnalarlo</string>
     <string name="show_error_snackbar">Mostra un messaggio di errore</string>
     <string name="no_appropriate_file_manager_message">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download.</string>
+\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download</string>
     <string name="error_report_channel_name">Notifica per segnalazione errori</string>
     <string name="error_report_channel_description">Notifiche per segnalare errori</string>
     <string name="error_report_notification_toast">Si è verificato un errore, vedi la notifica</string>
     <string name="create_error_notification">Crea una notifica di errore</string>
     <string name="no_appropriate_file_manager_message_android_10">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno compatibile con Storage Access Framework.</string>
+\nInstallane uno compatibile con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
+    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore</string>
     <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
     <string name="streams_notifications_network_title">Connessione di rete richiesta</string>
@@ -699,6 +711,7 @@
     <string name="streams_notification_channel_name">Nuovi contenuti</string>
     <plurals name="new_streams">
         <item quantity="one">%s nuovo contenuto</item>
+        <item quantity="many">%s nuovi contenuti</item>
         <item quantity="other">%s nuovi contenuti</item>
     </plurals>
     <string name="loading_stream_details">Caricamento dei dettagli dei contenuti…</string>
@@ -716,5 +729,8 @@
     <string name="select_quality_external_players">Seleziona qualità per lettori esterni</string>
     <string name="unknown_quality">Qualità sconosciuta</string>
     <string name="unknown_format">Formato sconosciuto</string>
-    <string name="progressive_load_interval_title">Dimensione dell\'intervallo di caricamento della riproduzione</string>
+    <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
+    <string name="feed_toggle_show_future_items">Mostra elementi futuri</string>
+    <string name="feed_toggle_hide_played_items">Nascondi elementi visti</string>
+    <string name="feed_toggle_hide_future_items">Nascondi elementi futuri</string>
 </resources>

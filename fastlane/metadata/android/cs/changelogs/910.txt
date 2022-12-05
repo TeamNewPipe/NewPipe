@@ -1,0 +1,1 @@
+Opravena migrace databáze, která v některých vzácných případech znemožňovala spuštění aplikace NewPipe.

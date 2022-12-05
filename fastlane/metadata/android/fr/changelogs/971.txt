@@ -1,0 +1,3 @@
+Correctifs
+• Augmentation de la mémoire tampon pour la lecture après le re-buffer
+• Correction d'un crash sur les tablettes et les téléviseurs lors d'un clic sur l'icône de la file d'attente dans le lecteur

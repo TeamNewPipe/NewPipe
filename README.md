@@ -86,7 +86,7 @@ Also, since they are free and open source software, neither the app nor the Extr
 * Open in Kodi
 * Watch/Block age-restricted material
 
-<!-- Hidden span to keep old links compatible. -->
+<!-- Hidden span to keep old links compatible. You should remove this span if you're translating the README into another language.-->
 <span id="updates"></span>
 
 ## Installation and updates

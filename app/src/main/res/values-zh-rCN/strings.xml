@@ -89,7 +89,7 @@
     <string name="title_activity_about">关于 NewPipe</string>
     <string name="title_licenses">第三方许可</string>
     <string name="copyright" formatted="true">© %1$s 由 %2$s 遵循 %3$s 协议发布</string>
-    <string name="tab_about">关于</string>
+    <string name="tab_about">关于和常见问题</string>
     <string name="tab_licenses">许可证</string>
     <string name="settings_category_downloads_title">下载</string>
     <string name="settings_file_charset_title">文件名中允许的字符</string>
@@ -550,8 +550,8 @@
     <string name="notification_action_2_title">第三操作按钮</string>
     <string name="notification_action_1_title">第二操作按钮</string>
     <string name="notification_action_0_title">第一操作按钮</string>
-    <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 强制缩放到 1:1（可能会导致失真）</string>
-    <string name="notification_scale_to_square_image_title">强制缩放缩略图至 1:1 比例</string>
+    <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 裁剪到 1:1</string>
+    <string name="notification_scale_to_square_image_title">裁剪缩略图至 1:1 比例</string>
     <string name="show_memory_leaks">显示内存泄漏</string>
     <string name="enqueued">已加入播放队列</string>
     <string name="enqueue_stream">加入播放队列</string>
@@ -665,13 +665,13 @@
     <string name="show_error_snackbar">显示错误警示SnackBar</string>
     <string name="create_error_notification">创建一条错误通知</string>
     <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。
-\n请安装一文件管理器或尝试在下载设置中禁用“%s”。</string>
+\n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
-\n请安装与存储访问框架(SAF)兼容的文件管理器。</string>
+\n请安装兼容存储访问框架(SAF)的文件管理器</string>
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
-    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器。</string>
+    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
     <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>
@@ -685,8 +685,7 @@
     <string name="notifications">通知</string>
     <string name="streams_notification_channel_name">新的串流</string>
     <plurals name="new_streams">
-        <item quantity="one">%s 条新串流</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 个新音视频流</item>
     </plurals>
     <string name="streams_notification_channel_description">被订阅的新串流的通知</string>
     <string name="loading_stream_details">正在加载串流详情…</string>
@@ -704,4 +703,12 @@
     <string name="no_video_streams_available_for_external_players">没有视频流可用于外部播放器</string>
     <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
     <string name="unknown_quality">未知画质</string>
+    <string name="progressive_load_interval_title">播放加载间隔大小</string>
+    <string name="feed_toggle_show_future_items">显示未来项目</string>
+    <string name="feed_toggle_hide_played_items">隐藏看过的项目</string>
+    <string name="feed_toggle_hide_future_items">隐藏未来项目</string>
+    <string name="faq_title">常见问题</string>
+    <string name="faq_description">如果你在使用本应用时遇到问题，请务必查看这些常见问题的答案！</string>
+    <string name="faq">在网站上查看</string>
+    <string name="sort">排序</string>
 </resources>

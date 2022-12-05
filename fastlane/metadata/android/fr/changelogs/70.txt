@@ -1,0 +1,25 @@
+ATTENTION : Cette version est probablement un festival de bugs, tout comme la dernière. Cependant, en raison de la fermeture complète depuis la 17. une version cassée est mieux que pas de version. N'est-ce pas ? ¯\_(ツ)_/¯
+
+### Améliorations
+* Les fichiers téléchargés peuvent maintenant être ouverts en un seul clic. 
+* Suppression du support pour Android 4.1 - 4.3 #1884 
+* Suppression de l'ancien lecteur #1884 
+* Suppression des flux de la file d'attente de lecture actuelle en les faisant glisser vers la droite #1915 
+* Suppression du flux en file d'attente automatique lorsqu'un nouveau flux est mis en file d'attente manuellement #1878 
+* Post-traitement pour les téléchargements et implémentation des fonctionnalités manquantes #1759 par @kapodamy
+  * Infrastructure de post-traitement
+  * Infrastructure de gestion des erreurs (pour le téléchargeur)
+  * File d'attente au lieu de téléchargements multiples
+  * Déplacer les téléchargements sérialisés en attente (fichiers `.giga`) vers les données de l'application.
+  * Implémentation de la répétition maximale des téléchargements
+  * Mise en pause des téléchargements multi-threads
+  * Arrêter les téléchargements lors du passage au réseau mobile (ne fonctionne jamais, voir 2ème point)
+  * Sauvegarder le nombre de threads pour les prochains téléchargements
+  * Beaucoup d'incohérences corrigées
+
+### Corrigé
+* Correction d'un crash avec la résolution par défaut réglée sur la meilleure et la résolution limitée des données mobiles #1835
+* Correction du crash du lecteur de pop-up #1874 
+* NPE lors de l'ouverture du lecteur de fond #1901
+* Correction de l'insertion de nouveaux flux lorsque la mise en file d'attente automatique est activée #1878
+* Correction du problème de décryptage de Shuttown

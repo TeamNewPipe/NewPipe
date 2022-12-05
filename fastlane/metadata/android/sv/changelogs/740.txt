@@ -1,0 +1,11 @@
+<h4>Förbättringar</h4>
+<ul>
+<li>Gör länkar i kommentarer klickbara, öka textstorleken</li>
+<li>visa önskad flik baserat på nyligen valt tillstånd</li>
+<li>lägga till "dela vid aktuell tidpunkt" knappen till huvudvideospelaren</li>
+<li>lägg till "Spela direkt i bakgrunden" till longpress-menyn för videolistobjekt</li>
+</ul>
+<h4>Fixat</h4>
+<ul>
+<li>fixade import av youtube-prenumerationer: ignorerar dem med ogiltig url och behåller dem med tom titel</li>
+</ul>

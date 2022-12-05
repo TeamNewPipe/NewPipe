@@ -1,0 +1,17 @@
+Nový
+- Zobrazení náhledu miniatur při hledání
+- Rozpoznání zakázaných komentářů
+- Umožňuje označit položku kanálu jako sledovanou
+- Zobrazit srdíčka komentářů
+
+Vylepšené stránky
+- Vylepšení rozvržení metadat a značek
+- Použití barvy služby na součásti uživatelského rozhraní
+
+Opraveno
+- Oprava miniatur v mini přehrávači
+- Oprava nekonečného vyrovnávací paměti u duplicitních položek fronty
+- Opravy některých přehrávačů, jako je otáčení a rychlejší zavírání
+-
+-
+-

@@ -43,7 +43,7 @@ public final class NotificationPlayerUi extends PlayerUi {
     @Override
     public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         super.onThumbnailLoaded(bitmap);
-        notificationUtil.createNotificationIfNeededAndUpdate(false);
+        notificationUtil.updateThumbnail();
     }
 
     @Override

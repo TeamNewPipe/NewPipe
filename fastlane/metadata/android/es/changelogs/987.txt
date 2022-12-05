@@ -1,0 +1,12 @@
+Nuevos
+- Soporta métodos de entrega distintos a HTTP progresivo: tiempo más rápido de carga de reproducción, arreglos PeerTube y SoundCloud, reproducción de livestreams YouTube recién terminados
+- Botón para añadir una lista de reproducción remota a una local
+- Vista previa de imagen en hoja de compartir de Android 10+
+
+Mejorías
+- Mejorar diálogo de parámetros de reproducción
+- Mover botones de importación/exportación de suscripciones a menú de 3 puntos
+
+Arreglados
+- Arreglar eliminación de vídeos totalmente vistos de lista de reproducción
+- Tema corregido de menú compartir y entrada "añadir a lista de reproducción

@@ -1,0 +1,8 @@
+• Autoriser installation sur un stockage externe
+• [Bandcamp] Ajout fonction permettant d'afficher les trois premiers commentaires d'un flux
+• Afficher 'download has started' uniquement lorsque téléchargement lancé
+• Ne pas définir cookie reCaptcha lorsqu'aucun n'est stocké
+• [Player] Amélioration performances cache
+• [Player] Correction problème lecture automatique
+• Désactiver barres d'état précédentes lors suppr. des téléchargements
+• Correction suppression objet ne figurant pas dans la liste

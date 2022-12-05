@@ -1,0 +1,14 @@
+Nuevo
+- Grupos de suscriptores y feeds ordenados
+- Botón de silencio en reproductores
+
+Mejora de
+- Permitir la apertura de enlaces music.youtube.com y media.ccc.de en NewPipe
+- Reubicar dos ajustes de Apariencia a Contenido
+- Ocultar opciones de búsqueda de 5, 15 y 25 seg. si activada búsqueda inexacta
+
+Corregido
+- algunos vídeos WebM no pueden ser buscados
+- copia de seguridad de base de datos en Android P
+- caída al compartir un archivo descargado
+- montones de problema de extracción de YouTube y más ...

@@ -1,0 +1,15 @@
+# changes of v0.14.1
+
+### Fixed
+- Fixed failed to decrypt video url #1659 
+- Fixed description link not extract well #1657
+
+# changes of v0.14.0
+
+### New
+- New Drawer design #1461
+- New customizable front page #1461
+
+### Improvements
+- Reworked Gesture controls #1604 
+- New way to close the popup player #1597

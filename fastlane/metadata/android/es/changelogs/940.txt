@@ -1,0 +1,16 @@
+Nuevos
+- Añadir soporte para los comentarios de SoundCloud
+- Añadir la configuración del modo restringido de YouTube
+- Mostrar los detalles del canal padre de PeerTube
+
+Mejora de
+- Mostrar el botón Kore sólo para los servicios compatibles
+- Bloquear gestos de reproductor que inician en NavigationBar o StatusBar
+- Cambio color fondo de botones reintento y suscripción según color de servicio
+
+Arreglados
+- Corregido el congelamiento del diálogo de descarga
+- El botón "Abrir en navegador" ahora se abre realmente en navegador
+- Arreglo de colapso al abrir vídeos y "No se pudo reproducir este flujo"
+
+y más

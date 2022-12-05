@@ -1,0 +1,8 @@
+- Povolení instalace na externí úložiště
+- [Bandcamp] Přidána podpora pro zobrazení prvních tří komentářů u streamu
+- Zobrazení přípitku "stahování zahájeno" pouze po zahájení stahování
+- Nenastavovat soubor cookie reCaptcha, pokud není uložen žádný soubor cookie
+- Přehrávač] Zlepšení výkonu mezipaměti
+- Přehrávač] Opraveno automatické nepřehrávání přehrávače
+- Zrušit předchozí Snackbary při mazání stahování
+- Opraven pokus o odstranění objektu, který není v seznamu

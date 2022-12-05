@@ -1,0 +1,16 @@
+Nový
+• Oznámení o nových streamech
+• Bezproblémový přechod mezi přehrávači na pozadí a videem
+• Změna výšky tónu podle půltónů
+• Připojení fronty hlavního přehrávače k seznamu skladeb
+
+Vylepšený
+• Zapamatujte si velikost kroku rychlosti / stoupání
+• Zmírnění počátečního dlouhého ukládání do vyrovnávací paměti v přehrávači videa
+• Vylepšete uživatelské rozhraní přehrávače pro Android TV
+• Potvrďte před odstraněním všech stažených souborů
+
+Stabilní
+•
+•
+•

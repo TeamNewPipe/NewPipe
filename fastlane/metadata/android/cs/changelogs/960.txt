@@ -1,0 +1,4 @@
+- Vylepšený popis možnosti exportu databáze v nastavení.
+- Opraveno zpracování komentářů na YouTube.
+- Opraveno zobrazení názvu služby media.ccc.de.
+- Aktualizovány překlady.

@@ -1,0 +1,4 @@
+Hotfix
+- Oprava ořezávání miniatur a názvů v mřížkovém rozložení kvůli špatnému výpočtu, kolik videí se vejde do jednoho řádku.
+- Oprava dialogu stahování, který zmizí, aniž by cokoli provedl, pokud je otevřen z nabídky sdílení
+- Aktualizace knihovny související s otevíráním externích činností, například výběrem souborů v rámci Storage Access Framework

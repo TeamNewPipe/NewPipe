@@ -79,7 +79,7 @@
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="progressive_load_interval_title">Playback load interval size</string>
-    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart.</string>
+    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
@@ -348,7 +348,7 @@
     <string name="title_activity_about">About NewPipe</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="copyright">© %1$s by %2$s under %3$s</string>
-    <string name="tab_about">About</string>
+    <string name="tab_about">About \u0026 FAQ</string>
     <string name="tab_licenses">Licenses</string>
     <string name="app_description">Libre lightweight streaming on Android.</string>
     <string name="contribution_title">Contribute</string>
@@ -365,6 +365,9 @@
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
+    <string name="faq_title">Frequently asked questions</string>
+    <string name="faq_description">If you are having trouble using the app, be sure to check out these answers to common questions!</string>
+    <string name="faq">View on website</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
@@ -684,6 +687,7 @@
 \n
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
+    <string name="feed_toggle_hide_played_items">Hide watched items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -694,8 +698,10 @@
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
-    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.\nPlease install a file manager or try to disable \'%s\' in the download settings.</string>
-    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.\nPlease install a Storage Access Framework compatible file manager.</string>
+    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.
+\nPlease install a file manager or try to disable \'%s\' in the download settings</string>
+    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.
+\nPlease install a Storage Access Framework compatible file manager</string>
     <string name="georestricted_content">This content is not available in your country.</string>
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
@@ -746,7 +752,9 @@
     <string name="select_quality_external_players">Select quality for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
-    <string name="feed_toggle_show_future_items">Show future videos</string>
+    <string name="feed_toggle_show_future_items">Show future items</string>
+    <string name="feed_toggle_hide_future_items">Hide future items</string>
+    <string name="sort">Sort</string>
     <string name="enable_ignore_backstack_key">Ignore Playlist Backstack</string>
     <string name="enable_ignore_backstack_title">Playlist Backstack</string>
 </resources>

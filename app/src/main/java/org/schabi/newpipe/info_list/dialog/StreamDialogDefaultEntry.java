@@ -112,12 +112,19 @@ public enum StreamDialogDefaultEntry {
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
                     item.getThumbnailUrl())),
 
+    /**
+     * Opens a {@link DownloadDialog} after fetching some stream info.
+     * If the user quits the current fragment, it will not open a DownloadDialog.
+     */
     DOWNLOAD(R.string.download, (fragment, item) ->
             fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
                     item.getUrl(), info -> {
-                        final DownloadDialog downloadDialog =
-                                new DownloadDialog(fragment.requireContext(), info);
-                        downloadDialog.show(fragment.getChildFragmentManager(), "downloadDialog");
+                        if (fragment.getContext() != null) {
+                            final DownloadDialog downloadDialog =
+                                    new DownloadDialog(fragment.requireContext(), info);
+                            downloadDialog.show(fragment.getChildFragmentManager(),
+                                    "downloadDialog");
+                        }
                     })
     ),
 
