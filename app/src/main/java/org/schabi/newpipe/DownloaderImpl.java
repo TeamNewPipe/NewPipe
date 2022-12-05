@@ -190,9 +190,11 @@ public final class DownloaderImpl extends Downloader {
             cronetEngine = new NativeCronetProvider(App.getApp().getApplicationContext())
                     .createBuilder()
                     .setUserAgent(USER_AGENT)
-                    // Disable QUIC to prevent fingerprinting based on QUIC user-agent ID, which is
-                    // not settable by clients and contains the application package ID
-                    .enableQuic(false)
+                    .enableBrotli(true)
+                    // Be sure that QUIC and HTTP/2 are enabled, even it should be already the case
+                    // by default
+                    .enableQuic(true)
+                    .enableHttp2(true)
                     .build();
         }
 
