@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -123,10 +124,27 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public boolean onPreferenceTreeClick(final Preference preference) {
         if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
             final Context context = getContext();
+            final SwitchPreferenceCompat restrictedMode = (SwitchPreferenceCompat) preference;
             if (context != null) {
                 DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
             } else {
                 Log.w(TAG, "onPreferenceTreeClick: null context");
+            }
+            if (restrictedMode.isChecked()) {
+                findPreference(getString(R.string.show_age_restricted_content)).setEnabled(false);
+            } else {
+                findPreference(getString(R.string.show_age_restricted_content)).setEnabled(true);
+            }
+        }
+        if (preference.getKey().equals(getString(R.string.show_age_restricted_content))) {
+            final SwitchPreferenceCompat showRestrictedContent =
+                    (SwitchPreferenceCompat) preference;
+            if (showRestrictedContent.isChecked()) {
+                findPreference(getString(R.string.youtube_restricted_mode_enabled))
+                        .setEnabled(false);
+            } else {
+                findPreference(getString(R.string.youtube_restricted_mode_enabled))
+                        .setEnabled(true);
             }
         }
 
