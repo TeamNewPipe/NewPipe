@@ -48,7 +48,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             final Preference preference = findPreference(nightThemeKey);
             if (preference != null) {
                 preference.setEnabled(false);
-                preference.setSummary(getString(R.string.night_theme_available));
+                preference.setSummary(getString(R.string.night_theme_available,
+                        getString(R.string.auto_device_theme_title)));
             }
         }
     }

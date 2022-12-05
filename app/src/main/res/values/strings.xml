@@ -714,7 +714,7 @@
     <string name="auto_device_theme_title">Automatic (device theme)</string>
     <string name="night_theme_summary">Select your favorite night theme — %s</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
-    <string name="night_theme_available">This option is only available if Automatic (Device Theme) is selected for Theme</string>
+    <string name="night_theme_available">This option is only available if %s is selected for Theme</string>
     <string name="download_has_started">Download has started</string>
     <string name="description_select_note">You can now select text inside the description. Note that the page may flicker and links may not be clickable while in selection mode.</string>
     <string name="description_select_enable">Enable selecting text in the description</string>
