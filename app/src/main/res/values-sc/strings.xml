@@ -174,7 +174,7 @@
     <string name="audio">Àudio</string>
     <string name="video">Vìdeu</string>
     <string name="detail_drag_description">Traga pro torrare a ordinare</string>
-    <string name="empty_subscription_feed_subtitle">Non b\'at nudda inoghe</string>
+    <string name="empty_list_subtitle">Non b\'at nudda inoghe</string>
     <string name="search_no_results">Perunu resurtadu</string>
     <string name="detail_dislikes_img_view_description">Disagradessimentos</string>
     <string name="detail_likes_img_view_description">Agradessimentos</string>
@@ -344,8 +344,7 @@
     <string name="paused">in pàusa</string>
     <string name="missions_header_pending">In isetu</string>
     <string name="missions_header_finished">Acabadu</string>
-    <string name="app_update_notification_content_text">Toca pro iscarrigare</string>
-    <string name="app_update_notification_content_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
+    <string name="app_update_available_notification_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
     <string name="auto">Automàtica</string>
     <string name="grid">Grìllia</string>
     <string name="list">Lista</string>
@@ -382,7 +381,6 @@
     <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>
     <string name="download_to_sdcard_error_title">Memòria esterna non disponìbile</string>
     <string name="general_error">Errore</string>
-    <string name="help">Agiudu</string>
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
     <string name="clear_search_history_title">Iscantzella sa cronologia de chirca</string>

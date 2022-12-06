@@ -152,7 +152,7 @@
     <string name="detail_likes_img_view_description">Meeldib</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
     <string name="search_no_results">Tulemusi pole</string>
-    <string name="empty_subscription_feed_subtitle">Siin pole veel midagi</string>
+    <string name="empty_list_subtitle">Siin pole veel midagi</string>
     <string name="detail_drag_description">Lohista järjestuse muutmiseks</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -358,8 +358,7 @@
     <string name="list">Nimekiri</string>
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe värskendus on saadaval!</string>
-    <string name="app_update_notification_content_text">Allalaadimiseks puuduta</string>
+    <string name="app_update_available_notification_title">NewPipe värskendus on saadaval!</string>
     <string name="missions_header_finished">Lõpetatud</string>
     <string name="missions_header_pending">Ootel</string>
     <string name="paused">peatatud</string>
@@ -465,7 +464,6 @@
     <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“</string>
     <string name="missing_file">Faili asukoht on muutunud või on ta kustutatud</string>
     <string name="watch_history_states_deleted">Taasesituste asukohad on kustutatud</string>
-    <string name="help">Abiteave</string>
     <string name="delete_playback_states_alert">Kas kustutame kõik taasesituste asukohad\?</string>
     <string name="clear_playback_states_summary">Kustutab kõik taasesituse käigus salvestatud asukohad</string>
     <string name="clear_playback_states_title">Kustuta taasesituste asukohad</string>

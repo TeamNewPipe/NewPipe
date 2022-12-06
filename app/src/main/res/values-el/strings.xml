@@ -169,7 +169,7 @@
     <string name="error_snackbar_message">Συγγνώμη, κάτι πήγε στραβά.</string>
     <string name="info_labels">Τι:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΧώρα περιεχομένου:\\nΓλώσσα εφαρμογής:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού συστήματος:</string>
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
-    <string name="empty_subscription_feed_subtitle">Δεν υπάρχει τίποτα εδώ</string>
+    <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
     <string name="short_thousand">χιλ.</string>
@@ -358,8 +358,7 @@
     <string name="list">Λίστα</string>
     <string name="grid">Πλέγμα</string>
     <string name="auto">Αυτόματα</string>
-    <string name="app_update_notification_content_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
-    <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
+    <string name="app_update_available_notification_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
     <string name="paused">σε παύση</string>
@@ -475,7 +474,6 @@
     <string name="error_report_open_issue_button_text">Αναφορά στο GitHub</string>
     <string name="copy_for_github">Αντιγραφή μορφοποιημένης αναφοράς</string>
     <string name="permission_display_over_apps">Δώστε άδεια για προβολή πάνω από άλλες εφαρμογές</string>
-    <string name="help">Βοήθεια</string>
     <string name="artists">Καλλιτέχνες</string>
     <string name="albums">Άλμπουμ</string>
     <string name="songs">Τραγούδια</string>

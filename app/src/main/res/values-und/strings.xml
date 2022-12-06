@@ -60,7 +60,6 @@
     <string name="always">ہمیشہ</string>
     <string name="notifications">نوٹ</string>
     <string name="unknown_content">[نامعلوم]</string>
-    <string name="help">مدد</string>
     <string name="general_error">خرابی</string>
     <string name="audio_streams_empty">کوئی وی آڈیو سٹریماں نہیں ملیاں</string>
     <string name="error_snackbar_action">رپورٹ کرو</string>

@@ -271,13 +271,12 @@
     <string name="checksum">చెక్సమ్</string>
     <string name="youtube_signature_deobfuscation_error">వీడియో URL సంతకాన్ని డీఓబ్‌ఫస్కేట్ చేయడం సాధ్యపడలేదు</string>
     <string name="error_report_open_issue_button_text">GitHubపై నివేదించు</string>
-    <string name="empty_subscription_feed_subtitle">ఇక్కడ క్రికెట్‌లు తప్ప మరేమీ లేదు</string>
+    <string name="empty_list_subtitle">ఇక్కడ క్రికెట్‌లు తప్ప మరేమీ లేదు</string>
     <string name="no_one_listening">ఎవరూ వినడం లేదు</string>
     <string name="no_one_watching">ఎవరూ చూడటం లేదు</string>
     <string name="no_comments">వ్యాఖ్యలు లేవు</string>
     <string name="download_to_sdcard_error_message">బాహ్య SD కార్డ్‌కి డౌన్‌లోడ్ చేయడం సాధ్యం కాదు. డౌన్‌లోడ్ ఫోల్డర్ స్థానాన్ని రీసెట్ చేయాలా\?</string>
     <string name="create">సృష్టించు</string>
-    <string name="help">సహాయం</string>
     <string name="no_streams_available_download">డౌన్‌లోడ్ చేయడానికి స్ట్రీమ్‌లు ఏవీ అందుబాటులో లేవు</string>
     <string name="restore_defaults">డిఫాల్ట్‌ విలువలకు మార్చు</string>
     <string name="detail_drag_description">క్రమాన్ని మార్చడానికి లాగండి</string>

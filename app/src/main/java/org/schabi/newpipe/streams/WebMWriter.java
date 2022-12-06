@@ -652,7 +652,7 @@ public class WebMWriter implements Closeable {
 
         final int offset = withLength ? 1 : 0;
         final byte[] buffer = new byte[offset + length];
-        final long marker = (long) Math.floor((length - 1f) / 8f);
+        final long marker = Math.floorDiv(length - 1, 8);
 
         int shift = 0;
         for (int i = length - 1; i >= 0; i--, shift += 8) {

@@ -337,7 +337,6 @@
                 <data android:host="peertube.mastodon.host" />
                 <data android:host="peertube.fr" />
                 <data android:host="tilvids.com" />
-                <data android:host="tube.privacytools.io" />
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />

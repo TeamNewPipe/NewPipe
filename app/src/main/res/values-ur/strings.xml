@@ -144,7 +144,7 @@
     <string name="detail_likes_img_view_description">پسندیدگی</string>
     <string name="detail_dislikes_img_view_description">ناپسندیدگی</string>
     <string name="search_no_results">کوئی نتائج نہیں</string>
-    <string name="empty_subscription_feed_subtitle">یہاں کچھ نہیں سوائے میرے</string>
+    <string name="empty_list_subtitle">یہاں کچھ نہیں سوائے میرے</string>
     <string name="detail_drag_description">دوبارہ ترتیب دینے کیلئے کھینچں</string>
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
@@ -350,8 +350,7 @@
     <string name="list">فہرست</string>
     <string name="grid">گرڈ</string>
     <string name="auto">خودکار</string>
-    <string name="app_update_notification_content_title">نیو پائپ کی تازہ کاری دستیاب!</string>
-    <string name="app_update_notification_content_text">ڈاؤن لوڈ کرنے کے لئے کلک کریں</string>
+    <string name="app_update_available_notification_title">نیو پائپ کی تازہ کاری دستیاب!</string>
     <string name="missions_header_finished">ختم</string>
     <string name="missions_header_pending">ملتوی</string>
     <string name="paused">توقف</string>
@@ -456,7 +455,6 @@
     <string name="error_report_open_issue_button_text">گِٹ ہب میں اطلاع دیں</string>
     <string name="copy_for_github">فارمیٹڈ رپورٹ کو کاپی کریں</string>
     <string name="permission_display_over_apps">دوسرے ایپس پر نظر آنے کی اجازت دیں</string>
-    <string name="help">مدد</string>
     <string name="clear_cookie_summary">ان کوکیز کو صاف کریں جنہیں نیو پائپ ری کیپچا حل کرنے کے دوران جمع کرتا ہے</string>
     <string name="recaptcha_cookies_cleared">ری کیپچا کوکیز صاف ہوئیں</string>
     <string name="clear_cookie_title">ری کیپچا کوکیز کو صاف کریں</string>

@@ -147,7 +147,7 @@
     <string name="settings_category_history_title">История и кэш</string>
     <string name="undo">Отмена</string>
     <string name="search_no_results">Нет результатов</string>
-    <string name="empty_subscription_feed_subtitle">Ничего нет</string>
+    <string name="empty_list_subtitle">Ничего нет</string>
     <string name="no_subscribers">Нет подписчиков</string>
     <plurals name="subscribers">
         <item quantity="one">%s подписчик</item>
@@ -370,8 +370,7 @@
     <string name="app_update_notification_channel_description">Уведомления о новых версиях NewPipe</string>
     <string name="updates_setting_title">Обновления</string>
     <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
-    <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
-    <string name="app_update_notification_content_text">Нажмите для загрузки</string>
+    <string name="app_update_available_notification_title">Доступно обновление NewPipe!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
     <string name="queued">в очереди</string>
@@ -476,7 +475,6 @@
     <string name="new_seek_duration_toast">Из-за ограничений ExoPlayer точность перемотки составляет %d секунд</string>
     <string name="mute">Отключить звук</string>
     <string name="unmute">Включить звук</string>
-    <string name="help">Помощь</string>
     <string name="feed_group_dialog_empty_name">Введите имя группы</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d выбрана</item>

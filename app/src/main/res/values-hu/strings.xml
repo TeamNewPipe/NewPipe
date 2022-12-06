@@ -167,7 +167,7 @@
     <string name="file_name_empty_error">A fájlnév nem lehet üres</string>
     <string name="error_occurred_detail">Hiba történt: %1$s</string>
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
-    <string name="empty_subscription_feed_subtitle">Nincs itt semmi pár tücskön kívül</string>
+    <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
     <string name="short_thousand">e</string>
     <string name="short_million">m</string>
@@ -381,8 +381,7 @@
     <string name="paused">szüneteltetve</string>
     <string name="missions_header_pending">Függőben lévő</string>
     <string name="missions_header_finished">Befejezett</string>
-    <string name="app_update_notification_content_text">Kattintson a letöltéshez</string>
-    <string name="app_update_notification_content_title">NewPipe frissítés érhető el!</string>
+    <string name="app_update_available_notification_title">NewPipe frissítés érhető el!</string>
     <string name="auto">Automatikus</string>
     <string name="grid">Rács</string>
     <string name="list">Lista</string>
@@ -472,7 +471,6 @@
     <string name="more_than_100_videos">100+ videó</string>
     <string name="error_report_open_issue_button_text">Jelentés a GitHubon</string>
     <string name="restore_defaults">Alapértelmezések visszaállítása</string>
-    <string name="help">Súgó</string>
     <string name="clear_cookie_summary">Sütik törlése, amelyeket a NewPipe akkor ment, amikor megold egy reCAPTCHA-t</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA sütik törölve</string>
     <string name="clear_cookie_title">reCAPTCHA sütik törlése</string>

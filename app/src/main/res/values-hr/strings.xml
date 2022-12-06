@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Povijest i predmemorija</string>
     <string name="undo">Poništi</string>
     <string name="search_no_results">Nema rezultata</string>
-    <string name="empty_subscription_feed_subtitle">Ovdje nema ništa osim cvrčaka</string>
+    <string name="empty_list_subtitle">Ovdje nema ništa osim cvrčaka</string>
     <string name="no_subscribers">Nema pretplatnika</string>
     <plurals name="subscribers">
         <item quantity="one">%s pretplatnik</item>
@@ -310,8 +310,7 @@
     <string name="updates_setting_description">Prikaži obavijest i zatraži aktualiziranje programa kad je dostupna nova verzija</string>
     <string name="list">Popis</string>
     <string name="grid">Popločeno</string>
-    <string name="app_update_notification_content_title">Dostupna je nova verzija za NewPipe!</string>
-    <string name="app_update_notification_content_text">Dodirni za preuzimanje</string>
+    <string name="app_update_available_notification_title">Dostupna je nova verzija za NewPipe!</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="show_error">Prikaži pogrešku</string>
     <string name="download_thumbnail_summary">Isključi za sprečavanje učitavanja sličica, čime se štedi korištenje podataka i memorije. Promjene čiste predmemoriju slika radne memorije i diska</string>
@@ -429,7 +428,6 @@
     <string name="videos_string">Videa</string>
     <string name="mute">Isključi zvuk</string>
     <string name="unmute">Uključi</string>
-    <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda …</string>
     <string name="feed_group_dialog_delete_message">Želiš li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Nova</string>

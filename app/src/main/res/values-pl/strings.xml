@@ -151,7 +151,7 @@
     <string name="player_stream_failure">Nie udało się odtworzyć tego strumienia</string>
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
+    <string name="empty_list_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
@@ -362,8 +362,7 @@
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
     <string name="auto">Automatyczny</string>
-    <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
-    <string name="app_update_notification_content_text">Naciśnij, aby pobrać</string>
+    <string name="app_update_available_notification_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="missions_header_finished">Zakończone</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
@@ -524,7 +523,6 @@
         <item quantity="few">%d minuty</item>
         <item quantity="many">%d minut</item>
     </plurals>
-    <string name="help">Pomoc</string>
     <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
 \n
 \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>

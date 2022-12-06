@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.graphics.BitmapCompat;
 
 import com.squareup.picasso.Cache;
 import com.squareup.picasso.LruCache;
@@ -139,21 +140,23 @@ public final class PicassoHelper {
                                         .getDimension(R.dimen.player_notification_thumbnail_width),
                                 source.getWidth());
 
-                        final Bitmap result = Bitmap.createScaledBitmap(
+                        final Bitmap result = BitmapCompat.createScaledBitmap(
                                 source,
                                 (int) notificationThumbnailWidth,
                                 (int) (source.getHeight()
                                         / (source.getWidth() / notificationThumbnailWidth)),
+                                null,
                                 true);
 
-                        if (result == source) {
+                        if (result == source || !result.isMutable()) {
                             // create a new mutable bitmap to prevent strange crashes on some
                             // devices (see #4638)
-                            final Bitmap copied = Bitmap.createScaledBitmap(
+                            final Bitmap copied = BitmapCompat.createScaledBitmap(
                                     source,
                                     (int) notificationThumbnailWidth - 1,
                                     (int) (source.getHeight() / (source.getWidth()
                                             / (notificationThumbnailWidth - 1))),
+                                    null,
                                     true);
                             source.recycle();
                             return copied;

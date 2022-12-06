@@ -150,7 +150,7 @@
     <string name="systems_language">Predefinite del systema</string>
     <string name="app_language_title">Lingua del application</string>
     <string name="feed_update_threshold_option_always_update">Actualisar sempre</string>
-    <string name="app_update_notification_content_title">Il ha un actualisation de NewPipe disponibile!</string>
+    <string name="app_update_available_notification_title">Il ha un actualisation de NewPipe disponibile!</string>
     <string name="updates_setting_description">Monstrar un notification pro requestar le actualisation del application quando un nove version es disponibile</string>
     <string name="updates_setting_title">Actualisationes</string>
     <string name="open_in_popup_mode">Aperir in modo emergente</string>
@@ -196,7 +196,7 @@
     <string name="no_subscribers">Nulle subscriptores</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
-    <string name="empty_subscription_feed_subtitle">Nihil contentos ci</string>
+    <string name="empty_list_subtitle">Nihil contentos ci</string>
     <string name="search_no_results">Nulle resultatos</string>
     <string name="description_tab_description">Description</string>
     <string name="related_items_tab_description">Fluxos associate</string>
@@ -215,7 +215,6 @@
     <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas\?</string>
     <string name="download_to_sdcard_error_title">Immagazinage externe non disponibile</string>
     <string name="general_error">Error</string>
-    <string name="help">Adjuta</string>
     <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction\?</string>
     <string name="clear_playback_states_summary">Dele tote le positiones de reproduction</string>
     <string name="use_inexact_seek_title">Usar le recerca rapide e inexacte</string>

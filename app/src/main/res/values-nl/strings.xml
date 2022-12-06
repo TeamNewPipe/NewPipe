@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Geschiedenis en cache</string>
     <string name="undo">Ongedaan maken</string>
     <string name="search_no_results">Geen resultaten</string>
-    <string name="empty_subscription_feed_subtitle">Niets, maar dan ook niets te zien</string>
+    <string name="empty_list_subtitle">Niets, maar dan ook niets te zien</string>
     <string name="no_subscribers">Geen abonnees</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnee</item>
@@ -356,8 +356,7 @@
     <string name="list">Lijst</string>
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe-update is beschikbaar!</string>
-    <string name="app_update_notification_content_text">Tik om te downloaden</string>
+    <string name="app_update_available_notification_title">NewPipe-update is beschikbaar!</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="missions_header_pending">In afwachting van</string>
     <string name="paused">gepauzeerd</string>
@@ -457,7 +456,6 @@
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
     <string name="mute">Geluid dempen</string>
     <string name="unmute">Geluid aanzetten</string>
-    <string name="help">Hulp</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
         <item quantity="other">%d seconden</item>

@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Historial y caché</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
-    <string name="empty_subscription_feed_subtitle">Nada aquí más que grillos</string>
+    <string name="empty_list_subtitle">Nada aquí más que grillos</string>
     <string name="no_subscribers">Sin suscriptores</string>
     <plurals name="subscribers">
         <item quantity="one">%s suscriptor</item>
@@ -411,8 +411,7 @@
     <string name="updates_setting_description">Mostrar una notificación para solicitar actualizar la aplicación al haber una nueva versión disponible</string>
     <string name="list_view_mode">Modo de vista de lista</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">¡Actualización de NewPipe disponible!</string>
-    <string name="app_update_notification_content_text">Pulsa para descargar</string>
+    <string name="app_update_available_notification_title">¡Actualización de NewPipe disponible!</string>
     <string name="show_comments_title">Mostrar comentarios</string>
     <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
@@ -473,7 +472,6 @@
     <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer, la duración de la búsqueda fue definida en %d segundos</string>
     <string name="mute">Silenciar</string>
     <string name="unmute">Desactivar silencio</string>
-    <string name="help">Ayuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>

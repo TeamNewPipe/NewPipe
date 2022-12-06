@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">História a vyrovnávacia pamäť</string>
     <string name="undo">Vrátiť</string>
     <string name="search_no_results">Žiadne výsledky</string>
-    <string name="empty_subscription_feed_subtitle">Zatiaľ je tu ticho ako v hrobe</string>
+    <string name="empty_list_subtitle">Zatiaľ je tu ticho ako v hrobe</string>
     <string name="no_subscribers">Žiadni odberatelia</string>
     <plurals name="subscribers">
         <item quantity="one">%s odberateľ</item>
@@ -361,8 +361,7 @@
     <string name="list">Zoznam</string>
     <string name="grid">Mriežka</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Aktualizácia NewPipe je k dispozícii!</string>
-    <string name="app_update_notification_content_text">Ťuknite a stiahnite</string>
+    <string name="app_update_available_notification_title">Aktualizácia NewPipe je k dispozícii!</string>
     <string name="missions_header_finished">Ukončené</string>
     <string name="missions_header_pending">Vo fronte</string>
     <string name="paused">pozastavené</string>
@@ -465,7 +464,6 @@
     <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na %d sekúnd</string>
     <string name="mute">Stlmiť</string>
     <string name="unmute">Povoliť</string>
-    <string name="help">Pomoc</string>
     <plurals name="seconds">
         <item quantity="one">%d sekunda</item>
         <item quantity="few">%d sekundy</item>

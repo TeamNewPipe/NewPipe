@@ -142,7 +142,7 @@
     <string name="undo">Desegin</string>
     <string name="notification_channel_description">NewPipe erreproduzigailuaren jakinarazpenak</string>
     <string name="search_no_results">Emaitzarik ez</string>
-    <string name="empty_subscription_feed_subtitle">Kilkerrak besterik ez daude hemen</string>
+    <string name="empty_list_subtitle">Kilkerrak besterik ez daude hemen</string>
     <string name="no_subscribers">Harpidedunik ez</string>
     <plurals name="subscribers">
         <item quantity="one">Harpidedun %s</item>
@@ -358,8 +358,7 @@
     <string name="list">Zerrenda</string>
     <string name="grid">Sareta</string>
     <string name="auto">Automatikoa</string>
-    <string name="app_update_notification_content_title">NewPipe-ren eguneraketa eskuragarri dago!</string>
-    <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
+    <string name="app_update_available_notification_title">NewPipe-ren eguneraketa eskuragarri dago!</string>
     <string name="missions_header_finished">Amaituta</string>
     <string name="missions_header_pending">Zain</string>
     <string name="paused">pausatuta</string>
@@ -509,7 +508,6 @@
     </plurals>
     <string name="unmute">Aktibatu audioa</string>
     <string name="mute">Isilarazi</string>
-    <string name="help">Laguntza</string>
     <string name="content_not_supported">Eduki hau ez dago oraindik NewPipengatik onatuta.
 \n
 \nEtorkizuneko bertsio batean onartua izatea espero da.</string>
