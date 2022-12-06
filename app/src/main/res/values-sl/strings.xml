@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Zgodovina in predpomnilnik</string>
     <string name="undo">Razveljavi</string>
     <string name="search_no_results">Ni rezultatov iskanja</string>
-    <string name="empty_subscription_feed_subtitle">Tu ni ničesar!</string>
+    <string name="empty_list_subtitle">Tu ni ničesar!</string>
     <string name="no_subscribers">Ni naročnikov</string>
     <plurals name="subscribers">
         <item quantity="one">%s naročnik</item>
@@ -227,7 +227,6 @@
     <string name="download_failed">Prenos spodletel</string>
     <string name="paused">Pavza</string>
     <string name="missions_header_finished">Končano</string>
-    <string name="app_update_notification_content_text">Tapnite da prenesete</string>
     <string name="list">Seznam</string>
     <string name="updates_setting_title">Posodobitve</string>
     <string name="accept">Sprejmi</string>
@@ -401,7 +400,6 @@
     <string name="player_recoverable_failure">Obnavljanje od napake predvajanika</string>
     <string name="player_unrecoverable_failure">Prišlo je do neobnovljive napake v predvajalniku</string>
     <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
-    <string name="help">Pomoč</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
     <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani.</string>
     <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>
@@ -446,7 +444,7 @@
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
     <string name="enqueue">Vrsta</string>
     <string name="queued">V vrsti</string>
-    <string name="app_update_notification_content_title">NewPipe posodobitve so na voljo!</string>
+    <string name="app_update_available_notification_title">NewPipe posodobitve so na voljo!</string>
     <string name="auto">Avtomatsko</string>
     <string name="grid">Mreža</string>
     <string name="never">Nikoli</string>

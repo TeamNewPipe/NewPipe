@@ -157,7 +157,7 @@
     <string name="detail_likes_img_view_description">Спадабалася</string>
     <string name="detail_dislikes_img_view_description">Не спадабалася</string>
     <string name="search_no_results">Няма вынікаў</string>
-    <string name="empty_subscription_feed_subtitle">Нічога няма</string>
+    <string name="empty_list_subtitle">Нічога няма</string>
     <string name="detail_drag_description">Перацягніце, каб змяніць парадак</string>
     <string name="video">Відэа</string>
     <string name="audio">Аўдыё</string>
@@ -355,8 +355,7 @@
     <string name="list">Спіс</string>
     <string name="grid">Сетка</string>
     <string name="auto">Аўтаматычна</string>
-    <string name="app_update_notification_content_title">Даступна абнаўленне NewPipe!</string>
-    <string name="app_update_notification_content_text">Націсніце для загрузкі</string>
+    <string name="app_update_available_notification_title">Даступна абнаўленне NewPipe!</string>
     <string name="missions_header_finished">Скончана</string>
     <string name="missions_header_pending">У чарзе</string>
     <string name="paused">прыпынена</string>
@@ -464,7 +463,6 @@
     <string name="error_report_open_issue_button_text">Багрэпарт на GitHub</string>
     <string name="copy_for_github">Скапіруйце адфарматаваны багрэпарт</string>
     <string name="permission_display_over_apps">Дайце дазвол на адлюстраванне паверх іншых праграм</string>
-    <string name="help">Дапамога</string>
     <string name="delete_playback_states_alert">Выдаліць усе пазіцыі прайгравання\?</string>
     <string name="clear_playback_states_title">Выдаліць пазіцыі прайгравання</string>
     <string name="clear_cookie_title">Ачысціць reCAPTCHA cookies</string>

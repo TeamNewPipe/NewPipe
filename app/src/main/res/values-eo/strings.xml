@@ -288,7 +288,7 @@
     <string name="title_activity_history">Historio</string>
     <string name="action_history">Historio</string>
     <string name="search_no_results">Neniuj rezultoj</string>
-    <string name="empty_subscription_feed_subtitle">Neniu enhavo</string>
+    <string name="empty_list_subtitle">Neniu enhavo</string>
     <string name="no_subscribers">Neniuj abonantoj</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonanto</item>
@@ -388,8 +388,7 @@
     <string name="list">Listo</string>
     <string name="grid">Krado</string>
     <string name="auto">Aŭto</string>
-    <string name="app_update_notification_content_title">Ĝisdatigo de NewPipe havebla!</string>
-    <string name="app_update_notification_content_text">Premi por elŝuti</string>
+    <string name="app_update_available_notification_title">Ĝisdatigo de NewPipe havebla!</string>
     <string name="missions_header_finished">Finita</string>
     <string name="missions_header_pending">Pritraktata</string>
     <string name="paused">Paŭzigita</string>
@@ -497,7 +496,6 @@
     <string name="new_seek_duration_toast">Pro ExoPlayer limoj, la serĉa daŭro estas metita %d sekundojn</string>
     <string name="mute">Mutigi</string>
     <string name="unmute">Malmutigi</string>
-    <string name="help">Helpo</string>
     <string name="content_not_supported">Tio enhavo ne estas ankoraŭ subtenata per NewPipe.\n\nĜi espereble estos en sekvanta versio.</string>
     <string name="infinite_videos">∞ filmetoj</string>
     <string name="more_than_100_videos">100+ filmetoj</string>

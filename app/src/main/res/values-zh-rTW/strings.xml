@@ -125,7 +125,7 @@
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
-    <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
+    <string name="empty_list_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
         <item quantity="other">%s 位訂閱者</item>
@@ -350,8 +350,7 @@
     <string name="list">清單</string>
     <string name="grid">網格</string>
     <string name="auto">自動</string>
-    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
-    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="app_update_available_notification_title">有可用的 NewPipe 更新！</string>
     <string name="missions_header_finished">已完成</string>
     <string name="missions_header_pending">有待處理</string>
     <string name="paused">已暫停</string>
@@ -458,7 +457,6 @@
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
-    <string name="help">說明</string>
     <plurals name="minutes">
         <item quantity="other">%d 分鐘</item>
     </plurals>

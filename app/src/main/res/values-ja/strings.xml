@@ -288,7 +288,7 @@
     <string name="resize_fill">全画面</string>
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です</string>
-    <string name="empty_subscription_feed_subtitle">何もありません</string>
+    <string name="empty_list_subtitle">何もありません</string>
     <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート:
 \n
 \n1. この URL を開きます: %1$s
@@ -342,8 +342,7 @@
     <string name="list">リスト</string>
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
-    <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
-    <string name="app_update_notification_content_text">タップでダウンロード</string>
+    <string name="app_update_available_notification_title">NewPipe のアップデートがあります！</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">順番に処理中</string>
     <string name="paused">一時停止</string>
@@ -458,7 +457,6 @@
     <string name="new_seek_duration_toast">ExoPlayer の制約のためシーク間隔は %d 秒に設定されました</string>
     <string name="mute">ミュート</string>
     <string name="unmute">ミュート解除</string>
-    <string name="help">ヘルプ</string>
     <plurals name="minutes">
         <item quantity="other">%d 分</item>
     </plurals>

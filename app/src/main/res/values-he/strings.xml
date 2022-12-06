@@ -109,7 +109,7 @@
     <string name="detail_likes_img_view_description">אהבו</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
     <string name="search_no_results">אין תוצאות</string>
-    <string name="empty_subscription_feed_subtitle">אין כאן כלום מלבד צרצרים</string>
+    <string name="empty_list_subtitle">אין כאן כלום מלבד צרצרים</string>
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
@@ -364,8 +364,7 @@
     <string name="list">רשימה</string>
     <string name="grid">טבלה</string>
     <string name="auto">אוטומטית</string>
-    <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
-    <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
+    <string name="app_update_available_notification_title">יצא עדכון ל־NewPipe!</string>
     <string name="missions_header_finished">הסתיים</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
@@ -476,7 +475,6 @@
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>
     <string name="unmute">ביטול השתקה</string>
-    <string name="help">עזרה</string>
     <plurals name="minutes">
         <item quantity="one">דקה</item>
         <item quantity="two">שתי דקות</item>

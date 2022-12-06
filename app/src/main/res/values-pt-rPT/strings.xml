@@ -75,7 +75,6 @@
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="read_full_license">Ver licença</string>
-    <string name="help">Ajuda</string>
     <string name="peertube_instance_add_https_only">Apenas os URL HTTPS são suportados</string>
     <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
@@ -151,7 +150,6 @@
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>
     <string name="content">Conteúdo</string>
@@ -244,7 +242,7 @@
     <string name="grid">Grelha</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
+    <string name="app_update_available_notification_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
@@ -357,7 +355,7 @@
     <string name="best_resolution">Melhor resolução</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="stop">Parar</string>
-    <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
+    <string name="empty_list_subtitle">Aqui não há nada para ver</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="limit_data_usage_none_description">Sem limite</string>
     <string name="general_error">Erro</string>

@@ -151,7 +151,7 @@
     <string name="detail_likes_img_view_description">ਪਸੰਦਾਂ</string>
     <string name="detail_dislikes_img_view_description">ਨਾਪਸੰਦਾਂ</string>
     <string name="search_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
-    <string name="empty_subscription_feed_subtitle">ਇਥੇ ਦਾ ਸੁੰਨਾਪਨ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
+    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਸੁੰਨਾਪਨ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
     <string name="detail_drag_description">ਮੁੜ-ਕ੍ਰਮਬੱਧ ਕਰਨ ਲਈ ਡਰੈਗ ਕਰੋ</string>
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>
@@ -355,8 +355,7 @@
     <string name="list">ਲਿਸਟ</string>
     <string name="grid">ਗਰਿੱਡ</string>
     <string name="auto">ਆਟੋ</string>
-    <string name="app_update_notification_content_title">ਨਿਊ-ਪਾਈਪ ਦੀ ਅਪਡੇਟ ਉਪਲਬੱਧ ਹੈ!</string>
-    <string name="app_update_notification_content_text">ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਦਬਾਓ</string>
+    <string name="app_update_available_notification_title">ਨਿਊ-ਪਾਈਪ ਦੀ ਅਪਡੇਟ ਉਪਲਬੱਧ ਹੈ!</string>
     <string name="missions_header_finished">ਮੁਕੰਮਲ ਹੋਇਆ</string>
     <string name="missions_header_pending">ਬਕਾਇਆ</string>
     <string name="paused">ਰੁਕਿਆ</string>
@@ -573,7 +572,6 @@
     <string name="comments_tab_description">ਟਿੱਪਣੀਆਂ</string>
     <string name="error_report_open_issue_button_text">ਗਿਟਹੱਬ \'ਤੇ ਜਾ ਕੇ ਇਤਲਾਹ ਦਿਓ</string>
     <string name="permission_display_over_apps">ਦੂਜੀਆਂ ਐਪਾਂ ਦੇ ਉੱਤੇ ਵਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
-    <string name="help">ਮਦਦ</string>
     <string name="delete_playback_states_alert">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਣੀਆਂ ਹਨ\?</string>
     <string name="clear_playback_states_summary">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="clear_playback_states_title">ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਓ</string>

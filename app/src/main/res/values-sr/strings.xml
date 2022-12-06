@@ -138,7 +138,7 @@
     <string name="notification_channel_name">Њупајп обавештење</string>
     <string name="notification_channel_description">Обавештења за Њупајп плејере у позадини и искачућем прозору</string>
     <string name="search_no_results">Нема резултата</string>
-    <string name="empty_subscription_feed_subtitle">Нема ничега овде осим цврчака</string>
+    <string name="empty_list_subtitle">Нема ничега овде осим цврчака</string>
     <string name="no_subscribers">Нема пратилаца</string>
     <plurals name="subscribers">
         <item quantity="one">%s пратилац</item>
@@ -268,8 +268,7 @@
     <string name="paused">паузирано</string>
     <string name="missions_header_pending">На чекању</string>
     <string name="missions_header_finished">Завршено</string>
-    <string name="app_update_notification_content_text">Тапните за преузимање</string>
-    <string name="app_update_notification_content_title">Доступно је ажурирање за ЊуПајп!</string>
+    <string name="app_update_available_notification_title">Доступно је ажурирање за ЊуПајп!</string>
     <string name="auto">аутоматски</string>
     <string name="grid">мрежа</string>
     <string name="list">листа</string>
@@ -438,7 +437,6 @@
     <string name="external_player_unsupported_link_type">Спољни плејери не подржавају ове врсте веза</string>
     <string name="download_to_sdcard_error_message">Преузимање на спољну СД картицу није могуће. Ресетовати локацију фасцикле за преузимање\?</string>
     <string name="download_to_sdcard_error_title">Спољно складиште није доступно</string>
-    <string name="help">Помоћ</string>
     <string name="search_history_deleted">Историја претраге је обрисана</string>
     <string name="delete_search_history_alert">Да обришем целу историју претраге\?</string>
     <string name="clear_search_history_summary">Брише историју кључних речи за претрагу</string>

@@ -161,7 +161,7 @@
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_subscription_feed_subtitle">Nichts hier, außer dem Zirpen der Grillen</string>
+    <string name="empty_list_subtitle">Nichts hier, außer dem Zirpen der Grillen</string>
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen\?</string>
     <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Einen Kanal auswählen</string>
@@ -364,8 +364,7 @@
     <string name="high_quality_larger">Hohe Qualität (größer)</string>
     <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
     <string name="dont_show">Nicht anzeigen</string>
-    <string name="app_update_notification_content_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
-    <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
+    <string name="app_update_available_notification_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
     <string name="paused">pausiert</string>
@@ -473,7 +472,6 @@
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
     <string name="mute">Stummschaltung</string>
     <string name="unmute">Stummschaltung aufheben</string>
-    <string name="help">Hilfe</string>
     <plurals name="minutes">
         <item quantity="one">%d Minute</item>
         <item quantity="other">%d Minuten</item>

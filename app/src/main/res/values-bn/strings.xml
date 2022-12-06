@@ -17,7 +17,6 @@
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
     <string name="missions_header_finished">সম্পূর্ণ</string>
-    <string name="app_update_notification_content_text">ডাউন লোড করার জন্য চাপ দিন</string>
     <string name="auto">অটো</string>
     <string name="grid">ছক</string>
     <string name="list">তালিকা</string>
@@ -146,7 +145,6 @@
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="general_error">ত্রুটি</string>
-    <string name="help">সাহায্য</string>
     <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
@@ -344,7 +342,7 @@
     <string name="no_one_listening">কেউ শুনছে না</string>
     <string name="no_one_watching">কেউ দেখছে না</string>
     <string name="drawer_header_description">সেবাটি পরিবর্তন করো, বর্তমানে নির্বাচিত:</string>
-    <string name="empty_subscription_feed_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
+    <string name="empty_list_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
     <string name="invalid_source">এই ধরনের কোন ফাইল/বিষয়বস্তুর উৎস নেই</string>
     <string name="player_unrecoverable_failure">অপুনরুদ্ধারযোগ্য প্লেয়ার ত্রুটি ঘটেছে</string>
     <string name="peertube_instance_add_fail">ইন্সট্যান্সটি যাচাই করা যায়নি</string>
@@ -470,7 +468,7 @@
     <string name="pause_downloads_on_mobile">পরিমাপকৃত নেটওয়ার্কে বাধা দাও</string>
     <string name="error_download_resource_gone">এই ডাউনলোড উদ্ধার করা যাচ্ছে না</string>
     <string name="overwrite_failed">এই ফাইলের উপর লেখা যাচ্ছে না</string>
-    <string name="app_update_notification_content_title">নিউপাইপ হালনাগাদ আছে!</string>
+    <string name="app_update_available_notification_title">নিউপাইপ হালনাগাদ আছে!</string>
     <string name="minimize_on_exit_popup_description">ভাসমান চালকের ক্ষুদ্রকরণ করো</string>
     <string name="minimize_on_exit_background_description">প্লেয়ার পটভূমিতে ক্ষুদ্রকরণ করো</string>
     <string name="minimize_on_exit_title">অ্যাপ পরিবর্তনে ক্ষুদ্রকরণ করো</string>

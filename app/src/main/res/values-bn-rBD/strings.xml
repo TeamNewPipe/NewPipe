@@ -178,7 +178,6 @@
     <string name="show_error">এরর দেখান</string>
     <string name="download_failed">ডাউনলোড ব্যর্থ হয়েছে</string>
     <string name="paused">স্থগিত</string>
-    <string name="app_update_notification_content_text">ডাউনলোড করতে টোকা দিন</string>
     <string name="auto">অটো</string>
     <string name="limit_data_usage_none_description">সীমাহীন</string>
     <string name="caption_none">কোন ক্যাপশন নেই</string>
@@ -231,7 +230,6 @@
     <string name="player_recoverable_failure">প্লেয়ার এর এরর থেকে বেরিয়ে আসুন</string>
     <string name="player_stream_failure">স্ট্রিম টি চালানো গেল না</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
-    <string name="help">সাহায্য</string>
     <string name="search_history_deleted">অনুসন্ধান ইতিহাস মোছা হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
@@ -364,7 +362,7 @@
     <string name="error_report_notification_toast">সমস্যা হয়েছে, নোটিফিকেশন দেখুন</string>
     <string name="copy_for_github">তৈরিকৃত রিপোর্ট কপি করো</string>
     <string name="related_items_tab_description">সম্পর্কিত আইটেমসমূহ</string>
-    <string name="empty_subscription_feed_subtitle">ঝিঁঝিঁপোকা ছাড়া এখানে কিছু নেই</string>
+    <string name="empty_list_subtitle">ঝিঁঝিঁপোকা ছাড়া এখানে কিছু নেই</string>
     <string name="detail_drag_description">পুনর্বিন্যাস্ত করতে টান দিন</string>
     <string name="subscribers_count_not_available">গ্রাহকসংখ্যা সুলভ নয়</string>
     <string name="no_one_watching">কেউ দেখছে না</string>
@@ -392,7 +390,7 @@
     <string name="notification_action_4_title">পঞ্চম পদক্ষেপ বোতাম</string>
     <string name="show_description_summary">ভিডিও বর্ণনা ও বাড়তি তথ্য লুকাতে বন্ধ করুন</string>
     <string name="dont_show">দেখিও না</string>
-    <string name="app_update_notification_content_title">নিউ পাইপ আপডেট এসেছে!</string>
+    <string name="app_update_available_notification_title">নিউ পাইপ আপডেট এসেছে!</string>
     <string name="comments_are_disabled">মন্তব্যসমূহ নিষ্ক্রিয় আছে</string>
     <plurals name="views">
         <item quantity="one">%s বার দেখেছে</item>

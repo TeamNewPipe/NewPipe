@@ -109,7 +109,7 @@
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
-    <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
+    <string name="empty_list_subtitle">Här va\' det tomt</string>
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
@@ -355,8 +355,7 @@
     <string name="list">Lista</string>
     <string name="grid">Rutnät</string>
     <string name="auto">Automatiskt</string>
-    <string name="app_update_notification_content_title">En NewPipe-uppdatering är tillgänglig!</string>
-    <string name="app_update_notification_content_text">Tryck för att hämta</string>
+    <string name="app_update_available_notification_title">En NewPipe-uppdatering är tillgänglig!</string>
     <string name="missions_header_finished">Färdig</string>
     <string name="paused">pausad</string>
     <string name="queued">köad</string>
@@ -399,7 +398,6 @@
     <string name="peertube_instance_add_https_only">Endast HTTPS-URL:er stöds</string>
     <string name="peertube_instance_add_exists">Instansen finns redan</string>
     <string name="videos_string">Videor</string>
-    <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelningspositioner</string>
     <string name="missing_file">Filen har flyttats eller tagits bort</string>

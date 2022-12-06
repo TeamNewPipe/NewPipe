@@ -217,7 +217,6 @@
     <string name="enable_watch_history_summary">記低睇過嘅影片</string>
     <string name="autoplay_title">自動播放</string>
     <string name="settings_category_updates_title">更新</string>
-    <string name="help">說明</string>
     <string name="youtube_restricted_mode_enabled_title">開啟 YouTube 嘅「嚴格篩選模式」</string>
     <string name="no_streams_available_download">冇串流下載得到</string>
     <string name="permission_display_over_apps">畀權限去喺其他 app 上面顯示</string>
@@ -261,7 +260,6 @@
     <string name="auto">自動</string>
     <string name="low_quality_smaller">低畫質 (細格啲)</string>
     <string name="dont_show">唔顯示</string>
-    <string name="app_update_notification_content_text">撳一下去下載</string>
     <string name="no_views">無觀看次數</string>
     <plurals name="listening">
         <item quantity="other">%s 個人聽緊</item>
@@ -369,7 +367,7 @@
     <string name="updates_setting_title">更新</string>
     <string name="updates_setting_description">出咗新版本嘅時候，顯示通知提示升級個 app</string>
     <string name="manual_update_description">手動檢查下有冇新版本</string>
-    <string name="app_update_notification_content_title">NewPipe 出咗更新！</string>
+    <string name="app_update_available_notification_title">NewPipe 出咗更新喇！</string>
     <string name="missions_header_pending">仲等緊</string>
     <string name="recovering">恢復緊</string>
     <string name="permission_denied">動作被系統拒絕咗</string>
@@ -535,7 +533,7 @@
     <string name="enqueued_next">攝咗做下個等陣播</string>
     <string name="settings_category_player_behavior_title">點做法</string>
     <string name="hash_channel_description">影片雜湊進度嘅通知</string>
-    <string name="empty_subscription_feed_subtitle">大笪地</string>
+    <string name="empty_list_subtitle">大笪地</string>
     <string name="clear_search_history_title">抹走搜尋紀錄</string>
     <string name="clear_search_history_summary">刪除搜尋關鍵字嘅紀錄</string>
     <string name="delete_search_history_alert">係咪要全部剷走晒搜尋嘅紀錄？</string>
@@ -710,4 +708,5 @@
     <string name="faq">去網站睇下</string>
     <string name="sort">排序</string>
     <string name="faq_title">常見問題</string>
+    <string name="faq_description">若然您用呢個 app 有疑問，然而「亦有些難啟齒」，不妨睇下常見問題集，話唔定會發現「有場舞還未發表」！</string>
 </resources>

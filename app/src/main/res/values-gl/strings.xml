@@ -156,7 +156,7 @@
     <string name="detail_likes_img_view_description">Gosto</string>
     <string name="detail_dislikes_img_view_description">Non gosto</string>
     <string name="search_no_results">Non hai resultados</string>
-    <string name="empty_subscription_feed_subtitle">Nada que ver aquí</string>
+    <string name="empty_list_subtitle">Nada que ver aquí</string>
     <string name="detail_drag_description">Arrastre para reordenar</string>
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
@@ -452,8 +452,7 @@
     <string name="paused">pausado</string>
     <string name="missions_header_pending">Pendente</string>
     <string name="missions_header_finished">Rematado</string>
-    <string name="app_update_notification_content_text">Prema para descargar</string>
-    <string name="app_update_notification_content_title">A actualización de NewPipe está dispoñible!</string>
+    <string name="app_update_available_notification_title">A actualización de NewPipe está dispoñible!</string>
     <string name="auto">Automático</string>
     <string name="enable_playback_state_lists_summary">Mostra os indicadores de posición de reprodución nas listas</string>
     <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>
@@ -503,7 +502,6 @@
     <string name="missing_file">Ficheiro movido ou eliminado</string>
     <string name="download_to_sdcard_error_message">Non é posible descargar na tarxeta SD externa. Restaurar a localización do cartafol de descarga\?</string>
     <string name="download_to_sdcard_error_title">Non hai dispoñible almacenamento externo</string>
-    <string name="help">Axuda</string>
     <string name="watch_history_states_deleted">Elimináronse as posicións de reprodución</string>
     <string name="delete_playback_states_alert">Eliminas todas as posicións de reprodución\?</string>
     <string name="clear_playback_states_summary">Elimina todas as posicións de reprodución</string>

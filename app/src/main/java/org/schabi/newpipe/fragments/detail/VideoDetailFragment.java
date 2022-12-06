@@ -1499,9 +1499,9 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
 
         if (!isEmpty(info.getSubChannelName())) {
-            displayBothUploaderAndSubChannel(info);
+            displayBothUploaderAndSubChannel(info, activity);
         } else if (!isEmpty(info.getUploaderName())) {
-            displayUploaderAsSubChannel(info);
+            displayUploaderAsSubChannel(info, activity);
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
             binding.detailUploaderThumbnailView.setVisibility(View.GONE);
@@ -1614,23 +1614,42 @@ public final class VideoDetailFragment
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
-    private void displayUploaderAsSubChannel(final StreamInfo info) {
+    private void displayUploaderAsSubChannel(final StreamInfo info, final Context context) {
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
-        binding.detailUploaderTextView.setVisibility(View.GONE);
+
+        if (info.getUploaderSubscriberCount() > -1) {
+            binding.detailUploaderTextView.setText(
+                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+            binding.detailUploaderTextView.setVisibility(View.VISIBLE);
+        } else {
+            binding.detailUploaderTextView.setVisibility(View.GONE);
+        }
     }
 
-    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
+    private void displayBothUploaderAndSubChannel(final StreamInfo info, final Context context) {
         binding.detailSubChannelTextView.setText(info.getSubChannelName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
 
         binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
 
+        final StringBuilder subText = new StringBuilder();
         if (!isEmpty(info.getUploaderName())) {
-            binding.detailUploaderTextView.setText(
+            subText.append(
                     String.format(getString(R.string.video_detail_by), info.getUploaderName()));
+        }
+        if (info.getUploaderSubscriberCount() > -1) {
+            if (subText.length() > 0) {
+                subText.append(Localization.DOT_SEPARATOR);
+            }
+            subText.append(
+                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+        }
+
+        if (subText.length() > 0) {
+            binding.detailUploaderTextView.setText(subText);
             binding.detailUploaderTextView.setVisibility(View.VISIBLE);
             binding.detailUploaderTextView.setSelected(true);
         } else {

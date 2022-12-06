@@ -162,7 +162,7 @@
         <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_subscription_feed_subtitle">Nada aqui além de grilos</string>
+    <string name="empty_list_subtitle">Nada aqui além de grilos</string>
     <string name="delete_item_search_history">Deseja excluir este item do histórico de busca\?</string>
     <string name="main_page_content">Conteúdo da página inicial</string>
     <string name="blank_page_summary">Página em branco</string>
@@ -361,8 +361,7 @@
     <string name="list">Lista</string>
     <string name="grid">Grade</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">Atualização do NewPipe disponível!</string>
-    <string name="app_update_notification_content_text">Toque para baixar</string>
+    <string name="app_update_available_notification_title">Atualização do NewPipe disponível!</string>
     <string name="missions_header_finished">Finalizado</string>
     <string name="paused">pausado</string>
     <string name="queued">na fila</string>
@@ -470,7 +469,6 @@
     <string name="new_seek_duration_toast">Devido a limitações do ExoPlayer, a duração do avanço foi definida para %d segundos</string>
     <string name="mute">Desativar som</string>
     <string name="unmute">Ativar som</string>
-    <string name="help">Ajuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>
