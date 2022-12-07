@@ -36,6 +36,9 @@ import androidx.core.math.MathUtils;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -88,7 +91,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 import icepick.Icepick;
 import icepick.State;
@@ -213,6 +215,7 @@ public class RouterActivity extends AppCompatActivity {
         if (dismissListener != null) {
             getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(dismissListener);
         }
+
         disposables.clear();
     }
 
@@ -699,9 +702,20 @@ public class RouterActivity extends AppCompatActivity {
 
     public static class PersistentFragment extends Fragment {
         private WeakReference<AppCompatActivity> context;
-        private boolean isPaused = true;
-        private final Vector<ResultRunnable> buffer = new Vector<>();
         private final CompositeDisposable disposables = new CompositeDisposable();
+        private int running = 0;
+
+        private synchronized void inFlight(final boolean started) {
+            if (started) {
+                running++;
+            } else {
+                running--;
+                if (running <= 0 && getActivityContext() != null) {
+                    getActivityContext().getSupportFragmentManager()
+                            .beginTransaction().remove(this).commit();
+                }
+            }
+        }
 
         public interface ResultRunnable {
             void run(AppCompatActivity context);
@@ -726,21 +740,12 @@ public class RouterActivity extends AppCompatActivity {
             disposables.clear();
         }
 
-        @Override
-        public void onPause() {
-            isPaused = true;
-            super.onPause();
-        }
-
-        @Override
-        public void onResume() {
-            isPaused = false;
-            playback();
-            super.onResume();
-        }
-
         private AppCompatActivity getActivityContext() {
             return context == null ? null : context.get();
+        }
+
+        private boolean activityGone() {
+            return getActivityContext() == null || getActivityContext().isFinishing();
         }
 
         // guard against IllegalStateException in calling DialogFragment.show() whilst in background
@@ -748,37 +753,31 @@ public class RouterActivity extends AppCompatActivity {
         // the network request to return) when it internally calls FragmentTransaction.commit()
         // after the FragmentManager has saved its states (isStateSaved() == true)
         // (ref: https://stackoverflow.com/a/39813506)
-        private void playback() {
-            if (activityGone()) {
-                done();
-                return;
-            }
-            if (buffer.size() == 0 || isPaused) {
-                return;
-            }
-            while (buffer.size() > 0) {
-                final ResultRunnable runnable = buffer.elementAt(0);
-                buffer.removeElementAt(0);
-                getActivityContext().runOnUiThread(() ->
-                    // execute queued task with new context, in case activity has been recreated
-                    runnable.run(getActivityContext())
-                );
-            }
-            done();
-        }
-        private boolean activityGone() {
-            return getActivityContext() == null || getActivityContext().isFinishing();
-        }
-
-        // a DefaultLifecycleObserver is probably a good candidate here, but for now
-        // let's stick with a vanilla approach to avoid pulling in an extra artifact just for this
         private void runOnVisible(final ResultRunnable runnable) {
             if (activityGone()) {
-                done();
+                inFlight(false);
                 return;
             }
-            if (isPaused) {
-                buffer.add(runnable);
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                getActivityContext().runOnUiThread(() -> {
+                    runnable.run(getActivityContext());
+                    inFlight(false);
+                });
+            } else {
+                getLifecycle().addObserver(new DefaultLifecycleObserver() {
+                    @Override
+                    public void onResume(@NonNull final LifecycleOwner owner) {
+                        getLifecycle().removeObserver(this);
+                        if (activityGone()) {
+                            inFlight(false);
+                            return;
+                        }
+                        getActivityContext().runOnUiThread(() -> {
+                            runnable.run(getActivityContext());
+                            inFlight(false);
+                        });
+                    }
+                });
                 // this trick doesn't seem to work on Android 10+ (API 29)
                 // which places restrictions on starting activities from the background
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
@@ -788,23 +787,12 @@ public class RouterActivity extends AppCompatActivity {
                     i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(i);
                 }
-            } else {
-                getActivityContext().runOnUiThread(() -> {
-                    runnable.run(getActivityContext());
-                    done();
-                });
-            }
-        }
-
-        private void done() {
-            if (getActivityContext() != null) {
-                getActivityContext().getSupportFragmentManager()
-                        .beginTransaction().remove(this).commit();
             }
         }
 
         @SuppressLint("CheckResult")
-        protected void openDownloadDialog(final int currentServiceId, final String currentUrl) {
+        private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
+            inFlight(true);
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -820,6 +808,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         private void openAddToPlaylistDialog(final int currentServiceId, final String currentUrl) {
+            inFlight(true);
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -870,7 +859,7 @@ public class RouterActivity extends AppCompatActivity {
         return persistFragment;
     }
 
-    protected void pleaseWait() {
+    private void pleaseWait() {
         // Getting the stream info usually takes a moment
         // Notifying the user here to ensure that no confusion arises
         Toast.makeText(
