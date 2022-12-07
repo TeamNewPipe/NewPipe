@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +26,6 @@ import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
-import org.schabi.newpipe.databinding.DialogTitleBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
@@ -258,32 +259,51 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
+        final boolean isPlaylistThumbnailSet = localPlaylistManager
+                .getIsPlaylistThumbnailSet(selectedItem.uid);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        //TODO
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_list_item_1) {
+            @Override
+            public View getView(final int position, final View convertView,
+                                final ViewGroup parent) {
+                final View v = super.getView(position, convertView, parent);
+                final TextView textView = v.findViewById(android.R.id.text1);
 
-        final DialogTitleBinding dialogBinding =
-                DialogTitleBinding.inflate(LayoutInflater.from(requireContext()));
+                if (!isPlaylistThumbnailSet && position == 2) {
+                    textView.setEnabled(false);
+                    return v;
+                }
 
-        dialogBinding.itemRoot.setVisibility(View.GONE);
-        dialogBinding.itemTitleView.setVisibility(View.GONE);
-        dialogBinding.itemAdditionalDetails.setVisibility(View.GONE);
-        final String[] items = new String[]{"Delete", "Rename", "Thumbnail"};
-        final DialogInterface.OnClickListener action = (d, index) -> {
+                textView.setEnabled(true);
+                return v;
+            }
+        };
+        arrayAdapter.addAll(getString(R.string.rename), getString(R.string.delete),
+                getString(R.string.unset_playlist_thumbnail));
+
+        // Rename = 0; Delete = 1; Unset Thumbnail = 2
+        final DialogInterface.OnClickListener action = (dialog, index) -> {
             switch (index) {
                 case 0: showRenameDialog(selectedItem);
                     break;
                 case 1:
+                    showDeleteDialog(selectedItem.name,
+                            localPlaylistManager.deletePlaylist(selectedItem.uid));
+                    dialog.dismiss();
                     break;
                 case 2:
+                    if (isPlaylistThumbnailSet) {
+                        final String ur = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
+                        localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, ur,
+                            false).observeOn(AndroidSchedulers.mainThread()).subscribe();
+                    }
                     break;
             }
         };
 
-        //TODO add rename dialog
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
-        builder.setItems(items, action)
+        builder.setAdapter(arrayAdapter, action)
                 .create()
                 .show();
     }
@@ -302,11 +322,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                 selectedItem.uid,
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
-                .setNeutralButton(R.string.delete, (dialog, which) -> {
-                    showDeleteDialog(selectedItem.name,
-                            localPlaylistManager.deletePlaylist(selectedItem.uid));
-                    dialog.dismiss();
-                })
                 .create()
                 .show();
     }

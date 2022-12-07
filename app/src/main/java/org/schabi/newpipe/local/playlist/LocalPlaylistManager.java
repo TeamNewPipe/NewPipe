@@ -41,7 +41,7 @@ public class LocalPlaylistManager {
         }
         final StreamEntity defaultStream = streams.get(0);
         final PlaylistEntity newPlaylist =
-                new PlaylistEntity(name, defaultStream.getThumbnailUrl());
+                new PlaylistEntity(name, defaultStream.getThumbnailUrl(), false);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() ->
                 upsertStreams(playlistTable.insert(newPlaylist), streams, 0))
@@ -96,24 +96,29 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, null);
+        return modifyPlaylist(playlistId, name, null, false);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
-                                                  final String thumbnailUrl) {
-        return modifyPlaylist(playlistId, null, thumbnailUrl);
+                                                  final String thumbnailUrl,
+                                                  final boolean isPermanent) {
+        return modifyPlaylist(playlistId, null, thumbnailUrl, isPermanent);
     }
 
     public String getPlaylistThumbnail(final long playlistId) {
         return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
     }
 
+    public boolean getIsPlaylistThumbnailSet(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getIsThumbnailSet();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
-                                          @Nullable final String thumbnailUrl) {
+                                          @Nullable final String thumbnailUrl,
+                                          final boolean isPermanent) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
-                .filter(playlistEntities -> !playlistEntities.isEmpty())
                 .map(playlistEntities -> {
                     final PlaylistEntity playlist = playlistEntities.get(0);
                     if (name != null) {
@@ -121,6 +126,7 @@ public class LocalPlaylistManager {
                     }
                     if (thumbnailUrl != null) {
                         playlist.setThumbnailUrl(thumbnailUrl);
+                        playlist.setIsThumbnailSet(isPermanent);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());

@@ -7,6 +7,7 @@
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="yes">Yes</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -438,6 +439,7 @@
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
+    <string name="unset_playlist_thumbnail">Unset thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
