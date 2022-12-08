@@ -259,11 +259,42 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
+        final String rename = getString(R.string.rename);
+        final String delete = getString(R.string.delete);
+        final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
         final boolean isPlaylistThumbnailSet = localPlaylistManager
                 .getIsPlaylistThumbnailSet(selectedItem.uid);
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(),
+        final ArrayAdapter<String> arrayAdapter = getLocalDialogArrayAdapter(isPlaylistThumbnailSet,
+                unsetThumbnail);
+        arrayAdapter.addAll(rename, delete, unsetThumbnail);
+
+        final DialogInterface.OnClickListener action = (dialog, index) -> {
+            if (index == arrayAdapter.getPosition(rename)) {
+                showRenameDialog(selectedItem);
+            } else if (index == arrayAdapter.getPosition(delete)) {
+                showDeleteDialog(selectedItem.name, localPlaylistManager
+                        .deletePlaylist(selectedItem.uid));
+                dialog.dismiss();
+            } else if (isPlaylistThumbnailSet) {
+                final String thumbnail_url = localPlaylistManager
+                        .getAutomaticPlaylistThumbnail(selectedItem.uid);
+                localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, thumbnail_url, false)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            }
+        };
+
+        builder.setAdapter(arrayAdapter, action)
+                .create()
+                .show();
+    }
+
+    private ArrayAdapter<String> getLocalDialogArrayAdapter(final boolean isPlaylistThumbnailSet,
+                                                            final String unsetThumbnail) {
+        return new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1) {
             @Override
             public View getView(final int position, final View convertView,
@@ -271,7 +302,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final View v = super.getView(position, convertView, parent);
                 final TextView textView = v.findViewById(android.R.id.text1);
 
-                if (!isPlaylistThumbnailSet && position == 2) {
+                // If the PlaylistThumbnail is not set permanently, the unset option is disabled.
+                if (!isPlaylistThumbnailSet && textView.getText().equals(unsetThumbnail)) {
                     textView.setEnabled(false);
                     return v;
                 }
@@ -280,32 +312,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 return v;
             }
         };
-        arrayAdapter.addAll(getString(R.string.rename), getString(R.string.delete),
-                getString(R.string.unset_playlist_thumbnail));
-
-        // Rename = 0; Delete = 1; Unset Thumbnail = 2
-        final DialogInterface.OnClickListener action = (dialog, index) -> {
-            switch (index) {
-                case 0: showRenameDialog(selectedItem);
-                    break;
-                case 1:
-                    showDeleteDialog(selectedItem.name,
-                            localPlaylistManager.deletePlaylist(selectedItem.uid));
-                    dialog.dismiss();
-                    break;
-                case 2:
-                    if (isPlaylistThumbnailSet) {
-                        final String ur = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
-                        localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, ur,
-                            false).observeOn(AndroidSchedulers.mainThread()).subscribe();
-                    }
-                    break;
-            }
-        };
-
-        builder.setAdapter(arrayAdapter, action)
-                .create()
-                .show();
     }
 
     private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {

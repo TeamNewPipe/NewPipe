@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.playlist;
 
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
@@ -113,12 +114,18 @@ public class LocalPlaylistManager {
         return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getIsThumbnailSet();
     }
 
+    public String getAutomaticPlaylistThumbnail(final long playlistId) {
+        final String def = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
+        return playlistStreamTable.getAutomaticThumbnailUrl(playlistId, def).blockingFirst();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
                                           @Nullable final String thumbnailUrl,
                                           final boolean isPermanent) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
+                .filter(playlistEntities -> !playlistEntities.isEmpty())
                 .map(playlistEntities -> {
                     final PlaylistEntity playlist = playlistEntities.get(0);
                     if (name != null) {
