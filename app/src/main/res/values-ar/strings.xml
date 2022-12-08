@@ -774,4 +774,8 @@
     <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
     <string name="faq">مشاهدة على الموقع</string>
     <string name="sort">فرز</string>
+    <string name="app_update_unavailable_toast">أنت تقوم بتشغيل أحدث إصدار من NewPipe</string>
+    <string name="app_update_available_notification_text">انقر للتنزيل %s</string>
+    <string name="fast_mode">الوضع السريع</string>
+    <string name="import_subscriptions_hint">استيراد الاشتراكات أو تصديرها من القائمة المكونة من 3 نقاط</string>
 </resources>

@@ -748,4 +748,8 @@
     <string name="faq">הצגה באתר</string>
     <string name="faq_title">תשובות לשאלות נפוצות</string>
     <string name="faq_description">אם נתקלת בתקלות כשניסית להשתמש ביישומון, כדאי לעיין בתשובות לשאלות הנפוצות!</string>
+    <string name="import_subscriptions_hint">ניתן לייבא או לייצא מינויים מתפריט 3 הנקודות</string>
+    <string name="app_update_available_notification_text">נגיעה כאן תוריד את %s</string>
+    <string name="fast_mode">מצב מהיר</string>
+    <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של NewPipe</string>
 </resources>

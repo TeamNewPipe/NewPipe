@@ -722,4 +722,8 @@
     <string name="faq_title">Tez-tez soruşulan suallar</string>
     <string name="faq">Veb Saytında bax</string>
     <string name="sort">Çeşidlə</string>
+    <string name="app_update_unavailable_toast">NewPipe\'ın ən son versiyasın işlədirsiniz</string>
+    <string name="fast_mode">Sürətli rejim</string>
+    <string name="import_subscriptions_hint">3 nöqtə menyudan abunələri idxal və ya ixrac et</string>
+    <string name="app_update_available_notification_text">%s endirmək üçün toxun</string>
 </resources>

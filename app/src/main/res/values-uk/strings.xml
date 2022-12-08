@@ -739,4 +739,8 @@
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
     <string name="sort">Сортувати</string>
+    <string name="app_update_unavailable_toast">Ви використовуєте найновішу версію NewPipe</string>
+    <string name="app_update_available_notification_text">Торкніться, щоб завантажити %s</string>
+    <string name="import_subscriptions_hint">Імпорт або експорт підписок з 3-крапкового меню</string>
+    <string name="fast_mode">Швидкий режим</string>
 </resources>

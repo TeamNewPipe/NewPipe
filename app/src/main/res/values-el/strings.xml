@@ -722,4 +722,8 @@
     <string name="faq">Προβολή στην ιστοσελίδα</string>
     <string name="faq_description">Εάν αντιμετωπίζετε προβλήματα με τη χρήση της εφαρμογής, φροντίστε να ελέγξετε αυτές τις απαντήσεις σε συνήθεις ερωτήσεις!</string>
     <string name="sort">Ταξινόμηση</string>
+    <string name="fast_mode">Γρήγορη λειτουργία</string>
+    <string name="import_subscriptions_hint">Εισάγετε ή εξάγετε συνδρομές από το μενού 3 κουκκίδων</string>
+    <string name="app_update_available_notification_text">Πατήστε για λήψη %s</string>
+    <string name="app_update_unavailable_toast">Έχετε την πιο πρόσφατη έκδοση του NewPipe</string>
 </resources>

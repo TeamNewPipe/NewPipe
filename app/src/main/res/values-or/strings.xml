@@ -723,4 +723,9 @@
         <item quantity="other">ମୋଟ %s ନୂଆ ଷ୍ଟ୍ରୀମ</item>
     </plurals>
     <string name="sort">ସଜାନ୍ତୁ</string>
+    <string name="app_update_available_notification_title">NewPipe ଅଦ୍ୟତନ ଉପଲବ୍ଧ!</string>
+    <string name="fast_mode">ଦ୍ରୁତ ମୋଡ୍</string>
+    <string name="import_subscriptions_hint">3-ଡଟ୍ ମେନୁରୁ ସଦସ୍ୟତା ଆମଦାନୀ କିମ୍ବା ରପ୍ତାନି କରନ୍ତୁ</string>
+    <string name="app_update_unavailable_toast">ଆପଣ NewPipe ର ସର୍ବଶେଷ ସଂସ୍କରଣ ଚଳାଉଛନ୍ତି</string>
+    <string name="app_update_available_notification_text">%s ଡାଉନଲୋଡ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
 </resources>

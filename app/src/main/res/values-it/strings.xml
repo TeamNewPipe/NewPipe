@@ -735,4 +735,8 @@
     <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>
     <string name="sort">Ordina</string>
     <string name="faq">Visualizza sul sito</string>
+    <string name="fast_mode">Recupero veloce</string>
+    <string name="app_update_available_notification_text">Premi per scaricare %s</string>
+    <string name="app_update_unavailable_toast">L\'ultima versione di NewPipe è già in esecuzione</string>
+    <string name="import_subscriptions_hint">Importa o esporta iscrizioni dal menu a 3 punti</string>
 </resources>

@@ -735,4 +735,8 @@
     <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
     <string name="faq">Zobrazit na webu</string>
     <string name="sort">Řazení</string>
+    <string name="app_update_available_notification_text">Klepnutím stáhnete %s</string>
+    <string name="fast_mode">Rychlý režim</string>
+    <string name="app_update_unavailable_toast">Používáte nejnovější verzi NewPipe</string>
+    <string name="import_subscriptions_hint">Import nebo export odběrů z 3-tečkové nabídky</string>
 </resources>

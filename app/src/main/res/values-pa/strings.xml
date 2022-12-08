@@ -29,7 +29,7 @@
     <string name="fragment_feed_title">ਨਵਾਂ ਕੀ ਹੈ</string>
     <string name="controls_background_title">ਬੈਕਗ੍ਰਾਊਂਡ ਆਡੀਓ</string>
     <string name="controls_popup_title">ਪੌਪ-ਅਪ</string>
-    <string name="controls_add_to_playlist_title">ਇਸ ਵਿੱਚ ਜੋੜੋ</string>
+    <string name="controls_add_to_playlist_title">ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="download_path_title">ਵੀਡੀਓ ਲਈ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ</string>
     <string name="download_path_summary">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਵੀਡਿਓ ਇੱਥੇ ਜਮ੍ਹਾਂ ਹੁੰਦੀਆਂ ਹਨ</string>
     <string name="download_path_dialog_title">ਵੀਡੀਓ ਫ਼ਾਈਲਾਂ ਲਈ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੁਣੋ</string>
@@ -129,8 +129,8 @@
     <string name="player_unrecoverable_failure">ਅਣਚਾਹੀ ਪਲੇਅਰ ਤਰੁੱਟੀ ਆਈ ਹੈ</string>
     <string name="player_recoverable_failure">ਪਲੇਅਰ ਤਰੁੱਟੀ ਤੋਂ ਮੁੜ-ਸੁਰਜੀਤ ਹੋ ਰਿਹਾ ਹੈ</string>
     <string name="external_player_unsupported_link_type">ਬਾਹਰੀ ਪਲੇਅਰ ਇਸ ਕਿਸਮ ਦੇ ਲਿੰਕਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੇ</string>
-    <string name="video_streams_empty">ਕੋਈ ਵੀ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
-    <string name="audio_streams_empty">ਕੋਈ ਵੀ ਆਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
+    <string name="video_streams_empty">ਕੋਈ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
+    <string name="audio_streams_empty">ਕੋਈ ਆਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
     <string name="invalid_directory">ਅਜਿਹਾ ਕੋਈ ਫੋਲਡਰ ਨਹੀਂ</string>
     <string name="invalid_source">ਅਜਿਹਾ ਕੋਈ ਫਾਈਲ/ਸਮੱਗਰੀ ਸਰੋਤ ਨਹੀਂ ਹੈ</string>
     <string name="invalid_file">ਫਾਈਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਇਸ ਨੂੰ ਪੜ੍ਹਨ ਜਾਂ ਲਿਖਣ ਦੀ ਆਗਿਆ ਨਹੀਂ ਹੈ</string>
@@ -151,7 +151,7 @@
     <string name="detail_likes_img_view_description">ਪਸੰਦਾਂ</string>
     <string name="detail_dislikes_img_view_description">ਨਾਪਸੰਦਾਂ</string>
     <string name="search_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
-    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਸੁੰਨਾਪਨ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
+    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਖਾਲੀਪਣ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
     <string name="detail_drag_description">ਮੁੜ-ਕ੍ਰਮਬੱਧ ਕਰਨ ਲਈ ਡਰੈਗ ਕਰੋ</string>
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>
@@ -319,7 +319,7 @@
     <string name="decline">ਅਸਵੀਕਾਰ</string>
     <string name="limit_data_usage_none_description">ਕੋਈ ਸੀਮਾ ਨਹੀਂ</string>
     <string name="limit_mobile_data_usage_title">ਮੋਬਾਈਲ ਡਾਟਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਸਮੇਂ ਰੈਜ਼ੋਲੂਸ਼ਨ ਨੂੰ ਸੀਮਿਤ ਕਰੋ</string>
-    <string name="minimize_on_exit_title">ਐਪ switch ਕਰਨ ਤੇ minimize ਕਰੋ</string>
+    <string name="minimize_on_exit_title">ਐਪ ਸਵਿੱਚ ਕਰਨ ਤੇ ਮਿਨੀਮਾਈਜ਼ ਕਰੋ</string>
     <string name="minimize_on_exit_summary">ਮੁੱਖ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲ਼ੇ ਕਾਰਵਾਈ — %s</string>
     <string name="minimize_on_exit_none_description">ਕੋਈ ਨਹੀਂ</string>
     <string name="minimize_on_exit_background_description">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ ਵਿੱਚ Minimize ਕਰੋ</string>
@@ -351,7 +351,7 @@
     <string name="main_page_content_summary">ਮੁੱਖ ਪੰਨੇ ਤੇ ਕਿਹੜੇ ਟੈਬ ਵਿਖਾਏ ਜਾਣਗੇ</string>
     <string name="updates_setting_title">ਅਪਡੇਟਾਂ</string>
     <string name="updates_setting_description">ਜਦੋਂ ਨਵਾਂ ਸੰਸਕਰਣ ਉਪਲਬਧ ਹੁੰਦਾ ਹੈ ਤਾਂ ਐਪ ਅਪਡੇਟ ਨੂੰ ਪੁੱਛਣ ਲਈ ਇੱਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦਿਖਾਓ</string>
-    <string name="list_view_mode">ਲਿਸਟ view ਮੋਡ</string>
+    <string name="list_view_mode">ਲਿਸਟ ਵਿਊ ਮੋਡ</string>
     <string name="list">ਲਿਸਟ</string>
     <string name="grid">ਗਰਿੱਡ</string>
     <string name="auto">ਆਟੋ</string>
@@ -380,8 +380,8 @@
     <string name="stop">ਰੁੱਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
-    <string name="pause_downloads_on_mobile">Metered ਨੈਟਵਰਕਸ ਤੇ ਰੁਕਾਵਟ</string>
-    <string name="pause_downloads_on_mobile_desc">ਮੋਬਾਈਲ ਡਾਟਾ ਤੇ switch ਕਰਨ ਵੇਲੇ ਲਾਭਦਾਇਕ ਹੈ, ਹਾਲਾਂਕਿ ਕੁਝ ਡਾਉਨਲੋਡਾਂ ਨੂੰ suspend ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
+    <string name="pause_downloads_on_mobile">ਮੀਟਰ ਕੀਤੇ ਨੈਟਵਰਕਸ ਤੇ ਰੁਕਾਵਟ</string>
+    <string name="pause_downloads_on_mobile_desc">ਮੋਬਾਈਲ ਡਾਟਾ ਤੇ ਸਵਿੱਚ ਕਰਨ ਵੇਲੇ ਲਾਭਦਾਇਕ ਹੈ, ਹਾਲਾਂਕਿ ਕੁਝ ਡਾਉਨਲੋਡਾਂ ਨੂੰ ਮੁਅੱਤਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <string name="events">ਇਵੇੰਟਸ</string>
     <string name="conferences">ਕਾਨਫਰੰਸਾਂ</string>
     <string name="show_comments_title">ਟਿੱਪਣੀਆਂ ਦਿਖਾਓ</string>
@@ -408,7 +408,7 @@
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ timeout</string>
     <string name="confirm_prompt">ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰਨਾ ਜਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
     <string name="enable_queue_limit">ਡਾਊਨਲੋਡ ਸੀਮਾ ਕਤਾਰ ਵਿੱਚ</string>
-    <string name="enable_queue_limit_desc">one download will run at the same time</string>
+    <string name="enable_queue_limit_desc">ਇੱਕ ਸਮੇਂ ਤੇ ਇੱਕੋ ਡਾਊਨਲੋਡ ਚੱਲੇਗਾ</string>
     <string name="start_downloads">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="pause_downloads">ਡਾਊਨਲੋਡਸ ਰੋਕੋ</string>
     <string name="downloads_storage_ask_title">ਪੁੱਛੋ ਕਿੱਥੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਹੈ</string>
@@ -475,8 +475,8 @@
     <string name="no_app_to_open_intent">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਦੀ ਕੋਈ ਵੀ ਐਪ ਇਸ ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਦੀ</string>
     <string name="chapters">ਚੈਪਟਰ</string>
     <string name="recent">ਹਾਲੀਆ</string>
-    <string name="show_thumbnail_summary">ਥਮਨੇਲ ਨੂੰ ਤਾਲਾਬੱਧ ਸਕਰੀਨ ਦੇ ਪਿਛੋਕੜ ਅਤੇ ਇਤਲਾਹਾਂ ਦੋਹਾਂ ਲਈ ਵਰਤੋ</string>
-    <string name="show_thumbnail_title">ਥਮਨੇਲ ਵਿਖਾਓ</string>
+    <string name="show_thumbnail_summary">ਥੰਮਨੇਲ ਨੂੰ ਤਾਲਾਬੱਧ ਸਕਰੀਨ ਦੇ ਪਿਛੋਕੜ ਅਤੇ ਇਤਲਾਹਾਂ ਦੋਹਾਂ ਲਈ ਵਰਤੋ</string>
+    <string name="show_thumbnail_title">ਥੰਮਨੇਲ ਵਿਖਾਓ</string>
     <string name="playlist_page_summary">ਪਲੇ-ਸੂਚੀ ਪੰਨਾ</string>
     <string name="video_detail_by">%s ਦੁਆਰਾ</string>
     <string name="channel_created_by">%s ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ</string>
@@ -496,7 +496,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">ਸਿਰਫ਼ ਉਹ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਵਿਖਾਓ ਜੋ ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਨਹੀਂ ਪਾਈਆਂ ਹੋਈਆਂ</string>
     <string name="feed_create_new_group_button_title">ਨਵਾਂ</string>
     <string name="feed_group_dialog_delete_message">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
-    <string name="feed_group_dialog_empty_name">ਗਰੁੱਪ ਨਾਮ ਖ਼ਾਲੀ ਕਰੋ</string>
+    <string name="feed_group_dialog_empty_name">ਖ਼ਾਲੀ ਗਰੁੱਪ ਨਾਮ</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d ਚੁਣੀ</item>
         <item quantity="other">%d ਚੁਣੀਆਂ</item>
@@ -641,7 +641,7 @@
     <string name="detail_pinned_comment_view_description">ਪਿੰਨ ਕੀਤੀ ਟਿੱਪਣੀ</string>
     <string name="checking_updates_toast">ਅੱਪਡੇਟ ਦੀ ਉਪਲੱਬਧਤਾ ਪਰਖੀ ਜਾ ਰਹੀ…</string>
     <string name="mark_as_watched">ਵੇਖਿਆ ਜਾ ਚੁੱਕਿਆ ਚਿੰਨਤ ਕਰੋ</string>
-    <string name="seekbar_preview_thumbnail_title">ਸੀਕਬਾਰ ਥਮਨੇਲ ਦੀ ਝਲਕ</string>
+    <string name="seekbar_preview_thumbnail_title">ਸੀਕਬਾਰ ਥੰਮਨੇਲ ਦੀ ਝਲਕ</string>
     <string name="feed_update_threshold_summary">ਸਮਾਂ-ਅਵਧੀ ਜਦ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਦੁਬਾਰਾ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਸਕੇ — %s</string>
     <string name="detail_heart_img_view_description">ਰਚਨਾਕਾਰ ਨੇ ਦਿਲੋਂ ਪਸੰਦ ਕੀਤਾ</string>
     <string name="progressive_load_interval_summary">ਲੋਡ ਅੰਤਰਾਲ ਆਕਾਰ ਬਦਲੋ (ਮੌਜੂਦਾ %s ਤੇ)। ਛੋਟੀ ਸੰਖਿਆ ਵੀਡੀਓ ਜਲਦੀ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਮੱਦਦ ਦੇ ਸਕਦੀ ਹੈ। ਬਦਲਾਅ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਤੇ ਹੀ ਹੋਣਗੇ</string>
@@ -722,4 +722,8 @@
 \nਯੂਟਿਊਬ ਇੱਕ ਅਜਿਹੀ ਸੇਵਾ ਹੈ ਜਿਹੜੀ RSS ਫੀਡ ਜ਼ਰੀਏ ਇਹ ਤੇਜ਼ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ।
 \n 
 \nਤੁਹਾਡੀ ਚੋਣ ਇਸ ਗੱਲ ਤੇ ਮੁਨੱਸਰ ਕਰਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਗਤੀ ਤੇ ਸਟੀਕਤਾ ਵਿੱਚੋਂ ਕਿਸ ਨੂੰ ਪ੍ਰਾਥਮਿਕਤਾ ਦਿੰਦੇ ਹੋ।</string>
+    <string name="fast_mode">ਤੇਜ ਮੋਡ</string>
+    <string name="import_subscriptions_hint">3-ਡੌਟ ਮੀਨੂ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਆਯਾਤ ਜਾਂ ਨਿਰਯਾਤ ਕਰੋ</string>
+    <string name="app_update_unavailable_toast">ਤੁਸੀਂ ਨਿਊਪਾਈਪ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਚਲਾ ਰਹੇ ਹੋ</string>
+    <string name="app_update_available_notification_text">%s ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
 </resources>
