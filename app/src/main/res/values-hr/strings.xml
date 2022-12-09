@@ -701,7 +701,6 @@
     <string name="check_new_streams">Pokreni traženje novih streamova</string>
     <string name="streams_notifications_interval_title">Prvjeravanje učestalosti</string>
     <string name="leak_canary_not_available">Biblioteka „LeakCanary” nije dostupna</string>
-    <string name="adjust_by_semitones_checkbox">Podešavanje visine tona po glazbenim polutonovima</string>
     <string name="enable_streams_notifications_title">Obavijesti o novim streamovima</string>
     <string name="streams_notifications_network_title">Potrebna mrežna veza</string>
     <string name="progressive_load_interval_default">Zadano za ExoPlayer</string>
