@@ -419,7 +419,6 @@
     <string name="manual_update_title">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="manual_update_description">ନୂତନ ସଂସ୍କରଣଗୁଡ଼ିକ ପାଇଁ ମାନୁଆଲ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="missions_header_pending">ବିଚାରାଧୀନ ଅଛି</string>
-    <string name="app_update_notification_content_text">ଡାଉନଲୋଡ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି\?</string>
     <string name="description_select_disable">ବର୍ଣ୍ଣନାରେ ପାଠ ବାଛିବା ଅକ୍ଷମ କରନ୍ତୁ</string>
     <string name="error_ssl_exception">ଏକ ସୁରକ୍ଷିତ ସଂଯୋଗ ସ୍ଥାପନ କରିପାରିଲା ନାହିଁ</string>

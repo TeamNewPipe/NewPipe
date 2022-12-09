@@ -454,7 +454,6 @@
     <string name="high_quality_larger">Hágæða (stærra)</string>
     <string name="low_quality_smaller">Lágæða (minna)</string>
     <string name="dont_show">Ekki sýna</string>
-    <string name="app_update_notification_content_text">Pikkaðu til að sækja</string>
     <string name="recovering">að jafna sig</string>
     <string name="download_failed">Niðurhal mistókst</string>
     <string name="show_error">Sýna villu</string>
