@@ -241,6 +241,7 @@
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
+    <string name="playlist_loading_message">Playlist loading…</string>
     <!-- error activity -->
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
