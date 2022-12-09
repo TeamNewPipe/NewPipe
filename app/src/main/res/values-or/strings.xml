@@ -575,7 +575,6 @@
     <string name="checking_updates_toast">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରୁଛି…</string>
     <string name="seekbar_preview_thumbnail_title">ସେକ୍ବାର୍ ଥମ୍ୱନେଲ୍ ପୂର୍ବାବଲୋକନ</string>
     <string name="high_quality_larger">ଉଚ୍ଚ ଗୁଣବତ୍ତା (ବଡ଼)</string>
-    <string name="app_update_notification_content_title">NewPipe ଅଦ୍ୟତନ ଉପଲବ୍ଧ!</string>
     <string name="confirm_prompt">ଆପଣ ଆପଣଙ୍କର ଡାଉନଲୋଡ୍ ଇତିହାସ ସଫା କରିବାକୁ କିମ୍ବା ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
     <string name="error_unknown_host">ସର୍ଭର ଖୋଜି ପାଇଲା ନାହିଁ</string>
     <plurals name="deleted_downloads_toast">

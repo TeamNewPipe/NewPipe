@@ -352,7 +352,6 @@
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
-    <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>

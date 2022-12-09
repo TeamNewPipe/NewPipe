@@ -97,7 +97,6 @@
     <string name="auto">آٹو</string>
     <string name="upload_date_text">%1$s نوں جاری کیتی گئی</string>
     <string name="open_with">ایس وچ کھُلھو</string>
-    <string name="app_update_notification_content_title">نیوپائیپ دا نواں ورژن اُپلبدھ اے!</string>
     <string name="open_in_popup_mode">تیردی تصویر وچ کھُلھو</string>
     <string name="controls_download_desc">سٹریم دی فائل ڈاؤن‌لوڈ کرو</string>
     <string name="search_showing_result_for">%s لئی نتیجے وِکھاۓ جا رہے ہن</string>
