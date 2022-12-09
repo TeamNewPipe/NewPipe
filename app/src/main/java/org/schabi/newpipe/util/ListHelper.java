@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -567,7 +568,15 @@ public final class ListHelper {
     }
 
     private static boolean isLimitingDataUsage(final Context context) {
-        return getResolutionLimit(context) != null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            final ConnectivityManager manager =
+                    ContextCompat.getSystemService(context, ConnectivityManager.class);
+            return manager.getRestrictBackgroundStatus()
+                    == manager.RESTRICT_BACKGROUND_STATUS_ENABLED
+                || getResolutionLimit(context) != null;
+        } else {
+            return getResolutionLimit(context) != null;
+        }
     }
 
     /**
