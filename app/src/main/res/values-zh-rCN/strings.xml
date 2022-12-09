@@ -709,4 +709,8 @@
     <string name="faq_description">如果你在使用本应用时遇到问题，请务必查看这些常见问题的答案！</string>
     <string name="faq">在网站上查看</string>
     <string name="sort">排序</string>
+    <string name="fast_mode">快速模式</string>
+    <string name="import_subscriptions_hint">从三点菜单导入或导出订阅</string>
+    <string name="app_update_unavailable_toast">你正在运行最新版的 NewPipe</string>
+    <string name="app_update_available_notification_text">轻按下载 %s</string>
 </resources>

@@ -445,7 +445,6 @@
     <string name="list">სია</string>
     <string name="high_quality_larger">მაღალი ხარისხის (უფრო დიდი)</string>
     <string name="dont_show">არ მაჩვენო</string>
-    <string name="app_update_notification_content_text">შეეხეთ ჩამოსატვირთად</string>
     <string name="missions_header_finished">დასრულდა</string>
     <string name="missions_header_pending">მომლოდინე</string>
     <string name="paused">დაპაუზდა</string>
@@ -656,7 +655,6 @@
     <string name="seekbar_preview_thumbnail_title">Seekbar-ის ესკიზის გადახედვა</string>
     <string name="wifi_only">მხოლოდ Wi-Fi-ზე</string>
     <string name="low_quality_smaller">დაბალი ხარისხი(პატარა)</string>
-    <string name="app_update_notification_content_title">NewPipe განახლება ხელმისაწვდომია!</string>
     <string name="permission_denied">მოქმედება უარყოფილია სისტემის მიერ</string>
     <string name="checking_updates_toast">მიმდინარეობს განახლებების შემოწმება…</string>
     <string name="generate_unique_name">შექმენით უნიკალური სახელი</string>

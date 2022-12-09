@@ -10,4 +10,4 @@ Mejorado
 
 Arreglado
 * Se arreglaron múltiples crasheos.
-* [YouTube] Se arreglaron las cargas de canales, feeds no dedicados y problemas de contenido en algunos países.
+* [YouTube] Se arreglaron las cargas de canales, feeds no dedicados y problemas de contenido en algunos países

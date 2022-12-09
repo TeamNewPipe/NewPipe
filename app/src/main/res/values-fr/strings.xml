@@ -737,4 +737,8 @@
     <string name="faq">Voir sur le site web</string>
     <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
     <string name="sort">Trier</string>
+    <string name="fast_mode">Mode rapide</string>
+    <string name="import_subscriptions_hint">Importer ou exporter des abonnements à partir du menu</string>
+    <string name="app_update_unavailable_toast">Vous utilisez la dernière version de NewPipe</string>
+    <string name="app_update_available_notification_text">Appuyez pour télécharger %s</string>
 </resources>

@@ -735,4 +735,8 @@
     <string name="faq">Žiūrėti svetainėje</string>
     <string name="faq_description">Jei kyla sunkumų naudojantis programėle, būtinai peržiūrėkite šiuos atsakymus į dažniausiai užduodamus klausimus!</string>
     <string name="sort">Rikiuoti</string>
+    <string name="import_subscriptions_hint">Importuokite arba eksportuokite prenumeratas iš 3 taškelių meniu</string>
+    <string name="fast_mode">Greitasis režimas</string>
+    <string name="app_update_unavailable_toast">Naudojate naujausią „NewPipe“ versiją</string>
+    <string name="app_update_available_notification_text">Bakstelėkite, kad atsisiųstumėte %s</string>
 </resources>

@@ -187,7 +187,7 @@
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
     <string name="msg_running">NewPipe allalaadimine</string>
-    <string name="msg_running_detail">Puuduta üksikasjade nägemiseks</string>
+    <string name="msg_running_detail">Üksikasjade nägemiseks toksa</string>
     <string name="msg_wait">Palun oota…</string>
     <string name="msg_copied">Kopeeriti lõikepuhvrisse</string>
     <string name="no_available_dir">Vali määra allalaadimiste kataloog hiljem sätetes</string>
@@ -668,7 +668,7 @@
     <string name="feed_new_items">Uued andmevoo kirjed</string>
     <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
     <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
-    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
+    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks toksa</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>
     <string name="show_error_snackbar">Näita veateate akent</string>
     <string name="error_report_channel_name">Teavitus vigadest</string>
@@ -722,4 +722,8 @@
     <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>
     <string name="faq">Edasi loe veebisaidist</string>
     <string name="sort">Sortimine</string>
+    <string name="app_update_available_notification_text">%s allalaadimiseks toksa</string>
+    <string name="fast_mode">Kiirrežiim</string>
+    <string name="import_subscriptions_hint">Tellimusi saad importida või eksportida 3 punktiga menüüst</string>
+    <string name="app_update_unavailable_toast">Sa kasutad NewPipe\'i uusimat versiooni</string>
 </resources>

@@ -136,7 +136,6 @@
     <string name="settings_category_player_title">Spilari</string>
     <string name="settings_category_debug_title">Aflúsa</string>
     <string name="content_language_title">Sjálfgefið tungumál efnis</string>
-    <string name="app_update_notification_content_title">NewPipe uppfærsla í boði!</string>
     <string name="metadata_language">Tungumál</string>
     <string name="controls_add_to_playlist_title">Bæta við</string>
     <string name="controls_popup_title">Sprettiglugga</string>
@@ -454,7 +453,6 @@
     <string name="high_quality_larger">Hágæða (stærra)</string>
     <string name="low_quality_smaller">Lágæða (minna)</string>
     <string name="dont_show">Ekki sýna</string>
-    <string name="app_update_notification_content_text">Pikkaðu til að sækja</string>
     <string name="recovering">að jafna sig</string>
     <string name="download_failed">Niðurhal mistókst</string>
     <string name="show_error">Sýna villu</string>

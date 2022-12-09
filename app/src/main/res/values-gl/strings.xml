@@ -722,4 +722,8 @@
     <string name="faq_title">Preguntas máis frecuentes</string>
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
     <string name="sort">Ordenar</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="app_update_unavailable_toast">Estás executandola última versión de NewPipe</string>
+    <string name="app_update_available_notification_text">Toca para descargar %s</string>
+    <string name="import_subscriptions_hint">Importa ou exporta subscricións dende o menú dos 3 puntos</string>
 </resources>

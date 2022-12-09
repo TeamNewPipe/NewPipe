@@ -352,7 +352,6 @@
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
-    <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>
@@ -722,4 +721,9 @@
     <string name="faq">Web sitesinde görüntüle</string>
     <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
     <string name="sort">Sırala</string>
+    <string name="fast_mode">Hızlı kip</string>
+    <string name="app_update_unavailable_toast">En yeni NewPipe sürümünü kullanıyorsunuz</string>
+    <string name="app_update_available_notification_title">NewPipe güncellemesi var!</string>
+    <string name="app_update_available_notification_text">%s indirmek için dokunun</string>
+    <string name="import_subscriptions_hint">3-nokta menüsünden abonelikleri içe veya dışa aktarın</string>
 </resources>

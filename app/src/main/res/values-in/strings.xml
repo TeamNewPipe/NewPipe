@@ -455,7 +455,6 @@
         <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
-
     <plurals name="minutes">
         <item quantity="other">%d menit</item>
     </plurals>
@@ -710,4 +709,8 @@
     <string name="faq_description">Jika Anda mengalami masalah menggunakan aplikasi, pastikan untuk melihat jawaban untuk pertanyaan yang umum!</string>
     <string name="faq">Tampilkan di situs web</string>
     <string name="sort">Urutan</string>
+    <string name="fast_mode">Mode cepat</string>
+    <string name="import_subscriptions_hint">Impor atau ekspor langganan dari menu 3 titik</string>
+    <string name="app_update_unavailable_toast">Anda menjalankan NewPipe versi terkini</string>
+    <string name="app_update_available_notification_text">Ketuk untuk mengunduh %s</string>
 </resources>

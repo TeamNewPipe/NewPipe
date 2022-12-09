@@ -722,4 +722,8 @@
     <string name="faq_title">Vanligt ställda frågor</string>
     <string name="faq">Visa på webbplats</string>
     <string name="sort">Sortera</string>
+    <string name="import_subscriptions_hint">Importera eller exportera prenumerationer från 3-punktsmenyn</string>
+    <string name="fast_mode">Snabbt läge</string>
+    <string name="app_update_unavailable_toast">Du använder den senaste versionen av NewPipe</string>
+    <string name="app_update_available_notification_text">Tryck för att ladda ner %s</string>
 </resources>

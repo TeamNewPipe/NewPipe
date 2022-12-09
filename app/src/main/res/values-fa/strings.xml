@@ -722,4 +722,8 @@
     <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
     <string name="faq">نمایش در وبسایت</string>
     <string name="sort">ترتیب</string>
+    <string name="import_subscriptions_hint">درون یا برون ریزی اشتراک‌ها از فهرست سه‌نقطه‌ای</string>
+    <string name="fast_mode">حالت سریع</string>
+    <string name="app_update_available_notification_text">ضربه برای بارگیری %s</string>
+    <string name="app_update_unavailable_toast">از جدیدترین نگارش نیوپایپ استفاده می‌کنید</string>
 </resources>

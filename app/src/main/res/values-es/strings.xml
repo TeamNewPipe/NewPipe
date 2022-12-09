@@ -48,7 +48,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toque la lupa para comenzar.</string>
+    <string name="main_bg_subtitle">Pulsa la lupa para empezar.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -738,4 +738,8 @@
     <string name="faq_title">Preguntas frecuentes</string>
     <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
     <string name="sort">Ordenar</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
+    <string name="app_update_unavailable_toast">Está ejecutando la última versión de NewPipe</string>
+    <string name="app_update_available_notification_text">Pulsa para descargar %s</string>
 </resources>
