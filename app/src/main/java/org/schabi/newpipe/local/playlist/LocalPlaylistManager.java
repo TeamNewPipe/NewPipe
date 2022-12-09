@@ -110,8 +110,9 @@ public class LocalPlaylistManager {
         return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
     }
 
-    public boolean getIsPlaylistThumbnailSet(final long playlistId) {
-        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getIsThumbnailSet();
+    public boolean getIsPlaylistThumbnailPermanent(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0)
+                .getIsThumbnailPermanent();
     }
 
     public String getAutomaticPlaylistThumbnail(final long playlistId) {
@@ -133,7 +134,7 @@ public class LocalPlaylistManager {
                     }
                     if (thumbnailUrl != null) {
                         playlist.setThumbnailUrl(thumbnailUrl);
-                        playlist.setIsThumbnailSet(isPermanent);
+                        playlist.setIsThumbnailPermanent(isPermanent);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());

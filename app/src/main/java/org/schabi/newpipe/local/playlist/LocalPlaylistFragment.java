@@ -405,8 +405,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .zipWith(historyIdsMaybe, (playlist, historyStreamIds) -> {
                     // Remove Watched, Functionality data
                     final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
-                    final boolean isThumbnailSet = playlistManager
-                            .getIsPlaylistThumbnailSet(playlistId);
+                    final boolean isThumbnailPermanent = playlistManager
+                            .getIsPlaylistThumbnailPermanent(playlistId);
                     boolean thumbnailVideoRemoved = false;
 
                     if (removePartiallyWatched) {
@@ -416,7 +416,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                             if (indexInHistory < 0) {
                                 notWatchedItems.add(playlistItem);
-                            } else if (!isThumbnailSet && !thumbnailVideoRemoved
+                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
@@ -437,7 +437,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             if (indexInHistory < 0 || (streamStateEntity != null
                                     && !streamStateEntity.isFinished(duration))) {
                                 notWatchedItems.add(playlistItem);
-                            } else if (!isThumbnailSet && !thumbnailVideoRemoved
+                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
@@ -589,7 +589,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void changeThumbnailUrl(final String thumbnailUrl, final boolean isPermanent) {
         if (playlistManager == null || (!isPermanent && playlistManager
-                .getIsPlaylistThumbnailSet(playlistId))) {
+                .getIsPlaylistThumbnailPermanent(playlistId))) {
             return;
         }
 
@@ -612,11 +612,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void updateThumbnailUrl() {
-        if (playlistManager.getIsPlaylistThumbnailSet(playlistId)) {
+        if (playlistManager.getIsPlaylistThumbnailPermanent(playlistId)) {
             return;
         }
 
         final String newThumbnailUrl;
+
         if (!itemListAdapter.getItemsList().isEmpty()) {
             newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
                     .getStreamEntity().getThumbnailUrl();

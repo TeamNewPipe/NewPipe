@@ -262,12 +262,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         final String rename = getString(R.string.rename);
         final String delete = getString(R.string.delete);
         final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
-        final boolean isPlaylistThumbnailSet = localPlaylistManager
-                .getIsPlaylistThumbnailSet(selectedItem.uid);
+        final boolean isThumbnailPermanent = localPlaylistManager
+                .getIsPlaylistThumbnailPermanent(selectedItem.uid);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        final ArrayAdapter<String> arrayAdapter = getLocalDialogArrayAdapter(isPlaylistThumbnailSet,
+        final ArrayAdapter<String> arrayAdapter = getLocalDialogArrayAdapter(isThumbnailPermanent,
                 unsetThumbnail);
         arrayAdapter.addAll(rename, delete, unsetThumbnail);
 
@@ -277,11 +277,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             } else if (index == arrayAdapter.getPosition(delete)) {
                 showDeleteDialog(selectedItem.name, localPlaylistManager
                         .deletePlaylist(selectedItem.uid));
-                dialog.dismiss();
-            } else if (isPlaylistThumbnailSet) {
-                final String thumbnail_url = localPlaylistManager
+            } else if (isThumbnailPermanent) {
+                final String thumbnailUrl = localPlaylistManager
                         .getAutomaticPlaylistThumbnail(selectedItem.uid);
-                localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, thumbnail_url, false)
+                localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, thumbnailUrl, false)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe();
             }
@@ -294,8 +293,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
     private ArrayAdapter<String> getLocalDialogArrayAdapter(final boolean isPlaylistThumbnailSet,
                                                             final String unsetThumbnail) {
-        return new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_list_item_1) {
+        return new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1) {
             @Override
             public View getView(final int position, final View convertView,
                                 final ViewGroup parent) {
