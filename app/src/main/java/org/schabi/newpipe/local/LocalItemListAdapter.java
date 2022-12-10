@@ -347,7 +347,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public long getItemId(final int position) {
-        final LocalItem item = localItems.get(0);
+        final LocalItem item = localItems.get(position);
         if (item != null && item.getLocalItemType() == LocalItem.LocalItemType.
                 PLAYLIST_LOCAL_ITEM) {
             return ((PlaylistMetadataEntry) item).uid;

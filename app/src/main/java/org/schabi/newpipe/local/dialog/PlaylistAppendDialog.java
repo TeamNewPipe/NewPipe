@@ -16,10 +16,10 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
-import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -126,34 +126,44 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
 
-            final LocalPlaylistManager playlistManager =
-                    new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
-            final List<Long> duplicateIds = playlistManager.getDuplicatePlaylist(getStreamEntities()
-                    .get(0).getUrl()).blockingFirst();
+            playlistRecyclerView.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
+            initDuplicateIndicators(playlistRecyclerView);
+        }
+    }
 
-            final HashMap<Integer, Long> map = new HashMap<>();
-            for (int i = 0; i < playlists.size(); i++) {
-                map.put(i, playlists.get(i).uid);
+    public class DefaultItemListOnScrolledDownListener extends OnScrollBelowItemsListener {
+        @Override
+        public void onScrolledDown(final RecyclerView recyclerView) {
+            showDuplicateIndicators(recyclerView);
+        }
+    }
+
+    public void initDuplicateIndicators(@NonNull final RecyclerView view) {
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showDuplicateIndicators(view);
             }
+        }, 50);
+    }
 
-            playlistRecyclerView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (playlistRecyclerView.getAdapter() == null) {
-                        return;
-                    }
-                    final int count = playlistRecyclerView.getAdapter().getItemCount();
-                    System.out.println(" kasjdflkalk" + playlistRecyclerView.getAdapter()
-                            .getItemId(0));
-                    for (int i = 0; i < count; i++) {
-                        if (playlistRecyclerView.findViewHolderForAdapterPosition(i) != null
-                                && duplicateIds.contains(playlistAdapter.getItemId(i))) {
-                            playlistRecyclerView.findViewHolderForAdapterPosition(i).itemView
-                                    .findViewById(R.id.checkmark2).setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
-            }, 1000);
+    public void showDuplicateIndicators(final RecyclerView view) {
+        final LocalPlaylistManager playlistManager =
+                new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
+        final List<Long> duplicateIds = playlistManager.getDuplicatePlaylist(getStreamEntities()
+                .get(0).getUrl()).blockingFirst();
+
+        if (view.getAdapter() == null) {
+            return;
+        }
+
+        final int count = view.getAdapter().getItemCount();
+        for (int i = 0; i < count; i++) {
+            if (view.findViewHolderForAdapterPosition(i) != null
+                    && duplicateIds.contains(playlistAdapter.getItemId(i))) {
+                view.findViewHolderForAdapterPosition(i).itemView
+                        .findViewById(R.id.checkmark2).setVisibility(View.VISIBLE);
+            }
         }
     }
 
