@@ -95,6 +95,10 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getDuplicates(playlistId, streamURL);
     }
 
+    public Flowable<List<Long>> getDuplicatePlaylist(final String streamURL) {
+        return playlistStreamTable.getDuplicatePlaylists(streamURL);
+    }
+
     public Single<Integer> deletePlaylist(final long playlistId) {
         return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
                 .subscribeOn(Schedulers.io());

@@ -19,6 +19,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -62,6 +63,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
+        playlistAdapter.setHasStableIds(true);
         playlistAdapter.setSelectedListener(selectedItem -> {
             final List<StreamEntity> entities = getStreamEntities();
             if (selectedItem instanceof PlaylistMetadataEntry && entities != null) {
@@ -123,6 +125,35 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
+
+            final LocalPlaylistManager playlistManager =
+                    new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
+            final List<Long> duplicateIds = playlistManager.getDuplicatePlaylist(getStreamEntities()
+                    .get(0).getUrl()).blockingFirst();
+
+            final HashMap<Integer, Long> map = new HashMap<>();
+            for (int i = 0; i < playlists.size(); i++) {
+                map.put(i, playlists.get(i).uid);
+            }
+
+            playlistRecyclerView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (playlistRecyclerView.getAdapter() == null) {
+                        return;
+                    }
+                    final int count = playlistRecyclerView.getAdapter().getItemCount();
+                    System.out.println(" kasjdflkalk" + playlistRecyclerView.getAdapter()
+                            .getItemId(0));
+                    for (int i = 0; i < count; i++) {
+                        if (playlistRecyclerView.findViewHolderForAdapterPosition(i) != null
+                                && duplicateIds.contains(playlistAdapter.getItemId(i))) {
+                            playlistRecyclerView.findViewHolderForAdapterPosition(i).itemView
+                                    .findViewById(R.id.checkmark2).setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }, 1000);
         }
     }
 
@@ -163,7 +194,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                        @NonNull final LocalPlaylistManager manager,
                                        @NonNull final PlaylistMetadataEntry playlist,
                                        @NonNull final List<StreamEntity> streams) {
-        //TODO: change color
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
         builder.setTitle(R.string.duplicate_stream_in_playlist_title);
         builder.setMessage(getString(R.string.duplicate_stream_in_playlist_description,

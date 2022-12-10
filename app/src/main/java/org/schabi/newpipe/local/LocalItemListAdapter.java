@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
@@ -342,6 +343,16 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         } else {
             onBindViewHolder(holder, position);
         }
+    }
+
+    @Override
+    public long getItemId(final int position) {
+        final LocalItem item = localItems.get(0);
+        if (item != null && item.getLocalItemType() == LocalItem.LocalItemType.
+                PLAYLIST_LOCAL_ITEM) {
+            return ((PlaylistMetadataEntry) item).uid;
+        }
+        return super.getItemId(position);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
