@@ -97,6 +97,7 @@ import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleTransformer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -790,12 +791,32 @@ public class RouterActivity extends AppCompatActivity {
             }
         }
 
+        <T> SingleTransformer<T, T> pleaseWait() {
+            return single -> single
+                    // 'abuse' ambWith() here to cancel the toast for us when the wait is over
+                    .ambWith(Single.create(emitter -> {
+                        if (!activityGone()) {
+                            getActivityContext().runOnUiThread(() -> {
+                                // Getting the stream info usually takes a moment
+                                // Notifying the user here to ensure that no confusion arises
+                                final Toast t = Toast.makeText(
+                                        getActivityContext().getApplicationContext(),
+                                        getString(R.string.processing_may_take_a_moment),
+                                        Toast.LENGTH_LONG);
+                                t.show();
+                                emitter.setCancellable(t::cancel);
+                            });
+                        }
+                    }));
+        }
+
         @SuppressLint("CheckResult")
         private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
             inFlight(true);
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .compose(pleaseWait())
                     .subscribe(result ->
                         runOnVisible(ctx -> {
                             final FragmentManager fm = ctx.getSupportFragmentManager();
@@ -812,17 +833,23 @@ public class RouterActivity extends AppCompatActivity {
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .compose(pleaseWait())
                     .subscribe(
-                            info -> runOnVisible(ctx ->
+                            info -> {
+                                if (!activityGone()) {
                                     PlaylistDialog.createCorrespondingDialog(
-                                    ((RouterActivity) ctx).getThemeWrapperContext(),
+                                    getActivityContext(),
                                     List.of(new StreamEntity(info)),
-                                    playlistDialog -> {
-                                        // dismiss listener to be handled by FragmentManager
-                                        final FragmentManager fm = ctx.getSupportFragmentManager();
-                                        playlistDialog.show(fm, "addToPlaylistDialog");
-                                    }
-                            )),
+                                    playlistDialog ->
+                                        runOnVisible(ctx -> {
+                                            // dismiss listener to be handled by FragmentManager
+                                            final FragmentManager fm =
+                                                    ctx.getSupportFragmentManager();
+                                            playlistDialog.show(fm, "addToPlaylistDialog");
+                                        })
+                                    );
+                                }
+                            },
                             throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
                                     throwable,
                                     UserAction.REQUESTED_STREAM,
@@ -835,14 +862,10 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void openAddToPlaylistDialog() {
-        pleaseWait();
-
         getPersistFragment().openAddToPlaylistDialog(currentServiceId, currentUrl);
     }
 
     private void openDownloadDialog() {
-        pleaseWait();
-
         getPersistFragment().openDownloadDialog(currentServiceId, currentUrl);
     }
 
@@ -857,16 +880,6 @@ public class RouterActivity extends AppCompatActivity {
                     .commitNow();
         }
         return persistFragment;
-    }
-
-    private void pleaseWait() {
-        // Getting the stream info usually takes a moment
-        // Notifying the user here to ensure that no confusion arises
-        Toast.makeText(
-                        getApplicationContext(),
-                        getString(R.string.processing_may_take_a_moment),
-                        Toast.LENGTH_LONG)
-                .show();
     }
 
     @Override
