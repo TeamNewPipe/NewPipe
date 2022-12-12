@@ -130,22 +130,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             } else {
                 Log.w(TAG, "onPreferenceTreeClick: null context");
             }
-            if (restrictedMode.isChecked()) {
-                findPreference(getString(R.string.show_age_restricted_content)).setEnabled(false);
-            } else {
-                findPreference(getString(R.string.show_age_restricted_content)).setEnabled(true);
-            }
+            findPreference(getString(R.string.show_age_restricted_content))
+                    .setEnabled(!restrictedMode.isChecked());
         }
         if (preference.getKey().equals(getString(R.string.show_age_restricted_content))) {
             final SwitchPreferenceCompat showRestrictedContent =
                     (SwitchPreferenceCompat) preference;
-            if (showRestrictedContent.isChecked()) {
-                findPreference(getString(R.string.youtube_restricted_mode_enabled))
-                        .setEnabled(false);
-            } else {
-                findPreference(getString(R.string.youtube_restricted_mode_enabled))
-                        .setEnabled(true);
-            }
+            findPreference(getString(R.string.youtube_restricted_mode_enabled))
+                    .setEnabled(!showRestrictedContent.isChecked());
         }
 
         return super.onPreferenceTreeClick(preference);
