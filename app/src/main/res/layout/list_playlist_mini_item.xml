@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -21,17 +20,6 @@
         android:scaleType="fitStart"
         android:src="@drawable/placeholder_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
-
-
-    <ImageView
-        android:id="@+id/checkmark2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignBottom="@id/itemThumbnailView"
-        android:layout_marginBottom="-1dp"
-        android:src="@drawable/ic_done"
-        android:visibility="gone"
-        app:tint="#E81111" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemStreamCountView"

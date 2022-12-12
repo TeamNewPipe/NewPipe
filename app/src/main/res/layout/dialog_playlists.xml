@@ -34,11 +34,26 @@
             tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/playlist_duplicate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/newPlaylist"
+        android:text="@string/duplicate_in_playlist"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="textMultiLine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/video_item_search_padding"
+        android:visibility="gone" />
+
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/newPlaylist"
+        android:layout_below="@+id/playlist_duplicate"
         android:layout_marginLeft="@dimen/video_item_search_padding"
         android:layout_marginRight="@dimen/video_item_search_padding"
         android:background="?attr/separator_color" />

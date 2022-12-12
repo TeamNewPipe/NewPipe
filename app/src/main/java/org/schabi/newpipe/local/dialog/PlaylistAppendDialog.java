@@ -16,7 +16,6 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
@@ -28,8 +27,12 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
 
+    private static final float DEFAULT_ALPHA = 1f;
+    private static final float GRAYED_OUT_ALPHA = 0.3f;
+
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
+    private List<Long> duplicateIds;
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
@@ -61,6 +64,9 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
         final LocalPlaylistManager playlistManager =
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
+
+        duplicateIds = playlistManager.getDuplicatePlaylists(getStreamEntities().get(0).getUrl())
+                .blockingFirst();
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
         playlistAdapter.setHasStableIds(true);
@@ -126,43 +132,43 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
 
-            playlistRecyclerView.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
+            playlistRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull final RecyclerView recyclerView, final int dx,
+                                       final int dy) {
+                    showDuplicateIndicators(recyclerView);
+                }
+            });
             initDuplicateIndicators(playlistRecyclerView);
         }
     }
 
-    public class DefaultItemListOnScrolledDownListener extends OnScrollBelowItemsListener {
-        @Override
-        public void onScrolledDown(final RecyclerView recyclerView) {
-            showDuplicateIndicators(recyclerView);
+    public void initDuplicateIndicators(@NonNull final RecyclerView view) {
+        showDuplicateIndicators(view);
+
+        if (!duplicateIds.isEmpty()) {
+            final View indicatorExplanation = getView()
+                    .findViewById(R.id.playlist_duplicate);
+            indicatorExplanation.setVisibility(View.VISIBLE);
         }
     }
 
-    public void initDuplicateIndicators(@NonNull final RecyclerView view) {
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showDuplicateIndicators(view);
-            }
-        }, 50);
-    }
-
-    public void showDuplicateIndicators(final RecyclerView view) {
-        final LocalPlaylistManager playlistManager =
-                new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
-        final List<Long> duplicateIds = playlistManager.getDuplicatePlaylist(getStreamEntities()
-                .get(0).getUrl()).blockingFirst();
-
+    public void showDuplicateIndicators(@NonNull final RecyclerView view) {
         if (view.getAdapter() == null) {
             return;
         }
 
         final int count = view.getAdapter().getItemCount();
         for (int i = 0; i < count; i++) {
-            if (view.findViewHolderForAdapterPosition(i) != null
-                    && duplicateIds.contains(playlistAdapter.getItemId(i))) {
-                view.findViewHolderForAdapterPosition(i).itemView
-                        .findViewById(R.id.checkmark2).setVisibility(View.VISIBLE);
+
+            final RecyclerView.ViewHolder viewHolder = view.findViewHolderForAdapterPosition(i);
+            if (viewHolder != null) {
+                if (duplicateIds.contains(view.getAdapter().getItemId(i))) {
+                    viewHolder.itemView.setAlpha(GRAYED_OUT_ALPHA);
+                } else {
+                    viewHolder.itemView.setAlpha(DEFAULT_ALPHA);
+                }
+
             }
         }
     }
@@ -171,10 +177,10 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                     @NonNull final PlaylistMetadataEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
 
-        final int numOfDuplicates = manager.getPlaylistDuplicates(playlist.uid,
+        final int numberOfDuplicates = manager.getPlaylistDuplicateCount(playlist.uid,
                         streams.get(0).getUrl()).blockingFirst();
-        if (numOfDuplicates > 0) {
-            createDuplicateDialog(numOfDuplicates, manager, playlist, streams);
+        if (numberOfDuplicates > 0) {
+            createDuplicateDialog(numberOfDuplicates, manager, playlist, streams);
         } else {
             addStreamToPlaylist(manager, playlist, streams);
         }
@@ -197,22 +203,24 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistDisposables.add(manager.appendToPlaylist(playlist.uid, streams)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> successToast.show()));
+
         requireDialog().dismiss();
     }
 
-    private void createDuplicateDialog(final int duplicates,
+    private void createDuplicateDialog(final int numberOfDuplicates,
                                        @NonNull final LocalPlaylistManager manager,
                                        @NonNull final PlaylistMetadataEntry playlist,
                                        @NonNull final List<StreamEntity> streams) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
         builder.setTitle(R.string.duplicate_stream_in_playlist_title);
         builder.setMessage(getString(R.string.duplicate_stream_in_playlist_description,
-                duplicates));
+                numberOfDuplicates));
 
         builder.setPositiveButton(android.R.string.yes, (dialog, i) -> {
             addStreamToPlaylist(manager, playlist, streams);
         });
         builder.setNeutralButton(R.string.cancel, null);
+
         builder.create().show();
     }
 }

@@ -57,7 +57,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId "
             + " AND " + STREAM_URL + " = :streamURL"
     )
-    Flowable<Integer> getDuplicates(long playlistId, String streamURL);
+    Flowable<Integer> getDuplicateCount(long playlistId, String streamURL);
 
     @Query("SELECT " + JOIN_PLAYLIST_ID
             + " FROM " + STREAM_TABLE
@@ -66,7 +66,6 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " WHERE " + STREAM_URL + " = :streamURL"
     )
     Flowable<List<Long>> getDuplicatePlaylists(String streamURL);
-
 
     @Query("SELECT COALESCE(MAX(" + JOIN_INDEX + "), -1)"
             + " FROM " + PLAYLIST_STREAM_JOIN_TABLE

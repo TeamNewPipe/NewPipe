@@ -91,11 +91,12 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
 
-    public Flowable<Integer> getPlaylistDuplicates(final long playlistId, final String streamURL) {
-        return playlistStreamTable.getDuplicates(playlistId, streamURL);
+    public Flowable<Integer> getPlaylistDuplicateCount(final long playlistId,
+                                                       final String streamURL) {
+        return playlistStreamTable.getDuplicateCount(playlistId, streamURL);
     }
 
-    public Flowable<List<Long>> getDuplicatePlaylist(final String streamURL) {
+    public Flowable<List<Long>> getDuplicatePlaylists(final String streamURL) {
         return playlistStreamTable.getDuplicatePlaylists(streamURL);
     }
 
