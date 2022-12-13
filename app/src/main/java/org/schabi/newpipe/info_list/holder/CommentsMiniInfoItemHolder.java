@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.util.LinkifyCompat;
+import androidx.core.view.OneShotPreDrawListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -27,6 +28,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.external_communication.TimestampExtractor;
+import org.schabi.newpipe.views.NewPipeTextView;
 
 import java.util.Objects;
 
@@ -98,10 +100,27 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setText(commentText, TextView.BufferType.SPANNABLE);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
-        if (itemContentView.getLineCount() == 0) {
-            itemContentView.post(this::ellipsize);
+        final boolean legacyEllipsize = !(itemContentView instanceof NewPipeTextView);
+        if (legacyEllipsize) {
+            if (itemContentView.getLineCount() == 0) {
+                itemContentView.post(this::ellipsize);
+            } else {
+                ellipsize();
+            }
         } else {
-            ellipsize();
+            linkify();
+            itemContentView.setMaxLines(COMMENT_DEFAULT_LINES);
+            itemContentView.setEllipsize(TextUtils.TruncateAt.END);
+            OneShotPreDrawListener.add(itemContentView, () -> {
+                if (((NewPipeTextView) itemContentView).ellipsisState() == 1) {
+                    denyLinkFocus();
+                } else {
+                    determineLinkFocus();
+                }
+            });
+            ((NewPipeTextView) itemContentView).setOnToggleListener((textView, expanded) -> {
+                determineLinkFocus();
+            });
         }
 
         if (item.getLikeCount() >= 0) {
@@ -121,7 +140,15 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         itemView.setOnClickListener(view -> {
-            toggleEllipsize();
+            if (!(itemContentView instanceof NewPipeTextView)) {
+                toggleEllipsize();
+            } else {
+                if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
+                        || ((NewPipeTextView) itemContentView).ellipsisState() == 1) {
+                    ((NewPipeTextView) itemContentView)
+                            .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
+                }
+            }
             if (itemBuilder.getOnCommentsSelectedListener() != null) {
                 itemBuilder.getOnCommentsSelectedListener().selected(item);
             }
@@ -180,6 +207,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
     }
 
+    /* legacy approach; may schedule for removal in near future */
     private void ellipsize() {
         boolean hasEllipsis = false;
 
