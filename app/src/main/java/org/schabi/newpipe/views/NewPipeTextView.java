@@ -464,8 +464,8 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     @Override
     protected void onDraw(final Canvas canvas) {
         final Layout layout = getLayout();
-        if ((layout == null || getMaxLines() == -1 || getLineCount() == 0 || ellipsisState() != 1)
-                && crossfadeEllipsis == -1) {
+        if (layout == null || getLineCount() == 0
+                || (ellipsisState() != 1 && crossfadeEllipsis == -1)) {
             super.onDraw(canvas);
             return;
         }
