@@ -29,7 +29,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
  * from {@link AppCompatTextView} on EMUI devices.
  * </p>
  */
-public class NewPipeTextView extends AppCompatTextView {
+public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.OnAnimateListener {
 
     public NewPipeTextView(@NonNull final Context context) {
         super(context);
