@@ -51,6 +51,7 @@ public final class AnimationUtil {
         if (it.hasNext()) {
             final ValueAnimator animator = it.next();
             it.remove();
+            return animator;
         }
         return null;
     }
