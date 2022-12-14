@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.text.Layout;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
