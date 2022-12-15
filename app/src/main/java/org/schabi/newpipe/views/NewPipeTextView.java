@@ -71,9 +71,11 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     public int ellipsisState() {
         if (getLayout() == null) {
             return -1;
+        }
+        if (getLayout().getLineEnd(getDisplayLines() - 1) != getText().length()) {
+            return 1;
         } else {
-            return getLayout().getLineEnd(getDisplayLines() - 1) != getText().length() ? 1
-                    : (getLayout().getEllipsisCount(getDisplayLines() - 1) > 0 ? 2 : 0);
+            return getLayout().getEllipsisCount(getDisplayLines() - 1) > 0 ? 2 : 0;
         }
     }
 
@@ -101,7 +103,6 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         if ((ellipsisState() == 1 && getMaxLines() < expandedLines)
                 || getMaxLines() > collapsedLines) {
 
-            final int initialHeight = getHeight();
             final boolean isCollapsing = getMaxLines() > collapsedLines;
             AnimationUtil.toggle(this,
                     isCollapsing ? collapseDuration : expandDuration,
@@ -333,7 +334,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                     trailingWhitespacesOnly = false;
                     last = wb.preceding(lastChar);
                 }
-                // strip whitespaces: the last line might well end with a space and a line return;
+                // strip whitespaces: the last line might well end with a space and a line return
                 // be greedy since we're always prefixing the ellipsis to be drawn with a space
                 // and we won't want there to end up having more than one
                 while (last != BreakIterator.DONE && Character.isWhitespace(
@@ -358,7 +359,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 if (lastChar < origLineStart && lastLine.line > 0) {
                     if (layout.getLineMax(lastLine.line - 1) + ellipsisWidth
                             <= getLineWidth(lastLine)) { // assuming width consistent across lines
-                        ellipsisLine -= 1; // shortfall = 0;
+                        ellipsisLine -= 1; // nil shortfall
                         ellipsisBaseline = layout.getLineBaseline(ellipsisLine);
                         ellipsisLTR = (layout.getParagraphDirection(ellipsisLine)
                                 == Layout.DIR_LEFT_TO_RIGHT);
@@ -470,20 +471,19 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             return;
         }
 
-        // invalidate cache if text layout changed;
+        // invalidate cache if text layout changed
         // except when animation is in flight: we actually reuse the last cached ellipsizeParams
-        if (ellipsizeParams != null && crossfadeEllipsis == -1) {
-            // There doesn't seem to be a good way to detect (the internal) text layout changes
-            // eg layout change listeners are only fired upon external (size) changes but not, say,
-            // an internal text reflow (invalidated internally by setText() and other functions).
-            // We cheated a bit by keeping a WeakReference to the TextView's internal Layout
-            // at the time EllipsizeParams is created and computed leveraging the fact that
-            // getLayout() returns the instance rather than a copy of it.
-            if (ellipsizeParams.getLayout() != getLayout()) {
-                ellipsizeParams = null;
-                if (DEBUG) {
-                    canvas.drawColor(0x22222222);
-                }
+        if (ellipsizeParams != null && crossfadeEllipsis == -1
+                // There doesn't seem to be a good way to detect (the internal) text layout changes
+                // eg layout change listeners only fire upon external (size) changes but not say, an
+                // internal text reflow (invalidated internally by setText() and other functions).
+                // We cheated a bit by keeping a WeakReference to the TextView's internal Layout
+                // at the time EllipsizeParams is created and computed leveraging the fact that
+                // getLayout() returns the instance rather than a copy of it.
+                && ellipsizeParams.getLayout() != getLayout()) {
+            ellipsizeParams = null;
+            if (DEBUG) {
+                canvas.drawColor(0x22222222);
             }
         }
         // super lazy initialize our ellipsizeParams cache
@@ -493,7 +493,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 // we'll be fiddling with setMaxLines() to measure() the final bounds post-animation
                 // so tapping into onMeasure() might incur extra computation cycles when we're not
                 // really drawing (given our limitation in listening to text layout changes above).
-                // Computations in onDraw() is generally a bad idea after all;
+                // Computations in onDraw() is generally a bad idea after all,
                 // so we roll our home-grown cache as part of the remedy.
                 ellipsizeParams = EllipsizeParams.newInstance(this);
             } else {
@@ -529,13 +529,13 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
 
                 p.setColor(getCurrentTextColor());
                 if (crossfadeEllipsis != -1) { // animation stuff
-                    // simulate sliding window to the end of thd ellipsized last line
+                    // simulate sliding window to the end of the ellipsized last line
                     clipOutBounds = new RectF(ellipsizeParams.ellipsisBounds);
                     offsetEndEdge(clipOutBounds, ellipsizeParams.ellipsisLTR,
                             -clipOutBounds.width() * crossfadeEllipsis);
                     canvas.save();
                     clipOutRectCompat(canvas, clipOutBounds);
-                    p.setAlpha((int) ((float) 255 * crossfadeEllipsis));
+                    p.setAlpha((int) (255 * crossfadeEllipsis));
                 }
                 p.setTextAlign(ellipsizeParams.ellipsisLTR ? Paint.Align.LEFT : Paint.Align.RIGHT);
                 canvas.drawText(ellipsizeParams.ellipsisString,

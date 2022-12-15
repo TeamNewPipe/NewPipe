@@ -613,6 +613,7 @@ public final class VideoDetailFragment
                 }
                 public void onAnimationEnd(final View v, final boolean reversed,
                                            final boolean expanded) {
+                    // no impl pls
                 }
             };
             animateListener = new WeakReference<>(listener);

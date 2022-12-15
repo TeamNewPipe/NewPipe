@@ -18,8 +18,7 @@ import java.util.WeakHashMap;
 
 public final class AnimationUtil {
     /* a running list of animators in flight; they will be manually removed onAnimationEnd */
-    private static WeakHashMap<View, ValueAnimator> runningAnimators =
-            new WeakHashMap<View, ValueAnimator>();
+    private static WeakHashMap<View, ValueAnimator> runningAnimators = new WeakHashMap<>();
     /* weak references to old animators post-service for opportunistic reuse before gc'ed */
     private static Set<ValueAnimator> oldAnimators = Collections.newSetFromMap(
             new WeakHashMap<ValueAnimator, Boolean>());
@@ -82,10 +81,10 @@ public final class AnimationUtil {
         toggle(v, duration, -1, -1, true);
     }
     public static void expand(final TextView v, final int duration, final int lines) {
-        toggle((View) v, duration, -1, lines, false);
+        toggle(v, duration, -1, lines, false);
     }
     public static void collapse(final TextView v, final int duration, final int lines) {
-        toggle((View) v, duration, lines, -1, true);
+        toggle(v, duration, lines, -1, true);
     }
     public static void expand(final View v, final int duration, final OnAnimateListener listener) {
         toggle(v, duration, -1, false, listener);
@@ -152,7 +151,7 @@ public final class AnimationUtil {
             v.setVisibility(View.VISIBLE);
         }
 
-       final NewPipeAnimator valueAnimator = (a instanceof NewPipeAnimator && a != null)
+       final NewPipeAnimator valueAnimator = a instanceof NewPipeAnimator // implies a not null
                 ? (NewPipeAnimator) a : new NewPipeAnimator();
 
         final AnimationParams animationParams = isTextView
@@ -193,7 +192,7 @@ public final class AnimationUtil {
             logic = animationLogic.get();
         } else {
             logic = new NewPipeAnimationLogic();
-            animationLogic = new WeakReference<NewPipeAnimationLogic>(logic);
+            animationLogic = new WeakReference<>(logic);
         }
         return logic;
     }
@@ -206,7 +205,7 @@ public final class AnimationUtil {
         }
     }
 
-    /* base logic for (de-)registering animators to/from running list and moving to recycle list */
+    /* base logic for de-/registering animators to/from running list and moving to recycle list */
     public static class BaseRecycleLogic implements Animator.AnimatorListener {
         /* helper functions */
         protected static AnimationParams getAnimationParams(final Animator animation) {
@@ -260,9 +259,11 @@ public final class AnimationUtil {
         }
         @Override
         public void onAnimationCancel(final Animator animation) {
+            // no impl pls
         }
         @Override
         public void onAnimationRepeat(final Animator animation) {
+            // no impl pls
         }
     }
 
@@ -343,7 +344,7 @@ public final class AnimationUtil {
         private boolean listenerInTarget;
 
         public void setView(final View v) {
-            target = v == null ? null : new WeakReference<View>(v);
+            target = v == null ? null : new WeakReference<>(v);
         }
         public OnAnimateListener setAnimateListener(final OnAnimateListener l) {
             if (l == listener) {

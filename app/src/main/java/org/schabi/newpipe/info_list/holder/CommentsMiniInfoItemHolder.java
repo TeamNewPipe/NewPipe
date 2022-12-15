@@ -118,8 +118,18 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     determineLinkFocus();
                 }
             });
-            ((NewPipeTextView) itemContentView).setOnToggleListener((textView, expanded) -> {
-                determineLinkFocus();
+            ((NewPipeTextView) itemContentView).setOnToggleListener((textView, expanded) ->
+                determineLinkFocus()
+            );
+            itemView.setOnClickListener(view -> {
+                if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
+                        || ((NewPipeTextView) itemContentView).ellipsisState() == 1) {
+                    ((NewPipeTextView) itemContentView)
+                            .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
+                }
+                if (itemBuilder.getOnCommentsSelectedListener() != null) {
+                    itemBuilder.getOnCommentsSelectedListener().selected(item);
+                }
             });
         }
 
@@ -139,20 +149,15 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
-        itemView.setOnClickListener(view -> {
-            if (!(itemContentView instanceof NewPipeTextView)) {
+        if (legacyEllipsize) {
+            itemView.setOnClickListener(view -> {
                 toggleEllipsize();
-            } else {
-                if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
-                        || ((NewPipeTextView) itemContentView).ellipsisState() == 1) {
-                    ((NewPipeTextView) itemContentView)
-                            .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
+
+                if (itemBuilder.getOnCommentsSelectedListener() != null) {
+                    itemBuilder.getOnCommentsSelectedListener().selected(item);
                 }
-            }
-            if (itemBuilder.getOnCommentsSelectedListener() != null) {
-                itemBuilder.getOnCommentsSelectedListener().selected(item);
-            }
-        });
+            });
+        }
 
 
         itemView.setOnLongClickListener(view -> {
