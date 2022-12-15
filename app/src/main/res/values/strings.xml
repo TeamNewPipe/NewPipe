@@ -446,11 +446,9 @@
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
+    <string name="playlist_add_stream_success_duplicate">Playlisted duplicate</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_no_uploader">Auto-generated (no uploader found)</string>
-    <string name="duplicate_stream_in_playlist_title">Duplicated Video Found</string>
-    <string name="duplicate_stream_in_playlist_description">The playlist contains this stream
-        already %d time(s).\nDo you want to add it one more time?</string>
     <!-- Players -->
     <string name="caption_none">No Captions</string>
     <string name="resize_fit">Fit</string>

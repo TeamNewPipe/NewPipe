@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.dialog;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -177,20 +176,15 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                     @NonNull final PlaylistMetadataEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
 
-        final int numberOfDuplicates = manager.getPlaylistDuplicateCount(playlist.uid,
-                        streams.get(0).getUrl()).blockingFirst();
-        if (numberOfDuplicates > 0) {
-            createDuplicateDialog(numberOfDuplicates, manager, playlist, streams);
-        } else {
-            addStreamToPlaylist(manager, playlist, streams);
-        }
-    }
+        final int numOfDuplicates = manager.getPlaylistDuplicateCount(playlist.uid,
+                streams.get(0).getUrl()).blockingFirst();
+        String toastText = getString(R.string.playlist_add_stream_success);
 
-    private void addStreamToPlaylist(@NonNull final LocalPlaylistManager manager,
-                                     @NonNull final PlaylistMetadataEntry playlist,
-                                     @NonNull final List<StreamEntity> streams) {
-        final Toast successToast = Toast.makeText(getContext(),
-                R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
+        if (numOfDuplicates > 0) {
+            toastText = getString(R.string.playlist_add_stream_success_duplicate);
+        }
+
+        final Toast successToast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
 
         if (playlist.thumbnailUrl
                 .equals("drawable://" + R.drawable.placeholder_thumbnail_playlist)) {
@@ -205,22 +199,5 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 .subscribe(ignored -> successToast.show()));
 
         requireDialog().dismiss();
-    }
-
-    private void createDuplicateDialog(final int numberOfDuplicates,
-                                       @NonNull final LocalPlaylistManager manager,
-                                       @NonNull final PlaylistMetadataEntry playlist,
-                                       @NonNull final List<StreamEntity> streams) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
-        builder.setTitle(R.string.duplicate_stream_in_playlist_title);
-        builder.setMessage(getString(R.string.duplicate_stream_in_playlist_description,
-                numberOfDuplicates));
-
-        builder.setPositiveButton(android.R.string.yes, (dialog, i) -> {
-            addStreamToPlaylist(manager, playlist, streams);
-        });
-        builder.setNeutralButton(R.string.cancel, null);
-
-        builder.create().show();
     }
 }
