@@ -566,6 +566,9 @@ public final class VideoDetailFragment
         }
 
         switch (v.getId()) {
+            case R.id.detail_controls_playlist_append:
+                NavigationHelper.openBookmarksFragment(getFM());
+                break;
             case R.id.detail_controls_background:
                 openBackgroundPlayer(true);
                 break;
@@ -660,6 +663,7 @@ public final class VideoDetailFragment
         binding.detailControlsPopup.setOnClickListener(this);
         binding.detailControlsPopup.setOnLongClickListener(this);
         binding.detailControlsPlaylistAppend.setOnClickListener(this);
+        binding.detailControlsPlaylistAppend.setOnLongClickListener(this);
         binding.detailControlsDownload.setOnClickListener(this);
         binding.detailControlsDownload.setOnLongClickListener(this);
         binding.detailControlsShare.setOnClickListener(this);
