@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
@@ -102,7 +102,7 @@ ext {
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.1'
+    exoPlayerVersion = '2.18.2'
     googleAutoServiceVersion = '1.0.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
