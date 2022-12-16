@@ -100,7 +100,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.AnimationUtil;
-import org.schabi.newpipe.util.AnimationUtil.OnAnimateListener;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -115,7 +114,6 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.NewPipeTextView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -600,27 +598,6 @@ public final class VideoDetailFragment
         return true;
     }
 
-    private WeakReference<OnAnimateListener> animateListener;
-
-    private OnAnimateListener getAnimateListener() {
-        if (animateListener != null && animateListener.get() != null) {
-            return animateListener.get();
-        } else {
-            final OnAnimateListener listener = new OnAnimateListener() {
-                public void onAnimate(final int animated, final int initial, final int target) {
-                    // view pager height has changed, update the tab layout
-                    updateTabLayoutVisibility();
-                }
-                public void onAnimationEnd(final View v, final boolean reversed,
-                                           final boolean expanded) {
-                    // no impl pls
-                }
-            };
-            animateListener = new WeakReference<>(listener);
-            return listener;
-        }
-    }
-
     private void toggleTitleAndSecondaryControls() {
         if (binding.detailVideoTitleView instanceof NewPipeTextView) {
             if (binding.detailSecondaryControlPanel.getVisibility() == View.GONE) {
@@ -628,13 +605,13 @@ public final class VideoDetailFragment
                 animateRotation(binding.detailToggleSecondaryControlsView,
                         VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 180);
                 AnimationUtil.expand(binding.detailSecondaryControlPanel, 500,
-                        getAnimateListener());
+                        (animatedValue, initialValue, targetValue) -> updateTabLayoutVisibility());
             } else {
                 AnimationUtil.collapse(binding.detailVideoTitleView, 500, 1);
                 animateRotation(binding.detailToggleSecondaryControlsView,
                         VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 0);
                 AnimationUtil.collapse(binding.detailSecondaryControlPanel, 500,
-                        getAnimateListener());
+                        (animatedValue, initialValue, targetValue) -> updateTabLayoutVisibility());
             }
         } else {
             // legacy approach
