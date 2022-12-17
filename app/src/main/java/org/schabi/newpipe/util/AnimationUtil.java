@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,10 @@ import java.util.WeakHashMap;
 
 public final class AnimationUtil {
     /* a running list of animators in flight; they will be manually removed onAnimationEnd */
-    private static WeakHashMap<View, ValueAnimator> runningAnimators = new WeakHashMap<>();
+    private static WeakHashMap<View, Animator> runningAnimators = new WeakHashMap<>();
     /* weak references to old animators post-service for opportunistic reuse before gc'ed */
-    private static Set<ValueAnimator> oldAnimators = Collections.newSetFromMap(
-            new WeakHashMap<ValueAnimator, Boolean>());
-    /* weak references to moving parts like AnimationLogic for opportunistic reuse */
+    private static Set<Animator> oldAnimators = Collections.newSetFromMap(new WeakHashMap<>());
+    /* weak references to moving parts like AnimationLogic to be shared across running animators */
     private static WeakHashMap<Object, Integer> movingParts = new WeakHashMap<>();
 
     private AnimationUtil() {
@@ -42,23 +42,36 @@ public final class AnimationUtil {
             }
             animator.removeAllListeners();
             if (animator instanceof NewPipeAnimator) {
-                ((NewPipeAnimator) animator).setAnimationParams(null);
+                final AnimationParams params = ((NewPipeAnimator) animator).getAnimationParams();
+                if (params != null) {
+                    params.reset();
+                }
             }
         }
     }
 
-    public static void recycle(final ValueAnimator animator) {
+    public static void recycle(final Animator animator) {
         if (animator != null) {
             oldAnimators.add(animator);
         }
     }
 
-    public static ValueAnimator popOldAnimators() {
-        final Iterator<ValueAnimator> it = oldAnimators.iterator();
-        if (it.hasNext()) {
-            final ValueAnimator animator = it.next();
-            it.remove();
-            return animator;
+    public static <T> T popOldAnimators(final Class<T> type) {
+        final Iterator<Animator> it = oldAnimators.iterator();
+        while (it.hasNext()) {
+            final Animator item = it.next();
+            if (item.getClass() == type) {
+                it.remove();
+                return type.cast(item);
+            }
+        }
+        return null;
+    }
+
+    // ref: https://stackoverflow.com/a/450874, https://stackoverflow.com/a/4294919
+    private static <T> T toType(final Object obj, final Class<T> type) {
+        if (type.isInstance(obj)) {
+            return type.cast(obj);
         }
         return null;
     }
@@ -122,12 +135,12 @@ public final class AnimationUtil {
     }
     public static void animate(final View v, final int duration, @AnimationLogic final int m,
                                final Supplier<SetupAnimationParams> s) {
-        final ValueAnimator valueAnimator = runningAnimators.get(v);
-        if (valueAnimator != null) {
-            valueAnimator.reverse();
+        final Animator animator = runningAnimators.get(v);
+        if (animator instanceof ValueAnimator) {
+            ((ValueAnimator) animator).reverse();
             return;
         }
-        NewPipeAnimator.get().set(AnimationParams.newInstance(v).apply(s), m).go(duration);
+        NewPipeAnimator.get().set(v, s, m).go(duration);
     }
 
 
@@ -141,21 +154,21 @@ public final class AnimationUtil {
     public @interface MovingPart { }
 
     // magic numbers
+    public static final int UNSPECIFIED = -1;
     public static final int DECELERATE_INTERPOLATOR = 1;
     public static final int ACC_DECELERATE_INTERPOLATOR = 2;
     public static final int SLIDE_OPEN_ANIMATION = 3;
     public static final int EXPAND_TEXT_ANIMATION = 4;
 
     private static Object getMovingPart(@MovingPart final int res) {
-        if (movingParts.containsValue(res)) {
-            final Iterator<Entry<Object, Integer>> it = movingParts.entrySet().iterator();
-            while (it.hasNext()) {
-                // probably not the most efficient way to get an entry by value
-                // fortunately there should be at most 4 in practice
-                final Entry<Object, Integer> entry = it.next();
-                if (entry.getValue().intValue() == res) {
-                    return entry.getKey();
-                }
+        final Iterator<Entry<Object, Integer>> it = movingParts.entrySet().iterator();
+        while (it.hasNext()) {
+            // probably not the most efficient way to get an entry by value, fortunately
+            // the list shouldn't be too long in practice (the object is used as key
+            // in WeakHashMap so that it'll be automatically removed when gc'ed)
+            final Entry<Object, Integer> entry = it.next();
+            if (entry.getValue() == res) {
+                return entry.getKey();
             }
         }
         Object o = null;
@@ -182,12 +195,14 @@ public final class AnimationUtil {
     }
 
     /* an AnimationLogic implements AnimatorListener and AnimatorUpdateListener under the hook */
-    public static NewPipeAnimationLogic setupAnimationLogic(final ValueAnimator valueAnimator,
+    public static NewPipeAnimationLogic setupAnimationLogic(final Animator animator,
                                                             @AnimationLogic final int m) {
         final NewPipeAnimationLogic logic = (NewPipeAnimationLogic) getMovingPart(m);
         if (logic != null) {
-            valueAnimator.addUpdateListener(logic);
-            valueAnimator.addListener(logic);
+            if (animator instanceof ValueAnimator) {
+                ((ValueAnimator) animator).addUpdateListener(logic);
+            }
+            animator.addListener(logic);
         }
         return logic;
     }
@@ -207,7 +222,7 @@ public final class AnimationUtil {
         /* helper functions */
         protected static AnimationParams getAnimationParams(final Animator animation) {
             if (animation instanceof NewPipeAnimator) {
-                return ((NewPipeAnimator) animation).animationParams;
+                return ((NewPipeAnimator) animation).getAnimationParams();
             }
             return null;
         }
@@ -217,15 +232,21 @@ public final class AnimationUtil {
                 if (p != null) {
                     return p.getView();
                 }
+            } else if (animation instanceof ObjectAnimator) {
+                final Object o = ((ObjectAnimator) animation).getTarget();
+                if (o instanceof View) {
+                    return (View) o;
+                }
             }
             return null;
         }
         /* returns true if the animator is reversed halfway and didn't make its full course */
         protected static boolean abandoned(final Animator animation) {
-            if (animation instanceof NewPipeAnimator
-                    && ((NewPipeAnimator) animation).animationParams != null) {
-                return (int) ((NewPipeAnimator) animation).getAnimatedValue()
-                        != ((NewPipeAnimator) animation).animationParams.to();
+            if (animation instanceof NewPipeAnimator) {
+                final AnimationParams params = ((NewPipeAnimator) animation).getAnimationParams();
+                if (params != null) {
+                    return (int) ((ValueAnimator) animation).getAnimatedValue() != params.to();
+                }
             }
             return false;
         }
@@ -233,25 +254,21 @@ public final class AnimationUtil {
         @CallSuper
         @Override
         public void onAnimationEnd(final Animator animation) {
-            if (animation instanceof NewPipeAnimator) {
-                final View v = getView(animation);
-                if (v != null) {
-                    runningAnimators.remove(v);
-                }
+            final View v = getView(animation);
+            if (v != null) {
+                runningAnimators.remove(v);
             }
             // make sure to remove animator from running list first before cleanup()
             // which would remove reference to the animated View
             cleanup(animation);
-            if (animation instanceof ValueAnimator) {
-                recycle((ValueAnimator) animation);
-            }
+            recycle(animation);
         }
         @CallSuper
         @Override
         public void onAnimationStart(final Animator animation) {
             final View v = getView(animation);
-            if (v != null && animation instanceof ValueAnimator) {
-                runningAnimators.put(v, (ValueAnimator) animation);
+            if (v != null) {
+                runningAnimators.put(v, animation);
             }
         }
         @Override
@@ -267,7 +284,7 @@ public final class AnimationUtil {
     /* base class for AnimationLogic */
     public abstract static class NewPipeAnimationLogic extends BaseRecycleLogic
             implements ValueAnimator.AnimatorUpdateListener {
-        /* our own abstracted interface to be implemented by sub-classsz */
+        /* our own abstracted interface to be implemented by sub-classes */
         public void animate(final View t, final AnimationParams p,
                             final ValueAnimator animation) { }
 
@@ -364,7 +381,7 @@ public final class AnimationUtil {
         }
     }
 
-    /* a variation of SlideOpenAnimation specifically for (expanding) TextView */
+    /* a variation of SlideOpenAnimation specifically for expanding TextView */
     // ref: https://medium.com/@yuriyskul/expandable-textview-using-staticlayouts-data-f9bc9cbdf283
     public static class ExpandTextAnimation extends SlideOpenAnimation {
         @Override
@@ -374,7 +391,7 @@ public final class AnimationUtil {
 
             p.forText().fromLines(((TextView) t).getMaxLines());
             final int lines = p.forText().toLines();
-            if (lines != -1) {
+            if (lines != UNSPECIFIED) {
                 ((TextView) t).setMaxLines(lines);
             }
             t.measure(View.MeasureSpec.makeMeasureSpec(t.getMeasuredWidth(),
@@ -388,7 +405,7 @@ public final class AnimationUtil {
         public void animationEnd(final View t, final AnimationParams p, final boolean reversed) {
             if (reversed) {
                 ((TextView) t).setMaxLines(p.forText().fromLines());
-            } else if (p.forText().toLines() != -1) {
+            } else if (p.forText().toLines() != UNSPECIFIED) {
                 ((TextView) t).setMaxLines(p.forText().toLines());
             }
             t.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -396,7 +413,7 @@ public final class AnimationUtil {
 
         @Override
         public void animationStart(final View t, final AnimationParams p) {
-            if (p.isCollapsing() && p.forText().toLines() != -1) {
+            if (p.isCollapsing() && p.forText().toLines() != UNSPECIFIED) {
                 ((TextView) t).setMaxLines(p.forText().fromLines());
             }
         }
@@ -404,12 +421,21 @@ public final class AnimationUtil {
 
     public static class AnimationParams {
         private WeakReference<View> target;
-        private int initialValue;
-        private int targetValue;
+        private int initialValue = UNSPECIFIED;
+        private int targetValue = UNSPECIFIED;
         private boolean isCollapsing;
         private OnAnimateListener listener;
         private boolean listenerInTarget;
 
+        @CallSuper
+        public void reset() {
+            target = null;
+            initialValue = UNSPECIFIED;
+            targetValue = UNSPECIFIED;
+            isCollapsing = false;
+            listener = null;
+            listenerInTarget = false;
+        }
         public static AnimationParams newInstance(final View v) {
             final AnimationParams params;
             if (v instanceof TextView) {
@@ -418,6 +444,10 @@ public final class AnimationUtil {
                 params = new AnimationParams();
             }
             return params.setView(v);
+        }
+        public static boolean typeMatch(final AnimationParams params, final View v,
+                                        @AnimationLogic final int m) {
+            return (v instanceof TextView) == (params instanceof TextAnimationParams);
         }
         public AnimationParams apply(final Supplier<SetupAnimationParams> s) {
             if (s != null) {
@@ -489,12 +519,19 @@ public final class AnimationUtil {
         }
         /* convenient shorthand for casting to sub-class (when chaining) */
         public TextAnimationParams forText() {
-            return (TextAnimationParams) this;
+            return toType(this, TextAnimationParams.class);
         }
     }
     public static class TextAnimationParams extends AnimationParams {
-        private int oldLines;
-        private int newLines;
+        private int oldLines = UNSPECIFIED;
+        private int newLines = UNSPECIFIED;
+
+        @Override
+        public void reset() {
+            super.reset();
+            oldLines = UNSPECIFIED;
+            newLines = UNSPECIFIED;
+        }
         /* setters */
         public TextAnimationParams fromLines(final int lines) {
             oldLines = lines;
@@ -528,15 +565,26 @@ public final class AnimationUtil {
                     animationParams.setView(null);
                 }
                 animationParams = params;
-                if (params != null) {
-                    setIntValues(animationParams.from(), animationParams.to());
-                }
+            }
+            // always reapply values to animator just in case
+            if (animationParams != null) {
+                setIntValues(animationParams.from(), animationParams.to());
             }
         }
+        public AnimationParams getAnimationParams() {
+            return animationParams;
+        }
         public static NewPipeAnimator get() {
-            final ValueAnimator a = popOldAnimators();
-            return a instanceof NewPipeAnimator // implies non null
-                    ? (NewPipeAnimator) a : new NewPipeAnimator();
+            final NewPipeAnimator a = popOldAnimators(NewPipeAnimator.class);
+            return a != null ? a : new NewPipeAnimator();
+        }
+        public NewPipeAnimator set(final View v, final Supplier<SetupAnimationParams> s,
+                                   @AnimationLogic final int m) {
+            return set(
+                    // opportunistically reuse the existing AnimationParams in situ if feasible
+                    (animationParams != null && AnimationParams.typeMatch(animationParams, v, m)
+                            ? animationParams.setView(v) : AnimationParams.newInstance(v)).apply(s),
+                    m);
         }
         public NewPipeAnimator set(final AnimationParams p, @AnimationLogic final int m) {
             preflight(this, p, m);

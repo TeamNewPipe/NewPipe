@@ -173,7 +173,6 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     private static class EllipsizeParams {
         public WeakReference<Layout> layoutReference;
         public String ellipsisString;
-        public int ellipsisLine;
         public RectF ellipsisBounds;
         public int ellipsisBaseline;
         public boolean ellipsisLTR;
@@ -345,7 +344,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             } finally {
                 textView.recycle(wb);
             }
-            ellipsisLine = lastLine.line;
+            int ellipsisLine = lastLine.line;
             ellipsisBaseline = lastLine.baseline;
             ellipsisLTR = lastLine.isLTR;
             // our clipping mask to be, which also positions the ellipsis to be drawn
@@ -443,8 +442,8 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     // TextView stuff
     //////////////////////////////////////////////////////////////////////////*/
 
-    private EllipsizeParams ellipsizeParams;
-    private WeakReference<BreakIterator> oldWordIterator;
+    private transient EllipsizeParams ellipsizeParams;
+    private transient WeakReference<BreakIterator> oldWordIterator;
 
     /* used in expanding/collapsing animation; 0 for ellipsis to be invisible, 1 fully visible */
     private float crossfadeEllipsis = -1; // not in use (not animating)
