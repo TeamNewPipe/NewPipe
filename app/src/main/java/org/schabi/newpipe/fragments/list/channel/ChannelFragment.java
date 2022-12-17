@@ -554,7 +554,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                         .playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
+            NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
             return true;
         });
 
