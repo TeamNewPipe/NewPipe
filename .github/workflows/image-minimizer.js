@@ -1,4 +1,28 @@
-/*
+/*name: No Response
+
+# Both `issue_comment` and `scheduled` event types are required for this Action
+# to work properly.
+on:
+  issue_comment:
+    types: [created]
+  schedule:
+    # Run daily at midnight.
+    - cron: '0 0 * * *'
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  noResponse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lee-dohm/no-response@v0.5.0
+        with:
+          token: ${{ github.token }}
+          daysUntilClose: 14
+          responseRequiredLabel: waiting for author
+
  * Script for minimizing big images (jpg,gif,png) when they are uploaded to GitHub and not edited otherwise
  */
 module.exports = async ({github, context}) => {

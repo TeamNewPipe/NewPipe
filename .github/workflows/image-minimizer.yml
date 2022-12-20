@@ -30,4 +30,5 @@ jobs:
         with:
           script: |
             const script = require('.github/workflows/image-minimizer.js');
-            await script({github, context});
+            await script({github, context});https://github.com/quimsical/NewPipe
+            
