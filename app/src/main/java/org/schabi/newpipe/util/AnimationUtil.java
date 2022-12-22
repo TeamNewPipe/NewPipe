@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.IntDef;
-import androidx.core.util.Supplier;
+import androidx.core.util.Consumer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -86,10 +86,6 @@ public final class AnimationUtil {
         default void onAnimationEnd(View v, boolean reversed, boolean expanded) { }
     }
 
-    private interface SetupAnimationParams {
-        void config(AnimationParams params);
-    }
-
     /* AnimationUtil essentially implements a closed system of NewPipeAnimators
      * (subclass of ValueAnimator) which would be kept track of (to allow reverse(),
      * say when the user consecutively taps on it during an animation) and reused
@@ -100,47 +96,38 @@ public final class AnimationUtil {
     /* shorthands to explicitly specify a direction; note that regardless of direction,
      * the ongoing animation is still reversed if one in flight is detected */
     public static void expand(final TextView v, final int duration, final int lines) {
-        toggle(v, duration, () -> params ->
-            params.expand().forText().toLines(lines)
-        );
+        toggle(v, duration, params -> params.expand().forText().toLines(lines));
     }
     public static void collapse(final TextView v, final int duration, final int lines) {
-        toggle(v, duration, () -> params ->
-            params.collapse().forText().toLines(lines)
-        );
+        toggle(v, duration, params -> params.collapse().forText().toLines(lines));
     }
     /* supply an OnAnimateListener if custom actions are desired */
     public static void expand(final View v, final int duration, final OnAnimateListener listener) {
-        toggle(v, duration, () -> params ->
-            params.expand().setAnimateListener(listener)
-        );
+        toggle(v, duration, params -> params.expand().setAnimateListener(listener));
     }
     public static void collapse(final View v, final int duration,
                                 final OnAnimateListener listener) {
-        toggle(v, duration, () -> params ->
-            params.collapse().setAnimateListener(listener)
-        );
+        toggle(v, duration, params -> params.collapse().setAnimateListener(listener));
     }
 
     public static void toggle(final TextView v, final int duration, final int lines,
                               final boolean collapse, final OnAnimateListener listener) {
-        toggle(v, duration, () -> params ->
-            params.toggle(collapse).forText().toLines(lines).setAnimateListener(listener)
-        );
+        toggle(v, duration, params ->
+                params.toggle(collapse).forText().toLines(lines).setAnimateListener(listener));
     }
     public static void toggle(final View v, final int duration,
-                              final Supplier<SetupAnimationParams> s) {
+                              final Consumer<AnimationParams> c) {
         animate(v, duration,
-                v instanceof TextView ? EXPAND_TEXT_ANIMATION : SLIDE_OPEN_ANIMATION, s);
+                v instanceof TextView ? EXPAND_TEXT_ANIMATION : SLIDE_OPEN_ANIMATION, c);
     }
     public static void animate(final View v, final int duration, @AnimationLogic final int m,
-                               final Supplier<SetupAnimationParams> s) {
+                               final Consumer<AnimationParams> c) {
         final Animator animator = runningAnimators.get(v);
         if (animator instanceof ValueAnimator) {
             ((ValueAnimator) animator).reverse();
             return;
         }
-        NewPipeAnimator.get().set(v, s, m).go(duration);
+        NewPipeAnimator.get().set(v, c, m).go(duration);
     }
 
 
@@ -449,9 +436,9 @@ public final class AnimationUtil {
                                         @AnimationLogic final int m) {
             return (v instanceof TextView) == (params instanceof TextAnimationParams);
         }
-        public AnimationParams apply(final Supplier<SetupAnimationParams> s) {
-            if (s != null) {
-                s.get().config(this);
+        public AnimationParams apply(final Consumer<AnimationParams> c) {
+            if (c != null) {
+                c.accept(this);
             }
             return this;
         }
@@ -578,12 +565,12 @@ public final class AnimationUtil {
             final NewPipeAnimator a = popOldAnimators(NewPipeAnimator.class);
             return a != null ? a : new NewPipeAnimator();
         }
-        public NewPipeAnimator set(final View v, final Supplier<SetupAnimationParams> s,
+        public NewPipeAnimator set(final View v, final Consumer<AnimationParams> c,
                                    @AnimationLogic final int m) {
             return set(
                     // opportunistically reuse the existing AnimationParams in situ if feasible
                     (animationParams != null && AnimationParams.typeMatch(animationParams, v, m)
-                            ? animationParams.setView(v) : AnimationParams.newInstance(v)).apply(s),
+                            ? animationParams.setView(v) : AnimationParams.newInstance(v)).apply(c),
                     m);
         }
         public NewPipeAnimator set(final AnimationParams p, @AnimationLogic final int m) {
