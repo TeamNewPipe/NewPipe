@@ -605,13 +605,13 @@ public final class VideoDetailFragment
                 animateRotation(binding.detailToggleSecondaryControlsView,
                         VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 180);
                 AnimationUtil.expand(binding.detailSecondaryControlPanel, 500,
-                        (animatedValue, initialValue, targetValue) -> updateTabLayoutVisibility());
+                        (animatedFraction, isCollapsing) -> updateTabLayoutVisibility());
             } else {
                 AnimationUtil.collapse(binding.detailVideoTitleView, 500, 1);
                 animateRotation(binding.detailToggleSecondaryControlsView,
                         VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 0);
                 AnimationUtil.collapse(binding.detailSecondaryControlPanel, 500,
-                        (animatedValue, initialValue, targetValue) -> updateTabLayoutVisibility());
+                        (animatedFraction, isCollapsing) -> updateTabLayoutVisibility());
             }
         } else {
             // legacy approach

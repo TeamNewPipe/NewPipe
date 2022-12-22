@@ -82,7 +82,7 @@ public final class AnimationUtil {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnAnimateListener {
-        void onAnimate(int animatedValue, int initialValue, int targetValue);
+        void onAnimateProgress(float animatedFraction, boolean isCollapsing);
         default void onAnimationEnd(View v, boolean reversed, boolean expanded) { }
     }
 
@@ -227,13 +227,10 @@ public final class AnimationUtil {
             }
             return null;
         }
-        /* returns true if the animator is reversed halfway and didn't make its full course */
+        /* returns true if the animator is eg reversed halfway and not at its finishing line */
         protected static boolean abandoned(final Animator animation) {
-            if (animation instanceof NewPipeAnimator) {
-                final AnimationParams params = ((NewPipeAnimator) animation).getAnimationParams();
-                if (params != null) {
-                    return (int) ((ValueAnimator) animation).getAnimatedValue() != params.to();
-                }
+            if (animation instanceof ValueAnimator) {
+                return ((ValueAnimator) animation).getAnimatedFraction() != 1;
             }
             return false;
         }
@@ -293,8 +290,8 @@ public final class AnimationUtil {
             animate(t, p, animation);
 
             if (p.getAnimateListener() != null) {
-                p.getAnimateListener().onAnimate((int) animation.getAnimatedValue(),
-                        p.from(), p.to());
+                p.getAnimateListener().onAnimateProgress(animation.getAnimatedFraction(),
+                        p.isCollapsing());
             }
         }
 

@@ -112,11 +112,9 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     }
     /* implements AnimationUtil.OnAnimateListener */
     @Override
-    public void onAnimate(final int animated, final int initial, final int target) {
+    public void onAnimateProgress(final float animatedFraction, final boolean isCollapsing) {
         // determine position of the sliding window for the ellipsis during animation
-        crossfadeEllipsis = target > initial
-                ? 1 - (float) (animated - initial) / (float) (target - initial)
-                : (float) (initial - animated) / (float) (initial - target);
+        crossfadeEllipsis = isCollapsing ? animatedFraction : 1 - animatedFraction;
     }
     @Override
     public void onAnimationEnd(final View v, final boolean reversed, final boolean expanded) {
