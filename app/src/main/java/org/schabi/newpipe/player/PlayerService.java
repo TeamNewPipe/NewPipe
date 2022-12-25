@@ -21,12 +21,17 @@ package org.schabi.newpipe.player;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.media.MediaBrowserCompat.MediaItem;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
@@ -36,11 +41,14 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
 
+import java.util.List;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 /**
  * One service for all players.
  */
-public final class PlayerService extends Service {
+public final class PlayerService extends MediaBrowserServiceCompat {
     private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
 
@@ -50,6 +58,7 @@ public final class PlayerService extends Service {
 
 
     private MediaBrowserConnector mediaBrowserConnector;
+    private final CompositeDisposable compositeDisposableLoadChildren = new CompositeDisposable();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -58,6 +67,8 @@ public final class PlayerService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
+
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
@@ -129,6 +140,7 @@ public final class PlayerService extends Service {
             mediaBrowserConnector.release();
             mediaBrowserConnector = null;
         }
+        compositeDisposableLoadChildren.clear();
     }
 
     private void cleanup() {
@@ -150,6 +162,9 @@ public final class PlayerService extends Service {
 
     @Override
     public IBinder onBind(final Intent intent) {
+        if (SERVICE_INTERFACE.equals(intent.getAction())) {
+            return super.onBind(intent);
+        }
         return mBinder;
     }
 
@@ -170,5 +185,22 @@ public final class PlayerService extends Service {
         public Player getPlayer() {
             return playerService.get().player;
         }
+    }
+
+    // MediaBrowserServiceCompat methods
+    @Nullable
+    @Override
+    public BrowserRoot onGetRoot(@NonNull final String clientPackageName, final int clientUid,
+                                 @Nullable final Bundle rootHints) {
+        return mediaBrowserConnector.onGetRoot(clientPackageName, clientUid, rootHints);
+    }
+
+    @Override
+    public void onLoadChildren(@NonNull final String parentId,
+                               @NonNull final Result<List<MediaItem>> result) {
+        result.detach();
+        final var disposable = mediaBrowserConnector.onLoadChildren(parentId)
+                .subscribe(result::sendResult);
+        compositeDisposableLoadChildren.add(disposable);
     }
 }
