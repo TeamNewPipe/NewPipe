@@ -44,7 +44,13 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
                 return false;
             });
         } else {
-            removePreference(nightThemeKey);
+            // disable the night theme selection
+            final Preference preference = findPreference(nightThemeKey);
+            if (preference != null) {
+                preference.setEnabled(false);
+                preference.setSummary(getString(R.string.night_theme_available,
+                        getString(R.string.auto_device_theme_title)));
+            }
         }
     }
 
@@ -59,13 +65,6 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preference);
-    }
-
-    private void removePreference(final String preferenceKey) {
-        final Preference preference = findPreference(preferenceKey);
-        if (preference != null) {
-            getPreferenceScreen().removePreference(preference);
-        }
     }
 
     private void applyThemeChange(final String beginningThemeKey,
