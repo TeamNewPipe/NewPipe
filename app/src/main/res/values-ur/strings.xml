@@ -498,4 +498,14 @@
     <string name="open_with">کے ساتھ کھولیں</string>
     <string name="crash_the_player">ویڈیو پلیئر کو کریش کریں</string>
     <string name="mark_as_watched">دیکھے ہوئے کو نشان لگائیں</string>
+    <string name="local_search_suggestions">مقامی تلاش کی سفارشات</string>
+    <string name="notifications">اطلاعات</string>
+    <string name="start_main_player_fullscreen_title">مین پلیئر کو مکمل سکرین سے شروع کریں</string>
+    <string name="error_report_channel_name">غلطی کی دستاویزات کی اطلاع</string>
+    <string name="error_report_channel_description">غلطی کی حبر کی اطلاعات</string>
+    <string name="subtitle_activity_recaptcha">جب ٹھیک ہو جائے تو \"Done\" دبائیں</string>
+    <string name="recaptcha_solve">حل کریں</string>
+    <string name="faq_title">زیادہ تر پوچھے گئے سوالات</string>
+    <string name="faq_description">اگر آپ کو یہ ایپ استعمال کرنے میں دشواری آ رہی ہو تو ان عام سوالات کے جوابات کو ضرور دیکھیں!</string>
+    <string name="faq">ویب سائٹ پر دیکھیں</string>
 </resources>

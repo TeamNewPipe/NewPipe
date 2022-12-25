@@ -1,4 +1,4 @@
-<li><h4>Miglioramenti</h4>
+<h4>Miglioramenti</h4>
 <ul>
 <li>rendi cliccabili i link nei commenti, aumenta la dimensione del testo</li>
 <li>cerca facendo clic sui collegamenti timestamp nei commenti</li>
