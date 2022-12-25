@@ -735,4 +735,8 @@
     <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
     <string name="faq_title">Întrebări puse frecvent</string>
     <string name="sort">Sortează</string>
+    <string name="fast_mode">Modul rapid</string>
+    <string name="import_subscriptions_hint">Importați sau exportați abonamente din meniul cu 3 puncte</string>
+    <string name="app_update_unavailable_toast">Rulați cea mai recentă versiune NewPipe</string>
+    <string name="app_update_available_notification_text">Atingeți pentru a descărca %s</string>
 </resources>

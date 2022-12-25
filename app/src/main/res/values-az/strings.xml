@@ -5,7 +5,7 @@
     <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" yüklənilsin\?</string>
     <string name="no_player_found_toast">Yayım oynadıcı tapılmadı (Oynatmaq üçün VLC\'ni quraşdıra bilərsiniz).</string>
     <string name="install">Yüklə</string>
-    <string name="cancel">İmtina</string>
+    <string name="cancel">Ləğv et</string>
     <string name="open_in_browser">Brauzerdə aç</string>
     <string name="share">Paylaş</string>
     <string name="download">Endir</string>
@@ -17,7 +17,7 @@
     <string name="use_external_video_player_title">Xarici video oynadıcı istifadə et</string>
     <string name="use_external_video_player_summary">Bəzi qətnamələrdə səsi silir</string>
     <string name="use_external_audio_player_title">Xarici səs oynadıcı istifadə et</string>
-    <string name="subscribe_button_title">Abunə Olun</string>
+    <string name="subscribe_button_title">Abunə Ol</string>
     <string name="subscribed_button_title">Abunə olundu</string>
     <string name="channel_unsubscribed">Kanal abunəliyi ləğv edildi</string>
     <string name="show_info">Məlumat göstər</string>
@@ -30,7 +30,7 @@
     <string name="download_path_dialog_title">Video faylları üçün endirmə qovluğunu seç</string>
     <string name="download_path_audio_title">Səs endirmə qovluğu</string>
     <string name="download_path_audio_summary">Endirilmiş səs faylları burada saxlanılır</string>
-    <string name="download_path_audio_dialog_title">Səs faylları üçün endirmə qovluğunu seç</string>
+    <string name="download_path_audio_dialog_title">Səs faylları üçün endirmə qovluğu seç</string>
     <string name="default_resolution_title">Defolt keyfiyyət</string>
     <string name="show_higher_resolutions_title">Daha böyük keyfiyyət seçimləri göstər</string>
     <string name="play_with_kodi_title">\"Kodi\" ilə Oynat</string>
@@ -40,13 +40,13 @@
     <string name="play_audio">Səs</string>
     <string name="default_audio_format_title">Defolt səs formatı</string>
     <string name="default_video_format_title">Defolt video formatı</string>
-    <string name="theme_title">Mövzu</string>
+    <string name="theme_title">Tema</string>
     <string name="light_theme_title">İşıqlı</string>
     <string name="dark_theme_title">Qaranlıq</string>
     <string name="black_theme_title">Qara</string>
     <string name="unsubscribe">Abunəlikdən çıxın</string>
     <string name="open_in_popup_mode">Ani pəncərə rejimində aç</string>
-    <string name="autoplay_title">Avtomatik oynatma</string>
+    <string name="autoplay_title">Avtomatik oynat</string>
     <string name="download_dialog_title">Endir</string>
     <string name="resume_on_audio_focus_gain_summary">Fasilələrdən sonra (məsələn, telefon zəngləri) oynatmağa davam etdir</string>
     <string name="resume_on_audio_focus_gain_title">Oynatmanı davam etdir</string>
@@ -54,24 +54,24 @@
     <string name="settings_category_clear_data_title">Məlumat təmizlə</string>
     <string name="enable_playback_state_lists_summary">Siyahılarda oynatma mövqelərini göstər</string>
     <string name="enable_playback_state_lists_title">Siyahılardakı mövqelər</string>
-    <string name="enable_playback_resume_summary">Son oynatma mövqeyinə qaytar</string>
+    <string name="enable_playback_resume_summary">Son oynatma mövqeyini qaytar</string>
     <string name="enable_playback_resume_title">Oynatmanı davam etdir</string>
     <string name="enable_watch_history_title">Baxış tarixçəsi</string>
     <string name="enable_search_history_summary">Axtarış sorğularını yerli olaraq saxla</string>
     <string name="enable_search_history_title">Axtarış tarixçəsi</string>
     <string name="show_search_suggestions_summary">Axtarış edərkən göstəriləcək təklifləri seç</string>
     <string name="show_search_suggestions_title">Axtarış təklifləri</string>
-    <string name="brightness_gesture_control_summary">Oynadıcının parlaqlığını nizamlamaq üçün jestlərdən istifadə et</string>
-    <string name="brightness_gesture_control_title">Parlaqlığı jestlə nizamlama</string>
-    <string name="volume_gesture_control_summary">Oynadıcının səsini nizamlamaq üçün jestlərdən istifadə et</string>
-    <string name="volume_gesture_control_title">Səsi jestlə nizamla</string>
-    <string name="auto_queue_toggle">Avto-növbələmə</string>
-    <string name="auto_queue_title">Növbəti Yayımı Avto-növbələmə</string>
+    <string name="brightness_gesture_control_summary">Oynadıcının parlaqlığını nizamlamaq üçün jestləri istifadə et</string>
+    <string name="brightness_gesture_control_title">Parlaqlığı jestlə nizamlamaq</string>
+    <string name="volume_gesture_control_summary">Oynadıcı səsini nizamlamaq üçün jestləri istifadə et</string>
+    <string name="volume_gesture_control_title">Səsi jestlə idarə etmək</string>
+    <string name="auto_queue_toggle">Avto-növbələ</string>
+    <string name="auto_queue_title">Növbəti Yayımı Avto-növbələ</string>
     <string name="metadata_cache_wipe_complete_notice">Üst məlumat keşi silindi</string>
     <string name="metadata_cache_wipe_summary">Keşlənmiş bütün veb-səhifə məlumatlarını sil</string>
     <string name="metadata_cache_wipe_title">Keşlənmiş üst məlumatı təmizlə</string>
     <string name="thumbnail_cache_wipe_complete_notice">Şəkil keşi silindi</string>
-    <string name="show_comments_summary">Şərhləri gizlətmək üçün söndür</string>
+    <string name="show_comments_summary">Şərhləri gizlətmək üçün bağla</string>
     <string name="show_comments_title">Şərhləri göstər</string>
     <string name="clear_queue_confirmation_description">Aktiv oynadıcının növbəsi dəyişdiriləcək</string>
     <string name="clear_queue_confirmation_summary">Bir oynadıcıdan digərinə keçid növbənizi dəyişdirə bilər</string>
@@ -94,7 +94,7 @@
     <string name="controls_popup_title">Ani Pəncərə</string>
     <string name="tab_choose">Paneli Seç</string>
     <string name="subscription_update_failed">Abunəliyi yeniləmək alınmadı</string>
-    <string name="subscription_change_failed">Abunəliyi dəyişdirmək alınmadı</string>
+    <string name="subscription_change_failed">Abunəliyi dəyişmək alınmadı</string>
     <string name="search_showing_result_for">Nəticələr göstərilir: %s</string>
     <string name="channels">Kanallar</string>
     <string name="video_detail_by">%s tərəfindən</string>
@@ -102,8 +102,8 @@
     <string name="show_age_restricted_content_summary">Yaş həddi səbəbiylə (məsələn, 18+) uşaqlar üçün uyğun olmayan məzmunu göstər</string>
     <string name="show_age_restricted_content_title">Yaş məhdudiyyətli məzmunu göstər</string>
     <string name="content">Məzmun</string>
-    <string name="popup_playing_toast">Ani pəncərədə oynadılır</string>
-    <string name="background_player_playing_toast">Arxa fonda oynadılır</string>
+    <string name="popup_playing_toast">Ani pəncərə rejimində oynadılır</string>
+    <string name="background_player_playing_toast">Fonda oynadılır</string>
     <string name="settings_category_updates_title">Yeniləmələr</string>
     <string name="settings_category_debug_title">Sazlama</string>
     <string name="settings_category_appearance_title">Görünüş</string>
@@ -115,7 +115,7 @@
     <string name="default_content_country_title">Defolt məzmun ölkəsi</string>
     <string name="unsupported_url_dialog_message">URL\'i tanımaq olmadı. Başqa tətbiqlə açılsın\?</string>
     <string name="unsupported_url">Dəstəklənməyən URL\'i</string>
-    <string name="show_hold_to_append_title">\"Növbəyə əlavə etmək üçün basılı saxla\" ipucusun göstər</string>
+    <string name="show_hold_to_append_title">\"Növbələmək üçün basılı saxla\" tövsiyəsin göstər</string>
     <string name="show_next_and_similar_title">\"Növbəti\" və \"Bənzər\" videoları göstər</string>
     <string name="export_data_summary">Tarixçəni, abunəlikləri, pleylistləri və tənzimləmələri ixrac edin</string>
     <string name="import_data_summary">Cari tarixçənizi, abunəliklərinizi, pleylistlərinizi və (könüllü) tənzimləmələrinizi etibarsız edir</string>
@@ -179,7 +179,7 @@
     <string name="general_error">Xəta</string>
     <string name="search_history_deleted">Axtarış tarixçəsi silindi</string>
     <string name="delete_search_history_alert">Bütün axtarış tarixçəsi silinsin\?</string>
-    <string name="clear_search_history_summary">Axtarışdakı açar sözlərin tarixçəsini silir</string>
+    <string name="clear_search_history_summary">Açar sözləri axtarışının tarixçəsini silir</string>
     <string name="clear_search_history_title">Axtarış tarixçəsini silin</string>
     <string name="watch_history_states_deleted">Oynatma mövqeləri silindi</string>
     <string name="delete_playback_states_alert">Bütün oynatma mövqeləri silinsin\?</string>
@@ -208,7 +208,7 @@
     <string name="limit_mobile_data_usage_title">Mobil internet istifadə edərkən görüntü keyfiyyətini məhdudlaşdır</string>
     <string name="limit_data_usage_none_description">Limitsiz</string>
     <string name="one_item_deleted">1 element silindi.</string>
-    <string name="peertube_instance_add_title">Server əlavə edin</string>
+    <string name="peertube_instance_add_title">Nümunə əlavə et</string>
     <string name="peertube_instance_url_summary">Sevimli \"PeerTube\" nümunələrinizi seçin</string>
     <string name="delete_downloaded_files">Endirilmiş faylları silin</string>
     <string name="confirm_prompt">Endirmə tarixçənizi təmizləmək və ya endirilmiş bütün faylları silmək istəyirsiniz\?</string>
@@ -217,7 +217,7 @@
     <string name="pause_downloads">Endirmələri dayandır</string>
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
     <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
-\nXarici SD karta yükləmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
+\nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
     <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Çərçivəsi \' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem defoltu</string>
     <string name="app_language_title">Tətbiq dili</string>
@@ -262,7 +262,7 @@
     <string name="download_to_sdcard_error_title">Xarici yaddaş əlçatan deyil</string>
     <string name="clear_views_history_summary">Oynadılmış yayımlar tarixçəsini və oynatma mövqelərini silir</string>
     <string name="show_meta_info_title">Üst məlumatı göstər</string>
-    <string name="show_description_summary">Video açıqlamasını və əlavə məlumatı gizlətmək üçün söndürün</string>
+    <string name="show_description_summary">Video açıqlamasını və əlavə məlumatı gizlətmək üçün bağla</string>
     <string name="show_description_title">Açıqlamanı göstər</string>
     <string name="notification_colorize_title">Bildirişi rəngləndir</string>
     <string name="invalid_directory">Belə qovluq yoxdur</string>
@@ -270,10 +270,10 @@
     <string name="external_player_unsupported_link_type">Xarici oynadıcılar bu cür linkləri dəstəkləmir</string>
     <string name="local_search_suggestions">Yerli axtarış təklifləri</string>
     <string name="video">Video</string>
-    <string name="related_items_tab_description">Əlaqədar yayımlar</string>
+    <string name="related_items_tab_description">Əlaqəli elementlər</string>
     <string name="mark_as_watched">Baxılmış kimi işarələ</string>
     <string name="open_with">ilə aç</string>
-    <string name="night_theme_title">Gecə Mövzusu</string>
+    <string name="night_theme_title">Gecə Teması</string>
     <string name="popup_remember_size_pos_title">Ani pəncərə xüsusiyyətlərini xatırla</string>
     <string name="popup_remember_size_pos_summary">Ani pəncərənin son ölçüsü və mövqeyini xatırla</string>
     <string name="video_streams_empty">Video yayımı tapılmadı</string>
@@ -292,7 +292,7 @@
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə ver</string>
     <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz\?</string>
     <string name="download_thumbnail_summary">Miniatürlərin yüklənməsini, dataya qənaət etmək və yaddaşdan istifadəni azaltmaq üçün söndürün. Dəyişikliklər həm yaddaşdaxili, həm də diskdə olan təsvir keşini təmizləyir</string>
-    <string name="enqueue_next_stream">Növbətini sıraya salın</string>
+    <string name="enqueue_next_stream">Növbətini növbələ</string>
     <string name="retry">Yenidən Cəhd Et</string>
     <string name="settings_category_player_notification_summary">Cari oynatma yayımı bildirişini konfiqurasiya et</string>
     <string name="notifications">Bildirişlər</string>
@@ -302,7 +302,7 @@
     <string name="file_name_empty_error">Fayl adı boş ola bilməz</string>
     <string name="saved_tabs_invalid_json">Yadda saxlanmış tabları oxumaq mümkün olmadı, buna görə defolt tablardan istifadə edin</string>
     <string name="error_report_notification_title">NewPipe xəta ilə qarşılaşdı, bildirmək üçün toxun</string>
-    <string name="sorry_string">Bağışlayın, belə olmamalı idi.</string>
+    <string name="sorry_string">Bağışlayın, o baş verməməli idi.</string>
     <string name="error_report_button_text">Bu xətanı e-poçt vasitəsilə bildirin</string>
     <string name="error_report_open_issue_button_text">GitHub\'da Hesabat Ver</string>
     <string name="error_report_open_github_notice">Zəhmət olmasa, xətanızı müzakirə edən məsələnin mövcud olub-olmadığını yoxlayın. Dublikat biletləri yaradarkən, bizdən faktiki səhvi düzəltməyə sərf edəcəyimiz vaxt alırsınız.</string>
@@ -324,7 +324,7 @@
     <string name="no_videos">Video yoxdur</string>
     <string name="comments_are_disabled">Şərhlər qeyri-aktivdir</string>
     <string name="start">Başlat</string>
-    <string name="pause">Dayandır</string>
+    <string name="pause">Fasilə</string>
     <string name="checksum">Təsdiqləmə</string>
     <string name="dismiss">İmtina</string>
     <string name="msg_error">Xəta</string>
@@ -386,7 +386,7 @@
     <string name="caption_auto_generated">Avtomatik yaradıldı</string>
     <string name="caption_setting_title">Altyazılar</string>
     <string name="leak_canary_not_available">LeakCanary yoxdur</string>
-    <string name="enable_leak_canary_summary">Yaddaş sızmasının monitorinqi yığın boşaltma zamanı tətbiqin cavab verməməsinə səbəb ola bilər</string>
+    <string name="enable_leak_canary_summary">Yaddaş sızma monitorinqi yığın boşaltma zamanı tətbiqin cavab verməməsinə səbəb ola bilər</string>
     <string name="show_memory_leaks">Yaddaş sızmalarını göstər</string>
     <string name="enable_disposed_exceptions_summary">Utilizasiyadan sonra fraqment və ya fəaliyyətin yaşam dövründən kənarda çatdırıla bilməyən Rx istisnaları barədə hesabat verməyə məcbur et</string>
     <string name="show_original_time_ago_summary">Xidmətlərdən alınmış orijinal mətnlər yayım elementlərində görünəcək</string>
@@ -430,8 +430,8 @@
     <string name="recent">Ən Yeni</string>
     <string name="georestricted_content">Bu məzmun ölkənizdə mövcud deyil.</string>
     <string name="paid_content">Bu məzmun yalnız ödəniş etmiş istifadəçilər üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlana və ya endirilə bilməz.</string>
-    <string name="auto_device_theme_title">Avtomatik (cihaz mövzusu)</string>
-    <string name="night_theme_summary">Sevimli gecə mövzunuzu seçin — %s</string>
+    <string name="auto_device_theme_title">Avtomatik (cihaz teması)</string>
+    <string name="night_theme_summary">Sevimli gecə temanızı seçin — %s</string>
     <string name="detail_pinned_comment_view_description">Sabitlənmiş şərh</string>
     <string name="notifications_disabled">Bildirişlər deaktiv edilib</string>
     <string name="get_notified">Bildiriş al</string>
@@ -464,7 +464,7 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq</string>
     <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Çərçivəsi\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
-    <string name="select_night_theme_toast">Sevdiyiniz gecə mövzusunu aşağıda seçə bilərsiniz</string>
+    <string name="select_night_theme_toast">Sevdiyiniz gecə temasını aşağıda seçə bilərsiniz</string>
     <string name="notification_colorize_summary">Android\'in bildiriş rəngini miniatürdəki əsas rəngə uyğun fərdiləşdirməsini təmin et (qeyd edək ki, bu, bütün cihazlarda mövcud deyil)</string>
     <string name="view_on_github">GitHub\'da Bax</string>
     <string name="donation_title">İanə Et</string>
@@ -498,10 +498,10 @@
     <string name="notification_scale_to_square_image_title">Miniatürü 1:1 görünüş nisbətinə kəs</string>
     <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdir (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndürün</string>
-    <string name="auto_queue_summary">Əlaqədar yayımı əlavə etməklə (təkrarlanmayan) sonlanacaq oynatma sırasını davam etdir</string>
+    <string name="auto_queue_summary">Əlaqəli yayımı əlavə etməklə (təkrarlanmayan) sonlanacaq oynatma növbəsini davam etdir</string>
     <string name="remote_search_suggestions">Kənar axtarış təklifləri</string>
-    <string name="peertube_instance_add_exists">Server artıq mövcuddur</string>
-    <string name="start_main_player_fullscreen_summary">Videoları mini oynadıcıda başlatma, avtomatik fırlatma kilidlidirsə, birbaşa tam ekran rejiminə keçid. Siz hələ də tam ekran rejimindən çıxmaqla mini pleyerə daxil ola bilərsiniz</string>
+    <string name="peertube_instance_add_exists">Nümunə artıq mövcuddur</string>
+    <string name="start_main_player_fullscreen_summary">Videoları mini oynadıcıda başlatma, avtomatik fırlatma kilidlidirsə, birbaşa tam ekran rejiminə keçid. Siz hələ də tam ekrandan çıxmaqla mini oynadıcıya daxil ola bilərsiniz</string>
     <string name="more_than_100_videos">100+ video</string>
     <string name="infinite_videos">∞ video</string>
     <string name="no_comments">Şərhlər yoxdur</string>
@@ -548,7 +548,7 @@
     <string name="semitone">Yarımton</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Endirmə tamamlandı</item>
-        <item quantity="other">%s endirmələr tamamlandı</item>
+        <item quantity="other">%s endirmə tamamlandı</item>
     </plurals>
     <string name="progressive_load_interval_exoplayer_default">Defolt ExoPlayer</string>
     <string name="feed_use_dedicated_fetch_method_title">Mövcud olduqda xüsusi axından al</string>
@@ -605,11 +605,11 @@
     <string name="info_labels">Nə:\\nTələb:\\nMəzmun Dili:\\nMəzmun Ölkəsi:\\nTətbiq Dili:\\nXidmət:\\nGMT Saatı:\\nPaket:\\nVersiya:\\nƏS versiyası:</string>
     <string name="error_snackbar_message">Bağışlayın, nəsə xəta baş verdi.</string>
     <string name="copy_for_github">Formatlanmış hesabatı kopyala</string>
-    <string name="peertube_instance_add_help">Server URL\'sini daxil edin</string>
-    <string name="peertube_instance_add_fail">Serveri doğrulamaq mümkün olmadı</string>
+    <string name="peertube_instance_add_help">Nümunə URL\'sini daxil et</string>
+    <string name="peertube_instance_add_fail">Nümunəni doğrulamaq mümkün olmadı</string>
     <string name="peertube_instance_url_help">%s-də bəyəndiyiniz nümunələri tapın</string>
     <string name="show_hold_to_append_summary">Video \"Təfsilatlar:\"səhifəsində fon və ya ani pəncərə düyməsini basarkən ipucu göstər</string>
-    <string name="caption_setting_description">Oynadıcı altyazı miqyasını və arxa fon üslublarını dəyişdirin. Effektiv olması üçün tətbiqin yenidən başladılması tələb olunur</string>
+    <string name="caption_setting_description">Oynadıcı altyazı mətn miqyasını və arxa fon üslublarını dəyişdirin. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
     <string name="error_occurred_detail">Xəta baş verdi: %1$s</string>
     <string name="invalid_file">Fayl mövcud deyil, yaxud oxumaq və ya yazmaq icazəsi yoxdur</string>
     <string name="parsing_error">Veb saytı təhlil etmək alınmadı</string>
@@ -654,7 +654,7 @@
     <string name="youtube_signature_deobfuscation_error">Video URL\'i imzasının şifrəsi qırılmadı</string>
     <string name="no_streams_available_download">Endirmək üçün heç bir yayım yoxdur</string>
     <string name="error_report_notification_toast">Xəta baş verdi, bildirişə baxın</string>
-    <string name="your_comment">Şərhiniz (İngilis dilində):</string>
+    <string name="your_comment">Şərhiniz (İngiliscə):</string>
     <string name="detail_thumbnail_view_description">Video oynat, müddət:</string>
     <string name="no_available_dir">Zəhmət olmasa, daha sonra tənzimləmələrdə endirmə qovluğunu təyin et</string>
     <string name="msg_running">NewPipe Endirilir</string>
@@ -704,8 +704,8 @@
 \nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və keçidlər kliklənməyə bilər.</string>
-    <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 nisbətinə qədər kəs</string>
-    <string name="notification_actions_summary">Aşağıdakı bildiriş fəaliyyətini hər birinin üzərinə toxunaraq redaktə edin. Sağdakı təsdiq qutularından istifadə edərək yığcam bildirişdə göstərilməsi üçün onlardan üçə qədərini seç</string>
+    <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
+    <string name="notification_actions_summary">Aşağıdakı bildiriş fəaliyyətini hər birinin üzərinə toxunaraq redaktə edin. Sağdakı təsdiq qutularından istifadə edərək yığcam bildirişdə göstərilməsi üçün onların üçə qədərini seç</string>
     <string name="invalid_source">Belə fayl/məzmun mənbəyi yoxdur</string>
     <string name="selected_stream_external_player_not_supported">Seçilmiş yayım xarici oynadıcılar tərəfindən dəstəklənmir</string>
     <string name="streams_not_yet_supported_removed">Yükləyici tərəfindən hələ dəstəklənməyən yayımlar göstərilmir</string>

@@ -709,4 +709,8 @@
     <string name="sort">排序</string>
     <string name="faq_title">常見問題</string>
     <string name="faq_description">若然您用呢個 app 有疑問，然而「亦有些難啟齒」，不妨睇下常見問題集，話唔定會發現「有場舞還未發表」！</string>
+    <string name="fast_mode">快速模式</string>
+    <string name="import_subscriptions_hint">右上角嘅選單有得匯入或匯出訂閱</string>
+    <string name="app_update_unavailable_toast">您已經用緊最新版本嘅 NewPipe</string>
+    <string name="app_update_available_notification_text">撳一下去下載 %s</string>
 </resources>

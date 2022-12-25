@@ -135,9 +135,9 @@
     <string name="controls_download_desc">Közvetítési fájl letöltése</string>
     <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
-    <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kisebb pontossággal. Az 5, 15, vagy 25 másodperces tekerés nem működik ebben a módban.</string>
+    <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kisebb pontossággal. Az 5, 15, vagy 25 másodperces tekerés nem működik ebben a módban</string>
     <string name="download_thumbnail_title">Bélyegképek betöltése</string>
-    <string name="download_thumbnail_summary">Kapcsolja ki, hogy a megelőzze a bélyegképek betöltését, így csökkentve az adat- és memóriahasználatot. A megváltoztatása törli a memóriában és a meghajtón lévő képgyorsítótárat.</string>
+    <string name="download_thumbnail_summary">Kapcsolja ki, hogy a megelőzze a bélyegképek betöltését, így csökkentve az adat- és memóriahasználatot. A megváltoztatása törli a memóriában és a meghajtón lévő képgyorsítótárat</string>
     <string name="thumbnail_cache_wipe_complete_notice">A bélyegkép gyorsítótár törölve</string>
     <string name="metadata_cache_wipe_title">Gyorsítótárazott metaadatok törlése</string>
     <string name="metadata_cache_wipe_summary">Minden gyorsítótárazott weboldaladat törlése</string>
@@ -266,7 +266,7 @@
     <string name="resize_zoom">Nagyítás</string>
     <string name="caption_auto_generated">Automatikusan létrehozott</string>
     <string name="caption_setting_title">Feliratok</string>
-    <string name="caption_setting_description">Feliratok méretének és hátterének stílusbeli módosítása. A módosítások életbe lépésehez az alkalmazás újraindítása szükséges.</string>
+    <string name="caption_setting_description">Feliratok méretének és hátterének stílusbeli módosítása. A módosítások életbe lépésehez az alkalmazás újraindítása szükséges</string>
     <string name="import_title">Importálás</string>
     <string name="import_from">Importálás a következőből</string>
     <string name="export_to">Exportálás a következőbe</string>
@@ -491,7 +491,7 @@
     <string name="updates_setting_description">Frissítési értesítés megjelenítése, amikor egy új verzió érhető el</string>
     <string name="updates_setting_title">Frissítések</string>
     <string name="notification_colorize_summary">Az Android igazítsa az értesítés színét a bélyegkép meghatározó színéhez (nem minden eszközön érhető el)</string>
-    <string name="notification_actions_at_most_three">Legfeljebb három művelet jeleníthető meg a kompakt értesítésben.</string>
+    <string name="notification_actions_at_most_three">Legfeljebb három művelet jeleníthető meg a kompakt értesítésben!</string>
     <string name="notification_actions_summary">Koppintással szerkesztheti az egyes értesítéseken megjelenő műveleteket. Válasszon ki legfeljebb hármat a jobb oldali jelölőnégyzetekkel, amelyek a kompakt értesítéseken is megjelennek.</string>
     <string name="notification_action_4_title">Ötödik műveletgomb</string>
     <string name="notification_action_3_title">Negyedik műveletgomb</string>
@@ -568,13 +568,13 @@
     <string name="local_search_suggestions">Helyi keresési javaslatok</string>
     <string name="remote_search_suggestions">Távoli keresési javaslatok</string>
     <string name="start_main_player_fullscreen_title">A fő lejátszó teljes képernyős indítása</string>
-    <string name="start_main_player_fullscreen_summary">A videókat ne a kis lejátszóban indítsa el, hanem kapcsolja be a teljes képernyős módot, ha az automatikus forgatás zárolva van. Továbbra is elérheti a kis lejátszót, ha kilép a teljes képernyőből.</string>
+    <string name="start_main_player_fullscreen_summary">A videókat ne a kis lejátszóban indítsa el, hanem kapcsolja be a teljes képernyős módot, ha az automatikus forgatás zárolva van. Továbbra is elérheti a kis lejátszót, ha kilép a teljes képernyőből</string>
     <string name="drawer_header_description">Szolgáltatás be/ki, jelenleg kiválasztott:</string>
     <string name="comments_are_disabled">A megjegyzések ki vannak kapcsolva</string>
     <string name="main_page_content_swipe_remove">Húzza oldalra az elemeket az eltávolításukhoz</string>
     <string name="enqueue_next_stream">A következő sorba állítása</string>
     <string name="enqueued_next">A következő sorba állítva</string>
-    <string name="processing_may_take_a_moment">Feldolgozás… Ez eltarthat egy ideig.</string>
+    <string name="processing_may_take_a_moment">Feldolgozás… Ez eltarthat egy ideig</string>
     <string name="enable_disposed_exceptions_summary">Az eltávolítás utáni, fragment vagy activity életcikluson kívüli, nem kézbesíthető Rx kivételek jelentésének kényszerítése</string>
     <string name="show_original_time_ago_title">Eredeti „ennyi ideje” megjelenítése az elemeken</string>
     <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor</string>
@@ -617,7 +617,7 @@
     <string name="metadata_privacy_unlisted">Nem listázott</string>
     <string name="off">Ki</string>
     <string name="no_appropriate_file_manager_message">Nem található megfelelő fájlkezelő ehhez a művelethez.
-\nTelepítsen egy fájlkezelőt, vagy próbálja meg letiltani a következőt a letöltési beállításokban: „%s”.</string>
+\nTelepítsen egy fájlkezelőt, vagy próbálja meg letiltani a következőt a letöltési beállításokban: „%s”</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Letöltés befejezve</item>
         <item quantity="other">%s letöltés befejezve</item>
@@ -656,7 +656,7 @@
     <string name="checking_updates_toast">Frissítések keresése…</string>
     <string name="video_detail_by">Készítette: %s</string>
     <string name="no_appropriate_file_manager_message_android_10">Nem található megfelelő fájlkezelő ehhez a művelethez.
-\nTelepítsen egy olyan fájlkezelőt, amely kompatibilis a Storage Access Frameworkkel.</string>
+\nTelepítsen egy olyan fájlkezelőt, amely kompatibilis a Storage Access Frameworkkel</string>
     <string name="description_select_enable">Szöveg kijelölésének engedélyezése a leírásban</string>
     <string name="metadata_category">Kategória</string>
     <string name="metadata_tags">Címkék</string>
@@ -664,7 +664,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Gyors mód letiltása</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Igen, és távolítsa el a részben megnézett videókat is</string>
     <string name="remove_watched_popup_warning">A videók, melyeket már megnézett miután a lejátszási listához adta őket, el lesznek távolítva.
-\nBiztos benne\? Ez nem vonható vissza.</string>
+\nBiztos benne\? Ez nem vonható vissza!</string>
     <string name="show_original_time_ago_summary">A szolgáltatásokból származó eredeti szövegek láthatók lesznek a közvetítési elemeken</string>
     <string name="crash_the_player">Lejátszó összeomlasztása</string>
     <string name="show_image_indicators_title">Képjelölők megjelenítése</string>
@@ -682,7 +682,7 @@
     <string name="detail_pinned_comment_view_description">Rögzített megjegyzés</string>
     <string name="leak_canary_not_available">LeakCanary nem elérhető</string>
     <string name="settings_category_player_notification_title">Lejátszó értesítés</string>
-    <string name="progressive_load_interval_summary">Módosítsa a betöltési intervallum méretét (jelenleg %s). Az alacsonyabb érték felgyorsíthatja a videó kezdeti betöltését. A változtatásokhoz a lejátszó újraindítása szükséges.</string>
+    <string name="progressive_load_interval_summary">Módosítsa a betöltési intervallum méretét (jelenleg %s). Az alacsonyabb érték felgyorsíthatja a videó kezdeti betöltését. A változtatásokhoz a lejátszó újraindítása szükséges</string>
     <string name="settings_category_player_notification_summary">Az aktuális lejátszás konfigurálása értesítés</string>
     <string name="notifications">Értesítések</string>
     <string name="streams_notification_channel_name">Új élő közvetítések</string>
@@ -720,6 +720,10 @@
     <string name="faq_title">Gyakran ismételt kérdések</string>
     <string name="faq">Megtekintés a weboldalon</string>
     <string name="sort">Rendezés</string>
-    <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat.</string>
+    <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat!</string>
     <string name="feed_toggle_hide_played_items">Megnézett elemek elrejtése</string>
+    <string name="fast_mode">Gyors mód</string>
+    <string name="import_subscriptions_hint">Feliratkozások importálása vagy exportálása a 3 pontos menüből</string>
+    <string name="app_update_unavailable_toast">Ön a Newpipe legfrissebb verzióját futtatja</string>
+    <string name="app_update_available_notification_text">Nyomjon a %s letöltéséhez</string>
 </resources>

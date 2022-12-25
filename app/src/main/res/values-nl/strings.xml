@@ -721,4 +721,9 @@
     <string name="faq_title">Veelgestelde vragen</string>
     <string name="faq_description">Als u problemen ondervindt bij het gebruik van de app, bekijk dan deze antwoorden op veelgestelde vragen!</string>
     <string name="faq">Bekijk op de website</string>
+    <string name="sort">Sorteer</string>
+    <string name="fast_mode">Snelle modus</string>
+    <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
+    <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
+    <string name="app_update_available_notification_text">Klik om %s te downloaden</string>
 </resources>
