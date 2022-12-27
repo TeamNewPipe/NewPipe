@@ -83,6 +83,7 @@ public final class AnimationUtil {
 
     public interface OnAnimateListener {
         void onAnimateProgress(float animatedFraction, boolean isCollapsing);
+        default void onAnimationStart(View v, boolean isCollapsing) { }
         default void onAnimationEnd(View v, boolean reversed, boolean expanded) { }
     }
 
@@ -324,6 +325,10 @@ public final class AnimationUtil {
             }
             super.onAnimationStart(animation);
             animationStart(t, p);
+
+            if (p.getAnimateListener() != null) {
+                p.getAnimateListener().onAnimationStart(t, p.isCollapsing());
+            }
         }
     }
 
