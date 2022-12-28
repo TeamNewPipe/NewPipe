@@ -12,7 +12,6 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.util.Consumer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
