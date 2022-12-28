@@ -1,5 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
+import static org.schabi.newpipe.views.NewPipeTextView.EllipsisState;
+
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -112,7 +114,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemContentView.setMaxLines(COMMENT_DEFAULT_LINES);
             itemContentView.setEllipsize(TextUtils.TruncateAt.END);
             OneShotPreDrawListener.add(itemContentView, () -> {
-                if (((NewPipeTextView) itemContentView).ellipsisState() == 1) {
+                if (((NewPipeTextView) itemContentView).ellipsisState()
+                        == EllipsisState.EXPANDABLE) {
                     denyLinkFocus();
                 } else {
                     determineLinkFocus();
@@ -123,7 +126,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             );
             itemView.setOnClickListener(view -> {
                 if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
-                        || ((NewPipeTextView) itemContentView).ellipsisState() == 1) {
+                        || ((NewPipeTextView) itemContentView).ellipsisState()
+                        == EllipsisState.EXPANDABLE) {
                     ((NewPipeTextView) itemContentView)
                             .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
                 }

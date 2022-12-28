@@ -69,18 +69,17 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         return getMaxLines() == -1 ? getLineCount() : Math.min(getMaxLines(), getLineCount());
     }
 
-    /* the transient ellipsizing state: returns -1 if undetermined (usually before
-     * the layout is first drawn), 1 if we determine the text is shown in part and thus expandable,
-     * 2 if TextView reports the text is ellipsized (by it), 0 otherwise if text is in full view */
+    /* the transient ellipsizing state at the current point in time */
     @EllipsisState
     public int ellipsisState() {
         if (getLayout() == null) {
-            return UNDETERMINED;
+            return EllipsisState.UNDETERMINED;
         }
         if (getLayout().getLineEnd(getDisplayLines() - 1) != getText().length()) {
-            return EXPANDABLE;
+            return EllipsisState.EXPANDABLE;
         } else {
-            return getLayout().getEllipsisCount(getDisplayLines() - 1) > 0 ? ELLIPSIZED : FULL_VIEW;
+            return getLayout().getEllipsisCount(getDisplayLines() - 1) > 0
+                    ? EllipsisState.ELLIPSIZED : EllipsisState.FULL_VIEW;
         }
     }
 
@@ -105,7 +104,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
 
     public void toggle(final int collapsedLines, final int expandedLines,
                        final int collapseDuration, final int expandDuration) {
-        if ((ellipsisState() == EXPANDABLE && getMaxLines() < expandedLines)
+        if ((ellipsisState() == EllipsisState.EXPANDABLE && getMaxLines() < expandedLines)
                 || getMaxLines() > collapsedLines) {
 
             final boolean isCollapsing = getMaxLines() > collapsedLines;
@@ -149,14 +148,14 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({UNDETERMINED, FULL_VIEW, EXPANDABLE, ELLIPSIZED})
-    public @interface EllipsisState { }
-
-    // ellipsis state
-    public static final int UNDETERMINED = -1;
-    public static final int FULL_VIEW    = 0;
-    public static final int EXPANDABLE   = 1;
-    public static final int ELLIPSIZED   = 2;
+    @IntDef({EllipsisState.UNDETERMINED, EllipsisState.FULL_VIEW,
+            EllipsisState.EXPANDABLE, EllipsisState.ELLIPSIZED})
+    public @interface EllipsisState {
+        int UNDETERMINED = -1; // usually before the layout is first drawn
+        int FULL_VIEW    = 0;
+        int EXPANDABLE   = 1;  // we determine the text is shown in part and thus expandable
+        int ELLIPSIZED   = 2;  // TextView reports the text is ellipsized (by it)
+    }
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -165,49 +164,43 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
 
     /* our home-grown cache holding the metrics for drawing the ellipsis and/or a ellipsis mask */
     private static class EllipsizeParams {
-        public WeakReference<Layout> layoutReference;
+        private WeakReference<Layout> layoutReference;
 
         // magic numbers
         public static final int UNSET   = -1;
 
         @Retention(RetentionPolicy.SOURCE)
-        @IntDef({BOOLEAN, INT, FLOAT})
-        public @interface ValueType { }
-
-        // value types
-        public static final int BOOLEAN = 0;
-        public static final int INT     = 1;
-        public static final int FLOAT   = 2;
-
-        @Retention(RetentionPolicy.SOURCE)
-        @IntDef({NORMAL, ADD, MINUS})
-        public @interface OpType { }
-
-        // operators
-        public static final int NORMAL  = 0;  // read: replace
-        public static final int ADD     = 1;
-        public static final int MINUS   = 2;
+        @IntDef({ValueType.BOOLEAN, ValueType.INT, ValueType.FLOAT})
+        public @interface ValueType {
+            int BOOLEAN = 0;
+            int INT     = 1;
+            int FLOAT   = 2;
+        }
 
         @Retention(RetentionPolicy.SOURCE)
-        @IntDef({OK, NOT_FOUND, NOT_IN_RANGE, ERROR, NOT_IMPLEMENTED})
-        public @interface OpCode { }
+        @IntDef({Op.NORMAL, Op.ADD, Op.MINUS})
+        public @interface Op {
+            int NORMAL  = 0;  // read: replace
+            int ADD     = 1;
+            int MINUS   = 2;
+        }
 
-        // status codes
-        public static final int OK                = -200;
-        public static final int NOT_FOUND         = -404;
-        public static final int NOT_IN_RANGE      = -416;
-        public static final int ERROR             = -500;
-        public static final int NOT_IMPLEMENTED   = -501;
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef({Result.OK, Result.NOT_FOUND, Result.NOT_IN_RANGE,
+                Result.ERROR, Result.NOT_IMPLEMENTED})
+        public @interface Result {  // status codes
+            int OK                = -200;
+            int NOT_FOUND         = -404;
+            int NOT_IN_RANGE      = -416;
+            int ERROR             = -500;
+            int NOT_IMPLEMENTED   = -501;
+        }
 
         public static final int HEADER_RESERVED = 0;
 
         @Retention(RetentionPolicy.SOURCE)
         @IntDef({INITIALIZED, SCHEMA_1, SCHEMA_DEBUG, IS_LTR, SKIP_PREFIX_SPACE, ANIMATING})
         public @interface Flags { }
-
-        @Retention(RetentionPolicy.SOURCE)
-        @IntDef({IS_LTR, SKIP_PREFIX_SPACE})
-        public @interface LineMetricsBoolean { }
 
         public static final int FLAGS_START = 0;
         // booleans are stored in FLAGS
@@ -232,9 +225,6 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         // highest bit reserved for meta
         public static final int CONTINUATION = Integer.SIZE - 1; // highest bit (31) of int
 
-        @IntDef({LINE_NO, WIDTH, TOP, BOTTOM, BASELINE, LINE_START, LINE_END,
-                LINE_LEFT, LINE_RIGHT, LINE_REMAINING_SPACE, LINE_START_EDGE})
-        public @interface LineMetricsInt { }
 
         public static final int SCHEMA_0_START = 100;
         // LineMetrics enums (SCHEMA 0)
@@ -254,19 +244,11 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         /* keep this to last */
         public static final int LINEMETRICS_END = 9 + LINEMETRICS_START;
 
-        @Retention(RetentionPolicy.SOURCE)
-        @IntDef({LINEMAX, LINE_LEFT, LINE_RIGHT, LINE_REMAINING_SPACE})
-        public @interface LineMetricsFloat { }
-
         // derived LineMetrics
         public static final int LINEMETRIC_DERIVED_START = 110;
         public static final int LINE_LEFT  = 1 + LINEMETRIC_DERIVED_START;
         public static final int LINE_RIGHT = 2 + LINEMETRIC_DERIVED_START;
         public static final int LINEMETRIC_DERIVED_END = 3 + LINEMETRIC_DERIVED_START;
-
-        @Retention(RetentionPolicy.SOURCE)
-        @IntDef({LINE_END_EDGE})
-        public @interface LineMetricsExt { }
 
         // extended LineMetrics (computed without equivalent functions in Layout)
         public static final int LINEMETRIC_COMPUTED_START = 120;
@@ -351,7 +333,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             } else if (flag <= ELLIPSISPARAMS_DEBUG_END) {
                 return flag - SCHEMA_1_START;
             }
-            return NOT_IN_RANGE;
+            return Result.NOT_IN_RANGE;
         }
         // compute the additional 'pages' (int) of FLAGS required for paramsSize
         // ref: https://stackoverflow.com/a/20090375
@@ -407,28 +389,20 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             }
             return false;
         }
-        private static boolean paramValid(@NonNull final int[] params,
-                                          @LineMetricsInt final int param) {
+        private static boolean paramValid(@NonNull final int[] params, final int param) {
             return getFlag(params, INITIALIZED) && getRawIndex(param) > HEADER_RESERVED;
         }
         private static boolean setParamInt(@NonNull final int[] params,
-                                           @LineMetricsInt final int param, final int value) {
+                                           final int param, final int value) {
             return paramValid(params, param)
                     && setInt(params, getRawIndex(param) + indexOffset(params), value);
         }
         private static boolean setParamFloat(@NonNull final int[] params,
-                                             @LineMetricsFloat final int param, final float value) {
+                                             final int param, final float value) {
             return paramValid(params, param)
                     && setFloat(params, getRawIndex(param) + indexOffset(params), value);
         }
-        private static boolean setParam(@NonNull final int[] params,
-                                        @LineMetricsExt final int param,
-                                        @NonNull final TypedValue value) {
-            return paramValid(params, param)
-                    && setValue(params, getRawIndex(param) + indexOffset(params), value);
-        }
-        private static float getFloat(@NonNull final int[] params,
-                                             @LineMetricsFloat final int param) {
+        private static float getFloat(@NonNull final int[] params, final int param) {
             if (!paramValid(params, param)) {
                 return -1;
             }
@@ -438,12 +412,12 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 if (isFloat) {
                     return Float.intBitsToFloat(params[index]);
                 } else {
-                    return (float) params[index];
+                    return params[index];
                 }
             }
             return -1;
         }
-        private static float getInt(@NonNull final int[] params, @LineMetricsInt final int param) {
+        private static int getInt(@NonNull final int[] params, final int param) {
             if (!paramValid(params, param)) {
                 return -1;
             }
@@ -458,8 +432,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             }
             return -1;
         }
-        private static boolean getParam(@NonNull final int[] params,
-                                        @LineMetricsExt final int param,
+        private static boolean getParam(@NonNull final int[] params, final int param,
                                         @NonNull final TypedValue value) {
             return paramValid(params, param)
                     && getValue(params, getRawIndex(param) + indexOffset(params), value);
@@ -468,7 +441,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             final int flagIndex = getRawIndex(flag);
             return getBit(params, indexOffset(params, flagIndex), flagIndex);
         }
-        private static boolean setFlag(@NonNull final int[] params, @Flags final int flag,
+        private static boolean setFlag(@NonNull final int[] params, final int flag,
                                        final boolean b) {
             final int flagIndex = getRawIndex(flag);
             return setBit(params, indexOffset(params, flagIndex), flagIndex, b);
@@ -526,16 +499,6 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             }
             return false;
         }
-        private static boolean setValue(@NonNull final int[] params,
-                                        @IntRange(from = 0) final int index,
-                                        @NonNull final TypedValue value) {
-            if (index < params.length) {
-                params[index] = value.getRawValue();
-                markFloat(params, index, value.getType() == FLOAT);
-                return true;
-            }
-            return false;
-        }
         private static boolean markFloat(@NonNull final int[] params,
                                          @IntRange(from = 0) final int index,
                                          final boolean isFloat) {
@@ -565,52 +528,51 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         private static class TypedValue {
             protected int value;
             protected int type = UNSET;
-            protected int op = NORMAL;
+            protected int op = Op.NORMAL;
             public void setValue(final int v) {
                 opValue(v);
-                op = NORMAL;
+                op = Op.NORMAL;
             }
             public void setValue(final float v) {
                 opValue(v);
-                op = NORMAL;
+                op = Op.NORMAL;
             }
             public void setValue(final boolean v) {
                 value = v ? 1 : 0;
-                type = BOOLEAN;
-                op = NORMAL;
+                type = ValueType.BOOLEAN;
+                op = Op.NORMAL;
             }
             public void opValue(final int v) {
                 switch (op) {
-                    case MINUS:
-                    case ADD:
-                        if (type == FLOAT) {
-                            value = Float.floatToRawIntBits(asFloat()
-                                    + (float) (op == MINUS ? -v : v));
+                    case Op.MINUS:
+                    case Op.ADD:
+                        if (type == ValueType.FLOAT) {
+                            value = Float.floatToRawIntBits(asFloat() + (op == Op.MINUS ? -v : v));
                         } else {
-                            value += (op == MINUS ? -v : v);
-                            type = INT;
+                            value += (op == Op.MINUS ? -v : v);
+                            type = ValueType.INT;
                         }
                         break;
                     default:
                         value = v;
-                        type = INT;
+                        type = ValueType.INT;
                         break;
                 }
             }
             public void opValue(final float v) {
                 switch (op) {
-                    case MINUS:
-                    case ADD:
-                        if (type == FLOAT) {
-                            value = Float.floatToRawIntBits(asFloat() + (op == MINUS ? -v : v));
+                    case Op.MINUS:
+                    case Op.ADD:
+                        if (type == ValueType.FLOAT) {
+                            value = Float.floatToRawIntBits(asFloat() + (op == Op.MINUS ? -v : v));
                         } else {
-                            value = Float.floatToRawIntBits((float) value + (op == MINUS ? -v : v));
-                            type = FLOAT;
+                            value = Float.floatToRawIntBits(value + (op == Op.MINUS ? -v : v));
+                            type = ValueType.FLOAT;
                         }
                         break;
                     default:
                         value = Float.floatToRawIntBits(v);
-                        type = FLOAT;
+                        type = ValueType.FLOAT;
                         break;
                 }
             }
@@ -621,10 +583,10 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 return value;
             }
             public int asInt() {
-                return type == FLOAT ? (int) Float.intBitsToFloat(value) : value;
+                return type == ValueType.FLOAT ? (int) Float.intBitsToFloat(value) : value;
             }
             public float asFloat() {
-                return type == FLOAT ? Float.intBitsToFloat(value) : (float) value;
+                return type == ValueType.FLOAT ? Float.intBitsToFloat(value) : (float) value;
             }
             public boolean asBoolean() {
                 return value != 0;
@@ -643,7 +605,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 return param;
             }
             public void resolved(final boolean success) {
-                status = success ? OK : ERROR;
+                status = success ? Result.OK : Result.ERROR;
             }
         }
 
@@ -695,10 +657,10 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 return this;
             }
             public LayoutTicket get(final int param) {
-                op = NORMAL;
+                op = Op.NORMAL;
                 return resolve(param);
             }
-            public LayoutTicket andThen(@OpType final int operator, final int param) {
+            public LayoutTicket andThen(@Op final int operator, final int param) {
                 op = operator;
                 return resolve(param);
             }
@@ -708,9 +670,9 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                     resolved(false);
                     return this;
                 }
-                op = ADD;
+                op = Op.ADD;
                 opValue(getFlag(cache, IS_LTR) ? offset : -offset);
-                op = NORMAL;
+                op = Op.NORMAL;
                 return this;
             }
             public LayoutTicket advance(final float offset) {
@@ -718,26 +680,26 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                     resolved(false);
                     return this;
                 }
-                op = ADD;
+                op = Op.ADD;
                 opValue(getFlag(cache, IS_LTR) ? offset : -offset);
-                op = NORMAL;
+                op = Op.NORMAL;
                 return this;
             }
             public LayoutTicket set(final int param, final int value) {
-                setParam(param);
-                setValue(value);
+                super.setParam(param);
+                super.setValue(value);
                 resolveToCache.accept(this);
                 return this;
             }
             public LayoutTicket set(final int param, final float value) {
-                setParam(param);
-                setValue(value);
+                super.setParam(param);
+                super.setValue(value);
                 resolveToCache.accept(this);
                 return this;
             }
             public LayoutTicket set(final int param, final boolean value) {
-                setParam(param);
-                setValue(value);
+                super.setParam(param);
+                super.setValue(value);
                 resolveToCache.accept(this);
                 return this;
             }
@@ -765,56 +727,56 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 if (param < FLAGS_END) {
                     t.setValue(getFlag(cache, param));
                     t.resolved(true);
-                    continue;
-                }
-                if (param < LINEMETRICS_END) {
-                    getParam(cache, param, t);
-                }
-                final boolean fallback = getFlag(cache, FALLBACK_LAYOUT);
-                switch (param) {
-                    case LINE_LEFT:
-                        if (fallback) {
-                            resolveFromLayout(t, null, param);
-                        } else {
-                            // from AOSP: mWidth - getLineMax(line)if ALIGN_RIGHT or 0
-                            if (getFlag(cache, IS_LTR)) {
+                } else if (param < LINEMETRICS_END) {
+                    t.resolved(getParam(cache, param, t));
+                } else {
+                    final boolean isLTR = getFlag(cache, IS_LTR);
+                    final boolean fallback = getFlag(cache, FALLBACK_LAYOUT);
+                    switch (param) {
+                        case LINE_LEFT:
+                            if (fallback) {
+                                resolveFromLayout(t, null, param);
+                            } else {
+                                // from AOSP: mWidth - getLineMax(line)if ALIGN_RIGHT or 0
+                                if (isLTR) {
+                                    t.setValue(0);
+                                } else {
+                                    t.get(WIDTH).andThen(Op.MINUS, LINEMAX);
+                                }
+                            }
+                            break;
+                        case LINE_RIGHT:
+                            if (fallback) {
+                                resolveFromLayout(t, null, param);
+                            } else {
+                                // from AOSP: mWidth if ALIGN_RIGHT or getLineMax(line)
+                                getParam(cache, isLTR ? LINEMAX : WIDTH, t);
+                            }
+                            break;
+                        // extended
+                        case LINE_REMAINING_SPACE:
+                            if (isLTR) {
+                                t.get(WIDTH).andThen(Op.MINUS, LINE_RIGHT);
+                            } else {
+                                getParam(cache, LINE_LEFT, t);
+                            }
+                            break;
+                        case LINE_START_EDGE:
+                            if (isLTR) {
                                 t.setValue(0);
                             } else {
-                                t.get(WIDTH).andThen(MINUS, LINEMAX);
+                                getParam(cache, WIDTH, t);
                             }
-                        }
-                        break;
-                    case LINE_RIGHT:
-                        if (fallback) {
-                            resolveFromLayout(t, null, param);
-                        } else {
-                            // from AOSP: mWidth if ALIGN_RIGHT or getLineMax(line)
-                            getParam(cache, getFlag(cache, IS_LTR) ? LINEMAX : WIDTH, t);
-                        }
-                        break;
-                    // extended
-                    case LINE_REMAINING_SPACE:
-                        if (getFlag(cache, IS_LTR)) {
-                            t.get(WIDTH).andThen(MINUS, LINE_RIGHT);
-                        } else {
-                            getParam(cache, LINE_LEFT, t);
-                        }
-                        break;
-                    case LINE_START_EDGE:
-                        if (getFlag(cache, IS_LTR)) {
-                            t.setValue(0);
-                        } else {
-                            getParam(cache, WIDTH, t);
-                        }
-                        break;
-                    case LINE_END_EDGE:
-                        t.get(getFlag(cache, IS_LTR) ? LINE_RIGHT : LINE_LEFT);
-                        break;
-                    default:
-                        t.resolved(false);
-                        continue;
+                            break;
+                        case LINE_END_EDGE:
+                            t.get(isLTR ? LINE_RIGHT : LINE_LEFT);
+                            break;
+                        default:
+                            t.resolved(false);
+                            continue;
+                    }
+                    t.resolved(true);
                 }
-                t.resolved(true);
             }
         }
         // resolver 2 (fallback): directly from source (by calling respective Layout functions)
@@ -888,13 +850,13 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                 return;
             }
             switch (t.getType()) {
-                case FLOAT:
+                case ValueType.FLOAT:
                     setParamFloat(cache, t.getParam(), t.asFloat());
                     break;
-                case INT:
+                case ValueType.INT:
                     setParamInt(cache, t.getParam(), t.asInt());
                     break;
-                case BOOLEAN:
+                case ValueType.BOOLEAN:
                     setFlag(cache, t.getParam(), t.asBoolean());
                     break;
                 default:
@@ -918,7 +880,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                     inPlace = true;
                 } else {
                     // not (yet) implemented
-                    throw new RuntimeException(-NOT_IMPLEMENTED + ": Not Implemented");
+                    throw new RuntimeException(-Result.NOT_IMPLEMENTED + ": Not Implemented");
                 }
                 return this;
             }
@@ -935,7 +897,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
             public UpgradeHelper defaultTo(final int ellipsisParam, final int lineMetric) {
                 if (!inPlace) {
                     // not (yet) implemented
-                    throw new RuntimeException(-NOT_IMPLEMENTED + ": Not Implemented");
+                    throw new RuntimeException(-Result.NOT_IMPLEMENTED + ": Not Implemented");
                 }
                 final int srcPos = getRawIndex(lineMetric);
                 final int dstPos = getRawIndex(ellipsisParam);
@@ -1154,6 +1116,7 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     private EllipsizeParams ellipsizeParams;
     private WeakReference<BreakIterator> oldWordIterator;
 
+    @SuppressWarnings("deprecation")
     private static void clipOutRectCompat(@NonNull final Canvas canvas, final float left,
                                           final float top, final float right, final float bottom) {
         if (Build.VERSION.SDK_INT >= 26) {
@@ -1161,6 +1124,19 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         } else {
             canvas.clipRect(left, top, right, bottom, android.graphics.Region.Op.DIFFERENCE);
         }
+    }
+    // shorthands to fetch ellipsising params from config storage
+    private boolean getConfigFlag(final int flag) {
+        return EllipsizeParams.getFlag(ellipsizeParams.configStorage, flag);
+    }
+    private int getConfigByte(final int param) {
+        return EllipsizeParams.getByte(ellipsizeParams.configStorage, param);
+    }
+    private int getConfigInt(final int param) {
+        return EllipsizeParams.getInt(ellipsizeParams.configStorage, param);
+    }
+    private float getConfigFloat(final int param) {
+        return EllipsizeParams.getFloat(ellipsizeParams.configStorage, param);
     }
 
     /* The bone of this override is to carry out our custom ellipsizing which comprises
@@ -1172,10 +1148,9 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
     protected void onDraw(final Canvas canvas) {
         final Layout layout = getLayout();
         final boolean animating = ellipsizeParams != null && ellipsizeParams.configStorage != null
-                && EllipsizeParams.getFlag(ellipsizeParams.configStorage,
-                EllipsizeParams.ANIMATING);
+                && getConfigFlag(EllipsizeParams.ANIMATING);
         if (layout == null || getLineCount() == 0
-                || (ellipsisState() != EXPANDABLE && !animating)) {
+                || (ellipsisState() != EllipsisState.EXPANDABLE && !animating)) {
             super.onDraw(canvas);
             return;
         }
@@ -1214,65 +1189,48 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
         }
         canvas.save();
         // the docs advise against 'messing with' the Layout's Paint; Android-Lint advises against
-        // "object allocations during draw/layout operations": perhaps we could just stick with
+        // "object allocations during draw/layout operations": perhaps we could just borrow
         // the Layout's Paint and revert our changes afterwards to get the best of two worlds
-        final boolean justBorrow = true;
-        final Paint p = justBorrow ? layout.getPaint() : new Paint(layout.getPaint());
+        final Paint p = layout.getPaint();
         final int offsetX = getTotalPaddingLeft();
         final int offsetY = getTotalPaddingTop();
         canvas.translate(offsetX, offsetY);
         try {
-            // ummm the namespace prefixes are just ... ugly,
-            // should refactor them out in the next refactor
-            final boolean debug = EllipsizeParams.getFlag(ellipsizeParams.configStorage,
-                    EllipsizeParams.SCHEMA_DEBUG);
-            final boolean isLTR = EllipsizeParams.getFlag(ellipsizeParams.configStorage,
-                    EllipsizeParams.IS_LTR);
+            final boolean debug = getConfigFlag(EllipsizeParams.SCHEMA_DEBUG);
+            final boolean isLTR = getConfigFlag(EllipsizeParams.IS_LTR);
             if (debug && !animating) {
                 // draw lastLineBounds
                 p.setARGB(100, 255, 0, 0);
-                canvas.drawRect(0, EllipsizeParams.getInt(ellipsizeParams.configStorage,
-                                EllipsizeParams.LL_TOP),
-                        EllipsizeParams.getInt(ellipsizeParams.configStorage,
-                                EllipsizeParams.LL_WIDTH),
-                        EllipsizeParams.getInt(ellipsizeParams.configStorage,
-                                EllipsizeParams.LL_BOTTOM), p);
+                canvas.drawRect(0, getConfigInt(EllipsizeParams.LL_TOP),
+                        getConfigInt(EllipsizeParams.LL_WIDTH),
+                        getConfigInt(EllipsizeParams.LL_BOTTOM), p);
                 // draw lastLineEndBounds
                 p.setARGB(100, 0, 255, 0);
-                canvas.drawRect(isLTR ? EllipsizeParams.getFloat(
-                                ellipsizeParams.configStorage, EllipsizeParams.LE_EDGE) : 0,
-                        EllipsizeParams.getInt(ellipsizeParams.configStorage,
-                                EllipsizeParams.LL_TOP),
-                        EllipsizeParams.getFloat(ellipsizeParams.configStorage,
-                                isLTR ? EllipsizeParams.LL_WIDTH : EllipsizeParams.LE_EDGE),
-                        EllipsizeParams.getInt(ellipsizeParams.configStorage,
-                                EllipsizeParams.LL_BOTTOM), p);
+                canvas.drawRect(isLTR ? getConfigFloat(EllipsizeParams.LE_EDGE) : 0,
+                        getConfigInt(EllipsizeParams.LL_TOP),
+                        getConfigFloat(isLTR ? EllipsizeParams.LL_WIDTH : EllipsizeParams.LE_EDGE),
+                        getConfigInt(EllipsizeParams.LL_BOTTOM), p);
             }
 
-            if (debug && EllipsizeParams.getFloat(ellipsizeParams.configStorage,
-                    EllipsizeParams.EB_RIGHT_D) - EllipsizeParams.getFloat(
-                            ellipsizeParams.configStorage, EllipsizeParams.EB_LEFT_D) > 0) {
+            if (debug && (getConfigFloat(EllipsizeParams.EB_RIGHT_D)
+                    - getConfigFloat(EllipsizeParams.EB_LEFT_D)) > 0) {
                 p.setARGB(100, 0, 0, 255);
-                canvas.drawRect(EllipsizeParams.getFloat(ellipsizeParams.configStorage,
-                        EllipsizeParams.EB_LEFT_D), EllipsizeParams.getFloat(
-                                ellipsizeParams.configStorage, EllipsizeParams.EB_TOP_D),
-                        EllipsizeParams.getFloat(ellipsizeParams.configStorage,
-                                EllipsizeParams.EB_RIGHT_D), EllipsizeParams.getFloat(
-                                        ellipsizeParams.configStorage, EllipsizeParams.EB_BOTTOM_D),
-                        p);
+                canvas.drawRect(getConfigFloat(EllipsizeParams.EB_LEFT_D),
+                        getConfigFloat(EllipsizeParams.EB_TOP_D),
+                        getConfigFloat(EllipsizeParams.EB_RIGHT_D),
+                        getConfigFloat(EllipsizeParams.EB_BOTTOM_D), p);
             }
 
-            if (animating || ellipsisState() == EXPANDABLE) {
-                final int crossfadeEllipsis = EllipsizeParams.getByte(
-                        ellipsizeParams.configStorage, EllipsizeParams.CROSSFADE_ELLIPSIS);
+            if (animating || ellipsisState() == EllipsisState.EXPANDABLE) {
+                final int crossfadeEllipsis = getConfigByte(EllipsizeParams.CROSSFADE_ELLIPSIS);
                 float splitPt = -1;
-                final float clipOutBoundsL = EllipsizeParams.getFloat(ellipsizeParams.configStorage,
+                final float clipOutBoundsL = getConfigFloat(
                         debug ? EllipsizeParams.EB_LEFT_D : EllipsizeParams.EB_LEFT);
-                final float clipOutBoundsT = EllipsizeParams.getFloat(ellipsizeParams.configStorage,
+                final float clipOutBoundsT = getConfigFloat(
                         debug ? EllipsizeParams.EB_TOP_D : EllipsizeParams.EB_TOP);
-                final float clipOutBoundsR = EllipsizeParams.getFloat(ellipsizeParams.configStorage,
+                final float clipOutBoundsR = getConfigFloat(
                         debug ? EllipsizeParams.EB_RIGHT_D : EllipsizeParams.EB_RIGHT);
-                final float clipOutBoundsB = EllipsizeParams.getFloat(ellipsizeParams.configStorage,
+                final float clipOutBoundsB = getConfigFloat(
                         debug ? EllipsizeParams.EB_BOTTOM_D : EllipsizeParams.EB_BOTTOM);
 
                 p.setColor(getCurrentTextColor());
@@ -1286,22 +1244,15 @@ public class NewPipeTextView extends AppCompatTextView implements AnimationUtil.
                             isLTR ? clipOutBoundsR - splitPt : clipOutBoundsR, clipOutBoundsB);
                     p.setAlpha(crossfadeEllipsis);
                 }
-                Paint.Align origAlign = null;
-                if (justBorrow) {
-                    origAlign = p.getTextAlign();
-                }
+                final Paint.Align origAlign = p.getTextAlign();
                 p.setTextAlign(isLTR ? Paint.Align.LEFT : Paint.Align.RIGHT);
-                final boolean skipSpace = EllipsizeParams.getFlag(ellipsizeParams.configStorage,
-                        EllipsizeParams.SKIP_PREFIX_SPACE);
+                final boolean skipSpace = getConfigFlag(EllipsizeParams.SKIP_PREFIX_SPACE);
                 canvas.drawText(EllipsizeParams.ELLIPSIS_CHARS, isLTR && !skipSpace ? 0 : 1,
                         skipSpace ? EllipsizeParams.ELLIPSIS_LEN - 1 : EllipsizeParams.ELLIPSIS_LEN,
-                        isLTR ? clipOutBoundsL : clipOutBoundsR, (float) getTotalPaddingTop()
-                                + EllipsizeParams.getFloat(ellipsizeParams.configStorage, debug
-                                ? EllipsizeParams.EB_BASELINE_D : EllipsizeParams.EB_BASELINE),
-                        p);
-                if (justBorrow && origAlign != null) {
-                    p.setTextAlign(origAlign);
-                }
+                        isLTR ? clipOutBoundsL : clipOutBoundsR,
+                        (float) getTotalPaddingTop() + getConfigFloat(debug
+                                ? EllipsizeParams.EB_BASELINE_D : EllipsizeParams.EB_BASELINE), p);
+                p.setTextAlign(origAlign);
                 if (animating) {
                     canvas.restore();
                     clipOutRectCompat(canvas,
