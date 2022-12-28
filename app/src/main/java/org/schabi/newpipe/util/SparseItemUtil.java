@@ -87,6 +87,14 @@ public final class SparseItemUtil {
                 streamInfo -> callback.accept(streamInfo.getUploaderUrl()));
     }
 
+    public static void fetchTopicUrl(@NonNull final Context context,
+                                                final int serviceId,
+                                                @NonNull final String url,
+                                                @NonNull final Consumer<String> callback) {
+        fetchStreamInfoAndSaveToDatabase(context, serviceId, url,
+                streamInfo -> callback.accept(streamInfo.getTopicUrl()));
+    }
+
     /**
      * Loads the stream info corresponding to the given data on an I/O thread, stores the result in
      * the database and calls the callback on the main thread with the result. A toast will be shown

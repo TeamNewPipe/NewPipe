@@ -3,6 +3,7 @@ package org.schabi.newpipe.info_list.dialog;
 import static org.schabi.newpipe.util.NavigationHelper.openChannelFragment;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
+import static org.schabi.newpipe.util.SparseItemUtil.fetchTopicUrl;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
 import android.net.Uri;
@@ -44,6 +45,11 @@ public enum StreamDialogDefaultEntry {
     SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
             fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
                     item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
+    ),
+
+    SHOW_TOPIC(R.string.show_topic, (fragment, item) ->
+            fetchTopicUrl(fragment.requireContext(), item.getServiceId(), item.getUrl(),
+                    url -> openChannelFragment(fragment, item, url))
     ),
 
     /**

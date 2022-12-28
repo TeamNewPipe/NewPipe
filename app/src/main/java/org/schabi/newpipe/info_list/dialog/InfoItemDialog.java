@@ -330,6 +330,7 @@ public final class InfoItemDialog {
             addPlayWithKodiEntryIfNeeded();
             addMarkAsWatchedEntryIfNeeded();
             addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
+            addEntry(StreamDialogDefaultEntry.SHOW_TOPIC);
             return this;
         }
 
