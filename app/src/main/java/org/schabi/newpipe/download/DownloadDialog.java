@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.collection.SparseArrayCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
@@ -211,8 +211,7 @@ public class DownloadDialog extends DialogFragment
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        final SparseArray<SecondaryStreamHelper<AudioStream>> secondaryStreams =
-                new SparseArray<>(4);
+        final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
         final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
 
         for (int i = 0; i < videoStreams.size(); i++) {
@@ -236,10 +235,9 @@ public class DownloadDialog extends DialogFragment
             }
         }
 
-        this.videoStreamsAdapter = new StreamItemAdapter<>(context, wrappedVideoStreams,
-                secondaryStreams);
-        this.audioStreamsAdapter = new StreamItemAdapter<>(context, wrappedAudioStreams);
-        this.subtitleStreamsAdapter = new StreamItemAdapter<>(context, wrappedSubtitleStreams);
+        this.videoStreamsAdapter = new StreamItemAdapter<>(wrappedVideoStreams, secondaryStreams);
+        this.audioStreamsAdapter = new StreamItemAdapter<>(wrappedAudioStreams);
+        this.subtitleStreamsAdapter = new StreamItemAdapter<>(wrappedSubtitleStreams);
 
         final Intent intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);

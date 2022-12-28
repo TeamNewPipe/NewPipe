@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.SparseArrayCompat;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -39,10 +40,10 @@ import us.shandian.giga.util.Utility;
  * @param <U> the secondary stream type's class extending {@link Stream}
  */
 public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseAdapter {
-    private final Context context;
-
+    @NonNull
     private final StreamSizeWrapper<T> streamsWrapper;
-    private final SparseArray<SecondaryStreamHelper<U>> secondaryStreams;
+    @NonNull
+    private final SparseArrayCompat<SecondaryStreamHelper<U>> secondaryStreams;
 
     /**
      * Indicates that at least one of the primary streams is an instance of {@link VideoStream},
@@ -51,9 +52,10 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
      */
     private final boolean hasAnyVideoOnlyStreamWithNoSecondaryStream;
 
-    public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
-                             final SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
-        this.context = context;
+    public StreamItemAdapter(
+            @NonNull final StreamSizeWrapper<T> streamsWrapper,
+            @NonNull final SparseArrayCompat<SecondaryStreamHelper<U>> secondaryStreams
+    ) {
         this.streamsWrapper = streamsWrapper;
         this.secondaryStreams = secondaryStreams;
 
@@ -61,15 +63,15 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 checkHasAnyVideoOnlyStreamWithNoSecondaryStream();
     }
 
-    public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper) {
-        this(context, streamsWrapper, null);
+    public StreamItemAdapter(final StreamSizeWrapper<T> streamsWrapper) {
+        this(streamsWrapper, new SparseArrayCompat<>(0));
     }
 
     public List<T> getAll() {
         return streamsWrapper.getStreamsList();
     }
 
-    public SparseArray<SecondaryStreamHelper<U>> getAllSecondary() {
+    public SparseArrayCompat<SecondaryStreamHelper<U>> getAllSecondary() {
         return secondaryStreams;
     }
 
@@ -106,6 +108,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                                final View view,
                                final ViewGroup parent,
                                final boolean isDropdownItem) {
+        final var context = parent.getContext();
         View convertView = view;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(
@@ -129,7 +132,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
             if (hasAnyVideoOnlyStreamWithNoSecondaryStream) {
                 if (videoStream.isVideoOnly()) {
-                    woSoundIconVisibility = hasSecondaryStream(position)
+                    woSoundIconVisibility = secondaryStreams.get(position) != null
                             // It has a secondary stream associated with it, so check if it's a
                             // dropdown view so it doesn't look out of place (missing margin)
                             // compared to those that don't.
@@ -163,8 +166,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         }
 
         if (streamsWrapper.getSizeInBytes(position) > 0) {
-            final SecondaryStreamHelper<U> secondary = secondaryStreams == null ? null
-                    : secondaryStreams.get(position);
+            final var secondary = secondaryStreams.get(position);
             if (secondary != null) {
                 final long size = secondary.getSizeInBytes()
                         + streamsWrapper.getSizeInBytes(position);
@@ -197,14 +199,6 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     }
 
     /**
-     * @param position which primary stream to check.
-     * @return whether the primary stream at position has a secondary stream associated with it.
-     */
-    private boolean hasSecondaryStream(final int position) {
-        return secondaryStreams != null && secondaryStreams.get(position) != null;
-    }
-
-    /**
      * @return if there are any video-only streams with no secondary stream associated with them.
      * @see #hasAnyVideoOnlyStreamWithNoSecondaryStream
      */
@@ -213,7 +207,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             final T stream = streamsWrapper.getStreamsList().get(i);
             if (stream instanceof VideoStream) {
                 final boolean videoOnly = ((VideoStream) stream).isVideoOnly();
-                if (videoOnly && !hasSecondaryStream(i)) {
+                if (videoOnly && secondaryStreams.get(i) == null) {
                     return true;
                 }
             }
@@ -228,16 +222,15 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
      * @param <T> the stream type's class extending {@link Stream}
      */
     public static class StreamSizeWrapper<T extends Stream> implements Serializable {
-        private static final StreamSizeWrapper<Stream> EMPTY = new StreamSizeWrapper<>(
-                Collections.emptyList(), null);
+        private static final StreamSizeWrapper<Stream> EMPTY =
+                new StreamSizeWrapper<>(Collections.emptyList(), null);
         private final List<T> streamsList;
         private final long[] streamSizes;
         private final String unknownSize;
 
-        public StreamSizeWrapper(final List<T> sL, final Context context) {
-            this.streamsList = sL != null
-                    ? sL
-                    : Collections.emptyList();
+        public StreamSizeWrapper(@NonNull final List<T> streamList,
+                                 @Nullable final Context context) {
+            this.streamsList = streamList;
             this.streamSizes = new long[streamsList.size()];
             this.unknownSize = context == null
                     ? "--.-" : context.getString(R.string.unknown_content);
@@ -297,19 +290,11 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             return formatSize(getSizeInBytes(streamIndex));
         }
 
-        public String getFormattedSize(final T stream) {
-            return formatSize(getSizeInBytes(stream));
-        }
-
         private String formatSize(final long size) {
             if (size > -1) {
                 return Utility.formatBytes(size);
             }
             return unknownSize;
-        }
-
-        public void setSize(final int streamIndex, final long sizeInBytes) {
-            streamSizes[streamIndex] = sizeInBytes;
         }
 
         public void setSize(final T stream, final long sizeInBytes) {

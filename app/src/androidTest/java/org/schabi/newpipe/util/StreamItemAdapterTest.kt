@@ -1,12 +1,12 @@
 package org.schabi.newpipe.util
 
 import android.content.Context
-import android.util.SparseArray
 import android.view.View
 import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Spinner
+import androidx.collection.SparseArrayCompat
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
@@ -39,9 +39,7 @@ class StreamItemAdapterTest {
     @Test
     fun videoStreams_noSecondaryStream() {
         val adapter = StreamItemAdapter<VideoStream, AudioStream>(
-            context,
-            getVideoStreams(true, true, true, true),
-            null
+            getVideoStreams(true, true, true, true)
         )
 
         spinner.adapter = adapter
@@ -54,7 +52,6 @@ class StreamItemAdapterTest {
     @Test
     fun videoStreams_hasSecondaryStream() {
         val adapter = StreamItemAdapter(
-            context,
             getVideoStreams(false, true, false, true),
             getAudioStreams(false, true, false, true)
         )
@@ -69,7 +66,6 @@ class StreamItemAdapterTest {
     @Test
     fun videoStreams_Mixed() {
         val adapter = StreamItemAdapter(
-            context,
             getVideoStreams(true, true, true, true, true, false, true, true),
             getAudioStreams(false, true, false, false, false, true, true, true)
         )
@@ -88,7 +84,6 @@ class StreamItemAdapterTest {
     @Test
     fun subtitleStreams_noIcon() {
         val adapter = StreamItemAdapter<SubtitlesStream, Stream>(
-            context,
             StreamItemAdapter.StreamSizeWrapper(
                 (0 until 5).map {
                     SubtitlesStream.Builder()
@@ -99,8 +94,7 @@ class StreamItemAdapterTest {
                         .build()
                 },
                 context
-            ),
-            null
+            )
         )
         spinner.adapter = adapter
         for (i in 0 until spinner.count) {
@@ -111,7 +105,6 @@ class StreamItemAdapterTest {
     @Test
     fun audioStreams_noIcon() {
         val adapter = StreamItemAdapter<AudioStream, Stream>(
-            context,
             StreamItemAdapter.StreamSizeWrapper(
                 (0 until 5).map {
                     AudioStream.Builder()
@@ -122,8 +115,7 @@ class StreamItemAdapterTest {
                         .build()
                 },
                 context
-            ),
-            null
+            )
         )
         spinner.adapter = adapter
         for (i in 0 until spinner.count) {
@@ -200,7 +192,7 @@ class StreamItemAdapterTest {
      * Helper function that builds a secondary stream list.
      */
     private fun <T : Stream> getSecondaryStreamsFromList(streams: List<T?>) =
-        SparseArray<SecondaryStreamHelper<T>?>(streams.size).apply {
+        SparseArrayCompat<SecondaryStreamHelper<T>?>(streams.size).apply {
             streams.forEachIndexed { index, stream ->
                 val secondaryStreamHelper: SecondaryStreamHelper<T>? = stream?.let {
                     SecondaryStreamHelper(

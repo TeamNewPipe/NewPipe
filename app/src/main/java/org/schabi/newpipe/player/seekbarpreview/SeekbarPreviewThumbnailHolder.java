@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.seekbarpreview;
 
 import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType;
+import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.getSeekbarPreviewThumbnailType;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.collection.SparseArrayCompat;
 
 import com.google.common.base.Stopwatch;
 
@@ -15,12 +17,9 @@ import org.schabi.newpipe.extractor.stream.Frameset;
 import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
@@ -34,18 +33,15 @@ public class SeekbarPreviewThumbnailHolder {
 
     // Key = Position of the picture in milliseconds
     // Supplier = Supplies the bitmap for that position
-    private final Map<Integer, Supplier<Bitmap>> seekbarPreviewData = new ConcurrentHashMap<>();
+    private final SparseArrayCompat<Supplier<Bitmap>> seekbarPreviewData =
+            new SparseArrayCompat<>();
 
     // This ensures that if the reset is still undergoing
     // and another reset starts, only the last reset is processed
     private UUID currentUpdateRequestIdentifier = UUID.randomUUID();
 
-    public synchronized void resetFrom(
-            @NonNull final Context context,
-            final List<Frameset> framesets) {
-
-        final int seekbarPreviewType =
-                SeekbarPreviewThumbnailHelper.getSeekbarPreviewThumbnailType(context);
+    public void resetFrom(@NonNull final Context context, final List<Frameset> framesets) {
+        final int seekbarPreviewType = getSeekbarPreviewThumbnailType(context);
 
         final UUID updateRequestIdentifier = UUID.randomUUID();
         this.currentUpdateRequestIdentifier = updateRequestIdentifier;
@@ -63,13 +59,12 @@ public class SeekbarPreviewThumbnailHolder {
         executorService.shutdown();
     }
 
-    private void resetFromAsync(
-            final int seekbarPreviewType,
-            final List<Frameset> framesets,
-            final UUID updateRequestIdentifier) {
-
+    private void resetFromAsync(final int seekbarPreviewType, final List<Frameset> framesets,
+                                final UUID updateRequestIdentifier) {
         Log.d(TAG, "Clearing seekbarPreviewData");
-        seekbarPreviewData.clear();
+        synchronized (seekbarPreviewData) {
+            seekbarPreviewData.clear();
+        }
 
         if (seekbarPreviewType == SeekbarPreviewThumbnailType.NONE) {
             Log.d(TAG, "Not processing seekbarPreviewData due to settings");
@@ -94,10 +89,8 @@ public class SeekbarPreviewThumbnailHolder {
         generateDataFrom(frameset, updateRequestIdentifier);
     }
 
-    private Frameset getFrameSetForType(
-            final List<Frameset> framesets,
-            final int seekbarPreviewType) {
-
+    private Frameset getFrameSetForType(final List<Frameset> framesets,
+                                        final int seekbarPreviewType) {
         if (seekbarPreviewType == SeekbarPreviewThumbnailType.HIGH_QUALITY) {
             Log.d(TAG, "Strategy for seekbarPreviewData: high quality");
             return framesets.stream()
@@ -111,17 +104,14 @@ public class SeekbarPreviewThumbnailHolder {
         }
     }
 
-    private void generateDataFrom(
-            final Frameset frameset,
-            final UUID updateRequestIdentifier) {
-
+    private void generateDataFrom(final Frameset frameset, final UUID updateRequestIdentifier) {
         Log.d(TAG, "Starting generation of seekbarPreviewData");
         final Stopwatch sw = Log.isLoggable(TAG, Log.DEBUG) ? Stopwatch.createStarted() : null;
 
         int currentPosMs = 0;
         int pos = 1;
 
-        final int frameCountPerUrl = frameset.getFramesPerPageX() * frameset.getFramesPerPageY();
+        final int urlFrameCount = frameset.getFramesPerPageX() * frameset.getFramesPerPageY();
 
         // Process each url in the frameset
         for (final String url : frameset.getUrls()) {
@@ -130,11 +120,11 @@ public class SeekbarPreviewThumbnailHolder {
 
             // The data is not added directly to "seekbarPreviewData" due to
             // concurrency and checks for "updateRequestIdentifier"
-            final Map<Integer, Supplier<Bitmap>> generatedDataForUrl = new HashMap<>();
+            final var generatedDataForUrl = new SparseArrayCompat<Supplier<Bitmap>>(urlFrameCount);
 
             // The bitmap consists of several images, which we process here
             // foreach frame in the returned bitmap
-            for (int i = 0; i < frameCountPerUrl; i++) {
+            for (int i = 0; i < urlFrameCount; i++) {
                 // Frames outside the video length are skipped
                 if (pos > frameset.getTotalCount()) {
                     break;
@@ -161,7 +151,9 @@ public class SeekbarPreviewThumbnailHolder {
             // Check if we are still the latest request
             // If not abort method execution
             if (isRequestIdentifierCurrent(updateRequestIdentifier)) {
-                seekbarPreviewData.putAll(generatedDataForUrl);
+                synchronized (seekbarPreviewData) {
+                    seekbarPreviewData.putAll(generatedDataForUrl);
+                }
             } else {
                 Log.d(TAG, "Aborted of generation of seekbarPreviewData");
                 break;
@@ -169,7 +161,7 @@ public class SeekbarPreviewThumbnailHolder {
         }
 
         if (sw != null) {
-            Log.d(TAG, "Generation of seekbarPreviewData took " + sw.stop().toString());
+            Log.d(TAG, "Generation of seekbarPreviewData took " + sw.stop());
         }
     }
 
@@ -189,17 +181,14 @@ public class SeekbarPreviewThumbnailHolder {
             final Bitmap bitmap = PicassoHelper.loadSeekbarThumbnailPreview(url).get();
 
             if (sw != null) {
-                Log.d(TAG,
-                        "Download of bitmap for seekbarPreview from '" + url
-                                + "' took " + sw.stop().toString());
+                Log.d(TAG, "Download of bitmap for seekbarPreview from '" + url + "' took "
+                        + sw.stop());
             }
 
             return bitmap;
         } catch (final Exception ex) {
-            Log.w(TAG,
-                    "Failed to get bitmap for seekbarPreview from url='" + url
-                            + "' in time",
-                    ex);
+            Log.w(TAG, "Failed to get bitmap for seekbarPreview from url='" + url
+                    + "' in time", ex);
             return null;
         }
     }
@@ -208,32 +197,20 @@ public class SeekbarPreviewThumbnailHolder {
         return this.currentUpdateRequestIdentifier.equals(requestIdentifier);
     }
 
-
     public Optional<Bitmap> getBitmapAt(final int positionInMs) {
-        // Check if the BitmapData is empty
-        if (seekbarPreviewData.isEmpty()) {
-            return Optional.empty();
+        // Get the frame supplier closest to the requested position
+        Supplier<Bitmap> closestFrame = () -> null;
+        synchronized (seekbarPreviewData) {
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < seekbarPreviewData.size(); i++) {
+                final int pos = Math.abs(seekbarPreviewData.keyAt(i) - positionInMs);
+                if (pos < min) {
+                    closestFrame = seekbarPreviewData.valueAt(i);
+                    min = pos;
+                }
+            }
         }
 
-        // Get the closest frame to the requested position
-        final int closestIndexPosition =
-                seekbarPreviewData.keySet().stream()
-                        .min(Comparator.comparingInt(i -> Math.abs(i - positionInMs)))
-                        .orElse(-1);
-
-        // this should never happen, because
-        // it indicates that "seekbarPreviewData" is empty which was already checked
-        if (closestIndexPosition == -1) {
-            return Optional.empty();
-        }
-
-        try {
-            // Get the bitmap for the position (executes the supplier)
-            return Optional.ofNullable(seekbarPreviewData.get(closestIndexPosition).get());
-        } catch (final Exception ex) {
-            // If there is an error, log it and return Optional.empty
-            Log.w(TAG, "Unable to get seekbar preview", ex);
-            return Optional.empty();
-        }
+        return Optional.ofNullable(closestFrame.get());
     }
 }
