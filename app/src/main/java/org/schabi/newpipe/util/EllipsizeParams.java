@@ -15,14 +15,39 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.text.BreakIterator;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 /* our home-grown cache holding the metrics for drawing the ellipsis and/or a ellipsis mask */
 public final class EllipsizeParams {
-    public static final boolean DEBUG = android.os.Debug.isDebuggerConnected();
+    /* weak references to LayoutTickets post-service which may be gc'ed or recycled */
+    private static Set<LayoutTicket> oldLayoutTickets = Collections.newSetFromMap(
+            new WeakHashMap<>());
+
+    public static void recycle(final LayoutTicket ticket) {
+        if (ticket != null) {
+            oldLayoutTickets.add(ticket);
+        }
+    }
+
+    @Nullable
+    public static LayoutTicket popOldLayoutTickets() {
+        final Iterator<LayoutTicket> it = oldLayoutTickets.iterator();
+        if (it.hasNext()) {
+            final LayoutTicket ticket = it.next();
+            it.remove();
+            return ticket;
+        }
+        return null;
+    }
 
     private EllipsizeParams() {
         // no impl pls
     }
+
+    public static final boolean DEBUG = android.os.Debug.isDebuggerConnected();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -157,7 +182,7 @@ public final class EllipsizeParams {
     public static int[] setupLineMetrics(@Nullable final int[] storage) {
         int[] configStorage = storage;
         final int size = accomodationSize();
-        final int storageSize = size + indexOffset(size);
+        final int storageSize = size + extendedPages(size);
         if (configStorage == null || configStorage.length < storageSize) {
             configStorage = new int[storageSize];
         } else {
@@ -178,7 +203,7 @@ public final class EllipsizeParams {
 
     private static boolean initializeIndex(@NonNull final int[] params,
                                            @IntRange(from = 1) final int paramsSize) {
-        final int indexSize = indexOffset(paramsSize);
+        final int indexSize = extendedPages(paramsSize);
         if (indexSize < params.length) {
             for (int i = 0; i < indexSize; i++) {
                 params[i] = params[i] | (1 << CONTINUATION);
@@ -203,7 +228,7 @@ public final class EllipsizeParams {
 
     // compute the additional 'pages' (int) of FLAGS required for paramsSize
     // ref: https://stackoverflow.com/a/20090375
-    private static int indexOffset(@IntRange(from = 1) final int paramsSize) {
+    private static int extendedPages(@IntRange(from = 1) final int paramsSize) {
         return indexOffset(paramsSize - 1, false);
     }
 
@@ -217,7 +242,7 @@ public final class EllipsizeParams {
     }
 
     // returns the additional 'pages' (int) used for FLAGS de facto, 0 if just int[0] in params
-    private static int indexOffset(@NonNull final int[] params) {
+    private static int extHeader(@NonNull final int[] params) {
         int extendedPages = 0;
         for (int i = 0; i < params.length; i++) {
             // evaluate directly here instead of calling getBit() to avoid infinite loop
@@ -231,8 +256,8 @@ public final class EllipsizeParams {
     }
 
     // compute the 'page' no (int) of flag in params
-    private static int indexOffset(@NonNull final int[] params,
-                                   @IntRange(from = FLAGS_START) final int enumIndex) {
+    private static int indexPage(@NonNull final int[] params,
+                                 @IntRange(from = FLAGS_START) final int enumIndex) {
         return indexOffset(enumIndex, true);
     }
 
@@ -240,7 +265,7 @@ public final class EllipsizeParams {
     private static boolean getBit(@NonNull final int[] params,
                                   @IntRange(from = 0) final int index,
                                   @IntRange(from = 0, to = CONTINUATION - 1) final int bit) {
-        if (index <= indexOffset(params)) {
+        if (index <= extHeader(params)) {
             return (params[index] & (1 << bit)) != 0;
         }
         return false;
@@ -250,7 +275,7 @@ public final class EllipsizeParams {
                                   @IntRange(from = 0) final int index,
                                   @IntRange(from = 0, to = CONTINUATION - 1) final int bit,
                                   final boolean markBit) {
-        if (index <= indexOffset(params)) {
+        if (index <= extHeader(params)) {
             if (markBit) {
                 params[index] |= (1 << bit);
             } else {
@@ -268,20 +293,20 @@ public final class EllipsizeParams {
     private static boolean setParamInt(@NonNull final int[] params,
                                        final int param, final int value) {
         return paramValid(params, param)
-                && setInt(params, getRawIndex(param) + indexOffset(params), value);
+                && setInt(params, getRawIndex(param) + extHeader(params), value);
     }
 
     private static boolean setParamFloat(@NonNull final int[] params,
                                          final int param, final float value) {
         return paramValid(params, param)
-                && setFloat(params, getRawIndex(param) + indexOffset(params), value);
+                && setFloat(params, getRawIndex(param) + extHeader(params), value);
     }
 
     public static float getFloat(@NonNull final int[] params, final int param) {
         if (!paramValid(params, param)) {
             return -1;
         }
-        final int index = getRawIndex(param) + indexOffset(params);
+        final int index = getRawIndex(param) + extHeader(params);
         if (index < params.length) {
             final boolean isFloat = markedFloat(params, index);
             if (isFloat) {
@@ -297,7 +322,7 @@ public final class EllipsizeParams {
         if (!paramValid(params, param)) {
             return -1;
         }
-        final int index = getRawIndex(param) + indexOffset(params);
+        final int index = getRawIndex(param) + extHeader(params);
         if (index < params.length) {
             final boolean isFloat = markedFloat(params, index);
             if (isFloat) {
@@ -312,25 +337,25 @@ public final class EllipsizeParams {
     private static boolean getParam(@NonNull final int[] params, final int param,
                                     @NonNull final TypedValue value) {
         return paramValid(params, param)
-                && getValue(params, getRawIndex(param) + indexOffset(params), value);
+                && getValue(params, getRawIndex(param) + extHeader(params), value);
     }
 
     public static boolean getFlag(@NonNull final int[] params, @Flags final int flag) {
         final int flagIndex = getRawIndex(flag);
-        return getBit(params, indexOffset(params, flagIndex), flagIndex);
+        return getBit(params, indexPage(params, flagIndex), flagIndex);
     }
 
     public static boolean setFlag(@NonNull final int[] params, final int flag,
                                    final boolean b) {
         final int flagIndex = getRawIndex(flag);
-        return setBit(params, indexOffset(params, flagIndex), flagIndex, b);
+        return setBit(params, indexPage(params, flagIndex), flagIndex, b);
     }
 
     // ref: https://stackoverflow.com/a/46385852
     public static int getByte(@NonNull final int[] params, @Flags final int flag) {
         final int flagIndex = getRawIndex(flag);
-        final int index = indexOffset(params, flagIndex);
-        if (index <= indexOffset(params)) {
+        final int index = indexPage(params, flagIndex);
+        if (index <= extHeader(params)) {
             return (params[index] >>> flagIndex) & 0xff;
         }
         return -1;
@@ -340,8 +365,8 @@ public final class EllipsizeParams {
     public static boolean setByte(@NonNull final int[] params, @Flags final int flag,
                                    @IntRange(from = 0, to = 255) final int value) {
         final int flagIndex = getRawIndex(flag);
-        final int index = indexOffset(params, flagIndex);
-        if (index <= indexOffset(params)) {
+        final int index = indexPage(params, flagIndex);
+        if (index <= extHeader(params)) {
             params[index] &= ~(0xff << flagIndex);  // clear current bit values
             params[index] |= ((value & 0xff) << flagIndex);
             return true;
@@ -388,9 +413,9 @@ public final class EllipsizeParams {
     private static boolean markFloat(@NonNull final int[] params,
                                      @IntRange(from = 0) final int index,
                                      final boolean isFloat) {
-        final int extIndex = indexOffset(params);
+        final int extIndex = extHeader(params);
         final int flagIndex = index - 1 - extIndex + getRawIndex(FLOAT_INDEX_START);
-        final int page = indexOffset(params, flagIndex);
+        final int page = indexPage(params, flagIndex);
         if (page <= extIndex) {
             setBit(params, page, flagIndex - page * (Integer.SIZE - 1), isFloat);
             return true;
@@ -400,13 +425,18 @@ public final class EllipsizeParams {
 
     private static boolean markedFloat(@NonNull final int[] params,
                                        @IntRange(from = 0) final int index) {
-        final int flagIndex = getRawIndex(FLOAT_INDEX_START) + index - 1 - indexOffset(params);
-        final int page = indexOffset(params, flagIndex);
-        if (page <= indexOffset(params)) {
+        final int flagIndex = getRawIndex(FLOAT_INDEX_START) + index - 1 - extHeader(params);
+        final int page = indexPage(params, flagIndex);
+        if (page <= extHeader(params)) {
             return getBit(params, page, flagIndex - page * (Integer.SIZE - 2));
         }
         return false;
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Vehicles and Tickets
+    //////////////////////////////////////////////////////////////////////////*/
 
     // a convenient type-agnostic transport 'vehicle' to shuffle primitives around
     // without worrying about its type or its type-corresponding method overloads
@@ -511,7 +541,7 @@ public final class EllipsizeParams {
 
     // a wrapper class around the backing config storage
     // (since it's such a pain to directly work with the (primitive) int[] in raw)
-    protected static class LayoutTicket extends Ticket {
+    protected static class LayoutTicket extends Ticket implements AutoCloseable {
         private WeakReference<Layout> layout;
         private int[] cache;
         private int line = UNSET;
@@ -526,6 +556,11 @@ public final class EllipsizeParams {
             cached = false;
             upgrade = null;
         }
+        @Override
+        public void close() {
+            reset();
+            recycle(this);
+        }
         private BreakIterator getWordInstance() {
             if (wordIterator == null) {
                 wordIterator = BreakIterator.getWordInstance();
@@ -534,7 +569,8 @@ public final class EllipsizeParams {
         }
 
         public static LayoutTicket from(final Layout l, final int ln) {
-            return new LayoutTicket().setLayout(l).setLine(ln);
+            final LayoutTicket ticket = popOldLayoutTickets();
+            return (ticket != null ? ticket : new LayoutTicket()).setLayout(l).setLine(ln);
         }
 
         public LayoutTicket setLayout(final Layout l) {
@@ -597,8 +633,8 @@ public final class EllipsizeParams {
                 resolved(false);
                 return this;
             }
-            op = Op.ADD;
-            opValue(getFlag(cache, IS_LTR) ? offset : -offset);
+            op = getFlag(cache, IS_LTR) ? Op.ADD : Op.MINUS;
+            opValue(offset);
             op = Op.NORMAL;
             return this;
         }
@@ -608,8 +644,8 @@ public final class EllipsizeParams {
                 resolved(false);
                 return this;
             }
-            op = Op.ADD;
-            opValue(getFlag(cache, IS_LTR) ? offset : -offset);
+            op = getFlag(cache, IS_LTR) ? Op.ADD : Op.MINUS;
+            opValue(offset);
             op = Op.NORMAL;
             return this;
         }
@@ -645,6 +681,11 @@ public final class EllipsizeParams {
             return upgrade;
         }
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Resolvers
+    //////////////////////////////////////////////////////////////////////////*/
 
     // resolver 1: from cached line metrics
     private static void resolveFromCache(@NonNull final LayoutTicket t, final int[] cache,
@@ -690,7 +731,7 @@ public final class EllipsizeParams {
                         if (isLTR) {
                             t.get(WIDTH).andThen(Op.MINUS, LINE_RIGHT);
                         } else {
-                            getParam(cache, LINE_LEFT, t);
+                            t.get(LINE_LEFT);
                         }
                         break;
                     case LINE_START_EDGE:
@@ -823,7 +864,7 @@ public final class EllipsizeParams {
         }
 
         private void initializeReservedIndex(final int size) {
-            final int storageSize = size + indexOffset(size);
+            final int storageSize = size + extendedPages(size);
             if (reservedIndex == null || reservedIndex.length < storageSize) {
                 reservedIndex = new int[storageSize];
             } else {
@@ -856,7 +897,7 @@ public final class EllipsizeParams {
                 initializeReservedIndex(getRawIndex(LINEMETRICS_END));
             }
             if (reservedIndex != null) {
-                setBit(reservedIndex, indexOffset(reservedIndex, pos), pos, b);
+                setBit(reservedIndex, indexPage(reservedIndex, pos), pos, b);
             }
         }
 
@@ -875,10 +916,23 @@ public final class EllipsizeParams {
         }
     }
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Ellipsizing stuff
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static boolean shortCircuitsUnsupported(@IntRange(from = 0) final int line,
+                                                    @NonNull final Layout layout) {
+        // short-circuits are unimplemented for Alignment other than ALIGN_NORMAL
+        // as there is simply no use case, fall back gracefully to Layout just in case
+        return layout.getParagraphAlignment(line) != Layout.Alignment.ALIGN_NORMAL;
+    }
+
     private static LayoutTicket warmUpLineMetrics(@IntRange(from = 0) final int line,
                                            @NonNull final Layout layout,
                                            @NonNull final int[] metrics) {
         return LayoutTicket.from(layout, line).to(metrics)
+                .set(FALLBACK_LAYOUT, shortCircuitsUnsupported(line, layout))
                 .resolve(BASELINE, WIDTH, TOP, BOTTOM, LINEMAX, LINE_START, LINE_END, IS_LTR)
                 .cached(true);
     }
@@ -899,115 +953,108 @@ public final class EllipsizeParams {
      * (We defer to BreakIterator for the last 'word' since not every language delimits words
      * by a space (and there we have emojis too).) */
     public static int[] initialize(@NonNull final NewPipeTextView textView,
-                               @Nullable final int[] storage) {
+                                   @Nullable final int[] storage) {
         final Layout layout = textView.getLayout();
         if (layout == null) {
             return storage;
         }
-        //layoutReference = new WeakReference<>(layout);
         int ellipsisLine = textView.getDisplayLines() - 1;
         final int[] configStorage = setupLineMetrics(storage);
-        final LayoutTicket lastLine = warmUpLineMetrics(ellipsisLine, layout, configStorage);
+        try (LayoutTicket lastLine = warmUpLineMetrics(ellipsisLine, layout, configStorage)) {
 
-        if (layout.getParagraphAlignment(textView.getDisplayLines() - 1)
-                != Layout.Alignment.ALIGN_NORMAL) {
-            // short-circuits are unimplemented for Alignment other than ALIGN_NORMAL
-            // as there is simply no use case, fall back gracefully to Layout just in case
-            setFlag(configStorage, FALLBACK_LAYOUT, true);
-        }
-
-        // determine screen estate the ellipsis takes
-        final float ellipsisWidth = layout.getPaint().measureText(ELLIPSIS_CHARS,
-                lastLine.get(IS_LTR).asBoolean() ? 0
-                        : ELLIPSIS_CHARS.length - ELLIPSIS_LEN, ELLIPSIS_LEN);
-        final float shortfall = ellipsisWidth - lastLine.get(LINE_REMAINING_SPACE).asFloat();
-        int lastChar = lastLine.get(LINE_END).asInt();
-        // this would be the reference point to determine if the clipping mask
-        // would eventually kick in at the end of the evaluations
-        final int origLastChar = lastChar;
-        if (shortfall > 0) {
-            // find the closest text offset where the ellipsis fits in
-            lastChar = layout.getOffsetForHorizontal(ellipsisLine,
-                    lastLine.get(LINE_END_EDGE).advance(-shortfall).asFloat());
-        }
-        // we're safe to assume by now the ellipsis fits in the last line up to lastChar
-        // but we go further to crunch by word and do some cleanup / nitpicks
-        final int origLineStart = lastLine.get(LINE_START).asInt();
-        final BreakIterator wb = lastLine.getWordInstance();
-        boolean trailingWhitespacesOnly = lastChar == origLastChar;
-
-        wb.setText(textView.getText().toString());
-        int last = wb.preceding(lastChar);
-        if (!wb.isBoundary(lastChar) && last != BreakIterator.DONE) {
-            lastChar = last;
-            trailingWhitespacesOnly = false;
-            last = wb.preceding(lastChar);
-        }
-        // strip whitespaces: the last line might well end with a space and a line return
-        // be greedy since we're always prefixing the ellipsis to be drawn with a space
-        // and we won't want there to end up having more than one
-        while (last != BreakIterator.DONE && Character.isWhitespace(
-                Character.codePointAt(textView.getText(), last))) {
-            lastChar = last;
-            last = wb.preceding(lastChar);
-        }
-
-        // our clipping mask to be, which also positions the ellipsis to be drawn
-        // default to zero width bounds to cloak nothing of the text drawn by super.onDraw(),
-        // say if we're simply drawing an ellipsis above it when screen estate fits
-        final float initialPos = lastLine.get(LINE_END_EDGE).asFloat();
-        final boolean debug = lastLine.get(SCHEMA_DEBUG).asBoolean();
-        // prepare to write the finalised ellipsis params
-        if (debug) {
-            lastLine.upgrade().set(LE_EDGE, initialPos)
-                    .defaultTo(LL_WIDTH, WIDTH)
-                    .defaultTo(LL_TOP, TOP)
-                    .defaultTo(LL_BOTTOM, BOTTOM)
-                    .defaultTo(EB_BASELINE_D, BASELINE)
-                    .defaultTo(EB_TOP_D, TOP)
-                    .defaultTo(EB_BOTTOM_D, BOTTOM);
-        } else {
-            lastLine.upgrade().defaultTo(EB_BASELINE, BASELINE)
-                    .defaultTo(EB_TOP, TOP)
-                    .defaultTo(EB_BOTTOM, BOTTOM);
-        }
-        if (lastChar != origLastChar) {
-            // whitespaces stripped above also include line break characters (hard returns)
-            // opportunistically wrap the ellipsis to the second last line if screen estate fits
-            if (lastChar < origLineStart && ellipsisLine > 0) {
-                if (layout.getLineMax(ellipsisLine - 1) + ellipsisWidth
-                        // assuming width consistent across lines
-                        <= lastLine.get(WIDTH).asInt()) {
-                    ellipsisLine -= 1; // nil shortfall
-                    lastLine.set(debug ? EB_BASELINE_D : EB_BASELINE,
-                                    layout.getLineBaseline(ellipsisLine))
-                            .set(IS_LTR, layout.getParagraphDirection(ellipsisLine)
-                                    == Layout.DIR_LEFT_TO_RIGHT);
-                } else {
-                    // we're not crunching anything above the last line, so never mind
-                    // just let the ellipsis start on its own right in the last line
-                    lastChar = origLineStart;
-                }
+            // determine screen estate the ellipsis takes
+            final float ellipsisWidth = layout.getPaint().measureText(ELLIPSIS_CHARS,
+                    lastLine.get(IS_LTR).asBoolean() ? 0
+                            : ELLIPSIS_CHARS.length - ELLIPSIS_LEN, ELLIPSIS_LEN);
+            final float shortfall = ellipsisWidth - lastLine.get(LINE_REMAINING_SPACE).asFloat();
+            int lastChar = lastLine.get(LINE_END).asInt();
+            // this would be the reference point to determine if the clipping mask
+            // would eventually kick in at the end of the evaluations
+            final int origLastChar = lastChar;
+            if (shortfall > 0) {
+                // find the closest text offset where the ellipsis fits in
+                lastChar = layout.getOffsetForHorizontal(ellipsisLine,
+                        lastLine.get(LINE_END_EDGE).advance(-shortfall).asFloat());
             }
-            // finally setting the extent of the clipping mask, we need one after all
-            final float ellipsisPos = layout.getPrimaryHorizontal(lastChar);
-            if (trailingWhitespacesOnly && lastChar >= origLineStart) {
-                // optimization: we won't need a mask just for whitespaces on the same last line
-                lastLine.set(debug ? EB_LEFT_D : EB_LEFT, ellipsisPos)
-                        .set(debug ? EB_RIGHT_D : EB_RIGHT, ellipsisPos);
+            // we're safe to assume by now the ellipsis fits in the last line up to lastChar
+            // but we go further to crunch by word and do some cleanup / nitpicks
+            final int origLineStart = lastLine.get(LINE_START).asInt();
+            final BreakIterator wb = lastLine.getWordInstance();
+            boolean trailingWhitespacesOnly = lastChar == origLastChar;
+
+            wb.setText(textView.getText().toString());
+            int last = wb.preceding(lastChar);
+            if (!wb.isBoundary(lastChar) && last != BreakIterator.DONE) {
+                lastChar = last;
+                trailingWhitespacesOnly = false;
+                last = wb.preceding(lastChar);
+            }
+            // strip whitespaces: the last line might well end with a space and a line return
+            // be greedy since we're always prefixing the ellipsis to be drawn with a space
+            // and we won't want there to end up having more than one
+            while (last != BreakIterator.DONE && Character.isWhitespace(
+                    Character.codePointAt(textView.getText(), last))) {
+                lastChar = last;
+                last = wb.preceding(lastChar);
+            }
+
+            // our clipping mask to be, which also positions the ellipsis to be drawn
+            // default to zero width bounds to cloak nothing of the text drawn by super.onDraw(),
+            // say if we're simply drawing an ellipsis above it when screen estate fits
+            final float initialPos = lastLine.get(LINE_END_EDGE).asFloat();
+            final boolean debug = lastLine.get(SCHEMA_DEBUG).asBoolean();
+            // prepare to write the finalised ellipsis params
+            if (debug) {
+                lastLine.upgrade().set(LE_EDGE, initialPos)
+                        .defaultTo(LL_WIDTH, WIDTH)
+                        .defaultTo(LL_TOP, TOP)
+                        .defaultTo(LL_BOTTOM, BOTTOM)
+                        .defaultTo(EB_BASELINE_D, BASELINE)
+                        .defaultTo(EB_TOP_D, TOP)
+                        .defaultTo(EB_BOTTOM_D, BOTTOM);
             } else {
-                lastLine.set(debug ? EB_LEFT_D : EB_LEFT,
-                                lastLine.get(IS_LTR).asBoolean() ? ellipsisPos : initialPos)
-                        .set(debug ? EB_RIGHT_D : EB_RIGHT,
-                                lastLine.get(IS_LTR).asBoolean() ? initialPos : ellipsisPos);
+                lastLine.upgrade().defaultTo(EB_BASELINE, BASELINE)
+                        .defaultTo(EB_TOP, TOP)
+                        .defaultTo(EB_BOTTOM, BOTTOM);
             }
-        } else {
-            lastLine.set(debug ? EB_LEFT_D : EB_LEFT, initialPos)
-                    .set(debug ? EB_RIGHT_D : EB_RIGHT, initialPos);
-        }
-        // nitpick: omit the prefixed space if ellipsis starts on its own line
-        if (lastChar == origLineStart) {
-            lastLine.set(SKIP_PREFIX_SPACE, true);
+            if (lastChar != origLastChar) {
+                // whitespaces stripped above also include line break characters (hard returns)
+                // opportunistically wrap the ellipsis to the second last line if screen estate fits
+                if (lastChar < origLineStart && ellipsisLine > 0) {
+                    if (layout.getLineMax(ellipsisLine - 1) + ellipsisWidth
+                            // assuming width consistent across lines
+                            <= lastLine.get(WIDTH).asInt()) {
+                        ellipsisLine -= 1; // nil shortfall
+                        lastLine.set(debug ? EB_BASELINE_D : EB_BASELINE,
+                                        layout.getLineBaseline(ellipsisLine))
+                                .set(IS_LTR, layout.getParagraphDirection(ellipsisLine)
+                                        == Layout.DIR_LEFT_TO_RIGHT);
+                    } else {
+                        // we're not crunching anything above the last line, so never mind
+                        // just let the ellipsis start on its own right in the last line
+                        lastChar = origLineStart;
+                    }
+                }
+                // finally setting the extent of the clipping mask, we need one after all
+                final float ellipsisPos = layout.getPrimaryHorizontal(lastChar);
+                if (trailingWhitespacesOnly && lastChar >= origLineStart) {
+                    // optimization: we won't need a mask just for whitespaces on the same last line
+                    lastLine.set(debug ? EB_LEFT_D : EB_LEFT, ellipsisPos)
+                            .set(debug ? EB_RIGHT_D : EB_RIGHT, ellipsisPos);
+                } else {
+                    lastLine.set(debug ? EB_LEFT_D : EB_LEFT,
+                                    lastLine.get(IS_LTR).asBoolean() ? ellipsisPos : initialPos)
+                            .set(debug ? EB_RIGHT_D : EB_RIGHT,
+                                    lastLine.get(IS_LTR).asBoolean() ? initialPos : ellipsisPos);
+                }
+            } else {
+                lastLine.set(debug ? EB_LEFT_D : EB_LEFT, initialPos)
+                        .set(debug ? EB_RIGHT_D : EB_RIGHT, initialPos);
+            }
+            // nitpick: omit the prefixed space if ellipsis starts on its own line
+            if (lastChar == origLineStart) {
+                lastLine.set(SKIP_PREFIX_SPACE, true);
+            }
         }
 
         return configStorage;
