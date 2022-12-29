@@ -440,7 +440,7 @@ public final class EllipsizeParams {
 
     // a convenient type-agnostic transport 'vehicle' to shuffle primitives around
     // without worrying about its type or its type-corresponding method overloads
-    // (it's a pity that Java generics doesn't seem to work with primitives wuthout boxing
+    // (it's a pity that Java generics doesn't seem to work with primitives without boxing
     // so we're left with duplicating some parts of the code for primitive types overloads)
     private static class TypedValue {
         protected int value;
@@ -566,11 +566,6 @@ public final class EllipsizeParams {
                 wordIterator = BreakIterator.getWordInstance();
             }
             return wordIterator;
-        }
-
-        public static LayoutTicket from(final Layout l, final int ln) {
-            final LayoutTicket ticket = popOldLayoutTickets();
-            return (ticket != null ? ticket : new LayoutTicket()).setLayout(l).setLine(ln);
         }
 
         public LayoutTicket setLayout(final Layout l) {
@@ -710,7 +705,7 @@ public final class EllipsizeParams {
                         if (fallback) {
                             resolveFromLayout(t, null, param);
                         } else {
-                            // from AOSP: mWidth - getLineMax(line)if ALIGN_RIGHT or 0
+                            // from AOSP: mWidth - getLineMax(line) if ALIGN_RIGHT or 0
                             if (isLTR) {
                                 t.setValue(0);
                             } else {
@@ -928,10 +923,11 @@ public final class EllipsizeParams {
         return layout.getParagraphAlignment(line) != Layout.Alignment.ALIGN_NORMAL;
     }
 
-    private static LayoutTicket warmUpLineMetrics(@IntRange(from = 0) final int line,
-                                           @NonNull final Layout layout,
-                                           @NonNull final int[] metrics) {
-        return LayoutTicket.from(layout, line).to(metrics)
+    private static LayoutTicket warmUpLineMetrics(@NonNull final LayoutTicket ticket,
+                                                  @IntRange(from = 0) final int line,
+                                                  @NonNull final Layout layout,
+                                                  @NonNull final int[] metrics) {
+        return ticket.setLayout(layout).setLine(line).to(metrics)
                 .set(FALLBACK_LAYOUT, shortCircuitsUnsupported(line, layout))
                 .resolve(BASELINE, WIDTH, TOP, BOTTOM, LINEMAX, LINE_START, LINE_END, IS_LTR)
                 .cached(true);
@@ -960,7 +956,9 @@ public final class EllipsizeParams {
         }
         int ellipsisLine = textView.getDisplayLines() - 1;
         final int[] configStorage = setupLineMetrics(storage);
-        try (LayoutTicket lastLine = warmUpLineMetrics(ellipsisLine, layout, configStorage)) {
+        final LayoutTicket ticket = popOldLayoutTickets();
+        try (LayoutTicket lastLine = warmUpLineMetrics(ticket != null ? ticket : new LayoutTicket(),
+                ellipsisLine, layout, configStorage)) {
 
             // determine screen estate the ellipsis takes
             final float ellipsisWidth = layout.getPaint().measureText(ELLIPSIS_CHARS,
