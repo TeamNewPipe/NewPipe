@@ -37,11 +37,13 @@ public final class EllipsizeParams {
 
     @Nullable
     public static LayoutTicket popOldLayoutTickets() {
-        final Iterator<LayoutTicket> it = oldLayoutTickets.iterator();
-        if (it.hasNext()) {
-            final LayoutTicket ticket = it.next();
-            it.remove();
-            return ticket;
+        if (!oldLayoutTickets.isEmpty()) {
+            final Iterator<LayoutTicket> it = oldLayoutTickets.iterator();
+            if (it.hasNext()) {
+                final LayoutTicket ticket = it.next();
+                it.remove();
+                return ticket;
+            }
         }
         return null;
     }
@@ -64,48 +66,32 @@ public final class EllipsizeParams {
     @IntDef({ValueType.BOOLEAN, ValueType.INT, ValueType.FLOAT})
     public @interface ValueType {
         int BOOLEAN = 0;
-        int INT = 1;
-        int FLOAT = 2;
+        int INT     = 1;
+        int FLOAT   = 2;
     }
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({Op.NORMAL, Op.ADD, Op.MINUS})
     public @interface Op {
-        int NORMAL = 0;  // read: replace
-        int ADD = 1;
-        int MINUS = 2;
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({Result.OK, Result.NOT_FOUND, Result.NOT_IN_RANGE,
-            Result.ERROR, Result.NOT_IMPLEMENTED})
-    public @interface Result {  // status codes
-        int OK = -200;
-        int NOT_FOUND = -404;
-        int NOT_IN_RANGE = -416;
-        int ERROR = -500;
-        int NOT_IMPLEMENTED = -501;
+        int NORMAL  = 0;  // read: replace
+        int ADD     = 1;
+        int MINUS   = 2;
     }
 
     public static final int HEADER_RESERVED = 0;
 
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({INITIALIZED, SCHEMA_1, SCHEMA_DEBUG, IS_LTR, SKIP_PREFIX_SPACE, ANIMATING})
-    public @interface Flags {
-    }
-
     public static final int FLAGS_START = 0;
     // booleans are stored in FLAGS
-    public static final int INITIALIZED = FLAGS_START;
-    public static final int SCHEMA_1 = 1 + FLAGS_START;
-    public static final int SCHEMA_DEBUG = 2 + FLAGS_START;
-    public static final int FALLBACK_LAYOUT = 3 + FLAGS_START;
+    public static final int INITIALIZED        = FLAGS_START;
+    public static final int SCHEMA_1           = 1 + FLAGS_START;
+    public static final int SCHEMA_DEBUG       = 2 + FLAGS_START;
+    public static final int FALLBACK_LAYOUT    = 3 + FLAGS_START;
     // LineMetrics enums
-    public static final int IS_LTR = 4 + FLAGS_START;
-    public static final int SKIP_PREFIX_SPACE = 5 + FLAGS_START;
-    public static final int ELLIPSISING_MASK = 6 + FLAGS_START;
+    public static final int IS_LTR             = 4 + FLAGS_START;
+    public static final int SKIP_PREFIX_SPACE  = 5 + FLAGS_START;
+    public static final int ELLIPSISING_MASK   = 6 + FLAGS_START;
     // animation enums
-    public static final int ANIMATING = 7 + FLAGS_START;
+    public static final int ANIMATING          = 7 + FLAGS_START;
     /* keep this to last */
     public static final int FLAGS_END = 8 + FLAGS_START;
 
@@ -122,31 +108,31 @@ public final class EllipsizeParams {
     // LineMetrics enums (SCHEMA 0)
     public static final int LINEMETRICS_START = SCHEMA_0_START;
     /* properties */
-    public static final int LINE_NO = 1 + LINEMETRICS_START;
+    public static final int LINE_NO            = 1 + LINEMETRICS_START;
     /* bounds */
-    public static final int WIDTH = 2 + LINEMETRICS_START;
-    public static final int TOP = 3 + LINEMETRICS_START;
-    public static final int BOTTOM = 4 + LINEMETRICS_START;
+    public static final int WIDTH              = 2 + LINEMETRICS_START;
+    public static final int TOP                = 3 + LINEMETRICS_START;
+    public static final int BOTTOM             = 4 + LINEMETRICS_START;
     /* canvas coordinates */
-    public static final int BASELINE = 5 + LINEMETRICS_START;
-    public static final int LINEMAX = 6 + LINEMETRICS_START;  // float
+    public static final int BASELINE           = 5 + LINEMETRICS_START;
+    public static final int LINEMAX            = 6 + LINEMETRICS_START;  // float
     /* text offsets */
-    public static final int LINE_START = 7 + LINEMETRICS_START;
-    public static final int LINE_END = 8 + LINEMETRICS_START;
+    public static final int LINE_START         = 7 + LINEMETRICS_START;
+    public static final int LINE_END           = 8 + LINEMETRICS_START;
     /* keep this to last */
     public static final int LINEMETRICS_END = 9 + LINEMETRICS_START;
 
     // derived LineMetrics
     public static final int LINEMETRIC_DERIVED_START = 110;
-    public static final int LINE_LEFT = 1 + LINEMETRIC_DERIVED_START;
+    public static final int LINE_LEFT  = 1 + LINEMETRIC_DERIVED_START;
     public static final int LINE_RIGHT = 2 + LINEMETRIC_DERIVED_START;
     public static final int LINEMETRIC_DERIVED_END = 3 + LINEMETRIC_DERIVED_START;
 
     // extended LineMetrics (computed without equivalent functions in Layout)
     public static final int LINEMETRIC_COMPUTED_START = 120;
     public static final int LINE_REMAINING_SPACE = 1 + LINEMETRIC_COMPUTED_START;
-    public static final int LINE_START_EDGE = 2 + LINEMETRIC_COMPUTED_START;
-    public static final int LINE_END_EDGE = 3 + LINEMETRIC_COMPUTED_START;
+    public static final int LINE_START_EDGE      = 2 + LINEMETRIC_COMPUTED_START;
+    public static final int LINE_END_EDGE        = 3 + LINEMETRIC_COMPUTED_START;
     public static final int LINEMETRIC_COMPUTED_END = 4 + LINEMETRIC_COMPUTED_START;
 
     public static final int LINEMETRICS_EXT_END = LINEMETRIC_COMPUTED_END;
@@ -155,30 +141,30 @@ public final class EllipsizeParams {
     // EllipsisParams enums (SCHEMA 1)
     public static final int ELLIPSISPARAMS_START = SCHEMA_1_START;
     /* ellipsisBounds */
-    public static final int EB_LEFT = 1 + ELLIPSISPARAMS_START;
-    public static final int EB_RIGHT = 2 + ELLIPSISPARAMS_START;
-    public static final int EB_TOP = 3 + ELLIPSISPARAMS_START;
-    public static final int EB_BOTTOM = 4 + ELLIPSISPARAMS_START;
+    public static final int EB_LEFT            = 1 + ELLIPSISPARAMS_START;
+    public static final int EB_RIGHT           = 2 + ELLIPSISPARAMS_START;
+    public static final int EB_TOP             = 3 + ELLIPSISPARAMS_START;
+    public static final int EB_BOTTOM          = 4 + ELLIPSISPARAMS_START;
     /* ellipsisBaseline */
-    public static final int EB_BASELINE = 5 + ELLIPSISPARAMS_START;
+    public static final int EB_BASELINE        = 5 + ELLIPSISPARAMS_START;
     /* keep this to last */
     public static final int ELLIPSISPARAMS_END = 6 + ELLIPSISPARAMS_START;
 
     // EllipsisParamsDebug enums (SCHEMA 1-D)
     public static final int ELLIPSISPARAMS_DEBUG_START = SCHEMA_1_START;
     /* lastLineBounds (shared with lastLineEndBounds; overlaps LineMetrics bounds) */
-    public static final int LL_WIDTH = 2 + ELLIPSISPARAMS_DEBUG_START;
-    public static final int LL_TOP = 3 + ELLIPSISPARAMS_DEBUG_START;
-    public static final int LL_BOTTOM = 4 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int LL_WIDTH           = 2 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int LL_TOP             = 3 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int LL_BOTTOM          = 4 + ELLIPSISPARAMS_DEBUG_START;
     /* ellipsisBaseline */
-    public static final int EB_BASELINE_D = 5 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int EB_BASELINE_D      = 5 + ELLIPSISPARAMS_DEBUG_START;
     // lastLineEndBounds */                      // overlaps LINEMAX
-    public static final int LE_EDGE = 6 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int LE_EDGE            = 6 + ELLIPSISPARAMS_DEBUG_START;
     /* ellipsisBounds */
-    public static final int EB_LEFT_D = 1 + ELLIPSISPARAMS_DEBUG_START;
-    public static final int EB_RIGHT_D = 7 + ELLIPSISPARAMS_DEBUG_START;
-    public static final int EB_TOP_D = LL_TOP;
-    public static final int EB_BOTTOM_D = LL_BOTTOM;
+    public static final int EB_LEFT_D          = 1 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int EB_RIGHT_D         = 7 + ELLIPSISPARAMS_DEBUG_START;
+    public static final int EB_TOP_D           = LL_TOP;
+    public static final int EB_BOTTOM_D        = LL_BOTTOM;
     /* keep this to last */
     public static final int ELLIPSISPARAMS_DEBUG_END = 8 + ELLIPSISPARAMS_DEBUG_START;
 
@@ -243,7 +229,7 @@ public final class EllipsizeParams {
         } else if (flag <= ELLIPSISPARAMS_DEBUG_END) {
             return flag - SCHEMA_1_START;
         }
-        return Result.NOT_IN_RANGE;
+        return UNSET;
     }
 
     // compute the additional 'pages' (int) of FLAGS required for paramsSize
@@ -282,8 +268,7 @@ public final class EllipsizeParams {
     }
 
     // ref: https://stackoverflow.com/a/12015619
-    private static boolean getBit(@NonNull final int[] params,
-                                  @IntRange(from = 0) final int index,
+    private static boolean getBit(@NonNull final int[] params, @IntRange(from = 0) final int index,
                                   @IntRange(from = 0, to = CONTINUATION - 1) final int bit) {
         if (index <= extHeader(params)) {
             return (params[index] & (1 << bit)) != 0;
@@ -291,8 +276,7 @@ public final class EllipsizeParams {
         return false;
     }
 
-    private static boolean setBit(@NonNull final int[] params,
-                                  @IntRange(from = 0) final int index,
+    private static boolean setBit(@NonNull final int[] params, @IntRange(from = 0) final int index,
                                   @IntRange(from = 0, to = CONTINUATION - 1) final int bit,
                                   final boolean markBit) {
         if (index <= extHeader(params)) {
@@ -360,19 +344,18 @@ public final class EllipsizeParams {
                 && getValue(params, getRawIndex(param) + extHeader(params), value);
     }
 
-    public static boolean getFlag(@NonNull final int[] params, @Flags final int flag) {
+    public static boolean getFlag(@NonNull final int[] params, final int flag) {
         final int flagIndex = getRawIndex(flag);
         return getBit(params, indexPage(params, flagIndex), flagIndex);
     }
 
-    public static boolean setFlag(@NonNull final int[] params, final int flag,
-                                   final boolean b) {
+    public static boolean setFlag(@NonNull final int[] params, final int flag, final boolean b) {
         final int flagIndex = getRawIndex(flag);
         return setBit(params, indexPage(params, flagIndex), flagIndex, b);
     }
 
     // ref: https://stackoverflow.com/a/46385852
-    public static int getByte(@NonNull final int[] params, @Flags final int flag) {
+    public static int getByte(@NonNull final int[] params, final int flag) {
         final int flagIndex = getRawIndex(flag);
         final int index = indexPage(params, flagIndex);
         if (index <= extHeader(params)) {
@@ -382,8 +365,8 @@ public final class EllipsizeParams {
     }
 
     // ref: https://stackoverflow.com/a/27870983
-    public static boolean setByte(@NonNull final int[] params, @Flags final int flag,
-                                   @IntRange(from = 0, to = 255) final int value) {
+    public static boolean setByte(@NonNull final int[] params, final int flag,
+                                  @IntRange(from = 0, to = 255) final int value) {
         final int flagIndex = getRawIndex(flag);
         final int index = indexPage(params, flagIndex);
         if (index <= extHeader(params)) {
@@ -543,7 +526,6 @@ public final class EllipsizeParams {
     // acts as a temporary holder for g/seting params from/by different 'actors'
     private static class Ticket extends TypedValue {
         private int param = UNSET;
-        private int status = UNSET;
 
         public Ticket setParam(final int p) {
             param = p;
@@ -552,10 +534,6 @@ public final class EllipsizeParams {
 
         public int getParam() {
             return param;
-        }
-
-        public void resolved(final boolean success) {
-            status = success ? Result.OK : Result.ERROR;
         }
     }
 
@@ -566,7 +544,6 @@ public final class EllipsizeParams {
         private int[] cache;
         private int line = UNSET;
         private boolean cached = false;
-        private UpgradeHelper upgrade;
         private BreakIterator wordIterator;
 
         public void reset() {
@@ -574,7 +551,6 @@ public final class EllipsizeParams {
             cache = null;
             line = UNSET;
             cached = false;
-            upgrade = null;
         }
         @Override
         public void close() {
@@ -645,7 +621,6 @@ public final class EllipsizeParams {
         // offset the value in relation to text direction, +ve to move forward, -ve backwards
         public LayoutTicket advance(final int offset) {
             if (cache == null) {
-                resolved(false);
                 return this;
             }
             op = getFlag(cache, IS_LTR) ? Op.ADD : Op.MINUS;
@@ -656,7 +631,6 @@ public final class EllipsizeParams {
 
         public LayoutTicket advance(final float offset) {
             if (cache == null) {
-                resolved(false);
                 return this;
             }
             op = getFlag(cache, IS_LTR) ? Op.ADD : Op.MINUS;
@@ -686,14 +660,23 @@ public final class EllipsizeParams {
             return this;
         }
 
-        public UpgradeHelper upgrade() {
-            if (upgrade == null) {
-                upgrade = new UpgradeHelper().from(this).to(this);
-                if (cache != null) {
-                    setFlag(cache, SCHEMA_1, true);
+        public LayoutTicket upgrade() {
+            if (cache != null) {
+                setFlag(cache, SCHEMA_1, true);
+            }
+            return this;
+        }
+
+        public LayoutTicket defaultTo(final int ellipsisParam, final int lineMetric) {
+            if (cache != null) {
+                final int srcPos = getRawIndex(lineMetric);
+                final int dstPos = getRawIndex(ellipsisParam);
+                if (srcPos != dstPos) {
+                    // just copy from old position to new position since we're upgrading in-place
+                    cache[dstPos] = cache[srcPos];
                 }
             }
-            return upgrade;
+            return this;
         }
     }
 
@@ -706,7 +689,6 @@ public final class EllipsizeParams {
     private static void resolveFromCache(@NonNull final LayoutTicket t, final int[] cache,
                                          final int... params) {
         if (cache == null) {
-            t.resolved(false);
             return;
         }
         for (int i = 0; i < params.length; i++) {
@@ -714,9 +696,8 @@ public final class EllipsizeParams {
             t.setParam(param);
             if (param < FLAGS_END) {
                 t.setValue(getFlag(cache, param));
-                t.resolved(true);
             } else if (param < LINEMETRICS_END) {
-                t.resolved(getParam(cache, param, t));
+                getParam(cache, param, t);
             } else {
                 final boolean isLTR = getFlag(cache, IS_LTR);
                 final boolean fallback = getFlag(cache, FALLBACK_LAYOUT);
@@ -760,10 +741,8 @@ public final class EllipsizeParams {
                         t.get(isLTR ? LINE_RIGHT : LINE_LEFT);
                         break;
                     default:
-                        t.resolved(false);
-                        continue;
+                        break;
                 }
-                t.resolved(true);
             }
         }
     }
@@ -775,7 +754,6 @@ public final class EllipsizeParams {
         final Layout layout = t.getLayout();
         final int line = t.getLine();
         if (layout == null) {
-            t.resolved(false);
             return;
         }
         Rect bounds = null;
@@ -822,10 +800,8 @@ public final class EllipsizeParams {
                     t.setValue(layout.getParagraphDirection(line) == Layout.DIR_LEFT_TO_RIGHT);
                     break;
                 default:
-                    t.resolved(false);
                     continue;
             }
-            t.resolved(true);
             if (resolveTo != null) {
                 resolveTo.accept(t);
             }
@@ -836,7 +812,6 @@ public final class EllipsizeParams {
     private static Consumer<LayoutTicket> resolveToCache = t -> {
         final int[] cache = t.getCache();
         if (cache == null) {
-            t.resolved(false);
             return;
         }
         switch (t.getType()) {
@@ -850,86 +825,9 @@ public final class EllipsizeParams {
                 setFlag(cache, t.getParam(), t.asBoolean());
                 break;
             default:
-                t.resolved(false);
-                return;
+                break;
         }
-        t.resolved(true);
     };
-
-    // highly experimental: might not be put into use after all
-    private static class UpgradeHelper {
-        private int[] tmpStorage;
-        private LayoutTicket storage;
-        private boolean inPlace = false;
-        private int[] reservedIndex;
-
-        public UpgradeHelper from(final LayoutTicket src) {
-            storage = src;
-            return this;
-        }
-
-        public UpgradeHelper to(final LayoutTicket dst) {
-            if (dst == storage) {
-                inPlace = true;
-            } else {
-                // not (yet) implemented
-                throw new RuntimeException(-Result.NOT_IMPLEMENTED + ": Not Implemented");
-            }
-            return this;
-        }
-
-        private void initializeReservedIndex(final int size) {
-            final int storageSize = size + extendedPages(size);
-            if (reservedIndex == null || reservedIndex.length < storageSize) {
-                reservedIndex = new int[storageSize];
-            } else {
-                reservedIndex[0] = 0;
-            }
-            initializeIndex(reservedIndex, size);
-            setFlag(reservedIndex, INITIALIZED, true);
-        }
-
-        public UpgradeHelper defaultTo(final int ellipsisParam, final int lineMetric) {
-            if (!inPlace) {
-                // not (yet) implemented
-                throw new RuntimeException(-Result.NOT_IMPLEMENTED + ": Not Implemented");
-            }
-            final int srcPos = getRawIndex(lineMetric);
-            final int dstPos = getRawIndex(ellipsisParam);
-            if (dstPos >= getRawIndex(LINEMETRICS_END)) {
-                // we can safely write the value since there's no overlap
-                // just copy from old position to new position since we're upgrading in-place
-                storage.getCache()[dstPos] = storage.getCache()[srcPos];
-            }
-            if (srcPos == dstPos) {
-                markReserved(srcPos, true);
-            }
-            return this;
-        }
-
-        private void markReserved(final int pos, final boolean b) {
-            if (b && reservedIndex == null) {
-                initializeReservedIndex(getRawIndex(LINEMETRICS_END));
-            }
-            if (reservedIndex != null) {
-                setBit(reservedIndex, indexPage(reservedIndex, pos), pos, b);
-            }
-        }
-
-        public UpgradeHelper set(final int ellipsisParam, final int v) {
-            final int dstPos = getRawIndex(ellipsisParam);
-            markReserved(dstPos, false);
-            storage.set(ellipsisParam, v);
-            return this;
-        }
-
-        public UpgradeHelper set(final int ellipsisParam, final float v) {
-            final int dstPos = getRawIndex(ellipsisParam);
-            markReserved(dstPos, false);
-            storage.set(ellipsisParam, v);
-            return this;
-        }
-    }
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1022,6 +920,13 @@ public final class EllipsizeParams {
             final float initialPos = lastLine.get(LINE_END_EDGE).asFloat();
             final boolean debug = lastLine.get(SCHEMA_DEBUG).asBoolean();
             // prepare to write the finalised ellipsis params
+            // nb: hereafter the line metrics (Schema 0 metrics) may be 'taped over'
+            // by ellipsizing params (Schema 1 params) during the in-place 'upgrade'
+            // since they share the same storage space (poor man's all in one briefcase).
+            // Take care not to call lastLine.get([metrics]) hereafter or ensure it hasn't collided
+            // with a (different) ellipsizing param set at the same 'address' space, or otherwise
+            // store it in a local variable beforehand, or postpone 'upgrade' until the overlapping
+            // line metrics are ready to be relinquished (In short: exercise designer's diligence).
             if (debug) {
                 lastLine.upgrade().set(LE_EDGE, initialPos)
                         .defaultTo(LL_WIDTH, WIDTH)
