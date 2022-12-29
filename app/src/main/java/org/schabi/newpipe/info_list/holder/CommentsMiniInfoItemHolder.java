@@ -102,40 +102,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setText(commentText, TextView.BufferType.SPANNABLE);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
-        final boolean legacyEllipsize = !(itemContentView instanceof NewPipeTextView);
-        if (legacyEllipsize) {
-            if (itemContentView.getLineCount() == 0) {
-                itemContentView.post(this::ellipsize);
-            } else {
-                ellipsize();
-            }
-        } else {
-            linkify();
-            itemContentView.setMaxLines(COMMENT_DEFAULT_LINES);
-            itemContentView.setEllipsize(TextUtils.TruncateAt.END);
-            OneShotPreDrawListener.add(itemContentView, () -> {
-                if (((NewPipeTextView) itemContentView).ellipsisState()
-                        == EllipsisState.EXPANDABLE) {
-                    denyLinkFocus();
-                } else {
-                    determineLinkFocus();
-                }
-            });
-            ((NewPipeTextView) itemContentView).setOnToggleListener((textView, expanded) ->
-                determineLinkFocus()
-            );
-            itemView.setOnClickListener(view -> {
-                if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
-                        || ((NewPipeTextView) itemContentView).ellipsisState()
-                        == EllipsisState.EXPANDABLE) {
-                    ((NewPipeTextView) itemContentView)
-                            .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
-                }
-                if (itemBuilder.getOnCommentsSelectedListener() != null) {
-                    itemBuilder.getOnCommentsSelectedListener().selected(item);
-                }
-            });
-        }
+        ellipsize();
 
         if (item.getLikeCount() >= 0) {
             itemLikesCountView.setText(
@@ -153,16 +120,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
-        if (legacyEllipsize) {
-            itemView.setOnClickListener(view -> {
-                toggleEllipsize();
-
-                if (itemBuilder.getOnCommentsSelectedListener() != null) {
-                    itemBuilder.getOnCommentsSelectedListener().selected(item);
-                }
-            });
-        }
-
+        itemView.setOnClickListener(view -> {
+            if (itemContentView.getMaxLines() != COMMENT_DEFAULT_LINES
+                    || ((NewPipeTextView) itemContentView).ellipsisState()
+                    == EllipsisState.EXPANDABLE) {
+                ((NewPipeTextView) itemContentView)
+                        .toggle(COMMENT_DEFAULT_LINES, COMMENT_EXPANDED_LINES, 500);
+            }
+            if (itemBuilder.getOnCommentsSelectedListener() != null) {
+                itemBuilder.getOnCommentsSelectedListener().selected(item);
+            }
+        });
 
         itemView.setOnLongClickListener(view -> {
             if (DeviceUtils.isTv(itemBuilder.getContext())) {
@@ -216,47 +184,21 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
     }
 
-    /* legacy approach; may schedule for removal in near future */
     private void ellipsize() {
-        boolean hasEllipsis = false;
-
-        if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            final int endOfLastLine = itemContentView
-                    .getLayout()
-                    .getLineEnd(COMMENT_DEFAULT_LINES - 1);
-            int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
-            if (end == -1) {
-                end = Math.max(endOfLastLine - 2, 0);
-            }
-            final String newVal = itemContentView.getText().subSequence(0, end) + " …";
-            itemContentView.setText(newVal);
-            hasEllipsis = true;
-        }
-
         linkify();
-
-        if (hasEllipsis) {
-            denyLinkFocus();
-        } else {
-            determineLinkFocus();
-        }
-    }
-
-    private void toggleEllipsize() {
-        if (itemContentView.getText().toString().equals(commentText)) {
-            if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-                ellipsize();
+        itemContentView.setMaxLines(COMMENT_DEFAULT_LINES);
+        itemContentView.setEllipsize(TextUtils.TruncateAt.END);
+        OneShotPreDrawListener.add(itemContentView, () -> {
+            if (((NewPipeTextView) itemContentView).ellipsisState()
+                    == EllipsisState.EXPANDABLE) {
+                denyLinkFocus();
+            } else {
+                determineLinkFocus();
             }
-        } else {
-            expand();
-        }
-    }
-
-    private void expand() {
-        itemContentView.setMaxLines(COMMENT_EXPANDED_LINES);
-        itemContentView.setText(commentText);
-        linkify();
-        determineLinkFocus();
+        });
+        ((NewPipeTextView) itemContentView).setOnToggleListener((textView, expanded) ->
+                determineLinkFocus()
+        );
     }
 
     private void linkify() {
