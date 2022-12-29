@@ -1,6 +1,9 @@
 package org.schabi.newpipe.util;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.text.Layout;
 
 import androidx.annotation.IntDef;
@@ -178,6 +181,23 @@ public final class EllipsizeParams {
     public static final int EB_BOTTOM_D = LL_BOTTOM;
     /* keep this to last */
     public static final int ELLIPSISPARAMS_DEBUG_END = 8 + ELLIPSISPARAMS_DEBUG_START;
+
+    public static int remapDebugParams(final int param, final boolean debug) {
+        switch (param) {
+            case EB_LEFT:
+                return debug ? EB_LEFT_D : EB_LEFT;
+            case EB_RIGHT:
+                return debug ? EB_RIGHT_D : EB_RIGHT;
+            case EB_TOP:
+                return debug ? EB_TOP_D : EB_TOP;
+            case EB_BOTTOM:
+                return debug ? EB_BOTTOM_D : EB_BOTTOM;
+            case EB_BASELINE:
+                return debug ? EB_BASELINE_D : EB_BASELINE;
+            default:
+                return param;
+        }
+    }
 
     public static int[] setupLineMetrics(@Nullable final int[] storage) {
         int[] configStorage = storage;
@@ -935,8 +955,8 @@ public final class EllipsizeParams {
 
     // non-breaking space, ellipsis, non-breaking space
     // we surround nbsp at both ends so that we can just offset ELLIPSIS_LEN by 1 for RTL
-    public static final char[] ELLIPSIS_CHARS = {'\u00a0', '\u2026', '\u00a0'};
-    public static final int ELLIPSIS_LEN = 2;
+    private static final char[] ELLIPSIS_CHARS = {'\u00a0', '\u2026', '\u00a0'};
+    private static final int ELLIPSIS_LEN = 2;
 
     /* Our custom ellipsizing strategy implemented as follows: where lines of text don't fit,
      * - append the ellipsis to the end of the last line displayed, if screen estate fits; else
@@ -1023,7 +1043,7 @@ public final class EllipsizeParams {
                             // assuming width consistent across lines
                             <= lastLine.get(WIDTH).asInt()) {
                         ellipsisLine -= 1; // nil shortfall
-                        lastLine.set(debug ? EB_BASELINE_D : EB_BASELINE,
+                        lastLine.set(remapDebugParams(EB_BASELINE, debug),
                                         layout.getLineBaseline(ellipsisLine))
                                 .set(IS_LTR, layout.getParagraphDirection(ellipsisLine)
                                         == Layout.DIR_LEFT_TO_RIGHT);
@@ -1037,17 +1057,17 @@ public final class EllipsizeParams {
                 final float ellipsisPos = layout.getPrimaryHorizontal(lastChar);
                 if (trailingWhitespacesOnly && lastChar >= origLineStart) {
                     // optimization: we won't need a mask just for whitespaces on the same last line
-                    lastLine.set(debug ? EB_LEFT_D : EB_LEFT, ellipsisPos)
-                            .set(debug ? EB_RIGHT_D : EB_RIGHT, ellipsisPos);
+                    lastLine.set(remapDebugParams(EB_LEFT, debug), ellipsisPos)
+                            .set(remapDebugParams(EB_RIGHT, debug), ellipsisPos);
                 } else {
-                    lastLine.set(debug ? EB_LEFT_D : EB_LEFT,
+                    lastLine.set(remapDebugParams(EB_LEFT, debug),
                                     lastLine.get(IS_LTR).asBoolean() ? ellipsisPos : initialPos)
-                            .set(debug ? EB_RIGHT_D : EB_RIGHT,
+                            .set(remapDebugParams(EB_RIGHT, debug),
                                     lastLine.get(IS_LTR).asBoolean() ? initialPos : ellipsisPos);
                 }
             } else {
-                lastLine.set(debug ? EB_LEFT_D : EB_LEFT, initialPos)
-                        .set(debug ? EB_RIGHT_D : EB_RIGHT, initialPos);
+                lastLine.set(remapDebugParams(EB_LEFT, debug), initialPos)
+                        .set(remapDebugParams(EB_RIGHT, debug), initialPos);
             }
             // nitpick: omit the prefixed space if ellipsis starts on its own line
             if (lastChar == origLineStart) {
@@ -1056,5 +1076,100 @@ public final class EllipsizeParams {
         }
 
         return configStorage;
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Canvas operations
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @SuppressWarnings("deprecation")
+    private static void clipOutRectCompat(@NonNull final Canvas canvas, final float left,
+                                          final float top, final float right, final float bottom) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            canvas.clipOutRect(left, top, right, bottom);
+        } else {
+            canvas.clipRect(left, top, right, bottom, android.graphics.Region.Op.DIFFERENCE);
+        }
+    }
+
+    /* to be called by NewPipeTextView.onDraw() to draw the ellipsis and (as the case may be)
+     * apply a clipping mask prior to super.onDraw() (to draw the text) */
+    public static void onDraw(@NonNull final Canvas canvas, @NonNull final Paint p,
+                              @NonNull final int[] ellipsizeParams, final int ellipsisState,
+                              final int textColor) {
+        final boolean debug = getFlag(ellipsizeParams, SCHEMA_DEBUG);
+        final boolean isLTR = getFlag(ellipsizeParams, IS_LTR);
+        final boolean animating = getFlag(ellipsizeParams, ANIMATING);
+        if (debug && !animating) {
+            drawDebugBounds(canvas, p, ellipsizeParams);
+        }
+
+        if (debug && (getFloat(ellipsizeParams, EB_RIGHT_D)
+                - getFloat(ellipsizeParams, EB_LEFT_D)) > 0) {
+            p.setARGB(100, 0, 0, 255);
+            canvas.drawRect(getFloat(ellipsizeParams, EB_LEFT_D),
+                    getFloat(ellipsizeParams, EB_TOP_D),
+                    getFloat(ellipsizeParams, EB_RIGHT_D),
+                    getFloat(ellipsizeParams, EB_BOTTOM_D), p);
+        }
+
+        if (animating || ellipsisState == NewPipeTextView.EllipsisState.EXPANDABLE) {
+            final int crossfadeEllipsis = getByte(ellipsizeParams, CROSSFADE_ELLIPSIS);
+            float splitPt = -1;
+            final float clipOutBoundsL = getFloat(ellipsizeParams,
+                    remapDebugParams(EB_LEFT, debug));
+            final float clipOutBoundsT = getFloat(ellipsizeParams,
+                    remapDebugParams(EB_TOP, debug));
+            final float clipOutBoundsR = getFloat(ellipsizeParams,
+                    remapDebugParams(EB_RIGHT, debug));
+            final float clipOutBoundsB = getFloat(ellipsizeParams,
+                    remapDebugParams(EB_BOTTOM, debug));
+
+            p.setColor(textColor);
+            if (animating) { // animation stuff
+                // simulate sliding window to the end of the ellipsized last line
+                splitPt = (clipOutBoundsR - clipOutBoundsL) * crossfadeEllipsis / 255;
+                canvas.save();
+                // pass in the four corners as parameters to avoid boxing an intermediate RectF
+                clipOutRectCompat(canvas,
+                        isLTR ? clipOutBoundsL : clipOutBoundsL + splitPt, clipOutBoundsT,
+                        isLTR ? clipOutBoundsR - splitPt : clipOutBoundsR, clipOutBoundsB);
+                p.setAlpha(crossfadeEllipsis);
+            }
+            final Paint.Align origAlign = p.getTextAlign();
+            p.setTextAlign(isLTR ? Paint.Align.LEFT : Paint.Align.RIGHT);
+            final boolean skipSpace = getFlag(ellipsizeParams, SKIP_PREFIX_SPACE);
+            canvas.drawText(ELLIPSIS_CHARS, isLTR && !skipSpace ? 0 : 1,
+                    skipSpace ? ELLIPSIS_LEN - 1 : ELLIPSIS_LEN,
+                    isLTR ? clipOutBoundsL : clipOutBoundsR,
+                    getFloat(ellipsizeParams, remapDebugParams(EB_BASELINE, debug)), p);
+            p.setTextAlign(origAlign);
+            if (animating) {
+                canvas.restore();
+                clipOutRectCompat(canvas,
+                        isLTR ? clipOutBoundsR - splitPt : clipOutBoundsL, clipOutBoundsT,
+                        isLTR ? clipOutBoundsR : clipOutBoundsL + splitPt, clipOutBoundsB);
+            } else if (clipOutBoundsR - clipOutBoundsL > 0) {
+                clipOutRectCompat(canvas,
+                        clipOutBoundsL, clipOutBoundsT, clipOutBoundsR, clipOutBoundsB);
+            }
+        }
+    }
+
+    private static void drawDebugBounds(@NonNull final Canvas canvas, @NonNull final Paint p,
+                                        @NonNull final int[] ellipsizeParams) {
+        final boolean isLTR = getFlag(ellipsizeParams, IS_LTR);
+        // draw lastLineBounds
+        p.setARGB(100, 255, 0, 0);
+        canvas.drawRect(0, getInt(ellipsizeParams, LL_TOP),
+                getInt(ellipsizeParams, LL_WIDTH),
+                getInt(ellipsizeParams, LL_BOTTOM), p);
+        // draw lastLineEndBounds
+        p.setARGB(100, 0, 255, 0);
+        canvas.drawRect(isLTR ? getFloat(ellipsizeParams, LE_EDGE) : 0,
+                getInt(ellipsizeParams, LL_TOP),
+                getFloat(ellipsizeParams, isLTR ? LL_WIDTH : LE_EDGE),
+                getInt(ellipsizeParams, LL_BOTTOM), p);
     }
 }
