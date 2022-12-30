@@ -14,7 +14,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,8 +55,6 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.settings.NewPipeSettings;
-import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -108,9 +105,6 @@ public class DownloadDialog extends DialogFragment
 
     @Nullable
     private OnDismissListener onDismissListener = null;
-
-    private StoredDirectoryHelper mainStorageAudio = null;
-    private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
     private ActionMenuItemView okButton = null;
     private Context context;
@@ -133,13 +127,6 @@ public class DownloadDialog extends DialogFragment
     private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadSaveAsResult);
-    private final ActivityResultLauncher<Intent> requestDownloadPickAudioFolderLauncher =
-            registerForActivityResult(
-                    new StartActivityForResult(), this::requestDownloadPickAudioFolderResult);
-    private final ActivityResultLauncher<Intent> requestDownloadPickVideoFolderLauncher =
-            registerForActivityResult(
-                    new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation
@@ -246,11 +233,7 @@ public class DownloadDialog extends DialogFragment
             @Override
             public void onServiceConnected(final ComponentName cname, final IBinder service) {
                 final DownloadManagerBinder mgr = (DownloadManagerBinder) service;
-
-                mainStorageAudio = mgr.getMainStorageAudio();
-                mainStorageVideo = mgr.getMainStorageVideo();
                 downloadManager = mgr.getDownloadManager();
-                askForSavePath = mgr.askForSavePath();
 
                 okButton.setEnabled(true);
 
@@ -332,7 +315,11 @@ public class DownloadDialog extends DialogFragment
 
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
-                prepareSelectedDownload();
+                try {
+                    prepareSelectedDownload();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
             return false;
@@ -434,20 +421,9 @@ public class DownloadDialog extends DialogFragment
         setRadioButtonsState(true);
     }
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Activity results
     //////////////////////////////////////////////////////////////////////////*/
-
-    private void requestDownloadPickAudioFolderResult(final ActivityResult result) {
-        requestDownloadPickFolderResult(
-                result, getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
-    }
-
-    private void requestDownloadPickVideoFolderResult(final ActivityResult result) {
-        requestDownloadPickFolderResult(
-                result, getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
-    }
 
     private void requestDownloadSaveAsResult(@NonNull final ActivityResult result) {
         if (result.getResultCode() != Activity.RESULT_OK) {
@@ -477,39 +453,6 @@ public class DownloadDialog extends DialogFragment
         checkSelectedDownload(null, result.getData().getData(), docFile.getName(),
                 docFile.getType());
     }
-
-    private void requestDownloadPickFolderResult(@NonNull final ActivityResult result,
-                                                 final String key,
-                                                 final String tag) {
-        if (result.getResultCode() != Activity.RESULT_OK) {
-            return;
-        }
-
-        if (result.getData() == null || result.getData().getData() == null) {
-            showFailedDialog(R.string.general_error);
-            return;
-        }
-
-        Uri uri = result.getData().getData();
-        if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            uri = Uri.fromFile(Utils.getFileForUri(uri));
-        } else {
-            context.grantUriPermission(context.getPackageName(), uri,
-                    StoredDirectoryHelper.PERMISSION_FLAGS);
-        }
-
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key,
-                uri.toString()).apply();
-
-        try {
-            final StoredDirectoryHelper mainStorage = new StoredDirectoryHelper(context, uri, tag);
-            checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp),
-                    filenameTmp, mimeTmp);
-        } catch (final IOException e) {
-            showFailedDialog(R.string.general_error);
-        }
-    }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Listeners
@@ -667,13 +610,8 @@ public class DownloadDialog extends DialogFragment
                 .show();
     }
 
-    private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        NoFileManagerSafeGuard.launchSafe(launcher, StoredDirectoryHelper.getPicker(context), TAG,
-                context);
-    }
-
-    private void prepareSelectedDownload() {
-        final StoredDirectoryHelper mainStorage;
+    private void prepareSelectedDownload() throws IOException {
+        StoredDirectoryHelper mainStorage = null;
         final MediaFormat format;
         final String selectedMediaType;
 
@@ -685,7 +623,6 @@ public class DownloadDialog extends DialogFragment
         switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 selectedMediaType = getString(R.string.last_download_type_audio_key);
-                mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
                 if (format == MediaFormat.WEBMA_OPUS) {
                     mimeTmp = "audio/ogg";
@@ -697,7 +634,6 @@ public class DownloadDialog extends DialogFragment
                 break;
             case R.id.video_button:
                 selectedMediaType = getString(R.string.last_download_type_video_key);
-                mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 if (format != null) {
                     mimeTmp = format.mimeType;
@@ -706,7 +642,6 @@ public class DownloadDialog extends DialogFragment
                 break;
             case R.id.subtitle_button:
                 selectedMediaType = getString(R.string.last_download_type_subtitle_key);
-                mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
                 if (format != null) {
                     mimeTmp = format.mimeType;
@@ -722,50 +657,9 @@ public class DownloadDialog extends DialogFragment
                 throw new RuntimeException("No stream selected");
         }
 
-        if (!askForSavePath && (mainStorage == null
-                || mainStorage.isDirect() == NewPipeSettings.useStorageAccessFramework(context)
-                || mainStorage.isInvalidSafStorage())) {
-            // Pick new download folder if one of:
-            // - Download folder is not set
-            // - Download folder uses SAF while SAF is disabled
-            // - Download folder doesn't use SAF while SAF is enabled
-            // - Download folder uses SAF but the user manually revoked access to it
-            Toast.makeText(context, getString(R.string.no_dir_yet),
-                    Toast.LENGTH_LONG).show();
-
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                launchDirectoryPicker(requestDownloadPickAudioFolderLauncher);
-            } else {
-                launchDirectoryPicker(requestDownloadPickVideoFolderLauncher);
-            }
-
-            return;
-        }
-
-        if (askForSavePath) {
-            final Uri initialPath;
-            if (NewPipeSettings.useStorageAccessFramework(context)) {
-                initialPath = null;
-            } else {
-                final File initialSavePath;
-                if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-                } else {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-                }
-                initialPath = Uri.parse(initialSavePath.getAbsolutePath());
-            }
-
-            NoFileManagerSafeGuard.launchSafe(requestDownloadSaveAsLauncher,
-                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath), TAG,
-                    context);
-
-            return;
-        }
-
         // check for existing file with the same name
-        checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp), filenameTmp,
-                mimeTmp);
+        mainStorage = downloadManager.getMainStorage(context);
+        checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp), filenameTmp, mimeTmp);
 
         // remember the last media type downloaded by the user
         prefs.edit().putString(getString(R.string.last_used_download_type), selectedMediaType)

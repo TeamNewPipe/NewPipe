@@ -1,6 +1,8 @@
 package us.shandian.giga.service;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 
@@ -53,24 +55,19 @@ public class DownloadManager {
     boolean mPrefQueueLimit;
     private boolean mSelfMissionsControl;
 
-    StoredDirectoryHelper mMainStorageAudio;
-    StoredDirectoryHelper mMainStorageVideo;
-
     /**
      * Create a new instance
      *
      * @param context Context for the data source for finished downloads
      * @param handler Thread required for Messaging
      */
-    DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
+    DownloadManager(@NonNull Context context, Handler handler) {
         if (DEBUG) {
             Log.d(TAG, "new DownloadManager instance. 0x" + Integer.toHexString(this.hashCode()));
         }
 
         mFinishedMissionStore = new FinishedMissionStore(context);
         mHandler = handler;
-        mMainStorageAudio = storageAudio;
-        mMainStorageVideo = storageVideo;
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
 
@@ -180,7 +177,7 @@ public class DownloadManager {
                 mis.psState = 0;
                 mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
             } else if (!exists) {
-                tryRecover(mis);
+                tryRecover(ctx, mis);
 
                 // the progress is lost, reset mission state
                 if (mis.isInitialized())
@@ -295,8 +292,8 @@ public class DownloadManager {
         }
     }
 
-    public void tryRecover(DownloadMission mission) {
-        StoredDirectoryHelper mainStorage = getMainStorage(mission.storage.getTag());
+    public void tryRecover(@NonNull final Context context, DownloadMission mission) {
+        StoredDirectoryHelper mainStorage = getMainStorage(context);
 
         if (!mission.storage.isInvalid() && mission.storage.create()) return;
 
@@ -551,13 +548,14 @@ public class DownloadManager {
     }
 
     @Nullable
-    private StoredDirectoryHelper getMainStorage(@NonNull String tag) {
-        if (tag.equals(TAG_AUDIO)) return mMainStorageAudio;
-        if (tag.equals(TAG_VIDEO)) return mMainStorageVideo;
-
-        Log.w(TAG, "Unknown download category, not [audio video]: " + tag);
-
-        return null;// this never should happen
+    public StoredDirectoryHelper getMainStorage(@NonNull Context context) {
+        final File file = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        try {
+            return new StoredDirectoryHelper(context, Uri.parse(file.toURI().toString()), "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public class MissionIterator extends DiffUtil.Callback {

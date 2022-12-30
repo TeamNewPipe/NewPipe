@@ -35,7 +35,7 @@ public class StoredDirectoryHelper {
 
     private final String tag;
 
-    public StoredDirectoryHelper(@NonNull final Context context, @NonNull final Uri path,
+    public StoredDirectoryHelper(final Context context, final Uri path,
                                  final String tag) throws IOException {
         this.tag = tag;
 
@@ -46,13 +46,20 @@ public class StoredDirectoryHelper {
 
         this.context = context;
 
+        if (!path.toString().contains(context.getExternalFilesDir("").toString())) {
+            try {
+                this.context.getContentResolver().takePersistableUriPermission(path,
+                        PERMISSION_FLAGS);
+            } catch (final Exception e) {
+                throw new IOException(e);
+            }
+        }
+
         try {
-            this.context.getContentResolver().takePersistableUriPermission(path, PERMISSION_FLAGS);
+            this.docTree = DocumentFile.fromTreeUri(context, path);
         } catch (final Exception e) {
             throw new IOException(e);
         }
-
-        this.docTree = DocumentFile.fromTreeUri(context, path);
 
         if (this.docTree == null) {
             throw new IOException("Failed to create the tree from Uri");
@@ -230,7 +237,13 @@ public class StoredDirectoryHelper {
     @NonNull
     @Override
     public String toString() {
-        return (docTree == null ? Uri.fromFile(ioTree) : docTree.getUri()).toString();
+        if (ioTree != null) {
+            return Uri.fromFile(ioTree).toString();
+        }
+        if (docTree != null) {
+            return docTree.getUri().toString();
+        }
+        return "";
     }
 
     ////////////////////

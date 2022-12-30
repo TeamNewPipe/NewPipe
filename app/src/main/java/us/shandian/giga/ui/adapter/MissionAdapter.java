@@ -649,7 +649,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                     if (mission.isPsRunning()) {
                         mission.psContinue(true);
                     } else {
-                        mDownloadManager.tryRecover(mission);
+                        mDownloadManager.tryRecover(mContext, mission);
                         if (mission.storage.isInvalid())
                             mRecover.tryRecover(mission);
                         else

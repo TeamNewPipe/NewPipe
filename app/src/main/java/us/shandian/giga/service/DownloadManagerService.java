@@ -139,7 +139,7 @@ public class DownloadManagerService extends Service {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mManager = new DownloadManager(this, mHandler, loadMainVideoStorage(), loadMainAudioStorage());
+        mManager = new DownloadManager(this, mHandler);
 
         Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
                 .setAction(Intent.ACTION_MAIN);
@@ -322,10 +322,6 @@ public class DownloadManagerService extends Service {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
         } else if (key.equals(getString(R.string.downloads_queue_limit))) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
-        } else if (key.equals(getString(R.string.download_path_video_key))) {
-            mManager.mMainStorageVideo = loadMainVideoStorage();
-        } else if (key.equals(getString(R.string.download_path_audio_key))) {
-            mManager.mMainStorageAudio = loadMainAudioStorage();
         }
     }
 
@@ -501,14 +497,6 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
-    private StoredDirectoryHelper loadMainVideoStorage() {
-        return loadMainStorage(R.string.download_path_video_key, DownloadManager.TAG_VIDEO);
-    }
-
-    private StoredDirectoryHelper loadMainAudioStorage() {
-        return loadMainStorage(R.string.download_path_audio_key, DownloadManager.TAG_AUDIO);
-    }
-
     private StoredDirectoryHelper loadMainStorage(@StringRes int prefKey, String tag) {
         String path = mPrefs.getString(getString(prefKey), null);
 
@@ -537,23 +525,6 @@ public class DownloadManagerService extends Service {
     public class DownloadManagerBinder extends Binder {
         public DownloadManager getDownloadManager() {
             return mManager;
-        }
-
-        @Nullable
-        public StoredDirectoryHelper getMainStorageVideo() {
-            return mManager.mMainStorageVideo;
-        }
-
-        @Nullable
-        public StoredDirectoryHelper getMainStorageAudio() {
-            return mManager.mMainStorageAudio;
-        }
-
-        public boolean askForSavePath() {
-            return DownloadManagerService.this.mPrefs.getBoolean(
-                    DownloadManagerService.this.getString(R.string.downloads_storage_ask),
-                    false
-            );
         }
 
         public void addMissionEventListener(Callback handler) {
