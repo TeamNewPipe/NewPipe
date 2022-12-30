@@ -181,7 +181,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         String toastText = getString(R.string.playlist_add_stream_success);
 
         if (numOfDuplicates > 0) {
-            toastText = getString(R.string.playlist_add_stream_success_duplicate);
+            toastText = getString(R.string.playlist_add_stream_success_duplicate, numOfDuplicates);
         }
 
         final Toast successToast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
