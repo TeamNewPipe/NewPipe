@@ -126,6 +126,7 @@ public class StoredFileHelper implements Serializable {
                             @NonNull final Uri path, final String tag) throws IOException {
         this.tag = tag;
         this.source = path.toString();
+        this.context = context;
 
         if (path.getScheme() == null
                 || path.getScheme().equalsIgnoreCase(ContentResolver.SCHEME_FILE)) {
@@ -136,8 +137,6 @@ public class StoredFileHelper implements Serializable {
             if (file == null) {
                 throw new RuntimeException("SAF not available");
             }
-
-            this.context = context;
 
             if (file.getName() == null) {
                 this.source = null;
@@ -183,6 +182,10 @@ public class StoredFileHelper implements Serializable {
         return instance;
     }
 
+    public Context getContext() {
+        return this.context;
+    }
+
     public SharpStream getStream() throws IOException {
         assertValid();
 
@@ -226,6 +229,10 @@ public class StoredFileHelper implements Serializable {
         try (SharpStream fs = getStream()) {
             fs.setLength(0);
         }
+    }
+
+    public void updatePath(final String path) {
+        ioFile = new File(path);
     }
 
     public boolean delete() {

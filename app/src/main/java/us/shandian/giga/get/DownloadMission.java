@@ -1,6 +1,11 @@
 package us.shandian.giga.get;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.system.ErrnoException;
 import android.system.OsConstants;
 import android.util.Log;
@@ -11,9 +16,12 @@ import androidx.annotation.Nullable;
 import org.schabi.newpipe.DownloaderImpl;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InterruptedIOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
@@ -387,12 +395,41 @@ public class DownloadMission extends Mission {
 
         // this mission is fully finished
 
+        publishFile();
+        this.storage.delete();
+        String newPath = Environment.getExternalStorageDirectory() + "/"
+                + Environment.DIRECTORY_DOWNLOADS + "/" + this.storage.getName();
+        this.storage.updatePath(newPath);
+
         unknownLength = false;
         enqueued = false;
         running = false;
 
         deleteThisFromFile();
         notify(DownloadManagerService.MESSAGE_FINISHED);
+    }
+
+    private void publishFile() {
+        OutputStream writer;
+        Uri from = this.storage.getUri();
+        ContentResolver resolver = this.storage.getContext().getContentResolver();
+        ContentValues to = new ContentValues();
+        to.put(MediaStore.MediaColumns.DISPLAY_NAME, this.storage.getName());
+        to.put(MediaStore.MediaColumns.MIME_TYPE, this.storage.getType());
+        to.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+        Uri handle = resolver.insert(MediaStore.Files.getContentUri("external"), to);
+        try {
+            InputStream in = resolver.openInputStream(from);
+            writer = resolver.openOutputStream(handle);
+            byte[] data = new byte[1024*1024];
+            int len;
+            while ((len = in.read(data)) > 0) {
+                writer.write(data, 0, len);
+            }
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void notifyPostProcessing(int state) {

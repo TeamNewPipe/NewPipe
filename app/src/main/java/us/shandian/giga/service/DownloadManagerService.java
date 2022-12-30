@@ -497,26 +497,6 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
-    private StoredDirectoryHelper loadMainStorage(@StringRes int prefKey, String tag) {
-        String path = mPrefs.getString(getString(prefKey), null);
-
-        if (path == null || path.isEmpty()) return null;
-
-        if (path.charAt(0) == File.separatorChar) {
-            Log.i(TAG, "Old save path style present: " + path);
-            path = "";
-            mPrefs.edit().putString(getString(prefKey), "").apply();
-        }
-
-        try {
-            return new StoredDirectoryHelper(this, Uri.parse(path), tag);
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to load the storage of " + tag + " from " + path, e);
-            Toast.makeText(this, R.string.no_available_dir, Toast.LENGTH_LONG).show();
-        }
-
-        return null;
-    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Wrappers for DownloadManager
