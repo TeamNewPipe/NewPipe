@@ -14,6 +14,7 @@ import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
 import static org.schabi.newpipe.util.NavigationHelper.playWithKore;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -617,6 +618,7 @@ public final class VideoDetailFragment
     }
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     protected void initListeners() {
         super.initListeners();
 
@@ -624,16 +626,12 @@ public final class VideoDetailFragment
         setOnLongClickListeners();
 
         final View.OnTouchListener controlsTouchListener = (view, motionEvent) -> {
-            if (!PreferenceManager.getDefaultSharedPreferences(activity)
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN
+                && PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-                return false;
-            }
 
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
-                        0, () ->
-                                animate(binding.touchAppendDetail, false, 1500,
-                                        AnimationType.ALPHA, 1000));
+                animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA, 0, () ->
+                        animate(binding.touchAppendDetail, false, 1500, AnimationType.ALPHA, 1000));
             }
             return false;
         };
