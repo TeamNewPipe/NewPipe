@@ -230,24 +230,24 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
             case R.id.menu_item_share:
-                if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(), name, url,
-                            currentInfo.getThumbnailUrl());
-                }
+                ShareUtils.shareText(requireContext(), name, url,
+                        currentInfo == null ? null : currentInfo.getThumbnailUrl());
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
                 break;
             case R.id.menu_item_append_playlist:
-                disposables.add(PlaylistDialog.createCorrespondingDialog(
-                        getContext(),
-                        getPlayQueue()
-                                .getStreams()
-                                .stream()
-                                .map(StreamEntity::new)
-                                .collect(Collectors.toList()),
-                        dialog -> dialog.show(getFM(), TAG)
-                ));
+                if (currentInfo != null) {
+                    disposables.add(PlaylistDialog.createCorrespondingDialog(
+                            getContext(),
+                            getPlayQueue()
+                                    .getStreams()
+                                    .stream()
+                                    .map(StreamEntity::new)
+                                    .collect(Collectors.toList()),
+                            dialog -> dialog.show(getFM(), TAG)
+                    ));
+                }
                 break;
             default:
                 return super.onOptionsItemSelected(item);
