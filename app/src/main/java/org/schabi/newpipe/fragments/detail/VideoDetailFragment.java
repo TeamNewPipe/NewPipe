@@ -10,8 +10,11 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfi
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
+import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
+import static org.schabi.newpipe.util.NavigationHelper.playWithKore;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -119,6 +122,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -129,9 +133,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
-        SharedPreferences.OnSharedPreferenceChangeListener,
-        View.OnClickListener,
-        View.OnLongClickListener,
         PlayerServiceExtendedEventListener,
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
@@ -166,6 +167,20 @@ public final class VideoDetailFragment
     @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
+
+    private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
+            (sharedPreferences, key) -> {
+                if (key.equals(getString(R.string.show_comments_key))) {
+                    showComments = sharedPreferences.getBoolean(key, true);
+                    tabSettingsChanged = true;
+                } else if (key.equals(getString(R.string.show_next_video_key))) {
+                    showRelatedItems = sharedPreferences.getBoolean(key, true);
+                    tabSettingsChanged = true;
+                } else if (key.equals(getString(R.string.show_description_key))) {
+                    showDescription = sharedPreferences.getBoolean(key, true);
+                    tabSettingsChanged = true;
+                }
+            };
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -291,7 +306,7 @@ public final class VideoDetailFragment
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true);
         selectedTabTag = prefs.getString(
                 getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
-        prefs.registerOnSharedPreferenceChangeListener(this);
+        prefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
         setupBroadcastReceiver();
 
@@ -378,7 +393,7 @@ public final class VideoDetailFragment
         }
 
         PreferenceManager.getDefaultSharedPreferences(activity)
-                .unregisterOnSharedPreferenceChangeListener(this);
+                .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
         activity.unregisterReceiver(broadcastReceiver);
         activity.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
@@ -424,130 +439,129 @@ public final class VideoDetailFragment
         }
     }
 
-    @Override
-    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
-                                          final String key) {
-        if (key.equals(getString(R.string.show_comments_key))) {
-            showComments = sharedPreferences.getBoolean(key, true);
-            tabSettingsChanged = true;
-        } else if (key.equals(getString(R.string.show_next_video_key))) {
-            showRelatedItems = sharedPreferences.getBoolean(key, true);
-            tabSettingsChanged = true;
-        } else if (key.equals(getString(R.string.show_description_key))) {
-            showDescription = sharedPreferences.getBoolean(key, true);
-            tabSettingsChanged = true;
-        }
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // OnClick
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.detail_controls_background:
-                openBackgroundPlayer(false);
-                break;
-            case R.id.detail_controls_popup:
-                openPopupPlayer(false);
-                break;
-            case R.id.detail_controls_playlist_append:
-                if (getFM() != null && currentInfo != null) {
-                    disposables.add(
-                            PlaylistDialog.createCorrespondingDialog(
-                                    getContext(),
-                                    List.of(new StreamEntity(currentInfo)),
-                                    dialog -> dialog.show(getFM(), TAG)
-                            )
-                    );
-                }
-                break;
-            case R.id.detail_controls_download:
-                if (PermissionHelper.checkStoragePermissions(activity,
-                        PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                    this.openDownloadDialog();
-                }
-                break;
-            case R.id.detail_controls_share:
-                if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(), currentInfo.getName(),
-                            currentInfo.getUrl(), currentInfo.getThumbnailUrl());
-                }
-                break;
-            case R.id.detail_controls_open_in_browser:
-                if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getUrl());
-                }
-                break;
-            case R.id.detail_controls_play_with_kodi:
-                if (currentInfo != null) {
-                    try {
-                        NavigationHelper.playWithKore(
-                                requireContext(), Uri.parse(currentInfo.getUrl()));
-                    } catch (final Exception e) {
-                        if (DEBUG) {
-                            Log.i(TAG, "Failed to start kore", e);
-                        }
-                        KoreUtils.showInstallKoreDialog(requireContext());
-                    }
-                }
-                break;
-            case R.id.detail_uploader_root_layout:
-                if (isEmpty(currentInfo.getSubChannelUrl())) {
-                    if (!isEmpty(currentInfo.getUploaderUrl())) {
-                        openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
-                    }
-
-                    if (DEBUG) {
-                        Log.i(TAG, "Can't open sub-channel because we got no channel URL");
-                    }
-                } else {
-                    openChannel(currentInfo.getSubChannelUrl(),
-                            currentInfo.getSubChannelName());
-                }
-                break;
-            case R.id.detail_thumbnail_root_layout:
-                // make sure not to open any player if there is nothing currently loaded!
-                // FIXME removing this `if` causes the player service to start correctly, then stop,
-                //  then restart badly without calling `startForeground()`, causing a crash when
-                //  later closing the detail fragment
-                if (currentInfo != null) {
-                    autoPlayEnabled = true; // forcefully start playing
-                    // FIXME Workaround #7427
-                    if (isPlayerAvailable()) {
-                        player.setRecovery();
-                    }
-                    openVideoPlayerAutoFullscreen();
-                }
-                break;
-            case R.id.detail_title_root_layout:
-                toggleTitleAndSecondaryControls();
-                break;
-            case R.id.overlay_thumbnail:
-            case R.id.overlay_metadata_layout:
-            case R.id.overlay_buttons_layout:
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                break;
-            case R.id.overlay_play_queue_button:
-                NavigationHelper.openPlayQueue(getContext());
-                break;
-            case R.id.overlay_play_pause_button:
-                if (playerIsNotStopped()) {
-                    player.playPause();
-                    player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
-                    showSystemUi();
-                } else {
-                    autoPlayEnabled = true; // forcefully start playing
-                    openVideoPlayer(false);
+    private void setOnClickListeners() {
+        binding.detailTitleRootLayout.setOnClickListener(v -> toggleTitleAndSecondaryControls());
+        binding.detailUploaderRootLayout.setOnClickListener(makeOnClickListener(info -> {
+            if (isEmpty(info.getSubChannelUrl())) {
+                if (!isEmpty(info.getUploaderUrl())) {
+                    openChannel(info.getUploaderUrl(), info.getUploaderName());
                 }
 
-                setOverlayPlayPauseImage(isPlayerAvailable() && player.isPlaying());
-                break;
-            case R.id.overlay_close_button:
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                break;
+                if (DEBUG) {
+                    Log.i(TAG, "Can't open sub-channel because we got no channel URL");
+                }
+            } else {
+                openChannel(info.getSubChannelUrl(), info.getSubChannelName());
+            }
+        }));
+        binding.detailThumbnailRootLayout.setOnClickListener(v -> {
+            autoPlayEnabled = true; // forcefully start playing
+            // FIXME Workaround #7427
+            if (isPlayerAvailable()) {
+                player.setRecovery();
+            }
+            openVideoPlayerAutoFullscreen();
+        });
+
+        binding.detailControlsBackground.setOnClickListener(v -> openBackgroundPlayer(false));
+        binding.detailControlsPopup.setOnClickListener(v -> openPopupPlayer(false));
+        binding.detailControlsPlaylistAppend.setOnClickListener(makeOnClickListener(info ->
+                disposables.add(PlaylistDialog.createCorrespondingDialog(requireContext(),
+                        List.of(new StreamEntity(info)),
+                        dialog -> dialog.show(getParentFragmentManager(), TAG)))));
+        binding.detailControlsDownload.setOnClickListener(v -> {
+            if (PermissionHelper.checkStoragePermissions(activity,
+                    PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                openDownloadDialog();
+            }
+        });
+        binding.detailControlsShare.setOnClickListener(makeOnClickListener(info ->
+                ShareUtils.shareText(requireContext(), info.getName(), info.getUrl(),
+                        info.getThumbnailUrl())));
+        binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
+                ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
+        binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info -> {
+            try {
+                playWithKore(requireContext(), Uri.parse(info.getUrl()));
+            } catch (final Exception e) {
+                if (DEBUG) {
+                    Log.i(TAG, "Failed to start kore", e);
+                }
+                KoreUtils.showInstallKoreDialog(requireContext());
+            }
+        }));
+        if (DEBUG) {
+            binding.detailControlsCrashThePlayer.setOnClickListener(v ->
+                    VideoDetailPlayerCrasher.onCrashThePlayer(requireContext(), player));
         }
+
+        final View.OnClickListener overlayListener = v -> bottomSheetBehavior
+                .setState(BottomSheetBehavior.STATE_EXPANDED);
+        binding.overlayThumbnail.setOnClickListener(overlayListener);
+        binding.overlayMetadataLayout.setOnClickListener(overlayListener);
+        binding.overlayButtonsLayout.setOnClickListener(overlayListener);
+        binding.overlayCloseButton.setOnClickListener(v -> bottomSheetBehavior
+                .setState(BottomSheetBehavior.STATE_HIDDEN));
+        binding.overlayPlayQueueButton.setOnClickListener(v -> openPlayQueue(requireContext()));
+        binding.overlayPlayPauseButton.setOnClickListener(v -> {
+            if (playerIsNotStopped()) {
+                player.playPause();
+                player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
+                showSystemUi();
+            } else {
+                autoPlayEnabled = true; // forcefully start playing
+                openVideoPlayer(false);
+            }
+
+            setOverlayPlayPauseImage(isPlayerAvailable() && player.isPlaying());
+        });
+    }
+
+    private View.OnClickListener makeOnClickListener(final Consumer<StreamInfo> consumer) {
+        return v -> {
+            if (!isLoading.get() && currentInfo != null) {
+                consumer.accept(currentInfo);
+            }
+        };
+    }
+
+    private void setOnLongClickListeners() {
+        binding.detailTitleRootLayout.setOnLongClickListener(makeOnLongClickListener(info ->
+                ShareUtils.copyToClipboard(requireContext(),
+                        binding.detailVideoTitleView.getText().toString())));
+        binding.detailUploaderRootLayout.setOnLongClickListener(makeOnLongClickListener(info -> {
+            if (isEmpty(info.getSubChannelUrl())) {
+                Log.w(TAG, "Can't open parent channel because we got no parent channel URL");
+            } else {
+                openChannel(info.getUploaderUrl(), info.getUploaderName());
+            }
+        }));
+
+        binding.detailControlsBackground.setOnLongClickListener(makeOnLongClickListener(info ->
+                openBackgroundPlayer(true)));
+        binding.detailControlsPopup.setOnLongClickListener(makeOnLongClickListener(info ->
+                openPopupPlayer(true)));
+        binding.detailControlsDownload.setOnLongClickListener(makeOnLongClickListener(info ->
+                NavigationHelper.openDownloads(activity)));
+
+        final View.OnLongClickListener overlayListener = makeOnLongClickListener(info ->
+                openChannel(info.getUploaderUrl(), info.getUploaderName()));
+        binding.overlayThumbnail.setOnLongClickListener(overlayListener);
+        binding.overlayMetadataLayout.setOnLongClickListener(overlayListener);
+    }
+
+    private View.OnLongClickListener makeOnLongClickListener(final Consumer<StreamInfo> consumer) {
+        return v -> {
+            if (isLoading.get() || currentInfo == null) {
+                return false;
+            }
+            consumer.accept(currentInfo);
+            return true;
+        };
     }
 
     private void openChannel(final String subChannelUrl, final String subChannelName) {
@@ -557,43 +571,6 @@ public final class VideoDetailFragment
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
         }
-    }
-
-    @Override
-    public boolean onLongClick(final View v) {
-        if (isLoading.get() || currentInfo == null) {
-            return false;
-        }
-
-        switch (v.getId()) {
-            case R.id.detail_controls_background:
-                openBackgroundPlayer(true);
-                break;
-            case R.id.detail_controls_popup:
-                openPopupPlayer(true);
-                break;
-            case R.id.detail_controls_download:
-                NavigationHelper.openDownloads(activity);
-                break;
-            case R.id.overlay_thumbnail:
-            case R.id.overlay_metadata_layout:
-                openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
-                break;
-            case R.id.detail_uploader_root_layout:
-                if (isEmpty(currentInfo.getSubChannelUrl())) {
-                    Log.w(TAG,
-                            "Can't open parent channel because we got no parent channel URL");
-                } else {
-                    openChannel(currentInfo.getUploaderUrl(), currentInfo.getUploaderName());
-                }
-                break;
-            case R.id.detail_title_root_layout:
-                ShareUtils.copyToClipboard(requireContext(),
-                        binding.detailVideoTitleView.getText().toString());
-                break;
-        }
-
-        return true;
     }
 
     private void toggleTitleAndSecondaryControls() {
@@ -615,11 +592,6 @@ public final class VideoDetailFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
-        super.onViewCreated(rootView, savedInstanceState);
-    }
 
     @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
@@ -646,44 +618,25 @@ public final class VideoDetailFragment
     }
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     protected void initListeners() {
         super.initListeners();
 
-        binding.detailTitleRootLayout.setOnClickListener(this);
-        binding.detailTitleRootLayout.setOnLongClickListener(this);
-        binding.detailUploaderRootLayout.setOnClickListener(this);
-        binding.detailUploaderRootLayout.setOnLongClickListener(this);
-        binding.detailThumbnailRootLayout.setOnClickListener(this);
+        setOnClickListeners();
+        setOnLongClickListeners();
 
-        binding.detailControlsBackground.setOnClickListener(this);
-        binding.detailControlsBackground.setOnLongClickListener(this);
-        binding.detailControlsPopup.setOnClickListener(this);
-        binding.detailControlsPopup.setOnLongClickListener(this);
-        binding.detailControlsPlaylistAppend.setOnClickListener(this);
-        binding.detailControlsDownload.setOnClickListener(this);
-        binding.detailControlsDownload.setOnLongClickListener(this);
-        binding.detailControlsShare.setOnClickListener(this);
-        binding.detailControlsOpenInBrowser.setOnClickListener(this);
-        binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        if (DEBUG) {
-            binding.detailControlsCrashThePlayer.setOnClickListener(
-                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(
-                            this.getContext(),
-                            this.player)
-            );
-        }
+        final View.OnTouchListener controlsTouchListener = (view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN
+                && PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
 
-        binding.overlayThumbnail.setOnClickListener(this);
-        binding.overlayThumbnail.setOnLongClickListener(this);
-        binding.overlayMetadataLayout.setOnClickListener(this);
-        binding.overlayMetadataLayout.setOnLongClickListener(this);
-        binding.overlayButtonsLayout.setOnClickListener(this);
-        binding.overlayPlayQueueButton.setOnClickListener(this);
-        binding.overlayCloseButton.setOnClickListener(this);
-        binding.overlayPlayPauseButton.setOnClickListener(this);
-
-        binding.detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
-        binding.detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+                animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA, 0, () ->
+                        animate(binding.touchAppendDetail, false, 1500, AnimationType.ALPHA, 1000));
+            }
+            return false;
+        };
+        binding.detailControlsBackground.setOnTouchListener(controlsTouchListener);
+        binding.detailControlsPopup.setOnTouchListener(controlsTouchListener);
 
         binding.appBarLayout.addOnOffsetChangedListener((layout, verticalOffset) -> {
             // prevent useless updates to tab layout visibility if nothing changed
@@ -700,23 +653,6 @@ public final class VideoDetailFragment
         } else {
             playerHolder.startService(false, this);
         }
-    }
-
-    private View.OnTouchListener getOnControlsTouchListener() {
-        return (view, motionEvent) -> {
-            if (!PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-                return false;
-            }
-
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
-                        0, () ->
-                        animate(binding.touchAppendDetail, false, 1500,
-                                AnimationType.ALPHA, 1000));
-            }
-            return false;
-        };
     }
 
     private void initThumbnailViews(@NonNull final StreamInfo info) {
