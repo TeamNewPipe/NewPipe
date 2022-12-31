@@ -523,7 +523,7 @@ public final class VideoDetailFragment
 
     private View.OnClickListener makeOnClickListener(final Consumer<StreamInfo> consumer) {
         return v -> {
-            if (currentInfo != null) {
+            if (!isLoading.get() && currentInfo != null) {
                 consumer.accept(currentInfo);
             }
         };
