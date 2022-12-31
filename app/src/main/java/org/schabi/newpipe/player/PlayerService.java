@@ -86,8 +86,6 @@ public final class PlayerService extends Service {
         }
 
         if (!player.exoPlayerIsNull()) {
-            player.saveWasPlaying();
-
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth

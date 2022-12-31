@@ -618,11 +618,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             player.changeState(STATE_PAUSED_SEEK);
         }
 
-        player.saveWasPlaying();
-        if (player.isPlaying()) {
-            player.getExoPlayer().pause();
-        }
-
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
@@ -637,7 +632,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
 
         player.seekTo(seekBar.getProgress());
-        if (player.wasPlaying() || player.getExoPlayer().getDuration() == seekBar.getProgress()) {
+        if (player.getExoPlayer().getDuration() == seekBar.getProgress()) {
             player.getExoPlayer().play();
         }
 
@@ -651,9 +646,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         if (!player.isProgressLoopRunning()) {
             player.startProgressLoop();
         }
-        if (player.wasPlaying()) {
-            showControlsThenHide();
-        }
+
+        showControlsThenHide();
     }
     //endregion
 
@@ -1188,8 +1182,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             binding.qualityTextView.setText(MediaFormat.getNameById(videoStream.getFormatId())
                     + " " + videoStream.getResolution());
         }
-
-        player.saveWasPlaying();
     }
 
     /**
