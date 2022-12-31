@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
         minSdk 21
-        targetSdk 29
+        targetSdk 33
         versionCode 991
         versionName "0.24.1"
 
@@ -107,7 +107,7 @@ ext {
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.5'
+    leakCanaryVersion = '2.9.1'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
     assertJVersion = '3.23.1'

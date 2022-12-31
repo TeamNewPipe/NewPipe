@@ -157,9 +157,12 @@ public class MainActivity extends AppCompatActivity {
         }
         openMiniPlayerUponPlayerStarted();
 
-        // Schedule worker for checking for new streams and creating corresponding notifications
-        // if this is enabled by the user.
-        NotificationWorker.initialize(this);
+        if (PermissionHelper.checkPostNotificationsPermission(this,
+                PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE)) {
+            // Schedule worker for checking for new streams and creating corresponding notifications
+            // if this is enabled by the user.
+            NotificationWorker.initialize(this);
+        }
     }
 
     @Override
@@ -598,6 +601,9 @@ public class MainActivity extends AppCompatActivity {
                 if (fragment instanceof VideoDetailFragment) {
                     ((VideoDetailFragment) fragment).openDownloadDialog();
                 }
+                break;
+            case PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE:
+                NotificationWorker.initialize(this);
                 break;
         }
     }
