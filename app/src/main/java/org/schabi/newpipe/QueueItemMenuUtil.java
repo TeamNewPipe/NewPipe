@@ -8,7 +8,6 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.PopupMenu;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -79,12 +78,11 @@ public final class QueueItemMenuUtil {
                             item.getThumbnailUrl());
                     return true;
                 case R.id.menu_item_download:
-                    fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(),
-                            item.getUrl(), info -> {
+                    fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
+                            info -> {
                                 final DownloadDialog downloadDialog = new DownloadDialog(context,
                                         info);
-                                downloadDialog.show(((AppCompatActivity) context)
-                                        .getSupportFragmentManager(), "downloadDialog");
+                                downloadDialog.show(fragmentManager, "downloadDialog");
                             });
                     return true;
             }
