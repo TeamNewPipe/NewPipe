@@ -48,6 +48,8 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_playlist_play"
+            android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:text="@string/play_all"
             android:textColor="?attr/colorAccent"
