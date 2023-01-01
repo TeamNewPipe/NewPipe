@@ -1666,8 +1666,9 @@ public final class VideoDetailFragment
 
         binding.detailControlsDownload.setVisibility(
                 StreamTypeUtil.isLiveStream(info.getStreamType()) ? View.GONE : View.VISIBLE);
-        binding.detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
-                ? View.GONE : View.VISIBLE);
+        binding.detailControlsBackground.setVisibility(
+                info.getAudioStreams().isEmpty() && info.getVideoStreams().isEmpty()
+                        ? View.GONE : View.VISIBLE);
 
         final boolean noVideoStreams =
                 info.getVideoStreams().isEmpty() && info.getVideoOnlyStreams().isEmpty();
