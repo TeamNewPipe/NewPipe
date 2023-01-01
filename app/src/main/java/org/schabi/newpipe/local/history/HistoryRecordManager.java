@@ -186,7 +186,7 @@ public class HistoryRecordManager {
     }
 
     ///////////////////////////////////////////////////////
-    // Search History
+    // Search History df
     ///////////////////////////////////////////////////////
 
     public Maybe<Long> onSearched(final int serviceId, final String search) {
