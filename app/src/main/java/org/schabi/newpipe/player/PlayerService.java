@@ -28,6 +28,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
+
+import org.schabi.newpipe.player.mediabrowser.MediaBrowserConnector;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -46,6 +49,9 @@ public final class PlayerService extends Service {
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
 
 
+    private MediaBrowserConnector mediaBrowserConnector;
+
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -58,7 +64,13 @@ public final class PlayerService extends Service {
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
-        player = new Player(this);
+        mediaBrowserConnector = new MediaBrowserConnector(this);
+    }
+
+    private void initializePlayer() {
+        if (player == null) {
+            player = new Player(this);
+        }
     }
 
     @Override
@@ -75,6 +87,7 @@ public final class PlayerService extends Service {
             return START_NOT_STICKY;
         }
 
+        initializePlayer();
         player.handleIntent(intent);
         player.UIs().get(MediaSessionPlayerUi.class)
                 .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
@@ -112,6 +125,10 @@ public final class PlayerService extends Service {
             Log.d(TAG, "destroy() called");
         }
         cleanup();
+        if (mediaBrowserConnector != null) {
+            mediaBrowserConnector.release();
+            mediaBrowserConnector = null;
+        }
     }
 
     private void cleanup() {
@@ -136,6 +153,9 @@ public final class PlayerService extends Service {
         return mBinder;
     }
 
+    public MediaSessionConnector getSessionConnector() {
+        return mediaBrowserConnector.getSessionConnector();
+    }
     public static class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 
