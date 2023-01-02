@@ -452,7 +452,7 @@
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Auto-generated</string>
     <!-- Caption Settings -->
-    <string name="caption_file_name">-%s</string>
+    <string name="caption_file_name">%1$s-%2$s</string>
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
     <!-- Debug Settings -->

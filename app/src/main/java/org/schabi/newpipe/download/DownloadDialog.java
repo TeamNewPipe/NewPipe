@@ -568,16 +568,16 @@ public class DownloadDialog extends DialogFragment
     private void onItemSelectedSetFileName() {
         final String setSubtitleLanguageCode = subtitleStreamsAdapter.getItem(selectedSubtitleIndex)
                 .getLanguageTag();
+        final String fileName = FilenameUtils.createFilename(getContext(),
+                currentInfo.getName());
         switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
             case R.id.video_button:
-                dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
-                        currentInfo.getName()));
+                dialogBinding.fileName.setText(fileName);
                 break;
             case R.id.subtitle_button:
-                dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
-                currentInfo.getName() + getString(
-                        R.string.caption_file_name, setSubtitleLanguageCode)));
+                dialogBinding.fileName.setText(fileName + getString(
+                        R.string.caption_file_name, fileName, setSubtitleLanguageCode));
                 break;
         }
     }
