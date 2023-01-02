@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.extractor.utils.Utils.decodeUrlUtf8;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
@@ -31,8 +32,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
@@ -125,7 +124,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            rawUri = URLDecoder.decode(rawUri, StandardCharsets.UTF_8.name());
+            rawUri = decodeUrlUtf8(rawUri);
         } catch (final UnsupportedEncodingException e) {
             // nothing to do
         }

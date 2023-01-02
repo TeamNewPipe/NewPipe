@@ -20,14 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
+import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -188,7 +188,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
             try {
                 String abuseCookie = url.substring(abuseStart + 13, abuseEnd);
-                abuseCookie = URLDecoder.decode(abuseCookie, "UTF-8");
+                abuseCookie = Utils.decodeUrlUtf8(abuseCookie);
                 handleCookies(abuseCookie);
             } catch (UnsupportedEncodingException | StringIndexOutOfBoundsException e) {
                 if (MainActivity.DEBUG) {
