@@ -28,6 +28,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
+
+import org.schabi.newpipe.player.mediabrowser.MediaBrowserConnector;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -47,6 +50,9 @@ public final class PlayerService extends Service {
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
 
 
+    private MediaBrowserConnector mediaBrowserConnector;
+
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -59,15 +65,21 @@ public final class PlayerService extends Service {
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
-        player = new Player(this);
-        /*
-        Create the player notification and start immediately the service in foreground,
-        otherwise if nothing is played or initializing the player and its components (especially
-        loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
-        service would never be put in the foreground while we said to the system we would do so
-         */
-        player.UIs().get(NotificationPlayerUi.class)
-                .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        mediaBrowserConnector = new MediaBrowserConnector(this);
+    }
+
+    private void initializePlayer() {
+        if (player == null) {
+            player = new Player(this);
+            /*
+            Create the player notification and start immediately the service in foreground,
+            otherwise if nothing is played or initializing the player and its components (especially
+            loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
+            service would never be put in the foreground while we said to the system we would do so
+             */
+            player.UIs().get(NotificationPlayerUi.class)
+                    .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        }
     }
 
     @Override
@@ -104,11 +116,10 @@ public final class PlayerService extends Service {
             return START_NOT_STICKY;
         }
 
-        if (player != null) {
-            player.handleIntent(intent);
-            player.UIs().get(MediaSessionPlayerUi.class)
-                    .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
-        }
+        initializePlayer();
+        player.handleIntent(intent);
+        player.UIs().get(MediaSessionPlayerUi.class)
+                .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
 
         return START_NOT_STICKY;
     }
@@ -143,6 +154,10 @@ public final class PlayerService extends Service {
             Log.d(TAG, "destroy() called");
         }
         cleanup();
+        if (mediaBrowserConnector != null) {
+            mediaBrowserConnector.release();
+            mediaBrowserConnector = null;
+        }
     }
 
     private void cleanup() {
@@ -167,6 +182,9 @@ public final class PlayerService extends Service {
         return mBinder;
     }
 
+    public MediaSessionConnector getSessionConnector() {
+        return mediaBrowserConnector.getSessionConnector();
+    }
     public static class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 
