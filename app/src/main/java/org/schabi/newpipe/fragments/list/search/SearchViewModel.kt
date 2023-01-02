@@ -23,8 +23,9 @@ class SearchViewModel(
     private val historyRecordManager = HistoryRecordManager(application)
     private val suggestionPublisher = PublishSubject.create<String>()
 
-    private val suggestionMutableLiveData = MutableLiveData<SuggestionItemResponse>()
-    val suggestionLiveData: LiveData<SuggestionItemResponse> get() = suggestionMutableLiveData
+    private val suggestionMutableLiveData = MutableLiveData<Notification<List<SuggestionItem>>>()
+    val suggestionLiveData: LiveData<Notification<List<SuggestionItem>>>
+        get() = suggestionMutableLiveData
 
     private val suggestionDisposable = suggestionPublisher
         .startWithItem("")
@@ -49,9 +50,9 @@ class SearchViewModel(
             }
         }
         .subscribe({
-            suggestionMutableLiveData.postValue(SuggestionItemSuccess(it))
+            suggestionMutableLiveData.postValue(it)
         }) {
-            suggestionMutableLiveData.postValue(SuggestionItemError(it))
+            suggestionMutableLiveData.postValue(Notification.createOnError(it))
         }
 
     override fun onCleared() {
@@ -98,11 +99,3 @@ class SearchViewModel(
         }
     }
 }
-
-sealed class SuggestionItemResponse
-
-class SuggestionItemSuccess(
-    val notification: Notification<List<SuggestionItem>>
-) : SuggestionItemResponse()
-
-class SuggestionItemError(val throwable: Throwable) : SuggestionItemResponse()

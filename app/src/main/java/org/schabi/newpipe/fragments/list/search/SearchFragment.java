@@ -323,23 +323,17 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 onSuggestionItemSwiped(viewHolder);
             }
         }).attachToRecyclerView(searchBinding.suggestionsList);
+
         searchViewModel.getSuggestionLiveData().observe(this, response -> {
-            if (response instanceof SuggestionItemSuccess) {
-                final var listNotification = ((SuggestionItemSuccess) response).getNotification();
-                if (listNotification.isOnNext()) {
-                    if (listNotification.getValue() != null) {
-                        handleSuggestions(listNotification.getValue());
-                    }
-                } else if (listNotification.isOnError()
-                        && listNotification.getError() != null
-                        && !ExceptionUtils.isInterruptedCaused(listNotification.getError())) {
-                    showSnackBarError(new ErrorInfo(listNotification.getError(),
-                            UserAction.GET_SUGGESTIONS, searchString, serviceId));
+            if (response.isOnNext()) {
+                if (response.getValue() != null) {
+                    handleSuggestions(response.getValue());
                 }
-            } else if (response instanceof SuggestionItemError) {
-                final var throwable = ((SuggestionItemError) response).getThrowable();
-                showSnackBarError(new ErrorInfo(throwable, UserAction.GET_SUGGESTIONS, searchString,
-                        serviceId));
+            } else if (response.isOnError()
+                    && response.getError() != null
+                    && !ExceptionUtils.isInterruptedCaused(response.getError())) {
+                showSnackBarError(new ErrorInfo(response.getError(),
+                        UserAction.GET_SUGGESTIONS, searchString, serviceId));
             }
         });
 
