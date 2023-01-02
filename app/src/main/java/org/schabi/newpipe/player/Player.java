@@ -216,7 +216,6 @@ public final class Player implements PlaybackListener, Listener {
     // minimized to background but will resume automatically to the original player type
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
-    private boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // UIs, listeners and disposables
@@ -918,13 +917,6 @@ public final class Player implements PlaybackListener, Listener {
                         error -> Log.e(TAG, "Progress update failure: ", error));
     }
 
-    public void saveWasPlaying() {
-        this.wasPlaying = getPlayWhenReady();
-    }
-
-    public boolean wasPlaying() {
-        return wasPlaying;
-    }
     //endregion
 
 

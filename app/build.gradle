@@ -15,7 +15,7 @@ android {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
         minSdk 21
-        targetSdk 29
+        targetSdk 33
         versionCode 991
         versionName "0.24.1"
 
@@ -107,7 +107,7 @@ ext {
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.5'
+    leakCanaryVersion = '2.9.1'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
     assertJVersion = '3.23.1'
@@ -179,7 +179,7 @@ sonar {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.6'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.8'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
@@ -259,14 +259,14 @@ dependencies {
     implementation "io.noties.markwon:linkify:${markwonVersion}"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.9.3"
+    implementation "ch.acra:acra-core:5.9.7"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
-    implementation "io.reactivex.rxjava3:rxjava:3.0.13"
-    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.1.5"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 

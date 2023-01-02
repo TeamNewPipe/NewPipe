@@ -84,11 +84,11 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class VideoPlayerUi extends PlayerUi
-        implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, View.OnLongClickListener,
+public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBarChangeListener,
         PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     private static final String TAG = VideoPlayerUi.class.getSimpleName();
 
@@ -132,9 +132,11 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     private GestureDetector gestureDetector;
     private BasePlayerGestureListener playerGestureListener;
-    @Nullable private View.OnLayoutChangeListener onLayoutChangeListener = null;
+    @Nullable
+    private View.OnLayoutChangeListener onLayoutChangeListener = null;
 
-    @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
+    @NonNull
+    private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
             new SeekbarPreviewThumbnailHolder();
 
 
@@ -187,13 +189,13 @@ public abstract class VideoPlayerUi extends PlayerUi
     abstract BasePlayerGestureListener buildGestureListener();
 
     protected void initListeners() {
-        binding.qualityTextView.setOnClickListener(this);
-        binding.playbackSpeed.setOnClickListener(this);
+        binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked));
+        binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.captionTextView.setOnClickListener(this);
-        binding.resizeTextView.setOnClickListener(this);
-        binding.playbackLiveSync.setOnClickListener(this);
+        binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
+        binding.resizeTextView.setOnClickListener(makeOnClickListener(this::onResizeClicked));
+        binding.playbackLiveSync.setOnClickListener(makeOnClickListener(player::seekToDefault));
 
         playerGestureListener = buildGestureListener();
         gestureDetector = new GestureDetector(context, playerGestureListener);
@@ -202,20 +204,36 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
         binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
 
-        binding.playPauseButton.setOnClickListener(this);
-        binding.playPreviousButton.setOnClickListener(this);
-        binding.playNextButton.setOnClickListener(this);
+        binding.playPauseButton.setOnClickListener(makeOnClickListener(player::playPause));
+        binding.playPreviousButton.setOnClickListener(makeOnClickListener(player::playPrevious));
+        binding.playNextButton.setOnClickListener(makeOnClickListener(player::playNext));
 
-        binding.moreOptionsButton.setOnClickListener(this);
-        binding.moreOptionsButton.setOnLongClickListener(this);
-        binding.share.setOnClickListener(this);
-        binding.share.setOnLongClickListener(this);
-        binding.fullScreenButton.setOnClickListener(this);
-        binding.screenRotationButton.setOnClickListener(this);
-        binding.playWithKodi.setOnClickListener(this);
-        binding.openInBrowser.setOnClickListener(this);
-        binding.playerCloseButton.setOnClickListener(this);
-        binding.switchMute.setOnClickListener(this);
+        binding.moreOptionsButton.setOnClickListener(
+                makeOnClickListener(this::onMoreOptionsClicked));
+        binding.share.setOnClickListener(makeOnClickListener(() -> {
+            final PlayQueueItem currentItem = player.getCurrentItem();
+            if (currentItem != null) {
+                ShareUtils.shareText(context, currentItem.getTitle(),
+                        player.getVideoUrlAtCurrentTime(), currentItem.getThumbnailUrl());
+            }
+        }));
+        binding.share.setOnLongClickListener(v -> {
+            ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
+            return true;
+        });
+        binding.fullScreenButton.setOnClickListener(makeOnClickListener(() -> {
+            player.setRecovery();
+            NavigationHelper.playOnMainPlayer(context,
+                    Objects.requireNonNull(player.getPlayQueue()), true);
+        }));
+        binding.playWithKodi.setOnClickListener(makeOnClickListener(this::onPlayWithKodiClicked));
+        binding.openInBrowser.setOnClickListener(makeOnClickListener(this::onOpenInBrowserClicked));
+        binding.playerCloseButton.setOnClickListener(makeOnClickListener(() ->
+                // set package to this app's package to prevent the intent from being seen outside
+                context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
+                        .setPackage(App.PACKAGE_NAME))
+        ));
+        binding.switchMute.setOnClickListener(makeOnClickListener(player::toggleMute));
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
             final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
@@ -229,11 +247,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
         onLayoutChangeListener =
                 (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-                    binding.playerOverlays.setPadding(
-                            v.getPaddingLeft(),
-                            v.getPaddingTop(),
-                            v.getPaddingRight(),
-                            v.getPaddingBottom());
+                    binding.playerOverlays.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
+                            v.getPaddingRight(), v.getPaddingBottom());
 
                     // If we added padding to the fast seek overlay, too, it would not go under the
                     // system ui. Instead we apply negative margins equal to the window insets of
@@ -603,11 +618,6 @@ public abstract class VideoPlayerUi extends PlayerUi
             player.changeState(STATE_PAUSED_SEEK);
         }
 
-        player.saveWasPlaying();
-        if (player.isPlaying()) {
-            player.getExoPlayer().pause();
-        }
-
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
@@ -622,7 +632,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         player.seekTo(seekBar.getProgress());
-        if (player.wasPlaying() || player.getExoPlayer().getDuration() == seekBar.getProgress()) {
+        if (player.getExoPlayer().getDuration() == seekBar.getProgress()) {
             player.getExoPlayer().play();
         }
 
@@ -636,9 +646,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         if (!player.isProgressLoopRunning()) {
             player.startProgressLoop();
         }
-        if (player.wasPlaying()) {
-            showControlsThenHide();
-        }
+
+        showControlsThenHide();
     }
     //endregion
 
@@ -1173,8 +1182,6 @@ public abstract class VideoPlayerUi extends PlayerUi
             binding.qualityTextView.setText(MediaFormat.getNameById(videoStream.getFormatId())
                     + " " + videoStream.getResolution());
         }
-
-        player.saveWasPlaying();
     }
 
     /**
@@ -1326,86 +1333,39 @@ public abstract class VideoPlayerUi extends PlayerUi
     //////////////////////////////////////////////////////////////////////////*/
     //region Click listeners
 
-    @Override
-    public void onClick(final View v) {
-        if (DEBUG) {
-            Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        }
-        if (v.getId() == binding.resizeTextView.getId()) {
-            onResizeClicked();
-        } else if (v.getId() == binding.captionTextView.getId()) {
-            onCaptionClicked();
-        } else if (v.getId() == binding.playbackLiveSync.getId()) {
-            player.seekToDefault();
-        } else if (v.getId() == binding.playPauseButton.getId()) {
-            player.playPause();
-        } else if (v.getId() == binding.playPreviousButton.getId()) {
-            player.playPrevious();
-        } else if (v.getId() == binding.playNextButton.getId()) {
-            player.playNext();
-        } else if (v.getId() == binding.moreOptionsButton.getId()) {
-            onMoreOptionsClicked();
-        } else if (v.getId() == binding.share.getId()) {
-            final PlayQueueItem currentItem = player.getCurrentItem();
-            if (currentItem != null) {
-                ShareUtils.shareText(context, currentItem.getTitle(),
-                        player.getVideoUrlAtCurrentTime(), currentItem.getThumbnailUrl());
-            }
-        } else if (v.getId() == binding.playWithKodi.getId()) {
-            onPlayWithKodiClicked();
-        } else if (v.getId() == binding.openInBrowser.getId()) {
-            onOpenInBrowserClicked();
-        } else if (v.getId() == binding.fullScreenButton.getId()) {
-            player.setRecovery();
-            NavigationHelper.playOnMainPlayer(context, player.getPlayQueue(), true);
-            return;
-        } else if (v.getId() == binding.switchMute.getId()) {
-            player.toggleMute();
-        } else if (v.getId() == binding.playerCloseButton.getId()) {
-            // set package to this app's package to prevent the intent from being seen outside
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
-                    .setPackage(App.PACKAGE_NAME));
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.qualityTextView.getId()) {
-            onQualityClicked();
-        }
-
-        manageControlsAfterOnClick(v);
-    }
-
     /**
-     * Manages the controls after a click occurred on the player UI.
-     * @param v – The view that was clicked
+     * Create on-click listener which manages the player controls after the view on-click action.
+     *
+     * @param runnable The action to be executed.
+     * @return The view click listener.
      */
-    public void manageControlsAfterOnClick(@NonNull final View v) {
-        if (player.getCurrentState() == STATE_COMPLETED) {
-            return;
-        }
+    protected View.OnClickListener makeOnClickListener(@NonNull final Runnable runnable) {
+        return v -> {
+            if (DEBUG) {
+                Log.d(TAG, "onClick() called with: v = [" + v + "]");
+            }
 
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.ALPHA, 0, () -> {
-                    if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
-                        if (v.getId() == binding.playPauseButton.getId()
-                                // Hide controls in fullscreen immediately
-                                || (v.getId() == binding.screenRotationButton.getId()
-                                && isFullscreen())) {
-                            hideControls(0, 0);
-                        } else {
-                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            runnable.run();
+
+            // Manages the player controls after handling the view click.
+            if (player.getCurrentState() == STATE_COMPLETED) {
+                return;
+            }
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.ALPHA, 0, () -> {
+                        if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
+                            if (v == binding.playPauseButton
+                                    // Hide controls in fullscreen immediately
+                                    || (v == binding.screenRotationButton && isFullscreen())) {
+                                hideControls(0, 0);
+                            } else {
+                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                            }
                         }
-                    }
-                });
-    }
-
-    @Override
-    public boolean onLongClick(final View v) {
-        if (v.getId() == binding.share.getId()) {
-            ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
-        }
-        return true;
+                    });
+        };
     }
 
     public boolean onKeyDown(final int keyCode) {

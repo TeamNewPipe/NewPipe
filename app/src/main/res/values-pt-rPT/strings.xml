@@ -493,7 +493,7 @@
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="subscribed_button_title">Subscrito</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
-    <string name="tab_about">Acerca</string>
+    <string name="tab_about">Sobre e FAQ</string>
     <string name="subscribers_count_not_available">Contagem de subscrições indisponível</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir o conteúdo — %s</string>
     <string name="playback_reset">Repor</string>
@@ -716,9 +716,14 @@
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
-    <string name="feed_toggle_hide_played_items">Ocultar artigos vistos</string>
+    <string name="feed_toggle_hide_played_items">Ocultar itens reproduzidos</string>
     <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq_description">Se tem problemas a usar a app, veja estas respostas para perguntas frequentes!</string>
     <string name="faq">Ver no sítio web</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="import_subscriptions_hint">Importar ou exportar subscrições do menu de 3 pontos</string>
+    <string name="app_update_unavailable_toast">Já está a executar a versão mais recente do NewPipe</string>
+    <string name="app_update_available_notification_text">Toque para descarregar %s</string>
+    <string name="sort">Ordenação</string>
 </resources>

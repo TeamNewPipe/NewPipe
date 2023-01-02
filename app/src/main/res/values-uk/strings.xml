@@ -321,7 +321,7 @@
     <string name="import_settings">Імпортувати разом з налаштуваннями\?</string>
     <string name="privacy_policy_title">Політика приватності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
-\nПолітика приватності докладно NewPipe пояснює, які дані надсилаються і зберігаються у звіті про збій програми.</string>
+\nПолітика приватності докладно NewPipe пояснює, які дані надсилаються і зберігаються у звіті про збій.</string>
     <string name="read_privacy_policy">Читати політику приватності</string>
     <string name="start_accept_privacy_policy">З метою дотримання Загального регламенту про захист даних ЄС (General Data Protection Regulation, GDPR) ми звертаємо вашу увагу на політику приватності NewPipe. Будь ласка, прочитайте уважно.
 \nВи маєте прийняти її, аби надіслати нам звіт про помилку.</string>
@@ -578,7 +578,7 @@
     <string name="related_items_tab_description">Повʼязані елементи</string>
     <string name="comments_tab_description">Коментарі</string>
     <string name="settings_category_player_notification_summary">Налаштувати повідомлення про відтворюваний наразі потік</string>
-    <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через іншу програму\?</string>
+    <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через інший застосунок\?</string>
     <string name="auto_queue_toggle">Автоматична черга</string>
     <string name="show_meta_info_title">Показувати метадані</string>
     <string name="show_description_title">Показувати описи</string>
