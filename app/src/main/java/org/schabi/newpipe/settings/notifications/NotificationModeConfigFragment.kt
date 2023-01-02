@@ -27,7 +27,7 @@ class NotificationModeConfigFragment : Fragment() {
     private var _binding: FragmentChannelsNotificationsBinding? = null
     private val binding get() = _binding!!
 
-    private val updaters = CompositeDisposable()
+    private val disposables = CompositeDisposable()
     private var loader: Disposable? = null
     private lateinit var adapter: NotificationModeConfigAdapter
     private lateinit var subscriptionManager: SubscriptionManager
@@ -56,7 +56,7 @@ class NotificationModeConfigFragment : Fragment() {
         adapter = NotificationModeConfigAdapter { position, mode ->
             // Notification mode has been changed via the UI.
             // Now change it in the database.
-            updaters.add(updateNotificationMode(adapter.currentList[position], mode))
+            updateNotificationMode(adapter.currentList[position], mode)
         }
         binding.recyclerView.adapter = adapter
         loader?.dispose()
@@ -73,7 +73,7 @@ class NotificationModeConfigFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        updaters.dispose()
+        disposables.dispose()
         super.onDestroy()
     }
 
@@ -98,16 +98,14 @@ class NotificationModeConfigFragment : Fragment() {
             NotificationMode.DISABLED -> NotificationMode.ENABLED
             else -> NotificationMode.DISABLED
         }
-        val disposables = adapter.currentList.map { updateNotificationMode(it, newMode) }
-        updaters.add(CompositeDisposable(disposables))
+        adapter.currentList.forEach { updateNotificationMode(it, newMode) }
     }
 
-    private fun updateNotificationMode(
-        item: SubscriptionItem,
-        @NotificationMode mode: Int
-    ): Disposable {
-        return subscriptionManager.updateNotificationMode(item.serviceId, item.url, mode)
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+    private fun updateNotificationMode(item: SubscriptionItem, @NotificationMode mode: Int) {
+        disposables.add(
+            subscriptionManager.updateNotificationMode(item.serviceId, item.url, mode)
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        )
     }
 }
