@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player;
 
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_FAILED_RUNTIME_CHECK;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_FILE_NOT_FOUND;
@@ -1391,7 +1392,7 @@ public final class Player implements PlaybackListener, Listener {
     @SuppressWarnings("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
-        Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
+        Log.e(TAG, "ExoPlayer - onPlayerError() called with:" + error.toBundle());
 
         saveStreamProgressState();
         boolean isCatchableException = false;
@@ -1429,6 +1430,24 @@ public final class Player implements PlaybackListener, Listener {
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
+            case ERROR_CODE_FAILED_RUNTIME_CHECK:
+                // Try to handle tunneling related exceptions
+                final String stackTrace = Log.getStackTraceString(error.getCause());
+                Log.d(TAG, "Unexpected PlaybackException! Cause: " + stackTrace);
+                if (trackSelector.getParameters().tunnelingEnabled
+                        && stackTrace.contains("Surface")) {
+                    trackSelector.setParameters(trackSelector.buildUponParameters()
+                            .setTunnelingEnabled(false));
+                    // Reload playback on unexpected errors:
+                    setRecovery();
+                    reloadPlayQueueManager();
+                    break;
+                } else {
+                    Log.d(TAG, "Conditinns for recovery not met. Tunneling enabled?: "
+                            + trackSelector.getParameters().tunnelingEnabled
+                            + ", Surface keyword found?: " + stackTrace.contains("Surface"));
+                }
+                // fall through to default
             default:
                 // API, remote and renderer errors belong here:
                 onPlaybackShutdown();
