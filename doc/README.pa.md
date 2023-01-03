@@ -2,7 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">ਐਂਡਰੌਇਡ ਲਈ ਇੱਕ ਮੁਫਤ ਹਲਕਾ-ਫੁਲਕਾ ਸਟ੍ਰੀਮਿੰਗ ਯੂਟਿਊਬ ਫਰੰਟ-ਐਂਡ।</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-pa.svg" alt="Get it on F-Droid" height=80/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub ਰਿਲੀਜ਼"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
@@ -14,7 +14,7 @@
 </p>
 <hr>
 <p align="center"><a href="#ਐਪ ਕਿਹੋ ਜਿਹੀ ਦਿਸਦੀ ਹੈ">ਐਪ ਕਿਹੋ ਜਿਹੀ ਦਿਸਦੀ ਹੈ</a> &bull; <a href="#ਉਪਲਬਧ ਸੇਵਾਵਾਂ">ਉਪਲਬਧ ਸੇਵਾਵਾਂ</a> &bull; <a href="#ਵਿਸਥਾਰਤ ਵਰਣਨ">ਵਿਸਥਾਰਤ ਵਰਣਨ</a> &bull; <a href="#ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</a> &bull; <a href="#ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ">ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ</a> &bull; <a href="#ਯੋਗਦਾਨ">ਯੋਗਦਾਨ</a> &bull; <a href="#ਦਾਨ">ਦਾਨ</a> &bull; <a href="#ਲਾਈਸੈਂਸ">ਲਾਈਸੈਂਸ</a></p>
-<p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
+<p align="center"><a href="https://newpipe.net">ਵੈੱਬਸਾਈਟ</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
 *ਇਸਨੂੰ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਪੜ੍ਹੋ: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
@@ -43,11 +43,11 @@
 NewPipe ਵਰਤਮਾਨ ਵਿੱਚ ਇਹਨਾਂ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ::
 
 <!-- ਅਸੀਂ ਸੇਵਾ ਦੀਆਂ ਵੈੱਬਸਾਈਟਾਂ ਨਾਲ ਵੱਖਰੇ ਤੌਰ 'ਤੇ ਲਿੰਕ ਕਰਦੇ ਹਾਂ ਤਾਂ ਜੋ ਲੋਕ ਗਲਤੀ ਨਾਲ ਅਜਿਹੀ ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹਣ ਤੋਂ ਬਚ ਸਕਣ ਜੋ ਉਹ ਨਹੀਂ ਚਾਹੁੰਦੇ ਸਨ। -->
-* YouTube ([website](https://www.youtube.com/)) and YouTube Music ([website](https://music.youtube.com/)) ([wiki](https://en.wikipedia.org/wiki/YouTube))
-* PeerTube ([website](https://joinpeertube.org/)) ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਇੰਸਟੈਂਸ (ਇਸ ਦਾ ਮਤਲਬ ਜਾਣਨ ਲਈ ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹੋ!) ([wiki](https://en.wikipedia.org/wiki/PeerTube))
-* Bandcamp ([website](https://bandcamp.com/)) ([wiki](https://en.wikipedia.org/wiki/Bandcamp))
-* SoundCloud ([website](https://soundcloud.com/)) ([wiki](https://en.wikipedia.org/wiki/SoundCloud))
-* media.ccc.de ([website](https://media.ccc.de/)) ([wiki](https://en.wikipedia.org/wiki/Chaos_Computer_Club))
+* YouTube ([ਵੈੱਬਸਾਈਟ](https://www.youtube.com/)) and YouTube Music ([ਵੈੱਬਸਾਈਟ](https://music.youtube.com/)) ([wiki](https://en.wikipedia.org/wiki/YouTube))
+* PeerTube ([ਵੈੱਬਸਾਈਟ](https://joinpeertube.org/)) ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਇੰਸਟੈਂਸ (ਇਸ ਦਾ ਮਤਲਬ ਜਾਣਨ ਲਈ ਵੈੱਬਸਾਈਟ ਖੋਲ੍ਹੋ!) ([wiki](https://en.wikipedia.org/wiki/PeerTube))
+* Bandcamp ([ਵੈੱਬਸਾਈਟ](https://bandcamp.com/)) ([wiki](https://en.wikipedia.org/wiki/Bandcamp))
+* SoundCloud ([ਵੈੱਬਸਾਈਟ](https://soundcloud.com/)) ([wiki](https://en.wikipedia.org/wiki/SoundCloud))
+* media.ccc.de ([ਵੈੱਬਸਾਈਟ](https://media.ccc.de/)) ([wiki](https://en.wikipedia.org/wiki/Chaos_Computer_Club))
 
 ਜਿਵੇਂ ਕਿ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ, NewPipe ਮਲਟੀਪਲ ਵੀਡੀਓ ਅਤੇ ਆਡੀਓ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ। ਹਾਲਾਂਕਿ ਇਹ YouTube ਦੇ ਨਾਲ ਸ਼ੁਰੂ ਹੋਇਆ ਸੀ, ਦੂਜੇ ਲੋਕਾਂ ਨੇ ਸਾਲਾਂ ਦੌਰਾਨ ਹੋਰ ਸੇਵਾਵਾਂ ਜੋੜੀਆਂ ਹਨ, ਜਿਸ ਨਾਲ NewPipe ਨੂੰ ਵੱਧ ਤੋਂ ਵੱਧ ਬਹੁਮੁਖੀ ਬਣਾਇਆ ਗਿਆ ਹੈ!
 
@@ -115,7 +115,7 @@ NewPipe ਤੁਹਾਡੇ ਦੁਆਰਾ ਵਰਤੀ ਜਾ ਰਹੀ ਸੇ�
 </a>
 
 ## ਆਰਥਿਕ ਦਾਨ
-ਜੇਕਰ ਤੁਹਾਨੂੰ NewPipe ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਦਾਨ ਭੇਜਣ ਲਈ ਸੁਆਗਤ ਹੈ। ਅਸੀਂ Liberapay ਨੂੰ ਤਰਜੀਹ ਦਿੰਦੇ ਹਾਂ, ਕਿਉਂਕਿ ਇਹ ਓਪਨ-ਸੋਰਸ ਅਤੇ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਦੋਵੇਂ ਹੈ। ਨਿਊ ਪਾਈਪ ਨੂੰ ਦਾਨ ਕਰਨ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀ ਵੈੱਬਸਾਈਟ[website](https://newpipe.net/donate)'ਤੇ ਜਾਓ.
+ਜੇਕਰ ਤੁਹਾਨੂੰ NewPipe ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਦਾਨ ਭੇਜਣ ਲਈ ਸੁਆਗਤ ਹੈ। ਅਸੀਂ Liberapay ਨੂੰ ਤਰਜੀਹ ਦਿੰਦੇ ਹਾਂ, ਕਿਉਂਕਿ ਇਹ ਓਪਨ-ਸੋਰਸ ਅਤੇ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਦੋਵੇਂ ਹੈ। ਨਿਊ ਪਾਈਪ ਨੂੰ ਦਾਨ ਕਰਨ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀ ਵੈੱਬਸਾਈਟ[ਵੈੱਬਸਾਈਟ](https://newpipe.net/donate)'ਤੇ ਜਾਓ.
 
 <table>
   <tr>
