@@ -2056,6 +2056,7 @@ public final class Player implements PlaybackListener, Listener {
 
             setRecovery();
         }, () -> {
+            // This is executed when the current stream info is not available.
             reloadPlayQueueManager();
             setRecovery();
         });
