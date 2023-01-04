@@ -438,7 +438,7 @@
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
-    <string name="unset_playlist_thumbnail">Unset thumbnail</string>
+    <string name="unset_playlist_thumbnail">Unset permanent thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
     <string name="delete_playlist_prompt">Delete this playlist\?</string>

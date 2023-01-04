@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +32,7 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import icepick.State;
@@ -267,49 +266,30 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        final ArrayAdapter<String> arrayAdapter = getLocalDialogArrayAdapter(isThumbnailPermanent,
-                unsetThumbnail);
-        arrayAdapter.addAll(rename, delete, unsetThumbnail);
+        final ArrayList<String> items = new ArrayList<>();
+        items.add(rename);
+        items.add(delete);
+        if (isThumbnailPermanent) {
+            items.add(unsetThumbnail);
+        }
 
-        final DialogInterface.OnClickListener action = (dialog, index) -> {
-            if (index == arrayAdapter.getPosition(rename)) {
+        final DialogInterface.OnClickListener action = (d, index) -> {
+            if (items.get(index).equals(rename)) {
                 showRenameDialog(selectedItem);
-            } else if (index == arrayAdapter.getPosition(delete)) {
-                showDeleteDialog(selectedItem.name, localPlaylistManager
-                        .deletePlaylist(selectedItem.uid));
-            } else if (isThumbnailPermanent) {
+            } else if (items.get(index).equals(delete)) {
+                showDeleteDialog(selectedItem.name,
+                        localPlaylistManager.deletePlaylist(selectedItem.uid));
+            } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
                 final String thumbnailUrl = localPlaylistManager
                         .getAutomaticPlaylistThumbnail(selectedItem.uid);
-                localPlaylistManager.changePlaylistThumbnail(selectedItem.uid, thumbnailUrl, false)
+                localPlaylistManager
+                        .changePlaylistThumbnail(selectedItem.uid, thumbnailUrl, false)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe();
             }
         };
 
-        builder.setAdapter(arrayAdapter, action)
-                .create()
-                .show();
-    }
-
-    private ArrayAdapter<String> getLocalDialogArrayAdapter(final boolean isPlaylistThumbnailSet,
-                                                            final String unsetThumbnail) {
-        return new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1) {
-            @Override
-            public View getView(final int position, final View convertView,
-                                final ViewGroup parent) {
-                final View v = super.getView(position, convertView, parent);
-                final TextView textView = v.findViewById(android.R.id.text1);
-
-                // If the PlaylistThumbnail is not set permanently, the unset option is disabled.
-                if (!isPlaylistThumbnailSet && textView.getText().equals(unsetThumbnail)) {
-                    textView.setEnabled(false);
-                    return v;
-                }
-
-                textView.setEnabled(true);
-                return v;
-            }
-        };
+        builder.setItems(items.toArray(new String[0]), action).create().show();
     }
 
     private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
