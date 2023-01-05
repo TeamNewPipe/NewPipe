@@ -1434,17 +1434,18 @@ public final class Player implements PlaybackListener, Listener {
                 // Try to handle tunneling related exceptions
                 final String stackTrace = Log.getStackTraceString(error.getCause());
                 Log.d(TAG, "Unexpected PlaybackException! Cause: " + stackTrace);
-                if (trackSelector.getParameters().tunnelingEnabled
+                if (simpleExoPlayer.isTunnelingEnabled()
                         && stackTrace.contains("Surface")) {
                     trackSelector.setParameters(trackSelector.buildUponParameters()
                             .setTunnelingEnabled(false));
+                    Log.d(TAG, "Disable tunneling and reload");
                     // Reload playback on unexpected errors:
                     setRecovery();
                     reloadPlayQueueManager();
                     break;
                 } else {
                     Log.d(TAG, "Conditinns for recovery not met. Tunneling enabled?: "
-                            + trackSelector.getParameters().tunnelingEnabled
+                            + simpleExoPlayer.isTunnelingEnabled()
                             + ", Surface keyword found?: " + stackTrace.contains("Surface"));
                 }
                 // fall through to default
