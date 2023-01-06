@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">ਐਂਡਰੌਇਡ ਲਈ ਇੱਕ ਮੁਫਤ ਹਲਕਾ-ਫੁਲਕਾ ਸਟ੍ਰੀਮਿੰਗ ਯੂਟਿਊਬ ਫਰੰਟ-ਐਂਡ।</h4>
 
@@ -14,7 +14,7 @@
 </p>
 <hr>
 <p align="center"><a href="#ਸਕਰੀਨਸ਼ਾਟ">ਸਕਰੀਨਸ਼ਾਟ</a> &bull; <a href="#ਸੇਵਾਵਾਂ">ਸੇਵਾਵਾਂ</a> &bull; <a href="#ਵਰਣਨ">ਵਰਣਨ</a> &bull; <a href="#ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</a> &bull; <a href="#ਇੰਸਟਾਲੇਸ਼ਨ-ਅਤੇ-ਅੱਪਡੇਟ">ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ</a> &bull; <a href="#ਯੋਗਦਾਨ">ਯੋਗਦਾਨ</a> &bull; <a href="#ਦਾਨ">ਦਾਨ</a> &bull; <a href="#ਲਾਈਸੈਂਸ">ਲਾਈਸੈਂਸ</a></p>
-<p align="center"><a href="https://newpipe.net">ਵੈੱਬਸਾਈਟ</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
+<p align="center"><a href="https://newpipe.net">ਵੈੱਬਸਾਈਟ</a> &bull; <a href="https://newpipe.net/blog/">ਬਲੌਗ</a> &bull; <a href="https://newpipe.net/FAQ/">ਆਮ ਸਵਾਲ ਜਵਾਬ</a> &bull; <a href="https://newpipe.net/press/">ਪ੍ਰੈਸ</a></p>
 <hr>
 
 *ਇਸਨੂੰ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਪੜ੍ਹੋ: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
@@ -25,18 +25,18 @@
 
 ## ਸਕਰੀਨਸ਼ਾਟ
 
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
-[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
-[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
 ## ਸੇਵਾਵਾਂ
 
@@ -105,7 +105,7 @@ NewPipe ਤੁਹਾਡੇ ਦੁਆਰਾ ਵਰਤੀ ਜਾ ਰਹੀ ਸੇ�
 3. ਨਵੇਂ ਸਰੋਤ ਤੋਂ ਏਪੀਕੇ ਡਾਊਨਲੋਡ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਸਥਾਪਿਤ ਕਰੋ
 4. ਸੈਟਿੰਗਾਂ > ਸਮੱਗਰੀ > ਆਯਾਤ ਡੇਟਾਬੇਸ ਰਾਹੀਂ ਸਟੈਪ 1 ਤੋਂ ਡੇਟਾ ਆਯਾਤ ਕਰੋ
 
-<b>ਨੋਟ: ਜਦੋਂ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਵਿੱਚ ਇੱਕ ਡੇਟਾਬੇਸ ਨੂੰ ਆਯਾਤ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਹਮੇਸ਼ਾਂ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇਹ ਉਹੀ ਹੈ ਜੋ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਤੋਂ _from_ ਨਿਰਯਾਤ ਕੀਤਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਤੋਂ ਇਲਾਵਾ ਕਿਸੇ ਏਪੀਕੇ ਤੋਂ ਨਿਰਯਾਤ ਕੀਤੇ ਡੇਟਾਬੇਸ ਨੂੰ ਆਯਾਤ ਕਰਦੇ ਹੋ, ਤਾਂ ਇਹ ਚੀਜ਼ਾਂ ਨੂੰ ਤੋੜ ਸਕਦਾ ਹੈ। ਅਜਿਹੀ ਕਾਰਵਾਈ ਅਸਮਰਥਿਤ ਹੈ, ਅਤੇ ਤੁਹਾਨੂੰ ਅਜਿਹਾ ਉਦੋਂ ਹੀ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਦੋਂ ਤੁਹਾਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਯਕੀਨ ਹੋਵੇ ਕਿ ਤੁਸੀਂ ਜਾਣਦੇ ਹੋ ਕਿ ਤੁਸੀਂ ਕੀ ਕਰ ਰਹੇ ਹੋ।</b>
+<b>ਨੋਟ: ਜਦੋਂ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਵਿੱਚ ਇੱਕ ਡੇਟਾਬੇਸ ਨੂੰ ਆਯਾਤ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਹਮੇਸ਼ਾਂ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇਹ ਉਹੀ ਹੈ ਜੋ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਤੋਂ ਨਿਰਯਾਤ ਕੀਤਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਅਧਿਕਾਰਤ ਐਪ ਤੋਂ ਇਲਾਵਾ ਕਿਸੇ ਏਪੀਕੇ ਤੋਂ ਨਿਰਯਾਤ ਕੀਤੇ ਡੇਟਾਬੇਸ ਨੂੰ ਆਯਾਤ ਕਰਦੇ ਹੋ, ਤਾਂ ਇਹ ਚੀਜ਼ਾਂ ਨੂੰ ਤੋੜ ਸਕਦਾ ਹੈ। ਅਜਿਹੀ ਕਾਰਵਾਈ ਅਸਮਰਥਿਤ ਹੈ, ਅਤੇ ਤੁਹਾਨੂੰ ਅਜਿਹਾ ਉਦੋਂ ਹੀ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਦੋਂ ਤੁਹਾਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਯਕੀਨ ਹੋਵੇ ਕਿ ਤੁਸੀਂ ਜਾਣਦੇ ਹੋ ਕਿ ਤੁਸੀਂ ਕੀ ਕਰ ਰਹੇ ਹੋ।</b>
 
 ## ਯੋਗਦਾਨ
 ਭਾਵੇਂ ਤੁਹਾਡੇ ਕੋਲ ਵਿਚਾਰ, ਅਨੁਵਾਦ, ਡਿਜ਼ਾਈਨ ਤਬਦੀਲੀਆਂ, ਕੋਡ ਦੀ ਸਫਾਈ, ਜਾਂ ਇੱਥੋਂ ਤੱਕ ਕਿ ਵੱਡੀਆਂ ਕੋਡ ਤਬਦੀਲੀਆਂ ਹੋਣ, ਮਦਦ ਦਾ ਹਮੇਸ਼ਾ ਸਵਾਗਤ ਹੈ। ਐਪ ਹਰੇਕ ਯੋਗਦਾਨ ਦੇ ਨਾਲ ਬਿਹਤਰ ਅਤੇ ਬਿਹਤਰ ਹੋ ਜਾਂਦੀ ਹੈ, ਚਾਹੇ ਉਹ ਕਿੰਨਾ ਵੱਡਾ ਜਾਂ ਛੋਟਾ ਹੋਵੇ! ਜੇਕਰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਹੋਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਸਾਡੀ ਜਾਂਚ ਕਰੋ [contribution notes](.github/CONTRIBUTING.md).
@@ -115,7 +115,7 @@ NewPipe ਤੁਹਾਡੇ ਦੁਆਰਾ ਵਰਤੀ ਜਾ ਰਹੀ ਸੇ�
 </a>
 
 ## ਦਾਨ
-ਜੇਕਰ ਤੁਹਾਨੂੰ NewPipe ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਦਾਨ ਭੇਜਣ ਲਈ ਸੁਆਗਤ ਹੈ। ਅਸੀਂ Liberapay ਨੂੰ ਤਰਜੀਹ ਦਿੰਦੇ ਹਾਂ, ਕਿਉਂਕਿ ਇਹ ਓਪਨ-ਸੋਰਸ ਅਤੇ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਦੋਵੇਂ ਹੈ। ਨਿਊ ਪਾਈਪ ਨੂੰ ਦਾਨ ਕਰਨ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀ ਵੈੱਬਸਾਈਟ[ਵੈੱਬਸਾਈਟ](https://newpipe.net/donate)'ਤੇ ਜਾਓ.
+ਜੇਕਰ ਤੁਹਾਨੂੰ NewPipe ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਹਾਡਾ ਦਾਨ ਭੇਜਣ ਲਈ ਸੁਆਗਤ ਹੈ। ਅਸੀਂ Liberapay ਨੂੰ ਤਰਜੀਹ ਦਿੰਦੇ ਹਾਂ, ਕਿਉਂਕਿ ਇਹ ਓਪਨ-ਸੋਰਸ ਅਤੇ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਦੋਵੇਂ ਹੈ। ਨਿਊ ਪਾਈਪ ਨੂੰ ਦਾਨ ਕਰਨ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀ [ਵੈੱਬਸਾਈਟ](https://newpipe.net/donate) 'ਤੇ ਜਾਓ।
 
 <table>
   <tr>
@@ -131,7 +131,7 @@ NewPipe ਤੁਹਾਡੇ ਦੁਆਰਾ ਵਰਤੀ ਜਾ ਰਹੀ ਸੇ�
   <tr>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="bountysource.com 'ਤੇ NewPipe ਨੂੰ ਵੇਖੋ" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="ਦੇਖੋ ਕਿ ਤੁਸੀਂ ਕਿੰਨੇ ਇਨਾਮ ਕਮਾ ਸਕਦੇ ਹੋ।"></a></td>
   </tr>
 </table>
 
