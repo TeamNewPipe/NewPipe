@@ -414,6 +414,7 @@
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes">
         <item>@string/default_localization_key</item>
+        <item>ace</item> 
         <item>af</item>
         <item>az</item>
         <item>id</item>
@@ -523,8 +524,8 @@
         <item>Norsk</item>
         <item>Nynorsk</item>
         <item>O‘zbek</item>
-        <item>ଓଡ଼ିଆ</item>
         <item>Polski</item>
+        <item>ଓଡ଼ିଆ</item>
         <item>Português</item>
         <item>Português (Brasil)</item>
         <item>Română</item>
