@@ -367,6 +367,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         .create()
                         .show();
             }
+        } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
+            openRemoveDuplicatesDialog();
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -619,6 +621,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         changeThumbnailUrl(newThumbnailUrl);
+    }
+
+
+    private void openRemoveDuplicatesDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+
+        builder.setTitle("R.string.duplicate_stream_in_playlist_title")
+                .setMessage("test")
+                .setPositiveButton(android.R.string.yes, (dialog, i) -> {
+                    removeDuplicatesInPlaylist();
+                })
+                .setNeutralButton(R.string.cancel, null);
+
+        builder.create().show();
+    }
+
+    private void removeDuplicatesInPlaylist() {
+
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {

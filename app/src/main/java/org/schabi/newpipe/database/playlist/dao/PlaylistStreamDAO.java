@@ -83,4 +83,15 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " GROUP BY " + JOIN_PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
+
+    @Transaction
+    @Query("DELETE FROM " + PLAYLIST_STREAM_JOIN_TABLE
+            + " WHERE " + JOIN_PLAYLIST_ID + "=:playlistId"
+            + " AND " + JOIN_STREAM_ID + " IN ("
+            + " SELECT " + JOIN_STREAM_ID
+            + " FROM " + PLAYLIST_STREAM_JOIN_TABLE
+            + " WHERE " + JOIN_PLAYLIST_ID + "=:playlistId"
+            + " GROUP BY " + JOIN_STREAM_ID
+            + " HAVING COUNT(*) > 1 )" )
+    Flowable<List<PlaylistMetadataEntry>> removeDuplicates(long playlistId);
 }
