@@ -414,7 +414,6 @@
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes">
         <item>@string/default_localization_key</item>
-        <item>ace</item> 
         <item>af</item>
         <item>az</item>
         <item>id</item>
