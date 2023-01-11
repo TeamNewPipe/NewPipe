@@ -91,16 +91,16 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.core.SingleTransformer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -702,7 +702,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     public static class PersistentFragment extends Fragment {
-        private WeakReference<AppCompatActivity> context;
+        private WeakReference<AppCompatActivity> weakContext;
         private final CompositeDisposable disposables = new CompositeDisposable();
         private int running = 0;
 
@@ -711,21 +711,23 @@ public class RouterActivity extends AppCompatActivity {
                 running++;
             } else {
                 running--;
-                if (running <= 0 && getActivityContext() != null) {
-                    getActivityContext().getSupportFragmentManager()
-                            .beginTransaction().remove(this).commit();
+                if (running <= 0) {
+                    getActivityContext().ifPresent(context -> context.getSupportFragmentManager()
+                            .beginTransaction().remove(this).commit());
                 }
             }
-        }
-
-        public interface ResultRunnable {
-            void run(AppCompatActivity context);
         }
 
         @Override
         public void onAttach(@NonNull final Context activityContext) {
             super.onAttach(activityContext);
-            context = new WeakReference<>((AppCompatActivity) activityContext);
+            weakContext = new WeakReference<>((AppCompatActivity) activityContext);
+        }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            weakContext = null;
         }
 
         @SuppressWarnings("deprecation")
@@ -741,12 +743,13 @@ public class RouterActivity extends AppCompatActivity {
             disposables.clear();
         }
 
-        private AppCompatActivity getActivityContext() {
-            return context == null ? null : context.get();
-        }
-
-        private boolean activityGone() {
-            return getActivityContext() == null || getActivityContext().isFinishing();
+        /**
+         * @return the activity context, if there is one and the activity is not finishing
+         */
+        private Optional<AppCompatActivity> getActivityContext() {
+            return Optional.ofNullable(weakContext)
+                    .flatMap(context -> Optional.ofNullable(context.get()))
+                    .filter(context -> !context.isFinishing());
         }
 
         // guard against IllegalStateException in calling DialogFragment.show() whilst in background
@@ -754,60 +757,56 @@ public class RouterActivity extends AppCompatActivity {
         // the network request to return) when it internally calls FragmentTransaction.commit()
         // after the FragmentManager has saved its states (isStateSaved() == true)
         // (ref: https://stackoverflow.com/a/39813506)
-        private void runOnVisible(final ResultRunnable runnable) {
-            if (activityGone()) {
-                inFlight(false);
-                return;
-            }
-            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                getActivityContext().runOnUiThread(() -> {
-                    runnable.run(getActivityContext());
-                    inFlight(false);
-                });
-            } else {
-                getLifecycle().addObserver(new DefaultLifecycleObserver() {
-                    @Override
-                    public void onResume(@NonNull final LifecycleOwner owner) {
-                        getLifecycle().removeObserver(this);
-                        if (activityGone()) {
-                            inFlight(false);
-                            return;
+        private void runOnVisible(final Consumer<AppCompatActivity> runnable) {
+            getActivityContext().ifPresentOrElse(context -> {
+                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    context.runOnUiThread(() -> {
+                        runnable.accept(context);
+                        inFlight(false);
+                    });
+                } else {
+                    getLifecycle().addObserver(new DefaultLifecycleObserver() {
+                        @Override
+                        public void onResume(@NonNull final LifecycleOwner owner) {
+                            getLifecycle().removeObserver(this);
+                            getActivityContext().ifPresentOrElse(context ->
+                                    context.runOnUiThread(() -> {
+                                        runnable.accept(context);
+                                        inFlight(false);
+                                    }),
+                                    () -> inFlight(false)
+                            );
                         }
-                        getActivityContext().runOnUiThread(() -> {
-                            runnable.run(getActivityContext());
-                            inFlight(false);
-                        });
+                    });
+                    // this trick doesn't seem to work on Android 10+ (API 29)
+                    // which places restrictions on starting activities from the background
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+                            && !context.isChangingConfigurations()) {
+                        // try to bring the activity back to front if minimised
+                        final Intent i = new Intent(context, RouterActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(i);
                     }
-                });
-                // this trick doesn't seem to work on Android 10+ (API 29)
-                // which places restrictions on starting activities from the background
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
-                        && !getActivityContext().isChangingConfigurations()) {
-                    // try to bring the activity back to front if minimised
-                    final Intent i = new Intent(getActivityContext(), RouterActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(i);
                 }
-            }
+
+            }, () -> {
+                // this branch is executed if there is no activity context
+                inFlight(false);
+            });
         }
 
-        <T> SingleTransformer<T, T> pleaseWait() {
-            return single -> single
-                    // 'abuse' ambWith() here to cancel the toast for us when the wait is over
-                    .ambWith(Single.create(emitter -> {
-                        if (!activityGone()) {
-                            getActivityContext().runOnUiThread(() -> {
-                                // Getting the stream info usually takes a moment
-                                // Notifying the user here to ensure that no confusion arises
-                                final Toast t = Toast.makeText(
-                                        getActivityContext().getApplicationContext(),
-                                        getString(R.string.processing_may_take_a_moment),
-                                        Toast.LENGTH_LONG);
-                                t.show();
-                                emitter.setCancellable(t::cancel);
-                            });
-                        }
-                    }));
+        <T> Single<T> pleaseWait(final Single<T> single) {
+            // 'abuse' ambWith() here to cancel the toast for us when the wait is over
+            return single.ambWith(Single.create(emitter -> getActivityContext().ifPresent(context ->
+                    context.runOnUiThread(() -> {
+                        // Getting the stream info usually takes a moment
+                        // Notifying the user here to ensure that no confusion arises
+                        final Toast toast = Toast.makeText(context,
+                                getString(R.string.processing_may_take_a_moment),
+                                Toast.LENGTH_LONG);
+                        toast.show();
+                        emitter.setCancellable(toast::cancel);
+            }))));
         }
 
         @SuppressLint("CheckResult")
@@ -816,7 +815,7 @@ public class RouterActivity extends AppCompatActivity {
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .compose(pleaseWait())
+                    .compose(this::pleaseWait)
                     .subscribe(result ->
                         runOnVisible(ctx -> {
                             final FragmentManager fm = ctx.getSupportFragmentManager();
@@ -833,23 +832,18 @@ public class RouterActivity extends AppCompatActivity {
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .compose(pleaseWait())
+                    .compose(this::pleaseWait)
                     .subscribe(
-                            info -> {
-                                if (!activityGone()) {
-                                    PlaylistDialog.createCorrespondingDialog(
-                                    getActivityContext(),
-                                    List.of(new StreamEntity(info)),
-                                    playlistDialog ->
-                                        runOnVisible(ctx -> {
-                                            // dismiss listener to be handled by FragmentManager
-                                            final FragmentManager fm =
-                                                    ctx.getSupportFragmentManager();
-                                            playlistDialog.show(fm, "addToPlaylistDialog");
-                                        })
-                                    );
-                                }
-                            },
+                            info -> getActivityContext().ifPresent(context ->
+                                    PlaylistDialog.createCorrespondingDialog(context,
+                                            List.of(new StreamEntity(info)),
+                                            playlistDialog -> runOnVisible(ctx -> {
+                                                // dismiss listener to be handled by FragmentManager
+                                                final FragmentManager fm =
+                                                        ctx.getSupportFragmentManager();
+                                                playlistDialog.show(fm, "addToPlaylistDialog");
+                                            })
+                                    )),
                             throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
                                     throwable,
                                     UserAction.REQUESTED_STREAM,
