@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
@@ -16,7 +17,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.DeviceUtils;
 
 import java.lang.annotation.Retention;
-import java.util.Optional;
 import java.util.function.IntSupplier;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
@@ -66,21 +66,19 @@ public final class SeekbarPreviewThumbnailHelper {
 
     public static void tryResizeAndSetSeekbarPreviewThumbnail(
             @NonNull final Context context,
-            @NonNull final Optional<Bitmap> optPreviewThumbnail,
+            @Nullable final Bitmap previewThumbnail,
             @NonNull final ImageView currentSeekbarPreviewThumbnail,
             @NonNull final IntSupplier baseViewWidthSupplier) {
-
-        if (!optPreviewThumbnail.isPresent()) {
+        if (previewThumbnail == null) {
             currentSeekbarPreviewThumbnail.setVisibility(View.GONE);
             return;
         }
 
         currentSeekbarPreviewThumbnail.setVisibility(View.VISIBLE);
-        final Bitmap srcBitmap = optPreviewThumbnail.get();
 
         // Resize original bitmap
         try {
-            final int srcWidth = srcBitmap.getWidth() > 0 ? srcBitmap.getWidth() : 1;
+            final int srcWidth = previewThumbnail.getWidth() > 0 ? previewThumbnail.getWidth() : 1;
             final int newWidth = MathUtils.clamp(
                     // Use 1/4 of the width for the preview
                     Math.round(baseViewWidthSupplier.getAsInt() / 4f),
@@ -90,15 +88,15 @@ public final class SeekbarPreviewThumbnailHelper {
                     Math.round(srcWidth * 2.5f));
 
             final float scaleFactor = (float) newWidth / srcWidth;
-            final int newHeight = (int) (srcBitmap.getHeight() * scaleFactor);
+            final int newHeight = (int) (previewThumbnail.getHeight() * scaleFactor);
 
-            currentSeekbarPreviewThumbnail.setImageBitmap(BitmapCompat.createScaledBitmap(srcBitmap,
-                    newWidth, newHeight, null, true));
+            currentSeekbarPreviewThumbnail.setImageBitmap(BitmapCompat
+                    .createScaledBitmap(previewThumbnail, newWidth, newHeight, null, true));
         } catch (final Exception ex) {
             Log.e(TAG, "Failed to resize and set seekbar preview thumbnail", ex);
             currentSeekbarPreviewThumbnail.setVisibility(View.GONE);
         } finally {
-            srcBitmap.recycle();
+            previewThumbnail.recycle();
         }
     }
 }

@@ -255,11 +255,10 @@ public final class VideoDetailFragment
             playerUi.ifPresent(MainPlayerUi::toggleFullscreen);
         }
 
-        //noinspection SimplifyOptionalCallChains
         if (playAfterConnect
                 || (currentInfo != null
                 && isAutoplayEnabled()
-                && !playerUi.isPresent())) {
+                && playerUi.isEmpty())) {
             autoPlayEnabled = true; // forcefully start playing
             openVideoPlayerAutoFullscreen();
         }
@@ -1174,16 +1173,15 @@ public final class VideoDetailFragment
      * be reused in a few milliseconds and the flickering would be annoying.
      */
     private void hideMainPlayerOnLoadingNewStream() {
-        //noinspection SimplifyOptionalCallChains
-        if (!isPlayerServiceAvailable() || !getRoot().isPresent()
-                || !player.videoPlayerSelected()) {
+        final var root = getRoot();
+        if (!isPlayerServiceAvailable() || root.isEmpty() || !player.videoPlayerSelected()) {
             return;
         }
 
         removeVideoPlayerView();
         if (isAutoplayEnabled()) {
             playerService.stopForImmediateReusing();
-            getRoot().ifPresent(view -> view.setVisibility(View.GONE));
+            root.ifPresent(view -> view.setVisibility(View.GONE));
         } else {
             playerHolder.stopService();
         }
@@ -1887,10 +1885,9 @@ public final class VideoDetailFragment
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
         setupBrightness();
-        //noinspection SimplifyOptionalCallChains
         if (!isPlayerAndPlayerServiceAvailable()
-                || !player.UIs().get(MainPlayerUi.class).isPresent()
-                || getRoot().map(View::getParent).orElse(null) == null) {
+                || player.UIs().get(MainPlayerUi.class).isEmpty()
+                || getRoot().flatMap(v -> Optional.ofNullable(v.getParent())).isEmpty()) {
             return;
         }
 
@@ -2429,23 +2426,20 @@ public final class VideoDetailFragment
 
     // helpers to check the state of player and playerService
     boolean isPlayerAvailable() {
-        return (player != null);
+        return player != null;
     }
 
     boolean isPlayerServiceAvailable() {
-        return (playerService != null);
+        return playerService != null;
     }
 
     boolean isPlayerAndPlayerServiceAvailable() {
-        return (player != null && playerService != null);
+        return player != null && playerService != null;
     }
 
     public Optional<View> getRoot() {
-        if (player == null) {
-            return Optional.empty();
-        }
-
-        return player.UIs().get(VideoPlayerUi.class)
+        return Optional.ofNullable(player)
+                .flatMap(player1 -> player1.UIs().get(VideoPlayerUi.class))
                 .map(playerUi -> playerUi.getBinding().getRoot());
     }
 

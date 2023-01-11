@@ -61,12 +61,11 @@ public interface MediaItemTag {
 
     @NonNull
     static Optional<MediaItemTag> from(@Nullable final MediaItem mediaItem) {
-        if (mediaItem == null || mediaItem.localConfiguration == null
-                || !(mediaItem.localConfiguration.tag instanceof MediaItemTag)) {
-            return Optional.empty();
-        }
-
-        return Optional.of((MediaItemTag) mediaItem.localConfiguration.tag);
+        return Optional.ofNullable(mediaItem)
+                .flatMap(item -> Optional.ofNullable(item.localConfiguration))
+                .flatMap(localConfiguration -> Optional.ofNullable(localConfiguration.tag))
+                .filter(MediaItemTag.class::isInstance)
+                .map(MediaItemTag.class::cast);
     }
 
     @NonNull
