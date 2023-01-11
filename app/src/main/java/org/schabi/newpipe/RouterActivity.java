@@ -87,6 +87,7 @@ import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.io.Serializable;
+import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -748,7 +749,7 @@ public class RouterActivity extends AppCompatActivity {
          */
         private Optional<AppCompatActivity> getActivityContext() {
             return Optional.ofNullable(weakContext)
-                    .flatMap(context -> Optional.ofNullable(context.get()))
+                    .map(Reference::get)
                     .filter(context -> !context.isFinishing());
         }
 

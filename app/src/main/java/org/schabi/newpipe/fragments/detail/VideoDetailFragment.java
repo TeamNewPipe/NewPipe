@@ -1887,7 +1887,7 @@ public final class VideoDetailFragment
         setupBrightness();
         if (!isPlayerAndPlayerServiceAvailable()
                 || player.UIs().get(MainPlayerUi.class).isEmpty()
-                || getRoot().flatMap(v -> Optional.ofNullable(v.getParent())).isEmpty()) {
+                || getRoot().map(View::getParent).isEmpty()) {
             return;
         }
 
