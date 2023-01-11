@@ -1875,8 +1875,7 @@ public final class Player implements PlaybackListener, Listener {
         loadController.disablePreloadingOfCurrentTrack();
     }
 
-    @Nullable
-    public VideoStream getSelectedVideoStream() {
+    public Optional<VideoStream> getSelectedVideoStream() {
         return Optional.ofNullable(currentMetadata)
                 .flatMap(MediaItemTag::getMaybeQuality)
                 .filter(quality -> {
@@ -1885,8 +1884,7 @@ public final class Player implements PlaybackListener, Listener {
                             && selectedStreamIndex < quality.getSortedVideoStreams().size();
                 })
                 .map(quality -> quality.getSortedVideoStreams()
-                        .get(quality.getSelectedVideoStreamIndex()))
-                .orElse(null);
+                        .get(quality.getSelectedVideoStreamIndex()));
     }
     //endregion
 

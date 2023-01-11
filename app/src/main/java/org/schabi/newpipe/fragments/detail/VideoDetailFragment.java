@@ -255,7 +255,9 @@ public final class VideoDetailFragment
             playerUi.ifPresent(MainPlayerUi::toggleFullscreen);
         }
 
-        if (playAfterConnect || (currentInfo != null && isAutoplayEnabled()
+        if (playAfterConnect
+                || (currentInfo != null
+                && isAutoplayEnabled()
                 && playerUi.isEmpty())) {
             autoPlayEnabled = true; // forcefully start playing
             openVideoPlayerAutoFullscreen();
@@ -1883,8 +1885,9 @@ public final class VideoDetailFragment
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
         setupBrightness();
-        if (!isPlayerAndPlayerServiceAvailable() || player.UIs().get(MainPlayerUi.class).isEmpty()
-                || getRoot().map(View::getParent).isEmpty()) {
+        if (!isPlayerAndPlayerServiceAvailable()
+                || player.UIs().get(MainPlayerUi.class).isEmpty()
+                || getRoot().flatMap(v -> Optional.ofNullable(v.getParent())).isEmpty()) {
             return;
         }
 

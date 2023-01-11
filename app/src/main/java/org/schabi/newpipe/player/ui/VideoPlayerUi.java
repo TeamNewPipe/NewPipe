@@ -1060,12 +1060,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
                     .getNameById(videoStream.getFormatId()) + " " + videoStream.getResolution());
         }
-        final VideoStream selectedVideoStream = player.getSelectedVideoStream();
-        if (selectedVideoStream != null) {
-            binding.qualityTextView.setText(selectedVideoStream.getResolution());
-        }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
+
+        player.getSelectedVideoStream()
+                .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -1171,12 +1170,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
 
-        final VideoStream videoStream = player.getSelectedVideoStream();
-        if (videoStream != null) {
-            //noinspection SetTextI18n
-            binding.qualityTextView.setText(MediaFormat.getNameById(videoStream.getFormatId())
-                    + " " + videoStream.getResolution());
-        }
+        player.getSelectedVideoStream()
+                .map(s -> MediaFormat.getNameById(s.getFormatId()) + " " + s.getResolution())
+                .ifPresent(binding.qualityTextView::setText);
     }
 
     /**
@@ -1232,10 +1228,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         }
         isSomePopupMenuVisible = false; //TODO check if this works
-        final VideoStream selectedVideoStream = player.getSelectedVideoStream();
-        if (selectedVideoStream != null) {
-            binding.qualityTextView.setText(selectedVideoStream.getResolution());
-        }
+        player.getSelectedVideoStream()
+                .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
+
         if (player.isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
             hideSystemUIIfNeeded();
