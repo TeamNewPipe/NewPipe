@@ -15,6 +15,7 @@ public class PlaylistEntity {
     public static final String PLAYLIST_ID = "uid";
     public static final String PLAYLIST_NAME = "name";
     public static final String PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
+    public static final String PLAYLIST_THUMBNAIL_PERMANENT = "is_thumbnail_permanent";
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = PLAYLIST_ID)
@@ -26,9 +27,14 @@ public class PlaylistEntity {
     @ColumnInfo(name = PLAYLIST_THUMBNAIL_URL)
     private String thumbnailUrl;
 
-    public PlaylistEntity(final String name, final String thumbnailUrl) {
+    @ColumnInfo(name = PLAYLIST_THUMBNAIL_PERMANENT)
+    private boolean isThumbnailPermanent;
+
+    public PlaylistEntity(final String name, final String thumbnailUrl,
+                          final boolean isThumbnailPermanent) {
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
+        this.isThumbnailPermanent = isThumbnailPermanent;
     }
 
     public long getUid() {
@@ -54,4 +60,13 @@ public class PlaylistEntity {
     public void setThumbnailUrl(final String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
+
+    public boolean getIsThumbnailPermanent() {
+        return isThumbnailPermanent;
+    }
+
+    public void setIsThumbnailPermanent(final boolean isThumbnailSet) {
+        this.isThumbnailPermanent = isThumbnailSet;
+    }
+
 }

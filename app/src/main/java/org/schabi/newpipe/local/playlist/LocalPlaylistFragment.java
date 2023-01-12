@@ -405,6 +405,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .zipWith(historyIdsMaybe, (playlist, historyStreamIds) -> {
                     // Remove Watched, Functionality data
                     final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
+                    final boolean isThumbnailPermanent = playlistManager
+                            .getIsPlaylistThumbnailPermanent(playlistId);
                     boolean thumbnailVideoRemoved = false;
 
                     if (removePartiallyWatched) {
@@ -414,7 +416,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                             if (indexInHistory < 0) {
                                 notWatchedItems.add(playlistItem);
-                            } else if (!thumbnailVideoRemoved
+                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
@@ -435,7 +437,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             if (indexInHistory < 0 || (streamStateEntity != null
                                     && !streamStateEntity.isFinished(duration))) {
                                 notWatchedItems.add(playlistItem);
-                            } else if (!thumbnailVideoRemoved
+                            } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
                                     .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
                                 thumbnailVideoRemoved = true;
@@ -585,8 +587,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
-    private void changeThumbnailUrl(final String thumbnailUrl) {
-        if (playlistManager == null) {
+    private void changeThumbnailUrl(final String thumbnailUrl, final boolean isPermanent) {
+        if (playlistManager == null || (!isPermanent && playlistManager
+                .getIsPlaylistThumbnailPermanent(playlistId))) {
             return;
         }
 
@@ -600,7 +603,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final Disposable disposable = playlistManager
-                .changePlaylistThumbnail(playlistId, thumbnailUrl)
+                .changePlaylistThumbnail(playlistId, thumbnailUrl, isPermanent)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), throwable ->
                         showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
@@ -609,6 +612,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void updateThumbnailUrl() {
+        if (playlistManager.getIsPlaylistThumbnailPermanent(playlistId)) {
+            return;
+        }
+
         final String newThumbnailUrl;
 
         if (!itemListAdapter.getItemsList().isEmpty()) {
@@ -618,7 +625,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             newThumbnailUrl = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
         }
 
-        changeThumbnailUrl(newThumbnailUrl);
+        changeThumbnailUrl(newThumbnailUrl, false);
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
@@ -786,7 +793,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     .setAction(
                             StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
                             (f, i) ->
-                                    changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()))
+                                    changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl(),
+                                            true))
                     .setAction(
                             StreamDialogDefaultEntry.DELETE,
                             (f, i) -> deleteItem(item))
