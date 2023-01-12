@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static android.content.Context.INPUT_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.app.UiModeManager;
 import android.content.Context;
@@ -27,11 +29,10 @@ import org.schabi.newpipe.R;
 
 import java.lang.reflect.Method;
 
-import static android.content.Context.INPUT_SERVICE;
-
 public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
+    private static final boolean SAMSUNG = Build.MANUFACTURER.equals("samsung");
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
@@ -120,6 +121,10 @@ public final class DeviceUtils {
             return true;
         }
 
+        if (!SAMSUNG) {
+            return false;
+            // DeX is Samsung-specific, skip the checks below on non-Samsung devices
+        }
         // DeX check for standalone and multi-window mode, from:
         // https://developer.samsung.com/samsung-dex/modify-optimizing.html
         try {
