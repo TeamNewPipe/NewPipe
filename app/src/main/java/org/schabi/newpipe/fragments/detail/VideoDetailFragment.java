@@ -1066,8 +1066,7 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (!PermissionHelper.isPopupEnabled(activity)) {
-            PermissionHelper.showPopupEnablementToast(activity);
+        if (!PermissionHelper.isPopupEnabledElseAsk(activity)) {
             return;
         }
 

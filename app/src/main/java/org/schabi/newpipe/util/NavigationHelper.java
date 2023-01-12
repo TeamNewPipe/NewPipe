@@ -156,8 +156,7 @@ public final class NavigationHelper {
     public static void playOnPopupPlayer(final Context context,
                                          final PlayQueue queue,
                                          final boolean resumePlayback) {
-        if (!PermissionHelper.isPopupEnabled(context)) {
-            PermissionHelper.showPopupEnablementToast(context);
+        if (!PermissionHelper.isPopupEnabledElseAsk(context)) {
             return;
         }
 
@@ -183,8 +182,7 @@ public final class NavigationHelper {
     public static void enqueueOnPlayer(final Context context,
                                        final PlayQueue queue,
                                        final PlayerType playerType) {
-        if ((playerType == PlayerType.POPUP) && !PermissionHelper.isPopupEnabled(context)) {
-            PermissionHelper.showPopupEnablementToast(context);
+        if (playerType == PlayerType.POPUP && !PermissionHelper.isPopupEnabledElseAsk(context)) {
             return;
         }
 
