@@ -183,6 +183,11 @@ public final class NavigationHelper {
     public static void enqueueOnPlayer(final Context context,
                                        final PlayQueue queue,
                                        final PlayerType playerType) {
+        if ((playerType == PlayerType.POPUP) && !PermissionHelper.isPopupEnabled(context)) {
+            PermissionHelper.showPopupEnablementToast(context);
+            return;
+        }
+
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, PlayerService.class, queue);
 
