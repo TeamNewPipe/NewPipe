@@ -86,10 +86,9 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<PlaylistMetadataEntry>> removeDuplicateStreams() {
-        // TODO: Delete Duplicates and rebuild the index
-        // TODO: Rebuild the index
-        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
+    public Flowable<List<PlaylistStreamEntry>> getDistinctPlaylistStreams(final long playlistId) {
+        return playlistStreamTable
+                .getStreamsWithoutDuplicates(playlistId).subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {

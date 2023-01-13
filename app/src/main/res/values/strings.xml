@@ -627,6 +627,8 @@
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
     <string name="remove_duplicates">Remove duplicates</string>
+    <string name="remove_duplicates_title">Remove duplicates?</string>
+    <string name="remove_duplicates_message">Do you want to remove all duplicate streams in this playlist?</string>
     <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.
 \nAre you sure\? This cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>

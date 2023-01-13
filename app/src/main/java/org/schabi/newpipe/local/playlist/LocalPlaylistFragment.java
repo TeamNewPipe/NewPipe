@@ -627,8 +627,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void openRemoveDuplicatesDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
 
-        builder.setTitle("R.string.duplicate_stream_in_playlist_title")
-                .setMessage("test")
+        builder.setTitle(R.string.remove_duplicates_title)
+                .setMessage(R.string.remove_duplicates_message)
                 .setPositiveButton(android.R.string.yes, (dialog, i) -> {
                     removeDuplicatesInPlaylist();
                 })
@@ -638,7 +638,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void removeDuplicatesInPlaylist() {
+        final List<PlaylistStreamEntry> itemsToKeep = playlistManager
+                .getDistinctPlaylistStreams(playlistId).blockingFirst();
 
+        itemListAdapter.clearStreamItemList();
+        itemListAdapter.addItems(itemsToKeep);
+        saveChanges();
+
+        final long videoCount = itemListAdapter.getItemsList().size();
+        setVideoCount(videoCount);
+        if (videoCount == 0) {
+            showEmptyState();
+        }
+        //TODO: Do we have to show loading?
+        //hideLoading();
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
