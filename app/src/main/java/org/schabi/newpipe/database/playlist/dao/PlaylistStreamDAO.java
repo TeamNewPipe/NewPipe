@@ -90,7 +90,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " FROM " + PLAYLIST_TABLE
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
-            + " GROUP BY " + JOIN_PLAYLIST_ID
+            + " GROUP BY " + PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 }
