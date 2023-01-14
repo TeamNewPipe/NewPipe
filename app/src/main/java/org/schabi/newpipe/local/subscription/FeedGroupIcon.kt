@@ -52,7 +52,7 @@ enum class FeedGroupIcon(
     STAR(35, R.drawable.ic_stars),
     SUN(36, R.drawable.ic_wb_sunny),
     RSS(37, R.drawable.ic_rss_feed),
-    WHATS_NEW(38, R.drawable.ic_whats_new);
+    WHATS_NEW(38, R.drawable.ic_subscriptions);
 
     @DrawableRes
     fun getDrawableRes(): Int {
