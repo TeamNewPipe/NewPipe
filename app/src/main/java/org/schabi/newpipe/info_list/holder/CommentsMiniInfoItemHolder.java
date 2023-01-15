@@ -48,6 +48,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
     private final int commentHorizontalPadding;
     private final int commentVerticalPadding;
+
+    private final Paint paintAtContentSize;
     private final float ellipsisWidthPx;
 
     private final RelativeLayout itemRoot;
@@ -76,9 +78,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         commentVerticalPadding = (int) infoItemBuilder.getContext()
                 .getResources().getDimension(R.dimen.comments_vertical_padding);
 
-        final Paint paint = new Paint();
-        paint.setTextSize(itemContentView.getTextSize());
-        ellipsisWidthPx = paint.measureText(ELLIPSIS);
+        paintAtContentSize = new Paint();
+        paintAtContentSize.setTextSize(itemContentView.getTextSize());
+        ellipsisWidthPx = paintAtContentSize.measureText(ELLIPSIS);
     }
 
     public CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
@@ -201,18 +203,40 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void ellipsize() {
+        itemContentView.setMaxLines(COMMENT_EXPANDED_LINES);
         linkifyCommentContentView(v -> {
             boolean hasEllipsis = false;
 
             if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-                final int endOfLastLine = itemContentView
-                        .getLayout()
-                        .getLineEnd(COMMENT_DEFAULT_LINES - 1);
-                int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
-                if (end == -1) {
-                    end = Math.max(endOfLastLine - 2, 0);
+                // Note that converting to String removes spans (i.e. links), but that's something
+                // we actually want since when the text is ellipsized we want all clicks on the
+                // comment to expand the comment, not to open links.
+                final String text = itemContentView.getText().toString();
+
+                final Layout layout = itemContentView.getLayout();
+                final float lineWidth = layout.getLineWidth(COMMENT_DEFAULT_LINES - 1);
+                final float layoutWidth = layout.getWidth();
+                final int lineStart = layout.getLineStart(COMMENT_DEFAULT_LINES - 1);
+                final int lineEnd = layout.getLineEnd(COMMENT_DEFAULT_LINES - 1);
+
+                // remove characters up until there is enough space for the ellipsis
+                // (also summing 2 more pixels, just to be sure to avoid float rounding errors)
+                int end = lineEnd;
+                float removedCharactersWidth = 0.0f;
+                while (lineWidth - removedCharactersWidth + ellipsisWidthPx + 2.0f > layoutWidth
+                        && end >= lineStart) {
+                    end -= 1;
+                    // recalculate each time to account for ligatures or other similar things
+                    removedCharactersWidth = paintAtContentSize.measureText(
+                            text.substring(end, lineEnd));
                 }
-                final String newVal = itemContentView.getText().subSequence(0, end) + " …";
+
+                // remove trailing spaces and newlines
+                while (end > 0 && Character.isWhitespace(text.charAt(end - 1))) {
+                    end -= 1;
+                }
+
+                final String newVal = text.substring(0, end) + ELLIPSIS;
                 itemContentView.setText(newVal);
                 hasEllipsis = true;
             }
