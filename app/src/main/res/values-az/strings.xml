@@ -726,4 +726,6 @@
     <string name="fast_mode">Sürətli rejim</string>
     <string name="import_subscriptions_hint">3 nöqtə menyudan abunələri idxal və ya ixrac et</string>
     <string name="app_update_available_notification_text">%s endirmək üçün toxun</string>
+    <string name="night_theme_available">Bu seçim yalnız tema üçün %s seçildikdə əlçatandır</string>
+    <string name="unset_playlist_thumbnail">Daimi miniatürü ləğv et</string>
 </resources>

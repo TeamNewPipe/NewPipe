@@ -739,4 +739,5 @@
     <string name="app_update_available_notification_text">Premi per scaricare %s</string>
     <string name="app_update_unavailable_toast">L\'ultima versione di NewPipe è già in esecuzione</string>
     <string name="import_subscriptions_hint">Importa o esporta iscrizioni dal menu a 3 punti</string>
+    <string name="night_theme_available">Questa opzione è disponibile solo se %s è selezionato come Tema</string>
 </resources>

@@ -108,7 +108,7 @@
     <string name="title_activity_about">NewPipe について</string>
     <string name="title_licenses">サードパーティー ライセンス</string>
     <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
-    <string name="tab_about">このアプリについて</string>
+    <string name="tab_about">バージョン情報とよくある質問</string>
     <string name="tab_licenses">ライセンス</string>
     <string name="app_description">Android 向けのフリーで軽量なストリーミング。</string>
     <string name="view_on_github">GitHub で表示</string>
@@ -176,7 +176,7 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の履歴、登録リスト、プレイリストおよび (任意) 設定は上書きされます</string>
+    <string name="import_data_summary">既存の履歴、登録チャンネル一覧、プレイリストおよび (任意) 設定は上書きされます</string>
     <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">エラーから回復中です</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
@@ -705,4 +705,11 @@
     <string name="feed_toggle_show_future_items">次のアイテムを表示する</string>
     <string name="feed_toggle_hide_played_items">再生済みを隠す</string>
     <string name="feed_toggle_hide_future_items">次のアイテムを隠す</string>
+    <string name="sort">並び替え</string>
+    <string name="faq">ウェブサイトを表示</string>
+    <string name="app_update_available_notification_text">タップして%sをダウンロード</string>
+    <string name="app_update_unavailable_toast">あなたはNewPipeの最新版を起動しています</string>
+    <string name="faq_title">よくある質問</string>
+    <string name="faq_description">アプリの使い方に困ったときは、よくある質問に答えていますので、ぜひご覧ください!</string>
+    <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
 </resources>

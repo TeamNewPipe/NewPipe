@@ -713,4 +713,6 @@
     <string name="import_subscriptions_hint">Impor atau ekspor langganan dari menu 3 titik</string>
     <string name="app_update_unavailable_toast">Anda menjalankan NewPipe versi terkini</string>
     <string name="app_update_available_notification_text">Ketuk untuk mengunduh %s</string>
+    <string name="night_theme_available">Opsi ini hanya tersedia jika %s dipilih untuk Tema</string>
+    <string name="unset_playlist_thumbnail">Batalkan penetapan gambar kecil permanen</string>
 </resources>

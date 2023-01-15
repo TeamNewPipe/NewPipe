@@ -726,4 +726,5 @@
     <string name="fast_mode">Kiirrežiim</string>
     <string name="import_subscriptions_hint">Tellimusi saad importida või eksportida 3 punktiga menüüst</string>
     <string name="app_update_unavailable_toast">Sa kasutad NewPipe\'i uusimat versiooni</string>
+    <string name="night_theme_available">See valik on kasutusel vaid %s teema puhul</string>
 </resources>

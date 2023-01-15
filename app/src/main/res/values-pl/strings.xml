@@ -618,7 +618,7 @@
     <string name="auto_device_theme_title">Automatyczny (motyw urządzenia)</string>
     <string name="night_theme_title">Motyw nocny</string>
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
-    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś czarny ekran bądź brak płynności odtwarzania wideo</string>
+    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś(-aś) czarny ekran bądź brak płynności odtwarzania wideo</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
     <string name="metadata_age_limit">Ograniczenie wiekowe</string>
     <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
@@ -747,4 +747,6 @@
     <string name="fast_mode">Tryb szybki</string>
     <string name="import_subscriptions_hint">Importuj lub eksportuj subskrypcje z menu z trzema kropkami.</string>
     <string name="app_update_unavailable_toast">Używasz najnowszej wersji NewPipe</string>
+    <string name="night_theme_available">Ta opcja jest dostępna tylko wtedy, gdy %s jest wybrany jako motyw</string>
+    <string name="unset_playlist_thumbnail">Usuń stałą miniaturę</string>
 </resources>

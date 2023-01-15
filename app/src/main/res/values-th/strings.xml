@@ -366,4 +366,7 @@
     <string name="enable_playback_state_lists_summary">แสดงตำแหน่งวีดิโอที่เล่นในรายการ</string>
     <string name="settings_category_clear_data_title">ล้างข้อมูล</string>
     <string name="search_showing_result_for">กำลังแสดงผลลัพธ์สำหรับ: %s</string>
+    <string name="open_with">เปิดด้วย</string>
+    <string name="mark_as_watched">ทำเครื่องหมายว่าดูแล้ว</string>
+    <string name="ok">ตกลง</string>
 </resources>

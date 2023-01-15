@@ -713,4 +713,5 @@
     <string name="app_update_available_notification_text">輕點以下載 %s</string>
     <string name="fast_mode">快速模式</string>
     <string name="import_subscriptions_hint">從三點式選單匯入或匯出訂閱</string>
+    <string name="night_theme_available">此選項僅在主題選擇為 %s 時可用</string>
 </resources>

@@ -726,4 +726,6 @@
     <string name="import_subscriptions_hint">Εισάγετε ή εξάγετε συνδρομές από το μενού 3 κουκκίδων</string>
     <string name="app_update_available_notification_text">Πατήστε για λήψη %s</string>
     <string name="app_update_unavailable_toast">Έχετε την πιο πρόσφατη έκδοση του NewPipe</string>
+    <string name="night_theme_available">Αυτή η επιλογή είναι διαθέσιμη μόνο εάν έχει επιλεγεί %s για Θέμα</string>
+    <string name="unset_playlist_thumbnail">Κατάργηση μόνιμης μικρογραφίας</string>
 </resources>

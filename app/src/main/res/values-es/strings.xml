@@ -742,4 +742,6 @@
     <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
     <string name="app_update_unavailable_toast">Está ejecutando la última versión de NewPipe</string>
     <string name="app_update_available_notification_text">Pulsa para descargar %s</string>
+    <string name="night_theme_available">Esta opción sólo está disponible si %s está seleccionado para el tema</string>
+    <string name="unset_playlist_thumbnail">Desactivar las miniaturas permanente</string>
 </resources>

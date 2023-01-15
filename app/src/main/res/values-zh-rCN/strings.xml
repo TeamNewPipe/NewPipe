@@ -164,7 +164,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA 验证</string>
     <string name="recaptcha_request_toast">已请求新的 reCAPTCHA 验证</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
-    <string name="default_popup_resolution_title">默认分辨率(悬浮窗模式)</string>
+    <string name="default_popup_resolution_title">悬浮窗默认分辨率</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅部分设备支持播放 2K 或 4K 视频</string>
     <string name="clear">清除</string>
@@ -713,4 +713,6 @@
     <string name="import_subscriptions_hint">从三点菜单导入或导出订阅</string>
     <string name="app_update_unavailable_toast">你正在运行最新版的 NewPipe</string>
     <string name="app_update_available_notification_text">轻按下载 %s</string>
+    <string name="night_theme_available">只有在主题中选择了 %s 该选项才可用</string>
+    <string name="unset_playlist_thumbnail">取消设置永久缩略图</string>
 </resources>

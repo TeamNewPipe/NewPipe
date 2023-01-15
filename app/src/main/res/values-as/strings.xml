@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_player_found_toast">কোনো ষ্ট্ৰিম প্লেয়াৰ পোৱা নগ\'ল (আপুনি ইয়াক বজাবলৈ VLC ইনষ্টল কৰিব পাৰে)।</string>
+    <string name="install">ইনষ্টল</string>
+    <string name="cancel">বাতিল কৰক</string>
+    <string name="ok">ঠিক আছে</string>
+    <string name="open_in_browser">ব্ৰাউজাৰত খোলক</string>
+    <string name="open_in_popup_mode">POPUP অৱস্থাত খোলক</string>
+    <string name="open_with">...ৰ সৈতে খোলক</string>
+    <string name="share">চেয়াৰ</string>
+    <string name="upload_date_text">%1$s ত প্ৰকাশ কৰা হৈছে</string>
+    <string name="no_player_found">কোনো ষ্ট্ৰিম প্লেয়াৰ পোৱা নগ\'ল। VLC ইনষ্টল কৰক\?</string>
+    <string name="download">ডাউনল’ড</string>
+    <string name="controls_download_desc">ষ্ট্ৰিম কৰা ফাইল ডাউনলোড কৰক</string>
+    <string name="search">সন্ধান কৰক</string>
+    <string name="settings">ছেটিংছ</string>
+    <string name="search_showing_result_for">%s ৰ বাবে ফলাফল দেখুৱা হৈছে</string>
+    <string name="share_dialog_title">চেয়াৰ কৰক</string>
+    <string name="use_external_video_player_summary">কিছু ৰিজ’লিউচনত অডিঅ’ আঁতৰাওক</string>
+    <string name="subscribed_button_title">চাবস্ক্ৰাইব কৰা হ\'ল</string>
+    <string name="unsubscribe">আনচাবস্ক্ৰাইব</string>
+    <string name="main_bg_subtitle">আৰম্ভ কৰিবলৈ মেগনিফাইং গ্লাছৰ চিহ্নত টিপক।</string>
+    <string name="subscribe_button_title">চাবস্ক্ৰাইব</string>
+    <string name="mark_as_watched">চোৱা হ\'ল (চিহ্নিত কৰক)</string>
+    <string name="did_you_mean">আপুনি \"%1$s\" বুজাইছিল নেকি\?</string>
+    <string name="use_external_video_player_title">বাহ্যিক ভিডিঅ’ প্লেয়াৰ ব্যৱহাৰ কৰক</string>
+    <string name="use_external_audio_player_title">বাহ্যিক অডিঅ’ প্লেয়াৰ ব্যৱহাৰ কৰক</string>
+</resources>

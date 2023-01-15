@@ -726,4 +726,5 @@
     <string name="fast_mode">حالت سریع</string>
     <string name="app_update_available_notification_text">ضربه برای بارگیری %s</string>
     <string name="app_update_unavailable_toast">از جدیدترین نگارش نیوپایپ استفاده می‌کنید</string>
+    <string name="night_theme_available">این گزینه تنها هنگامی موجود است که %s به عنوان زمینه گزیده باشد</string>
 </resources>

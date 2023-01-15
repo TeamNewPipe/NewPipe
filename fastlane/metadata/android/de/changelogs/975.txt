@@ -1,0 +1,16 @@
+Neu
+- Anzeige eines Vorschaubilds während der Suche
+- Deaktivierte Kommentare erkennen
+- Erlaubt das Markieren eines Feed-Elements als beobachtet
+- Kommentarherzen anzeigen
+
+Verbessert
+- Verbessertes Layout von Metadaten und Tags
+- Dienstfarbe auf UI-Komponenten anwenden
+
+Behoben
+- Korrektur des Vorschaubilds im Mini-Player
+- Behebung der endlosen Pufferung bei doppelten Warteschlangenelementen
+- Einige Player-Fixes wie Rotation und schnelleres Schließen
+- Behebung von ReCAPTCHA
+...
