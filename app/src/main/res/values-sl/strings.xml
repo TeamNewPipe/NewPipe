@@ -61,7 +61,7 @@
     <string name="retry">Poskusi znova</string>
     <string name="your_comment">Opomba (v angleščini):</string>
     <string name="duration_live">v živo</string>
-    <string name="main_bg_subtitle">Začnite z iskanjem</string>
+    <string name="main_bg_subtitle">Pritisnite lupo in začnite z iskanjem.</string>
     <string name="start">Začni</string>
     <string name="pause">Premor</string>
     <string name="delete">Izbriši</string>
@@ -320,13 +320,13 @@
     <string name="notification_action_shuffle">Naključno</string>
     <string name="notification_action_repeat">Ponovi</string>
     <string name="notification_actions_at_most_three">Izberete lahko največ 3 dejanja, ki se bodo prikazala v kompaktnem obvestilu!</string>
-    <string name="notification_actions_summary">Uredite vsako obvestilo z klikom na obvestilo. Izberite do 3 obvestila, ki se bodo prikazala v kompaktnem obvestilu z uporabo potrditvenega polja na desni.</string>
+    <string name="notification_actions_summary">Uredite vsako dejanje obvestila z klikom na posamezno dejanje. Z uporabo potrditvenega polja na desni izberite do 3 dejanja obvestil, ki se bodo prikazala v kompaktnem obvestilu</string>
     <string name="notification_action_4_title">Gumb za peto dejanje</string>
     <string name="notification_action_3_title">Gumb za četrto dejanje</string>
     <string name="notification_action_2_title">Gumb za tretje dejanje</string>
     <string name="notification_action_1_title">Gumb za drugo dejanje</string>
     <string name="notification_action_0_title">Gumb za prvo dejanje</string>
-    <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1 (lahko pride do popačenja)</string>
+    <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1</string>
     <string name="crash_the_app">Zruši aplikacijo</string>
     <string name="caption_setting_description">Spremeni velikost besedila podnapisov in stil ozadja v predvajalniku. Zahteva ponovni zagon aplikacije, da učinkuje.</string>
     <string name="caption_setting_title">Podnapisi</string>
@@ -464,4 +464,8 @@
     <string name="show_memory_leaks">Prikaži puščanje pomnilnika</string>
     <string name="show_channel_details">Prikaži detajle kanala</string>
     <string name="night_theme_title">Nočna tema</string>
+    <string name="notification_scale_to_square_image_title">Povečaj sličico na razmerje 1:1</string>
+    <string name="mark_as_watched">Označi kot že ogledano</string>
+    <string name="use_inexact_seek_title">Uporabite hitro nenatančno iskanje</string>
+    <string name="crash_the_player">Sesuj predvajalnik</string>
 </resources>
