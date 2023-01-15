@@ -1263,16 +1263,19 @@
     <string name="list_view_mode_auto_key">auto</string>
     <string name="list_view_mode_list_key">list</string>
     <string name="list_view_mode_grid_key">grid</string>
+    <string name="list_view_mode_card_key">card</string>
 
     <string-array name="list_view_mode_values">
         <item>@string/list_view_mode_auto_key</item>
         <item>@string/list_view_mode_list_key</item>
         <item>@string/list_view_mode_grid_key</item>
+        <item>@string/list_view_mode_card_key</item>
     </string-array>
     <string-array name="list_view_mode_description">
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
+        <item>@string/card</item>
     </string-array>
 
     <string name="tablet_mode_key">tablet_mode</string>
