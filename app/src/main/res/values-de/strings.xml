@@ -726,4 +726,6 @@
     <string name="app_update_unavailable_toast">Du verwendest die neueste Version von NewPipe</string>
     <string name="app_update_available_notification_text">Antippen um %s herunterzuladen</string>
     <string name="import_subscriptions_hint">Importieren oder Exportieren von Abonnements über das 3-Punkte-Menü</string>
+    <string name="night_theme_available">Diese Option ist nur verfügbar, wenn %s als Design ausgewählt wird</string>
+    <string name="unset_playlist_thumbnail">Dauerhaftes Vorschaubild aufheben</string>
 </resources>

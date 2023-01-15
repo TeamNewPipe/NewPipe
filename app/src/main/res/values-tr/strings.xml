@@ -726,4 +726,6 @@
     <string name="app_update_available_notification_title">NewPipe güncellemesi var!</string>
     <string name="app_update_available_notification_text">%s indirmek için dokunun</string>
     <string name="import_subscriptions_hint">3-nokta menüsünden abonelikleri içe veya dışa aktarın</string>
+    <string name="night_theme_available">Bu seçenek yalnızca tema için %s seçildiğinde kullanılabilir</string>
+    <string name="unset_playlist_thumbnail">Kalıcı küçük resmin ayarını kaldır</string>
 </resources>

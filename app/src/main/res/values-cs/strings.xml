@@ -598,7 +598,7 @@
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
     <string name="crash_the_app">Zbořit aplikaci</string>
     <string name="download_has_started">Stahování bylo zahájeno</string>
-    <string name="select_night_theme_toast">Můžete si zvolit svůj oblíbený motiv níže</string>
+    <string name="select_night_theme_toast">Níže si můžete zvolit svůj oblíbený motiv</string>
     <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv - %s</string>
     <string name="auto_device_theme_title">Automatický (motiv zařízení)</string>
     <string name="radio">Radio</string>
@@ -739,4 +739,6 @@
     <string name="fast_mode">Rychlý režim</string>
     <string name="app_update_unavailable_toast">Používáte nejnovější verzi NewPipe</string>
     <string name="import_subscriptions_hint">Import nebo export odběrů z 3-tečkové nabídky</string>
+    <string name="night_theme_available">Tato možnost je dostupná pouze při vybraném motivu %s</string>
+    <string name="unset_playlist_thumbnail">Zrušení nastavení trvalého náhledu</string>
 </resources>

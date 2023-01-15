@@ -778,4 +778,6 @@
     <string name="app_update_available_notification_text">انقر للتنزيل %s</string>
     <string name="fast_mode">الوضع السريع</string>
     <string name="import_subscriptions_hint">استيراد الاشتراكات أو تصديرها من القائمة المكونة من 3 نقاط</string>
+    <string name="night_theme_available">هذا الخيار متاح فقط إذا تم تحديد %s للسمة</string>
+    <string name="unset_playlist_thumbnail">إلغاء تعيين الصورة المصغرة الدائمة</string>
 </resources>

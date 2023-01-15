@@ -32,12 +32,12 @@
     <string name="controls_background_title">Baggrund</string>
     <string name="controls_popup_title">Pop op</string>
     <string name="controls_add_to_playlist_title">Føj til</string>
-    <string name="download_path_title">Placering af videodownloads</string>
+    <string name="download_path_title">Mappe til download af video</string>
     <string name="download_path_summary">Downloadede videoer gemmes her</string>
-    <string name="download_path_dialog_title">Angiv downloadmappe for videofiler</string>
-    <string name="download_path_audio_title">Downloadmappe for lydfiler</string>
+    <string name="download_path_dialog_title">Angiv download-mappe for videofiler</string>
+    <string name="download_path_audio_title">Download-mappe for lydfiler</string>
     <string name="download_path_audio_summary">Downloadede lydfiler gemmes her</string>
-    <string name="download_path_audio_dialog_title">Angiv downloadmappe for lydfiler</string>
+    <string name="download_path_audio_dialog_title">Angiv download-mappe for lydfiler</string>
     <string name="default_resolution_title">Standardopløsning</string>
     <string name="default_popup_resolution_title">Standardopløsning for pop op</string>
     <string name="show_higher_resolutions_title">Vis højere opløsninger</string>
@@ -45,7 +45,7 @@
     <string name="play_with_kodi_title">Afspil med Kodi</string>
     <string name="kore_not_found">Installer manglede Kore-app\?</string>
     <string name="show_play_with_kodi_title">Vis valgmuligheden \"Afspil med Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Vis en knap til at afspille en video via Kodi</string>
+    <string name="show_play_with_kodi_summary">Vis en knap til at afspille en video via Kodi-mediecenteret</string>
     <string name="play_audio">Lyd</string>
     <string name="default_audio_format_title">Standardformat for lydfiler</string>
     <string name="default_video_format_title">Standardformat for videofiler</string>
@@ -56,7 +56,7 @@
     <string name="popup_remember_size_pos_title">Husk størrelse og placering af pop op</string>
     <string name="popup_remember_size_pos_summary">Husk sidste størrelse og placering af pop op-afspiller</string>
     <string name="use_inexact_seek_title">Brug hurtig og upræcis søgning</string>
-    <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist. Søgninger på 5, 15 eller 25 sekunder fungerer ikke med denne indstilling, slået til</string>
+    <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist. Søgninger på 5, 15 eller 25 sekunder fungerer ikke med denne indstilling slået til</string>
     <string name="download_thumbnail_title">Indlæs miniaturebilleder</string>
     <string name="download_thumbnail_summary">Slå fra for at undgå indlæsning af billeder, hvorved der spares data og hukommelse. Ændringer sletter billedcachen i både ram og lager</string>
     <string name="thumbnail_cache_wipe_complete_notice">Billedcache slettet</string>
@@ -64,7 +64,7 @@
     <string name="metadata_cache_wipe_summary">Slet alle websidedata fra cachen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata-cache slettet</string>
     <string name="auto_queue_title">Føj automatisk næste stream til køen</string>
-    <string name="auto_queue_summary">Fortsæt nedlukningen af en (ikke-gentagende) playback kø ved at tilføje et relateret stream</string>
+    <string name="auto_queue_summary">Fortsæt en afspilningskø, der afsluttes (ikke-gentagende), ved at tilføje en lignende stream</string>
     <string name="volume_gesture_control_title">Juster lydstyrke ved hjælp af fingerbevægelser</string>
     <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere afspillerens lydstyrke</string>
     <string name="brightness_gesture_control_title">Styr lysstyrken med fingerbevægelser</string>
@@ -101,7 +101,7 @@
     <string name="error_report_title">Fejlrapport</string>
     <string name="all">Alle</string>
     <string name="channels">Kanaler</string>
-    <string name="playlists">Playlister</string>
+    <string name="playlists">Spillelister</string>
     <plurals name="videos">
         <item quantity="one">Én video</item>
         <item quantity="other">%s videoer</item>
@@ -130,7 +130,7 @@
     <string name="import_data_summary">Overskriver din nuværende historik, abonnementer, spillelister og (hvis det ønskes) indstillinger</string>
     <string name="export_data_summary">Eksporter historik, abonnementer, spillelister og indstillinger</string>
     <string name="clear_views_history_title">Slet visningshistorik</string>
-    <string name="clear_views_history_summary">Sletter historikken og positioner af tidligere viste videoer</string>
+    <string name="clear_views_history_summary">Sletter historikken over afspillede streams og afspilningspositionerne</string>
     <string name="delete_view_history_alert">Slet hele visningshistorikken\?</string>
     <string name="watch_history_deleted">Visningshistorikken blev slettet</string>
     <string name="clear_search_history_title">Slet søgehistorik</string>
@@ -217,7 +217,7 @@
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s af %2$s under %3$s</string>
-    <string name="tab_about">Om</string>
+    <string name="tab_about">Om &amp; Ofte stillede spørgsmål</string>
     <string name="tab_licenses">Licenser</string>
     <string name="app_description">Åben letvægtsstreaming på Android.</string>
     <string name="contribution_title">Bidrag til projektet</string>
@@ -330,7 +330,7 @@
     <string name="drawer_close">Luk skuffe</string>
     <string name="info_labels">Hvad:\\nForespørgsel:\\nIndholdssprog:\\nIndholdsland:\\nAppsprog:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersion:\\nOS-version:</string>
     <string name="preferred_open_action_settings_summary">Standardhandling når indhold åbnes – %s</string>
-    <string name="set_as_playlist_thumbnail">Anvend som playlistens miniature</string>
+    <string name="set_as_playlist_thumbnail">Anvend som spillelistens miniaturebillede</string>
     <string name="bookmark_playlist">Bogmærk spilleliste</string>
     <string name="unbookmark_playlist">Fjern bogmærke</string>
     <string name="playlist_add_stream_success">Føjet til spillelisten</string>
@@ -386,7 +386,7 @@
     <string name="autoplay_title">Afspil automatisk</string>
     <string name="settings_category_clear_data_title">Ryd data</string>
     <string name="enable_playback_state_lists_title">Positioner i lister</string>
-    <string name="enable_playback_resume_summary">Genopret forrige afspilningsposition</string>
+    <string name="enable_playback_resume_summary">Gendan sidste afspilningsposition</string>
     <string name="enable_playback_resume_title">Fortsæt afspilning</string>
     <string name="show_comments_summary">Slå fra for at skjule kommentarer</string>
     <string name="show_comments_title">Vis kommentarer</string>
@@ -398,7 +398,7 @@
     <string name="notification_action_1_title">Anden handlingstast</string>
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
-    <string name="open_with">Åben med</string>
+    <string name="open_with">Åbn med</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
     <string name="mark_as_watched">Markér som set</string>
     <string name="description_tab_description">Beskrivelse</string>
@@ -447,7 +447,7 @@
     <string name="streams_notification_channel_name">Nye streams</string>
     <string name="streams_notification_channel_description">Notifikationer om nye streams fra abonnementer</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies er ryddet</string>
-    <string name="delete_playback_states_alert">Slet alle playback positioner\?</string>
+    <string name="delete_playback_states_alert">Slet alle afspilningspositioner\?</string>
     <string name="missing_file">Filen er flyttet eller slettet</string>
     <string name="error_report_notification_title">NewPipe stødte ind i en fejl, tryk for at rapportere</string>
     <string name="error_report_open_issue_button_text">Rapporter på GitHub</string>
@@ -463,9 +463,9 @@
         <item quantity="one">Download fuldført</item>
         <item quantity="other">%s downloads fuldført</item>
     </plurals>
-    <string name="progressive_load_interval_summary">Lav indlæsningsintervallets størrelse, (som nu ligger på %s) om. En højere værdi kan øge videoindlæsningshastigheden. Ændringer af værdien kræver genstart.</string>
+    <string name="progressive_load_interval_summary">Ændr indlæsningsintervallets størrelse (som nu er på %s). En lavere værdi kan øge videoindlæsningshastigheden. Ændringer kræver en genstart af afspiller</string>
     <string name="clear_queue_confirmation_description">Den aktive spilleliste bliver udskiftet</string>
-    <string name="clear_queue_confirmation_summary">At skifte fra en afspiller til en anden kan udskifte din kø</string>
+    <string name="clear_queue_confirmation_summary">Hvis du skifter fra en spiller til en anden, kan din kø blive erstattet</string>
     <string name="show_meta_info_title">Vis metainformation</string>
     <string name="local_search_suggestions">Lokale søgeforslag</string>
     <string name="remote_search_suggestions">Fjerne søgeforslag</string>
@@ -475,8 +475,8 @@
     <string name="hash_channel_description">Notifikationer om videohashfunktioners status</string>
     <string name="error_report_channel_name">Fejlrapport-notifikation</string>
     <string name="error_report_channel_description">Notifikationer for at rapportere fejl</string>
-    <string name="clear_playback_states_title">Slet playback positioner</string>
-    <string name="clear_playback_states_summary">Sletter alle playback positioner</string>
+    <string name="clear_playback_states_title">Slet afspilningspositioner</string>
+    <string name="clear_playback_states_summary">Sletter alle afspilningspositioner</string>
     <string name="downloads_storage_ask_title">Spørg hvor filen skal downloades</string>
     <string name="enable_queue_limit_desc">Et download ad gangen</string>
     <string name="delete_downloaded_files">Slet downloadede filer</string>
@@ -487,23 +487,23 @@
 \nNewPipes fortrolighedspolitik forklarer i detaljer, hvilke data der bliver sendt og opbevaret når du sender en nedbrudsrapport.</string>
     <string name="copy_for_github">Kopier en formatteret rapport</string>
     <string name="permission_display_over_apps">Giv tilladelse til at vise over andre apps</string>
-    <string name="enable_playback_state_lists_summary">Vis playback positionsvisere i lister</string>
-    <string name="watch_history_states_deleted">Playback positioner slettet</string>
+    <string name="enable_playback_state_lists_summary">Vis indikatorer for afspilningsposition i lister</string>
+    <string name="watch_history_states_deleted">Afspilningspositioner slettet</string>
     <string name="clear_cookie_title">Ryd reCAPTCHA cookies</string>
     <string name="download_already_pending">Der er en afventende download med dette navn</string>
     <string name="start_downloads">Start downloads</string>
-    <string name="notification_scale_to_square_image_title">Skaler miniaturebilledet til 1:1 format</string>
-    <string name="notification_scale_to_square_image_summary">Skaler notifikationsminiaturebillederne fra 16:9 til 1:1 format (dette kan medføre forvrængninger)</string>
-    <string name="notification_actions_summary">Rediger hver eneste varselshandling nedenunder ved at trykke på dem. Vælg op til tre af dem som bliver vist i den lille notifikation, via kasserne til højre</string>
+    <string name="notification_scale_to_square_image_title">Beskær miniaturebillede til 1:1 format</string>
+    <string name="notification_scale_to_square_image_summary">Beskær video-miniaturebillede i notifikationen fra 16:9 til 1:1 format</string>
+    <string name="notification_actions_summary">Rediger hver eneste varselshandling nedenunder ved at trykke på dem. Vælg op til tre af dem som bliver vist i den lille notifikation, via afkrydsningsfelterne til højre</string>
     <string name="notification_actions_at_most_three">Du kan kun vælge op til tre handlinger som kan vises i den lille notifikation!</string>
     <string name="notification_action_buffering">Buffer</string>
     <string name="notification_colorize_summary">Få Android til at vælge notifikationens farve ud fra den primære farve i miniaturebilledet (virker ikke på alle enheder)</string>
-    <string name="night_theme_title">Nattetema</string>
+    <string name="night_theme_title">Nattema</string>
     <string name="seek_duration_title">Frem- og tilbagesøgningstid</string>
     <string name="restricted_video_no_stream">Denne video er aldersbegrænset.
 \nPga. YouTubes politik om aldersbegrænsede videoer har NewPipe ikke adgang til videoen.</string>
     <string name="crash_the_player">Crash afspilleren</string>
-    <string name="clear_queue_confirmation_title">Spørg om bekræftelse før du tømmer en kø</string>
+    <string name="clear_queue_confirmation_title">Spørg om bekræftelse før du rydder en kø</string>
     <string name="seekbar_preview_thumbnail_title">Forhåndsvisning af miniaturebilleder på statuslinjen</string>
     <string name="enqueue_next_stream">Sæt i kø som næste</string>
     <string name="enqueued_next">Er sat som næste i køen</string>
@@ -514,8 +514,8 @@
     <string name="comments_tab_description">Kommentarer</string>
     <string name="related_items_tab_description">Relaterede objekter</string>
     <string name="main_page_content_swipe_remove">Stryg på elementer for at fjerne dem</string>
-    <string name="select_a_playlist">Vælg en playliste</string>
-    <string name="no_playlist_bookmarked_yet">Ingen playliste bogmærker endnu</string>
+    <string name="select_a_playlist">Vælg en spilleliste</string>
+    <string name="no_playlist_bookmarked_yet">Ingen spilleliste-bogmærker endnu</string>
     <string name="localization_changes_requires_app_restart">Sproget ændres når appen genstarter</string>
     <string name="title_activity_play_queue">Spillekø</string>
     <string name="show_channel_details">Vis kanalens detaljer</string>
@@ -530,7 +530,7 @@
     <string name="any_network">Alle netværk</string>
     <string name="streams_notifications_interval_title">Kontrolfrekvens</string>
     <string name="enable_streams_notifications_title">Notifikationer ved nye streams</string>
-    <string name="enable_streams_notifications_summary">Notifikationer om ny streams fra abonnomenter</string>
+    <string name="enable_streams_notifications_summary">Giv besked om nye streams fra abonnementer</string>
     <string name="manual_update_description">Tjek manuelt efter opdateringer</string>
     <string name="checking_updates_toast">Tjekker efter opdateringer…</string>
     <string name="recovering">Gendanner</string>
@@ -555,8 +555,8 @@
     <string name="feed_toggle_show_played_items">Vis sete elementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
-    <string name="remove_watched_popup_warning">Videoer på playlisten som allerede er blevet set fjernes.
-\nDette kan ikke fortrydes!</string>
+    <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter, at de er blevet tilføjet til spillelisten, vil blive fjernet.
+\nEr du sikker\? Dette kan ikke gøres om!</string>
     <string name="show_thumbnail_title">Vis miniaturebillede</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_age_limit">Aldersbegrænsning</string>
@@ -653,4 +653,78 @@
     <string name="show_crash_the_player_summary">Vis et crash alternativ når afspilleren er i brug</string>
     <string name="show_error_snackbar">Vis en fejl snackbar</string>
     <string name="downloads_storage_use_saf_title">Brug system mappevælger (SAF)</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Kanalens avatar-miniaturebillede</string>
+    <string name="soundcloud_go_plus_content">Dette er et SoundCloud Go+-nummer, i hvert fald i dit land, så det kan ikke streames eller downloades af NewPipe.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Der blev ikke fundet nogen passende filhåndtering til denne handling.
+\nInstaller en Storage Access Framework-kompatibel filhåndtering</string>
+    <string name="no_appropriate_file_manager_message">Der blev ikke fundet nogen passende filhåndtering til denne handling.
+\nInstaller et filhåndteringsprogram eller prøv at deaktivere \'%s\' i download-indstillingerne</string>
+    <string name="description_select_enable">Aktivér valg af tekst i beskrivelsen</string>
+    <string name="auto_device_theme_title">Automatisk (enhedstema)</string>
+    <string name="description_select_disable">Deaktiver valg af tekst i beskrivelsen</string>
+    <string name="detail_pinned_comment_view_description">Fastgjort kommentar</string>
+    <string name="you_successfully_subscribed">Du abonnerer nu på denne kanal</string>
+    <string name="enumeration_comma">,</string>
+    <string name="get_notified">Få besked</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Du vil blive spurgt, hvor du vil gemme hver enkelt download</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Den er tilgængelig i nogle tjenester og er normalt meget hurtigere, men kan returnere et begrænset antal elementer og ofte ufuldstændige oplysninger (f.eks. ingen varighed, elementtype, ingen live-status)</string>
+    <string name="unknown_format">Ukendt format</string>
+    <string name="unknown_quality">Ukendt kvalitet</string>
+    <string name="detail_heart_img_view_description">Hjertemarkeret af indholdsskaberen</string>
+    <string name="progressive_load_interval_title">Intervalstørrelse for afspilningsindlæsning</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer-standard</string>
+    <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
+    <string name="downloads_storage_ask_summary">Du vil blive spurgt, hvor du vil gemme hver enkelt download.
+\nAktiver systemet mappevælger (SAF), hvis du vil downloade til et eksternt SD-kort</string>
+    <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil være synlige i stream-emner</string>
+    <string name="no_video_streams_available_for_external_players">Ingen videostreams er tilgængelige for eksterne afspillere</string>
+    <string name="metadata_thumbnail_url">URL til miniaturebillede</string>
+    <string name="off">Fra</string>
+    <string name="tablet_mode_title">Tablet-tilstand</string>
+    <string name="feed_toggle_hide_future_items">Skjul fremtidige elementer</string>
+    <string name="youtube_music_premium_content">Denne video er kun tilgængelig for YouTube Music Premium-medlemmer, så den kan ikke streames eller downloades af NewPipe.</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" gør det muligt at downloade til et eksternt SD-kort</string>
+    <string name="enable_disposed_exceptions_summary">Fremtving indberetning af ikke-leverbare Rx-undtagelser uden for fragmentets eller aktivitetens livscyklus efter bortskaffelse</string>
+    <string name="app_update_available_notification_text">Tryk for at downloade %s</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Fra og med Android 10 understøttes kun \"Storage Access Framework\"</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Synes du, at feed-indlæsning er for langsom\? Hvis det er tilfældet, så prøv at aktivere hurtig indlæsning (du kan ændre det i indstillingerne eller ved at trykke på knappen nedenfor).
+\n
+\nNewPipe tilbyder to strategier til feed-indlæsning:
+\n- Hentning af hele abonnementskanalen, hvilket er langsomt, men komplet.
+\n- Brug af et dedikeret service endpoint, hvilket er hurtigt, men normalt ikke komplet.
+\n
+\nForskellen mellem de to er, at den hurtige metode normalt mangler nogle oplysninger, f.eks. elementets varighed eller type (kan ikke skelne mellem livevideoer og normale videoer), og den returnerer muligvis færre elementer.
+\n
+\nYouTube er et eksempel på en tjeneste, der tilbyder denne hurtige metode med sit RSS-feed.
+\n
+\nValget er altså et spørgsmål om, hvad du foretrækker: hastighed eller præcise oplysninger.</string>
+    <string name="selected_stream_external_player_not_supported">Den valgte stream er ikke understøttet af eksterne afspillere</string>
+    <string name="night_theme_available">Denne indstilling er kun tilgængelig, hvis %s er valgt som tema</string>
+    <string name="description_select_note">Du kan nu vælge tekst i beskrivelsen. Bemærk, at siden kan flimre, og at links muligvis ikke kan klikkes på, mens du er i valgtilstand.</string>
+    <string name="streams_not_yet_supported_removed">Streams, som endnu ikke understøttes af downloaderen, vises ikke</string>
+    <string name="fast_mode">Hurtig tilstand</string>
+    <string name="import_subscriptions_hint">Importér eller eksportér abonnementer fra 3-punktsmenuen</string>
+    <string name="faq_title">Ofte stillede spørgsmål</string>
+    <string name="faq_description">Hvis du har problemer med at bruge appen, bør du tjekke disse svar på almindelige spørgsmål!</string>
+    <string name="faq">Se på hjemmeside</string>
+    <string name="show_image_indicators_summary">Vis Picasso-farvede bånd oven på billeder, der angiver deres kilde: rød for netværk, blå for disk og grøn for hukommelse</string>
+    <string name="app_update_unavailable_toast">Du kører den nyeste version af NewPipe</string>
+    <string name="new_seek_duration_toast">På grund af ExoPlayer-begrænsninger blev søgetiden sat til %d sekunder</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Vis kun ikke-grupperede abonnementer</string>
+    <string name="feed_toggle_hide_played_items">Skjul sete elementer</string>
+    <string name="playlist_page_summary">Side med spillelister</string>
+    <string name="select_night_theme_toast">Du kan vælge dit foretrukne nattema nedenfor</string>
+    <string name="night_theme_summary">Vælg dit foretrukne nattema - %s</string>
+    <string name="metadata_support">Support</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_privacy_public">Offentlig</string>
+    <string name="metadata_privacy_unlisted">Ikke oplyst</string>
+    <string name="metadata_privacy_private">Privat</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="on">Til</string>
+    <string name="toggle_all">Skift alle</string>
+    <string name="no_audio_streams_available_for_external_players">Ingen lydstreams er tilgængelige for eksterne afspillere</string>
+    <string name="select_quality_external_players">Vælg kvalitet til eksterne afspillere</string>
+    <string name="feed_toggle_show_future_items">Vis fremtidige elementer</string>
+    <string name="sort">Sortér</string>
 </resources>

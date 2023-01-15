@@ -726,4 +726,5 @@
     <string name="import_subscriptions_hint">3-बिंदु वाले मेन्यू से सब्सक्रिप्शनस आयात या निर्यात करें</string>
     <string name="app_update_unavailable_toast">आप न्यूपाइप का नवीनतम संस्करण चला रहे हैं</string>
     <string name="app_update_available_notification_text">%s डाउनलोड करने के लिए टैप करें</string>
+    <string name="night_theme_available">यह विकल्प केवल तभी उपलब्ध होता है जब थीम के लिए %s का चयन किया जाता है</string>
 </resources>

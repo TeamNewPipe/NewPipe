@@ -752,4 +752,6 @@
     <string name="app_update_available_notification_text">נגיעה כאן תוריד את %s</string>
     <string name="fast_mode">מצב מהיר</string>
     <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של NewPipe</string>
+    <string name="night_theme_available">אפשרות זאת זמינה רק אם נבחרה ערכת נושא %s</string>
+    <string name="unset_playlist_thumbnail">ביטול הגדרת תמונה ייצוגית קבועה</string>
 </resources>

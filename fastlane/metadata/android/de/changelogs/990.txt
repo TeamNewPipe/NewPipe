@@ -1,0 +1,15 @@
+Ab sofort entfällt die Unterstützung für Android 4.4 KitKat, die Mindestversion ist Android 5 Lollipop!
+
+Neu
+- Herunterladen aus dem Langdruck-Menü
+- Zukünftige Videos im Feed ausblenden
+...
+
+Verbessert
+- Refaktorierung des Player-Codes in kleine Komponenten: weniger RAM-Verbrauch, weniger Bugs
+- Verbesserter Skalierungsmodus für Miniaturansichten
+...
+
+Behoben
+- Behebung verschiedener Probleme mit der Player-Benachrichtigung: veraltete/fehlende Medieninformationen, verzerrte Miniaturansicht
+...

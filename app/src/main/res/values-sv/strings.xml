@@ -726,4 +726,5 @@
     <string name="fast_mode">Snabbt läge</string>
     <string name="app_update_unavailable_toast">Du använder den senaste versionen av NewPipe</string>
     <string name="app_update_available_notification_text">Tryck för att ladda ner %s</string>
+    <string name="night_theme_available">Det här alternativet är endast tillgängligt om %s har valts som Tema</string>
 </resources>

@@ -726,4 +726,5 @@
     <string name="app_update_unavailable_toast">Estás executandola última versión de NewPipe</string>
     <string name="app_update_available_notification_text">Toca para descargar %s</string>
     <string name="import_subscriptions_hint">Importa ou exporta subscricións dende o menú dos 3 puntos</string>
+    <string name="night_theme_available">Esta opción só está dispoñible se %s está seleccionado para o tema</string>
 </resources>
