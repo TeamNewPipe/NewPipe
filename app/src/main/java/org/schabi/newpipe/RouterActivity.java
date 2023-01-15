@@ -631,8 +631,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedChoiceKey.equals(getString(R.string.popup_player_key))
-                && !PermissionHelper.isPopupEnabled(this)) {
-            PermissionHelper.showPopupEnablementToast(this);
+                && !PermissionHelper.isPopupEnabledElseAsk(this)) {
             finish();
             return;
         }

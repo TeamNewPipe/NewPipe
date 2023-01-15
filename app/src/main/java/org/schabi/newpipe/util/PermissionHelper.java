@@ -9,8 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.view.Gravity;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -128,18 +126,21 @@ public final class PermissionHelper {
         }
     }
 
-    public static boolean isPopupEnabled(final Context context) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || checkSystemAlertWindowPermission(context);
-    }
-
-    public static void showPopupEnablementToast(final Context context) {
-        final Toast toast =
-                Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-        final TextView messageView = toast.getView().findViewById(android.R.id.message);
-        if (messageView != null) {
-            messageView.setGravity(Gravity.CENTER);
+    /**
+     * Determines whether the popup is enabled, and if it is not, starts the system activity to
+     * request the permission with {@link #checkSystemAlertWindowPermission(Context)} and shows a
+     * toast to the user explaining why the permission is needed.
+     *
+     * @param context the Android context
+     * @return whether the popup is enabled
+     */
+    public static boolean isPopupEnabledElseAsk(final Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || checkSystemAlertWindowPermission(context)) {
+            return true;
+        } else {
+            Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            return false;
         }
-        toast.show();
     }
 }
