@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.detail;
 import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.external_communication.TextLinkifier;
+import org.schabi.newpipe.util.text.TextLinkifier;
 
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -134,7 +135,8 @@ public class DescriptionFragment extends BaseFragment {
                 TextLinkifier.createLinksFromMarkdownText(binding.detailDescriptionView,
                         description.getContent(), streamInfo, descriptionDisposables);
                 break;
-            case Description.PLAIN_TEXT: default:
+            case Description.PLAIN_TEXT:
+            default:
                 TextLinkifier.createLinksFromPlainText(binding.detailDescriptionView,
                         description.getContent(), streamInfo, descriptionDisposables);
                 break;
@@ -144,30 +146,30 @@ public class DescriptionFragment extends BaseFragment {
 
     private void setupMetadata(final LayoutInflater inflater,
                                final LinearLayout layout) {
-        addMetadataItem(inflater, layout, false,
-                R.string.metadata_category, streamInfo.getCategory());
+        addMetadataItem(inflater, layout, false, R.string.metadata_category,
+                streamInfo.getCategory());
 
-        addMetadataItem(inflater, layout, false,
-                R.string.metadata_licence, streamInfo.getLicence());
+        addMetadataItem(inflater, layout, false, R.string.metadata_licence,
+                streamInfo.getLicence());
 
         addPrivacyMetadataItem(inflater, layout);
 
         if (streamInfo.getAgeLimit() != NO_AGE_LIMIT) {
-            addMetadataItem(inflater, layout, false,
-                    R.string.metadata_age_limit, String.valueOf(streamInfo.getAgeLimit()));
+            addMetadataItem(inflater, layout, false, R.string.metadata_age_limit,
+                    String.valueOf(streamInfo.getAgeLimit()));
         }
 
         if (streamInfo.getLanguageInfo() != null) {
-            addMetadataItem(inflater, layout, false,
-                    R.string.metadata_language, streamInfo.getLanguageInfo().getDisplayLanguage());
+            addMetadataItem(inflater, layout, false, R.string.metadata_language,
+                    streamInfo.getLanguageInfo().getDisplayLanguage(getAppLocale(getContext())));
         }
 
-        addMetadataItem(inflater, layout, true,
-                R.string.metadata_support, streamInfo.getSupportInfo());
-        addMetadataItem(inflater, layout, true,
-                R.string.metadata_host, streamInfo.getHost());
-        addMetadataItem(inflater, layout, true,
-                R.string.metadata_thumbnail_url, streamInfo.getThumbnailUrl());
+        addMetadataItem(inflater, layout, true, R.string.metadata_support,
+                streamInfo.getSupportInfo());
+        addMetadataItem(inflater, layout, true, R.string.metadata_host,
+                streamInfo.getHost());
+        addMetadataItem(inflater, layout, true, R.string.metadata_thumbnail_url,
+                streamInfo.getThumbnailUrl());
 
         addTagsMetadataItem(inflater, layout);
     }
@@ -191,11 +193,13 @@ public class DescriptionFragment extends BaseFragment {
         });
 
         if (linkifyContent) {
-            TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content, null,
-                    descriptionDisposables);
+            TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content,
+                    null, descriptionDisposables);
         } else {
             itemBinding.metadataContentView.setText(content);
         }
+
+        itemBinding.metadataContentView.setClickable(true);
 
         layout.addView(itemBinding.getRoot());
     }
@@ -245,14 +249,15 @@ public class DescriptionFragment extends BaseFragment {
                 case INTERNAL:
                     contentRes = R.string.metadata_privacy_internal;
                     break;
-                case OTHER: default:
+                case OTHER:
+                default:
                     contentRes = 0;
                     break;
             }
 
             if (contentRes != 0) {
-                addMetadataItem(inflater, layout, false,
-                        R.string.metadata_privacy, getString(contentRes));
+                addMetadataItem(inflater, layout, false, R.string.metadata_privacy,
+                        getString(contentRes));
             }
         }
     }
