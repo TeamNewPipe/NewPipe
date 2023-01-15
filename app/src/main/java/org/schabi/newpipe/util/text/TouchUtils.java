@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.text;
 
 import android.text.Layout;
 import android.view.MotionEvent;

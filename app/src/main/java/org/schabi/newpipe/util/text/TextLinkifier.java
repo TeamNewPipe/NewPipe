@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
@@ -15,8 +15,7 @@ import androidx.core.text.HtmlCompat;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.views.LongPressClickableSpan;
-import org.schabi.newpipe.views.LongPressLinkMovementMethod;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,8 +87,7 @@ public final class TextLinkifier {
                                                 @NonNull final CompositeDisposable disposables) {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
         textView.setText(plainTextBlock, TextView.BufferType.SPANNABLE);
-        changeIntentsOfDescriptionLinks(textView, textView.getText(), relatedInfo, disposables
-        );
+        changeIntentsOfDescriptionLinks(textView, textView.getText(), relatedInfo, disposables);
     }
 
     /**

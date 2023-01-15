@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

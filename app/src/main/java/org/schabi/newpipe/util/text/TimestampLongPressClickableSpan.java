@@ -1,6 +1,6 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
 
-import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler.playOnPopup;
+import static org.schabi.newpipe.util.text.InternalUrlsHandler.playOnPopup;
 
 import android.content.Context;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.views.LongPressClickableSpan;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 

@@ -20,13 +20,13 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.CommentTextOnTouchListener;
+import org.schabi.newpipe.util.text.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.external_communication.TimestampExtractor;
+import org.schabi.newpipe.util.text.TimestampExtractor;
 
 import java.util.Objects;
 

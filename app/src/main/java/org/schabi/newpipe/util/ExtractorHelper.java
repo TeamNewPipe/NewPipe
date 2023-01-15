@@ -51,7 +51,7 @@ import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
-import org.schabi.newpipe.util.external_communication.TextLinkifier;
+import org.schabi.newpipe.util.text.TextLinkifier;
 
 import java.util.Collections;
 import java.util.List;

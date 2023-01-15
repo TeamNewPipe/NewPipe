@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
 
 import android.content.Context;
 import android.view.View;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.views.LongPressClickableSpan;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 final class HashtagLongPressClickableSpan extends LongPressClickableSpan {
 

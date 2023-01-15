@@ -1,6 +1,6 @@
-package org.schabi.newpipe.views;
+package org.schabi.newpipe.util.text;
 
-import static org.schabi.newpipe.util.TouchUtils.getOffsetForHorizontalLine;
+import static org.schabi.newpipe.util.text.TouchUtils.getOffsetForHorizontalLine;
 
 import android.os.Handler;
 import android.os.Looper;

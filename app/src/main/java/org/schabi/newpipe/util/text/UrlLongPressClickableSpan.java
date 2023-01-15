@@ -1,11 +1,11 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
 
 import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.schabi.newpipe.views.LongPressClickableSpan;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 

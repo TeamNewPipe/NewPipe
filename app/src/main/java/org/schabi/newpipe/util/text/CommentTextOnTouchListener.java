@@ -1,6 +1,6 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.text;
 
-import static org.schabi.newpipe.util.TouchUtils.getOffsetForHorizontalLine;
+import static org.schabi.newpipe.util.text.TouchUtils.getOffsetForHorizontalLine;
 
 import android.text.Selection;
 import android.text.Spannable;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.external_communication.InternalUrlsHandler;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
