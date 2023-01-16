@@ -261,7 +261,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (key.equals(getString(R.string.list_view_mode_key))) {
+        if (getString(R.string.list_view_mode_key).equals(key)) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }
