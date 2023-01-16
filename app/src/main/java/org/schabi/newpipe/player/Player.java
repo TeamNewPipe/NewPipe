@@ -1446,9 +1446,11 @@ public final class Player implements PlaybackListener, Listener {
                     trackSelector.setParameters(trackSelector.buildUponParameters()
                             .setTunnelingEnabled(false));
                     Log.d(TAG, "Disable tunneling and reload");
-                    // Reload playback on unexpected errors:
-                    setRecovery();
-                    reloadPlayQueueManager();
+                    simpleExoPlayer.seekToDefaultPosition();
+                    simpleExoPlayer.prepare();
+                    // Inform the user that we are reloading the stream by
+                    // switching to the buffering state
+                    onBuffering();
                     break;
                 } else {
                     Log.d(TAG, "Conditinns for recovery not met. Tunneling enabled?: "
