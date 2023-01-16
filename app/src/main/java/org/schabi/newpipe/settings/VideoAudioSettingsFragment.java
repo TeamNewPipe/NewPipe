@@ -27,14 +27,14 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
         updateSeekOptions();
 
-        listener = (sharedPreferences, s) -> {
+        listener = (sharedPreferences, key) -> {
 
             // on M and above, if user chooses to minimise to popup player on exit
             // and the app doesn't have display over other apps permission,
             // show a snackbar to let the user give permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && s.equals(getString(R.string.minimize_on_exit_key))) {
-                final String newSetting = sharedPreferences.getString(s, null);
+                    && getString(R.string.minimize_on_exit_key).equals(key)) {
+                final String newSetting = sharedPreferences.getString(key, null);
                 if (newSetting != null
                         && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
                         && !Settings.canDrawOverlays(getContext())) {
@@ -46,7 +46,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                             .show();
 
                 }
-            } else if (s.equals(getString(R.string.use_inexact_seek_key))) {
+            } else if (getString(R.string.use_inexact_seek_key).equals(key)) {
                 updateSeekOptions();
             }
         };
