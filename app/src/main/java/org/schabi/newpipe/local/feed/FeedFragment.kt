@@ -36,7 +36,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
@@ -122,7 +121,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
 
         onSettingsChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key.equals(getString(R.string.list_view_mode_key))) {
+            if (getString(R.string.list_view_mode_key).equals(key)) {
                 updateListViewModeOnResume = true
             }
         }
@@ -500,7 +499,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private fun handleFeedNotAvailable(
         subscriptionEntity: SubscriptionEntity,
-        @Nullable cause: Throwable?,
+        cause: Throwable?,
         nextItemsErrors: List<Throwable>
     ) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())

@@ -172,13 +172,13 @@ public final class VideoDetailFragment
 
     private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
-                if (key.equals(getString(R.string.show_comments_key))) {
+                if (getString(R.string.show_comments_key).equals(key)) {
                     showComments = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
-                } else if (key.equals(getString(R.string.show_next_video_key))) {
+                } else if (getString(R.string.show_next_video_key).equals(key)) {
                     showRelatedItems = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
-                } else if (key.equals(getString(R.string.show_description_key))) {
+                } else if (getString(R.string.show_description_key).equals(key)) {
                     showDescription = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
                 }
