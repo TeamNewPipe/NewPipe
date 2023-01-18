@@ -31,17 +31,7 @@
         android:layout="@layout/settings_category_header_layout"
         app:iconSpaceReserved="false">
 
-        <org.schabi.newpipe.settings.custom.NotificationActionsPreference />
     </PreferenceCategory>
-
-</PreferenceScreen>
- 
-</PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/misc">
-
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
             android:icon="@drawable/ic_notification"
             app:key="sleep_timer_toggle"
             app:title="@string/sleep_timer" />
@@ -54,6 +44,8 @@
             app:title="@string/break_reminder_time"
             app:useSimpleSummaryProvider="true" />
 
-    </PreferenceCategory>
+<org.schabi.newpipe.settings.custom.NotificationActionsPreference />
+</PreferenceCategory>
 
 </PreferenceScreen>
+
