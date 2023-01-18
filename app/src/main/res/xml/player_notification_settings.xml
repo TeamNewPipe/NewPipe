@@ -35,3 +35,25 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
+ 
+</PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/misc">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/ic_notification"
+            app:key="sleep_timer_toggle"
+            app:title="@string/sleep_timer" />
+
+        <EditTextPreference
+            android:enabled="false"
+            android:icon="@drawable/ic_time"
+            app:defaultValue="120"
+            app:key="sleep_timer_delay"
+            app:title="@string/break_reminder_time"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
