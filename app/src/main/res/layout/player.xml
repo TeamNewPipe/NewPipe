@@ -212,7 +212,6 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:paddingStart="6dp"
-                        android:paddingTop="5dp"
                         android:paddingEnd="6dp"
                         android:paddingBottom="3dp"
                         android:scaleType="fitCenter"
