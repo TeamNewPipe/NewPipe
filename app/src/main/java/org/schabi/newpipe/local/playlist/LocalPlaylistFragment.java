@@ -643,15 +643,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         itemListAdapter.clearStreamItemList();
         itemListAdapter.addItems(itemsToKeep);
-        saveChanges();
+        setVideoCount(itemListAdapter.getItemsList().size());
 
-        final long videoCount = itemListAdapter.getItemsList().size();
-        setVideoCount(videoCount);
-        if (videoCount == 0) {
-            showEmptyState();
-        }
-        //TODO: Do we have to show loading?
-        //hideLoading();
+        saveChanges();
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
