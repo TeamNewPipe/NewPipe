@@ -1,3 +1,7 @@
+import com.android.tools.profgen.ArtProfileKt
+import com.android.tools.profgen.ArtProfileSerializer
+import com.android.tools.profgen.DexFile
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -306,5 +310,26 @@ static String getGitWorkingBranch() {
     } catch (IOException ignored) {
         // git was not found
         return ""
+    }
+}
+
+project.afterEvaluate {
+    tasks.compileReleaseArtProfile.doLast {
+        outputs.files.each { file ->
+            if (file.toString().endsWith(".profm")) {
+                println("Sorting ${file} ...")
+                def version = ArtProfileSerializer.valueOf("METADATA_0_0_2")
+                def profile = ArtProfileKt.ArtProfile(file)
+                def keys = new ArrayList(profile.profileData.keySet())
+                def sortedData = new LinkedHashMap()
+                Collections.sort keys, new DexFile.Companion()
+                keys.each { key -> sortedData[key] = profile.profileData[key] }
+                new FileOutputStream(file).with {
+                    write(version.magicBytes$profgen)
+                    write(version.versionBytes$profgen)
+                    version.write$profgen(it, sortedData, "")
+                }
+            }
+        }
     }
 }
