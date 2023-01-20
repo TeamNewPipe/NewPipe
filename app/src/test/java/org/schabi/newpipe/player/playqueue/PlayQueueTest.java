@@ -177,7 +177,7 @@ public class PlayQueueTest {
             final List<PlayQueueItem> streams = Collections.nCopies(5, item1);
             final PlayQueue queue1 = makePlayQueue(1, streams);
             final PlayQueue queue2 = makePlayQueue(4, streams);
-            assertEquals(queue1, queue2);
+            assertNotEquals(queue1, queue2);
         }
 
         @Test
