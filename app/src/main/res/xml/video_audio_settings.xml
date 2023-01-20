@@ -191,6 +191,14 @@
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/switch_gesture_sides_key"
+            android:summary="@string/switch_gesture_sides_summary"
+            android:title="@string/switch_gesture_sides_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/popup_remember_size_pos_key"
             android:summary="@string/popup_remember_size_pos_summary"

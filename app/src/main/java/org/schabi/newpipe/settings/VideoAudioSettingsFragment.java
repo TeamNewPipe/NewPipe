@@ -6,8 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.format.DateUtils;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -22,12 +25,29 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     @Override
+    public void onViewCreated(@NonNull final View rootView,
+                              @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        findPreference(getString(R.string.switch_gesture_sides_key))
+            .setEnabled(getPreferenceManager().getSharedPreferences()
+                    .getBoolean(getString(R.string.volume_gesture_control_key), true)
+                    && getPreferenceManager().getSharedPreferences()
+                    .getBoolean(getString(R.string.brightness_gesture_control_key), true));
+    }
+
+    @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
 
         listener = (sharedPreferences, key) -> {
+
+            findPreference(getString(R.string.switch_gesture_sides_key))
+                    .setEnabled(sharedPreferences.getBoolean(
+                    getString(R.string.volume_gesture_control_key), true)
+                    && sharedPreferences.getBoolean(
+                    getString(R.string.brightness_gesture_control_key), true));
 
             // on M and above, if user chooses to minimise to popup player on exit
             // and the app doesn't have display over other apps permission,

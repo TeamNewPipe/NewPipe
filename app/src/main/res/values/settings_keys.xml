@@ -18,6 +18,7 @@
 
     <string name="volume_gesture_control_key">volume_gesture_control</string>
     <string name="brightness_gesture_control_key">brightness_gesture_control</string>
+    <string name="switch_gesture_sides_key">switch_gesture_sides</string>
     <string name="resume_on_audio_focus_gain_key">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key">use_inexact_seek_key</string>

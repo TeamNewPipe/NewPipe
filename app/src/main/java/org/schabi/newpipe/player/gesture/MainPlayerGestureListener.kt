@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.math.MathUtils
 import androidx.core.view.isVisible
+import androidx.preference.PreferenceManager
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.AnimationType
@@ -193,10 +194,16 @@ class MainPlayerGestureListener(
         isMoving = true
 
         // -- Brightness and Volume control --
-        val isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
-        val isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
+        var isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
+        var isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
+        var displaySide = DisplayPortion.LEFT_HALF
+        val sidesSwitched = PreferenceManager.getDefaultSharedPreferences(player.context)
+            .getBoolean(R.string.switch_gesture_sides_key.toString(), false)
+        if (sidesSwitched) {
+            displaySide = DisplayPortion.RIGHT_HALF
+        }
         if (isBrightnessGestureEnabled && isVolumeGestureEnabled) {
-            if (getDisplayHalfPortion(initialEvent) === DisplayPortion.LEFT_HALF) {
+            if (getDisplayHalfPortion(initialEvent) === displaySide) {
                 onScrollBrightness(distanceY)
             } else /* DisplayPortion.RIGHT_HALF */ {
                 onScrollVolume(distanceY)

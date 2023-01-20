@@ -105,6 +105,8 @@
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
     <string name="brightness_gesture_control_summary">Use gestures to control player brightness</string>
+    <string name="switch_gesture_sides_title">Switch gesture sides</string>
+    <string name="switch_gesture_sides_summary">Switches the sides of the volume and brightness gesture controls</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Choose the suggestions to show when searching</string>
     <string name="local_search_suggestions">Local search suggestions</string>
