@@ -194,13 +194,13 @@ class MainPlayerGestureListener(
         isMoving = true
 
         // -- Brightness and Volume control --
-        var isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
-        var isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
+        val isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
+        val isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
         val brightnessSide = if (PreferenceManager.getDefaultSharedPreferences(player.context)
             .getBoolean(R.string.switch_gesture_sides_key.toString(), false)) DisplayPortion.RIGHT_HALF
             else DisplayPortion.LEFT_HALF
         if (isBrightnessGestureEnabled && isVolumeGestureEnabled) {
-            if (getDisplayHalfPortion(initialEvent) === displaySide) {
+            if (getDisplayHalfPortion(initialEvent) === brightnessSide) {
                 onScrollBrightness(distanceY)
             } else /* DisplayPortion.RIGHT_HALF */ {
                 onScrollVolume(distanceY)
