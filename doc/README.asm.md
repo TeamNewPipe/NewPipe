@@ -1,13 +1,17 @@
-<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>নিউপাইপ</b></h2>
 <h4 align="center">এণ্ড্ৰইডৰ বাবে এটা লিব্ৰে লাইটৱেট ষ্ট্ৰীমিং ফ্ৰন্ট-এণ্ড।</h4>
 
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p>
 
-<p align="center"><a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a><a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a><a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
+<p align="center">
+<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub মুক্তি"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="স্থিতি নিৰ্মাণ কৰক"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a></p>
+<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
+</p>
 <hr>
 <p align="center">
 <a href="#স্ক্ৰীণশ্বট">স্ক্ৰীণশ্বট</a> &bull; 
@@ -19,7 +23,7 @@
   <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; 
   <a href="https://newpipe.net/press/">Press</a></p><hr>
 
-*এইটো আন ভাষাত পঢ়ক: [English](README.md), [Español](doc/README.es.md), [हिन्दी](doc/README.hi.md), [한국어](doc/README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [ਪੰਜਾਬੀ ](doc/README.pa.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md), [অসমীয়া](doc/README.asm.md).*
+*এইটো আন ভাষাত পঢ়ক: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)*
 
 <b>সতৰ্কবাণী: এই এপটো নিৰ্মিয়মান অৱস্থাত আছে, গতিকে আপুনি ব্যৱহাৰ কৰোঁতে কোনো অসুবিধাৰ সন্মুখীন হ'ব পাৰে।  যদি আপুনি অসুবিধাৰ সন্মুখীন হয়, ইছ্যু টেমপ্লেট পূৰণ কৰি আমাৰ GITHUB ৰিপ'জিটৰিত এটা ইছ্যু খোলক।</b>
 
