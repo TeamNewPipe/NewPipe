@@ -348,7 +348,7 @@ public final class Player implements PlaybackListener, Listener {
         final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
 
-        final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
+        final boolean samePlayQueue = playQueue != null && playQueue.equalStreamsAndIndex(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
         final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
