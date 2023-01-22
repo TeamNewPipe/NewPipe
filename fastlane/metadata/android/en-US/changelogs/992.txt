@@ -1,0 +1,17 @@
+New
+• Subscriber count in video details
+• Download from the queue
+• Permanently set a playlist thumbnail
+• Long-press hashtags and links
+• Card view mode
+
+Improved
+• Larger mini-player close button
+• Smoother thumbnail downscaling
+• Target Android 13 (API 33)
+• Seeking no longer pauses the player
+
+Fixed
+• Fix overlay on DeX/mouse
+• Allow background player with no separate audio streams
+• Various YouTube fixes and more…
