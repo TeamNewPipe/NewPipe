@@ -741,4 +741,6 @@
     <string name="app_update_unavailable_toast">Você está executando a versão mais recente do NewPipe</string>
     <string name="night_theme_available">Esta opção só está disponível se %s for selecionado para Tema</string>
     <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
+    <string name="card">Cartão</string>
+    <string name="msg_failed_to_copy">Falha ao copiar para a área de transferência</string>
 </resources>

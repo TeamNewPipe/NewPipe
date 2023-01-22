@@ -754,4 +754,6 @@
     <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של NewPipe</string>
     <string name="night_theme_available">אפשרות זאת זמינה רק אם נבחרה ערכת נושא %s</string>
     <string name="unset_playlist_thumbnail">ביטול הגדרת תמונה ייצוגית קבועה</string>
+    <string name="card">כרטיס</string>
+    <string name="msg_failed_to_copy">ההעתקה ללוח הגזירים נכשלה</string>
 </resources>

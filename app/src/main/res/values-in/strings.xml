@@ -715,4 +715,6 @@
     <string name="app_update_available_notification_text">Ketuk untuk mengunduh %s</string>
     <string name="night_theme_available">Opsi ini hanya tersedia jika %s dipilih untuk Tema</string>
     <string name="unset_playlist_thumbnail">Batalkan penetapan gambar kecil permanen</string>
+    <string name="msg_failed_to_copy">Gagal menyalin ke papan klip</string>
+    <string name="card">Kartu</string>
 </resources>

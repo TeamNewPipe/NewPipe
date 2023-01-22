@@ -727,4 +727,7 @@
     <string name="import_subscriptions_hint">Importa o esporta iscritziones dae su menù a 3 puntos</string>
     <string name="app_update_unavailable_toast">Ses impreende s\'ùrtima versione de NewPipe</string>
     <string name="night_theme_available">Custa optzione est a disponimentu petzi si %s est seletzionadu comente tema</string>
+    <string name="card">Carta</string>
+    <string name="msg_failed_to_copy">Còpia in punta de billete fallida</string>
+    <string name="unset_playlist_thumbnail">Disativa sa miniadura permanente</string>
 </resources>
