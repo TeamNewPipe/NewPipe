@@ -3,12 +3,14 @@ package org.schabi.newpipe.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.preference.PreferenceManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,6 +32,7 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +110,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         } else if (hasTabsChanged) {
             setupTabs();
         }
+        updateTabsPosition();
     }
 
     @Override
@@ -188,6 +193,38 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private void updateTitleForTab(final int tabPosition) {
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+    }
+    private void updateTabsPosition() {
+        final ScrollableTabLayout tabLayout = binding.mainTabLayout;
+        final ViewPager viewPager = binding.pager;
+        final RelativeLayout.LayoutParams tabParams = (RelativeLayout.LayoutParams)
+                tabLayout.getLayoutParams();
+        final RelativeLayout.LayoutParams pagerParams = (RelativeLayout.LayoutParams)
+                viewPager.getLayoutParams();
+        if (PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getBoolean(getString(R.string.main_tabs_position_key), false)) {
+            tabParams.removeRule(RelativeLayout.ALIGN_PARENT_TOP);
+            tabParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            pagerParams.removeRule(RelativeLayout.BELOW);
+            pagerParams.addRule(RelativeLayout.ABOVE, R.id.main_tab_layout);
+            tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_TOP);
+            final TypedValue typedValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue,
+                    true);
+            getActivity().getWindow().setNavigationBarColor(typedValue.data);
+        } else {
+            tabParams.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            tabParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            pagerParams.removeRule(RelativeLayout.ABOVE);
+            pagerParams.addRule(RelativeLayout.BELOW, R.id.main_tab_layout);
+            tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
+            final TypedValue typedValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(R.attr.colorSecondary, typedValue,
+                    true);
+            getActivity().getWindow().setNavigationBarColor(typedValue.data);
+        }
+        tabLayout.setLayoutParams(tabParams);
+        viewPager.setLayoutParams(pagerParams);
     }
 
     @Override

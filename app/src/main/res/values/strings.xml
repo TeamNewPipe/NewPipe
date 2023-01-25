@@ -213,6 +213,8 @@
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
     <string name="fast_mode">Fast mode</string>
+    <string name="main_tabs_position_summary">Change the position of the main tabs</string>
+    <string name="main_tabs_position_title">Main Tabs Position</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
