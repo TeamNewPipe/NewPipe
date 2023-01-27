@@ -54,7 +54,7 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
                 .getDefaultSharedPreferences(itemView.getContext())
                 .getString(itemView.getContext().getString(R.string.avatar_mode_key),
                         itemView.getContext().getString(R.string.avatar_mode_round_key));
-        final ShapeableImageView avatar = (ShapeableImageView) itemThumbnailView;
+        final ShapeableImageView avatar = itemThumbnailView;
         final int shapeAppearanceResId;
         if (avatarMode.equals(itemView.getContext().getString(R.string.avatar_mode_round_key))) {
             shapeAppearanceResId = R.style.CircularImageView;
