@@ -685,9 +685,8 @@ public final class VideoDetailFragment
                 .getString(getString(R.string.avatar_mode_key),
                         getString(R.string.avatar_mode_round_key));
         final int shapeAppearanceResId;
-        final ShapeableImageView avatar = (ShapeableImageView) binding.detailUploaderThumbnailView;
-        final ShapeableImageView subAvatar =
-                (ShapeableImageView) binding.detailSubChannelThumbnailView;
+        final ShapeableImageView avatar = binding.detailUploaderThumbnailView;
+        final ShapeableImageView subAvatar = binding.detailSubChannelThumbnailView;
         if (avatarMode.equals(getString(R.string.avatar_mode_round_key))) {
             shapeAppearanceResId = R.style.CircularImageView;
         } else if (avatarMode.equals(getString(R.string.avatar_mode_square_key))) {

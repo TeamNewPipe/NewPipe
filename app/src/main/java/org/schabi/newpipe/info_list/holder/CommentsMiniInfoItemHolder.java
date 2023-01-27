@@ -13,10 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.util.LinkifyCompat;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -86,7 +84,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemThumbnailView.setVisibility(View.VISIBLE);
             itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,
                     commentVerticalPadding, commentVerticalPadding);
-            updateAvatar();
+            updateAvatar((ShapeableImageView) itemThumbnailView);
         } else {
             itemThumbnailView.setVisibility(View.GONE);
             itemRoot.setPadding(commentHorizontalPadding, commentVerticalPadding,
@@ -141,26 +139,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             }
             return true;
         });
-    }
-
-    private void updateAvatar() {
-        final String avatarMode = PreferenceManager
-                .getDefaultSharedPreferences(itemView.getContext())
-                .getString(itemView.getContext().getString(R.string.avatar_mode_key),
-                        itemView.getContext().getString(R.string.avatar_mode_round_key));
-        final ShapeableImageView avatar = (ShapeableImageView) itemThumbnailView;
-        final int shapeAppearanceResId;
-        if (avatarMode.equals(itemView.getContext().getString(R.string.avatar_mode_round_key))) {
-            shapeAppearanceResId = R.style.CircularImageView;
-        } else if (avatarMode.equals(itemView.getContext()
-                .getString(R.string.avatar_mode_square_key))) {
-            shapeAppearanceResId = R.style.SquaredImageView;
-        } else {
-            shapeAppearanceResId = R.style.RoundedSquaredImageView;
-        }
-        avatar.setShapeAppearanceModel(ShapeAppearanceModel
-                .builder(itemView.getContext(),
-                        shapeAppearanceResId, 0).build());
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {

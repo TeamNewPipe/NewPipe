@@ -3,8 +3,13 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.ShapeAppearanceModel;
+
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -43,4 +48,24 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
 
     public void updateState(final InfoItem infoItem,
                             final HistoryRecordManager historyRecordManager) { }
+
+    void updateAvatar(final ShapeableImageView itemThumbnailView) {
+        final String avatarMode = PreferenceManager
+                .getDefaultSharedPreferences(itemView.getContext())
+                .getString(itemView.getContext().getString(R.string.avatar_mode_key),
+                        itemView.getContext().getString(R.string.avatar_mode_round_key));
+        final ShapeableImageView avatar = (ShapeableImageView) itemThumbnailView;
+        final int shapeAppearanceResId;
+        if (avatarMode.equals(itemView.getContext().getString(R.string.avatar_mode_round_key))) {
+            shapeAppearanceResId = R.style.CircularImageView;
+        } else if (avatarMode.equals(itemView.getContext()
+                .getString(R.string.avatar_mode_square_key))) {
+            shapeAppearanceResId = R.style.SquaredImageView;
+        } else {
+            shapeAppearanceResId = R.style.RoundedSquaredImageView;
+        }
+        avatar.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(itemView.getContext(),
+                        shapeAppearanceResId, 0).build());
+    }
 }

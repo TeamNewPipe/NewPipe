@@ -6,10 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -61,7 +59,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
 
         PicassoHelper.loadAvatar(item.getThumbnailUrl()).into(itemThumbnailView);
 
-        updateAvatar();
+        updateAvatar((ShapeableImageView) itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {
@@ -105,25 +103,5 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         } else {
             return null;
         }
-    }
-
-    void updateAvatar() {
-        final String avatarMode = PreferenceManager
-                .getDefaultSharedPreferences(itemView.getContext())
-                .getString(itemView.getContext().getString(R.string.avatar_mode_key),
-                        itemView.getContext().getString(R.string.avatar_mode_round_key));
-        final ShapeableImageView avatar = (ShapeableImageView) itemThumbnailView;
-        final int shapeAppearanceResId;
-        if (avatarMode.equals(itemView.getContext().getString(R.string.avatar_mode_round_key))) {
-            shapeAppearanceResId = R.style.CircularImageView;
-        } else if (avatarMode.equals(itemView.getContext()
-                .getString(R.string.avatar_mode_square_key))) {
-            shapeAppearanceResId = R.style.SquaredImageView;
-        } else {
-            shapeAppearanceResId = R.style.RoundedSquaredImageView;
-        }
-        avatar.setShapeAppearanceModel(ShapeAppearanceModel
-                .builder(itemView.getContext(),
-                        shapeAppearanceResId, 0).build());
     }
 }
