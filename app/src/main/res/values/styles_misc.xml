@@ -107,4 +107,13 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="SquaredImageView">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">0%</item>
+    </style>
+
+    <style name="RoundedSquaredImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
 </resources>

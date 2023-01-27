@@ -63,6 +63,8 @@ import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Callback;
 
@@ -675,6 +677,30 @@ public final class VideoDetailFragment
                 .into(binding.detailSubChannelThumbnailView);
         PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailUploaderThumbnailView);
+        updateAvatar();
+    }
+
+    private void updateAvatar() {
+        final String avatarMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getString(getString(R.string.avatar_mode_key),
+                        getString(R.string.avatar_mode_round_key));
+        final int shapeAppearanceResId;
+        final ShapeableImageView avatar = (ShapeableImageView) binding.detailUploaderThumbnailView;
+        final ShapeableImageView subAvatar =
+                (ShapeableImageView) binding.detailSubChannelThumbnailView;
+        if (avatarMode.equals(getString(R.string.avatar_mode_round_key))) {
+            shapeAppearanceResId = R.style.CircularImageView;
+        } else if (avatarMode.equals(getString(R.string.avatar_mode_square_key))) {
+            shapeAppearanceResId = R.style.SquaredImageView;
+        } else {
+            shapeAppearanceResId = R.style.RoundedSquaredImageView;
+        }
+        avatar.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(requireContext(),
+                        shapeAppearanceResId, 0).build());
+        subAvatar.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(requireContext(),
+                        shapeAppearanceResId, 0).build());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

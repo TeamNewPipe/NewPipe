@@ -1298,6 +1298,22 @@
         <item>@string/off</item>
     </string-array>
 
+    <string name="avatar_mode_key">avatar_mode</string>
+
+    <string name="avatar_mode_round_key">round</string>
+    <string name="avatar_mode_square_key">square</string>
+    <string name="avatar_mode_square_rounded_corners_key">square_rounded_corners</string>
+    <string-array name="avatar_mode_values">
+        <item>@string/avatar_mode_round_key</item>
+        <item>@string/avatar_mode_square_key</item>
+        <item>@string/avatar_mode_square_rounded_corners_key</item>
+    </string-array>
+    <string-array name="avatar_mode_description">
+        <item>@string/round</item>
+        <item>@string/square</item>
+        <item>@string/square_rounded_corners</item>
+    </string-array>
+
     <string name="recaptcha_cookies_key">recaptcha_cookies_key</string>
 
     <string name="enable_streams_notifications">enable_streams_notifications</string>

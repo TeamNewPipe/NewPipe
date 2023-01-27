@@ -3,6 +3,8 @@ package org.schabi.newpipe.local.subscription.item
 import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.preference.PreferenceManager
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.xwray.groupie.viewbinding.BindableItem
 import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
@@ -22,6 +24,7 @@ data class PickerSubscriptionItem(
 
     override fun bind(viewBinding: PickerSubscriptionItemBinding, position: Int) {
         PicassoHelper.loadAvatar(subscriptionEntity.avatarUrl).into(viewBinding.thumbnailView)
+        updateAvatar(viewBinding)
         viewBinding.titleView.text = subscriptionEntity.name
         viewBinding.selectedHighlight.isVisible = isSelected
     }
@@ -42,5 +45,31 @@ data class PickerSubscriptionItem(
         this.isSelected = isSelected
         PickerSubscriptionItemBinding.bind(containerView).selectedHighlight
             .animate(isSelected, 150, AnimationType.LIGHT_SCALE_AND_ALPHA)
+    }
+
+    private fun updateAvatar(viewBinding: PickerSubscriptionItemBinding) {
+        val avatarMode = PreferenceManager.getDefaultSharedPreferences(viewBinding.root.context)
+            .getString(
+                viewBinding.root.context.getString(R.string.avatar_mode_key),
+                viewBinding.root.context.getString(R.string.avatar_mode_round_key)
+            )
+        val shapeAppearanceResId: Int = when (avatarMode) {
+            viewBinding.root.context
+                .getString(R.string.avatar_mode_round_key) -> {
+                R.style.CircularImageView
+            }
+            viewBinding.root.context
+                .getString(R.string.avatar_mode_square_key) -> {
+                R.style.SquaredImageView
+            }
+            else -> {
+                R.style.RoundedSquaredImageView
+            }
+        }
+        viewBinding.thumbnailView.shapeAppearanceModel = ShapeAppearanceModel
+            .builder(
+                viewBinding.root.context,
+                shapeAppearanceResId, 0
+            ).build()
     }
 }

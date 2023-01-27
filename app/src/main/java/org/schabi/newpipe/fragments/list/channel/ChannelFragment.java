@@ -22,7 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
 
@@ -133,6 +135,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         super.onViewCreated(rootView, savedInstanceState);
         channelBinding = FragmentChannelBinding.bind(rootView);
         showContentNotSupportedIfNeeded();
+        updateAvatar();
     }
 
     @Override
@@ -406,6 +409,26 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         }
 
         menuNotifyButton.setVisible(subscription != null);
+    }
+
+    private void updateAvatar() {
+        final String avatarMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getString(getString(R.string.avatar_mode_key),
+                        getString(R.string.avatar_mode_round_key));
+        final int shapeAppearanceResId;
+        if (avatarMode.equals(getString(R.string.avatar_mode_round_key))) {
+            shapeAppearanceResId = R.style.CircularImageView;
+        } else if (avatarMode.equals(getString(R.string.avatar_mode_square_key))) {
+            shapeAppearanceResId = R.style.SquaredImageView;
+        } else {
+            shapeAppearanceResId = R.style.RoundedSquaredImageView;
+        }
+        headerBinding.channelAvatarView.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(requireContext(),
+                        shapeAppearanceResId, 0).build());
+        headerBinding.subChannelAvatarView.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(requireContext(),
+                        shapeAppearanceResId, 0).build());
     }
 
     private void setNotify(final boolean isEnabled) {

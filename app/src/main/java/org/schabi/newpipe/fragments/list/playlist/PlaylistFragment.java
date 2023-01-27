@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -318,6 +319,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .into(headerBinding.uploaderAvatarView);
         }
 
+        updateAvatar();
+
         headerBinding.playlistStreamCount.setText(Localization
                 .localizeStreamCount(getContext(), result.getStreamCount()));
 
@@ -473,5 +476,22 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         playlistBookmarkButton.setIcon(drawable);
         playlistBookmarkButton.setTitle(titleRes);
+    }
+
+    private void updateAvatar() {
+        final String avatarMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getString(getString(R.string.avatar_mode_key),
+                        getString(R.string.avatar_mode_round_key));
+        final int shapeAppearanceResId;
+        if (avatarMode.equals(getString(R.string.avatar_mode_round_key))) {
+            shapeAppearanceResId = R.style.CircularImageView;
+        } else if (avatarMode.equals(getString(R.string.avatar_mode_square_key))) {
+            shapeAppearanceResId = R.style.SquaredImageView;
+        } else {
+            shapeAppearanceResId = R.style.RoundedSquaredImageView;
+        }
+        headerBinding.uploaderAvatarView.setShapeAppearanceModel(ShapeAppearanceModel
+                .builder(requireContext(),
+                        shapeAppearanceResId, 0).build());
     }
 }

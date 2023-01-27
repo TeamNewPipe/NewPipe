@@ -3,6 +3,9 @@ package org.schabi.newpipe.local.subscription.item
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.preference.PreferenceManager
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
@@ -40,6 +43,7 @@ class ChannelItem(
         }
 
         PicassoHelper.loadAvatar(infoItem.thumbnailUrl).into(itemThumbnailView)
+        updateAvatar(viewHolder, itemThumbnailView as ShapeableImageView)
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
@@ -63,5 +67,38 @@ class ChannelItem(
 
     override fun getSpanSize(spanCount: Int, position: Int): Int {
         return if (itemVersion == ItemVersion.GRID) 1 else spanCount
+    }
+
+    private fun updateAvatar(viewHolder: GroupieViewHolder, avatar: ShapeableImageView) {
+        val avatarMode = PreferenceManager.getDefaultSharedPreferences(viewHolder.root.context)
+            .getString(
+                viewHolder.root.context.getString(R.string.avatar_mode_key),
+                viewHolder.root.context.getString(R.string.avatar_mode_round_key)
+            )
+        val shapeAppearanceResId: Int = when (avatarMode) {
+            viewHolder.root.context
+                .getString(R.string.avatar_mode_round_key) -> {
+                R.style.CircularImageView
+            }
+            viewHolder.root.context
+                .getString(R.string.avatar_mode_square_key) -> {
+                R.style.SquaredImageView
+            }
+            else -> {
+                R.style.RoundedSquaredImageView
+            }
+        }
+        avatar.shapeAppearanceModel = ShapeAppearanceModel.builder(
+            viewHolder.root.context,
+            shapeAppearanceResId, 0
+        ).build()
+
+        PreferenceManager.getDefaultSharedPreferences(viewHolder.root.context)
+            .registerOnSharedPreferenceChangeListener {
+                    _, key ->
+                if (key == viewHolder.root.context.getString(R.string.avatar_mode_key)) {
+                    updateAvatar(viewHolder, avatar)
+                }
+            }
     }
 }
