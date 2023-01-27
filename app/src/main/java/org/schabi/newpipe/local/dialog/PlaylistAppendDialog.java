@@ -61,7 +61,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
-        playlistAdapter.setHasStableIds(true);
         playlistAdapter.setSelectedListener(selectedItem -> {
             final List<StreamEntity> entities = getStreamEntities();
             if (selectedItem instanceof PlaylistDuplicatesEntry && entities != null) {
@@ -125,7 +124,19 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
+            setDuplicateIndicatorExplanation(playlists);
         }
+    }
+    private void setDuplicateIndicatorExplanation(final List<PlaylistDuplicatesEntry> playlists) {
+        for (final PlaylistDuplicatesEntry entry : playlists) {
+            if (entry.timesStreamIsContained > 0) {
+                final View indicatorExplanation = getView()
+                        .findViewById(R.id.playlist_duplicate);
+                indicatorExplanation.setVisibility(View.VISIBLE);
+                return;
+            }
+        }
+
     }
 
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
