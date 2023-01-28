@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.Localization.getAppLocale;
+import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -112,7 +113,10 @@ public class DescriptionFragment extends BaseFragment {
 
     private void disableDescriptionSelection() {
         // show description content again, otherwise some links are not clickable
-        loadDescriptionContent();
+        TextLinkifier.fromDescription(binding.detailDescriptionView,
+                streamInfo.getDescription(), HtmlCompat.FROM_HTML_MODE_LEGACY,
+                streamInfo.getService(), streamInfo.getUrl(),
+                descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
 
         binding.detailDescriptionNoteView.setVisibility(View.GONE);
         binding.detailDescriptionView.setTextIsSelectable(false);
@@ -122,27 +126,6 @@ public class DescriptionFragment extends BaseFragment {
         TooltipCompat.setTooltipText(binding.detailSelectDescriptionButton, buttonLabel);
         binding.detailSelectDescriptionButton.setImageResource(R.drawable.ic_select_all);
     }
-
-    private void loadDescriptionContent() {
-        final Description description = streamInfo.getDescription();
-        switch (description.getType()) {
-            case Description.HTML:
-                TextLinkifier.createLinksFromHtmlBlock(binding.detailDescriptionView,
-                        description.getContent(), HtmlCompat.FROM_HTML_MODE_LEGACY, streamInfo,
-                        descriptionDisposables);
-                break;
-            case Description.MARKDOWN:
-                TextLinkifier.createLinksFromMarkdownText(binding.detailDescriptionView,
-                        description.getContent(), streamInfo, descriptionDisposables);
-                break;
-            case Description.PLAIN_TEXT:
-            default:
-                TextLinkifier.createLinksFromPlainText(binding.detailDescriptionView,
-                        description.getContent(), streamInfo, descriptionDisposables);
-                break;
-        }
-    }
-
 
     private void setupMetadata(final LayoutInflater inflater,
                                final LinearLayout layout) {
@@ -193,8 +176,8 @@ public class DescriptionFragment extends BaseFragment {
         });
 
         if (linkifyContent) {
-            TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content,
-                    null, descriptionDisposables);
+            TextLinkifier.fromPlainText(itemBinding.metadataContentView, content, null, null,
+                    descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
         } else {
             itemBinding.metadataContentView.setText(content);
         }

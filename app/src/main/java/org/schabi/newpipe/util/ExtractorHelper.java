@@ -20,6 +20,7 @@
 package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
 import android.content.Context;
 import android.util.Log;
@@ -319,8 +320,9 @@ public final class ExtractorHelper {
             }
 
             metaInfoSeparator.setVisibility(View.VISIBLE);
-            TextLinkifier.createLinksFromHtmlBlock(metaInfoTextView, stringBuilder.toString(),
-                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING, null, disposables);
+            TextLinkifier.fromHtml(metaInfoTextView, stringBuilder.toString(),
+                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING, null, null, disposables,
+                    SET_LINK_MOVEMENT_METHOD);
         }
     }
 
