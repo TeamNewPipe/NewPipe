@@ -46,6 +46,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
         itemTitleView.setText(item.getName());
+        itemTitleView.setSelected(true);
 
         final String detailLine = getDetailLine(item);
         if (detailLine == null) {
@@ -77,9 +78,22 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
             } else {
                 itemChannelDescriptionView.setVisibility(View.VISIBLE);
                 itemChannelDescriptionView.setText(item.getDescription());
-                itemChannelDescriptionView.setMaxLines(detailLine == null ? 3 : 2);
+                // setMaxLines utilize the line space for description if the additional details
+                // (sub / video count) are not present.
+                // Case1: 2 lines of description + 1 line additional details
+                // Case2: 3 lines of description (additionalDetails is GONE)
+                itemChannelDescriptionView.setMaxLines(getDescriptionMaxLineCount(detailLine));
             }
         }
+    }
+
+    /**
+     * Returns max number of allowed lines for the description field.
+     * @param content additional detail content (video / sub count)
+     * @return max line count
+     */
+    protected int getDescriptionMaxLineCount(@Nullable final String content) {
+        return content == null ? 3 : 2;
     }
 
     @Nullable
