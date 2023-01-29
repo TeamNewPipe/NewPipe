@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
+    private TextView playlistDuplicateIndicator;
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
@@ -72,6 +74,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistRecyclerView = view.findViewById(R.id.playlist_list);
         playlistRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         playlistRecyclerView.setAdapter(playlistAdapter);
+
+        playlistDuplicateIndicator = view.findViewById(R.id.playlist_duplicate);
 
         final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
@@ -120,23 +124,20 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     }
 
     private void onPlaylistsReceived(@NonNull final List<PlaylistDuplicatesEntry> playlists) {
-        if (playlistAdapter != null && playlistRecyclerView != null) {
+        if (playlistAdapter != null
+                && playlistRecyclerView != null
+                && playlistDuplicateIndicator != null) {
             playlistAdapter.clearStreamItemList();
             playlistAdapter.addItems(playlists);
             playlistRecyclerView.setVisibility(View.VISIBLE);
-            setDuplicateIndicatorExplanation(playlists);
+            playlistDuplicateIndicator.setVisibility(
+                    anyPlaylistContainsDuplicates(playlists) ? View.VISIBLE : View.GONE);
         }
     }
-    private void setDuplicateIndicatorExplanation(final List<PlaylistDuplicatesEntry> playlists) {
-        for (final PlaylistDuplicatesEntry entry : playlists) {
-            if (entry.timesStreamIsContained > 0) {
-                final View indicatorExplanation = getView()
-                        .findViewById(R.id.playlist_duplicate);
-                indicatorExplanation.setVisibility(View.VISIBLE);
-                return;
-            }
-        }
 
+    private boolean anyPlaylistContainsDuplicates(final List<PlaylistDuplicatesEntry> playlists) {
+        return playlists.stream()
+                .anyMatch(playlist -> playlist.timesStreamIsContained > 0);
     }
 
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
