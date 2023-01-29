@@ -165,6 +165,7 @@
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
                 <data android:pathPrefix="/shorts/" />
+                <data android:pathPrefix="/live/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />
