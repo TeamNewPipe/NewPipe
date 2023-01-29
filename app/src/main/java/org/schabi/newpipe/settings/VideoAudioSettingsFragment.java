@@ -9,7 +9,6 @@ import android.text.format.DateUtils;
 import android.widget.Toast;
 
 import androidx.preference.ListPreference;
-import androidx.preference.SwitchPreferenceCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,7 +26,6 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
-        updateGestureSwitch();
 
         listener = (sharedPreferences, key) -> {
 
@@ -50,9 +48,6 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 }
             } else if (getString(R.string.use_inexact_seek_key).equals(key)) {
                 updateSeekOptions();
-            } else if (getString(R.string.volume_gesture_control_key).equals(key)
-                        || getString(R.string.brightness_gesture_control_key).equals(key)) {
-                updateGestureSwitch();
             }
         };
     }
@@ -121,20 +116,5 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         super.onPause();
         getPreferenceManager().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(listener);
-    }
-
-    private void updateGestureSwitch() {
-        final SwitchPreferenceCompat gestureSwitch = (SwitchPreferenceCompat)
-                findPreference(getString(R.string.switch_gesture_sides_key));
-        if (getPreferenceManager().getSharedPreferences()
-                .getBoolean(getString(R.string.volume_gesture_control_key), true)
-                && getPreferenceManager().getSharedPreferences()
-                .getBoolean(getString(R.string.brightness_gesture_control_key), true)) {
-            gestureSwitch.setEnabled(true);
-            gestureSwitch.setSummary(getString(R.string.switch_gesture_sides_summary));
-        } else {
-            gestureSwitch.setEnabled(false);
-            gestureSwitch.setSummary(getString(R.string.switch_gesture_sides_summary_disabled));
-        }
     }
 }

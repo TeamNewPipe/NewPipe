@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.math.MathUtils
 import androidx.core.view.isVisible
-import androidx.preference.PreferenceManager
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.AnimationType
@@ -194,23 +193,23 @@ class MainPlayerGestureListener(
         isMoving = true
 
         // -- Brightness and Volume control --
-        val isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
-        val isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
-        val brightnessSide = if (PreferenceManager.getDefaultSharedPreferences(player.context)
-            .getBoolean(
-                player.context.getString(R.string.switch_gesture_sides_key), false))
-                DisplayPortion.RIGHT_HALF
-        else DisplayPortion.LEFT_HALF
-        if (isBrightnessGestureEnabled && isVolumeGestureEnabled) {
-            if (getDisplayHalfPortion(initialEvent) == brightnessSide) {
-                onScrollBrightness(distanceY)
-            } else /* DisplayPortion.RIGHT_HALF */ {
-                onScrollVolume(distanceY)
+        val rightSide = PlayerHelper.getRightSideGesture(player.context)
+        val leftSide = PlayerHelper.getLeftSideGesture(player.context)
+
+        if (getDisplayHalfPortion(initialEvent) == DisplayPortion.RIGHT_HALF) {
+            when (rightSide) {
+                player.context.getString(R.string.right_volume_control_key) ->
+                    onScrollVolume(distanceY)
+                player.context.getString(R.string.right_brightness_control_key) ->
+                    onScrollBrightness(distanceY)
             }
-        } else if (isBrightnessGestureEnabled) {
-            onScrollBrightness(distanceY)
-        } else if (isVolumeGestureEnabled) {
-            onScrollVolume(distanceY)
+        } else {
+            when (leftSide) {
+                player.context.getString(R.string.left_volume_control_key) ->
+                    onScrollVolume(distanceY)
+                player.context.getString(R.string.left_brightness_control_key) ->
+                    onScrollBrightness(distanceY)
+            }
         }
 
         return true
