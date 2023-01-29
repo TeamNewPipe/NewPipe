@@ -37,17 +37,17 @@
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/playlist_duplicate"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/newPlaylist"
-        android:text="@string/duplicate_in_playlist"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="15sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:inputType="textMultiLine"
-        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/video_item_search_padding"
         android:layout_marginBottom="@dimen/video_item_search_padding"
-        android:visibility="gone" />
+        android:gravity="center"
+        android:text="@string/duplicate_in_playlist"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="13sp"
+        android:visibility="gone"
+        tools:text="@tools:sample/lorem[20]"
+        tools:visibility="visible" />
 
     <View
         android:id="@+id/separator"
