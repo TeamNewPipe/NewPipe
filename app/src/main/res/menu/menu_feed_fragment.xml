@@ -4,12 +4,23 @@
 
     <item
         android:id="@+id/menu_item_feed_toggle_played_items"
-        android:orderInCategory="2"
-        android:checkable="true"
-        android:checked="true"
+        android:checkable="false"
+        android:checked="false"
         android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_toggle_show_played_items"
-        app:showAsAction="ifRoom" />
+        android:title="@string/feed_toggle_show_hide_played_items"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/menu_item_feed_toggle_show_all_items"
+                android:title="@string/feed_toggle_show_items"/>
+            <item
+                android:id="@+id/menu_item_feed_toggle_show_played_items"
+                android:title="@string/feed_toggle_show_watched_items"/>
+            <item
+                android:id="@+id/menu_item_feed_toggle_partially_played_items"
+                android:title="@string/feed_toggle_show_partially_watched_items"/>
+        </menu>
+    </item>
 
     <item
         android:id="@+id/menu_item_feed_toggle_future_items"

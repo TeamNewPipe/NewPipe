@@ -30,7 +30,7 @@ public class StreamStateEntity {
     /**
      * Playback state will not be saved, if playback time is less than this threshold (5000ms = 5s).
      */
-    private static final long PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS = 5000;
+    public static final long PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS = 5000;
 
     /**
      * Stream will be considered finished if the playback time left exceeds this threshold

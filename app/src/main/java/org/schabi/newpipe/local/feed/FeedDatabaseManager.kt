@@ -43,11 +43,13 @@ class FeedDatabaseManager(context: Context) {
     fun getStreams(
         groupId: Long,
         includePlayedStreams: Boolean,
+        includePartiallyPlayedStreams: Boolean,
         includeFutureStreams: Boolean
     ): Maybe<List<StreamWithState>> {
         return feedTable.getStreams(
             groupId,
             includePlayedStreams,
+            includePartiallyPlayedStreams,
             if (includeFutureStreams) null else OffsetDateTime.now()
         )
     }
