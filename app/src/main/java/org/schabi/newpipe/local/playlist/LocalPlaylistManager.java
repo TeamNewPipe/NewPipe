@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
@@ -85,6 +86,18 @@ public class LocalPlaylistManager {
 
     public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
+    }
+
+    /**
+     * Get playlists with attached information about how many times the provided stream is already
+     * contained in each playlist.
+     *
+     * @param streamUrl the stream url for which to check for duplicates
+     * @return a list of {@link PlaylistDuplicatesEntry}
+     */
+    public Flowable<List<PlaylistDuplicatesEntry>> getPlaylistDuplicates(final String streamUrl) {
+        return playlistStreamTable.getPlaylistDuplicatesMetadata(streamUrl)
+                .subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
