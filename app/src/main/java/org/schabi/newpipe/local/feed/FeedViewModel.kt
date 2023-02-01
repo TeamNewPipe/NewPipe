@@ -28,20 +28,17 @@ import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
-enum class ShowItems {
-    WATCHED, PARTIALLY_WATCHED, DEFAULT
-}
 class FeedViewModel(
     private val application: Application,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-    initialShowPlayedItems: ShowItems = ShowItems.DEFAULT,
+    initialStreamVisibility: StreamVisibilityStatus = StreamVisibilityStatus.DEFAULT,
     initialShowFutureItems: Boolean = true
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
 
-    private val toggleShowPlayedItems = BehaviorProcessor.create<ShowItems>()
-    private val toggleShowPlayedItemsFlowable = toggleShowPlayedItems
-        .startWithItem(initialShowPlayedItems)
+    private val streamVisibilityState = BehaviorProcessor.create<StreamVisibilityStatus>()
+    private val streamVisibilityStateFlowable = streamVisibilityState
+        .startWithItem(initialStreamVisibility)
         .distinctUntilChanged()
 
     private val toggleShowFutureItems = BehaviorProcessor.create<Boolean>()
@@ -55,12 +52,12 @@ class FeedViewModel(
     private var combineDisposable = Flowable
         .combineLatest(
             FeedEventManager.events(),
-            toggleShowPlayedItemsFlowable,
+            streamVisibilityStateFlowable,
             toggleShowFutureItemsFlowable,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
-            Function5 { t1: FeedEventManager.Event, t2: ShowItems, t3: Boolean,
+            Function5 { t1: FeedEventManager.Event, t2: StreamVisibilityStatus, t3: Boolean,
                 t4: Long, t5: List<OffsetDateTime> ->
                 return@Function5 CombineResultEventHolder(t1, t2, t3, t4, t5.firstOrNull())
             }
@@ -74,10 +71,10 @@ class FeedViewModel(
                     .getStreams(
                         groupId,
                         !(
-                            showPlayedItems == ShowItems.WATCHED ||
-                                showPlayedItems == ShowItems.PARTIALLY_WATCHED
+                            showPlayedItems == StreamVisibilityStatus.HIDE_WATCHED ||
+                                showPlayedItems == StreamVisibilityStatus.HIDE_PARTIALLY_WATCHED
                             ),
-                        showPlayedItems != ShowItems.PARTIALLY_WATCHED,
+                        showPlayedItems != StreamVisibilityStatus.HIDE_PARTIALLY_WATCHED,
                         showFutureItems
                     )
                     .blockingGet(arrayListOf())
@@ -110,7 +107,7 @@ class FeedViewModel(
 
     private data class CombineResultEventHolder(
         val t1: FeedEventManager.Event,
-        val t2: ShowItems,
+        val t2: StreamVisibilityStatus,
         val t3: Boolean,
         val t4: Long,
         val t5: OffsetDateTime?
@@ -123,20 +120,20 @@ class FeedViewModel(
         val t4: OffsetDateTime?
     )
 
-    fun togglePlayedItems(showItems: ShowItems) {
-        toggleShowPlayedItems.onNext(showItems)
+    fun changeVisibilityState(streamVisibilityStatus: StreamVisibilityStatus) {
+        streamVisibilityState.onNext(streamVisibilityStatus)
     }
 
-    fun saveShowPlayedItemsToPreferences(showItems: ShowItems) =
+    fun saveStreamVisibilityStateToPreferences(streamVisibilityStatus: StreamVisibilityStatus) =
         PreferenceManager.getDefaultSharedPreferences(application).edit {
             this.putString(
-                application.getString(R.string.feed_show_played_items_key),
-                showItems.toString()
+                application.getString(R.string.feed_stream_visibility_state_key),
+                streamVisibilityStatus.toString()
             )
             this.apply()
         }
 
-    fun getItemsVisibilityFromPreferences() = getItemsVisibilityFromPreferences(application)
+    fun getItemsVisibilityFromPreferences() = getStreamVisibilityStateFromPreferences(application)
 
     fun toggleFutureItems(showFutureItems: Boolean) {
         toggleShowFutureItems.onNext(showFutureItems)
@@ -152,13 +149,13 @@ class FeedViewModel(
 
     companion object {
 
-        private fun getItemsVisibilityFromPreferences(context: Context): ShowItems {
+        private fun getStreamVisibilityStateFromPreferences(context: Context): StreamVisibilityStatus {
             val s = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(
-                    context.getString(R.string.feed_show_played_items_key),
-                    ShowItems.DEFAULT.toString()
-                ) ?: ShowItems.DEFAULT.toString()
-            return ShowItems.valueOf(s)
+                    context.getString(R.string.feed_stream_visibility_state_key),
+                    StreamVisibilityStatus.DEFAULT.toString()
+                ) ?: StreamVisibilityStatus.DEFAULT.toString()
+            return StreamVisibilityStatus.valueOf(s)
         }
 
         private fun getShowFutureItemsFromPreferences(context: Context) =
@@ -170,7 +167,7 @@ class FeedViewModel(
                     App.getApp(),
                     groupId,
                     // Read initial value from preferences
-                    getItemsVisibilityFromPreferences(context.applicationContext),
+                    getStreamVisibilityStateFromPreferences(context.applicationContext),
                     getShowFutureItemsFromPreferences(context.applicationContext)
                 )
             }

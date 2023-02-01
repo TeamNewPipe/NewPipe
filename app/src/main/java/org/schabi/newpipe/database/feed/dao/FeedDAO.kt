@@ -71,8 +71,8 @@ abstract class FeedDAO {
             :includePartiallyPlayed
             OR sh.stream_id IS NULL
             OR sst.stream_id IS NULL
-            OR (sst.progress_time < ${StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS}
-            AND sst.progress_time < s.duration * 1000 / 4)
+            OR (sst.progress_time <= ${StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS}
+            AND sst.progress_time <= s.duration * 1000 / 4)
         )
         AND (
             :uploadDateBefore IS NULL

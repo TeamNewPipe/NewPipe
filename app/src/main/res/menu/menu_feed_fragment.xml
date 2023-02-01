@@ -7,18 +7,18 @@
         android:checkable="false"
         android:checked="false"
         android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_toggle_show_hide_played_items"
+        android:title="@string/feed_change_stream_visibility_state"
         app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/menu_item_feed_toggle_show_all_items"
-                android:title="@string/feed_toggle_show_items"/>
+                android:title="@string/feed_stream_visibility_show_all"/>
             <item
                 android:id="@+id/menu_item_feed_toggle_show_played_items"
-                android:title="@string/feed_toggle_show_watched_items"/>
+                android:title="@string/feed_stream_visibility_hide_watched"/>
             <item
                 android:id="@+id/menu_item_feed_toggle_partially_played_items"
-                android:title="@string/feed_toggle_show_partially_watched_items"/>
+                android:title="@string/feed_stream_visibility_hide_partially_watched"/>
         </menu>
     </item>
 

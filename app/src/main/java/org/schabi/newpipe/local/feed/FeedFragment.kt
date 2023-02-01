@@ -100,8 +100,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
     private lateinit var groupAdapter: GroupieAdapter
-    @State @JvmField var showPlayedItems: ShowItems = ShowItems.DEFAULT
+    @State @JvmField var feedVisibilityStatus: StreamVisibilityStatus = StreamVisibilityStatus.DEFAULT
     @State @JvmField var showFutureItems: Boolean = true
+
+    private lateinit var showAllMenuItem: MenuItem
+    private lateinit var hideWatchedMenuItem: MenuItem
+    private lateinit var hidePartiallyWatchedMenuItem: MenuItem
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -140,7 +144,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
-        showPlayedItems = viewModel.getItemsVisibilityFromPreferences()
+        feedVisibilityStatus = viewModel.getItemsVisibilityFromPreferences()
         showFutureItems = viewModel.getShowFutureItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
@@ -216,7 +220,15 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
-        updateTogglePlayedItemsButton(menu.findItem(R.id.menu_item_feed_toggle_played_items))
+
+        val itemVisibilityMenu = menu.findItem(R.id.menu_item_feed_toggle_played_items).subMenu
+        if (itemVisibilityMenu != null) {
+            showAllMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_show_all_items)
+            hideWatchedMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_show_played_items)
+            hidePartiallyWatchedMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_partially_played_items)
+        }
+
+        updateItemVisibilityMenu(menu.findItem(R.id.menu_item_feed_toggle_played_items))
         updateToggleFutureItemsButton(menu.findItem(R.id.menu_item_feed_toggle_future_items))
     }
 
@@ -243,11 +255,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 .show()
             return true
         } else if (item.itemId == R.id.menu_item_feed_toggle_show_all_items) {
-            setShowPlayedItemsMethod(item, ShowItems.DEFAULT)
+            changeItemsVisibilityStatus(item, StreamVisibilityStatus.DEFAULT)
         } else if (item.itemId == R.id.menu_item_feed_toggle_show_played_items) {
-            setShowPlayedItemsMethod(item, ShowItems.WATCHED)
+            changeItemsVisibilityStatus(item, StreamVisibilityStatus.HIDE_WATCHED)
         } else if (item.itemId == R.id.menu_item_feed_toggle_partially_played_items) {
-            setShowPlayedItemsMethod(item, ShowItems.PARTIALLY_WATCHED)
+            changeItemsVisibilityStatus(item, StreamVisibilityStatus.HIDE_PARTIALLY_WATCHED)
         } else if (item.itemId == R.id.menu_item_feed_toggle_future_items) {
             showFutureItems = !item.isChecked
             updateToggleFutureItemsButton(item)
@@ -258,11 +270,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setShowPlayedItemsMethod(item: MenuItem, showItems: ShowItems) {
-        showPlayedItems = showItems
-        viewModel.togglePlayedItems(showPlayedItems)
-        updateTogglePlayedItemsButton(item)
-        viewModel.saveShowPlayedItemsToPreferences(showPlayedItems)
+    private fun changeItemsVisibilityStatus(item: MenuItem, streamVisibilityStatus: StreamVisibilityStatus) {
+        feedVisibilityStatus = streamVisibilityStatus
+        viewModel.changeVisibilityState(feedVisibilityStatus)
+        updateItemVisibilityMenu(item)
+        viewModel.saveStreamVisibilityStateToPreferences(feedVisibilityStatus)
     }
 
     override fun onDestroyOptionsMenu() {
@@ -291,10 +303,28 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.onDestroyView()
     }
 
-    private fun updateTogglePlayedItemsButton(menuItem: MenuItem) {
+    private fun updateItemVisibilityMenu(menuItem: MenuItem) {
+        when (feedVisibilityStatus) {
+            StreamVisibilityStatus.DEFAULT -> {
+                showAllMenuItem.isVisible = false
+                hideWatchedMenuItem.isVisible = true
+                hidePartiallyWatchedMenuItem.isVisible = true
+            }
+            StreamVisibilityStatus.HIDE_WATCHED -> {
+                showAllMenuItem.isVisible = true
+                hideWatchedMenuItem.isVisible = false
+                hidePartiallyWatchedMenuItem.isVisible = true
+            }
+            else -> {
+                showAllMenuItem.isVisible = true
+                hideWatchedMenuItem.isVisible = true
+                hidePartiallyWatchedMenuItem.isVisible = false
+            }
+        }
+
         MenuItemCompat.setTooltipText(
             menuItem,
-            getString(R.string.feed_toggle_show_hide_played_items)
+            getString(R.string.feed_change_stream_visibility_state)
         )
     }
 
