@@ -73,8 +73,8 @@
     <dimen name="video_item_detail_likes_text_size">12sp</dimen>
     <dimen name="video_item_detail_uploader_text_size">12sp</dimen>
     <dimen name="video_item_detail_sub_channel_text_size">14sp</dimen>
-    <dimen name="video_item_detail_upload_date_text_size">13sp</dimen>
-    <dimen name="video_item_detail_description_text_size">13sp</dimen>
+    <dimen name="video_item_detail_upload_date_text_size">15sp</dimen>
+    <dimen name="video_item_detail_description_text_size">15sp</dimen>
     <dimen name="channel_subscribers_text_size">12sp</dimen>
     <dimen name="channel_rss_title_size">12sp</dimen>
     <!-- Elements Size -->
