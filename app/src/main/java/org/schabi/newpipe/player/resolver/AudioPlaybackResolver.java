@@ -1,6 +1,6 @@
 package org.schabi.newpipe.player.resolver;
 
-import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getPlayableStreams;
 
 import android.content.Context;
 import android.util.Log;
@@ -68,12 +68,12 @@ public class AudioPlaybackResolver implements PlaybackResolver {
      */
     @Nullable
     private Stream getAudioSource(@NonNull final StreamInfo info) {
-        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
+        final List<AudioStream> audioStreams = getPlayableStreams(info.getAudioStreams());
         if (!audioStreams.isEmpty()) {
             final int index = ListHelper.getDefaultAudioFormat(context, audioStreams);
             return getStreamForIndex(index, audioStreams);
         } else {
-            final List<VideoStream> videoStreams = getNonTorrentStreams(info.getVideoStreams());
+            final List<VideoStream> videoStreams = getPlayableStreams(info.getVideoStreams());
             if (!videoStreams.isEmpty()) {
                 final int index = ListHelper.getDefaultResolutionIndex(context, videoStreams);
                 return getStreamForIndex(index, videoStreams);
