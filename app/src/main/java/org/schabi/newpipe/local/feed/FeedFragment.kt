@@ -37,7 +37,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.core.math.MathUtils
 import androidx.core.os.bundleOf
@@ -100,12 +99,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
     private lateinit var groupAdapter: GroupieAdapter
-    @State @JvmField var feedVisibilityStatus: StreamVisibilityStatus = StreamVisibilityStatus.DEFAULT
+    @State @JvmField var showPlayedItems: Boolean = true
+    @State @JvmField var showPartiallyPlayedItems: Boolean = true
     @State @JvmField var showFutureItems: Boolean = true
-
-    private lateinit var showAllMenuItem: MenuItem
-    private lateinit var hideWatchedMenuItem: MenuItem
-    private lateinit var hidePartiallyWatchedMenuItem: MenuItem
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -144,7 +140,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
-        feedVisibilityStatus = viewModel.getItemsVisibilityFromPreferences()
+        showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
+        showPartiallyPlayedItems = viewModel.getShowPartiallyPlayedItemsFromPreferences()
         showFutureItems = viewModel.getShowFutureItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
@@ -220,16 +217,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
-
-        val itemVisibilityMenu = menu.findItem(R.id.menu_item_feed_toggle_played_items).subMenu
-        if (itemVisibilityMenu != null) {
-            showAllMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_show_all_items)
-            hideWatchedMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_show_played_items)
-            hidePartiallyWatchedMenuItem = itemVisibilityMenu.findItem(R.id.menu_item_feed_toggle_partially_played_items)
-        }
-
-        updateItemVisibilityMenu(menu.findItem(R.id.menu_item_feed_toggle_played_items))
-        updateToggleFutureItemsButton(menu.findItem(R.id.menu_item_feed_toggle_future_items))
+        MenuItemCompat.setTooltipText(
+            menu.findItem(R.id.menu_item_feed_toggle_played_items),
+            getString(R.string.feed_show_hide_streams)
+        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -254,27 +245,44 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 .create()
                 .show()
             return true
-        } else if (item.itemId == R.id.menu_item_feed_toggle_show_all_items) {
-            changeItemsVisibilityStatus(item, StreamVisibilityStatus.DEFAULT)
-        } else if (item.itemId == R.id.menu_item_feed_toggle_show_played_items) {
-            changeItemsVisibilityStatus(item, StreamVisibilityStatus.HIDE_WATCHED)
-        } else if (item.itemId == R.id.menu_item_feed_toggle_partially_played_items) {
-            changeItemsVisibilityStatus(item, StreamVisibilityStatus.HIDE_PARTIALLY_WATCHED)
-        } else if (item.itemId == R.id.menu_item_feed_toggle_future_items) {
-            showFutureItems = !item.isChecked
-            updateToggleFutureItemsButton(item)
-            viewModel.toggleFutureItems(showFutureItems)
-            viewModel.saveShowFutureItemsToPreferences(showFutureItems)
+        } else if (item.itemId == R.id.menu_item_feed_toggle_played_items) {
+            showStreamVisibilityDialog()
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun changeItemsVisibilityStatus(item: MenuItem, streamVisibilityStatus: StreamVisibilityStatus) {
-        feedVisibilityStatus = streamVisibilityStatus
-        viewModel.changeVisibilityState(feedVisibilityStatus)
-        updateItemVisibilityMenu(item)
-        viewModel.saveStreamVisibilityStateToPreferences(feedVisibilityStatus)
+    private fun showStreamVisibilityDialog() {
+        val dialogItems = arrayOf(
+            getString(R.string.feed_show_watched),
+            getString(R.string.feed_show_partially_watched),
+            getString(R.string.feed_show_upcoming)
+        )
+
+        val checkedDialogItems = booleanArrayOf(!showPlayedItems, !showPartiallyPlayedItems, !showFutureItems)
+
+        val builder = AlertDialog.Builder(context!!)
+        builder.setTitle(R.string.feed_hide_streams_title)
+        builder.setMultiChoiceItems(dialogItems, checkedDialogItems) { _, which, isChecked ->
+            checkedDialogItems[which] = isChecked
+        }
+
+        builder.setPositiveButton(R.string.ok) { _, _ ->
+            showPlayedItems = !checkedDialogItems[0]
+            viewModel.setShowPlayedItems(showPlayedItems)
+            viewModel.saveShowPlayedItemsToPreferences(showPlayedItems)
+
+            showPartiallyPlayedItems = !checkedDialogItems[1]
+            viewModel.setShowPartiallyPlayedItems(showPartiallyPlayedItems)
+            viewModel.saveShowPartiallyPlayedItemsToPreferences(showPartiallyPlayedItems)
+
+            showFutureItems = !checkedDialogItems[2]
+            viewModel.setShowFutureItems(showFutureItems)
+            viewModel.saveShowFutureItemsToPreferences(showFutureItems)
+        }
+        builder.setNegativeButton(R.string.cancel, null)
+
+        builder.create().show()
     }
 
     override fun onDestroyOptionsMenu() {
@@ -301,48 +309,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.itemsList.adapter = null
         _feedBinding = null
         super.onDestroyView()
-    }
-
-    private fun updateItemVisibilityMenu(menuItem: MenuItem) {
-        when (feedVisibilityStatus) {
-            StreamVisibilityStatus.DEFAULT -> {
-                showAllMenuItem.isVisible = false
-                hideWatchedMenuItem.isVisible = true
-                hidePartiallyWatchedMenuItem.isVisible = true
-            }
-            StreamVisibilityStatus.HIDE_WATCHED -> {
-                showAllMenuItem.isVisible = true
-                hideWatchedMenuItem.isVisible = false
-                hidePartiallyWatchedMenuItem.isVisible = true
-            }
-            else -> {
-                showAllMenuItem.isVisible = true
-                hideWatchedMenuItem.isVisible = true
-                hidePartiallyWatchedMenuItem.isVisible = false
-            }
-        }
-
-        MenuItemCompat.setTooltipText(
-            menuItem,
-            getString(R.string.feed_change_stream_visibility_state)
-        )
-    }
-
-    private fun updateToggleFutureItemsButton(menuItem: MenuItem) {
-        menuItem.isChecked = showFutureItems
-        menuItem.icon = AppCompatResources.getDrawable(
-            requireContext(),
-            if (showFutureItems) R.drawable.ic_history_future else R.drawable.ic_history
-        )
-        MenuItemCompat.setTooltipText(
-            menuItem,
-            getString(
-                if (showFutureItems)
-                    R.string.feed_toggle_hide_future_items
-                else
-                    R.string.feed_toggle_show_future_items
-            )
-        )
     }
 
     // //////////////////////////////////////////////////////////////////////////

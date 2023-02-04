@@ -73,6 +73,8 @@ abstract class FeedDAO {
             OR sst.stream_id IS NULL
             OR (sst.progress_time <= ${StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS}
             AND sst.progress_time <= s.duration * 1000 / 4)
+            OR (sst.progress_time >= s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time >= s.duration * 1000 * 3 / 4)
         )
         AND (
             :uploadDateBefore IS NULL

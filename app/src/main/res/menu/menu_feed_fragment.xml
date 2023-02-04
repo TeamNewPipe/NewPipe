@@ -4,31 +4,9 @@
 
     <item
         android:id="@+id/menu_item_feed_toggle_played_items"
-        android:checkable="false"
-        android:checked="false"
+        android:orderInCategory="2"
         android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_change_stream_visibility_state"
-        app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/menu_item_feed_toggle_show_all_items"
-                android:title="@string/feed_stream_visibility_show_all"/>
-            <item
-                android:id="@+id/menu_item_feed_toggle_show_played_items"
-                android:title="@string/feed_stream_visibility_hide_watched"/>
-            <item
-                android:id="@+id/menu_item_feed_toggle_partially_played_items"
-                android:title="@string/feed_stream_visibility_hide_partially_watched"/>
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/menu_item_feed_toggle_future_items"
-        android:orderInCategory="3"
-        android:checkable="true"
-        android:checked="true"
-        android:icon="@drawable/ic_history_future"
-        android:title="@string/feed_toggle_show_future_items"
+        android:title="@string/feed_show_hide_streams"
         app:showAsAction="ifRoom" />
 
     <item
