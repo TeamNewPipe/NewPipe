@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
@@ -72,6 +73,10 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     private static final String ID_ROOT = "//${BuildConfig.APPLICATION_ID}/r";
     @NonNull
     private static final String ID_BOOKMARKS = ID_ROOT + "/playlists";
+    @NonNull
+    private static final String ID_HISTORY = ID_ROOT + "/history";
+    @NonNull
+    private static final String ID_STREAM = ID_ROOT + "/stream";
 
     private MediaItem createRootMediaItem(final String mediaId, final String folderName) {
         final var builder = new MediaDescriptionCompat.Builder();
@@ -141,7 +146,9 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
             mediaItems.add(
                     createRootMediaItem(ID_BOOKMARKS,
                             playerService.getResources().getString(R.string.tab_bookmarks)));
-
+            mediaItems.add(
+                    createRootMediaItem(ID_HISTORY,
+                            playerService.getResources().getString(R.string.action_history)));
         } else if (parentId.startsWith(ID_BOOKMARKS)) {
             final var path = parentIdUri.getPathSegments();
             if (path.size() == 2) {
@@ -152,16 +159,38 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
             } else {
                 Log.w(TAG, "Unknown playlist uri " + parentId);
             }
+        } else if (parentId.equals(ID_HISTORY)) {
+            return populateHistory();
         }
         return Single.just(mediaItems);
     }
 
-    private LocalPlaylistManager getPlaylistManager() {
+    private Single<List<MediaItem>> populateHistory() {
+        final var streamHistory = getDatabase().streamHistoryDAO();
+        final var history = streamHistory.getHistory().firstOrError();
+        return history.map(items ->
+                items.stream().map(this::createHistoryMediaItem).collect(Collectors.toList()));
+    }
+
+    private MediaItem createHistoryMediaItem(@NonNull final StreamHistoryEntry streamHistoryEntry) {
+        final var builder = new MediaDescriptionCompat.Builder();
+        builder.setMediaId(ID_STREAM + '/' + streamHistoryEntry.getStreamId())
+            .setTitle(streamHistoryEntry.getStreamEntity().getTitle())
+            .setIconUri(Uri.parse(streamHistoryEntry.getStreamEntity().getThumbnailUrl()));
+
+        return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
+    }
+
+    private AppDatabase getDatabase() {
         if (database == null) {
             database = NewPipeDatabase.getInstance(playerService);
         }
+        return database;
+    }
+
+    private LocalPlaylistManager getPlaylistManager() {
         if (localPlaylistManager == null) {
-            localPlaylistManager = new LocalPlaylistManager(database);
+            localPlaylistManager = new LocalPlaylistManager(getDatabase());
         }
         return localPlaylistManager;
     }
@@ -209,6 +238,20 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
                                     .map(PlaylistStreamEntry::toStreamInfoItem)
                                     .collect(Collectors.toList());
                             return new SinglePlayQueue(infoItems, index);
+                        });
+            }
+        } else if (mediaId.startsWith(ID_STREAM)) {
+            final var path = mediaIdUri.getPathSegments();
+            if (path.size() == 3) {
+                final long streamId = Long.parseLong(path.get(2));
+                return getDatabase().streamHistoryDAO().getHistory()
+                        .firstOrError()
+                        .map(items -> {
+                            final var infoItems = items.stream()
+                                    .filter(it -> it.getStreamId() == streamId)
+                                    .map(StreamHistoryEntry::toStreamInfoItem)
+                                    .collect(Collectors.toList());
+                            return new SinglePlayQueue(infoItems, 0);
                         });
             }
         }
