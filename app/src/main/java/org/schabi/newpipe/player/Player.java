@@ -415,6 +415,10 @@ public final class Player implements PlaybackListener, Listener {
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
             }
+            if (playQueue.getIndex() != newQueue.getIndex()) {
+                simpleExoPlayer.seekTo(newQueue.getIndex(),
+                        newQueue.getItem().getRecoveryPosition());
+            }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
