@@ -44,6 +44,15 @@ public class MediaSessionPlayerUi extends PlayerUi {
         sessionConnector = new MediaSessionConnector(mediaSession);
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, player));
         sessionConnector.setPlayer(getForwardingPlayer());
+        sessionConnector.setMediaButtonEventHandler((p, i) -> {
+            // It seems like events from the Media Control UI
+            // in the notification area don't go through this function,
+            // so it's safe to just ignore all events in case we want to
+            // ignore the hardware media buttons.
+            // Returning true stops all further event processing of the system
+            return player.getPrefs().getBoolean(
+                    context.getString(R.string.ignore_hardware_media_buttons_key), false);
+        });
 
         sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setMediaMetadataProvider(exoPlayer -> buildMediaMetadata());
@@ -53,6 +62,7 @@ public class MediaSessionPlayerUi extends PlayerUi {
     public void destroyPlayer() {
         super.destroyPlayer();
         if (sessionConnector != null) {
+            sessionConnector.setMediaButtonEventHandler(null);
             sessionConnector.setPlayer(null);
             sessionConnector.setQueueNavigator(null);
             sessionConnector = null;
