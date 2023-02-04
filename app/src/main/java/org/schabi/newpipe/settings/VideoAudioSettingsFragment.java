@@ -52,19 +52,19 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
         updateSeekOptions();
 
-        final boolean isPipUnavailable = Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+        final boolean isPipUnavailable = Build.VERSION.SDK_INT < Build.VERSION_CODES.O
                 || !requireContext().getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE);
 
-        // Disable PiP configuration if the device is running Android < 7.0 or Android Go.
+        // Disable PiP configuration if the device is running Android < 8.0 or Android Go.
         if (isPipUnavailable) {
             final ListPreference popupConfig =
                     findPreference(getString(R.string.popup_configuration_key));
             if (popupConfig != null) {
                 popupConfig.setEnabled(false);
-                // If the Android version is >= 7.0, then PiP is disabled when this point is
+                // If the Android version is >= 8.0, then PiP is disabled when this point is
                 // reached.
-                popupConfig.setSummary(Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+                popupConfig.setSummary(Build.VERSION.SDK_INT < Build.VERSION_CODES.O
                         ? R.string.pip_unavailable : R.string.pip_disabled);
             }
         }

@@ -571,7 +571,7 @@
     <string name="popup_mode">Popup mode</string>
     <string name="pip">Android picture-in-picture</string>
     <string name="legacy">NewPipe popup</string>
-    <string name="pip_unavailable">Not configurable on Android versions below 7.0</string>
+    <string name="pip_unavailable">Not configurable on Android versions below 8.0</string>
     <string name="pip_disabled">Not configurable on Android Go devices</string>
     <!-- Seekbar Preview Thumbnail-->
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>

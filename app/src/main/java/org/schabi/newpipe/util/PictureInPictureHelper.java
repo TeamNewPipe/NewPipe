@@ -23,12 +23,9 @@ public final class PictureInPictureHelper {
         return popupMode.equals(context.getString(R.string.popup_mode_pip));
     }
 
-    @SuppressWarnings("deprecation")
     public static void enterPictureInPictureMode(@NonNull final Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity.enterPictureInPictureMode(new PictureInPictureParams.Builder().build());
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            activity.enterPictureInPictureMode();
         }
     }
 }
