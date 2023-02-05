@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.playlist;
 
 import androidx.annotation.Nullable;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
@@ -42,28 +41,34 @@ public class LocalPlaylistManager {
         }
         final StreamEntity defaultStream = streams.get(0);
         final PlaylistEntity newPlaylist =
-                new PlaylistEntity(name, defaultStream.getThumbnailUrl(), false);
+                new PlaylistEntity(name, false, defaultStream.getUid());
 
-        return Maybe.fromCallable(() -> database.runInTransaction(() ->
-                upsertStreams(playlistTable.insert(newPlaylist), streams, 0))
-        ).subscribeOn(Schedulers.io());
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+                    final List<Long> streamIds = streamTable.upsertAll(streams);
+                    newPlaylist.setThumbnailStreamId(streamIds.get(0));
+
+                    return insertJoinEntities(playlistTable.insert(newPlaylist),
+                            streamIds, 0);
+                }
+        )).subscribeOn(Schedulers.io());
     }
 
     public Maybe<List<Long>> appendToPlaylist(final long playlistId,
                                               final List<StreamEntity> streams) {
         return playlistStreamTable.getMaximumIndexOf(playlistId)
                 .firstElement()
-                .map(maxJoinIndex -> database.runInTransaction(() ->
-                        upsertStreams(playlistId, streams, maxJoinIndex + 1))
-                ).subscribeOn(Schedulers.io());
+                .map(maxJoinIndex -> database.runInTransaction(() -> {
+                            final List<Long> streamIds = streamTable.upsertAll(streams);
+                            return insertJoinEntities(playlistId, streamIds, maxJoinIndex + 1);
+                        }
+                )).subscribeOn(Schedulers.io());
     }
 
-    private List<Long> upsertStreams(final long playlistId,
-                                     final List<StreamEntity> streams,
-                                     final int indexOffset) {
+    private List<Long> insertJoinEntities(final long playlistId, final List<Long> streamIds,
+                                          final int indexOffset) {
 
-        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
-        final List<Long> streamIds = streamTable.upsertAll(streams);
+        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streamIds.size());
+
         for (int index = 0; index < streamIds.size(); index++) {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(index),
                     index + indexOffset));
@@ -97,17 +102,17 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, null, false);
+        return modifyPlaylist(playlistId, name, LocalPlaylistFragment.NO_THUMBNAIL_ID, false);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
-                                                  final String thumbnailUrl,
+                                                  final long thumbnailStreamId,
                                                   final boolean isPermanent) {
-        return modifyPlaylist(playlistId, null, thumbnailUrl, isPermanent);
+        return modifyPlaylist(playlistId, null, thumbnailStreamId, isPermanent);
     }
 
-    public String getPlaylistThumbnail(final long playlistId) {
-        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
+    public long getPlaylistThumbnailStreamId(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailStreamId();
     }
 
     public boolean getIsPlaylistThumbnailPermanent(final long playlistId) {
@@ -115,14 +120,18 @@ public class LocalPlaylistManager {
                 .getIsThumbnailPermanent();
     }
 
-    public String getAutomaticPlaylistThumbnail(final long playlistId) {
-        final String def = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
-        return playlistStreamTable.getAutomaticThumbnailUrl(playlistId, def).blockingFirst();
+    public long getAutomaticPlaylistThumbnailStreamId(final long playlistId) {
+        final long streamId = playlistStreamTable.getAutomaticThumbnailUrl(playlistId)
+                .blockingFirst();
+        if (streamId < 0) {
+            return LocalPlaylistFragment.DEFAULT_THUMBNAIL_ID;
+        }
+        return streamId;
     }
 
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
-                                          @Nullable final String thumbnailUrl,
+                                          final long thumbnailStreamId,
                                           final boolean isPermanent) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
@@ -132,8 +141,8 @@ public class LocalPlaylistManager {
                     if (name != null) {
                         playlist.setName(name);
                     }
-                    if (thumbnailUrl != null) {
-                        playlist.setThumbnailUrl(thumbnailUrl);
+                    if (thumbnailStreamId != LocalPlaylistFragment.NO_THUMBNAIL_ID) {
+                        playlist.setThumbnailStreamId(thumbnailStreamId);
                         playlist.setIsThumbnailPermanent(isPermanent);
                     }
                     return playlistTable.update(playlist);

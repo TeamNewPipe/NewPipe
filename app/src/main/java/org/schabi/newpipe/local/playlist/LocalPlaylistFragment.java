@@ -70,6 +70,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
+    public static final long DEFAULT_THUMBNAIL_ID = -1;
+    public static final long NO_THUMBNAIL_ID = -2;
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
@@ -417,8 +419,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             if (indexInHistory < 0) {
                                 itemsToKeep.add(playlistItem);
                             } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnail(playlistId)
-                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
+                                    == playlistItem.getStreamEntity().getUid()) {
                                 thumbnailVideoRemoved = true;
                             }
                         }
@@ -438,8 +440,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                     && !streamStateEntity.isFinished(duration))) {
                                 itemsToKeep.add(playlistItem);
                             } else if (!isThumbnailPermanent && !thumbnailVideoRemoved
-                                    && playlistManager.getPlaylistThumbnail(playlistId)
-                                    .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                                    && playlistManager.getPlaylistThumbnailStreamId(playlistId)
+                                    == playlistItem.getStreamEntity().getUid()) {
                                 thumbnailVideoRemoved = true;
                             }
                         }
@@ -587,7 +589,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
-    private void changeThumbnailUrl(final String thumbnailUrl, final boolean isPermanent) {
+    private void changeThumbnailStreamId(final long thumbnailStreamId, final boolean isPermanent) {
         if (playlistManager == null || (!isPermanent && playlistManager
                 .getIsPlaylistThumbnailPermanent(playlistId))) {
             return;
@@ -599,11 +601,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         if (DEBUG) {
             Log.d(TAG, "Updating playlist id=[" + playlistId + "] "
-                    + "with new thumbnail url=[" + thumbnailUrl + "]");
+                    + "with new thumbnail stream id=[" + thumbnailStreamId + "]");
         }
 
         final Disposable disposable = playlistManager
-                .changePlaylistThumbnail(playlistId, thumbnailUrl, isPermanent)
+                .changePlaylistThumbnail(playlistId, thumbnailStreamId, isPermanent)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), throwable ->
                         showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
@@ -616,16 +618,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        final String newThumbnailUrl;
+        final long thumbnailStreamId;
 
         if (!itemListAdapter.getItemsList().isEmpty()) {
-            newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
-                    .getStreamEntity().getThumbnailUrl();
+            thumbnailStreamId = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
+                    .getStreamEntity().getUid();
         } else {
-            newThumbnailUrl = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
+            thumbnailStreamId = DEFAULT_THUMBNAIL_ID;
         }
 
-        changeThumbnailUrl(newThumbnailUrl, false);
+        changeThumbnailStreamId(thumbnailStreamId, false);
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
@@ -634,8 +636,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         itemListAdapter.removeItem(item);
-        if (playlistManager.getPlaylistThumbnail(playlistId)
-                .equals(item.getStreamEntity().getThumbnailUrl())) {
+        if (playlistManager.getPlaylistThumbnailStreamId(playlistId) == item.getStreamId()) {
             updateThumbnailUrl();
         }
 
@@ -793,7 +794,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     .setAction(
                             StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
                             (f, i) ->
-                                    changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl(),
+                                    changeThumbnailStreamId(item.getStreamEntity().getUid(),
                                             true))
                     .setAction(
                             StreamDialogDefaultEntry.DELETE,

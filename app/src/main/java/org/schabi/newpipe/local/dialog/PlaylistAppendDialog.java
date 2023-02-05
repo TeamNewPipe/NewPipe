@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
@@ -131,17 +132,19 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         final Toast successToast = Toast.makeText(getContext(),
                 R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
-        if (playlist.thumbnailUrl
-                .equals("drawable://" + R.drawable.placeholder_thumbnail_playlist)) {
-            playlistDisposables.add(manager
-                    .changePlaylistThumbnail(playlist.uid, streams.get(0).getThumbnailUrl(), false)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(ignored -> successToast.show()));
-        }
-
         playlistDisposables.add(manager.appendToPlaylist(playlist.uid, streams)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> successToast.show()));
+                .subscribe(ignored -> {
+                    successToast.show();
+
+                    if (playlist.thumbnailUrl.equals(PlaylistEntity.DEFAULT_THUMBNAIL)) {
+                        playlistDisposables.add(manager
+                                .changePlaylistThumbnail(playlist.uid, streams.get(0).getUid(),
+                                        false)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(ignore -> successToast.show()));
+                    }
+                }));
 
         requireDialog().dismiss();
     }
