@@ -110,8 +110,15 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     @Transaction
     @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", "
             + PLAYLIST_NAME + ", "
-            + PLAYLIST_TABLE + "." + PLAYLIST_THUMBNAIL_URL + ", "
-            + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT + ", "
+
+            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = -1"
+            + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
+            + " ELSE (SELECT " + STREAM_THUMBNAIL_URL
+            + " FROM " + STREAM_TABLE
+            + " WHERE " + STREAM_TABLE + "." + STREAM_ID + " = " + PLAYLIST_THUMBNAIL_STREAM_ID
+            + " ) END AS " + PLAYLIST_THUMBNAIL_URL
+
+            + ", COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT + ", "
             + "COALESCE(SUM(" + STREAM_URL + " = :streamUrl), 0) AS "
                 + PLAYLIST_TIMES_STREAM_IS_CONTAINED
 
