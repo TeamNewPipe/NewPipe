@@ -727,4 +727,7 @@
     <string name="app_update_unavailable_toast">ଆପଣ NewPipe ର ସର୍ବଶେଷ ସଂସ୍କରଣ ଚଳାଉଛନ୍ତି</string>
     <string name="app_update_available_notification_text">%s ଡାଉନଲୋଡ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="night_theme_available">ଥିମ୍ ପାଇଁ %s ଚୟନ ହେଲେ ହିଁ ଏହି ବିକଳ୍ପ ଉପଲବ୍ଧ</string>
+    <string name="card">କାର୍ଡ</string>
+    <string name="msg_failed_to_copy">କ୍ଲିପବୋର୍ଡରେ କପି କରିବାରେ ବିଫଳ</string>
+    <string name="unset_playlist_thumbnail">ସ୍ଥାୟୀ ଥମ୍ୱନେଲ୍ ସେଟ୍ କରନ୍ତୁ</string>
 </resources>

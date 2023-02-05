@@ -727,4 +727,7 @@
     <string name="app_update_available_notification_text">Toque para descarregar %s</string>
     <string name="sort">Ordenação</string>
     <string name="night_theme_available">Esta opção só está disponível se %s for selecionado como tema</string>
+    <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
+    <string name="msg_failed_to_copy">Não foi possível copiar para a área de transferência</string>
+    <string name="card">Cartão</string>
 </resources>

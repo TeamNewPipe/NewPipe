@@ -749,4 +749,6 @@
     <string name="app_update_unavailable_toast">Używasz najnowszej wersji NewPipe</string>
     <string name="night_theme_available">Ta opcja jest dostępna tylko wtedy, gdy %s jest wybrany jako motyw</string>
     <string name="unset_playlist_thumbnail">Usuń stałą miniaturę</string>
+    <string name="msg_failed_to_copy">Nie udało się skopiować do schowka</string>
+    <string name="card">Karta</string>
 </resources>

@@ -726,4 +726,8 @@
     <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
     <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
     <string name="app_update_available_notification_text">Klik om %s te downloaden</string>
+    <string name="msg_failed_to_copy">Kon niet naar klembord kopiëren</string>
+    <string name="night_theme_available">Deze instelling is alleen beschikbaar als %s als thema ingesteld is</string>
+    <string name="card">Kaart</string>
+    <string name="unset_playlist_thumbnail">Miniatuur niet ingesteld</string>
 </resources>

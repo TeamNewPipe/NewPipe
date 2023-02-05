@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamaq üçün böyüdücüyə toxun.</string>
+    <string name="main_bg_subtitle">Başlamaq üçün böyüdücü güzgüyə toxun.</string>
     <string name="upload_date_text">%1$s tarixində yayımlanıb</string>
-    <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" yüklənilsin\?</string>
+    <string name="no_player_found">Yayım oynadıcı tapılmadı. \"VLC\" quraşdırılsın\?</string>
     <string name="no_player_found_toast">Yayım oynadıcı tapılmadı (Oynatmaq üçün VLC\'ni quraşdıra bilərsiniz).</string>
     <string name="install">Yüklə</string>
     <string name="cancel">Ləğv et</string>
@@ -45,7 +45,7 @@
     <string name="dark_theme_title">Qaranlıq</string>
     <string name="black_theme_title">Qara</string>
     <string name="unsubscribe">Abunəlikdən çıxın</string>
-    <string name="open_in_popup_mode">Ani pəncərə rejimində aç</string>
+    <string name="open_in_popup_mode">Ani görüntü rejimində aç</string>
     <string name="autoplay_title">Avtomatik oynat</string>
     <string name="download_dialog_title">Endir</string>
     <string name="resume_on_audio_focus_gain_summary">Fasilələrdən sonra (məsələn, telefon zəngləri) oynatmağa davam etdir</string>
@@ -613,7 +613,7 @@
     <string name="error_occurred_detail">Xəta baş verdi: %1$s</string>
     <string name="invalid_file">Fayl mövcud deyil, yaxud oxumaq və ya yazmaq icazəsi yoxdur</string>
     <string name="parsing_error">Veb saytı təhlil etmək alınmadı</string>
-    <string name="playback_pitch">Səs ucalığı</string>
+    <string name="playback_pitch">Ucalıq</string>
     <string name="radio">Radio</string>
     <string name="show_crash_the_player_title">\"Oynadıcını çökdür\" Göstər</string>
     <string name="show_crash_the_player_summary">Oynadıcıdan istifadə edərkən çökdürmə seçimini göstər</string>
@@ -728,4 +728,6 @@
     <string name="app_update_available_notification_text">%s endirmək üçün toxun</string>
     <string name="night_theme_available">Bu seçim yalnız tema üçün %s seçildikdə əlçatandır</string>
     <string name="unset_playlist_thumbnail">Daimi miniatürü ləğv et</string>
+    <string name="card">Kart</string>
+    <string name="msg_failed_to_copy">Buferə kopyalamaq alınmadı</string>
 </resources>

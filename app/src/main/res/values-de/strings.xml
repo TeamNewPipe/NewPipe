@@ -728,4 +728,6 @@
     <string name="import_subscriptions_hint">Importieren oder Exportieren von Abonnements über das 3-Punkte-Menü</string>
     <string name="night_theme_available">Diese Option ist nur verfügbar, wenn %s als Design ausgewählt wird</string>
     <string name="unset_playlist_thumbnail">Dauerhaftes Vorschaubild aufheben</string>
+    <string name="msg_failed_to_copy">Kopieren in die Zwischenablage fehlgeschlagen</string>
+    <string name="card">Karte</string>
 </resources>

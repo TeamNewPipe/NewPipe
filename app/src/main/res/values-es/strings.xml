@@ -744,4 +744,6 @@
     <string name="app_update_available_notification_text">Pulsa para descargar %s</string>
     <string name="night_theme_available">Esta opción sólo está disponible si %s está seleccionado para el tema</string>
     <string name="unset_playlist_thumbnail">Desactivar las miniaturas permanente</string>
+    <string name="msg_failed_to_copy">Error al copiar al portapapeles</string>
+    <string name="card">Tarjeta</string>
 </resources>

@@ -728,4 +728,6 @@
     <string name="import_subscriptions_hint">3-nokta menüsünden abonelikleri içe veya dışa aktarın</string>
     <string name="night_theme_available">Bu seçenek yalnızca tema için %s seçildiğinde kullanılabilir</string>
     <string name="unset_playlist_thumbnail">Kalıcı küçük resmin ayarını kaldır</string>
+    <string name="card">Kart</string>
+    <string name="msg_failed_to_copy">Panoya kopyalanamadı</string>
 </resources>

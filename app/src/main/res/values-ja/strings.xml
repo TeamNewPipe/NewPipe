@@ -712,4 +712,8 @@
     <string name="faq_title">よくある質問</string>
     <string name="faq_description">アプリの使い方に困ったときは、よくある質問に答えていますので、ぜひご覧ください!</string>
     <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
+    <string name="fast_mode">高速モード</string>
+    <string name="import_subscriptions_hint">3 点メニューから登録チャンネルをインポートまたはエクスポートします</string>
+    <string name="card">カード</string>
+    <string name="msg_failed_to_copy">クリップボードへのコピーに失敗しました</string>
 </resources>

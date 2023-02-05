@@ -727,4 +727,7 @@
     <string name="import_subscriptions_hint">Tellimusi saad importida või eksportida 3 punktiga menüüst</string>
     <string name="app_update_unavailable_toast">Sa kasutad NewPipe\'i uusimat versiooni</string>
     <string name="night_theme_available">See valik on kasutusel vaid %s teema puhul</string>
+    <string name="msg_failed_to_copy">Lõikelauale kopeerimine ei õnnestunud</string>
+    <string name="unset_playlist_thumbnail">Eemalda püsiv pisipilt</string>
+    <string name="card">Kaart</string>
 </resources>

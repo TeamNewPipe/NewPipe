@@ -741,4 +741,6 @@
     <string name="import_subscriptions_hint">Import nebo export odběrů z 3-tečkové nabídky</string>
     <string name="night_theme_available">Tato možnost je dostupná pouze při vybraném motivu %s</string>
     <string name="unset_playlist_thumbnail">Zrušení nastavení trvalého náhledu</string>
+    <string name="card">Karta</string>
+    <string name="msg_failed_to_copy">Kopírování do schránky se nezdařilo</string>
 </resources>

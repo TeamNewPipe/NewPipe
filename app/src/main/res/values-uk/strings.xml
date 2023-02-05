@@ -745,4 +745,6 @@
     <string name="fast_mode">Швидкий режим</string>
     <string name="night_theme_available">Ця опція доступна, лише якщо темою обрано %s</string>
     <string name="unset_playlist_thumbnail">Прибрати постійну мініатюру</string>
+    <string name="card">Картки</string>
+    <string name="msg_failed_to_copy">Не вдалося скопіювати до буфера обміну</string>
 </resources>

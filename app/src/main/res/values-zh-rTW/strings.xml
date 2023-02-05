@@ -714,4 +714,7 @@
     <string name="fast_mode">快速模式</string>
     <string name="import_subscriptions_hint">從三點式選單匯入或匯出訂閱</string>
     <string name="night_theme_available">此選項僅在主題選擇為 %s 時可用</string>
+    <string name="card">卡片</string>
+    <string name="unset_playlist_thumbnail">取消設定永久縮圖</string>
+    <string name="msg_failed_to_copy">無法複製到剪貼簿</string>
 </resources>

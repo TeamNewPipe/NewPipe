@@ -728,4 +728,6 @@
     <string name="app_update_unavailable_toast">Έχετε την πιο πρόσφατη έκδοση του NewPipe</string>
     <string name="night_theme_available">Αυτή η επιλογή είναι διαθέσιμη μόνο εάν έχει επιλεγεί %s για Θέμα</string>
     <string name="unset_playlist_thumbnail">Κατάργηση μόνιμης μικρογραφίας</string>
+    <string name="msg_failed_to_copy">Αποτυχία αντιγραφής στο πρόχειρο</string>
+    <string name="card">Κάρτα</string>
 </resources>
