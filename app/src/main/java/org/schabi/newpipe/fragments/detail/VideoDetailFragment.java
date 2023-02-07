@@ -2013,10 +2013,10 @@ public final class VideoDetailFragment
             restoreDefaultBrightness();
         } else {
             // Do not restore if user has disabled brightness gesture
-            if (!(PlayerHelper.getRightSideGesture(activity)
-                    .equals(getString(R.string.right_brightness_control_key))
-                    && PlayerHelper.getLeftSideGesture(activity)
-                    .equals(getString(R.string.left_brightness_control_key)))) {
+            if (PlayerHelper.getRightSideGesture(activity)
+                    .equals(getString(R.string.brightness_control_key))
+                    || PlayerHelper.getLeftSideGesture(activity)
+                    .equals(getString(R.string.brightness_control_key))) {
                 return;
             }
             // Restore already saved brightness level

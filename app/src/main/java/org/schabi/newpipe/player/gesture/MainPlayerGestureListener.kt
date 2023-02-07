@@ -198,16 +198,16 @@ class MainPlayerGestureListener(
 
         if (getDisplayHalfPortion(initialEvent) == DisplayPortion.RIGHT_HALF) {
             when (rightSide) {
-                player.context.getString(R.string.right_volume_control_key) ->
+                player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
-                player.context.getString(R.string.right_brightness_control_key) ->
+                player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }
         } else {
             when (leftSide) {
-                player.context.getString(R.string.left_volume_control_key) ->
+                player.context.getString(R.string.volume_control_key) ->
                     onScrollVolume(distanceY)
-                player.context.getString(R.string.left_brightness_control_key) ->
+                player.context.getString(R.string.brightness_control_key) ->
                     onScrollBrightness(distanceY)
             }
         }
