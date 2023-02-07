@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +33,7 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -210,26 +210,25 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             pagerParams.removeRule(RelativeLayout.BELOW);
             pagerParams.addRule(RelativeLayout.ABOVE, R.id.main_tab_layout);
             tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_TOP);
-            final TypedValue typedValueBackground = new TypedValue();
-            getContext().getTheme().resolveAttribute(R.attr.colorSecondary, typedValueBackground,
-                    true);
-            tabLayout.setBackgroundColor(typedValueBackground.data);
-            tabLayout.setTabRippleColor(ColorStateList.valueOf(
-                    getResources().getColor(R.color.gray)));
-            tabLayout.setTabIconTint(ColorStateList.valueOf(getResources().getColor(R.color.gray)));
-            tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.gray));
+            tabLayout.setBackgroundColor(ThemeHelper
+                    .resolveColorFromAttr(requireContext(), R.attr.colorSecondary));
+            final int colorAccent = ThemeHelper.resolveColorFromAttr(
+                    requireContext(), R.attr.colorAccent);
+            tabLayout.setTabRippleColor(ColorStateList.valueOf(colorAccent).withAlpha(32));
+            tabLayout.setTabIconTint(ColorStateList.valueOf(colorAccent));
+            tabLayout.setSelectedTabIndicatorColor(colorAccent);
         } else {
             tabParams.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             tabParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             pagerParams.removeRule(RelativeLayout.ABOVE);
             pagerParams.addRule(RelativeLayout.BELOW, R.id.main_tab_layout);
             tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
-            final TypedValue typedValue = new TypedValue();
-            getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue,
-                    true);
-            tabLayout.setBackgroundColor(typedValue.data);
-            tabLayout.setTabRippleColor(binding.mainTabLayout.getTabRippleColor().withAlpha(32));
-            tabLayout.setTabIconTint(binding.mainTabLayout.getTabIconTint());
+            tabLayout.setBackgroundColor(ThemeHelper
+                    .resolveColorFromAttr(requireContext(), R.attr.colorPrimary));
+            tabLayout.setTabRippleColor(ColorStateList.valueOf(
+                    getResources().getColor(R.color.white)).withAlpha(32));
+            tabLayout.setTabIconTint(ColorStateList.valueOf(
+                    getResources().getColor(R.color.white)));
             tabLayout.setSelectedTabIndicatorColor(ContextCompat
                     .getColor(requireContext(), R.color.white));
         }
