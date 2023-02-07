@@ -228,13 +228,13 @@ public final class PlayerHelper {
                 .getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
     }
 
-    public static String getRightSideGesture(@NonNull final Context context) {
+    public static String getActionForRightGestureSide(@NonNull final Context context) {
         return getPreferences(context)
                 .getString(context.getString(R.string.right_gesture_control_key),
                         context.getString(R.string.default_right_gesture_control_value));
     }
 
-    public static String getLeftSideGesture(@NonNull final Context context) {
+    public static String getActionForLeftGestureSide(@NonNull final Context context) {
         return getPreferences(context)
                 .getString(context.getString(R.string.left_gesture_control_key),
                         context.getString(R.string.default_left_gesture_control_value));
