@@ -1,13 +1,13 @@
-Neu
-- Schaltfläche "Im Browser öffnen" im Fehlerbedienfeld hinzugefügt
-- Option zur Anzeige von Kanalgruppen als Liste hinzugefügt
-- [YouTube] Langes Klicken auf Streamsegmente zum Teilen der Zeitstempel-URL
-- Schaltfläche "Warteschlange abspielen" zum Mini-Player hinzugefügt
+Neu:
+• Neue Schaltfläche "Im Browser öffnen" im Fehler-Fenster
+• Anzeigeoption von Kanalgruppen als Liste
+• [YouTube] Langer Klick auf Streamsegmente um Zeitstempel-URL zu teilen
+• Schaltfläche „Warteschlange abspielen“ im Mini-Player
 
-Verbessert
-- Isländische Lokalisierung hinzugefügt, viele Übersetzungen aktualisiert
-- Viele interne Verbesserungen
+Verbessert:
+• Isländische Lokalisierung hinzugefügt, viele Übersetzungen aktualisiert
+• Viele interne Verbesserungen
 
-Behoben
-- Mehrere Abstürze behoben
-- [YouTube] Behebung von Problemen beim Laden von Kanälen...
+Behoben:
+• Mehrere Abstürze behoben
+• [YouTube] Fehlerbehebung für Laden von Kanälen, nicht zugeordnete Feeds und Wiedergabe in einigen Ländern

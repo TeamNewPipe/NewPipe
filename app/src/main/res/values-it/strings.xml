@@ -742,5 +742,7 @@
     <string name="night_theme_available">Questa opzione è disponibile solo se %s è selezionato come Tema</string>
     <string name="msg_failed_to_copy">Copia negli appunti non riuscita</string>
     <string name="card">Schede</string>
-    <string name="unset_playlist_thumbnail">Disattiva la miniatura permanente</string>
+    <string name="unset_playlist_thumbnail">Disattiva copertina permanente</string>
+    <string name="duplicate_in_playlist">Le playlist in grigio contengono già questo elemento.</string>
+    <string name="playlist_add_stream_success_duplicate">Doppione aggiunto %d volta/e</string>
 </resources>

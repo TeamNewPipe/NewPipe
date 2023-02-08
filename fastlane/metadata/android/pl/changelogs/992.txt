@@ -1,0 +1,17 @@
+Nowe
+• Liczba subskrybentów w szczegółach wideo
+• Pobieranie z kolejki
+• Ustawianie stałej miniatury playlisty
+• Długie naciśnięcie hashtagów i linków
+• Tryb widoku karty
+
+Ulepszone
+• Większy przycisk zamykania miniodtwarzacza
+• Płynniejsze zmniejszanie miniatur
+• Docelowy system Android 13 (API 33)
+• Przewijanie nie wstrzymuje już odtwarzacza
+
+Naprawione
+• Nakładka dla DeX/myszy
+• Zezwalanie na odtwarzanie w tle bez oddzielnych strumieni audio
+• Różne poprawki YouTube i więcej…

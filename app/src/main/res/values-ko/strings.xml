@@ -715,4 +715,8 @@
     <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요.</string>
     <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
     <string name="night_theme_available">이 옵션은 테마로 %s를 선택한 경우에만 사용할 수 있음</string>
+    <string name="playlist_add_stream_success_duplicate">중복 추가 %d 번</string>
+    <string name="duplicate_in_playlist">회색으로 표시된 재생 목록에 이미 이 항목이 포함되어 있습니다.</string>
+    <string name="card">카드</string>
+    <string name="msg_failed_to_copy">클립보드 복사 실패</string>
 </resources>

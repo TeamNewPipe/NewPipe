@@ -1,11 +1,11 @@
-Neu
-• Inhaltsmetadaten (Tags, Kategorien, Lizenz, ...) unter der Beschreibung anzeigen
-• Option "Kanaldetails anzeigen" in remote (nicht lokalen) Wiedergabelisten hinzugefügt
-• Option "Im Browser öffnen" zum Langdruck-Menü hinzugefügt
+Neu:
+• Inhaltsmetadaten (Tags, Kategorien, Lizenz, …) unter der Beschreibung anzeigen
+• Option „Kanaldetails anzeigen“ in remote (nicht lokalen) Wiedergabelisten hinzugefügt
+• Option „Im Browser öffnen“ zum Langdruck-Menü hinzugefügt
 
-Behoben
+Behoben:
 • Rotationsabsturz auf der Videodetailseite
-• "Mit Kodi spielen"-Button im Player fordert immer auf, Kore zu installieren
+• „Mit Kodi spielen“-Button im Player fordert immer auf, Kore zu installieren
 • Setzen von Import- und Exportpfaden wurde behoben und verbessert
 • [YouTube] Anzahl Kommentar-Likes korrigiert
 Und vieles mehr

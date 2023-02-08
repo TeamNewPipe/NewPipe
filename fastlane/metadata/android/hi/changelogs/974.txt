@@ -1,0 +1,5 @@
+Hotfix
+• Fix buffering issues caused by YouTube throttling
+• Fix YouTube comments extraction and crashes with disabled comments
+• Fix YouTube music search
+• Fix PeerTube livestreams

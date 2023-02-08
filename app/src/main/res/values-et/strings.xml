@@ -730,4 +730,6 @@
     <string name="msg_failed_to_copy">Lõikelauale kopeerimine ei õnnestunud</string>
     <string name="unset_playlist_thumbnail">Eemalda püsiv pisipilt</string>
     <string name="card">Kaart</string>
+    <string name="duplicate_in_playlist">Hallina kuvatud esitusloendid juba sisaldavad seda kirjet.</string>
+    <string name="playlist_add_stream_success_duplicate">Topeltkirje lisatud %d kord(a)</string>
 </resources>

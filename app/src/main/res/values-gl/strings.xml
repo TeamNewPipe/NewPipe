@@ -730,4 +730,6 @@
     <string name="msg_failed_to_copy">Produciuse un erro ao copiar no portapapeis</string>
     <string name="unset_playlist_thumbnail">Desactivala miniatura permanente</string>
     <string name="card">Tarxeta</string>
+    <string name="duplicate_in_playlist">As listas de reprodución que se atopan atenuadas xa conteñen este elemento.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicado engadido %d vez/veces</string>
 </resources>
