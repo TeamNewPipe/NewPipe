@@ -191,7 +191,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:999fb7f812f8f39712dda88cf5ff4db3ee877fdc'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:e920ab3f5f40fe1f669735d717135c83141be2dd'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
