@@ -717,4 +717,6 @@
     <string name="card">卡片</string>
     <string name="unset_playlist_thumbnail">取消設定永久縮圖</string>
     <string name="msg_failed_to_copy">無法複製到剪貼簿</string>
+    <string name="playlist_add_stream_success_duplicate">重複新增 %d 次</string>
+    <string name="duplicate_in_playlist">變灰的播放清單已經包含此項目。</string>
 </resources>

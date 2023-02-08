@@ -20,8 +20,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdk 21
         targetSdk 33
-        versionCode 991
-        versionName "0.24.1"
+        versionCode 992
+        versionName "0.25.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -106,7 +106,7 @@ ext {
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.2'
+    exoPlayerVersion = '2.18.1'
     googleAutoServiceVersion = '1.0.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
@@ -183,7 +183,7 @@ sonar {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
@@ -191,7 +191,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:2211a24b6934a8a8cdf5547ea1b52daa4cb5de6c'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:7e793c11aec46358ccbfd8bcfcf521105f4f093a'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/

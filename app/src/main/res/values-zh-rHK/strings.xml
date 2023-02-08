@@ -717,4 +717,6 @@
     <string name="night_theme_available">色系揀做%s嘅時候至有得揀</string>
     <string name="msg_failed_to_copy">複製唔到去剪貼簿</string>
     <string name="card">一張張</string>
+    <string name="duplicate_in_playlist">灰咗嘅播放清單，即係已經有呢個項目。</string>
+    <string name="playlist_add_stream_success_duplicate">重複加入咗 %d 次</string>
 </resources>

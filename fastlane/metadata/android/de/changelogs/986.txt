@@ -1,0 +1,16 @@
+Neu:
+• Benachrichtigungen für neue Streams
+• Nahtloser Übergang zwischen Hintergrund- und Videoplayer
+• Änderung der Tonhöhe um Halbtöne
+• Warteschlange des Hauptplayers an Wiedergabeliste anfügen
+
+Verbessert:
+• Geschwindigkeit/Tonhöhenschrittgröße speichern
+• Anfängliche lange Videoplayer-Pufferung verringert
+• Player-UI für Android TV
+• Löschbestätigung für alle heruntergeladenen Dateien
+
+Behoben:
+• Medienschaltfläche blendet die Steuerelemente des Players nicht aus
+• Rücksetzung der Wiedergabe bei Änderung des Playertyps
+• Drehung des Wiedergabelisten-Dialogs

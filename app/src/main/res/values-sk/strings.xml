@@ -735,4 +735,14 @@
     <string name="faq">Pozrieť na webovej stránke</string>
     <string name="sort">Usporiadať</string>
     <string name="faq_description">Ak máte problémy s používaním aplikácie, určite si prečítajte tieto odpovede na časté otázky!</string>
+    <string name="unset_playlist_thumbnail">Vypnutie trvalého náhľadu</string>
+    <string name="msg_failed_to_copy">Kopírovanie do schránky zlyhalo</string>
+    <string name="duplicate_in_playlist">Zoznamy zobrazené šedou farbou už obsahujú danú položku.</string>
+    <string name="card">Karta</string>
+    <string name="app_update_available_notification_text">Dotykom stiahnite %s</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikát bol pridaný %d-krát</string>
+    <string name="app_update_unavailable_toast">Používate najnovšiu verziu NewPipe</string>
+    <string name="night_theme_available">Táto možnosť je dostupná len pre motív %s</string>
+    <string name="fast_mode">Rýchly režim</string>
+    <string name="import_subscriptions_hint">Import alebo export odberov z 3-bodkovej ponuky</string>
 </resources>

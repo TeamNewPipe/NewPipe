@@ -605,7 +605,7 @@
     <string name="metadata_support">支持</string>
     <string name="metadata_language">语言</string>
     <string name="metadata_age_limit">年龄限制</string>
-    <string name="metadata_privacy">私有性</string>
+    <string name="metadata_privacy">私密性</string>
     <string name="metadata_licence">许可</string>
     <string name="metadata_tags">标签</string>
     <string name="metadata_category">类别</string>
@@ -716,5 +716,7 @@
     <string name="night_theme_available">只有在主题中选择了 %s 该选项才可用</string>
     <string name="unset_playlist_thumbnail">取消设置永久缩略图</string>
     <string name="card">卡片</string>
-    <string name="msg_failed_to_copy">未能复制到剪贴板</string>
+    <string name="msg_failed_to_copy">无法复制到剪贴板</string>
+    <string name="duplicate_in_playlist">变灰的播放列表已经包含此项目。</string>
+    <string name="playlist_add_stream_success_duplicate">重复添加了 %d 次</string>
 </resources>

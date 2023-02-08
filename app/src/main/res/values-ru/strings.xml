@@ -661,7 +661,7 @@
     <string name="high_quality_larger">Высокое качество (крупнее)</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
-    <string name="mark_as_watched">Пометить просмотренными</string>
+    <string name="mark_as_watched">Пометить проигранным</string>
     <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
@@ -747,4 +747,6 @@
     <string name="msg_failed_to_copy">Не удалось скопировать в буфер обмена</string>
     <string name="night_theme_available">Доступно, когда Тема установлена в %s</string>
     <string name="unset_playlist_thumbnail">Убрать постоянную миниатюру</string>
+    <string name="playlist_add_stream_success_duplicate">Дубликат добавлен %d раз(а)</string>
+    <string name="duplicate_in_playlist">Плейлисты, выделенные серым уже содержат этот объект.</string>
 </resources>

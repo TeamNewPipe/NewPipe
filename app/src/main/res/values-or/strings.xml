@@ -730,4 +730,6 @@
     <string name="card">କାର୍ଡ</string>
     <string name="msg_failed_to_copy">କ୍ଲିପବୋର୍ଡରେ କପି କରିବାରେ ବିଫଳ</string>
     <string name="unset_playlist_thumbnail">ସ୍ଥାୟୀ ଥମ୍ୱନେଲ୍ ସେଟ୍ କରନ୍ତୁ</string>
+    <string name="duplicate_in_playlist">ଧୂସର ହୋଇଯାଇଥିବା ପ୍ଲେଲିଷ୍ଟଗୁଡିକ ପୂର୍ବରୁ ଏହି ଆଇଟମ୍ ଧାରଣ କରିଥାଏ ।</string>
+    <string name="playlist_add_stream_success_duplicate">ନକଲ %d ସମୟ (ମୋଟ) ଯୋଡି ହୋଇଛି</string>
 </resources>

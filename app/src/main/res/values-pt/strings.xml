@@ -739,8 +739,10 @@
     <string name="import_subscriptions_hint">Importar ou exportar subscrições do menu de 3 pontos</string>
     <string name="app_update_unavailable_toast">Já está a executar a versão mais recente do NewPipe</string>
     <string name="app_update_available_notification_text">Toque para descarregar %s</string>
-    <string name="night_theme_available">Esta opção só está disponível se %s for selecionado para o tema</string>
+    <string name="night_theme_available">Esta opção só está disponível se estiver selecionado %s para o tema</string>
     <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
     <string name="msg_failed_to_copy">Não foi possível copiar para a área de transferência</string>
     <string name="card">Cartão</string>
+    <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
 </resources>

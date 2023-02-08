@@ -108,7 +108,7 @@
     <string name="title_activity_about">NewPipe aplikazioari buruz</string>
     <string name="title_licenses">Hirugarrengoen lizentziak</string>
     <string name="copyright" formatted="true">© %1$s %2$s. %3$s</string>
-    <string name="tab_about">Honi buruz</string>
+    <string name="tab_about">Honi buruz eta ohiko galderak</string>
     <string name="tab_licenses">Lizentziak</string>
     <string name="app_description">Androiderako streaming libre eta arina.</string>
     <string name="view_on_github">Ikusi GitHub zerbitzarian</string>
@@ -718,4 +718,18 @@
     <string name="select_quality_external_players">Hautatu kanpoko erreproduzigailuen kalitatea</string>
     <string name="feed_toggle_hide_future_items">Ezkutatu etorkizuneko elementuak</string>
     <string name="feed_toggle_hide_played_items">Ezkutatu ikusitako elementuak</string>
+    <string name="duplicate_in_playlist">Grisez idatzitako erreprodukzio-zerrendek jada badute elementu hau.</string>
+    <string name="faq">Webgunean ikusi</string>
+    <string name="msg_failed_to_copy">Akatsa arbelera kopiatzean</string>
+    <string name="faq_description">Arazoren bat baduzu aplikazioa erabiltzerakoan, irakur itzazu ohiko galdera hauen erantzunak!</string>
+    <string name="unset_playlist_thumbnail">Betiko miniatura kendu</string>
+    <string name="app_update_unavailable_toast">NewPipe-en azken bertsioa erabiltzen ari zara</string>
+    <string name="app_update_available_notification_text">Sakatu %s deskargatzeko</string>
+    <string name="playlist_add_stream_success_duplicate">Kopia %d behin/aldiz gehitua</string>
+    <string name="card">Txartela</string>
+    <string name="night_theme_available">Aukera hau Gaiarako %s aukeratua badago soilik dago erabilgarri</string>
+    <string name="sort">Ordenatu</string>
+    <string name="fast_mode">Modu azkarra</string>
+    <string name="import_subscriptions_hint">Hiru-puntutako menutik harpidetzak inportatu edo esportatu</string>
+    <string name="faq_title">Maiz galdetutako galderak</string>
 </resources>

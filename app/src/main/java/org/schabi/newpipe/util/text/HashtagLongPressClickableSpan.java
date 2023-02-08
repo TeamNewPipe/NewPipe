@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -15,20 +14,19 @@ final class HashtagLongPressClickableSpan extends LongPressClickableSpan {
     private final Context context;
     @NonNull
     private final String parsedHashtag;
-    @NonNull
-    private final Info relatedInfo;
+    private final int relatedInfoServiceId;
 
     HashtagLongPressClickableSpan(@NonNull final Context context,
                                   @NonNull final String parsedHashtag,
-                                  @NonNull final Info relatedInfo) {
+                                  final int relatedInfoServiceId) {
         this.context = context;
         this.parsedHashtag = parsedHashtag;
-        this.relatedInfo = relatedInfo;
+        this.relatedInfoServiceId = relatedInfoServiceId;
     }
 
     @Override
     public void onClick(@NonNull final View view) {
-        NavigationHelper.openSearch(context, relatedInfo.getServiceId(), parsedHashtag);
+        NavigationHelper.openSearch(context, relatedInfoServiceId, parsedHashtag);
     }
 
     @Override

@@ -730,4 +730,6 @@
     <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
     <string name="msg_failed_to_copy">Não foi possível copiar para a área de transferência</string>
     <string name="card">Cartão</string>
+    <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
 </resources>

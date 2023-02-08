@@ -740,4 +740,7 @@
     <string name="app_update_unavailable_toast">Rulați cea mai recentă versiune NewPipe</string>
     <string name="app_update_available_notification_text">Atingeți pentru a descărca %s</string>
     <string name="night_theme_available">Această opțiune este disponibilă numai dacă %s este selectată ca temă</string>
+    <string name="card">Cartelă</string>
+    <string name="msg_failed_to_copy">Nu s-a reușit copierea în clipboard</string>
+    <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
 </resources>
