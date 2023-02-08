@@ -48,6 +48,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.os.HandlerCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
@@ -91,6 +92,10 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
+
+    private static final String UPDATER = "updater";
+    private static final String DELETE = "deleteFinishedDownloads";
+
     private static final int HASH_NOTIFICATION_ID = 123790;
 
     private final Context mContext;
@@ -109,9 +114,6 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private final View mView;
     private final ArrayList<Mission> mHidden;
     private Snackbar mSnackbar;
-
-    private final Runnable rUpdater = this::updater;
-    private final Runnable rDelete = this::deleteFinishedDownloads;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -595,12 +597,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                     i.remove();
                 }
                 applyChanges();
-                mHandler.removeCallbacks(rDelete);
+                mHandler.removeCallbacksAndMessages(DELETE);
             });
             mSnackbar.setActionTextColor(Color.YELLOW);
             mSnackbar.show();
 
-            mHandler.postDelayed(rDelete, 5000);
+            HandlerCompat.postDelayed(mHandler, this::deleteFinishedDownloads, DELETE, 5000);
         } else if (!delete) {
             mDownloadManager.forgetFinishedDownloads();
             applyChanges();
@@ -693,7 +695,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                                 .subscribeOn(Schedulers.computation())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(result -> {
-                                    Utility.copyToClipboard(mContext, result);
+                                    ShareUtils.copyToClipboard(mContext, result);
                                     notificationManager.cancel(HASH_NOTIFICATION_ID);
                                 })
                 );
@@ -786,14 +788,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     public void onResume() {
         mDeleter.resume();
-        mHandler.post(rUpdater);
+        HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 0);
     }
 
     public void onPaused() {
         mDeleter.pause();
-        mHandler.removeCallbacks(rUpdater);
+        mHandler.removeCallbacksAndMessages(UPDATER);
     }
-
 
     public void recoverMission(DownloadMission mission) {
         ViewHolderItem h = getViewHolder(mission);
@@ -817,7 +818,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             updateProgress(h);
         }
 
-        mHandler.postDelayed(rUpdater, 1000);
+        HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 1000);
     }
 
     private boolean isNotFinite(double value) {

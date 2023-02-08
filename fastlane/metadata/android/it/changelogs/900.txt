@@ -1,0 +1,14 @@
+Nuovo
+• Gruppi di abbonamento e feed ordinati
+• Pulsante muto nei giocatori
+
+Migliorato
+• Consenti l'apertura di collegamenti music.youtube.com e media.ccc.de in NewPipe
+• Riposizionare due impostazioni da Aspetto a Contenuto
+• Nascondi le opzioni di ricerca di 5, 15, 25 secondi se è abilitata la ricerca inesatta
+
+Fisso
+• alcuni video WebM non sono ricercabili
+• backup del database su Android P
+• crash durante la condivisione di un file scaricato
+• tonnellate di problemi di estrazione di YouTube e altro ...

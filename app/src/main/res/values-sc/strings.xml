@@ -174,7 +174,7 @@
     <string name="audio">Àudio</string>
     <string name="video">Vìdeu</string>
     <string name="detail_drag_description">Traga pro torrare a ordinare</string>
-    <string name="empty_subscription_feed_subtitle">Non b\'at nudda inoghe</string>
+    <string name="empty_list_subtitle">Non b\'at nudda inoghe</string>
     <string name="search_no_results">Perunu resurtadu</string>
     <string name="detail_dislikes_img_view_description">Disagradessimentos</string>
     <string name="detail_likes_img_view_description">Agradessimentos</string>
@@ -344,8 +344,7 @@
     <string name="paused">in pàusa</string>
     <string name="missions_header_pending">In isetu</string>
     <string name="missions_header_finished">Acabadu</string>
-    <string name="app_update_notification_content_text">Toca pro iscarrigare</string>
-    <string name="app_update_notification_content_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
+    <string name="app_update_available_notification_title">B\'est un\'agiornamentu de NewPipe disponìbile!</string>
     <string name="auto">Automàtica</string>
     <string name="grid">Grìllia</string>
     <string name="list">Lista</string>
@@ -382,7 +381,6 @@
     <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>
     <string name="download_to_sdcard_error_title">Memòria esterna non disponìbile</string>
     <string name="general_error">Errore</string>
-    <string name="help">Agiudu</string>
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
     <string name="clear_search_history_title">Iscantzella sa cronologia de chirca</string>
@@ -724,4 +722,14 @@
     <string name="faq_description">Si ses tenende problemas impreende s\'aplicatzione assegura·ti de consultare custas rispostas a preguntas fitianas!</string>
     <string name="faq">Pòmpia in su situ web</string>
     <string name="sort">Òrdina</string>
+    <string name="app_update_available_notification_text">Toca pro iscarrigare %s</string>
+    <string name="fast_mode">Modalidade lestra</string>
+    <string name="import_subscriptions_hint">Importa o esporta iscritziones dae su menù a 3 puntos</string>
+    <string name="app_update_unavailable_toast">Ses impreende s\'ùrtima versione de NewPipe</string>
+    <string name="night_theme_available">Custa optzione est a disponimentu petzi si %s est seletzionadu comente tema</string>
+    <string name="card">Carta</string>
+    <string name="msg_failed_to_copy">Còpia in punta de billete fallida</string>
+    <string name="unset_playlist_thumbnail">Disativa sa miniadura permanente</string>
+    <string name="duplicate_in_playlist">Sas iscalitas in colore murru tenent giai custu elementu.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicadu annantu %d borta(s)</string>
 </resources>

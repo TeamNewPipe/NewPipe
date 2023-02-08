@@ -131,7 +131,7 @@
     <string name="detail_likes_img_view_description">بەدڵبوون</string>
     <string name="detail_dislikes_img_view_description">بەدڵنەبوون</string>
     <string name="search_no_results">هیچ ئەنجامێک نییە</string>
-    <string name="empty_subscription_feed_subtitle">هیچ شتێک لێرەدا نییە</string>
+    <string name="empty_list_subtitle">هیچ شتێک لێرەدا نییە</string>
     <string name="detail_drag_description">ڕاکێشان بۆ دووبارە داواکردنەوە</string>
     <string name="video">ڤیدیۆ</string>
     <string name="audio">دەنگ</string>
@@ -390,8 +390,7 @@
     <string name="list">خشتە</string>
     <string name="grid">چوارخانە</string>
     <string name="auto">خۆکاری</string>
-    <string name="app_update_notification_content_title">وەشانی نوێی ئەپ بەردەستە!</string>
-    <string name="app_update_notification_content_text">کرتە بکە بۆ دابەزاندن</string>
+    <string name="app_update_available_notification_title">وەشانی نوێی ئەپ بەردەستە!</string>
     <string name="missions_header_finished">تەواوبوو</string>
     <string name="missions_header_pending">لە نۆرەیە</string>
     <string name="paused">وەستاوە</string>
@@ -463,7 +462,6 @@
     <string name="new_seek_duration_toast">بەهۆی ExoPlayer ەوە ماوەی بردنەپێش و بردنەپاش لە %d چرکەدا دیاریکرا</string>
     <string name="mute">کپ</string>
     <string name="unmute">کپ نەکردن</string>
-    <string name="help">یارمەتی</string>
     <plurals name="minutes">
         <item quantity="one">%d خولەک</item>
         <item quantity="other">%d خولەك</item>

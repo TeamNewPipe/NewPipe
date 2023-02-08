@@ -1,0 +1,33 @@
+# Registro delle modifiche della v0.13.7
+
+### Fisso
+- Risolti i problemi del filtro di ordinamento della v0.13.6
+
+# Registro delle modifiche della v0.13.6
+
+### Miglioramenti
+
+- Disattiva l'animazione dell'icona burgermenu #1486
+- annulla l'eliminazione dei download #1472
+- Opzione di download nel menu di condivisione #1498
+- Aggiunta l'opzione di condivisione al menu a lungo tap #1454
+- Riduci a icona il giocatore principale all'uscita #1354
+- Aggiornamento della versione della libreria e correzione del backup del database n. 1510
+- Aggiornamento ExoPlayer 2.8.2 n. 1392
+  - Rielaborata la finestra di dialogo di controllo della velocità di riproduzione per supportare diverse dimensioni del passo per un cambio di velocità più rapido.
+  - Aggiunto un interruttore per l'avanzamento rapido durante i silenzi nel controllo della velocità di riproduzione. Questo dovrebbe essere utile per gli audiolibri e alcuni generi musicali e può portare un'esperienza davvero senza interruzioni (e può interrompere una canzone con molti silenzi =\\).
+  - Rifattorizzazione della risoluzione della sorgente multimediale per consentire il passaggio di metadati insieme ai media all'interno del lettore, anziché farlo manualmente. Ora abbiamo un'unica fonte di metadati ed è direttamente disponibile all'avvio della riproduzione.
+  - Risolto il problema con i metadati della playlist remota che non si aggiornavano quando sono disponibili nuovi metadati quando viene aperto il frammento della playlist.
+  - Varie correzioni dell'interfaccia utente: n. 1383, controlli di notifica del giocatore in background ora sempre bianchi, più facile da spegnere il lettore popup tramite lancio
+- Usa il nuovo estrattore con architettura refactored per il multiservizio
+
+### Correzioni
+
+- Correzione n. 1440 Layout di informazioni video interrotto n. 1491
+- Visualizza la correzione della cronologia n. 1497
+  - #1495, aggiornando i metadati (miniatura, titolo e conteggio video) non appena l'utente accede alla playlist.
+  - #1475, registrando una vista nel database quando l'utente avvia un video su un lettore esterno su un frammento di dettaglio.
+- Risolto il timeout della schermata in caso di modalità popup. #1463 (Risolto #640)
+- Correzione del lettore video principale n. 1509
+  - [#1412] Risolto il problema con la modalità di ripetizione che causava NPE al giocatore quando veniva ricevuto un nuovo intento mentre l'attività del giocatore era in background.
+  - Risolto il problema con la riduzione a icona del giocatore in popup che non distruggeva il giocatore quando l'autorizzazione per il popup non è concessa.

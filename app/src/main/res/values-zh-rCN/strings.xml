@@ -41,7 +41,7 @@
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_history_title">历史记录与缓存</string>
     <string name="undo">撤销</string>
-    <string name="play_all">全部播放</string>
+    <string name="play_all">播放全部</string>
     <string name="always">总是</string>
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>
@@ -59,7 +59,7 @@
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">有新版本时，显示通知提示更新应用</string>
     <string name="grid">网格</string>
-    <string name="app_update_notification_content_title">NewPipe 可更新！</string>
+    <string name="app_update_available_notification_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清空数据</string>
@@ -164,7 +164,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA 验证</string>
     <string name="recaptcha_request_toast">已请求新的 reCAPTCHA 验证</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
-    <string name="default_popup_resolution_title">默认分辨率(悬浮窗模式)</string>
+    <string name="default_popup_resolution_title">悬浮窗默认分辨率</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
     <string name="show_higher_resolutions_summary">仅部分设备支持播放 2K 或 4K 视频</string>
     <string name="clear">清除</string>
@@ -196,7 +196,7 @@
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="default_video_format_title">默认视频格式</string>
     <string name="settings_category_player_behavior_title">行为</string>
-    <string name="empty_subscription_feed_subtitle">空空如也</string>
+    <string name="empty_list_subtitle">空空如也</string>
     <string name="no_views">无人观看过</string>
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>
@@ -366,7 +366,6 @@
     <string name="updates_setting_title">更新</string>
     <string name="list">列表</string>
     <string name="auto">自动</string>
-    <string name="app_update_notification_content_text">点击下载</string>
     <string name="post_processing">处理中</string>
     <string name="generate_unique_name">生成唯一名称</string>
     <string name="overwrite">覆盖</string>
@@ -458,7 +457,6 @@
     <string name="new_seek_duration_toast">由于 ExoPlayer 的限制，寻址间隔置为 %d 秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
-    <string name="help">帮助</string>
     <plurals name="minutes">
         <item quantity="other">%d 分钟</item>
     </plurals>
@@ -607,7 +605,7 @@
     <string name="metadata_support">支持</string>
     <string name="metadata_language">语言</string>
     <string name="metadata_age_limit">年龄限制</string>
-    <string name="metadata_privacy">私有性</string>
+    <string name="metadata_privacy">私密性</string>
     <string name="metadata_licence">许可</string>
     <string name="metadata_tags">标签</string>
     <string name="metadata_category">类别</string>
@@ -711,4 +709,14 @@
     <string name="faq_description">如果你在使用本应用时遇到问题，请务必查看这些常见问题的答案！</string>
     <string name="faq">在网站上查看</string>
     <string name="sort">排序</string>
+    <string name="fast_mode">快速模式</string>
+    <string name="import_subscriptions_hint">从三点菜单导入或导出订阅</string>
+    <string name="app_update_unavailable_toast">你正在运行最新版的 NewPipe</string>
+    <string name="app_update_available_notification_text">轻按下载 %s</string>
+    <string name="night_theme_available">只有在主题中选择了 %s 该选项才可用</string>
+    <string name="unset_playlist_thumbnail">取消设置永久缩略图</string>
+    <string name="card">卡片</string>
+    <string name="msg_failed_to_copy">无法复制到剪贴板</string>
+    <string name="duplicate_in_playlist">变灰的播放列表已经包含此项目。</string>
+    <string name="playlist_add_stream_success_duplicate">重复添加了 %d 次</string>
 </resources>

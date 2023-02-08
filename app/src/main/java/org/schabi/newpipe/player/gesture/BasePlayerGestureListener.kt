@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.os.postDelayed
 import org.schabi.newpipe.databinding.PlayerBinding
 import org.schabi.newpipe.player.Player
 import org.schabi.newpipe.player.ui.VideoPlayerUi
@@ -132,13 +133,6 @@ abstract class BasePlayerGestureListener(
 
     private var doubleTapDelay = DOUBLE_TAP_DELAY
     private val doubleTapHandler: Handler = Handler(Looper.getMainLooper())
-    private val doubleTapRunnable = Runnable {
-        if (DEBUG)
-            Log.d(TAG, "doubleTapRunnable called")
-
-        isDoubleTapping = false
-        doubleTapControls?.onDoubleTapFinished()
-    }
 
     private fun startMultiDoubleTap(e: MotionEvent) {
         if (!isDoubleTapping) {
@@ -155,8 +149,15 @@ abstract class BasePlayerGestureListener(
             Log.d(TAG, "keepInDoubleTapMode called")
 
         isDoubleTapping = true
-        doubleTapHandler.removeCallbacks(doubleTapRunnable)
-        doubleTapHandler.postDelayed(doubleTapRunnable, doubleTapDelay)
+        doubleTapHandler.removeCallbacksAndMessages(DOUBLE_TAP)
+        doubleTapHandler.postDelayed(DOUBLE_TAP_DELAY, DOUBLE_TAP) {
+            if (DEBUG) {
+                Log.d(TAG, "doubleTapRunnable called")
+            }
+
+            isDoubleTapping = false
+            doubleTapControls?.onDoubleTapFinished()
+        }
     }
 
     fun endMultiDoubleTap() {
@@ -164,7 +165,7 @@ abstract class BasePlayerGestureListener(
             Log.d(TAG, "endMultiDoubleTap called")
 
         isDoubleTapping = false
-        doubleTapHandler.removeCallbacks(doubleTapRunnable)
+        doubleTapHandler.removeCallbacksAndMessages(DOUBLE_TAP)
         doubleTapControls?.onDoubleTapFinished()
     }
 
@@ -181,6 +182,7 @@ abstract class BasePlayerGestureListener(
         private const val TAG = "BasePlayerGestListener"
         private val DEBUG = Player.DEBUG
 
+        private const val DOUBLE_TAP = "doubleTap"
         private const val DOUBLE_TAP_DELAY = 550L
     }
 }

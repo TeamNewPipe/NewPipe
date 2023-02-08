@@ -23,7 +23,7 @@
     <string name="light_theme_title">فاتح</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
-    <string name="open_in_browser">فتح في المتصفح</string>
+    <string name="open_in_browser">فتح في متصفح الويب</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="search">البحث</string>
@@ -114,7 +114,7 @@
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">التفاصيل:</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
-    <string name="empty_subscription_feed_subtitle">لا شيء هنا سوى الصراصير</string>
+    <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="short_thousand">ألف</string>
@@ -370,8 +370,7 @@
     <string name="list">القائمة</string>
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
-    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
-    <string name="app_update_notification_content_text">اضغط لتنزيل</string>
+    <string name="app_update_available_notification_title">تحديث NewPipe متاح!</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>
     <string name="paused">متوقف</string>
@@ -549,7 +548,6 @@
     <string name="new_seek_duration_toast">نظرا لقيود مشغل ExoPlayer مدة التقديم تم ضبطها الى %d ثانية</string>
     <string name="unmute">إلغاء كتم الصوت</string>
     <string name="mute">كتم الصوت</string>
-    <string name="help">مساعدة</string>
     <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe.
 \n
 \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
@@ -776,4 +774,14 @@
     <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
     <string name="faq">مشاهدة على الموقع</string>
     <string name="sort">فرز</string>
+    <string name="app_update_unavailable_toast">أنت تقوم بتشغيل أحدث إصدار من NewPipe</string>
+    <string name="app_update_available_notification_text">انقر للتنزيل %s</string>
+    <string name="fast_mode">الوضع السريع</string>
+    <string name="import_subscriptions_hint">استيراد الاشتراكات أو تصديرها من القائمة المكونة من 3 نقاط</string>
+    <string name="night_theme_available">هذا الخيار متاح فقط إذا تم تحديد %s للسمة</string>
+    <string name="unset_playlist_thumbnail">إلغاء تعيين الصورة المصغرة الدائمة</string>
+    <string name="msg_failed_to_copy">فشل النسخ إلى الحافظة</string>
+    <string name="card">البطاقة</string>
+    <string name="playlist_add_stream_success_duplicate">تمت إضافة وقت (أوقات) مكررة %d</string>
+    <string name="duplicate_in_playlist">تحتوي قوائم التشغيل رمادية اللون بالفعل على هذا العنصر.</string>
 </resources>

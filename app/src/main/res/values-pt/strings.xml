@@ -136,7 +136,7 @@
     <string name="notification_channel_name">Notificação NewPipe</string>
     <string name="notification_channel_description">Notificações para o reprodutor do NewPipe</string>
     <string name="search_no_results">Sem resultados</string>
-    <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
+    <string name="empty_list_subtitle">Aqui não há nada para ver</string>
     <string name="no_subscribers">Sem subscritores</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscritor</item>
@@ -359,8 +359,7 @@
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
-    <string name="app_update_notification_content_text">Toque para descarregar</string>
+    <string name="app_update_available_notification_title">Atualização NewPipe disponível!</string>
     <string name="missions_header_finished">Terminada</string>
     <string name="paused">em pausa</string>
     <string name="queued">na fila</string>
@@ -518,7 +517,6 @@
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="unmute">Ativar som</string>
     <string name="mute">Sem som</string>
-    <string name="help">Ajuda</string>
     <string name="videos_string">Vídeos</string>
     <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
 \n 
@@ -737,4 +735,14 @@
     <string name="faq">Ver no site</string>
     <string name="faq_description">Se está a ter problemas a usar a aplicação, veja estas respostas para perguntas mais comuns!</string>
     <string name="sort">Ordenação</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="import_subscriptions_hint">Importar ou exportar subscrições do menu de 3 pontos</string>
+    <string name="app_update_unavailable_toast">Já está a executar a versão mais recente do NewPipe</string>
+    <string name="app_update_available_notification_text">Toque para descarregar %s</string>
+    <string name="night_theme_available">Esta opção só está disponível se estiver selecionado %s para o tema</string>
+    <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
+    <string name="msg_failed_to_copy">Não foi possível copiar para a área de transferência</string>
+    <string name="card">Cartão</string>
+    <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
 </resources>

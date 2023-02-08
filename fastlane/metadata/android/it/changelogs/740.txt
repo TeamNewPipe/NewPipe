@@ -1,0 +1,23 @@
+<h4>Miglioramenti</h4>
+<ul>
+<li>rendi cliccabili i link nei commenti, aumenta la dimensione del testo</li>
+<li>cerca facendo clic sui collegamenti timestamp nei commenti</li>
+<li>mostra la scheda preferita in base allo stato selezionato di recente</li>
+<li>aggiungi playlist alla coda facendo clic a lungo su &#39;Sfondo&#39; nella finestra playlist</li>
+<li>cerca il testo condiviso quando non è un URL</li>
+<li>aggiungi il pulsante &quot;condividi all'ora corrente&quot; al video player principale</li>
+<li>aggiungi il pulsante di chiusura al lettore principale quando la coda video è terminata</li>
+<li>aggiungi &quot;Riproduci direttamente in background&quot; al menu a pressione lunga per gli elementi dell'elenco video</li>
+<li>migliora le traduzioni in inglese per i comandi di riproduzione/accodamento</li>
+<li>piccoli miglioramenti delle prestazioni</li>
+<li>rimuove i file inutilizzati</li>
+<li>aggiorna ExoPlayer a 2.9.6</li>
+<li>aggiungi supporto per collegamenti Invidious</li>
+</ul>
+<h4>Risolto</h4>
+<ul>
+<li>corretto lo scorrimento con commenti e relativi flussi disabilitati</li>
+<li>risolto il problema con CheckForNewAppVersionTask in esecuzione quando non avrebbe dovuto&#39;t</li>
+<li>corretta l'importazione dell'abbonamento YouTube: ignora quelli con URL non valido e mantieni quelli con titolo vuoto</li>
+<li>correggi l'URL YouTube non valido: il nome del tag della firma non è sempre "firma" che impedisce il caricamento degli stream</li>
+</ul>

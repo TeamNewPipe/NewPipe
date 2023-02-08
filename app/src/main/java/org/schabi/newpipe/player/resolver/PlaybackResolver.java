@@ -158,6 +158,26 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         return cacheKey.toString();
     }
+
+    /**
+     * Use common base type {@link Stream} to handle {@link AudioStream} or {@link VideoStream}
+     * transparently. For more info see {@link #cacheKeyOf(StreamInfo, AudioStream)} or
+     * {@link #cacheKeyOf(StreamInfo, VideoStream)}.
+     *
+     * @param info   the {@link StreamInfo stream info}, to distinguish between streams with
+     *               the same features but coming from different stream infos
+     * @param stream the {@link Stream} ({@link AudioStream} or {@link VideoStream})
+     *               for which the cache key should be created
+     * @return a key to be used to store the cache of the provided {@link Stream}
+     */
+    static String cacheKeyOf(final StreamInfo info, final Stream stream) {
+        if (stream instanceof AudioStream) {
+            return cacheKeyOf(info, (AudioStream) stream);
+        } else if (stream instanceof VideoStream) {
+            return cacheKeyOf(info, (VideoStream) stream);
+        }
+        throw new RuntimeException("no audio or video stream. That should never happen");
+    }
     //endregion
 
 

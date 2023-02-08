@@ -212,7 +212,7 @@
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
-    <string name="help">Help</string>
+    <string name="fast_mode">Fast mode</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -265,7 +265,8 @@
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
+    <string name="empty_list_subtitle">Nothing here but crickets</string>
+    <string name="import_subscriptions_hint">Import or export subscriptions from the 3-dot menu</string>
     <string name="detail_drag_description">Drag to reorder</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -326,6 +327,7 @@
     <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
+    <string name="msg_failed_to_copy">Failed to copy to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
     <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
@@ -438,6 +440,7 @@
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
+    <string name="unset_playlist_thumbnail">Unset permanent thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
@@ -547,6 +550,7 @@
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
+    <string name="card">Card</string>
     <string name="auto">Auto</string>
     <!-- Seekbar Preview Thumbnail-->
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
@@ -554,8 +558,9 @@
     <string name="low_quality_smaller">Low quality (smaller)</string>
     <string name="dont_show">Don\'t show</string>
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe update is available!</string>
-    <string name="app_update_notification_content_text">Tap to download</string>
+    <string name="app_update_unavailable_toast">You are running the latest version of NewPipe</string>
+    <string name="app_update_available_notification_title">NewPipe update is available!</string>
+    <string name="app_update_available_notification_text">Tap to download %s</string>
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">Pending</string>
     <string name="paused">paused</string>
@@ -714,6 +719,7 @@
     <string name="auto_device_theme_title">Automatic (device theme)</string>
     <string name="night_theme_summary">Select your favorite night theme — %s</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
+    <string name="night_theme_available">This option is only available if %s is selected for Theme</string>
     <string name="download_has_started">Download has started</string>
     <string name="description_select_note">You can now select text inside the description. Note that the page may flicker and links may not be clickable while in selection mode.</string>
     <string name="description_select_enable">Enable selecting text in the description</string>

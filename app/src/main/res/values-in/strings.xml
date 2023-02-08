@@ -173,7 +173,7 @@
     <string name="file_name_empty_error">Nama berkas tidak boleh kosong</string>
     <string name="error_occurred_detail">Telah terjadi galat: %1$s</string>
     <string name="search_no_results">Tidak ada hasil</string>
-    <string name="empty_subscription_feed_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
+    <string name="empty_list_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
     <string name="no_subscribers">Tidak ada pelanggan</string>
     <plurals name="subscribers">
@@ -352,8 +352,7 @@
     <string name="list">Daftar</string>
     <string name="grid">Kisi</string>
     <string name="auto">Otomatis</string>
-    <string name="app_update_notification_content_title">Pembaruan NewPipe telah tersedia!</string>
-    <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
+    <string name="app_update_available_notification_title">Pembaruan NewPipe telah tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>
@@ -456,7 +455,6 @@
         <item quantity="other">%d detik</item>
     </plurals>
     <string name="new_seek_duration_toast">Karena kendala ExoPlayer, durasi pencarian ditetapkan ke %d detik</string>
-    <string name="help">Bantuan</string>
     <plurals name="minutes">
         <item quantity="other">%d menit</item>
     </plurals>
@@ -711,4 +709,14 @@
     <string name="faq_description">Jika Anda mengalami masalah menggunakan aplikasi, pastikan untuk melihat jawaban untuk pertanyaan yang umum!</string>
     <string name="faq">Tampilkan di situs web</string>
     <string name="sort">Urutan</string>
+    <string name="fast_mode">Mode cepat</string>
+    <string name="import_subscriptions_hint">Impor atau ekspor langganan dari menu 3 titik</string>
+    <string name="app_update_unavailable_toast">Anda menjalankan NewPipe versi terkini</string>
+    <string name="app_update_available_notification_text">Ketuk untuk mengunduh %s</string>
+    <string name="night_theme_available">Opsi ini hanya tersedia jika %s dipilih untuk Tema</string>
+    <string name="unset_playlist_thumbnail">Batalkan penetapan gambar kecil permanen</string>
+    <string name="msg_failed_to_copy">Gagal menyalin ke papan klip</string>
+    <string name="card">Kartu</string>
+    <string name="duplicate_in_playlist">Daftar putar yang bewarna abu-abu sudah berisi item ini.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikat ditambahkan %d kali</string>
 </resources>

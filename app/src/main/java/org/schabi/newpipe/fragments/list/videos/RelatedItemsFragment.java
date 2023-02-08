@@ -19,6 +19,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.util.RelatedItemInfo;
 
@@ -158,16 +159,19 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
-                                          final String s) {
-        if (headerBinding != null) {
-            headerBinding.autoplaySwitch.setChecked(
-                    sharedPreferences.getBoolean(
-                            getString(R.string.auto_queue_key), false));
+                                          final String key) {
+        if (headerBinding != null && getString(R.string.auto_queue_key).equals(key)) {
+            headerBinding.autoplaySwitch.setChecked(sharedPreferences.getBoolean(key, false));
         }
     }
 
     @Override
-    protected boolean isGridLayout() {
-        return false;
+    protected ItemViewMode getItemViewMode() {
+        ItemViewMode mode = super.getItemViewMode();
+        // Only list mode is supported. Either List or card will be used.
+        if (mode != ItemViewMode.LIST && mode != ItemViewMode.CARD) {
+            mode = ItemViewMode.LIST;
+        }
+        return mode;
     }
 }

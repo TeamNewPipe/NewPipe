@@ -48,7 +48,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toca en «Buscar» para comenzar.</string>
+    <string name="main_bg_subtitle">Pulsa la lupa para empezar.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Historial y caché</string>
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
-    <string name="empty_subscription_feed_subtitle">Nada aquí más que grillos</string>
+    <string name="empty_list_subtitle">Nada aquí más que grillos</string>
     <string name="no_subscribers">Sin suscriptores</string>
     <plurals name="subscribers">
         <item quantity="one">%s suscriptor</item>
@@ -411,8 +411,7 @@
     <string name="updates_setting_description">Mostrar una notificación para solicitar actualizar la aplicación al haber una nueva versión disponible</string>
     <string name="list_view_mode">Modo de vista de lista</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">¡Actualización de NewPipe disponible!</string>
-    <string name="app_update_notification_content_text">Pulsa para descargar</string>
+    <string name="app_update_available_notification_title">¡Actualización de NewPipe disponible!</string>
     <string name="show_comments_title">Mostrar comentarios</string>
     <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
@@ -473,7 +472,6 @@
     <string name="new_seek_duration_toast">Debido a limitaciones de ExoPlayer, la duración de la búsqueda fue definida en %d segundos</string>
     <string name="mute">Silenciar</string>
     <string name="unmute">Desactivar silencio</string>
-    <string name="help">Ayuda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="many">%d minutos</item>
@@ -732,11 +730,22 @@
     <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
     <string name="unknown_format">Formato desconocido</string>
     <string name="unknown_quality">Calidad desconocida</string>
-    <string name="feed_toggle_show_future_items">Mostrar videos futuros</string>
+    <string name="feed_toggle_show_future_items">Mostrar elementos futuros</string>
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
     <string name="feed_toggle_hide_played_items">Ocultar los elementos mirados</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos futuros</string>
     <string name="faq">Ver en la página web</string>
     <string name="faq_title">Preguntas frecuentes</string>
     <string name="faq_description">Si tienes problemas al usar la aplicación, ¡Asegúrate de verificar estas respuestas a preguntas comunes!</string>
+    <string name="sort">Ordenar</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="import_subscriptions_hint">Importa o exporta las suscripciones desde el menú con los tres puntos</string>
+    <string name="app_update_unavailable_toast">Está ejecutando la última versión de NewPipe</string>
+    <string name="app_update_available_notification_text">Pulsa para descargar %s</string>
+    <string name="night_theme_available">Esta opción sólo está disponible si %s está seleccionado para el tema</string>
+    <string name="unset_playlist_thumbnail">Desactivar las miniaturas permanente</string>
+    <string name="msg_failed_to_copy">Error al copiar al portapapeles</string>
+    <string name="card">Tarjeta</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicado añadido %d vez/veces</string>
+    <string name="duplicate_in_playlist">Las listas de reproducción que están en gris ya contienen este elemento.</string>
 </resources>

@@ -1,5 +1,8 @@
 package us.shandian.giga.service;
 
+import static org.schabi.newpipe.BuildConfig.APPLICATION_ID;
+import static org.schabi.newpipe.BuildConfig.DEBUG;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,12 +25,12 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
 import android.util.Log;
-import android.util.SparseArray;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.collection.SparseArrayCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.ServiceCompat;
@@ -37,22 +40,20 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PendingIntentCompat;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
-import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
-import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.Localization;
-
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
-
-import static org.schabi.newpipe.BuildConfig.APPLICATION_ID;
-import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadManagerService extends Service {
 
@@ -94,7 +95,7 @@ public class DownloadManagerService extends Service {
     private Builder downloadDoneNotification = null;
     private StringBuilder downloadDoneList = null;
 
-    private final ArrayList<Callback> mEchoObservers = new ArrayList<>(1);
+    private final List<Callback> mEchoObservers = new ArrayList<>(1);
 
     private ConnectivityManager mConnectivityManager;
     private ConnectivityManager.NetworkCallback mNetworkStateListenerL = null;
@@ -107,7 +108,8 @@ public class DownloadManagerService extends Service {
 
     private int downloadFailedNotificationID = DOWNLOADS_NOTIFICATION_ID + 1;
     private Builder downloadFailedNotification = null;
-    private final SparseArray<DownloadMission> mFailedDownloads = new SparseArray<>(5);
+    private final SparseArrayCompat<DownloadMission> mFailedDownloads =
+            new SparseArrayCompat<>(5);
 
     private Bitmap icLauncher;
     private Bitmap icDownloadDone;
@@ -142,7 +144,7 @@ public class DownloadManagerService extends Service {
         Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
                 .setAction(Intent.ACTION_MAIN);
 
-        mOpenDownloadList = PendingIntent.getActivity(this, 0,
+        mOpenDownloadList = PendingIntentCompat.getActivity(this, 0,
                 openDownloadListIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -276,7 +278,7 @@ public class DownloadManagerService extends Service {
         }
 
         if (msg.what != MESSAGE_ERROR)
-            mFailedDownloads.delete(mFailedDownloads.indexOfValue(mission));
+            mFailedDownloads.remove(mFailedDownloads.indexOfValue(mission));
 
         for (Callback observer : mEchoObservers)
             observer.handleMessage(msg);
@@ -308,7 +310,7 @@ public class DownloadManagerService extends Service {
     }
 
     private void handlePreferenceChange(SharedPreferences prefs, @NonNull String key) {
-        if (key.equals(getString(R.string.downloads_maximum_retry))) {
+        if (getString(R.string.downloads_maximum_retry).equals(key)) {
             try {
                 String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
                 mManager.mPrefMaxRetry = value == null ? 0 : Integer.parseInt(value);
@@ -316,13 +318,13 @@ public class DownloadManagerService extends Service {
                 mManager.mPrefMaxRetry = 0;
             }
             mManager.updateMaximumAttempts();
-        } else if (key.equals(getString(R.string.downloads_cross_network))) {
+        } else if (getString(R.string.downloads_cross_network).equals(key)) {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
-        } else if (key.equals(getString(R.string.downloads_queue_limit))) {
+        } else if (getString(R.string.downloads_queue_limit).equals(key)) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
-        } else if (key.equals(getString(R.string.download_path_video_key))) {
+        } else if (getString(R.string.download_path_video_key).equals(key)) {
             mManager.mMainStorageVideo = loadMainVideoStorage();
-        } else if (key.equals(getString(R.string.download_path_audio_key))) {
+        } else if (getString(R.string.download_path_audio_key).equals(key)) {
             mManager.mMainStorageAudio = loadMainAudioStorage();
         }
     }
@@ -460,7 +462,7 @@ public class DownloadManagerService extends Service {
     }
 
     public void notifyFailedDownload(DownloadMission mission) {
-        if (!mDownloadNotificationEnable || mFailedDownloads.indexOfValue(mission) >= 0) return;
+        if (!mDownloadNotificationEnable || mFailedDownloads.containsValue(mission)) return;
 
         int id = downloadFailedNotificationID++;
         mFailedDownloads.put(id, mission);
@@ -484,7 +486,8 @@ public class DownloadManagerService extends Service {
 
     private PendingIntent makePendingIntent(String action) {
         Intent intent = new Intent(this, DownloadManagerService.class).setAction(action);
-        return PendingIntent.getService(this, intent.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntentCompat.getService(this, intent.hashCode(), intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private void manageLock(boolean acquire) {

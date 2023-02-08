@@ -11,16 +11,16 @@
     <string name="settings">Nastavení</string>
     <string name="did_you_mean">Mysleli jste „%1$s“\?</string>
     <string name="share_dialog_title">Sdílet s</string>
-    <string name="use_external_video_player_title">Použít externí video přehrávač</string>
+    <string name="use_external_video_player_title">Použít externí přehrávač videí</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
-    <string name="download_path_audio_summary">Stažené audio je uloženo zde</string>
+    <string name="download_path_audio_summary">Sem bude ukládáno stažené audio</string>
     <string name="download_path_audio_dialog_title">Zvolte adresář pro stažené audio soubory</string>
     <string name="download_path_audio_title">Adresář pro stažené audio</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
     <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Nainstalovat chybějící aplikaci Kore\?</string>
     <string name="download_path_title">Adresář pro stažená videa</string>
-    <string name="download_path_summary">Stažená videa jsou uložena tady</string>
+    <string name="download_path_summary">Sem budou ukládána stažená videa</string>
     <string name="download_path_dialog_title">Zvolte adresář pro stažená videa</string>
     <string name="show_play_with_kodi_title">Zobrazit možnost „Přehrát pomocí Kodi“</string>
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
@@ -124,7 +124,7 @@
     <string name="notification_channel_name">Oznámení NewPipe</string>
     <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
-    <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
+    <string name="empty_list_subtitle">Je tu sranda jak v márnici</string>
     <string name="short_billion">mld.</string>
     <string name="no_subscribers">Žádní odběratelé</string>
     <plurals name="subscribers">
@@ -213,7 +213,7 @@
     <string name="no_valid_zip_file">Žádný platný soubor ZIP</string>
     <string name="could_not_import_all_files">Upozornění: Nelze importovat všechny soubory.</string>
     <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
-    <string name="video_player">Video přehrávač</string>
+    <string name="video_player">Přehrávač videa</string>
     <string name="background_player">Přehrávač na pozadí</string>
     <string name="popup_player">Přehrávač v okně</string>
     <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
@@ -298,7 +298,7 @@
     <string name="playback_pitch">Výška tónu</string>
     <string name="unhook_checkbox">Odpojit (může způsobit zkreslení)</string>
     <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
-    <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
+    <string name="preferred_open_action_settings_title">Preferovaná akce „otevření“</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
@@ -360,8 +360,7 @@
     <string name="list">Seznam</string>
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
-    <string name="app_update_notification_content_title">Aktualizace NewPipe je k dispozici!</string>
-    <string name="app_update_notification_content_text">Klepněte pro stažení</string>
+    <string name="app_update_available_notification_title">Aktualizace NewPipe je k dispozici!</string>
     <string name="missions_header_finished">Hotovo</string>
     <string name="missions_header_pending">Vyčkávání</string>
     <string name="paused">Pozastaveno</string>
@@ -470,7 +469,6 @@
     <string name="new_seek_duration_toast">Kvůli omezením ExoPlayer bylo prohledávání nastaveno na %d vteřin</string>
     <string name="mute">Ztišit</string>
     <string name="unmute">Obnovit hlasitost</string>
-    <string name="help">Nápověda</string>
     <plurals name="minutes">
         <item quantity="one">%d minuta</item>
         <item quantity="few">%d minuty</item>
@@ -552,7 +550,7 @@
     <string name="search_showing_result_for">Ukazuji výsledky pro: %s</string>
     <string name="never">Nikdy</string>
     <string name="wifi_only">Pouze na Wi-Fi</string>
-    <string name="autoplay_summary">Zahájit playback automaticky — %s</string>
+    <string name="autoplay_summary">Automaticky zahájit přehrávání — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Auto-fronta</string>
@@ -600,7 +598,7 @@
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
     <string name="crash_the_app">Zbořit aplikaci</string>
     <string name="download_has_started">Stahování bylo zahájeno</string>
-    <string name="select_night_theme_toast">Můžete si zvolit svůj oblíbený motiv níže</string>
+    <string name="select_night_theme_toast">Níže si můžete zvolit svůj oblíbený motiv</string>
     <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv - %s</string>
     <string name="auto_device_theme_title">Automatický (motiv zařízení)</string>
     <string name="radio">Radio</string>
@@ -670,7 +668,7 @@
     <string name="show_image_indicators_title">Ukázat indikátory obrázků</string>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
-    <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštějte video v mini přehrávači, ale přepněte se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
+    <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštět video v mini přehrávači, ale přepnout se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
     <string name="enqueued_next">Další ve frontě</string>
     <string name="enqueue_next_stream">Přidat do fronty (další)</string>
     <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
@@ -730,11 +728,21 @@
     <string name="feed_toggle_show_future_items">Zobrazit nadcházející položky</string>
     <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
-    <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné video streamy</string>
+    <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou k dispozici žádné videostreamy</string>
     <string name="feed_toggle_hide_played_items">Skrýt zhlédnuté položky</string>
     <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
     <string name="faq_title">Často kladené dotazy</string>
     <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
     <string name="faq">Zobrazit na webu</string>
     <string name="sort">Řazení</string>
+    <string name="app_update_available_notification_text">Klepnutím stáhnete %s</string>
+    <string name="fast_mode">Rychlý režim</string>
+    <string name="app_update_unavailable_toast">Používáte nejnovější verzi NewPipe</string>
+    <string name="import_subscriptions_hint">Import nebo export odběrů z 3-tečkové nabídky</string>
+    <string name="night_theme_available">Tato možnost je dostupná pouze při vybraném motivu %s</string>
+    <string name="unset_playlist_thumbnail">Zrušení nastavení trvalého náhledu</string>
+    <string name="card">Karta</string>
+    <string name="msg_failed_to_copy">Kopírování do schránky se nezdařilo</string>
+    <string name="duplicate_in_playlist">Zašedlé playlisty již obsahují tuto položku.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikát přidán %dkrát</string>
 </resources>

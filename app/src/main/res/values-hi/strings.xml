@@ -9,27 +9,27 @@
     <string name="download">डाउनलोड करे</string>
     <string name="search">खोजें</string>
     <string name="settings">सेटिंग्स</string>
-    <string name="subscribe_button_title">सदस्यता लें</string>
-    <string name="subscribed_button_title">सदस्य है</string>
-    <string name="channel_unsubscribed">चैनल सदस्यता हटाई गई</string>
+    <string name="subscribe_button_title">सब्सक्राइब करें</string>
+    <string name="subscribed_button_title">सब्सक्राइब है</string>
+    <string name="channel_unsubscribed">चैनल अनसब्सक्राईब हुआ</string>
     <string name="tab_subscriptions">सब्सक्रिप्शनस</string>
     <string name="controls_background_title">बैकग्राउंड</string>
     <string name="controls_popup_title">पॉपअप</string>
     <string name="play_audio">ध्वनि</string>
     <string name="light_theme_title">रौशनी</string>
     <string name="black_theme_title">काला</string>
-    <string name="enable_watch_history_title">देखे हुए विडियोज का इतिहास</string>
+    <string name="enable_watch_history_title">देखे हुए वीडियोज़ का इतिहास</string>
     <string name="download_dialog_title">डाउनलोड करे</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
-    <string name="settings_category_history_title">History and cache</string>
+    <string name="settings_category_history_title">इतिहास और कैश</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
     <string name="no_views">कोई दर्शक नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जाने</string>
     <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
-    <string name="tab_about">इसके बारे में</string>
+    <string name="tab_about">ऐप के बारे में और सामान्य प्रश्न</string>
     <string name="tab_licenses">लाइसेंस</string>
-    <string name="view_on_github">GitHub में देखें</string>
+    <string name="view_on_github">गिटहब में देखें</string>
     <string name="app_license_title">न्यूपाइप का लाइसेंस</string>
     <string name="read_full_license">लाइसेंस पढ़ें</string>
     <string name="contribution_title">योगदान करें</string>
@@ -41,12 +41,12 @@
     <string name="cancel">रद्द करें</string>
     <string name="did_you_mean">क्या आप का मतलब \"%1$s\" था\?</string>
     <string name="share_dialog_title">के साथ शेयर करे</string>
-    <string name="use_external_video_player_title">कोई दूसरा विडियो चालक प्रयोग करें</string>
-    <string name="use_external_video_player_summary">कुछ विडियो गुणवत्ता स्तर पर ध्वनि हट सकती है</string>
+    <string name="use_external_video_player_title">कोई दूसरा वीडियो चालक प्रयोग करें</string>
+    <string name="use_external_video_player_summary">कुछ वीडियो गुणवत्ता स्तर पर ध्वनि हट सकती है</string>
     <string name="use_external_audio_player_title">कोई दूसरा ध्वनि चालक उपयोग करें</string>
-    <string name="subscription_change_failed">सदस्यता बदला नहीं जा सका</string>
-    <string name="subscription_update_failed">सदस्यता अपडेट नहीं किया जा सका</string>
-    <string name="fragment_feed_title">देखे की क्या नया है</string>
+    <string name="subscription_change_failed">सब्सक्रिप्शन बदली नहीं जा सकी</string>
+    <string name="subscription_update_failed">सब्सक्रिप्शन अपडेट नहीं किया जा सका</string>
+    <string name="fragment_feed_title">देखें कि क्या नया है</string>
     <string name="download_path_title">वीडियो डाउनलोड का फ़ोल्डर</string>
     <string name="download_path_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
@@ -56,33 +56,33 @@
     <string name="default_resolution_title">प्रथम स्थापित गुणवत्ता स्तर</string>
     <string name="default_popup_resolution_title">पॉपअप का प्रथम स्थापित गुणवत्ता स्तर</string>
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
-    <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र 2K/4K मे विडियो चला सकते हैं</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र 2K/4K मे वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">Kodi मे चलाए</string>
     <string name="kore_not_found">Kore ऐप नहीं मिली, इसे स्थापित करें\?</string>
     <string name="show_play_with_kodi_title">\"Kodi मे चलाएं\" वाला विकल्प दिखाएँ</string>
-    <string name="show_play_with_kodi_summary">Kodi मीडिया सेंटर से विडियो चलने के लिए विकल्प प्रदर्शित करें</string>
+    <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
-    <string name="default_video_format_title">प्रथम स्थापित विडियो फॉर्मेट</string>
+    <string name="default_video_format_title">प्रथम स्थापित वीडियो फॉर्मेट</string>
     <string name="theme_title">ऐप थीम</string>
     <string name="dark_theme_title">गहरा</string>
-    <string name="popup_remember_size_pos_title">विडियो पॉपअप का आकर और उसकी स्थति को याद रखे</string>
-    <string name="popup_remember_size_pos_summary">विडियो पॉपअप की अंतिम स्थिति और आकर को याद रखे</string>
+    <string name="popup_remember_size_pos_title">वीडियो पॉपअप का आकार और उसकी स्थिति को याद रखें</string>
+    <string name="popup_remember_size_pos_summary">वीडियो पॉपअप की अंतिम स्थिति और आकार को याद रखें</string>
     <string name="show_search_suggestions_title">खोज में सुझाव</string>
-    <string name="show_search_suggestions_summary">खोज के दौरान सुझाव दिखाये</string>
+    <string name="show_search_suggestions_summary">खोज के दौरान दिखाये जाने वाले सुझाव चुने</string>
     <string name="enable_search_history_title">खोज का इतिहास</string>
     <string name="enable_search_history_summary">खोज के डेटा को सिर्फ डिवाइस मेमोरी में रखे</string>
-    <string name="enable_watch_history_summary">देखे गए विडियोज की सूची रखे</string>
-    <string name="resume_on_audio_focus_gain_title">वीडियो</string>
-    <string name="resume_on_audio_focus_gain_summary">रूकावटे खत्म होने के बाद विडियो प्ले करे (जैसे - फ़ोन कॉल)</string>
+    <string name="enable_watch_history_summary">देखे गए वीडियोज़ की सूची रखें</string>
+    <string name="resume_on_audio_focus_gain_title">प्लेबैक फिर से शुरू करें</string>
+    <string name="resume_on_audio_focus_gain_summary">रुकावटें खत्म होने के बाद वीडियो प्ले करें (जैसे - फ़ोन कॉल)</string>
     <string name="show_next_and_similar_title">\'अगला\' और \'समान\' वीडियो दिखाए</string>
-    <string name="show_hold_to_append_title">\"कतार में जोड़ने के लिए स्पर्श बनाये रखें\" दिखाए</string>
-    <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
+    <string name="show_hold_to_append_title">\"कतार में जोड़ने के लिए स्पर्श बनाये रखें\" दिखाएं</string>
+    <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन वीडियो के विवरण पन्ने में दबाई जाए तो सलाह दिखाएं</string>
     <string name="unsupported_url">असमर्थित URL</string>
     <string name="content_language_title">डिफ़ॉल्ट विषय की भाषा</string>
     <string name="settings_category_player_title">प्लेयर</string>
     <string name="settings_category_player_behavior_title">चाल चलन</string>
     <string name="settings_category_appearance_title">दिखावट</string>
-    <string name="popup_playing_toast">विडियो पॉपअप के अंदाज में चल रहा</string>
+    <string name="popup_playing_toast">वीडियो पॉपअप के अंदाज में चल रहा</string>
     <string name="content">विषयवस्तु</string>
     <string name="show_age_restricted_content_title">आयु प्रतिबंधित सामग्री दिखाएं</string>
     <string name="duration_live">लाइव</string>
@@ -92,30 +92,30 @@
     <string name="all">सारे</string>
     <string name="disabled">बंद करे</string>
     <string name="clear">साफ़</string>
-    <string name="best_resolution">बेहतर विडियो की क्वालिटी</string>
-    <string name="undo">वापस जाए</string>
+    <string name="best_resolution">बेहतर वीडियो की क्वालिटी</string>
+    <string name="undo">वापस जाएँ</string>
     <string name="play_all">सारे प्ले करे</string>
     <string name="notification_channel_name">NewPipe की सूचनापत्र</string>
-    <string name="notification_channel_description">न्यूपाइप के बैकग्राउंड में चल रहे विडियो और पॉपअप विडियो के लिए सूचनापत्र</string>
+    <string name="notification_channel_description">न्यूपाइप के बैकग्राउंड में चल रहे वीडियो और पॉपअप वीडियो के लिए सूचनापत्र</string>
     <string name="unknown_content">[नहीं जानते]</string>
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
     <string name="could_not_load_thumbnails">सारे thumbnail(फोटो जो फ़ोन की मेमोरी में है ) भरे नहीं जा सकते</string>
-    <string name="youtube_signature_deobfuscation_error">विडियो के URL signature को decrypt नहीं कर सकते</string>
+    <string name="youtube_signature_deobfuscation_error">वीडियो के URL हस्ताक्षर को डीऑबफस्केट नहीं कर सकते</string>
     <string name="parsing_error">इस website का निरंक्षण नहीं कर सकते</string>
     <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
     <string name="app_ui_crash">APP/UI टूट गया</string>
-    <string name="player_stream_failure">इस विडियो को चलाने में असफल हुए</string>
-    <string name="player_unrecoverable_failure">कभी ठीक न होने वाले विडियो प्लेयर की त्रुटी आ रही है</string>
-    <string name="player_recoverable_failure">विडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
+    <string name="player_stream_failure">इस वीडियो को चलाने में असफल हुए</string>
+    <string name="player_unrecoverable_failure">कभी ठीक न होने वाले वीडियो प्लेयर की त्रुटी आ रही है</string>
+    <string name="player_recoverable_failure">वीडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
     <string name="sorry_string">खेद है की, ऐसा होना नहीं चाहिए था.</string>
     <string name="error_report_button_text">त्रुटी की रिपोर्ट को ईमेल से भेजे</string>
     <string name="error_snackbar_message">माफ़ करे , कुछ त्रुटियाँ हो रही है</string>
-    <string name="error_snackbar_action">रिपोर्ट</string>
+    <string name="error_snackbar_action">रिपोर्ट करें</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
-    <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
+    <string name="info_labels">क्या:\\nअनुरोध:\\nसामग्री भाषा:\\nसामग्री देश:\\nऐप भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी:</string>
     <string name="error_details_headline">विवरण:</string>
     <string name="detail_thumbnail_view_description">वीडियो चलाये, समय :</string>
@@ -123,17 +123,17 @@
     <string name="detail_likes_img_view_description">पसंद</string>
     <string name="detail_dislikes_img_view_description">नापसंद</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
-    <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
-    <string name="video">विडियो</string>
+    <string name="empty_list_subtitle">यहां के खालीपन को दूर करने के लिए कुछ सर्च करें या किसी चैनल को सब्सक्राइब करें</string>
+    <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
     <string name="short_thousand">हज़ार</string>
     <string name="short_million">करोड़</string>
     <string name="short_billion">अरब</string>
-    <string name="no_subscribers">कोई भी सदस्य नहीं है</string>
+    <string name="no_subscribers">कोई सब्सक्राइबर नहीं है</string>
     <plurals name="subscribers">
-        <item quantity="one">%s सदस्य</item>
-        <item quantity="other">%s सदस्यो</item>
+        <item quantity="one">%s सब्सक्राइबर</item>
+        <item quantity="other">%s सब्सक्राइबर</item>
     </plurals>
     <plurals name="views">
         <item quantity="one">%s दर्शक</item>
@@ -146,7 +146,7 @@
     <string name="start">शुरू</string>
     <string name="pause">रोकें</string>
     <string name="delete">मिटाएँ</string>
-    <string name="checksum">checksum</string>
+    <string name="checksum">चेकसम</string>
     <string name="ok">ठीक है</string>
     <string name="msg_name">फाइल का नाम</string>
     <string name="msg_threads">मेसेज के thread</string>
@@ -156,17 +156,18 @@
     <string name="msg_wait">कृपया प्रतीक्षा करें…</string>
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुने</string>
-    <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
+    <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए
+\nइस अनुमति की जरुरत है</string>
     <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="recaptcha_request_toast">reCAPTCHA चुनौती का अनुरोध किया</string>
     <string name="settings_category_downloads_title">डाउनलोड</string>
-    <string name="settings_file_charset_title">फाइल के नाम के लिए आवश्यक characters(जैसे - १२३, abc) की अनुमति है</string>
-    <string name="settings_file_replacement_character_summary">अमान्य characters इस value से बदल जायेंगे</string>
+    <string name="settings_file_charset_title">फाइल के नाम के लिए आवश्यक कैरेक्टर (जैसे - १२३, abc) की अनुमति है</string>
+    <string name="settings_file_replacement_character_summary">अमान्य कैरेक्टर्स इस संख्या से बदल जायेंगे</string>
     <string name="settings_file_replacement_character_title">रिप्लेसमेंट करैक्टर</string>
     <string name="charset_letters_and_digits">वर्ण और अंक</string>
-    <string name="charset_most_special_characters">विशेष वर्ण</string>
+    <string name="charset_most_special_characters">विशेष कैरेक्टर्स</string>
     <string name="copyright" formatted="true">%2$s के द्वारा © %1$s जो %3$s के अधीन आते है</string>
-    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग एप्लिकेशन|</string>
+    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग एप्लिकेशन।</string>
     <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा !</string>
     <string name="delete_item_search_history">क्या आप इसको खोज इतिहास के मिटाना चाहते है ?</string>
     <string name="main_page_content">मुख्य पेज की विषयवस्तु</string>
@@ -177,7 +178,7 @@
     <string name="no_channel_subscribed_yet">अभी तक किसी भी चैनल के सदस्य नहीं है</string>
     <string name="select_a_kiosk">kiosk को चुने</string>
     <string name="top_50">टॉप 50</string>
-    <string name="new_and_hot">नया और गरम</string>
+    <string name="new_and_hot">नया और प्रचलित</string>
     <string name="play_queue_remove">निकाले</string>
     <string name="play_queue_stream_detail">विवरण</string>
     <string name="hold_to_append">जोड़ने के लिए पकड़ें रहे</string>
@@ -186,18 +187,18 @@
     <string name="no_player_found_toast">स्ट्रीमिंग करने के लिए कोई चालक उपलब्ध नहीं है (आप इसे चलाने के लिए VLC चालक स्थापित कर सकते हैं)।</string>
     <string name="controls_download_desc">स्ट्रीम फाइल डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
-    <string name="tab_bookmarks">बुकमार्क किये गए प्लेलिस्टस</string>
-    <string name="controls_add_to_playlist_title">इसमें जोड़ें</string>
-    <string name="default_content_country_title">डिफ़ॉल्ट देश का विषय</string>
-    <string name="always">हमेशा के लिए</string>
+    <string name="tab_bookmarks">बुकमार्क की गई प्लेलिस्टें</string>
+    <string name="controls_add_to_playlist_title">में शामिल करें</string>
+    <string name="default_content_country_title">डिफ़ॉल्ट देश का विषय</string>
+    <string name="always">हमेशा</string>
     <string name="just_once">सिर्फ एक बार के लिए</string>
     <string name="switch_to_background">बैकग्राउंड में स्विच करें</string>
     <string name="switch_to_popup">पॉपअप मोड में जाएं</string>
     <string name="switch_to_main">मुख्य पर स्विच करें</string>
     <string name="import_data_title">डेटाबेस आयात करें</string>
     <string name="export_data_title">डेटाबेस निर्यात करें</string>
-    <string name="import_data_summary">आपके वर्तमान इतिहास और सब्सक्रिप्शन को अधिभावी करेगा</string>
-    <string name="export_data_summary">इतिहास, सब्सक्रिप्शन और प्लेलिस्ट निर्यात करें</string>
+    <string name="import_data_summary">आपके वर्तमान इतिहास, सब्सक्रिप्शनस, प्लेलिस्ट और (वैकल्पिक रूप से) सेटिंग्स को अधिभावी करेगा</string>
+    <string name="export_data_summary">इतिहास, सब्सक्रिप्शन, प्लेलिस्ट और सेटिंग निर्यात करें</string>
     <string name="external_player_unsupported_link_type">एक्सटर्नल प्लेयर इन प्रकार के लिंक सपोर्ट नहीं करता</string>
     <string name="video_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
     <string name="audio_streams_empty">कोई ऑडियो स्ट्रीम नहीं मिली</string>
@@ -206,8 +207,8 @@
     <string name="dismiss">ख़ारिज करें</string>
     <string name="rename">नाम बदलें</string>
     <string name="donation_title">दान करें</string>
-    <string name="donation_encouragement">NewPipe स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। स्वयंसेवको को मदद भेजे, ताकि वह NewPipe को और अच्छा बना सके।</string>
-    <string name="give_back">वापस दे</string>
+    <string name="donation_encouragement">न्यूपाइप स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। स्वयंसेवको को मदद भेजे, ताकि वह न्यूपाइप को और अच्छा बना सके।</string>
+    <string name="give_back">वापस दें</string>
     <string name="website_title">वेबसाइट</string>
     <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
     <string name="title_last_played">पिछला चलाया गया</string>
@@ -229,13 +230,13 @@
     <string name="rename_playlist">नाम बदलें</string>
     <string name="name">नाम</string>
     <string name="add_to_playlist">प्लेलिस्ट में जोड़ें</string>
-    <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
+    <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंमनेल के रूप में सेट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>
     <string name="delete_playlist_prompt">प्लेलिस्ट को हटाना चाहते हैं\?</string>
     <string name="playlist_creation_success">सूची बना दी गई</string>
     <string name="playlist_add_stream_success">प्लेलिस्ट में जोड़ा गया</string>
-    <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंबनेल बदल दिया गया है।</string>
+    <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंमनेल बदल दिया गया है।</string>
     <string name="caption_none">कोई अनुशीर्षक नहीं है</string>
     <string name="resize_fit">फिट</string>
     <string name="resize_fill">भरें</string>
@@ -244,10 +245,10 @@
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
     <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग ऐप को अनुत्तरदायी बना सकता है</string>
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
-    <string name="download_thumbnail_title">थंबनेल लोड करें</string>
+    <string name="download_thumbnail_title">थंमनेल लोड करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
-    <string name="use_inexact_seek_summary">अनिश्चित खोज के कारण वीडियो प्लेयर कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता है। ५, १५, या २५ सेकंड की तलाश में यह काम नहीं करता।</string>
-    <string name="download_thumbnail_summary">थंबनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है|</string>
+    <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5,15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
+    <string name="download_thumbnail_summary">थंमनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
     <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
@@ -262,11 +263,11 @@
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
     <string name="clear_views_history_summary">चलाये गए स्ट्रीम के इतिहास और प्लेबैक स्थानों को साफ करता है</string>
     <string name="delete_view_history_alert">देखे गए सभी का इतिहास साफ करें\?</string>
-    <string name="watch_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
+    <string name="watch_history_deleted">देखा हुआ इतिहास साफ कर दिया गया</string>
     <string name="clear_search_history_title">ढूंढने के इतिहास को साफ करें</string>
     <string name="clear_search_history_summary">ढूंढे गए शब्दो का इतिहास साफ करता है</string>
     <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दे \?</string>
-    <string name="search_history_deleted">ढूंढने के इतिहास को साफ कर दिया।</string>
+    <string name="search_history_deleted">खोज के इतिहास को साफ कर दिया</string>
     <string name="invalid_directory">एसी कोई भी फ़ोल्डर मौजूद नहीं है</string>
     <string name="invalid_source">अमान्य फाइल/विषय - वस्तु का स्रोत</string>
     <string name="invalid_file">फ़ाइल मौजूद नहीं है या उसे पढ़ने या लिखने की पर्याप्त अनुमति नही़ं है</string>
@@ -280,10 +281,10 @@
 \nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ़े</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
-    <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने\' कि प्रक्रिया</string>
+    <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने\' की प्रक्रिया</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
     <string name="caption_setting_title">अनुशीर्षक</string>
-    <string name="caption_setting_description">प्लेयर अनुशीर्षक के शब्दों का परिमाण और पृष्ठभूमि शैलियो को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है।</string>
+    <string name="caption_setting_description">प्लेयर अनुशीर्षक के शब्दों का परिमाण और पृष्ठभूमि शैलियों को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है</string>
     <string name="import_title">आयात</string>
     <string name="import_from">से आयात करे</string>
     <string name="export_to">पर निर्यात करे</string>
@@ -293,11 +294,15 @@
     <string name="previous_export">पहले वाला निर्यात</string>
     <string name="subscriptions_import_unsuccessful">सब्सक्रिप्शन आयात नही कर सके</string>
     <string name="subscriptions_export_unsuccessful">सब्सक्रिप्शन निर्यात नही कर सके</string>
-    <string name="import_youtube_instructions">निर्यात की गई फाइल को डाउनलोड करके यूट्यूब सब्सक्रिप्शन को आयात करे:
+    <string name="import_youtube_instructions">गूगल टेकआउट से यूट्यूब सदस्यता आयात करें:
 \n
-\n1. इस URL पर जाए: %1$s
-\n2. जब कहा जाए, लॉगिन करे
-\n3. एक डाउनलोड शुरू होना चाहिए (यही निर्यात की गई फाइल है)</string>
+\n1. इस URL पर जाएं:%1$s
+\n2. पूछे जाने पर लॉग इन करें
+\n3. \"सभी डेटा शामिल करें\" पर क्लिक करें, फिर \"सभी को अचयनित करें\" पर, फिर केवल \"सदस्यताएँ\" चुनें और \"ओके\" पर क्लिक करें
+\n4. \"अगला चरण\" पर क्लिक करें और फिर \"निर्यात बनाएं\"
+\n5. प्रकट होने के बाद \"डाउनलोड\" बटन पर क्लिक करें
+\n6. नीचे आयात फ़ाइल पर क्लिक करें और डाउनलोड की गई .zip फ़ाइल चुनें
+\n7. [यदि .zip आयात विफल हो जाता है] .csv फ़ाइल निकालें (आमतौर पर \"YouTube और YouTube Music/subscriptions/subscriptions.csv\" के अंतर्गत), नीचे आयात फ़ाइल पर क्लिक करें और निकाली गई csv फ़ाइल चुनें</string>
     <string name="import_soundcloud_instructions_hint">आपका आई डी, soundcloud.com/(आपका आई डी)</string>
     <string name="import_network_expensive_warning">ध्यान रखे, यह तरीका नेटवर्क साधनो के लिए मंहगा हो सकता है।
 \n
@@ -316,30 +321,29 @@
     <string name="minimize_on_exit_title">ऐप बदलते समय उसे मिनिमाइज करे</string>
     <string name="minimize_on_exit_summary">मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर — %s</string>
     <string name="minimize_on_exit_none_description">कोई नही</string>
-    <string name="minimize_on_exit_background_description">पृष्ठभूमि प्लेयर में बदले</string>
+    <string name="minimize_on_exit_background_description">बैकग्राउंड प्लेयर में बदले</string>
     <string name="minimize_on_exit_popup_description">पॉप अप प्लेयर में बदले</string>
     <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
-    <string name="unsubscribe">सदस्यता हटाए</string>
+    <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
     <string name="volume_gesture_control_title">ध्वनि नियंत्रण इशारा</string>
-    <string name="enqueue">कतार</string>
+    <string name="enqueue">कतारबद्ध करें</string>
     <string name="volume_gesture_control_summary">वीडियो प्लेयर की ध्वनि नियंत्रित करने के लिए इशारो का इस्तेमाल करे</string>
     <string name="brightness_gesture_control_title">रोशनी स्तर नियंत्रण के इशारे</string>
     <string name="brightness_gesture_control_summary">वीडियो चालक की चमक को नियंत्रित करने के लिए इशारो का इस्तेमाल करें</string>
     <string name="settings_category_updates_title">अपडेट</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>
-    <string name="app_update_notification_channel_name">अप्प अपडेट अधिसूचना</string>
+    <string name="app_update_notification_channel_name">ऐप अपडेट अधिसूचना</string>
     <string name="app_update_notification_channel_description">नए NewPipe अपडेट की सूचनापत्र</string>
     <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
     <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं।डाउनलोड स्थान पुनः चुने\?</string>
     <string name="restore_defaults">सामान्य चुनाव पर लौटें</string>
     <string name="restore_defaults_confirmation">क्या आप सामान्य चुनाव पर लौटना चाहते है\?</string>
-    <string name="subscribers_count_not_available">अभिदाता संख्या अनुपलब्ध</string>
+    <string name="subscribers_count_not_available">सब्सक्राइबर स॔ख्या अनुपलब्ध</string>
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
     <string name="updates_setting_title">अपडेट</string>
     <string name="list">सूची</string>
-    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध!</string>
-    <string name="app_update_notification_content_text">डाउनलोड करने के लिए टैप करें</string>
+    <string name="app_update_available_notification_title">न्यूपाइप अपडेट उपलब्ध!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">अपूर्ण</string>
     <string name="paused">रोका हुआ</string>
@@ -376,7 +380,7 @@
     <string name="enable_playback_state_lists_title">सूचियों में स्थान</string>
     <string name="enable_playback_state_lists_summary">प्लेबैक पोजिशन के निशान सूचियों में दिखाए</string>
     <string name="settings_category_clear_data_title">डाटा मिटायें</string>
-    <string name="watch_history_states_deleted">प्लेबैक स्थान मिटा दिए गए|</string>
+    <string name="watch_history_states_deleted">प्लेबैक स्थान मिटा दिए गए</string>
     <string name="missing_file">फाइल की जगह बदली गयी या फिर फाइल मिटा दी गयी</string>
     <string name="overwrite_unrelated_warning">इस नाम की कोई फ़ाइल पहले से मौजूद है</string>
     <string name="overwrite_finished_warning">इस नाम की एक डाउनलोड की गई फ़ाइल पहले से मौजूद है</string>
@@ -386,23 +390,25 @@
     <string name="error_insufficient_storage">डिवाइस पर जगह समाप्त</string>
     <string name="error_progress_lost">प्रगति खो गई, क्योंकि फ़ाइल मिटा दी गई थी</string>
     <string name="error_timeout">कनेक्शन का समय समाप्त</string>
-    <string name="confirm_prompt">क्या आपको यकीन है\?</string>
+    <string name="confirm_prompt">क्या आप अपना डाउनलोड इतिहास मिटाना चाहते हैं या सभी डाउनलोड की गई फ़ाइलों को हटाना चाहते हैं\?</string>
     <string name="enable_queue_limit">डाउनलोड कतार सीमित करें</string>
     <string name="enable_queue_limit_desc">एक ही समय में एक डाउनलोड चलेगा</string>
     <string name="start_downloads">डाउनलोड प्रारंभ करें</string>
     <string name="pause_downloads">डाउनलोड रोकें</string>
-    <string name="downloads_storage_ask_title">डोलोड कहाँ करने के लिए पूछे</string>
-    <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा</string>
-    <string name="downloads_storage_use_saf_title">SAF का उपयोग करें</string>
+    <string name="downloads_storage_ask_title">डाउनलोड कहाँ करने के लिए पूछे</string>
+    <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा
+\nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (SAF) को सक्षम करें</string>
+    <string name="downloads_storage_use_saf_title">सिस्टम फोल्डर पिकर (एसएएफ) का प्रयोग करें</string>
     <string name="clear_playback_states_title">प्लेबैक स्थानों को मिटाये</string>
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाये</string>
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाये\?</string>
     <string name="enable_disposed_exceptions_summary">फ्रेगमेंट या एक्टिविटी लाइफसाइकिल के बाद Rx सन्देश ना पहुँचाया जा सके तोह ज़रूर कोशिश करे</string>
     <string name="import_soundcloud_instructions">SoundCloud प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
-\n१ अपने वेब ब्राउज़र मैं \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
-\n२ इस युआरएल को खोले: %1$s
-\n३ लोग इन करे
-\n४ आप जिस प्रोफाइल युआरएल पे भेजे जाते है उसे कॉपी करे|</string>
+\n
+\n1. अपने वेब ब्राउज़र मैं \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
+\n2. इस युआरएल को खोले: %1$s
+\n3. लोग इन करे
+\n4. आप जिस प्रोफाइल युआरएल पे भेजे जाते है उसे कॉपी करे।</string>
     <string name="start_accept_privacy_policy">यूरोप के जनरल डाटा प्रोटेक्शन रेगुलेशन (जी डी पी आर) का पालन करने के लिए, हम आपका ध्यान न्यूपाइप की नयी प्राइवेसी पालिसी पी डालना चाहते है।इसे बारीकी से पढ़िए।
 \nआपको अगर हमें किसी मुसीबत का सन्देश भेजना हो तो इसे स्वीकार करे।</string>
     <string name="saved_tabs_invalid_json">सामान्य टैब्स का इस्तेमाल, सहेजे टैब्स को पढ़ने में रूकावट</string>
@@ -412,8 +418,7 @@
     <string name="auto">ऑटो</string>
     <string name="show_error">मुसीबत दिखाए</string>
     <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
-    <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है
-\nसुचना - कुछ उपकरणों पर ये नहीं चलता</string>
+    <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
     <string name="no_one_watching">कोई नहीं देख रहा है</string>
@@ -426,7 +431,7 @@
         <item quantity="one">%s श्रोता</item>
         <item quantity="other">%s श्रोता</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
+    <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
@@ -443,7 +448,7 @@
     <string name="content_not_supported">यह सामग्री फिलहाल NewPipe सपोर्ट नहीं करता है। 
 \n
 \nइसे आशा से भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
-    <string name="detail_sub_channel_thumbnail_view_description">चैनल का avatar थंबनेल</string>
+    <string name="detail_sub_channel_thumbnail_view_description">चैनल का अवतार थंमनेल</string>
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पृष्ठ</string>
@@ -452,7 +457,6 @@
     <string name="artists">कलाकार</string>
     <string name="songs">गाने</string>
     <string name="never">कभी नहीं</string>
-    <string name="help">सहायता</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA कुकीज़ को साफ़ कर दिए गए हैं</string>
     <string name="clear_cookie_title">ReCAPTCHA कुकीज़ साफ़ करें</string>
     <string name="albums">एल्बम</string>
@@ -468,7 +472,7 @@
     <string name="auto_queue_toggle">अपने आप कतार में जोड़े</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
     <string name="seek_duration_title">तलाश अवधि फास्ट-फ़ॉरवर्ड /- रिवाइंड करे</string>
-    <string name="notification_colorize_summary">एंड्रॉइड को थंबनेल में मुख्य रंग के अनुसार अधिसूचना रंग को अनुकूलित करें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
+    <string name="notification_colorize_summary">एंड्रॉइड को थंमनेल में मुख्य रंग के अनुसार अधिसूचना रंग को अनुकूलित करें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
     <string name="notification_colorize_title">सूचनापत्र को रंगीन करें</string>
     <string name="notification_action_nothing">कुछ नहीं</string>
     <string name="notification_action_buffering">बफरिंग</string>
@@ -481,51 +485,51 @@
     <string name="notification_action_2_title">तृतीय एक्शन बटन</string>
     <string name="notification_action_1_title">द्वितीय एक्शन बटन</string>
     <string name="notification_action_0_title">प्रथम एक्शन बटन</string>
-    <string name="notification_scale_to_square_image_summary">नोटिफिकेशन में दिखाए गए वीडियो थंबनेल को 16: 9 के बजाय 1: 1 के अनुपात में दिखाए (इस कारण कुछ परेशानियां हो सकती हैं)</string>
-    <string name="notification_scale_to_square_image_title">थंबनेल को 1:1 के अनुपात मैं दिखाएं</string>
+    <string name="notification_scale_to_square_image_summary">नोटिफिकेशन में दिखाए गए वीडियो थंमनेल को 16: 9 के बजाय 1: 1 के अनुपात में दिखाए</string>
+    <string name="notification_scale_to_square_image_title">थंमनेल को 1:1 के अनुपात में दिखाएं</string>
     <plurals name="hours">
-        <item quantity="one">%dघंटा</item>
-        <item quantity="other">%dघंटे</item>
+        <item quantity="one">%d घंटा</item>
+        <item quantity="other">%d घंटे</item>
     </plurals>
     <plurals name="seconds">
-        <item quantity="one">%dसेकंड</item>
-        <item quantity="other">Seconds</item>
+        <item quantity="one">%d सेकेड</item>
+        <item quantity="other">%d सेकंड्स</item>
     </plurals>
     <string name="remove_watched_popup_title">देखे गए वीडियो हटायें\?</string>
     <string name="remove_watched">देखे गए को हटा दें</string>
     <string name="systems_language">सिस्टम डिफ़ॉल्ट</string>
-    <string name="app_language_title">ऐप भाषा</string>
+    <string name="app_language_title">ऐप की भाषा</string>
     <string name="delete_downloaded_files">डाउनलोड की गई फ़ाइलें हटाएं</string>
     <string name="clear_download_history">डाउनलोड इतिहास हटायें</string>
     <string name="wifi_only">केवल वाईफाई पर</string>
     <string name="autoplay_summary">स्वचालित रूप से प्लेबैक शुरू करें —%s</string>
     <string name="show_memory_leaks">मेमरी लीक दर्शाएँ</string>
-    <string name="unmute">अन्म्यूट</string>
-    <string name="mute">म्यूट</string>
-    <string name="most_liked">सबसे ज्यादा पसंद</string>
+    <string name="unmute">मौन हटायें</string>
+    <string name="mute">मौन</string>
+    <string name="most_liked">सबसे पसंद किए गए</string>
     <string name="recently_added">हाल ही में जोड़ा</string>
-    <string name="local">लोकल</string>
-    <string name="no_playlist_bookmarked_yet">कोई प्लेलिस्ट का बुक्मार्क्स नहीं है</string>
-    <string name="select_a_playlist">एक प्लेलिस्ट का चयन करें</string>
-    <string name="infinite_videos">∞ विडीओ</string>
-    <string name="more_than_100_videos">१००+ विडीओ</string>
+    <string name="local">स्थानीय</string>
+    <string name="no_playlist_bookmarked_yet">अभी कोई प्लेलिस्ट का बुक्मार्क नहीं है</string>
+    <string name="select_a_playlist">प्लेलिस्ट का चयन करें</string>
+    <string name="infinite_videos">∞ विडीओज़</string>
+    <string name="more_than_100_videos">100+ विडीओज़</string>
     <string name="description_tab_description">विवरण</string>
     <string name="related_items_tab_description">संबंधित स्ट्रीमस</string>
     <string name="comments_tab_description">टिप्पणियाँ</string>
-    <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के साथ खर्च कर सकते हैं।</string>
+    <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के लिए खर्च कर सकते हैं।</string>
     <string name="error_report_open_issue_button_text">गिटहब पर रिपोर्ट करें</string>
     <string name="permission_display_over_apps">अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
     <string name="hash_channel_description">विडीओ हैशिंग की प्रगति की सूचना</string>
     <string name="hash_channel_name">वीडियो हैश अधिसूचना</string>
-    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम विषय सूची या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें.</string>
-    <string name="show_meta_info_title">Meta जानकारी दिखाएँ</string>
+    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
+    <string name="show_meta_info_title">मेटा जानकारी दिखाएँ</string>
     <string name="show_description_summary">वीडियो का विवरण और अतिरिक्त जानकारी छिपाने के लिए इसे बंद करें</string>
     <string name="show_description_title">विवरण दिखाएं</string>
     <string name="clear_queue_confirmation_description">सक्रिय चालक की क़तार बदल दी जाएगी</string>
     <string name="clear_queue_confirmation_summary">एक चालक से दूसरे चालक में जाने से आपकी कतार बदल सकती है</string>
     <string name="open_with">इसमें खोलें</string>
-    <string name="show_thumbnail_title">थंबनेल दिखाएं</string>
-    <string name="show_thumbnail_summary">लॉक स्क्रीन और नोटिफिकेशन दोनों के लिए थंबनेल का इस्तेमाल करे</string>
+    <string name="show_thumbnail_title">थंमनेल दिखाएं</string>
+    <string name="show_thumbnail_summary">लॉक स्क्रीन और नोटिफिकेशन दोनों के लिए थंमनेल का इस्तेमाल करे</string>
     <string name="chapters">पाठ</string>
     <string name="no_app_to_open_intent">आपके डिवाइस का कोई भी ऐप इसे नहीं खोल सकता है</string>
     <string name="georestricted_content">यह सामग्री आपके देश में उपलब्ध नहीं है।</string>
@@ -547,17 +551,183 @@
     <string name="copy_for_github">स्वरूपित रिपोर्ट कॉपी करें</string>
     <string name="clear_cookie_summary">कुकी साफ़ करें जिसे न्यूपाइप आपके द्वारा रीकैप्चा हल करने पर संग्रहीत करता है</string>
     <string name="peertube_instance_add_exists">उदाहरण पहले से मौजूद है</string>
-    <string name="peertube_instance_add_fail">उदाहरण मान्य नहीं किया जा सका</string>
-    <string name="peertube_instance_add_help">उदाहरण URL दर्ज करें</string>
+    <string name="peertube_instance_add_fail">इंसटैंस मान्य नहीं किया जा सका</string>
+    <string name="peertube_instance_add_help">इंसटैंस यूआरएल दर्ज करें</string>
     <string name="peertube_instance_add_title">उदाहरण जोड़ें</string>
-    <string name="peertube_instance_url_help">%s . पर अपनी पसंद के उदाहरण ढूँढ़ें</string>
-    <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
+    <string name="peertube_instance_url_help">%s पर अपनी पसंद के इंसटैंस ढूँढ़ें</string>
+    <string name="peertube_instance_url_summary">अपने पसंदीदा पीयर ट्यूब इंसटैंस चुनें</string>
     <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>
-    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं।</string>
+    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं</string>
     <string name="comments_are_disabled">टिप्पणियाँ करना बंद है</string>
     <string name="mark_as_watched">देखा हुआ चिह्नित करें</string>
     <string name="settings_category_player_notification_title">चालक सूचनापत्र</string>
     <string name="notifications">सूचनापत्र</string>
     <string name="crash_the_player">चालक असफल हुआ</string>
     <string name="local_search_suggestions">स्थानीय खोज सुझाव</string>
+    <string name="metadata_privacy_public">सार्वजनिक</string>
+    <string name="settings_category_player_notification_summary">अभी चल रही स्ट्रीम अधिसूचना को कॉन्फ़िगर करें</string>
+    <string name="streams_notification_channel_name">नई स्ट्रीमें</string>
+    <string name="streams_notification_channel_description">सब्सक्रिप्शनस के नई स्ट्रीमों के बारे में अधिसूचनाएं</string>
+    <string name="error_report_channel_name">त्रुटि रिपोर्ट अधिसूचना</string>
+    <string name="error_report_channel_description">त्रुटियों की रिपोर्ट करने के लिए अधिसूचनाएं</string>
+    <string name="error_report_notification_title">न्यूपाइप को एक त्रुटि का सामना करना पड़ा, रिपोर्ट करने के लिए टैप करें</string>
+    <string name="recaptcha_solve">हल करें</string>
+    <string name="enqueue_stream">कतारबद्ध करें</string>
+    <string name="title_activity_play_queue">प्ले कतार</string>
+    <string name="enqueued_next">कतार में आगे जोड़ा गया</string>
+    <string name="enqueued">कतारबद्ध हुआ</string>
+    <string name="loading_stream_details">स्ट्रीम विवरण लोड हो रहे हैं…</string>
+    <string name="processing_may_take_a_moment">प्रोसेस हो रहा है… कुछ समय लग सकता है</string>
+    <string name="show_image_indicators_title">छवि संकेतक दिखाएं</string>
+    <string name="show_crash_the_player_summary">प्लेयर का उपयोग करते समय क्रैश विकल्प दिखाता है</string>
+    <string name="check_new_streams">नई स्ट्रीमों के लिए जांच चलाएं</string>
+    <string name="show_error_snackbar">एक त्रुटि स्नैकबार दिखाएं</string>
+    <string name="enable_streams_notifications_summary">सब्सक्रिप्शनस से नई स्ट्रीमों के बारे में सूचित करें</string>
+    <string name="streams_notifications_interval_title">जाँच करने की आवृत्ति</string>
+    <string name="streams_notifications_network_title">नेटवर्क कनेक्शन आवश्यक</string>
+    <string name="enable_streams_notifications_title">नई स्ट्रीम अधिसूचनाएं</string>
+    <string name="any_network">कोई भी नेटवर्क</string>
+    <string name="manual_update_title">अपडेट के लिए जाँच करें</string>
+    <string name="low_quality_smaller">निम्न गुणवत्ता (छोटा)</string>
+    <string name="seekbar_preview_thumbnail_title">सीकबार थंमनेल पूर्वावलोकन</string>
+    <string name="high_quality_larger">उच्च गुणवत्ता (बड़ा)</string>
+    <string name="checking_updates_toast">अपडेट्स के लिए जांच हो रही है…</string>
+    <string name="recovering">ठीक हो रहा है</string>
+    <string name="delete_downloaded_files_confirm">डिस्क से सभी डाउनलोड की गई फ़ाइलें मिटाएं\?</string>
+    <string name="downloads_storage_use_saf_summary_api_29">एंड्रॉइड 10 से शुरू होकर केवल \'स्टोरेज एक्सेस फ्रेमवर्क\' समर्थित है</string>
+    <string name="choose_instance_prompt">एक इंस्टेंस चुनें</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">हां, और आंशिक रूप से देखे गए वीडियो भी</string>
+    <string name="feed_notification_loading">फीड लोड हो रही है…</string>
+    <string name="feed_update_threshold_title">फ़ीड अपडेट चरणसीमा</string>
+    <string name="feed_load_error">फ़ीड लोड करने में गड़बड़ी</string>
+    <string name="feed_load_error_account_info">\'%s\' के लिए फ़ीड लोड नहीं कर सका।</string>
+    <string name="recent">रीसैंट</string>
+    <string name="description_select_enable">विवरण में पाठ का चयन सक्षम करें</string>
+    <string name="metadata_privacy">गोपनीयता</string>
+    <string name="description_select_note">अब आप विवरण के अंदर पाठ का चयन कर सकते हैं। ध्यान दें कि पृष्ठ झिलमिला सकता है और चयन मोड में लिंक क्लिक करने योग्य नहीं हो सकते हैं।</string>
+    <string name="metadata_age_limit">आयु सीमा</string>
+    <string name="metadata_support">सहायता</string>
+    <string name="metadata_host">होसट</string>
+    <string name="notifications_disabled">अधिसूचनाएं अक्षम हैं</string>
+    <string name="metadata_privacy_unlisted">गैर-सूचीबद्ध</string>
+    <string name="toggle_all">संयुक्त टॉगल करें</string>
+    <string name="get_notified">सूचना पायें</string>
+    <string name="enumeration_comma">,</string>
+    <string name="manual_update_description">नए संस्करणों के लिए मैन्युअल रूप से जांचें</string>
+    <string name="new_seek_duration_toast">एकसोप्लेयर की कमी के कारण खोज की अवधि %d सेकंड पर सेट की गई</string>
+    <string name="account_terminated">खाता समाप्त किया गया</string>
+    <string name="streams_not_yet_supported_removed">स्ट्रीम जो अभी तक डाउनलोडर द्वारा समर्थित नहीं हैं, नहीं दिखाई जाती हैं</string>
+    <string name="select_quality_external_players">बाहरी प्लेयरस के लिए क्वालिटी का चयन करें</string>
+    <string name="unknown_format">अज्ञात प्रारूप</string>
+    <string name="unknown_quality">अज्ञात क्वालिटी</string>
+    <string name="crash_the_app">ऐप को क्रैश करें</string>
+    <string name="metadata_category">श्रेणी</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
+    <string name="feed_toggle_show_played_items">देखे गए आइटम दिखाएं</string>
+    <string name="metadata_thumbnail_url">थंमनेल यूआरएल</string>
+    <string name="off">ऑफ़</string>
+    <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>
+    <string name="description_select_disable">विवरण में पाठ का चयन अक्षम करें</string>
+    <string name="dont_show">मत दिखाओ</string>
+    <string name="remote_search_suggestions">दूरस्थ खोज सुझाव</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s नई स्ट्रीम</item>
+        <item quantity="other">%s नई स्ट्रीमें</item>
+    </plurals>
+    <string name="percent">प्रतिशत</string>
+    <string name="semitone">सैमीटोन</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">डाउनलोड समाप्त</item>
+        <item quantity="other">%s डाउनलोड समाप्त</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d दिन</item>
+        <item quantity="other">%d दिन</item>
+    </plurals>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d चयनित</item>
+        <item quantity="other">%d चयनित</item>
+    </plurals>
+    <string name="progressive_load_interval_exoplayer_default">एक्सोप्लेयर डिफ़ॉल्ट</string>
+    <string name="progressive_load_interval_title">प्लेबैक लोड अंतराल आकार</string>
+    <string name="feed_group_dialog_empty_name">समूह का नाम नहीं</string>
+    <string name="feed_group_dialog_select_subscriptions">सब्सक्रिप्शनस चुनें</string>
+    <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं\?</string>
+    <string name="feed_create_new_group_button_title">नया</string>
+    <string name="settings_category_feed_title">फ़ीड</string>
+    <string name="feed_toggle_show_future_items">भविष्य की आइटम दिखाएं</string>
+    <string name="feed_new_items">नई फ़ीड आइटम</string>
+    <string name="feed_processing_message">फ़ीड संसाधित हो रही है …</string>
+    <string name="open_website_license">वेबसाइट खोलें</string>
+    <string name="feed_use_dedicated_fetch_method_title">उपलब्ध होने पर समर्पित फ़ीड से प्राप्त करें</string>
+    <string name="metadata_language">भाषा</string>
+    <string name="on">आन</string>
+    <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
+    <string name="feed_groups_header_title">चैनल समूह</string>
+    <string name="feed_toggle_hide_played_items">देखे गए आइटम छुपाएं</string>
+    <string name="feed_toggle_hide_future_items">भविष्य की आइटम छुपाएं</string>
+    <string name="faq_title">बार बार पूछे जाने वाले प्रश्न</string>
+    <string name="faq">वेबसाइट पर देखें</string>
+    <string name="main_page_content_swipe_remove">आइटम हटाने के लिए स्वाइप करें</string>
+    <string name="disable_media_tunneling_title">मीडिया टनलिंग अक्षम करें</string>
+    <string name="show_crash_the_player_title">\"क्रैश द प्लेयर\" दिखाएं</string>
+    <string name="feed_subscription_not_loaded_count">लोड नहीं हुआ: %d</string>
+    <string name="service_provides_reason">%s इसका कारण प्रदान करता है:</string>
+    <string name="metadata_tags">टैग</string>
+    <string name="metadata_licence">लाइसेंस</string>
+    <string name="faq_description">यदि आपको ऐप का उपयोग करने में परेशानी हो रही है, तो सामान्य प्रश्नों के इन उत्तरों को देखना सुनिश्चित करें!</string>
+    <string name="enqueue_next_stream">कतार में आगे जोड़ें</string>
+    <string name="progressive_load_interval_summary">लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान आरंभिक वीडियो लोडिंग को गति दे सकता है। परिवर्तन के लिए प्लेयर को पुनः आरंभ करने की आवश्यकता होती है</string>
+    <string name="leak_canary_not_available">लीककैनरी उपलब्ध नहीं है</string>
+    <string name="error_report_notification_toast">एक त्रुटी हुई है, अधिसूचना देखें</string>
+    <string name="disable_media_tunneling_summary">यदि आप काली स्क्रीन या वीडियो प्लेबैक खड़खड़ाते हुए चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें</string>
+    <string name="show_image_indicators_summary">छवियों के शीर्ष पर पिकासो रंगीन रिबन दिखाएँ जो उनके स्रोत को दर्शाता है: नेटवर्क के लिए लाल, डिस्क के लिए नीला और मेमोरी के लिए हरा</string>
+    <string name="create_error_notification">गड़बड़ी की सूचना बनाएं</string>
+    <string name="error_download_resource_gone">इस डाउनलोड को पुनर्प्राप्त नहीं किया जा सकता</string>
+    <string name="no_dir_yet">अभी तक कोई डाउनलोड फ़ोल्डर सेट नहीं किया गया है, अब डिफ़ॉल्ट डाउनलोड फ़ोल्डर चुनें</string>
+    <string name="subtitle_activity_recaptcha">हल होने पर \"संपन्न\" दबाएं</string>
+    <string name="show_channel_details">चैनल विवरण दिखाएं</string>
+    <string name="show_original_time_ago_title">आइटम्स का असल अपलोड समय दिखाएं</string>
+    <string name="show_original_time_ago_summary">सेवाओं से मूल पाठ स्ट्रीम आइटम में दिखाई देंगे</string>
+    <string name="remove_watched_popup_warning">प्लेलिस्ट में जोड़े गए पहले और बाद में देखे गए वीडियो हटा दिए जाएंगे।
+\nक्या यक़ीनन आप ऐसा चाह्ते हैं\? इसे असंपादित नहीं किया जा सकेगा!</string>
+    <plurals name="minutes">
+        <item quantity="one">%d मिनट</item>
+        <item quantity="other">%d मिनट</item>
+    </plurals>
+    <string name="feed_oldest_subscription_update">अंतिम अपडेट फ़ीड: %s</string>
+    <string name="feed_group_dialog_empty_selection">कोई सदस्यता चयनित नहीं है</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">केवल असमूहीकृत सब्सक्रिप्शनस दिखाएं</string>
+    <string name="feed_load_error_fast_unknown">फ़ास्ट फ़ीड मोड इस पर अधिक जानकारी प्रदान नहीं करता है।</string>
+    <string name="feed_update_threshold_summary">अपडेट अंतराल जब सब्सक्रिप्शन फ़ीड दोबारा अपडेट किये जा सकें — %s</string>
+    <string name="feed_load_error_terminated">लेखक का खाता समाप्त कर दिया गया है।
+\nन्यूपाइप भविष्य में इस फीड को लोड नहीं कर पाएगा।
+\nक्या आप इस चैनल की सदस्यता समाप्त करना चाहते हैं\?</string>
+    <string name="selected_stream_external_player_not_supported">चयनित स्ट्रीम बाहरी प्लेयरस द्वारा समर्थित नहीं है</string>
+    <string name="no_appropriate_file_manager_message_android_10">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला।
+\nकृपया स्टोरेज एक्सेस फ्रेमवर्क संगत फ़ाइल प्रबंधक स्थापित करें</string>
+    <string name="metadata_privacy_private">निजी</string>
+    <string name="metadata_privacy_internal">आंतरिक</string>
+    <string name="detail_pinned_comment_view_description">पिन की हुई टिप्पणी</string>
+    <string name="detail_heart_img_view_description">निर्माता द्वारा दिया दिल</string>
+    <string name="tablet_mode_title">टैबलेट मोड</string>
+    <string name="you_successfully_subscribed">आपने इस चैनल को अब सब्सक्राइब किया है</string>
+    <string name="no_video_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई वीडियो स्ट्रीम उपलब्ध नहीं है</string>
+    <string name="no_audio_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई ऑडियो स्ट्रीम उपलब्ध नहीं है</string>
+    <string name="feed_use_dedicated_fetch_method_summary">कुछ सेवाओं में उपलब्ध, यह आमतौर पर बहुत तेज होता है लेकिन सीमित मात्रा में आइटम और अक्सर अधूरी जानकारी (जैसे कोई अवधि नहीं, आइटम प्रकार, कोई लाइव स्थिति नहीं) लौटा सकता है</string>
+    <string name="no_appropriate_file_manager_message">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला।
+\nकृपया फ़ाइल प्रबंधक स्थापित करें या डाउनलोड सेटिंग में \'%s\' को अक्षम करने का प्रयास करें</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s डाउनलोड हटाए गए</item>
+        <item quantity="other">%1$s डाउनलोड हटाए गए</item>
+    </plurals>
+    <string name="sort">क्रमबद्ध करें</string>
+    <string name="fast_mode">तेज मोड</string>
+    <string name="import_subscriptions_hint">3-बिंदु वाले मेन्यू से सब्सक्रिप्शनस आयात या निर्यात करें</string>
+    <string name="app_update_unavailable_toast">आप न्यूपाइप का नवीनतम संस्करण चला रहे हैं</string>
+    <string name="app_update_available_notification_text">%s डाउनलोड करने के लिए टैप करें</string>
+    <string name="night_theme_available">यह विकल्प केवल तभी उपलब्ध होता है जब थीम के लिए %s का चयन किया जाता है</string>
+    <string name="unset_playlist_thumbnail">स्थायी थंमनेल अनसेट करें</string>
+    <string name="card">कार्ड</string>
+    <string name="msg_failed_to_copy">क्लिपबोर्ड पर कॉपी करने में विफल</string>
 </resources>

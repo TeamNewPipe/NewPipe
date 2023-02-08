@@ -216,7 +216,6 @@ public final class Player implements PlaybackListener, Listener {
     // minimized to background but will resume automatically to the original player type
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
-    private boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // UIs, listeners and disposables
@@ -349,7 +348,7 @@ public final class Player implements PlaybackListener, Listener {
         final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
 
-        final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
+        final boolean samePlayQueue = playQueue != null && playQueue.equalStreamsAndIndex(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
         final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
@@ -918,13 +917,6 @@ public final class Player implements PlaybackListener, Listener {
                         error -> Log.e(TAG, "Progress update failure: ", error));
     }
 
-    public void saveWasPlaying() {
-        this.wasPlaying = getPlayWhenReady();
-    }
-
-    public boolean wasPlaying() {
-        return wasPlaying;
-    }
     //endregion
 
 
@@ -1703,26 +1695,25 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void saveStreamProgressState(final long progressMillis) {
-        //noinspection SimplifyOptionalCallChains
-        if (!getCurrentStreamInfo().isPresent()
-                || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
-                    + ", currentMetadata=[" + getCurrentStreamInfo().get().getName() + "]");
-        }
+        getCurrentStreamInfo().ifPresent(info -> {
+            if (!prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+                return;
+            }
+            if (DEBUG) {
+                Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
+                        + ", currentMetadata=[" + info.getName() + "]");
+            }
 
-        databaseUpdateDisposable
-                .add(recordManager.saveStreamState(getCurrentStreamInfo().get(), progressMillis)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(e -> {
-                    if (DEBUG) {
-                        e.printStackTrace();
-                    }
-                })
-                .onErrorComplete()
-                .subscribe());
+            databaseUpdateDisposable.add(recordManager.saveStreamState(info, progressMillis)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError(e -> {
+                        if (DEBUG) {
+                            e.printStackTrace();
+                        }
+                    })
+                    .onErrorComplete()
+                    .subscribe());
+        });
     }
 
     public void saveStreamProgressState() {
@@ -1884,23 +1875,16 @@ public final class Player implements PlaybackListener, Listener {
         loadController.disablePreloadingOfCurrentTrack();
     }
 
-    @Nullable
-    public VideoStream getSelectedVideoStream() {
-        @Nullable final MediaItemTag.Quality quality = Optional.ofNullable(currentMetadata)
+    public Optional<VideoStream> getSelectedVideoStream() {
+        return Optional.ofNullable(currentMetadata)
                 .flatMap(MediaItemTag::getMaybeQuality)
-                .orElse(null);
-        if (quality == null) {
-            return null;
-        }
-
-        final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
-        final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
-
-        if (selectedStreamIndex >= 0 && availableStreams.size() > selectedStreamIndex) {
-            return availableStreams.get(selectedStreamIndex);
-        } else {
-            return null;
-        }
+                .filter(quality -> {
+                    final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
+                    return selectedStreamIndex >= 0
+                            && selectedStreamIndex < quality.getSortedVideoStreams().size();
+                })
+                .map(quality -> quality.getSortedVideoStreams()
+                        .get(quality.getSelectedVideoStreamIndex()));
     }
     //endregion
 
@@ -2044,40 +2028,36 @@ public final class Player implements PlaybackListener, Listener {
         // in livestreams) so we will be not able to execute the block below.
         // Reload the play queue manager in this case, which is the behavior when we don't know the
         // index of the video renderer or playQueueManagerReloadingNeeded returns true.
-        final Optional<StreamInfo> optCurrentStreamInfo = getCurrentStreamInfo();
-        if (!optCurrentStreamInfo.isPresent()) {
-            reloadPlayQueueManager();
-            setRecovery();
-            return;
-        }
+        getCurrentStreamInfo().ifPresentOrElse(info -> {
+            // In the case we don't know the source type, fallback to the one with video with audio
+            // or audio-only source.
+            final SourceType sourceType = videoResolver.getStreamSourceType()
+                    .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-        final StreamInfo info = optCurrentStreamInfo.get();
+            if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
+                reloadPlayQueueManager();
+            } else {
+                if (StreamTypeUtil.isAudio(info.getStreamType())) {
+                    // Nothing to do more than setting the recovery position
+                    setRecovery();
+                    return;
+                }
 
-        // In the case we don't know the source type, fallback to the one with video with audio or
-        // audio-only source.
-        final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
-                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
+                final var parametersBuilder = trackSelector.buildUponParameters();
 
-        if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
-            reloadPlayQueueManager();
-        } else {
-            if (StreamTypeUtil.isAudio(info.getStreamType())) {
-                // Nothing to do more than setting the recovery position
-                setRecovery();
-                return;
+                // Enable/disable the video track and the ability to select subtitles
+                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
+                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
+
+                trackSelector.setParameters(parametersBuilder);
             }
 
-            final DefaultTrackSelector.Parameters.Builder parametersBuilder =
-                    trackSelector.buildUponParameters();
-
-            // Enable/disable the video track and the ability to select subtitles
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
-            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
-
-            trackSelector.setParameters(parametersBuilder);
-        }
-
-        setRecovery();
+            setRecovery();
+        }, () -> {
+            // This is executed when the current stream info is not available.
+            reloadPlayQueueManager();
+            setRecovery();
+        });
     }
 
     /**

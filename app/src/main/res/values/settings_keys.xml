@@ -441,7 +441,9 @@
         <item>hu</item>
         <item>nl</item>
         <item>no</item>
+        <item>nn</item>
         <item>uz</item>
+        <item>or</item>
         <item>pl</item>
         <item>pt-PT</item>
         <item>pt</item>
@@ -493,7 +495,7 @@
     <string-array name="language_names">
         <item>@string/systems_language</item>
         <item>Afrikaans</item>
-        <item>Azərbaycan</item>
+        <item>Azərbaycanca</item>
         <item>Bahasa Indonesia</item>
         <item>Bahasa Malaysia</item>
         <item>Català</item>
@@ -519,7 +521,9 @@
         <item>Magyar</item>
         <item>Nederlands</item>
         <item>Norsk</item>
+        <item>Nynorsk</item>
         <item>O‘zbek</item>
+        <item>ଓଡ଼ିଆ</item>
         <item>Polski</item>
         <item>Português</item>
         <item>Português (Brasil)</item>
@@ -1127,6 +1131,7 @@
         <item>nl</item>
         <item>nl-be</item>
         <item>oc</item>
+        <item>or</item>
         <item>pa</item>
         <item>pl</item>
         <item>pt</item>
@@ -1160,7 +1165,7 @@
         <item>Basa Acèh</item>
         <item>العربية</item>
         <item>العربية (ليبيا)</item>
-        <item>Azərbaycan dili</item>
+        <item>Azərbaycanca</item>
         <item>Asturianu</item>
         <item>Беларуская</item>
         <item>ⵜⴰⵎⴰⵣⵉⵖⵜ</item>
@@ -1209,13 +1214,14 @@
         <item>Nederlands (NL)</item>
         <item>Nederlands (BE)</item>
         <item>Occitan</item>
+        <item>ଓଡ଼ିଆ</item>
         <item>ਪੰਜਾਬੀ</item>
         <item>Polski</item>
         <item>Português</item>
         <item>Português (BR)</item>
         <item>Português (PT)</item>
         <item>Română</item>
-        <item>русский язык</item>
+        <item>Pусский</item>
         <item>ᱥᱟᱱᱛᱟᱲᱤ</item>
         <item>sardu</item>
         <item>Slovenčina</item>
@@ -1261,16 +1267,19 @@
     <string name="list_view_mode_auto_key">auto</string>
     <string name="list_view_mode_list_key">list</string>
     <string name="list_view_mode_grid_key">grid</string>
+    <string name="list_view_mode_card_key">card</string>
 
     <string-array name="list_view_mode_values">
         <item>@string/list_view_mode_auto_key</item>
         <item>@string/list_view_mode_list_key</item>
         <item>@string/list_view_mode_grid_key</item>
+        <item>@string/list_view_mode_card_key</item>
     </string-array>
     <string-array name="list_view_mode_description">
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
+        <item>@string/card</item>
     </string-array>
 
     <string name="tablet_mode_key">tablet_mode</string>

@@ -110,8 +110,7 @@
     <string name="queued">e shtuar në radhë</string>
     <string name="paused">ndalur</string>
     <string name="missions_header_finished">Përfunduar</string>
-    <string name="app_update_notification_content_text">Shtyp për të shkarkuar</string>
-    <string name="app_update_notification_content_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
+    <string name="app_update_available_notification_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
     <string name="list_view_mode">Pamja e listës</string>
@@ -306,7 +305,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Tërhiqe për të ri-radhitur</string>
-    <string name="empty_subscription_feed_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
+    <string name="empty_list_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
     <string name="search_no_results">Nuk ka rezultate</string>
     <string name="detail_dislikes_img_view_description">Mospëlqimet</string>
     <string name="detail_likes_img_view_description">Pëlqimet</string>
@@ -410,7 +409,6 @@
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
     <string name="download_to_sdcard_error_title">Magazina e jashtme u padisponueshme</string>
     <string name="general_error">Gabim</string>
-    <string name="help">Ndihmë</string>
     <string name="search_history_deleted">Historiku i kërkimeve u fshi</string>
     <string name="delete_search_history_alert">Doni të fshini të gjithë historikun e kërkimeve\?</string>
     <string name="clear_search_history_summary">Fshin historikun e fjalëve kyçe të kërkuara</string>

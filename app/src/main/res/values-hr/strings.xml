@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Povijest i predmemorija</string>
     <string name="undo">Poništi</string>
     <string name="search_no_results">Nema rezultata</string>
-    <string name="empty_subscription_feed_subtitle">Ovdje nema ništa osim cvrčaka</string>
+    <string name="empty_list_subtitle">Ovdje nema ništa osim cvrčaka</string>
     <string name="no_subscribers">Nema pretplatnika</string>
     <plurals name="subscribers">
         <item quantity="one">%s pretplatnik</item>
@@ -310,8 +310,7 @@
     <string name="updates_setting_description">Prikaži obavijest i zatraži aktualiziranje programa kad je dostupna nova verzija</string>
     <string name="list">Popis</string>
     <string name="grid">Popločeno</string>
-    <string name="app_update_notification_content_title">Dostupna je nova verzija za NewPipe!</string>
-    <string name="app_update_notification_content_text">Dodirni za preuzimanje</string>
+    <string name="app_update_available_notification_title">Dostupna je nova verzija za NewPipe!</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="show_error">Prikaži pogrešku</string>
     <string name="download_thumbnail_summary">Isključi za sprečavanje učitavanja sličica, čime se štedi korištenje podataka i memorije. Promjene čiste predmemoriju slika radne memorije i diska</string>
@@ -429,7 +428,6 @@
     <string name="videos_string">Videa</string>
     <string name="mute">Isključi zvuk</string>
     <string name="unmute">Uključi</string>
-    <string name="help">Pomoć</string>
     <string name="feed_notification_loading">Učitavanje feeda …</string>
     <string name="feed_group_dialog_delete_message">Želiš li izbrisati ovu grupu\?</string>
     <string name="feed_create_new_group_button_title">Nova</string>
@@ -703,10 +701,8 @@
     <string name="check_new_streams">Pokreni traženje novih streamova</string>
     <string name="streams_notifications_interval_title">Prvjeravanje učestalosti</string>
     <string name="leak_canary_not_available">Biblioteka „LeakCanary” nije dostupna</string>
-    <string name="adjust_by_semitones_checkbox">Podešavanje visine tona po glazbenim polutonovima</string>
     <string name="enable_streams_notifications_title">Obavijesti o novim streamovima</string>
     <string name="streams_notifications_network_title">Potrebna mrežna veza</string>
-    <string name="progressive_load_interval_default">Zadano za ExoPlayer</string>
     <string name="get_notified">Primaj obavijesti</string>
     <string name="no_appropriate_file_manager_message">Za ovu radnju nije pronađen odgovarajući upravljač datoteka.
 \nInstaliraj upravljač datoteka ili pokušaj onemogućiti „%s” u postavkama preuzimanja</string>

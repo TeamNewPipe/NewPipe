@@ -192,7 +192,6 @@
     <string name="parsing_error">ناتوانرێت ماڵپەڕ شیبکرێتەوە</string>
     <string name="settings_file_charset_title">ڕه‌نووسه‌ ڕێپێدراوه‌كان له‌ فایله‌ ناوییه‌كاندا</string>
     <string name="import_soundcloud_instructions_hint">ئایدییەکەت ، soundcloud.com/yourid</string>
-    <string name="help">یارمەتی</string>
     <string name="fragment_feed_title">چی نوێ هه‌یه‌</string>
     <string name="msg_running_detail">كرتە بکە بۆ وردەکاری</string>
     <string name="delete_playback_states_alert">شوێنی هەموو کارپێکراوەکان بسڕدرێنەوە؟</string>
@@ -354,7 +353,6 @@
     <string name="use_external_video_player_summary">هه‌ندێك له‌ قه‌باره‌كان ده‌نگیان تێدا نامێنێته‌وه‌</string>
     <string name="events">ڕووداوەکان</string>
     <string name="detail_uploader_thumbnail_view_description">وێنۆچکەی کەسی بەرزکەرەوە</string>
-    <string name="app_update_notification_content_text">كرتە بکە بۆ دابه‌زاندن</string>
     <string name="import_complete_toast">هاورده‌كرا</string>
     <string name="downloads">دابه‌زاندنه‌كان</string>
     <string name="playback_speed_control">کۆنترۆڵی خێرایی کارپێکەر</string>
@@ -387,7 +385,7 @@
     <string name="most_liked">زۆرترین بەدڵ</string>
     <string name="delete">سڕینەوە</string>
     <string name="default_video_format_title">جۆری بنەڕەتی ڤیدیۆ</string>
-    <string name="empty_subscription_feed_subtitle">هیچ شتێک لێرەدا نییە</string>
+    <string name="empty_list_subtitle">هیچ شتێک لێرەدا نییە</string>
     <string name="clear">سڕینەوە</string>
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
     <string name="bookmark_playlist">نیشانه‌كردنی خشته‌لێدان</string>
@@ -519,7 +517,7 @@
 \nهەڵبژێرەری فۆڵدەری سیستەم کارابکە (SAF) گەر دەتەوێت بابەتەکانت لە بیرگەی دەرەکیدا داببەزێنرێن</string>
     <string name="title_last_played">دواین لێدراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی دابه‌زاندن دابنرێت</string>
-    <string name="app_update_notification_content_title">وەشانی نوێی نیوپایپ بەردەستە!</string>
+    <string name="app_update_available_notification_title">وەشانی نوێی نیوپایپ بەردەستە!</string>
     <string name="playlist_thumbnail_change_success">وێنۆچکەی خشتەلێدان گۆڕدرا.</string>
     <string name="import_soundcloud_instructions">هێنانەوەی پەڕەی کەسی SoundCloud بەدانانی بەستەر یاخوود ئایدی: 
 \n 

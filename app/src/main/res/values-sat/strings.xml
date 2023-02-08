@@ -64,4 +64,9 @@
     <string name="play_audio">ᱥᱟᱰᱮ</string>
     <string name="mark_as_watched">ᱧᱮᱞ ᱠᱟᱱ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱠᱟᱜ ᱢᱮ</string>
     <string name="crash_the_player">ᱯᱞᱮᱭᱚᱨ ᱠᱨᱟᱥ ᱠᱟᱜ ᱢᱮ</string>
+    <string name="theme_title">ᱛᱷᱤᱢ</string>
+    <string name="light_theme_title">ᱟᱨᱥᱟᱞ</string>
+    <string name="dark_theme_title">ᱧᱩᱛ</string>
+    <string name="night_theme_title">ᱧᱩᱛ ᱛᱷᱤᱢ</string>
+    <string name="black_theme_title">ᱦᱮᱱᱫᱮ</string>
 </resources>

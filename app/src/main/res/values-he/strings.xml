@@ -109,7 +109,7 @@
     <string name="detail_likes_img_view_description">אהבו</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
     <string name="search_no_results">אין תוצאות</string>
-    <string name="empty_subscription_feed_subtitle">אין כאן כלום מלבד צרצרים</string>
+    <string name="empty_list_subtitle">אין כאן כלום מלבד צרצרים</string>
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
@@ -364,8 +364,7 @@
     <string name="list">רשימה</string>
     <string name="grid">טבלה</string>
     <string name="auto">אוטומטית</string>
-    <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
-    <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
+    <string name="app_update_available_notification_title">יצא עדכון ל־NewPipe!</string>
     <string name="missions_header_finished">הסתיים</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
@@ -476,7 +475,6 @@
     <string name="new_seek_duration_toast">עקב מגבלות של ExoPlayer מגבלות טווחי החיפוש הוגדרו לכדי %d שניות</string>
     <string name="mute">השתקה</string>
     <string name="unmute">ביטול השתקה</string>
-    <string name="help">עזרה</string>
     <plurals name="minutes">
         <item quantity="one">דקה</item>
         <item quantity="two">שתי דקות</item>
@@ -750,4 +748,14 @@
     <string name="faq">הצגה באתר</string>
     <string name="faq_title">תשובות לשאלות נפוצות</string>
     <string name="faq_description">אם נתקלת בתקלות כשניסית להשתמש ביישומון, כדאי לעיין בתשובות לשאלות הנפוצות!</string>
+    <string name="import_subscriptions_hint">ניתן לייבא או לייצא מינויים מתפריט 3 הנקודות</string>
+    <string name="app_update_available_notification_text">נגיעה כאן תוריד את %s</string>
+    <string name="fast_mode">מצב מהיר</string>
+    <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של NewPipe</string>
+    <string name="night_theme_available">אפשרות זאת זמינה רק אם נבחרה ערכת נושא %s</string>
+    <string name="unset_playlist_thumbnail">ביטול הגדרת תמונה ייצוגית קבועה</string>
+    <string name="card">כרטיס</string>
+    <string name="msg_failed_to_copy">ההעתקה ללוח הגזירים נכשלה</string>
+    <string name="duplicate_in_playlist">רשימות הנגינה שבוטלו וסומנו באפור כבר מכילות את הפריט הזה.</string>
+    <string name="playlist_add_stream_success_duplicate">הכפיל נוסף %d פעמים</string>
 </resources>

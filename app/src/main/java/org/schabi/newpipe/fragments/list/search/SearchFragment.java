@@ -33,6 +33,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.collection.SparseArrayCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -70,9 +71,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -141,7 +140,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @State
     boolean wasSearchFocused = false;
 
-    @Nullable private Map<Integer, String> menuItemToFilterName = null;
+    private final SparseArrayCompat<String> menuItemToFilterName = new SparseArrayCompat<>();
     private StreamingService service;
     private Page nextPage;
     private boolean showLocalSuggestions = true;
@@ -426,8 +425,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        menuItemToFilterName = new HashMap<>();
-
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
@@ -468,11 +465,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
-        if (menuItemToFilterName != null) {
-            final List<String> cf = new ArrayList<>(1);
-            cf.add(menuItemToFilterName.get(item.getItemId()));
-            changeContentFilter(item, cf);
-        }
+        final var filter = Collections.singletonList(menuItemToFilterName.get(item.getItemId()));
+        changeContentFilter(item, filter);
         return true;
     }
 

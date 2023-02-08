@@ -152,7 +152,7 @@
     <string name="detail_likes_img_view_description">Meeldib</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
     <string name="search_no_results">Tulemusi pole</string>
-    <string name="empty_subscription_feed_subtitle">Siin pole veel midagi</string>
+    <string name="empty_list_subtitle">Siin pole veel midagi</string>
     <string name="detail_drag_description">Lohista järjestuse muutmiseks</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -187,7 +187,7 @@
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
     <string name="msg_running">NewPipe allalaadimine</string>
-    <string name="msg_running_detail">Puuduta üksikasjade nägemiseks</string>
+    <string name="msg_running_detail">Üksikasjade nägemiseks toksa</string>
     <string name="msg_wait">Palun oota…</string>
     <string name="msg_copied">Kopeeriti lõikepuhvrisse</string>
     <string name="no_available_dir">Vali määra allalaadimiste kataloog hiljem sätetes</string>
@@ -358,8 +358,7 @@
     <string name="list">Nimekiri</string>
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe värskendus on saadaval!</string>
-    <string name="app_update_notification_content_text">Allalaadimiseks puuduta</string>
+    <string name="app_update_available_notification_title">NewPipe värskendus on saadaval!</string>
     <string name="missions_header_finished">Lõpetatud</string>
     <string name="missions_header_pending">Ootel</string>
     <string name="paused">peatatud</string>
@@ -465,7 +464,6 @@
     <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“</string>
     <string name="missing_file">Faili asukoht on muutunud või on ta kustutatud</string>
     <string name="watch_history_states_deleted">Taasesituste asukohad on kustutatud</string>
-    <string name="help">Abiteave</string>
     <string name="delete_playback_states_alert">Kas kustutame kõik taasesituste asukohad\?</string>
     <string name="clear_playback_states_summary">Kustutab kõik taasesituse käigus salvestatud asukohad</string>
     <string name="clear_playback_states_title">Kustuta taasesituste asukohad</string>
@@ -670,7 +668,7 @@
     <string name="feed_new_items">Uued andmevoo kirjed</string>
     <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
     <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
-    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
+    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks toksa</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>
     <string name="show_error_snackbar">Näita veateate akent</string>
     <string name="error_report_channel_name">Teavitus vigadest</string>
@@ -724,4 +722,14 @@
     <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>
     <string name="faq">Edasi loe veebisaidist</string>
     <string name="sort">Sortimine</string>
+    <string name="app_update_available_notification_text">%s allalaadimiseks toksa</string>
+    <string name="fast_mode">Kiirrežiim</string>
+    <string name="import_subscriptions_hint">Tellimusi saad importida või eksportida 3 punktiga menüüst</string>
+    <string name="app_update_unavailable_toast">Sa kasutad NewPipe\'i uusimat versiooni</string>
+    <string name="night_theme_available">See valik on kasutusel vaid %s teema puhul</string>
+    <string name="msg_failed_to_copy">Lõikelauale kopeerimine ei õnnestunud</string>
+    <string name="unset_playlist_thumbnail">Eemalda püsiv pisipilt</string>
+    <string name="card">Kaart</string>
+    <string name="duplicate_in_playlist">Hallina kuvatud esitusloendid juba sisaldavad seda kirjet.</string>
+    <string name="playlist_add_stream_success_duplicate">Topeltkirje lisatud %d kord(a)</string>
 </resources>

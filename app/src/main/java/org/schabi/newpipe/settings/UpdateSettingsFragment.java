@@ -16,24 +16,16 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
                 .apply();
 
         if (checkForUpdates) {
-            checkNewVersionNow();
+            NewVersionWorker.enqueueNewVersionCheckingWork(requireContext(), true);
         }
         return true;
     };
 
     private final Preference.OnPreferenceClickListener manualUpdateClick = preference -> {
         Toast.makeText(getContext(), R.string.checking_updates_toast, Toast.LENGTH_SHORT).show();
-        checkNewVersionNow();
+        NewVersionWorker.enqueueNewVersionCheckingWork(requireContext(), true);
         return true;
     };
-
-    private void checkNewVersionNow() {
-        // Search for updates immediately when update checks are enabled.
-        // Reset the expire time. This is necessary to check for an update immediately.
-        defaultPreferences.edit()
-                .putLong(getString(R.string.update_expiry_key), 0).apply();
-        NewVersionWorker.enqueueNewVersionCheckingWork(getContext());
-    }
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {

@@ -125,7 +125,7 @@
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
-    <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
+    <string name="empty_list_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
         <item quantity="other">%s 位訂閱者</item>
@@ -350,8 +350,7 @@
     <string name="list">清單</string>
     <string name="grid">網格</string>
     <string name="auto">自動</string>
-    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
-    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="app_update_available_notification_title">有可用的 NewPipe 更新！</string>
     <string name="missions_header_finished">已完成</string>
     <string name="missions_header_pending">有待處理</string>
     <string name="paused">已暫停</string>
@@ -458,7 +457,6 @@
     <string name="new_seek_duration_toast">因為 ExoPlayer 的限制，搜尋持續時間設定為 %d 秒</string>
     <string name="mute">靜音</string>
     <string name="unmute">取消靜音</string>
-    <string name="help">說明</string>
     <plurals name="minutes">
         <item quantity="other">%d 分鐘</item>
     </plurals>
@@ -711,4 +709,14 @@
     <string name="faq">在網站上檢視</string>
     <string name="sort">排序</string>
     <string name="faq_description">若您在使用此應用程式時遇到任何問題，請務必先看看常見問題的答案！</string>
+    <string name="app_update_unavailable_toast">您正在執行最新版本的 NewPipe</string>
+    <string name="app_update_available_notification_text">輕點以下載 %s</string>
+    <string name="fast_mode">快速模式</string>
+    <string name="import_subscriptions_hint">從三點式選單匯入或匯出訂閱</string>
+    <string name="night_theme_available">此選項僅在主題選擇為 %s 時可用</string>
+    <string name="card">卡片</string>
+    <string name="unset_playlist_thumbnail">取消設定永久縮圖</string>
+    <string name="msg_failed_to_copy">無法複製到剪貼簿</string>
+    <string name="playlist_add_stream_success_duplicate">重複新增 %d 次</string>
+    <string name="duplicate_in_playlist">變灰的播放清單已經包含此項目。</string>
 </resources>

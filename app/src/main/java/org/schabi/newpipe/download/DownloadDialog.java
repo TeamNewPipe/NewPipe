@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.collection.SparseArrayCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
@@ -75,6 +75,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 import icepick.Icepick;
 import icepick.State;
@@ -211,8 +212,7 @@ public class DownloadDialog extends DialogFragment
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        final SparseArray<SecondaryStreamHelper<AudioStream>> secondaryStreams =
-                new SparseArray<>(4);
+        final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
         final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
 
         for (int i = 0; i < videoStreams.size(); i++) {
@@ -236,10 +236,9 @@ public class DownloadDialog extends DialogFragment
             }
         }
 
-        this.videoStreamsAdapter = new StreamItemAdapter<>(context, wrappedVideoStreams,
-                secondaryStreams);
-        this.audioStreamsAdapter = new StreamItemAdapter<>(context, wrappedAudioStreams);
-        this.subtitleStreamsAdapter = new StreamItemAdapter<>(context, wrappedSubtitleStreams);
+        this.videoStreamsAdapter = new StreamItemAdapter<>(wrappedVideoStreams, secondaryStreams);
+        this.audioStreamsAdapter = new StreamItemAdapter<>(wrappedAudioStreams);
+        this.subtitleStreamsAdapter = new StreamItemAdapter<>(wrappedSubtitleStreams);
 
         final Intent intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);
@@ -561,6 +560,39 @@ public class DownloadDialog extends DialogFragment
             case R.id.subtitle_button:
                 selectedSubtitleIndex = position;
                 break;
+        }
+        onItemSelectedSetFileName();
+    }
+
+    private void onItemSelectedSetFileName() {
+        final String fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
+        final String prevFileName = Optional.ofNullable(dialogBinding.fileName.getText())
+                .map(Object::toString)
+                .orElse("");
+
+        if (prevFileName.isEmpty()
+                || prevFileName.equals(fileName)
+                || prevFileName.startsWith(getString(R.string.caption_file_name, fileName, ""))) {
+            // only update the file name field if it was not edited by the user
+
+            switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
+                case R.id.audio_button:
+                case R.id.video_button:
+                    if (!prevFileName.equals(fileName)) {
+                        // since the user might have switched between audio and video, the correct
+                        // text might already be in place, so avoid resetting the cursor position
+                        dialogBinding.fileName.setText(fileName);
+                    }
+                    break;
+
+                case R.id.subtitle_button:
+                    final String setSubtitleLanguageCode = subtitleStreamsAdapter
+                            .getItem(selectedSubtitleIndex).getLanguageTag();
+                    // this will reset the cursor position, which is bad UX, but it can't be avoided
+                    dialogBinding.fileName.setText(getString(
+                            R.string.caption_file_name, fileName, setSubtitleLanguageCode));
+                    break;
+            }
         }
     }
 

@@ -60,7 +60,6 @@
     <string name="always">ہمیشہ</string>
     <string name="notifications">نوٹ</string>
     <string name="unknown_content">[نامعلوم]</string>
-    <string name="help">مدد</string>
     <string name="general_error">خرابی</string>
     <string name="audio_streams_empty">کوئی وی آڈیو سٹریماں نہیں ملیاں</string>
     <string name="error_snackbar_action">رپورٹ کرو</string>
@@ -95,11 +94,9 @@
     <string name="pause">روکو</string>
     <string name="delete">مٹاؤ</string>
     <string name="account_terminated">کھاتہ بند کیتا گیا</string>
-    <string name="app_update_notification_content_text">ڈاؤنلوڈ کرن لئی دباؤ</string>
     <string name="auto">آٹو</string>
     <string name="upload_date_text">%1$s نوں جاری کیتی گئی</string>
     <string name="open_with">ایس وچ کھُلھو</string>
-    <string name="app_update_notification_content_title">نیوپائیپ دا نواں ورژن اُپلبدھ اے!</string>
     <string name="open_in_popup_mode">تیردی تصویر وچ کھُلھو</string>
     <string name="controls_download_desc">سٹریم دی فائل ڈاؤن‌لوڈ کرو</string>
     <string name="search_showing_result_for">%s لئی نتیجے وِکھاۓ جا رہے ہن</string>

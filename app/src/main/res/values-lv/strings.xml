@@ -144,7 +144,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Velciet, lai mainītu secību</string>
-    <string name="empty_subscription_feed_subtitle">Šeit nekā nav, tikai sienāži</string>
+    <string name="empty_list_subtitle">Šeit nekā nav, tikai sienāži</string>
     <string name="search_no_results">Nav resultātu</string>
     <string name="description_tab_description">Apraksts</string>
     <string name="related_items_tab_description">Līdzīgi video</string>
@@ -199,7 +199,6 @@
     <string name="download_to_sdcard_error_message">Lejupielādēt uz SD karti nav iespējams. Atiestatīt lejupielāžu mapes lokāciju\?</string>
     <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
-    <string name="help">Palīdzība</string>
     <string name="search_history_deleted">Meklēšanas vēsture izdzēsta</string>
     <string name="delete_search_history_alert">Izdzēsy visu meklēšanas vēsturi\?</string>
     <string name="clear_search_history_summary">Izdzēš meklēto vārdu vēsturi</string>
@@ -447,8 +446,7 @@
     <string name="paused">Pausēts</string>
     <string name="missions_header_pending">Gaida</string>
     <string name="missions_header_finished">Pabeigts</string>
-    <string name="app_update_notification_content_text">Nospiediet, lai lejupielādētu</string>
-    <string name="app_update_notification_content_title">Ir pieejams Newpipe atjauninājums!</string>
+    <string name="app_update_available_notification_title">Ir pieejams Newpipe atjauninājums!</string>
     <string name="auto">Automātiski</string>
     <string name="grid">Tīkls</string>
     <string name="list">Saraksts</string>
@@ -684,4 +682,17 @@
     <string name="crash_the_player">Avarēt atskaņotāju</string>
     <string name="settings_category_player_notification_summary">Pielāgojiet pašlaik atskaņotās plūsmas notifikāciju</string>
     <string name="settings_category_player_notification_title">Atskaņotāja notifikācija</string>
+    <string name="streams_notification_channel_name">Jaunās tiešraides</string>
+    <string name="error_report_notification_toast">Radās kļūda, detalizētāku informāciju skatiet paziņojumā</string>
+    <plurals name="new_streams">
+        <item quantity="zero">%s jauna tiešraide</item>
+        <item quantity="one">%s jauna tiešraide</item>
+        <item quantity="other">%s jaunas tiešraides</item>
+    </plurals>
+    <string name="streams_notification_channel_description">Paziņojumi par jaunām tiešraidēm abonementos</string>
+    <string name="faq_title">Bieži uzdotie jautājumi</string>
+    <string name="error_report_channel_description">Paziņojumi, lai ziņotu par kļūdām</string>
+    <string name="error_report_channel_name">Kļūdas ziņojuma paziņojums</string>
+    <string name="progressive_load_interval_title">Atskaņošanas ielādēšanas intervāla lielums</string>
+    <string name="error_report_notification_title">NewPipe radās kļūdu, pieskarieties, lai ziņotu</string>
 </resources>

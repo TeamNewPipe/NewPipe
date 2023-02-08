@@ -1,14 +1,14 @@
-Neu
-- Abonnementgruppen und sortierte Feeds
-- Stummschalttaste in Playern
+Neu:
+• Abonnementgruppen und sortierte Feeds
+• Stummschalttaste in Playern
 
-Verbessert
-- Das Öffnen von music.youtube.com und media.ccc.de Links in NewPipe erlaubt
-- Zwei Einstellungen wurden von "Erscheinungsbild" zu "Inhalt" verschoben
-- Ausblenden der Suchoptionen 5, 15 und 25 Sekunden, wenn die ungenaue Suche aktiviert ist
+Verbessert:
+• Öffnen von music.youtube.com und media.ccc.de Links in NewPipe erlaubt
+• Zwei Einstellungen von „Erscheinungsbild“ zu „Inhalt“ verschoben
+• Ausblenden der Suchoptionen 5, 15 und 25 Sekunden, wenn die ungenaue Suche aktiviert ist
 
-Behoben
-- einige WebM-Videos sind nicht suchbar
-- Datenbank-Backup auf Android P
-- Absturz beim Teilen einer heruntergeladenen Datei
-- YouTube-Extraktionsprobleme, ...
+Behoben:
+• Einige WebM-Videos sind nicht suchbar
+• Datenbank-Backup auf Android P
+• Absturz beim Teilen einer heruntergeladenen Datei
+• YouTube-Extraktionsprobleme und mehr …

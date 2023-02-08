@@ -1,0 +1,10 @@
+• Unificare le azioni di accodamento specifiche in una
+• Gesto con due dita per chiudere il lettore
+• Consenti cancellazione dei cookie reCAPTCHA
+• Opzione per non colorare la notifica
+• Migliora il modo in cui i dettagli del video vengono aperti per correggere il buffering infinito, il comportamento buggy durante la condivisione su NewPipe e altre incoerenze
+• Velocizza i video di YouTube e correggi quelli soggetti a limiti di età
+• Risolto crash durante l'avanzamento/riavvolgimento veloce
+• Non riordinare gli elenchi trascinando le miniature
+• Ricorda sempre le proprietà dei popup
+• Aggiungi la lingua Santali

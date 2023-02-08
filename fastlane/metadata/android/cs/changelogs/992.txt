@@ -1,0 +1,17 @@
+Novinky
+• Počet odběratelů v podrobnostech videa
+• Stahování z fronty
+• Permanentní nastavení náhledu playlistu
+• Dlouhé podržení hashtagů a odkazů
+• Režim zobrazení v kartách
+
+Vylepšení
+• Větší tlačítko k zavření minipřehrávače
+• Jemnější zmenšování náhledů
+• Cíl Android 13 (API 33)
+• Posouvání v přehrávači jej již nezastaví
+
+Opravy
+• Oprava překrytí s DeX/myší
+• Povolení přehrávače na pozadí bez oddělených streamů zvuku
+• Různé opravy YouTube a další…

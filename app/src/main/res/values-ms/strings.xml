@@ -173,7 +173,7 @@
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
     <string name="search_no_results">Tiada keputusan</string>
-    <string name="empty_subscription_feed_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
+    <string name="empty_list_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
     <string name="detail_drag_description">Seret untuk menyusun semula</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -348,8 +348,7 @@
     <string name="list">Senarai</string>
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Kemas kini NewPipe Tersedia!</string>
-    <string name="app_update_notification_content_text">Ketik untuk muat turun</string>
+    <string name="app_update_available_notification_title">Kemas kini NewPipe Tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>
@@ -381,7 +380,6 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="help">Bantuan</string>
     <string name="open_with">Buka dengan</string>
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>

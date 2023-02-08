@@ -1,1 +1,1 @@
-Fehler bei Datenbankmigration behoben, welche in seltenen Fällen einen Start der App verhindert.
+Fehler bei Datenbankmigration behoben, welche in seltenen Fällen einen Start der App verhinderte.

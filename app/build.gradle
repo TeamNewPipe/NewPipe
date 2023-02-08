@@ -1,23 +1,27 @@
+import com.android.tools.profgen.ArtProfileKt
+import com.android.tools.profgen.ArtProfileSerializer
+import com.android.tools.profgen.DexFile
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
     id "kotlin-kapt"
     id "kotlin-parcelize"
     id "checkstyle"
-    id "org.sonarqube" version "3.3"
+    id "org.sonarqube" version "3.5.0.2730"
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
         minSdk 21
-        targetSdk 29
-        versionCode 991
-        versionName "0.24.1"
+        targetSdk 33
+        versionCode 992
+        versionName "0.25.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -107,7 +111,7 @@ ext {
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.5'
+    leakCanaryVersion = '2.9.1'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
     assertJVersion = '3.23.1'
@@ -169,7 +173,7 @@ afterEvaluate {
     preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
-sonarqube {
+sonar {
     properties {
         property "sonar.projectKey", "TeamNewPipe_NewPipe"
         property "sonar.organization", "teamnewpipe"
@@ -179,7 +183,7 @@ sonarqube {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.6'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
@@ -187,7 +191,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:eb07d70a2ce03bee3cc74fc33b2e4173e1c21436'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:7e793c11aec46358ccbfd8bcfcf521105f4f093a'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -259,14 +263,14 @@ dependencies {
     implementation "io.noties.markwon:linkify:${markwonVersion}"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.9.3"
+    implementation "ch.acra:acra-core:5.9.7"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
-    implementation "io.reactivex.rxjava3:rxjava:3.0.13"
-    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.1.5"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
@@ -306,5 +310,26 @@ static String getGitWorkingBranch() {
     } catch (IOException ignored) {
         // git was not found
         return ""
+    }
+}
+
+project.afterEvaluate {
+    tasks.compileReleaseArtProfile.doLast {
+        outputs.files.each { file ->
+            if (file.toString().endsWith(".profm")) {
+                println("Sorting ${file} ...")
+                def version = ArtProfileSerializer.valueOf("METADATA_0_0_2")
+                def profile = ArtProfileKt.ArtProfile(file)
+                def keys = new ArrayList(profile.profileData.keySet())
+                def sortedData = new LinkedHashMap()
+                Collections.sort keys, new DexFile.Companion()
+                keys.each { key -> sortedData[key] = profile.profileData[key] }
+                new FileOutputStream(file).with {
+                    write(version.magicBytes$profgen)
+                    write(version.versionBytes$profgen)
+                    version.write$profgen(it, sortedData, "")
+                }
+            }
+        }
     }
 }

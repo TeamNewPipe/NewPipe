@@ -1,13 +1,13 @@
-Neu
-- Option "Zur Wiedergabeliste hinzufügen" zum Freigabemenü hinzugefügt
-- Unterstützung für y2u.be und PeerTube Kurzlinks hinzugefügt
+Neu:
+• Option „Zur Wiedergabeliste hinzufügen“ zum Freigabemenü hinzugefügt
+• Unterstützung für y2u.be- und PeerTube-Kurzlinks hinzugefügt
 
-Verbessert
-- Playback-Speed-Controls kompakter gemacht
-- Feed hebt jetzt neue Elemente hervor
-- "Beobachtete Artikel anzeigen" Option im Feed wird nun gespeichert
+Verbessert:
+• Playback-Speed-Controls kompakter gemacht
+• Feed hebt jetzt neue Elemente hervor
+• „Beobachtete Artikel anzeigen“-Option im Feed wird nun gespeichert
 
-Behoben
-- Extraktion von YouTube Likes und Dislikes behoben
-- Automatische Wiederholung nach Rückkehr aus dem Hintergrund behoben
+Behoben:
+• Extraktion von YouTube Likes und Dislikes behoben
+• Automatische Wiederholung nach Rückkehr aus dem Hintergrund behoben
 Und vieles mehr

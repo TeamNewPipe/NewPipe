@@ -178,7 +178,7 @@
     <string name="detail_likes_img_view_description">मनपर्दो</string>
     <string name="detail_dislikes_img_view_description">मन नपर्ने</string>
     <string name="search_no_results">कुनै परिणामहरु छैनन्</string>
-    <string name="empty_subscription_feed_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
+    <string name="empty_list_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
     <string name="detail_drag_description">पुन: क्रमबद्ध गर्न तान्नुहोस्</string>
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
@@ -356,8 +356,7 @@
     <string name="list">सूची</string>
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
-    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
-    <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
+    <string name="app_update_available_notification_title">NewPipe अपडेट उपलब्ध छ!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
     <string name="paused">पज</string>
@@ -459,7 +458,6 @@
     <string name="new_seek_duration_toast">ExoPlayer अवरोधका कारण खोजी अवधि %d सेकेन्डमा सेट गरियो</string>
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
-    <string name="help">मद्दत</string>
     <string name="feed_use_dedicated_fetch_method_help_text">के तपाईलाई लाग्छ फिड लोडि एकदम ढिलो छ\? यदि हो भने, छिटो लोडिङ् सक्षम गर्न प्रयास गर्नुहोस् (तपाईं यसलाई सेटिंङ्हरूमा वा तलको बटन थिचेर बदल्न सक्नुहुन्छ)।
 \n
 \nनयाँ पाइपले दुई फिड लोड गर्ने रणनीति प्रदान गर्दछ:

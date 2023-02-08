@@ -9,8 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.view.Gravity;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -21,6 +19,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
 public final class PermissionHelper {
+    public static final int POST_NOTIFICATIONS_REQUEST_CODE = 779;
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
     public static final int DOWNLOADS_REQUEST_CODE = 777;
 
@@ -71,8 +70,7 @@ public final class PermissionHelper {
 
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    requestCode);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestCode);
 
             // PERMISSION_WRITE_STORAGE is an
             // app-defined int constant. The callback method gets the
@@ -83,6 +81,18 @@ public final class PermissionHelper {
         return true;
     }
 
+    public static boolean checkPostNotificationsPermission(final Activity activity,
+                                                           final int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity,
+                    new String[] {Manifest.permission.POST_NOTIFICATIONS}, requestCode);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * In order to be able to draw over other apps,
@@ -116,18 +126,21 @@ public final class PermissionHelper {
         }
     }
 
-    public static boolean isPopupEnabled(final Context context) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || checkSystemAlertWindowPermission(context);
-    }
-
-    public static void showPopupEnablementToast(final Context context) {
-        final Toast toast =
-                Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-        final TextView messageView = toast.getView().findViewById(android.R.id.message);
-        if (messageView != null) {
-            messageView.setGravity(Gravity.CENTER);
+    /**
+     * Determines whether the popup is enabled, and if it is not, starts the system activity to
+     * request the permission with {@link #checkSystemAlertWindowPermission(Context)} and shows a
+     * toast to the user explaining why the permission is needed.
+     *
+     * @param context the Android context
+     * @return whether the popup is enabled
+     */
+    public static boolean isPopupEnabledElseAsk(final Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || checkSystemAlertWindowPermission(context)) {
+            return true;
+        } else {
+            Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            return false;
         }
-        toast.show();
     }
 }

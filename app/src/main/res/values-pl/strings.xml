@@ -48,7 +48,7 @@
     <string name="could_not_load_thumbnails">Nie udało się załadować wszystkich miniatur</string>
     <string name="youtube_signature_deobfuscation_error">Nie udało się odszyfrować sygnatury URL wideo</string>
     <string name="parsing_error">Nie udało się przetworzyć strony internetowej</string>
-    <string name="content_not_available">Zawartość niedostępna</string>
+    <string name="content_not_available">Treść niedostępna</string>
     <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
@@ -151,7 +151,7 @@
     <string name="player_stream_failure">Nie udało się odtworzyć tego strumienia</string>
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
+    <string name="empty_list_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
@@ -206,7 +206,7 @@
     <string name="video_player">Odtwarzacz wideo</string>
     <string name="background_player">Odtwarzacz w tle</string>
     <string name="preferred_player_fetcher_notification_title">Uzyskiwanie informacji…</string>
-    <string name="preferred_player_fetcher_notification_message">Ładowanie żądanej zawartości</string>
+    <string name="preferred_player_fetcher_notification_message">Ładowanie żądanej treści</string>
     <string name="controls_download_desc">Pobierz plik strumienia</string>
     <string name="show_info">Pokaż informacje</string>
     <string name="controls_add_to_playlist_title">Dodaj do</string>
@@ -280,12 +280,12 @@
     <string name="import_youtube_instructions">Zaimportuj subskrypcje YouTube z Google Takeout:
 \n
 \n1. Przejdź do tego adresu URL: %1$s.
-\n2. Zaloguj się, gdy zostaniesz o to poproszony(-na).
+\n2. Zaloguj się, gdy zostaniesz o to poproszony(-a).
 \n3. Naciśnij „Wybrano wszystkie dane z YouTube”, następnie „Odznacz wszystkie”, potem zaznacz tylko „subskrypcje” i naciśnij „OK”.
 \n4. Naciśnij „Następny krok”, a następnie „Utwórz eksport”.
 \n5. Naciśnij przycisk „Pobierz”, gdy się pojawi.
 \n6. Naciśnij IMPORTUJ PLIK poniżej i wybierz pobrany plik ZIP.
-\n7. [Jeśli importowanie pliku ZIP nie powiedzie się] Wypakuj plik subskrypcje.csv (powinien on znajdować się w katalogu „YouTube i YouTube Music/subskrypcje.csv”), naciśnij IMPORTUJ PLIK poniżej i wybierz wypakowany plik CSV.</string>
+\n7. [Jeśli importowanie pliku ZIP nie powiedzie się] Wypakuj plik subskrypcje.csv (powinien znajdować się w katalogu „YouTube i YouTube Music/subskrypcje.csv”), naciśnij IMPORTUJ PLIK poniżej i wybierz wypakowany plik CSV.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
@@ -298,11 +298,11 @@
 \n
 \n1. Włącz opcję „Wersja na komputery” w przeglądarce internetowej (strona nie jest dostępna dla urządzeń mobilnych).
 \n2. Przejdź do tego adresu URL: %1$s.
-\n3. Zaloguj się, gdy zostaniesz o to poproszony(-na).
-\n4. Skopiuj adres URL profilu, na który zostałeś(-aś) przekierowany(-na).</string>
+\n3. Zaloguj się, gdy zostaniesz o to poproszony(-a).
+\n4. Skopiuj adres URL profilu, na który zostałeś(-aś) przekierowany(-a).</string>
     <string name="no_streams_available_download">Brak strumieni do pobrania</string>
     <string name="preferred_open_action_settings_title">Preferowana akcja „otwórz”</string>
-    <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania zawartości — %s</string>
+    <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania treści — %s</string>
     <string name="caption_setting_title">Napisy</string>
     <string name="caption_setting_description">Zmodyfikuj rozmiar tekstu napisów odtwarzacza i style tła. Wymaga ponownego uruchomienia aplikacji, aby zmiany zostały uwzględnione</string>
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
@@ -321,7 +321,7 @@
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność, dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody.
 \nPolityka prywatności NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o awarii aplikacji.</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
-    <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Prosimy przeczytać ją uważnie.
+    <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego rozporządzenia o ochronie danych (RODO) chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Prosimy przeczytać ją uważnie.
 \nMusisz ją zaakceptować, aby przesyłać nam raporty o błędach.</string>
     <string name="accept">Akceptuj</string>
     <string name="decline">Odrzuć</string>
@@ -350,7 +350,7 @@
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
     <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
-    <string name="download_to_sdcard_error_message">Pobieranie na kartę SD nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
+    <string name="download_to_sdcard_error_message">Pobieranie na kartę pamięci nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
@@ -362,8 +362,7 @@
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
     <string name="auto">Automatyczny</string>
-    <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
-    <string name="app_update_notification_content_text">Naciśnij, aby pobrać</string>
+    <string name="app_update_available_notification_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="missions_header_finished">Zakończone</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
@@ -418,12 +417,12 @@
     <string name="start_downloads">Rozpocznij pobieranie</string>
     <string name="pause_downloads">Wstrzymaj pobieranie</string>
     <string name="downloads_storage_ask_title">Pytaj, gdzie pobrać</string>
-    <string name="downloads_storage_ask_summary">Zostaniesz zapytany(-na), gdzie zapisać każdy pobrany plik.
-\nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę SD</string>
+    <string name="downloads_storage_ask_summary">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik.
+\nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę pamięci</string>
     <string name="error_timeout">Minął czas połączenia</string>
     <string name="downloads_storage_use_saf_title">Używaj systemowego selektora folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę SD</string>
-    <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
+    <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę pamięci</string>
+    <string name="clear_playback_states_title">Wyczyść pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
     <string name="drawer_header_description">Przełącz usługę, aktualnie wybrana:</string>
@@ -471,7 +470,7 @@
         <item quantity="few">%d sekundy</item>
         <item quantity="many">%d sekund</item>
     </plurals>
-    <string name="new_seek_duration_toast">Ze względu na ograniczenia odtwarzacza ExoPlayer, wielkość skoku przewijania została ustawiona na %d sekund</string>
+    <string name="new_seek_duration_toast">Wielkość skoku przewijania została ustawiona na %d sekund ze względu na ograniczenia odtwarzacza ExoPlayer</string>
     <string name="mute">Wycisz</string>
     <string name="unmute">Wyłącz wyciszenie</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Czy uważasz, że ładowanie kanałów jest zbyt powolne\? Jeśli tak, spróbuj włączyć szybkie ładowanie (możesz je zmienić w ustawieniach lub naciskając przycisk poniżej).
@@ -524,7 +523,6 @@
         <item quantity="few">%d minuty</item>
         <item quantity="many">%d minut</item>
     </plurals>
-    <string name="help">Pomoc</string>
     <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
 \n
 \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
@@ -533,7 +531,7 @@
     <string name="artists">Artyści</string>
     <string name="albums">Albumy</string>
     <string name="songs">Piosenki</string>
-    <string name="restricted_video">To wideo ma ograniczenia wiekowe.
+    <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo obejrzane wideo</string>
@@ -580,7 +578,7 @@
     <string name="enqueued">Dodano do kolejki</string>
     <string name="enqueue_stream">Dodaj do kolejki</string>
     <string name="show_memory_leaks">Pokaż wycieki pamięci</string>
-    <string name="clear_cookie_summary">Wyczyść ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
+    <string name="clear_cookie_summary">Usuwa ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Ciasteczka reCAPTCHA zostały wyczyszczone</string>
     <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia „Tryb ograniczonego dostępu”, który ukrywa potencjalne treści dla dorosłych</string>
@@ -604,13 +602,13 @@
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
     <string name="related_items_tab_description">Powiązane pozycje</string>
     <string name="crash_the_app">Zepsuj aplikację</string>
-    <string name="paid_content">Ta zawartość dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może ona być strumieniowana ani pobierana przez NewPipe.</string>
-    <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może ono być strumieniowane ani pobierane przez NewPipe.</string>
-    <string name="private_content">Ta zawartość jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe</string>
+    <string name="paid_content">Ta treść dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może być strumieniowana ani pobierana przez NewPipe.</string>
+    <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może być strumieniowane ani pobierane przez NewPipe.</string>
+    <string name="private_content">Ta treść jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe</string>
     <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju</string>
-    <string name="restricted_video_no_stream">To wideo ma ograniczenia wiekowe.
-\nZe względu na nowe zasady YouTube odnośnie ograniczeń wiekowych, NewPipe nie ma dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
-    <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może on być strumieniowany lub pobierany przez NewPipe.</string>
+    <string name="restricted_video_no_stream">To wideo jest objęte ograniczeniem wiekowym.
+\nZe względu na nowe zasady YouTube dotyczące wideo z ograniczeniami wiekowymi NewPipe nie może uzyskać dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
+    <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może być strumieniowany ani pobierany przez NewPipe.</string>
     <string name="radio">Radio</string>
     <string name="featured">Polecane</string>
     <string name="recaptcha_solve">Rozwiąż</string>
@@ -620,7 +618,7 @@
     <string name="auto_device_theme_title">Automatyczny (motyw urządzenia)</string>
     <string name="night_theme_title">Motyw nocny</string>
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
-    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś czarny ekran bądź brak płynności odtwarzania wideo</string>
+    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś(-aś) czarny ekran bądź brak płynności odtwarzania wideo</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
     <string name="metadata_age_limit">Ograniczenie wiekowe</string>
     <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
@@ -646,7 +644,7 @@
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
     <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-na), gdzie zapisać każdy pobierany plik</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>
     <string name="metadata_privacy_unlisted">Niepubliczny</string>
@@ -745,4 +743,14 @@
     <string name="faq_description">Jeśli masz problemy podczas korzystania z aplikacji, koniecznie sprawdź odpowiedzi na najczęściej pojawiające się pytania!</string>
     <string name="faq">Zobacz na stronie internetowej</string>
     <string name="sort">Sortuj</string>
+    <string name="app_update_available_notification_text">Naciśnij, aby pobrać %s</string>
+    <string name="fast_mode">Tryb szybki</string>
+    <string name="import_subscriptions_hint">Importuj lub eksportuj subskrypcje z menu z trzema kropkami.</string>
+    <string name="app_update_unavailable_toast">Używasz najnowszej wersji NewPipe</string>
+    <string name="night_theme_available">Ta opcja jest dostępna tylko wtedy, gdy %s jest wybrany jako motyw</string>
+    <string name="unset_playlist_thumbnail">Usuń stałą miniaturę</string>
+    <string name="msg_failed_to_copy">Nie udało się skopiować do schowka</string>
+    <string name="card">Karta</string>
+    <string name="duplicate_in_playlist">Wyszarzone playlisty zawierają już tę pozycję</string>
+    <string name="playlist_add_stream_success_duplicate">Dodano duplikat %d raz(y)</string>
 </resources>

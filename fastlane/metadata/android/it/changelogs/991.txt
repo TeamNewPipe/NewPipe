@@ -1,0 +1,13 @@
+Nuovo
+• Aggiungi il pulsante "Apri nel browser" nel pannello degli errori
+• Aggiunta opzione per visualizzare i gruppi di canali come elenco
+• [YouTube] Fare clic a lungo sui segmenti di streaming per condividere l'URL del timestamp
+• Aggiungi il pulsante della coda di riproduzione al mini player
+
+Migliorato
+• Aggiunta della localizzazione islandese e aggiornamento di molte altre traduzioni
+• Molti miglioramenti interni
+
+Fisso
+• Correggere più arresti anomali
+• [YouTube] Risolti i problemi di caricamento dei canali, feed non dedicati e soluzioni alternative di riproduzione in alcuni paesi

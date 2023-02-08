@@ -106,7 +106,7 @@
     <string name="detail_likes_img_view_description">Харесвания</string>
     <string name="detail_dislikes_img_view_description">Нехаресвания</string>
     <string name="search_no_results">Няма резултати</string>
-    <string name="empty_subscription_feed_subtitle">Тук няма нищо</string>
+    <string name="empty_list_subtitle">Тук няма нищо</string>
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Опитай отново</string>
@@ -398,10 +398,9 @@
     <string name="wifi_only">Само при Wi-Fi</string>
     <string name="list_view_mode">Вид на списъка</string>
     <string name="enable_playback_resume_summary">Възстанови последната позиция</string>
-    <string name="app_update_notification_content_title">Нова версия на NewPipe е налична!</string>
+    <string name="app_update_available_notification_title">Нова версия на NewPipe е налична!</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюри на лентата за превъртане</string>
     <string name="low_quality_smaller">Нискокачествени (малки)</string>
-    <string name="app_update_notification_content_text">Докоснете за изтегляне</string>
     <string name="queued">на опашка</string>
     <string name="updates_setting_title">Актуализации</string>
     <string name="overwrite">Презаписване</string>
@@ -478,7 +477,6 @@
     <string name="comments_are_disabled">Коментарите са изключени</string>
     <string name="main_page_content_summary">Кои раздели се показват на началната страница</string>
     <string name="error_insufficient_storage">Няма свободно място на устройството</string>
-    <string name="help">Помощ</string>
     <plurals name="seconds">
         <item quantity="one">%d секунда</item>
         <item quantity="other">%d секунди</item>

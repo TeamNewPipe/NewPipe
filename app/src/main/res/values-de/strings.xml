@@ -161,7 +161,7 @@
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="resume_on_audio_focus_gain_title">Wiedergabe fortsetzen</string>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_subscription_feed_subtitle">Nichts hier, außer dem Zirpen der Grillen</string>
+    <string name="empty_list_subtitle">Nichts hier, außer dem Zirpen der Grillen</string>
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen\?</string>
     <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Einen Kanal auswählen</string>
@@ -364,8 +364,7 @@
     <string name="high_quality_larger">Hohe Qualität (größer)</string>
     <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
     <string name="dont_show">Nicht anzeigen</string>
-    <string name="app_update_notification_content_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
-    <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
+    <string name="app_update_available_notification_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
     <string name="paused">pausiert</string>
@@ -473,7 +472,6 @@
     <string name="new_seek_duration_toast">Aufgrund von ExoPlayer-Einschränkungen wurde die Suchdauer auf %d Sekunden gesetzt</string>
     <string name="mute">Stummschaltung</string>
     <string name="unmute">Stummschaltung aufheben</string>
-    <string name="help">Hilfe</string>
     <plurals name="minutes">
         <item quantity="one">%d Minute</item>
         <item quantity="other">%d Minuten</item>
@@ -570,12 +568,12 @@
     <string name="clear_queue_confirmation_title">Überschreiben der Warteschlange bestätigen</string>
     <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
     <string name="enqueued">Eingereiht</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen „Eingeschränkten Modus“, der potenzielle Inhalte für Erwachsene ausblendet</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen „Eingeschränkten Modus“, der potenziell nicht jugendfreie Inhalte ausblendet</string>
     <string name="show_memory_leaks">Speicherlecks anzeigen</string>
     <string name="clear_cookie_summary">Lösche Cookies, die NewPipe speichert, wenn du ein reCAPTCHA löst</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
-    <string name="show_age_restricted_content_summary">Zeige altersbeschränkte Inhalte (bspw. 18+), welche möglicherweise unpassend für Kinder sein könnten</string>
+    <string name="show_age_restricted_content_summary">Inhalte mit Altersbegrenzung (z. B. ab 18) anzeigen, die für Kinder möglicherweise ungeeignet sind</string>
     <string name="enqueue_stream">In Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
@@ -724,4 +722,14 @@
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
     <string name="sort">Sortieren</string>
+    <string name="fast_mode">Schneller Modus</string>
+    <string name="app_update_unavailable_toast">Du verwendest die neueste Version von NewPipe</string>
+    <string name="app_update_available_notification_text">Antippen um %s herunterzuladen</string>
+    <string name="import_subscriptions_hint">Importieren oder Exportieren von Abonnements über das 3-Punkte-Menü</string>
+    <string name="night_theme_available">Diese Option ist nur verfügbar, wenn %s als Design ausgewählt wird</string>
+    <string name="unset_playlist_thumbnail">Dauerhaftes Vorschaubild aufheben</string>
+    <string name="msg_failed_to_copy">Kopieren in die Zwischenablage fehlgeschlagen</string>
+    <string name="card">Karte</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikat %d mal hinzugefügt</string>
+    <string name="duplicate_in_playlist">Die ausgegrauten Wiedergabelisten enthalten dieses Element bereits.</string>
 </resources>

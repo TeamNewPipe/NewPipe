@@ -145,7 +145,7 @@
     <string name="detail_likes_img_view_description">Duimen</string>
     <string name="detail_dislikes_img_view_description">Duimen omlaag</string>
     <string name="search_no_results">Geen resultaten</string>
-    <string name="empty_subscription_feed_subtitle">Helemaal niets hier te zien</string>
+    <string name="empty_list_subtitle">Helemaal niets hier te zien</string>
     <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
@@ -358,8 +358,7 @@
     <string name="list">Lijst</string>
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe update is beschikbaar!</string>
-    <string name="app_update_notification_content_text">Tik om te downloaden</string>
+    <string name="app_update_available_notification_title">NewPipe update is beschikbaar!</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">toegevoegd aan wachtrij</string>
@@ -519,7 +518,6 @@
     <string name="copy_for_github">Kopieer opgemaakt rapport</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="missing_file">Stream bestand downloaden</string>
-    <string name="help">Hulp</string>
     <string name="watch_history_states_deleted">Afspeelposities verwijderd</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
     <string name="clear_playback_states_summary">Verwijdert alle geschiedenis van afspeelposities</string>

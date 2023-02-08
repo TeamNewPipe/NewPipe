@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.core.os.HandlerCompat;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
@@ -19,6 +21,10 @@ import us.shandian.giga.service.DownloadManager.MissionIterator;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
 public class Deleter {
+    private static final String COMMIT = "commit";
+    private static final String NEXT = "next";
+    private static final String SHOW = "show";
+
     private static final int TIMEOUT = 5000;// ms
     private static final int DELAY = 350;// ms
     private static final int DELAY_RESUME = 400;// ms
@@ -34,10 +40,6 @@ public class Deleter {
     private final Handler mHandler;
     private final View mView;
 
-    private final Runnable rShow;
-    private final Runnable rNext;
-    private final Runnable rCommit;
-
     public Deleter(View v, Context c, MissionAdapter a, DownloadManager d, MissionIterator i, Handler h) {
         mView = v;
         mContext = c;
@@ -46,21 +48,15 @@ public class Deleter {
         mIterator = i;
         mHandler = h;
 
-        // use variables to know the reference of the lambdas
-        rShow = this::show;
-        rNext = this::next;
-        rCommit = this::commit;
-
         items = new ArrayList<>(2);
     }
 
     public void append(Mission item) {
-
         /* If a mission is removed from the list while the Snackbar for a previously
          * removed item is still showing, commit the action for the previous item
          * immediately. This prevents Snackbars from stacking up in reverse order.
          */
-        mHandler.removeCallbacks(rCommit);
+        mHandler.removeCallbacksAndMessages(COMMIT);
         commit();
 
         mIterator.hide(item);
@@ -82,7 +78,7 @@ public class Deleter {
         pause();
         running = true;
 
-        mHandler.postDelayed(rNext, DELAY);
+        HandlerCompat.postDelayed(mHandler, this::next, NEXT, DELAY);
     }
 
     private void next() {
@@ -95,7 +91,7 @@ public class Deleter {
         snackbar.setActionTextColor(Color.YELLOW);
         snackbar.show();
 
-        mHandler.postDelayed(rCommit, TIMEOUT);
+        HandlerCompat.postDelayed(mHandler, this::commit, COMMIT, TIMEOUT);
     }
 
     private void commit() {
@@ -124,15 +120,16 @@ public class Deleter {
 
     public void pause() {
         running = false;
-        mHandler.removeCallbacks(rNext);
-        mHandler.removeCallbacks(rShow);
-        mHandler.removeCallbacks(rCommit);
+        mHandler.removeCallbacksAndMessages(NEXT);
+        mHandler.removeCallbacksAndMessages(SHOW);
+        mHandler.removeCallbacksAndMessages(COMMIT);
         if (snackbar != null) snackbar.dismiss();
     }
 
     public void resume() {
-        if (running) return;
-        mHandler.postDelayed(rShow, DELAY_RESUME);
+        if (!running) {
+            HandlerCompat.postDelayed(mHandler, this::show, SHOW, DELAY_RESUME);
+        }
     }
 
     public void dispose() {

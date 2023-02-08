@@ -1,0 +1,13 @@
+Nouveautés
+• Ajout du bouton « Ouvrir dans un navigateur » dans le paneau d'erreur
+• Ajout de la possibilité d'afficher les groupes de chaîne en liste
+• [YouTube] Appuis long sur le segment d'un flux pour partager l'URL avec l'horodatage
+• Ajout d'un bouton sur le lecteur reduit
+
+Améliorations
+• Ajout de la traduction en islandais et mise à jour de d'autre langues
+• De nombreuses améliorations internes
+
+Corrections
+• Correction de plantages
+• [YouTube] Correction du chargement des chaînes

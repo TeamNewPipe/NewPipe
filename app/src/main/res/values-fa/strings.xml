@@ -178,7 +178,7 @@
     <string name="charset_most_special_characters">مهم‌ترین نویسه‌های خاص</string>
     <string name="toast_no_player">کاره‌ای برای پخش این پرونده نصب نشده است</string>
     <string name="title_activity_about">درباره نیوپایپ</string>
-    <string name="tab_about">درباره</string>
+    <string name="tab_about">درباره و سوالات‌متداول</string>
     <string name="tab_licenses">پروانه‌ها</string>
     <string name="app_description">پخش‌کننده آزاد سبُک برای اندروید.</string>
     <string name="contribution_title">مشارکت</string>
@@ -254,8 +254,7 @@
     <string name="list">سیاهه</string>
     <string name="grid">شبکه</string>
     <string name="auto">خودکار</string>
-    <string name="app_update_notification_content_title">به‌روزرسانی برای نیوپایپ موجود است!</string>
-    <string name="app_update_notification_content_text">برای بارگیری، لمس کنید</string>
+    <string name="app_update_available_notification_title">به‌روزرسانی برای نیوپایپ موجود است!</string>
     <string name="missions_header_finished">تمام</string>
     <string name="missions_header_pending">در انتظار</string>
     <string name="enqueue">صف‌گذاری</string>
@@ -287,7 +286,7 @@
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
-    <string name="info_labels">چه:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان کاره:\\nخدمت:\\nزمان GMT\\nبسته:T:\\nنگارش:\\nنگارش س.ع:</string>
+    <string name="info_labels">چی:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان اپ:\\nخدمت:\\nزمان GMT\\nپکیج:T:\\nنسخه:\\nنسخه‌اندروید:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
     <string name="recaptcha_request_toast">نیاز به چالش ری‌کپچا است</string>
     <string name="msg_popup_permission">این اجازه برای گشودن در حالت
@@ -297,7 +296,7 @@
     <string name="copyright" formatted="true">© %1$s توسط %2$s تحت %3$s</string>
     <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
     <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ نیوپایپ</string>
-    <string name="empty_subscription_feed_subtitle">چیزی جز کریکت اینجا نیست</string>
+    <string name="empty_list_subtitle">چیزی جز کریکت اینجا نیست</string>
     <string name="no_subscribers">فاقد مشترک</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
     <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>
@@ -496,7 +495,6 @@
     <string name="no_one_watching">کسی در حال مشاهده نیست</string>
     <string name="drawer_header_description">تغییر خدمت، مورد انتخاب شده:</string>
     <string name="permission_display_over_apps">اجازه نمایش روی دیگر برنامه‌ها را بدهید</string>
-    <string name="help">راهنما</string>
     <string name="artists">هنرمندان</string>
     <string name="albums">آلبوم‌ها</string>
     <string name="songs">آوازها</string>
@@ -720,4 +718,16 @@
     <string name="feed_toggle_show_future_items">نمایش موارد آینده</string>
     <string name="feed_toggle_hide_future_items">نهفتن موارد آینده</string>
     <string name="feed_toggle_hide_played_items">نهفتن موارد دیده شده</string>
+    <string name="faq_title">سوالات متداول</string>
+    <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
+    <string name="faq">نمایش در وبسایت</string>
+    <string name="sort">ترتیب</string>
+    <string name="import_subscriptions_hint">درون یا برون ریزی اشتراک‌ها از فهرست سه‌نقطه‌ای</string>
+    <string name="fast_mode">حالت سریع</string>
+    <string name="app_update_available_notification_text">ضربه برای بارگیری %s</string>
+    <string name="app_update_unavailable_toast">از جدیدترین نگارش نیوپایپ استفاده می‌کنید</string>
+    <string name="night_theme_available">این گزینه تنها هنگامی موجود است که %s به عنوان زمینه گزیده باشد</string>
+    <string name="card">کارت</string>
+    <string name="msg_failed_to_copy">شکست در رونوشت به تخته‌گیره</string>
+    <string name="unset_playlist_thumbnail">ناتنظیم بندانگشتی ثابت</string>
 </resources>
