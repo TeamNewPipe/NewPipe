@@ -90,19 +90,16 @@ public final class ShareUtils {
             // No browser set as default (doesn't work on some devices)
             openAppChooser(context, intent, true);
         } else {
-            if (defaultPackageName.isEmpty()) {
-                // No app installed to open a web url
-                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
-                return false;
-            } else {
-                try {
+            try {
+                // will be empty on Android 12+
+                if (!defaultPackageName.isEmpty()) {
                     intent.setPackage(defaultPackageName);
-                    context.startActivity(intent);
-                } catch (final ActivityNotFoundException e) {
-                    // Not a browser but an app chooser because of OEMs changes
-                    intent.setPackage(null);
-                    openAppChooser(context, intent, true);
                 }
+                context.startActivity(intent);
+            } catch (final ActivityNotFoundException e) {
+                // Not a browser but an app chooser because of OEMs changes
+                intent.setPackage(null);
+                openAppChooser(context, intent, true);
             }
         }
 
