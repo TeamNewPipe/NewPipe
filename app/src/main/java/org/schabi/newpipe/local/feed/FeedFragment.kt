@@ -259,7 +259,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             getString(R.string.feed_show_upcoming)
         )
 
-        val checkedDialogItems = booleanArrayOf(!showPlayedItems, !showPartiallyPlayedItems, !showFutureItems)
+        val checkedDialogItems = booleanArrayOf(showPlayedItems, showPartiallyPlayedItems, showFutureItems)
 
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(R.string.feed_hide_streams_title)
@@ -268,17 +268,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         builder.setPositiveButton(R.string.ok) { _, _ ->
-            showPlayedItems = !checkedDialogItems[0]
-            viewModel.setShowPlayedItems(showPlayedItems)
-            viewModel.saveShowPlayedItemsToPreferences(showPlayedItems)
+            showPlayedItems = checkedDialogItems[0]
+            viewModel.setSaveShowPlayedItems(showPlayedItems)
 
-            showPartiallyPlayedItems = !checkedDialogItems[1]
-            viewModel.setShowPartiallyPlayedItems(showPartiallyPlayedItems)
-            viewModel.saveShowPartiallyPlayedItemsToPreferences(showPartiallyPlayedItems)
+            showPartiallyPlayedItems = checkedDialogItems[1]
+            viewModel.setSaveShowPartiallyPlayedItems(showPartiallyPlayedItems)
 
-            showFutureItems = !checkedDialogItems[2]
-            viewModel.setShowFutureItems(showFutureItems)
-            viewModel.saveShowFutureItemsToPreferences(showFutureItems)
+            showFutureItems = checkedDialogItems[2]
+            viewModel.setSaveShowFutureItems(showFutureItems)
         }
         builder.setNegativeButton(R.string.cancel, null)
 

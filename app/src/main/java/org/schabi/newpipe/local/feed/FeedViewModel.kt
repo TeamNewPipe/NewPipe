@@ -31,9 +31,9 @@ import java.util.concurrent.TimeUnit
 class FeedViewModel(
     private val application: Application,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-    initialShowPlayedItems: Boolean = true,
-    initialShowPartiallyPlayedItems: Boolean = true,
-    initialShowFutureItems: Boolean = true
+    initialShowPlayedItems: Boolean,
+    initialShowPartiallyPlayedItems: Boolean,
+    initialShowFutureItems: Boolean
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
 
@@ -119,39 +119,33 @@ class FeedViewModel(
         val t4: OffsetDateTime?
     )
 
-    fun setShowPlayedItems(showPlayedItems: Boolean) {
+    fun setSaveShowPlayedItems(showPlayedItems: Boolean) {
         this.showPlayedItems.onNext(showPlayedItems)
-    }
-
-    fun saveShowPlayedItemsToPreferences(showPlayedItems: Boolean) =
         PreferenceManager.getDefaultSharedPreferences(application).edit {
             this.putBoolean(application.getString(R.string.feed_show_watched_items_key), showPlayedItems)
             this.apply()
         }
+    }
 
     fun getShowPlayedItemsFromPreferences() = getShowPlayedItemsFromPreferences(application)
 
-    fun setShowPartiallyPlayedItems(showPartiallyPlayedItems: Boolean) {
+    fun setSaveShowPartiallyPlayedItems(showPartiallyPlayedItems: Boolean) {
         this.showPartiallyPlayedItems.onNext(showPartiallyPlayedItems)
-    }
-
-    fun saveShowPartiallyPlayedItemsToPreferences(showPartiallyPlayedItems: Boolean) =
         PreferenceManager.getDefaultSharedPreferences(application).edit {
             this.putBoolean(application.getString(R.string.feed_show_partially_watched_items_key), showPartiallyPlayedItems)
             this.apply()
         }
+    }
 
     fun getShowPartiallyPlayedItemsFromPreferences() = getShowPartiallyPlayedItemsFromPreferences(application)
 
-    fun setShowFutureItems(showFutureItems: Boolean) {
+    fun setSaveShowFutureItems(showFutureItems: Boolean) {
         this.showFutureItems.onNext(showFutureItems)
-    }
-
-    fun saveShowFutureItemsToPreferences(showFutureItems: Boolean) =
         PreferenceManager.getDefaultSharedPreferences(application).edit {
             this.putBoolean(application.getString(R.string.feed_show_future_items_key), showFutureItems)
             this.apply()
         }
+    }
 
     fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(application)
 
