@@ -6,6 +6,7 @@ import androidx.room.RewriteQueriesToDropUnusedColumns;
 import androidx.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
+import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
 
+import static org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry.PLAYLIST_TIMES_STREAM_IS_CONTAINED;
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
@@ -25,6 +27,8 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JO
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
+import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_THUMBNAIL_URL;
+import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID_ALIAS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
@@ -53,6 +57,15 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     Flowable<Integer> getMaximumIndexOf(long playlistId);
 
+    @Query("SELECT CASE WHEN COUNT(*) != 0 then " + STREAM_THUMBNAIL_URL + " ELSE :defaultUrl END"
+            + " FROM " + STREAM_TABLE
+            + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId "
+            + " LIMIT 1"
+    )
+    Flowable<String> getAutomaticThumbnailUrl(long playlistId, String defaultUrl);
+
     @RewriteQueriesToDropUnusedColumns
     @Transaction
     @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN "
@@ -80,7 +93,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " FROM " + PLAYLIST_TABLE
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
-            + " GROUP BY " + JOIN_PLAYLIST_ID
+            + " GROUP BY " + PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 
@@ -101,6 +114,23 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " ORDER BY MIN(" + JOIN_INDEX + ") ASC")
     Flowable<List<PlaylistStreamEntry>> getStreamsWithoutDuplicates(long playlistId);
 
+    @Transaction
+    @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", "
+            + PLAYLIST_NAME + ", "
+            + PLAYLIST_TABLE + "." + PLAYLIST_THUMBNAIL_URL + ", "
+            + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT + ", "
+            + "COALESCE(SUM(" + STREAM_URL + " = :streamUrl), 0) AS "
+                + PLAYLIST_TIMES_STREAM_IS_CONTAINED
 
+            + " FROM " + PLAYLIST_TABLE
+            + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
+            + " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
 
+            + " LEFT JOIN " + STREAM_TABLE
+            + " ON " + STREAM_TABLE + "." + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " AND :streamUrl = :streamUrl"
+
+            + " GROUP BY " + JOIN_PLAYLIST_ID
+            + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
+    Flowable<List<PlaylistDuplicatesEntry>> getPlaylistDuplicatesMetadata(String streamUrl);
 }

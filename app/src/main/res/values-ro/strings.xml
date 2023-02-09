@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Încărcat pe %1$s</string>
+    <string name="upload_date_text">Publicat pe %1$s</string>
     <string name="no_player_found">Niciun player pentru streaming găsit. Instalați VLC\?</string>
     <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
-    <string name="share">Distribuiți</string>
+    <string name="share">Distribuire</string>
     <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
@@ -78,7 +78,7 @@
     <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm să definiți un folder de descărcare mai târziu în setări</string>
-    <string name="open_in_popup_mode">Deschide în modul popup</string>
+    <string name="open_in_popup_mode">Deschidere în modul popup</string>
     <string name="msg_popup_permission">Această permisiune este necesară pentru a 
 \ndeschide în mod pop-up</string>
     <string name="title_activity_recaptcha">Provocare reCAPTCHA</string>
@@ -105,7 +105,7 @@
     <string name="show_search_suggestions_summary">Alegeți sugestiile care vor fi afișate la căutare</string>
     <string name="clear">Ștergeți</string>
     <string name="best_resolution">Rezoluție maximă</string>
-    <string name="subscribe_button_title">Abonează-te</string>
+    <string name="subscribe_button_title">Abonare</string>
     <string name="subscribed_button_title">Abonat(ă)</string>
     <string name="channel_unsubscribed">Canal dezabonat</string>
     <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
@@ -176,9 +176,9 @@
     <string name="new_and_hot">Noi și populare</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC).</string>
     <string name="controls_download_desc">Descărcați fișierul de flux</string>
-    <string name="show_info">Arată informații</string>
+    <string name="show_info">Afișare informații</string>
     <string name="tab_bookmarks">Playlist-uri salvate</string>
-    <string name="controls_add_to_playlist_title">Salvează în</string>
+    <string name="controls_add_to_playlist_title">Salvare în</string>
     <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
     <string name="download_thumbnail_title">Încarcă miniaturi</string>
@@ -276,7 +276,7 @@
     <string name="playback_tempo">Viteză</string>
     <string name="accept">Acceptați</string>
     <string name="decline">Refuzați</string>
-    <string name="unsubscribe">Dezabonează-te</string>
+    <string name="unsubscribe">Dezabonare</string>
     <string name="tab_choose">Alegeți fila</string>
     <string name="volume_gesture_control_title">Controlul prin gesturi al volumului</string>
     <string name="volume_gesture_control_summary">Utilizați gesturi pentru a controla volumul</string>
@@ -367,9 +367,9 @@
     <string name="notification_colorize_summary">Faceți ca Android să personalizeze culoarea notificării în funcție de culoarea principală din miniatură (rețineți că aceasta nu este disponibilă pe toate dispozitivele)</string>
     <string name="notification_colorize_title">Colorează notificarea</string>
     <string name="notification_action_nothing">Nimic</string>
-    <string name="notification_action_buffering">Tamponare</string>
+    <string name="notification_action_buffering">Se încarcă</string>
     <string name="notification_action_shuffle">Redare aleatorie</string>
-    <string name="notification_action_repeat">Repetaţi</string>
+    <string name="notification_action_repeat">Repetare</string>
     <string name="notification_actions_at_most_three">Puteți selecta cel mult trei acțiuni pentru afișare în notificarea compactă!</string>
     <string name="notification_actions_summary">Modificați fiecare acțiune de notificare de mai jos, atingând-o. Selectați până la trei dintre ele pentru a fi afișate în notificarea compactă, utilizând casetele de selectare din dreapta</string>
     <string name="notification_action_4_title">Al cincilea buton de acțiune</string>
@@ -379,7 +379,7 @@
     <string name="notification_action_0_title">Primul buton de acțiune</string>
     <string name="notification_scale_to_square_image_summary">Tăiați miniatura video afișată în notificare de la raportul de aspect 16:9 la 1:1 (poate introduce distorsiuni)</string>
     <string name="notification_scale_to_square_image_title">Tăiere miniatură la raportul de aspect 1:1</string>
-    <string name="search_showing_result_for">Se arată rezultate pentru:%s</string>
+    <string name="search_showing_result_for">Se arată rezultate pentru: %s</string>
     <string name="no_app_to_open_intent">Nicio aplicație de pe dispozitivul dvs. nu poate deschide acesta</string>
     <string name="chapters">Capitole</string>
     <string name="recent">Recente</string>
@@ -595,7 +595,7 @@
     <string name="show_meta_info_summary">Dezactivați pentru a ascunde casetele de informații meta cu informații suplimentare despre creatorul fluxului, conținutul fluxului sau o cerere de căutare</string>
     <string name="show_description_summary">Dezactivați pentru a ascunde descrierea videoclipului și informațiile suplimentare</string>
     <string name="show_description_title">Arată descrierea</string>
-    <string name="open_with">Deschideți cu</string>
+    <string name="open_with">Deschidere cu</string>
     <string name="crash_the_app">Blocați aplicația</string>
     <string name="recaptcha_solve">Rezolvați</string>
     <string name="featured">Evidențiate</string>
@@ -733,10 +733,14 @@
     <string name="feed_toggle_hide_future_items">Ascunde elementele din viitor</string>
     <string name="faq">Vezi pe website</string>
     <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
-    <string name="faq_title">Întrebări puse frecvent</string>
+    <string name="faq_title">Întrebări frecvente</string>
     <string name="sort">Sortează</string>
     <string name="fast_mode">Modul rapid</string>
     <string name="import_subscriptions_hint">Importați sau exportați abonamente din meniul cu 3 puncte</string>
     <string name="app_update_unavailable_toast">Rulați cea mai recentă versiune NewPipe</string>
     <string name="app_update_available_notification_text">Atingeți pentru a descărca %s</string>
+    <string name="night_theme_available">Această opțiune este disponibilă numai dacă %s este selectată ca temă</string>
+    <string name="card">Cartelă</string>
+    <string name="msg_failed_to_copy">Nu s-a reușit copierea în clipboard</string>
+    <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
 </resources>

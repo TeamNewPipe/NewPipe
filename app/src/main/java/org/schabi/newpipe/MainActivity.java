@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(R.drawable.ic_tv);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(R.drawable.ic_rss_feed);
+                .setIcon(R.drawable.ic_subscriptions);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(R.drawable.ic_bookmark);

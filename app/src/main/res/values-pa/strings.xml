@@ -726,4 +726,8 @@
     <string name="import_subscriptions_hint">3-ਡੌਟ ਮੀਨੂ ਤੋਂ ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਨੂੰ ਆਯਾਤ ਜਾਂ ਨਿਰਯਾਤ ਕਰੋ</string>
     <string name="app_update_unavailable_toast">ਤੁਸੀਂ ਨਿਊਪਾਈਪ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਚਲਾ ਰਹੇ ਹੋ</string>
     <string name="app_update_available_notification_text">%s ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+    <string name="night_theme_available">ਇਹ ਵਿਕਲਪ ਤਾਂ ਹੀ ਉਪਲਬਧ ਹੈ ਜੇਕਰ %s ਨੂੰ ਥੀਮ ਲਈ ਚੁਣਿਆ ਗਿਆ ਹੈ</string>
+    <string name="unset_playlist_thumbnail">ਸਥਾਈ ਥੰਮਨੇਲ ਨੂੰ ਅਨਸੈੱਟ ਕਰੋ</string>
+    <string name="msg_failed_to_copy">ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
+    <string name="card">ਕਾਰਡ</string>
 </resources>

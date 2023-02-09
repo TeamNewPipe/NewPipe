@@ -709,4 +709,14 @@
     <string name="faq_title">자주 묻는 질문</string>
     <string name="faq">웹사이트에서 보기</string>
     <string name="sort">정렬</string>
+    <string name="fast_mode">빠른 모드</string>
+    <string name="import_subscriptions_hint">점 3개 메뉴에서 구독 가져오기 또는 내보내기</string>
+    <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다.</string>
+    <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요.</string>
+    <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
+    <string name="night_theme_available">이 옵션은 테마로 %s를 선택한 경우에만 사용할 수 있음</string>
+    <string name="playlist_add_stream_success_duplicate">중복 추가 %d 번</string>
+    <string name="duplicate_in_playlist">회색으로 표시된 재생 목록에 이미 이 항목이 포함되어 있습니다.</string>
+    <string name="card">카드</string>
+    <string name="msg_failed_to_copy">클립보드 복사 실패</string>
 </resources>

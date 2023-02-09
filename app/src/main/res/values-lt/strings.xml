@@ -97,14 +97,14 @@
     </plurals>
     <string name="start">Pradėti</string>
     <string name="pause">Pauzė</string>
-    <string name="delete">Ištrinti</string>
+    <string name="delete">Naikinti</string>
     <string name="checksum">Kontrolinė suma</string>
     <string name="ok">Gerai</string>
     <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
-    <string name="msg_running">NewPipe Atsiunčiama</string>
-    <string name="msg_running_detail">Palieskite, kad peržiūrėtumėte išsamią informaciją</string>
+    <string name="msg_running">NewPipe atsisiunčiama</string>
+    <string name="msg_running_detail">Bakstelėkite, kad peržiūrėtumėte išsamią informaciją</string>
     <string name="msg_wait">Prašome palaukti…</string>
     <string name="msg_copied">Nukopijuota į iškarpinę</string>
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
@@ -212,9 +212,9 @@
     <string name="video_streams_empty">Nerasta video srautų</string>
     <string name="audio_streams_empty">Nerasta audio srautų</string>
     <string name="detail_drag_description">Tempti kad perrūšiuoti</string>
-    <string name="create">Sukurti</string>
+    <string name="create">Kurti</string>
     <string name="dismiss">Nutraukti</string>
-    <string name="rename">Pervadinti</string>
+    <string name="rename">Pervardyti</string>
     <string name="title_last_played">Vėliausiai žiūrėta</string>
     <string name="title_most_played">Dažniausiai žiūrėta</string>
     <string name="export_complete_toast">Eksportavimas baigtas</string>
@@ -230,7 +230,7 @@
     <string name="always_ask_open_action">Visada klausti</string>
     <string name="preferred_player_fetcher_notification_title">Gauname informaciją…</string>
     <string name="preferred_player_fetcher_notification_message">Įkeliamas pasirinktas turinys</string>
-    <string name="create_playlist">Naujas grojaraštį</string>
+    <string name="create_playlist">Naujas grojaraštis</string>
     <string name="rename_playlist">Pervadinti</string>
     <string name="name">Pavadinimas</string>
     <string name="add_to_playlist">Pridėti į grojaraštį</string>
@@ -311,7 +311,7 @@
     <string name="app_update_notification_channel_description">Pranešimas apie naują NewPipe versiją</string>
     <string name="app_update_notification_channel_name">Programos atnaujinimo pranešimas</string>
     <string name="file">Failą</string>
-    <string name="file_deleted">Failas pašalintas</string>
+    <string name="file_deleted">Failas panaikintas</string>
     <string name="artists">Atlikėjai</string>
     <string name="albums">Albumai</string>
     <string name="songs">Dainos</string>
@@ -686,7 +686,7 @@
 \nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle</string>
     <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
     <string name="show_crash_the_player_title">Rodyti „Grotuvas užlūžo“</string>
-    <string name="create_error_notification">Sukurti klaidos pranešimą</string>
+    <string name="create_error_notification">Kurti klaidos pranešimą</string>
     <string name="error_report_notification_title">NewPipe susidūrė su klaida, paspauskite norėdami pranešti</string>
     <string name="no_appropriate_file_manager_message">Šiam veiksmui nebuvo rasta tinkama failų tvarkyklė.
 \nĮdiekite failų tvarkyklę arba pabandykite išjungti \"%s\" atsisiuntimo nustatymuose</string>

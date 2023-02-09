@@ -1,0 +1,10 @@
+• Option zum direkten Öffnen des Players im Vollbildmodus hinzugefügt
+• Auswahl der anzuzeigenden Suchvorschläge möglich
+• Dunkles Design nun dunkler + dunkler Splash-Screen hinzugefügt
+• Verbesserte Dateiauswahl, um unerwünschte Dateien auszugrauen
+• Import von YouTube-Abonnements behoben
+• Das Wiederholen eines Streams erfordert ein erneutes Tippen auf die Wiedergabetaste
+• Behoben: Audio-Sitzung schließen
+…
+
+Änderungen finden Sie im Changelog (und im Blogbeitrag) auf dem Links-Tab unten.

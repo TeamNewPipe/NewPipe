@@ -1,14 +1,9 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.Localization;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -31,40 +26,7 @@ import org.schabi.newpipe.util.Localization;
  */
 
 public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
-    private final TextView itemChannelDescriptionView;
-
     public ChannelInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_channel_item, parent);
-        itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
-    }
-
-    @Override
-    public void updateFromItem(final InfoItem infoItem,
-                               final HistoryRecordManager historyRecordManager) {
-        super.updateFromItem(infoItem, historyRecordManager);
-
-        if (!(infoItem instanceof ChannelInfoItem)) {
-            return;
-        }
-        final ChannelInfoItem item = (ChannelInfoItem) infoItem;
-
-        itemChannelDescriptionView.setText(item.getDescription());
-    }
-
-    @Override
-    protected String getDetailLine(final ChannelInfoItem item) {
-        String details = super.getDetailLine(item);
-
-        if (item.getStreamCount() >= 0) {
-            final String formattedVideoAmount = Localization.localizeStreamCount(
-                    itemBuilder.getContext(), item.getStreamCount());
-
-            if (!details.isEmpty()) {
-                details += " • " + formattedVideoAmount;
-            } else {
-                details = formattedVideoAmount;
-            }
-        }
-        return details;
     }
 }

@@ -22,10 +22,11 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
+import org.schabi.newpipe.info_list.ItemViewMode;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
+import static org.schabi.newpipe.util.ThemeHelper.getItemViewMode;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -77,14 +78,21 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.onResume();
         if (updateFlags != 0) {
             if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
-                final boolean useGrid = shouldUseGridLayout(requireContext());
-                itemsList.setLayoutManager(
-                        useGrid ? getGridLayoutManager() : getListLayoutManager());
-                itemListAdapter.setUseGridVariant(useGrid);
-                itemListAdapter.notifyDataSetChanged();
+                refreshItemViewMode();
             }
             updateFlags = 0;
         }
+    }
+
+    /**
+     * Updates the item view mode based on user preference.
+     */
+    private void refreshItemViewMode() {
+        final ItemViewMode itemViewMode = getItemViewMode(requireContext());
+        itemsList.setLayoutManager((itemViewMode == ItemViewMode.GRID)
+                ? getGridLayoutManager() : getListLayoutManager());
+        itemListAdapter.setItemViewMode(itemViewMode);
+        itemListAdapter.notifyDataSetChanged();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -120,11 +128,9 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
         itemListAdapter = new LocalItemListAdapter(activity);
 
-        final boolean useGrid = shouldUseGridLayout(requireContext());
         itemsList = rootView.findViewById(R.id.items_list);
-        itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
+        refreshItemViewMode();
 
-        itemListAdapter.setUseGridVariant(useGrid);
         headerRootBinding = getListHeader();
         if (headerRootBinding != null) {
             itemListAdapter.setHeader(headerRootBinding.getRoot());
@@ -255,7 +261,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (key.equals(getString(R.string.list_view_mode_key))) {
+        if (getString(R.string.list_view_mode_key).equals(key)) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
         }
     }

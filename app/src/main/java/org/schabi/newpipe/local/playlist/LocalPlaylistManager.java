@@ -2,7 +2,9 @@ package org.schabi.newpipe.local.playlist;
 
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
@@ -41,7 +43,7 @@ public class LocalPlaylistManager {
         }
         final StreamEntity defaultStream = streams.get(0);
         final PlaylistEntity newPlaylist =
-                new PlaylistEntity(name, defaultStream.getThumbnailUrl());
+                new PlaylistEntity(name, defaultStream.getThumbnailUrl(), false);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() ->
                 upsertStreams(playlistTable.insert(newPlaylist), streams, 0))
@@ -91,6 +93,18 @@ public class LocalPlaylistManager {
                 .getStreamsWithoutDuplicates(playlistId).subscribeOn(Schedulers.io());
     }
 
+    /**
+     * Get playlists with attached information about how many times the provided stream is already
+     * contained in each playlist.
+     *
+     * @param streamUrl the stream url for which to check for duplicates
+     * @return a list of {@link PlaylistDuplicatesEntry}
+     */
+    public Flowable<List<PlaylistDuplicatesEntry>> getPlaylistDuplicates(final String streamUrl) {
+        return playlistStreamTable.getPlaylistDuplicatesMetadata(streamUrl)
+                .subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
@@ -101,21 +115,33 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, null);
+        return modifyPlaylist(playlistId, name, null, false);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
-                                                  final String thumbnailUrl) {
-        return modifyPlaylist(playlistId, null, thumbnailUrl);
+                                                  final String thumbnailUrl,
+                                                  final boolean isPermanent) {
+        return modifyPlaylist(playlistId, null, thumbnailUrl, isPermanent);
     }
 
     public String getPlaylistThumbnail(final long playlistId) {
         return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
     }
 
+    public boolean getIsPlaylistThumbnailPermanent(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0)
+                .getIsThumbnailPermanent();
+    }
+
+    public String getAutomaticPlaylistThumbnail(final long playlistId) {
+        final String def = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
+        return playlistStreamTable.getAutomaticThumbnailUrl(playlistId, def).blockingFirst();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
-                                          @Nullable final String thumbnailUrl) {
+                                          @Nullable final String thumbnailUrl,
+                                          final boolean isPermanent) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
@@ -126,6 +152,7 @@ public class LocalPlaylistManager {
                     }
                     if (thumbnailUrl != null) {
                         playlist.setThumbnailUrl(thumbnailUrl);
+                        playlist.setIsThumbnailPermanent(isPermanent);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());

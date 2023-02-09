@@ -1,0 +1,13 @@
+Novo
+- Dodajanje gumba "Odpri v brskalniku" v podoknu z napakami
+- Dodana možnost za prikaz skupin kanalov kot seznam
+- [YouTube] Dolgi pritisk na segmente video pretoka za deljenje časovnega žiga URL-ja
+- Dodajte gumb za predvajanje v vrsti v mini predvajalnik
+
+Izboljšave
+- Dodana islandska lokalizacija ter posodobitev številnih drugih prevodov
+- Številne notranje izboljšave
+
+Popravki
+- Odprava večih sesutij
+- [YouTube] Odprava težave z nalaganjem kanalov, nenamenskimi viri ter predvajanjem v nekaterih državah

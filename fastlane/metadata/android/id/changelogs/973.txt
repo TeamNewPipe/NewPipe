@@ -1,0 +1,4 @@
+Perbaikan terbaru
+- Memperbaiki thumbnail dan judul yang terpotong dalam tata letak grid, karena perhitungan yang salah tentang berapa banyak video yang dapat ditampung dalam satu baris
+- Memperbaiki dialog unduhan yang menghilang tanpa melakukan apa pun jika dibuka dari menu berbagi
+- Memperbarui pustaka yang terkait dengan membuka aktivitas eksternal seperti pemilih file Storage Access Framework

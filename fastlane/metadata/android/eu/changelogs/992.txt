@@ -1,0 +1,17 @@
+Zer berri
+• Harpidetza kopurua bideoen xehetasunetan
+• Ilaratik deskargatu
+• Erreprodukzio-zerrendei betirako izango den miniatura ezarri
+• Luze sakatu traola eta estekentzako
+• Txartel-bista modua
+
+Hobekuntzak
+• Mini-erreproduzitzailearen ixteko botoi handiago bat
+• Miniaturen eskala murrizketa arinagoa
+• Android 13 (API 33)
+• Bilaketak ez du erreprodukzioa geldiaraziko
+
+Konponketak
+• DeX/saguaren gainezarpena konpondua
+• Bigarren planoko erreprodukzioa baimendu bereizitako bi audio-jariorik gabe
+• YouTube-kin zeuden arazoak konpondu eta are gehiago…

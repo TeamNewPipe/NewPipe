@@ -741,4 +741,8 @@
     <string name="import_subscriptions_hint">Importer ou exporter des abonnements à partir du menu</string>
     <string name="app_update_unavailable_toast">Vous utilisez la dernière version de NewPipe</string>
     <string name="app_update_available_notification_text">Appuyez pour télécharger %s</string>
+    <string name="msg_failed_to_copy">Échec de la copie dans le presse-papiers</string>
+    <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
+    <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
+    <string name="card">Carte</string>
 </resources>

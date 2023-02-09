@@ -1,4 +1,7 @@
-package org.schabi.newpipe.util.external_communication;
+package org.schabi.newpipe.util.text;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,17 +18,18 @@ public final class TimestampExtractor {
     }
 
     /**
-     * Get's a single timestamp from a matcher.
+     * Gets a single timestamp from a matcher.
      *
-     * @param timestampMatches The matcher which was created using {@link #TIMESTAMPS_PATTERN}
-     * @param baseText         The text where the pattern was applied to /
-     *                         where the matcher is based upon
-     * @return If a match occurred: a {@link TimestampMatchDTO} filled with information.<br/>
-     * If not <code>null</code>.
+     * @param timestampMatches the matcher which was created using {@link #TIMESTAMPS_PATTERN}
+     * @param baseText         the text where the pattern was applied to / where the matcher is
+     *                         based upon
+     * @return if a match occurred, a {@link TimestampMatchDTO} filled with information, otherwise
+     * {@code null}.
      */
+    @Nullable
     public static TimestampMatchDTO getTimestampFromMatcher(
-            final Matcher timestampMatches,
-            final String baseText) {
+            @NonNull final Matcher timestampMatches,
+            @NonNull final String baseText) {
         int timestampStart = timestampMatches.start(1);
         if (timestampStart == -1) {
             timestampStart = timestampMatches.start(2);

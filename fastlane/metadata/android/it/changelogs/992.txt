@@ -1,0 +1,17 @@
+Nuovo
+• Numero di iscritti nei dettagli del video
+• Scarica dalla coda
+• Impostare in modo permanente una miniatura della playlist
+• Premi a lungo hashtag e link
+• Modalità di visualizzazione scheda
+
+Migliorato
+• Pulsante di chiusura mini-player più grande
+• Downscaling delle miniature più agevole
+• Target Android 13 (API 33)
+• La ricerca non mette più in pausa il lettore
+
+Corretto
+• Corretto l'overlay su DeX/mouse
+• Consenti lettore in background senza flussi audio separati
+• Varie correzioni di YouTube e altro…

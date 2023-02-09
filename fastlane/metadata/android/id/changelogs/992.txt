@@ -1,0 +1,17 @@
+Baru
+- Jumlah pelanggan dalam detail video
+- Unduh dari antrean
+- Mengatur gambar mini daftar putar secara permanen
+- Tekan lama tagar dan tautan
+- Mode tampilan kartu
+
+Lebih baik
+- Tombol tutup pemutar mini yang lebih besar
+- Pengecilan ukuran gambar mini yang lebih halus
+- Target Android 13 (API 33)
+- Mencari tidak lagi menjeda pemain
+
+Diperbaiki
+- Perbaiki overlay pada DeX/mouse
+- Izinkan pemutar latar belakang tanpa aliran audio terpisah
+- Berbagai perbaikan YouTube dan banyak lagi…

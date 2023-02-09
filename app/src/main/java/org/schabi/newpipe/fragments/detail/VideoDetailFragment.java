@@ -27,7 +27,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -55,6 +54,9 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackException;
@@ -170,13 +172,13 @@ public final class VideoDetailFragment
 
     private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
-                if (key.equals(getString(R.string.show_comments_key))) {
+                if (getString(R.string.show_comments_key).equals(key)) {
                     showComments = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
-                } else if (key.equals(getString(R.string.show_next_video_key))) {
+                } else if (getString(R.string.show_next_video_key).equals(key)) {
                     showRelatedItems = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
-                } else if (key.equals(getString(R.string.show_description_key))) {
+                } else if (getString(R.string.show_description_key).equals(key)) {
                     showDescription = sharedPreferences.getBoolean(key, true);
                     tabSettingsChanged = true;
                 }
@@ -255,11 +257,10 @@ public final class VideoDetailFragment
             playerUi.ifPresent(MainPlayerUi::toggleFullscreen);
         }
 
-        //noinspection SimplifyOptionalCallChains
         if (playAfterConnect
                 || (currentInfo != null
                 && isAutoplayEnabled()
-                && !playerUi.isPresent())) {
+                && playerUi.isEmpty())) {
             autoPlayEnabled = true; // forcefully start playing
             openVideoPlayerAutoFullscreen();
         }
@@ -864,7 +865,8 @@ public final class VideoDetailFragment
                             if (playQueue == null) {
                                 playQueue = new SinglePlayQueue(result);
                             }
-                            if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(playQueue)) {
+                            if (stack.isEmpty() || !stack.peek().getPlayQueue()
+                                    .equalStreams(playQueue)) {
                                 stack.push(new StackItem(serviceId, url, title, playQueue));
                             }
                         }
@@ -1067,8 +1069,7 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (!PermissionHelper.isPopupEnabled(activity)) {
-            PermissionHelper.showPopupEnablementToast(activity);
+        if (!PermissionHelper.isPopupEnabledElseAsk(activity)) {
             return;
         }
 
@@ -1174,16 +1175,15 @@ public final class VideoDetailFragment
      * be reused in a few milliseconds and the flickering would be annoying.
      */
     private void hideMainPlayerOnLoadingNewStream() {
-        //noinspection SimplifyOptionalCallChains
-        if (!isPlayerServiceAvailable() || !getRoot().isPresent()
-                || !player.videoPlayerSelected()) {
+        final var root = getRoot();
+        if (!isPlayerServiceAvailable() || root.isEmpty() || !player.videoPlayerSelected()) {
             return;
         }
 
         removeVideoPlayerView();
         if (isAutoplayEnabled()) {
             playerService.stopForImmediateReusing();
-            getRoot().ifPresent(view -> view.setVisibility(View.GONE));
+            root.ifPresent(view -> view.setVisibility(View.GONE));
         } else {
             playerHolder.stopService();
         }
@@ -1780,7 +1780,7 @@ public final class VideoDetailFragment
         // deleted/added items inside Channel/Playlist queue and makes possible to have
         // a history of played items
         @Nullable final StackItem stackPeek = stack.peek();
-        if (stackPeek != null && !stackPeek.getPlayQueue().equals(queue)) {
+        if (stackPeek != null && !stackPeek.getPlayQueue().equalStreams(queue)) {
             @Nullable final PlayQueueItem playQueueItem = queue.getItem();
             if (playQueueItem != null) {
                 stack.push(new StackItem(playQueueItem.getServiceId(), playQueueItem.getUrl(),
@@ -1846,7 +1846,7 @@ public final class VideoDetailFragment
         // They are not equal when user watches something in popup while browsing in fragment and
         // then changes screen orientation. In that case the fragment will set itself as
         // a service listener and will receive initial call to onMetadataUpdate()
-        if (!queue.equals(playQueue)) {
+        if (!queue.equalStreams(playQueue)) {
             return;
         }
 
@@ -1887,10 +1887,9 @@ public final class VideoDetailFragment
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
         setupBrightness();
-        //noinspection SimplifyOptionalCallChains
         if (!isPlayerAndPlayerServiceAvailable()
-                || !player.UIs().get(MainPlayerUi.class).isPresent()
-                || getRoot().map(View::getParent).orElse(null) == null) {
+                || player.UIs().get(MainPlayerUi.class).isEmpty()
+                || getRoot().map(View::getParent).isEmpty()) {
             return;
         }
 
@@ -1962,15 +1961,17 @@ public final class VideoDetailFragment
             return;
         }
 
-        // Prevent jumping of the player on devices with cutout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-        }
-        activity.getWindow().getDecorView().setSystemUiVisibility(0);
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
-                requireContext(), android.R.attr.colorPrimary));
+        final var window = activity.getWindow();
+        final var windowInsetsController = WindowCompat.getInsetsController(window,
+                window.getDecorView());
+
+        WindowCompat.setDecorFitsSystemWindows(window, true);
+        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
+                .BEHAVIOR_SHOW_BARS_BY_TOUCH);
+        windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
+
+        window.setStatusBarColor(ThemeHelper.resolveColorFromAttr(requireContext(),
+                android.R.attr.colorPrimary));
     }
 
     private void hideSystemUi() {
@@ -1982,30 +1983,19 @@ public final class VideoDetailFragment
             return;
         }
 
-        // Prevent jumping of the player on devices with cutout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
-        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        final var window = activity.getWindow();
+        final var windowInsetsController = WindowCompat.getInsetsController(window,
+                window.getDecorView());
 
-        // In multiWindow mode status bar is not transparent for devices with cutout
-        // if I include this flag. So without it is better in this case
-        final boolean isInMultiWindow = DeviceUtils.isInMultiWindow(activity);
-        if (!isInMultiWindow) {
-            visibility |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        }
-        activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
+                .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
 
-        if (isInMultiWindow || isFullscreen()) {
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        if (DeviceUtils.isInMultiWindow(activity) || isFullscreen()) {
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
         }
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // Listener implementation
@@ -2113,7 +2103,7 @@ public final class VideoDetailFragment
         final Iterator<StackItem> iterator = stack.descendingIterator();
         while (iterator.hasNext()) {
             final StackItem next = iterator.next();
-            if (next.getPlayQueue().equals(queue)) {
+            if (next.getPlayQueue().equalStreams(queue)) {
                 item = next;
                 break;
             }
@@ -2128,7 +2118,7 @@ public final class VideoDetailFragment
         if (isClearingQueueConfirmationRequired(activity)
                 && playerIsNotStopped()
                 && activeQueue != null
-                && !activeQueue.equals(playQueue)) {
+                && !activeQueue.equalStreams(playQueue)) {
             showClearingQueueConfirmation(onAllow);
         } else {
             onAllow.run();
@@ -2429,23 +2419,20 @@ public final class VideoDetailFragment
 
     // helpers to check the state of player and playerService
     boolean isPlayerAvailable() {
-        return (player != null);
+        return player != null;
     }
 
     boolean isPlayerServiceAvailable() {
-        return (playerService != null);
+        return playerService != null;
     }
 
     boolean isPlayerAndPlayerServiceAvailable() {
-        return (player != null && playerService != null);
+        return player != null && playerService != null;
     }
 
     public Optional<View> getRoot() {
-        if (player == null) {
-            return Optional.empty();
-        }
-
-        return player.UIs().get(VideoPlayerUi.class)
+        return Optional.ofNullable(player)
+                .flatMap(player1 -> player1.UIs().get(VideoPlayerUi.class))
                 .map(playerUi -> playerUi.getBinding().getRoot());
     }
 

@@ -726,4 +726,8 @@
     <string name="fast_mode">Snabbt läge</string>
     <string name="app_update_unavailable_toast">Du använder den senaste versionen av NewPipe</string>
     <string name="app_update_available_notification_text">Tryck för att ladda ner %s</string>
+    <string name="night_theme_available">Det här alternativet är endast tillgängligt om %s har valts som Tema</string>
+    <string name="unset_playlist_thumbnail">Inaktivera permanent miniatyrbild</string>
+    <string name="msg_failed_to_copy">Det gick inte att kopiera till urklipp</string>
+    <string name="card">Kort</string>
 </resources>

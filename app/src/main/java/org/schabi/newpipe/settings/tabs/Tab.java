@@ -248,7 +248,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return R.drawable.ic_rss_feed;
+            return R.drawable.ic_subscriptions;
         }
 
         @Override

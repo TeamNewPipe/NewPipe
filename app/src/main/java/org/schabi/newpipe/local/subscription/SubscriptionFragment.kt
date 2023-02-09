@@ -433,10 +433,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 clear()
                 if (listViewMode) {
                     add(FeedGroupAddNewItem())
-                    add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.RSS))
+                    add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 } else {
                     add(FeedGroupAddNewGridItem())
-                    add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.RSS))
+                    add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 }
                 addAll(groups)
             }

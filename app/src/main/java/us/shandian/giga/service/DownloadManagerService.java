@@ -310,7 +310,7 @@ public class DownloadManagerService extends Service {
     }
 
     private void handlePreferenceChange(SharedPreferences prefs, @NonNull String key) {
-        if (key.equals(getString(R.string.downloads_maximum_retry))) {
+        if (getString(R.string.downloads_maximum_retry).equals(key)) {
             try {
                 String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
                 mManager.mPrefMaxRetry = value == null ? 0 : Integer.parseInt(value);
@@ -318,13 +318,13 @@ public class DownloadManagerService extends Service {
                 mManager.mPrefMaxRetry = 0;
             }
             mManager.updateMaximumAttempts();
-        } else if (key.equals(getString(R.string.downloads_cross_network))) {
+        } else if (getString(R.string.downloads_cross_network).equals(key)) {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
-        } else if (key.equals(getString(R.string.downloads_queue_limit))) {
+        } else if (getString(R.string.downloads_queue_limit).equals(key)) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
-        } else if (key.equals(getString(R.string.download_path_video_key))) {
+        } else if (getString(R.string.download_path_video_key).equals(key)) {
             mManager.mMainStorageVideo = loadMainVideoStorage();
-        } else if (key.equals(getString(R.string.download_path_audio_key))) {
+        } else if (getString(R.string.download_path_audio_key).equals(key)) {
             mManager.mMainStorageAudio = loadMainAudioStorage();
         }
     }
