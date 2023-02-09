@@ -86,8 +86,9 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
 
     @RewriteQueriesToDropUnusedColumns
     @Transaction
-    @Query("SELECT *, MIN(" + JOIN_INDEX + ") FROM " + STREAM_TABLE + " INNER JOIN "
-            + "(SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX
+    @Query("SELECT *, MIN(" + JOIN_INDEX + ")"
+            + " FROM " + STREAM_TABLE + " INNER JOIN"
+            + " (SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX
             + " FROM " + PLAYLIST_STREAM_JOIN_TABLE
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId)"
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
@@ -97,7 +98,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " FROM " + STREAM_STATE_TABLE + " )"
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
             + " GROUP BY " + STREAM_ID
-            + " ORDER BY " + JOIN_INDEX + " ASC")
+            + " ORDER BY MIN(" + JOIN_INDEX + ") ASC")
     Flowable<List<PlaylistStreamEntry>> getStreamsWithoutDuplicates(long playlistId);
 
 
