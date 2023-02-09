@@ -206,19 +206,15 @@ public final class Migrations {
                     + "INTEGER NOT NULL DEFAULT -1");
 
             // Migrate the thumbnail_url to the thumbnail_stream_id
-            database.execSQL("CREATE TEMPORARY TABLE temporary_table AS"
+            database.execSQL("UPDATE playlists SET thumbnail_stream_id = ("
+                    + " SELECT CASE WHEN COUNT(*) != 0 then stream_uid ELSE -1 END"
+                    + " FROM ("
                     + " SELECT p.uid AS playlist_uid, s.uid AS stream_uid"
                     + " FROM playlists p"
                     + " LEFT JOIN playlist_stream_join ps ON p.uid = ps.playlist_id"
                     + " LEFT JOIN streams s ON s.uid = ps.stream_id"
-                    + " WHERE s.thumbnail_url = p.thumbnail_url");
-
-            database.execSQL("UPDATE playlists SET thumbnail_stream_id = ("
-                    + "SELECT CASE WHEN COUNT(*) != 0 then stream_uid ELSE -1 END "
-                    + "FROM temporary_table "
-                    + "WHERE playlist_uid = playlists.uid)");
-
-            database.execSQL("DROP TABLE temporary_table");
+                    + " WHERE s.thumbnail_url = p.thumbnail_url) AS temporary_table"
+                    + " WHERE playlist_uid = playlists.uid)");
 
             // Remove the thumbnail_url field in the playlist table
             database.execSQL("CREATE TABLE IF NOT EXISTS `playlists_new`"

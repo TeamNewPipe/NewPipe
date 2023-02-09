@@ -35,6 +35,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.databinding.LocalPlaylistHeaderBinding;
@@ -70,8 +71,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
-    public static final long DEFAULT_THUMBNAIL_ID = -1;
-    public static final long NO_THUMBNAIL_ID = -2;
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
@@ -624,7 +623,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             thumbnailStreamId = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
                     .getStreamEntity().getUid();
         } else {
-            thumbnailStreamId = DEFAULT_THUMBNAIL_ID;
+            thumbnailStreamId = PlaylistEntity.DEFAULT_THUMBNAIL_ID;
         }
 
         changeThumbnailStreamId(thumbnailStreamId, false);

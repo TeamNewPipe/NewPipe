@@ -9,6 +9,7 @@ import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 
 import java.util.List;
@@ -59,14 +60,15 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     Flowable<Integer> getMaximumIndexOf(long playlistId);
 
-    @Query("SELECT CASE WHEN COUNT(*) != 0 then " + STREAM_ID + " ELSE -1 END"
+    @Query("SELECT CASE WHEN COUNT(*) != 0 then " + STREAM_ID
+            + " ELSE " + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " END"
             + " FROM " + STREAM_TABLE
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId "
             + " LIMIT 1"
     )
-    Flowable<Long> getAutomaticThumbnailUrl(long playlistId);
+    Flowable<Long> getAutomaticThumbnailStreamId(long playlistId);
 
     @RewriteQueriesToDropUnusedColumns
     @Transaction
@@ -91,14 +93,13 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     @Transaction
     @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ","
 
-            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = -1"
-            + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
+            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = "
+            + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
             + " ELSE (SELECT " + STREAM_THUMBNAIL_URL
             + " FROM " + STREAM_TABLE
             + " WHERE " + STREAM_TABLE + "." + STREAM_ID + " = " + PLAYLIST_THUMBNAIL_STREAM_ID
             + " ) END AS " + PLAYLIST_THUMBNAIL_URL + ", "
 
-            + PLAYLIST_NAME + ", "
             + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT
             + " FROM " + PLAYLIST_TABLE
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
@@ -111,14 +112,14 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", "
             + PLAYLIST_NAME + ", "
 
-            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = -1"
-            + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
+            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = "
+            + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
             + " ELSE (SELECT " + STREAM_THUMBNAIL_URL
             + " FROM " + STREAM_TABLE
             + " WHERE " + STREAM_TABLE + "." + STREAM_ID + " = " + PLAYLIST_THUMBNAIL_STREAM_ID
-            + " ) END AS " + PLAYLIST_THUMBNAIL_URL
+            + " ) END AS " + PLAYLIST_THUMBNAIL_URL + ", "
 
-            + ", COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT + ", "
+            + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT + ", "
             + "COALESCE(SUM(" + STREAM_URL + " = :streamUrl), 0) AS "
                 + PLAYLIST_TIMES_STREAM_IS_CONTAINED
 

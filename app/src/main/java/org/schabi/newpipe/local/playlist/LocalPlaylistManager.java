@@ -23,6 +23,8 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
+    private static final long THUMBNAIL_ID_LEAVE_UNCHANGED = -2;
+
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final PlaylistDAO playlistTable;
@@ -115,7 +117,7 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, LocalPlaylistFragment.NO_THUMBNAIL_ID, false);
+        return modifyPlaylist(playlistId, name, THUMBNAIL_ID_LEAVE_UNCHANGED, false);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
@@ -134,10 +136,10 @@ public class LocalPlaylistManager {
     }
 
     public long getAutomaticPlaylistThumbnailStreamId(final long playlistId) {
-        final long streamId = playlistStreamTable.getAutomaticThumbnailUrl(playlistId)
+        final long streamId = playlistStreamTable.getAutomaticThumbnailStreamId(playlistId)
                 .blockingFirst();
         if (streamId < 0) {
-            return LocalPlaylistFragment.DEFAULT_THUMBNAIL_ID;
+            return PlaylistEntity.DEFAULT_THUMBNAIL_ID;
         }
         return streamId;
     }
@@ -154,7 +156,7 @@ public class LocalPlaylistManager {
                     if (name != null) {
                         playlist.setName(name);
                     }
-                    if (thumbnailStreamId != LocalPlaylistFragment.NO_THUMBNAIL_ID) {
+                    if (thumbnailStreamId != THUMBNAIL_ID_LEAVE_UNCHANGED) {
                         playlist.setThumbnailStreamId(thumbnailStreamId);
                         playlist.setIsThumbnailPermanent(isPermanent);
                     }

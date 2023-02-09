@@ -16,6 +16,8 @@ public class PlaylistEntity {
 
     public static final String DEFAULT_THUMBNAIL = "drawable://"
             + R.drawable.placeholder_thumbnail_playlist;
+    public static final long DEFAULT_THUMBNAIL_ID = -1;
+
     public static final String PLAYLIST_TABLE = "playlists";
     public static final String PLAYLIST_ID = "uid";
     public static final String PLAYLIST_NAME = "name";
