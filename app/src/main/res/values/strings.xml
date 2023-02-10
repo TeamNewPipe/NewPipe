@@ -101,10 +101,10 @@
     <string name="auto_queue_title">Auto-enqueue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
     <string name="auto_queue_toggle">Auto-enqueuing</string>
-    <string name="left_gesture_control_summary">Change the left gesture control</string>
-    <string name="left_gesture_control_title">Left gesture control</string>
-    <string name="right_gesture_control_summary">Change the right gesture control</string>
-    <string name="right_gesture_control_title">Right gesture control</string>
+    <string name="left_gesture_control_summary">Choose gesture for left half of player screen</string>
+    <string name="left_gesture_control_title">Left gesture action</string>
+    <string name="right_gesture_control_summary">Choose gesture for right half of player screen</string>
+    <string name="right_gesture_control_title">Right gesture action</string>
     <string name="brightness">Brightness</string>
     <string name="volume">Volume</string>
     <string name="none">None</string>
