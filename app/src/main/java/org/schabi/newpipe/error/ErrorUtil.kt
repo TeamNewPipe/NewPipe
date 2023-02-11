@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import org.schabi.newpipe.R
+import org.schabi.newpipe.util.PendingIntentCompat
 
 /**
  * This class contains all of the methods that should be used to let the user know that an error has
@@ -128,11 +129,11 @@ class ErrorUtil {
                     .setContentText(context.getString(errorInfo.messageStringId))
                     .setAutoCancel(true)
                     .setContentIntent(
-                        PendingIntent.getActivity(
+                        PendingIntentCompat.getActivity(
                             context,
                             0,
                             getErrorActivityIntent(context, errorInfo),
-                            pendingIntentFlags
+                            PendingIntent.FLAG_UPDATE_CURRENT
                         )
                     )
 

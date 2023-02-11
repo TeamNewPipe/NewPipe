@@ -1,0 +1,17 @@
+Neu:
+• Anzahl der Abonnenten in den Videodetails
+• Herunterladen aus der Warteschlange
+• Dauerhaftes Einstellen einer Wiedergabelisten-Miniaturansicht
+• Hashtags und Links lang drücken
+• Kartenansicht-Modus
+
+Verbessert:
+• Größere Schaltfläche um Mini-Player zu schließen
+• Glattere Miniaturansicht-Skalierung
+• Android 13 (API 33)
+• Suchen hält den Player nicht mehr an
+
+Behoben:
+• Overlay auf DeX/Maus
+• Hintergrundplayer ohne separate Audiostreams
+• YouTube-Korrekturen und mehr…

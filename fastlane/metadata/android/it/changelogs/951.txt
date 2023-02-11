@@ -1,0 +1,17 @@
+Nuovo
+• Aggiungi la ricerca per la selezione delle iscrizioni nella finestra di dialogo del gruppo di feed
+• Aggiungi un filtro alla finestra di dialogo del gruppo di feed per mostrare solo le iscrizioni non raggruppate
+• Aggiungi la scheda playlist alla pagina principale
+• Avanti/indietro veloce nella coda del lettore in background/pop-up
+• Mostra suggerimento di ricerca: intendevi e mostra il risultato per
+
+Migliorato
+• Eliminare la scrittura dei metadati dell'applicazione in file confusi
+• Non rimuovere i flussi non riusciti dalla coda
+• Aggiorna il colore della barra di stato in modo che corrisponda al colore della barra degli strumenti
+
+Fisso
+• Risolto il problema con la desincronizzazione audio/video causata da errori cumulativi in virgola mobile
+• [PeerTube] Gestisce i commenti eliminati
+
+e altro ancora

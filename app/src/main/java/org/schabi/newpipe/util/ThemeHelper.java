@@ -41,6 +41,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.info_list.ItemViewMode;
 
 public final class ThemeHelper {
     private ThemeHelper() {
@@ -332,7 +333,6 @@ public final class ThemeHelper {
         }
     }
 
-
     /**
      * Returns whether the grid layout or the list layout should be used. If the user set "auto"
      * mode in settings, decides based on screen orientation (landscape) and size.
@@ -341,19 +341,8 @@ public final class ThemeHelper {
      * @return true:use grid layout, false:use list layout
      */
     public static boolean shouldUseGridLayout(final Context context) {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.list_view_mode_key),
-                        context.getString(R.string.list_view_mode_value));
-
-        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
-            return false;
-        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
-            return true;
-        } else /* listMode.equals("auto") */ {
-            final Configuration configuration = context.getResources().getConfiguration();
-            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-        }
+        final ItemViewMode mode = getItemViewMode(context);
+        return mode == ItemViewMode.GRID;
     }
 
     /**
@@ -365,6 +354,36 @@ public final class ThemeHelper {
     public static int getGridSpanCountChannels(final Context context) {
         return getGridSpanCount(context,
                 context.getResources().getDimensionPixelSize(R.dimen.channel_item_grid_min_width));
+    }
+
+    /**
+     * Returns item view mode.
+     * @param context to read preference and parse string
+     * @return Returns one of ItemViewMode
+     */
+    public static ItemViewMode getItemViewMode(final Context context) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.list_view_mode_key),
+                        context.getString(R.string.list_view_mode_value));
+        final ItemViewMode result;
+        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
+            result = ItemViewMode.LIST;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
+            result = ItemViewMode.GRID;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_card_key))) {
+            result = ItemViewMode.CARD;
+        } else {
+            // Auto mode - evaluate whether to use Grid based on screen real estate.
+            final Configuration configuration = context.getResources().getConfiguration();
+            final boolean useGrid = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+            if (useGrid) {
+                result = ItemViewMode.GRID;
+            } else {
+                result = ItemViewMode.LIST;
+            }
+        }
+        return result;
     }
 
     /**

@@ -109,7 +109,7 @@
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
-    <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
+    <string name="empty_list_subtitle">Här va\' det tomt</string>
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
@@ -157,7 +157,7 @@
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s av %2$s under %3$s</string>
-    <string name="tab_about">Om</string>
+    <string name="tab_about">Om &amp; FAQ</string>
     <string name="tab_licenses">Licenser</string>
     <string name="app_description">Öppen och enkel Android-app för mediastreaming.</string>
     <string name="view_on_github">Visa på GitHub</string>
@@ -355,8 +355,7 @@
     <string name="list">Lista</string>
     <string name="grid">Rutnät</string>
     <string name="auto">Automatiskt</string>
-    <string name="app_update_notification_content_title">En NewPipe-uppdatering är tillgänglig!</string>
-    <string name="app_update_notification_content_text">Tryck för att hämta</string>
+    <string name="app_update_available_notification_title">En NewPipe-uppdatering är tillgänglig!</string>
     <string name="missions_header_finished">Färdig</string>
     <string name="paused">pausad</string>
     <string name="queued">köad</string>
@@ -399,7 +398,6 @@
     <string name="peertube_instance_add_https_only">Endast HTTPS-URL:er stöds</string>
     <string name="peertube_instance_add_exists">Instansen finns redan</string>
     <string name="videos_string">Videor</string>
-    <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelningspositioner</string>
     <string name="missing_file">Filen har flyttats eller tagits bort</string>
@@ -720,4 +718,16 @@
     <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
     <string name="feed_toggle_hide_future_items">Göm framtida objekt</string>
     <string name="feed_toggle_hide_played_items">Göm sedda objekt</string>
+    <string name="faq_description">Om du har problem med att använda appen, kolla in dessa svar på vanligt ställda frågor!</string>
+    <string name="faq_title">Vanligt ställda frågor</string>
+    <string name="faq">Visa på webbplats</string>
+    <string name="sort">Sortera</string>
+    <string name="import_subscriptions_hint">Importera eller exportera prenumerationer från 3-punktsmenyn</string>
+    <string name="fast_mode">Snabbt läge</string>
+    <string name="app_update_unavailable_toast">Du använder den senaste versionen av NewPipe</string>
+    <string name="app_update_available_notification_text">Tryck för att ladda ner %s</string>
+    <string name="night_theme_available">Det här alternativet är endast tillgängligt om %s har valts som Tema</string>
+    <string name="unset_playlist_thumbnail">Inaktivera permanent miniatyrbild</string>
+    <string name="msg_failed_to_copy">Det gick inte att kopiera till urklipp</string>
+    <string name="card">Kort</string>
 </resources>

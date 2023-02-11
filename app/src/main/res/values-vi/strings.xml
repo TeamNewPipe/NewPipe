@@ -191,7 +191,7 @@
     <string name="file_name_empty_error">Tên tệp không được để trống</string>
     <string name="error_occurred_detail">Đã xảy ra lỗi: %1$s</string>
     <string name="no_streams_available_download">Không có luồng nào để tải về</string>
-    <string name="empty_subscription_feed_subtitle">Không có gì cả :P</string>
+    <string name="empty_list_subtitle">Không có gì cả :P</string>
     <string name="detail_drag_description">Kéo để sắp xếp lại</string>
     <string name="no_subscribers">Không có người đăng ký</string>
     <plurals name="subscribers">
@@ -354,8 +354,7 @@
     <string name="list">Danh sách</string>
     <string name="grid">Lưới</string>
     <string name="auto">Tự động</string>
-    <string name="app_update_notification_content_title">Đã có bản cập nhật mới!</string>
-    <string name="app_update_notification_content_text">Nhấn để tải về</string>
+    <string name="app_update_available_notification_title">Đã có bản cập nhật mới!</string>
     <string name="missions_header_finished">Xong</string>
     <string name="paused">đã tạm dừng</string>
     <string name="queued">trong hàng đợi</string>
@@ -439,7 +438,7 @@
 \nBạn có chắc không\? Video sẽ không thể hồi phục được!</string>
     <string name="remove_watched_popup_title">Xóa video đã xem\?</string>
     <string name="remove_watched">Xóa video đã xem</string>
-    <string name="systems_language">Mặt định hệ thống</string>
+    <string name="systems_language">Mặc định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
     <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
@@ -464,7 +463,6 @@
         <item quantity="other">%s người xem</item>
     </plurals>
     <string name="permission_display_over_apps">Cho phép hiển thị trên các ứng dụng khác</string>
-    <string name="help">Trợ giúp</string>
     <string name="artists">Nghệ sĩ</string>
     <string name="albums">Album</string>
     <string name="songs">Bài hát</string>

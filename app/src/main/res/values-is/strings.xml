@@ -44,7 +44,7 @@
     <string name="title_activity_about">Um NewPipe</string>
     <string name="channel_unsubscribed">Áskrift hætt</string>
     <string name="unsubscribe">Hætta áskrift</string>
-    <string name="empty_subscription_feed_subtitle">Allt er tómt</string>
+    <string name="empty_list_subtitle">Allt er tómt</string>
     <string name="app_license">NewPipe er „copyleft“ frjáls hugbúnaður: Þú getur notað, rannsakað, deilt og bætt honum að vild. Þú getur endurdreift og breytt því samkvæmt skilmálum GNU GPL notendaleyfi eins og það er gefið út af Frjálsa Hugbúnaðarstofnuninni, annað hvort útgáfu 3 af leyfinu, eða (að eigin vali) hvaða síðari útgáfu sem er.</string>
     <string name="subscribed_button_title">Í áskrift</string>
     <string name="tab_bookmarks">Bókamerktir spilunarlistar</string>
@@ -53,7 +53,7 @@
     <string name="app_update_notification_channel_description">Tilkynningar fyrir nýjar útgáfur NewPipe</string>
     <string name="clear_cookie_summary">Hreinsa vefkökur sem NewPipe geymir þegar þú leysir reCAPTCHA</string>
     <string name="error_report_notification_title">NewPipe rakst á villu, pikkaðu til að tilkynna</string>
-    <string name="tab_about">Um</string>
+    <string name="tab_about">Um okkur og algengar spurningar</string>
     <string name="subscribe_button_title">Gerast áskrifandi</string>
     <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2K/4K myndbönd</string>
     <string name="play_with_kodi_title">Spila með Kodi</string>
@@ -136,7 +136,6 @@
     <string name="settings_category_player_title">Spilari</string>
     <string name="settings_category_debug_title">Aflúsa</string>
     <string name="content_language_title">Sjálfgefið tungumál efnis</string>
-    <string name="app_update_notification_content_title">NewPipe uppfærsla í boði!</string>
     <string name="metadata_language">Tungumál</string>
     <string name="controls_add_to_playlist_title">Bæta við</string>
     <string name="controls_popup_title">Sprettiglugga</string>
@@ -151,7 +150,6 @@
     <string name="light_theme_title">Ljós</string>
     <string name="undo">Afturkalla</string>
     <string name="always">Alltaf</string>
-    <string name="help">Hjálp</string>
     <string name="general_error">Villa</string>
     <string name="use_external_video_player_summary">Fjarlægir hljóð í sumum upplausnum</string>
     <string name="subscription_change_failed">Gat ekki breytt áskrift</string>
@@ -455,7 +453,6 @@
     <string name="high_quality_larger">Hágæða (stærra)</string>
     <string name="low_quality_smaller">Lágæða (minna)</string>
     <string name="dont_show">Ekki sýna</string>
-    <string name="app_update_notification_content_text">Pikkaðu til að sækja</string>
     <string name="recovering">að jafna sig</string>
     <string name="download_failed">Niðurhal mistókst</string>
     <string name="show_error">Sýna villu</string>
@@ -717,4 +714,8 @@
     <string name="no_audio_streams_available_for_external_players">Engir hljóðstraumar eru í boði fyrir ytri spilara</string>
     <string name="select_quality_external_players">Veldu gæði fyrir ytri spilara</string>
     <string name="feed_toggle_show_future_items">Sýna framtíðaratriði</string>
+    <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
+    <string name="faq_title">Algengar spurningar</string>
+    <string name="faq">Skoða á vefsíðu</string>
+    <string name="sort">Raða</string>
 </resources>

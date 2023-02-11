@@ -90,19 +90,16 @@ public final class ShareUtils {
             // No browser set as default (doesn't work on some devices)
             openAppChooser(context, intent, true);
         } else {
-            if (defaultPackageName.isEmpty()) {
-                // No app installed to open a web url
-                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
-                return false;
-            } else {
-                try {
+            try {
+                // will be empty on Android 12+
+                if (!defaultPackageName.isEmpty()) {
                     intent.setPackage(defaultPackageName);
-                    context.startActivity(intent);
-                } catch (final ActivityNotFoundException e) {
-                    // Not a browser but an app chooser because of OEMs changes
-                    intent.setPackage(null);
-                    openAppChooser(context, intent, true);
                 }
+                context.startActivity(intent);
+            } catch (final ActivityNotFoundException e) {
+                // Not a browser but an app chooser because of OEMs changes
+                intent.setPackage(null);
+                openAppChooser(context, intent, true);
             }
         }
 
@@ -313,8 +310,16 @@ public final class ShareUtils {
             return;
         }
 
-        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
-        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+        try {
+            clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
+            if (Build.VERSION.SDK_INT < 33) {
+                // Android 13 has its own "copied to clipboard" dialog
+                Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+            }
+        } catch (final Exception e) {
+            Log.e(TAG, "Error when trying to copy text to clipboard", e);
+            Toast.makeText(context, R.string.msg_failed_to_copy, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

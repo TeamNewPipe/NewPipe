@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.feed.notifications
 
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -20,6 +19,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.PendingIntentCompat
 import org.schabi.newpipe.util.PicassoHelper
 
 /**
@@ -70,16 +70,13 @@ class NotificationHelper(val context: Context) {
 
         // open the channel page when clicking on the notification
         builder.setContentIntent(
-            PendingIntent.getActivity(
+            PendingIntentCompat.getActivity(
                 context,
                 data.pseudoId,
                 NavigationHelper
                     .getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                    PendingIntent.FLAG_IMMUTABLE
-                else
-                    0
+                0
             )
         )
 

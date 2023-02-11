@@ -143,7 +143,7 @@
     <string name="settings_category_history_title">Historique et cache</string>
     <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
-    <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
+    <string name="empty_list_subtitle">Aucun contenu</string>
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonné</item>
@@ -178,13 +178,13 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
-    <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
+    <string name="show_hold_to_append_title">Afficher l\'astuce « Maintenir pour ajouter à la file »</string>
     <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui des boutons « Arrière-plan » ou « Flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
     <string name="select_a_kiosk">Sélectionner un kiosque</string>
-    <string name="hold_to_append">Maintenir pour mettre en liste de lecture</string>
+    <string name="hold_to_append">Maintenir pour ajouter à la file</string>
     <string name="start_here_on_background">Démarrer la lecture en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer la lecture dans une fenêtre flottante</string>
     <string name="donation_title">Donner</string>
@@ -257,8 +257,8 @@
     <string name="file_name_empty_error">Le nom du fichier ne peut pas être vide</string>
     <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="controls_download_desc">Télécharger le flux</string>
-    <string name="auto_queue_title">Ajouter automatiquement le flux suivant à la liste de lecture</string>
-    <string name="auto_queue_summary">Continue la liste de lecture (non répétitive) en ajoutant un flux lié</string>
+    <string name="auto_queue_title">Ajout automatique du flux suivant à la file</string>
+    <string name="auto_queue_summary">Continue la file de lecture (non répétitive) en ajoutant un flux lié</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -359,8 +359,7 @@
     <string name="list">Liste</string>
     <string name="grid">Grille</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
-    <string name="app_update_notification_content_text">Appuyer pour télécharger</string>
+    <string name="app_update_available_notification_title">Une mise à jour de NewPipe est disponible !</string>
     <string name="missions_header_finished">Terminé</string>
     <string name="missions_header_pending">En attente</string>
     <string name="paused">en pause</string>
@@ -385,7 +384,7 @@
     <string name="pause_downloads_on_mobile_desc">Utile lors du basculement aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode de vue en liste</string>
     <string name="post_processing">post-traitement</string>
-    <string name="enqueue">Mettre en file d\'attente</string>
+    <string name="enqueue">Ajouter à la file</string>
     <string name="permission_denied">Action refusée par le système</string>
     <string name="error_postprocessing_failed">Le post-traitement a échoué</string>
     <string name="max_retry_msg">Nombre d’essais maximum</string>
@@ -522,7 +521,6 @@
 \nYouTube est un exemple de service qui offre une méthode rapide avec son flux RSS.
 \n
 \nDonc le choix se résume à ce que vous préférez : la rapidité ou des informations précises.</string>
-    <string name="help">Aide</string>
     <string name="content_not_supported">Ce contenu n’est pas encore pris en charge par NewPipe.
 \n
 \nNous espérons qu’il le sera dans une future version.</string>
@@ -553,15 +551,15 @@
     <string name="error_report_open_issue_button_text">Signaler sur GitHub</string>
     <string name="copy_for_github">Copier le rapport formaté</string>
     <string name="search_showing_result_for">Affichage des résultats pour : %s</string>
-    <string name="clear_queue_confirmation_summary">Basculer d’un lecteur à un autre peut remplacer votre liste de lecture</string>
+    <string name="clear_queue_confirmation_summary">Basculer d’un lecteur à un autre peut remplacer votre file de lecture</string>
     <string name="never">Jamais</string>
     <string name="wifi_only">Uniquement en Wi-Fi</string>
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
-    <string name="auto_queue_toggle">Lire automatiquement</string>
-    <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
-    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une liste de lecture</string>
+    <string name="auto_queue_toggle">Ajout automatique à la file</string>
+    <string name="clear_queue_confirmation_description">La file de lecture du lecteur actif sera remplacée</string>
+    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une file de lecture</string>
     <string name="notification_action_nothing">Rien</string>
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>
@@ -576,8 +574,8 @@
     <string name="notification_scale_to_square_image_summary">Recadrer la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1</string>
     <string name="notification_scale_to_square_image_title">Recadrer la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
-    <string name="enqueued">Ajouté à la file d’attente</string>
-    <string name="enqueue_stream">Ajouter à la file d’attente</string>
+    <string name="enqueued">Ajouté à la file</string>
+    <string name="enqueue_stream">Ajouter à la file</string>
     <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
@@ -675,8 +673,8 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Lire consécutivement</string>
-    <string name="enqueued_next">Flux placé à la suite</string>
+    <string name="enqueue_next_stream">Placer en suivant dans la file</string>
+    <string name="enqueued_next">Placé en suivant dans la file</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
@@ -739,4 +737,12 @@
     <string name="faq">Voir sur le site web</string>
     <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
     <string name="sort">Trier</string>
+    <string name="fast_mode">Mode rapide</string>
+    <string name="import_subscriptions_hint">Importer ou exporter des abonnements à partir du menu</string>
+    <string name="app_update_unavailable_toast">Vous utilisez la dernière version de NewPipe</string>
+    <string name="app_update_available_notification_text">Appuyez pour télécharger %s</string>
+    <string name="msg_failed_to_copy">Échec de la copie dans le presse-papiers</string>
+    <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
+    <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
+    <string name="card">Carte</string>
 </resources>

@@ -1,0 +1,27 @@
+Nuovo
+• Supporto PeerTube senza P2P (#2201) [Beta]:
+  ◦ Guarda e scarica video da istanze PeerTube
+  ◦ Aggiungi istanze nelle impostazioni per accedere al mondo PeerTube completo
+  ◦ Potrebbero esserci problemi con gli handshake SSL su Android 4.4 e 7.1 quando si accede a determinate istanze con conseguente errore di rete.
+
+• Downloader (#2679):
+  ◦ Calcola l'ETA di download
+  ◦ Scarica opus (file webm) come ogg
+  ◦ Recupera i link di download scaduti per riprendere i download dopo una lunga pausa
+
+Migliorato
+• Rendi il KioskFragment consapevole delle modifiche nel Paese dei contenuti preferito e migliora le prestazioni di tutte le schede principali #2742
+• Utilizzare le nuove implementazioni di localizzazione e downloader dall'estrattore #2713
+• Rendi traducibile la stringa "Chiosco predefinito".
+• Barra di navigazione nera per il tema nero #2569
+
+Fisso
+• Risolto un bug che non poteva spostare il popup player se veniva posizionato un altro dito mentre si spostava il popup player #2772
+• Consenti alle playlist manca un caricatore e correggi gli arresti anomali relativi a questo problema #2724, TeamNewPipe/NewPipeExtractor#219
+• Abilitazione di TLS1.1/1.2 su dispositivi Android 4.4 (API 19/KitKat) per correggere l'handshake TLS con MediaCCC e alcune istanze PeerTube #2792
+• [SoundCloud] Risolto il problema con l'estrazione di client_id TeamNewPipe/NewPipeExtractor#217
+• [SoundCloud] Correzione dell'estrazione del flusso audio
+
+Sviluppo
+• Aggiorna ExoPlayer a 2.10.8 #2791, #2816
+• Aggiorna Gradle a 3.5.1 e aggiungi il supporto Kotlin #2714

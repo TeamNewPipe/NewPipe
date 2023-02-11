@@ -1,0 +1,8 @@
+• Allow installation on external storage
+• [Bandcamp] Added support for displaying the first three comments on a stream
+• Only show 'download has started' toast when download is started
+• Do not set reCaptcha cookie when there is no cookie stored
+• [Player] Improve cache performance
+• [Player] Fixed player not automatically playing
+• Dismiss previous Snackbars when deleting downloads
+• Fixed trying to delete object not in list

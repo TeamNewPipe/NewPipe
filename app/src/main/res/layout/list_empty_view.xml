@@ -19,5 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="6dp"
-        android:text="@string/empty_subscription_feed_subtitle" />
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:text="@string/empty_list_subtitle" />
 </LinearLayout>

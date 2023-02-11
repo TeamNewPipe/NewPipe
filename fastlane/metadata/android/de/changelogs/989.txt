@@ -1,0 +1,3 @@
+• [YouTube] Unendliches Laden behoben beim Versuch, ein Video abzuspielen
+• [YouTube] Drosselung bei einigen Videos behoben
+• Aktualisierung der jsoup-Bibliothek auf 1.15.3, die einen Sicherheitsfix enthält

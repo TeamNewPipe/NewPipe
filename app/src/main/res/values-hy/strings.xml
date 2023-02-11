@@ -83,7 +83,7 @@
         <item quantity="other">%d րոպե</item>
     </plurals>
     <string name="feed_groups_header_title">Ալիքների խմբեր</string>
-    <string name="app_update_notification_content_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
+    <string name="app_update_available_notification_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
     <string name="list">Ցանկ</string>
     <string name="never">Երբեք</string>
     <string name="minimize_on_exit_none_description">Ոչինչ</string>
@@ -196,7 +196,6 @@
     <string name="play_all">Նվագել ամենը</string>
     <string name="duration_live">Ուղիղ</string>
     <string name="enable_playback_resume_title">Շարունակել նվագարկումը</string>
-    <string name="help">Օգնություն</string>
     <string name="recaptcha_solve">Լուծել</string>
     <string name="select_a_channel">Նշել ալիք</string>
     <string name="dont_show">Ցույց չտալ</string>
@@ -217,7 +216,7 @@
     <string name="metadata_privacy_public">Հանրային</string>
     <string name="metadata_tags">Պիտակներ</string>
     <string name="notifications_disabled">Ծանուցումները անջատված են</string>
-    <string name="empty_subscription_feed_subtitle">Ոչինչ բացի դատարկությունից</string>
+    <string name="empty_list_subtitle">Ոչինչ բացի դատարկությունից</string>
     <string name="retry">Կրկին փորձել</string>
     <string name="feed_new_items">Հոսքի նորերը</string>
 </resources>

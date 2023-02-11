@@ -1,21 +1,26 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 
 public class ChannelMiniInfoItemHolder extends InfoItemHolder {
-    public final ImageView itemThumbnailView;
-    public final TextView itemTitleView;
+    private final ImageView itemThumbnailView;
+    private final TextView itemTitleView;
     private final TextView itemAdditionalDetailView;
+    private final TextView itemChannelDescriptionView;
 
     ChannelMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                               final ViewGroup parent) {
@@ -24,6 +29,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemAdditionalDetailView = itemView.findViewById(R.id.itemAdditionalDetails);
+        itemChannelDescriptionView = itemView.findViewById(R.id.itemChannelDescriptionView);
     }
 
     public ChannelMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
@@ -40,7 +46,14 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
         itemTitleView.setText(item.getName());
-        itemAdditionalDetailView.setText(getDetailLine(item));
+
+        final String detailLine = getDetailLine(item);
+        if (detailLine == null) {
+            itemAdditionalDetailView.setVisibility(View.GONE);
+        } else {
+            itemAdditionalDetailView.setVisibility(View.VISIBLE);
+            itemAdditionalDetailView.setText(getDetailLine(item));
+        }
 
         PicassoHelper.loadAvatar(item.getThumbnailUrl()).into(itemThumbnailView);
 
@@ -56,14 +69,35 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
             }
             return true;
         });
+
+        if (itemChannelDescriptionView != null) {
+            // itemChannelDescriptionView will be null in the mini variant
+            if (Utils.isBlank(item.getDescription())) {
+                itemChannelDescriptionView.setVisibility(View.GONE);
+            } else {
+                itemChannelDescriptionView.setVisibility(View.VISIBLE);
+                itemChannelDescriptionView.setText(item.getDescription());
+                itemChannelDescriptionView.setMaxLines(detailLine == null ? 3 : 2);
+            }
+        }
     }
 
-    protected String getDetailLine(final ChannelInfoItem item) {
-        String details = "";
-        if (item.getSubscriberCount() >= 0) {
-            details += Localization.shortSubscriberCount(itemBuilder.getContext(),
+    @Nullable
+    private String getDetailLine(final ChannelInfoItem item) {
+        if (item.getStreamCount() >= 0 && item.getSubscriberCount() >= 0) {
+            return Localization.concatenateStrings(
+                    Localization.shortSubscriberCount(itemBuilder.getContext(),
+                            item.getSubscriberCount()),
+                    Localization.localizeStreamCount(itemBuilder.getContext(),
+                            item.getStreamCount()));
+        } else if (item.getStreamCount() >= 0) {
+            return Localization.localizeStreamCount(itemBuilder.getContext(),
+                    item.getStreamCount());
+        } else if (item.getSubscriberCount() >= 0) {
+            return Localization.shortSubscriberCount(itemBuilder.getContext(),
                     item.getSubscriberCount());
+        } else {
+            return null;
         }
-        return details;
     }
 }

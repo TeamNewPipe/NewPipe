@@ -1,0 +1,27 @@
+New
+• PeerTube support without P2P (#2201) [Beta]:
+  ◦ Watch and download videos from PeerTube instances
+  ◦ Add instances in the settings to access the complete PeerTube world
+  ◦ There might be problems with SSL handshakes on Android 4.4 and 7.1 when accessing certain instances resulting in a network error.
+
+• Downloader (#2679):
+  ◦ Calculate download ETA
+  ◦ Download opus (webm files) as ogg
+  ◦ Recover expired download links to resume downloads after a long pause
+
+Improved
+• Make the KioskFragment aware of changes in the preferred content country and improve performance of all main tabs #2742
+• Use new Localization and Downloader implementations from extractor #2713 
+• Make "Default kiosk" string translatable
+• Black navigation bar for black theme #2569
+
+Fixed
+• Fixed a bug that could not move the popup player if another finger was placed while moving the popup player #2772 
+• Allow playlists missing an uploader and fix crashes related to this problem #2724, TeamNewPipe/NewPipeExtractor#219
+• Enabling TLS1.1/1.2 on Android 4.4 devices (API 19/KitKat) to fix TLS handshake with MediaCCC and some PeerTube instances  #2792
+• [SoundCloud] Fixed client_id extraction TeamNewPipe/NewPipeExtractor#217
+• [SoundCloud] Fix audio stream extraction
+
+Development
+• Update ExoPlayer to 2.10.8 #2791, #2816
+• Update Gradle to 3.5.1 and add Kotlin support #2714

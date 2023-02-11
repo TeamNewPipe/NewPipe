@@ -192,18 +192,6 @@ public class Utility {
         }
     }
 
-    public static void copyToClipboard(Context context, String str) {
-        ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
-
-        if (cm == null) {
-            Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        cm.setPrimaryClip(ClipData.newPlainText("text", str));
-        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
-    }
-
     public static String checksum(final StoredFileHelper source, final int algorithmId)
             throws IOException {
         ByteString byteString;
@@ -248,10 +236,10 @@ public class Utility {
         return number < 10 ? ("0" + number) : String.valueOf(number);
     }
 
-    public static String stringifySeconds(double seconds) {
-        int h = (int) Math.floor(seconds / 3600);
-        int m = (int) Math.floor((seconds - (h * 3600)) / 60);
-        int s = (int) (seconds - (h * 3600) - (m * 60));
+    public static String stringifySeconds(final long seconds) {
+        final int h = (int) Math.floorDiv(seconds, 3600);
+        final int m = (int) Math.floorDiv(seconds - (h * 3600L), 60);
+        final int s = (int) (seconds - (h * 3600) - (m * 60));
 
         String str = "";
 

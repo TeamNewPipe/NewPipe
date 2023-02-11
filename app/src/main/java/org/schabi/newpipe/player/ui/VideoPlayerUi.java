@@ -45,6 +45,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.graphics.BitmapCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
@@ -88,12 +89,12 @@ import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class VideoPlayerUi extends PlayerUi
-        implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, View.OnLongClickListener,
+public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBarChangeListener,
         PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     private static final String TAG = VideoPlayerUi.class.getSimpleName();
 
@@ -137,9 +138,11 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     private GestureDetector gestureDetector;
     private BasePlayerGestureListener playerGestureListener;
-    @Nullable private View.OnLayoutChangeListener onLayoutChangeListener = null;
+    @Nullable
+    private View.OnLayoutChangeListener onLayoutChangeListener = null;
 
-    @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
+    @NonNull
+    private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
             new SeekbarPreviewThumbnailHolder();
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -191,13 +194,13 @@ public abstract class VideoPlayerUi extends PlayerUi
     abstract BasePlayerGestureListener buildGestureListener();
 
     protected void initListeners() {
-        binding.qualityTextView.setOnClickListener(this);
-        binding.playbackSpeed.setOnClickListener(this);
+        binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked));
+        binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.captionTextView.setOnClickListener(this);
-        binding.resizeTextView.setOnClickListener(this);
-        binding.playbackLiveSync.setOnClickListener(this);
+        binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
+        binding.resizeTextView.setOnClickListener(makeOnClickListener(this::onResizeClicked));
+        binding.playbackLiveSync.setOnClickListener(makeOnClickListener(player::seekToDefault));
 
         playerGestureListener = buildGestureListener();
         gestureDetector = new GestureDetector(context, playerGestureListener);
@@ -206,23 +209,41 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
         binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
 
-        binding.playPauseButton.setOnClickListener(this);
-        binding.playPreviousButton.setOnClickListener(this);
-        binding.playNextButton.setOnClickListener(this);
+        binding.playPauseButton.setOnClickListener(makeOnClickListener(player::playPause));
+        binding.playPreviousButton.setOnClickListener(makeOnClickListener(player::playPrevious));
+        binding.playNextButton.setOnClickListener(makeOnClickListener(player::playNext));
 
-        binding.moreOptionsButton.setOnClickListener(this);
-        binding.moreOptionsButton.setOnLongClickListener(this);
-        binding.share.setOnClickListener(this);
-        binding.share.setOnLongClickListener(this);
-        binding.fullScreenButton.setOnClickListener(this);
-        binding.screenRotationButton.setOnClickListener(this);
-        binding.playWithKodi.setOnClickListener(this);
-        binding.openInBrowser.setOnClickListener(this);
-        binding.playerCloseButton.setOnClickListener(this);
-        binding.switchMute.setOnClickListener(this);
+        binding.moreOptionsButton.setOnClickListener(
+                makeOnClickListener(this::onMoreOptionsClicked));
+        binding.share.setOnClickListener(makeOnClickListener(() -> {
+            final PlayQueueItem currentItem = player.getCurrentItem();
+            if (currentItem != null) {
+                ShareUtils.shareText(context, currentItem.getTitle(),
+                        player.getVideoUrlAtCurrentTime(), currentItem.getThumbnailUrl());
+            }
+        }));
+        binding.share.setOnLongClickListener(v -> {
+            ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
+            return true;
+        });
+        binding.fullScreenButton.setOnClickListener(makeOnClickListener(() -> {
+            player.setRecovery();
+            NavigationHelper.playOnMainPlayer(context,
+                    Objects.requireNonNull(player.getPlayQueue()), true);
+        }));
+        binding.playWithKodi.setOnClickListener(makeOnClickListener(this::onPlayWithKodiClicked));
+        binding.openInBrowser.setOnClickListener(makeOnClickListener(this::onOpenInBrowserClicked));
+        binding.playerCloseButton.setOnClickListener(makeOnClickListener(() ->
+                // set package to this app's package to prevent the intent from being seen outside
+                context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
+                        .setPackage(App.PACKAGE_NAME))
+        ));
+        binding.switchMute.setOnClickListener(makeOnClickListener(player::toggleMute));
 
-        binding.switchSponsorBlocking.setOnClickListener(this);
-        binding.switchSponsorBlocking.setOnLongClickListener(this);
+        binding.switchSponsorBlocking.setOnClickListener(
+                makeOnClickListener(this::onBlockingSponsorsButtonClicked));
+        binding.switchSponsorBlocking.setOnLongClickListener(
+                makeOnLongClickListener(this::onBlockingSponsorsButtonLongClicked));
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
             final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
@@ -236,11 +257,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
         onLayoutChangeListener =
                 (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-                    binding.playerOverlays.setPadding(
-                            v.getPaddingLeft(),
-                            v.getPaddingTop(),
-                            v.getPaddingRight(),
-                            v.getPaddingBottom());
+                    binding.playerOverlays.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
+                            v.getPaddingRight(), v.getPaddingBottom());
 
                     // If we added padding to the fast seek overlay, too, it would not go under the
                     // system ui. Instead we apply negative margins equal to the window insets of
@@ -470,10 +488,11 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         final float endScreenHeight = calculateMaxEndScreenThumbnailHeight(thumbnail);
-        final Bitmap endScreenBitmap = Bitmap.createScaledBitmap(
+        final Bitmap endScreenBitmap = BitmapCompat.createScaledBitmap(
                 thumbnail,
                 (int) (thumbnail.getWidth() / (thumbnail.getHeight() / endScreenHeight)),
                 (int) endScreenHeight,
+                null,
                 true);
 
         if (DEBUG) {
@@ -564,7 +583,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         SeekbarPreviewThumbnailHelper
                 .tryResizeAndSetSeekbarPreviewThumbnail(
                         player.getContext(),
-                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
+                        seekbarPreviewThumbnailHolder.getBitmapAt(progress).orElse(null),
                         binding.currentSeekbarPreviewThumbnail,
                         binding.subtitleView::getWidth);
 
@@ -616,11 +635,6 @@ public abstract class VideoPlayerUi extends PlayerUi
             player.changeState(STATE_PAUSED_SEEK);
         }
 
-        player.saveWasPlaying();
-        if (player.isPlaying()) {
-            player.getExoPlayer().pause();
-        }
-
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
@@ -635,7 +649,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         player.seekTo(seekBar.getProgress());
-        if (player.wasPlaying() || player.getExoPlayer().getDuration() == seekBar.getProgress()) {
+        if (player.getExoPlayer().getDuration() == seekBar.getProgress()) {
             player.getExoPlayer().play();
         }
 
@@ -649,9 +663,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         if (!player.isProgressLoopRunning()) {
             player.startProgressLoop();
         }
-        if (player.wasPlaying()) {
-            showControlsThenHide();
-        }
+
+        showControlsThenHide();
     }
     //endregion
 
@@ -1002,61 +1015,56 @@ public abstract class VideoPlayerUi extends PlayerUi
     }
 
     private void updateStreamRelatedViews() {
-        //noinspection SimplifyOptionalCallChains
-        if (!player.getCurrentStreamInfo().isPresent()) {
-            return;
-        }
-        final StreamInfo info = player.getCurrentStreamInfo().get();
+        player.getCurrentStreamInfo().ifPresent(info -> {
+            binding.qualityTextView.setVisibility(View.GONE);
+            binding.playbackSpeed.setVisibility(View.GONE);
 
-        binding.qualityTextView.setVisibility(View.GONE);
-        binding.playbackSpeed.setVisibility(View.GONE);
+            binding.playbackEndTime.setVisibility(View.GONE);
+            binding.playbackLiveSync.setVisibility(View.GONE);
 
-        binding.playbackEndTime.setVisibility(View.GONE);
-        binding.playbackLiveSync.setVisibility(View.GONE);
-
-        switch (info.getStreamType()) {
-            case AUDIO_STREAM:
-            case POST_LIVE_AUDIO_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
-
-            case AUDIO_LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.VISIBLE);
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case VIDEO_STREAM:
-            case POST_LIVE_STREAM:
-                //noinspection SimplifyOptionalCallChains
-                if (player.getCurrentMetadata() != null
-                        && !player.getCurrentMetadata().getMaybeQuality().isPresent()
-                        || (info.getVideoStreams().isEmpty()
-                        && info.getVideoOnlyStreams().isEmpty())) {
+            switch (info.getStreamType()) {
+                case AUDIO_STREAM:
+                case POST_LIVE_AUDIO_STREAM:
+                    binding.surfaceView.setVisibility(View.GONE);
+                    binding.endScreen.setVisibility(View.VISIBLE);
+                    binding.playbackEndTime.setVisibility(View.VISIBLE);
                     break;
-                }
 
-                buildQualityMenu();
+                case AUDIO_LIVE_STREAM:
+                    binding.surfaceView.setVisibility(View.GONE);
+                    binding.endScreen.setVisibility(View.VISIBLE);
+                    binding.playbackLiveSync.setVisibility(View.VISIBLE);
+                    break;
 
-                binding.qualityTextView.setVisibility(View.VISIBLE);
-                binding.surfaceView.setVisibility(View.VISIBLE);
-                // fallthrough
-            default:
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
-        }
+                case LIVE_STREAM:
+                    binding.surfaceView.setVisibility(View.VISIBLE);
+                    binding.endScreen.setVisibility(View.GONE);
+                    binding.playbackLiveSync.setVisibility(View.VISIBLE);
+                    break;
 
-        buildPlaybackSpeedMenu();
-        binding.playbackSpeed.setVisibility(View.VISIBLE);
+                case VIDEO_STREAM:
+                case POST_LIVE_STREAM:
+                    if (player.getCurrentMetadata() != null
+                            && player.getCurrentMetadata().getMaybeQuality().isEmpty()
+                            || (info.getVideoStreams().isEmpty()
+                            && info.getVideoOnlyStreams().isEmpty())) {
+                        break;
+                    }
+
+                    buildQualityMenu();
+
+                    binding.qualityTextView.setVisibility(View.VISIBLE);
+                    binding.surfaceView.setVisibility(View.VISIBLE);
+                    // fallthrough
+                default:
+                    binding.endScreen.setVisibility(View.GONE);
+                    binding.playbackEndTime.setVisibility(View.VISIBLE);
+                    break;
+            }
+
+            buildPlaybackSpeedMenu();
+            binding.playbackSpeed.setVisibility(View.VISIBLE);
+        });
     }
     //endregion
 
@@ -1085,12 +1093,11 @@ public abstract class VideoPlayerUi extends PlayerUi
             qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
                     .getNameById(videoStream.getFormatId()) + " " + videoStream.getResolution());
         }
-        final VideoStream selectedVideoStream = player.getSelectedVideoStream();
-        if (selectedVideoStream != null) {
-            binding.qualityTextView.setText(selectedVideoStream.getResolution());
-        }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
+
+        player.getSelectedVideoStream()
+                .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -1196,14 +1203,9 @@ public abstract class VideoPlayerUi extends PlayerUi
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
 
-        final VideoStream videoStream = player.getSelectedVideoStream();
-        if (videoStream != null) {
-            //noinspection SetTextI18n
-            binding.qualityTextView.setText(MediaFormat.getNameById(videoStream.getFormatId())
-                    + " " + videoStream.getResolution());
-        }
-
-        player.saveWasPlaying();
+        player.getSelectedVideoStream()
+                .map(s -> MediaFormat.getNameById(s.getFormatId()) + " " + s.getResolution())
+                .ifPresent(binding.qualityTextView::setText);
     }
 
     /**
@@ -1220,8 +1222,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
             final int menuItemIndex = menuItem.getItemId();
             @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-            //noinspection SimplifyOptionalCallChains
-            if (currentMetadata == null || !currentMetadata.getMaybeQuality().isPresent()) {
+            if (currentMetadata == null || currentMetadata.getMaybeQuality().isEmpty()) {
                 return true;
             }
 
@@ -1260,10 +1261,9 @@ public abstract class VideoPlayerUi extends PlayerUi
             Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         }
         isSomePopupMenuVisible = false; //TODO check if this works
-        final VideoStream selectedVideoStream = player.getSelectedVideoStream();
-        if (selectedVideoStream != null) {
-            binding.qualityTextView.setText(selectedVideoStream.getResolution());
-        }
+        player.getSelectedVideoStream()
+                .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
+
         if (player.isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
             hideSystemUIIfNeeded();
@@ -1322,9 +1322,8 @@ public abstract class VideoPlayerUi extends PlayerUi
 
         // Build UI
         buildCaptionMenu(availableLanguages);
-        //noinspection SimplifyOptionalCallChains
         if (player.getTrackSelector().getParameters().getRendererDisabled(
-                player.getCaptionRendererIndex()) || !selectedTracks.isPresent()) {
+                player.getCaptionRendererIndex()) || selectedTracks.isEmpty()) {
             binding.captionTextView.setText(R.string.caption_none);
         } else {
             binding.captionTextView.setText(selectedTracks.get().language);
@@ -1355,117 +1354,70 @@ public abstract class VideoPlayerUi extends PlayerUi
     //////////////////////////////////////////////////////////////////////////*/
     //region Click listeners
 
-    @Override
-    public void onClick(final View v) {
-        if (DEBUG) {
-            Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        }
-        if (v.getId() == binding.resizeTextView.getId()) {
-            onResizeClicked();
-        } else if (v.getId() == binding.captionTextView.getId()) {
-            onCaptionClicked();
-        } else if (v.getId() == binding.playbackLiveSync.getId()) {
-            player.seekToDefault();
-        } else if (v.getId() == binding.playPauseButton.getId()) {
-            player.playPause();
-        } else if (v.getId() == binding.playPreviousButton.getId()) {
-            player.playPrevious();
-        } else if (v.getId() == binding.playNextButton.getId()) {
-            player.playNext();
-        } else if (v.getId() == binding.moreOptionsButton.getId()) {
-            onMoreOptionsClicked();
-        } else if (v.getId() == binding.share.getId()) {
-            final PlayQueueItem currentItem = player.getCurrentItem();
-            if (currentItem != null) {
-                ShareUtils.shareText(context, currentItem.getTitle(),
-                        player.getVideoUrlAtCurrentTime(), currentItem.getThumbnailUrl());
-            }
-        } else if (v.getId() == binding.playWithKodi.getId()) {
-            onPlayWithKodiClicked();
-        } else if (v.getId() == binding.openInBrowser.getId()) {
-            onOpenInBrowserClicked();
-        } else if (v.getId() == binding.fullScreenButton.getId()) {
-            player.setRecovery();
-            NavigationHelper.playOnMainPlayer(context, player.getPlayQueue(), true);
-            return;
-        } else if (v.getId() == binding.switchMute.getId()) {
-            player.toggleMute();
-        } else if (v.getId() == binding.switchSponsorBlocking.getId()) {
-            onBlockingSponsorsButtonClicked();
-        } else if (v.getId() == binding.playerCloseButton.getId()) {
-            // set package to this app's package to prevent the intent from being seen outside
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
-                    .setPackage(App.PACKAGE_NAME));
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.qualityTextView.getId()) {
-            onQualityClicked();
-        }
-
-        manageControlsAfterOnClick(v);
-    }
-
     /**
-     * Manages the controls after a click occurred on the player UI.
-     * @param v – The view that was clicked
+     * Create on-click listener which manages the player controls after the view on-click action.
+     *
+     * @param runnable The action to be executed.
+     * @return The view click listener.
      */
-    public void manageControlsAfterOnClick(@NonNull final View v) {
-        if (player.getCurrentState() == STATE_COMPLETED) {
-            return;
-        }
-
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.ALPHA, 0, () -> {
-                    if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
-                        if (v.getId() == binding.playPauseButton.getId()
-                                // Hide controls in fullscreen immediately
-                                || (v.getId() == binding.screenRotationButton.getId()
-                                && isFullscreen())) {
-                            hideControls(0, 0);
-                        } else {
-                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public boolean onLongClick(final View v) {
-        if (v.getId() == binding.share.getId()) {
-            ShareUtils.copyToClipboard(context, player.getVideoUrlAtCurrentTime());
-        } else if (v.getId() == binding.switchSponsorBlocking.getId()) {
-            final Set<String> uploaderWhitelist = new HashSet<>(player.getPrefs().getStringSet(
-                    context.getString(R.string.sponsor_block_whitelist_key),
-                    new HashSet<>()));
-
-            final String toastText;
-
-            if (player.getSponsorBlockMode() == SponsorBlockMode.IGNORE) {
-                uploaderWhitelist.remove(player.getCurrentMetadata().getUploaderName());
-                player.setSponsorBlockMode(SponsorBlockMode.ENABLED);
-                toastText = context
-                        .getString(R.string.sponsor_block_uploader_removed_from_whitelist_toast);
-            } else {
-                uploaderWhitelist.add(player.getCurrentMetadata().getUploaderName());
-                player.setSponsorBlockMode(SponsorBlockMode.IGNORE);
-                toastText = context
-                        .getString(R.string.sponsor_block_uploader_added_to_whitelist_toast);
+    protected View.OnClickListener makeOnClickListener(@NonNull final Runnable runnable) {
+        return v -> {
+            if (DEBUG) {
+                Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
 
-            player.getPrefs()
-                    .edit()
-                    .putStringSet(
-                            context.getString(R.string.sponsor_block_whitelist_key),
-                            new HashSet<>(uploaderWhitelist))
-                    .apply();
+            runnable.run();
 
-            setBlockSponsorsButton(binding.switchSponsorBlocking);
-            Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
-        }
+            // Manages the player controls after handling the view click.
+            if (player.getCurrentState() == STATE_COMPLETED) {
+                return;
+            }
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.ALPHA, 0, () -> {
+                        if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
+                            if (v == binding.playPauseButton
+                                    // Hide controls in fullscreen immediately
+                                    || (v == binding.screenRotationButton && isFullscreen())) {
+                                hideControls(0, 0);
+                            } else {
+                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                            }
+                        }
+                    });
+        };
+    }
 
-        return true;
+    protected View.OnLongClickListener makeOnLongClickListener(@NonNull final Runnable runnable) {
+        return v -> {
+            if (DEBUG) {
+                Log.d(TAG, "onLongClick() called with: v = [" + v + "]");
+            }
+
+            runnable.run();
+
+            // Manages the player controls after handling the view click.
+            if (player.getCurrentState() == STATE_COMPLETED) {
+                return true;
+            }
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.ALPHA, 0, () -> {
+                        if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
+                            if (v == binding.playPauseButton
+                                    // Hide controls in fullscreen immediately
+                                    || (v == binding.screenRotationButton && isFullscreen())) {
+                                hideControls(0, 0);
+                            } else {
+                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                            }
+                        }
+                    });
+
+            return true;
+        };
     }
 
     public boolean onKeyDown(final int keyCode) {
@@ -1593,6 +1545,48 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
 
         setBlockSponsorsButton(binding.switchSponsorBlocking);
+    }
+
+    public void onBlockingSponsorsButtonLongClicked() {
+        if (DEBUG) {
+            Log.d(TAG, "onBlockingSponsorsButtonLongClicked() called");
+        }
+
+        final MediaItemTag metaData = player.getCurrentMetadata();
+
+        if (metaData == null) {
+            return;
+        }
+
+        final Set<String> uploaderWhitelist = new HashSet<>(player.getPrefs().getStringSet(
+                context.getString(R.string.sponsor_block_whitelist_key),
+                new HashSet<>()));
+
+        final String toastText;
+
+        final String uploaderName = metaData.getUploaderName();
+
+        if (player.getSponsorBlockMode() == SponsorBlockMode.IGNORE) {
+            uploaderWhitelist.remove(uploaderName);
+            player.setSponsorBlockMode(SponsorBlockMode.ENABLED);
+            toastText = context
+                    .getString(R.string.sponsor_block_uploader_removed_from_whitelist_toast);
+        } else {
+            uploaderWhitelist.add(uploaderName);
+            player.setSponsorBlockMode(SponsorBlockMode.IGNORE);
+            toastText = context
+                    .getString(R.string.sponsor_block_uploader_added_to_whitelist_toast);
+        }
+
+        player.getPrefs()
+                .edit()
+                .putStringSet(
+                        context.getString(R.string.sponsor_block_whitelist_key),
+                        new HashSet<>(uploaderWhitelist))
+                .apply();
+
+        setBlockSponsorsButton(binding.switchSponsorBlocking);
+        Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
     }
 
     protected void setBlockSponsorsButton(final ImageButton button) {

@@ -87,7 +87,7 @@
     <string name="error_details_headline">விவரங்கள்:</string>
     <string name="detail_likes_img_view_description">விருப்பங்கள்</string>
     <string name="search_no_results">முடிவுகள் இல்லை</string>
-    <string name="empty_subscription_feed_subtitle">எந்த முடிவுகளும் இல்லை</string>
+    <string name="empty_list_subtitle">எந்த முடிவுகளும் இல்லை</string>
     <string name="detail_drag_description">இழுத்து வரிசைமாற்று</string>
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
@@ -241,7 +241,6 @@
     <string name="watch_history_states_deleted">இயக்கக குறியிடங்கள் அழிக்கப்பட்டன</string>
     <string name="description_tab_description">விவரிப்பு</string>
     <string name="albums">தொகுப்புகள்</string>
-    <string name="help">உதவி</string>
     <string name="artists">கலைஞர்கள்</string>
     <string name="videos_string">காணொளிகள்</string>
     <string name="peertube_instance_add_https_only">HTTPS உரலிகள் மட்டுமே ஆதரிக்கப்படுகின்றன</string>
@@ -303,7 +302,6 @@
     <string name="download_already_pending">இப்பெயருடன் ஒரு பதிவிறக்கம் நிலுவையிலுள்ளது</string>
     <string name="no_available_dir">பின்னர் பதிவிறக்க அடைவை அமைவில் வரையறுக்கவும்</string>
     <string name="settings_category_downloads_title">பதிவிறக்கம்</string>
-    <string name="app_update_notification_content_text">பதிவிறக்க தட்டு</string>
     <string name="max_retry_desc">பதிவிறக்கத்தை ரத்துசெய்வதற்கு முன் செய்யவேண்டிய அதிகபட்ச முயற்சிகள்</string>
     <plurals name="download_finished_notification">
         <item quantity="one">பதிவிறக்கம் முடிந்தது</item>
@@ -317,7 +315,7 @@
     <string name="error_download_resource_gone">இப்பதிவிறக்கத்தை மீட்டெடுக்க முடியவில்லை</string>
     <string name="main_page_content_swipe_remove">உருப்படிகளை அகற்ற அவற்றைத் தேய்</string>
     <string name="create_error_notification">பிழை அறிவிப்பைப் படை</string>
-    <string name="app_update_notification_content_title">NewPipe புதுப்பிப்பு கிடைக்கிறது!</string>
+    <string name="app_update_available_notification_title">NewPipe புதுப்பிப்பு கிடைக்கிறது!</string>
     <string name="wifi_only">அருகலையில் மட்டும்</string>
     <string name="never">ஒருபோதுமில்லை</string>
     <string name="list_view_mode">பட்டியல் பார்வை முறை</string>
@@ -375,4 +373,5 @@
     <string name="streams_notification_channel_description">சந்தாவுக்கான புதிய ஸ்ட்ரீம்கள் பற்றிய அறிவிப்புகள்</string>
     <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது.
 \nவயது வரம்புக்குட்பட்ட வீடியோக்கள் கொண்ட புதிய YouTube கொள்கைகள் காரணமாக, NewPipe ஆல் அதன் எந்த வீடியோ ஸ்ட்ரீம்களையும் அணுக முடியாது, இதனால் அதை இயக்க முடியவில்லை.</string>
+    <string name="fast_mode">வேகமான பயன்முறை</string>
 </resources>

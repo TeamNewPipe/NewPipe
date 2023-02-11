@@ -1,0 +1,43 @@
+Modifiche in 0.17.1
+
+Nuovo
+• Localizzazione tailandese
+
+
+Migliorato
+• Aggiungi di nuovo l'azione inizia a giocare qui nei menu a lunga pressione per le playlist #2518
+• Aggiungi un'opzione per SAF/selettore file legacy #2521
+
+Fisso
+• Risolto il problema con i pulsanti che scomparivano nella visualizzazione dei download quando si cambia app #2487
+• La posizione di riproduzione fissa viene memorizzata anche se la cronologia di visualizzazione è disabilitata
+• Risolto il problema con le prestazioni ridotte causate dalla posizione di riproduzione nelle visualizzazioni elenco #2517
+• [Estrattore] Correzione di ReCaptchaActivity n. 2527, TeamNewPipe/NewPipeExtractor n. 186
+• [Extractor] [YouTube] Risolto l'errore di ricerca casuale quando le playlist sono nei risultati TeamNewPipe/NewPipeExtractor#185
+
+
+
+Modifiche in 0.17.0
+
+Nuovo
+Riprendi la riproduzione #2288
+• Riprendi gli stream dal punto in cui ti sei fermato l'ultima volta
+Miglioramenti del downloader #2149
+• Utilizzare Storage Access Framework per archiviare i download su schede SD esterne
+• Nuovo mixer mp4
+• Modificare facoltativamente la directory di download prima di avviare un download
+• Rispettare le reti a consumo
+
+
+Migliorato
+• Rimosse le stringhe gema #2295
+• Gestire le modifiche alla rotazione (automatica) durante il ciclo di vita dell'attività #2444
+• Rendi coerenti i menu a lunga pressione #2368
+
+Fisso
+• Risolto il problema con il nome della traccia dei sottotitoli selezionata che non veniva mostrato #2394
+• Non arrestarsi in modo anomalo quando il controllo dell'aggiornamento dell'app non riesce (versione GitHub) #2423
+• Risolti i download bloccati al 99,9% #2440
+• Aggiorna i metadati della coda di riproduzione #2453
+• [SoundCloud] Risolto crash durante il caricamento delle playlist TeamNewPipe/NewPipeExtractor#170
+• [YouTube] La durata fissa non può essere modificata TeamNewPipe/NewPipeExtractor#177

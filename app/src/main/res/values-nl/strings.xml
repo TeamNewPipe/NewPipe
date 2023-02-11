@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Geschiedenis en cache</string>
     <string name="undo">Ongedaan maken</string>
     <string name="search_no_results">Geen resultaten</string>
-    <string name="empty_subscription_feed_subtitle">Niets, maar dan ook niets te zien</string>
+    <string name="empty_list_subtitle">Niets, maar dan ook niets te zien</string>
     <string name="no_subscribers">Geen abonnees</string>
     <plurals name="subscribers">
         <item quantity="one">%s abonnee</item>
@@ -356,8 +356,7 @@
     <string name="list">Lijst</string>
     <string name="grid">Raster</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">NewPipe-update is beschikbaar!</string>
-    <string name="app_update_notification_content_text">Tik om te downloaden</string>
+    <string name="app_update_available_notification_title">NewPipe-update is beschikbaar!</string>
     <string name="missions_header_finished">Voltooid</string>
     <string name="missions_header_pending">In afwachting van</string>
     <string name="paused">gepauzeerd</string>
@@ -457,7 +456,6 @@
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
     <string name="mute">Geluid dempen</string>
     <string name="unmute">Geluid aanzetten</string>
-    <string name="help">Hulp</string>
     <plurals name="seconds">
         <item quantity="one">%d seconde</item>
         <item quantity="other">%d seconden</item>
@@ -723,4 +721,15 @@
     <string name="faq_title">Veelgestelde vragen</string>
     <string name="faq_description">Als u problemen ondervindt bij het gebruik van de app, bekijk dan deze antwoorden op veelgestelde vragen!</string>
     <string name="faq">Bekijk op de website</string>
+    <string name="sort">Sorteer</string>
+    <string name="fast_mode">Snelle modus</string>
+    <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
+    <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
+    <string name="app_update_available_notification_text">Klik om %s te downloaden</string>
+    <string name="msg_failed_to_copy">Kon niet naar klembord kopiëren</string>
+    <string name="night_theme_available">Deze instelling is alleen beschikbaar als %s als Thema ingesteld is</string>
+    <string name="card">Kaart</string>
+    <string name="unset_playlist_thumbnail">Miniatuur niet ingesteld</string>
+    <string name="duplicate_in_playlist">De afspeellijsten die grijs zijn, bevatten dit item al.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicaat is %d tijd(en) toegevoegd</string>
 </resources>

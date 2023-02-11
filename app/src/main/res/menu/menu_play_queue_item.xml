@@ -16,4 +16,7 @@
     <item
         android:id="@+id/menu_item_share"
         android:title="@string/share" />
+    <item
+        android:id="@+id/menu_item_download"
+        android:title="@string/download" />
 </menu>

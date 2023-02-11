@@ -75,7 +75,6 @@
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="read_full_license">Ver licença</string>
-    <string name="help">Ajuda</string>
     <string name="peertube_instance_add_https_only">Apenas os URL HTTPS são suportados</string>
     <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
@@ -151,7 +150,6 @@
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>
     <string name="content">Conteúdo</string>
@@ -244,7 +242,7 @@
     <string name="grid">Grelha</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
+    <string name="app_update_available_notification_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
@@ -357,7 +355,7 @@
     <string name="best_resolution">Melhor resolução</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="stop">Parar</string>
-    <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
+    <string name="empty_list_subtitle">Aqui não há nada para ver</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="limit_data_usage_none_description">Sem limite</string>
     <string name="general_error">Erro</string>
@@ -495,7 +493,7 @@
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="subscribed_button_title">Subscrito</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
-    <string name="tab_about">Acerca</string>
+    <string name="tab_about">Sobre e FAQ</string>
     <string name="subscribers_count_not_available">Contagem de subscrições indisponível</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir o conteúdo — %s</string>
     <string name="playback_reset">Repor</string>
@@ -718,9 +716,20 @@
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
-    <string name="feed_toggle_hide_played_items">Ocultar artigos vistos</string>
+    <string name="feed_toggle_hide_played_items">Ocultar itens reproduzidos</string>
     <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq_description">Se tem problemas a usar a app, veja estas respostas para perguntas frequentes!</string>
     <string name="faq">Ver no sítio web</string>
+    <string name="fast_mode">Modo rápido</string>
+    <string name="import_subscriptions_hint">Importar ou exportar subscrições do menu de 3 pontos</string>
+    <string name="app_update_unavailable_toast">Já está a executar a versão mais recente do NewPipe</string>
+    <string name="app_update_available_notification_text">Toque para descarregar %s</string>
+    <string name="sort">Ordenação</string>
+    <string name="night_theme_available">Esta opção só está disponível se %s for selecionado como tema</string>
+    <string name="unset_playlist_thumbnail">Desativar miniatura permanente</string>
+    <string name="msg_failed_to_copy">Não foi possível copiar para a área de transferência</string>
+    <string name="card">Cartão</string>
+    <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
 </resources>

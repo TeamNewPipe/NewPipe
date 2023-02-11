@@ -1,0 +1,1 @@
+Risolto il problema con l'espressione regolare del nome della funzione di decrittografia che rendeva YouTube inutilizzabile.

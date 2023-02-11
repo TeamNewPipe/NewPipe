@@ -1,0 +1,19 @@
+Nuovo
+• Cerca su YouTube Music
+• Supporto Android TV di base
+
+Migliorato
+• Aggiunta la possibilità di rimuovere tutti i video guardati da una playlist locale
+• Mostra il messaggio quando il contenuto non è ancora supportato invece di andare in crash
+• Migliorato il ridimensionamento del lettore popup con i gesti di pizzico
+• Accodare gli stream premendo a lungo sullo sfondo e sui pulsanti popup nel canale
+• Gestione delle dimensioni migliorata del titolo dell'intestazione del cassetto
+
+Fisso
+• Risolto il problema con l'impostazione del contenuto con limiti di età non funzionante
+• Risolti alcuni tipi di reCAPTCHA
+• Risolto crash durante l'apertura dei segnalibri mentre la playlist è `null`
+• Risolto il problema con il rilevamento delle eccezioni relative alla rete
+• Corretta la visibilità del pulsante di ordinamento dei gruppi nel frammento delle iscrizioni
+
+e altro ancora

@@ -95,7 +95,15 @@
         <!-- Checks for imports                              -->
         <!-- See https://checkstyle.org/config_import.html -->
         <module name="AvoidStarImport"/>
-        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+        <module name="IllegalImport"> <!-- defaults to sun.* packages -->
+            <property name="illegalClasses" value="
+                org.jetbrains.annotations.Nullable,
+                org.jetbrains.annotations.NotNull,
+                javax.annotation.Nullable,
+                javax.annotation.Nonnull,
+                io.reactivex.rxjava3.annotations.NonNull,
+                io.reactivex.rxjava3.annotations.Nullable" />
+        </module>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
 

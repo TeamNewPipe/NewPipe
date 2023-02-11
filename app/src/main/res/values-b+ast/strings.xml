@@ -73,7 +73,7 @@
     <string name="best_resolution">La meyor resolución</string>
     <string name="notification_channel_name">Avisu permanente de NewPipe</string>
     <string name="search_no_results">Nun hai resultaos</string>
-    <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
+    <string name="empty_list_subtitle">Equí nun hai más que grillos</string>
     <plurals name="subscribers">
         <item quantity="one">%s soscriptor</item>
         <item quantity="other">%s soscriptores</item>
@@ -236,8 +236,7 @@
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de busques\?</string>
-    <string name="app_update_notification_content_title">¡Hai un anovamientu pa NewPipe!</string>
-    <string name="app_update_notification_content_text">Toca pa baxalu</string>
+    <string name="app_update_available_notification_title">¡Hai un anovamientu pa NewPipe!</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
     <string name="peertube_instance_add_exists">La instancia yá esiste</string>
@@ -479,7 +478,6 @@
     <string name="network_error">Fallu de la rede</string>
     <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
     <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
-    <string name="help">Ayuda</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>

@@ -15,7 +15,7 @@
     <string name="settings">ตั้งค่า</string>
     <string name="did_you_mean">หรือคุณหมายถึง \"%1$s\"\?</string>
     <string name="share_dialog_title">แชร์ด้วย</string>
-    <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_video_player_title">ใช้เครื่องเล่นวีดิโอภายนอก</string>
     <string name="use_external_audio_player_title">ใช้แอปเล่นเสียงภายนอก</string>
     <string name="subscribe_button_title">ติดตาม</string>
     <string name="subscribed_button_title">ติดตามแล้ว</string>
@@ -167,7 +167,7 @@
     <string name="detail_likes_img_view_description">ชอบ</string>
     <string name="detail_dislikes_img_view_description">ไม่ชอบ</string>
     <string name="search_no_results">ไม่มีผลลัพธ์</string>
-    <string name="empty_subscription_feed_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
+    <string name="empty_list_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
     <string name="detail_drag_description">ลากเพื่อจัดลำดับใหม่</string>
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>
@@ -331,8 +331,7 @@
     <string name="list">รายการ</string>
     <string name="grid">ตาราง</string>
     <string name="auto">อัตโนมัติ</string>
-    <string name="app_update_notification_content_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
-    <string name="app_update_notification_content_text">แตะเพื่อดาวน์โหลด</string>
+    <string name="app_update_available_notification_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
     <string name="missions_header_finished">เสร็จแล้ว</string>
     <string name="missions_header_pending">อยู่ในคิว</string>
     <string name="paused">หยุดชั่วคราว</string>
@@ -358,7 +357,7 @@
     <string name="pause_downloads_on_mobile">หยุดชั่วคราวเมื่อเปลี่ยนเป็นข้อมูลมือถือ</string>
     <string name="pause_downloads_on_mobile_desc">การดาวน์โหลดที่ไม่สามารถหยุดพักได้จะเริ่มต้นใหม่</string>
     <string name="close">ปิด</string>
-    <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
+    <string name="use_external_video_player_summary">บางความละเอียดอาจไม่มีเสียง</string>
     <string name="metadata_cache_wipe_complete_notice">แคช metadate ถูกลบแล้ว</string>
     <string name="resume_on_audio_focus_gain_title">เล่นต่อหลังจากการขัดจังหวะ</string>
     <string name="enable_playback_resume_title">เล่นต่อ</string>
@@ -367,4 +366,16 @@
     <string name="enable_playback_state_lists_summary">แสดงตำแหน่งวีดิโอที่เล่นในรายการ</string>
     <string name="settings_category_clear_data_title">ล้างข้อมูล</string>
     <string name="search_showing_result_for">กำลังแสดงผลลัพธ์สำหรับ: %s</string>
+    <string name="open_with">เปิดด้วย</string>
+    <string name="mark_as_watched">ทำเครื่องหมายว่าดูแล้ว</string>
+    <string name="ok">ตกลง</string>
+    <string name="notification_action_3_title">ปุ่มการกระทำที่สี่</string>
+    <string name="notification_action_0_title">ปุ่มการกระทำแรก</string>
+    <string name="notification_action_2_title">ปุ่มการกระทำที่สาม</string>
+    <string name="notification_action_4_title">ปุ่มการกระทำที่ห้า</string>
+    <string name="notification_actions_summary">แก้ไขการกระทำของการแต่การแจ้งเตือนด้วยการแตะไปที่มัน เลือกสามรายการที่จะแสดงในการแจ้งเตือนในการแจ้งเตือนแบบกระทัดรัดโดยใช้ปุ่มกาเครื่องหมายทางขวา</string>
+    <string name="notification_scale_to_square_image_title">ครอบตัดตัวอย่างภาพเป็นอัตราส่วน 1:1</string>
+    <string name="notification_scale_to_square_image_summary">ครอบตัดตัวอย่างภาพที่แสดงในการแจ้งเตือนจากอัตราส่วน 16:9 เป็น 1:1</string>
+    <string name="crash_the_player">ทำเครื่องเล่นพัง</string>
+    <string name="notification_action_1_title">ปุ่มการกระทำรอง</string>
 </resources>

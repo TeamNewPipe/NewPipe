@@ -61,7 +61,7 @@
     <string name="retry">Poskusi znova</string>
     <string name="your_comment">Opomba (v angleščini):</string>
     <string name="duration_live">v živo</string>
-    <string name="main_bg_subtitle">Začnite z iskanjem</string>
+    <string name="main_bg_subtitle">Pritisnite lupo in začnite z iskanjem.</string>
     <string name="start">Začni</string>
     <string name="pause">Premor</string>
     <string name="delete">Izbriši</string>
@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Zgodovina in predpomnilnik</string>
     <string name="undo">Razveljavi</string>
     <string name="search_no_results">Ni rezultatov iskanja</string>
-    <string name="empty_subscription_feed_subtitle">Tu ni ničesar!</string>
+    <string name="empty_list_subtitle">Tu ni ničesar!</string>
     <string name="no_subscribers">Ni naročnikov</string>
     <plurals name="subscribers">
         <item quantity="one">%s naročnik</item>
@@ -227,7 +227,6 @@
     <string name="download_failed">Prenos spodletel</string>
     <string name="paused">Pavza</string>
     <string name="missions_header_finished">Končano</string>
-    <string name="app_update_notification_content_text">Tapnite da prenesete</string>
     <string name="list">Seznam</string>
     <string name="updates_setting_title">Posodobitve</string>
     <string name="accept">Sprejmi</string>
@@ -321,13 +320,13 @@
     <string name="notification_action_shuffle">Naključno</string>
     <string name="notification_action_repeat">Ponovi</string>
     <string name="notification_actions_at_most_three">Izberete lahko največ 3 dejanja, ki se bodo prikazala v kompaktnem obvestilu!</string>
-    <string name="notification_actions_summary">Uredite vsako obvestilo z klikom na obvestilo. Izberite do 3 obvestila, ki se bodo prikazala v kompaktnem obvestilu z uporabo potrditvenega polja na desni.</string>
+    <string name="notification_actions_summary">Uredite vsako dejanje obvestila z klikom na posamezno dejanje. Z uporabo potrditvenega polja na desni izberite do 3 dejanja obvestil, ki se bodo prikazala v kompaktnem obvestilu</string>
     <string name="notification_action_4_title">Gumb za peto dejanje</string>
     <string name="notification_action_3_title">Gumb za četrto dejanje</string>
     <string name="notification_action_2_title">Gumb za tretje dejanje</string>
     <string name="notification_action_1_title">Gumb za drugo dejanje</string>
     <string name="notification_action_0_title">Gumb za prvo dejanje</string>
-    <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1 (lahko pride do popačenja)</string>
+    <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1</string>
     <string name="crash_the_app">Zruši aplikacijo</string>
     <string name="caption_setting_description">Spremeni velikost besedila podnapisov in stil ozadja v predvajalniku. Zahteva ponovni zagon aplikacije, da učinkuje.</string>
     <string name="caption_setting_title">Podnapisi</string>
@@ -401,7 +400,6 @@
     <string name="player_recoverable_failure">Obnavljanje od napake predvajanika</string>
     <string name="player_unrecoverable_failure">Prišlo je do neobnovljive napake v predvajalniku</string>
     <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
-    <string name="help">Pomoč</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
     <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani.</string>
     <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>
@@ -446,7 +444,7 @@
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
     <string name="enqueue">Vrsta</string>
     <string name="queued">V vrsti</string>
-    <string name="app_update_notification_content_title">NewPipe posodobitve so na voljo!</string>
+    <string name="app_update_available_notification_title">NewPipe posodobitve so na voljo!</string>
     <string name="auto">Avtomatsko</string>
     <string name="grid">Mreža</string>
     <string name="never">Nikoli</string>
@@ -466,4 +464,8 @@
     <string name="show_memory_leaks">Prikaži puščanje pomnilnika</string>
     <string name="show_channel_details">Prikaži detajle kanala</string>
     <string name="night_theme_title">Nočna tema</string>
+    <string name="notification_scale_to_square_image_title">Povečaj sličico na razmerje 1:1</string>
+    <string name="mark_as_watched">Označi kot že ogledano</string>
+    <string name="use_inexact_seek_title">Uporabite hitro nenatančno iskanje</string>
+    <string name="crash_the_player">Sesuj predvajalnik</string>
 </resources>

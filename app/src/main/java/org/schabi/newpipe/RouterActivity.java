@@ -10,12 +10,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,7 +33,12 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.math.MathUtils;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -80,9 +87,13 @@ import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.io.Serializable;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 import icepick.Icepick;
 import icepick.State;
@@ -91,7 +102,6 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -111,11 +121,56 @@ public class RouterActivity extends AppCompatActivity {
     private boolean selectionIsDownload = false;
     private boolean selectionIsAddToPlaylist = false;
     private AlertDialog alertDialogChoice = null;
+    private FragmentManager.FragmentLifecycleCallbacks dismissListener = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        ThemeHelper.setDayNightMode(this);
+        setTheme(ThemeHelper.isLightThemeSelected(this)
+                ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
+        Localization.assureCorrectAppLanguage(this);
+
+        // Pass-through touch events to background activities
+        // so that our transparent window won't lock UI in the mean time
+        // network request is underway before showing PlaylistDialog or DownloadDialog
+        // (ref: https://stackoverflow.com/a/10606141)
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        // Android never fails to impress us with a list of new restrictions per API.
+        // Starting with S (Android 12) one of the prerequisite conditions has to be met
+        // before the FLAG_NOT_TOUCHABLE flag is allowed to kick in:
+        // @see WindowManager.LayoutParams#FLAG_NOT_TOUCHABLE
+        // For our present purpose it seems we can just set LayoutParams.alpha to 0
+        // on the strength of "4. Fully transparent windows" without affecting the scrim of dialogs
+        final WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.alpha = 0f;
+        getWindow().setAttributes(params);
+
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
+
+        // FragmentManager will take care to recreate (Playlist|Download)Dialog when screen rotates
+        // We used to .setOnDismissListener(dialog -> finish()); when creating these DialogFragments
+        // but those callbacks won't survive a config change
+        // Try an alternate approach to hook into FragmentManager instead, to that effect
+        // (ref: https://stackoverflow.com/a/44028453)
+        final FragmentManager fm = getSupportFragmentManager();
+        if (dismissListener == null) {
+            dismissListener = new FragmentManager.FragmentLifecycleCallbacks() {
+                @Override
+                public void onFragmentDestroyed(@NonNull final FragmentManager fm,
+                                                @NonNull final Fragment f) {
+                    super.onFragmentDestroyed(fm, f);
+                    if (f instanceof DialogFragment && fm.getFragments().isEmpty()) {
+                        // No more DialogFragments, we're done
+                        finish();
+                    }
+                }
+            };
+        }
+        fm.registerFragmentLifecycleCallbacks(dismissListener, false);
 
         if (TextUtils.isEmpty(currentUrl)) {
             currentUrl = getUrl(getIntent());
@@ -125,11 +180,6 @@ public class RouterActivity extends AppCompatActivity {
                 finish();
             }
         }
-
-        ThemeHelper.setDayNightMode(this);
-        setTheme(ThemeHelper.isLightThemeSelected(this)
-                ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
-        Localization.assureCorrectAppLanguage(this);
     }
 
     @Override
@@ -151,14 +201,32 @@ public class RouterActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        handleUrl(currentUrl);
+        // Don't overlap the DialogFragment after rotating the screen
+        // If there's no DialogFragment, we're either starting afresh
+        // or we didn't make it to PlaylistDialog or DownloadDialog before the orientation change
+        if (getSupportFragmentManager().getFragments().isEmpty()) {
+            // Start over from scratch
+            handleUrl(currentUrl);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        if (dismissListener != null) {
+            getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(dismissListener);
+        }
+
         disposables.clear();
+    }
+
+    @Override
+    public void finish() {
+        // allow the activity to recreate in case orientation changes
+        if (!isChangingConfigurations()) {
+            super.finish();
+        }
     }
 
     private void handleUrl(final String url) {
@@ -240,7 +308,7 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    private void showUnsupportedUrlDialog(final String url) {
+    protected void showUnsupportedUrlDialog(final String url) {
         final Context context = getThemeWrapperContext();
         new AlertDialog.Builder(context)
                 .setTitle(R.string.unsupported_url)
@@ -527,7 +595,7 @@ public class RouterActivity extends AppCompatActivity {
         return returnedItems;
     }
 
-    private Context getThemeWrapperContext() {
+    protected Context getThemeWrapperContext() {
         return new ContextThemeWrapper(this, ThemeHelper.isLightThemeSelected(this)
                 ? R.style.LightTheme : R.style.DarkTheme);
     }
@@ -563,8 +631,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedChoiceKey.equals(getString(R.string.popup_player_key))
-                && !PermissionHelper.isPopupEnabled(this)) {
-            PermissionHelper.showPopupEnablementToast(this);
+                && !PermissionHelper.isPopupEnabledElseAsk(this)) {
             finish();
             return;
         }
@@ -634,54 +701,179 @@ public class RouterActivity extends AppCompatActivity {
         return playerType == null || playerType == PlayerType.MAIN;
     }
 
-    private void openAddToPlaylistDialog() {
-        // Getting the stream info usually takes a moment
-        // Notifying the user here to ensure that no confusion arises
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.processing_may_take_a_moment),
-                Toast.LENGTH_SHORT)
-                .show();
+    public static class PersistentFragment extends Fragment {
+        private WeakReference<AppCompatActivity> weakContext;
+        private final CompositeDisposable disposables = new CompositeDisposable();
+        private int running = 0;
 
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        info -> PlaylistDialog.createCorrespondingDialog(
-                                getThemeWrapperContext(),
-                                List.of(new StreamEntity(info)),
-                                playlistDialog -> {
-                                    playlistDialog.setOnDismissListener(dialog -> finish());
+        private synchronized void inFlight(final boolean started) {
+            if (started) {
+                running++;
+            } else {
+                running--;
+                if (running <= 0) {
+                    getActivityContext().ifPresent(context -> context.getSupportFragmentManager()
+                            .beginTransaction().remove(this).commit());
+                }
+            }
+        }
 
-                                    playlistDialog.show(
-                                            this.getSupportFragmentManager(),
-                                            "addToPlaylistDialog"
-                                    );
-                                }
-                        ),
-                        throwable -> handleError(this, new ErrorInfo(
-                                throwable,
-                                UserAction.REQUESTED_STREAM,
-                                "Tried to add " + currentUrl + " to a playlist",
-                                currentService.getServiceId())
-                        )
-                )
-        );
+        @Override
+        public void onAttach(@NonNull final Context activityContext) {
+            super.onAttach(activityContext);
+            weakContext = new WeakReference<>((AppCompatActivity) activityContext);
+        }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            weakContext = null;
+        }
+
+        @SuppressWarnings("deprecation")
+        @Override
+        public void onCreate(final Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setRetainInstance(true);
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            disposables.clear();
+        }
+
+        /**
+         * @return the activity context, if there is one and the activity is not finishing
+         */
+        private Optional<AppCompatActivity> getActivityContext() {
+            return Optional.ofNullable(weakContext)
+                    .map(Reference::get)
+                    .filter(context -> !context.isFinishing());
+        }
+
+        // guard against IllegalStateException in calling DialogFragment.show() whilst in background
+        // (which could happen, say, when the user pressed the home button while waiting for
+        // the network request to return) when it internally calls FragmentTransaction.commit()
+        // after the FragmentManager has saved its states (isStateSaved() == true)
+        // (ref: https://stackoverflow.com/a/39813506)
+        private void runOnVisible(final Consumer<AppCompatActivity> runnable) {
+            getActivityContext().ifPresentOrElse(context -> {
+                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    context.runOnUiThread(() -> {
+                        runnable.accept(context);
+                        inFlight(false);
+                    });
+                } else {
+                    getLifecycle().addObserver(new DefaultLifecycleObserver() {
+                        @Override
+                        public void onResume(@NonNull final LifecycleOwner owner) {
+                            getLifecycle().removeObserver(this);
+                            getActivityContext().ifPresentOrElse(context ->
+                                    context.runOnUiThread(() -> {
+                                        runnable.accept(context);
+                                        inFlight(false);
+                                    }),
+                                    () -> inFlight(false)
+                            );
+                        }
+                    });
+                    // this trick doesn't seem to work on Android 10+ (API 29)
+                    // which places restrictions on starting activities from the background
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+                            && !context.isChangingConfigurations()) {
+                        // try to bring the activity back to front if minimised
+                        final Intent i = new Intent(context, RouterActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(i);
+                    }
+                }
+
+            }, () -> {
+                // this branch is executed if there is no activity context
+                inFlight(false);
+            });
+        }
+
+        <T> Single<T> pleaseWait(final Single<T> single) {
+            // 'abuse' ambWith() here to cancel the toast for us when the wait is over
+            return single.ambWith(Single.create(emitter -> getActivityContext().ifPresent(context ->
+                    context.runOnUiThread(() -> {
+                        // Getting the stream info usually takes a moment
+                        // Notifying the user here to ensure that no confusion arises
+                        final Toast toast = Toast.makeText(context,
+                                getString(R.string.processing_may_take_a_moment),
+                                Toast.LENGTH_LONG);
+                        toast.show();
+                        emitter.setCancellable(toast::cancel);
+            }))));
+        }
+
+        @SuppressLint("CheckResult")
+        private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
+            inFlight(true);
+            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .compose(this::pleaseWait)
+                    .subscribe(result ->
+                        runOnVisible(ctx -> {
+                            final FragmentManager fm = ctx.getSupportFragmentManager();
+                            final DownloadDialog downloadDialog = new DownloadDialog(ctx, result);
+                            // dismiss listener to be handled by FragmentManager
+                            downloadDialog.show(fm, "downloadDialog");
+                        }
+                    ), throwable -> runOnVisible(ctx ->
+                            ((RouterActivity) ctx).showUnsupportedUrlDialog(currentUrl))));
+        }
+
+        private void openAddToPlaylistDialog(final int currentServiceId, final String currentUrl) {
+            inFlight(true);
+            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .compose(this::pleaseWait)
+                    .subscribe(
+                            info -> getActivityContext().ifPresent(context ->
+                                    PlaylistDialog.createCorrespondingDialog(context,
+                                            List.of(new StreamEntity(info)),
+                                            playlistDialog -> runOnVisible(ctx -> {
+                                                // dismiss listener to be handled by FragmentManager
+                                                final FragmentManager fm =
+                                                        ctx.getSupportFragmentManager();
+                                                playlistDialog.show(fm, "addToPlaylistDialog");
+                                            })
+                                    )),
+                            throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
+                                    throwable,
+                                    UserAction.REQUESTED_STREAM,
+                                    "Tried to add " + currentUrl + " to a playlist",
+                                    ((RouterActivity) ctx).currentService.getServiceId())
+                            ))
+                    )
+            );
+        }
     }
 
-    @SuppressLint("CheckResult")
-    private void openDownloadDialog() {
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    final DownloadDialog downloadDialog = new DownloadDialog(this, result);
-                    downloadDialog.setOnDismissListener(dialog -> finish());
+    private void openAddToPlaylistDialog() {
+        getPersistFragment().openAddToPlaylistDialog(currentServiceId, currentUrl);
+    }
 
-                    final FragmentManager fm = getSupportFragmentManager();
-                    downloadDialog.show(fm, "downloadDialog");
-                    fm.executePendingTransactions();
-                }, throwable -> showUnsupportedUrlDialog(currentUrl)));
+    private void openDownloadDialog() {
+        getPersistFragment().openDownloadDialog(currentServiceId, currentUrl);
+    }
+
+    private PersistentFragment getPersistFragment() {
+        final FragmentManager fm = getSupportFragmentManager();
+        PersistentFragment persistFragment =
+                (PersistentFragment) fm.findFragmentByTag("PERSIST_FRAGMENT");
+        if (persistFragment == null) {
+            persistFragment = new PersistentFragment();
+            fm.beginTransaction()
+                    .add(persistFragment, "PERSIST_FRAGMENT")
+                    .commitNow();
+        }
+        return persistFragment;
     }
 
     @Override

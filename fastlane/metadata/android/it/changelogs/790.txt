@@ -1,0 +1,14 @@
+Migliorato
+• Aggiungi più titoli per migliorare l'accessibilità per i non vedenti #2655
+• Rendi la lingua dell'impostazione della cartella di download più coerente e meno ambigua #2637
+
+Fisso
+• Verificare se l'ultimo byte nel blocco è stato scaricato #2646
+• Corretto lo scorrimento nel frammento di dettaglio video #2672
+• Rimuovere le animazioni della casella di cancellazione della doppia ricerca in un #2695
+• [SoundCloud] Correzione dell'estrazione client_id #2745
+
+Sviluppo
+• Aggiungere le dipendenze mancanti ereditate da NewPipeExtractor in NewPipe #2535
+• Migra ad AndroidX #2685
+• Aggiorna a ExoPlayer 2.10.6 #2697, #2736

@@ -19,7 +19,6 @@
 
 package org.schabi.newpipe.local.feed.service
 
-import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -43,6 +42,7 @@ import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
+import org.schabi.newpipe.util.PendingIntentCompat
 import java.util.concurrent.TimeUnit
 
 class FeedLoadService : Service() {
@@ -152,12 +152,8 @@ class FeedLoadService : Service() {
     private lateinit var notificationBuilder: NotificationCompat.Builder
 
     private fun createNotification(): NotificationCompat.Builder {
-        val cancelActionIntent = PendingIntent.getBroadcast(
-            this,
-            NOTIFICATION_ID,
-            Intent(ACTION_CANCEL),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
-        )
+        val cancelActionIntent =
+            PendingIntentCompat.getBroadcast(this, NOTIFICATION_ID, Intent(ACTION_CANCEL), 0)
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
             .setOngoing(true)

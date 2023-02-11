@@ -1,0 +1,13 @@
+Nuovo
+• Aggiunta l'opzione "Aggiungi alla playlist" per condividere il menu
+• Aggiunto supporto per collegamenti brevi y2u.be e PeerTube
+
+Migliorato
+• Resi più compatti i controlli della velocità di riproduzione
+• Feed mette in evidenza nuovi elementi ora
+• L'opzione "Mostra elementi osservati" nel feed è ora salvata
+
+Fisso
+• Risolto il problema con l'estrazione di Mi piace e Non mi piace di YouTube
+• Risolto il problema con la riproduzione automatica dopo il ritorno dallo sfondo
+E altro ancora
