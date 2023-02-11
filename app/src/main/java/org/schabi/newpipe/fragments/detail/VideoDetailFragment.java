@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -1965,6 +1966,12 @@ public final class VideoDetailFragment
         final var windowInsetsController = WindowCompat.getInsetsController(window,
                 window.getDecorView());
 
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+        }
+
         WindowCompat.setDecorFitsSystemWindows(window, true);
         windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
                 .BEHAVIOR_SHOW_BARS_BY_TOUCH);
@@ -1986,6 +1993,12 @@ public final class VideoDetailFragment
         final var window = activity.getWindow();
         final var windowInsetsController = WindowCompat.getInsetsController(window,
                 window.getDecorView());
+
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
 
         WindowCompat.setDecorFitsSystemWindows(window, false);
         windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
