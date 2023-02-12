@@ -1547,11 +1547,18 @@ public final class VideoDetailFragment
                 new Thread(() -> {
                     info.setDislikeCount(ReturnYouTubeDislikeUtils.getDislikes(getContext(), info));
                     if (info.getDislikeCount() >= 0) {
+                        if (activity == null) {
+                            return;
+                        }
                         activity.runOnUiThread(() -> {
-                            binding.detailThumbsDownCountView.setText(Localization
-                                    .shortCount(activity, info.getDislikeCount()));
-                            binding.detailThumbsDownCountView.setVisibility(View.VISIBLE);
-                            binding.detailThumbsDownImgView.setVisibility(View.VISIBLE);
+                            if (binding != null && binding.detailThumbsDownCountView != null) {
+                                binding.detailThumbsDownCountView.setText(Localization
+                                        .shortCount(activity, info.getDislikeCount()));
+                                binding.detailThumbsDownCountView.setVisibility(View.VISIBLE);
+                            }
+                            if (binding != null && binding.detailThumbsDownImgView != null) {
+                                binding.detailThumbsDownImgView.setVisibility(View.VISIBLE);
+                            }
                         });
                     }
                 }).start();
