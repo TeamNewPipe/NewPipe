@@ -40,6 +40,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -217,6 +218,11 @@ public final class VideoDetailFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Nullable
+    private Window window;
+    @Nullable
+    private WindowInsetsControllerCompat windowInsetsController;
 
     private FragmentVideoDetailBinding binding;
 
@@ -439,6 +445,23 @@ public final class VideoDetailFragment
                 Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
                 break;
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        window = activity.getWindow();
+        windowInsetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+        setupWindowFlags(isFullscreen());
+    }
+
+    @Override
+    public void onDetach() {
+        setupWindowFlags(false); // make sure system UI is shown
+        showSystemUi();
+        windowInsetsController = null;
+        window = null;
+        super.onDetach();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1894,6 +1917,7 @@ public final class VideoDetailFragment
             return;
         }
 
+        setupWindowFlags(fullscreen);
         if (fullscreen) {
             hideSystemUiIfNeeded();
             binding.overlayPlayPauseButton.requestFocus();
@@ -1958,65 +1982,60 @@ public final class VideoDetailFragment
             Log.d(TAG, "showSystemUi() called");
         }
 
-        if (activity == null) {
+        if (windowInsetsController == null || window == null) {
             return;
         }
 
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        // Prevent jumping of the player on devices with cutout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-        }
-
-        WindowCompat.setDecorFitsSystemWindows(window, true);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_BARS_BY_TOUCH);
         windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
-
         window.setStatusBarColor(ThemeHelper.resolveColorFromAttr(requireContext(),
                 android.R.attr.colorPrimary));
-    }
-
-    private void hideSystemUi() {
-        if (DEBUG) {
-            Log.d(TAG, "hideSystemUi() called");
-        }
-
-        if (activity == null) {
-            return;
-        }
-
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        // Prevent jumping of the player on devices with cutout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
-
-        WindowCompat.setDecorFitsSystemWindows(window, false);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
-
-        if (DeviceUtils.isInMultiWindow(activity) || isFullscreen()) {
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-        }
     }
 
     // Listener implementation
     @Override
     public void hideSystemUiIfNeeded() {
-        if (isFullscreen()
-                && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            hideSystemUi();
+        if (DEBUG) {
+            Log.d(TAG, "hideSystemUiIfNeeded() called");
+        }
+
+        if (window == null || windowInsetsController == null || !isFullscreen()
+                || bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            return; // do not hide if we are not in fullscreen
+        }
+
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
+        window.setStatusBarColor(Color.TRANSPARENT);
+        window.setNavigationBarColor(Color.TRANSPARENT);
+    }
+
+    private void setupWindowFlags(final boolean fullscreen) {
+        if (window == null || windowInsetsController == null) {
+            return;
+        }
+
+        if (fullscreen) {
+            // Prevent jumping of the player on devices with cutout
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                window.getAttributes().layoutInDisplayCutoutMode =
+                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            }
+
+            WindowCompat.setDecorFitsSystemWindows(window, false);
+            windowInsetsController.setSystemBarsBehavior(
+                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+
+        } else {
+            // Prevent jumping of the player on devices with cutout
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+            }
+
+            WindowCompat.setDecorFitsSystemWindows(window, true);
+            // TODO use BEHAVIOR_DEFAULT when it will be added to a stable release of
+            // WindowInsetsControllerCompat (Androidx core release 1.10.0 is still in alpha).
+            windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
+                    .BEHAVIOR_SHOW_BARS_BY_SWIPE);
         }
     }
 
