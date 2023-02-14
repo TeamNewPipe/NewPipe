@@ -2013,30 +2013,20 @@ public final class VideoDetailFragment
             return;
         }
 
-        if (fullscreen) {
-            // Prevent jumping of the player on devices with cutout
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                window.getAttributes().layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            }
-
-            WindowCompat.setDecorFitsSystemWindows(window, false);
-            windowInsetsController.setSystemBarsBehavior(
-                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-
-        } else {
-            // Prevent jumping of the player on devices with cutout
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-            }
-
-            WindowCompat.setDecorFitsSystemWindows(window, true);
-            // TODO use BEHAVIOR_DEFAULT when it will be added to a stable release of
-            // WindowInsetsControllerCompat (Androidx core release 1.10.0 is still in alpha).
-            windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                    .BEHAVIOR_SHOW_BARS_BY_SWIPE);
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.getAttributes().layoutInDisplayCutoutMode = fullscreen
+                    ? WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+                    : WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
         }
+        WindowCompat.setDecorFitsSystemWindows(window, !fullscreen);
+
+        // TODO use BEHAVIOR_DEFAULT instead of BEHAVIOR_SHOW_BARS_BY_SWIPE when it will be added to
+        // a stable release of WindowInsetsControllerCompat (Androidx core release 1.10.0 is still
+        // in alpha).
+        windowInsetsController.setSystemBarsBehavior(fullscreen
+                ? WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                : WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE);
     }
 
     private boolean isFullscreen() {
