@@ -3,6 +3,8 @@ package us.shandian.giga.ui.adapter;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.openAppChooser;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.openIntentInApp;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
@@ -333,15 +335,18 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
-    private void viewWithFileProvider(Mission mission) {
-        if (checkInvalidFile(mission)) return;
+    private void viewWithFileProvider(final Mission mission) {
+        if (checkInvalidFile(mission)) {
+            return;
+        }
 
-        String mimeType = resolveMimeType(mission);
+        final String mimeType = resolveMimeType(mission);
 
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG) {
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
+        }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(resolveShareableUri(mission), mimeType);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
         intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
@@ -350,32 +355,20 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         }
 
-        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(mContext, intent, false);
-        } else {
-            Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
-        }
+        openIntentInApp(mContext, intent, true);
     }
 
-    private void shareFile(Mission mission) {
-        if (checkInvalidFile(mission)) return;
-
-        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType(resolveMimeType(mission));
-        shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
-        shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
-        // unneeded to set a title to the chooser on Android P and higher because the system
-        // ignores this title on these versions
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-            intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
+    private void shareFile(final Mission mission) {
+        if (checkInvalidFile(mission)) {
+            return;
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(resolveMimeType(mission));
+        intent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
-        mContext.startActivity(intent);
+        openAppChooser(mContext, intent, mContext.getString(R.string.share_dialog_title));
     }
 
     /**

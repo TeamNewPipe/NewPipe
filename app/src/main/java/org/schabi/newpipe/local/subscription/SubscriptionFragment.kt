@@ -340,7 +340,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     requireContext(), selectedItem.name, selectedItem.url,
                     selectedItem.thumbnailUrl
                 )
-                1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
+                1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url, true)
                 2 -> deleteChannel(selectedItem)
             }
         }

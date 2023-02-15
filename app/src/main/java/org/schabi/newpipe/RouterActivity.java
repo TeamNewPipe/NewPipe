@@ -315,7 +315,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setMessage(R.string.unsupported_url_dialog_message)
                 .setIcon(R.drawable.ic_share)
                 .setPositiveButton(R.string.open_in_browser,
-                        (dialog, which) -> ShareUtils.openUrlInBrowser(this, url))
+                        (dialog, which) -> ShareUtils.openUrlInBrowser(this, url, true))
                 .setNegativeButton(R.string.share,
                         (dialog, which) -> ShareUtils.shareText(this, "", url)) // no subject
                 .setNeutralButton(R.string.cancel, null)

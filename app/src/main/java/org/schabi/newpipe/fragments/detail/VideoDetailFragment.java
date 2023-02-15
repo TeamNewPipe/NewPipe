@@ -484,7 +484,7 @@ public final class VideoDetailFragment
                 ShareUtils.shareText(requireContext(), info.getName(), info.getUrl(),
                         info.getThumbnailUrl())));
         binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
-                ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
+                ShareUtils.openUrlInBrowser(requireContext(), info.getUrl(), true)));
         binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info -> {
             try {
                 playWithKore(requireContext(), Uri.parse(info.getUrl()));
@@ -2143,7 +2143,7 @@ public final class VideoDetailFragment
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(R.string.select_quality_external_players);
         builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
-                ShareUtils.openUrlInBrowser(requireActivity(), url));
+                ShareUtils.openUrlInBrowser(requireActivity(), url, true));
 
         final List<VideoStream> videoStreamsForExternalPlayers =
                 ListHelper.getSortedStreamVideosList(

@@ -161,7 +161,9 @@ public class ErrorActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setNeutralButton(R.string.read_privacy_policy, (dialog, which) ->
                         ShareUtils.openUrlInBrowser(context,
-                                context.getString(R.string.privacy_policy_url)))
+                                context.getString(R.string.privacy_policy_url),
+                                false
+                        ))
                 .setPositiveButton(R.string.accept, (dialog, which) -> {
                     if (action.equals("EMAIL")) { // send on email
                         final Intent i = new Intent(Intent.ACTION_SENDTO)

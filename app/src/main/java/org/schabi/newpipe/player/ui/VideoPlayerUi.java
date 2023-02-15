@@ -1432,8 +1432,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     private void onOpenInBrowserClicked() {
-        player.getCurrentStreamInfo().ifPresent(streamInfo ->
-                ShareUtils.openUrlInBrowser(player.getContext(), streamInfo.getOriginalUrl()));
+        player.getCurrentStreamInfo().ifPresent(streamInfo -> ShareUtils.openUrlInBrowser(
+                player.getContext(), streamInfo.getOriginalUrl(), true));
     }
     //endregion
 

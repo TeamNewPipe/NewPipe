@@ -210,7 +210,8 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(
+                            requireContext(), currentInfo.getOriginalUrl(), true);
                 }
                 break;
             case R.id.menu_item_share:

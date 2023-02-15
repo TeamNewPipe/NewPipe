@@ -129,7 +129,7 @@ public enum StreamDialogDefaultEntry {
     ),
 
     OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
-            ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
+            ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl(), true)),
 
 
     MARK_AS_WATCHED(R.string.mark_as_watched, (fragment, item) ->
