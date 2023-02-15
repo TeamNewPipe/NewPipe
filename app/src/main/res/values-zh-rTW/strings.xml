@@ -293,7 +293,6 @@
     <string name="no_streams_available_download">沒有可供下載的串流</string>
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效</string>
-    <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
     <string name="clear_views_history_title">清除觀看歷史</string>
     <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
     <string name="delete_view_history_alert">刪除所有觀看歷史記錄？</string>

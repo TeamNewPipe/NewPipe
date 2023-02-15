@@ -323,9 +323,7 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(@NonNull final Context context,
                                                      @NonNull final Intent intent) {
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(context, intent, false);
-        } else {
+        if (!ShareUtils.openIntentInApp(context, intent, false)) {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)

@@ -210,7 +210,6 @@
     <string name="settings_file_replacement_character_summary">Οι μη έγκυροι χαρακτήρες αντικαθίστανται με αυτήν την τιμή</string>
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
-    <string name="toast_no_player">Δεν υπάρχει εγκατεστημένη εφαρμογή για την αναπαραγωγή αυτού του αρχείου</string>
     <string name="title_activity_about">Σχετικά με το NewPipe</string>
     <string name="title_licenses">Άδειες Τρίτων</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>

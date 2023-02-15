@@ -22,6 +22,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -350,11 +351,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         }
 
-        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(mContext, intent, false);
-        } else {
-            Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
-        }
+        ShareUtils.openIntentInApp(mContext, intent, true);
     }
 
     private void shareFile(Mission mission) {

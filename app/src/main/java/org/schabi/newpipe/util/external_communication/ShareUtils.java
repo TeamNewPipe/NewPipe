@@ -126,7 +126,7 @@ public final class ShareUtils {
     /**
      * Open an intent with the system default app.
      * <p>
-     * The intent can be of every type, excepted a web intent for which
+     * The intent can be of every type, except for a web intent for which
      * {@link #openUrlInBrowser(Context, String, boolean)} should be used.
      * <p>
      * If no app can open the intent, a toast with the message {@code No app on your device can
@@ -141,19 +141,14 @@ public final class ShareUtils {
     public static boolean openIntentInApp(@NonNull final Context context,
                                           @NonNull final Intent intent,
                                           final boolean showToast) {
-        final String defaultPackageName = getDefaultAppPackageName(context, intent);
-
-        if (defaultPackageName.isEmpty()) {
-            // No app installed to open the intent
+        try {
+            context.startActivity(intent);
+        } catch (final ActivityNotFoundException e) {
             if (showToast) {
-                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG)
-                        .show();
+                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
             }
             return false;
-        } else {
-            context.startActivity(intent);
         }
-
         return true;
     }
 
@@ -213,6 +208,7 @@ public final class ShareUtils {
      * OEMs changed the app chooser).
      * <p>
      * If no app is installed on user's device to handle the intent, it will return an empty string.
+     * This will always return an empty string on Android 12+.
      *
      * @param context the context to use
      * @param intent  the intent to get default app

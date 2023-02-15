@@ -512,7 +512,6 @@
     <string name="privacy_policy_encouragement">NewPipe į jūsų privatumą žiūri labai rimtai. Programa be jūsų sutikimo nerenka jokių duomenų.
 \nNewPipe privatumo politika išsamiai parodo kokie duomenys siunčiami ir saugomi pranešant apie problemą.</string>
     <string name="privacy_policy_title">NewPipe privatumo politika</string>
-    <string name="toast_no_player">Šio failo atkūrimui nėra įdiegtos programos</string>
     <string name="recaptcha_done_button">Atlikta</string>
     <string name="recaptcha_solve">Išspręsta</string>
     <string name="subtitle_activity_recaptcha">Paspauskite \"atlikta\" kai išspręsta</string>
