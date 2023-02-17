@@ -18,6 +18,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.views.MarkableSeekBar;
@@ -53,7 +54,7 @@ public final class SponsorBlockUtils {
         final String apiUrl = prefs.getString(context
                 .getString(R.string.sponsor_block_api_url_key), null);
 
-        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")
+        if (streamInfo.getServiceId() != ServiceList.YouTube.getServiceId()
                 || apiUrl == null
                 || apiUrl.isEmpty()) {
             return null;

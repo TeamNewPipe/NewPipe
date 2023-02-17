@@ -12,6 +12,7 @@ import com.grack.nanojson.JsonParser;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 public final class ReturnYouTubeDislikeUtils {
@@ -35,7 +36,7 @@ public final class ReturnYouTubeDislikeUtils {
             return -1;
         }
 
-        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")) {
+        if (streamInfo.getServiceId() != ServiceList.YouTube.getServiceId()) {
             return -1;
         }
 
