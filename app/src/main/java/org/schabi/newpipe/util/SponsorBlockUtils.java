@@ -28,11 +28,14 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class SponsorBlockUtils {
     private static final Application APP = App.getApp();
     private static final String TAG = SponsorBlockUtils.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
+    private static Map<String, VideoSegment[]> videoSegmentsCache = new HashMap<>();
 
     private SponsorBlockUtils() {
     }
@@ -120,6 +123,11 @@ public final class SponsorBlockUtils {
         final String params = "skipSegments/" + videoIdHash.substring(0, 4)
                 + "?categories=" + categoryParams;
 
+        final VideoSegment[] alreadyFetchedVideoSegments = videoSegmentsCache.get(params);
+        if (alreadyFetchedVideoSegments != null) {
+            return alreadyFetchedVideoSegments;
+        }
+
         if (!isConnected()) {
             return null;
         }
@@ -177,8 +185,9 @@ public final class SponsorBlockUtils {
                 result.add(segment);
             }
         }
-
-        return result.toArray(new VideoSegment[0]);
+        final VideoSegment[] segments = result.toArray(new VideoSegment[0]);
+        videoSegmentsCache.put(params, segments);
+        return segments;
     }
 
     private static boolean isConnected() {
