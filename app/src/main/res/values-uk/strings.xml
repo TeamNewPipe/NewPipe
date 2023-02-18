@@ -307,7 +307,6 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
     <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку</string>
-    <string name="toast_no_player">Не встановлено застосунків для відтворення цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень і позицій відтворення</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>

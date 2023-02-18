@@ -633,7 +633,6 @@
     <string name="settings_file_charset_title">დაშვებული სიმბოლოები ფაილის სახელებში</string>
     <string name="settings_file_replacement_character_summary">არასწორი სიმბოლოები ჩანაცვლებულია ამ მნიშვნელობით</string>
     <string name="tab_about">შესახებ &amp; ხშირად დასმული კითხვები</string>
-    <string name="toast_no_player">ამ ფაილის დასაკრავად აპი არ არის დაინსტალირებული</string>
     <string name="title_licenses">მესამე მხარის ლიცენზიები</string>
     <string name="copyright">© %1$s მიერ %2$s %3$s-ის ქვეშ</string>
     <string name="donation_encouragement">NewPipe შემუშავებულია მოხალისეების მიერ, რომლებიც ატარებენ თავისუფალ დროს და მოგაქვთ საუკეთესო მომხმარებლის გამოცდილება. დაეხმარეთ დეველოპერებს, გააუმჯობესონ NewPipe, სანამ ფინჯანი ყავით ტკბებიან.</string>

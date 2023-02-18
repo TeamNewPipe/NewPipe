@@ -213,7 +213,6 @@
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
     <string name="charset_letters_and_digits">Bogstaver og cifre</string>
     <string name="charset_most_special_characters">De fleste specialtegn</string>
-    <string name="toast_no_player">Der ingen app installeret der kan afspille denne fil</string>
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s af %2$s under %3$s</string>

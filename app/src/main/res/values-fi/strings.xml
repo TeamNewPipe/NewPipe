@@ -240,7 +240,6 @@
     <string name="dismiss">Hylkää</string>
     <string name="rename">Nimeä uudelleen</string>
     <string name="one_item_deleted">1 poistettu.</string>
-    <string name="toast_no_player">Ohjelmaa tämän toistamiseen ei ole asennettu</string>
     <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
     <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.
 \nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>

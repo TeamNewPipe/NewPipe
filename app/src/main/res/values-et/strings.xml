@@ -200,7 +200,6 @@
     <string name="settings_file_replacement_character_title">Asendustähemärk</string>
     <string name="charset_letters_and_digits">Tähed ja numbrid</string>
     <string name="charset_most_special_characters">Erimärgid</string>
-    <string name="toast_no_player">Selle faili esitamiseks puudub rakendus</string>
     <string name="title_activity_about">NewPipe rakendusest</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
     <string name="tab_about">Rakenduse teave ja KKK</string>

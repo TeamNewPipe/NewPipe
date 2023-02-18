@@ -106,7 +106,6 @@
     <string name="create">新建</string>
     <string name="dismiss">退出</string>
     <string name="rename">重命名</string>
-    <string name="toast_no_player">未安装可播放此文件的应用程序</string>
     <string name="one_item_deleted">已删除一个项目。</string>
     <string name="main_page_content_summary">自定义主页显示的标签页</string>
     <string name="list_view_mode">列表视图模式</string>
