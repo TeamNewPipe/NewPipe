@@ -47,6 +47,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
         </activity>
 
         <receiver
@@ -70,17 +74,29 @@
             android:name=".player.PlayQueueActivity"
             android:exported="false"
             android:label="@string/title_activity_play_queue"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
-            android:label="@string/settings" />
+            android:label="@string/settings">
+                <meta-data
+                 android:name="distractionOptimized"
+                     android:value="true" />
+        </activity>
 
         <activity
             android:name=".about.AboutActivity"
             android:exported="false"
-            android:label="@string/title_activity_about" />
+            android:label="@string/title_activity_about" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <service android:name=".local.subscription.services.SubscriptionsImportService" />
         <service android:name=".local.subscription.services.SubscriptionsExportService" />
@@ -97,24 +113,39 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
         </activity>
 
         <activity
             android:name=".ExitActivity"
             android:exported="false"
             android:label="@string/general_error"
-            android:theme="@android:style/Theme.NoDisplay" />
+            android:theme="@android:style/Theme.NoDisplay" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <activity
             android:name=".error.ErrorActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
             android:exported="false"
             android:label="@string/app_name"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <service android:name="us.shandian.giga.service.DownloadManagerService" />
 
@@ -127,12 +158,20 @@
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
         </activity>
 
         <activity
             android:name=".error.ReCaptchaActivity"
             android:exported="false"
-            android:label="@string/recaptcha" />
+            android:label="@string/recaptcha" >
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -151,6 +190,10 @@
             android:label="@string/preferred_open_action_share_menu_title"
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
+
+            <meta-data
+                android:name="distractionOptimized"
+                android:value="true" />
 
             <!-- Youtube filter -->
             <intent-filter>
