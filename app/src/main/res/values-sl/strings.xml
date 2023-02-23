@@ -362,7 +362,6 @@
 \nPolitika zasebnosti NewPipe-a podrobno pojasnjuje, kateri podatki so poslani in shranjeni, ko pošljete poročilo o zrušitvi.</string>
     <string name="give_back">Pomagaj</string>
     <string name="donation_encouragement">NewPipe razvijajo prostovoljci, ki preživljajo svoj prosti čas, da vam prinašajo najboljšo uporabniško izkušnjo. Pomagajte razvijalcem pri izdelavi še boljšega NewPipe-a medtem ko uživajo skodelico kave.</string>
-    <string name="toast_no_player">Za predvajanje te datoteke ni nameščena nobena aplikacija</string>
     <string name="subtitle_activity_recaptcha">Pritisni \"končano\" ko je rešena</string>
     <string name="one_item_deleted">Odstranjen 1 element.</string>
     <string name="msg_calculating_hash">Izračun zgoščevalne funkcije je v teku</string>

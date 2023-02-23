@@ -319,7 +319,6 @@
     <string name="preferred_open_action_settings_summary">کرداری بنەڕەتی لەکاتی کردنەوەی بابەتدا — %s</string>
     <string name="select_a_kiosk">هکیۆسکێک دیار بکە</string>
     <string name="conferences">کۆنفرانسەکان</string>
-    <string name="toast_no_player">هیچ به‌رنامه‌یه‌ك دانەمەزراوە بۆ لێدانی ئەم فایله‌</string>
     <string name="open_in_popup_mode">كردنه‌وه‌ له‌ دۆخی په‌نجه‌ره‌</string>
     <string name="limit_mobile_data_usage_title">سنووری قەبارە لەکاتی بەکارهێنانی ڕایه‌ڵه‌ی مۆبایل</string>
     <string name="drawer_close">داخستنی پلیکانە</string>

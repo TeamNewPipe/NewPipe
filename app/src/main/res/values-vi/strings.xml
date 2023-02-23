@@ -215,7 +215,6 @@
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
-    <string name="toast_no_player">Không có ứng dụng nào được cài đặt để phát tệp này</string>
     <string name="donation_title">Đóng góp</string>
     <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian và tâm huyết của mình để mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một chút xiền để giúp chúng tôi làm NewPipe tốt hơn nữa (Nếu bạn muốn).</string>
     <string name="give_back">Đôn Nét</string>

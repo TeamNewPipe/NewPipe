@@ -297,7 +297,6 @@
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="search_history_deleted">Histórico de pesquisa removido</string>
     <string name="one_item_deleted">1 item eliminado.</string>
-    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o seu tempo livre para nos proporcionar a melhor experiência. Retribua para ajudar os programadores a tornarem NewPipe ainda melhor.</string>
     <string name="give_back">Contribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>

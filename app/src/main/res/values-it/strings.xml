@@ -302,7 +302,6 @@
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
     <string name="caption_setting_title">Sottotitoli</string>
     <string name="caption_setting_description">Modifica dimensione e stile dei sottotitoli. Riavviare per applicare le modifiche</string>
-    <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Elimina la cronologia delle visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e le posizioni di riproduzione</string>
     <string name="delete_view_history_alert">Eliminare la cronologia delle visualizzazioni\?</string>

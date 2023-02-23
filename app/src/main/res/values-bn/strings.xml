@@ -491,7 +491,6 @@
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
     <string name="feed_group_dialog_delete_message">তুমি কি এ গ্রুপটি মুছতে চাও\?</string>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
-    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্যাপ ইন্সটলকৃত নেই</string>
     <string name="override_current_data">এতে তোমার বর্তমান অবস্থা সরানো হবে।</string>
     <string name="could_not_import_all_files">সতর্কতা: সব তথ্য আনা যায়নি।</string>
     <string name="copyright">© %3$s এর মাধ্যমে %2$s দিয়ে %1$s</string>

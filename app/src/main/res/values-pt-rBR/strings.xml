@@ -301,7 +301,6 @@
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Mudar tamanho da legenda e estilos de plano de fundo. Requer reiniciar o app para ter efeito</string>
-    <string name="toast_no_player">Nenhum app instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Excluir histórico de vídeo</string>
     <string name="clear_views_history_summary">Exclui o histórico de vídeos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Excluir todo o histórico de vídeo\?</string>

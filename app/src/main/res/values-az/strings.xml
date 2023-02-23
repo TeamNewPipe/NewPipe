@@ -588,7 +588,6 @@
     <string name="play_queue_remove">Sil</string>
     <string name="app_description">Android\'də pulsuz yüngül yayımlayıcı.</string>
     <string name="copyright">© %1$s, %2$s tərəfindən %3$s altında</string>
-    <string name="toast_no_player">Bu faylı oynatmaq üçün heç bir tətbiq quraşdırılmayıb</string>
     <string name="settings_category_downloads_title">Endirmə</string>
     <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində
 \naçmaq üçün lazımdır</string>

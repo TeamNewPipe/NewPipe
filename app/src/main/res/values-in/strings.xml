@@ -255,7 +255,6 @@
     <string name="search_history_deleted">Riwayat pencarian dihapus</string>
     <string name="no_streams_available_download">Tidak ada video yang tersedia untuk diunduh</string>
     <string name="one_item_deleted">1 item dihapus.</string>
-    <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar berkas ini</string>
     <string name="tab_bookmarks">Daftar Putar</string>
     <string name="auto_queue_title">Putar otomatis video berikutnya</string>
     <string name="channel_unsubscribed">Berhenti berlanggan channel</string>

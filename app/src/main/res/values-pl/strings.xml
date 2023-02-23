@@ -314,7 +314,6 @@
     <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania\?</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania</string>
     <string name="one_item_deleted">Usunięto jedną pozycję</string>
-    <string name="toast_no_player">Brak zainstalowanej aplikacji do odtworzenia tego pliku</string>
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
     <string name="privacy_policy_title">Polityka prywatności NewPipe</string>

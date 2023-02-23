@@ -262,7 +262,6 @@
     <string name="file_name_empty_error">Názov súboru nesme byť prázdny</string>
     <string name="error_occurred_detail">Nastala chyba: %1$s</string>
     <string name="no_streams_available_download">Žiadne streamy nie sú k dispozícii na prevzatie</string>
-    <string name="toast_no_player">Prehrávač pre daný typ súboru nebol nájdený</string>
     <string name="preferred_open_action_settings_title">Preferovaná akcia \'otvoriť\'</string>
     <string name="preferred_open_action_settings_summary">Predvolená akcia pri otváraní obsahu — %s</string>
     <string name="caption_auto_generated">Automaticky vygenerované</string>

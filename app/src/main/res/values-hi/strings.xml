@@ -275,7 +275,6 @@
     <string name="error_occurred_detail">एक भूल हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नही है</string>
     <string name="one_item_deleted">एक चीज़ साफ कर दी गई।</string>
-    <string name="toast_no_player">इस फ़ाइल को चलाने के लिए कोई ऐप स्थापित नही है</string>
     <string name="privacy_policy_title">न्यूपाइप की गोपनीयता नीति</string>
     <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहोत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नही करता। 
 \nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>

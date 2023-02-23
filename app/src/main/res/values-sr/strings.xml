@@ -389,7 +389,6 @@
     <string name="privacy_policy_encouragement">Пројекат ЊуПајп врло озбиљно схвата вашу приватност. Стога апликација не прикупља никакве податке без вашег пристанка.
 \nПолитика приватности ЊуПајпа детаљно објашњава који се подаци шаљу и чувају када пошаљете извештај о паду апликације.</string>
     <string name="privacy_policy_title">Политика приватности ЊуПајпа</string>
-    <string name="toast_no_player">Нема апликације за пуштање овог фајла</string>
     <string name="recaptcha_done_button">Готово</string>
     <string name="recaptcha_solve">Реши</string>
     <string name="subtitle_activity_recaptcha">Притисните „Готово“ кад решите</string>

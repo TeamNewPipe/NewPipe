@@ -295,7 +295,6 @@
     <string name="preferred_open_action_settings_summary">Paylaşma ekranında tanımlı eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
-    <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini ve kalınan oynatım konumlarını siler</string>
     <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi\?</string>
