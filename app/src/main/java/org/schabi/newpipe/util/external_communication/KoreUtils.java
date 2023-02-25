@@ -36,7 +36,7 @@ public final class KoreUtils {
     /**
      * Start an activity to install Kore.
      *
-     * @param context the context
+     * @param context the context to use
      */
     public static void installKore(final Context context) {
         installApp(context, context.getString(R.string.kore_package));
@@ -51,13 +51,13 @@ public final class KoreUtils {
      * Kore source code
      * </a>.
      *
-     * @param context  the context to use
-     * @param videoURL the url to the video
+     * @param context   the context to use
+     * @param streamUrl the url to the stream to play
      */
-    public static void playWithKore(final Context context, final Uri videoURL) {
+    public static void playWithKore(final Context context, final Uri streamUrl) {
         final Intent intent = new Intent(Intent.ACTION_VIEW)
                 .setPackage(context.getString(R.string.kore_package))
-                .setData(videoURL)
+                .setData(streamUrl)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (!tryOpenIntentInApp(context, intent)) {
