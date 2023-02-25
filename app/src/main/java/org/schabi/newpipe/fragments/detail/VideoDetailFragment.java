@@ -11,7 +11,6 @@ import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
-import static org.schabi.newpipe.util.NavigationHelper.playWithKore;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -485,16 +484,8 @@ public final class VideoDetailFragment
                         info.getThumbnailUrl())));
         binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
-        binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info -> {
-            try {
-                playWithKore(requireContext(), Uri.parse(info.getUrl()));
-            } catch (final Exception e) {
-                if (DEBUG) {
-                    Log.i(TAG, "Failed to start kore", e);
-                }
-                KoreUtils.showInstallKoreDialog(requireContext());
-            }
-        }));
+        binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info ->
+                KoreUtils.playWithKore(requireContext(), Uri.parse(info.getUrl()))));
         if (DEBUG) {
             binding.detailControlsCrashThePlayer.setOnClickListener(v ->
                     VideoDetailPlayerCrasher.onCrashThePlayer(requireContext(), player));

@@ -201,7 +201,6 @@
     <string name="settings_file_replacement_character_title">ਵਟਾਂਦਰਾ ਚਿੰਨ</string>
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
-    <string name="toast_no_player">ਇਸ ਫਾਈਲ ਨੂੰ ਚਲਾਉਣ ਲਈ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ</string>
     <string name="title_activity_about">ਨਿਊਪਾਈਪ ਬਾਰੇ</string>
     <string name="title_licenses">ਤੀਜੀ ਧਿਰ ਦੇ ਲਾਈਸੈਂਸ</string>
     <string name="copyright" formatted="true">© %1$s ਵਲੋਂ %2$s, %3$s ਅਧੀਨ</string>

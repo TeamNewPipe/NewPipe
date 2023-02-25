@@ -66,7 +66,7 @@ fun showLicense(context: Context?, component: SoftwareComponent): Disposable {
             dialog.dismiss()
         }
         setNeutralButton(R.string.open_website_license) { _, _ ->
-            ShareUtils.openUrlInBrowser(context!!, component.link)
+            ShareUtils.openUrlInApp(context!!, component.link)
         }
     }
 }

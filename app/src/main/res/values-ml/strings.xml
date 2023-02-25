@@ -125,7 +125,6 @@
     <string name="copyright" formatted="true">%3$s ന്റെ കീഴിൽ %2$s ന്റെ ©%1$s</string>
     <string name="title_licenses">തേർഡ്-പാർട്ടി ലൈസൻസുകൾ</string>
     <string name="title_activity_about">ന്യൂപൈപ്പിനെക്കുറിച്ച്</string>
-    <string name="toast_no_player">ഈ ഫയൽ പ്ലേ ചെയ്യാൻ കഴിയുന്ന ഒരു അപ്പും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
     <string name="charset_most_special_characters">പ്രത്യേക അടയാളങ്ങൾ</string>
     <string name="charset_letters_and_digits">അക്ഷരങ്ങളും അക്കങ്ങളും</string>
     <string name="settings_file_replacement_character_title">പകരം ഉപയോഗിക്കാവുന്ന അടയാളം</string>

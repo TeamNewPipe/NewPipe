@@ -225,7 +225,6 @@
     <string name="dismiss">התעלמות</string>
     <string name="rename">שינוי שם</string>
     <string name="one_item_deleted">פריט אחד נמחק.</string>
-    <string name="toast_no_player">לא מותקן יישומון שמתאים לנגינת הקובץ הזה</string>
     <string name="export_complete_toast">הייצוא הסתיים</string>
     <string name="import_complete_toast">הייבוא הסתיים</string>
     <string name="no_valid_zip_file">אין קובץ ZIP תקין</string>

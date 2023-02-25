@@ -30,7 +30,7 @@ final class UrlLongPressClickableSpan extends LongPressClickableSpan {
     public void onClick(@NonNull final View view) {
         if (!InternalUrlsHandler.handleUrlDescriptionTimestamp(
                 disposables, context, url)) {
-            ShareUtils.openUrlInBrowser(context, url, false);
+            ShareUtils.openUrlInApp(context, url);
         }
     }
 

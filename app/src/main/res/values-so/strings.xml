@@ -183,7 +183,6 @@
     <string name="copyright">© %1$s sameeyay %2$s ayagoo raacaya %3$s</string>
     <string name="title_licenses">Laysimada gacanta sadexaad</string>
     <string name="title_activity_about">Kusaabsan NewPipe</string>
-    <string name="toast_no_player">Shaygan app fura kuuguma jiro</string>
     <string name="charset_most_special_characters">Xarfaha gaarka ah kuwa ugu badan</string>
     <string name="charset_letters_and_digits">Xarfaha iyo godadka</string>
     <string name="settings_file_replacement_character_title">Xarafka lagu baddalayo</string>

@@ -1420,14 +1420,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void onPlayWithKodiClicked() {
         if (player.getCurrentMetadata() != null) {
             player.pause();
-            try {
-                NavigationHelper.playWithKore(context, Uri.parse(player.getVideoUrl()));
-            } catch (final Exception e) {
-                if (DEBUG) {
-                    Log.i(TAG, "Failed to start kore", e);
-                }
-                KoreUtils.showInstallKoreDialog(player.getContext());
-            }
+            KoreUtils.playWithKore(context, Uri.parse(player.getVideoUrl()));
         }
     }
 

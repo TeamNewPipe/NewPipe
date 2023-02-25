@@ -302,7 +302,6 @@
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
-    <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>

@@ -245,7 +245,6 @@
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
     <string name="search_history_deleted">検索履歴を削除しました</string>
-    <string name="toast_no_player">このファイルを再生するためのアプリがインストールされていません</string>
     <string name="import_settings">設定もインポートしますか？</string>
     <string name="caption_setting_title">字幕</string>
     <string name="channels">チャンネル</string>

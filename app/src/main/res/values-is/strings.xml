@@ -253,7 +253,6 @@
     <string name="recaptcha_solve">Leysa</string>
     <string name="recaptcha_done_button">Lokið</string>
     <string name="recaptcha_request_toast">Beðið eftir þraut reCAPTCHA</string>
-    <string name="toast_no_player">Ekkert forrit er uppsett til að spila þessa skrá</string>
     <string name="title_licenses">Leyfi þriðja aðila</string>
     <string name="tab_licenses">Hugbúnaðarleyfi</string>
     <string name="copyright">© %1$s • %2$s • %3$s</string>
