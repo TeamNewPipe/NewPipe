@@ -60,11 +60,15 @@ public final class ShareUtils {
 
     /**
      * Open the url with the system default browser. If no browser is set as default, falls back to
-     * {@link #openAppChooser(Context, Intent, boolean)}. This function selects the package to open
-     * based on which apps respond to the {@code http://} schema alone, which should exclude special
-     * non-browser apps that are can handle the url (e.g. the official YouTube app). Therefore
-     * please <b>prefer {@link #openUrlInApp(Context, String)}</b>, that handles package resolution
-     * in a standard way, unless this is the action of an explicit "Open in browser" button.
+     * {@link #openAppChooser(Context, Intent, boolean)}.
+     * <p>
+     * This function selects the package to open based on which apps respond to the {@code http://}
+     * schema alone, which should exclude special non-browser apps that are can handle the url (e.g.
+     * the official YouTube app).
+     * <p>
+     * Therefore <b>please prefer {@link #openUrlInApp(Context, String)}</b>, that handles package
+     * resolution in a standard way, unless this is the action of an explicit "Open in browser"
+     * button.
      *
      * @param context the context to use
      * @param url     the url to browse
@@ -120,8 +124,9 @@ public final class ShareUtils {
     }
 
     /**
-     * Open an intent with the system default app. Use {@link #openIntentInApp(Context, Intent)} to
-     * show a toast in case of failure.
+     * Open an intent with the system default app.
+     * <p>
+     * Use {@link #openIntentInApp(Context, Intent)} to show a toast in case of failure.
      *
      * @param context the context to use
      * @param intent  the intent to open
@@ -138,8 +143,9 @@ public final class ShareUtils {
     }
 
     /**
-     * Open an intent with the system default app, showing a toast in case of failure. Use {@link
-     * #tryOpenIntentInApp(Context, Intent)} if you don't want the toast. Use {@link
+     * Open an intent with the system default app, showing a toast in case of failure.
+     * <p>
+     * Use {@link #tryOpenIntentInApp(Context, Intent)} if you don't want the toast. Use {@link
      * #openUrlInApp(Context, String)} as a shorthand for {@link Intent#ACTION_VIEW} with urls.
      *
      * @param context the context to use
