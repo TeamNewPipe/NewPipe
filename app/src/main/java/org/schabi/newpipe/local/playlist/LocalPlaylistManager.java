@@ -42,13 +42,11 @@ public class LocalPlaylistManager {
         if (streams.isEmpty()) {
             return Maybe.empty();
         }
-        final StreamEntity defaultStream = streams.get(0);
-        final PlaylistEntity newPlaylist =
-                new PlaylistEntity(name, false, defaultStream.getUid());
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
                     final List<Long> streamIds = streamTable.upsertAll(streams);
-                    newPlaylist.setThumbnailStreamId(streamIds.get(0));
+                    final PlaylistEntity newPlaylist = new PlaylistEntity(name, false,
+                            streamIds.get(0));
 
                     return insertJoinEntities(playlistTable.insert(newPlaylist),
                             streamIds, 0);
