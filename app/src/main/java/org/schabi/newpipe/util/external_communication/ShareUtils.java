@@ -72,9 +72,16 @@ public final class ShareUtils {
     public static void openUrlInBrowser(@NonNull final Context context, final String url) {
         // Resolve using a generic http://, so we are sure to get a browser and not e.g. the yt app.
         // Note that this requires the `http` schema to be added to `<queries>` in the manifest.
-        final ResolveInfo defaultBrowserInfo = context.getPackageManager().resolveActivity(
-                new Intent(Intent.ACTION_VIEW, Uri.parse("http://")),
-                PackageManager.MATCH_DEFAULT_ONLY);
+        final ResolveInfo defaultBrowserInfo;
+        final Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            defaultBrowserInfo = context.getPackageManager().resolveActivity(browserIntent,
+                    PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY));
+        } else {
+            defaultBrowserInfo = context.getPackageManager().resolveActivity(browserIntent,
+                    PackageManager.MATCH_DEFAULT_ONLY);
+        }
+
         if (defaultBrowserInfo == null) {
             // No app installed to open a web url
             Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
