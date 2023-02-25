@@ -1,8 +1,9 @@
 package org.schabi.newpipe.info_list.holder;
 
+import static android.text.TextUtils.isEmpty;
+
 import android.graphics.Paint;
 import android.text.Layout;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.util.Log;
@@ -59,9 +60,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final TextView itemPublishedTime;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
-    private Description commentText;
-    private StreamingService streamService;
-    private String streamUrl;
+    @Nullable private Description commentText;
+    @Nullable private StreamingService streamService;
+    @Nullable private String streamUrl;
 
     CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                                final ViewGroup parent) {
@@ -153,15 +154,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if (DeviceUtils.isTv(itemBuilder.getContext())) {
                 openCommentAuthor(item);
             } else {
-                ShareUtils.copyToClipboard(itemBuilder.getContext(),
-                        itemContentView.getText().toString());
+                final CharSequence text = itemContentView.getText();
+                if (text != null) {
+                    ShareUtils.copyToClipboard(itemBuilder.getContext(), text.toString());
+                }
             }
             return true;
         });
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (TextUtils.isEmpty(item.getUploaderUrl())) {
+        if (isEmpty(item.getUploaderUrl())) {
             return;
         }
         final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
@@ -207,11 +210,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         linkifyCommentContentView(v -> {
             boolean hasEllipsis = false;
 
-            if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
+            final CharSequence charSeqText = itemContentView.getText();
+            if (charSeqText != null && itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
                 // Note that converting to String removes spans (i.e. links), but that's something
                 // we actually want since when the text is ellipsized we want all clicks on the
                 // comment to expand the comment, not to open links.
-                final String text = itemContentView.getText().toString();
+                final String text = charSeqText.toString();
 
                 final Layout layout = itemContentView.getLayout();
                 final float lineWidth = layout.getLineWidth(COMMENT_DEFAULT_LINES - 1);
@@ -252,7 +256,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
     private void toggleEllipsize() {
         final CharSequence text = itemContentView.getText();
-        if (text.charAt(text.length() - 1) == ELLIPSIS.charAt(0)) {
+        if (!isEmpty(text) && text.charAt(text.length() - 1) == ELLIPSIS.charAt(0)) {
             expand();
         } else if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
             ellipsize();
