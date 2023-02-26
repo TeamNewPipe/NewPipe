@@ -29,4 +29,12 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/always_use_exoplayer_set_output_surface_workaround_key"
+        android:summary="@string/always_use_exoplayer_set_output_surface_workaround_summary"
+        android:title="@string/always_use_exoplayer_set_output_surface_workaround_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
 </PreferenceScreen>
