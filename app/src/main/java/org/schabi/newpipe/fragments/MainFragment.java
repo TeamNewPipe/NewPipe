@@ -8,6 +8,7 @@ import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_BOTTO
 import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_TOP;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -56,8 +57,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private boolean hasTabsChanged = false;
 
-    private boolean previousYoutubeRestrictedModeEnabled;
+    private SharedPreferences prefs;
+    private boolean youtubeRestrictedModeEnabled;
     private String youtubeRestrictedModeEnabledKey;
+    private boolean mainTabsPositionBottom;
+    private String mainTabsPositionKey;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -80,10 +84,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
         });
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
-        previousYoutubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        youtubeRestrictedModeEnabled = prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
+        mainTabsPositionKey = getString(R.string.main_tabs_position_key);
+        mainTabsPositionBottom = prefs.getBoolean(mainTabsPositionKey, false);
     }
 
     @Override
@@ -103,23 +108,25 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         binding.mainTabLayout.addOnTabSelectedListener(this);
 
         setupTabs();
+        updateTabLayoutPosition();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        final boolean youtubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
-        if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
-            previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
-            setupTabs();
-        } else if (hasTabsChanged) {
+        final boolean newYoutubeRestrictedModeEnabled =
+                prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
+        if (youtubeRestrictedModeEnabled != newYoutubeRestrictedModeEnabled || hasTabsChanged) {
+            youtubeRestrictedModeEnabled = newYoutubeRestrictedModeEnabled;
             setupTabs();
         }
 
-        updateTabLayoutPosition();
+        final boolean newMainTabsPosition = prefs.getBoolean(mainTabsPositionKey, false);
+        if (mainTabsPositionBottom != newMainTabsPosition) {
+            mainTabsPositionBottom = newMainTabsPosition;
+            updateTabLayoutPosition();
+        }
     }
 
     @Override
@@ -207,8 +214,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private void updateTabLayoutPosition() {
         final ScrollableTabLayout tabLayout = binding.mainTabLayout;
         final ViewPager viewPager = binding.pager;
-        final boolean bottom = PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .getBoolean(getString(R.string.main_tabs_position_key), false);
+        final boolean bottom = mainTabsPositionBottom;
 
         // change layout params to make the tab layout appear either at the top or at the bottom
         final var tabParams = (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
