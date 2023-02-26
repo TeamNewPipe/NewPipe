@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,12 +9,13 @@ import com.xwray.groupie.Group
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
-import org.schabi.newpipe.util.ThemeHelper
+import org.schabi.newpipe.util.ThemeHelper.getItemViewMode
 import java.util.concurrent.TimeUnit
 
 class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,7 +24,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
 
     // true -> list view, false -> grid view
     private val listViewMode = BehaviorProcessor.createDefault(
-        !ThemeHelper.shouldUseGridLayout(application)
+        !shouldUseGridForSubscription(application)
     )
     private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
@@ -76,5 +78,27 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     sealed class SubscriptionState {
         data class LoadedState(val subscriptions: List<Group>) : SubscriptionState()
         data class ErrorState(val error: Throwable? = null) : SubscriptionState()
+    }
+
+    companion object {
+
+        /**
+         * Returns whether to use GridLayout mode for Subscription Fragment.
+         *
+         * ### Current mapping:
+         *
+         *  | ItemViewMode | ItemVersion | Span count |
+         *  |---|---|---|
+         *  | AUTO | MINI | 1 |
+         *  | LIST | MINI | 1 |
+         *  | CARD | GRID | > 1 (ThemeHelper defined) |
+         *  | GRID | GRID | > 1 (ThemeHelper defined) |
+         *
+         *  @see [SubscriptionViewModel.shouldUseGridForSubscription] to modify Layout Manager
+         */
+        fun shouldUseGridForSubscription(context: Context): Boolean {
+            val itemViewMode = getItemViewMode(context)
+            return itemViewMode == ItemViewMode.GRID || itemViewMode == ItemViewMode.CARD
+        }
     }
 }
