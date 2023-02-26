@@ -7,7 +7,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
-import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
+import static org.schabi.newpipe.util.DependentPreferenceHelper.getResumePlaybackEnabled;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
@@ -1448,8 +1448,8 @@ public final class VideoDetailFragment
 
         animate(binding.detailThumbnailPlayButton, false, 50);
         animate(binding.detailDurationView, false, 100);
-        animate(binding.detailPositionView, false, 100);
-        animate(binding.positionView, false, 50);
+        binding.detailPositionView.setVisibility(View.GONE);
+        binding.positionView.setVisibility(View.GONE);
 
         binding.detailVideoTitleView.setText(title);
         binding.detailVideoTitleView.setMaxLines(1);
@@ -1566,7 +1566,7 @@ public final class VideoDetailFragment
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        updateProgressInfo(info);
+        checkUpdateProgressInfo(info);
         initThumbnailViews(info);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
@@ -1665,67 +1665,43 @@ public final class VideoDetailFragment
     // Stream Results
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void updateProgressInfo(@NonNull final StreamInfo info) {
+    private void checkUpdateProgressInfo(@NonNull final StreamInfo info) {
         if (positionSubscriber != null) {
             positionSubscriber.dispose();
         }
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        final boolean playbackResumeEnabled = prefs
-                .getBoolean(activity.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
-        final boolean showPlaybackPosition = prefs.getBoolean(
-                activity.getString(R.string.enable_playback_state_lists_key), true);
-        if (!playbackResumeEnabled) {
-            if (playQueue == null || playQueue.getStreams().isEmpty()
-                    || playQueue.getItem().getRecoveryPosition() == RECOVERY_UNSET
-                    || !showPlaybackPosition) {
-                binding.positionView.setVisibility(View.INVISIBLE);
-                binding.detailPositionView.setVisibility(View.GONE);
-                // TODO: Remove this check when separation of concerns is done.
-                //  (live streams weren't getting updated because they are mixed)
-                if (!StreamTypeUtil.isLiveStream(info.getStreamType())) {
-                    return;
-                }
-            } else {
-                // Show saved position from backStack if user allows it
-                showPlaybackProgress(playQueue.getItem().getRecoveryPosition(),
-                        playQueue.getItem().getDuration() * 1000);
-                animate(binding.positionView, true, 500);
-                animate(binding.detailPositionView, true, 500);
-            }
+        if (!getResumePlaybackEnabled(activity)) {
+            binding.positionView.setVisibility(View.GONE);
+            binding.detailPositionView.setVisibility(View.GONE);
             return;
         }
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
-
-        // TODO: Separate concerns when updating database data.
-        //  (move the updating part to when the loading happens)
         positionSubscriber = recordManager.loadStreamState(info)
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(state -> {
-                    showPlaybackProgress(state.getProgressMillis(), info.getDuration() * 1000);
-                    animate(binding.positionView, true, 500);
-                    animate(binding.detailPositionView, true, 500);
+                    updatePlaybackProgress(
+                            state.getProgressMillis(), info.getDuration() * 1000);
                 }, e -> {
-                    if (DEBUG) {
-                        e.printStackTrace();
-                    }
+                    // impossible since the onErrorComplete()
                 }, () -> {
                     binding.positionView.setVisibility(View.GONE);
                     binding.detailPositionView.setVisibility(View.GONE);
                 });
     }
 
-    private void showPlaybackProgress(final long progress, final long duration) {
+    private void updatePlaybackProgress(final long progress, final long duration) {
+        if (!getResumePlaybackEnabled(activity)) {
+            return;
+        }
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
-        // If the old and the new progress values have a big difference then use
-        // animation. Otherwise don't because it affects CPU
-        final boolean shouldAnimate = Math.abs(binding.positionView.getProgress()
-                - progressSeconds) > 2;
+        // If the old and the new progress values have a big difference then use animation.
+        // Otherwise don't because it affects CPU
+        final int progressDifference = Math.abs(binding.positionView.getProgress()
+                - progressSeconds);
         binding.positionView.setMax(durationSeconds);
-        if (shouldAnimate) {
+        if (progressDifference > 2) {
             binding.positionView.setProgressAnimated(progressSeconds);
         } else {
             binding.positionView.setProgress(progressSeconds);
@@ -1820,7 +1796,7 @@ public final class VideoDetailFragment
         }
 
         if (player.getPlayQueue().getItem().getUrl().equals(url)) {
-            showPlaybackProgress(currentProgress, duration);
+            updatePlaybackProgress(currentProgress, duration);
         }
     }
 
