@@ -1,7 +1,15 @@
 package org.schabi.newpipe.fragments;
 
+import static android.widget.RelativeLayout.ABOVE;
+import static android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM;
+import static android.widget.RelativeLayout.ALIGN_PARENT_TOP;
+import static android.widget.RelativeLayout.BELOW;
+import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_BOTTOM;
+import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_TOP;
+
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,10 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
@@ -93,8 +101,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
-        binding.mainTabLayout.setTabRippleColor(binding.mainTabLayout.getTabRippleColor()
-                .withAlpha(32));
 
         setupTabs();
     }
@@ -112,7 +118,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         } else if (hasTabsChanged) {
             setupTabs();
         }
-        updateTabsPosition();
+
+        updateTabLayoutPosition();
     }
 
     @Override
@@ -196,44 +203,38 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private void updateTitleForTab(final int tabPosition) {
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
     }
-    private void updateTabsPosition() {
+
+    private void updateTabLayoutPosition() {
         final ScrollableTabLayout tabLayout = binding.mainTabLayout;
         final ViewPager viewPager = binding.pager;
-        final RelativeLayout.LayoutParams tabParams = (RelativeLayout.LayoutParams)
-                tabLayout.getLayoutParams();
-        final RelativeLayout.LayoutParams pagerParams = (RelativeLayout.LayoutParams)
-                viewPager.getLayoutParams();
-        if (PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .getBoolean(getString(R.string.main_tabs_position_key), false)) {
-            tabParams.removeRule(RelativeLayout.ALIGN_PARENT_TOP);
-            tabParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            pagerParams.removeRule(RelativeLayout.BELOW);
-            pagerParams.addRule(RelativeLayout.ABOVE, R.id.main_tab_layout);
-            tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_TOP);
-            tabLayout.setBackgroundColor(ThemeHelper
-                    .resolveColorFromAttr(requireContext(), R.attr.colorSecondary));
-            final int colorAccent = ThemeHelper.resolveColorFromAttr(
-                    requireContext(), R.attr.colorAccent);
-            tabLayout.setTabRippleColor(ColorStateList.valueOf(colorAccent).withAlpha(32));
-            tabLayout.setTabIconTint(ColorStateList.valueOf(colorAccent));
-            tabLayout.setSelectedTabIndicatorColor(colorAccent);
-        } else {
-            tabParams.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            tabParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-            pagerParams.removeRule(RelativeLayout.ABOVE);
-            pagerParams.addRule(RelativeLayout.BELOW, R.id.main_tab_layout);
-            tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
-            tabLayout.setBackgroundColor(ThemeHelper
-                    .resolveColorFromAttr(requireContext(), R.attr.colorPrimary));
-            tabLayout.setTabRippleColor(ColorStateList.valueOf(
-                    getResources().getColor(R.color.white)).withAlpha(32));
-            tabLayout.setTabIconTint(ColorStateList.valueOf(
-                    getResources().getColor(R.color.white)));
-            tabLayout.setSelectedTabIndicatorColor(ContextCompat
-                    .getColor(requireContext(), R.color.white));
-        }
+        final boolean bottom = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getBoolean(getString(R.string.main_tabs_position_key), false);
+
+        // change layout params to make the tab layout appear either at the top or at the bottom
+        final var tabParams = (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
+        final var pagerParams = (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
+
+        tabParams.removeRule(bottom ? ALIGN_PARENT_TOP : ALIGN_PARENT_BOTTOM);
+        tabParams.addRule(bottom ? ALIGN_PARENT_BOTTOM : ALIGN_PARENT_TOP);
+        pagerParams.removeRule(bottom ? BELOW : ABOVE);
+        pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
+        tabLayout.setSelectedTabIndicatorGravity(
+                bottom ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
+
         tabLayout.setLayoutParams(tabParams);
         viewPager.setLayoutParams(pagerParams);
+
+        // change the background and icon color of the tab layout:
+        // service-colored at the top, app-background-colored at the bottom
+        tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
+                bottom ? R.attr.colorSecondary : R.attr.colorPrimary));
+
+        @ColorInt final int iconColor = bottom
+                ? ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)
+                : Color.WHITE;
+        tabLayout.setTabRippleColor(ColorStateList.valueOf(iconColor).withAlpha(32));
+        tabLayout.setTabIconTint(ColorStateList.valueOf(iconColor));
+        tabLayout.setSelectedTabIndicatorColor(iconColor);
     }
 
     @Override
