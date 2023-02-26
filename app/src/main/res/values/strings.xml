@@ -83,6 +83,8 @@
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
+    <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
+    <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache</string>
     <string name="show_comments_title">Show comments</string>
