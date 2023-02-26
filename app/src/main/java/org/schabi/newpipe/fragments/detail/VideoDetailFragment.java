@@ -2013,9 +2013,9 @@ public final class VideoDetailFragment
             restoreDefaultBrightness();
         } else {
             // Do not restore if user has disabled brightness gesture
-            if (PlayerHelper.getActionForRightGestureSide(activity)
+            if (!PlayerHelper.getActionForRightGestureSide(activity)
                     .equals(getString(R.string.brightness_control_key))
-                    || PlayerHelper.getActionForLeftGestureSide(activity)
+                    && !PlayerHelper.getActionForLeftGestureSide(activity)
                     .equals(getString(R.string.brightness_control_key))) {
                 return;
             }
