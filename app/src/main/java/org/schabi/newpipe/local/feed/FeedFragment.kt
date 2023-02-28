@@ -40,7 +40,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.math.MathUtils
 import androidx.core.os.bundleOf
-import androidx.core.view.MenuItemCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -99,9 +98,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
     private lateinit var groupAdapter: GroupieAdapter
-    @State @JvmField var showPlayedItems: Boolean = true
-    @State @JvmField var showPartiallyPlayedItems: Boolean = true
-    @State @JvmField var showFutureItems: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -140,9 +136,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         val factory = FeedViewModel.getFactory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
-        showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
-        showPartiallyPlayedItems = viewModel.getShowPartiallyPlayedItemsFromPreferences()
-        showFutureItems = viewModel.getShowFutureItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
         groupAdapter = GroupieAdapter().apply {
@@ -217,10 +210,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
-        MenuItemCompat.setTooltipText(
-            menu.findItem(R.id.menu_item_feed_toggle_played_items),
-            getString(R.string.feed_show_hide_streams)
-        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -259,7 +248,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             getString(R.string.feed_show_upcoming)
         )
 
-        val checkedDialogItems = booleanArrayOf(showPlayedItems, showPartiallyPlayedItems, showFutureItems)
+        val checkedDialogItems = booleanArrayOf(
+            viewModel.getShowPlayedItemsFromPreferences(),
+            viewModel.getShowPartiallyPlayedItemsFromPreferences(),
+            viewModel.getShowFutureItemsFromPreferences()
+        )
 
         val builder = AlertDialog.Builder(context!!)
         builder.setTitle(R.string.feed_hide_streams_title)
@@ -268,14 +261,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         builder.setPositiveButton(R.string.ok) { _, _ ->
-            showPlayedItems = checkedDialogItems[0]
-            viewModel.setSaveShowPlayedItems(showPlayedItems)
+            viewModel.setSaveShowPlayedItems(checkedDialogItems[0])
 
-            showPartiallyPlayedItems = checkedDialogItems[1]
-            viewModel.setSaveShowPartiallyPlayedItems(showPartiallyPlayedItems)
+            viewModel.setSaveShowPartiallyPlayedItems(checkedDialogItems[1])
 
-            showFutureItems = checkedDialogItems[2]
-            viewModel.setSaveShowFutureItems(showFutureItems)
+            viewModel.setSaveShowFutureItems(checkedDialogItems[2])
         }
         builder.setNegativeButton(R.string.cancel, null)
 
