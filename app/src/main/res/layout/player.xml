@@ -212,11 +212,11 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:paddingStart="6dp"
-                        android:paddingTop="5dp"
                         android:paddingEnd="6dp"
                         android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_format_list_numbered"
+                        android:src="@drawable/ic_menu_book"
                         android:visibility="gone"
                         app:tint="@color/white"
                         tools:ignore="ContentDescription,RtlHardcoded" />

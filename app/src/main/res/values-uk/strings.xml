@@ -52,7 +52,7 @@
     <string name="error_snackbar_action">Звіт</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="main_bg_subtitle">Натисніть на «лупу», щоб почати.</string>
+    <string name="main_bg_subtitle">Торкніться лупи, щоб розпочати.</string>
     <string name="black_theme_title">Чорна</string>
     <string name="downloads">Завантаження</string>
     <string name="downloads_title">Завантаження</string>
@@ -743,4 +743,10 @@
     <string name="app_update_available_notification_text">Торкніться, щоб завантажити %s</string>
     <string name="import_subscriptions_hint">Імпорт або експорт підписок з 3-крапкового меню</string>
     <string name="fast_mode">Швидкий режим</string>
+    <string name="night_theme_available">Ця опція доступна, лише якщо темою обрано %s</string>
+    <string name="unset_playlist_thumbnail">Прибрати постійну мініатюру</string>
+    <string name="card">Картки</string>
+    <string name="msg_failed_to_copy">Не вдалося скопіювати до буфера обміну</string>
+    <string name="playlist_add_stream_success_duplicate">Дублікат додано %d раз(ів)</string>
+    <string name="duplicate_in_playlist">У виділених сірим кольором добірках цей елемент уже є.</string>
 </resources>

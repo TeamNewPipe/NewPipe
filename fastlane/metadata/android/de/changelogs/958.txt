@@ -1,15 +1,15 @@
-Neu+verbessert
-•Option Miniansicht Ausblenden auf Sperrbildschirm wieder hinzugefügt
-•Ziehen zum Feed aktualisieren
-•Verbesserte Leistung beim Abruf lokaler Listen
+Neu und verbessert:
+• Option Vorschaubild auf Sperrbildschirm ausblenden wieder hinzugefügt
+• Ziehen zum Feed aktualisieren
+• Verbesserte Leistung beim Abruf lokaler Listen
 
-Behoben
-•Absturz, Start von NewPipe, nachdem es aus dem RAM entfernt wurde
-•Absturz, Starten von NewPipe ohne Internetverbindung
-•Einstellungen Helligkeits- und Lautstärkegesten
-•[YT] Lange Wiedergabelisten
+Behoben:
+• Absturz, NewPipe-Start nachdem es aus dem RAM entfernt wurde
+• Absturz, NewPipe-Start ohne Internetverbindung
+• Einstellungen Helligkeits- und Lautstärkegesten
+• [YT] Lange Wiedergabelisten
 
-Sonstiges
-•Codebereinigung, verschiedene interne Verbesserungen
-•Aktualisierung Abhängigkeiten
-•Aktualisierte Übersetzungen
+Sonstiges:
+• Codebereinigung, etliche interne Verbesserungen
+• Abhängigkeiten aktualisiert
+• Übersetzungen aktualisiert

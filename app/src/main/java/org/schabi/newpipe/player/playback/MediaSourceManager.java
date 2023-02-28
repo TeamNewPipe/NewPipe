@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
 
-import com.google.android.exoplayer2.source.MediaSource;
-
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -23,10 +21,10 @@ import org.schabi.newpipe.player.playqueue.events.MoveEvent;
 import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
-import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,6 +41,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
 import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
+import static org.schabi.newpipe.util.ServiceHelper.getCacheExpirationMillis;
 
 public class MediaSourceManager {
     @NonNull
@@ -421,31 +420,39 @@ public class MediaSourceManager {
     }
 
     private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
-        return stream.getStream().map(streamInfo -> {
-            final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
-            if (source == null || !MediaItemTag.from(source.getMediaItem()).isPresent()) {
-                final String message = "Unable to resolve source from stream info. "
-                        + "URL: " + stream.getUrl() + ", "
-                        + "audio count: " + streamInfo.getAudioStreams().size() + ", "
-                        + "video count: " + streamInfo.getVideoOnlyStreams().size() + ", "
-                        + streamInfo.getVideoStreams().size();
-                return (ManagedMediaSource)
-                        FailedMediaSource.of(stream, new MediaSourceResolutionException(message));
-            }
-
-            final MediaItemTag tag = MediaItemTag.from(source.getMediaItem()).get();
-            final long expiration = System.currentTimeMillis()
-                    + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
-            return new LoadedMediaSource(source, tag, stream, expiration);
-        }).onErrorReturn(throwable -> {
-            if (throwable instanceof ExtractionException) {
-                return FailedMediaSource.of(stream, new StreamInfoLoadException(throwable));
-            }
-            // Non-source related error expected here (e.g. network),
-            // should allow retry shortly after the error.
-            return FailedMediaSource.of(stream, new Exception(throwable),
-                    /*allowRetryIn=*/TimeUnit.MILLISECONDS.convert(3, TimeUnit.SECONDS));
-        });
+        return stream.getStream()
+                .map(streamInfo -> Optional
+                        .ofNullable(playbackListener.sourceOf(stream, streamInfo))
+                        .<ManagedMediaSource>flatMap(source ->
+                                MediaItemTag.from(source.getMediaItem())
+                                        .map(tag -> {
+                                            final int serviceId = streamInfo.getServiceId();
+                                            final long expiration = System.currentTimeMillis()
+                                                    + getCacheExpirationMillis(serviceId);
+                                            return new LoadedMediaSource(source, tag, stream,
+                                                    expiration);
+                                        })
+                        )
+                        .orElseGet(() -> {
+                            final String message = "Unable to resolve source from stream info. "
+                                    + "URL: " + stream.getUrl()
+                                    + ", audio count: " + streamInfo.getAudioStreams().size()
+                                    + ", video count: " + streamInfo.getVideoOnlyStreams().size()
+                                    + ", " + streamInfo.getVideoStreams().size();
+                            return FailedMediaSource.of(stream,
+                                    new MediaSourceResolutionException(message));
+                        })
+                )
+                .onErrorReturn(throwable -> {
+                    if (throwable instanceof ExtractionException) {
+                        return FailedMediaSource.of(stream, new StreamInfoLoadException(throwable));
+                    }
+                    // Non-source related error expected here (e.g. network),
+                    // should allow retry shortly after the error.
+                    final long allowRetryIn = TimeUnit.MILLISECONDS.convert(3,
+                            TimeUnit.SECONDS);
+                    return FailedMediaSource.of(stream, new Exception(throwable), allowRetryIn);
+                });
     }
 
     private void onMediaSourceReceived(@NonNull final PlayQueueItem item,

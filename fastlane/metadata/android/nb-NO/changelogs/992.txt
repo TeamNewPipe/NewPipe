@@ -1,0 +1,17 @@
+Nytt
+• Antall abonnenter i videodetaljene
+• Last ned fra køen
+• Sett miniatyrbilde for spilleliste
+• Langtrykk på emneknagger og linker
+• Kortvisningsmodus
+
+Forbedret
+• Større lukkenapp på minispilleren
+• Bedre nedskalering av miniatyrbilder 
+• Målversjon er nå Android 13 (API 33)
+• Blafring pauser ikke lenger spilleren
+
+Fikset
+• Fiks overlay for DeX/mus
+• Tillat bakgrunnsspiller med ingen separate lydstrømmer
+• Diverse YouTube-fikser, med mer …

@@ -1,0 +1,14 @@
+Baru
+Mengenali stempel waktu dan hashtag dalam deskripsi
+Menambahkan pengaturan mode tablet manual
+Menambahkan kemampuan untuk menyembunyikan item yang diputar di feed
+
+Ditingkatkan
+Mendukung Kerangka Akses Penyimpanan dengan benar
+Penanganan kesalahan yang lebih baik untuk saluran yang tidak tersedia dan dihentikan
+Lembar berbagi Android untuk pengguna Android 10+ sekarang menampilkan judul konten.
+Memperbarui instance Invidious dan mendukung tautan Piped.
+
+Diperbaiki
+[YouTube] Konten yang dibatasi usia
+Cegah jendela bocor Pengecualian saat membuka dialog pilihan

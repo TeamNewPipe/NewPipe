@@ -11,6 +11,14 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
+    <!-- We need to be able to open links in the browser on API 30+ -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http|https|market" />
+        </intent>
+    </queries>
+
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
@@ -165,6 +173,7 @@
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
                 <data android:pathPrefix="/shorts/" />
+                <data android:pathPrefix="/live/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />

@@ -32,7 +32,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -40,6 +39,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,6 +75,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -451,11 +453,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             getParentActivity().map(Activity::getWindow).ifPresent(window -> {
                 window.setStatusBarColor(Color.TRANSPARENT);
                 window.setNavigationBarColor(Color.TRANSPARENT);
-                final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-                window.getDecorView().setSystemUiVisibility(visibility);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                WindowCompat.setDecorFitsSystemWindows(window, false);
+                WindowCompat.getInsetsController(window, window.getDecorView())
+                        .show(WindowInsetsCompat.Type.systemBars());
             });
         }
     }
@@ -746,15 +746,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private int getNearestStreamSegmentPosition(final long playbackPosition) {
-        //noinspection SimplifyOptionalCallChains
-        if (!player.getCurrentStreamInfo().isPresent()) {
-            return 0;
-        }
-
         int nearestPosition = 0;
         final List<StreamSegment> segments = player.getCurrentStreamInfo()
-                .get()
-                .getStreamSegments();
+                .map(StreamInfo::getStreamSegments)
+                .orElse(Collections.emptyList());
 
         for (int i = 0; i < segments.size(); i++) {
             if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
@@ -866,14 +861,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     @Override
     protected void onPlaybackSpeedClicked() {
-        final AppCompatActivity activity = getParentActivity().orElse(null);
-        if (activity == null) {
-            return;
-        }
-
-        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
-                player.getPlaybackSkipSilence(), player::setPlaybackParameters)
-                .show(activity.getSupportFragmentManager(), null);
+        getParentActivity().ifPresent(activity ->
+                PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                                player.getPlaybackPitch(), player.getPlaybackSkipSilence(),
+                                player::setPlaybackParameters)
+                        .show(activity.getSupportFragmentManager(), null));
     }
 
     @Override
@@ -973,22 +965,22 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
 
+    private Optional<Context> getParentContext() {
+        return Optional.ofNullable(binding.getRoot().getParent())
+                .filter(ViewGroup.class::isInstance)
+                .map(parent -> ((ViewGroup) parent).getContext());
+    }
+
     public Optional<AppCompatActivity> getParentActivity() {
-        final ViewParent rootParent = binding.getRoot().getParent();
-        if (rootParent instanceof ViewGroup) {
-            final Context activity = ((ViewGroup) rootParent).getContext();
-            if (activity instanceof AppCompatActivity) {
-                return Optional.of((AppCompatActivity) activity);
-            }
-        }
-        return Optional.empty();
+        return getParentContext()
+                .filter(AppCompatActivity.class::isInstance)
+                .map(AppCompatActivity.class::cast);
     }
 
     public boolean isLandscape() {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
-        return DeviceUtils.isLandscape(
-                getParentActivity().map(Context.class::cast).orElse(player.getService()));
+        return DeviceUtils.isLandscape(getParentContext().orElse(player.getService()));
     }
     //endregion
 }

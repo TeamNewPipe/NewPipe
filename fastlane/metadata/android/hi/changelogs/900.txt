@@ -1,0 +1,14 @@
+New
+• Subscription groups and sorted feeds
+• Mute button in players
+
+Improved
+• Allow opening music.youtube.com and media.ccc.de links in NewPipe
+• Relocate two settings from Appearance to Content
+• Hide 5, 15, 25 second seek options if inexact seek is enabled
+
+Fixed
+• some WebM videos are not seekable
+• database backup on Android P
+• crash when sharing a downloaded file
+• tons of YouTube extraction issue and more ...

@@ -518,12 +518,10 @@ public abstract class PlayQueue implements Serializable {
      * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
      */
-    @Override
-    public boolean equals(@Nullable final Object obj) {
-        if (!(obj instanceof PlayQueue)) {
+    public boolean equalStreams(@Nullable final PlayQueue other) {
+        if (other == null) {
             return false;
         }
-        final PlayQueue other = (PlayQueue) obj;
         if (size() != other.size()) {
             return false;
         }
@@ -539,9 +537,11 @@ public abstract class PlayQueue implements Serializable {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        return streams.hashCode();
+    public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
+        if (equalStreams(other)) {
+            return other.getIndex() == getIndex();
+        }
+        return false;
     }
 
     public boolean isDisposed() {

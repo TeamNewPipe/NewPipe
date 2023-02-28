@@ -327,6 +327,7 @@
     <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
+    <string name="msg_failed_to_copy">Failed to copy to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
     <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
@@ -432,6 +433,7 @@
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
+    <string name="duplicate_in_playlist">The playlists that are grayed out already contain this item.</string>
     <string name="rename_playlist">Rename</string>
     <string name="name">Name</string>
     <string name="add_to_playlist">Add to playlist</string>
@@ -439,11 +441,13 @@
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
+    <string name="unset_playlist_thumbnail">Unset permanent thumbnail</string>
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicate added %d time(s)</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_no_uploader">Auto-generated (no uploader found)</string>
     <!-- Players -->
@@ -548,6 +552,7 @@
     <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
+    <string name="card">Card</string>
     <string name="auto">Auto</string>
     <!-- Seekbar Preview Thumbnail-->
     <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>

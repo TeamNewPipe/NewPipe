@@ -661,7 +661,7 @@
     <string name="high_quality_larger">Высокое качество (крупнее)</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
-    <string name="mark_as_watched">Пометить просмотренными</string>
+    <string name="mark_as_watched">Пометить проигранным</string>
     <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
@@ -692,8 +692,8 @@
     <string name="streams_notification_channel_name">Новые видео</string>
     <string name="streams_notification_channel_description">Уведомления о новых видео в подписках</string>
     <string name="streams_notifications_interval_title">Частота проверки</string>
-    <string name="enable_streams_notifications_title">Уведомлять о новых видео</string>
-    <string name="enable_streams_notifications_summary">Получать уведомления о новых видео из каналов, на которые Вы подписаны</string>
+    <string name="enable_streams_notifications_title">Новые видео</string>
+    <string name="enable_streams_notifications_summary">Уведомлять о новых видео в подписках</string>
     <string name="streams_notifications_network_title">Тип подключения</string>
     <string name="any_network">Любая сеть</string>
     <string name="notifications_disabled">Уведомления отключены</string>
@@ -720,7 +720,7 @@
     <string name="loading_stream_details">Загрузка сведений о трансляции…</string>
     <string name="check_new_streams">Проверить наличие новых трансляций</string>
     <string name="delete_downloaded_files_confirm">Удалить все загруженные файлы\?</string>
-    <string name="settings_category_player_notification_title">Уведомления плеера</string>
+    <string name="settings_category_player_notification_title">Уведомление плеера</string>
     <string name="enumeration_comma">,</string>
     <string name="semitone">Полутон</string>
     <string name="percent">Проценты</string>
@@ -736,11 +736,17 @@
     <string name="feed_toggle_hide_played_items">Скрыть проигранные</string>
     <string name="feed_toggle_hide_future_items">Скрывать будущие видео</string>
     <string name="faq_title">Ответы на частые вопросы</string>
-    <string name="faq_description">Если у вас возникли проблемы с использованием приложения, обязательно ознакомьтесь с ответами на распространенные вопросы!</string>
+    <string name="faq_description">Если у вас возникли проблемы с использованием приложения, обязательно ознакомьтесь с ответами на распространённые вопросы!</string>
     <string name="faq">Посмотреть на веб-сайте</string>
     <string name="sort">Сортировка</string>
     <string name="app_update_unavailable_toast">У вас последняя версия</string>
     <string name="fast_mode">Быстрый режим</string>
     <string name="import_subscriptions_hint">Импорт и экспорт подписок в меню с 3-мя точками</string>
     <string name="app_update_available_notification_text">Нажмите для загрузки %s</string>
+    <string name="card">Карта</string>
+    <string name="msg_failed_to_copy">Не удалось скопировать в буфер обмена</string>
+    <string name="night_theme_available">Доступно, когда Тема установлена в %s</string>
+    <string name="unset_playlist_thumbnail">Убрать постоянную миниатюру</string>
+    <string name="playlist_add_stream_success_duplicate">Дубликат добавлен %d раз(а)</string>
+    <string name="duplicate_in_playlist">Плейлисты, выделенные серым уже содержат этот объект.</string>
 </resources>

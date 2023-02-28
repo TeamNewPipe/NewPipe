@@ -644,4 +644,5 @@
     <string name="main_page_content_swipe_remove">ভুক্তি মুছতে ডানে-বামে সরাও</string>
     <string name="loading_stream_details">সম্প্রচার বিষয়ক তথ্য প্রক্রিয়ারত…</string>
     <string name="feed_toggle_show_future_items">ভবিষ্যৎ ভুক্তি দেখাও</string>
+    <string name="progressive_load_interval_title">প্লেব্যাক লোড বিরতির আকার</string>
 </resources>

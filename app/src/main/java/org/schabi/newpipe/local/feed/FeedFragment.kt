@@ -36,7 +36,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
@@ -69,6 +68,7 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.BaseStateFragment
+import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
@@ -80,6 +80,7 @@ import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
+import org.schabi.newpipe.util.ThemeHelper.getItemViewMode
 import org.schabi.newpipe.util.ThemeHelper.resolveDrawable
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
@@ -120,7 +121,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
 
         onSettingsChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key.equals(getString(R.string.list_view_mode_key))) {
+            if (getString(R.string.list_view_mode_key).equals(key)) {
                 updateListViewModeOnResume = true
             }
         }
@@ -416,11 +417,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     @SuppressLint("StringFormatMatches")
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
-
-        val itemVersion = if (shouldUseGridLayout(context)) {
-            StreamItem.ItemVersion.GRID
-        } else {
-            StreamItem.ItemVersion.NORMAL
+        val itemVersion = when (getItemViewMode(requireContext())) {
+            ItemViewMode.GRID -> StreamItem.ItemVersion.GRID
+            ItemViewMode.CARD -> StreamItem.ItemVersion.CARD
+            else -> StreamItem.ItemVersion.NORMAL
         }
         loadedState.items.forEach { it.itemVersion = itemVersion }
 
@@ -499,7 +499,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private fun handleFeedNotAvailable(
         subscriptionEntity: SubscriptionEntity,
-        @Nullable cause: Throwable?,
+        cause: Throwable?,
         nextItemsErrors: List<Throwable>
     ) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())

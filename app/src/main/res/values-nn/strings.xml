@@ -14,7 +14,7 @@
     <string name="share">Del</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillingar</string>
-    <string name="did_you_mean">Tenkte du på «%1$s»\?</string>
+    <string name="did_you_mean">Meinte du «%1$s»\?</string>
     <string name="share_dialog_title">Del med</string>
     <string name="use_external_video_player_title">Nytta ytre videospelar</string>
     <string name="use_external_video_player_summary">Tek bort ljod ved somme oppløysingar</string>
@@ -63,4 +63,11 @@
     <string name="streams_not_yet_supported_removed">Straumar som ikkje enno er stødde av hentaren, er ikkje synlege</string>
     <string name="unknown_quality">Ukjend kvalitet</string>
     <string name="unknown_format">Ukjend format</string>
+    <string name="default_resolution_title">Forvald oppløysing</string>
+    <string name="default_popup_resolution_title">Forvald oppsprettsoppløysing</string>
+    <string name="show_play_with_kodi_summary">Vis eit val om å spela av ein video med mediasamlestaden Kodi</string>
+    <string name="notification_scale_to_square_image_title">Skjer småbiletet til storleikshøvet 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Skjer videosmåbiletet som vert vist i varselet, ifrå storleikshøvet 16:9 til 1:1</string>
+    <string name="notification_action_0_title">Fyrste gjerdknapp</string>
+    <string name="notification_action_1_title">Andre gjerdknapp</string>
 </resources>

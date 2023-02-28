@@ -132,6 +132,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
+        // Is mini variant still relevant?
+        // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
     }
 

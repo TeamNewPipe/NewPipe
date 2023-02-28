@@ -33,7 +33,8 @@ class DatabaseMigrationTest {
     @get:Rule
     val testHelper = MigrationTestHelper(
         InstrumentationRegistry.getInstrumentation(),
-        AppDatabase::class.java.canonicalName, FrameworkSQLiteOpenHelperFactory()
+        AppDatabase::class.java.canonicalName,
+        FrameworkSQLiteOpenHelperFactory()
     )
 
     @Test
@@ -42,7 +43,8 @@ class DatabaseMigrationTest {
 
         databaseInV2.run {
             insert(
-                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                "streams",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SERVICE_ID)
                     put("url", DEFAULT_URL)
@@ -54,14 +56,16 @@ class DatabaseMigrationTest {
                 }
             )
             insert(
-                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                "streams",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SECOND_SERVICE_ID)
                     put("url", DEFAULT_SECOND_URL)
                 }
             )
             insert(
-                "streams", SQLiteDatabase.CONFLICT_FAIL,
+                "streams",
+                SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SERVICE_ID)
                 }
@@ -70,18 +74,31 @@ class DatabaseMigrationTest {
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_3,
-            true, Migrations.MIGRATION_2_3
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_3,
+            true,
+            Migrations.MIGRATION_2_3
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_4,
-            true, Migrations.MIGRATION_3_4
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_4,
+            true,
+            Migrations.MIGRATION_3_4
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_5,
-            true, Migrations.MIGRATION_4_5
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_5,
+            true,
+            Migrations.MIGRATION_4_5
+        )
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_6,
+            true,
+            Migrations.MIGRATION_5_6
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()
@@ -121,7 +138,8 @@ class DatabaseMigrationTest {
     private fun getMigratedDatabase(): AppDatabase {
         val database: AppDatabase = Room.databaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            AppDatabase::class.java, AppDatabase.DATABASE_NAME
+            AppDatabase::class.java,
+            AppDatabase.DATABASE_NAME
         )
             .build()
         testHelper.closeWhenFinished(database)

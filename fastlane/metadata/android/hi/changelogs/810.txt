@@ -1,0 +1,19 @@
+New
+• Show video thumbnail on the lock screen when playing in the background
+
+Improved
+• Add local playlist to queue when long pressing on background / popup button
+• Make main page tabs scrollable and hide when there is only a single tab
+• Limit amount of notification thumbnail updates in background player
+• Add dummy thumbnail for empty local playlists
+• Use *.opus file extension instead of *.webm and show "opus" in format label instead of "WebM Opus" in the download dropdown
+• Add button to delete downloaded files or download history in "Downloads"
+• [YouTube] Add support to /c/shortened_url channel links
+
+Fixed
+• Fixed multiple issues when sharing a video to NewPipe and downloading its streams directly
+• Fixed player access out of its creation thread
+• Fixed search result paging
+• [YouTube] Fixed switching on null causing NPE
+• [YouTube] Fixed viewing comments when opening an invidio.us url
+• [SoundCloud] Updated client_id

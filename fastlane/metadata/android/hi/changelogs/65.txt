@@ -1,0 +1,26 @@
+### Improvements
+
+- Disable burgermenu icon animation #1486 
+- undo delete of downloads #1472 
+- Download option in share menu #1498
+- Added share option to long tap menu #1454 
+- Minimize main player on exit #1354 
+- Library version update and database backup fix #1510 
+- ExoPlayer 2.8.2 Update #1392
+  - Reworked the playback speed control dialog to support different step sizes for faster speed change.
+  - Added a toggle to fast-forward during silences in playback speed control. This should be helpful for audiobooks and certain music genres, and can bring a true seamless experience (and can break a song with lots of silences =\\).  
+  - Refactored media source resolution to allow passing metadata alongside media internally in the player, rather than doing so manually. Now we have a single source of metadata and is directly available when playback starts.
+  - Fixed remote playlist metadata not updating when new metadata is available when playlist fragment is opened.
+  - Various UI fixes: #1383, background player notification controls now always white, easier to shutdown popup player through flinging
+- Use new extractor with refactored architecture for multiservice
+
+### Fixes
+
+- Fix #1440 Broken Video Info Layout #1491 
+- View history fix #1497
+  - #1495, by updating the metadata (thumbnail, title and video count) as soon as the user access the playlist. 
+  - #1475, by registering a view in the database when the user starts a video on external player on detail fragment.
+- Fix creen timeout in case of popup mode. #1463 (Fixed #640)
+- Main video player fix #1509 
+  - [#1412] Fixed repeat mode causing player NPE when new intent is received while player activity is in background.
+  - Fixed minimizing player to popup does not destroy player when popup permission is not granted.
