@@ -694,8 +694,8 @@
 \nYouTube is an example of a service that offers this fast method with its RSS feed.
 \n
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
-    <string name="feed_toggle_show_played_items">Show watched items</string>
-    <string name="feed_toggle_hide_played_items">Hide watched items</string>
+    <string name="feed_hide_streams_title">Show the following streams</string>
+    <string name="feed_show_hide_streams">Show/Hide streams</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -763,5 +763,8 @@
     <string name="unknown_quality">Unknown quality</string>
     <string name="feed_toggle_show_future_items">Show future items</string>
     <string name="feed_toggle_hide_future_items">Hide future items</string>
+    <string name="feed_show_watched">Fully watched</string>
+    <string name="feed_show_partially_watched">Partially watched</string>
+    <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
 </resources>

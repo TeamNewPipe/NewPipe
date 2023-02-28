@@ -87,7 +87,7 @@ public class HistoryRecordManager {
      * Marks a stream item as watched such that it is hidden from the feed if watched videos are
      * hidden. Adds a history entry and updates the stream progress to 100%.
      *
-     * @see FeedViewModel#togglePlayedItems
+     * @see FeedViewModel#setSaveShowPlayedItems
      * @param info the item to mark as watched
      * @return a Maybe containing the ID of the item if successful
      */
