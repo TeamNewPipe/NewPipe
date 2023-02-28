@@ -224,5 +224,12 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/ignore_hardware_media_buttons_key"
+            android:summary="@string/ignore_hardware_media_buttons_summary"
+            android:title="@string/ignore_hardware_media_buttons_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

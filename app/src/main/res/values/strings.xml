@@ -83,6 +83,8 @@
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
+    <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
+    <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache</string>
     <string name="show_comments_title">Show comments</string>
@@ -345,7 +347,6 @@
     <string name="settings_file_replacement_character_title">Replacement character</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-    <string name="toast_no_player">No app installed to play this file</string>
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="title_licenses">Third-party Licenses</string>
@@ -693,8 +694,8 @@
 \nYouTube is an example of a service that offers this fast method with its RSS feed.
 \n
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
-    <string name="feed_toggle_show_played_items">Show watched items</string>
-    <string name="feed_toggle_hide_played_items">Hide watched items</string>
+    <string name="feed_hide_streams_title">Show the following streams</string>
+    <string name="feed_show_hide_streams">Show/Hide streams</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -762,5 +763,8 @@
     <string name="unknown_quality">Unknown quality</string>
     <string name="feed_toggle_show_future_items">Show future items</string>
     <string name="feed_toggle_hide_future_items">Hide future items</string>
+    <string name="feed_show_watched">Fully watched</string>
+    <string name="feed_show_partially_watched">Partially watched</string>
+    <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
 </resources>

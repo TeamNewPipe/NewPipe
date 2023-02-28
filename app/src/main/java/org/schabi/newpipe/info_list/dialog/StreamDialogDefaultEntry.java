@@ -99,14 +99,8 @@ public enum StreamDialogDefaultEntry {
         )
     ),
 
-    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) -> {
-        final Uri videoUrl = Uri.parse(item.getUrl());
-        try {
-            NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
-        } catch (final Exception e) {
-            KoreUtils.showInstallKoreDialog(fragment.requireActivity());
-        }
-    }),
+    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) ->
+            KoreUtils.playWithKore(fragment.requireContext(), Uri.parse(item.getUrl()))),
 
     SHARE(R.string.share, (fragment, item) ->
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),

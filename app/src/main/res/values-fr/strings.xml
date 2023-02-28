@@ -302,7 +302,6 @@
     <string name="caption_setting_title">Sous-titres</string>
     <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements</string>
     <string name="playback_pitch">Ton</string>
-    <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
     <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
     <string name="delete_view_history_alert">Voulez-vous supprimer entièrement l’historique des vues \?</string>

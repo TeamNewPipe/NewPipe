@@ -86,7 +86,7 @@
     <org.schabi.newpipe.views.AnimatedProgressBar
         android:id="@+id/itemProgressView"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="4dp"
         android:progressDrawable="?progress_horizontal_drawable"
         app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"

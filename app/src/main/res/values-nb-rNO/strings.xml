@@ -282,7 +282,6 @@
     <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>
     <string name="search_history_deleted">Søkehistorikken er slettet</string>
     <string name="one_item_deleted">Ett element slettet.</string>
-    <string name="toast_no_player">Ingen app installert for å spille av denne filen</string>
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre spillerens undertekststørrelse og bakgrunnsstiler. Krever omstart av appen for å tre i kraft</string>
     <string name="app_license">NewPipe er copyleft fri programvare: Du kan bruke, studere og forbedre den etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere den i henhold til vilkårene gitt i GNU General Public-lisensen, som er publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>

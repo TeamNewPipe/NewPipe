@@ -324,7 +324,6 @@
     <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料夾</string>
     <string name="one_item_deleted">刪除咗 1 個項目。</string>
     <string name="recaptcha_solve">執執佢</string>
-    <string name="toast_no_player">未裝 app 嚟播放呢個檔案</string>
     <string name="recaptcha_done_button">搞掂</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常著重您嘅私隱。因此，呢個 app 未得您同意係唔會收集任何資料。
 \nNewPipe 嘅私隱政策，詳述當您傳送彈 app 報告時，有咩資料會傳送同保存。</string>

@@ -25,6 +25,7 @@
     <string name="screen_brightness_key">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key">screen_brightness_timestamp_key</string>
     <string name="clear_queue_confirmation_key">clear_queue_confirmation_key</string>
+    <string name="ignore_hardware_media_buttons_key">ignore_hardware_media_buttons_key</string>
 
     <string name="popup_saved_width_key">popup_saved_width</string>
     <string name="popup_saved_x_key">popup_saved_x</string>
@@ -283,7 +284,8 @@
 
     <string name="feed_update_threshold_key">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value">300</string>
-    <string name="feed_show_played_items_key">feed_show_played_items</string>
+    <string name="feed_show_watched_items_key">feed_show_played_items</string>
+    <string name="feed_show_partially_watched_items_key">feed_show_partially_watched_items</string>
     <string name="feed_show_future_items_key">feed_show_future_items</string>
 
     <string name="show_thumbnail_key">show_thumbnail_key</string>

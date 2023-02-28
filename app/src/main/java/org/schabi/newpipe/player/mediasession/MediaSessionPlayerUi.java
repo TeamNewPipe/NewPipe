@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.mediasession;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -23,14 +24,20 @@ import org.schabi.newpipe.util.StreamTypeUtil;
 
 import java.util.Optional;
 
-public class MediaSessionPlayerUi extends PlayerUi {
+public class MediaSessionPlayerUi extends PlayerUi
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MediaSessUi";
 
     private MediaSessionCompat mediaSession;
     private MediaSessionConnector sessionConnector;
 
+    private final String ignoreHardwareMediaButtonsKey;
+    private boolean shouldIgnoreHardwareMediaButtons = false;
+
     public MediaSessionPlayerUi(@NonNull final Player player) {
         super(player);
+        ignoreHardwareMediaButtonsKey =
+                context.getString(R.string.ignore_hardware_media_buttons_key);
     }
 
     @Override
@@ -45,6 +52,15 @@ public class MediaSessionPlayerUi extends PlayerUi {
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, player));
         sessionConnector.setPlayer(getForwardingPlayer());
 
+        // It seems like events from the Media Control UI in the notification area don't go through
+        // this function, so it's safe to just ignore all events in case we want to ignore the
+        // hardware media buttons. Returning true stops all further event processing of the system.
+        sessionConnector.setMediaButtonEventHandler((p, i) -> shouldIgnoreHardwareMediaButtons);
+
+        // listen to changes to ignore_hardware_media_buttons_key
+        updateShouldIgnoreHardwareMediaButtons(player.getPrefs());
+        player.getPrefs().registerOnSharedPreferenceChangeListener(this);
+
         sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setMediaMetadataProvider(exoPlayer -> buildMediaMetadata());
     }
@@ -52,7 +68,9 @@ public class MediaSessionPlayerUi extends PlayerUi {
     @Override
     public void destroyPlayer() {
         super.destroyPlayer();
+        player.getPrefs().unregisterOnSharedPreferenceChangeListener(this);
         if (sessionConnector != null) {
+            sessionConnector.setMediaButtonEventHandler(null);
             sessionConnector.setPlayer(null);
             sessionConnector.setQueueNavigator(null);
             sessionConnector = null;
@@ -71,6 +89,20 @@ public class MediaSessionPlayerUi extends PlayerUi {
             // the thumbnail is now loaded: invalidate the metadata to trigger a metadata update
             sessionConnector.invalidateMediaSessionMetadata();
         }
+    }
+
+
+    @Override
+    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
+                                          final String key) {
+        if (key == null || key.equals(ignoreHardwareMediaButtonsKey)) {
+            updateShouldIgnoreHardwareMediaButtons(sharedPreferences);
+        }
+    }
+
+    public void updateShouldIgnoreHardwareMediaButtons(final SharedPreferences sharedPreferences) {
+        shouldIgnoreHardwareMediaButtons =
+                sharedPreferences.getBoolean(ignoreHardwareMediaButtonsKey, false);
     }
 
 

@@ -187,7 +187,6 @@
     <string name="metadata_cache_wipe_summary">Vakigi tutajn kaŝmemorigitajn retpaĝajn datumojn</string>
     <string name="metadata_cache_wipe_complete_notice">Kaŝmemorojn de metadatumojn vakigis</string>
     <string name="no_streams_available_download">Neniuj torentoj haveblaj por elŝuti</string>
-    <string name="toast_no_player">Neniu apo instalita por ludi ĉi tiun dosieron</string>
     <string name="clear_views_history_title">Forviŝi vidohistorion</string>
     <string name="clear_views_history_summary">Forviŝi la historion de viditaj filmetojn kaj ludajn poziciojn</string>
     <string name="delete_view_history_alert">Ĉu vi volas forviŝi la tutan historion \?</string>

@@ -176,7 +176,6 @@
     <string name="settings_file_replacement_character_title">نویسه جایگزین</string>
     <string name="charset_letters_and_digits">حروف و اعداد</string>
     <string name="charset_most_special_characters">مهم‌ترین نویسه‌های خاص</string>
-    <string name="toast_no_player">کاره‌ای برای پخش این پرونده نصب نشده است</string>
     <string name="title_activity_about">درباره نیوپایپ</string>
     <string name="tab_about">درباره و سوالات‌متداول</string>
     <string name="tab_licenses">پروانه‌ها</string>

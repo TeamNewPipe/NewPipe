@@ -250,7 +250,6 @@
     <string name="dismiss">Odbaci</string>
     <string name="rename">Preimenuj</string>
     <string name="one_item_deleted">1 stavka izbrisana.</string>
-    <string name="toast_no_player">Nijedan program nije instaliran za reprodukciju ove datoteke</string>
     <string name="give_back">Vrati</string>
     <string name="website_encouragement">Posjeti NewPipe web-stranicu za više informacija i vijesti.</string>
     <string name="privacy_policy_title">NewPipe pravila o privatnosti</string>

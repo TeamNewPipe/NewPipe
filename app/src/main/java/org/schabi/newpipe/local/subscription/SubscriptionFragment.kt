@@ -60,7 +60,6 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
-import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -245,7 +244,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         super.initViews(rootView, savedInstanceState)
         _binding = FragmentSubscriptionBinding.bind(rootView)
 
-        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountChannels(context) else 1
+        groupAdapter.spanCount = if (SubscriptionViewModel.shouldUseGridForSubscription(requireContext())) getGridSpanCountChannels(context) else 1
         binding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -380,15 +379,15 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun handleResult(result: SubscriptionState) {
         super.handleResult(result)
 
-        val shouldUseGridLayout = shouldUseGridLayout(context)
         when (result) {
             is SubscriptionState.LoadedState -> {
                 result.subscriptions.forEach {
                     if (it is ChannelItem) {
                         it.gesturesListener = listenerChannelItem
-                        it.itemVersion = when {
-                            shouldUseGridLayout -> ChannelItem.ItemVersion.GRID
-                            else -> ChannelItem.ItemVersion.MINI
+                        it.itemVersion = if (SubscriptionViewModel.shouldUseGridForSubscription(requireContext())) {
+                            ChannelItem.ItemVersion.GRID
+                        } else {
+                            ChannelItem.ItemVersion.MINI
                         }
                     }
                 }

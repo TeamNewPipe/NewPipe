@@ -294,7 +294,6 @@
     <string name="unhook_checkbox">غیر مربوط (مسخ کا سبب بن سکتا ہے)</string>
     <string name="caption_setting_title">عنوانات</string>
     <string name="caption_setting_description">پلیئر کیپشن ٹیکسٹ اسکیل اور بیک گراونڈ اسٹائل میں ترمیم کریں۔ اثر لینے کیلئے ایپ کو دوبارہ شروع کرنا ضروری ہے۔</string>
-    <string name="toast_no_player">اس فائل کو چلانے کے لئے کوئی ایپ انسٹال نہیں ہے</string>
     <string name="clear_views_history_title">دیکھنے کی سرگزشت صاف کریں</string>
     <string name="clear_views_history_summary">چلائے گئے سلسلوں اور پلے بیک پوزیشنز کی سرگزشت کو حذف کیا گیا</string>
     <string name="delete_view_history_alert">دیکھے جانے کی تمام سرگزشت حذف کریں؟</string>

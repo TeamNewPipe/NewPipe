@@ -301,7 +301,6 @@
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
     <string name="preferred_open_action_settings_title">Acción de apertura preferida</string>
     <string name="preferred_open_action_settings_summary">Acción predefinida al abrir contenido: %s</string>
-    <string name="toast_no_player">No se encontró ninguna aplicación que reproduzca este archivo</string>
     <string name="caption_setting_title">Subtítulos</string>
     <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la aplicación para que surta efecto</string>
     <string name="clear_views_history_title">Vaciar historial de reproducciones</string>

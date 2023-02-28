@@ -299,7 +299,6 @@
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
     <string name="caption_setting_title">Ondertitels</string>
     <string name="caption_setting_description">Ondertitelgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
-    <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van bekeken video\'s en afspeelposities</string>
     <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>

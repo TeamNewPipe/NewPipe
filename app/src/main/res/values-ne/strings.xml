@@ -225,7 +225,6 @@
     <string name="settings_file_replacement_character_title">प्रतिस्थापन वर्ण</string>
     <string name="charset_letters_and_digits">अक्षर र अंक</string>
     <string name="charset_most_special_characters">सबै विशेष वर्णहरु</string>
-    <string name="toast_no_player">कुनै अनुप्रयोग यो फाइल खेल्न स्थापित</string>
     <string name="title_activity_about">न्यू पाइपको बारेमा</string>
     <string name="title_licenses">तेस्रो-पक्ष इजाजत पत्र</string>
     <string name="copyright" formatted="true">©%1$s को %2$s द्वारा %3$s अन्तर्गत</string>

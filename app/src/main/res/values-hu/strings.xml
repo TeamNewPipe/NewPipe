@@ -200,7 +200,6 @@
     <string name="settings_file_replacement_character_title">Csere karakter</string>
     <string name="charset_letters_and_digits">Betűk és számok</string>
     <string name="charset_most_special_characters">Legtöbb speciális karakter</string>
-    <string name="toast_no_player">Nincs a fájl lejátszásához szükséges alkalmazás telepítve</string>
     <string name="title_activity_about">A NewPipe névjegye</string>
     <string name="tab_about">Névjegy és GYIK</string>
     <string name="tab_licenses">Licencek</string>

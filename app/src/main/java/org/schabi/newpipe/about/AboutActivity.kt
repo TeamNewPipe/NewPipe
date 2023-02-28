@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -57,13 +58,9 @@ class AboutActivity : AppCompatActivity() {
      * A placeholder fragment containing a simple view.
      */
     class AboutFragment : Fragment() {
-        private fun Button.openLink(url: Int) {
+        private fun Button.openLink(@StringRes url: Int) {
             setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context,
-                    requireContext().getString(url),
-                    false
-                )
+                ShareUtils.openUrlInApp(context, requireContext().getString(url))
             }
         }
 
