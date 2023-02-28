@@ -637,7 +637,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         builder.setTitle(R.string.remove_duplicates_title)
                 .setMessage(R.string.remove_duplicates_message)
-                .setPositiveButton(android.R.string.yes, (dialog, i) -> {
+                .setPositiveButton(R.string.ok, (dialog, i) -> {
                     removeDuplicatesInPlaylist();
                 })
                 .setNeutralButton(R.string.cancel, null);
