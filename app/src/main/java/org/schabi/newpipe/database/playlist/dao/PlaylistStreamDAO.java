@@ -108,6 +108,23 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 
+    @RewriteQueriesToDropUnusedColumns
+    @Transaction
+    @Query("SELECT *, MIN(" + JOIN_INDEX + ")"
+            + " FROM " + STREAM_TABLE + " INNER JOIN"
+            + " (SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX
+            + " FROM " + PLAYLIST_STREAM_JOIN_TABLE
+            + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId)"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            + STREAM_PROGRESS_MILLIS
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
+            + " GROUP BY " + STREAM_ID
+            + " ORDER BY MIN(" + JOIN_INDEX + ") ASC")
+    Flowable<List<PlaylistStreamEntry>> getStreamsWithoutDuplicates(long playlistId);
+
     @Transaction
     @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", "
             + PLAYLIST_NAME + ", "

@@ -93,6 +93,11 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
+    public Flowable<List<PlaylistStreamEntry>> getDistinctPlaylistStreams(final long playlistId) {
+        return playlistStreamTable
+                .getStreamsWithoutDuplicates(playlistId).subscribeOn(Schedulers.io());
+    }
+
     /**
      * Get playlists with attached information about how many times the provided stream is already
      * contained in each playlist.
