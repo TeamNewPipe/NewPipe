@@ -108,6 +108,39 @@ public final class SettingMigrations {
         }
     };
 
+    public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        protected void migrate(final Context context) {
+            boolean brightnessGestureSwitch = sp.getBoolean(
+                    context.getString(R.string.left_gesture_control_key), false);
+            boolean volumeGestureSwitch = sp.getBoolean(
+                    context.getString(R.string.right_gesture_control_key), false);
+
+            SharedPreferences.Editor editor = sp.edit();
+
+            if (volumeGestureSwitch) {
+                if (!brightnessGestureSwitch) {
+                    editor.putString(context.getString(R.string.left_gesture_control_key),
+                            context.getString(R.string.brightness));
+                }
+                editor.putString(context.getString(R.string.right_gesture_control_key),
+                        context.getString(R.string.volume));
+            } else if (brightnessGestureSwitch) {
+                editor.putString(context.getString(R.string.right_gesture_control_key),
+                        context.getString(R.string.brightness));
+                editor.putString(context.getString(R.string.left_gesture_control_key),
+                        context.getString(R.string.volume));
+            } else {
+                editor.putString(context.getString(R.string.left_gesture_control_key),
+                        context.getString(R.string.none));
+                editor.putString(context.getString(R.string.right_gesture_control_key),
+                        context.getString(R.string.none));
+            }
+
+            editor.apply();
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -119,12 +152,13 @@ public final class SettingMigrations {
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
+            MIGRATION_4_5,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 4;
+    public static final int VERSION = 5;
 
 
     public static void initMigrations(final Context context, final boolean isFirstRun) {
