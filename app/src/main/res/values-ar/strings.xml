@@ -105,7 +105,7 @@
     <string name="player_unrecoverable_failure">حدث خطأ للمشغل غير قابل للاسترداد</string>
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
     <string name="sorry_string">عذرًا، لم ينبغِ أن يحدث ذلك.</string>
-    <string name="error_report_button_text">الإبلاغ عن هذا الخطأ عبر البريد الإلكتروني</string>
+    <string name="error_report_button_text">الإبلاغ عن طريق البريد الإلكتروني</string>
     <string name="error_snackbar_message">عذرًا، حدث خطأ ما.</string>
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
@@ -783,4 +783,6 @@
     <string name="card">البطاقة</string>
     <string name="playlist_add_stream_success_duplicate">تمت إضافة وقت (أوقات) مكررة %d</string>
     <string name="duplicate_in_playlist">تحتوي قوائم التشغيل رمادية اللون بالفعل على هذا العنصر.</string>
+    <string name="ignore_hardware_media_buttons_summary">مفيد ، على سبيل المثال ، إذا كنت تستخدم سماعة رأس بأزرار مادية مكسورة</string>
+    <string name="ignore_hardware_media_buttons_title">تجاهل أحداث ازرار الوسائط الأجهزة</string>
 </resources>

@@ -47,7 +47,7 @@
     <string name="content_not_available">Вміст недоступний</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
     <string name="sorry_string">Перепрошуємо, цього не мало статися.</string>
-    <string name="error_report_button_text">Надіслати звіт про помилки е-поштою</string>
+    <string name="error_report_button_text">Надіслати звіт е-поштою</string>
     <string name="error_snackbar_message">Вибачте, щось пішло не так.</string>
     <string name="error_snackbar_action">Звіт</string>
     <string name="what_device_headline">Інформація:</string>
@@ -748,4 +748,6 @@
     <string name="msg_failed_to_copy">Не вдалося скопіювати до буфера обміну</string>
     <string name="playlist_add_stream_success_duplicate">Дублікат додано %d раз(ів)</string>
     <string name="duplicate_in_playlist">У виділених сірим кольором добірках цей елемент уже є.</string>
+    <string name="ignore_hardware_media_buttons_title">Ігнорувати події апаратних медіакнопок</string>
+    <string name="ignore_hardware_media_buttons_summary">Корисно, наприклад, якщо ви використовуєте гарнітуру зі зламаними фізичними кнопками</string>
 </resources>

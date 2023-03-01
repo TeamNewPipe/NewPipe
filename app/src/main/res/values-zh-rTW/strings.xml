@@ -72,7 +72,7 @@
     <string name="could_not_setup_download_menu">無法設定下載選單</string>
     <string name="app_ui_crash">應用程式或界面已停止運作</string>
     <string name="sorry_string">抱歉，這是不該發生的。</string>
-    <string name="error_report_button_text">使用電子郵件回報此錯誤</string>
+    <string name="error_report_button_text">透過電子郵件回報</string>
     <string name="error_snackbar_message">抱歉，發生了一些問題。</string>
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
@@ -718,4 +718,6 @@
     <string name="msg_failed_to_copy">無法複製到剪貼簿</string>
     <string name="playlist_add_stream_success_duplicate">重複新增 %d 次</string>
     <string name="duplicate_in_playlist">變灰的播放清單已經包含此項目。</string>
+    <string name="ignore_hardware_media_buttons_title">忽略硬體媒體鍵事件</string>
+    <string name="ignore_hardware_media_buttons_summary">這很有用，舉例來說，若您正在使用物理按鍵壞掉的耳機</string>
 </resources>

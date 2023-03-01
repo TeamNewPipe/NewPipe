@@ -655,7 +655,7 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">빠른 모드 활성화</string>
     <string name="channel_created_by">%s에 의해 제작</string>
     <string name="detail_sub_channel_thumbnail_view_description">채널의 아바타 썸네일</string>
-    <string name="chapters">장</string>
+    <string name="chapters">챕터</string>
     <string name="recent">최근</string>
     <string name="account_terminated">계정이 해지됨</string>
     <string name="service_provides_reason">%s은(는) 다음과 같은 이유를 제공:</string>
@@ -710,7 +710,7 @@
     <string name="sort">정렬</string>
     <string name="fast_mode">빠른 모드</string>
     <string name="import_subscriptions_hint">점 3개 메뉴에서 구독 가져오기 또는 내보내기</string>
-    <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다.</string>
+    <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다</string>
     <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요.</string>
     <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
     <string name="night_theme_available">이 옵션은 테마로 %s를 선택한 경우에만 사용할 수 있음</string>

@@ -303,7 +303,7 @@
     <string name="saved_tabs_invalid_json">Saxlanmış tabları oxumaq mümkün olmadı, buna görə standart tabları istifadə et</string>
     <string name="error_report_notification_title">NewPipe xəta ilə qarşılaşdı, bildirmək üçün toxun</string>
     <string name="sorry_string">Bağışla, o baş verməməli idi.</string>
-    <string name="error_report_button_text">Bu xətanı e-poçt-dan bildir</string>
+    <string name="error_report_button_text">E-poçt- dan məlumat ver</string>
     <string name="error_report_open_issue_button_text">GitHub\'da Məlumat Ver</string>
     <string name="error_report_open_github_notice">Zəhmət olmasa, xətanızı müzakirə edən məsələnin mövcud olub-olmadığını yoxlayın. Dublikat biletləri yaradarkən, bizdən faktiki səhvi düzəltməyə sərf edəcəyimiz vaxt alırsınız.</string>
     <string name="error_snackbar_action">Məlumat Ver</string>
@@ -731,4 +731,6 @@
     <string name="msg_failed_to_copy">Buferə kopyalamaq alınmadı</string>
     <string name="duplicate_in_playlist">Boz rəngdə olan pleylistlərdə artıq bu element var.</string>
     <string name="playlist_add_stream_success_duplicate">Dublikat %d dəfə əlavə edildi</string>
+    <string name="ignore_hardware_media_buttons_title">Aparat mühiti media düyməsi hadisələrinə məhəl qoyma</string>
+    <string name="ignore_hardware_media_buttons_summary">Məsələn, fiziki düymələri qırılan qulaqlıq işlədirsinizsə faydalıdır</string>
 </resources>

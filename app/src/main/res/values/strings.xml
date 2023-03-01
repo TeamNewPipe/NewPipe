@@ -247,7 +247,7 @@
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
-    <string name="error_report_button_text">Report this error via e-mail</string>
+    <string name="error_report_button_text">Report via e-mail</string>
     <string name="copy_for_github">Copy formatted report</string>
     <string name="error_report_open_issue_button_text">Report on GitHub</string>
     <string name="error_report_open_github_notice">Please check whether an issue discussing your crash already exists. When creating duplicate tickets, you take time from us which we could spend with fixing the actual bug.</string>

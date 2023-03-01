@@ -742,4 +742,6 @@
     <string name="card">Cartelă</string>
     <string name="msg_failed_to_copy">Nu s-a reușit copierea în clipboard</string>
     <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
+    <string name="duplicate_in_playlist">Listele de redare care colorate în gri conțin deja acest element.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicat adăugat de %d ori</string>
 </resources>

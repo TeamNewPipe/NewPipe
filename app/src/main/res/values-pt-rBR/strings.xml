@@ -21,7 +21,7 @@
     <string name="download">Baixar</string>
     <string name="download_dialog_title">Baixar</string>
     <string name="error_details_headline">Detalhes:</string>
-    <string name="error_report_button_text">Relatar erro via email</string>
+    <string name="error_report_button_text">Relatar por e-mail</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
@@ -744,4 +744,6 @@
     <string name="msg_failed_to_copy">Falha ao copiar para a área de transferência</string>
     <string name="playlist_add_stream_success_duplicate">Duplicata adicionada %d vez(es)</string>
     <string name="duplicate_in_playlist">As playlists em cinza já contêm este item.</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos de botão de mídia de hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se você estiver usando um fone de ouvido com botões físicos quebrados</string>
 </resources>

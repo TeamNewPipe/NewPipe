@@ -50,7 +50,7 @@
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
     <string name="sorry_string">申し訳ありません。想定外のエラーが発生しました。</string>
-    <string name="error_report_button_text">不具合をメールで報告</string>
+    <string name="error_report_button_text">メールで送る</string>
     <string name="error_snackbar_message">申し訳ありません、不具合が発生しました。</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
@@ -712,9 +712,10 @@
     <string name="faq_description">アプリの使い方に困ったときは、よくある質問に答えていますので、ぜひご覧ください!</string>
     <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
     <string name="fast_mode">高速モード</string>
-    <string name="import_subscriptions_hint">3 点メニューから登録チャンネルをインポートまたはエクスポートします</string>
+    <string name="import_subscriptions_hint">3点メニューから登録チャンネルの読み込みまたは書き出しが可能</string>
     <string name="card">カード</string>
     <string name="msg_failed_to_copy">クリップボードへのコピーに失敗しました</string>
     <string name="duplicate_in_playlist">灰色で表示されているプレイリストには、すでにこのアイテムが含まれています。</string>
     <string name="playlist_add_stream_success_duplicate">%d 回重複追加されました</string>
+    <string name="unset_playlist_thumbnail">固定サムネイルの設定を解除</string>
 </resources>

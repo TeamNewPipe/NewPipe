@@ -51,7 +51,7 @@
     <string name="content_not_available">Treść niedostępna</string>
     <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
-    <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
+    <string name="error_report_button_text">Zgłoś przez e-mail</string>
     <string name="error_snackbar_message">Niestety, coś poszło nie tak</string>
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
@@ -752,4 +752,6 @@
     <string name="card">Karta</string>
     <string name="duplicate_in_playlist">Wyszarzone playlisty zawierają już tę pozycję</string>
     <string name="playlist_add_stream_success_duplicate">Dodano duplikat %d raz(y)</string>
+    <string name="ignore_hardware_media_buttons_summary">Przydatne, na przykład, jeśli używasz zestawu słuchawkowego z zepsutymi fizycznymi przyciskami</string>
+    <string name="ignore_hardware_media_buttons_title">Ignoruj zdarzenia sprzętowego przycisku multimedialnego</string>
 </resources>

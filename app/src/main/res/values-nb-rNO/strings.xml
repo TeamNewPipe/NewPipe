@@ -729,4 +729,6 @@
     <string name="card">Kort</string>
     <string name="import_subscriptions_hint">Importer eller eksporter fra trepunktsmenyen</string>
     <string name="fast_mode">Hurtigmodus</string>
+    <string name="duplicate_in_playlist">Spillelistene som er utgrået inneholder allerede dette elementet.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikat lagt til %d gang(er)</string>
 </resources>

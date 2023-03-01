@@ -139,7 +139,7 @@
     <string name="error_occurred_detail">Ilmnes viga: %1$s</string>
     <string name="no_streams_available_download">Allalaaditavaid videovooge pole</string>
     <string name="sorry_string">Vabandust, seda poleks pidanud juhtuma.</string>
-    <string name="error_report_button_text">Teata sellest veast e-posti kaudu</string>
+    <string name="error_report_button_text">Teata e-posti teel</string>
     <string name="error_snackbar_message">Vabandust, midagi läks valesti.</string>
     <string name="error_snackbar_action">Teata</string>
     <string name="what_device_headline">Info:</string>
@@ -731,4 +731,6 @@
     <string name="card">Kaart</string>
     <string name="duplicate_in_playlist">Hallina kuvatud esitusloendid juba sisaldavad seda kirjet.</string>
     <string name="playlist_add_stream_success_duplicate">Topeltkirje lisatud %d kord(a)</string>
+    <string name="ignore_hardware_media_buttons_summary">Kasulik näiteks kui olukorras kui kõrvaklappide nupud on katki</string>
+    <string name="ignore_hardware_media_buttons_title">Eira nutiseadmes asuvate või seotud seadmete meedianuppude vajutusi</string>
 </resources>

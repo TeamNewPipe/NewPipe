@@ -55,7 +55,7 @@
     <string name="error_report_title">Informe de error</string>
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga</string>
     <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
-    <string name="error_report_button_text">Informar de este error vía correo electrónico</string>
+    <string name="error_report_button_text">Informar por correo electrónico</string>
     <string name="error_snackbar_message">Lo siento, algo salió mal.</string>
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
@@ -747,4 +747,6 @@
     <string name="card">Tarjeta</string>
     <string name="playlist_add_stream_success_duplicate">Duplicado añadido %d vez/veces</string>
     <string name="duplicate_in_playlist">Las listas de reproducción que están en gris ya contienen este elemento.</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por ejemplo, si está utilizando un auricular con botones físicos rotos</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos para botones multimedia de hardware</string>
 </resources>

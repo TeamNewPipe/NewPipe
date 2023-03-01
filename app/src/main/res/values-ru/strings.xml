@@ -68,7 +68,7 @@
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Никогда такого не было, и вот опять.</string>
-    <string name="error_report_button_text">Отправить по e-mail</string>
+    <string name="error_report_button_text">Отправить по электронной почте</string>
     <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
