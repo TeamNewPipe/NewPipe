@@ -45,7 +45,7 @@
     <string name="show_search_suggestions_summary">Chọn các đề xuất để hiển thị khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
     <string name="show_next_and_similar_title">Hiện video \"Tiếp theo\" và \"Tương tự\"</string>
-    <string name="unsupported_url">URL không được hỗ trợ</string>
+    <string name="unsupported_url">URL không hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>
     <string name="background_player_playing_toast">Phát ở dưới nền</string>
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
@@ -69,7 +69,7 @@
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
     <string name="sorry_string">Hmm, app đã xảy ra lỗi, lướt xuống để xem lỗi.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
-    <string name="error_snackbar_message">Xin lỗi, đã xảy ra sự cố.</string>
+    <string name="error_snackbar_message">Có gì đó không đúng lắm. Kiểm tra xem.</string>
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
@@ -97,8 +97,8 @@
     <string name="msg_running">NewPipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Đợi chút xíu nha…</string>
-    <string name="msg_copied">Đã sao chép vào clipboard</string>
-    <string name="no_available_dir">Hãy chọn một thư mục để tải xuống trong phần cài đặt</string>
+    <string name="msg_copied">Đã sao chép vào khay nhớ tạm</string>
+    <string name="no_available_dir">Hãy chọn một thư mục tải xuống trong phần cài đặt</string>
     <string name="msg_popup_permission">Chế độ popup cần quyền này
 \n để hoạt động, hãy bật trong phần cài đặt</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
@@ -129,7 +129,7 @@
     <string name="show_info">Hiện thông tin</string>
     <string name="tab_subscriptions">Đăng ký</string>
     <string name="tab_bookmarks">Danh sách phát được đánh dấu</string>
-    <string name="fragment_feed_title">Có gì mới</string>
+    <string name="fragment_feed_title">Video mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
     <string name="use_inexact_seek_title">Sử dụng tìm kiếm nhanh không chính xác</string>
     <string name="use_inexact_seek_summary">Tua không chính xác cho phép trình phát tua đến các vị trí nhanh hơn với độ chính xác bị giảm. Tua 5, 15 hay 25 giây không dùng được với chế độ này</string>
@@ -215,7 +215,6 @@
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
-    <string name="toast_no_player">Không có ứng dụng nào được cài đặt để phát tệp này</string>
     <string name="donation_title">Đóng góp</string>
     <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian và tâm huyết của mình để mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một chút xiền để giúp chúng tôi làm NewPipe tốt hơn nữa (Nếu bạn muốn).</string>
     <string name="give_back">Đôn Nét</string>
@@ -272,7 +271,7 @@
     <string name="delete_playlist_prompt">Xóa playlist này\?</string>
     <string name="playlist_creation_success">Đã tạo playlist</string>
     <string name="playlist_add_stream_success">Đã thêm vào playlist</string>
-    <string name="playlist_thumbnail_change_success">Đã thay đổi hình thu nhỏ của playlist.</string>
+    <string name="playlist_thumbnail_change_success">Đã thay đổi danh sách của playlist.</string>
     <string name="caption_none">Không có phụ đề</string>
     <string name="resize_fit">Phù hợp</string>
     <string name="resize_fill">Lấp đầy</string>
@@ -386,7 +385,7 @@
     <string name="show_comments_title">Hiện bình luận</string>
     <string name="show_comments_summary">Tắt để ẩn bình luận</string>
     <string name="autoplay_title">Tự động phát</string>
-    <string name="no_comments">Không có bình luận</string>
+    <string name="no_comments">Không có bình luận nào</string>
     <string name="error_unable_to_load_comments">Không thể tải bình luận</string>
     <string name="close">Đóng</string>
     <string name="enable_playback_resume_title">Tiếp tục phát</string>
@@ -401,7 +400,7 @@
     <string name="download_already_pending">Có một bản tải xuống đang chờ xử lí với tên này</string>
     <string name="error_postprocessing_stopped">Newpipe đã bị đóng khi đang xử lí tệp</string>
     <string name="error_insufficient_storage">Không đủ dung lượng trên máy</string>
-    <string name="error_progress_lost">Quá trình mất, vì tập tin đã bị xoá</string>
+    <string name="error_progress_lost">Quá trình tải bị hủy, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>
     <string name="confirm_prompt">Bạn muốn xóa lịch sử tải về hay xóa tất cả những file đã tải về\?</string>
     <string name="enable_queue_limit">Giới hạn hàng chờ tải xuống</string>
@@ -451,7 +450,7 @@
     <string name="recently_added">Thêm vào gần đây</string>
     <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
-    <string name="recaptcha_done_button">Xong</string>
+    <string name="recaptcha_done_button">Đã hoàn thành</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <plurals name="listening">
@@ -576,7 +575,7 @@
     <string name="show_description_summary">Tắt để ẩn mô tả video và các thông tin bổ sung</string>
     <string name="show_description_title">Hiện mô tả</string>
     <string name="open_with">Mở bằng</string>
-    <string name="download_has_started">Tệp tin đã bắt đầu được tải xuống</string>
+    <string name="download_has_started">Tệp đang được tải xuống</string>
     <string name="select_night_theme_toast">Bạn có thể chọn giao diện ban đêm cho mình phía bên dưới</string>
     <string name="night_theme_summary">Chọn giao diện ban đêm của bạn — %s</string>
     <string name="auto_device_theme_title">Tự động (giao diện hệ thống)</string>
@@ -686,7 +685,7 @@
     <string name="streams_notifications_interval_title">Thời gian kiểm tra</string>
     <string name="streams_notifications_network_title">Yêu cầu kết nối mạng</string>
     <string name="any_network">Bất kỳ loại mạng nào (có thể tính phí)</string>
-    <string name="delete_downloaded_files_confirm">Xóa tất cả tệp đã tải xuống khỏi ổ đĩa\?</string>
+    <string name="delete_downloaded_files_confirm">Xóa tất cả các tệp đã tải xuống khỏi bộ nhớ\?</string>
     <string name="notifications_disabled">Thông báo bị tắt</string>
     <string name="get_notified">Được thông báo</string>
     <string name="you_successfully_subscribed">Bạn hiện đã đăng ký kênh này</string>
@@ -707,6 +706,14 @@
     <string name="sort">Thể loại</string>
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq">Xem trên website</string>
-    <string name="faq_description">Nếu bạn gặp rắc rối khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
+    <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
     <string name="feed_toggle_hide_played_items">Ẩn các video đã xem</string>
+    <string name="import_subscriptions_hint">Nhập hoặc xuất các kênh bạn đăng ký bằng cách nhấn nút 3 chấm ở góc trên màn hình</string>
+    <string name="msg_failed_to_copy">Không thể sao chép vào khay nhớ tạm</string>
+    <string name="playlist_add_stream_success_duplicate">Đã thêm khoảng thời gian %d trùng lặp (s)</string>
+    <string name="card">Dạng thẻ</string>
+    <string name="app_update_unavailable_toast">Bạn đang dùng phiên bản mới nhất</string>
+    <string name="night_theme_available">Tùy chọn này chỉ được bật khi chủ đề %s được dùng</string>
+    <string name="app_update_available_notification_text">Nhấn để tải %s</string>
+    <string name="fast_mode">Chế độ tia sét</string>
 </resources>

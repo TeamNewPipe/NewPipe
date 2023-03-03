@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/channel_item_grid_padding">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/itemThumbnailView"
+        android:layout_width="@dimen/channel_item_card_thumbnail_image_size"
+        android:layout_height="@dimen/channel_item_card_thumbnail_image_size"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+        android:src="@drawable/placeholder_person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/CircularImageView"
+        tools:ignore="RtlHardcoded"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/itemTitleView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_mid"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/video_item_search_title_text_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemThumbnailView"
+        app:layout_constraintTop_toTopOf="@id/itemThumbnailView"
+        tools:ignore="RtlHardcoded"
+        tools:text="@sample/channels.json/data/name" />
+
+    <TextView
+        android:id="@+id/itemChannelDescriptionView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemTitleView"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:maxLines="8"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/itemTitleView"
+        app:layout_constraintTop_toBottomOf="@id/itemTitleView"
+        tools:ignore="RtlHardcoded"
+        tools:text="@sample/channels.json/data/description" />
+
+    <TextView
+        android:id="@+id/itemAdditionalDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:gravity="center"
+        android:lines="2"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
+        app:layout_constraintStart_toStartOf="@id/itemThumbnailView"
+        app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
+        tools:ignore="RtlHardcoded"
+        tools:text="@sample/channels.json/data/additional" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

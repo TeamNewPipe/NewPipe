@@ -299,7 +299,6 @@
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
-    <string name="toast_no_player">No s\'ha trobat cap aplicació instal·lada que pugui reproduir aquest fitxer</string>
     <string name="clear_views_history_title">Neteja l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Neteja l\'historial dels vídeos reproduïts i les posicions de reproducció</string>
     <string name="delete_view_history_alert">Voleu suprimir tot l\'historial de reproduccions\?</string>

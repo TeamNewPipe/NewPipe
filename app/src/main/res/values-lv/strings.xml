@@ -71,7 +71,6 @@
     <string name="tab_about">Par</string>
     <string name="title_licenses">Trešo pušu Licences</string>
     <string name="title_activity_about">Par NewPipe</string>
-    <string name="toast_no_player">Nav instalētu aplikāciju, lai atskaņotu šo failu</string>
     <string name="charset_most_special_characters">Lielākā daļa īpašo rakstzīmju</string>
     <string name="charset_letters_and_digits">Burti un cipari</string>
     <string name="settings_file_replacement_character_title">Aizvietošanas rakstzīme</string>

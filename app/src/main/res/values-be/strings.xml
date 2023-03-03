@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
+    <string name="main_bg_subtitle">Націсніце лупу, каб пачаць.</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
     <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC).</string>
@@ -42,7 +42,7 @@
     <string name="show_higher_resolutions_summary">Толькі некаторыя прылады могуць прайграваць відэа ў 2K/4K</string>
     <string name="play_with_kodi_title">Прайграць у Kodi</string>
     <string name="kore_not_found">Дадатак Kore не знойдзены. Усталяваць яго?</string>
-    <string name="show_play_with_kodi_title">\"Прайграць у Kodi\"</string>
+    <string name="show_play_with_kodi_title">Паказаць опцыю \"Прайграць у Kodi\"</string>
     <string name="show_play_with_kodi_summary">Паказаць опцыю прайгравання відэа праз медыяцэнтр Kodi</string>
     <string name="play_audio">Аўдыё</string>
     <string name="default_audio_format_title">Фармат аўдыё па змаўчанні</string>
@@ -54,14 +54,14 @@
     <string name="popup_remember_size_pos_title">Аднавіць акно</string>
     <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
-    <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру шукаць пазіцыю хутчэй, але менш дакладна. Не працуе для перамоткі на 5, 15 ці 25 секунд</string>
+    <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру знаходзіць пазіцыі хутчэй са зніжанай дакладнасцю. Пошук цягам 5, 15 ці 25 секунд пры гэтым немажлівы</string>
     <string name="download_thumbnail_title">Загружаць мініяцюры</string>
     <string name="download_thumbnail_summary">Адключыце, каб не загружаць мініяцюры і зэканоміць трафік і памяць. Змена налады ачысьціць кэш малюнкаў</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш малюнкаў ачышчаны</string>
     <string name="metadata_cache_wipe_title">Ачысціць кэш метададзеных</string>
     <string name="metadata_cache_wipe_summary">Выдаліць усе загружаныя дадзеныя вэб-старонак</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метададзеных ачышчаны</string>
-    <string name="auto_queue_title">Аўтадапаўненне чаргі</string>
+    <string name="auto_queue_title">Аўта- чарга наступнага патока</string>
     <string name="auto_queue_summary">Дадаваць падобныя патокі ў чаргу пры прайграванні апошняга, калі не ўключаны паўтор</string>
     <string name="show_search_suggestions_title">Варыянты пошуку</string>
     <string name="show_search_suggestions_summary">Адлюстроўваць падказкі пры пошуку</string>
@@ -69,9 +69,9 @@
     <string name="enable_search_history_summary">Захоўваць пошукавыя запыты лакальна</string>
     <string name="enable_watch_history_title">Гісторыя праглядаў</string>
     <string name="enable_watch_history_summary">Запамінаць прагледжаныя відэа</string>
-    <string name="resume_on_audio_focus_gain_title">Аднавіць пры фокусе</string>
-    <string name="resume_on_audio_focus_gain_summary">Аднаўляць прайграванне пасля перапынкаў (напрыклад, тэлефонных званкоў)</string>
-    <string name="download_dialog_title">Спампаваць</string>
+    <string name="resume_on_audio_focus_gain_title">Аднавіць прайграванне</string>
+    <string name="resume_on_audio_focus_gain_summary">Аднаўляць прайграванне пасля перарыванняў (напр. тэлефонных званкоў)</string>
+    <string name="download_dialog_title">Загрузіць</string>
     <string name="show_next_and_similar_title">\"Наступнае\" и \"Прапанаванае\" відэа</string>
     <string name="show_hold_to_append_title">\"Зацісніце, каб дадаць\"</string>
     <string name="show_hold_to_append_summary">Паказаць падказку пры націсканні \"У акне\" ці \"У фоне\" на старонцы звестак аб відэа</string>
@@ -106,7 +106,7 @@
     <string name="just_once">Толькі цяпер</string>
     <string name="file">Файл</string>
     <string name="notification_channel_name">Апавяшчэнне NewPipe</string>
-    <string name="notification_channel_description">Апавяшчэнні для NewPipe ў фоне і ва ўсплываючым акне</string>
+    <string name="notification_channel_description">Апавяшчэнні для прайгравальніка NewPipe</string>
     <string name="unknown_content">[Невядома]</string>
     <string name="switch_to_background">Перайсці ў фон</string>
     <string name="switch_to_popup">Перайсці ў акно</string>
@@ -118,11 +118,11 @@
     <string name="clear_views_history_title">Ачысціць гісторыю праглядаў</string>
     <string name="clear_views_history_summary">Выдаліць гісторыю прайграных патокаў</string>
     <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў\?</string>
-    <string name="watch_history_deleted">Гісторыя праглядаў выдалена.</string>
+    <string name="watch_history_deleted">Гісторыя праглядаў выдалена</string>
     <string name="clear_search_history_title">Ачысціць гісторыю пошуку</string>
     <string name="clear_search_history_summary">Выдаліць гісторыю пошукавых запытаў</string>
     <string name="delete_search_history_alert">Выдаліць усю гісторыю пошуку\?</string>
-    <string name="search_history_deleted">Гісторыя пошуку выдалена.</string>
+    <string name="search_history_deleted">Гісторыя пошуку выдалена</string>
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
     <string name="could_not_load_thumbnails">Не атрымалася загрузіць усе мініяцюры</string>
@@ -142,22 +142,22 @@
     <string name="invalid_file">Файл не існуе або няма дазволу на яго чытанне або запіс</string>
     <string name="file_name_empty_error">Імя файла не можа быць пустым</string>
     <string name="error_occurred_detail">Адбылася памылка: %1$s</string>
-    <string name="no_streams_available_download">Няма патокаў, даступных для загрузкі</string>
+    <string name="no_streams_available_download">Няма трансляцый, даступных для загрузкі</string>
     <string name="sorry_string">Прабачце, гэта не павінна было адбыцца.</string>
     <string name="error_report_button_text">Адправіць справаздачу па e-mail</string>
     <string name="error_snackbar_message">Прабачце, адбыліся памылкі.</string>
     <string name="error_snackbar_action">СПРАВАЗДАЧА</string>
     <string name="what_device_headline">Інфармацыя:</string>
     <string name="what_happened_headline">Што адбылося:</string>
-    <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nСэрвіс:\\nЧас па Грынвічы:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
+    <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nКраіна кантэнту:\\nМова праграмы:\\nСэрвіс:\\nЧас GMT:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
     <string name="your_comment">Ваш каментар (English):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
-    <string name="detail_thumbnail_view_description">Мініяцюра відэа-прэв\'ю</string>
+    <string name="detail_thumbnail_view_description">Прайграць відэа, працягласць:</string>
     <string name="detail_uploader_thumbnail_view_description">Мініяцюра аватара карыстальніка</string>
     <string name="detail_likes_img_view_description">Спадабалася</string>
     <string name="detail_dislikes_img_view_description">Не спадабалася</string>
     <string name="search_no_results">Няма вынікаў</string>
-    <string name="empty_list_subtitle">Нічога няма</string>
+    <string name="empty_list_subtitle">Нічога няма, акрамя цвыркуноў</string>
     <string name="detail_drag_description">Перацягніце, каб змяніць парадак</string>
     <string name="video">Відэа</string>
     <string name="audio">Аўдыё</string>
@@ -210,7 +210,6 @@
     <string name="settings_file_replacement_character_title">Сімвал для замены</string>
     <string name="charset_letters_and_digits">Літары і лічбы</string>
     <string name="charset_most_special_characters">Большасць спецзнакаў</string>
-    <string name="toast_no_player">Прыкладанне для прайгравання гэтага файла не ўстаноўлена</string>
     <string name="title_activity_about">Аб NewPipe</string>
     <string name="title_licenses">Іншыя ліцэнзіі</string>
     <string name="copyright" formatted="true">© %1$s %2$s пад ліцэнзіяй %3$s</string>
@@ -279,7 +278,7 @@
     <string name="delete_playlist_prompt">Выдаліць плэйліст\?</string>
     <string name="playlist_creation_success">Плэйліст створаны</string>
     <string name="playlist_add_stream_success">Дададзена ў плэйліст</string>
-    <string name="playlist_thumbnail_change_success">Мініяцюра плэйліста зменена</string>
+    <string name="playlist_thumbnail_change_success">Мініяцюра плэйліста зменена.</string>
     <string name="caption_none">Без тытраў</string>
     <string name="resize_fit">Падагнаць</string>
     <string name="resize_fill">Запоўніць</string>
@@ -335,13 +334,13 @@
     <string name="unsubscribe">Адпісацца</string>
     <string name="tab_choose">Абярыце ўкладку</string>
     <string name="volume_gesture_control_title">Жэст гучнасці</string>
-    <string name="volume_gesture_control_summary">Мяняць гучнасць плэера жэстам</string>
+    <string name="volume_gesture_control_summary">Выкарыстоўвай жэсты для кіравання гучнасцю плэера</string>
     <string name="brightness_gesture_control_title">Жэст яркасці</string>
-    <string name="brightness_gesture_control_summary">Мяняць яркасць плэера жэстам</string>
+    <string name="brightness_gesture_control_summary">Выкарыстоўвай жэсты для кіравання яркасцю плэера</string>
     <string name="settings_category_updates_title">Абнаўленні</string>
     <string name="file_deleted">Файл выдалены</string>
-    <string name="app_update_notification_channel_name">Апавяшчэнне аб абнаўленні</string>
-    <string name="app_update_notification_channel_description">Апавяшчэння аб новай версіі NewPipe</string>
+    <string name="app_update_notification_channel_name">Апавяшчэнне аб абнаўленні праграмы</string>
+    <string name="app_update_notification_channel_description">Апавяшчэнні пра новыя версіі NewPipe</string>
     <string name="download_to_sdcard_error_title">Знешняе сховішча недаступна</string>
     <string name="download_to_sdcard_error_message">Загрузка на знешнюю SD-карту немагчымая. Скінуць размяшчэнне тэчкі загрузкі\?</string>
     <string name="saved_tabs_invalid_json">Памылка чытання захаваных укладак. Выкарыстоўваюцца ўкладкі па змаўчанні</string>
@@ -349,7 +348,7 @@
     <string name="restore_defaults_confirmation">Аднавіць значэнні па змаўчанні\?</string>
     <string name="subscribers_count_not_available">Колькасць падпісчыкаў недаступная</string>
     <string name="main_page_content_summary">Ўкладкі, бачныя на галоўнай старонцы</string>
-    <string name="updates_setting_title">Абнаўлення</string>
+    <string name="updates_setting_title">Абнаўленні</string>
     <string name="updates_setting_description">Паказаць апавяшчэнне пры наяўнасці новай версіі</string>
     <string name="list_view_mode">Выгляд спісу</string>
     <string name="list">Спіс</string>
@@ -411,10 +410,10 @@
     <string name="start_downloads">Пачаць загрузку</string>
     <string name="pause_downloads">Прыпыніць загрузку</string>
     <string name="downloads_storage_ask_title">Запытваць тэчку загрузкі</string>
-    <string name="downloads_storage_ask_summary">Для кожнай загрузкі запытваць тэчку для захавання</string>
+    <string name="downloads_storage_ask_summary">Вам будзе прапанавана ўказаць месца захавання кожнай загрузкі.
+\nУключыце сістэмны выбарнік тэчкі (SAF), калі вы хочаце загружаць файлы на знешнюю SD-картку</string>
     <string name="downloads_storage_use_saf_title">Выкарыстоўваць SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Framework Access дазваляе захоўваць файлы на вонкавым назапашвальніку.
-\nПадтрымліваецца не ўсімі прыладамі</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' дазваляе загружаць на знешнюю SD-картку</string>
     <string name="drawer_header_description">Пераключыць службу, выбраную ў дадзены момант:</string>
     <string name="clear_playback_states_summary">Выдаліць ўсе пазіцыі прайгравання</string>
     <string name="youtube_restricted_mode_enabled_title">Абмежаваны рэжым YouTube</string>
@@ -422,8 +421,8 @@
     <string name="peertube_instance_add_title">Дадаць экзэмпляр</string>
     <string name="peertube_instance_url_title">Экзэмпляры PeerTube</string>
     <string name="search_showing_result_for">Вынікі для: %s</string>
-    <string name="notification_scale_to_square_image_title">Мініяцюра відэа ў 1:1</string>
-    <string name="notification_scale_to_square_image_summary">Мініяцюра відэа ў апавяшчэнні з 16:9 да 1:1 (магчымі скажэнні)</string>
+    <string name="notification_scale_to_square_image_title">Абрэжце мініяцюру да прапорцый 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Абрэжце мініяцюру відэа паказванае ў апавяшчэнні з прапорцый 16:9 да 1:1</string>
     <string name="notification_action_3_title">Кнопка чацвёртага дзеяння</string>
     <string name="notification_action_2_title">Кнопка трэцяга дзеяння</string>
     <string name="notification_action_1_title">Кнопка другога дзеяння</string>
@@ -438,7 +437,7 @@
     <string name="peertube_instance_add_exists">Экзэмпляр ужо існуе</string>
     <string name="peertube_instance_add_fail">Немагчыма праверыць экзэмпляр</string>
     <string name="peertube_instance_add_help">Увесці URL экзэмпляра</string>
-    <string name="peertube_instance_url_summary">Абярыце любімыя экзэмпляры PeerTube</string>
+    <string name="peertube_instance_url_summary">Выберыце улюбёныя экзэмпляры PeerTube</string>
     <string name="clear_queue_confirmation_description">Актыўны плэер быў зменены</string>
     <string name="clear_queue_confirmation_summary">Змена плэера можа замяніць вашу чаргу</string>
     <string name="clear_queue_confirmation_title">Запытаць, перш чым ачысціць чаргу</string>
@@ -454,7 +453,7 @@
     <string name="local">Лакальнае</string>
     <string name="recently_added">Нядаўна дададзенае</string>
     <string name="no_playlist_bookmarked_yet">Няма закладак у плейлісце</string>
-    <string name="select_a_playlist">Абярыце плэйліст</string>
+    <string name="select_a_playlist">Выберыце плэйліст</string>
     <string name="default_kiosk_page_summary">Кіёск па змаўчанні</string>
     <string name="recaptcha_done_button">Так</string>
     <string name="subtitle_activity_recaptcha">Націсніце \"Так\" калі вырашана</string>
@@ -482,4 +481,113 @@
     <string name="notification_colorize_summary">Афарбоўваць апавяшчэнне асноўным колерам мініяцюры. Падтрымваецца не ўсімі прыладамі</string>
     <string name="notification_actions_at_most_three">У кампактным апавяшчэнні дасяжна не больш за тры дзеянні!</string>
     <string name="notification_actions_summary">Дзеянні можна змяніць, націснуўшы на іх. Адзначце не больш за трох для адлюстравання ў кампактным апавяшчэнні</string>
+    <string name="unsupported_url_dialog_message">Не ўдалося распазнаць URL-адрас. Адкрыць у іншай праграме\?</string>
+    <string name="settings_category_player_notification_title">Апавяшченне плэера</string>
+    <string name="notifications">Апавяшчэнні</string>
+    <string name="streams_notification_channel_name">Новыя трансляцыі</string>
+    <string name="streams_notification_channel_description">Апавяшчэнні пра новыя трансляцыі ў падпісках</string>
+    <string name="description_tab_description">Апісанне</string>
+    <string name="related_items_tab_description">Падобныя матэрыялы</string>
+    <string name="no_one_watching">Ніхто не праглядае</string>
+    <string name="recovering">аднаўленне</string>
+    <plurals name="watching">
+        <item quantity="one">%s глядач</item>
+        <item quantity="few">%s глядача</item>
+        <item quantity="many">%s глядачоў</item>
+        <item quantity="other">%s глядачоў</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
+    <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
+    <string name="feed_toggle_show_played_items">Паказаць прагледжаныя матэрыялы</string>
+    <string name="feed_toggle_hide_played_items">Схаваць прагледжаныя матэрыялы</string>
+    <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
+    <string name="night_theme_summary">Выберыце ўлюбёную начную тэму - %s</string>
+    <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>
+    <string name="select_night_theme_toast">Ніжэй вы можаце абраць улюбёную начную тэму</string>
+    <string name="night_theme_available">Гэта опцыя даступна толькі тады, калі %s будзе выбранай тэмаю</string>
+    <string name="download_has_started">Загрузка пачалась</string>
+    <string name="notifications_disabled">Апавяшчэнні адключаныя</string>
+    <string name="tablet_mode_title">Рэжым планшета</string>
+    <string name="off">Адключыць</string>
+    <string name="no_audio_streams_available_for_external_players">Няма аўдыётрансляцый даступных для знешніх плэераў</string>
+    <string name="get_notified">Апавяшчаць</string>
+    <string name="no_video_streams_available_for_external_players">Няма даступных відэатрансляцый для знешніх плэераў</string>
+    <string name="selected_stream_external_player_not_supported">Выбраная трансляцыя не падтрымліваецца знешнімі плэерамі</string>
+    <string name="select_quality_external_players">Выберыце якасць для знешніх плэераў</string>
+    <string name="unknown_quality">Невядомая якасць</string>
+    <string name="unknown_format">Невядомы фармат</string>
+    <string name="feed_toggle_show_future_items">Паказаць наступны матэрыял</string>
+    <string name="feed_toggle_hide_future_items">Схаваць наступныя матэрыялы</string>
+    <string name="sort">Сартаваць</string>
+    <string name="new_seek_duration_toast">З-за абмежаванняў ExoPlayer працягласць пошуку была ўсталявана на %d сякундаў</string>
+    <string name="chapters">Раздзелы</string>
+    <string name="mark_as_watched">Пазначыць прагледжаным</string>
+    <string name="open_with">Адкрыць з дапамогай</string>
+    <string name="night_theme_title">Начная тэма</string>
+    <string name="open_website_license">Адкрыць вэб-сайт</string>
+    <string name="description_select_note">Цяпер Вы можаце вылучаць тэкст у апісанні. Звярніце ўвагу, што ў рэжыме вылучэння старонка можа мігацець, а спасылкі могуць быць недаступныя для націскання.</string>
+    <string name="start_main_player_fullscreen_title">Запусціць галоўны прайгравальнік у поўнаэкранным рэжыме</string>
+    <string name="show_channel_details">Паказаць дэталі канала</string>
+    <string name="low_quality_smaller">Нізкая якасць (менш)</string>
+    <string name="hash_channel_name">Апавяшчэнне пра відэахэшуванне</string>
+    <string name="progressive_load_interval_title">Памер інтэрвалу загрузкі прайгравання</string>
+    <string name="show_description_title">Паказаць апісанне</string>
+    <string name="comments_are_disabled">Каментары адключаны</string>
+    <plurals name="listening">
+        <item quantity="one">%s слухач</item>
+        <item quantity="few">%s слухача</item>
+        <item quantity="many">%s слухачоў</item>
+        <item quantity="other">%s слухачоў</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d сякунда</item>
+        <item quantity="few">%d сякунды</item>
+        <item quantity="many">%d сякундаў</item>
+        <item quantity="other">%d сякундаў</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d гадзіна</item>
+        <item quantity="few">%d гадзіны</item>
+        <item quantity="many">%d гадзін</item>
+        <item quantity="other">%d гадзін</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d дзень</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дзён</item>
+        <item quantity="other">%d дзён</item>
+    </plurals>
+    <string name="clear_download_history">Ачысціць гісторыю загрузак</string>
+    <string name="localization_changes_requires_app_restart">Мова зменіцца пасля перазапуску праграмы</string>
+    <string name="no_one_listening">Ніхто не слухае</string>
+    <string name="on">Уключыць</string>
+    <string name="hash_channel_description">Апавяшчэнні пра ход відэахэшування</string>
+    <string name="create_error_notification">Стварыць паведамленне пра памылку</string>
+    <string name="feed_group_dialog_select_subscriptions">Выберыце падпіскі</string>
+    <string name="import_subscriptions_hint">Імпарт ці экспарт падпісак з 3-кропкавага меню</string>
+    <string name="description_select_disable">Забарона вылучэння тэксту ў апісанні</string>
+    <string name="fast_mode">Хуткі рэжым</string>
+    <string name="faq_description">Калі ў Вас узніклі праблемы з выкарыстаннем праграмы, абавязкова азнаёмцеся з адказамі на пашыраныя пытанні!</string>
+    <string name="disable_media_tunneling_title">Адключыць тунэляванне медыя</string>
+    <string name="seekbar_preview_thumbnail_title">Прагляд мініяцюры над паўзунком часу</string>
+    <string name="high_quality_larger">Высокая якасць (больш)</string>
+    <string name="dont_show">Не паказваць</string>
+    <string name="app_update_unavailable_toast">Вы выкарыстоўваеце апошнюю версію NewPipe</string>
+    <string name="error_download_resource_gone">Немажліва аднавіць гэту загрузку</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Выдалена %1$s зазагрузка</item>
+        <item quantity="few">Выдалена %1$s зазагрузкі</item>
+        <item quantity="many">Выдалена %1$s зазагрузак</item>
+        <item quantity="other">Выдалена %1$s зазагрузак</item>
+    </plurals>
+    <string name="delete_downloaded_files_confirm">Выдаліць усе загружаныя файлы з дыска\?</string>
+    <plurals name="minutes">
+        <item quantity="one">%d хвіліна</item>
+        <item quantity="few">%d хвіліны</item>
+        <item quantity="many">%d хвілінаў</item>
+        <item quantity="other">%d хвілінаў</item>
+    </plurals>
+    <string name="progressive_load_interval_summary">Змяніць памер інтэрвалу загрузкі (зараз %s). Меншае значэнне можа паскорыць пачатковую загрузку відэа. Змены патрабуюць перазапуск плэера</string>
+    <string name="show_description_summary">Выключыце, каб схаваць апісанне відэа і дадатковую інфармацыю</string>
+    <string name="local_search_suggestions"></string>
 </resources>

@@ -1,6 +1,6 @@
 package org.schabi.newpipe.util;
 
-import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
+import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -50,9 +50,9 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -62,8 +62,6 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
-
-import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -323,15 +321,13 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(@NonNull final Context context,
                                                      @NonNull final Intent intent) {
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(context, intent, false);
-        } else {
+        if (!ShareUtils.tryOpenIntentInApp(context, intent)) {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
                         .setPositiveButton(R.string.install,
-                                (dialog, which) -> ShareUtils.openUrlInBrowser(context,
-                                        context.getString(R.string.fdroid_vlc_url), false))
+                                (dialog, which) -> ShareUtils.installApp(context,
+                                        context.getString(R.string.vlc_package)))
                         .setNegativeButton(R.string.cancel, (dialog, which)
                                 -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
                         .show();
@@ -682,34 +678,6 @@ public final class NavigationHelper {
                                           final int serviceId,
                                           final String url) {
         return getOpenIntent(context, url, serviceId, StreamingService.LinkType.CHANNEL);
-    }
-
-    /**
-     * Start an activity to install Kore.
-     *
-     * @param context the context
-     */
-    public static void installKore(final Context context) {
-        installApp(context, context.getString(R.string.kore_package));
-    }
-
-    /**
-     * Start Kore app to show a video on Kodi.
-     * <p>
-     * For a list of supported urls see the
-     * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
-     * Kore source code
-     * </a>.
-     *
-     * @param context  the context to use
-     * @param videoURL the url to the video
-     */
-    public static void playWithKore(final Context context, final Uri videoURL) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setPackage(context.getString(R.string.kore_package));
-        intent.setData(videoURL);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
     }
 
     /**

@@ -14,6 +14,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
@@ -60,8 +61,12 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            final StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem)
-                    .blockingGet()[0];
+            StreamStateEntity state2 = null;
+            if (DependentPreferenceHelper
+                    .getPositionsInListsEnabled(itemProgressView.getContext())) {
+                state2 = historyRecordManager.loadStreamState(infoItem)
+                        .blockingGet()[0];
+            }
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getDuration());
@@ -111,9 +116,12 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                             final HistoryRecordManager historyRecordManager) {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        final StreamStateEntity state = historyRecordManager
-                .loadStreamState(infoItem)
-                .blockingGet()[0];
+        StreamStateEntity state = null;
+        if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())) {
+            state = historyRecordManager
+                    .loadStreamState(infoItem)
+                    .blockingGet()[0];
+        }
         if (state != null && item.getDuration() > 0
                 && !StreamTypeUtil.isLiveStream(item.getStreamType())) {
             itemProgressView.setMax((int) item.getDuration());

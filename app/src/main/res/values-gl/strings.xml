@@ -206,7 +206,6 @@
     <string name="settings_file_replacement_character_title">Carácter de substitución</string>
     <string name="charset_letters_and_digits">Letras e díxitos</string>
     <string name="charset_most_special_characters">A maioría dos caracteres especiais</string>
-    <string name="toast_no_player">Non hai ningún aplicativo instalado para reproducir este ficheiro</string>
     <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="title_licenses">Licenzas de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>

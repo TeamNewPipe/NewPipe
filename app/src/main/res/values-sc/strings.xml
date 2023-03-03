@@ -109,7 +109,6 @@
     <string name="copyright">© %1$s de %2$s cun litzèntzia %3$s</string>
     <string name="title_licenses">Litzèntzias de tertzas partes</string>
     <string name="title_activity_about">In subra de NewPipe</string>
-    <string name="toast_no_player">Peruna aplicatzione installada pro pòdere riproduire custu documentu</string>
     <string name="charset_most_special_characters">Majoria de sos caràteres ispetziales</string>
     <string name="charset_letters_and_digits">Lìteras e tzifras</string>
     <string name="settings_file_replacement_character_title">Caràtere de remplasamentu</string>

@@ -156,7 +156,7 @@ class ErrorPanelHelper(
     ) {
         errorOpenInBrowserButton.isVisible = true
         errorOpenInBrowserButton.setOnClickListener {
-            ShareUtils.openUrlInBrowser(context, errorInfo.request, true)
+            ShareUtils.openUrlInBrowser(context, errorInfo.request)
         }
     }
 

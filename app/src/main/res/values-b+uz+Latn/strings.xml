@@ -214,7 +214,6 @@
     <string name="copyright">© %1$s tomonidan %2$s gacha %3$s</string>
     <string name="title_licenses">Uchinchi tomon litsenziyalari</string>
     <string name="title_activity_about">NewPipe haqida</string>
-    <string name="toast_no_player">Ushbu faylni ijro etish uchun dastur o\'rnatilmagan</string>
     <string name="charset_most_special_characters">Ko\'pchilik maxsus belgilar</string>
     <string name="charset_letters_and_digits">Yozuvlar va raqamlar</string>
     <string name="settings_file_replacement_character_title">O\'zgartirish belgisi</string>

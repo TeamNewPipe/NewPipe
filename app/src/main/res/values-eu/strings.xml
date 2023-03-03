@@ -243,7 +243,6 @@
     <string name="dismiss">Baztertu</string>
     <string name="rename">Aldatu izena</string>
     <string name="one_item_deleted">Elementu 1 ezabatuta.</string>
-    <string name="toast_no_player">Ez dago fitxategi hau erreproduzitzeko aplikaziorik instalatuta</string>
     <string name="title_last_played">Jotako azkena</string>
     <string name="title_most_played">Ikusiena</string>
     <string name="export_complete_toast">Esportatuta</string>

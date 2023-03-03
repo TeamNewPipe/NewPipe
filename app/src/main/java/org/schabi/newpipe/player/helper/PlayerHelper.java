@@ -429,13 +429,6 @@ public final class PlayerHelper {
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
 
-    public static boolean isPlaybackResumeEnabled(final Player player) {
-        return player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.enable_watch_history_key), true)
-                && player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.enable_playback_resume_key), true);
-    }
-
     @RepeatMode
     public static int nextRepeatMode(@RepeatMode final int repeatMode) {
         switch (repeatMode) {
