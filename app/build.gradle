@@ -274,9 +274,6 @@ dependencies {
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
-    // Date and time formatting
-    implementation "org.ocpsoft.prettytime:prettytime:5.0.6.Final"
-
 /** Debugging **/
     // Memory leak detection
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"

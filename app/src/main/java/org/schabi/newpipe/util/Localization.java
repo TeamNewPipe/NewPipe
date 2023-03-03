@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Build;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
@@ -16,8 +18,7 @@ import androidx.annotation.StringRes;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
-import org.ocpsoft.prettytime.PrettyTime;
-import org.ocpsoft.prettytime.units.Decade;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -25,10 +26,12 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -57,7 +60,6 @@ import java.util.stream.Collectors;
 
 public final class Localization {
     public static final String DOT_SEPARATOR = " • ";
-    private static PrettyTime prettyTime;
 
     private Localization() { }
 
@@ -261,22 +263,58 @@ public final class Localization {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Pretty Time
-    //////////////////////////////////////////////////////////////////////////*/
+    public static String formatRelativeTime(@NonNull final OffsetDateTime offsetDateTime) {
+        final var zonedDateTime = offsetDateTime.atZoneSameInstant(ZoneId.systemDefault());
+        final var now = LocalDate.now();
+        final long months = zonedDateTime.toLocalDate().until(now, ChronoUnit.MONTHS);
+        final long years = months / 12;
 
-    public static void initPrettyTime(final PrettyTime time) {
-        prettyTime = time;
-        // Do not use decades as YouTube doesn't either.
-        prettyTime.removeUnit(Decade.class);
+        if (years > 0) {
+            return formatRelativeYears(years);
+        } else if (months > 0) {
+            return formatRelativeMonths(months);
+        } else {
+            final long weeks = zonedDateTime.toLocalDate().until(now, ChronoUnit.WEEKS);
+            if (weeks > 0) {
+                return formatRelativeWeeks(weeks);
+            } else {
+                final long timestamp = zonedDateTime.toInstant().toEpochMilli();
+                return DateUtils.getRelativeTimeSpanString(timestamp).toString();
+            }
+        }
     }
 
-    public static PrettyTime resolvePrettyTime(final Context context) {
-        return new PrettyTime(getAppLocale(context));
+    private static String formatRelativeYears(final long years) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return RelativeDateTimeFormatter.getInstance().format(years,
+                    RelativeDateTimeFormatter.Direction.LAST,
+                    RelativeDateTimeFormatter.RelativeUnit.YEARS);
+        } else {
+            return App.getApp().getResources().getQuantityString(R.plurals.years_ago, (int) years,
+                    years);
+        }
     }
 
-    public static String relativeTime(final OffsetDateTime offsetDateTime) {
-        return prettyTime.formatUnrounded(offsetDateTime);
+    private static String formatRelativeMonths(final long months) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return RelativeDateTimeFormatter.getInstance().format(months,
+                    RelativeDateTimeFormatter.Direction.LAST,
+                    RelativeDateTimeFormatter.RelativeUnit.MONTHS);
+        } else {
+            return App.getApp().getResources().getQuantityString(R.plurals.months_ago, (int) months,
+                    months);
+        }
+    }
+
+    private static String formatRelativeWeeks(final long weeks) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return RelativeDateTimeFormatter.getInstance().format(weeks,
+                    RelativeDateTimeFormatter.Direction.LAST,
+                    RelativeDateTimeFormatter.RelativeUnit.WEEKS);
+        } else {
+            return App.getApp().getResources().getQuantityString(R.plurals.weeks_ago, (int) weeks,
+                    weeks);
+        }
     }
 
     public static void assureCorrectAppLanguage(final Context c) {

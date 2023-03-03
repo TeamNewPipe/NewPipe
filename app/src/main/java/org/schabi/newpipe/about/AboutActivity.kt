@@ -171,10 +171,6 @@ class AboutActivity : AppCompatActivity() {
                 "https://square.github.io/picasso/", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "PrettyTime", "2012 - 2020", "Lincoln Baxter, III",
-                "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2
-            ),
-            SoftwareComponent(
                 "ProcessPhoenix", "2015", "Jake Wharton",
                 "https://github.com/JakeWharton/ProcessPhoenix", StandardLicenses.APACHE2
             ),

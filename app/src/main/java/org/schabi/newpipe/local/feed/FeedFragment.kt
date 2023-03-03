@@ -529,7 +529,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private fun updateRefreshViewState() {
         feedBinding.refreshText.text = getString(
             R.string.feed_oldest_subscription_update,
-            oldestSubscriptionUpdate?.let { Localization.relativeTime(it) } ?: "—"
+            oldestSubscriptionUpdate?.let { Localization.formatRelativeTime(it) } ?: "—"
         )
     }
 

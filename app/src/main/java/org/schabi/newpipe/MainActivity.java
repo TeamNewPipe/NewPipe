@@ -78,7 +78,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -452,8 +451,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         assureCorrectAppLanguage(this);
-        // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
         super.onResume();
 
         // Close drawer on return, and don't show animation,

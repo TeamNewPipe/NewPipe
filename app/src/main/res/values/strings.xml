@@ -770,4 +770,18 @@
     <string name="feed_show_partially_watched">Partially watched</string>
     <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
+
+    <!-- Relative date/time formatting strings (remove when setting the minSdk to 24) -->
+    <plurals name="years_ago">
+        <item quantity="one">%d year ago</item>
+        <item quantity="other">%d years ago</item>
+    </plurals>
+    <plurals name="months_ago">
+        <item quantity="one">%d month ago</item>
+        <item quantity="other">%d months ago</item>
+    </plurals>
+    <plurals name="weeks_ago">
+        <item quantity="one">%d week ago</item>
+        <item quantity="other">%d weeks ago</item>
+    </plurals>
 </resources>

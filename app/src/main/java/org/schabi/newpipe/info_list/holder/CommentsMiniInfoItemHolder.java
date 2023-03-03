@@ -136,7 +136,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         if (item.getUploadDate() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate()
+            itemPublishedTime.setText(Localization.formatRelativeTime(item.getUploadDate()
                     .offsetDateTime()));
         } else {
             itemPublishedTime.setText(item.getTextualUploadDate());
