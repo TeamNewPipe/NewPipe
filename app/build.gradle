@@ -277,6 +277,9 @@ dependencies {
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.6.Final"
 
+    // Serialization
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.14.2"
+
 /** Debugging **/
     // Memory leak detection
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"

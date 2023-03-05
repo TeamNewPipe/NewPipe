@@ -4,15 +4,17 @@ import android.content.SharedPreferences
 import android.util.Log
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.util.JSONSerializer
 import org.schabi.newpipe.util.ZipHelper
 import java.io.IOException
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
 
 class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     companion object {
         const val TAG = "ContentSetManager"
+
+        const val FILE_NAME_DB = NewPipeFileLocator.FILE_NAME_DB
+        const val FILE_NAME_SETTINGS = NewPipeFileLocator.FILE_NAME_SETTINGS
     }
 
     /**
@@ -24,18 +26,15 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         file.create()
         ZipOutputStream(SharpOutputStream(file.stream).buffered())
             .use { outZip ->
-                ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
+                ZipHelper.addFileToZip(outZip, fileLocator.db.path, FILE_NAME_DB)
 
                 try {
-                    ObjectOutputStream(fileLocator.settings.outputStream()).use { output ->
-                        output.writeObject(preferences.all)
-                        output.flush()
-                    }
-                } catch (e: IOException) {
-                    Log.e(TAG, "Unable to exportDatabase", e)
+                    JSONSerializer.toJson(preferences.all, fileLocator.settings.outputStream())
+                } catch (e: RuntimeException) {
+                    Log.e(TAG, "Unable to export settings", e)
                 }
 
-                ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
+                ZipHelper.addFileToZip(outZip, fileLocator.settings.path, FILE_NAME_SETTINGS)
             }
     }
 
@@ -53,7 +52,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     }
 
     fun extractDb(file: StoredFileHelper): Boolean {
-        val success = ZipHelper.extractFileFromZip(file, fileLocator.db.path, "newpipe.db")
+        val success = ZipHelper.extractFileFromZip(file, fileLocator.db.path, FILE_NAME_DB)
         if (success) {
             fileLocator.dbJournal.delete()
             fileLocator.dbWal.delete()
@@ -64,42 +63,50 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     }
 
     fun extractSettings(file: StoredFileHelper): Boolean {
-        return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, "newpipe.settings")
+        return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, FILE_NAME_SETTINGS)
     }
 
     fun loadSharedPreferences(preferences: SharedPreferences) {
         try {
             val preferenceEditor = preferences.edit()
 
-            ObjectInputStream(fileLocator.settings.inputStream()).use { input ->
-                preferenceEditor.clear()
-                @Suppress("UNCHECKED_CAST")
-                val entries = input.readObject() as Map<String, *>
-                for ((key, value) in entries) {
-                    when (value) {
-                        is Boolean -> {
-                            preferenceEditor.putBoolean(key, value)
-                        }
-                        is Float -> {
-                            preferenceEditor.putFloat(key, value)
-                        }
-                        is Int -> {
-                            preferenceEditor.putInt(key, value)
-                        }
-                        is Long -> {
-                            preferenceEditor.putLong(key, value)
-                        }
-                        is String -> {
-                            preferenceEditor.putString(key, value)
-                        }
-                        is Set<*> -> {
-                            // There are currently only Sets with type String possible
-                            @Suppress("UNCHECKED_CAST")
-                            preferenceEditor.putStringSet(key, value as Set<String>?)
-                        }
+            @Suppress("UNCHECKED_CAST")
+            val entries = JSONSerializer.fromJson(fileLocator.settings.inputStream(), Map::class.java)
+                as Map<String, *>
+
+            preferenceEditor.clear()
+            for ((key, value) in entries) {
+                when (value) {
+                    is Boolean -> {
+                        preferenceEditor.putBoolean(key, value)
+                    }
+                    is Float -> {
+                        preferenceEditor.putFloat(key, value)
+                    }
+                    is Int -> {
+                        preferenceEditor.putInt(key, value)
+                    }
+                    is Long -> {
+                        preferenceEditor.putLong(key, value)
+                    }
+                    is String -> {
+                        preferenceEditor.putString(key, value)
+                    }
+                    is Set<*> -> {
+                        // There are currently only Sets with type String possible
+                        @Suppress("UNCHECKED_CAST")
+                        preferenceEditor.putStringSet(key, value as Set<String>?)
+                    }
+                    // In JSON Lists are the same as Sets
+                    is List<*> -> {
+                        // There are currently only Sets with type String possible
+                        @Suppress("UNCHECKED_CAST")
+                        preferenceEditor.putStringSet(key, (value as List<String>?)?.let { HashSet(it) })
                     }
                 }
-                preferenceEditor.commit()
+            }
+            if (!preferenceEditor.commit()) {
+                throw IllegalStateException("Committing preferences was not successful")
             }
         } catch (e: IOException) {
             Log.e(TAG, "Unable to loadSharedPreferences", e)

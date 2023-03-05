@@ -18,9 +18,9 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.util.JSONSerializer
 import us.shandian.giga.io.FileStream
 import java.io.File
-import java.io.ObjectInputStream
 import java.nio.file.Files
 import java.util.zip.ZipFile
 
@@ -60,14 +60,14 @@ class ContentSettingsManagerTest {
         val entries = zipFile.entries().toList()
         assertEquals(2, entries.size)
 
-        zipFile.getInputStream(entries.first { it.name == "newpipe.db" }).use { actual ->
+        zipFile.getInputStream(entries.first { it.name == ContentSettingsManager.FILE_NAME_DB }).use { actual ->
             db.inputStream().use { expected ->
                 assertEquals(expected.reader().readText(), actual.reader().readText())
             }
         }
 
-        zipFile.getInputStream(entries.first { it.name == "newpipe.settings" }).use { actual ->
-            val actualPreferences = ObjectInputStream(actual).readObject()
+        zipFile.getInputStream(entries.first { it.name == ContentSettingsManager.FILE_NAME_SETTINGS }).use { actual ->
+            val actualPreferences = JSONSerializer.fromJson(actual, Map::class.java)
             assertEquals(expectedPreferences, actualPreferences)
         }
     }
