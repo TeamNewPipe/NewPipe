@@ -178,12 +178,13 @@ class ContentSettingsManagerTest {
 
     @Test
     fun `Preferences must be set from the settings file`() {
-        val settings = File(classloader.getResource("settings/newpipe.settings")!!.path)
+        val settings = File(classloader.getResource("settings/newpipe.settings.json")!!.path)
         `when`(fileLocator.settings).thenReturn(settings)
 
         val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
         val editor = Mockito.mock(SharedPreferences.Editor::class.java)
         `when`(preferences.edit()).thenReturn(editor)
+        `when`(editor.commit()).thenReturn(true)
 
         ContentSettingsManager(fileLocator).loadSharedPreferences(preferences)
 
