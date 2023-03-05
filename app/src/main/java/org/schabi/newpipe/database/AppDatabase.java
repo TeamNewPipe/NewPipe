@@ -2,6 +2,8 @@ package org.schabi.newpipe.database;
 
 import static org.schabi.newpipe.database.Migrations.DB_VER_7;
 
+import android.database.Cursor;
+
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
@@ -62,4 +64,12 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract FeedGroupDAO feedGroupDAO();
 
     public abstract SubscriptionDAO subscriptionDAO();
+
+    public void checkpoint() {
+        try (Cursor c = this.query("pragma wal_checkpoint(full)", null)) {
+            if (c.moveToFirst() && c.getInt(0) == 1) {
+                throw new IllegalStateException("Checkpoint was blocked from completing");
+            }
+        }
+    }
 }

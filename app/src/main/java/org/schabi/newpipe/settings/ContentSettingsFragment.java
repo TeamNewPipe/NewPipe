@@ -190,7 +190,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
         try {
             //checkpoint before export
-            NewPipeDatabase.checkpoint();
+            NewPipeDatabase.getInstance(requireContext()).checkpoint();
 
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
