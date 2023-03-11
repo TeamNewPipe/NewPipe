@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,21 +15,27 @@ import androidx.documentfile.provider.DocumentFile;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
 import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public class StoredDirectoryHelper {
+    private static final String TAG = StoredDirectoryHelper.class.getSimpleName();
     public static final int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION
             | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
-    private File ioTree;
+    private Path ioTree;
     private DocumentFile docTree;
 
     private Context context;
@@ -40,7 +47,7 @@ public class StoredDirectoryHelper {
         this.tag = tag;
 
         if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(path.getScheme())) {
-            this.ioTree = new File(URI.create(path.toString()));
+            ioTree = Paths.get(URI.create(path.toString()));
             return;
         }
 
@@ -64,13 +71,17 @@ public class StoredDirectoryHelper {
     }
 
     public StoredFileHelper createUniqueFile(final String name, final String mime) {
-        final ArrayList<String> matches = new ArrayList<>();
+        final List<String> matches = new ArrayList<>();
         final String[] filename = splitFilename(name);
-        final String lcFilename = filename[0].toLowerCase();
+        final String lcFileName = filename[0].toLowerCase();
 
         if (docTree == null) {
-            for (final File file : ioTree.listFiles()) {
-                addIfStartWith(matches, lcFilename, file.getName());
+            try (Stream<Path> stream = Files.list(ioTree)) {
+                matches.addAll(stream.map(path -> path.getFileName().toString().toLowerCase())
+                        .filter(fileName -> fileName.startsWith(lcFileName))
+                        .collect(Collectors.toList()));
+            } catch (final IOException e) {
+                Log.e(TAG, "Exception while traversing " + ioTree, e);
             }
         } else {
             // warning: SAF file listing is very slow
@@ -82,10 +93,10 @@ public class StoredDirectoryHelper {
             final ContentResolver cr = context.getContentResolver();
 
             try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
-                    new String[]{lcFilename}, null)) {
+                    new String[]{lcFileName}, null)) {
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
-                        addIfStartWith(matches, lcFilename, cursor.getString(0));
+                        addIfStartWith(matches, lcFileName, cursor.getString(0));
                     }
                 }
             }
@@ -112,7 +123,7 @@ public class StoredDirectoryHelper {
         Collections.sort(matches, String::compareTo);
 
         for (int i = 1; i < 1000; i++) {
-            if (Collections.binarySearch(matches, makeFileName(lcFilename, i, filename[1])) < 0) {
+            if (Collections.binarySearch(matches, makeFileName(lcFileName, i, filename[1])) < 0) {
                 return createFile(makeFileName(filename[0], i, filename[1]), mime, true);
             }
         }
@@ -141,11 +152,11 @@ public class StoredDirectoryHelper {
     }
 
     public Uri getUri() {
-        return docTree == null ? Uri.fromFile(ioTree) : docTree.getUri();
+        return docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri();
     }
 
     public boolean exists() {
-        return docTree == null ? ioTree.exists() : docTree.exists();
+        return docTree == null ? Files.exists(ioTree) : docTree.exists();
     }
 
     /**
@@ -169,7 +180,9 @@ public class StoredDirectoryHelper {
      */
     public boolean mkdirs() {
         if (docTree == null) {
-            return ioTree.exists() || ioTree.mkdirs();
+            // TODO: Use Files.createDirectories() when AGP 8.1 is available:
+            // https://issuetracker.google.com/issues/282544786
+            return Files.exists(ioTree) || ioTree.toFile().mkdirs();
         }
 
         if (docTree.exists()) {
@@ -206,8 +219,8 @@ public class StoredDirectoryHelper {
 
     public Uri findFile(final String filename) {
         if (docTree == null) {
-            final File res = new File(ioTree, filename);
-            return res.exists() ? Uri.fromFile(res) : null;
+            final Path res = ioTree.resolve(filename);
+            return Files.exists(res) ? Uri.fromFile(res.toFile()) : null;
         }
 
         final DocumentFile res = findFileSAFHelper(context, docTree, filename);
@@ -215,7 +228,7 @@ public class StoredDirectoryHelper {
     }
 
     public boolean canWrite() {
-        return docTree == null ? ioTree.canWrite() : docTree.canWrite();
+        return docTree == null ? Files.isWritable(ioTree) : docTree.canWrite();
     }
 
     /**
@@ -230,14 +243,14 @@ public class StoredDirectoryHelper {
     @NonNull
     @Override
     public String toString() {
-        return (docTree == null ? Uri.fromFile(ioTree) : docTree.getUri()).toString();
+        return (docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri()).toString();
     }
 
     ////////////////////
     //      Utils
     ///////////////////
 
-    private static void addIfStartWith(final ArrayList<String> list, @NonNull final String base,
+    private static void addIfStartWith(final List<String> list, @NonNull final String base,
                                        final String str) {
         if (isNullOrEmpty(str)) {
             return;
@@ -259,7 +272,7 @@ public class StoredDirectoryHelper {
     }
 
     private static String makeFileName(final String name, final int idx, final String ext) {
-        return name.concat(" (").concat(String.valueOf(idx)).concat(")").concat(ext);
+        return name + "(" + idx + ")" + ext;
     }
 
     /**
