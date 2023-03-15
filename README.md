@@ -2,8 +2,8 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming front-end for Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p>
-<p align="center"><a href="https://github.com/TeamNewPipe/NewPipe/releases"><img src="https://svgshare.com/i/r9J.svg" alt="Get it on F-Droid" height=80/></a></p>
+<span><p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p></span>
+<span><p align="center"><a href="https://github.com/TeamNewPipe/NewPipe/releases"><img src="https://svgshare.com/i/r9J.svg" alt="Get it on F-Droid" height=80/></a></p></span>
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
