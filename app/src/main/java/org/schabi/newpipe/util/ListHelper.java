@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -42,13 +43,14 @@ public final class ListHelper {
     // Use a Set for better performance
     private static final Set<String> HIGH_RESOLUTION_LIST = Set.of("1440p", "2160p");
 
-    private ListHelper() { }
+    private ListHelper() {
+    }
 
     /**
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      * @param context      Android app context
      * @param videoStreams list of the video streams to check
      * @return index of the video stream with the default index
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getDefaultResolutionIndex(final Context context,
                                                 final List<VideoStream> videoStreams) {
@@ -58,11 +60,11 @@ public final class ListHelper {
     }
 
     /**
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      * @param context           Android app context
      * @param videoStreams      list of the video streams to check
      * @param defaultResolution the default resolution to look for
      * @return index of the video stream with the default index
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getResolutionIndex(final Context context,
                                          final List<VideoStream> videoStreams,
@@ -71,10 +73,10 @@ public final class ListHelper {
     }
 
     /**
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
-     * @param context           Android app context
-     * @param videoStreams      list of the video streams to check
+     * @param context      Android app context
+     * @param videoStreams list of the video streams to check
      * @return index of the video stream with the default index
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getPopupDefaultResolutionIndex(final Context context,
                                                      final List<VideoStream> videoStreams) {
@@ -84,11 +86,11 @@ public final class ListHelper {
     }
 
     /**
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      * @param context           Android app context
      * @param videoStreams      list of the video streams to check
      * @param defaultResolution the default resolution to look for
      * @return index of the video stream with the default index
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getPopupResolutionIndex(final Context context,
                                               final List<VideoStream> videoStreams,
@@ -184,6 +186,80 @@ public final class ListHelper {
 
         return getSortedStreamVideosList(defaultFormat, showHigherResolutions, videoStreams,
                 videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
+    }
+
+    public static List<AudioStream> getFilteredAudioStreams(
+            @NonNull final Context context,
+            @Nullable final List<AudioStream> audioStreams) {
+        if (audioStreams == null) {
+            return Collections.emptyList();
+        }
+
+        final HashMap<String, AudioStream> collectedStreams = new HashMap<>();
+
+        final Comparator<AudioStream> cmp;
+        if (isLimitingDataUsage(context)) {
+            cmp = getAudioStreamComparator(AUDIO_FORMAT_EFFICIENCY_RANKING);
+        } else {
+            cmp = getAudioStreamComparator(AUDIO_FORMAT_QUALITY_RANKING);
+        }
+
+        final String preferredLanguage = Localization.getPreferredLocale(context).getISO3Language();
+        boolean hasPreferredLanguage = false;
+
+        for (final AudioStream stream : audioStreams) {
+            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
+                continue;
+            }
+
+            final String trackId;
+            if (stream.getAudioTrackId() != null) {
+                trackId = stream.getAudioTrackId();
+            } else {
+                trackId = "";
+            }
+
+            final AudioStream presentStream = collectedStreams.get(trackId);
+            if (presentStream == null || cmp.compare(stream, presentStream) > 0) {
+                collectedStreams.put(trackId, stream);
+
+                if (stream.getAudioLocale() != null
+                        && stream.getAudioLocale().getISO3Language().equals(preferredLanguage)) {
+                    hasPreferredLanguage = true;
+                }
+            }
+        }
+
+        // Fall back to English if the preferred language was not found
+        final String preferredLanguageOrEnglish =
+                hasPreferredLanguage ? preferredLanguage : Locale.ENGLISH.getISO3Language();
+
+        // Sort collected streams
+        return collectedStreams.values().stream()
+                .sorted((s1, s2) -> {
+                    // Preferred language comes first
+                    if (s1.getAudioLocale() != null
+                            && s1.getAudioLocale().getISO3Language()
+                                    .equals(preferredLanguageOrEnglish)) {
+                        return -1;
+                    }
+                    if (s2.getAudioLocale() != null
+                            && s2.getAudioLocale().getISO3Language()
+                                    .equals(preferredLanguageOrEnglish)) {
+                        return 1;
+                    }
+
+                    // Sort audio tracks alphabetically
+                    if (s1.getAudioTrackName() != null) {
+                        if (s2.getAudioTrackName() != null) {
+                            return s1.getAudioTrackName().compareTo(s2.getAudioTrackName());
+                        } else {
+                            return -1;
+                        }
+                    }
+                    return 1;
+                })
+                .collect(Collectors.toList());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -300,8 +376,8 @@ public final class ListHelper {
                 // Filter out higher resolutions (or not if high resolutions should always be shown)
                 .filter(stream -> showHigherResolutions
                         || !HIGH_RESOLUTION_LIST.contains(stream.getResolution()
-                                // Replace any frame rate with nothing
-                                .replaceAll("p\\d+$", "p")))
+                        // Replace any frame rate with nothing
+                        .replaceAll("p\\d+$", "p")))
                 .collect(Collectors.toList());
 
         final HashMap<String, VideoStream> hashMap = new HashMap<>();

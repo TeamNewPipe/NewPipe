@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
+import static org.schabi.newpipe.util.ListHelper.getFilteredAudioStreams;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
 
@@ -44,6 +45,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     @Nullable
     private String playbackQuality;
+    @Nullable
+    private String audioLanguage;
 
     public enum SourceType {
         LIVE_STREAM,
@@ -74,18 +77,38 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
                 getNonTorrentStreams(info.getVideoStreams()),
                 getNonTorrentStreams(info.getVideoOnlyStreams()), false, true);
-        final int index;
+        final List<AudioStream> audioStreamsList =
+                getFilteredAudioStreams(context, info.getAudioStreams());
+
+        final int videoIndex;
         if (videoStreamsList.isEmpty()) {
-            index = -1;
+            videoIndex = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
+            videoIndex = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
+            videoIndex = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
                     getPlaybackQuality());
         }
-        final MediaItemTag tag = StreamInfoTag.of(info, videoStreamsList, index);
+
+        int audioIndex = 0;
+        if (audioLanguage != null) {
+            for (int i = 0; i < audioStreamsList.size(); i++) {
+                final AudioStream stream = audioStreamsList.get(i);
+                if (stream.getAudioTrackId() != null
+                        && stream.getAudioTrackId().equals(audioLanguage)) {
+                    audioIndex = i;
+                    break;
+                }
+            }
+        }
+
+        final MediaItemTag tag =
+                StreamInfoTag.of(info, videoStreamsList, videoIndex, audioStreamsList, audioIndex);
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
+                .orElse(null);
+        @Nullable final AudioStream audio = tag.getMaybeAudioLanguage()
+                .map(MediaItemTag.AudioLanguage::getSelectedAudioStream)
                 .orElse(null);
 
         if (video != null) {
@@ -99,14 +122,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             }
         }
 
-        // Create optional audio stream source
-        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
-        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
-                ListHelper.getDefaultAudioFormat(context, audioStreams));
-
         // Use the audio stream if there is no video stream, or
         // merge with audio stream in case if video does not contain audio
-        if (audio != null && (video == null || video.isVideoOnly())) {
+        if (audio != null && (video == null || video.isVideoOnly() || audioLanguage != null)) {
             try {
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
                         dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
@@ -179,9 +197,24 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         this.playbackQuality = playbackQuality;
     }
 
+    @Nullable
+    public String getAudioLanguage() {
+        return audioLanguage;
+    }
+
+    public void setAudioLanguage(@Nullable final String audioLanguage) {
+        this.audioLanguage = audioLanguage;
+    }
+
     public interface QualityResolver {
         int getDefaultResolutionIndex(List<VideoStream> sortedVideos);
 
         int getOverrideResolutionIndex(List<VideoStream> sortedVideos, String playbackQuality);
+    }
+
+    public interface AudioLanguageResolver {
+        int getDefaultLanguageIndex(List<AudioStream> audioStreams);
+
+        int getOverrideLanguageIndex(List<AudioStream> audioStreams, String audioLanguage);
     }
 }

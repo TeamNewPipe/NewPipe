@@ -63,6 +63,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -117,11 +118,13 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     //////////////////////////////////////////////////////////////////////////*/
 
     private static final int POPUP_MENU_ID_QUALITY = 69;
+    private static final int POPUP_MENU_ID_LANGUAGE = 70;
     private static final int POPUP_MENU_ID_PLAYBACK_SPEED = 79;
     private static final int POPUP_MENU_ID_CAPTION = 89;
 
     protected boolean isSomePopupMenuVisible = false;
     private PopupMenu qualityPopupMenu;
+    private PopupMenu languagePopupMenu;
     protected PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
 
@@ -146,7 +149,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     //region Constructor, setup, destroy
 
     protected VideoPlayerUi(@NonNull final Player player,
-                         @NonNull final PlayerBinding playerBinding) {
+                            @NonNull final PlayerBinding playerBinding) {
         super(player);
         binding = playerBinding;
         setupFromView();
@@ -173,6 +176,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 R.style.DarkPopupMenu);
 
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
+        languagePopupMenu = new PopupMenu(themeWrapper, binding.languageTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
@@ -190,6 +194,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     protected void initListeners() {
         binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked));
+        binding.languageTextView.setOnClickListener(
+                makeOnClickListener(this::onAudioLanguageClicked));
         binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
@@ -266,6 +272,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     protected void deinitListeners() {
         binding.qualityTextView.setOnClickListener(null);
+        binding.languageTextView.setOnClickListener(null);
         binding.playbackSpeed.setOnClickListener(null);
         binding.playbackSeekBar.setOnSeekBarChangeListener(null);
         binding.captionTextView.setOnClickListener(null);
@@ -419,6 +426,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.topControls.setPaddingRelative(controlsPad, playerTopPad, controlsPad, 0);
         binding.bottomControls.setPaddingRelative(controlsPad, 0, controlsPad, 0);
         binding.qualityTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
+        binding.languageTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
         binding.playbackSpeed.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
         binding.playbackSpeed.setMinimumWidth(buttonsMinWidth);
         binding.captionTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
@@ -984,6 +992,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void updateStreamRelatedViews() {
         player.getCurrentStreamInfo().ifPresent(info -> {
             binding.qualityTextView.setVisibility(View.GONE);
+            binding.languageTextView.setVisibility(View.GONE);
             binding.playbackSpeed.setVisibility(View.GONE);
 
             binding.playbackEndTime.setVisibility(View.GONE);
@@ -1019,6 +1028,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     }
 
                     buildQualityMenu();
+                    buildLanguageMenu();
 
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                     binding.surfaceView.setVisibility(View.VISIBLE);
@@ -1065,6 +1075,37 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         player.getSelectedVideoStream()
                 .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
+    }
+
+    private void buildLanguageMenu() {
+        if (languagePopupMenu == null) {
+            return;
+        }
+        languagePopupMenu.getMenu().removeGroup(POPUP_MENU_ID_LANGUAGE);
+
+        final List<AudioStream> availableStreams = Optional.ofNullable(player.getCurrentMetadata())
+                .flatMap(MediaItemTag::getMaybeAudioLanguage)
+                .map(MediaItemTag.AudioLanguage::getAudioStreams)
+                .orElse(null);
+        if (availableStreams == null || availableStreams.size() < 2) {
+            return;
+        }
+
+        for (int i = 0; i < availableStreams.size(); i++) {
+            final AudioStream audioStream = availableStreams.get(i);
+            // TODO: ensure that audio streams have track names
+            if (audioStream.getAudioTrackName() == null) {
+                continue;
+            }
+            languagePopupMenu.getMenu().add(POPUP_MENU_ID_LANGUAGE, i, Menu.NONE,
+                    audioStream.getAudioTrackName());
+        }
+
+        player.getSelectedAudioStream()
+                .ifPresent(s -> binding.languageTextView.setText(s.getAudioTrackName()));
+        binding.languageTextView.setVisibility(View.VISIBLE);
+        languagePopupMenu.setOnMenuItemClickListener(this);
+        languagePopupMenu.setOnDismissListener(this);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -1175,6 +1216,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 .ifPresent(binding.qualityTextView::setText);
     }
 
+    private void onAudioLanguageClicked() {
+        languagePopupMenu.show();
+        isSomePopupMenuVisible = true;
+
+        player.getSelectedAudioStream()
+                .map(AudioStream::getAudioTrackName)
+                .ifPresent(binding.languageTextView::setText);
+    }
+
     /**
      * Called when an item of the quality selector or the playback speed selector is selected.
      */
@@ -1207,6 +1257,30 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             player.reloadPlayQueueManager();
 
             binding.qualityTextView.setText(menuItem.getTitle());
+            return true;
+        } else if (menuItem.getGroupId() == POPUP_MENU_ID_LANGUAGE) {
+            final int menuItemIndex = menuItem.getItemId();
+            @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
+            //noinspection SimplifyOptionalCallChains
+            if (currentMetadata == null || !currentMetadata.getMaybeAudioLanguage().isPresent()) {
+                return true;
+            }
+
+            final MediaItemTag.AudioLanguage language =
+                    currentMetadata.getMaybeAudioLanguage().get();
+            final List<AudioStream> availableStreams = language.getAudioStreams();
+            final int selectedStreamIndex = language.getSelectedAudioStreamIndex();
+            if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
+                return true;
+            }
+
+            player.saveStreamProgressState();
+            final String newLanguage = availableStreams.get(menuItemIndex).getAudioTrackId();
+            player.setRecovery();
+            player.setAudioLanguage(newLanguage);
+            player.reloadPlayQueueManager();
+
+            binding.languageTextView.setText(menuItem.getTitle());
             return true;
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
             final int speedIndex = menuItem.getItemId();
