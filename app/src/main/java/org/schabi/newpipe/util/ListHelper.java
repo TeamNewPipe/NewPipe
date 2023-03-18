@@ -212,12 +212,7 @@ public final class ListHelper {
                 continue;
             }
 
-            final String trackId;
-            if (stream.getAudioTrackId() != null) {
-                trackId = stream.getAudioTrackId();
-            } else {
-                trackId = "";
-            }
+            final String trackId = Objects.toString(stream.getAudioTrackId(), "");
 
             final AudioStream presentStream = collectedStreams.get(trackId);
             if (presentStream == null || cmp.compare(stream, presentStream) > 0) {

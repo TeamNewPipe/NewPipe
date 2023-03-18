@@ -1236,50 +1236,10 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
 
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
-            final int menuItemIndex = menuItem.getItemId();
-            @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-            if (currentMetadata == null || currentMetadata.getMaybeQuality().isEmpty()) {
-                return true;
-            }
-
-            final MediaItemTag.Quality quality = currentMetadata.getMaybeQuality().get();
-            final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
-            final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
-            if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
-                return true;
-            }
-
-            player.saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).getResolution();
-            player.setRecovery();
-            player.setPlaybackQuality(newResolution);
-            player.reloadPlayQueueManager();
-
-            binding.qualityTextView.setText(menuItem.getTitle());
+            onQualityItemClick(menuItem);
             return true;
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_LANGUAGE) {
-            final int menuItemIndex = menuItem.getItemId();
-            @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-            //noinspection SimplifyOptionalCallChains
-            if (currentMetadata == null || !currentMetadata.getMaybeAudioLanguage().isPresent()) {
-                return true;
-            }
-
-            final MediaItemTag.AudioLanguage language =
-                    currentMetadata.getMaybeAudioLanguage().get();
-            final List<AudioStream> availableStreams = language.getAudioStreams();
-            final int selectedStreamIndex = language.getSelectedAudioStreamIndex();
-            if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
-                return true;
-            }
-
-            player.saveStreamProgressState();
-            final String newLanguage = availableStreams.get(menuItemIndex).getAudioTrackId();
-            player.setRecovery();
-            player.setAudioLanguage(newLanguage);
-            player.reloadPlayQueueManager();
-
-            binding.languageTextView.setText(menuItem.getTitle());
+            onLanguageItemClick(menuItem);
             return true;
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
             final int speedIndex = menuItem.getItemId();
@@ -1290,6 +1250,53 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
 
         return false;
+    }
+
+    private void onQualityItemClick(@NonNull final MenuItem menuItem) {
+        final int menuItemIndex = menuItem.getItemId();
+        @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
+        if (currentMetadata == null || currentMetadata.getMaybeQuality().isEmpty()) {
+            return;
+        }
+
+        final MediaItemTag.Quality quality = currentMetadata.getMaybeQuality().get();
+        final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
+        final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
+        if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
+            return;
+        }
+
+        player.saveStreamProgressState();
+        final String newResolution = availableStreams.get(menuItemIndex).getResolution();
+        player.setRecovery();
+        player.setPlaybackQuality(newResolution);
+        player.reloadPlayQueueManager();
+
+        binding.qualityTextView.setText(menuItem.getTitle());
+    }
+
+    private void onLanguageItemClick(@NonNull final MenuItem menuItem) {
+        final int menuItemIndex = menuItem.getItemId();
+        @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
+        if (currentMetadata == null || currentMetadata.getMaybeAudioLanguage().isEmpty()) {
+            return;
+        }
+
+        final MediaItemTag.AudioLanguage language =
+                currentMetadata.getMaybeAudioLanguage().get();
+        final List<AudioStream> availableStreams = language.getAudioStreams();
+        final int selectedStreamIndex = language.getSelectedAudioStreamIndex();
+        if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
+            return;
+        }
+
+        player.saveStreamProgressState();
+        final String newLanguage = availableStreams.get(menuItemIndex).getAudioTrackId();
+        player.setRecovery();
+        player.setAudioLanguage(newLanguage);
+        player.reloadPlayQueueManager();
+
+        binding.languageTextView.setText(menuItem.getTitle());
     }
 
     /**
