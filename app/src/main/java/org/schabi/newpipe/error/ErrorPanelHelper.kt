@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.annotation.Nullable
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -144,7 +143,7 @@ class ErrorPanelHelper(
      */
     private fun showAndSetErrorButtonAction(
         @StringRes resid: Int,
-        @Nullable listener: View.OnClickListener
+        listener: View.OnClickListener
     ) {
         errorActionButton.isVisible = true
         errorActionButton.setText(resid)
