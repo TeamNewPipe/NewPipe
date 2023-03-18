@@ -233,33 +233,16 @@ public final class ListHelper {
         // Fall back to English if the preferred language was not found
         final String preferredLanguageOrEnglish =
                 hasPreferredLanguage ? preferredLanguage : Locale.ENGLISH.getISO3Language();
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean preferDescriptiveAudio =
+                preferences.getBoolean(context.getString(R.string.prefer_descriptive_audio_key),
+                        false);
+        final Comparator<AudioStream> trackCmp =
+                getAudioTrackComparator(preferredLanguageOrEnglish, preferDescriptiveAudio);
 
         // Sort collected streams
-        return collectedStreams.values().stream()
-                .sorted((s1, s2) -> {
-                    // Preferred language comes first
-                    if (s1.getAudioLocale() != null
-                            && s1.getAudioLocale().getISO3Language()
-                                    .equals(preferredLanguageOrEnglish)) {
-                        return -1;
-                    }
-                    if (s2.getAudioLocale() != null
-                            && s2.getAudioLocale().getISO3Language()
-                                    .equals(preferredLanguageOrEnglish)) {
-                        return 1;
-                    }
-
-                    // Sort audio tracks alphabetically
-                    if (s1.getAudioTrackName() != null) {
-                        if (s2.getAudioTrackName() != null) {
-                            return s1.getAudioTrackName().compareTo(s2.getAudioTrackName());
-                        } else {
-                            return -1;
-                        }
-                    }
-                    return 1;
-                })
-                .collect(Collectors.toList());
+        return collectedStreams.values().stream().sorted(trackCmp).collect(Collectors.toList());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -679,5 +662,25 @@ public final class ListHelper {
         }
 
         return manager.isActiveNetworkMetered();
+    }
+
+    private static Comparator<AudioStream> getAudioTrackComparator(
+            final String preferredLanguage, final boolean preferDescriptiveAudio) {
+        return Comparator.comparing(AudioStream::getAudioLocale, (o1, o2) -> Boolean.compare(
+                o1 == null || !o1.getISO3Language().equals(preferredLanguage),
+                o2 == null || !o2.getISO3Language().equals(preferredLanguage))
+        ).thenComparing(AudioStream::isDescriptive, (o1, o2) ->
+                Boolean.compare(o1 ^ preferDescriptiveAudio, o2 ^ preferDescriptiveAudio)
+        ).thenComparing(AudioStream::getAudioTrackName, (o1, o2) -> {
+            if (o1 != null) {
+                if (o2 != null) {
+                    return o1.compareTo(o2);
+                } else {
+                    return -1;
+                }
+            } else {
+                return 1;
+            }
+        });
     }
 }

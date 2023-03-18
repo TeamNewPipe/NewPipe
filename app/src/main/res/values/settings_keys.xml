@@ -260,6 +260,7 @@
     <string name="show_next_video_key">show_next_video</string>
     <string name="show_description_key">show_description</string>
     <string name="show_meta_info_key">show_meta_info</string>
+    <string name="prefer_descriptive_audio_key">prefer_descriptive_audio</string>
     <string name="stream_info_selected_tab_key">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key">show_hold_to_append</string>
     <string name="content_language_key">content_language</string>
