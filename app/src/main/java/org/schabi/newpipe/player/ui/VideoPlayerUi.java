@@ -1093,7 +1093,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         for (int i = 0; i < availableStreams.size(); i++) {
             final AudioStream audioStream = availableStreams.get(i);
-            // TODO: ensure that audio streams have track names
             if (audioStream.getAudioTrackName() == null) {
                 continue;
             }
