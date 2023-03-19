@@ -79,6 +79,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -1093,15 +1094,13 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         for (int i = 0; i < availableStreams.size(); i++) {
             final AudioStream audioStream = availableStreams.get(i);
-            if (audioStream.getAudioTrackName() == null) {
-                continue;
-            }
             audioTrackPopupMenu.getMenu().add(POPUP_MENU_ID_AUDIO_TRACK, i, Menu.NONE,
-                    audioStream.getAudioTrackName());
+                    Localization.audioTrackName(context, audioStream));
         }
 
         player.getSelectedAudioStream()
-                .ifPresent(s -> binding.audioTrackTextView.setText(s.getAudioTrackName()));
+                .ifPresent(s -> binding.audioTrackTextView.setText(
+                        Localization.audioTrackName(context, s)));
         binding.audioTrackTextView.setVisibility(View.VISIBLE);
         audioTrackPopupMenu.setOnMenuItemClickListener(this);
         audioTrackPopupMenu.setOnDismissListener(this);
@@ -1218,10 +1217,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void onAudioTracksClicked() {
         audioTrackPopupMenu.show();
         isSomePopupMenuVisible = true;
-
-        player.getSelectedAudioStream()
-                .map(AudioStream::getAudioTrackName)
-                .ifPresent(binding.audioTrackTextView::setText);
     }
 
     /**

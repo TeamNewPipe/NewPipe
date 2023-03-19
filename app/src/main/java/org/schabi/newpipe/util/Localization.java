@@ -21,6 +21,7 @@ import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -259,6 +260,47 @@ public final class Localization {
         } else {
             return resources.getQuantityString(R.plurals.seconds, seconds, seconds);
         }
+    }
+
+    /**
+     * Get the localized name of an audio track.
+     * <p>Example:</p>
+     * <p>English (original)</p>
+     * <p>English (descriptive)</p>
+     * <p>Spanish (dubbed)</p>
+     *
+     * @param context used to get app language
+     * @param track a {@link AudioStream} of the track
+     * @return localized track name
+     */
+    public static String audioTrackName(final Context context, final AudioStream track) {
+        String res;
+
+        if (track.getAudioLocale() != null) {
+            res = track.getAudioLocale().getDisplayLanguage(getAppLocale(context));
+        } else if (track.getAudioTrackName() != null) {
+            res = track.getAudioTrackName();
+        } else {
+            res = context.getString(R.string.unknown_audio_track);
+        }
+
+        if (track.getAudioTrackType() != null) {
+            res += " (";
+            switch (track.getAudioTrackType()) {
+                case ORIGINAL:
+                    res += context.getString(R.string.track_type_original);
+                    break;
+                case DUBBED:
+                    res += context.getString(R.string.track_type_dubbed);
+                    break;
+                case DESCRIPTIVE:
+                    res += context.getString(R.string.track_type_descriptive);
+                    break;
+            }
+            res += ")";
+        }
+
+        return res;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

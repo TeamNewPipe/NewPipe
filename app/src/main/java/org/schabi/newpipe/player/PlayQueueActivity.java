@@ -5,6 +5,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -48,7 +49,6 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public final class PlayQueueActivity extends AppCompatActivity
@@ -618,14 +618,17 @@ public final class PlayQueueActivity extends AppCompatActivity
             return;
         }
 
+        final Context context = player.getContext();
         final MenuItem audioTrackSelector = menu.findItem(R.id.action_audio_track);
         final List<AudioStream> availableStreams =
                 Optional.ofNullable(player.getCurrentMetadata())
                         .flatMap(MediaItemTag::getMaybeAudioTrack)
                         .map(MediaItemTag.AudioTrack::getAudioStreams)
                         .orElse(null);
+        final Optional<AudioStream> selectedAudioStream = player.getSelectedAudioStream();
 
-        if (availableStreams == null || availableStreams.size() < 2) {
+        if (availableStreams == null || availableStreams.size() < 2
+                || selectedAudioStream.isEmpty()) {
             audioTrackSelector.setVisible(false);
         } else {
             final SubMenu audioTrackMenu = audioTrackSelector.getSubMenu();
@@ -633,25 +636,20 @@ public final class PlayQueueActivity extends AppCompatActivity
 
             for (int i = 0; i < availableStreams.size(); i++) {
                 final AudioStream audioStream = availableStreams.get(i);
-                if (audioStream.getAudioTrackName() == null) {
-                    continue;
-                }
-
                 audioTrackMenu.add(MENU_ID_AUDIO_TRACK, i, Menu.NONE,
-                        audioStream.getAudioTrackName());
+                        Localization.audioTrackName(context, audioStream));
             }
 
-            player.getSelectedAudioStream().ifPresent(s -> {
-                final String trackName = Objects.toString(s.getAudioTrackName(), "");
-                audioTrackSelector.setTitle(getString(R.string.play_queue_audio_track) + trackName);
+            final AudioStream s = selectedAudioStream.get();
+            final String trackName = Localization.audioTrackName(context, s);
+            audioTrackSelector.setTitle(
+                    context.getString(R.string.play_queue_audio_track, trackName));
 
-                final String shortName = s.getAudioLocale() != null
-                        ? s.getAudioLocale().getLanguage() : trackName;
-                audioTrackSelector.setTitleCondensed(
-                        shortName.substring(0, Math.min(shortName.length(), 2)));
-                audioTrackSelector.setVisible(true);
-            });
-
+            final String shortName = s.getAudioLocale() != null
+                    ? s.getAudioLocale().getLanguage() : trackName;
+            audioTrackSelector.setTitleCondensed(
+                    shortName.substring(0, Math.min(shortName.length(), 2)));
+            audioTrackSelector.setVisible(true);
         }
     }
 

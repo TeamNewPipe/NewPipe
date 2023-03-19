@@ -13,6 +13,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.AudioTrackType;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -244,8 +245,14 @@ public final class ListHelper {
         final Comparator<AudioStream> trackCmp =
                 getAudioTrackComparator(preferredLanguageOrEnglish, preferDescriptiveAudio);
 
+        // Filter unknown audio tracks if there are multiple tracks
+        java.util.stream.Stream<AudioStream> cs = collectedStreams.values().stream();
+        if (collectedStreams.size() > 1) {
+            cs = cs.filter(s -> s.getAudioTrackId() != null);
+        }
+
         // Sort collected streams
-        return collectedStreams.values().stream().sorted(trackCmp).collect(Collectors.toList());
+        return cs.sorted(trackCmp).collect(Collectors.toList());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -672,7 +679,7 @@ public final class ListHelper {
         return Comparator.comparing(AudioStream::getAudioLocale, (o1, o2) -> Boolean.compare(
                 o1 == null || !o1.getISO3Language().equals(preferredLanguage),
                 o2 == null || !o2.getISO3Language().equals(preferredLanguage))
-        ).thenComparing(AudioStream::isDescriptive, (o1, o2) ->
+        ).thenComparing(s -> s.getAudioTrackType() == AudioTrackType.DESCRIPTIVE, (o1, o2) ->
                 Boolean.compare(o1 ^ preferDescriptiveAudio, o2 ^ preferDescriptiveAudio)
         ).thenComparing(AudioStream::getAudioTrackName, (o1, o2) -> {
             if (o1 != null) {
