@@ -390,6 +390,12 @@ public class ListHelperTest {
         stream = AUDIO_TRACKS_TEST_LIST.get(ListHelper.getAudioIndexByHighestRank(
                 null, AUDIO_TRACKS_TEST_LIST, cmp));
         assertEquals("en.ds", stream.getId());
+
+        // Japanese language, fall back to original
+        cmp = ListHelper.getAudioStreamComparator(Locale.JAPANESE, true, false, false);
+        stream = AUDIO_TRACKS_TEST_LIST.get(ListHelper.getAudioIndexByHighestRank(
+                null, AUDIO_TRACKS_TEST_LIST, cmp));
+        assertEquals("en.or", stream.getId());
     }
 
     @Test

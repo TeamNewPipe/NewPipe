@@ -657,23 +657,21 @@ public final class PlayQueueActivity extends AppCompatActivity
      * @param itemId index of the selected item
      */
     private void onAudioTrackClick(final int itemId) {
-        @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-        if (currentMetadata == null || currentMetadata.getMaybeAudioTrack().isEmpty()) {
+        if (player.getCurrentMetadata() == null) {
             return;
         }
+        player.getCurrentMetadata().getMaybeAudioTrack().ifPresent(audioTrack -> {
+            final List<AudioStream> availableStreams = audioTrack.getAudioStreams();
+            final int selectedStreamIndex = audioTrack.getSelectedAudioStreamIndex();
+            if (selectedStreamIndex == itemId || availableStreams.size() <= itemId) {
+                return;
+            }
 
-        final MediaItemTag.AudioTrack audioTrack =
-                currentMetadata.getMaybeAudioTrack().get();
-        final List<AudioStream> availableStreams = audioTrack.getAudioStreams();
-        final int selectedStreamIndex = audioTrack.getSelectedAudioStreamIndex();
-        if (selectedStreamIndex == itemId || availableStreams.size() <= itemId) {
-            return;
-        }
-
-        player.saveStreamProgressState();
-        final String newAudioTrack = availableStreams.get(itemId).getAudioTrackId();
-        player.setRecovery();
-        player.setAudioTrack(newAudioTrack);
-        player.reloadPlayQueueManager();
+            player.saveStreamProgressState();
+            final String newAudioTrack = availableStreams.get(itemId).getAudioTrackId();
+            player.setRecovery();
+            player.setAudioTrack(newAudioTrack);
+            player.reloadPlayQueueManager();
+        });
     }
 }

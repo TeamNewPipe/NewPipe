@@ -239,13 +239,12 @@ public final class ListHelper {
         }
 
         // Filter unknown audio tracks if there are multiple tracks
-        java.util.stream.Stream<AudioStream> cs = collectedStreams.values().stream();
         if (collectedStreams.size() > 1) {
-            cs = cs.filter(s -> s.getAudioTrackId() != null);
+            collectedStreams.remove("");
         }
 
         // Sort collected streams by name
-        return cs.sorted(Comparator.comparing(audioStream ->
+        return collectedStreams.values().stream().sorted(Comparator.comparing(audioStream ->
                 Localization.audioTrackName(context, audioStream))).collect(Collectors.toList());
     }
 
