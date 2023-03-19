@@ -90,18 +90,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                     getPlaybackQuality());
         }
 
-        int audioIndex = 0;
-        if (audioTrack != null) {
-            for (int i = 0; i < audioStreamsList.size(); i++) {
-                final AudioStream stream = audioStreamsList.get(i);
-                if (stream.getAudioTrackId() != null
-                        && stream.getAudioTrackId().equals(audioTrack)) {
-                    audioIndex = i;
-                    break;
-                }
-            }
-        }
-
+        final int audioIndex =
+                ListHelper.getAudioFormatIndex(context, audioStreamsList, audioTrack);
         final MediaItemTag tag =
                 StreamInfoTag.of(info, videoStreamsList, videoIndex, audioStreamsList, audioIndex);
         @Nullable final VideoStream video = tag.getMaybeQuality()

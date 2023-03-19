@@ -52,18 +52,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         final MediaItemTag tag;
 
         if (!audioStreams.isEmpty()) {
-            int audioIndex = 0;
-
-            if (audioTrack != null) {
-                for (int i = 0; i < audioStreams.size(); i++) {
-                    final AudioStream audioStream = audioStreams.get(i);
-                    if (audioStream.getAudioTrackId() != null
-                        && audioStream.getAudioTrackId().equals(audioTrack)) {
-                        audioIndex = i;
-                        break;
-                    }
-                }
-            }
+            final int audioIndex =
+                    ListHelper.getAudioFormatIndex(context, audioStreams, audioTrack);
             stream = getStreamForIndex(audioIndex, audioStreams);
             tag = StreamInfoTag.of(info, audioStreams, audioIndex);
         } else {
