@@ -778,7 +778,8 @@
     <string name="feed_show_partially_watched">Partially watched</string>
     <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
-    <string name="track_type_original">original</string>
-    <string name="track_type_dubbed">dubbed</string>
-    <string name="track_type_descriptive">descriptive</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">dubbed</string>
+    <string name="audio_track_type_descriptive">descriptive</string>
 </resources>

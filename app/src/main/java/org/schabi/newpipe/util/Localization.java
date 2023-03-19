@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.core.math.MathUtils;
@@ -22,6 +23,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.AudioTrackType;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -274,33 +276,35 @@ public final class Localization {
      * @return localized track name
      */
     public static String audioTrackName(final Context context, final AudioStream track) {
-        String res;
-
+        final String name;
         if (track.getAudioLocale() != null) {
-            res = track.getAudioLocale().getDisplayLanguage(getAppLocale(context));
+            name = track.getAudioLocale().getDisplayLanguage(getAppLocale(context));
         } else if (track.getAudioTrackName() != null) {
-            res = track.getAudioTrackName();
+            name = track.getAudioTrackName();
         } else {
-            res = context.getString(R.string.unknown_audio_track);
+            name = context.getString(R.string.unknown_audio_track);
         }
 
         if (track.getAudioTrackType() != null) {
-            res += " (";
-            switch (track.getAudioTrackType()) {
-                case ORIGINAL:
-                    res += context.getString(R.string.track_type_original);
-                    break;
-                case DUBBED:
-                    res += context.getString(R.string.track_type_dubbed);
-                    break;
-                case DESCRIPTIVE:
-                    res += context.getString(R.string.track_type_descriptive);
-                    break;
+            final String trackType = audioTrackType(context, track.getAudioTrackType());
+            if (trackType != null) {
+                return context.getString(R.string.audio_track_name, name, trackType);
             }
-            res += ")";
         }
+        return name;
+    }
 
-        return res;
+    @Nullable
+    private static String audioTrackType(final Context context, final AudioTrackType trackType) {
+        switch (trackType) {
+            case ORIGINAL:
+                return context.getString(R.string.audio_track_type_original);
+            case DUBBED:
+                return context.getString(R.string.audio_track_type_dubbed);
+            case DESCRIPTIVE:
+                return context.getString(R.string.audio_track_type_descriptive);
+        }
+        return null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
