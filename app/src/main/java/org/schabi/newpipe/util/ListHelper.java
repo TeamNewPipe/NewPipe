@@ -107,11 +107,8 @@ public final class ListHelper {
 
     public static int getDefaultAudioFormat(final Context context,
                                             final List<AudioStream> audioStreams) {
-        final MediaFormat defaultFormat = getDefaultFormat(context,
-                R.string.default_audio_format_key, R.string.default_audio_format_value);
-
-        return getAudioIndexByHighestRank(defaultFormat, audioStreams,
-                getAudioStreamComparator(context));
+        return getAudioIndexByHighestRank(audioStreams,
+                getAudioTrackComparator(context).thenComparing(getAudioFormatComparator(context)));
     }
 
     public static int getAudioFormatIndex(final Context context,
@@ -222,8 +219,7 @@ public final class ListHelper {
 
         final HashMap<String, AudioStream> collectedStreams = new HashMap<>();
 
-        final Comparator<AudioStream> cmp =
-                getAudioStreamFormatComparator(isLimitingDataUsage(context));
+        final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
         for (final AudioStream stream : audioStreams) {
             if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
@@ -417,32 +413,18 @@ public final class ListHelper {
      * Get the audio-stream from the list with the highest rank, depending on the comparator.
      * Format will be ignored if it yields no results.
      *
-     * @param targetedFormat The target format type or null if it doesn't matter
      * @param audioStreams   List of audio streams
      * @param comparator     The comparator used for determining the max/best/highest ranked value
      * @return Index of audio stream that produces the highest ranked result or -1 if not found
      */
-    static int getAudioIndexByHighestRank(@Nullable final MediaFormat targetedFormat,
-                                                  @Nullable final List<AudioStream> audioStreams,
-                                                  final Comparator<AudioStream> comparator) {
+    static int getAudioIndexByHighestRank(@Nullable final List<AudioStream> audioStreams,
+                                          final Comparator<AudioStream> comparator) {
         if (audioStreams == null || audioStreams.isEmpty()) {
             return -1;
         }
 
         final AudioStream highestRankedAudioStream = audioStreams.stream()
-                .filter(audioStream -> targetedFormat == null
-                        || audioStream.getFormat() == targetedFormat)
-                .max(comparator)
-                .orElse(null);
-
-        if (highestRankedAudioStream == null) {
-            // Fallback: Ignore targetedFormat if not null
-            if (targetedFormat != null) {
-                return getAudioIndexByHighestRank(null, audioStreams, comparator);
-            }
-            // targetedFormat is already null -> return -1
-            return -1;
-        }
+                .max(comparator).orElse(null);
 
         return audioStreams.indexOf(highestRankedAudioStream);
     }
@@ -633,12 +615,25 @@ public final class ListHelper {
 
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
+     * @param context app context
+     * @return Comparator
+     */
+    private static Comparator<AudioStream> getAudioFormatComparator(
+            final @NonNull Context context) {
+        final MediaFormat defaultFormat = getDefaultFormat(context,
+                R.string.default_audio_format_key, R.string.default_audio_format_value);
+        return getAudioFormatComparator(defaultFormat, isLimitingDataUsage(context));
+    }
+
+    /**
+     * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
+     * @param defaultFormat the default format to look for
      * @param limitDataUsage choose low bitrate audio stream
      * @return Comparator
      */
-    private static Comparator<AudioStream> getAudioStreamFormatComparator(
-            final boolean limitDataUsage) {
+    static Comparator<AudioStream> getAudioFormatComparator(
+            @Nullable final MediaFormat defaultFormat, final boolean limitDataUsage) {
         final List<MediaFormat> formatRanking = limitDataUsage
                 ? AUDIO_FORMAT_EFFICIENCY_RANKING : AUDIO_FORMAT_QUALITY_RANKING;
 
@@ -648,18 +643,22 @@ public final class ListHelper {
             bitrateComparator = bitrateComparator.reversed();
         }
 
-        return bitrateComparator.thenComparingInt(
+        return Comparator.comparing(AudioStream::getFormat, (o1, o2) -> {
+            if (defaultFormat != null) {
+                return Boolean.compare(o1 == defaultFormat, o2 == defaultFormat);
+            }
+            return 0;
+        }).thenComparing(bitrateComparator).thenComparingInt(
                 stream -> formatRanking.indexOf(stream.getFormat()));
     }
 
     /**
-     * Get a {@link Comparator} to compare {@link AudioStream}s by their language, format
-     * and bitrate.
+     * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
      *
      * @param context App context
      * @return Comparator
      */
-    private static Comparator<AudioStream> getAudioStreamComparator(
+    private static Comparator<AudioStream> getAudioTrackComparator(
             @NonNull final Context context) {
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
@@ -671,23 +670,21 @@ public final class ListHelper {
                 preferences.getBoolean(context.getString(R.string.prefer_descriptive_audio_key),
                         false);
 
-        return getAudioStreamComparator(preferredLanguage, preferOriginalAudio,
-                preferDescriptiveAudio, isLimitingDataUsage(context));
+        return getAudioTrackComparator(preferredLanguage, preferOriginalAudio,
+                preferDescriptiveAudio);
     }
 
     /**
-     * Get a {@link Comparator} to compare {@link AudioStream}s by their language, format
-     * and bitrate.
+     * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
+     *
      * @param preferredLanguage Preferred audio stream language
      * @param preferOriginalAudio Get the original audio track regardless of its language
      * @param preferDescriptiveAudio Prefer the descriptive audio track if available
-     * @param limitDataUsage choose low bitrate audio stream
      * @return Comparator
      */
-    static Comparator<AudioStream> getAudioStreamComparator(final Locale preferredLanguage,
-                                                            final boolean preferOriginalAudio,
-                                                            final boolean preferDescriptiveAudio,
-                                                            final boolean limitDataUsage) {
+    static Comparator<AudioStream> getAudioTrackComparator(
+            final Locale preferredLanguage, final boolean preferOriginalAudio,
+            final boolean preferDescriptiveAudio) {
         final String langCode = preferredLanguage.getISO3Language();
         final List<AudioTrackType> trackTypeRanking = preferDescriptiveAudio
                 ? AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE : AUDIO_TRACK_TYPE_RANKING;
@@ -706,7 +703,6 @@ public final class ListHelper {
                 .thenComparing(AudioStream::getAudioLocale,
                         Comparator.nullsFirst(Comparator.comparing(
                                 locale -> locale.getISO3Language().equals(
-                                        Locale.ENGLISH.getISO3Language()))))
-                .thenComparing(getAudioStreamFormatComparator(limitDataUsage));
+                                        Locale.ENGLISH.getISO3Language()))));
     }
 }
