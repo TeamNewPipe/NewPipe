@@ -768,6 +768,7 @@
     <string name="no_audio_streams_available_for_external_players">No audio streams are available for external players</string>
     <string name="no_video_streams_available_for_external_players">No video streams are available for external players</string>
     <string name="select_quality_external_players">Select quality for external players</string>
+    <string name="select_audio_track_external_players">Select audio track for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
     <string name="unknown_audio_track">Unknown</string>

@@ -5,7 +5,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -618,7 +617,6 @@ public final class PlayQueueActivity extends AppCompatActivity
             return;
         }
 
-        final Context context = player.getContext();
         final MenuItem audioTrackSelector = menu.findItem(R.id.action_audio_track);
         final List<AudioStream> availableStreams =
                 Optional.ofNullable(player.getCurrentMetadata())
@@ -637,13 +635,13 @@ public final class PlayQueueActivity extends AppCompatActivity
             for (int i = 0; i < availableStreams.size(); i++) {
                 final AudioStream audioStream = availableStreams.get(i);
                 audioTrackMenu.add(MENU_ID_AUDIO_TRACK, i, Menu.NONE,
-                        Localization.audioTrackName(context, audioStream));
+                        Localization.audioTrackName(this, audioStream));
             }
 
             final AudioStream s = selectedAudioStream.get();
-            final String trackName = Localization.audioTrackName(context, s);
+            final String trackName = Localization.audioTrackName(this, s);
             audioTrackSelector.setTitle(
-                    context.getString(R.string.play_queue_audio_track, trackName));
+                    getString(R.string.play_queue_audio_track, trackName));
 
             final String shortName = s.getAudioLocale() != null
                     ? s.getAudioLocale().getLanguage() : trackName;
