@@ -26,17 +26,17 @@ public final class StreamInfoTag implements MediaItemTag {
     @Nullable
     private final MediaItemTag.Quality quality;
     @Nullable
-    private final MediaItemTag.AudioLanguage audioLanguage;
+    private final MediaItemTag.AudioTrack audioTrack;
     @Nullable
     private final Object extras;
 
     private StreamInfoTag(@NonNull final StreamInfo streamInfo,
                           @Nullable final MediaItemTag.Quality quality,
-                          @Nullable final MediaItemTag.AudioLanguage audioLanguage,
+                          @Nullable final MediaItemTag.AudioTrack audioTrack,
                           @Nullable final Object extras) {
         this.streamInfo = streamInfo;
         this.quality = quality;
-        this.audioLanguage = audioLanguage;
+        this.audioTrack = audioTrack;
         this.extras = extras;
     }
 
@@ -46,9 +46,17 @@ public final class StreamInfoTag implements MediaItemTag {
                                    @NonNull final List<AudioStream> audioStreams,
                                    final int selectedAudioStreamIndex) {
         final Quality quality = Quality.of(sortedVideoStreams, selectedVideoStreamIndex);
-        final AudioLanguage audioLanguage =
-                AudioLanguage.of(audioStreams, selectedAudioStreamIndex);
-        return new StreamInfoTag(streamInfo, quality, audioLanguage, null);
+        final AudioTrack audioTrack =
+                AudioTrack.of(audioStreams, selectedAudioStreamIndex);
+        return new StreamInfoTag(streamInfo, quality, audioTrack, null);
+    }
+
+    public static StreamInfoTag of(@NonNull final StreamInfo streamInfo,
+                                   @NonNull final List<AudioStream> audioStreams,
+                                   final int selectedAudioStreamIndex) {
+        final AudioTrack audioTrack =
+                AudioTrack.of(audioStreams, selectedAudioStreamIndex);
+        return new StreamInfoTag(streamInfo, null, audioTrack, null);
     }
 
     public static StreamInfoTag of(@NonNull final StreamInfo streamInfo) {
@@ -114,8 +122,8 @@ public final class StreamInfoTag implements MediaItemTag {
 
     @NonNull
     @Override
-    public Optional<AudioLanguage> getMaybeAudioLanguage() {
-        return Optional.ofNullable(audioLanguage);
+    public Optional<AudioTrack> getMaybeAudioTrack() {
+        return Optional.ofNullable(audioTrack);
     }
 
     @Override
@@ -125,6 +133,6 @@ public final class StreamInfoTag implements MediaItemTag {
 
     @Override
     public StreamInfoTag withExtras(@NonNull final Object extra) {
-        return new StreamInfoTag(streamInfo, quality, audioLanguage, extra);
+        return new StreamInfoTag(streamInfo, quality, audioTrack, extra);
     }
 }

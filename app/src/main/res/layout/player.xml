@@ -158,7 +158,7 @@
                     </LinearLayout>
 
                     <org.schabi.newpipe.views.NewPipeTextView
-                        android:id="@+id/languageTextView"
+                        android:id="@+id/audioTrackTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_marginEnd="8dp"

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.resolver;
 
+import static org.schabi.newpipe.util.ListHelper.getFilteredAudioStreams;
 import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
 
 import android.content.Context;
@@ -28,6 +29,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
     private final Context context;
     @NonNull
     private final PlayerDataSource dataSource;
+    @Nullable
+    private String audioTrack;
 
     public AudioPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource) {
@@ -43,12 +46,36 @@ public class AudioPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        final Stream stream = getAudioSource(info);
-        if (stream == null) {
-            return null;
-        }
+        final List<AudioStream> audioStreams =
+                getFilteredAudioStreams(context, info.getAudioStreams());
+        final Stream stream;
+        final MediaItemTag tag;
 
-        final MediaItemTag tag = StreamInfoTag.of(info);
+        if (!audioStreams.isEmpty()) {
+            int audioIndex = 0;
+
+            if (audioTrack != null) {
+                for (int i = 0; i < audioStreams.size(); i++) {
+                    final AudioStream audioStream = audioStreams.get(i);
+                    if (audioStream.getAudioTrackId() != null
+                        && audioStream.getAudioTrackId().equals(audioTrack)) {
+                        audioIndex = i;
+                        break;
+                    }
+                }
+            }
+            stream = getStreamForIndex(audioIndex, audioStreams);
+            tag = StreamInfoTag.of(info, audioStreams, audioIndex);
+        } else {
+            final List<VideoStream> videoStreams = getNonTorrentStreams(info.getVideoStreams());
+            if (!videoStreams.isEmpty()) {
+                final int index = ListHelper.getDefaultResolutionIndex(context, videoStreams);
+                stream = getStreamForIndex(index, videoStreams);
+                tag = StreamInfoTag.of(info);
+            } else {
+                return null;
+            }
+        }
 
         try {
             return PlaybackResolver.buildMediaSource(
@@ -59,34 +86,20 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         }
     }
 
-    /**
-     * Get a stream to be played as audio. If a service has no separate {@link AudioStream}s we
-     * use a video stream as audio source to support audio background playback.
-     *
-     * @param info of the stream
-     * @return the audio source to use or null if none could be found
-     */
-    @Nullable
-    private Stream getAudioSource(@NonNull final StreamInfo info) {
-        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
-        if (!audioStreams.isEmpty()) {
-            final int index = ListHelper.getDefaultAudioFormat(context, audioStreams);
-            return getStreamForIndex(index, audioStreams);
-        } else {
-            final List<VideoStream> videoStreams = getNonTorrentStreams(info.getVideoStreams());
-            if (!videoStreams.isEmpty()) {
-                final int index = ListHelper.getDefaultResolutionIndex(context, videoStreams);
-                return getStreamForIndex(index, videoStreams);
-            }
-        }
-        return null;
-    }
-
     @Nullable
     Stream getStreamForIndex(final int index, @NonNull final List<? extends Stream> streams) {
         if (index >= 0 && index < streams.size()) {
             return streams.get(index);
         }
         return null;
+    }
+
+    @Nullable
+    public String getAudioTrack() {
+        return audioTrack;
+    }
+
+    public void setAudioTrack(@Nullable final String audioLanguage) {
+        this.audioTrack = audioLanguage;
     }
 }

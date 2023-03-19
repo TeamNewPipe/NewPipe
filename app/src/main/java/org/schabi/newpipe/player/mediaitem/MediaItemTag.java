@@ -57,7 +57,7 @@ public interface MediaItemTag {
     }
 
     @NonNull
-    default Optional<AudioLanguage> getMaybeAudioLanguage() {
+    default Optional<AudioTrack> getMaybeAudioTrack() {
         return Optional.empty();
     }
 
@@ -135,20 +135,20 @@ public interface MediaItemTag {
         }
     }
 
-    final class AudioLanguage {
+    final class AudioTrack {
         @NonNull
         private final List<AudioStream> audioStreams;
         private final int selectedAudioStreamIndex;
 
-        private AudioLanguage(@NonNull final List<AudioStream> audioStreams,
-                        final int selectedAudioStreamIndex) {
+        private AudioTrack(@NonNull final List<AudioStream> audioStreams,
+                           final int selectedAudioStreamIndex) {
             this.audioStreams = audioStreams;
             this.selectedAudioStreamIndex = selectedAudioStreamIndex;
         }
 
-        static AudioLanguage of(@NonNull final List<AudioStream> audioStreams,
-                                final int selectedAudioStreamIndex) {
-            return new AudioLanguage(audioStreams, selectedAudioStreamIndex);
+        static AudioTrack of(@NonNull final List<AudioStream> audioStreams,
+                             final int selectedAudioStreamIndex) {
+            return new AudioTrack(audioStreams, selectedAudioStreamIndex);
         }
 
         @NonNull

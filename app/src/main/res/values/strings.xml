@@ -413,6 +413,8 @@
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
+    <string name="play_queue_audio_track">Audio: </string>
+    <string name="audio_track">Audio track</string>
     <string name="hold_to_append">Hold to enqueue</string>
     <string name="show_channel_details">Show channel details</string>
     <string name="enqueue_stream">Enqueue</string>

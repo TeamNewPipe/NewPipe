@@ -46,7 +46,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     @Nullable
     private String playbackQuality;
     @Nullable
-    private String audioLanguage;
+    private String audioTrack;
 
     public enum SourceType {
         LIVE_STREAM,
@@ -91,11 +91,11 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         }
 
         int audioIndex = 0;
-        if (audioLanguage != null) {
+        if (audioTrack != null) {
             for (int i = 0; i < audioStreamsList.size(); i++) {
                 final AudioStream stream = audioStreamsList.get(i);
                 if (stream.getAudioTrackId() != null
-                        && stream.getAudioTrackId().equals(audioLanguage)) {
+                        && stream.getAudioTrackId().equals(audioTrack)) {
                     audioIndex = i;
                     break;
                 }
@@ -107,8 +107,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
                 .orElse(null);
-        @Nullable final AudioStream audio = tag.getMaybeAudioLanguage()
-                .map(MediaItemTag.AudioLanguage::getSelectedAudioStream)
+        @Nullable final AudioStream audio = tag.getMaybeAudioTrack()
+                .map(MediaItemTag.AudioTrack::getSelectedAudioStream)
                 .orElse(null);
 
         if (video != null) {
@@ -124,7 +124,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Use the audio stream if there is no video stream, or
         // merge with audio stream in case if video does not contain audio
-        if (audio != null && (video == null || video.isVideoOnly() || audioLanguage != null)) {
+        if (audio != null && (video == null || video.isVideoOnly() || audioTrack != null)) {
             try {
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
                         dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
@@ -198,23 +198,17 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     }
 
     @Nullable
-    public String getAudioLanguage() {
-        return audioLanguage;
+    public String getAudioTrack() {
+        return audioTrack;
     }
 
-    public void setAudioLanguage(@Nullable final String audioLanguage) {
-        this.audioLanguage = audioLanguage;
+    public void setAudioTrack(@Nullable final String audioLanguage) {
+        this.audioTrack = audioLanguage;
     }
 
     public interface QualityResolver {
         int getDefaultResolutionIndex(List<VideoStream> sortedVideos);
 
         int getOverrideResolutionIndex(List<VideoStream> sortedVideos, String playbackQuality);
-    }
-
-    public interface AudioLanguageResolver {
-        int getDefaultLanguageIndex(List<AudioStream> audioStreams);
-
-        int getOverrideLanguageIndex(List<AudioStream> audioStreams, String audioLanguage);
     }
 }

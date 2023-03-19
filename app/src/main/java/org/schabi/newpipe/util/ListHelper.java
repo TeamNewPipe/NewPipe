@@ -188,6 +188,14 @@ public final class ListHelper {
                 videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
     }
 
+    /**
+     * Filter the list of audio streams and return a list with the preferred stream for
+     * each audio track. Streams are sorted with the preferred language in the first position.
+     *
+     * @param context the context to search for the track to give preference
+     * @param audioStreams the list of audio streams
+     * @return the sorted, filtered list
+     */
     public static List<AudioStream> getFilteredAudioStreams(
             @NonNull final Context context,
             @Nullable final List<AudioStream> audioStreams) {

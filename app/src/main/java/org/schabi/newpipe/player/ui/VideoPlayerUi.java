@@ -118,13 +118,13 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     //////////////////////////////////////////////////////////////////////////*/
 
     private static final int POPUP_MENU_ID_QUALITY = 69;
-    private static final int POPUP_MENU_ID_LANGUAGE = 70;
+    private static final int POPUP_MENU_ID_AUDIO_TRACK = 70;
     private static final int POPUP_MENU_ID_PLAYBACK_SPEED = 79;
     private static final int POPUP_MENU_ID_CAPTION = 89;
 
     protected boolean isSomePopupMenuVisible = false;
     private PopupMenu qualityPopupMenu;
-    private PopupMenu languagePopupMenu;
+    private PopupMenu audioTrackPopupMenu;
     protected PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
 
@@ -176,7 +176,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 R.style.DarkPopupMenu);
 
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
-        languagePopupMenu = new PopupMenu(themeWrapper, binding.languageTextView);
+        audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
@@ -194,8 +194,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     protected void initListeners() {
         binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked));
-        binding.languageTextView.setOnClickListener(
-                makeOnClickListener(this::onAudioLanguageClicked));
+        binding.audioTrackTextView.setOnClickListener(
+                makeOnClickListener(this::onAudioTracksClicked));
         binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
@@ -272,7 +272,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     protected void deinitListeners() {
         binding.qualityTextView.setOnClickListener(null);
-        binding.languageTextView.setOnClickListener(null);
+        binding.audioTrackTextView.setOnClickListener(null);
         binding.playbackSpeed.setOnClickListener(null);
         binding.playbackSeekBar.setOnSeekBarChangeListener(null);
         binding.captionTextView.setOnClickListener(null);
@@ -426,7 +426,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.topControls.setPaddingRelative(controlsPad, playerTopPad, controlsPad, 0);
         binding.bottomControls.setPaddingRelative(controlsPad, 0, controlsPad, 0);
         binding.qualityTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
-        binding.languageTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
+        binding.audioTrackTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
         binding.playbackSpeed.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
         binding.playbackSpeed.setMinimumWidth(buttonsMinWidth);
         binding.captionTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
@@ -992,7 +992,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void updateStreamRelatedViews() {
         player.getCurrentStreamInfo().ifPresent(info -> {
             binding.qualityTextView.setVisibility(View.GONE);
-            binding.languageTextView.setVisibility(View.GONE);
+            binding.audioTrackTextView.setVisibility(View.GONE);
             binding.playbackSpeed.setVisibility(View.GONE);
 
             binding.playbackEndTime.setVisibility(View.GONE);
@@ -1028,7 +1028,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     }
 
                     buildQualityMenu();
-                    buildLanguageMenu();
+                    buildAudioTrackMenu();
 
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                     binding.surfaceView.setVisibility(View.VISIBLE);
@@ -1077,15 +1077,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 .ifPresent(s -> binding.qualityTextView.setText(s.getResolution()));
     }
 
-    private void buildLanguageMenu() {
-        if (languagePopupMenu == null) {
+    private void buildAudioTrackMenu() {
+        if (audioTrackPopupMenu == null) {
             return;
         }
-        languagePopupMenu.getMenu().removeGroup(POPUP_MENU_ID_LANGUAGE);
+        audioTrackPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_AUDIO_TRACK);
 
         final List<AudioStream> availableStreams = Optional.ofNullable(player.getCurrentMetadata())
-                .flatMap(MediaItemTag::getMaybeAudioLanguage)
-                .map(MediaItemTag.AudioLanguage::getAudioStreams)
+                .flatMap(MediaItemTag::getMaybeAudioTrack)
+                .map(MediaItemTag.AudioTrack::getAudioStreams)
                 .orElse(null);
         if (availableStreams == null || availableStreams.size() < 2) {
             return;
@@ -1096,15 +1096,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             if (audioStream.getAudioTrackName() == null) {
                 continue;
             }
-            languagePopupMenu.getMenu().add(POPUP_MENU_ID_LANGUAGE, i, Menu.NONE,
+            audioTrackPopupMenu.getMenu().add(POPUP_MENU_ID_AUDIO_TRACK, i, Menu.NONE,
                     audioStream.getAudioTrackName());
         }
 
         player.getSelectedAudioStream()
-                .ifPresent(s -> binding.languageTextView.setText(s.getAudioTrackName()));
-        binding.languageTextView.setVisibility(View.VISIBLE);
-        languagePopupMenu.setOnMenuItemClickListener(this);
-        languagePopupMenu.setOnDismissListener(this);
+                .ifPresent(s -> binding.audioTrackTextView.setText(s.getAudioTrackName()));
+        binding.audioTrackTextView.setVisibility(View.VISIBLE);
+        audioTrackPopupMenu.setOnMenuItemClickListener(this);
+        audioTrackPopupMenu.setOnDismissListener(this);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -1215,13 +1215,13 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 .ifPresent(binding.qualityTextView::setText);
     }
 
-    private void onAudioLanguageClicked() {
-        languagePopupMenu.show();
+    private void onAudioTracksClicked() {
+        audioTrackPopupMenu.show();
         isSomePopupMenuVisible = true;
 
         player.getSelectedAudioStream()
                 .map(AudioStream::getAudioTrackName)
-                .ifPresent(binding.languageTextView::setText);
+                .ifPresent(binding.audioTrackTextView::setText);
     }
 
     /**
@@ -1238,8 +1238,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
             onQualityItemClick(menuItem);
             return true;
-        } else if (menuItem.getGroupId() == POPUP_MENU_ID_LANGUAGE) {
-            onLanguageItemClick(menuItem);
+        } else if (menuItem.getGroupId() == POPUP_MENU_ID_AUDIO_TRACK) {
+            onAudioTrackItemClick(menuItem);
             return true;
         } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
             final int speedIndex = menuItem.getItemId();
@@ -1275,28 +1275,28 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.qualityTextView.setText(menuItem.getTitle());
     }
 
-    private void onLanguageItemClick(@NonNull final MenuItem menuItem) {
+    private void onAudioTrackItemClick(@NonNull final MenuItem menuItem) {
         final int menuItemIndex = menuItem.getItemId();
         @Nullable final MediaItemTag currentMetadata = player.getCurrentMetadata();
-        if (currentMetadata == null || currentMetadata.getMaybeAudioLanguage().isEmpty()) {
+        if (currentMetadata == null || currentMetadata.getMaybeAudioTrack().isEmpty()) {
             return;
         }
 
-        final MediaItemTag.AudioLanguage language =
-                currentMetadata.getMaybeAudioLanguage().get();
-        final List<AudioStream> availableStreams = language.getAudioStreams();
-        final int selectedStreamIndex = language.getSelectedAudioStreamIndex();
+        final MediaItemTag.AudioTrack audioTrack =
+                currentMetadata.getMaybeAudioTrack().get();
+        final List<AudioStream> availableStreams = audioTrack.getAudioStreams();
+        final int selectedStreamIndex = audioTrack.getSelectedAudioStreamIndex();
         if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
             return;
         }
 
         player.saveStreamProgressState();
-        final String newLanguage = availableStreams.get(menuItemIndex).getAudioTrackId();
+        final String newAudioTrack = availableStreams.get(menuItemIndex).getAudioTrackId();
         player.setRecovery();
-        player.setAudioLanguage(newLanguage);
+        player.setAudioTrack(newAudioTrack);
         player.reloadPlayQueueManager();
 
-        binding.languageTextView.setText(menuItem.getTitle());
+        binding.audioTrackTextView.setText(menuItem.getTitle());
     }
 
     /**
