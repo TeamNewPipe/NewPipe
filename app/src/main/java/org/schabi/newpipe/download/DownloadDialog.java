@@ -68,6 +68,8 @@ import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
+import org.schabi.newpipe.util.AudioTrackAdapter;
+import org.schabi.newpipe.util.AudioTrackAdapter.AudioTracksWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
@@ -95,11 +97,13 @@ public class DownloadDialog extends DialogFragment
     @State
     StreamInfo currentInfo;
     @State
-    StreamSizeWrapper<AudioStream> wrappedAudioStreams;
-    @State
     StreamSizeWrapper<VideoStream> wrappedVideoStreams;
     @State
     StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams;
+    @State
+    AudioTracksWrapper wrappedAudioTracks;
+    @State
+    int selectedAudioStreamIndex;
     @State
     int selectedVideoIndex; // set in the constructor
     @State
@@ -117,6 +121,7 @@ public class DownloadDialog extends DialogFragment
     private Context context;
     private boolean askForSavePath;
 
+    private AudioTrackAdapter audioTrackAdapter;
     private StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter;
     private StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter;
@@ -163,18 +168,26 @@ public class DownloadDialog extends DialogFragment
     public DownloadDialog(@NonNull final Context context, @NonNull final StreamInfo info) {
         this.currentInfo = info;
 
+        final List<AudioStream> audioStreams =
+                getStreamsOfSpecifiedDelivery(info.getAudioStreams(), PROGRESSIVE_HTTP);
+        final List<List<AudioStream>> groupedAudioStreams =
+                ListHelper.getGroupedAudioStreams(context, audioStreams);
+        this.wrappedAudioTracks = new AudioTracksWrapper(groupedAudioStreams, context);
+        this.selectedAudioStreamIndex =
+                ListHelper.getDefaultAudioTrackGroup(context, groupedAudioStreams);
+
         // TODO: Adapt this code when the downloader support other types of stream deliveries
         final List<VideoStream> videoStreams = ListHelper.getSortedStreamVideosList(
                 context,
                 getStreamsOfSpecifiedDelivery(info.getVideoStreams(), PROGRESSIVE_HTTP),
                 getStreamsOfSpecifiedDelivery(info.getVideoOnlyStreams(), PROGRESSIVE_HTTP),
                 false,
-                false
+                // If there are multiple languages available, prefer streams without audio
+                // to allow language selection
+                wrappedAudioTracks.size() > 1
         );
 
         this.wrappedVideoStreams = new StreamSizeWrapper<>(videoStreams, context);
-        this.wrappedAudioStreams = new StreamSizeWrapper<>(
-                getStreamsOfSpecifiedDelivery(info.getAudioStreams(), PROGRESSIVE_HTTP), context);
         this.wrappedSubtitleStreams = new StreamSizeWrapper<>(
                 getStreamsOfSpecifiedDelivery(info.getSubtitles(), PROGRESSIVE_HTTP), context);
 
@@ -212,33 +225,9 @@ public class DownloadDialog extends DialogFragment
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
-        final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
-
-        for (int i = 0; i < videoStreams.size(); i++) {
-            if (!videoStreams.get(i).isVideoOnly()) {
-                continue;
-            }
-            final AudioStream audioStream = SecondaryStreamHelper
-                    .getAudioStreamFor(wrappedAudioStreams.getStreamsList(), videoStreams.get(i));
-
-            if (audioStream != null) {
-                secondaryStreams.append(i, new SecondaryStreamHelper<>(wrappedAudioStreams,
-                        audioStream));
-            } else if (DEBUG) {
-                final MediaFormat mediaFormat = videoStreams.get(i).getFormat();
-                if (mediaFormat != null) {
-                    Log.w(TAG, "No audio stream candidates for video format "
-                            + mediaFormat.name());
-                } else {
-                    Log.w(TAG, "No audio stream candidates for unknown video format");
-                }
-            }
-        }
-
-        this.videoStreamsAdapter = new StreamItemAdapter<>(wrappedVideoStreams, secondaryStreams);
-        this.audioStreamsAdapter = new StreamItemAdapter<>(wrappedAudioStreams);
+        this.audioTrackAdapter = new AudioTrackAdapter(wrappedAudioTracks);
         this.subtitleStreamsAdapter = new StreamItemAdapter<>(wrappedSubtitleStreams);
+        updateSecondaryStreams();
 
         final Intent intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);
@@ -265,6 +254,38 @@ public class DownloadDialog extends DialogFragment
         }, Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * Update the displayed video streams based on the selected audio track.
+     */
+    private void updateSecondaryStreams() {
+        final StreamSizeWrapper<AudioStream> audioStreams = getWrappedAudioStreams();
+        final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
+        final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
+
+        for (int i = 0; i < videoStreams.size(); i++) {
+            if (!videoStreams.get(i).isVideoOnly()) {
+                continue;
+            }
+            final AudioStream audioStream = SecondaryStreamHelper
+                    .getAudioStreamFor(audioStreams.getStreamsList(), videoStreams.get(i));
+
+            if (audioStream != null) {
+                secondaryStreams.append(i, new SecondaryStreamHelper<>(audioStreams, audioStream));
+            } else if (DEBUG) {
+                final MediaFormat mediaFormat = videoStreams.get(i).getFormat();
+                if (mediaFormat != null) {
+                    Log.w(TAG, "No audio stream candidates for video format "
+                            + mediaFormat.name());
+                } else {
+                    Log.w(TAG, "No audio stream candidates for unknown video format");
+                }
+            }
+        }
+
+        this.videoStreamsAdapter = new StreamItemAdapter<>(wrappedVideoStreams, secondaryStreams);
+        this.audioStreamsAdapter = new StreamItemAdapter<>(audioStreams);
+    }
+
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              final ViewGroup container,
@@ -285,13 +306,13 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
                 currentInfo.getName()));
-        selectedAudioIndex = ListHelper
-                .getDefaultAudioFormat(getContext(), wrappedAudioStreams.getStreamsList());
+        selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(),
+                getWrappedAudioStreams().getStreamsList());
 
         selectedSubtitleIndex = getSubtitleIndexBy(subtitleStreamsAdapter.getAll());
 
         dialogBinding.qualitySpinner.setOnItemSelectedListener(this);
-
+        dialogBinding.audioTrackSpinner.setOnItemSelectedListener(this);
         dialogBinding.videoAudioGroup.setOnCheckedChangeListener(this);
 
         initToolbar(dialogBinding.toolbarLayout.toolbar);
@@ -383,7 +404,7 @@ public class DownloadDialog extends DialogFragment
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading video stream size",
                                 currentInfo.getServiceId()))));
-        disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams)
+        disposables.add(StreamSizeWrapper.fetchSizeForWrapper(getWrappedAudioStreams())
                 .subscribe(result -> {
                     if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
                             == R.id.audio_button) {
@@ -405,14 +426,29 @@ public class DownloadDialog extends DialogFragment
                                 currentInfo.getServiceId()))));
     }
 
+    private void setupAudioTrackSpinner() {
+        if (getContext() == null) {
+            return;
+        }
+
+        dialogBinding.audioTrackSpinner.setAdapter(audioTrackAdapter);
+        dialogBinding.audioTrackSpinner.setSelection(selectedAudioStreamIndex);
+
+        dialogBinding.audioStreamSpinner.setAdapter(audioStreamsAdapter);
+        dialogBinding.audioStreamSpinner.setSelection(selectedAudioIndex);
+    }
+
     private void setupAudioSpinner() {
         if (getContext() == null) {
             return;
         }
 
-        dialogBinding.qualitySpinner.setAdapter(audioStreamsAdapter);
-        dialogBinding.qualitySpinner.setSelection(selectedAudioIndex);
+        dialogBinding.qualitySpinner.setVisibility(View.GONE);
         setRadioButtonsState(true);
+        dialogBinding.audioStreamSpinner.setVisibility(View.VISIBLE);
+        dialogBinding.audioTrackSpinner.setVisibility(
+                wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
+        dialogBinding.defaultAudioTrackPresentText.setVisibility(View.GONE);
     }
 
     private void setupVideoSpinner() {
@@ -422,7 +458,21 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.qualitySpinner.setAdapter(videoStreamsAdapter);
         dialogBinding.qualitySpinner.setSelection(selectedVideoIndex);
+        dialogBinding.qualitySpinner.setVisibility(View.VISIBLE);
         setRadioButtonsState(true);
+        dialogBinding.audioStreamSpinner.setVisibility(View.GONE);
+        onVideoStreamSelected();
+    }
+
+    private void onVideoStreamSelected() {
+        final boolean isVideoOnly = videoStreamsAdapter.getItem(selectedVideoIndex).isVideoOnly();
+
+        dialogBinding.audioTrackSpinner.setVisibility(
+                isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
+        dialogBinding.defaultAudioTrackPresentText.setVisibility(
+                !isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE
+
+        );
     }
 
     private void setupSubtitleSpinner() {
@@ -432,7 +482,11 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.qualitySpinner.setAdapter(subtitleStreamsAdapter);
         dialogBinding.qualitySpinner.setSelection(selectedSubtitleIndex);
+        dialogBinding.qualitySpinner.setVisibility(View.VISIBLE);
         setRadioButtonsState(true);
+        dialogBinding.audioStreamSpinner.setVisibility(View.GONE);
+        dialogBinding.audioTrackSpinner.setVisibility(View.GONE);
+        dialogBinding.defaultAudioTrackPresentText.setVisibility(View.GONE);
     }
 
 
@@ -550,18 +604,27 @@ public class DownloadDialog extends DialogFragment
                     + "parent = [" + parent + "], view = [" + view + "], "
                     + "position = [" + position + "], id = [" + id + "]");
         }
-        switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-            case R.id.audio_button:
+
+        switch (parent.getId()) {
+            case R.id.quality_spinner:
+                switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
+                    case R.id.video_button:
+                        selectedVideoIndex = position;
+                        onVideoStreamSelected();
+                        break;
+                    case R.id.subtitle_button:
+                        selectedSubtitleIndex = position;
+                        break;
+                }
+                onItemSelectedSetFileName();
+                break;
+            case R.id.audio_track_spinner:
+                selectedAudioStreamIndex = position;
+                updateSecondaryStreams();
+                break;
+            case R.id.audio_stream_spinner:
                 selectedAudioIndex = position;
-                break;
-            case R.id.video_button:
-                selectedVideoIndex = position;
-                break;
-            case R.id.subtitle_button:
-                selectedSubtitleIndex = position;
-                break;
         }
-        onItemSelectedSetFileName();
     }
 
     private void onItemSelectedSetFileName() {
@@ -607,6 +670,7 @@ public class DownloadDialog extends DialogFragment
 
     protected void setupDownloadOptions() {
         setRadioButtonsState(false);
+        setupAudioTrackSpinner();
 
         final boolean isVideoStreamsAvailable = videoStreamsAdapter.getCount() > 0;
         final boolean isAudioStreamsAvailable = audioStreamsAdapter.getCount() > 0;
@@ -655,6 +719,13 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.audioButton.setEnabled(enabled);
         dialogBinding.videoButton.setEnabled(enabled);
         dialogBinding.subtitleButton.setEnabled(enabled);
+    }
+
+    private StreamSizeWrapper<AudioStream> getWrappedAudioStreams() {
+        if (selectedAudioStreamIndex < 0 || selectedAudioStreamIndex > wrappedAudioTracks.size()) {
+            return StreamSizeWrapper.empty();
+        }
+        return wrappedAudioTracks.getTracksList().get(selectedAudioStreamIndex);
     }
 
     private int getSubtitleIndexBy(@NonNull final List<SubtitlesStream> streams) {
@@ -1013,7 +1084,6 @@ public class DownloadDialog extends DialogFragment
                         psName = Postprocessing.ALGORITHM_WEBM_MUXER;
                     }
 
-                    psArgs = null;
                     final long videoSize = wrappedVideoStreams.getSizeInBytes(
                             (VideoStream) selectedStream);
 

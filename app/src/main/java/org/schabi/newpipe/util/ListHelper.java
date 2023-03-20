@@ -111,6 +111,19 @@ public final class ListHelper {
                 getAudioTrackComparator(context).thenComparing(getAudioFormatComparator(context)));
     }
 
+    public static int getDefaultAudioTrackGroup(final Context context,
+                                                final List<List<AudioStream>> groupedAudioStreams) {
+        if (groupedAudioStreams == null || groupedAudioStreams.isEmpty()) {
+            return -1;
+        }
+
+        final Comparator<AudioStream> cmp = getAudioTrackComparator(context);
+        final List<AudioStream> highestRanked = groupedAudioStreams.stream()
+                .max((o1, o2) -> cmp.compare(o1.get(0), o2.get(0)))
+                .orElse(null);
+        return groupedAudioStreams.indexOf(highestRanked);
+    }
+
     public static int getAudioFormatIndex(final Context context,
                                           final List<AudioStream> audioStreams,
                                           @Nullable final String trackId) {
@@ -240,8 +253,50 @@ public final class ListHelper {
         }
 
         // Sort collected streams by name
-        return collectedStreams.values().stream().sorted(Comparator.comparing(audioStream ->
-                Localization.audioTrackName(context, audioStream))).collect(Collectors.toList());
+        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator(context))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Group the list of audioStreams by their track ID and sort the resulting list by track name.
+     *
+     * @param context      app context to get track names for sorting
+     * @param audioStreams list of audio streams
+     * @return list of audio streams lists representing individual tracks
+     */
+    public static List<List<AudioStream>> getGroupedAudioStreams(
+            @NonNull final Context context,
+            @Nullable final List<AudioStream> audioStreams) {
+        if (audioStreams == null) {
+            return Collections.emptyList();
+        }
+
+        final HashMap<String, List<AudioStream>> collectedStreams = new HashMap<>();
+
+        for (final AudioStream stream : audioStreams) {
+            final String trackId = Objects.toString(stream.getAudioTrackId(), "");
+            if (collectedStreams.containsKey(trackId)) {
+                collectedStreams.get(trackId).add(stream);
+            } else {
+                final List<AudioStream> list = new ArrayList<>();
+                list.add(stream);
+                collectedStreams.put(trackId, list);
+            }
+        }
+
+        // Filter unknown audio tracks if there are multiple tracks
+        if (collectedStreams.size() > 1) {
+            collectedStreams.remove("");
+        }
+
+        // Sort tracks alphabetically, sort track streams by quality
+        final Comparator<AudioStream> nameCmp = getAudioTrackNameComparator(context);
+        final Comparator<AudioStream> formatCmp = getAudioFormatComparator(context);
+
+        return collectedStreams.values().stream()
+                .sorted((o1, o2) -> nameCmp.compare(o1.get(0), o2.get(0)))
+                .map(streams -> streams.stream().sorted(formatCmp).collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -413,8 +468,8 @@ public final class ListHelper {
      * Get the audio-stream from the list with the highest rank, depending on the comparator.
      * Format will be ignored if it yields no results.
      *
-     * @param audioStreams   List of audio streams
-     * @param comparator     The comparator used for determining the max/best/highest ranked value
+     * @param audioStreams List of audio streams
+     * @param comparator   The comparator used for determining the max/best/highest ranked value
      * @return Index of audio stream that produces the highest ranked result or -1 if not found
      */
     static int getAudioIndexByHighestRank(@Nullable final List<AudioStream> audioStreams,
@@ -615,6 +670,9 @@ public final class ListHelper {
 
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
+     *
+     * <p>The prefered stream will be ordered last.</p>
+     *
      * @param context app context
      * @return Comparator
      */
@@ -628,7 +686,9 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
-     * @param defaultFormat the default format to look for
+     * <p>The prefered stream will be ordered last.</p>
+     *
+     * @param defaultFormat  the default format to look for
      * @param limitDataUsage choose low bitrate audio stream
      * @return Comparator
      */
@@ -655,6 +715,21 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
      *
+     * <p>In this order:</p>
+     * <ol>
+     * <li>If {@code preferOriginalAudio}: is original audio</li>
+     * <li>Language matches {@code preferredLanguage}</li>
+     * <li>
+     *     Track type ranks highest in this order:
+     *     <i>Original</i> > <i>Dubbed</i> > <i>Descriptive</i>
+     *     <p>If {@code preferDescriptiveAudio}:
+     *     <i>Descriptive</i> > <i>Dubbed</i> > <i>Original</i></p>
+     * </li>
+     * <li>Language is English</li>
+     * </ol>
+     *
+     * <p>The prefered track will be ordered last.</p>
+     *
      * @param context App context
      * @return Comparator
      */
@@ -677,8 +752,23 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
      *
-     * @param preferredLanguage Preferred audio stream language
-     * @param preferOriginalAudio Get the original audio track regardless of its language
+     * <p>In this order:</p>
+     * <ol>
+     * <li>If {@code preferOriginalAudio}: is original audio</li>
+     * <li>Language matches {@code preferredLanguage}</li>
+     * <li>
+     *     Track type ranks highest in this order:
+     *     <i>Original</i> > <i>Dubbed</i> > <i>Descriptive</i>
+     *     <p>If {@code preferDescriptiveAudio}:
+     *     <i>Descriptive</i> > <i>Dubbed</i> > <i>Original</i></p>
+     * </li>
+     * <li>Language is English</li>
+     * </ol>
+     *
+     * <p>The prefered track will be ordered last.</p>
+     *
+     * @param preferredLanguage      Preferred audio stream language
+     * @param preferOriginalAudio    Get the original audio track regardless of its language
      * @param preferDescriptiveAudio Prefer the descriptive audio track if available
      * @return Comparator
      */
@@ -699,10 +789,26 @@ public final class ListHelper {
                         Comparator.nullsFirst(Comparator.comparing(
                                 locale -> locale.getISO3Language().equals(langCode))))
                 .thenComparing(AudioStream::getAudioTrackType,
-                        Comparator.nullsLast(Comparator.comparingInt(trackTypeRanking::indexOf)))
+                        Comparator.nullsFirst(Comparator.comparingInt(trackTypeRanking::indexOf)))
                 .thenComparing(AudioStream::getAudioLocale,
                         Comparator.nullsFirst(Comparator.comparing(
                                 locale -> locale.getISO3Language().equals(
                                         Locale.ENGLISH.getISO3Language()))));
+    }
+
+    /**
+     * Get a {@link Comparator} to compare {@link AudioStream}s by their languages and track types
+     * for alphabetical sorting.
+     *
+     * @param context app context for localization
+     * @return Comparator
+     */
+    private static Comparator<AudioStream> getAudioTrackNameComparator(
+            @NonNull final Context context) {
+        final Locale appLoc = Localization.getAppLocale(context);
+
+        return Comparator.comparing(AudioStream::getAudioLocale, Comparator.nullsLast(
+                        Comparator.comparing(locale -> locale.getDisplayName(appLoc))))
+                .thenComparing(AudioStream::getAudioTrackType);
     }
 }
