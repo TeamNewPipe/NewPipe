@@ -433,9 +433,6 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.audioTrackSpinner.setAdapter(audioTrackAdapter);
         dialogBinding.audioTrackSpinner.setSelection(selectedAudioStreamIndex);
-
-        dialogBinding.audioStreamSpinner.setAdapter(audioStreamsAdapter);
-        dialogBinding.audioStreamSpinner.setSelection(selectedAudioIndex);
     }
 
     private void setupAudioSpinner() {
@@ -445,6 +442,8 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.qualitySpinner.setVisibility(View.GONE);
         setRadioButtonsState(true);
+        dialogBinding.audioStreamSpinner.setAdapter(audioStreamsAdapter);
+        dialogBinding.audioStreamSpinner.setSelection(selectedAudioIndex);
         dialogBinding.audioStreamSpinner.setVisibility(View.VISIBLE);
         dialogBinding.audioTrackSpinner.setVisibility(
                 wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
@@ -619,8 +618,12 @@ public class DownloadDialog extends DialogFragment
                 onItemSelectedSetFileName();
                 break;
             case R.id.audio_track_spinner:
+                final boolean trackChanged = selectedAudioStreamIndex != position;
                 selectedAudioStreamIndex = position;
-                updateSecondaryStreams();
+                if (trackChanged) {
+                    updateSecondaryStreams();
+                    fetchStreamsSize();
+                }
                 break;
             case R.id.audio_stream_spinner:
                 selectedAudioIndex = position;
