@@ -86,15 +86,19 @@ public final class ShareUtils {
                     PackageManager.MATCH_DEFAULT_ONLY);
         }
 
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         if (defaultBrowserInfo == null) {
-            // No app installed to open a web url
-            Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+            // No app installed to open a web URL, but it may be handled by other apps so try
+            // opening a system chooser for the link in this case (it could be bypassed by the
+            // system if there is only one app which can open the link or a default app associated
+            // with the link domain on Android 12 and higher)
+            openAppChooser(context, intent, true);
             return;
         }
 
         final String defaultBrowserPackage = defaultBrowserInfo.activityInfo.packageName;
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (defaultBrowserPackage.equals("android")) {
             // No browser set as default (doesn't work on some devices)
@@ -205,7 +209,12 @@ public final class ShareUtils {
                 chooserIntent.addFlags(permFlags);
             }
         }
-        context.startActivity(chooserIntent);
+
+        try {
+            context.startActivity(chooserIntent);
+        } catch (final ActivityNotFoundException e) {
+            Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
