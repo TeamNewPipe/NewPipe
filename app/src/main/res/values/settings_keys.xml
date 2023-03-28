@@ -124,6 +124,16 @@
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
 
+    <string-array name="high_resolution_list_values">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
+    <string-array name="high_resolution_list_descriptions">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
     <string-array name="resolution_list_values">
         <item>@string/best_resolution_key</item>
         <item>1080p60</item>
@@ -1299,6 +1309,11 @@
         <item>360p</item>
         <item>240p</item>
         <item>144p</item>
+    </string-array>
+
+    <string-array name="high_resolution_limit_data_usage_values_list">
+        <item>2160p</item>
+        <item>1440p</item>
     </string-array>
 
     <string name="list_view_mode_key">list_view_mode</string>

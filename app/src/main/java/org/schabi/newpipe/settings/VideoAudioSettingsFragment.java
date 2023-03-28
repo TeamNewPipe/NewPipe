@@ -13,6 +13,7 @@ import androidx.preference.ListPreference;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
-
+        updateResolutionOptions();
         listener = (sharedPreferences, key) -> {
 
             // on M and above, if user chooses to minimise to popup player on exit
@@ -48,8 +49,70 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 }
             } else if (getString(R.string.use_inexact_seek_key).equals(key)) {
                 updateSeekOptions();
+            } else if (getString(R.string.show_higher_resolutions_key).equals(key)) {
+                updateResolutionOptions();
             }
         };
+    }
+
+    /**
+     * Update default resolution, default popup resolution & mobile data resolution options.
+     * show high resolution when "Show higher resolution" option enabled.
+     */
+    private void updateResolutionOptions() {
+        final ListPreference defaultResolution = findPreference(
+                getString(R.string.default_resolution_key));
+        final ListPreference defaultPopupResolution = findPreference(
+                getString(R.string.default_popup_resolution_key));
+        final ListPreference mobileDataResolution = findPreference(
+                getString(R.string.limit_mobile_data_usage_key));
+        final Resources resources = getResources();
+        final boolean showHigherResolutions =  getPreferenceManager().getSharedPreferences()
+                .getBoolean(resources.getString(R.string.show_higher_resolutions_key), false);
+        final List<String> resolutionListDescriptions = ListHelper.getSortedResolutionList(
+                resources,
+                R.array.resolution_list_description,
+                R.array.high_resolution_list_descriptions,
+                showHigherResolutions);
+        final List<String> resolutionListValues = ListHelper.getSortedResolutionList(
+                resources,
+                R.array.resolution_list_values,
+                R.array.high_resolution_list_values,
+                showHigherResolutions);
+        final List<String> limitDataUsageResolutionValues = ListHelper.getSortedResolutionList(
+                resources,
+                R.array.limit_data_usage_values_list,
+                R.array.high_resolution_limit_data_usage_values_list,
+                showHigherResolutions);
+        final List<String> limitDataUsageResolutionDescriptions = ListHelper
+                .getSortedResolutionList(resources,
+                R.array.limit_data_usage_description_list,
+                R.array.high_resolution_list_descriptions,
+                showHigherResolutions);
+        defaultResolution.setEntries(resolutionListDescriptions.toArray(new String[0]));
+        defaultResolution.setEntryValues(resolutionListValues.toArray(new String[0]));
+        defaultPopupResolution.setEntries(resolutionListDescriptions.toArray(new String[0]));
+        defaultPopupResolution.setEntryValues(resolutionListValues.toArray(new String[0]));
+        mobileDataResolution.setEntries(
+                limitDataUsageResolutionDescriptions.toArray(new String[0]));
+        mobileDataResolution.setEntryValues(limitDataUsageResolutionValues.toArray(new String[0]));
+        if (!showHigherResolutions) {
+            if (ListHelper.isHighResolutionSelected(defaultResolution.getValue(),
+                    R.array.high_resolution_list_values,
+                    resources)) {
+                defaultResolution.setValueIndex(0);
+            }
+            if (ListHelper.isHighResolutionSelected(defaultPopupResolution.getValue(),
+                    R.array.high_resolution_list_values,
+                    resources)) {
+                defaultPopupResolution.setValueIndex(0);
+            }
+            if (ListHelper.isHighResolutionSelected(mobileDataResolution.getValue(),
+                    R.array.high_resolution_limit_data_usage_values_list,
+                    resources)) {
+                mobileDataResolution.setValueIndex(0);
+            }
+        }
     }
 
     /**

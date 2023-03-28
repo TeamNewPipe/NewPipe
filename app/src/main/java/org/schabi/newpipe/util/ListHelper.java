@@ -4,6 +4,7 @@ import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import androidx.annotation.NonNull;
@@ -237,6 +238,30 @@ public final class ListHelper {
 
         return getSortedStreamVideosList(defaultFormat, showHigherResolutions, videoStreams,
                 videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
+    }
+
+    public static List<String> getSortedResolutionList(
+            final Resources resources,
+            final int defaultResolutionKey,
+            final int additionalResolutionKey,
+            final boolean showHigherResolutions) {
+        final List<String> defaultResolution = new ArrayList<String>(Arrays.asList(
+                resources.getStringArray(defaultResolutionKey)));
+        if (!showHigherResolutions) {
+            return defaultResolution;
+        }
+        final List<String> additionalResolutions = Arrays.asList(
+                resources.getStringArray(additionalResolutionKey));
+        defaultResolution.addAll(1, additionalResolutions);
+        return defaultResolution;
+    }
+
+    public static boolean isHighResolutionSelected(final String selectedResolution,
+                                             final int additionalResolutionKey,
+                                             final Resources resources) {
+        return Arrays.asList(resources.getStringArray(
+                        additionalResolutionKey))
+                .contains(selectedResolution);
     }
 
     /**
