@@ -261,6 +261,7 @@ public class DownloadDialog extends DialogFragment
         final StreamSizeWrapper<AudioStream> audioStreams = getWrappedAudioStreams();
         final var secondaryStreams = new SparseArrayCompat<SecondaryStreamHelper<AudioStream>>(4);
         final List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
+        wrappedVideoStreams.resetSizes();
 
         for (int i = 0; i < videoStreams.size(); i++) {
             if (!videoStreams.get(i).isVideoOnly()) {

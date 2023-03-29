@@ -235,7 +235,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             this.unknownSize = context == null
                     ? "--.-" : context.getString(R.string.unknown_content);
 
-            Arrays.fill(streamSizes, -2);
+            resetSizes();
         }
 
         /**
@@ -267,6 +267,10 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .onErrorReturnItem(true);
+        }
+
+        public void resetSizes() {
+            Arrays.fill(streamSizes, -2);
         }
 
         public static <X extends Stream> StreamSizeWrapper<X> empty() {
