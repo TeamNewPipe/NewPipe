@@ -58,7 +58,7 @@
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2के/4के मे वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">कोडी मे चलाए</string>
-    <string name="kore_not_found">कोरे ऐप नहीं मिला, इसे स्थापित करें\?</string>
+    <string name="kore_not_found">लापता Kode ऐप स्थापित करें\?</string>
     <string name="show_play_with_kodi_title">\"कोडी मे चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
@@ -731,4 +731,14 @@
     <string name="msg_failed_to_copy">क्लिपबोर्ड पर कॉपी करने में विफल</string>
     <string name="duplicate_in_playlist">धुंधली की गई प्‍लेलिस्‍ट में पहले से ही यह आइटम है।</string>
     <string name="playlist_add_stream_success_duplicate">डुप्लीकेट जोड़ा गया %d बार</string>
+    <string name="remove_duplicates">डुप्लीकेट हटाएं</string>
+    <string name="remove_duplicates_title">डुप्लीकेट हटाएं\?</string>
+    <string name="remove_duplicates_message">क्या आप इस प्लेलिस्ट की सभी डुप्लीकेट स्ट्रीम हटाना चाहते हैं\?</string>
+    <string name="feed_hide_streams_title">निम्नलिखित स्ट्रीम दिखाएँ</string>
+    <string name="feed_show_upcoming">आगामी</string>
+    <string name="ignore_hardware_media_buttons_title">हार्डवेयर मीडिया बटन घटनाओं की अनदेखी करें</string>
+    <string name="ignore_hardware_media_buttons_summary">उपयोगी है, उदाहरण के लिए, यदि आप टूटे हुए भौतिक बटन वाले हेडसेट का उपयोग कर रहे हैं</string>
+    <string name="feed_show_hide_streams">स्ट्रीम दिखाएँ / छिपाएँ</string>
+    <string name="feed_show_watched">पूरा देखा</string>
+    <string name="feed_show_partially_watched">आंशिक रूप से देखा गया</string>
 </resources>

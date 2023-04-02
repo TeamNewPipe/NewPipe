@@ -8,17 +8,17 @@
 - Atualização da versão da biblioteca e correção de cópia de segurança da base de dados #1510
 - ExoPlayer 2.8.2 Atualização #1392
 - Retrabalhado a caixa de diálogo de controlo de velocidade de reprodução para suportar diferentes tamanhos de etapa para uma mudança de velocidade mais rápida.
-- Adicionado uma alternância para avanço rápido durante silêncios no controlo de velocidade de reprodução. Isso deve ser útil para audiolivros e certos géneros musicais, e pode trazer uma experiência verdadeiramente perfeita (e pode quebrar uma música com muitos silêncios =\\).
-- Resolução de fonte de média ré fatorada para permitir a passagem de metadados com a média internamente no reprodutor, em vez de fazê-lo manualmente. Agora temos uma única fonte de metadados e está disponível diretamente quando a reprodução é iniciada.
+- Adicionado uma alternância para avanço rápido durante silêncios no controle de velocidade de reprodução. Isso deve ser útil para audiolivros e certos gêneros musicais, e pode trazer uma experiência verdadeiramente perfeita (e pode quebrar uma música com muitos silêncios =\\).
+- Resolução de fonte de média ré fatorada para permitir a passagem de metadados junto com a média internamente no reprodutor, em vez de fazê-lo manualmente. Agora temos uma única fonte de metadados e está disponível diretamente quando a reprodução é iniciada.
 - Correção de metadados de listas de reprodução remotas que não são atualizadas quando novos metadados estão disponíveis quando o fragmento da lista de reprodução é aberta.
-- Várias correções de interface do utilizador: #1383, controles de notificação do reprodutor em segundo plano agora sempre brancos, mais fácil de desligar o reprodutor pop-up por meio de arremesso
+- Várias correções de interface do utilizador : #1383, controles de notificação do reprodutor em segundo plano agora sempre brancos, mais fácil de desligar o reprodutor pop-up por meio de arremesso
 - Use novo extrator com arquitetura ré fatorada para multisserviço
 
 ### Conserta
 
 - Correção #1440 Layout de informações de vídeo quebrado #1491
-- Ver correção de histórico #1497
-- #1495, atualizando os metadados (miniatura, título e contagem de vídeos) assim que o utilizador acessar a lista de reprodução.
+-Ver correção de histórico #1497
+- #1495, atualizando os metadados (miniatura, título e contagem de vídeos) assim que o usuário acessar a lista de reprodução.
 - #1475, registando uma visualização na base de dados quando o utilizador inicia um vídeo no reprodutor externo no fragmento de detalhes.
 - Correção de tempo limite de criação em caso de modo pop-up. #1463 (Corrigido #640)
 - Correção do reprodutor de vídeo principal #1509

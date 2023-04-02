@@ -1,1 +1,1 @@
-Conserta a extração da função de desencriptação do YouTube.
+Correção da extração da função de desencriptação do YouTube.

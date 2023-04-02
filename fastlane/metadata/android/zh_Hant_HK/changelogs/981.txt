@@ -1,2 +1,2 @@
-移除了對MediaParser的支持，以解決在Android 11+上緩衝後恢復播放失敗的問題。
-在Philips QM16XE上禁用了媒體隧道，以解決播放問題。
+移除咗對MediaParser（媒體解析器）嘅支持，解決咗喺Android 11+上面緩衝後，恢復播放時失敗嘅問題。
+喺Philips QM16XE上禁用了media tunneling(隧道模式），去解決恢復播放卡機嘅問題。

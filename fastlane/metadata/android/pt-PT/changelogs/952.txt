@@ -1,7 +1,7 @@
 Melhorado
-- O autoplay está disponível para todos os serviços (em vez de apenas para o YouTube)
+• A reprodução automática está disponível para todos os serviços (em vez de apenas para o YouTube)
 
-Correções
-- Fluxos relacionados corrigidos, a apoiar as novas continuações do YouTube
-- Vídeos do YouTube com restrição de idade corrigido
-- [Android TV] Foco e sobreposição de destaque prolongado corrigidos
+Corrigido
+• Transmissões relacionadas, permintindo novas continuações do YouTube
+• Restrições etárias em videos do YouTube
+• [Android TV] Foco e sobreposição de destaque prolongado corrigidos

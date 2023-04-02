@@ -43,7 +43,7 @@
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
-    <string name="kore_not_found">Pasangkan aplikasi Kore yang tidak dijumpai\?</string>
+    <string name="kore_not_found">Pasangkan aplikasi Kode yang tidak dijumpai\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Paparkan opsyen untuk memain video dengan Kodi</string>
     <string name="play_audio">Audio</string>

@@ -89,7 +89,7 @@
     <string name="download_path_summary">გადმოწერილი ვიდეო ფაილები ინახება აქ</string>
     <string name="download_path_audio_title">აუდიოს ჩამოტვირთვის საქაღალდე</string>
     <string name="show_higher_resolutions_title">უფრო მაღალი რეზოლუციის ჩვენება</string>
-    <string name="kore_not_found">დააინსტალიროთ დაკარგული Kore აპი\?</string>
+    <string name="kore_not_found">დააინსტალიროთ დაკარგული Kode აპი\?</string>
     <string name="show_play_with_kodi_title">აჩვენეთ \"დაუკარი კოდით\" ვარიანტი</string>
     <string name="show_play_with_kodi_summary">აჩვენეთ ვიდეოს დაკვრის ვარიანტი Kodi მედია ცენტრის საშუალებით</string>
     <string name="notification_scale_to_square_image_summary">შეტყობინებაში ნაჩვენები ვიდეოს ესკიზის ამოჭრა 16:9-დან 1:1-მდე ასპექტის თანაფარდობით</string>

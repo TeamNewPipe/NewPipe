@@ -20,7 +20,7 @@
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">未找到 Kore app，是否安裝？</string>
+    <string name="kore_not_found">要安裝缺少的 Kore 應用程式嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="theme_title">主題</string>
@@ -720,4 +720,12 @@
     <string name="duplicate_in_playlist">變灰的播放清單已經包含此項目。</string>
     <string name="ignore_hardware_media_buttons_title">忽略硬體媒體鍵事件</string>
     <string name="ignore_hardware_media_buttons_summary">這很有用，舉例來說，若您正在使用物理按鍵壞掉的耳機</string>
+    <string name="remove_duplicates_title">移除重複的？</string>
+    <string name="feed_hide_streams_title">顯示以下串流</string>
+    <string name="feed_show_hide_streams">顯示/隱藏串流</string>
+    <string name="feed_show_watched">完全觀看</string>
+    <string name="feed_show_partially_watched">部份觀看</string>
+    <string name="feed_show_upcoming">即將到來</string>
+    <string name="remove_duplicates">移除重複的</string>
+    <string name="remove_duplicates_message">您想要移除所有在此播放清單中重複的串流？</string>
 </resources>

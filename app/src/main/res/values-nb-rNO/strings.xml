@@ -21,7 +21,7 @@
     <string name="download_path_audio_dialog_title">Velg nedlastingsmappe for lydfiler</string>
     <string name="default_resolution_title">Forvalgt oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
-    <string name="kore_not_found">Installer manglende Kore-app\?</string>
+    <string name="kore_not_found">Installer manglende Kode-app\?</string>
     <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
     <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>

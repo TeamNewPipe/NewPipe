@@ -251,7 +251,7 @@
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
     <string name="show_play_with_kodi_title">\"Kodi দ্বারা চালান\" বিকল্পটি প্রদর্শন কর</string>
-    <string name="kore_not_found">হারানো কোর ইনস্টল করবে\?</string>
+    <string name="kore_not_found">অনুপস্থিত কোড অ্যাপ ইনস্টল করবেন\?</string>
     <string name="play_with_kodi_title">Kodi দ্বারা চালাও</string>
     <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
     <string name="show_higher_resolutions_title">উচ্চতর রেজুলেশন প্রদর্শন করা হবে</string>

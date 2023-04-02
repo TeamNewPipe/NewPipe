@@ -1,0 +1,12 @@
+- Apoio à mistura
+- [YouTube] Mostrar informação sobre emissoras públicas e Covid-19
+- [media.ccc.de] Adicionados vídeos recentes
+- Acrescentada tradução somaliana
+
+- Muitas melhorias internas
+
+- Vídeos fixos de partilha de dentro do leitor
+- Vista Web ReCaptcha em branco fixa
+- Reparação de um acidente que ocorreu ao remover um fluxo de uma lista
+- Fluxos relacionados fixos
+- [YouTube] Pesquisa fixa de música no YouTube

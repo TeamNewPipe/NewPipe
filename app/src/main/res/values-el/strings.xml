@@ -733,4 +733,12 @@
     <string name="playlist_add_stream_success_duplicate">Προστέθηκε διπλότυπο %d φορά(ες)</string>
     <string name="ignore_hardware_media_buttons_title">Αγνοήστε τα συμβάντα κουμπιών πολυμέσων υλικού</string>
     <string name="ignore_hardware_media_buttons_summary">Χρήσιμο, για παράδειγμα, εάν χρησιμοποιείτε ακουστικά με χαλασμένα φυσικά κουμπιά</string>
+    <string name="feed_hide_streams_title">Εμφάνιση των ακόλουθων ροών</string>
+    <string name="feed_show_watched">Θεαθέντα πλήρως</string>
+    <string name="feed_show_upcoming">Προσεχή</string>
+    <string name="feed_show_hide_streams">Εμφάνιση/Απόκρυψη ροών</string>
+    <string name="remove_duplicates_title">Αφαίρεση διπλοτύπων;</string>
+    <string name="remove_duplicates_message">Θέλετε να καταργήσετε όλες τις διπλότυπες ροές σε αυτήν τη λίστα αναπαραγωγής;</string>
+    <string name="remove_duplicates">Αφαίρεση διπλοτύπων</string>
+    <string name="feed_show_partially_watched">Θεαθέντα μερικώς</string>
 </resources>
