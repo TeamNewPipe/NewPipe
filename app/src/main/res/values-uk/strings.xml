@@ -21,7 +21,7 @@
     <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
     <string name="default_resolution_title">Типова роздільність</string>
     <string name="play_with_kodi_title">Програти в Kodi</string>
-    <string name="kore_not_found">Встановити відсутній застосунок Kore\?</string>
+    <string name="kore_not_found">Установити відсутній застосунок Kore\?</string>
     <string name="show_play_with_kodi_title">Показати опцію «Відтворити у Kodi»</string>
     <string name="show_play_with_kodi_summary">Показати опцію відтворення відео в Kodi</string>
     <string name="play_audio">Аудіо</string>
@@ -750,4 +750,12 @@
     <string name="duplicate_in_playlist">У виділених сірим кольором добірках цей елемент уже є.</string>
     <string name="ignore_hardware_media_buttons_title">Ігнорувати події апаратних медіакнопок</string>
     <string name="ignore_hardware_media_buttons_summary">Корисно, наприклад, якщо ви використовуєте гарнітуру зі зламаними фізичними кнопками</string>
+    <string name="remove_duplicates">Вилучити дублікати</string>
+    <string name="remove_duplicates_title">Вилучити дублікати\?</string>
+    <string name="remove_duplicates_message">Бажаєте вилучити всі повторювані трансляції в цій добірці\?</string>
+    <string name="feed_show_hide_streams">Показати/сховати трансляції</string>
+    <string name="feed_show_upcoming">Незабаром</string>
+    <string name="feed_hide_streams_title">Показати такі трансляції</string>
+    <string name="feed_show_watched">Повністю переглянуто</string>
+    <string name="feed_show_partially_watched">Частково переглянуто</string>
 </resources>

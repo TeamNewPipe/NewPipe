@@ -114,7 +114,7 @@
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb el Kodi</string>
-    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
+    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kode. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
     <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>

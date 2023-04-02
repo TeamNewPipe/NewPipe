@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Válasszon letöltési mappát a videófájloknak</string>
     <string name="default_resolution_title">Alapértelmezett felbontás</string>
     <string name="play_with_kodi_title">Lejátszás Kodival</string>
-    <string name="kore_not_found">Telepíti a hiányzó Kore alkalmazást\?</string>
+    <string name="kore_not_found">Telepíti a hiányzó Kode alkalmazást\?</string>
     <string name="show_play_with_kodi_title">A „Lejátszás Kodival” lehetőség megjelenítése</string>
     <string name="show_play_with_kodi_summary">A videók Kodi médiaközponttal történő lejátszásának megjelenítése</string>
     <string name="play_audio">Hang</string>

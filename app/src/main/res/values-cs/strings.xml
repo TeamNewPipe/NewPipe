@@ -551,7 +551,7 @@
     <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Automaticky zahájit přehrávání — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
-    <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>
+    <string name="unsupported_url_dialog_message">Nelze rozpoznat zadanou adresu URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Automatické přehravání</string>
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
     <string name="clear_queue_confirmation_summary">Při přechodu z jednoho přehrávače do druhého může dojít k smazání fronty</string>
@@ -746,4 +746,12 @@
     <string name="playlist_add_stream_success_duplicate">Duplikát přidán %dkrát</string>
     <string name="ignore_hardware_media_buttons_title">Ignorovat události hardwarových tlačítek médií</string>
     <string name="ignore_hardware_media_buttons_summary">Užitečné například v případě, že používáte sluchátka s rozbitými fyzickými tlačítky</string>
+    <string name="remove_duplicates_title">Odstranit duplicity\?</string>
+    <string name="feed_hide_streams_title">Zobrazit následující streamy</string>
+    <string name="feed_show_hide_streams">Zobrazit/skrýt streamy</string>
+    <string name="feed_show_watched">Celé zhlédnuto</string>
+    <string name="feed_show_partially_watched">Částečně zhlédnuto</string>
+    <string name="feed_show_upcoming">Nadcházející</string>
+    <string name="remove_duplicates">Odstranit duplicity</string>
+    <string name="remove_duplicates_message">Chcete odstranit všechny duplicitní streamy v tomto playlistu\?</string>
 </resources>

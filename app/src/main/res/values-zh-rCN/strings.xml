@@ -720,4 +720,12 @@
     <string name="playlist_add_stream_success_duplicate">重复添加了 %d 次</string>
     <string name="ignore_hardware_media_buttons_summary">如果你在使用一副物理按钮坏掉的耳机，该选项应该会有帮助</string>
     <string name="ignore_hardware_media_buttons_title">忽略硬件媒体按钮事件</string>
+    <string name="remove_duplicates_title">删除重复吗？</string>
+    <string name="remove_duplicates_message">你想删除这个播放列表中所有重复项吗？</string>
+    <string name="feed_hide_streams_title">显示下列音视频流</string>
+    <string name="feed_show_hide_streams">显示/隐藏音视频流</string>
+    <string name="feed_show_watched">完整看过</string>
+    <string name="feed_show_partially_watched">只看了一部分</string>
+    <string name="feed_show_upcoming">即将到来</string>
+    <string name="remove_duplicates">删除重复</string>
 </resources>

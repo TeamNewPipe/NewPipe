@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Standart ayırdetmə</string>
     <string name="show_higher_resolutions_title">Daha böyük ayırdetmələr göstər</string>
     <string name="play_with_kodi_title">\"Kodi\" ilə Oynat</string>
-    <string name="kore_not_found">Çatışmayan \"Kore\" tətbiqi yüklənilsin\?</string>
+    <string name="kore_not_found">Çatışmayan \"Kode\" tətbiqi yüklənilsin\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ilə Oynat\" seçimini göstər</string>
     <string name="show_play_with_kodi_summary">Kodi media mərkəzindən video oynatmaq üçün seçim göstər</string>
     <string name="play_audio">Səs</string>
@@ -733,4 +733,12 @@
     <string name="playlist_add_stream_success_duplicate">Dublikat %d dəfə əlavə edildi</string>
     <string name="ignore_hardware_media_buttons_title">Aparat mühiti media düyməsi hadisələrinə məhəl qoyma</string>
     <string name="ignore_hardware_media_buttons_summary">Məsələn, fiziki düymələri qırılan qulaqlıq işlədirsinizsə faydalıdır</string>
+    <string name="remove_duplicates">Dublikatları sil</string>
+    <string name="remove_duplicates_title">Dublikatlar silinsin\?</string>
+    <string name="feed_hide_streams_title">Aşağıdakı yayımları göstər</string>
+    <string name="feed_show_hide_streams">Yayımları Göstər/Gizlə</string>
+    <string name="feed_show_watched">Tam baxılıb</string>
+    <string name="feed_show_partially_watched">Qismən baxılıb</string>
+    <string name="remove_duplicates_message">Bu pleylistdəki bütün dublikat yayımları silmək istəyirsiniz\?</string>
+    <string name="feed_show_upcoming">Yaxınlaşan</string>
 </resources>

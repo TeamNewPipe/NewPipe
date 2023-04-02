@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
-    <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
+    <string name="kore_not_found">Asennetaanko puuttuva Kode-sovellus\?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>

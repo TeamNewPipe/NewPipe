@@ -733,4 +733,12 @@
     <string name="duplicate_in_playlist">Die ausgegrauten Wiedergabelisten enthalten dieses Element bereits.</string>
     <string name="ignore_hardware_media_buttons_summary">Nützlich, wenn z. B. ein Headset mit defekten physischen Tasten verwendet wird</string>
     <string name="ignore_hardware_media_buttons_title">Ereignisse der Hardware-Medientasten ignorieren</string>
+    <string name="remove_duplicates">Duplikate entfernen</string>
+    <string name="remove_duplicates_title">Duplikate entfernen\?</string>
+    <string name="remove_duplicates_message">Möchtest du alle doppelten Streams in dieser Wiedergabeliste entfernen\?</string>
+    <string name="feed_show_hide_streams">Streams anzeigen/ausblenden</string>
+    <string name="feed_hide_streams_title">Folgende Streams anzeigen</string>
+    <string name="feed_show_upcoming">Demnächst</string>
+    <string name="feed_show_watched">Vollständig angeschaut</string>
+    <string name="feed_show_partially_watched">Teilweise angeschaut</string>
 </resources>
