@@ -41,7 +41,7 @@
     <string name="show_higher_resolutions_title">Kuva kõrgemaid lahutusi</string>
     <string name="show_higher_resolutions_summary">Ainult mõned seadmed suudavad esitada 2K/4K videoid</string>
     <string name="play_with_kodi_title">Esita Kodi abil</string>
-    <string name="kore_not_found">Kas paigaldada puuduv Kode rakendus\?</string>
+    <string name="kore_not_found">Kas paigaldame puuduva Kore rakenduse\?</string>
     <string name="show_play_with_kodi_title">Kuva valik \"Esita Kodi abil\"</string>
     <string name="show_play_with_kodi_summary">Kuva valik video esitamiseks Kodi meediakeskuse kaudu</string>
     <string name="play_audio">Heli</string>

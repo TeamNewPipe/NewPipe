@@ -123,11 +123,11 @@
     <string name="subscribed_button_title">訂閱咗</string>
     <string name="unsubscribe">取消訂閱</string>
     <string name="channel_unsubscribed">已取消訂閱頻道</string>
-    <string name="subscription_change_failed">轉唔到訂閱</string>
+    <string name="subscription_change_failed">改唔到訂閱</string>
     <string name="subscription_update_failed">更新唔到訂閱</string>
     <string name="show_info">顯示資訊</string>
     <string name="tab_subscriptions">訂閱</string>
-    <string name="tab_bookmarks">收起嘅播放清單</string>
+    <string name="tab_bookmarks">儲起嘅播放清單</string>
     <string name="use_inexact_seek_title">用粗略快轉</string>
     <string name="controls_add_to_playlist_title">加入去</string>
     <string name="tab_choose">選擇標籤</string>

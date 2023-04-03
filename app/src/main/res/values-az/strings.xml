@@ -34,7 +34,7 @@
     <string name="default_resolution_title">Standart ayırdetmə</string>
     <string name="show_higher_resolutions_title">Daha böyük ayırdetmələr göstər</string>
     <string name="play_with_kodi_title">\"Kodi\" ilə Oynat</string>
-    <string name="kore_not_found">Çatışmayan \"Kode\" tətbiqi yüklənilsin\?</string>
+    <string name="kore_not_found">Çatışmayan \"Kore\" tətbiqi yüklənilsin\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ilə Oynat\" seçimini göstər</string>
     <string name="show_play_with_kodi_summary">Kodi media mərkəzindən video oynatmaq üçün seçim göstər</string>
     <string name="play_audio">Səs</string>
