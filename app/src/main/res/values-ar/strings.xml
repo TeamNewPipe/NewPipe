@@ -785,4 +785,12 @@
     <string name="duplicate_in_playlist">تحتوي قوائم التشغيل رمادية اللون بالفعل على هذا العنصر.</string>
     <string name="ignore_hardware_media_buttons_summary">مفيد ، على سبيل المثال ، إذا كنت تستخدم سماعة رأس بأزرار مادية مكسورة</string>
     <string name="ignore_hardware_media_buttons_title">تجاهل أحداث ازرار الوسائط الأجهزة</string>
+    <string name="remove_duplicates_message">هل تريد إزالة جميع التدفقات المكررة في قائمة التشغيل هذه؟</string>
+    <string name="feed_show_hide_streams">إظهار/إخفاء التدفقات</string>
+    <string name="feed_show_partially_watched">تمت مشاهدته جزئيا</string>
+    <string name="feed_show_upcoming">القادمة</string>
+    <string name="remove_duplicates">إزالة التكرارات</string>
+    <string name="remove_duplicates_title">إزالة التكرارات؟</string>
+    <string name="feed_hide_streams_title">إظهار التدفقات التالية</string>
+    <string name="feed_show_watched">شاهدت بالكامل</string>
 </resources>

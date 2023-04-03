@@ -1,0 +1,12 @@
+Novo
+- Métodos de entrega de suporte que não o HTTP progressivo: tempo de carregamento de reprodução mais rápido, correções para PeerTube e SoundCloud, reprodução de livestreams do YouTube recentemente terminados
+- Adicionar botão para adicionar uma lista de reprodução remota a uma lista local
+- Pré-visualização de imagem na folha de partilha Android 10+
+
+Melhorado
+- Melhorar o diálogo dos parâmetros de reprodução
+- Mover botões de importação/exportação de subscrição para o menu de três pontos
+
+Fixa
+- Correção da remoção de vídeos totalmente vistos da lista de reprodução
+- Corrigir o tema do menu de partilha e a entrada "adicionar à lista de reprodução

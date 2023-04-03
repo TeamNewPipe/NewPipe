@@ -1,0 +1,8 @@
+* Permitir a instalação no armazenamento externo
+* [Bandcamp] Adicionado suporte para exibir os três primeiros comentários em um fluxo
+* Mostrar apenas o brinde 'o download começou' quando o download é iniciado
+• Não defina o cookie reCaptcha quando não existir nenhum cookie armazenado
+* [Jogador] melhorar o desempenho do cache
+* [Jogador] jogador fixo que não joga automaticamente
+* Dispensar Snackbars anteriores ao excluir downloads
+* Corrigido tentando excluir objeto não na lista

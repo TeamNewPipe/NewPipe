@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Elija la carpeta de descarga para los archivos de vídeo</string>
     <string name="default_resolution_title">Resolución predefinida</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">¿Instalar la aplicación Kore que falta\?</string>
+    <string name="kore_not_found">¿Instalar la aplicación Kode que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir un vídeo a través de Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -749,4 +749,12 @@
     <string name="duplicate_in_playlist">Las listas de reproducción que están en gris ya contienen este elemento.</string>
     <string name="ignore_hardware_media_buttons_summary">Útil, por ejemplo, si está utilizando un auricular con botones físicos rotos</string>
     <string name="ignore_hardware_media_buttons_title">Ignorar eventos para botones multimedia de hardware</string>
+    <string name="remove_duplicates_title">¿Eliminar los duplicados\?</string>
+    <string name="remove_duplicates_message">¿Desea eliminar todas las secuencias duplicadas de esta lista de reproducción\?</string>
+    <string name="feed_hide_streams_title">Mostrar las siguientes secuencias</string>
+    <string name="feed_show_hide_streams">Mostrar/Ocultar secuencias</string>
+    <string name="feed_show_upcoming">Próximamente</string>
+    <string name="remove_duplicates">Eliminar los duplicados</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
 </resources>

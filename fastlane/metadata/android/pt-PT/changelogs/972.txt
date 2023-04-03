@@ -1,0 +1,14 @@
+Novo
+Reconhecer os timestamps e hashtags na descrição
+Acrescentada a definição do modo tablet manual
+Capacidade adicional de esconder itens jogados numa ração
+
+Melhorado
+Apoiar adequadamente o Quadro de Acesso ao Armazenamento
+Melhor tratamento de erros de canais indisponíveis e terminados
+A folha de partilha do Android para utilizadores do Android 10+ mostra agora o título do conteúdo.
+Atualização de instâncias Invidious e suporte de links Piped.
+
+Corrigido
+[YouTube] Conteúdo restrito à idade
+Prevenir fugas na janela Exceção ao abrir o diálogo de escolha

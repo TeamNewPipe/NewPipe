@@ -744,6 +744,14 @@
     <string name="card">Cartão</string>
     <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
-    <string name="ignore_hardware_media_buttons_title">Ignorar eventos com botões de hardware</string>
-    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se estiver a utilizar um auscultador com botões físicos defeitos</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos com botões físicos</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil por exemplo se estiver a utilizar auscultadores com botões físicos danificados</string>
+    <string name="remove_duplicates">Remover duplicados</string>
+    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar vídeos</string>
+    <string name="feed_show_upcoming">Proximamente</string>
+    <string name="remove_duplicates_message">Quer remover todos os vídeos duplicados nesta lista de reprodução\?</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes vídeos</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Pindutin ang magnifying glass upang magsimula.</string>
+    <string name="main_bg_subtitle">Pindutin ang magnifying glass para magsimula.</string>
     <string name="upload_date_text">Inilathala noong %1$s</string>
     <string name="no_player_found">Walang nakitang stream player. I-install ang VLC\?</string>
     <string name="no_player_found_toast">Walang nakitang stream player (pwede mong i-install ang VLC para ma-play ito).</string>
@@ -16,11 +16,11 @@
     <string name="did_you_mean">\"%1$s\" ba ang tinutukoy mo\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
     <string name="use_external_video_player_title">Gumamit ng ibang video player</string>
-    <string name="use_external_video_player_summary">Natatanggal ang tunog sa ilang mga resolusyon</string>
+    <string name="use_external_video_player_summary">Nawawala ang tunog sa ilang resolusyon</string>
     <string name="use_external_audio_player_title">Gumamit ng ibang audio player</string>
     <string name="subscribe_button_title">Sumubaybay</string>
-    <string name="subscribed_button_title">Sinusubaybayan</string>
-    <string name="unsubscribe">Ihinto ang pagsubaybay</string>
+    <string name="subscribed_button_title">Sumusubaybay</string>
+    <string name="unsubscribe">Tumigil sa pagsubaybay</string>
     <string name="channel_unsubscribed">Hininto ang pagsubaybay sa channel</string>
     <string name="subscription_change_failed">Hindi mabago ang pagsubaybay</string>
     <string name="subscription_update_failed">Hindi ma-update ang pagsubaybay</string>
@@ -58,7 +58,7 @@
     <string name="theme_title">Tema</string>
     <string name="local_search_suggestions">Lokal na mungkahi</string>
     <string name="remote_search_suggestions">Remote na mungkahi</string>
-    <string name="mark_as_watched">Markahan bilang napanood</string>
+    <string name="mark_as_watched">Markahan bilang napanood na</string>
     <string name="auto_queue_toggle">Kusang ipila</string>
     <string name="notification_action_repeat">Ulitin</string>
     <string name="notification_action_shuffle">Halo-halo</string>
@@ -104,7 +104,7 @@
     <string name="popup_remember_size_pos_title">Tandaan ang mga property ng popup</string>
     <string name="default_popup_resolution_title">Panimulang linaw ng popup</string>
     <string name="show_higher_resolutions_summary">Mape-play lang ng ilang device ang mga video na 2K/4K</string>
-    <string name="kore_not_found">I-install ang nawawalang Kore app\?</string>
+    <string name="kore_not_found">I-install ang nawawalang Kode app\?</string>
     <string name="notification_scale_to_square_image_title">I-scale ang thumbnail sa 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">I-scale ang thumbnail ng video sa abiso mula 16:9 papuntang 1:1 aspect ratio (pwedeng magkaroon ng distortion)</string>
     <string name="notification_action_0_title">Unang action button</string>

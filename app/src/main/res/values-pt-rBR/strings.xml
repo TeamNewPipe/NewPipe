@@ -746,4 +746,12 @@
     <string name="duplicate_in_playlist">As playlists em cinza já contêm este item.</string>
     <string name="ignore_hardware_media_buttons_title">Ignorar eventos de botão de mídia de hardware</string>
     <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se você estiver usando um fone de ouvido com botões físicos quebrados</string>
+    <string name="remove_duplicates">Remover duplicados</string>
+    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="remove_duplicates_message">Deseja remover todos os streams duplicados nesta playlist\?</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes streams</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar streams</string>
+    <string name="feed_show_partially_watched">Parcialmente assistido</string>
+    <string name="feed_show_upcoming">Em breve</string>
+    <string name="feed_show_watched">Totalmente assistido</string>
 </resources>

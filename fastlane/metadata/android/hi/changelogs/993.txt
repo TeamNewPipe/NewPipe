@@ -1,0 +1,13 @@
+New
+• Add warning when adding playlist duplicates and add button to remove them
+• Allow ignoring hardware buttons
+• Allow hiding partially watched videos in feed
+
+Improved
+• Use more grid columns on big screens
+• Make progress indicators consistent with settings
+
+Fixed
+• Fix opening browser URLs, downloads and external players on Android 11+
+• Fix interacting with fullscreen requiring two taps on MIUI
+• Allow tweaking ExoPlayer settings to fix playback on some devices

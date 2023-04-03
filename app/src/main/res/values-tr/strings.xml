@@ -733,4 +733,12 @@
     <string name="duplicate_in_playlist">Gri oynatma listeleri halihazırda bu ögeyi içeriyor.</string>
     <string name="ignore_hardware_media_buttons_title">Donanımsal ortam düğmesi olaylarını yoksay</string>
     <string name="ignore_hardware_media_buttons_summary">Örneğin, fiziksel düğmeleri bozuk bir kulaklık kullanıyorsanız kullanışlıdır</string>
+    <string name="remove_duplicates">Kopyaları kaldır</string>
+    <string name="remove_duplicates_title">Kopyalar kaldırılsın mı\?</string>
+    <string name="remove_duplicates_message">Bu oynatma listesindeki tüm yinelenen akışları kaldırmak istiyor musunuz\?</string>
+    <string name="feed_hide_streams_title">Aşağıdaki akışları göster</string>
+    <string name="feed_show_hide_streams">Akışları göster/gizle</string>
+    <string name="feed_show_watched">Tamamen izlendi</string>
+    <string name="feed_show_upcoming">Yaklaşan</string>
+    <string name="feed_show_partially_watched">Kısmen izlendi</string>
 </resources>

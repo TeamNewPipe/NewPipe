@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
     <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát bằng Kodi</string>
-    <string name="kore_not_found">Cài đặt ứng dụng Kore\?</string>
+    <string name="kore_not_found">Cài đặt ứng dụng Kode\?</string>
     <string name="show_play_with_kodi_title">Hiện tùy chọn \"Phát bằng Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiện tùy chọn phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
@@ -716,4 +716,5 @@
     <string name="night_theme_available">Tùy chọn này chỉ được bật khi chủ đề %s được dùng</string>
     <string name="app_update_available_notification_text">Nhấn để tải %s</string>
     <string name="fast_mode">Chế độ tia sét</string>
+    <string name="duplicate_in_playlist">Danh sách này bị trùng lặp.</string>
 </resources>

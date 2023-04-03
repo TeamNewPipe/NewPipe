@@ -1,0 +1,8 @@
+- Apoio adicional para capítulos nos controlos de jogadores
+- Adicionada a pesquisa Sepia
+- Botão de partilha reajustado na visualização detalhada do vídeo e moveu a descrição do fluxo para o layout do separador
+- Desativar o restabelecimento do brilho se o gesto de brilho for desativado
+- Adicionado item da lista para reproduzir vídeo no kodi
+- Corrigida a falha quando não está definido um navegador padrão em alguns dispositivos e melhorados os diálogos de partilha
+- Alternar jogo/pausa com botão de espaço de hardware no leitor de ecrã inteiro
+- [media.ccc.de] Várias correções e melhorias
