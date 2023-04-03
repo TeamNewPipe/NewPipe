@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -53,9 +54,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackException;
@@ -1928,17 +1926,15 @@ public final class VideoDetailFragment
             return;
         }
 
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        WindowCompat.setDecorFitsSystemWindows(window, true);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_BARS_BY_TOUCH);
-        windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
-
-        window.setStatusBarColor(ThemeHelper.resolveColorFromAttr(requireContext(),
-                android.R.attr.colorPrimary));
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+        }
+        activity.getWindow().getDecorView().setSystemUiVisibility(0);
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
+                requireContext(), android.R.attr.colorPrimary));
     }
 
     private void hideSystemUi() {
@@ -1950,19 +1946,30 @@ public final class VideoDetailFragment
             return;
         }
 
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        WindowCompat.setDecorFitsSystemWindows(window, false);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
-
-        if (DeviceUtils.isInMultiWindow(activity) || isFullscreen()) {
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+        // In multiWindow mode status bar is not transparent for devices with cutout
+        // if I include this flag. So without it is better in this case
+        final boolean isInMultiWindow = DeviceUtils.isInMultiWindow(activity);
+        if (!isInMultiWindow) {
+            visibility |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        }
+        activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
+
+        if (isInMultiWindow || isFullscreen()) {
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // Listener implementation
