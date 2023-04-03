@@ -105,7 +105,7 @@
     <string name="player_unrecoverable_failure">حدث خطأ للمشغل غير قابل للاسترداد</string>
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
     <string name="sorry_string">عذرًا، لم ينبغِ أن يحدث ذلك.</string>
-    <string name="error_report_button_text">الإبلاغ عن هذا الخطأ عبر البريد الإلكتروني</string>
+    <string name="error_report_button_text">الإبلاغ عن طريق البريد الإلكتروني</string>
     <string name="error_snackbar_message">عذرًا، حدث خطأ ما.</string>
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
@@ -288,7 +288,6 @@
     <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
-    <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
     <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
     <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="title_most_played">الأكثر تشغيلا</string>
@@ -784,4 +783,14 @@
     <string name="card">البطاقة</string>
     <string name="playlist_add_stream_success_duplicate">تمت إضافة وقت (أوقات) مكررة %d</string>
     <string name="duplicate_in_playlist">تحتوي قوائم التشغيل رمادية اللون بالفعل على هذا العنصر.</string>
+    <string name="ignore_hardware_media_buttons_summary">مفيد ، على سبيل المثال ، إذا كنت تستخدم سماعة رأس بأزرار مادية مكسورة</string>
+    <string name="ignore_hardware_media_buttons_title">تجاهل أحداث ازرار الوسائط الأجهزة</string>
+    <string name="remove_duplicates_message">هل تريد إزالة جميع التدفقات المكررة في قائمة التشغيل هذه؟</string>
+    <string name="feed_show_hide_streams">إظهار/إخفاء التدفقات</string>
+    <string name="feed_show_partially_watched">تمت مشاهدته جزئيا</string>
+    <string name="feed_show_upcoming">القادمة</string>
+    <string name="remove_duplicates">إزالة التكرارات</string>
+    <string name="remove_duplicates_title">إزالة التكرارات؟</string>
+    <string name="feed_hide_streams_title">إظهار التدفقات التالية</string>
+    <string name="feed_show_watched">شاهدت بالكامل</string>
 </resources>

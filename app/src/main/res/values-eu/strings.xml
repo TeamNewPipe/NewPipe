@@ -14,7 +14,7 @@
     <string name="download_path_dialog_title">Aukeratu bideoak deskargatzeko karpeta</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Jo Kodirekin</string>
-    <string name="kore_not_found">Kore aplikazioa instalatu\?</string>
+    <string name="kore_not_found">Kode aplikazioa instalatu\?</string>
     <string name="show_play_with_kodi_title">Erakutsi \"Jo Kodirekin\" aukera</string>
     <string name="show_play_with_kodi_summary">Erakutsi bideoa Kodi multimedia zentroarekin erreproduzitzeko aukera</string>
     <string name="play_audio">Audioa</string>
@@ -74,7 +74,7 @@
     <string name="could_not_setup_download_menu">Ezin izan da deskargen menua ezarri</string>
     <string name="app_ui_crash">Aplikazioa/interfazea kraskatu da</string>
     <string name="sorry_string">Hori ez litzateke gertatu behar.</string>
-    <string name="error_report_button_text">Eman errore honen berri e-posta bidez</string>
+    <string name="error_report_button_text">Eman honen berri e-posta bidez</string>
     <string name="error_snackbar_message">Barkatu, zerbait gaizki atera da.</string>
     <string name="error_snackbar_action">Salatu</string>
     <string name="what_device_headline">Informazioa:</string>
@@ -243,7 +243,6 @@
     <string name="dismiss">Baztertu</string>
     <string name="rename">Aldatu izena</string>
     <string name="one_item_deleted">Elementu 1 ezabatuta.</string>
-    <string name="toast_no_player">Ez dago fitxategi hau erreproduzitzeko aplikaziorik instalatuta</string>
     <string name="title_last_played">Jotako azkena</string>
     <string name="title_most_played">Ikusiena</string>
     <string name="export_complete_toast">Esportatuta</string>
@@ -732,4 +731,14 @@
     <string name="fast_mode">Modu azkarra</string>
     <string name="import_subscriptions_hint">Hiru-puntutako menutik harpidetzak inportatu edo esportatu</string>
     <string name="faq_title">Maiz galdetutako galderak</string>
+    <string name="ignore_hardware_media_buttons_title">Ezikusi hardware multimedia botoien gertaerak</string>
+    <string name="ignore_hardware_media_buttons_summary">Erabilgarria, adibidez, botoi fisiko hautsiak dituen entzungailua erabiltzen ari bazara</string>
+    <string name="remove_duplicates">Kendu bikoiztuak</string>
+    <string name="remove_duplicates_title">Kendu bikoiztuak\?</string>
+    <string name="remove_duplicates_message">Jario bikoiztu guztiak kendu nahi dituzu erreprodukzio-zerrenda honetatik\?</string>
+    <string name="feed_hide_streams_title">Erakutsi hurrengo jarioak</string>
+    <string name="feed_show_hide_streams">Erakutsi/Ezkutatu jarioak</string>
+    <string name="feed_show_partially_watched">Partzialki ikusita</string>
+    <string name="feed_show_watched">Guztiz ikusia</string>
+    <string name="feed_show_upcoming">Laster agertzeko</string>
 </resources>

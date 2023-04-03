@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Prikaži veće rezolucije</string>
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videa</string>
     <string name="play_with_kodi_title">Reproduciraj s Kodijem</string>
-    <string name="kore_not_found">Instalirati nedostajući Kore program\?</string>
+    <string name="kore_not_found">Instalirati nedostajući Kode program\?</string>
     <string name="show_play_with_kodi_title">Prikaži opciju „Reproduciraj pomoću Kodija”</string>
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videozapisa putem Kodija</string>
     <string name="play_audio">Audiosnimka</string>
@@ -250,7 +250,6 @@
     <string name="dismiss">Odbaci</string>
     <string name="rename">Preimenuj</string>
     <string name="one_item_deleted">1 stavka izbrisana.</string>
-    <string name="toast_no_player">Nijedan program nije instaliran za reprodukciju ove datoteke</string>
     <string name="give_back">Vrati</string>
     <string name="website_encouragement">Posjeti NewPipe web-stranicu za više informacija i vijesti.</string>
     <string name="privacy_policy_title">NewPipe pravila o privatnosti</string>

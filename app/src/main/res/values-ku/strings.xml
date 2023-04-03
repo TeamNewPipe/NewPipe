@@ -256,7 +256,6 @@
     <string name="no_streams_available_download">هیچ پەخشێک نییە بۆ دابەزاندن</string>
     <string name="caption_setting_title">ژێرنووسەکان</string>
     <string name="caption_setting_description">بەهۆی گۆڕانکاری لە شێوەی ژێرنووسکردنەکە. پێویستە ئەپەکە دابخەیت و دیسانەوە بیکەیتەوە.</string>
-    <string name="toast_no_player">هیچ ئەپێک دانەمەزراوە بۆ کارپێکردنی ئەم فایلە</string>
     <string name="clear_views_history_title">سڕینەوەی مێژووی تەماشاکردن</string>
     <string name="clear_views_history_summary">مێژوو دەسڕێتەوە لەگەڵ ڤیدیۆ کارپێکراوەکان و شوێنی لیستە ڤیدیۆییەکان</string>
     <string name="delete_view_history_alert">تەواوی مێژووی تەماشاکردن بسڕدرێتەوە؟</string>

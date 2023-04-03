@@ -44,6 +44,7 @@
     <string name="enable_watch_history_title">Histórico de visualizações</string>
     <plurals name="views">
         <item quantity="one">%s visualização</item>
+        <item quantity="many">%s visualizações</item>
         <item quantity="other">%s visualizações</item>
     </plurals>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
@@ -111,10 +112,12 @@
     <string name="channel_created_by">Criado por %s</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>
+        <item quantity="many">%d segundos</item>
         <item quantity="other">%d segundos</item>
     </plurals>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selecionada</item>
+        <item quantity="many">%d selecionadas</item>
         <item quantity="other">%d selecionadas</item>
     </plurals>
     <string name="share">Partilhar</string>
@@ -147,6 +150,7 @@
 \nTem a certeza\? Esta ação não pode ser revertida!</string>
     <plurals name="watching">
         <item quantity="one">%s a ver</item>
+        <item quantity="many">%s a ver</item>
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
@@ -227,16 +231,16 @@
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
     <string name="ok">OK</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
-    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
     <string name="short_million">M</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
     <plurals name="listening">
         <item quantity="one">%s ouvinte</item>
+        <item quantity="many">%s ouvintes</item>
         <item quantity="other">%s ouvintes</item>
     </plurals>
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
-    <string name="error_report_button_text">Reportar erro por e-mail</string>
+    <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="tab_choose">Escolher separador</string>
     <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
     <string name="grid">Grelha</string>
@@ -257,6 +261,7 @@
     <string name="drawer_open">Abrir menu</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscritor</item>
+        <item quantity="many">%s subscritores</item>
         <item quantity="other">%s subscritores</item>
     </plurals>
     <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
@@ -285,6 +290,7 @@
     <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minutos</item>
         <item quantity="other">%d minutos</item>
     </plurals>
     <string name="missions_header_finished">Terminada</string>
@@ -331,12 +337,14 @@
     <string name="recently_added">Recentes</string>
     <plurals name="videos">
         <item quantity="one">%s vídeo</item>
+        <item quantity="many">%s vídeos</item>
         <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="import_title">Importar</string>
     <string name="clear_views_history_summary">Remove o histórico dos vídeos reproduzidos e as posições de reprodução</string>
     <plurals name="days">
         <item quantity="one">%d dia</item>
+        <item quantity="many">%d dias</item>
         <item quantity="other">%d dias</item>
     </plurals>
     <string name="pause_downloads">Pausa nas transferências</string>
@@ -347,6 +355,7 @@
     <string name="kiosk_page_summary">Página \'kiosk\'</string>
     <plurals name="hours">
         <item quantity="one">%d hora</item>
+        <item quantity="many">%d horas</item>
         <item quantity="other">%d horas</item>
     </plurals>
     <string name="auto_queue_title">Enfileirar o próximo stream automaticamente</string>
@@ -650,10 +659,12 @@
     <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s descarga apagada</item>
+        <item quantity="many">%1$s descargas apagadas</item>
         <item quantity="other">%1$s descargas apagadas</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Descarga concluída</item>
+        <item quantity="many">%s descargas concluídas</item>
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
@@ -692,6 +703,7 @@
     <string name="notifications_disabled">Notificações são desativadas</string>
     <plurals name="new_streams">
         <item quantity="one">%s fluxo novo</item>
+        <item quantity="many">%s fluxos novos</item>
         <item quantity="other">%s fluxos novos</item>
     </plurals>
     <string name="enable_streams_notifications_summary">Notificar sobre novos fluxos de assinaturas</string>
@@ -732,4 +744,14 @@
     <string name="card">Cartão</string>
     <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos com botões físicos</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se estiver a utilizar um auscultador com botões físicos defeitos</string>
+    <string name="remove_duplicates">Remover duplicados</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes fluxos</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar fluxos</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
+    <string name="feed_show_upcoming">Proximamente</string>
+    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="remove_duplicates_message">Quer remover todos os fluxos duplicados nesta lista de reprodução\?</string>
 </resources>

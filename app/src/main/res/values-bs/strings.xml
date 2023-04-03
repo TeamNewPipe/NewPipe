@@ -28,7 +28,7 @@
     <string name="channel_unsubscribed">Otkazana pratnja kanala</string>
     <string name="subscription_change_failed">Nije moguće promijeniti pratnju</string>
     <string name="subscription_update_failed">Nije moguće ažurirati pratnju</string>
-    <string name="kore_not_found">Instalirajte nedostajeću Kore aplikaciju\?</string>
+    <string name="kore_not_found">Instalirajte nedostajeću Kode aplikaciju\?</string>
     <string name="tab_bookmarks">Obilježeni Popisi</string>
     <string name="controls_popup_title">Iskačni prozor</string>
     <string name="tab_choose">Izaberite Podprozor</string>

@@ -46,7 +46,7 @@
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
     <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
-    <string name="kore_not_found">Install missing Kore app?</string>
+    <string name="kore_not_found">Install missing Kore app\?</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="crash_the_player">Crash the player</string>
@@ -83,6 +83,8 @@
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
+    <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
+    <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache</string>
     <string name="show_comments_title">Show comments</string>
@@ -245,7 +247,7 @@
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
-    <string name="error_report_button_text">Report this error via e-mail</string>
+    <string name="error_report_button_text">Report via e-mail</string>
     <string name="copy_for_github">Copy formatted report</string>
     <string name="error_report_open_issue_button_text">Report on GitHub</string>
     <string name="error_report_open_github_notice">Please check whether an issue discussing your crash already exists. When creating duplicate tickets, you take time from us which we could spend with fixing the actual bug.</string>
@@ -345,7 +347,6 @@
     <string name="settings_file_replacement_character_title">Replacement character</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-    <string name="toast_no_player">No app installed to play this file</string>
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="title_licenses">Third-party Licenses</string>
@@ -433,6 +434,7 @@
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
+    <string name="duplicate_in_playlist">The playlists that are grayed out already contain this item.</string>
     <string name="rename_playlist">Rename</string>
     <string name="name">Name</string>
     <string name="add_to_playlist">Add to playlist</string>
@@ -446,6 +448,7 @@
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicate added %d time(s)</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_no_uploader">Auto-generated (no uploader found)</string>
     <!-- Players -->
@@ -629,6 +632,9 @@
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
+    <string name="remove_duplicates">Remove duplicates</string>
+    <string name="remove_duplicates_title">Remove duplicates?</string>
+    <string name="remove_duplicates_message">Do you want to remove all duplicate streams in this playlist?</string>
     <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.
 \nAre you sure\? This cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
@@ -691,8 +697,8 @@
 \nYouTube is an example of a service that offers this fast method with its RSS feed.
 \n
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
-    <string name="feed_toggle_show_played_items">Show watched items</string>
-    <string name="feed_toggle_hide_played_items">Hide watched items</string>
+    <string name="feed_hide_streams_title">Show the following streams</string>
+    <string name="feed_show_hide_streams">Show/Hide streams</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -760,5 +766,8 @@
     <string name="unknown_quality">Unknown quality</string>
     <string name="feed_toggle_show_future_items">Show future items</string>
     <string name="feed_toggle_hide_future_items">Hide future items</string>
+    <string name="feed_show_watched">Fully watched</string>
+    <string name="feed_show_partially_watched">Partially watched</string>
+    <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
 </resources>

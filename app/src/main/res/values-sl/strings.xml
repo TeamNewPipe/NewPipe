@@ -44,9 +44,9 @@
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
     <string name="youtube_signature_deobfuscation_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
-    <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
+    <string name="parsing_error">Ni mogoče razčleniti spletišča</string>
     <string name="content_not_available">Vsebina ni na voljo</string>
-    <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
+    <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek</string>
     <string name="content">Vsebina</string>
     <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
     <string name="sorry_string">Do te napake naj ne bi prišlo.</string>
@@ -72,16 +72,16 @@
     <string name="msg_running">Prejemanje</string>
     <string name="msg_running_detail">Podrobnosti</string>
     <string name="msg_wait">Počakajte …</string>
-    <string name="msg_copied">Kopirano v odložišče.</string>
+    <string name="msg_copied">Kopirano v odložišče</string>
     <string name="no_available_dir">Izberite mapo za prejem</string>
     <string name="ok">V redu</string>
     <string name="downloads">Prejemi</string>
     <string name="downloads_title">Prejemi</string>
     <string name="error_report_title">Poročilo o napaki</string>
-    <string name="app_ui_crash">Program se je sesul!</string>
+    <string name="app_ui_crash">Program se je sesul</string>
     <string name="title_activity_recaptcha">Izziv reCAPTCHA</string>
     <string name="recaptcha_request_toast">Zahtevan izziv reCAPTCHA</string>
-    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
+    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nDržava vsebine:\\nJezik aplikacije:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
     <string name="black_theme_title">Črna</string>
     <string name="all">Vse</string>
     <string name="short_thousand">k</string>
@@ -144,7 +144,7 @@
     <string name="settings_category_history_title">Zgodovina in predpomnilnik</string>
     <string name="undo">Razveljavi</string>
     <string name="search_no_results">Ni rezultatov iskanja</string>
-    <string name="empty_list_subtitle">Tu ni ničesar!</string>
+    <string name="empty_list_subtitle">Tu ni ničesar, razen čričkov</string>
     <string name="no_subscribers">Ni naročnikov</string>
     <plurals name="subscribers">
         <item quantity="one">%s naročnik</item>
@@ -255,7 +255,7 @@
     <string name="most_liked">Najbolj všečkan</string>
     <string name="recently_added">Dodano nedolgo nazaj</string>
     <string name="local">Lokalno</string>
-    <string name="localization_changes_requires_app_restart">Jezik se bo spremenil po ponovnem zagonu aplikacije.</string>
+    <string name="localization_changes_requires_app_restart">Jezik bo spremenjen ob ponovnem zagonu aplikacije</string>
     <string name="error_unable_to_load_comments">Ni mogoče naložiti komentarjev</string>
     <string name="no_valid_zip_file">Ni veljavne ZIP datoteke</string>
     <string name="import_complete_toast">Uvoženo</string>
@@ -274,7 +274,7 @@
     <string name="invalid_directory">Ni take mape</string>
     <string name="missing_file">Datoteka premaknjena ali izbrisana</string>
     <string name="download_to_sdcard_error_message">Prenašanje na zunanjo SD kartico ni mogoče. Resetiram lokacijo mape z prenosi\?</string>
-    <string name="watch_history_deleted">Vsa zgodovina gledanja izbrisana.</string>
+    <string name="watch_history_deleted">Zgodovina gledanja izbrisana</string>
     <string name="delete_view_history_alert">Izbrišem vso zgodovino gledanja\?</string>
     <string name="clear_views_history_title">Izbriši zgodovino gledanja</string>
     <string name="export_data_summary">Izvozi zgodovino, naročnine, sezname predvajanj in nastavitve</string>
@@ -293,12 +293,12 @@
     <string name="metadata_cache_wipe_title">Izbriši shranjene metapodatke</string>
     <string name="thumbnail_cache_wipe_complete_notice">Predshramba za slike je bila izbrisana</string>
     <string name="show_comments_title">Prikaži komentarje</string>
-    <string name="tab_choose">Izberi Zavihek</string>
+    <string name="tab_choose">Izberi zavihek</string>
     <string name="unsubscribe">Odjava</string>
     <string name="no_player_found_toast">Predvajalnika pretoka ni mogoče najti (namestite lahko VLC program za predvajanje).</string>
     <string name="background_player">Predvajalnik v ozadju</string>
     <string name="import_settings">Želite uvoziti tudi nastavite\?</string>
-    <string name="search_history_deleted">Zgodovina brskanja izbrisana.</string>
+    <string name="search_history_deleted">Zgodovina iskanja izbrisana</string>
     <string name="delete_search_history_alert">Izbrišem vso zgodovino brskanja\?</string>
     <string name="clear_search_history_title">Izbriši zgodovino brskanja</string>
     <string name="clear_cookie_summary">Izbriši piškotke, ki jih NewPipe shrani, ko rešite reCAPTCHA</string>
@@ -309,7 +309,7 @@
     <string name="metadata_cache_wipe_complete_notice">Predpomnjeni metapodatki so bili odstranjeni</string>
     <string name="show_meta_info_title">Prikaži meta informacije</string>
     <string name="show_comments_summary">Onemogoči da se ustavi prikazovanje komentarjev</string>
-    <string name="download_thumbnail_summary">Izklopite, če želite preprečiti nalaganje sličic, s tem bo varčeval na podatkih in uporabi spomina. Spremembe bodo izbrisale predpomnilnik v spominu in na disku.</string>
+    <string name="download_thumbnail_summary">Izklopite, če želite preprečiti nalaganje sličic, s tem bo varčeval na podatkih in uporabi spomina. Spremembe bodo izbrisale predpomnilnik v spominu in na disku</string>
     <string name="clear_queue_confirmation_description">Dejavna vrsta bo zamenjana</string>
     <string name="clear_queue_confirmation_summary">Preklop na drugi predvajanik lahko zamenja vašo čakalno vrsto</string>
     <string name="clear_queue_confirmation_title">Vprašaj za potrditev pred čiščenjem vrste</string>
@@ -328,7 +328,7 @@
     <string name="notification_action_0_title">Gumb za prvo dejanje</string>
     <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1</string>
     <string name="crash_the_app">Zruši aplikacijo</string>
-    <string name="caption_setting_description">Spremeni velikost besedila podnapisov in stil ozadja v predvajalniku. Zahteva ponovni zagon aplikacije, da učinkuje.</string>
+    <string name="caption_setting_description">Spremeni velikost besedila podnapisov in slog ozadja v predvajalniku. Zahteva ponovni zagon aplikacije, da učinkuje</string>
     <string name="caption_setting_title">Podnapisi</string>
     <string name="caption_auto_generated">Samodejno ustvarjeno</string>
     <string name="resize_fit">Prilagodi zaslonu</string>
@@ -362,7 +362,6 @@
 \nPolitika zasebnosti NewPipe-a podrobno pojasnjuje, kateri podatki so poslani in shranjeni, ko pošljete poročilo o zrušitvi.</string>
     <string name="give_back">Pomagaj</string>
     <string name="donation_encouragement">NewPipe razvijajo prostovoljci, ki preživljajo svoj prosti čas, da vam prinašajo najboljšo uporabniško izkušnjo. Pomagajte razvijalcem pri izdelavi še boljšega NewPipe-a medtem ko uživajo skodelico kave.</string>
-    <string name="toast_no_player">Za predvajanje te datoteke ni nameščena nobena aplikacija</string>
     <string name="subtitle_activity_recaptcha">Pritisni \"končano\" ko je rešena</string>
     <string name="one_item_deleted">Odstranjen 1 element.</string>
     <string name="msg_calculating_hash">Izračun zgoščevalne funkcije je v teku</string>
@@ -401,7 +400,7 @@
     <string name="player_unrecoverable_failure">Prišlo je do neobnovljive napake v predvajalniku</string>
     <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
-    <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani.</string>
+    <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani</string>
     <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>
     <string name="clear_playback_states_summary">Izbriše vse položaje predvajalnika</string>
     <string name="clear_playback_states_title">Izbriši položaje predvajalnika</string>
@@ -455,7 +454,7 @@
     <string name="limit_data_usage_none_description">Brez omejitev</string>
     <string name="decline">Zavrni</string>
     <string name="playback_step">Korak</string>
-    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">tvojID, soundcloud.com/tvojid</string>
     <string name="kiosk_page_summary">Stran kiosk</string>
     <string name="main_page_content_summary">Kateri zavihki so prikazani na domači strani</string>
     <string name="recaptcha_solve">Rešiti</string>

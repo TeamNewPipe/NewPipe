@@ -114,7 +114,7 @@
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">Només alguns dispositius poden reproduir vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb el Kodi</string>
-    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kore. Voleu instal·lar-la\?</string>
+    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kode. Voleu instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Mostra «Reprodueix amb el Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
     <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
@@ -299,7 +299,6 @@
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
-    <string name="toast_no_player">No s\'ha trobat cap aplicació instal·lada que pugui reproduir aquest fitxer</string>
     <string name="clear_views_history_title">Neteja l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Neteja l\'historial dels vídeos reproduïts i les posicions de reproducció</string>
     <string name="delete_view_history_alert">Voleu suprimir tot l\'historial de reproduccions\?</string>

@@ -1,0 +1,14 @@
+Novo:
+- Acrescentar um novo serviço: Bandcamp
+
+Melhorado:
+- Adicionar uma opção para que a aplicação siga o tema do dispositivo
+- Prevenir alguns acidentes mostrando um painel de erro melhorado
+- Mostrar mais informações sobre o porquê do conteúdo na indisponibilidade
+- O botão de espaço de hardware ativa o jogo/pausa
+- Mostrar "Download iniciado" brinde
+
+Fixo:
+- Fixar miniaturas muito pequenas em detalhes de vídeo enquanto se reproduz em fundo
+- Corrigir título vazio em jogador minimizado
+- O último modo de reparação do tamanho não está a ser restaurado corretamente

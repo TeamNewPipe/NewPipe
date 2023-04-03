@@ -1,0 +1,9 @@
+Acrescentar nova IU e comportamento de dupla tatuagem
+Tornar as definições pesquisáveis
+Destaque para os comentários em destaque como tal
+Adicionar suporte open-with-app para a instância PeerTube da FSFE
+Adicionar notificações de erro
+Repor a repetição do item da primeira fila na mudança de jogador
+Esperar mais tempo ao buffering durante os livestreams antes de falhar
+Ordem fixa dos resultados da pesquisa local
+Corrigir campos de itens vazios na fila de jogo

@@ -21,7 +21,7 @@
     <string name="download_path_audio_dialog_title">Velg nedlastingsmappe for lydfiler</string>
     <string name="default_resolution_title">Forvalgt oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
-    <string name="kore_not_found">Installer manglende Kore-app\?</string>
+    <string name="kore_not_found">Installer manglende Kode-app\?</string>
     <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
     <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>
@@ -282,7 +282,6 @@
     <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>
     <string name="search_history_deleted">Søkehistorikken er slettet</string>
     <string name="one_item_deleted">Ett element slettet.</string>
-    <string name="toast_no_player">Ingen app installert for å spille av denne filen</string>
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre spillerens undertekststørrelse og bakgrunnsstiler. Krever omstart av appen for å tre i kraft</string>
     <string name="app_license">NewPipe er copyleft fri programvare: Du kan bruke, studere og forbedre den etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere den i henhold til vilkårene gitt i GNU General Public-lisensen, som er publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
@@ -730,4 +729,6 @@
     <string name="card">Kort</string>
     <string name="import_subscriptions_hint">Importer eller eksporter fra trepunktsmenyen</string>
     <string name="fast_mode">Hurtigmodus</string>
+    <string name="duplicate_in_playlist">Spillelistene som er utgrået inneholder allerede dette elementet.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplikat lagt til %d gang(er)</string>
 </resources>

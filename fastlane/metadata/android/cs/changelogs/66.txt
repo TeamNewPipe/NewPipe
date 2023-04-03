@@ -1,16 +1,18 @@
-# Changelog of v0.13.7
+# v0.13.17 - seznam změn
 
-### Fixed
-- Fix sort filter issues of v0.13.6
+### Opraveno
+- Řazení filtrů
 
-# Changelog of v0.13.6
+# v0.13.6 - seznam změn
 
-### Improvements
+### Vylepšeno
 
-- Disable burgermenu icon animation #1486 
-- undo delete of downloads #1472 
-- Download option in share menu #1498
-- Added share option to long tap menu #1454 
-- Minimize main player on exit #1354 
-- Library version update and database backup fix #1510 
-- ExoPlayer 2.8.2 Update #1392
+- Zakázání animace tlačítka menu
+- Zrušení odstranění stahování
+- Možnost stažení v menu sdílení
+- Sdílení v menu při dlouhém podržení
+- Minimalizace hlavního přehrávače při opuštění
+-Aktualizace ExoPlayer 2.8.2
+  - Přepracován dialog ovládání rychlosti přehrávání
+  - Přidán přepínač pro rychlé přetočení v tichých částech
+Další změny/opravy viz GitHub.

@@ -104,7 +104,7 @@
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
-    <string name="error_report_button_text">Rapportera detta fel via e-post</string>
+    <string name="error_report_button_text">Rapportera via e-post</string>
     <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nInnehållsland:\\nApp-språk:\\nTjänst:\\nGMT-tid:\\nPaket:\\nVersion:\\nOS-version:</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
@@ -242,7 +242,6 @@
     <string name="dismiss">Avfärda</string>
     <string name="rename">Byt namn</string>
     <string name="one_item_deleted">1 objekt borttaget.</string>
-    <string name="toast_no_player">Ingen app installerad för att spela upp filen</string>
     <string name="privacy_policy_title">NewPipes sekretesspolicy</string>
     <string name="privacy_policy_encouragement">NewPipe-projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande.
 \nNewPipes sekretesspolicy förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport.</string>
@@ -730,4 +729,16 @@
     <string name="unset_playlist_thumbnail">Inaktivera permanent miniatyrbild</string>
     <string name="msg_failed_to_copy">Det gick inte att kopiera till urklipp</string>
     <string name="card">Kort</string>
+    <string name="playlist_add_stream_success_duplicate">Dubblett tillagd %d gång(er)</string>
+    <string name="duplicate_in_playlist">Spellistor som är gråmarkerade innehåller redan det här objektet.</string>
+    <string name="ignore_hardware_media_buttons_summary">Användbart om du till exempel använder ett headset med trasiga fysiska knappar</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorera hårdvarans media knappar</string>
+    <string name="remove_duplicates_title">Ta bort dubbletter\?</string>
+    <string name="feed_hide_streams_title">Visa följande strömmar</string>
+    <string name="feed_show_partially_watched">Delvis sedd</string>
+    <string name="remove_duplicates_message">Vill du ta bort alla duplicerade strömmar i den här spellistan\?</string>
+    <string name="remove_duplicates">Ta bort dubbletter</string>
+    <string name="feed_show_hide_streams">Visa/Dölj strömmar</string>
+    <string name="feed_show_watched">Fullständigt sedd</string>
+    <string name="feed_show_upcoming">Kommande</string>
 </resources>

@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Elija la carpeta de descarga para los archivos de vídeo</string>
     <string name="default_resolution_title">Resolución predefinida</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">¿Instalar la aplicación Kore que falta\?</string>
+    <string name="kore_not_found">¿Instalar la aplicación Kode que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir un vídeo a través de Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -55,7 +55,7 @@
     <string name="error_report_title">Informe de error</string>
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga</string>
     <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
-    <string name="error_report_button_text">Informar de este error vía correo electrónico</string>
+    <string name="error_report_button_text">Informar por correo electrónico</string>
     <string name="error_snackbar_message">Lo siento, algo salió mal.</string>
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
@@ -301,7 +301,6 @@
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
     <string name="preferred_open_action_settings_title">Acción de apertura preferida</string>
     <string name="preferred_open_action_settings_summary">Acción predefinida al abrir contenido: %s</string>
-    <string name="toast_no_player">No se encontró ninguna aplicación que reproduzca este archivo</string>
     <string name="caption_setting_title">Subtítulos</string>
     <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la aplicación para que surta efecto</string>
     <string name="clear_views_history_title">Vaciar historial de reproducciones</string>
@@ -748,4 +747,14 @@
     <string name="card">Tarjeta</string>
     <string name="playlist_add_stream_success_duplicate">Duplicado añadido %d vez/veces</string>
     <string name="duplicate_in_playlist">Las listas de reproducción que están en gris ya contienen este elemento.</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por ejemplo, si está utilizando un auricular con botones físicos rotos</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos para botones multimedia de hardware</string>
+    <string name="remove_duplicates_title">¿Eliminar los duplicados\?</string>
+    <string name="remove_duplicates_message">¿Desea eliminar todas las secuencias duplicadas de esta lista de reproducción\?</string>
+    <string name="feed_hide_streams_title">Mostrar las siguientes secuencias</string>
+    <string name="feed_show_hide_streams">Mostrar/Ocultar secuencias</string>
+    <string name="feed_show_upcoming">Próximamente</string>
+    <string name="remove_duplicates">Eliminar los duplicados</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
 </resources>

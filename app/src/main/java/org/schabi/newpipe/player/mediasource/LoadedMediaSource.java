@@ -1,27 +1,21 @@
 package org.schabi.newpipe.player.mediasource;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.CompositeMediaSource;
-import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.upstream.Allocator;
-import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.exoplayer2.source.WrappingMediaSource;
 
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-public class LoadedMediaSource extends CompositeMediaSource<Integer> implements ManagedMediaSource {
-    private final MediaSource source;
+public class LoadedMediaSource extends WrappingMediaSource implements ManagedMediaSource {
     private final PlayQueueItem stream;
     private final MediaItem mediaItem;
     private final long expireTimestamp;
 
     /**
-     * Uses a {@link CompositeMediaSource} to wrap one or more child {@link MediaSource}s
+     * Uses a {@link WrappingMediaSource} to wrap one child {@link MediaSource}s
      * containing actual media. This wrapper {@link LoadedMediaSource} holds the expiration
      * timestamp as a {@link ManagedMediaSource} to allow explicit playlist management under
      * {@link ManagedMediaSourcePlaylist}.
@@ -36,7 +30,7 @@ public class LoadedMediaSource extends CompositeMediaSource<Integer> implements 
                              @NonNull final MediaItemTag tag,
                              @NonNull final PlayQueueItem stream,
                              final long expireTimestamp) {
-        this.source = source;
+        super(source);
         this.stream = stream;
         this.expireTimestamp = expireTimestamp;
 
@@ -49,51 +43,6 @@ public class LoadedMediaSource extends CompositeMediaSource<Integer> implements 
 
     private boolean isExpired() {
         return System.currentTimeMillis() >= expireTimestamp;
-    }
-
-    /**
-     * Delegates the preparation of child {@link MediaSource}s to the
-     * {@link CompositeMediaSource} wrapper. Since all {@link LoadedMediaSource}s use only
-     * a single child media, the child id of 0 is always used (sonar doesn't like null as id here).
-     *
-     * @param mediaTransferListener A data transfer listener that will be registered by the
-     *                              {@link CompositeMediaSource} for child source preparation.
-     */
-    @Override
-    protected void prepareSourceInternal(@Nullable final TransferListener mediaTransferListener) {
-        super.prepareSourceInternal(mediaTransferListener);
-        prepareChildSource(0, source);
-    }
-
-    /**
-     * When any child {@link MediaSource} is prepared, the refreshed {@link Timeline} can
-     * be listened to here. But since {@link LoadedMediaSource} has only a single child source,
-     * this method is called only once until {@link #releaseSourceInternal()} is called.
-     * <br><br>
-     * On refresh, the {@link CompositeMediaSource} delegate will be notified with the
-     * new {@link Timeline}, otherwise {@link #createPeriod(MediaPeriodId, Allocator, long)}
-     * will not be called and playback may be stalled.
-     *
-     * @param id            The unique id used to prepare the child source.
-     * @param mediaSource   The child source whose source info has been refreshed.
-     * @param timeline      The new timeline of the child source.
-     */
-    @Override
-    protected void onChildSourceInfoRefreshed(final Integer id,
-                                              final MediaSource mediaSource,
-                                              final Timeline timeline) {
-        refreshSourceInfo(timeline);
-    }
-
-    @Override
-    public MediaPeriod createPeriod(final MediaPeriodId id, final Allocator allocator,
-                                    final long startPositionUs) {
-        return source.createPeriod(id, allocator, startPositionUs);
-    }
-
-    @Override
-    public void releasePeriod(final MediaPeriod mediaPeriod) {
-        source.releasePeriod(mediaPeriod);
     }
 
     @NonNull

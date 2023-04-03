@@ -89,7 +89,7 @@
     <string name="download_path_summary">გადმოწერილი ვიდეო ფაილები ინახება აქ</string>
     <string name="download_path_audio_title">აუდიოს ჩამოტვირთვის საქაღალდე</string>
     <string name="show_higher_resolutions_title">უფრო მაღალი რეზოლუციის ჩვენება</string>
-    <string name="kore_not_found">დააინსტალიროთ დაკარგული Kore აპი\?</string>
+    <string name="kore_not_found">დააინსტალიროთ დაკარგული Kode აპი\?</string>
     <string name="show_play_with_kodi_title">აჩვენეთ \"დაუკარი კოდით\" ვარიანტი</string>
     <string name="show_play_with_kodi_summary">აჩვენეთ ვიდეოს დაკვრის ვარიანტი Kodi მედია ცენტრის საშუალებით</string>
     <string name="notification_scale_to_square_image_summary">შეტყობინებაში ნაჩვენები ვიდეოს ესკიზის ამოჭრა 16:9-დან 1:1-მდე ასპექტის თანაფარდობით</string>
@@ -633,7 +633,6 @@
     <string name="settings_file_charset_title">დაშვებული სიმბოლოები ფაილის სახელებში</string>
     <string name="settings_file_replacement_character_summary">არასწორი სიმბოლოები ჩანაცვლებულია ამ მნიშვნელობით</string>
     <string name="tab_about">შესახებ &amp; ხშირად დასმული კითხვები</string>
-    <string name="toast_no_player">ამ ფაილის დასაკრავად აპი არ არის დაინსტალირებული</string>
     <string name="title_licenses">მესამე მხარის ლიცენზიები</string>
     <string name="copyright">© %1$s მიერ %2$s %3$s-ის ქვეშ</string>
     <string name="donation_encouragement">NewPipe შემუშავებულია მოხალისეების მიერ, რომლებიც ატარებენ თავისუფალ დროს და მოგაქვთ საუკეთესო მომხმარებლის გამოცდილება. დაეხმარეთ დეველოპერებს, გააუმჯობესონ NewPipe, სანამ ფინჯანი ყავით ტკბებიან.</string>

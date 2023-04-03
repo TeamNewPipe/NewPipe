@@ -51,7 +51,7 @@
     <string name="content_not_available">محتوا در دسترس نیست</string>
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت</string>
     <string name="sorry_string">ببخشید! نباید این اتّفاق زخ می‌داد.</string>
-    <string name="error_report_button_text">این خطا را با رایانامه گزارش کنید</string>
+    <string name="error_report_button_text">گزارش با رایانامه</string>
     <string name="error_snackbar_message">ببخشید، چیزی به درستی پیش نرفت.</string>
     <string name="error_snackbar_action">گزارش</string>
     <string name="what_device_headline">اطّلاعات:</string>
@@ -176,7 +176,6 @@
     <string name="settings_file_replacement_character_title">نویسه جایگزین</string>
     <string name="charset_letters_and_digits">حروف و اعداد</string>
     <string name="charset_most_special_characters">مهم‌ترین نویسه‌های خاص</string>
-    <string name="toast_no_player">کاره‌ای برای پخش این پرونده نصب نشده است</string>
     <string name="title_activity_about">درباره نیوپایپ</string>
     <string name="tab_about">درباره و سوالات‌متداول</string>
     <string name="tab_licenses">پروانه‌ها</string>
@@ -730,4 +729,12 @@
     <string name="card">کارت</string>
     <string name="msg_failed_to_copy">شکست در رونوشت به تخته‌گیره</string>
     <string name="unset_playlist_thumbnail">ناتنظیم بندانگشتی ثابت</string>
+    <string name="ignore_hardware_media_buttons_title">چشم‌پوشی از رخدادهای دکمهٔ رسانهٔ سخت‌افزاری</string>
+    <string name="remove_duplicates">برداشتن تکراری‌ها</string>
+    <string name="remove_duplicates_title">برداشتن تکراری‌ها؟</string>
+    <string name="feed_show_hide_streams">نمایش یا نهفتن جریان‌ها</string>
+    <string name="feed_hide_streams_title">نمایش جریان‌های زیر</string>
+    <string name="feed_show_upcoming">پیش رو</string>
+    <string name="feed_show_watched">کامل دیده شده</string>
+    <string name="feed_show_partially_watched">نیمه دیده شده</string>
 </resources>

@@ -118,7 +118,7 @@
     <string name="enable_watch_history_summary">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକର ଟ୍ରାକ୍ ରଖନ୍ତୁ</string>
     <string name="resume_on_audio_focus_gain_title">ଖେଳିବା ଆରମ୍ଭ କରନ୍ତୁ</string>
     <string name="start_main_player_fullscreen_title">ଫୁଲ ସ୍କ୍ରିନରେ ମୁଖ୍ୟ ପ୍ଲେୟାର ଆରମ୍ଭ କରନ୍ତୁ</string>
-    <string name="autoplay_title">ସ୍ଵତଃ ଚଳିତ</string>
+    <string name="autoplay_title">ସ୍ୱତଃଚାଳନ</string>
     <string name="unsupported_url_dialog_message">URL ଚିହ୍ନି ପାରିଲା ନାହିଁ । ଅନ୍ୟ ଏକ ଆପ୍ ସହିତ ଖୋଲନ୍ତୁ\?</string>
     <string name="default_content_country_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଦେଶ</string>
     <string name="content_language_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଭାଷା</string>
@@ -128,7 +128,7 @@
     <string name="peertube_instance_add_exists">ଇନଷ୍ଟାଣ୍ଟ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="settings_category_player_title">ପ୍ଲେୟାର</string>
     <string name="settings_category_history_title">ଇତିହାସ ଏବଂ କ୍ୟାଚ୍</string>
-    <string name="settings_category_appearance_title">ଦୃଶ୍ୟ</string>
+    <string name="settings_category_appearance_title">ରୂପ</string>
     <string name="settings_category_debug_title">ତ୍ରୁଟି ନିବାରଣ କରନ୍ତୁ</string>
     <string name="settings_category_updates_title">ଅଦ୍ୟତନଗୁଡିକ</string>
     <string name="progressive_load_interval_title">ପ୍ଲେବେକ୍ ଲୋଡ୍ ବ୍ୟବଧାନ ଆକାର</string>
@@ -149,7 +149,7 @@
     <string name="show_hold_to_append_summary">ଭିଡିଓ \"ବିବରଣୀ:\" ରେ ପୃଷ୍ଠଭୂମି କିମ୍ବା ପପ୍ଅପ୍ ବଟନ୍ ଦବାଇବା ସମୟରେ ଟିପ୍ ଦେଖାନ୍ତୁ</string>
     <string name="peertube_instance_url_summary">ଆପଣଙ୍କର ପ୍ରିୟ PeerTube ଉଦାହରଣଗୁଡିକ ବାଛନ୍ତୁ</string>
     <string name="settings_category_player_behavior_title">ବ୍ୟବହାର</string>
-    <string name="settings_category_video_audio_title">ଭିଡିଓ ଏବଂ ଅଡିଓ</string>
+    <string name="settings_category_video_audio_title">ଵିଡ଼ିଓ ଓ ଅଡ଼ିଓ</string>
     <string name="start_main_player_fullscreen_summary">ମିନି ପ୍ଲେୟାରରେ ଭିଡିଓ ଆରମ୍ଭ କରନ୍ତୁ ନାହିଁ, କିନ୍ତୁ ଅଟୋ ଘୂର୍ଣ୍ଣନ ବନ୍ଦ ହୋଇଗଲେ ସିଧାସଳଖ ଫୁଲ୍ ସ୍କ୍ରିନ୍ ମୋଡ୍ କୁ ଯାଆନ୍ତୁ। ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଛାଡି ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ମିନି ପ୍ଲେୟାରକୁ ପ୍ରବେଶ କରିପାରିବେ</string>
     <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ୍ କରି ନିମ୍ନରେ ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟ ସଂପାଦନ କରନ୍ତୁ। ଡାହାଣରେ ଥିବା ଚେକ୍ ବକ୍ସ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦେଖାଯିବାକୁ ସେମାନଙ୍କ ମଧ୍ୟରୁ ତିନୋଟି ପର୍ଯ୍ୟନ୍ତ ଚୟନ କରନ୍ତୁ</string>
     <string name="download_thumbnail_summary">ଥମ୍ବନେଲ ଲୋଡିଂ, ଡାଟା ଏବଂ ମେମୋରୀ ବ୍ୟବହାରକୁ ରୋକିବା ପାଇଁ ବନ୍ଦ କରନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ଉଭୟ ଇନ-ମେମୋରୀ ଏବଂ ଅନ୍-ଡିସ୍କ ଇମେଜ୍ କ୍ୟାଚ୍ ସଫା କରେ</string>
@@ -287,7 +287,7 @@
     <string name="restore_defaults_confirmation">ଆପଣ ଡିଫଲ୍ଟ ପୁନଃସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
     <string name="error_report_notification_title">NewPipe ଏକ ତ୍ରୁଟିର ସମ୍ମୁଖୀନ ହେଲା, ରିପୋର୍ଟ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="sorry_string">ଦୁଃଖିତ, ତାହା ହୋଇ ନଥାନ୍ତା ।</string>
-    <string name="error_report_button_text">ଇ-ମେଲ ମାଧ୍ୟମରେ ଏହି ତ୍ରୁଟି ରିପୋର୍ଟ କରନ୍ତୁ</string>
+    <string name="error_report_button_text">ଇ-ମେଲ ମାଧ୍ୟମରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
     <string name="error_report_open_issue_button_text">GitHub ରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
     <string name="video">ଭିଡିଓ</string>
     <string name="audio">ଅଡିଓ</string>
@@ -446,7 +446,7 @@
     <string name="detail_dislikes_img_view_description">ନାପସନ୍ଦ</string>
     <string name="comments_tab_description">ମନ୍ତବ୍ୟ ଗୁଡିକ</string>
     <string name="description_tab_description">ବର୍ଣ୍ଣନା</string>
-    <string name="short_million">ମିଲିୟନ</string>
+    <string name="short_million">ନିୟୁତ</string>
     <string name="recaptcha_solve">ସମାଧାନ</string>
     <string name="playback_speed_control">ପ୍ଲେବେକ୍ ସ୍ପିଡ୍ ନିୟନ୍ତ୍ରଣ</string>
     <string name="playback_tempo">ଟେମ୍ପୋ</string>
@@ -538,11 +538,10 @@
     <string name="related_items_tab_description">ସମ୍ବନ୍ଧୀୟ ଆଇଟମ୍ ଗୁଡ଼ିକ</string>
     <string name="detail_drag_description">ପୁନଃ ସଯାଇବାକୁ ଡ୍ରାଗ୍ କରନ୍ତୁ</string>
     <string name="pause">ବିରାମ</string>
-    <string name="short_billion">ବିଲିଅନ୍</string>
+    <string name="short_billion">ଵୃନ୍ଦ</string>
     <string name="no_subscribers">କୌଣସି ଗ୍ରାହକ ନାହାଁନ୍ତି</string>
     <string name="create">ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="msg_running_detail">ବିବରଣୀ ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
-    <string name="toast_no_player">ଏହି ଫାଇଲ୍ ଚଲାଇବା ପାଇଁ କୌଣସି ଆପ୍ ସଂସ୍ଥାପିତ ହୋଇନାହିଁ</string>
     <string name="rename">ନାମ ପରିବର୍ତ୍ତନ କରନ୍ତୁ</string>
     <string name="msg_wait">ଦୟାକରି ଅପେକ୍ଷା କର…</string>
     <string name="no_dir_yet">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର ସେଟ୍ ହୋଇନାହିଁ, ବର୍ତ୍ତମାନ ଡିଫଲ୍ଟ ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର ବାଛନ୍ତୁ</string>
@@ -732,4 +731,14 @@
     <string name="unset_playlist_thumbnail">ସ୍ଥାୟୀ ଥମ୍ୱନେଲ୍ ସେଟ୍ କରନ୍ତୁ</string>
     <string name="duplicate_in_playlist">ଧୂସର ହୋଇଯାଇଥିବା ପ୍ଲେଲିଷ୍ଟଗୁଡିକ ପୂର୍ବରୁ ଏହି ଆଇଟମ୍ ଧାରଣ କରିଥାଏ ।</string>
     <string name="playlist_add_stream_success_duplicate">ନକଲ %d ସମୟ (ମୋଟ) ଯୋଡି ହୋଇଛି</string>
+    <string name="ignore_hardware_media_buttons_title">ହାର୍ଡୱେର୍ ମିଡିଆ ବଟନ୍ ଇଭେଣ୍ଟଗୁଡ଼ିକୁ ଉପେକ୍ଷା କରନ୍ତୁ</string>
+    <string name="ignore_hardware_media_buttons_summary">ଉପଯୋଗୀ, ଉଦାହରଣ ସ୍ୱରୂପ, ଯଦି ଆପଣ ଭଙ୍ଗା ଶାରୀରିକ ବଟନ୍ ସହିତ ହେଡସେଟ୍ ବ୍ୟବହାର କରୁଛନ୍ତି</string>
+    <string name="remove_duplicates">ନକଲଗୁଡିକ ଅପସାରଣ କରନ୍ତୁ</string>
+    <string name="remove_duplicates_title">ନକଲ ଗୁଡିକ ହଟାନ୍ତୁ\?</string>
+    <string name="remove_duplicates_message">ଆପଣ ଏହି ପ୍ଲେଲିଷ୍ଟରେ ଥିବା ସମସ୍ତ ନକଲ ଷ୍ଟ୍ରିମ୍ ଅପସାରଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="feed_hide_streams_title">ନିମ୍ନଲିଖିତ ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ</string>
+    <string name="feed_show_hide_streams">ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ/ଲୁଚାନ୍ତୁ</string>
+    <string name="feed_show_watched">ପୁରା ଦେଖାଯାଇଛି</string>
+    <string name="feed_show_partially_watched">ଆଂଶିକ ଦେଖାଯାଇଛି</string>
+    <string name="feed_show_upcoming">ଆଗାମୀ</string>
 </resources>

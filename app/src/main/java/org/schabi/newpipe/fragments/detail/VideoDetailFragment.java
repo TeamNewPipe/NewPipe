@@ -7,11 +7,10 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
-import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
+import static org.schabi.newpipe.util.DependentPreferenceHelper.getResumePlaybackEnabled;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
-import static org.schabi.newpipe.util.NavigationHelper.playWithKore;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -27,6 +26,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -54,9 +54,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackException;
@@ -485,16 +482,8 @@ public final class VideoDetailFragment
                         info.getThumbnailUrl())));
         binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
-        binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info -> {
-            try {
-                playWithKore(requireContext(), Uri.parse(info.getUrl()));
-            } catch (final Exception e) {
-                if (DEBUG) {
-                    Log.i(TAG, "Failed to start kore", e);
-                }
-                KoreUtils.showInstallKoreDialog(requireContext());
-            }
-        }));
+        binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info ->
+                KoreUtils.playWithKore(requireContext(), Uri.parse(info.getUrl()))));
         if (DEBUG) {
             binding.detailControlsCrashThePlayer.setOnClickListener(v ->
                     VideoDetailPlayerCrasher.onCrashThePlayer(requireContext(), player));
@@ -1457,8 +1446,8 @@ public final class VideoDetailFragment
 
         animate(binding.detailThumbnailPlayButton, false, 50);
         animate(binding.detailDurationView, false, 100);
-        animate(binding.detailPositionView, false, 100);
-        animate(binding.positionView, false, 50);
+        binding.detailPositionView.setVisibility(View.GONE);
+        binding.positionView.setVisibility(View.GONE);
 
         binding.detailVideoTitleView.setText(title);
         binding.detailVideoTitleView.setMaxLines(1);
@@ -1575,7 +1564,7 @@ public final class VideoDetailFragment
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        updateProgressInfo(info);
+        checkUpdateProgressInfo(info);
         initThumbnailViews(info);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
@@ -1674,67 +1663,43 @@ public final class VideoDetailFragment
     // Stream Results
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void updateProgressInfo(@NonNull final StreamInfo info) {
+    private void checkUpdateProgressInfo(@NonNull final StreamInfo info) {
         if (positionSubscriber != null) {
             positionSubscriber.dispose();
         }
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        final boolean playbackResumeEnabled = prefs
-                .getBoolean(activity.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
-        final boolean showPlaybackPosition = prefs.getBoolean(
-                activity.getString(R.string.enable_playback_state_lists_key), true);
-        if (!playbackResumeEnabled) {
-            if (playQueue == null || playQueue.getStreams().isEmpty()
-                    || playQueue.getItem().getRecoveryPosition() == RECOVERY_UNSET
-                    || !showPlaybackPosition) {
-                binding.positionView.setVisibility(View.INVISIBLE);
-                binding.detailPositionView.setVisibility(View.GONE);
-                // TODO: Remove this check when separation of concerns is done.
-                //  (live streams weren't getting updated because they are mixed)
-                if (!StreamTypeUtil.isLiveStream(info.getStreamType())) {
-                    return;
-                }
-            } else {
-                // Show saved position from backStack if user allows it
-                showPlaybackProgress(playQueue.getItem().getRecoveryPosition(),
-                        playQueue.getItem().getDuration() * 1000);
-                animate(binding.positionView, true, 500);
-                animate(binding.detailPositionView, true, 500);
-            }
+        if (!getResumePlaybackEnabled(activity)) {
+            binding.positionView.setVisibility(View.GONE);
+            binding.detailPositionView.setVisibility(View.GONE);
             return;
         }
         final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
-
-        // TODO: Separate concerns when updating database data.
-        //  (move the updating part to when the loading happens)
         positionSubscriber = recordManager.loadStreamState(info)
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(state -> {
-                    showPlaybackProgress(state.getProgressMillis(), info.getDuration() * 1000);
-                    animate(binding.positionView, true, 500);
-                    animate(binding.detailPositionView, true, 500);
+                    updatePlaybackProgress(
+                            state.getProgressMillis(), info.getDuration() * 1000);
                 }, e -> {
-                    if (DEBUG) {
-                        e.printStackTrace();
-                    }
+                    // impossible since the onErrorComplete()
                 }, () -> {
                     binding.positionView.setVisibility(View.GONE);
                     binding.detailPositionView.setVisibility(View.GONE);
                 });
     }
 
-    private void showPlaybackProgress(final long progress, final long duration) {
+    private void updatePlaybackProgress(final long progress, final long duration) {
+        if (!getResumePlaybackEnabled(activity)) {
+            return;
+        }
         final int progressSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(progress);
         final int durationSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(duration);
-        // If the old and the new progress values have a big difference then use
-        // animation. Otherwise don't because it affects CPU
-        final boolean shouldAnimate = Math.abs(binding.positionView.getProgress()
-                - progressSeconds) > 2;
+        // If the old and the new progress values have a big difference then use animation.
+        // Otherwise don't because it affects CPU
+        final int progressDifference = Math.abs(binding.positionView.getProgress()
+                - progressSeconds);
         binding.positionView.setMax(durationSeconds);
-        if (shouldAnimate) {
+        if (progressDifference > 2) {
             binding.positionView.setProgressAnimated(progressSeconds);
         } else {
             binding.positionView.setProgress(progressSeconds);
@@ -1829,7 +1794,7 @@ public final class VideoDetailFragment
         }
 
         if (player.getPlayQueue().getItem().getUrl().equals(url)) {
-            showPlaybackProgress(currentProgress, duration);
+            updatePlaybackProgress(currentProgress, duration);
         }
     }
 
@@ -1961,17 +1926,15 @@ public final class VideoDetailFragment
             return;
         }
 
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        WindowCompat.setDecorFitsSystemWindows(window, true);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_BARS_BY_TOUCH);
-        windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
-
-        window.setStatusBarColor(ThemeHelper.resolveColorFromAttr(requireContext(),
-                android.R.attr.colorPrimary));
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+        }
+        activity.getWindow().getDecorView().setSystemUiVisibility(0);
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
+                requireContext(), android.R.attr.colorPrimary));
     }
 
     private void hideSystemUi() {
@@ -1983,19 +1946,30 @@ public final class VideoDetailFragment
             return;
         }
 
-        final var window = activity.getWindow();
-        final var windowInsetsController = WindowCompat.getInsetsController(window,
-                window.getDecorView());
-
-        WindowCompat.setDecorFitsSystemWindows(window, false);
-        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat
-                .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
-
-        if (DeviceUtils.isInMultiWindow(activity) || isFullscreen()) {
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
+        // Prevent jumping of the player on devices with cutout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+        // In multiWindow mode status bar is not transparent for devices with cutout
+        // if I include this flag. So without it is better in this case
+        final boolean isInMultiWindow = DeviceUtils.isInMultiWindow(activity);
+        if (!isInMultiWindow) {
+            visibility |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        }
+        activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
+
+        if (isInMultiWindow || isFullscreen()) {
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // Listener implementation

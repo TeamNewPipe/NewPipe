@@ -29,7 +29,7 @@
     <string name="show_higher_resolutions_title">הצגת רזולוציות גבוהות יותר</string>
     <string name="show_higher_resolutions_summary">רק חלק מהמכשירים יכולים לנגן סרטונים ב־2K/4K</string>
     <string name="play_with_kodi_title">נגינה ב־Kodi</string>
-    <string name="kore_not_found">להתקין את יישומון Kore החסר\?</string>
+    <string name="kore_not_found">להתקין את יישומון Kode החסר\?</string>
     <string name="show_play_with_kodi_title">הצגת האפשרות לניגון עם Kodi</string>
     <string name="show_play_with_kodi_summary">הצגת אפשרות לנגן סרטון דרך מרכז המדיה Kodi</string>
     <string name="play_audio">שמע</string>
@@ -69,7 +69,7 @@
     <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדה</string>
     <string name="app_ui_crash">היישומון או מנשק המשתמש קרסו</string>
     <string name="sorry_string">זה לא אמור היה לקרות, עמך הסליחה.</string>
-    <string name="error_report_button_text">דיווח על השגיאה דרך דוא״ל</string>
+    <string name="error_report_button_text">דיווח דרך דוא״ל</string>
     <string name="error_snackbar_message">משהו השתבש, עמך הסליחה.</string>
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
@@ -225,7 +225,6 @@
     <string name="dismiss">התעלמות</string>
     <string name="rename">שינוי שם</string>
     <string name="one_item_deleted">פריט אחד נמחק.</string>
-    <string name="toast_no_player">לא מותקן יישומון שמתאים לנגינת הקובץ הזה</string>
     <string name="export_complete_toast">הייצוא הסתיים</string>
     <string name="import_complete_toast">הייבוא הסתיים</string>
     <string name="no_valid_zip_file">אין קובץ ZIP תקין</string>
@@ -758,4 +757,6 @@
     <string name="msg_failed_to_copy">ההעתקה ללוח הגזירים נכשלה</string>
     <string name="duplicate_in_playlist">רשימות הנגינה שבוטלו וסומנו באפור כבר מכילות את הפריט הזה.</string>
     <string name="playlist_add_stream_success_duplicate">הכפיל נוסף %d פעמים</string>
+    <string name="ignore_hardware_media_buttons_title">התעלמות מאירועי כפתורי מדיה חומרתיים</string>
+    <string name="ignore_hardware_media_buttons_summary">שימושי, למשל, אם יש לך אוזניות עם כפתורי חומרה מקולקלים</string>
 </resources>

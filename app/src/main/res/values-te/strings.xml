@@ -325,7 +325,6 @@
     <string name="error_report_channel_name">లోపనివేదన నోటిఫికేషన్</string>
     <string name="undo">చెరుపు</string>
     <string name="main_page_content_swipe_remove">వాటిని తీసివేయడానికి వాటిని స్వైప్ చేయండి</string>
-    <string name="toast_no_player">ఈ ఫైల్‌ని ప్లే చేయడానికి యాప్ ఏదీ ఇన్‌స్టాల్ చేయబడలేదు</string>
     <string name="website_encouragement">మరింత సమాచారం మరియు వార్తల కోసం NewPipe వెబ్‌సైట్‌ని సందర్శించండి.</string>
     <string name="privacy_policy_encouragement">NewPipe ప్రాజెక్ట్ మీ గోప్యతను చాలా తీవ్రంగా పరిగణిస్తుంది. కాబట్టి, మీ సమ్మతి లేకుండా యాప్ ఎలాంటి డేటాను సేకరించదు.
 \nNewPipe యొక్క గోప్యతా విధానం మీరు క్రాష్ నివేదికను పంపినప్పుడు ఏ డేటా పంపబడుతుందో మరియు నిల్వ చేయబడుతుందో వివరంగా వివరిస్తుంది.</string>

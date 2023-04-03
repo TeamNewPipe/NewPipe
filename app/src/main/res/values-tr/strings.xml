@@ -51,7 +51,7 @@
     <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
-    <string name="error_report_button_text">Bu hatayı e-posta aracılığıyla bildir</string>
+    <string name="error_report_button_text">E-posta ile bildir</string>
     <string name="error_snackbar_message">Üzgünüz, bir şeyler yanlış gitti.</string>
     <string name="error_snackbar_action">Bildir</string>
     <string name="what_device_headline">Bilgi:</string>
@@ -295,7 +295,6 @@
     <string name="preferred_open_action_settings_summary">Paylaşma ekranında tanımlı eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
-    <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini ve kalınan oynatım konumlarını siler</string>
     <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi\?</string>
@@ -732,4 +731,14 @@
     <string name="msg_failed_to_copy">Panoya kopyalanamadı</string>
     <string name="playlist_add_stream_success_duplicate">%d kez kopyası eklendi</string>
     <string name="duplicate_in_playlist">Gri oynatma listeleri halihazırda bu ögeyi içeriyor.</string>
+    <string name="ignore_hardware_media_buttons_title">Donanımsal ortam düğmesi olaylarını yoksay</string>
+    <string name="ignore_hardware_media_buttons_summary">Örneğin, fiziksel düğmeleri bozuk bir kulaklık kullanıyorsanız kullanışlıdır</string>
+    <string name="remove_duplicates">Kopyaları kaldır</string>
+    <string name="remove_duplicates_title">Kopyalar kaldırılsın mı\?</string>
+    <string name="remove_duplicates_message">Bu oynatma listesindeki tüm yinelenen akışları kaldırmak istiyor musunuz\?</string>
+    <string name="feed_hide_streams_title">Aşağıdaki akışları göster</string>
+    <string name="feed_show_hide_streams">Akışları göster/gizle</string>
+    <string name="feed_show_watched">Tamamen izlendi</string>
+    <string name="feed_show_upcoming">Yaklaşan</string>
+    <string name="feed_show_partially_watched">Kısmen izlendi</string>
 </resources>

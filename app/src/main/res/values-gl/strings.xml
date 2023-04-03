@@ -41,7 +41,7 @@
     <string name="show_higher_resolutions_title">Mostrar resolucións máis altas</string>
     <string name="show_higher_resolutions_summary">Só algúns dispositivos poden reproducir vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reproducir co Kodi</string>
-    <string name="kore_not_found">Quere instalar o aplicativo Kore que falta\?</string>
+    <string name="kore_not_found">Quere instalar o aplicativo Kode que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar a opción «Reproducir co Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostrar unha opción para reproducir o vídeo co Kodi Media Center</string>
     <string name="play_audio">Audio</string>
@@ -143,7 +143,7 @@
     <string name="error_occurred_detail">Ocorreu un erro: %1$s</string>
     <string name="no_streams_available_download">Non hai emisións para descargar</string>
     <string name="sorry_string">Deculpe, isto non debería ter acontecido.</string>
-    <string name="error_report_button_text">Informar deste erro por enderezo electrónico</string>
+    <string name="error_report_button_text">Informar por correo electrónico</string>
     <string name="error_snackbar_message">Desculpe, algo foi mal.</string>
     <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Información:</string>
@@ -206,7 +206,6 @@
     <string name="settings_file_replacement_character_title">Carácter de substitución</string>
     <string name="charset_letters_and_digits">Letras e díxitos</string>
     <string name="charset_most_special_characters">A maioría dos caracteres especiais</string>
-    <string name="toast_no_player">Non hai ningún aplicativo instalado para reproducir este ficheiro</string>
     <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="title_licenses">Licenzas de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>
@@ -732,4 +731,14 @@
     <string name="card">Tarxeta</string>
     <string name="duplicate_in_playlist">As listas de reprodución que se atopan atenuadas xa conteñen este elemento.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicado engadido %d vez/veces</string>
+    <string name="feed_show_hide_streams">Mostrar/Ocultar emisións</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos con botóns multimedia físicos</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se estiver usando un auricular con botóns rotos</string>
+    <string name="remove_duplicates">Eliminar duplicados</string>
+    <string name="remove_duplicates_title">Eliminar duplicados\?</string>
+    <string name="remove_duplicates_message">Desexa eliminar todas as emisións duplicadas nesta lista de reprodución\?</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes vídeos</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
+    <string name="feed_show_upcoming">Proximamente</string>
 </resources>

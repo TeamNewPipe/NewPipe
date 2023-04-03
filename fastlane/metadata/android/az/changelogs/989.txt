@@ -1,0 +1,3 @@
+• [YouTube] İstənilən videonu oynatmağa cəhd edilərkən sonsuz tüklənmə düzəldildi
+• [YouTube] Bəzi videolarda yavaşılama aradan qaldırıldı
+• jsoup kitabxanası 1.15.3 versiyasına qədər yeniləndi, buraya da təhlükəsizlik riskləri aradan qaldırılması da daxildir

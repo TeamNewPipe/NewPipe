@@ -24,7 +24,7 @@
     <string name="notification_scale_to_square_image_summary">સૂચનામાં 16: 9 થી 1: 1 અસ્પેક્ટ રેશિયોમાં બતાવેલ વિડિઓ થંબનેલને સ્કેલ કરો (વિકૃતિ રજૂ કરી શકે છે)</string>
     <string name="notification_scale_to_square_image_title">સ્કેલ થંબનેલથી 1: 1 પાસા રેશિયો</string>
     <string name="show_play_with_kodi_summary">કોડી મીડિયા સેન્ટર દ્વારા વિડિઓ ચલાવવાનો વિકલ્પ દર્શાવો</string>
-    <string name="kore_not_found">અનુપસ્થિત Kore એપ્લિકેશન ઇન્સ્ટોલ કરીએ\?</string>
+    <string name="kore_not_found">અનુપસ્થિત Kode એપ્લિકેશન ઇન્સ્ટોલ કરીએ\?</string>
     <string name="show_higher_resolutions_summary">ફક્ત થોડા ઉપકરણો 2K / 4K વિડિઓઝ ચલાવી શકે છે</string>
     <string name="show_higher_resolutions_title">ઉચ્ચ રીઝોલ્યુશન બતાવો</string>
     <string name="default_popup_resolution_title">ડિફોલ્ટ પોપઅપ રીઝોલ્યુશન</string>

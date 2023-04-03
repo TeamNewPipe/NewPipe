@@ -68,7 +68,7 @@
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Никогда такого не было, и вот опять.</string>
-    <string name="error_report_button_text">Отправить по e-mail</string>
+    <string name="error_report_button_text">Отправить по электронной почте</string>
     <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
@@ -311,7 +311,6 @@
     <string name="preferred_open_action_settings_summary">При открытии ссылки на контент — %s</string>
     <string name="no_streams_available_download">Нет потоков для загрузки</string>
     <string name="caption_setting_title">Субтитры</string>
-    <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
     <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
@@ -749,4 +748,14 @@
     <string name="unset_playlist_thumbnail">Убрать постоянную миниатюру</string>
     <string name="playlist_add_stream_success_duplicate">Дубликат добавлен %d раз(а)</string>
     <string name="duplicate_in_playlist">Плейлисты, выделенные серым уже содержат этот объект.</string>
+    <string name="ignore_hardware_media_buttons_title">Игнорировать события аппаратной мультимедийной кнопки</string>
+    <string name="ignore_hardware_media_buttons_summary">Полезно, например, если вы используете гарнитуру со сломанными физическими кнопками</string>
+    <string name="feed_hide_streams_title">Показать следующие стримы</string>
+    <string name="feed_show_hide_streams">Показать/скрыть стримы</string>
+    <string name="feed_show_watched">Полностью просмотрено</string>
+    <string name="feed_show_upcoming">Предстоящие</string>
+    <string name="remove_duplicates">Удалить дубликаты</string>
+    <string name="remove_duplicates_title">Удалить дубликаты\?</string>
+    <string name="feed_show_partially_watched">Частично просмотрено</string>
+    <string name="remove_duplicates_message">Вы хотите удалить все повторяющиеся потоки в этом плейлисте\?</string>
 </resources>

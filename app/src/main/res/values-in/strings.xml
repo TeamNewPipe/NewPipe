@@ -20,7 +20,7 @@
     <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="default_resolution_title">Pilih kualitas</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
-    <string name="kore_not_found">Instal aplikasi Kore yang hilang\?</string>
+    <string name="kore_not_found">Instal aplikasi Kode yang hilang\?</string>
     <string name="show_play_with_kodi_title">Tampilkan opsi \"Putar dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via Kodi</string>
     <string name="play_audio">Audio</string>
@@ -48,7 +48,7 @@
     <string name="content_not_available">Konten tidak tersedia</string>
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduh</string>
     <string name="sorry_string">Maaf, hal tersebut seharusnya tidak terjadi.</string>
-    <string name="error_report_button_text">Laporkan kesalahan via surel</string>
+    <string name="error_report_button_text">Laporkan via surel</string>
     <string name="error_snackbar_message">Maaf, telah terjadi kesalahan.</string>
     <string name="error_snackbar_action">Lapor</string>
     <string name="what_device_headline">Info:</string>
@@ -255,7 +255,6 @@
     <string name="search_history_deleted">Riwayat pencarian dihapus</string>
     <string name="no_streams_available_download">Tidak ada video yang tersedia untuk diunduh</string>
     <string name="one_item_deleted">1 item dihapus.</string>
-    <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar berkas ini</string>
     <string name="tab_bookmarks">Daftar Putar</string>
     <string name="auto_queue_title">Putar otomatis video berikutnya</string>
     <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
@@ -719,4 +718,14 @@
     <string name="card">Kartu</string>
     <string name="duplicate_in_playlist">Daftar putar yang bewarna abu-abu sudah berisi item ini.</string>
     <string name="playlist_add_stream_success_duplicate">Duplikat ditambahkan %d kali</string>
+    <string name="ignore_hardware_media_buttons_summary">Berguna, misalnya, jika Anda menggunakan sebuah headset dengan tombol fisik yang rusak</string>
+    <string name="ignore_hardware_media_buttons_title">Abaikan peristiwa tombol media perangkat keras</string>
+    <string name="remove_duplicates">Hapus duplikat</string>
+    <string name="feed_show_watched">Ditonton secara lengkap</string>
+    <string name="feed_show_partially_watched">Ditonton sebagian</string>
+    <string name="feed_show_upcoming">Mendatang</string>
+    <string name="feed_show_hide_streams">Tampilkan/Sembunyikan saluran</string>
+    <string name="remove_duplicates_title">Hapus duplikat\?</string>
+    <string name="remove_duplicates_message">Apakah Anda ingin menghapus semua saluran duplikat di daftar putar ini\?</string>
+    <string name="feed_hide_streams_title">Tampilkan saluran berikut</string>
 </resources>

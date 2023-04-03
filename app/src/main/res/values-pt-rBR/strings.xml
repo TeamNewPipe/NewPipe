@@ -21,7 +21,7 @@
     <string name="download">Baixar</string>
     <string name="download_dialog_title">Baixar</string>
     <string name="error_details_headline">Detalhes:</string>
-    <string name="error_report_button_text">Relatar erro via email</string>
+    <string name="error_report_button_text">Relatar por e-mail</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
@@ -301,7 +301,6 @@
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Mudar tamanho da legenda e estilos de plano de fundo. Requer reiniciar o app para ter efeito</string>
-    <string name="toast_no_player">Nenhum app instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Excluir histórico de vídeo</string>
     <string name="clear_views_history_summary">Exclui o histórico de vídeos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Excluir todo o histórico de vídeo\?</string>
@@ -745,4 +744,14 @@
     <string name="msg_failed_to_copy">Falha ao copiar para a área de transferência</string>
     <string name="playlist_add_stream_success_duplicate">Duplicata adicionada %d vez(es)</string>
     <string name="duplicate_in_playlist">As playlists em cinza já contêm este item.</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos de botão de mídia de hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se você estiver usando um fone de ouvido com botões físicos quebrados</string>
+    <string name="remove_duplicates">Remover duplicados</string>
+    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="remove_duplicates_message">Deseja remover todos os streams duplicados nesta playlist\?</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes streams</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar streams</string>
+    <string name="feed_show_partially_watched">Parcialmente assistido</string>
+    <string name="feed_show_upcoming">Em breve</string>
+    <string name="feed_show_watched">Totalmente assistido</string>
 </resources>

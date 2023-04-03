@@ -20,7 +20,7 @@
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">未找到 Kore app，是否安裝？</string>
+    <string name="kore_not_found">要安裝缺少的 Kore 應用程式嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="theme_title">主題</string>
@@ -72,7 +72,7 @@
     <string name="could_not_setup_download_menu">無法設定下載選單</string>
     <string name="app_ui_crash">應用程式或界面已停止運作</string>
     <string name="sorry_string">抱歉，這是不該發生的。</string>
-    <string name="error_report_button_text">使用電子郵件回報此錯誤</string>
+    <string name="error_report_button_text">透過電子郵件回報</string>
     <string name="error_snackbar_message">抱歉，發生了一些問題。</string>
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
@@ -293,7 +293,6 @@
     <string name="no_streams_available_download">沒有可供下載的串流</string>
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效</string>
-    <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
     <string name="clear_views_history_title">清除觀看歷史</string>
     <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
     <string name="delete_view_history_alert">刪除所有觀看歷史記錄？</string>
@@ -719,4 +718,14 @@
     <string name="msg_failed_to_copy">無法複製到剪貼簿</string>
     <string name="playlist_add_stream_success_duplicate">重複新增 %d 次</string>
     <string name="duplicate_in_playlist">變灰的播放清單已經包含此項目。</string>
+    <string name="ignore_hardware_media_buttons_title">忽略硬體媒體鍵事件</string>
+    <string name="ignore_hardware_media_buttons_summary">這很有用，舉例來說，若您正在使用物理按鍵壞掉的耳機</string>
+    <string name="remove_duplicates_title">移除重複的？</string>
+    <string name="feed_hide_streams_title">顯示以下串流</string>
+    <string name="feed_show_hide_streams">顯示/隱藏串流</string>
+    <string name="feed_show_watched">完全觀看</string>
+    <string name="feed_show_partially_watched">部份觀看</string>
+    <string name="feed_show_upcoming">即將到來</string>
+    <string name="remove_duplicates">移除重複的</string>
+    <string name="remove_duplicates_message">您想要移除所有在此播放清單中重複的串流？</string>
 </resources>

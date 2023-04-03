@@ -109,7 +109,6 @@
     <string name="copyright">© %1$s de %2$s cun litzèntzia %3$s</string>
     <string name="title_licenses">Litzèntzias de tertzas partes</string>
     <string name="title_activity_about">In subra de NewPipe</string>
-    <string name="toast_no_player">Peruna aplicatzione installada pro pòdere riproduire custu documentu</string>
     <string name="charset_most_special_characters">Majoria de sos caràteres ispetziales</string>
     <string name="charset_letters_and_digits">Lìteras e tzifras</string>
     <string name="settings_file_replacement_character_title">Caràtere de remplasamentu</string>
@@ -185,7 +184,7 @@
     <string name="what_happened_headline">Ite est acontèssidu:</string>
     <string name="what_device_headline">Informatziones:</string>
     <string name="error_snackbar_action">Sinnala</string>
-    <string name="error_report_button_text">Sinnala custu errore pro mèdiu de posta eletrònica</string>
+    <string name="error_report_button_text">Sinnala cun sa posta eletrònica</string>
     <string name="sorry_string">Iscusa, custu non diat dèpere èssere acontèssidu.</string>
     <string name="permission_display_over_apps">Fruni su permissu pro l\'ammustrare in subra de àteras aplicatziones</string>
     <string name="restore_defaults_confirmation">Cheres ripristinare sos valores predefinidos\?</string>
@@ -732,4 +731,14 @@
     <string name="unset_playlist_thumbnail">Disativa sa miniadura permanente</string>
     <string name="duplicate_in_playlist">Sas iscalitas in colore murru tenent giai custu elementu.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicadu annantu %d borta(s)</string>
+    <string name="ignore_hardware_media_buttons_title">Ignora eventos de sos butones multimediales fìsicos</string>
+    <string name="ignore_hardware_media_buttons_summary">Ùtile, a esempru, si ses impreende cùfias cun butones fìsicos segados</string>
+    <string name="feed_hide_streams_title">Ammustra sos flussos chi sighint</string>
+    <string name="remove_duplicates">Boga sos duplicados</string>
+    <string name="remove_duplicates_title">Bogare sos duplicados\?</string>
+    <string name="remove_duplicates_message">Boles bogare totu sos flussos duplicados in custa iscalita\?</string>
+    <string name="feed_show_hide_streams">Ammustra/Cua flussos</string>
+    <string name="feed_show_watched">Bidu de su totu</string>
+    <string name="feed_show_partially_watched">Bidu in parte</string>
+    <string name="feed_show_upcoming">Luego</string>
 </resources>

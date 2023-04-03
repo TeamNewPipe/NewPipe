@@ -7,9 +7,9 @@
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">您係咪想搵「%1$s」？</string>
-    <string name="use_external_video_player_title">用外面嘅影片播放器</string>
-    <string name="use_external_audio_player_title">用外面嘅音樂播放器</string>
+    <string name="did_you_mean">你係咪想搵「%1$s」？</string>
+    <string name="use_external_video_player_title">用出面嘅影片播放器</string>
+    <string name="use_external_audio_player_title">用出面嘅音樂播放器</string>
     <string name="download_path_title">影片下載路徑</string>
     <string name="download_path_summary">下載咗嘅影片檔案會收埋喺度</string>
     <string name="download_path_dialog_title">揀選影片檔案嘅下載資料夾</string>
@@ -37,7 +37,7 @@
     <string name="detail_dislikes_img_view_description">劣評</string>
     <string name="no_player_found">搵唔到串流播放器。要唔要裝 VLC？</string>
     <string name="open_in_browser">喺瀏覽器開啟</string>
-    <string name="share_dialog_title">分享影片</string>
+    <string name="share_dialog_title">分享影片比</string>
     <string name="download_path_audio_title">音樂下載資料夾</string>
     <string name="download_path_audio_summary">下載咗嘅音樂檔案會收埋喺度</string>
     <string name="download_path_audio_dialog_title">揀選音樂檔案嘅下載資料夾</string>
@@ -51,7 +51,7 @@
     <string name="parsing_error">解析唔到網站</string>
     <string name="could_not_setup_download_menu">設定唔到下載功能表</string>
     <string name="sorry_string">啫係嗱，世事講唔埋嘅，真係唔好意思。</string>
-    <string name="error_report_button_text">以電郵報告今次問題</string>
+    <string name="error_report_button_text">以電郵報告</string>
     <string name="error_snackbar_message">出咗啲問題，唔好意思。</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">資訊：</string>
@@ -94,7 +94,7 @@
     <string name="msg_popup_permission">以浮面模式開啟
 \n有呢個權限至得</string>
     <string name="recaptcha_request_toast">要完成 reCAPTCHA 考驗</string>
-    <string name="use_external_video_player_summary">某啲解像度可能會冇聲</string>
+    <string name="use_external_video_player_summary">某啲影片可能會冇聲</string>
     <string name="controls_background_title">幕後播</string>
     <string name="controls_popup_title">浮面播</string>
     <string name="popup_remember_size_pos_title">記住浮面點擺法</string>
@@ -112,7 +112,7 @@
     <string name="tab_licenses">版權協議</string>
     <string name="app_description">喺 Android 上盡享自由輕便串流。</string>
     <string name="view_on_github">去 GitHub 睇下</string>
-    <string name="app_license_title">NewPipe 嘅授權協議</string>
+    <string name="app_license_title">NewPipe 嘅版權協議</string>
     <string name="contribution_encouragement">無論您對翻譯、設計改動、打掃程式碼，抑或開山劈石編寫程式碼有咩偈仔，都無任歡迎您幫手。聚沙成塔，眾志成城！</string>
     <string name="read_full_license">閱讀版權協議</string>
     <string name="contribution_title">貢獻</string>
@@ -122,12 +122,12 @@
     <string name="subscribe_button_title">訂閱</string>
     <string name="subscribed_button_title">訂閱咗</string>
     <string name="unsubscribe">取消訂閱</string>
-    <string name="channel_unsubscribed">已成功取消訂閱頻道</string>
-    <string name="subscription_change_failed">轉唔到訂閱</string>
+    <string name="channel_unsubscribed">已取消訂閱頻道</string>
+    <string name="subscription_change_failed">改唔到訂閱</string>
     <string name="subscription_update_failed">更新唔到訂閱</string>
     <string name="show_info">顯示資訊</string>
     <string name="tab_subscriptions">訂閱</string>
-    <string name="tab_bookmarks">收起嘅播放清單</string>
+    <string name="tab_bookmarks">儲起嘅播放清單</string>
     <string name="use_inexact_seek_title">用粗略快轉</string>
     <string name="controls_add_to_playlist_title">加入去</string>
     <string name="tab_choose">選擇標籤</string>
@@ -154,8 +154,8 @@
     <string name="seek_duration_title">跳前/跳後嘅快轉長短</string>
     <string name="show_description_summary">關閉去隱藏影片描述同附加資訊</string>
     <string name="mark_as_watched">剔低睇過</string>
-    <string name="open_with">開啟方式</string>
-    <string name="search_showing_result_for">搵緊呢挺嘢：%s</string>
+    <string name="open_with">開啟方式係</string>
+    <string name="search_showing_result_for">搜尋到嘅嘢係：%s</string>
     <string name="notification_action_4_title">第五粒動作掣</string>
     <string name="notification_actions_summary">撳一下下面每粒掣去更改各個通知動作。用右手邊嘅格仔剔選最多三個，擺喺精簡通知度顯示</string>
     <string name="notification_actions_at_most_three">精簡通知最多淨係擺到三個動作！</string>
@@ -324,7 +324,6 @@
     <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料夾</string>
     <string name="one_item_deleted">刪除咗 1 個項目。</string>
     <string name="recaptcha_solve">執執佢</string>
-    <string name="toast_no_player">未裝 app 嚟播放呢個檔案</string>
     <string name="recaptcha_done_button">搞掂</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常著重您嘅私隱。因此，呢個 app 未得您同意係唔會收集任何資料。
 \nNewPipe 嘅私隱政策，詳述當您傳送彈 app 報告時，有咩資料會傳送同保存。</string>
@@ -605,7 +604,7 @@
     <string name="notifications_disabled">通知已停用</string>
     <string name="tracks">單曲</string>
     <string name="clear_playback_states_summary">全部剷走晒播放到邊個位</string>
-    <string name="error_report_open_github_notice">請查看係咪已經有人喺度講緊您呢次彈 app 嘅狀況。若然重複發表新嘅議題，將會嘥我哋可以真正用嚟修復個問題嘅時間㗎喇。</string>
+    <string name="error_report_open_github_notice">請睇過係咪已經有人喺度講緊您呢次彈 app 嘅狀況。若然重複發表新嘅議題，就會嘥咗我哋可以真正用嚟修復個問題嘅時間㗎喇。</string>
     <string name="donation_encouragement">NewPipe 係由一班熱心人用空閒時間義務開發，為您帶嚟最佳嘅使用體驗。係時候少少無拘，支持返開發者令 NewPipe 更臻完美，同時一顆心意挺佢哋可以嘆返杯咖啡。</string>
     <string name="local">站內</string>
     <string name="conferences">聚首</string>
@@ -714,9 +713,19 @@
     <string name="app_update_unavailable_toast">您已經用緊最新版本嘅 NewPipe</string>
     <string name="app_update_available_notification_text">撳一下去下載 %s</string>
     <string name="unset_playlist_thumbnail">唔再揀定封面縮圖</string>
-    <string name="night_theme_available">色系揀做%s嘅時候至有得揀</string>
+    <string name="night_theme_available">色系揀做%s 嘅時候至有得揀</string>
     <string name="msg_failed_to_copy">複製唔到去剪貼簿</string>
     <string name="card">一張張</string>
     <string name="duplicate_in_playlist">灰咗嘅播放清單，即係已經有呢個項目。</string>
     <string name="playlist_add_stream_success_duplicate">重複加入咗 %d 次</string>
+    <string name="ignore_hardware_media_buttons_title">忽略硬件多媒體掣嘅事件</string>
+    <string name="ignore_hardware_media_buttons_summary">譬如話您個耳機上面啲實體掣軭咗就會有用</string>
+    <string name="remove_duplicates">重複嗰啲剷咗佢</string>
+    <string name="remove_duplicates_title">重複咗嗰啲係咪要剷走？</string>
+    <string name="feed_hide_streams_title">下列嘅串流騷出嚟</string>
+    <string name="feed_show_hide_streams">顯示/隱藏串流</string>
+    <string name="feed_show_watched">睇晒</string>
+    <string name="feed_show_partially_watched">未睇晒</string>
+    <string name="feed_show_upcoming">未夠鐘上畫</string>
+    <string name="remove_duplicates_message">您係咪要剷走呢個播放清單入面所有重複咗嘅串流？</string>
 </resources>

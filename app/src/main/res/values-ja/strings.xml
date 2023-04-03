@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの画質</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Kore をインストールしますか？</string>
+    <string name="kore_not_found">Kode をインストールしますか？</string>
     <string name="show_play_with_kodi_title">「Kodi で再生」オプションを表示</string>
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音声</string>
@@ -50,7 +50,7 @@
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
     <string name="sorry_string">申し訳ありません。想定外のエラーが発生しました。</string>
-    <string name="error_report_button_text">不具合をメールで報告</string>
+    <string name="error_report_button_text">メールで送る</string>
     <string name="error_snackbar_message">申し訳ありません、不具合が発生しました。</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
@@ -245,7 +245,6 @@
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
     <string name="search_history_deleted">検索履歴を削除しました</string>
-    <string name="toast_no_player">このファイルを再生するためのアプリがインストールされていません</string>
     <string name="import_settings">設定もインポートしますか？</string>
     <string name="caption_setting_title">字幕</string>
     <string name="channels">チャンネル</string>
@@ -713,9 +712,20 @@
     <string name="faq_description">アプリの使い方に困ったときは、よくある質問に答えていますので、ぜひご覧ください!</string>
     <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
     <string name="fast_mode">高速モード</string>
-    <string name="import_subscriptions_hint">3 点メニューから登録チャンネルをインポートまたはエクスポートします</string>
+    <string name="import_subscriptions_hint">3点メニューから登録チャンネルの読み込みまたは書き出しが可能</string>
     <string name="card">カード</string>
     <string name="msg_failed_to_copy">クリップボードへのコピーに失敗しました</string>
     <string name="duplicate_in_playlist">灰色で表示されているプレイリストには、すでにこのアイテムが含まれています。</string>
     <string name="playlist_add_stream_success_duplicate">%d 回重複追加されました</string>
+    <string name="unset_playlist_thumbnail">固定サムネイルの設定を解除</string>
+    <string name="remove_duplicates_title">重複を削除しますか\?</string>
+    <string name="ignore_hardware_media_buttons_summary">たとえば、物理ボタンが壊れたヘッドセットを使用している場合に便利です</string>
+    <string name="remove_duplicates_message">この再生リスト内の重複したストリームをすべて削除しますか\?</string>
+    <string name="ignore_hardware_media_buttons_title">ハードウェア メディア ボタン イベントを無視する</string>
+    <string name="remove_duplicates">重複を削除</string>
+    <string name="feed_hide_streams_title">次のストリームを表示</string>
+    <string name="feed_show_hide_streams">ストリームの表示/非表示</string>
+    <string name="feed_show_watched">完全に視聴済み</string>
+    <string name="feed_show_partially_watched">一部視聴済み</string>
+    <string name="feed_show_upcoming">今後</string>
 </resources>

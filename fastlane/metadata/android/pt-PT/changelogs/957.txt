@@ -1,10 +1,10 @@
-- Unir ações específicas de inquérito em uma
-- Gesto de dois dedos para fechar o jogador
-- Permitir a limpeza de cookies reCAPTCHA
-- Opção de não colorir a notificação
-- Melhorar como os detalhes do vídeo são abertos para não por no buffer infinitamente
-- Acelerar os vídeos do YouTube e corrigir os de idade restrita
-- Reparação de colisão em avanço/retrocesso rápido
-- Não reordenar as listas a arrastar as miniaturas
-- Lembrar sempre das propriedades popup
-- Acrescentar a língua Santali
+Unir ações específicas de enfileiramento
+Gesto 2 dedos p/ fechar APP
+Permitir limpeza de cookies reCAPTCHA
+Opção não colorir notific.
+Melhorar forma como os detalhes do vídeo são abertos p/ corrigir buffering infinito, comportamento errático ao compartilhar com NewPipe, etc
+Acelerar vídeos do YouTube e corrijir restrições etárias
+Corrigir falha no avanço/recuo rápido
+Não reorganizar listas ao arrastar miniaturas
+Lembrar sempre as propriedades pop-up
+Adicionar idioma Santali

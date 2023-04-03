@@ -52,7 +52,7 @@
     <string name="main_bg_subtitle">Tocca la lente d\'ingrandimento per iniziare.</string>
     <string name="duration_live">In diretta</string>
     <string name="sorry_string">Spiacenti, non sarebbe dovuto succedere.</string>
-    <string name="error_report_button_text">Segnala l\'errore via e-mail</string>
+    <string name="error_report_button_text">Segnala via e-mail</string>
     <string name="error_snackbar_message">Spiacente, qualcosa è andato storto.</string>
     <string name="error_snackbar_action">Segnala</string>
     <string name="what_device_headline">Info:</string>
@@ -302,7 +302,6 @@
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
     <string name="caption_setting_title">Sottotitoli</string>
     <string name="caption_setting_description">Modifica dimensione e stile dei sottotitoli. Riavviare per applicare le modifiche</string>
-    <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Elimina la cronologia delle visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e le posizioni di riproduzione</string>
     <string name="delete_view_history_alert">Eliminare la cronologia delle visualizzazioni\?</string>
@@ -745,4 +744,14 @@
     <string name="unset_playlist_thumbnail">Disattiva copertina permanente</string>
     <string name="duplicate_in_playlist">Le playlist in grigio contengono già questo elemento.</string>
     <string name="playlist_add_stream_success_duplicate">Doppione aggiunto %d volta/e</string>
+    <string name="ignore_hardware_media_buttons_title">Ignora eventi dei pulsanti multimediali hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Utile usando cuffie con tasti fisici rotti</string>
+    <string name="remove_duplicates">Rimuovi elementi doppi</string>
+    <string name="remove_duplicates_title">Rimuovere gli elementi doppi\?</string>
+    <string name="remove_duplicates_message">Rimuovere tutti gli elementi doppi di questa playlist\?</string>
+    <string name="feed_hide_streams_title">Mostra gli elementi seguenti</string>
+    <string name="feed_show_hide_streams">Mostra/Nascondi elementi</string>
+    <string name="feed_show_partially_watched">Visto parzialmente</string>
+    <string name="feed_show_watched">Visto completamente</string>
+    <string name="feed_show_upcoming">Prossimamente</string>
 </resources>
