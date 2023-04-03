@@ -106,7 +106,7 @@ ext {
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.3'
+    exoPlayerVersion = '2.18.5'
     googleAutoServiceVersion = '1.0.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
