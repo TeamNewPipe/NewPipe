@@ -10,4 +10,3 @@ Vylepšeno
 Opraveno
 • Oprava otevírání URL prohlížeče, stahování a externích přehrávačů v Android 11+
 • Oprava interakce s celou obrazovkou v MIUI
-• Úpravy nastavení ExoPlayer pro opravu přehrávání na některých zařízeních
