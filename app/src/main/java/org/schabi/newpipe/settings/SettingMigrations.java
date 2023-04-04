@@ -111,12 +111,12 @@ public final class SettingMigrations {
     public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         protected void migrate(final Context context) {
-            boolean brightnessGestureSwitch = sp.getBoolean(
+            final boolean brightnessGestureSwitch = sp.getBoolean(
                     context.getString(R.string.left_gesture_control_key), true);
-            boolean volumeGestureSwitch = sp.getBoolean(
+            final boolean volumeGestureSwitch = sp.getBoolean(
                     context.getString(R.string.right_gesture_control_key), true);
 
-            SharedPreferences.Editor editor = sp.edit();
+            final SharedPreferences.Editor editor = sp.edit();
 
             if (volumeGestureSwitch) {
                 if (!brightnessGestureSwitch) {
