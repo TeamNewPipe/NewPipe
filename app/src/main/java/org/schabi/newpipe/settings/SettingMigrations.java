@@ -108,6 +108,25 @@ public final class SettingMigrations {
         }
     };
 
+    public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        protected void migrate(final Context context) {
+            final boolean brightness = sp.getBoolean("brightness_gesture_control", true);
+            final boolean volume = sp.getBoolean("volume_gesture_control", true);
+
+            final SharedPreferences.Editor editor = sp.edit();
+
+            editor.putString(context.getString(R.string.right_gesture_control_key),
+                    context.getString(volume
+                            ? R.string.volume_control_key : R.string.none_control_key));
+            editor.putString(context.getString(R.string.left_gesture_control_key),
+                    context.getString(brightness
+                            ? R.string.brightness_control_key : R.string.none_control_key));
+
+            editor.apply();
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -119,12 +138,13 @@ public final class SettingMigrations {
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
+            MIGRATION_4_5,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 4;
+    public static final int VERSION = 5;
 
 
     public static void initMigrations(final Context context, final boolean isFirstRun) {

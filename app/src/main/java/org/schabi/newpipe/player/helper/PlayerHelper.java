@@ -228,14 +228,16 @@ public final class PlayerHelper {
                 .getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
     }
 
-    public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
+    public static String getActionForRightGestureSide(@NonNull final Context context) {
         return getPreferences(context)
-                .getBoolean(context.getString(R.string.volume_gesture_control_key), true);
+                .getString(context.getString(R.string.right_gesture_control_key),
+                        context.getString(R.string.default_right_gesture_control_value));
     }
 
-    public static boolean isBrightnessGestureEnabled(@NonNull final Context context) {
+    public static String getActionForLeftGestureSide(@NonNull final Context context) {
         return getPreferences(context)
-                .getBoolean(context.getString(R.string.brightness_gesture_control_key), true);
+                .getString(context.getString(R.string.left_gesture_control_key),
+                        context.getString(R.string.default_left_gesture_control_value));
     }
 
     public static boolean isStartMainPlayerFullscreenEnabled(@NonNull final Context context) {

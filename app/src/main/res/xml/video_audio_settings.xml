@@ -174,19 +174,23 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="@string/volume_gesture_control_key"
-            android:summary="@string/volume_gesture_control_summary"
-            android:title="@string/volume_gesture_control_title"
+        <ListPreference
+            android:defaultValue="@string/default_left_gesture_control_value"
+            android:entries="@array/left_gesture_control_description"
+            android:entryValues="@array/left_gesture_control_values"
+            android:key="@string/left_gesture_control_key"
+            android:summary="@string/left_gesture_control_summary"
+            android:title="@string/left_gesture_control_title"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="@string/brightness_gesture_control_key"
-            android:summary="@string/brightness_gesture_control_summary"
-            android:title="@string/brightness_gesture_control_title"
+        <ListPreference
+            android:defaultValue="@string/default_right_gesture_control_value"
+            android:entries="@array/right_gesture_control_description"
+            android:entryValues="@array/right_gesture_control_values"
+            android:key="@string/right_gesture_control_key"
+            android:summary="@string/right_gesture_control_summary"
+            android:title="@string/right_gesture_control_title"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
