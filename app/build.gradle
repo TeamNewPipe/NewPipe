@@ -96,6 +96,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions {
+        // remove two files which belong to jsoup
+        // no idea how they ended up in the META-INF dir...
+        exclude 'META-INF/README.md'
+        exclude 'META-INF/CHANGES'
+    }
 }
 
 ext {
@@ -313,6 +320,7 @@ static String getGitWorkingBranch() {
     }
 }
 
+// fix reproducible builds
 project.afterEvaluate {
     tasks.compileReleaseArtProfile.doLast {
         outputs.files.each { file ->
