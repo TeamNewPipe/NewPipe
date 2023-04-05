@@ -16,8 +16,6 @@
     <string name="use_external_video_player_key">use_external_video_player</string>
     <string name="use_external_audio_player_key">use_external_audio_player</string>
 
-    <string name="volume_gesture_control_key">volume_gesture_control</string>
-    <string name="brightness_gesture_control_key">brightness_gesture_control</string>
     <string name="resume_on_audio_focus_gain_key">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key">use_inexact_seek_key</string>
@@ -190,6 +188,35 @@
     <string-array name="audio_format_values_list">
         <item>@string/audio_m4a_key</item>
         <item>@string/audio_webm_key</item>
+    </string-array>
+
+    <string name="left_gesture_control_key">left_gesture_control</string>
+    <string name="default_left_gesture_control_value">@string/brightness_control_key</string>
+    <string name="brightness_control_key">brightness_control</string>
+    <string name="volume_control_key">volume_control</string>
+    <string name="none_control_key">none_control</string>
+    <string-array name="left_gesture_control_description">
+        <item>@string/brightness</item>
+        <item>@string/volume</item>
+        <item>@string/none</item>
+    </string-array>
+    <string-array name="left_gesture_control_values">
+        <item>@string/brightness_control_key</item>
+        <item>@string/volume_control_key</item>
+        <item>@string/none_control_key</item>
+    </string-array>
+
+    <string name="right_gesture_control_key">right_gesture_control</string>
+    <string name="default_right_gesture_control_value">@string/volume_control_key</string>
+    <string-array name="right_gesture_control_description">
+        <item>@string/volume</item>
+        <item>@string/brightness</item>
+        <item>@string/none</item>
+    </string-array>
+    <string-array name="right_gesture_control_values">
+        <item>@string/volume_control_key</item>
+        <item>@string/brightness_control_key</item>
+        <item>@string/none_control_key</item>
     </string-array>
 
     <string name="prefer_original_audio_key">prefer_original_audio</string>

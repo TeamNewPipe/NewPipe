@@ -1,3 +1,5 @@
+### Please do **not** open pull requests for *new features* now, as we are planning to rewrite large chunks of the code. Only bugfix PRs will be accepted. More details will be announced soon!
+
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming front-end for Android.</h4>

@@ -1,3 +1,5 @@
+### Please do **not** open pull requests for *new features* now, as we are planning to rewrite large chunks of the code. Only bugfix PRs will be accepted. More details will be announced soon!
+
 NewPipe contribution guidelines
 ===============================
 
