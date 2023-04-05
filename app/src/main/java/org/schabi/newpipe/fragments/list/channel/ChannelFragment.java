@@ -301,9 +301,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 final String description = currentInfo.getDescription();
                 if (description != null && !description.isEmpty()
                         && ChannelTabHelper.showChannelTab(
-                        context, preferences, R.string.show_channel_tabs_info)) {
+                        context, preferences, R.string.show_channel_tabs_about)) {
                     tabAdapter.addFragment(
-                            ChannelInfoFragment.getInstance(currentInfo), "Info");
+                            ChannelAboutFragment.getInstance(currentInfo),
+                            context.getString(R.string.channel_tab_about));
                 }
             }
         }

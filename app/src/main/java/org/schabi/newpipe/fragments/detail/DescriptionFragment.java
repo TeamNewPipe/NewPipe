@@ -20,7 +20,7 @@ import java.util.List;
 
 import icepick.State;
 
-public class DescriptionFragment extends BaseInfoFragment {
+public class DescriptionFragment extends BaseDescriptionFragment {
 
     @State
     StreamInfo streamInfo = null;

@@ -33,7 +33,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public abstract class BaseInfoFragment extends BaseFragment {
+public abstract class BaseDescriptionFragment extends BaseFragment {
     final CompositeDisposable descriptionDisposables = new CompositeDisposable();
     FragmentDescriptionBinding binding;
 

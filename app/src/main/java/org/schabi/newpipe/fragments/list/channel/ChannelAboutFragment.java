@@ -12,24 +12,24 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.stream.Description;
-import org.schabi.newpipe.fragments.detail.BaseInfoFragment;
+import org.schabi.newpipe.fragments.detail.BaseDescriptionFragment;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
 
 import icepick.State;
 
-public class ChannelInfoFragment extends BaseInfoFragment {
+public class ChannelAboutFragment extends BaseDescriptionFragment {
     @State
     protected ChannelInfo channelInfo;
 
-    public static ChannelInfoFragment getInstance(final ChannelInfo channelInfo) {
-        final ChannelInfoFragment fragment = new ChannelInfoFragment();
+    public static ChannelAboutFragment getInstance(final ChannelInfo channelInfo) {
+        final ChannelAboutFragment fragment = new ChannelAboutFragment();
         fragment.channelInfo = channelInfo;
         return fragment;
     }
 
-    public ChannelInfoFragment() {
+    public ChannelAboutFragment() {
         super();
     }
 
