@@ -82,10 +82,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         return instance;
     }
 
-    public ChannelFragment() {
-        super();
-    }
-
     protected void setInitialData(final int sid, final String u, final String title) {
         this.serviceId = sid;
         this.url = u;
