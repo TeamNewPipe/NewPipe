@@ -32,6 +32,7 @@ abstract class FeedDAO {
      * @return the feed streams filtered according to the conditions provided in the parameters
      * @see StreamStateEntity.isFinished()
      * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
+     * @see StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS
      */
     @Query(
         """
@@ -67,6 +68,15 @@ abstract class FeedDAO {
             OR s.stream_type = 'AUDIO_LIVE_STREAM'
         )
         AND (
+            :includePartiallyPlayed
+            OR sh.stream_id IS NULL
+            OR sst.stream_id IS NULL
+            OR (sst.progress_time <= ${StreamStateEntity.PLAYBACK_SAVE_THRESHOLD_START_MILLISECONDS}
+            AND sst.progress_time <= s.duration * 1000 / 4)
+            OR (sst.progress_time >= s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            AND sst.progress_time >= s.duration * 1000 * 3 / 4)
+        )
+        AND (
             :uploadDateBefore IS NULL
             OR s.upload_date IS NULL
             OR s.upload_date < :uploadDateBefore
@@ -79,6 +89,7 @@ abstract class FeedDAO {
     abstract fun getStreams(
         groupId: Long,
         includePlayed: Boolean,
+        includePartiallyPlayed: Boolean,
         uploadDateBefore: OffsetDateTime?
     ): Maybe<List<StreamWithState>>
 

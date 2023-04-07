@@ -538,7 +538,6 @@
     <string name="contribution_title">Paraxwe dayin</string>
     <string name="app_description">Li Android-ê veguhastina ronahiya sivik.</string>
     <string name="title_activity_about">Derbarê NewPipe</string>
-    <string name="toast_no_player">Ji bo lîstina vê pelê tu bername nehat saz kirin</string>
     <string name="charset_most_special_characters">Pir karakterên taybetî</string>
     <string name="charset_letters_and_digits">Name û reqem</string>
     <string name="settings_file_replacement_character_title">Karaktera guheztinê</string>

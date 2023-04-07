@@ -1,0 +1,12 @@
+Nové
+• Upozornění při přidávání duplicit do playlistu a tlačítko pro jejich odstranění
+• Povolit ignorování hardwarových tlačítek
+• Povolit skrývání částečně zhlédnutých videí v kanálu
+
+Vylepšeno
+• Více sloupců mřížky na velkých obrazovkách
+• Ukazatele průběhu konzistentní s nastavením
+
+Opraveno
+• Oprava otevírání URL prohlížeče, stahování a externích přehrávačů v Android 11+
+• Oprava interakce s celou obrazovkou v MIUI

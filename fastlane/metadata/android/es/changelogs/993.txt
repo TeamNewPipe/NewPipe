@@ -1,0 +1,12 @@
+Nuevo
+• Aviso al poner duplicados en lista de reproducción y botón para quitarlos
+• Ignorar botones físicos
+• Ocultar videos vistos a medias en el feed
+
+Mejorado
+• Más columnas en pantallas grandes
+• Indicadores de progreso sean consistentes con la configuración
+
+Solucionado
+• Abrir URL del navegador, descargas y reproductores externos en Android 11+
+• Interación en pantalla completa, requería dos toques en MIUI

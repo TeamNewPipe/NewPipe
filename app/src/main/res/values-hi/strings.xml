@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s पे प्रकाशित हुआ</string>
-    <string name="no_player_found">स्ट्रीमिंग के लिए चालक नहीं मिला। क्या आप VLC इंस्टॉल करना चाहेंगे\?</string>
+    <string name="no_player_found">स्ट्रीमिंग के लिए चालक नहीं मिला। क्या आप वीएलसी इंस्टॉल करना चाहेंगे\?</string>
     <string name="install">स्थापित करें</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
@@ -10,7 +10,7 @@
     <string name="search">खोजें</string>
     <string name="settings">सेटिंग्स</string>
     <string name="subscribe_button_title">सब्सक्राइब करें</string>
-    <string name="subscribed_button_title">सब्सक्राइब है</string>
+    <string name="subscribed_button_title">सब्सक्राइड है</string>
     <string name="channel_unsubscribed">चैनल अनसब्सक्राईब हुआ</string>
     <string name="tab_subscriptions">सब्सक्रिप्शनस</string>
     <string name="controls_background_title">बैकग्राउंड</string>
@@ -46,7 +46,7 @@
     <string name="use_external_audio_player_title">कोई दूसरा ध्वनि चालक उपयोग करें</string>
     <string name="subscription_change_failed">सब्सक्रिप्शन बदली नहीं जा सकी</string>
     <string name="subscription_update_failed">सब्सक्रिप्शन अपडेट नहीं किया जा सका</string>
-    <string name="fragment_feed_title">देखें कि क्या नया है</string>
+    <string name="fragment_feed_title">क्या नया है</string>
     <string name="download_path_title">वीडियो डाउनलोड का फ़ोल्डर</string>
     <string name="download_path_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
@@ -56,10 +56,10 @@
     <string name="default_resolution_title">प्रथम स्थापित गुणवत्ता स्तर</string>
     <string name="default_popup_resolution_title">पॉपअप का प्रथम स्थापित गुणवत्ता स्तर</string>
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
-    <string name="show_higher_resolutions_summary">केवल कुछ ही यंत्र 2K/4K मे वीडियो चला सकते हैं</string>
-    <string name="play_with_kodi_title">Kodi मे चलाए</string>
-    <string name="kore_not_found">Kore ऐप नहीं मिली, इसे स्थापित करें\?</string>
-    <string name="show_play_with_kodi_title">\"Kodi मे चलाएं\" वाला विकल्प दिखाएँ</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2के/4के मे वीडियो चला सकते हैं</string>
+    <string name="play_with_kodi_title">कोडी मे चलाए</string>
+    <string name="kore_not_found">लापता Kode ऐप स्थापित करें\?</string>
+    <string name="show_play_with_kodi_title">\"कोडी मे चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
     <string name="default_video_format_title">प्रथम स्थापित वीडियो फॉर्मेट</string>
@@ -110,8 +110,8 @@
     <string name="player_unrecoverable_failure">कभी ठीक न होने वाले वीडियो प्लेयर की त्रुटी आ रही है</string>
     <string name="player_recoverable_failure">वीडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
     <string name="sorry_string">खेद है की, ऐसा होना नहीं चाहिए था.</string>
-    <string name="error_report_button_text">त्रुटी की रिपोर्ट को ईमेल से भेजे</string>
-    <string name="error_snackbar_message">माफ़ करे , कुछ त्रुटियाँ हो रही है</string>
+    <string name="error_report_button_text">रिपोर्ट को ईमेल से भेजे</string>
+    <string name="error_snackbar_message">माफ़ करे, कुछ त्रुटि हो गई।</string>
     <string name="error_snackbar_action">रिपोर्ट करें</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
@@ -133,7 +133,7 @@
     <string name="no_subscribers">कोई सब्सक्राइबर नहीं है</string>
     <plurals name="subscribers">
         <item quantity="one">%s सब्सक्राइबर</item>
-        <item quantity="other">%s सब्सक्राइबर</item>
+        <item quantity="other">%s सब्सक्राइबर्स</item>
     </plurals>
     <plurals name="views">
         <item quantity="one">%s दर्शक</item>
@@ -141,7 +141,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">%s वीडियो</item>
-        <item quantity="other">%s वीडियो</item>
+        <item quantity="other">%s वीडियोस्</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोकें</string>
@@ -184,7 +184,7 @@
     <string name="hold_to_append">जोड़ने के लिए पकड़ें रहे</string>
     <string name="start_here_on_background">पृष्टभूमि में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-    <string name="no_player_found_toast">स्ट्रीमिंग करने के लिए कोई चालक उपलब्ध नहीं है (आप इसे चलाने के लिए VLC चालक स्थापित कर सकते हैं)।</string>
+    <string name="no_player_found_toast">स्ट्रीमिंग करने के लिए कोई चालक उपलब्ध नहीं है (आप इसे चलाने के लिए वीएलसी चालक स्थापित कर सकते हैं)।</string>
     <string name="controls_download_desc">स्ट्रीम फाइल डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
     <string name="tab_bookmarks">बुकमार्क की गई प्लेलिस्टें</string>
@@ -247,7 +247,7 @@
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
     <string name="download_thumbnail_title">थंमनेल लोड करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
-    <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5,15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
+    <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5, 15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
     <string name="download_thumbnail_summary">थंमनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
@@ -275,7 +275,6 @@
     <string name="error_occurred_detail">एक भूल हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नही है</string>
     <string name="one_item_deleted">एक चीज़ साफ कर दी गई।</string>
-    <string name="toast_no_player">इस फ़ाइल को चलाने के लिए कोई ऐप स्थापित नही है</string>
     <string name="privacy_policy_title">न्यूपाइप की गोपनीयता नीति</string>
     <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहोत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नही करता। 
 \nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
@@ -296,14 +295,14 @@
     <string name="subscriptions_export_unsuccessful">सब्सक्रिप्शन निर्यात नही कर सके</string>
     <string name="import_youtube_instructions">गूगल टेकआउट से यूट्यूब सदस्यता आयात करें:
 \n
-\n1. इस URL पर जाएं:%1$s
+\n1. इस यूआरएल पर जाएं: %1$s
 \n2. पूछे जाने पर लॉग इन करें
-\n3. \"सभी डेटा शामिल करें\" पर क्लिक करें, फिर \"सभी को अचयनित करें\" पर, फिर केवल \"सदस्यताएँ\" चुनें और \"ओके\" पर क्लिक करें
+\n3. \"सभी डाटा शामिल करें\" पर क्लिक करें, फिर \"सभी को अचयनित करें\" पर, फिर केवल \"सदस्यताएँ\" चुनें और \" ठीक है\" पर क्लिक करें
 \n4. \"अगला चरण\" पर क्लिक करें और फिर \"निर्यात बनाएं\"
 \n5. प्रकट होने के बाद \"डाउनलोड\" बटन पर क्लिक करें
 \n6. नीचे आयात फ़ाइल पर क्लिक करें और डाउनलोड की गई .zip फ़ाइल चुनें
-\n7. [यदि .zip आयात विफल हो जाता है] .csv फ़ाइल निकालें (आमतौर पर \"YouTube और YouTube Music/subscriptions/subscriptions.csv\" के अंतर्गत), नीचे आयात फ़ाइल पर क्लिक करें और निकाली गई csv फ़ाइल चुनें</string>
-    <string name="import_soundcloud_instructions_hint">आपका आई डी, soundcloud.com/(आपका आई डी)</string>
+\n7. [यदि .zip आयात विफल हो जाता है] .csv फ़ाइल निकालें (आमतौर पर \"यूट्यूब और यूट्यूब म्युज़िक/सब्सक्रिपशन/subscriptions.csv\" के अंतर्गत), नीचे आयात फ़ाइल पर क्लिक करें और निकाली गई सीएसवी फ़ाइल चुनें</string>
+    <string name="import_soundcloud_instructions_hint">आपका आईडी, soundcloud.com/(आपका आईडी)</string>
     <string name="import_network_expensive_warning">ध्यान रखे, यह तरीका नेटवर्क साधनो के लिए मंहगा हो सकता है।
 \n
 \nक्या आप आगे बढ़ना चाहते है?</string>
@@ -313,16 +312,16 @@
     <string name="unhook_checkbox">अनहुक (बिगाड़ सकता है)</string>
     <string name="skip_silence_checkbox">खामोशी के समय तेज़ी से आगे बढ़े</string>
     <string name="playback_step">कदम</string>
-    <string name="playback_reset">रिसेट</string>
+    <string name="playback_reset">रीसेट</string>
     <string name="accept">स्वीकारे</string>
     <string name="decline">अस्वीकार करे</string>
     <string name="limit_data_usage_none_description">असीमित</string>
-    <string name="limit_mobile_data_usage_title">मोबाइल डेटा उपयोग करते समय रेसॉल्युसेन को सिमित करे</string>
+    <string name="limit_mobile_data_usage_title">मोबाइल डेटा उपयोग करते समय रिजॉल्युशन को सिमित करे</string>
     <string name="minimize_on_exit_title">ऐप बदलते समय उसे मिनिमाइज करे</string>
     <string name="minimize_on_exit_summary">मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर — %s</string>
     <string name="minimize_on_exit_none_description">कोई नही</string>
     <string name="minimize_on_exit_background_description">बैकग्राउंड प्लेयर में बदले</string>
-    <string name="minimize_on_exit_popup_description">पॉप अप प्लेयर में बदले</string>
+    <string name="minimize_on_exit_popup_description">पॉपअप प्लेयर में बदले</string>
     <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
@@ -362,11 +361,11 @@
     <string name="error_http_no_content">सर्वर डेटा नहीं भेजता है</string>
     <string name="error_http_not_found">नहीं मिला</string>
     <string name="error_postprocessing_failed">प्रक्रिया के बाद का कार्य विफल रहा</string>
-    <string name="stop">रुको</string>
+    <string name="stop">रोके</string>
     <string name="max_retry_msg">अधिकतम पुनर्प्रयास</string>
     <string name="max_retry_desc">डाउनलोड रद्द करने से पहले प्रयासों की अधिकतम संख्या</string>
     <string name="pause_downloads_on_mobile">मीटर्ड नेटवर्क पर रोके</string>
-    <string name="pause_downloads_on_mobile_desc">मोबाइल डाटा का इस्तेमाल करते समय उपयोगी है, परन्तु कुछ डौन्लोडस रोके नहीं जा सकते है</string>
+    <string name="pause_downloads_on_mobile_desc">मोबाइल डाटा का इस्तेमाल करते समय उपयोगी है, परंतु कुछ डाउन्लोड रोके नहीं जा सकते है</string>
     <string name="events">घटनायें</string>
     <string name="conferences">सम्मेलनों</string>
     <string name="show_comments_title">टिप्पणियां दिखाएं</string>
@@ -383,10 +382,10 @@
     <string name="watch_history_states_deleted">प्लेबैक स्थान मिटा दिए गए</string>
     <string name="missing_file">फाइल की जगह बदली गयी या फिर फाइल मिटा दी गयी</string>
     <string name="overwrite_unrelated_warning">इस नाम की कोई फ़ाइल पहले से मौजूद है</string>
-    <string name="overwrite_finished_warning">इस नाम की एक डाउनलोड की गई फ़ाइल पहले से मौजूद है</string>
-    <string name="overwrite_failed">फाइल के ऊपर नहीं लिख सकते</string>
+    <string name="overwrite_finished_warning">इस नाम की डाउनलोड फ़ाइल पहले से मौजूद है</string>
+    <string name="overwrite_failed">फाइल को ओवरराइट नहीं कर सकते</string>
     <string name="download_already_pending">इस नाम का एक डाउनलोड बाकी है</string>
-    <string name="error_postprocessing_stopped">फ़ाइल पर कार्य करते समय NewPipe बंद किया गया</string>
+    <string name="error_postprocessing_stopped">फ़ाइल पर कार्य करते समय न्यूपाइप बंद किया गया</string>
     <string name="error_insufficient_storage">डिवाइस पर जगह समाप्त</string>
     <string name="error_progress_lost">प्रगति खो गई, क्योंकि फ़ाइल मिटा दी गई थी</string>
     <string name="error_timeout">कनेक्शन का समय समाप्त</string>
@@ -397,28 +396,28 @@
     <string name="pause_downloads">डाउनलोड रोकें</string>
     <string name="downloads_storage_ask_title">डाउनलोड कहाँ करने के लिए पूछे</string>
     <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा
-\nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (SAF) को सक्षम करें</string>
+\nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (एसएएफ) को सक्षम करें</string>
     <string name="downloads_storage_use_saf_title">सिस्टम फोल्डर पिकर (एसएएफ) का प्रयोग करें</string>
     <string name="clear_playback_states_title">प्लेबैक स्थानों को मिटाये</string>
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाये</string>
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाये\?</string>
     <string name="enable_disposed_exceptions_summary">फ्रेगमेंट या एक्टिविटी लाइफसाइकिल के बाद Rx सन्देश ना पहुँचाया जा सके तोह ज़रूर कोशिश करे</string>
-    <string name="import_soundcloud_instructions">SoundCloud प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
+    <string name="import_soundcloud_instructions">साउंडक्लाउड प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
 \n
-\n1. अपने वेब ब्राउज़र मैं \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
+\n1. अपने वेब ब्राउज़र में \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
 \n2. इस युआरएल को खोले: %1$s
-\n3. लोग इन करे
+\n3. लॉग इन करे
 \n4. आप जिस प्रोफाइल युआरएल पे भेजे जाते है उसे कॉपी करे।</string>
-    <string name="start_accept_privacy_policy">यूरोप के जनरल डाटा प्रोटेक्शन रेगुलेशन (जी डी पी आर) का पालन करने के लिए, हम आपका ध्यान न्यूपाइप की नयी प्राइवेसी पालिसी पी डालना चाहते है।इसे बारीकी से पढ़िए।
-\nआपको अगर हमें किसी मुसीबत का सन्देश भेजना हो तो इसे स्वीकार करे।</string>
+    <string name="start_accept_privacy_policy">यूरोप के जेनेरल डाटा प्रोटेक्शन रेगुलेशन (जीडीपीआर) का पालन करने के लिए, हम आपका ध्यान न्यूपाइप की नयी प्राइवेसी पालिसी पे डालना चाहते है। इसे बारीकी से पढ़िए।
+\nआपको अगर हमें कोई त्रुटि रिपोर्ट भेजना हो तो इसे स्वीकार करे।</string>
     <string name="saved_tabs_invalid_json">सामान्य टैब्स का इस्तेमाल, सहेजे टैब्स को पढ़ने में रूकावट</string>
-    <string name="updates_setting_description">जब इस ऐप के लिए अपडेट उपलब्ध हो, अधिसूचना दिखाई जाये</string>
+    <string name="updates_setting_description">जब इस ऐप के लिए अपडेट उपलब्ध हो, तब अधिसूचना दिखाई जाये</string>
     <string name="list_view_mode">सूचि देखने वाला ढंग</string>
     <string name="grid">ग्रिड</string>
     <string name="auto">ऑटो</string>
-    <string name="show_error">मुसीबत दिखाए</string>
+    <string name="show_error">त्रुटि दिखाए</string>
     <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
-    <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है</string>
+    <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
     <string name="no_one_watching">कोई नहीं देख रहा है</string>
@@ -429,23 +428,23 @@
     <string name="no_one_listening">कोई नहीं सुन रहा है</string>
     <plurals name="listening">
         <item quantity="one">%s श्रोता</item>
-        <item quantity="other">%s श्रोता</item>
+        <item quantity="other">%s श्रोताए</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
 \n
-\nNewPipe दो फीड लोडिंग रणनीति प्रदान करता है:
+\nन्यूपाइप दो फीड लोडिंग रणनीति प्रदान करता है:
 \n• संपूर्ण सदस्यता चैनल प्राप्त करना, जो धीमा है लेकिन पूरा होता है।
 \n• एक समर्पित सेवा के समापन बिंदु का उपयोग करना, जो तेज़ है लेकिन आमतौर पर पूरा नहीं होता है।
 \n
 \nदोनों के बीच अंतर यह है कि तेज वाली रणनीति में आमतौर पर कुछ जानकारी का अभाव होता है, जैसे कि आइटम की अवधि या प्रकार (लाइव वीडियो और सामान्य वीडियो के बीच अंतर पता नहीं लगा सकते हैं) और ऐसा भी हो सकता है कि ये कम आइटम दिखाए।
 \n
-\nYouTube उस सेवा का एक उदाहरण है जो RSS फ़ीड के साथ तेज़ विधि प्रदान करता है।
+\nयूट्यूब ऐसी सेवा का एक उदाहरण है जो आरएसएस फ़ीड के साथ ये तेज़ विधि प्रदान करता है।
 \n
 \nतो आखिर में चुनाव आपकी पसंद पर है: गति या फिर सटीक जानकारी।</string>
-    <string name="content_not_supported">यह सामग्री फिलहाल NewPipe सपोर्ट नहीं करता है। 
+    <string name="content_not_supported">यह सामग्री फिलहाल न्यूपाइप सपोर्ट नहीं करता है।
 \n
 \nइसे आशा से भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
     <string name="detail_sub_channel_thumbnail_view_description">चैनल का अवतार थंमनेल</string>
@@ -472,27 +471,27 @@
     <string name="auto_queue_toggle">अपने आप कतार में जोड़े</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
     <string name="seek_duration_title">तलाश अवधि फास्ट-फ़ॉरवर्ड /- रिवाइंड करे</string>
-    <string name="notification_colorize_summary">एंड्रॉइड को थंमनेल में मुख्य रंग के अनुसार अधिसूचना रंग को अनुकूलित करें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
-    <string name="notification_colorize_title">सूचनापत्र को रंगीन करें</string>
+    <string name="notification_colorize_summary">एंड्रॉइड को थम्बनेल में मुख्य रंग के अनुसार अधिसूचना रंग को अनुकूलित करने की अनुमति दे (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
+    <string name="notification_colorize_title">अभिसूचना को रंगीन करें</string>
     <string name="notification_action_nothing">कुछ नहीं</string>
     <string name="notification_action_buffering">बफरिंग</string>
-    <string name="notification_action_shuffle">Shuffle करे</string>
+    <string name="notification_action_shuffle">शफल करे</string>
     <string name="notification_action_repeat">दोहराएं</string>
-    <string name="notification_actions_at_most_three">आप संछिप्त सूचनापत्र में दिखाए जाने वाले विकल्प में से अधिकतम 3 को चुन सकते है !</string>
+    <string name="notification_actions_at_most_three">आप संछिप्त अभिसूचना में दिखाए जाने वाले विकल्प में से अधिकतम 3 को चुन सकते है !</string>
     <string name="notification_actions_summary">नीचे दी गई प्रत्येक अधिसूचना क्रिया को उस पर टैप करके संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके उनमें से अधिकतम तीन का चयन करें जिन्हें कॉम्पैक्ट अधिसूचना में दिखाया जाना है</string>
     <string name="notification_action_4_title">पांचवा एक्शन बटन</string>
     <string name="notification_action_3_title">चतुर्थी एक्शन बटन</string>
     <string name="notification_action_2_title">तृतीय एक्शन बटन</string>
     <string name="notification_action_1_title">द्वितीय एक्शन बटन</string>
     <string name="notification_action_0_title">प्रथम एक्शन बटन</string>
-    <string name="notification_scale_to_square_image_summary">नोटिफिकेशन में दिखाए गए वीडियो थंमनेल को 16: 9 के बजाय 1: 1 के अनुपात में दिखाए</string>
-    <string name="notification_scale_to_square_image_title">थंमनेल को 1:1 के अनुपात में दिखाएं</string>
+    <string name="notification_scale_to_square_image_summary">नोटिफिकेशन में दिखाए गए वीडियो थम्बनेल को 16:9 के बजाय 1:1 के अनुपात में दिखाए</string>
+    <string name="notification_scale_to_square_image_title">थम्बनेल को 1:1 के अनुपात में दिखाएं</string>
     <plurals name="hours">
         <item quantity="one">%d घंटा</item>
         <item quantity="other">%d घंटे</item>
     </plurals>
     <plurals name="seconds">
-        <item quantity="one">%d सेकेड</item>
+        <item quantity="one">%d सेकेंड</item>
         <item quantity="other">%d सेकंड्स</item>
     </plurals>
     <string name="remove_watched_popup_title">देखे गए वीडियो हटायें\?</string>
@@ -601,7 +600,7 @@
     <string name="feed_update_threshold_title">फ़ीड अपडेट चरणसीमा</string>
     <string name="feed_load_error">फ़ीड लोड करने में गड़बड़ी</string>
     <string name="feed_load_error_account_info">\'%s\' के लिए फ़ीड लोड नहीं कर सका।</string>
-    <string name="recent">रीसैंट</string>
+    <string name="recent">हाल ही के</string>
     <string name="description_select_enable">विवरण में पाठ का चयन सक्षम करें</string>
     <string name="metadata_privacy">गोपनीयता</string>
     <string name="description_select_note">अब आप विवरण के अंदर पाठ का चयन कर सकते हैं। ध्यान दें कि पृष्ठ झिलमिला सकता है और चयन मोड में लिंक क्लिक करने योग्य नहीं हो सकते हैं।</string>
@@ -610,13 +609,13 @@
     <string name="metadata_host">होसट</string>
     <string name="notifications_disabled">अधिसूचनाएं अक्षम हैं</string>
     <string name="metadata_privacy_unlisted">गैर-सूचीबद्ध</string>
-    <string name="toggle_all">संयुक्त टॉगल करें</string>
-    <string name="get_notified">सूचना पायें</string>
+    <string name="toggle_all">सबको टॉगल करें</string>
+    <string name="get_notified">अधिसूचना पायें</string>
     <string name="enumeration_comma">,</string>
     <string name="manual_update_description">नए संस्करणों के लिए मैन्युअल रूप से जांचें</string>
-    <string name="new_seek_duration_toast">एकसोप्लेयर की कमी के कारण खोज की अवधि %d सेकंड पर सेट की गई</string>
+    <string name="new_seek_duration_toast">एग्ज़ोप्लेयर के कमी के कारण खोज की अवधि %d सेकंड पर सेट की गई</string>
     <string name="account_terminated">खाता समाप्त किया गया</string>
-    <string name="streams_not_yet_supported_removed">स्ट्रीम जो अभी तक डाउनलोडर द्वारा समर्थित नहीं हैं, नहीं दिखाई जाती हैं</string>
+    <string name="streams_not_yet_supported_removed">जो स्ट्रीम अभी तक डाउनलोडर द्वारा समर्थित नहीं हैं, वो नहीं दिखाई जाती</string>
     <string name="select_quality_external_players">बाहरी प्लेयरस के लिए क्वालिटी का चयन करें</string>
     <string name="unknown_format">अज्ञात प्रारूप</string>
     <string name="unknown_quality">अज्ञात क्वालिटी</string>
@@ -642,36 +641,36 @@
     </plurals>
     <plurals name="days">
         <item quantity="one">%d दिन</item>
-        <item quantity="other">%d दिन</item>
+        <item quantity="other">%d दिनो</item>
     </plurals>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d चयनित</item>
-        <item quantity="other">%d चयनित</item>
+        <item quantity="other">%d चयनित हुए</item>
     </plurals>
-    <string name="progressive_load_interval_exoplayer_default">एक्सोप्लेयर डिफ़ॉल्ट</string>
+    <string name="progressive_load_interval_exoplayer_default">एग्ज़ोप्लेयर डिफ़ॉल्ट</string>
     <string name="progressive_load_interval_title">प्लेबैक लोड अंतराल आकार</string>
     <string name="feed_group_dialog_empty_name">समूह का नाम नहीं</string>
     <string name="feed_group_dialog_select_subscriptions">सब्सक्रिप्शनस चुनें</string>
     <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं\?</string>
     <string name="feed_create_new_group_button_title">नया</string>
     <string name="settings_category_feed_title">फ़ीड</string>
-    <string name="feed_toggle_show_future_items">भविष्य की आइटम दिखाएं</string>
+    <string name="feed_toggle_show_future_items">भविष्य आइटम दिखाएं</string>
     <string name="feed_new_items">नई फ़ीड आइटम</string>
     <string name="feed_processing_message">फ़ीड संसाधित हो रही है …</string>
     <string name="open_website_license">वेबसाइट खोलें</string>
     <string name="feed_use_dedicated_fetch_method_title">उपलब्ध होने पर समर्पित फ़ीड से प्राप्त करें</string>
     <string name="metadata_language">भाषा</string>
-    <string name="on">आन</string>
+    <string name="on">ऑन</string>
     <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
     <string name="feed_groups_header_title">चैनल समूह</string>
     <string name="feed_toggle_hide_played_items">देखे गए आइटम छुपाएं</string>
-    <string name="feed_toggle_hide_future_items">भविष्य की आइटम छुपाएं</string>
-    <string name="faq_title">बार बार पूछे जाने वाले प्रश्न</string>
+    <string name="feed_toggle_hide_future_items">भविष्य आइटम छुपाएं</string>
+    <string name="faq_title">कई बार पूछे प्रश्न</string>
     <string name="faq">वेबसाइट पर देखें</string>
     <string name="main_page_content_swipe_remove">आइटम हटाने के लिए स्वाइप करें</string>
     <string name="disable_media_tunneling_title">मीडिया टनलिंग अक्षम करें</string>
     <string name="show_crash_the_player_title">\"क्रैश द प्लेयर\" दिखाएं</string>
-    <string name="feed_subscription_not_loaded_count">लोड नहीं हुआ: %d</string>
+    <string name="feed_subscription_not_loaded_count">लोड नहीं हुआ: %d</string>
     <string name="service_provides_reason">%s इसका कारण प्रदान करता है:</string>
     <string name="metadata_tags">टैग</string>
     <string name="metadata_licence">लाइसेंस</string>
@@ -693,9 +692,9 @@
 \nक्या यक़ीनन आप ऐसा चाह्ते हैं\? इसे असंपादित नहीं किया जा सकेगा!</string>
     <plurals name="minutes">
         <item quantity="one">%d मिनट</item>
-        <item quantity="other">%d मिनट</item>
+        <item quantity="other">%d मिनट्स</item>
     </plurals>
-    <string name="feed_oldest_subscription_update">अंतिम अपडेट फ़ीड: %s</string>
+    <string name="feed_oldest_subscription_update">फीड अंतिम अपडेट: %s</string>
     <string name="feed_group_dialog_empty_selection">कोई सदस्यता चयनित नहीं है</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">केवल असमूहीकृत सब्सक्रिप्शनस दिखाएं</string>
     <string name="feed_load_error_fast_unknown">फ़ास्ट फ़ीड मोड इस पर अधिक जानकारी प्रदान नहीं करता है।</string>
@@ -711,7 +710,7 @@
     <string name="detail_pinned_comment_view_description">पिन की हुई टिप्पणी</string>
     <string name="detail_heart_img_view_description">निर्माता द्वारा दिया दिल</string>
     <string name="tablet_mode_title">टैबलेट मोड</string>
-    <string name="you_successfully_subscribed">आपने इस चैनल को अब सब्सक्राइब किया है</string>
+    <string name="you_successfully_subscribed">आपने इस चैनल को अभी सब्सक्राइब किया है</string>
     <string name="no_video_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई वीडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="no_audio_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई ऑडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="feed_use_dedicated_fetch_method_summary">कुछ सेवाओं में उपलब्ध, यह आमतौर पर बहुत तेज होता है लेकिन सीमित मात्रा में आइटम और अक्सर अधूरी जानकारी (जैसे कोई अवधि नहीं, आइटम प्रकार, कोई लाइव स्थिति नहीं) लौटा सकता है</string>
@@ -719,7 +718,7 @@
 \nकृपया फ़ाइल प्रबंधक स्थापित करें या डाउनलोड सेटिंग में \'%s\' को अक्षम करने का प्रयास करें</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s डाउनलोड हटाए गए</item>
-        <item quantity="other">%1$s डाउनलोड हटाए गए</item>
+        <item quantity="other">%1$s डाउनलोड्स हटाए गए</item>
     </plurals>
     <string name="sort">क्रमबद्ध करें</string>
     <string name="fast_mode">तेज मोड</string>
@@ -730,4 +729,16 @@
     <string name="unset_playlist_thumbnail">स्थायी थंमनेल अनसेट करें</string>
     <string name="card">कार्ड</string>
     <string name="msg_failed_to_copy">क्लिपबोर्ड पर कॉपी करने में विफल</string>
+    <string name="duplicate_in_playlist">धुंधली की गई प्‍लेलिस्‍ट में पहले से ही यह आइटम है।</string>
+    <string name="playlist_add_stream_success_duplicate">डुप्लीकेट जोड़ा गया %d बार</string>
+    <string name="remove_duplicates">डुप्लीकेट हटाएं</string>
+    <string name="remove_duplicates_title">डुप्लीकेट हटाएं\?</string>
+    <string name="remove_duplicates_message">क्या आप इस प्लेलिस्ट की सभी डुप्लीकेट स्ट्रीम हटाना चाहते हैं\?</string>
+    <string name="feed_hide_streams_title">निम्नलिखित स्ट्रीम दिखाएँ</string>
+    <string name="feed_show_upcoming">आगामी</string>
+    <string name="ignore_hardware_media_buttons_title">हार्डवेयर मीडिया बटन घटनाओं की अनदेखी करें</string>
+    <string name="ignore_hardware_media_buttons_summary">उपयोगी है, उदाहरण के लिए, यदि आप टूटे हुए भौतिक बटन वाले हेडसेट का उपयोग कर रहे हैं</string>
+    <string name="feed_show_hide_streams">स्ट्रीम दिखाएँ / छिपाएँ</string>
+    <string name="feed_show_watched">पूरा देखा</string>
+    <string name="feed_show_partially_watched">आंशिक रूप से देखा गया</string>
 </resources>

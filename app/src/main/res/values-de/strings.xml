@@ -49,7 +49,7 @@
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
     <string name="could_not_setup_download_menu">Konnte Downloadmenü nicht einrichten</string>
-    <string name="error_report_button_text">Fehler via E-Mail melden</string>
+    <string name="error_report_button_text">Per E-Mail melden</string>
     <string name="copy_for_github">Formatierten Fehlerbericht kopieren</string>
     <string name="error_report_open_issue_button_text">Über GitHub melden</string>
     <string name="error_snackbar_action">Melden</string>
@@ -75,7 +75,7 @@
     <string name="short_billion">Mrd.</string>
     <string name="msg_name">Dateiname</string>
     <string name="msg_error">Fehler</string>
-    <string name="msg_wait">Bitte warten …</string>
+    <string name="msg_wait">Bitte warten …</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
     <string name="no_available_dir">Bitte gib später in den Einstellungen einen Downloadordner an</string>
     <string name="start">Starten</string>
@@ -136,7 +136,7 @@
     <string name="action_history">Verlauf</string>
     <string name="subscription_change_failed">Abonnement konnte nicht geändert werden</string>
     <string name="subscription_update_failed">Abonnement konnte nicht aktualisiert werden</string>
-    <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
+    <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z. B. Telefonaten) Wiedergabe fortsetzen</string>
     <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
     <string name="notification_channel_description">Benachrichtigungen für den NewPipe-Player</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
@@ -295,13 +295,12 @@
 \n2. Gehe zu dieser URL: %1$s
 \n3. Melde dich an, falls du dazu aufgefordert wirst
 \n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
-    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">deineID, soundcloud.com/deineid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte „Öffnen“-Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Erfordert Neustart der App</string>
-    <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
@@ -573,7 +572,7 @@
     <string name="clear_cookie_summary">Lösche Cookies, die NewPipe speichert, wenn du ein reCAPTCHA löst</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-Cookies wurden gelöscht</string>
     <string name="clear_cookie_title">reCAPTCHA-Cookies löschen</string>
-    <string name="show_age_restricted_content_summary">Inhalte mit Altersbegrenzung (z. B. ab 18) anzeigen, die für Kinder möglicherweise ungeeignet sind</string>
+    <string name="show_age_restricted_content_summary">Für Kinder möglicherweise ungeeignete Inhalte anzeigen (bspw. ab 18)</string>
     <string name="enqueue_stream">In Wiedergabe einreihen</string>
     <string name="notification_colorize_summary">Android kann die Farbe der Benachrichtigung entsprechend der Hauptfarbe in der Miniaturansicht anpassen (beachte, dass dies nicht auf allen Geräten verfügbar ist)</string>
     <string name="notification_colorize_title">Benachrichtigung farblich anpassen</string>
@@ -732,4 +731,14 @@
     <string name="card">Karte</string>
     <string name="playlist_add_stream_success_duplicate">Duplikat %d mal hinzugefügt</string>
     <string name="duplicate_in_playlist">Die ausgegrauten Wiedergabelisten enthalten dieses Element bereits.</string>
+    <string name="ignore_hardware_media_buttons_summary">Nützlich, wenn z. B. ein Headset mit defekten physischen Tasten verwendet wird</string>
+    <string name="ignore_hardware_media_buttons_title">Ereignisse der Hardware-Medientasten ignorieren</string>
+    <string name="remove_duplicates">Duplikate entfernen</string>
+    <string name="remove_duplicates_title">Duplikate entfernen\?</string>
+    <string name="remove_duplicates_message">Möchtest du alle doppelten Streams in dieser Wiedergabeliste entfernen\?</string>
+    <string name="feed_show_hide_streams">Streams anzeigen/ausblenden</string>
+    <string name="feed_hide_streams_title">Folgende Streams anzeigen</string>
+    <string name="feed_show_upcoming">Demnächst</string>
+    <string name="feed_show_watched">Vollständig angeschaut</string>
+    <string name="feed_show_partially_watched">Teilweise angeschaut</string>
 </resources>

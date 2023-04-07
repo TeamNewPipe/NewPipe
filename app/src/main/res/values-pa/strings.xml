@@ -138,7 +138,7 @@
     <string name="error_occurred_detail">ਇੱਕ ਤਰੁੱਟੀ ਆਈ ਹੈ: %1$s</string>
     <string name="no_streams_available_download">ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਸਟ੍ਰੀਮ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="sorry_string">ਮੁਆਫ ਕਰਨਾ, ਅਜਿਹਾ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ ਸੀ।</string>
-    <string name="error_report_button_text">ਈ-ਮੇਲ ਦੁਆਰਾ ਇਸ ਤਰੁੱਟੀ ਦੀ ਇਤਲਾਹ ਦਿਓ</string>
+    <string name="error_report_button_text">ਈ-ਮੇਲ ਦੁਆਰਾ ਇਤਲਾਹ ਦਿਓ</string>
     <string name="error_snackbar_message">ਅਫ਼ਸੋਸ ਹੈ, ਕੁਝ ਤਰੁੱਟੀਆਂ ਸਾਹਮਣੇ ਆਈਆਂ ਹਨ।</string>
     <string name="error_snackbar_action">ਇਤਲਾਹ ਕਰੋ</string>
     <string name="what_device_headline">ਜਾਣਕਾਰੀ:</string>
@@ -201,7 +201,6 @@
     <string name="settings_file_replacement_character_title">ਵਟਾਂਦਰਾ ਚਿੰਨ</string>
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
-    <string name="toast_no_player">ਇਸ ਫਾਈਲ ਨੂੰ ਚਲਾਉਣ ਲਈ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ</string>
     <string name="title_activity_about">ਨਿਊਪਾਈਪ ਬਾਰੇ</string>
     <string name="title_licenses">ਤੀਜੀ ਧਿਰ ਦੇ ਲਾਈਸੈਂਸ</string>
     <string name="copyright" formatted="true">© %1$s ਵਲੋਂ %2$s, %3$s ਅਧੀਨ</string>
@@ -730,4 +729,16 @@
     <string name="unset_playlist_thumbnail">ਸਥਾਈ ਥੰਮਨੇਲ ਨੂੰ ਅਨਸੈੱਟ ਕਰੋ</string>
     <string name="msg_failed_to_copy">ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
     <string name="card">ਕਾਰਡ</string>
+    <string name="duplicate_in_playlist">ਪਲੇਲਿਸਟਾਂ ਜੋ ਧੁੰਦਲੀਆਂ ਹੋ ਗਈਆਂ ਹਨ ਉਹਨਾਂ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਇਹ ਆਈਟਮ ਹੈ।</string>
+    <string name="playlist_add_stream_success_duplicate">ਡੁਪਲੀਕੇਟ ਜੋੜਿਆ ਗਿਆ %d ਵਾਰ</string>
+    <string name="ignore_hardware_media_buttons_summary">ਉਪਯੋਗੀ ਹੈ, ਉਦਾਹਰਨ ਲਈ, ਜੇਕਰ ਤੁਸੀਂ ਟੁੱਟੇ ਭੌਤਿਕ ਬਟਨਾਂ ਵਾਲਾ ਹੈੱਡਸੈੱਟ ਵਰਤ ਰਹੇ ਹੋ</string>
+    <string name="remove_duplicates">ਡੁਪਲੀਕੇਟ ਹਟਾਓ</string>
+    <string name="remove_duplicates_title">ਕੀ ਡੁਪਲੀਕੇਟ ਹਟਾਉਣੇ ਹਨ\?</string>
+    <string name="remove_duplicates_message">ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਵਿੱਚ ਸਾਰੀਆਂ ਡੁਪਲੀਕੇਟ ਸਟ੍ਰੀਮਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
+    <string name="feed_hide_streams_title">ਅੱਗੇ ਦਿੱਤੀਆਂ ਸਟ੍ਰੀਮਾਂ ਵਿਖਾਓ</string>
+    <string name="feed_show_watched">ਪੂਰੀ ਤਰ੍ਹਾਂ ਵੇਖਿਆ ਗਿਆ</string>
+    <string name="feed_show_partially_watched">ਅੰਸ਼ਕ ਤੌਰ \'ਤੇ ਵੇਖਿਆ ਗਿਆ</string>
+    <string name="feed_show_upcoming">ਆਗਾਮੀ</string>
+    <string name="ignore_hardware_media_buttons_title">ਹਾਰਡਵੇਅਰ ਮੀਡੀਆ ਬਟਨ ਇਵੈਂਟਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕਰੋ</string>
+    <string name="feed_show_hide_streams">ਸਟ੍ਰੀਮ ਵਿਖਾਓ/ਲੁਕਾਓ</string>
 </resources>

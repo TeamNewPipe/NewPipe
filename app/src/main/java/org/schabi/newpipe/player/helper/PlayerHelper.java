@@ -14,6 +14,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
 
@@ -382,8 +383,11 @@ public final class PlayerHelper {
     public static boolean globalScreenOrientationLocked(final Context context) {
         // 1: Screen orientation changes using accelerometer
         // 0: Screen orientation is locked
+        // if the accelerometer sensor is missing completely, assume locked orientation
         return android.provider.Settings.System.getInt(
-                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0
+                    || !context.getPackageManager()
+                        .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
     }
 
     public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {
@@ -424,13 +428,6 @@ public final class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
-
-    public static boolean isPlaybackResumeEnabled(final Player player) {
-        return player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.enable_watch_history_key), true)
-                && player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.enable_playback_resume_key), true);
-    }
 
     @RepeatMode
     public static int nextRepeatMode(@RepeatMode final int repeatMode) {

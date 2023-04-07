@@ -21,7 +21,7 @@
     <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
     <string name="default_resolution_title">Типова роздільність</string>
     <string name="play_with_kodi_title">Програти в Kodi</string>
-    <string name="kore_not_found">Встановити відсутній застосунок Kore\?</string>
+    <string name="kore_not_found">Установити відсутній застосунок Kore\?</string>
     <string name="show_play_with_kodi_title">Показати опцію «Відтворити у Kodi»</string>
     <string name="show_play_with_kodi_summary">Показати опцію відтворення відео в Kodi</string>
     <string name="play_audio">Аудіо</string>
@@ -47,7 +47,7 @@
     <string name="content_not_available">Вміст недоступний</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
     <string name="sorry_string">Перепрошуємо, цього не мало статися.</string>
-    <string name="error_report_button_text">Надіслати звіт про помилки е-поштою</string>
+    <string name="error_report_button_text">Надіслати звіт е-поштою</string>
     <string name="error_snackbar_message">Вибачте, щось пішло не так.</string>
     <string name="error_snackbar_action">Звіт</string>
     <string name="what_device_headline">Інформація:</string>
@@ -307,7 +307,6 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
     <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку</string>
-    <string name="toast_no_player">Не встановлено застосунків для відтворення цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень і позицій відтворення</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
@@ -749,4 +748,14 @@
     <string name="msg_failed_to_copy">Не вдалося скопіювати до буфера обміну</string>
     <string name="playlist_add_stream_success_duplicate">Дублікат додано %d раз(ів)</string>
     <string name="duplicate_in_playlist">У виділених сірим кольором добірках цей елемент уже є.</string>
+    <string name="ignore_hardware_media_buttons_title">Ігнорувати події апаратних медіакнопок</string>
+    <string name="ignore_hardware_media_buttons_summary">Корисно, наприклад, якщо ви використовуєте гарнітуру зі зламаними фізичними кнопками</string>
+    <string name="remove_duplicates">Вилучити дублікати</string>
+    <string name="remove_duplicates_title">Вилучити дублікати\?</string>
+    <string name="remove_duplicates_message">Бажаєте вилучити всі повторювані трансляції в цій добірці\?</string>
+    <string name="feed_show_hide_streams">Показати/сховати трансляції</string>
+    <string name="feed_show_upcoming">Незабаром</string>
+    <string name="feed_hide_streams_title">Показати такі трансляції</string>
+    <string name="feed_show_watched">Повністю переглянуто</string>
+    <string name="feed_show_partially_watched">Частково переглянуто</string>
 </resources>

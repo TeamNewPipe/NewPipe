@@ -67,7 +67,7 @@
     <string name="what_happened_headline">Co se stalo:</string>
     <string name="error_snackbar_action">Nahlásit</string>
     <string name="sorry_string">Omlouváme se, tohle se nemělo stát.</string>
-    <string name="error_report_button_text">Nahlásit tuto chybu přes e-mail</string>
+    <string name="error_report_button_text">Nahlásit přes e-mail</string>
     <string name="error_snackbar_message">Omlouváme se, něco se pokazilo.</string>
     <string name="app_ui_crash">Aplikace/UI spadlo</string>
     <string name="could_not_setup_download_menu">Nepodařilo se nastavit menu stahování</string>
@@ -115,7 +115,7 @@
     <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
     <string name="settings_category_player_title">Přehrávač</string>
     <string name="settings_category_player_behavior_title">Chování</string>
-    <string name="settings_category_history_title">Historie a mezipamět</string>
+    <string name="settings_category_history_title">Historie a mezipaměť</string>
     <string name="popup_playing_toast">Přehrávání v okně</string>
     <string name="disabled">Vypnuto</string>
     <string name="clear">Vyčistit</string>
@@ -163,7 +163,7 @@
     <string name="contribution_title">Podílet se</string>
     <string name="title_activity_history">Historie</string>
     <string name="action_history">Historie</string>
-    <string name="show_hold_to_append_title">Zobrazit tip „Podržet pro vložení do fronty“</string>
+    <string name="show_hold_to_append_title">Zobrazit tip „Podržte pro zařazení do fronty“</string>
     <string name="show_hold_to_append_summary">Zobrazit tip po klepnutí na pozadí nebo na vyskakovací tlačítko v „Podrobnostech“ videa</string>
     <string name="play_all">Přehrát vše</string>
     <string name="player_stream_failure">Tento stream nelze přehrát</string>
@@ -183,7 +183,7 @@
     <string name="play_queue_remove">Odebrat</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavení zvuku</string>
-    <string name="hold_to_append">Podrž pro zařazení do fronty</string>
+    <string name="hold_to_append">Podržte pro zařazení do fronty</string>
     <string name="unknown_content">[Neznámý]</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
@@ -219,7 +219,7 @@
     <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
     <string name="preferred_player_fetcher_notification_message">Načítání požadovaného obsahu</string>
     <string name="controls_download_desc">Stáhnout soubor streamu</string>
-    <string name="show_info">Ukázat informace</string>
+    <string name="show_info">Zobrazit informace</string>
     <string name="tab_bookmarks">Uložené playlisty</string>
     <string name="controls_add_to_playlist_title">Přidat do</string>
     <string name="detail_drag_description">Táhnout pro přeskupení</string>
@@ -252,10 +252,10 @@
     <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
     <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
-    <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku</string>
+    <string name="download_thumbnail_summary">Vypnutím zabráníte načítání miniatur, ukládání dat a spotřebě paměti. Změny vymažou mezipaměť obrázků v paměti i na disku</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
-    <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
+    <string name="metadata_cache_wipe_summary">Odstranit všechna data webových stránek v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
     <string name="auto_queue_title">Další stream automaticky vložit do fronty</string>
     <string name="auto_queue_summary">Pokračovat konečnou (neopakující se) frontu playbacku připojením souvisejícího streamu</string>
@@ -302,7 +302,6 @@
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
-    <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>
@@ -313,7 +312,7 @@
     <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
     <string name="app_license">NewPipe je svobodný software s copyleft licencí: Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Konkrétně jej můžete šířit a/nebo upravovat za podmínek Obecné veřejné licence GNU (GNU GPL) vydané nadací Free Software Foundation, a to buď za podmínek Licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
-    <string name="channels">kanály</string>
+    <string name="channels">Kanály</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Stopy</string>
     <string name="users">Uživatelé</string>
@@ -525,7 +524,7 @@
     <string name="more_than_100_videos">100+ videí</string>
     <string name="artists">Umělci</string>
     <string name="albums">Alba</string>
-    <string name="songs">Písně</string>
+    <string name="songs">Skladby</string>
     <string name="restricted_video">Toto video má věkové omezení.
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
@@ -541,7 +540,7 @@
     <string name="channel_created_by">Vytvořil %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ikona kanálu</string>
     <string name="playlist_page_summary">Strana playlistů</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Ukázat jen neseskupené objednávky</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Zobrazit jen neseskupené odběry</string>
     <string name="no_playlist_bookmarked_yet">Zatím žádné záložky playlistů</string>
     <string name="select_a_playlist">Vybrat playlist</string>
     <string name="error_report_open_github_notice">Prosím, ověřte, zda chyba již existuje. Pokud založíte duplikovaný tiket, obíráte nás o čas, který bychom mohli věnovat řešení skutečných chyb.</string>
@@ -552,8 +551,8 @@
     <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Automaticky zahájit přehrávání — %s</string>
     <string name="title_activity_play_queue">Přehrát frontu</string>
-    <string name="unsupported_url_dialog_message">Nelze rozpoznat zadané URL. Otevřít pomocí jiné aplikace\?</string>
-    <string name="auto_queue_toggle">Auto-fronta</string>
+    <string name="unsupported_url_dialog_message">Nelze rozpoznat zadanou adresu URL. Otevřít pomocí jiné aplikace\?</string>
+    <string name="auto_queue_toggle">Automatické přehravání</string>
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
     <string name="clear_queue_confirmation_summary">Při přechodu z jednoho přehrávače do druhého může dojít k smazání fronty</string>
     <string name="clear_queue_confirmation_title">Žádat potvrzení před vyklizením fronty</string>
@@ -570,7 +569,7 @@
     <string name="notification_action_0_title">První akční tlačítko</string>
     <string name="notification_scale_to_square_image_summary">Oříznout miniaturu videa zobrazenou v oznámení z poměru stran 16:9 na 1:1</string>
     <string name="notification_scale_to_square_image_title">Oříznout poměr stran miniatury na 1:1</string>
-    <string name="show_memory_leaks">Ukázat memory leaks</string>
+    <string name="show_memory_leaks">Zobrazit úniky paměti</string>
     <string name="enqueued">Zařazeno do fronty</string>
     <string name="enqueue_stream">Zařadit do fronty</string>
     <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
@@ -646,7 +645,7 @@
     <string name="off">Vypnuto</string>
     <string name="on">Zapnuto</string>
     <string name="tablet_mode_title">Režim tabletu</string>
-    <string name="feed_toggle_show_played_items">Ukázat přehrané položky</string>
+    <string name="feed_toggle_show_played_items">Zobrazit zhlédnuté položky</string>
     <string name="dont_show">Nezobrazovat</string>
     <string name="low_quality_smaller">Nízká kvalita (menší)</string>
     <string name="high_quality_larger">Vysoká kvalita (větší)</string>
@@ -664,8 +663,8 @@
         <item quantity="few">%s stahování dokončena</item>
         <item quantity="other">%s stahováních dokončeno</item>
     </plurals>
-    <string name="show_image_indicators_summary">Ukázat zabarvené stužky Picasso na obrázcích k indikaci zdroje: červená indikuje síť, modrá disk a zelená paměť</string>
-    <string name="show_image_indicators_title">Ukázat indikátory obrázků</string>
+    <string name="show_image_indicators_summary">Zobrazit barevné pásky Picasso na obrázcích označujících jejich zdroj: červená pro síť, modrá pro disk a zelená pro paměť</string>
+    <string name="show_image_indicators_title">Zobrazit indikátory obrázků</string>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
     <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštět video v mini přehrávači, ale přepnout se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
@@ -689,7 +688,7 @@
     <string name="no_appropriate_file_manager_message">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
 \nNainstalujte správce souborů nebo zkuste vypnout \'%s\' v nastavení stahování</string>
     <string name="show_crash_the_player_summary">Ukáže volbu pro zřícení během používání přehrávače</string>
-    <string name="show_error_snackbar">Ukázat krátké oznámení o chybě</string>
+    <string name="show_error_snackbar">Zobrazit krátké oznámení o chybě</string>
     <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
     <string name="crash_the_player">Shodit přehrávač</string>
     <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače</string>
@@ -700,7 +699,7 @@
     <string name="enable_streams_notifications_summary">Oznámit o nových streamech od vašich odběrů</string>
     <string name="streams_notifications_interval_title">Frekvence kontroly</string>
     <string name="any_network">Jakákoli síť</string>
-    <string name="streams_notifications_network_title">Nutné síťové připojení</string>
+    <string name="streams_notifications_network_title">Požadované síťové připojení</string>
     <string name="delete_downloaded_files_confirm">Smazat všechny stažené soubory z disku\?</string>
     <string name="you_successfully_subscribed">Objednali jste si nyní tento kanál</string>
     <string name="toggle_all">Všechny přepnout</string>
@@ -745,4 +744,14 @@
     <string name="msg_failed_to_copy">Kopírování do schránky se nezdařilo</string>
     <string name="duplicate_in_playlist">Zašedlé playlisty již obsahují tuto položku.</string>
     <string name="playlist_add_stream_success_duplicate">Duplikát přidán %dkrát</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorovat události hardwarových tlačítek médií</string>
+    <string name="ignore_hardware_media_buttons_summary">Užitečné například v případě, že používáte sluchátka s rozbitými fyzickými tlačítky</string>
+    <string name="remove_duplicates_title">Odstranit duplicity\?</string>
+    <string name="feed_hide_streams_title">Zobrazit následující streamy</string>
+    <string name="feed_show_hide_streams">Zobrazit/skrýt streamy</string>
+    <string name="feed_show_watched">Celé zhlédnuto</string>
+    <string name="feed_show_partially_watched">Částečně zhlédnuto</string>
+    <string name="feed_show_upcoming">Nadcházející</string>
+    <string name="remove_duplicates">Odstranit duplicity</string>
+    <string name="remove_duplicates_message">Chcete odstranit všechny duplicitní streamy v tomto playlistu\?</string>
 </resources>

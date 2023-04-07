@@ -194,7 +194,6 @@
     <string name="settings_file_replacement_character_title">Vervangend teken</string>
     <string name="charset_letters_and_digits">Letters en cijfers</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
-    <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
     <string name="title_activity_about">Over NewPipe</string>
     <string name="title_licenses">Derdepartijlicenties</string>
     <string name="copyright" formatted="true">© %1$s door %2$s, uitgebracht onder de %3$s</string>
@@ -565,8 +564,8 @@
     <string name="notification_action_2_title">Derde actie knop</string>
     <string name="notification_action_1_title">Tweede actie knop</string>
     <string name="notification_action_0_title">Eerste actie knop</string>
-    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van 16:9 naar 1:1 verhouding (kan vervorming creëren)</string>
-    <string name="notification_scale_to_square_image_title">Schaal miniatuurafbeelding naar verhouding 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Snij de miniatuurafbeelding van de video die getoond wordt in de notificatie bij van 16:9 naar een 1:1 verhouding</string>
+    <string name="notification_scale_to_square_image_title">Miniatuurafbeelding naar verhouding 1:1 bijknippen</string>
     <string name="show_original_time_ago_title">Toon oorspronkelijke tijd geleden op items</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>

@@ -106,7 +106,6 @@
     <string name="create">新建</string>
     <string name="dismiss">退出</string>
     <string name="rename">重命名</string>
-    <string name="toast_no_player">未安装可播放此文件的应用程序</string>
     <string name="one_item_deleted">已删除一个项目。</string>
     <string name="main_page_content_summary">自定义主页显示的标签页</string>
     <string name="list_view_mode">列表视图模式</string>
@@ -146,7 +145,7 @@
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>
     <string name="app_ui_crash">App/UI 崩溃</string>
     <string name="sorry_string">抱歉, 这本不该发生。</string>
-    <string name="error_report_button_text">使用电子邮件反馈错误</string>
+    <string name="error_report_button_text">使用电子邮件反馈</string>
     <string name="error_snackbar_message">抱歉，发生了一些错误。</string>
     <string name="error_snackbar_action">反馈</string>
     <string name="what_device_headline">信息：</string>
@@ -719,4 +718,14 @@
     <string name="msg_failed_to_copy">无法复制到剪贴板</string>
     <string name="duplicate_in_playlist">变灰的播放列表已经包含此项目。</string>
     <string name="playlist_add_stream_success_duplicate">重复添加了 %d 次</string>
+    <string name="ignore_hardware_media_buttons_summary">如果你在使用一副物理按钮坏掉的耳机，该选项应该会有帮助</string>
+    <string name="ignore_hardware_media_buttons_title">忽略硬件媒体按钮事件</string>
+    <string name="remove_duplicates_title">删除重复吗？</string>
+    <string name="remove_duplicates_message">你想删除这个播放列表中所有重复项吗？</string>
+    <string name="feed_hide_streams_title">显示下列音视频流</string>
+    <string name="feed_show_hide_streams">显示/隐藏音视频流</string>
+    <string name="feed_show_watched">完整看过</string>
+    <string name="feed_show_partially_watched">只看了一部分</string>
+    <string name="feed_show_upcoming">即将到来</string>
+    <string name="remove_duplicates">删除重复</string>
 </resources>

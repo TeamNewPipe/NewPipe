@@ -71,7 +71,6 @@
     <string name="tab_about">Par</string>
     <string name="title_licenses">Trešo pušu Licences</string>
     <string name="title_activity_about">Par NewPipe</string>
-    <string name="toast_no_player">Nav instalētu aplikāciju, lai atskaņotu šo failu</string>
     <string name="charset_most_special_characters">Lielākā daļa īpašo rakstzīmju</string>
     <string name="charset_letters_and_digits">Burti un cipari</string>
     <string name="settings_file_replacement_character_title">Aizvietošanas rakstzīme</string>
@@ -563,7 +562,7 @@
     <string name="notification_scale_to_square_image_title">Piemērot video attēlu 1:1 proporcijai</string>
     <string name="show_play_with_kodi_summary">Rādīt opciju atskaņot video ar Kodi mediju centru</string>
     <string name="show_play_with_kodi_title">Rādīt \"Atskaņot ar Kodi\" opciju</string>
-    <string name="kore_not_found">Instalēt trūkstošo Kore aplikāciju\?</string>
+    <string name="kore_not_found">Instalēt trūkstošo Kode aplikāciju\?</string>
     <string name="play_with_kodi_title">Atskaņot ar Kodi</string>
     <string name="show_higher_resolutions_summary">Tikai dažas ierīcas var atskaņot 2K/4K videoklipus</string>
     <string name="show_higher_resolutions_title">Rādīt augstākas izšķirtspējas</string>

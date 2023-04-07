@@ -41,7 +41,7 @@
     <string name="show_higher_resolutions_title">Kuva kõrgemaid lahutusi</string>
     <string name="show_higher_resolutions_summary">Ainult mõned seadmed suudavad esitada 2K/4K videoid</string>
     <string name="play_with_kodi_title">Esita Kodi abil</string>
-    <string name="kore_not_found">Kas paigaldada puuduv Kore rakendus\?</string>
+    <string name="kore_not_found">Kas paigaldame puuduva Kore rakenduse\?</string>
     <string name="show_play_with_kodi_title">Kuva valik \"Esita Kodi abil\"</string>
     <string name="show_play_with_kodi_summary">Kuva valik video esitamiseks Kodi meediakeskuse kaudu</string>
     <string name="play_audio">Heli</string>
@@ -139,7 +139,7 @@
     <string name="error_occurred_detail">Ilmnes viga: %1$s</string>
     <string name="no_streams_available_download">Allalaaditavaid videovooge pole</string>
     <string name="sorry_string">Vabandust, seda poleks pidanud juhtuma.</string>
-    <string name="error_report_button_text">Teata sellest veast e-posti kaudu</string>
+    <string name="error_report_button_text">Teata e-posti teel</string>
     <string name="error_snackbar_message">Vabandust, midagi läks valesti.</string>
     <string name="error_snackbar_action">Teata</string>
     <string name="what_device_headline">Info:</string>
@@ -200,7 +200,6 @@
     <string name="settings_file_replacement_character_title">Asendustähemärk</string>
     <string name="charset_letters_and_digits">Tähed ja numbrid</string>
     <string name="charset_most_special_characters">Erimärgid</string>
-    <string name="toast_no_player">Selle faili esitamiseks puudub rakendus</string>
     <string name="title_activity_about">NewPipe rakendusest</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
     <string name="tab_about">Rakenduse teave ja KKK</string>
@@ -732,4 +731,14 @@
     <string name="card">Kaart</string>
     <string name="duplicate_in_playlist">Hallina kuvatud esitusloendid juba sisaldavad seda kirjet.</string>
     <string name="playlist_add_stream_success_duplicate">Topeltkirje lisatud %d kord(a)</string>
+    <string name="ignore_hardware_media_buttons_summary">Kasulik näiteks kui olukorras kui kõrvaklappide nupud on katki</string>
+    <string name="ignore_hardware_media_buttons_title">Eira nutiseadmes asuvate või seotud seadmete meedianuppude vajutusi</string>
+    <string name="remove_duplicates">Eemalda topeltkirjed</string>
+    <string name="remove_duplicates_title">Kas eemaldame topeltkirjed\?</string>
+    <string name="remove_duplicates_message">Kas sa soovid eemaldada kõik topelt meediavood sellest esitusloendist\?</string>
+    <string name="feed_hide_streams_title">Näita järgmisi meediavooge</string>
+    <string name="feed_show_hide_streams">Näita/peida meediavood</string>
+    <string name="feed_show_upcoming">Tulemas</string>
+    <string name="feed_show_watched">Lõpuni vaadatud</string>
+    <string name="feed_show_partially_watched">Osaliselt vaadatud</string>
 </resources>

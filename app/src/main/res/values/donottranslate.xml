@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="fdroid_vlc_url">https://f-droid.org/packages/org.videolan.vlc/</string>
     <string name="rss_button_title">RSS</string>
+    <string name="vlc_package">org.videolan.vlc</string>
     <string name="kore_package">org.xbmc.kore</string>
     <string name="peertube_instance_list_url">https://joinpeertube.org/instances#instances-list</string>
     <string name="notification_channel_id">newpipe</string>

@@ -371,16 +371,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         intent.setDataAndType(resolveShareableUri(mission), mimeType);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
         intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
-
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        }
-
-        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(mContext, intent, false);
-        } else {
-            Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
-        }
+        ShareUtils.openIntentInApp(mContext, intent);
     }
 
     private void shareFile(Mission mission) {
@@ -398,7 +389,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
             intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         mContext.startActivity(intent);

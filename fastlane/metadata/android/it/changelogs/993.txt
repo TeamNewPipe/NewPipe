@@ -1,0 +1,12 @@
+Nuovo
+• Aggiunto avviso di aggiunta playlist doppia e un pulsante per rimuoverla
+• Ignora pulsanti hardware
+• Nascondi video visti parzialmente
+
+Migliorato
+• Usa più colonne nella griglia su schermi grandi
+• Indicatori di avanzamento consistenti con le impostazioni
+
+Corretto
+• Fix apertura URL, download e player esterni su Android 11+
+• Fix interazione con schermo intero che richiedeva due otcchi su MIUI

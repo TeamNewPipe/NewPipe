@@ -204,8 +204,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 break;
             case R.id.menu_item_rss:
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(
-                            requireContext(), currentInfo.getFeedUrl(), false);
+                    ShareUtils.openUrlInApp(requireContext(), currentInfo.getFeedUrl());
                 }
                 break;
             case R.id.menu_item_openInBrowser:

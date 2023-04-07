@@ -17,6 +17,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.info_list.holder.ChannelCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
@@ -73,6 +74,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_CHANNEL_HOLDER_TYPE = 0x200;
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
     private static final int GRID_CHANNEL_HOLDER_TYPE = 0x202;
+    private static final int CARD_CHANNEL_HOLDER_TYPE = 0x203;
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
     private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
@@ -249,7 +251,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return STREAM_HOLDER_TYPE;
                 }
             case CHANNEL:
-                if (itemMode == ItemViewMode.GRID) {
+                if (itemMode == ItemViewMode.CARD) {
+                    return CARD_CHANNEL_HOLDER_TYPE;
+                } else if (itemMode == ItemViewMode.GRID) {
                     return GRID_CHANNEL_HOLDER_TYPE;
                 } else if (useMiniVariant) {
                     return MINI_CHANNEL_HOLDER_TYPE;
@@ -304,6 +308,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
             case CHANNEL_HOLDER_TYPE:
                 return new ChannelInfoItemHolder(infoItemBuilder, parent);
+            case CARD_CHANNEL_HOLDER_TYPE:
+                return new ChannelCardInfoItemHolder(infoItemBuilder, parent);
             case GRID_CHANNEL_HOLDER_TYPE:
                 return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
             case MINI_PLAYLIST_HOLDER_TYPE:

@@ -43,7 +43,7 @@
     <string name="show_higher_resolutions_title">Vis højere opløsninger</string>
     <string name="show_higher_resolutions_summary">Kun nogle enheder kan afspille 2K-/4K-videoer</string>
     <string name="play_with_kodi_title">Afspil med Kodi</string>
-    <string name="kore_not_found">Installer manglede Kore-app\?</string>
+    <string name="kore_not_found">Installer manglede Kode-app\?</string>
     <string name="show_play_with_kodi_title">Vis valgmuligheden \"Afspil med Kodi\"</string>
     <string name="show_play_with_kodi_summary">Vis en knap til at afspille en video via Kodi-mediecenteret</string>
     <string name="play_audio">Lyd</string>
@@ -163,7 +163,7 @@
     <string name="restore_defaults">Genskab standardindstillinger</string>
     <string name="restore_defaults_confirmation">Vil du genoprette standardindstillingerne\?</string>
     <string name="sorry_string">Undskyld, dette skulle ikke være sket.</string>
-    <string name="error_report_button_text">Rapporter denne fejl via e-mail</string>
+    <string name="error_report_button_text">Rapporter via e-mail</string>
     <string name="error_snackbar_message">Beklager, noget gik galt.</string>
     <string name="error_snackbar_action">Rapporter</string>
     <string name="what_device_headline">Information:</string>
@@ -213,7 +213,6 @@
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
     <string name="charset_letters_and_digits">Bogstaver og cifre</string>
     <string name="charset_most_special_characters">De fleste specialtegn</string>
-    <string name="toast_no_player">Der ingen app installeret der kan afspille denne fil</string>
     <string name="title_activity_about">Om NewPipe</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s af %2$s under %3$s</string>
@@ -727,4 +726,9 @@
     <string name="select_quality_external_players">Vælg kvalitet til eksterne afspillere</string>
     <string name="feed_toggle_show_future_items">Vis fremtidige elementer</string>
     <string name="sort">Sortér</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorer hardware medie knapper</string>
+    <string name="ignore_hardware_media_buttons_summary">Brugbart f.eks. hvis du bruger et headset med ødelagte fysiske knapper</string>
+    <string name="duplicate_in_playlist">Playlists der er grået ud, indeholder allerede dette objekt.</string>
+    <string name="unset_playlist_thumbnail">Inaktiver permanent thumbnail</string>
+    <string name="msg_failed_to_copy">Fejlede at kopiere til udklipsholderen</string>
 </resources>

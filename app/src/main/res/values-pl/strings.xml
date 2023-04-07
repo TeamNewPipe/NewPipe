@@ -51,7 +51,7 @@
     <string name="content_not_available">Treść niedostępna</string>
     <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
-    <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
+    <string name="error_report_button_text">Zgłoś przez e-mail</string>
     <string name="error_snackbar_message">Niestety, coś poszło nie tak</string>
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
@@ -314,7 +314,6 @@
     <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania\?</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania</string>
     <string name="one_item_deleted">Usunięto jedną pozycję</string>
-    <string name="toast_no_player">Brak zainstalowanej aplikacji do odtworzenia tego pliku</string>
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
     <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
@@ -753,4 +752,14 @@
     <string name="card">Karta</string>
     <string name="duplicate_in_playlist">Wyszarzone playlisty zawierają już tę pozycję</string>
     <string name="playlist_add_stream_success_duplicate">Dodano duplikat %d raz(y)</string>
+    <string name="ignore_hardware_media_buttons_summary">Przydatne, na przykład, jeśli używasz zestawu słuchawkowego z zepsutymi fizycznymi przyciskami</string>
+    <string name="ignore_hardware_media_buttons_title">Ignoruj zdarzenia sprzętowego przycisku multimedialnego</string>
+    <string name="remove_duplicates_title">Czy usunąć duplikaty\?</string>
+    <string name="feed_hide_streams_title">Pokaż następujące strumienie</string>
+    <string name="feed_show_hide_streams">Pokaż/Ukryj strumienie</string>
+    <string name="remove_duplicates">Usuń duplikaty</string>
+    <string name="remove_duplicates_message">Czy chcesz usunąć wszystkie zduplikowane strumienie z tej playlisty\?</string>
+    <string name="feed_show_watched">W pełni obejrzane</string>
+    <string name="feed_show_partially_watched">Częściowo obejrzane</string>
+    <string name="feed_show_upcoming">Nadchodzące</string>
 </resources>

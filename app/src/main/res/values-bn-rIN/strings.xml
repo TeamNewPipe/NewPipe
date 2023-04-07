@@ -101,7 +101,7 @@
     <string name="play_audio">অডিও</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
     <string name="show_play_with_kodi_title">দেখাও \"Kodi এর মাধ্যমে চালাও \" বিকল্প</string>
-    <string name="kore_not_found">হারানো কোর ইনস্টল করবেন\?</string>
+    <string name="kore_not_found">অনুপস্থিত কোড অ্যাপ ইনস্টল করবেন\?</string>
     <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালান</string>
     <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
     <string name="show_higher_resolutions_title">উচ্চ রেজোল্যুশন দেখাও</string>

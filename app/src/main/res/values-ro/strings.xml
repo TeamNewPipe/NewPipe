@@ -55,7 +55,7 @@
     <string name="downloads_title">Descărcări</string>
     <string name="error_report_title">Raport de erori</string>
     <string name="sorry_string">Ne pare rău, asta nu trebuia să se întâmple.</string>
-    <string name="error_report_button_text">Raportați această eroare prin e-mail</string>
+    <string name="error_report_button_text">Raport prin e-mail</string>
     <string name="error_snackbar_message">Ne pare rău, ceva a mers prost.</string>
     <string name="error_snackbar_action">Raportați</string>
     <string name="what_device_headline">Informații:</string>
@@ -92,7 +92,7 @@
     <string name="all">Toate</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
-    <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune: \\nVersiune SO:</string>
+    <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune:\\nVersiune SO:</string>
     <string name="short_thousand">k</string>
     <string name="short_million">mil.</string>
     <string name="short_billion">mld.</string>
@@ -246,7 +246,6 @@
     <string name="create">Creați</string>
     <string name="dismiss">Respingeți</string>
     <string name="rename">Redenumiţi</string>
-    <string name="toast_no_player">Nici o aplicație instalată pentru a reda acest fișier</string>
     <string name="donation_title">Donaţi</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
     <string name="name">Nume</string>
@@ -581,9 +580,9 @@
     </plurals>
     <string name="no_one_listening">Nimeni nu ascultă</string>
     <plurals name="watching">
-        <item quantity="one">%s vizionează</item>
-        <item quantity="few">%s vizionează</item>
-        <item quantity="other">%s vizionează</item>
+        <item quantity="one">%s spectator</item>
+        <item quantity="few">%s spectatori</item>
+        <item quantity="other">%s spectatori</item>
     </plurals>
     <string name="no_one_watching">Nimeni nu se uită</string>
     <string name="drawer_header_description">Comutare serviciu, selectat în prezent:</string>
@@ -743,4 +742,16 @@
     <string name="card">Cartelă</string>
     <string name="msg_failed_to_copy">Nu s-a reușit copierea în clipboard</string>
     <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
+    <string name="duplicate_in_playlist">Listele de redare care colorate în gri conțin deja acest element.</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicat adăugat de %d ori</string>
+    <string name="ignore_hardware_media_buttons_title">Ignoră evenimentele butonului media hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Util, de exemplu, dacă utilizezi o cască cu butoane fizice defecte</string>
+    <string name="remove_duplicates_message">Dorești să elimini toate fluxurile dublate din această listă de redare\?</string>
+    <string name="remove_duplicates">Eliminare dubluri</string>
+    <string name="remove_duplicates_title">Elimini dublurile\?</string>
+    <string name="feed_hide_streams_title">Afișează următoarele fluxuri</string>
+    <string name="feed_show_hide_streams">Afișare/Ascundere fluxuri</string>
+    <string name="feed_show_watched">Vizionat complet</string>
+    <string name="feed_show_partially_watched">Vizionat parțial</string>
+    <string name="feed_show_upcoming">Urmează</string>
 </resources>

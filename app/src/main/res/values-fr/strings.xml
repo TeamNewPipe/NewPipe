@@ -53,7 +53,7 @@
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="sorry_string">Désolé, cela n’aurait pas dû se produire.</string>
-    <string name="error_report_button_text">Signaler cette erreur par courriel</string>
+    <string name="error_report_button_text">Signaler par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
     <string name="your_comment">Votre commentaire (en anglais) :</string>
@@ -302,7 +302,6 @@
     <string name="caption_setting_title">Sous-titres</string>
     <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements</string>
     <string name="playback_pitch">Ton</string>
-    <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
     <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
     <string name="delete_view_history_alert">Voulez-vous supprimer entièrement l’historique des vues \?</string>
@@ -745,4 +744,16 @@
     <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
     <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
     <string name="card">Carte</string>
+    <string name="ignore_hardware_media_buttons_summary">Utile si vous utilisez un casque avec des boutons dysfonctionnels, par exemple</string>
+    <string name="remove_duplicates">Effacer les doublons</string>
+    <string name="remove_duplicates_title">Effacer les doublons \?</string>
+    <string name="remove_duplicates_message">Voulez-vous retirer tous les doublons de cette liste \?</string>
+    <string name="feed_hide_streams_title">Afficher les flux suivants</string>
+    <string name="feed_show_watched">Entièrement vu</string>
+    <string name="feed_show_partially_watched">Partiellement vu</string>
+    <string name="feed_show_upcoming">À venir</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorer les évènements des boutons média des périphériques</string>
+    <string name="playlist_add_stream_success_duplicate">Doublon ajouté %d fois</string>
+    <string name="feed_show_hide_streams">Afficher/Cacher les flux</string>
+    <string name="unset_playlist_thumbnail">Enlever la miniature permanente</string>
 </resources>

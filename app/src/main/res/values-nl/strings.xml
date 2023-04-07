@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Voer de downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Kore-app niet gevonden. Deze installeren\?</string>
+    <string name="kore_not_found">Kode-app niet gevonden. Deze installeren\?</string>
     <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
     <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -299,7 +299,6 @@
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
     <string name="caption_setting_title">Ondertitels</string>
     <string name="caption_setting_description">Ondertitelgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
-    <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van bekeken video\'s en afspeelposities</string>
     <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>

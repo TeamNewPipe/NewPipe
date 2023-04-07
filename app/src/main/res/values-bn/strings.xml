@@ -251,7 +251,7 @@
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
     <string name="show_play_with_kodi_title">\"Kodi দ্বারা চালান\" বিকল্পটি প্রদর্শন কর</string>
-    <string name="kore_not_found">হারানো কোর ইনস্টল করবে\?</string>
+    <string name="kore_not_found">অনুপস্থিত কোড অ্যাপ ইনস্টল করবেন\?</string>
     <string name="play_with_kodi_title">Kodi দ্বারা চালাও</string>
     <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2K/4K ভিডিও চালাতে পারে</string>
     <string name="show_higher_resolutions_title">উচ্চতর রেজুলেশন প্রদর্শন করা হবে</string>
@@ -491,7 +491,6 @@
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
     <string name="feed_group_dialog_delete_message">তুমি কি এ গ্রুপটি মুছতে চাও\?</string>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
-    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্যাপ ইন্সটলকৃত নেই</string>
     <string name="override_current_data">এতে তোমার বর্তমান অবস্থা সরানো হবে।</string>
     <string name="could_not_import_all_files">সতর্কতা: সব তথ্য আনা যায়নি।</string>
     <string name="copyright">© %3$s এর মাধ্যমে %2$s দিয়ে %1$s</string>

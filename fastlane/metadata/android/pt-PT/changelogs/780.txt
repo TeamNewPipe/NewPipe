@@ -1,0 +1,12 @@
+Alterações em 0.17.3
+
+Melhorado em
+- Adicionada opção para limpar estados de reprodução #2550
+- Mostrar diretórios ocultos no seletor de ficheiros #2591
+- URLs de apoio de instâncias `invidio.us` a serem abertas com NewPipe #2488 
+- Adicionar suporte para `music.youtube.com` URLs TeamNewPipe/NewPipeExtractor#194
+
+Fixa
+- [YouTube] Fixo 'java.lang.IllegalArgumentException #192
+- [YouTube] Fluxos fixos ao vivo não funcionam TeamNewPipe/NewPipeExtractor#195
+- Resolvido problema de desempenho em torta de android ao descarregar um fluxo #2592

@@ -50,7 +50,7 @@
     <string name="show_age_restricted_content_title">Mostrar conteúdo com restrição de idade</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="sorry_string">Bolas, isto não deveria ter acontecido.</string>
-    <string name="error_report_button_text">Reportar erro por e-mail</string>
+    <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="error_snackbar_message">Desculpe mas algo correu mal.</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="what_device_headline">Informação:</string>
@@ -297,7 +297,6 @@
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="search_history_deleted">Histórico de pesquisa removido</string>
     <string name="one_item_deleted">1 item eliminado.</string>
-    <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o seu tempo livre para nos proporcionar a melhor experiência. Retribua para ajudar os programadores a tornarem NewPipe ainda melhor.</string>
     <string name="give_back">Contribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
@@ -745,4 +744,14 @@
     <string name="card">Cartão</string>
     <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorar eventos com botões físicos</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil por exemplo se estiver a utilizar auscultadores com botões físicos danificados</string>
+    <string name="remove_duplicates">Remover duplicados</string>
+    <string name="remove_duplicates_title">Remover duplicados\?</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar vídeos</string>
+    <string name="feed_show_upcoming">Proximamente</string>
+    <string name="remove_duplicates_message">Quer remover todos os vídeos duplicados nesta lista de reprodução\?</string>
+    <string name="feed_show_watched">Completamente visto</string>
+    <string name="feed_hide_streams_title">Mostrar os seguintes vídeos</string>
+    <string name="feed_show_partially_watched">Parcialmente visto</string>
 </resources>

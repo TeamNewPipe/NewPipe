@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
     <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 2K/4K видео</string>
     <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
-    <string name="kore_not_found">Инсталиране на липсващото приложение \"Kore\"\?</string>
+    <string name="kore_not_found">Инсталиране на липсващото приложение \"Kode\"\?</string>
     <string name="show_play_with_kodi_title">Покажи „Възпроизвеждане с Kodi“</string>
     <string name="show_play_with_kodi_summary">Показване на опция за възпроизвеждане на видео чрез „Kodi media center“</string>
     <string name="play_audio">Аудио</string>
@@ -191,7 +191,6 @@
     <string name="no_subscribers">Няма абонати</string>
     <string name="create">Създай</string>
     <string name="dismiss">Откажи</string>
-    <string name="toast_no_player">Няма инсталирано приложение, което да изпълни този файл</string>
     <string name="copyright" formatted="true">© %1$s от %2$s под лиценза %3$s</string>
     <string name="contribution_title">Съдействайте</string>
     <string name="contribution_encouragement">За всичко, което се сетите: превод, промени по дизайна, изчистване на кода или много сериозни промени по кода – помощта е винаги добре дошла. Колкото повече развитие, толкова по-добре!</string>

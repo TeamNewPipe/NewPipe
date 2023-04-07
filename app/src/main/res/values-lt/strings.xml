@@ -29,7 +29,7 @@
     <string name="show_higher_resolutions_title">Rodyti didesnes raiškas</string>
     <string name="show_higher_resolutions_summary">Tik kai kurie įrenginiai palaiko 2K/4K vaizdo įrašų peržiūrą</string>
     <string name="play_with_kodi_title">Groti su Kodi</string>
-    <string name="kore_not_found">Įdiegti nereastą Kore programėlę\?</string>
+    <string name="kore_not_found">Įdiegti nereastą Kode programėlę\?</string>
     <string name="show_play_with_kodi_title">Rodyti „Peržiūra su Kodi“ pasirinkimą</string>
     <string name="show_play_with_kodi_summary">Rodyti pasirinkimą peržiūrėti vaizdo įrašus per Kodi mediacentrą</string>
     <string name="play_audio">Garso įrašas</string>
@@ -512,7 +512,6 @@
     <string name="privacy_policy_encouragement">NewPipe į jūsų privatumą žiūri labai rimtai. Programa be jūsų sutikimo nerenka jokių duomenų.
 \nNewPipe privatumo politika išsamiai parodo kokie duomenys siunčiami ir saugomi pranešant apie problemą.</string>
     <string name="privacy_policy_title">NewPipe privatumo politika</string>
-    <string name="toast_no_player">Šio failo atkūrimui nėra įdiegtos programos</string>
     <string name="recaptcha_done_button">Atlikta</string>
     <string name="recaptcha_solve">Išspręsta</string>
     <string name="subtitle_activity_recaptcha">Paspauskite \"atlikta\" kai išspręsta</string>

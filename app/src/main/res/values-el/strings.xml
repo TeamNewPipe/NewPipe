@@ -165,7 +165,7 @@
     <string name="error_occurred_detail">Προέκυψε ένα σφάλμα: %1$s</string>
     <string name="no_streams_available_download">Δεν υπάρχουν διαθέσιμες ροές για λήψη</string>
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
-    <string name="error_report_button_text">Αναφορά αυτού του σφάλματος μέσω ηλεκτρονικού ταχυδρομείου</string>
+    <string name="error_report_button_text">Αναφορά μέσω ηλεκτρονικού ταχυδρομείου</string>
     <string name="error_snackbar_message">Συγγνώμη, κάτι πήγε στραβά.</string>
     <string name="info_labels">Τι:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΧώρα περιεχομένου:\\nΓλώσσα εφαρμογής:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού συστήματος:</string>
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
@@ -210,7 +210,6 @@
     <string name="settings_file_replacement_character_summary">Οι μη έγκυροι χαρακτήρες αντικαθίστανται με αυτήν την τιμή</string>
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
-    <string name="toast_no_player">Δεν υπάρχει εγκατεστημένη εφαρμογή για την αναπαραγωγή αυτού του αρχείου</string>
     <string name="title_activity_about">Σχετικά με το NewPipe</string>
     <string name="title_licenses">Άδειες Τρίτων</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>
@@ -732,4 +731,14 @@
     <string name="card">Κάρτα</string>
     <string name="duplicate_in_playlist">Οι λίστες αναπαραγωγής που είναι γκριζαρισμένες περιέχουν ήδη αυτό το στοιχείο.</string>
     <string name="playlist_add_stream_success_duplicate">Προστέθηκε διπλότυπο %d φορά(ες)</string>
+    <string name="ignore_hardware_media_buttons_title">Αγνοήστε τα συμβάντα κουμπιών πολυμέσων υλικού</string>
+    <string name="ignore_hardware_media_buttons_summary">Χρήσιμο, για παράδειγμα, εάν χρησιμοποιείτε ακουστικά με χαλασμένα φυσικά κουμπιά</string>
+    <string name="feed_hide_streams_title">Εμφάνιση των ακόλουθων ροών</string>
+    <string name="feed_show_watched">Θεαθέντα πλήρως</string>
+    <string name="feed_show_upcoming">Προσεχή</string>
+    <string name="feed_show_hide_streams">Εμφάνιση/Απόκρυψη ροών</string>
+    <string name="remove_duplicates_title">Αφαίρεση διπλοτύπων;</string>
+    <string name="remove_duplicates_message">Θέλετε να καταργήσετε όλες τις διπλότυπες ροές σε αυτήν τη λίστα αναπαραγωγής;</string>
+    <string name="remove_duplicates">Αφαίρεση διπλοτύπων</string>
+    <string name="feed_show_partially_watched">Θεαθέντα μερικώς</string>
 </resources>

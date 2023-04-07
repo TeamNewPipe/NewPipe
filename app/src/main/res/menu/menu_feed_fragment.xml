@@ -5,19 +5,8 @@
     <item
         android:id="@+id/menu_item_feed_toggle_played_items"
         android:orderInCategory="2"
-        android:checkable="true"
-        android:checked="true"
         android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_toggle_show_played_items"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/menu_item_feed_toggle_future_items"
-        android:orderInCategory="3"
-        android:checkable="true"
-        android:checked="true"
-        android:icon="@drawable/ic_history_future"
-        android:title="@string/feed_toggle_show_future_items"
+        android:title="@string/feed_show_hide_streams"
         app:showAsAction="ifRoom" />
 
     <item

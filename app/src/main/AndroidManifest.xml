@@ -15,7 +15,7 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="http|https|market" />
+            <data android:scheme="http" />
         </intent>
     </queries>
 
