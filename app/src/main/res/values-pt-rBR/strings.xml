@@ -692,7 +692,6 @@
 \nInstale um gerenciador de arquivos ou tente desativar \'%s\' nas configurações de download</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="leak_canary_not_available">O LeakCanary não está disponível</string>
-    <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. As alterações exigem que o player seja reiniciado</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer padrão</string>
     <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
     <string name="settings_category_player_notification_summary">Configurar a notificação do fluxo da reprodução atual</string>

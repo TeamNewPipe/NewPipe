@@ -61,13 +61,11 @@
         app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
 
-    <ListPreference
-        android:defaultValue="@string/progressive_load_interval_default_value"
-        android:entries="@array/progressive_load_interval_descriptions"
-        android:entryValues="@array/progressive_load_interval_values"
-        android:key="@string/progressive_load_interval_key"
-        android:summary="@string/progressive_load_interval_summary"
-        android:title="@string/progressive_load_interval_title"
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.ExoPlayerSettingsFragment"
+        android:key="@string/exoplayer_settings_key"
+        android:summary="@string/settings_category_exoplayer_summary"
+        android:title="@string/settings_category_exoplayer_title"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 

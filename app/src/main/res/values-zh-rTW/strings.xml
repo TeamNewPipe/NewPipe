@@ -669,7 +669,6 @@
     <string name="detail_pinned_comment_view_description">釘選的留言</string>
     <string name="leak_canary_not_available">LeakCanary 無法使用</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>
-    <string name="progressive_load_interval_summary">變更載入間隔大小（目前為 %s）。較低的值可能會提昇初始影片載入速度。變更需要重新啟動播放器</string>
     <string name="settings_category_player_notification_title">播放器通知</string>
     <string name="notifications">通知</string>
     <string name="loading_stream_details">正在載入串流詳細資訊……</string>

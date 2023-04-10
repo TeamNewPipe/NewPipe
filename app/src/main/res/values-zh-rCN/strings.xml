@@ -668,7 +668,6 @@
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
-    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
     <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>

@@ -36,22 +36,6 @@ public final class DeviceUtils {
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
-    /*
-     * Devices that do not support media tunneling
-     */
-    // Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo
-    private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("Hi3798MV200");
-    // Zephir TS43UHD-2
-    private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("cvt_mt5886_eu_1g");
-    // Hilife TV
-    private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
-            && Build.DEVICE.equals("RealtekATV");
-    // Philips QM16XE
-    private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
-            && Build.DEVICE.equals("QM16XE_U");
-
     private DeviceUtils() {
     }
 
@@ -209,18 +193,6 @@ public final class DeviceUtils {
                 TypedValue.COMPLEX_UNIT_SP,
                 sp,
                 context.getResources().getDisplayMetrics());
-    }
-
-    /**
-     * Some devices have broken tunneled video playback but claim to support it.
-     * See https://github.com/TeamNewPipe/NewPipe/issues/5911
-     * @return false if affected device
-     */
-    public static boolean shouldSupportMediaTunneling() {
-        return !HI3798MV200
-                && !CVT_MT5886_EU_1G
-                && !REALTEKATV
-                && !QM16XE_U;
     }
 
     public static boolean isLandscape(final Context context) {

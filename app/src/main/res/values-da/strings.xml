@@ -462,7 +462,6 @@
         <item quantity="one">Download fuldført</item>
         <item quantity="other">%s downloads fuldført</item>
     </plurals>
-    <string name="progressive_load_interval_summary">Ændr indlæsningsintervallets størrelse (som nu er på %s). En lavere værdi kan øge videoindlæsningshastigheden. Ændringer kræver en genstart af afspiller</string>
     <string name="clear_queue_confirmation_description">Den aktive spilleliste bliver udskiftet</string>
     <string name="clear_queue_confirmation_summary">Hvis du skifter fra en spiller til en anden, kan din kø blive erstattet</string>
     <string name="show_meta_info_title">Vis metainformation</string>

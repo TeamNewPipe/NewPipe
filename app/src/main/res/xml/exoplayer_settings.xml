@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_category_exoplayer_title">
+
+    <ListPreference
+        android:defaultValue="@string/progressive_load_interval_default_value"
+        android:entries="@array/progressive_load_interval_descriptions"
+        android:entryValues="@array/progressive_load_interval_values"
+        android:key="@string/progressive_load_interval_key"
+        android:summary="@string/progressive_load_interval_summary"
+        android:title="@string/progressive_load_interval_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/use_exoplayer_decoder_fallback_key"
+        android:summary="@string/use_exoplayer_decoder_fallback_summary"
+        android:title="@string/use_exoplayer_decoder_fallback_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/disable_media_tunneling_key"
+        android:summary="@string/disable_media_tunneling_summary"
+        android:title="@string/disable_media_tunneling_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/always_use_exoplayer_set_output_surface_workaround_key"
+        android:summary="@string/always_use_exoplayer_set_output_surface_workaround_summary"
+        android:title="@string/always_use_exoplayer_set_output_surface_workaround_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+</PreferenceScreen>
