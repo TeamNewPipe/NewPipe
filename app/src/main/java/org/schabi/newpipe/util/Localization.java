@@ -209,6 +209,11 @@ public final class Localization {
                 deletedCount, shortCount(context, deletedCount));
     }
 
+    public static String replyCount(final Context context, final int replyCount) {
+        return getQuantity(context, R.plurals.replies, 0, replyCount,
+                String.valueOf(replyCount));
+    }
+
     public static String getDurationString(final long duration) {
         final String output;
 

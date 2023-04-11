@@ -9,6 +9,7 @@ import android.text.style.URLSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,15 +58,20 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     private final RelativeLayout itemRoot;
     private final ImageView itemThumbnailView;
     private final TextView itemContentView;
+    private final ImageView itemThumbsUpView;
     private final TextView itemLikesCountView;
     private final TextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
+    private final Button repliesButton;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
-    @Nullable private Description commentText;
-    @Nullable private StreamingService streamService;
-    @Nullable private String streamUrl;
+    @Nullable
+    private Description commentText;
+    @Nullable
+    private StreamingService streamService;
+    @Nullable
+    private String streamUrl;
 
     public CommentInfoItemHolder(final InfoItemBuilder infoItemBuilder,
                                  final ViewGroup parent) {
@@ -74,10 +80,12 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+        itemThumbsUpView = itemView.findViewById(R.id.detail_thumbs_up_img_view);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
+        repliesButton = itemView.findViewById(R.id.replies_button);
 
         commentHorizontalPadding = (int) infoItemBuilder.getContext()
                 .getResources().getDimension(R.dimen.comments_horizontal_padding);
@@ -97,6 +105,8 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
+
+        // load the author avatar
         PicassoHelper.loadAvatar(item.getUploaderAvatars()).into(itemThumbnailView);
         if (ImageStrategy.shouldLoadImages()) {
             itemThumbnailView.setVisibility(View.VISIBLE);
@@ -109,6 +119,10 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         }
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
+
+        // setup the top row, with pinned icon, author name and comment date
+        itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
+
         final String uploadDate;
         if (item.getUploadDate() != null) {
             uploadDate = Localization.relativeTime(item.getUploadDate().offsetDateTime());
@@ -117,9 +131,29 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         }
         itemTitleView.setText(Localization.concatenateStrings(item.getUploaderName(), uploadDate));
 
-        itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
+
+        // setup bottom row, with likes, heart and replies button
+        if (item.getLikeCount() >= 0) {
+            itemLikesCountView.setText(
+                    Localization.shortCount(
+                            itemBuilder.getContext(),
+                            item.getLikeCount()));
+        } else {
+            itemLikesCountView.setText("-");
+        }
+
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 
+        final boolean hasReplies = item.getReplies() != null;
+        repliesButton.setOnClickListener(hasReplies ? (v) -> openRepliesFragment() : null);
+        repliesButton.setVisibility(hasReplies ? View.VISIBLE : View.GONE);
+        repliesButton.setText(hasReplies
+                ? Localization.replyCount(itemBuilder.getContext(), item.getReplyCount()) : "");
+        ((RelativeLayout.LayoutParams) itemThumbsUpView.getLayoutParams()).topMargin =
+                hasReplies ? 0 : DeviceUtils.dpToPx(6, itemBuilder.getContext());
+
+
+        // setup comment content and click listeners to expand/ellipsize it
         try {
             streamService = NewPipe.getService(item.getServiceId());
         } catch (final ExtractionException e) {
@@ -134,16 +168,6 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
         //noinspection ClickableViewAccessibility
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
-
-        if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(
-                    Localization.shortCount(
-                            itemBuilder.getContext(),
-                            item.getLikeCount()));
-        } else {
-            itemLikesCountView.setText("-");
-        }
-
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
@@ -277,5 +301,9 @@ public class CommentInfoItemHolder extends InfoItemHolder {
                     HtmlCompat.FROM_HTML_MODE_LEGACY, streamService, streamUrl, disposables,
                     onCompletion);
         }
+    }
+
+    private void openRepliesFragment() {
+        // TODO
     }
 }
