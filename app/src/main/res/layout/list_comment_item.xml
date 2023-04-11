@@ -47,7 +47,7 @@
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/comment_item_title_text_size"
-        tools:text="Author Name, Lorem ipsum" />
+        tools:text="Author Name, Lorem ipsum · 5 months ago" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemCommentContentView"
@@ -95,17 +95,5 @@
         android:src="@drawable/ic_heart"
         android:visibility="gone"
         tools:visibility="visible" />
-
-    <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/itemPublishedTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/itemCommentContentView"
-        android:layout_marginLeft="12dp"
-        android:layout_toRightOf="@id/detail_heart_image_view"
-        android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_upload_date_text_size"
-        tools:text="1 year ago" />
 
 </RelativeLayout>

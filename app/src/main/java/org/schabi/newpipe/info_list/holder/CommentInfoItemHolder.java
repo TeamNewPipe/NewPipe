@@ -41,8 +41,8 @@ import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public class CommentsMiniInfoItemHolder extends InfoItemHolder {
-    private static final String TAG = "CommentsMiniIIHolder";
+public class CommentInfoItemHolder extends InfoItemHolder {
+    private static final String TAG = "CommentIIHolder";
     private static final String ELLIPSIS = "…";
 
     private static final int COMMENT_DEFAULT_LINES = 2;
@@ -58,22 +58,26 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final ImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
-    private final TextView itemPublishedTime;
+    private final TextView itemTitleView;
+    private final ImageView itemHeartView;
+    private final ImageView itemPinnedView;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable private Description commentText;
     @Nullable private StreamingService streamService;
     @Nullable private String streamUrl;
 
-    CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
-                               final ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+    public CommentInfoItemHolder(final InfoItemBuilder infoItemBuilder,
+                                 final ViewGroup parent) {
+        super(infoItemBuilder, R.layout.list_comment_item, parent);
 
         itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
-        itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
-        itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+        itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
+        itemTitleView = itemView.findViewById(R.id.itemTitleView);
+        itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
+        itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
 
         commentHorizontalPadding = (int) infoItemBuilder.getContext()
                 .getResources().getDimension(R.dimen.comments_horizontal_padding);
@@ -83,11 +87,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         paintAtContentSize = new Paint();
         paintAtContentSize.setTextSize(itemContentView.getTextSize());
         ellipsisWidthPx = paintAtContentSize.measureText(ELLIPSIS);
-    }
-
-    public CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
-                                      final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_comments_mini_item, parent);
     }
 
     @Override
@@ -108,9 +107,18 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemRoot.setPadding(commentHorizontalPadding, commentVerticalPadding,
                     commentHorizontalPadding, commentVerticalPadding);
         }
-
-
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
+
+        final String uploadDate;
+        if (item.getUploadDate() != null) {
+            uploadDate = Localization.relativeTime(item.getUploadDate().offsetDateTime());
+        } else {
+            uploadDate = item.getTextualUploadDate();
+        }
+        itemTitleView.setText(Localization.concatenateStrings(item.getUploaderName(), uploadDate));
+
+        itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
+        itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 
         try {
             streamService = NewPipe.getService(item.getServiceId());
@@ -136,12 +144,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             itemLikesCountView.setText("-");
         }
 
-        if (item.getUploadDate() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate()
-                    .offsetDateTime()));
-        } else {
-            itemPublishedTime.setText(item.getTextualUploadDate());
-        }
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();
@@ -149,7 +151,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnCommentsSelectedListener().selected(item);
             }
         });
-
 
         itemView.setOnLongClickListener(view -> {
             if (DeviceUtils.isTv(itemBuilder.getContext())) {
