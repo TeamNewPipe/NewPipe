@@ -16,19 +16,30 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.ExtractorHelper;
 
+import java.util.Queue;
+
 import io.reactivex.rxjava3.core.Single;
 
 public final class CommentRepliesFragment
         extends BaseListInfoFragment<CommentsInfoItem, CommentRepliesInfo> {
 
     // has the same content as super.currentInfo, except that it's never null
-    private final CommentRepliesInfo currentInfo;
+    private CommentRepliesInfo currentInfo;
     // the original comments info loaded alongside stream
-    private final CommentsInfo commentsInfo;
+    private CommentsInfo commentsInfo;
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constructors and lifecycle
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public CommentRepliesFragment() {
+        super(UserAction.REQUESTED_COMMENT_REPLIES);
+    }
 
     public CommentRepliesFragment(final CommentsInfo commentsInfo,
                                   final CommentsInfoItem commentsInfoItem) {
-        super(UserAction.REQUESTED_COMMENT_REPLIES);
+        this();
         this.currentInfo = CommentRepliesInfo.getInfo(commentsInfoItem);
         this.commentsInfo = commentsInfo;
         setInitialData(commentsInfo.getServiceId(), commentsInfo.getUrl(), commentsInfo.getName());
@@ -41,6 +52,30 @@ public final class CommentRepliesFragment
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_comments, container, false);
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void writeTo(final Queue<Object> objectsToSave) {
+        super.writeTo(objectsToSave);
+        objectsToSave.add(currentInfo);
+        objectsToSave.add(commentsInfo);
+    }
+
+    @Override
+    public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
+        super.readFrom(savedObjects);
+        currentInfo = (CommentRepliesInfo) savedObjects.poll();
+        commentsInfo = (CommentsInfo) savedObjects.poll();
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Data loading
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     protected Single<CommentRepliesInfo> loadResult(final boolean forceLoad) {
