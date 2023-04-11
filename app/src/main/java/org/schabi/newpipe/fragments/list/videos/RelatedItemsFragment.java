@@ -21,7 +21,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.util.RelatedItemInfo;
 
 import java.io.Serializable;
 import java.util.function.Supplier;

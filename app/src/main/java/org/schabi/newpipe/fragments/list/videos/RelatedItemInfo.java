@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.fragments.list.videos;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListInfo;
@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RelatedItemInfo extends ListInfo<InfoItem> {
-    public RelatedItemInfo(final int serviceId, final ListLinkHandler listUrlIdHandler,
-                           final String name) {
+public final class RelatedItemInfo extends ListInfo<InfoItem> {
+    private RelatedItemInfo(final int serviceId,
+                            final ListLinkHandler listUrlIdHandler,
+                            final String name) {
         super(serviceId, listUrlIdHandler, name);
     }
 
