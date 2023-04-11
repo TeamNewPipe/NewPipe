@@ -66,6 +66,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
     @Override
     public void onResume() {
         super.onResume();
+
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
             if (hasMoreItems() && !infoListAdapter.getItemsList().isEmpty()) {
@@ -74,6 +75,8 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                 doInitialLoadLogic();
             }
         }
+
+        infoListAdapter.setSourceListInfo(currentInfo);
     }
 
     @Override
@@ -137,6 +140,8 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         infoListAdapter.clearStreamItemList();
 
         currentInfo = null;
+        infoListAdapter.setSourceListInfo(null);
+
         if (currentWorker != null) {
             currentWorker.dispose();
         }
@@ -146,6 +151,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                 .subscribe((@NonNull L result) -> {
                     isLoading.set(false);
                     currentInfo = result;
+                    infoListAdapter.setSourceListInfo(result);
                     currentNextPage = result.getNextPage();
                     handleResult(result);
                 }, throwable ->
