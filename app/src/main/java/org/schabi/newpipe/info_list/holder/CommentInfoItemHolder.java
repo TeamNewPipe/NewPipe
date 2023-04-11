@@ -18,15 +18,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.Description;
+import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -145,7 +148,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 
         final boolean hasReplies = item.getReplies() != null;
-        repliesButton.setOnClickListener(hasReplies ? (v) -> openRepliesFragment() : null);
+        repliesButton.setOnClickListener(hasReplies ? (v) -> openRepliesFragment(item) : null);
         repliesButton.setVisibility(hasReplies ? View.VISIBLE : View.GONE);
         repliesButton.setText(hasReplies
                 ? Localization.replyCount(itemBuilder.getContext(), item.getReplyCount()) : "");
@@ -303,7 +306,16 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         }
     }
 
-    private void openRepliesFragment() {
-        // TODO
+    private void openRepliesFragment(final CommentsInfoItem commentsInfoItem) {
+        ((MainActivity) itemBuilder.getContext())
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out,
+                        R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder,
+                        new CommentRepliesFragment((CommentsInfo) itemBuilder.getSourceListInfo(),
+                                commentsInfoItem))
+                .addToBackStack(null)
+                .commit();
     }
 }
