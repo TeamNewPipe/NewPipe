@@ -24,7 +24,7 @@ public final class CommentRepliesFragment
         extends BaseListInfoFragment<CommentsInfoItem, CommentRepliesInfo> {
 
     // has the same content as super.currentInfo, except that it's never null
-    private CommentRepliesInfo currentInfo;
+    private CommentRepliesInfo commentRepliesInfo;
     // the original comments info loaded alongside stream
     private CommentsInfo commentsInfo;
 
@@ -40,7 +40,7 @@ public final class CommentRepliesFragment
     public CommentRepliesFragment(final CommentsInfo commentsInfo,
                                   final CommentsInfoItem commentsInfoItem) {
         this();
-        this.currentInfo = CommentRepliesInfo.getInfo(commentsInfoItem);
+        this.commentRepliesInfo = CommentRepliesInfo.getInfo(commentsInfoItem);
         this.commentsInfo = commentsInfo;
         setInitialData(commentsInfo.getServiceId(), commentsInfo.getUrl(), commentsInfo.getName());
     }
@@ -61,14 +61,14 @@ public final class CommentRepliesFragment
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(currentInfo);
+        objectsToSave.add(commentRepliesInfo);
         objectsToSave.add(commentsInfo);
     }
 
     @Override
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        currentInfo = (CommentRepliesInfo) savedObjects.poll();
+        commentRepliesInfo = (CommentRepliesInfo) savedObjects.poll();
         commentsInfo = (CommentsInfo) savedObjects.poll();
     }
 
@@ -79,7 +79,7 @@ public final class CommentRepliesFragment
 
     @Override
     protected Single<CommentRepliesInfo> loadResult(final boolean forceLoad) {
-        return Single.just(this.currentInfo);
+        return Single.just(this.commentRepliesInfo);
     }
 
     @Override

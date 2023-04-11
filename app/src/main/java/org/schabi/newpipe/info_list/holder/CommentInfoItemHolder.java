@@ -148,7 +148,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 
         final boolean hasReplies = item.getReplies() != null;
-        repliesButton.setOnClickListener(hasReplies ? (v) -> openRepliesFragment(item) : null);
+        repliesButton.setOnClickListener(hasReplies ? v -> openRepliesFragment(item) : null);
         repliesButton.setVisibility(hasReplies ? View.VISIBLE : View.GONE);
         repliesButton.setText(hasReplies
                 ? Localization.replyCount(itemBuilder.getContext(), item.getReplyCount()) : "");
