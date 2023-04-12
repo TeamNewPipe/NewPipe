@@ -144,6 +144,14 @@ public final class ServiceHelper {
                 .orElse("<unknown>");
     }
 
+    @NonNull
+    public static StreamingService getServiceById(final int serviceId) {
+        return ServiceList.all().stream()
+                .filter(s -> s.getServiceId() == serviceId)
+                .findFirst()
+                .orElseThrow();
+    }
+
     public static void setSelectedServiceId(final Context context, final int serviceId) {
         String serviceName;
         try {

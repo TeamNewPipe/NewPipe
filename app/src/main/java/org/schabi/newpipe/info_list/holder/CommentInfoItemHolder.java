@@ -1,12 +1,12 @@
 package org.schabi.newpipe.info_list.holder;
 
 import static android.text.TextUtils.isEmpty;
+import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.graphics.Paint;
 import android.text.Layout;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,21 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.FragmentActivity;
 
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.Description;
-import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -46,7 +40,6 @@ import java.util.function.Consumer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class CommentInfoItemHolder extends InfoItemHolder {
-    private static final String TAG = "CommentIIHolder";
     private static final String ELLIPSIS = "…";
 
     private static final int COMMENT_DEFAULT_LINES = 2;
@@ -125,30 +118,19 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
         // setup the top row, with pinned icon, author name and comment date
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
-
-        final String uploadDate;
-        if (item.getUploadDate() != null) {
-            uploadDate = Localization.relativeTime(item.getUploadDate().offsetDateTime());
-        } else {
-            uploadDate = item.getTextualUploadDate();
-        }
-        itemTitleView.setText(Localization.concatenateStrings(item.getUploaderName(), uploadDate));
+        itemTitleView.setText(Localization.concatenateStrings(item.getUploaderName(),
+                Localization.relativeTimeOrTextual(item.getUploadDate(),
+                        item.getTextualUploadDate(), itemBuilder.getContext())));
 
 
         // setup bottom row, with likes, heart and replies button
-        if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(
-                    Localization.shortCount(
-                            itemBuilder.getContext(),
-                            item.getLikeCount()));
-        } else {
-            itemLikesCountView.setText("-");
-        }
+        itemLikesCountView.setText(
+                Localization.likeCount(itemBuilder.getContext(), item.getLikeCount()));
 
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 
         final boolean hasReplies = item.getReplies() != null;
-        repliesButton.setOnClickListener(hasReplies ? v -> openRepliesFragment(item) : null);
+        repliesButton.setOnClickListener(hasReplies ? v -> openCommentReplies(item) : null);
         repliesButton.setVisibility(hasReplies ? View.VISIBLE : View.GONE);
         repliesButton.setText(hasReplies
                 ? Localization.replyCount(itemBuilder.getContext(), item.getReplyCount()) : "");
@@ -157,14 +139,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
 
         // setup comment content and click listeners to expand/ellipsize it
-        try {
-            streamService = NewPipe.getService(item.getServiceId());
-        } catch (final ExtractionException e) {
-            // should never happen
-            ErrorUtil.showUiErrorSnackbar(itemBuilder.getContext(), "Getting StreamingService", e);
-            Log.w(TAG, "Cannot obtain service from comment service id, defaulting to YouTube", e);
-            streamService = ServiceList.YouTube;
-        }
+        streamService = getServiceById(item.getServiceId());
         streamUrl = item.getUrl();
         commentText = item.getCommentText();
         ellipsize();
@@ -193,19 +168,13 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (isEmpty(item.getUploaderUrl())) {
-            return;
-        }
-        final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-        try {
-            NavigationHelper.openChannelFragment(
-                    activity.getSupportFragmentManager(),
-                    item.getServiceId(),
-                    item.getUploaderUrl(),
-                    item.getUploaderName());
-        } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
-        }
+        NavigationHelper.openCommentAuthorIfPresent((FragmentActivity) itemBuilder.getContext(),
+                item);
+    }
+
+    private void openCommentReplies(final CommentsInfoItem item) {
+        NavigationHelper.openCommentRepliesFragment((FragmentActivity) itemBuilder.getContext(),
+                (CommentsInfo) itemBuilder.getSourceListInfo(), item);
     }
 
     private void allowLinkFocus() {
@@ -304,18 +273,5 @@ public class CommentInfoItemHolder extends InfoItemHolder {
                     HtmlCompat.FROM_HTML_MODE_LEGACY, streamService, streamUrl, disposables,
                     onCompletion);
         }
-    }
-
-    private void openRepliesFragment(final CommentsInfoItem commentsInfoItem) {
-        ((MainActivity) itemBuilder.getContext())
-                .getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out,
-                        R.animator.custom_fade_in, R.animator.custom_fade_out)
-                .replace(R.id.fragment_holder,
-                        new CommentRepliesFragment((CommentsInfo) itemBuilder.getSourceListInfo(),
-                                commentsInfoItem))
-                .addToBackStack(null)
-                .commit();
     }
 }

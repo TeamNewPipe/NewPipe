@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,6 +24,7 @@ import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.AudioTrackType;
 
@@ -214,6 +217,14 @@ public final class Localization {
                 String.valueOf(replyCount));
     }
 
+    public static String likeCount(final Context context, final int likeCount) {
+        if (likeCount < 0) {
+            return "-";
+        } else {
+            return shortCount(context, likeCount);
+        }
+    }
+
     public static String getDurationString(final long duration) {
         final String output;
 
@@ -331,6 +342,20 @@ public final class Localization {
 
     public static String relativeTime(final OffsetDateTime offsetDateTime) {
         return prettyTime.formatUnrounded(offsetDateTime);
+    }
+
+    public static String relativeTimeOrTextual(final DateWrapper parsed,
+                                               final String textual,
+                                               @Nullable final Context context) {
+        if (parsed == null) {
+            return textual;
+        } else if (DEBUG && context != null && PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.show_original_time_ago_key), false)) {
+            return relativeTime(parsed.offsetDateTime()) + " (" + textual + ")";
+        } else {
+            return relativeTime(parsed.offsetDateTime());
+        }
     }
 
     public static void assureCorrectAppLanguage(final Context c) {
