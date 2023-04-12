@@ -27,11 +27,11 @@ import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemInfo>
+public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemsInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
 
-    private RelatedItemInfo relatedItemInfo;
+    private RelatedItemsInfo relatedItemsInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -68,7 +68,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     protected Supplier<View> getListHeaderSupplier() {
-        if (relatedItemInfo == null || relatedItemInfo.getRelatedItems() == null) {
+        if (relatedItemsInfo == null || relatedItemsInfo.getRelatedItems() == null) {
             return null;
         }
 
@@ -96,8 +96,8 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<RelatedItemInfo> loadResult(final boolean forceLoad) {
-        return Single.fromCallable(() -> relatedItemInfo);
+    protected Single<RelatedItemsInfo> loadResult(final boolean forceLoad) {
+        return Single.fromCallable(() -> relatedItemsInfo);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     }
 
     @Override
-    public void handleResult(@NonNull final RelatedItemInfo result) {
+    public void handleResult(@NonNull final RelatedItemsInfo result) {
         super.handleResult(result);
 
         if (headerBinding != null) {
@@ -136,23 +136,23 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     private void setInitialData(final StreamInfo info) {
         super.setInitialData(info.getServiceId(), info.getUrl(), info.getName());
-        if (this.relatedItemInfo == null) {
-            this.relatedItemInfo = RelatedItemInfo.getInfo(info);
+        if (this.relatedItemsInfo == null) {
+            this.relatedItemsInfo = new RelatedItemsInfo(info);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_KEY, relatedItemInfo);
+        outState.putSerializable(INFO_KEY, relatedItemsInfo);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
         final Serializable serializable = savedState.getSerializable(INFO_KEY);
-        if (serializable instanceof RelatedItemInfo) {
-            this.relatedItemInfo = (RelatedItemInfo) serializable;
+        if (serializable instanceof RelatedItemsInfo) {
+            this.relatedItemsInfo = (RelatedItemsInfo) serializable;
         }
     }
 

@@ -482,6 +482,13 @@ public final class NavigationHelper {
                 item.getServiceId(), uploaderUrl, item.getUploaderName());
     }
 
+    /**
+     * Opens the comment author channel fragment, if the {@link CommentsInfoItem#getUploaderUrl()}
+     * of {@code comment} is non-null. Shows a UI-error snackbar if something goes wrong.
+     *
+     * @param activity the activity with the fragment manager and in which to show the snackbar
+     * @param comment the comment whose uploader/author will be opened
+     */
     public static void openCommentAuthorIfPresent(@NonNull final FragmentActivity activity,
                                                   final CommentsInfoItem comment) {
         if (isEmpty(comment.getUploaderUrl())) {

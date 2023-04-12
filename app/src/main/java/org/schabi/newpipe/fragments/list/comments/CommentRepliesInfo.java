@@ -7,19 +7,16 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import java.util.Collections;
 
 public final class CommentRepliesInfo extends ListInfo<CommentsInfoItem> {
-    private CommentRepliesInfo(final int serviceId,
-                               final ListLinkHandler listUrlIdHandler,
-                               final String name) {
-        super(serviceId, listUrlIdHandler, name);
-    }
-
-    public static CommentRepliesInfo getInfo(final CommentsInfoItem comment, final String name) {
-        final ListLinkHandler handler =
-                new ListLinkHandler("", "", "", Collections.emptyList(), null);
-        final CommentRepliesInfo relatedItemInfo = new CommentRepliesInfo(
-                comment.getServiceId(), handler, name); // the name will be shown as fragment title
-        relatedItemInfo.setNextPage(comment.getReplies());
-        relatedItemInfo.setRelatedItems(Collections.emptyList()); // since it must be non-null
-        return relatedItemInfo;
+    /**
+     * This class is used to wrap the comment replies page into a ListInfo object.
+     *
+     * @param comment the comment from which to get replies
+     * @param name will be shown as the fragment title
+     */
+    public CommentRepliesInfo(final CommentsInfoItem comment, final String name) {
+        super(comment.getServiceId(),
+                new ListLinkHandler("", "", "", Collections.emptyList(), null), name);
+        setNextPage(comment.getReplies());
+        setRelatedItems(Collections.emptyList()); // since it must be non-null
     }
 }

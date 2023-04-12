@@ -217,6 +217,12 @@ public final class Localization {
                 String.valueOf(replyCount));
     }
 
+    /**
+     * @param context the Android context
+     * @param likeCount the like count, possibly negative if unknown
+     * @return if {@code likeCount} is smaller than {@code 0}, the string {@code "-"}, otherwise
+     *         the result of calling {@link #shortCount(Context, long)} on the like count
+     */
     public static String likeCount(final Context context, final int likeCount) {
         if (likeCount < 0) {
             return "-";
@@ -344,9 +350,20 @@ public final class Localization {
         return prettyTime.formatUnrounded(offsetDateTime);
     }
 
-    public static String relativeTimeOrTextual(final DateWrapper parsed,
-                                               final String textual,
-                                               @Nullable final Context context) {
+    /**
+     * @param context the Android context; if {@code null} then even if in debug mode and the
+     *                setting is enabled, {@code textual} will not be shown next to {@code parsed}
+     * @param parsed  the textual date or time ago parsed by NewPipeExtractor, or {@code null} if
+     *                the extractor could not parse it
+     * @param textual the original textual date or time ago string as provided by services
+     * @return {@link #relativeTime(OffsetDateTime)} is used if {@code parsed != null}, otherwise
+     *         {@code textual} is returned. If in debug mode, {@code context != null},
+     *         {@code parsed != null} and the relevant setting is enabled, {@code textual} will
+     *         be appended to the returned string for debugging purposes.
+     */
+    public static String relativeTimeOrTextual(@Nullable final Context context,
+                                               @Nullable final DateWrapper parsed,
+                                               final String textual) {
         if (parsed == null) {
             return textual;
         } else if (DEBUG && context != null && PreferenceManager

@@ -89,7 +89,7 @@ public final class CommentRepliesFragment
             // setup author name and comment date
             binding.authorName.setText(item.getUploaderName());
             binding.uploadDate.setText(Localization.relativeTimeOrTextual(
-                    item.getUploadDate(), item.getTextualUploadDate(), getContext()));
+                    getContext(), item.getUploadDate(), item.getTextualUploadDate()));
             binding.authorTouchArea.setOnClickListener(
                     v -> NavigationHelper.openCommentAuthorIfPresent(requireActivity(), item));
 
@@ -140,7 +140,7 @@ public final class CommentRepliesFragment
 
     @Override
     protected Single<CommentRepliesInfo> loadResult(final boolean forceLoad) {
-        return Single.fromCallable(() -> CommentRepliesInfo.getInfo(commentsInfoItem,
+        return Single.fromCallable(() -> new CommentRepliesInfo(commentsInfoItem,
                 // the reply count string will be shown as the activity title
                 Localization.replyCount(requireContext(), commentsInfoItem.getReplyCount())));
     }
