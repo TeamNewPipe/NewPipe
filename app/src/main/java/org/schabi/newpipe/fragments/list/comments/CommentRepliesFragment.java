@@ -2,6 +2,8 @@ package org.schabi.newpipe.fragments.list.comments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +16,7 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.util.Queue;
@@ -85,5 +88,15 @@ public final class CommentRepliesFragment
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreCommentItems(serviceId, commentsInfo, currentNextPage);
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    protected ItemViewMode getItemViewMode() {
+        return ItemViewMode.LIST;
     }
 }
