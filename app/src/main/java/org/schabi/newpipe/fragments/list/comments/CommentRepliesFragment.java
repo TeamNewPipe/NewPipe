@@ -2,8 +2,6 @@ package org.schabi.newpipe.fragments.list.comments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +16,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.Localization;
 
 import java.util.Queue;
 
@@ -26,10 +25,10 @@ import io.reactivex.rxjava3.core.Single;
 public final class CommentRepliesFragment
         extends BaseListInfoFragment<CommentsInfoItem, CommentRepliesInfo> {
 
-    // has the same content as super.currentInfo, except that it's never null
-    private CommentRepliesInfo commentRepliesInfo;
-    // the original comments info loaded alongside stream
+    // the original comments info loaded alongside the stream
     private CommentsInfo commentsInfo;
+    // the comment to show replies of
+    private CommentsInfoItem commentsInfoItem;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -43,8 +42,8 @@ public final class CommentRepliesFragment
     public CommentRepliesFragment(final CommentsInfo commentsInfo,
                                   final CommentsInfoItem commentsInfoItem) {
         this();
-        this.commentRepliesInfo = CommentRepliesInfo.getInfo(commentsInfoItem);
         this.commentsInfo = commentsInfo;
+        this.commentsInfoItem = commentsInfoItem;
         setInitialData(commentsInfo.getServiceId(), commentsInfo.getUrl(), commentsInfo.getName());
     }
 
@@ -58,21 +57,21 @@ public final class CommentRepliesFragment
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // State Saving
+    // State saving
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(commentRepliesInfo);
         objectsToSave.add(commentsInfo);
+        objectsToSave.add(commentsInfoItem);
     }
 
     @Override
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        commentRepliesInfo = (CommentRepliesInfo) savedObjects.poll();
         commentsInfo = (CommentsInfo) savedObjects.poll();
+        commentsInfoItem = (CommentsInfoItem) savedObjects.poll();
     }
 
 
@@ -82,7 +81,9 @@ public final class CommentRepliesFragment
 
     @Override
     protected Single<CommentRepliesInfo> loadResult(final boolean forceLoad) {
-        return Single.just(this.commentRepliesInfo);
+        return Single.fromCallable(() -> CommentRepliesInfo.getInfo(commentsInfoItem,
+                // the reply count string will be shown as the activity title
+                Localization.replyCount(requireContext(), commentsInfoItem.getReplyCount())));
     }
 
     @Override

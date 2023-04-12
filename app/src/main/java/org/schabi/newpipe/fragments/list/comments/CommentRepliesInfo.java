@@ -13,11 +13,11 @@ public final class CommentRepliesInfo extends ListInfo<CommentsInfoItem> {
         super(serviceId, listUrlIdHandler, name);
     }
 
-    public static CommentRepliesInfo getInfo(final CommentsInfoItem comment) {
+    public static CommentRepliesInfo getInfo(final CommentsInfoItem comment, final String name) {
         final ListLinkHandler handler =
                 new ListLinkHandler("", "", "", Collections.emptyList(), null);
         final CommentRepliesInfo relatedItemInfo = new CommentRepliesInfo(
-                comment.getServiceId(), handler, comment.getName());
+                comment.getServiceId(), handler, name); // the name will be shown as fragment title
         relatedItemInfo.setNextPage(comment.getReplies());
         relatedItemInfo.setRelatedItems(Collections.emptyList()); // since it must be non-null
         return relatedItemInfo;
