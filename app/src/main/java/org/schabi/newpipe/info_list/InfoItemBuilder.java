@@ -1,13 +1,25 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 
-import org.schabi.newpipe.extractor.Info;
-import org.schabi.newpipe.extractor.ListInfo;
+import androidx.annotation.NonNull;
+
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.InfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.OnClickGesture;
 
 /*
@@ -42,10 +54,42 @@ public class InfoItemBuilder {
     private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
     private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
 
-    private ListInfo<?> sourceListInfo; // the list-info the info-items from this list belong to
-
     public InfoItemBuilder(final Context context) {
         this.context = context;
+    }
+
+    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
+                          final HistoryRecordManager historyRecordManager) {
+        return buildView(parent, infoItem, historyRecordManager, false);
+    }
+
+    public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
+                          final HistoryRecordManager historyRecordManager,
+                          final boolean useMiniVariant) {
+        final InfoItemHolder holder =
+                holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
+        holder.updateFromItem(infoItem, historyRecordManager);
+        return holder.itemView;
+    }
+
+    private InfoItemHolder holderFromInfoType(@NonNull final ViewGroup parent,
+                                              @NonNull final InfoItem.InfoType infoType,
+                                              final boolean useMiniVariant) {
+        switch (infoType) {
+            case STREAM:
+                return useMiniVariant ? new StreamMiniInfoItemHolder(this, parent)
+                        : new StreamInfoItemHolder(this, parent);
+            case CHANNEL:
+                return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent)
+                        : new ChannelInfoItemHolder(this, parent);
+            case PLAYLIST:
+                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
+                        : new PlaylistInfoItemHolder(this, parent);
+            case COMMENT:
+                return new CommentInfoItemHolder(this, parent);
+            default:
+                throw new RuntimeException("InfoType not expected = " + infoType.name());
+        }
     }
 
     public Context getContext() {
@@ -83,13 +127,5 @@ public class InfoItemBuilder {
     public void setOnCommentsSelectedListener(
             final OnClickGesture<CommentsInfoItem> onCommentsSelectedListener) {
         this.onCommentsSelectedListener = onCommentsSelectedListener;
-    }
-
-    public Info getSourceListInfo() {
-        return sourceListInfo;
-    }
-
-    public void setSourceListInfo(final ListInfo<?> sourceListInfo) {
-        this.sourceListInfo = sourceListInfo;
     }
 }

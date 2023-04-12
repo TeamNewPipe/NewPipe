@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
@@ -114,10 +113,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnCommentsSelectedListener(final OnClickGesture<CommentsInfoItem> listener) {
         infoItemBuilder.setOnCommentsSelectedListener(listener);
-    }
-
-    public void setSourceListInfo(final ListInfo<?> sourceInfo) {
-        infoItemBuilder.setSourceListInfo(sourceInfo);
     }
 
     public void setUseMiniVariant(final boolean useMiniVariant) {

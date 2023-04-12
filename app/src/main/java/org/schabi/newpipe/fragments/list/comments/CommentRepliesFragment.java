@@ -16,7 +16,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.CommentRepliesHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
@@ -37,10 +36,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public final class CommentRepliesFragment
         extends BaseListInfoFragment<CommentsInfoItem, CommentRepliesInfo> {
 
-    // the original comments info loaded alongside the stream
-    private CommentsInfo commentsInfo;
-    // the comment to show replies of
-    private CommentsInfoItem commentsInfoItem;
+    private CommentsInfoItem commentsInfoItem; // the comment to show replies of
     private final CompositeDisposable disposables = new CompositeDisposable();
 
 
@@ -48,16 +44,16 @@ public final class CommentRepliesFragment
     // Constructors and lifecycle
     //////////////////////////////////////////////////////////////////////////*/
 
+    // only called by the Android framework, after which readFrom is called and restores all data
     public CommentRepliesFragment() {
         super(UserAction.REQUESTED_COMMENT_REPLIES);
     }
 
-    public CommentRepliesFragment(final CommentsInfo commentsInfo,
-                                  final CommentsInfoItem commentsInfoItem) {
+    public CommentRepliesFragment(final CommentsInfoItem commentsInfoItem) {
         this();
-        this.commentsInfo = commentsInfo;
         this.commentsInfoItem = commentsInfoItem;
-        setInitialData(commentsInfo.getServiceId(), commentsInfo.getUrl(), commentsInfo.getName());
+        // setting "" as title since the title will be properly set right after
+        setInitialData(commentsInfoItem.getServiceId(), commentsInfoItem.getUrl(), "");
     }
 
     @Nullable
@@ -122,14 +118,12 @@ public final class CommentRepliesFragment
     @Override
     public void writeTo(final Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(commentsInfo);
         objectsToSave.add(commentsInfoItem);
     }
 
     @Override
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        commentsInfo = (CommentsInfo) savedObjects.poll();
         commentsInfoItem = (CommentsInfoItem) savedObjects.poll();
     }
 
@@ -147,7 +141,10 @@ public final class CommentRepliesFragment
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreCommentItems(serviceId, commentsInfo, currentNextPage);
+        // commentsInfoItem.getUrl() should contain the url of the original
+        // ListInfo<CommentsInfoItem>, which should be the stream url
+        return ExtractorHelper.getMoreCommentItems(
+                serviceId, commentsInfoItem.getUrl(), currentNextPage);
     }
 
 
