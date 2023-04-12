@@ -433,7 +433,7 @@ public abstract class Tab {
 
         @Override
         public ChannelVideosFragment getFragment(final Context context) {
-            return ChannelVideosFragment.getInstance(channelServiceId, channelUrl, channelName);
+            return new ChannelVideosFragment(channelServiceId, channelUrl, channelName);
         }
 
         @Override

@@ -32,7 +32,6 @@
     <dimen name="video_item_detail_sub_channel_text_size">16sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">14sp</dimen>
     <dimen name="video_item_detail_description_text_size">14sp</dimen>
-    <dimen name="channel_subscribers_text_size">14sp</dimen>
     <dimen name="channel_rss_title_size">14sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_uploader_image_size">42dp</dimen>

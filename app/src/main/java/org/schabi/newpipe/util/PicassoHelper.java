@@ -109,7 +109,11 @@ public final class PicassoHelper {
     }
 
     public static RequestCreator loadBanner(final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_channel_banner);
+        if (!shouldLoadImages || isBlank(url)) {
+            return picassoInstance.load((String) null);
+        } else {
+            return picassoInstance.load(url);
+        }
     }
 
     public static RequestCreator loadPlaylistThumbnail(final String url) {
