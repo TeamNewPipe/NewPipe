@@ -29,6 +29,7 @@
                     android:id="@+id/channel_banner_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxHeight="70dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/placeholder_channel_banner"
