@@ -97,6 +97,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
     private MenuItem menuRssButton;
     private MenuItem menuNotifyButton;
+    private SubscriptionEntity channelSubscription;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -193,8 +194,14 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final @NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
         menuRssButton = menu.findItem(R.id.menu_item_rss);
         menuNotifyButton = menu.findItem(R.id.menu_item_notify);
+        updateNotifyButton(channelSubscription);
     }
 
     @Override
@@ -346,15 +353,17 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
+                channelSubscription = null;
                 updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(mapOnSubscribe(channel, info));
             } else {
                 if (DEBUG) {
                     Log.d(TAG, "Found subscription to this channel!");
                 }
-                final SubscriptionEntity subscription = subscriptionEntities.get(0);
-                updateNotifyButton(subscription);
-                subscribeButtonMonitor = monitorSubscribeButton(mapOnUnsubscribe(subscription));
+                channelSubscription = subscriptionEntities.get(0);
+                updateNotifyButton(channelSubscription);
+                subscribeButtonMonitor =
+                        monitorSubscribeButton(mapOnUnsubscribe(channelSubscription));
             }
         };
     }
