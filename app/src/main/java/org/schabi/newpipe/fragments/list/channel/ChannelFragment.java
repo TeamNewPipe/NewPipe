@@ -457,8 +457,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             for (final ListLinkHandler linkHandler : currentInfo.getTabs()) {
                 final String tab = linkHandler.getContentFilters().get(0);
                 if (ChannelTabHelper.showChannelTab(context, preferences, tab)) {
-                    tabAdapter.addFragment(
-                            ChannelTabFragment.getInstance(serviceId, linkHandler, name),
+                    final ChannelTabFragment channelTabFragment =
+                            ChannelTabFragment.getInstance(serviceId, linkHandler, name);
+                    channelTabFragment.useAsFrontPage(useAsFrontPage);
+                    tabAdapter.addFragment(channelTabFragment,
                             context.getString(ChannelTabHelper.getTranslationKey(tab)));
                 }
             }
