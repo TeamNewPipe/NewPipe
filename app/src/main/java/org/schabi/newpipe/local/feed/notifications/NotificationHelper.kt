@@ -10,6 +10,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.squareup.picasso.Picasso
@@ -19,7 +20,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.PendingIntentCompat
 import org.schabi.newpipe.util.PicassoHelper
 
 /**
@@ -76,7 +76,8 @@ class NotificationHelper(val context: Context) {
                 NavigationHelper
                     .getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                0
+                0,
+                false
             )
         )
 
