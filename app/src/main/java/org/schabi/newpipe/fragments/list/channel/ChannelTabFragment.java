@@ -15,7 +15,6 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import icepick.State;
@@ -24,11 +23,7 @@ import io.reactivex.rxjava3.core.Single;
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo> {
 
     @State
-    protected int serviceId = Constants.NO_SERVICE_ID;
-
-    @State
     protected ListLinkHandler tabHandler;
-
     @State
     protected String channelName;
 

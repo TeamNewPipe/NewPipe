@@ -27,8 +27,9 @@ public final class ChannelTabHelper {
             case ChannelTabs.SHORTS:
             case ChannelTabs.LIVESTREAMS:
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     /**
@@ -61,8 +62,9 @@ public final class ChannelTabHelper {
                 return R.string.show_channel_tabs_playlists;
             case ChannelTabs.ALBUMS:
                 return R.string.show_channel_tabs_albums;
+            default:
+                return -1;
         }
-        return -1;
     }
 
     @StringRes
@@ -82,8 +84,9 @@ public final class ChannelTabHelper {
                 return R.string.channel_tab_playlists;
             case ChannelTabs.ALBUMS:
                 return R.string.channel_tab_albums;
+            default:
+                return R.string.unknown_content;
         }
-        return R.string.unknown_content;
     }
 
     public static boolean showChannelTab(final Context context,
