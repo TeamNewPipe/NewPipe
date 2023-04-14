@@ -13,11 +13,16 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
-import org.schabi.newpipe.extractor.ListInfo
+import org.schabi.newpipe.extractor.Info
+import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.SubscriptionManager
-import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.ChannelTabHelper
+import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
+import org.schabi.newpipe.util.ExtractorHelper.getChannelTab
+import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicBoolean
@@ -102,49 +107,88 @@ class FeedLoadManager(private val context: Context) {
             .filter { !cancelSignal.get() }
             .map { subscriptionEntity ->
                 var error: Throwable? = null
+                val storeOriginalErrorAndRethrow = { e: Throwable ->
+                    // keep original to prevent blockingGet() from wrapping it into RuntimeException
+                    error = e
+                    throw e
+                }
+
                 try {
                     // check for and load new streams
                     // either by using the dedicated feed method or by getting the channel info
-                    val listInfo = if (useFeedExtractor) {
-                        ExtractorHelper
-                            .getFeedInfoFallbackToChannelInfo(
-                                subscriptionEntity.serviceId,
-                                subscriptionEntity.url
-                            )
-                            .onErrorReturn {
-                                error = it // store error, otherwise wrapped into RuntimeException
-                                throw it
+                    var originalInfo: Info? = null
+                    var streams: List<StreamInfoItem>? = null
+                    val errors = ArrayList<Throwable>()
+
+                    if (useFeedExtractor) {
+                        NewPipe.getService(subscriptionEntity.serviceId)
+                            .getFeedExtractor(subscriptionEntity.url)
+                            ?.also { feedExtractor ->
+                                // the user wants to use a feed extractor and there is one, use it
+                                val feedInfo = FeedInfo.getInfo(feedExtractor)
+                                errors.addAll(feedInfo.errors)
+                                originalInfo = feedInfo
+                                streams = feedInfo.relatedItems
                             }
+                    }
+
+                    if (originalInfo == null) {
+                        // use the normal channel tabs extractor if either the user wants it, or
+                        // the current service does not have a dedicated feed extractor
+
+                        val channelInfo = getChannelInfo(
+                            subscriptionEntity.serviceId,
+                            subscriptionEntity.url, true
+                        )
+                            .onErrorReturn(storeOriginalErrorAndRethrow)
                             .blockingGet()
-                    } else {
-                        ExtractorHelper
-                            .getChannelInfo(
-                                subscriptionEntity.serviceId,
-                                subscriptionEntity.url,
-                                true
-                            )
-                            .onErrorReturn {
-                                error = it // store error, otherwise wrapped into RuntimeException
-                                throw it
+                        errors.addAll(channelInfo.errors)
+                        originalInfo = channelInfo
+
+                        streams = channelInfo.tabs
+                            .filter(ChannelTabHelper::isStreamsTab)
+                            .map {
+                                Pair(
+                                    getChannelTab(subscriptionEntity.serviceId, it, true)
+                                        .onErrorReturn(storeOriginalErrorAndRethrow)
+                                        .blockingGet(),
+                                    it
+                                )
                             }
-                            .blockingGet()
-                    } as ListInfo<StreamInfoItem>
+                            .flatMap { (channelTabInfo, linkHandler) ->
+                                errors.addAll(channelTabInfo.errors)
+                                if (channelTabInfo.relatedItems.isEmpty()) {
+                                    val infoItemsPage = getMoreChannelTabItems(
+                                        subscriptionEntity.serviceId,
+                                        linkHandler, channelTabInfo.nextPage
+                                    )
+                                        .blockingGet()
+
+                                    errors.addAll(infoItemsPage.errors)
+                                    return@flatMap infoItemsPage.items
+                                } else {
+                                    return@flatMap channelTabInfo.relatedItems
+                                }
+                            }
+                            .filterIsInstance<StreamInfoItem>()
+                    }
 
                     return@map Notification.createOnNext(
                         FeedUpdateInfo(
                             subscriptionEntity,
-                            listInfo
+                            originalInfo!!,
+                            streams!!,
+                            errors,
                         )
                     )
                 } catch (e: Throwable) {
-                    if (error == null) {
-                        // do this to prevent blockingGet() from wrapping into RuntimeException
-                        error = e
-                    }
-
                     val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                    val wrapper =
-                        FeedLoadService.RequestException(subscriptionEntity.uid, request, error!!)
+                    val wrapper = FeedLoadService.RequestException(
+                        subscriptionEntity.uid,
+                        request,
+                        // do this to prevent blockingGet() from wrapping into RuntimeException
+                        error ?: e
+                    )
                     return@map Notification.createOnError<FeedUpdateInfo>(wrapper)
                 }
             }
@@ -203,24 +247,24 @@ class FeedLoadManager(private val context: Context) {
                 for (notification in list) {
                     when {
                         notification.isOnNext -> {
-                            val subscriptionId = notification.value!!.uid
-                            val info = notification.value!!.listInfo
+                            val info = notification.value!!
 
-                            notification.value!!.newStreams = filterNewStreams(
-                                notification.value!!.listInfo.relatedItems
-                            )
+                            notification.value!!.newStreams = filterNewStreams(info.streams)
 
-                            feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
-                            subscriptionManager.updateFromInfo(subscriptionId, info)
+                            feedDatabaseManager.upsertAll(info.uid, info.streams)
+                            subscriptionManager.updateFromInfo(info.uid, info.originalInfo)
 
                             if (info.errors.isNotEmpty()) {
                                 feedResultsHolder.addErrors(
-                                    FeedLoadService.RequestException.wrapList(
-                                        subscriptionId,
-                                        info
-                                    )
+                                    info.errors.map {
+                                        FeedLoadService.RequestException(
+                                            info.uid,
+                                            "${info.originalInfo.serviceId}:${info.originalInfo.url}",
+                                            it
+                                        )
+                                    }
                                 )
-                                feedDatabaseManager.markAsOutdated(subscriptionId)
+                                feedDatabaseManager.markAsOutdated(info.uid)
                             }
                         }
                         notification.isOnError -> {

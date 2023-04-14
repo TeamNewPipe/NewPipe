@@ -36,17 +36,13 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
-import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.feed.FeedExtractor;
-import org.schabi.newpipe.extractor.feed.FeedInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
@@ -127,30 +123,6 @@ public final class ExtractorHelper {
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.CHANNEL,
                 Single.fromCallable(() ->
                         ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
-    }
-
-    public static Single<InfoItemsPage<StreamInfoItem>> getMoreChannelItems(final int serviceId,
-                                                                            final String url,
-                                                                            final Page nextPage) {
-        checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
-    }
-
-    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(
-            final int serviceId, final String url) {
-        final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
-            final StreamingService service = NewPipe.getService(serviceId);
-            final FeedExtractor feedExtractor = service.getFeedExtractor(url);
-
-            if (feedExtractor == null) {
-                return null;
-            }
-
-            return FeedInfo.getInfo(feedExtractor);
-        });
-
-        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
     }
 
     public static Single<ChannelTabInfo> getChannelTab(final int serviceId,
