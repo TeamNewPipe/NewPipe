@@ -68,6 +68,22 @@ public final class ChannelTabHelper {
     }
 
     @StringRes
+    private static int getFetchFeedTabKey(final String tab) {
+        switch (tab) {
+            case ChannelTabs.VIDEOS:
+                return R.string.fetch_channel_tabs_videos;
+            case ChannelTabs.TRACKS:
+                return R.string.fetch_channel_tabs_tracks;
+            case ChannelTabs.SHORTS:
+                return R.string.fetch_channel_tabs_shorts;
+            case ChannelTabs.LIVESTREAMS:
+                return R.string.fetch_channel_tabs_livestreams;
+            default:
+                return -1;
+        }
+    }
+
+    @StringRes
     public static int getTranslationKey(final String tab) {
         switch (tab) {
             case ChannelTabs.VIDEOS:
@@ -109,5 +125,27 @@ public final class ChannelTabHelper {
             return false;
         }
         return showChannelTab(context, sharedPreferences, key);
+    }
+
+    public static boolean fetchFeedChannelTab(final Context context,
+                                              final SharedPreferences sharedPreferences,
+                                              final ListLinkHandler tab) {
+        final List<String> contentFilters = tab.getContentFilters();
+        if (contentFilters.isEmpty()) {
+            return false; // this should never happen, but check just to be sure
+        }
+
+        final int key = ChannelTabHelper.getFetchFeedTabKey(contentFilters.get(0));
+        if (key == -1) {
+            return false;
+        }
+
+        final Set<String> enabledTabs = sharedPreferences.getStringSet(
+                context.getString(R.string.feed_fetch_channel_tabs_key), null);
+        if (enabledTabs == null) {
+            return true; // default to true
+        } else {
+            return enabledTabs.contains(context.getString(key));
+        }
     }
 }

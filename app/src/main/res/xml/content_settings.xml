@@ -162,5 +162,15 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
+        <MultiSelectListPreference
+            android:key="@string/feed_fetch_channel_tabs_key"
+            android:summary="@string/feed_fetch_channel_tabs_summary"
+            android:title="@string/feed_fetch_channel_tabs"
+            android:entries="@array/feed_fetch_channel_tabs_description_list"
+            android:entryValues="@array/feed_fetch_channel_tabs_value_list"
+            android:defaultValue="@array/feed_fetch_channel_tabs_value_list"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
     </PreferenceCategory>
 </PreferenceScreen>

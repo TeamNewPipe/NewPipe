@@ -80,7 +80,9 @@ class FeedLoadManager(private val context: Context) {
          * subscriptions which have not been updated within the feed updated threshold
          */
         val outdatedSubscriptions = when (groupId) {
-            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
+            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(
+                outdatedThreshold
+            )
             GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
                 outdatedThreshold, NotificationMode.ENABLED
             )
@@ -146,7 +148,13 @@ class FeedLoadManager(private val context: Context) {
                         originalInfo = channelInfo
 
                         streams = channelInfo.tabs
-                            .filter(ChannelTabHelper::isStreamsTab)
+                            .filter { tab ->
+                                ChannelTabHelper.fetchFeedChannelTab(
+                                    context,
+                                    defaultSharedPreferences,
+                                    tab
+                                )
+                            }
                             .map {
                                 Pair(
                                     getChannelTab(subscriptionEntity.serviceId, it, true)
@@ -208,7 +216,12 @@ class FeedLoadManager(private val context: Context) {
     }
 
     private fun broadcastProgress() {
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(currentProgress.get(), maxProgress.get()))
+        FeedEventManager.postEvent(
+            FeedEventManager.Event.ProgressEvent(
+                currentProgress.get(),
+                maxProgress.get()
+            )
+        )
     }
 
     /**
