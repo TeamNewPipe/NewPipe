@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -162,16 +164,19 @@ public final class ListHelper {
      * Some formats are not supported. For more info, see {@link #SUPPORTED_ITAG_IDS}.
      * Torrent streams are also removed, because they cannot be retrieved.
      *
-     * @param streamList the original stream list
      * @param <S>        the item type's class that extends {@link Stream}
+     * @param streamList the original stream list
+     * @param serviceId
      * @return a stream list which only contains streams that can be played the player
      */
     @NonNull
     public static <S extends Stream> List<S> getPlayableStreams(
-            @Nullable final List<S> streamList) {
+            @Nullable final List<S> streamList, final int serviceId) {
+        final int youtubeServiceId = YouTube.getServiceId();
         return getFilteredStreamList(streamList,
                 stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT
-                        && (stream.getItagItem() == null
+                        && (serviceId != youtubeServiceId
+                        || stream.getItagItem() == null
                         || SUPPORTED_ITAG_IDS.contains(stream.getItagItem().id)));
     }
 
