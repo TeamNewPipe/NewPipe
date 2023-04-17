@@ -697,7 +697,6 @@
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
     <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача</string>
     <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>

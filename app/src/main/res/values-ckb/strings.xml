@@ -700,7 +700,6 @@
     <string name="delete_downloaded_files_confirm">هەموو فایلە دابەزێنراوەکان لە دیسک بسڕدرێتەوە؟</string>
     <string name="notifications_disabled">پەیامەکان ناکاراکراون</string>
     <string name="get_notified">پەیامم بکە</string>
-    <string name="progressive_load_interval_summary">"قەبارەی نێوان بارکردنەکە بگۆڕە (لە ئێستادا %s) .    بەهایەکی کەمتر لەوانەیە بارکردنی ڤیدیۆی سەرەتایی خێراتر بکات.  گۆڕانکارییەکان پێویستیان بە داگیرساندنەوەی لێدەر هەیە"</string>
     <string name="percent">لەسەدا</string>
     <string name="semitone">نیمچەتەن</string>
     <string name="progressive_load_interval_exoplayer_default">بنەڕەتی ExoPlayer</string>

@@ -677,7 +677,6 @@
     </plurals>
     <string name="description_select_note">Tagad varat atlasīt tekstu video aprakstā.</string>
     <string name="notifications">Notifikācijas</string>
-    <string name="progressive_load_interval_summary">Izmainīt ielādēšanas intervāla izmēru (pašlaik %s). Zemāka vērtība var paātrināt sākotnējo video ielādi. Izmainot vērtību, nepieciešams restartēt atskaņotāju.</string>
     <string name="crash_the_player">Avarēt atskaņotāju</string>
     <string name="settings_category_player_notification_summary">Pielāgojiet pašlaik atskaņotās plūsmas notifikāciju</string>
     <string name="settings_category_player_notification_title">Atskaņotāja notifikācija</string>

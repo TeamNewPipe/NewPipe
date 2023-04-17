@@ -692,7 +692,6 @@
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="leak_canary_not_available">LeakCanary não está disponível</string>
-    <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. As alterações exigem que o player seja reiniciado</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="notifications">Notificações</string>
     <string name="loading_stream_details">A carregar detalhes do fluxo…</string>

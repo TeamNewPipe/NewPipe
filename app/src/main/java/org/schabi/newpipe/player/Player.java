@@ -69,7 +69,6 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
-import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -77,7 +76,6 @@ import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoSize;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -97,6 +95,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
+import org.schabi.newpipe.player.helper.CustomRenderersFactory;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -116,7 +115,6 @@ import org.schabi.newpipe.player.ui.PlayerUiList;
 import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
-import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
@@ -199,7 +197,7 @@ public final class Player implements PlaybackListener, Listener {
 
     @NonNull private final DefaultTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
-    @NonNull private final RenderersFactory renderFactory;
+    @NonNull private final DefaultRenderersFactory renderFactory;
 
     @NonNull private final VideoPlaybackResolver videoResolver;
     @NonNull private final AudioPlaybackResolver audioResolver;
@@ -264,7 +262,16 @@ public final class Player implements PlaybackListener, Listener {
         final PlayerDataSource dataSource = new PlayerDataSource(context,
                 new DefaultBandwidthMeter.Builder(context).build());
         loadController = new LoadController();
-        renderFactory = new DefaultRenderersFactory(context);
+
+        renderFactory = prefs.getBoolean(
+                context.getString(
+                        R.string.always_use_exoplayer_set_output_surface_workaround_key), false)
+                ? new CustomRenderersFactory(context) : new DefaultRenderersFactory(context);
+
+        renderFactory.setEnableDecoderFallback(
+                prefs.getBoolean(
+                        context.getString(
+                                R.string.use_exoplayer_decoder_fallback_key), false));
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
@@ -521,16 +528,11 @@ public final class Player implements PlaybackListener, Listener {
         // Setup UIs
         UIs.call(PlayerUi::initPlayer);
 
-        // enable media tunneling
-        if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
+        // Disable media tunneling if requested by the user from ExoPlayer settings
+        if (!PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
-            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
-                    + "media tunneling disabled in debug preferences");
-        } else if (DeviceUtils.shouldSupportMediaTunneling()) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingEnabled(true));
-        } else if (DEBUG) {
-            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
         }
     }
     //endregion

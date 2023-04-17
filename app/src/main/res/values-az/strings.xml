@@ -496,7 +496,6 @@
     <string name="hash_channel_description">Video fayl xülasəsi prosesi üçün bildirişlər</string>
     <string name="on">Aç</string>
     <string name="notification_scale_to_square_image_title">Miniatürü 1:1 görünüş nisbətinə kəs</string>
-    <string name="progressive_load_interval_summary">Yükləmə intervalı həcmini dəyişdir (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcını yenidən başlatmağı tələb edir</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndür</string>
     <string name="auto_queue_summary">Əlaqəli yayımı əlavə etməklə (təkrarlanmayan) sonlanacaq oynatma növbəsini davam etdir</string>
     <string name="remote_search_suggestions">Kənar axtarış təklifləri</string>

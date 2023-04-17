@@ -96,6 +96,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions {
+        // remove two files which belong to jsoup
+        // no idea how they ended up in the META-INF dir...
+        exclude 'META-INF/README.md'
+        exclude 'META-INF/CHANGES'
+    }
 }
 
 ext {
@@ -205,7 +212,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
@@ -313,6 +320,7 @@ static String getGitWorkingBranch() {
     }
 }
 
+// fix reproducible builds
 project.afterEvaluate {
     tasks.compileReleaseArtProfile.doLast {
         outputs.files.each { file ->

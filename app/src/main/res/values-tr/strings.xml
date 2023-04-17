@@ -679,7 +679,6 @@
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
     <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
     <string name="leak_canary_not_available">LeakCanary yok</string>
-    <string name="progressive_load_interval_summary">Yükleme ara boyutunu değiştir (şu anda %s). Düşük bir değer videonun ilk yüklenişini hızlandırabilir. Değişiklikler oynatıcının yeniden başlatılmasını gerektirir</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer öntanımlısı</string>
     <string name="enable_streams_notifications_title">Yeni akış bildirimleri</string>
     <string name="notifications">Bildirimler</string>
