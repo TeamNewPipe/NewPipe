@@ -28,11 +28,10 @@
                 <ImageView
                     android:id="@+id/channel_banner_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxHeight="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/placeholder_channel_banner"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/placeholder_channel_banner"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
 
