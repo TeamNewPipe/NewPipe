@@ -98,10 +98,11 @@ android {
     }
 
     packagingOptions {
-        // remove two files which belong to jsoup
-        // no idea how they ended up in the META-INF dir...
-        exclude 'META-INF/README.md'
-        exclude 'META-INF/CHANGES'
+        resources {
+            // remove two files which belong to jsoup
+            // no idea how they ended up in the META-INF dir...
+            excludes += ['META-INF/README.md', 'META-INF/CHANGES']
+        }
     }
 }
 
