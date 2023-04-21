@@ -3,7 +3,9 @@ package org.schabi.newpipe.fragments.list.channel;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.UNKNOWN_SUBSCRIBER_COUNT;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.fragments.detail.BaseDescriptionFragment;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
@@ -31,6 +34,12 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
 
     public ChannelAboutFragment() {
         super();
+    }
+
+    @Override
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+        binding.constraintLayout.setPadding(0, DeviceUtils.dpToPx(8, requireContext()), 0, 0);
     }
 
     @Nullable

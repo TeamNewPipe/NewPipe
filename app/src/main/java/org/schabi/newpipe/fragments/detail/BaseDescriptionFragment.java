@@ -35,7 +35,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public abstract class BaseDescriptionFragment extends BaseFragment {
     final CompositeDisposable descriptionDisposables = new CompositeDisposable();
-    FragmentDescriptionBinding binding;
+    protected FragmentDescriptionBinding binding;
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
