@@ -88,5 +88,10 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
             addMetadataItem(inflater, layout, false, R.string.metadata_subscribers,
                     Localization.localizeNumber(context, channelInfo.getSubscriberCount()));
         }
+
+        addMetadataItem(inflater, layout, true, R.string.metadata_avatar_url,
+                channelInfo.getAvatarUrl());
+        addMetadataItem(inflater, layout, true, R.string.metadata_banner_url,
+                channelInfo.getBannerUrl());
     }
 }

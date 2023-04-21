@@ -756,6 +756,8 @@
     <string name="metadata_support">Support</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_thumbnail_url">Thumbnail URL</string>
+    <string name="metadata_avatar_url">Avatar URL</string>
+    <string name="metadata_banner_url">Banner URL</string>
     <string name="metadata_privacy_public">Public</string>
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
