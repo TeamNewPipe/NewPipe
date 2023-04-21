@@ -667,11 +667,8 @@ public final class PlayQueueActivity extends AppCompatActivity
                 return;
             }
 
-            player.saveStreamProgressState();
             final String newAudioTrack = availableStreams.get(itemId).getAudioTrackId();
-            player.setRecovery();
             player.setAudioTrack(newAudioTrack);
-            player.reloadPlayQueueManager();
         });
     }
 }

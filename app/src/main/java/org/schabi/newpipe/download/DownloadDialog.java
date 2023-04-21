@@ -103,7 +103,7 @@ public class DownloadDialog extends DialogFragment
     @State
     AudioTracksWrapper wrappedAudioTracks;
     @State
-    int selectedAudioStreamIndex;
+    int selectedAudioTrackIndex;
     @State
     int selectedVideoIndex; // set in the constructor
     @State
@@ -173,7 +173,7 @@ public class DownloadDialog extends DialogFragment
         final List<List<AudioStream>> groupedAudioStreams =
                 ListHelper.getGroupedAudioStreams(context, audioStreams);
         this.wrappedAudioTracks = new AudioTracksWrapper(groupedAudioStreams, context);
-        this.selectedAudioStreamIndex =
+        this.selectedAudioTrackIndex =
                 ListHelper.getDefaultAudioTrackGroup(context, groupedAudioStreams);
 
         // TODO: Adapt this code when the downloader support other types of stream deliveries
@@ -433,7 +433,7 @@ public class DownloadDialog extends DialogFragment
         }
 
         dialogBinding.audioTrackSpinner.setAdapter(audioTrackAdapter);
-        dialogBinding.audioTrackSpinner.setSelection(selectedAudioStreamIndex);
+        dialogBinding.audioTrackSpinner.setSelection(selectedAudioTrackIndex);
     }
 
     private void setupAudioSpinner() {
@@ -619,8 +619,8 @@ public class DownloadDialog extends DialogFragment
                 onItemSelectedSetFileName();
                 break;
             case R.id.audio_track_spinner:
-                final boolean trackChanged = selectedAudioStreamIndex != position;
-                selectedAudioStreamIndex = position;
+                final boolean trackChanged = selectedAudioTrackIndex != position;
+                selectedAudioTrackIndex = position;
                 if (trackChanged) {
                     updateSecondaryStreams();
                     fetchStreamsSize();
@@ -726,10 +726,10 @@ public class DownloadDialog extends DialogFragment
     }
 
     private StreamSizeWrapper<AudioStream> getWrappedAudioStreams() {
-        if (selectedAudioStreamIndex < 0 || selectedAudioStreamIndex > wrappedAudioTracks.size()) {
+        if (selectedAudioTrackIndex < 0 || selectedAudioTrackIndex > wrappedAudioTracks.size()) {
             return StreamSizeWrapper.empty();
         }
-        return wrappedAudioTracks.getTracksList().get(selectedAudioStreamIndex);
+        return wrappedAudioTracks.getTracksList().get(selectedAudioTrackIndex);
     }
 
     private int getSubtitleIndexBy(@NonNull final List<SubtitlesStream> streams) {

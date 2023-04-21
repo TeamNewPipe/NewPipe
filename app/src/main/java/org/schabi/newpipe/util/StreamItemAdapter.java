@@ -224,6 +224,8 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     public static class StreamSizeWrapper<T extends Stream> implements Serializable {
         private static final StreamSizeWrapper<Stream> EMPTY =
                 new StreamSizeWrapper<>(Collections.emptyList(), null);
+        private static final int SIZE_UNSET = -2;
+
         private final List<T> streamsList;
         private final long[] streamSizes;
         private final String unknownSize;
@@ -251,7 +253,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             final Callable<Boolean> fetchAndSet = () -> {
                 boolean hasChanged = false;
                 for (final X stream : streamsWrapper.getStreamsList()) {
-                    if (streamsWrapper.getSizeInBytes(stream) > -2) {
+                    if (streamsWrapper.getSizeInBytes(stream) > SIZE_UNSET) {
                         continue;
                     }
 
@@ -270,7 +272,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         }
 
         public void resetSizes() {
-            Arrays.fill(streamSizes, -2);
+            Arrays.fill(streamSizes, SIZE_UNSET);
         }
 
         public static <X extends Stream> StreamSizeWrapper<X> empty() {

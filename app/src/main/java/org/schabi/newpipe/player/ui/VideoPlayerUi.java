@@ -110,7 +110,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     protected PlayerBinding binding;
     private final Handler controlsVisibilityHandler = new Handler(Looper.getMainLooper());
-    @Nullable private SurfaceHolderCallback surfaceHolderCallback;
+    @Nullable
+    private SurfaceHolderCallback surfaceHolderCallback;
     boolean surfaceIsSetup = false;
 
 
@@ -533,6 +534,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     /**
      * Sets the current duration into the corresponding elements.
+     *
      * @param currentProgress the current progress, in milliseconds
      */
     private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
@@ -545,6 +547,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     /**
      * Sets the video duration time into all control components (e.g. seekbar).
+     *
      * @param duration the video duration, in milliseconds
      */
     private void setVideoDurationToControls(final int duration) {
@@ -1261,11 +1264,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             return;
         }
 
-        player.saveStreamProgressState();
         final String newResolution = availableStreams.get(menuItemIndex).getResolution();
-        player.setRecovery();
         player.setPlaybackQuality(newResolution);
-        player.reloadPlayQueueManager();
 
         binding.qualityTextView.setText(menuItem.getTitle());
     }
@@ -1285,11 +1285,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             return;
         }
 
-        player.saveStreamProgressState();
         final String newAudioTrack = availableStreams.get(menuItemIndex).getAudioTrackId();
-        player.setRecovery();
         player.setAudioTrack(newAudioTrack);
-        player.reloadPlayQueueManager();
 
         binding.audioTrackTextView.setText(menuItem.getTitle());
     }

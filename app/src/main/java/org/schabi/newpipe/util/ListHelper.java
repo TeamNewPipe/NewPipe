@@ -715,9 +715,9 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
      *
-     * <p>In this order:</p>
+     * <p>Tracks will be compared this order:</p>
      * <ol>
-     * <li>If {@code preferOriginalAudio}: is original audio</li>
+     * <li>If {@code preferOriginalAudio}: use original audio</li>
      * <li>Language matches {@code preferredLanguage}</li>
      * <li>
      *     Track type ranks highest in this order:
@@ -752,9 +752,9 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their tracks.
      *
-     * <p>In this order:</p>
+     * <p>Tracks will be compared this order:</p>
      * <ol>
-     * <li>If {@code preferOriginalAudio}: is original audio</li>
+     * <li>If {@code preferOriginalAudio}: use original audio</li>
      * <li>Language matches {@code preferredLanguage}</li>
      * <li>
      *     Track type ranks highest in this order:

@@ -38,6 +38,13 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Get a media source providing audio. If a service has no separate {@link AudioStream}s we
+     * use a video stream as audio source to support audio background playback.
+     *
+     * @param info of the stream
+     * @return the audio source to use or null if none could be found
+     */
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
