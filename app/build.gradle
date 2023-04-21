@@ -80,13 +80,13 @@ android {
         // Flag to enable support for the new language APIs
         coreLibraryDesugaringEnabled true
 
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
         encoding 'utf-8'
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_17
     }
 
     sourceSets {
@@ -98,10 +98,11 @@ android {
     }
 
     packagingOptions {
-        // remove two files which belong to jsoup
-        // no idea how they ended up in the META-INF dir...
-        exclude 'META-INF/README.md'
-        exclude 'META-INF/CHANGES'
+        resources {
+            // remove two files which belong to jsoup
+            // no idea how they ended up in the META-INF dir...
+            excludes += ['META-INF/README.md', 'META-INF/CHANGES']
+        }
     }
 }
 

@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -50,8 +52,22 @@ public final class ListHelper {
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE =
             List.of(AudioTrackType.ORIGINAL, AudioTrackType.DUBBED, AudioTrackType.DESCRIPTIVE);
 
-    private ListHelper() {
-    }
+    /**
+     * List of supported YouTube Itag ids.
+     * The original order is kept.
+     * @see {@link org.schabi.newpipe.extractor.services.youtube.ItagItem#ITAG_LIST}
+     */
+    private static final List<Integer> SUPPORTED_ITAG_IDS =
+            List.of(
+                    17, 36, // video v3GPP
+                    18, 34, 35, 59, 78, 22, 37, 38, // video MPEG4
+                    43, 44, 45, 46, // video webm
+                    171, 172, 139, 140, 141, 249, 250, 251, // audio
+                    160, 133, 134, 135, 212, 136, 298, 137, 299, 266, // video only
+                    278, 242, 243, 244, 245, 246, 247, 248, 271, 272, 302, 303, 308, 313, 315
+            );
+
+    private ListHelper() { }
 
     /**
      * @param context      Android app context
@@ -150,7 +166,7 @@ public final class ListHelper {
      */
     @NonNull
     public static <S extends Stream> List<S> getStreamsOfSpecifiedDelivery(
-            final List<S> streamList,
+            @Nullable final List<S> streamList,
             final DeliveryMethod deliveryMethod) {
         return getFilteredStreamList(streamList,
                 stream -> stream.getDeliveryMethod() == deliveryMethod);
@@ -165,23 +181,31 @@ public final class ListHelper {
      */
     @NonNull
     public static <S extends Stream> List<S> getUrlAndNonTorrentStreams(
-            final List<S> streamList) {
+            @Nullable final List<S> streamList) {
         return getFilteredStreamList(streamList,
                 stream -> stream.isUrl() && stream.getDeliveryMethod() != DeliveryMethod.TORRENT);
     }
 
     /**
-     * Return a {@link Stream} list which only contains non-torrent streams.
+     * Return a {@link Stream} list which only contains streams which can be played by the player.
+     * <br>
+     * Some formats are not supported. For more info, see {@link #SUPPORTED_ITAG_IDS}.
+     * Torrent streams are also removed, because they cannot be retrieved.
      *
-     * @param streamList the original stream list
      * @param <S>        the item type's class that extends {@link Stream}
-     * @return a stream list which only contains non-torrent streams
+     * @param streamList the original stream list
+     * @param serviceId
+     * @return a stream list which only contains streams that can be played the player
      */
     @NonNull
-    public static <S extends Stream> List<S> getNonTorrentStreams(
-            final List<S> streamList) {
+    public static <S extends Stream> List<S> getPlayableStreams(
+            @Nullable final List<S> streamList, final int serviceId) {
+        final int youtubeServiceId = YouTube.getServiceId();
         return getFilteredStreamList(streamList,
-                stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT);
+                stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT
+                        && (serviceId != youtubeServiceId
+                        || stream.getItagItem() == null
+                        || SUPPORTED_ITAG_IDS.contains(stream.getItagItem().id)));
     }
 
     /**
@@ -312,7 +336,7 @@ public final class ListHelper {
      * @return a new stream list filtered using the given predicate
      */
     private static <S extends Stream> List<S> getFilteredStreamList(
-            final List<S> streamList,
+            @Nullable final List<S> streamList,
             final Predicate<S> streamListPredicate) {
         if (streamList == null) {
             return Collections.emptyList();
@@ -323,7 +347,7 @@ public final class ListHelper {
                 .collect(Collectors.toList());
     }
 
-    private static String computeDefaultResolution(final Context context, final int key,
+    private static String computeDefaultResolution(@NonNull final Context context, final int key,
                                                    final int value) {
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);

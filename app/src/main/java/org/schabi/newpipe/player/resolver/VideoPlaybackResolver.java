@@ -30,7 +30,7 @@ import java.util.Optional;
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.util.ListHelper.getFilteredAudioStreams;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
-import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getPlayableStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
     private static final String TAG = VideoPlaybackResolver.class.getSimpleName();
@@ -75,8 +75,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Create video stream source
         final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
-                getNonTorrentStreams(info.getVideoStreams()),
-                getNonTorrentStreams(info.getVideoOnlyStreams()), false, true);
+                getPlayableStreams(info.getVideoStreams(), info.getServiceId()),
+                getPlayableStreams(info.getVideoOnlyStreams(), info.getServiceId()), false, true);
         final List<AudioStream> audioStreamsList =
                 getFilteredAudioStreams(context, info.getAudioStreams());
 
