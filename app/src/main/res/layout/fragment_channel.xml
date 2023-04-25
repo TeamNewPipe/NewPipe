@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- since ToolbarTheme sets the tint to icons, it would make images all white,
+    therefore app:tint="@null" is used to undo that setting -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"
         app:elevation="0dp">
 
         <org.schabi.newpipe.views.CustomCollapsingToolbarLayout
@@ -29,11 +32,12 @@
                     android:id="@+id/channel_banner_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxHeight="70dp"
-                    android:src="@drawable/placeholder_channel_banner"
                     android:adjustViewBounds="true"
+                    android:maxHeight="70dp"
                     android:scaleType="fitCenter"
+                    android:src="@drawable/placeholder_channel_banner"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@null"
                     tools:ignore="ContentDescription" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -50,7 +54,8 @@
                     app:layout_constraintVertical_bias="1.0"
                     app:shapeAppearance="@style/CircularImageView"
                     app:strokeColor="#ffffff"
-                    app:strokeWidth="2dp" />
+                    app:strokeWidth="2dp"
+                    app:tint="@null" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/sub_channel_avatar_view"
@@ -64,6 +69,7 @@
                     app:shapeAppearance="@style/CircularImageView"
                     app:strokeColor="#ffffff"
                     app:strokeWidth="2dp"
+                    app:tint="@null"
                     tools:visibility="visible" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
