@@ -60,6 +60,7 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
@@ -453,23 +454,32 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             if (t is FeedLoadService.RequestException &&
                 t.cause is ContentNotAvailableException
             ) {
-                Single.fromCallable {
-                    NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
-                        .getSubscription(t.subscriptionId)
-                }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { subscriptionEntity ->
-                            handleFeedNotAvailable(
-                                subscriptionEntity,
-                                t.cause,
-                                errors.subList(i + 1, errors.size)
-                            )
-                        },
-                        { throwable -> Log.e(TAG, "Unable to process", throwable) }
-                    )
-                return // this will be called on the remaining errors by handleFeedNotAvailable()
+                disposables.add(
+                    Single.fromCallable {
+                        NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
+                            .getSubscription(t.subscriptionId)
+                    }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                            { subscriptionEntity ->
+                                handleFeedNotAvailable(
+                                    subscriptionEntity,
+                                    t.cause,
+                                    errors.subList(i + 1, errors.size)
+                                )
+                            },
+                            { throwable -> Log.e(TAG, "Unable to process", throwable) }
+                        )
+                )
+                // this will be called on the remaining errors by handleFeedNotAvailable()
+                return@handleItemsErrors
             }
+        }
+
+        if (errors.isNotEmpty()) {
+            // if no error was a ContentNotAvailableException, show a general error snackbar
+            ErrorUtil.showSnackbar(this, ErrorInfo(errors, UserAction.REQUESTED_FEED, ""))
         }
     }
 
