@@ -278,7 +278,7 @@
     <string name="show_channel_tabs_videos">show_channel_tabs_videos</string>
     <string name="show_channel_tabs_tracks">show_channel_tabs_tracks</string>
     <string name="show_channel_tabs_shorts">show_channel_tabs_shorts</string>
-    <string name="show_channel_tabs_livestreams">show_channel_tabs_live</string>
+    <string name="show_channel_tabs_livestreams">show_channel_tabs_livestreams</string>
     <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
     <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
     <string name="show_channel_tabs_albums">show_channel_tabs_albums</string>
@@ -376,7 +376,7 @@
     <string name="fetch_channel_tabs_videos">fetch_channel_tabs_videos</string>
     <string name="fetch_channel_tabs_tracks">fetch_channel_tabs_tracks</string>
     <string name="fetch_channel_tabs_shorts">fetch_channel_tabs_shorts</string>
-    <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_live</string>
+    <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_livestreams</string>
     <string-array name="feed_fetch_channel_tabs_value_list">
         <item>@string/fetch_channel_tabs_videos</item>
         <item>@string/fetch_channel_tabs_tracks</item>
