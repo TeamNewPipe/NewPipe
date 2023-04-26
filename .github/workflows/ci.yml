@@ -42,7 +42,9 @@ jobs:
       - name: create and checkout branch
         # push events already checked out the branch
         if: github.event_name == 'pull_request'
-        run: git checkout -B ${{ github.head_ref }}
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: git checkout -B "$BRANCH"
 
       - name: set up JDK 17
         uses: actions/setup-java@v3
