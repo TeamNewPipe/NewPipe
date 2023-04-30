@@ -266,14 +266,17 @@ public final class Localization {
 
     /**
      * Get the localized name of an audio track.
-     * <p>Example:</p>
-     * <p>English (original)</p>
-     * <p>English (descriptive)</p>
-     * <p>Spanish (dubbed)</p>
      *
-     * @param context used to get app language
-     * @param track a {@link AudioStream} of the track
-     * @return localized track name
+     * <p>Examples of results returned by this method:</p>
+     * <ul>
+     *     <li>English (original)</li>
+     *     <li>English (descriptive)</li>
+     *     <li>Spanish (dubbed)</li>
+     * </ul>
+     *
+     * @param context the context used to get the app language
+     * @param track   an {@link AudioStream} of the track
+     * @return the localized name of the audio track
      */
     public static String audioTrackName(final Context context, final AudioStream track) {
         final String name;
