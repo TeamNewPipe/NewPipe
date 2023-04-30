@@ -470,9 +470,7 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.audioTrackSpinner.setVisibility(
                 isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
         dialogBinding.defaultAudioTrackPresentText.setVisibility(
-                !isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE
-
-        );
+                !isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
     }
 
     private void setupSubtitleSpinner() {

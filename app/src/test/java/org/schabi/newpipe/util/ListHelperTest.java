@@ -451,8 +451,10 @@ public class ListHelperTest {
     }
 
     private static AudioStream generateAudioTrack(
-            @NonNull final String id, @Nullable final String trackId,
-            @Nullable final Locale locale, @Nullable final AudioTrackType trackType) {
+            @NonNull final String id,
+            @Nullable final String trackId,
+            @Nullable final Locale locale,
+            @Nullable final AudioTrackType trackType) {
         return new AudioStream.Builder()
                 .setId(id)
                 .setContent("", true)

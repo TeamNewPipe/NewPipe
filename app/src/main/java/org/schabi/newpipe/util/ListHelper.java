@@ -797,7 +797,8 @@ public final class ListHelper {
      * @return Comparator
      */
     static Comparator<AudioStream> getAudioTrackComparator(
-            final Locale preferredLanguage, final boolean preferOriginalAudio,
+            final Locale preferredLanguage,
+            final boolean preferOriginalAudio,
             final boolean preferDescriptiveAudio) {
         final String langCode = preferredLanguage.getISO3Language();
         final List<AudioTrackType> trackTypeRanking = preferDescriptiveAudio
