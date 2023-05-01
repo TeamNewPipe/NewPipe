@@ -2166,12 +2166,13 @@ public final class VideoDetailFragment
         if (audioTracks.isEmpty()) {
             Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();
-
         } else if (audioTracks.size() == 1) {
             startOnExternalPlayer(activity, currentInfo, audioTracks.get(0));
         } else {
             final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle(R.string.select_audio_track_external_players);
+            builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                    ShareUtils.openUrlInBrowser(requireActivity(), url));
 
             final int selectedAudioStream =
                     ListHelper.getDefaultAudioFormat(activity, audioTracks);
