@@ -448,7 +448,7 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.audioStreamSpinner.setVisibility(View.VISIBLE);
         dialogBinding.audioTrackSpinner.setVisibility(
                 wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
-        dialogBinding.defaultAudioTrackPresentText.setVisibility(View.GONE);
+        dialogBinding.audioTrackPresentInVideoText.setVisibility(View.GONE);
     }
 
     private void setupVideoSpinner() {
@@ -469,7 +469,7 @@ public class DownloadDialog extends DialogFragment
 
         dialogBinding.audioTrackSpinner.setVisibility(
                 isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
-        dialogBinding.defaultAudioTrackPresentText.setVisibility(
+        dialogBinding.audioTrackPresentInVideoText.setVisibility(
                 !isVideoOnly && wrappedAudioTracks.size() > 1 ? View.VISIBLE : View.GONE);
     }
 
@@ -484,7 +484,7 @@ public class DownloadDialog extends DialogFragment
         setRadioButtonsState(true);
         dialogBinding.audioStreamSpinner.setVisibility(View.GONE);
         dialogBinding.audioTrackSpinner.setVisibility(View.GONE);
-        dialogBinding.defaultAudioTrackPresentText.setVisibility(View.GONE);
+        dialogBinding.audioTrackPresentInVideoText.setVisibility(View.GONE);
     }
 
 

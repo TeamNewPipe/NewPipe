@@ -94,7 +94,7 @@
         tools:visibility="gone" />
 
     <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/default_audio_track_present_text"
+        android:id="@+id/audio_track_present_in_video_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/audio_stream_spinner"
@@ -102,14 +102,14 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
-        android:text="@string/default_audio_track_present"
+        android:text="@string/audio_track_present_in_video"
         android:textSize="12sp" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/threads_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/default_audio_track_present_text"
+        android:layout_below="@+id/audio_track_present_in_video_text"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="6dp"
