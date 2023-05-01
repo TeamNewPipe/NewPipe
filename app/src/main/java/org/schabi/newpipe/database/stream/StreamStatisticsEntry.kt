@@ -7,6 +7,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.util.PicassoHelper
 import java.time.OffsetDateTime
 
 class StreamStatisticsEntry(
@@ -30,7 +31,7 @@ class StreamStatisticsEntry(
         item.duration = streamEntity.duration
         item.uploaderName = streamEntity.uploader
         item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnailUrl = streamEntity.thumbnailUrl
+        item.thumbnails = PicassoHelper.urlToImageList(streamEntity.thumbnailUrl)
 
         return item
     }

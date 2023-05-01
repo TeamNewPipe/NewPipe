@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.mediaitem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,7 +75,7 @@ public final class ExceptionTag implements MediaItemTag {
 
     @Override
     public String getThumbnailUrl() {
-        return item.getThumbnailUrl();
+        return PicassoHelper.choosePreferredImage(item.getThumbnails());
     }
 
     @Override

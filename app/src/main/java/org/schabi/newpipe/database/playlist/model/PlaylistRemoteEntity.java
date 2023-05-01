@@ -11,6 +11,7 @@ import androidx.room.PrimaryKey;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import static org.schabi.newpipe.database.LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_NAME;
@@ -69,8 +70,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @Ignore
     public PlaylistRemoteEntity(final PlaylistInfo info) {
         this(info.getServiceId(), info.getName(), info.getUrl(),
-                info.getThumbnailUrl() == null
-                        ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
+                PicassoHelper.choosePreferredImage(info.getThumbnails()),
                 info.getUploaderName(), info.getStreamCount());
     }
 
@@ -84,7 +84,8 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
                 && getStreamCount() == info.getStreamCount()
                 && TextUtils.equals(getName(), info.getName())
                 && TextUtils.equals(getUrl(), info.getUrl())
-                && TextUtils.equals(getThumbnailUrl(), info.getThumbnailUrl())
+                && TextUtils.equals(getThumbnailUrl(),
+                PicassoHelper.choosePreferredImage(info.getThumbnails()))
                 && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 

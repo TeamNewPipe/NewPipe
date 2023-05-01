@@ -17,6 +17,7 @@ import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.fragments.detail.BaseDescriptionFragment;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.List;
 
@@ -100,8 +101,8 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         }
 
         addMetadataItem(inflater, layout, true, R.string.metadata_avatar_url,
-                channelInfo.getAvatarUrl());
+                PicassoHelper.choosePreferredImage(channelInfo.getAvatars()));
         addMetadataItem(inflater, layout, true, R.string.metadata_banner_url,
-                channelInfo.getBannerUrl());
+                PicassoHelper.choosePreferredImage(channelInfo.getBanners()));
     }
 }

@@ -71,6 +71,7 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
@@ -483,7 +484,7 @@ public final class VideoDetailFragment
         });
         binding.detailControlsShare.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.shareText(requireContext(), info.getName(), info.getUrl(),
-                        info.getThumbnailUrl())));
+                        info.getThumbnails())));
         binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
         binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info ->
@@ -723,7 +724,7 @@ public final class VideoDetailFragment
         final boolean isPlayerStopped = !isPlayerAvailable() || player.isStopped();
         if (playQueueItem != null && isPlayerStopped) {
             updateOverlayData(playQueueItem.getTitle(),
-                    playQueueItem.getUploader(), playQueueItem.getThumbnailUrl());
+                    playQueueItem.getUploader(), playQueueItem.getThumbnails());
         }
     }
 
@@ -1536,13 +1537,13 @@ public final class VideoDetailFragment
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         checkUpdateProgressInfo(info);
-        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadDetailsThumbnail(info.getThumbnails()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailThumbnailImageView);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
 
         if (!isPlayerAvailable() || player.isStopped()) {
-            updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
+            updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnails());
         }
 
         if (!info.getErrors().isEmpty()) {
@@ -1587,7 +1588,7 @@ public final class VideoDetailFragment
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
 
-        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadAvatar(info.getUploaderAvatars()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailSubChannelThumbnailView);
         binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
         binding.detailUploaderThumbnailView.setVisibility(View.GONE);
@@ -1619,10 +1620,10 @@ public final class VideoDetailFragment
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
 
-        PicassoHelper.loadAvatar(info.getSubChannelAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadAvatar(info.getSubChannelAvatars()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailSubChannelThumbnailView);
         binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
-        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadAvatar(info.getUploaderAvatars()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailUploaderThumbnailView);
         binding.detailUploaderThumbnailView.setVisibility(View.VISIBLE);
     }
@@ -1797,7 +1798,7 @@ public final class VideoDetailFragment
             return;
         }
 
-        updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
+        updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnails());
         if (currentInfo != null && info.getUrl().equals(currentInfo.getUrl())) {
             return;
         }
@@ -1826,7 +1827,7 @@ public final class VideoDetailFragment
         if (currentInfo != null) {
             updateOverlayData(currentInfo.getName(),
                     currentInfo.getUploaderName(),
-                    currentInfo.getThumbnailUrl());
+                    currentInfo.getThumbnails());
         }
         updateOverlayPlayQueueButtonVisibility();
     }
@@ -2191,7 +2192,7 @@ public final class VideoDetailFragment
         playerHolder.stopService();
         setInitialData(0, null, "", null);
         currentInfo = null;
-        updateOverlayData(null, null, null);
+        updateOverlayData(null, null, List.of());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2373,11 +2374,11 @@ public final class VideoDetailFragment
 
     private void updateOverlayData(@Nullable final String overlayTitle,
                                    @Nullable final String uploader,
-                                   @Nullable final String thumbnailUrl) {
+                                   @NonNull final List<Image> thumbnails) {
         binding.overlayTitleTextView.setText(isEmpty(overlayTitle) ? "" : overlayTitle);
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
         binding.overlayThumbnail.setImageDrawable(null);
-        PicassoHelper.loadDetailsThumbnail(thumbnailUrl).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadDetailsThumbnail(thumbnails).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.overlayThumbnail);
     }
 

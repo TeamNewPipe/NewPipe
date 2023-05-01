@@ -234,7 +234,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 break;
             case R.id.menu_item_share:
                 ShareUtils.shareText(requireContext(), name, url,
-                        currentInfo == null ? null : currentInfo.getThumbnailUrl());
+                        currentInfo == null ? List.of() : currentInfo.getThumbnails());
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -299,7 +299,6 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
-        final String avatarUrl = result.getUploaderAvatarUrl();
         if (result.getServiceId() == ServiceList.YouTube.getServiceId()
                 && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
                 || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
@@ -315,7 +314,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     R.drawable.ic_radio)
             );
         } else {
-            PicassoHelper.loadAvatar(avatarUrl).tag(PICASSO_PLAYLIST_TAG)
+            PicassoHelper.loadAvatar(result.getUploaderAvatars()).tag(PICASSO_PLAYLIST_TAG)
                     .into(headerBinding.uploaderAvatarView);
         }
 

@@ -20,6 +20,7 @@ import com.google.android.exoplayer2.util.Util;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -137,7 +138,8 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
         descBuilder.setExtras(additionalMetadata);
 
-        final Uri thumbnailUri = Uri.parse(item.getThumbnailUrl());
+        final Uri thumbnailUri = Uri.parse(
+                PicassoHelper.choosePreferredImage(item.getThumbnails()));
         if (thumbnailUri != null) {
             descBuilder.setIconUri(thumbnailUri);
         }

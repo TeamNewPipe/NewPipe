@@ -46,7 +46,7 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
                 .localizeStreamCountMini(itemStreamCountView.getContext(), item.getStreamCount()));
         itemUploaderView.setText(item.getUploaderName());
 
-        PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
+        PicassoHelper.loadPlaylistThumbnail(item.getThumbnails()).into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnPlaylistSelectedListener() != null) {

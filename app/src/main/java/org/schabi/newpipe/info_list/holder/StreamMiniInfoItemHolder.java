@@ -87,7 +87,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        PicassoHelper.loadThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
+        PicassoHelper.loadThumbnail(item.getThumbnails()).into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnStreamSelectedListener() != null) {

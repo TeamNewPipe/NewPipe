@@ -1,13 +1,14 @@
 package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
 
@@ -19,9 +20,13 @@ import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.Image.ResolutionLevel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -42,6 +47,7 @@ public final class PicassoHelper {
     private static Picasso picassoInstance;
 
     private static boolean shouldLoadImages;
+    private static ResolutionLevel preferredResolutionLevel = ResolutionLevel.HIGH;
 
     public static void init(final Context context) {
         picassoCache = new LruCache(10 * 1024 * 1024);
@@ -96,20 +102,33 @@ public final class PicassoHelper {
     }
 
 
+    public static RequestCreator loadAvatar(final List<Image> images) {
+        return loadImageDefault(images, R.drawable.placeholder_person);
+    }
+
     public static RequestCreator loadAvatar(final String url) {
         return loadImageDefault(url, R.drawable.placeholder_person);
+    }
+
+    public static RequestCreator loadThumbnail(final List<Image> images) {
+        return loadImageDefault(images, R.drawable.placeholder_thumbnail_video);
     }
 
     public static RequestCreator loadThumbnail(final String url) {
         return loadImageDefault(url, R.drawable.placeholder_thumbnail_video);
     }
 
-    public static RequestCreator loadDetailsThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video, false);
+    public static RequestCreator loadDetailsThumbnail(final List<Image> images) {
+        return loadImageDefault(choosePreferredImage(images),
+                R.drawable.placeholder_thumbnail_video, false);
     }
 
-    public static RequestCreator loadBanner(final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_channel_banner);
+    public static RequestCreator loadBanner(final List<Image> images) {
+        return loadImageDefault(images, R.drawable.placeholder_channel_banner);
+    }
+
+    public static RequestCreator loadPlaylistThumbnail(final List<Image> images) {
+        return loadImageDefault(images, R.drawable.placeholder_thumbnail_playlist);
     }
 
     public static RequestCreator loadPlaylistThumbnail(final String url) {
@@ -125,9 +144,10 @@ public final class PicassoHelper {
     }
 
 
-    public static RequestCreator loadScaledDownThumbnail(final Context context, final String url) {
+    public static RequestCreator loadScaledDownThumbnail(final Context context,
+                                                         final List<Image> images) {
         // scale down the notification thumbnail for performance
-        return PicassoHelper.loadThumbnail(url)
+        return PicassoHelper.loadThumbnail(images)
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(final Bitmap source) {
@@ -180,13 +200,20 @@ public final class PicassoHelper {
     }
 
 
-    private static RequestCreator loadImageDefault(final String url, final int placeholderResId) {
+    private static RequestCreator loadImageDefault(final List<Image> images,
+                                                   final int placeholderResId) {
+        return loadImageDefault(choosePreferredImage(images), placeholderResId);
+    }
+
+    private static RequestCreator loadImageDefault(final String url,
+                                                   final int placeholderResId) {
         return loadImageDefault(url, placeholderResId, true);
     }
 
-    private static RequestCreator loadImageDefault(final String url, final int placeholderResId,
+    private static RequestCreator loadImageDefault(@Nullable final String url,
+                                                   final int placeholderResId,
                                                    final boolean showPlaceholderWhileLoading) {
-        if (!shouldLoadImages || isBlank(url)) {
+        if (isNullOrEmpty(url)) {
             return picassoInstance
                     .load((String) null)
                     .placeholder(placeholderResId) // show placeholder when no image should load
@@ -199,6 +226,46 @@ public final class PicassoHelper {
                 requestCreator.placeholder(placeholderResId);
             }
             return requestCreator;
+        }
+    }
+
+    @Nullable
+    public static String choosePreferredImage(final List<Image> images) {
+        if (!shouldLoadImages) {
+            return null;
+        }
+
+        final Comparator<Image> comparator;
+        switch (preferredResolutionLevel) {
+            case HIGH:
+                comparator = Comparator.comparingInt(Image::getHeight).reversed();
+                break;
+            default:
+            case UNKNOWN:
+            case MEDIUM:
+                comparator = Comparator.comparingInt(image -> Math.abs(image.getHeight() - 450));
+                break;
+            case LOW:
+                comparator = Comparator.comparingInt(Image::getHeight);
+                break;
+        }
+
+        return images.stream()
+                .filter(image -> image.getEstimatedResolutionLevel() != ResolutionLevel.UNKNOWN)
+                .min(comparator)
+                .map(Image::getUrl)
+                .orElseGet(() -> images.stream()
+                        .findAny()
+                        .map(Image::getUrl)
+                        .orElse(null));
+    }
+
+    @NonNull
+    public static List<Image> urlToImageList(@Nullable final String url) {
+        if (url == null) {
+            return List.of();
+        } else {
+            return List.of(new Image(url, -1, -1, ResolutionLevel.UNKNOWN));
         }
     }
 }

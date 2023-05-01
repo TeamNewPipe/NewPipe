@@ -19,6 +19,7 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.PicassoHelper
 
 class SubscriptionManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -71,7 +72,12 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.getSubscription(info.serviceId, info.url)
             .flatMapCompletable {
                 Completable.fromRunnable {
-                    it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
+                    it.setData(
+                        info.name,
+                        PicassoHelper.choosePreferredImage(info.avatars),
+                        info.description,
+                        info.subscriberCount
+                    )
                     subscriptionTable.update(it)
                 }
             }
@@ -99,7 +105,7 @@ class SubscriptionManager(context: Context) {
         } else if (info is ChannelInfo) {
             subscriptionEntity.setData(
                 info.name,
-                info.avatarUrl,
+                PicassoHelper.choosePreferredImage(info.avatars),
                 info.description,
                 info.subscriberCount
             )

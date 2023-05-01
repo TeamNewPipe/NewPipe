@@ -7,6 +7,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.util.PicassoHelper
 
 data class PlaylistStreamEntry(
     @Embedded
@@ -28,7 +29,7 @@ data class PlaylistStreamEntry(
         item.duration = streamEntity.duration
         item.uploaderName = streamEntity.uploader
         item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnailUrl = streamEntity.thumbnailUrl
+        item.thumbnails = PicassoHelper.urlToImageList(streamEntity.thumbnailUrl)
 
         return item
     }

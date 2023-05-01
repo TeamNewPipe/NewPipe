@@ -56,7 +56,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
             itemAdditionalDetailView.setText(getDetailLine(item));
         }
 
-        PicassoHelper.loadAvatar(item.getThumbnailUrl()).into(itemThumbnailView);
+        PicassoHelper.loadAvatar(item.getThumbnails()).into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {

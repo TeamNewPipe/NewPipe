@@ -58,6 +58,7 @@ import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
+import org.schabi.newpipe.util.PicassoHelper
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -342,7 +343,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             when (i) {
                 0 -> ShareUtils.shareText(
                     requireContext(), selectedItem.name, selectedItem.url,
-                    selectedItem.thumbnailUrl
+                    PicassoHelper.choosePreferredImage(selectedItem.thumbnails)
                 )
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
                 2 -> deleteChannel(selectedItem)

@@ -17,6 +17,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import icepick.State;
 
@@ -113,7 +114,7 @@ public class DescriptionFragment extends BaseDescriptionFragment {
         addMetadataItem(inflater, layout, true, R.string.metadata_host,
                 streamInfo.getHost());
         addMetadataItem(inflater, layout, true, R.string.metadata_thumbnail_url,
-                streamInfo.getThumbnailUrl());
+                PicassoHelper.choosePreferredImage(streamInfo.getThumbnails()));
     }
 
     private void addPrivacyMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {

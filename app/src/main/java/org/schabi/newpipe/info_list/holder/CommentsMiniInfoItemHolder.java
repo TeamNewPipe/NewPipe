@@ -97,7 +97,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        PicassoHelper.loadAvatar(item.getUploaderAvatarUrl()).into(itemThumbnailView);
+        PicassoHelper.loadAvatar(item.getUploaderAvatars()).into(itemThumbnailView);
         if (PicassoHelper.getShouldLoadImages()) {
             itemThumbnailView.setVisibility(View.VISIBLE);
             itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,
