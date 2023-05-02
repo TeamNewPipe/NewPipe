@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 public class PlayQueueItemBuilder {

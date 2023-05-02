@@ -7,7 +7,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 
 data class PlaylistStreamEntry(
     @Embedded

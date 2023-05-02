@@ -257,7 +257,6 @@
     <string name="export_ongoing">Eksporterer…</string>
     <string name="import_file_title">Importer fil</string>
     <string name="previous_export">Forrige eksport</string>
-    <string name="download_thumbnail_title">Last miniatyrbilder</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildehurtiglager tømt</string>
     <string name="metadata_cache_wipe_title">Tøm hurtiglagret metadata</string>
     <string name="metadata_cache_wipe_summary">Fjern all hurtiglagret nettsidedata</string>
@@ -304,7 +303,6 @@
 \n3. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig spoling lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette</string>
-    <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager</string>
     <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Overvåkning av minnelekkasjer kan forårsake at appen ikke svarer under heap dumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>

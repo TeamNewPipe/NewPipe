@@ -177,7 +177,6 @@
     <string name="use_inexact_seek_title">Nota hraða en ónákvæma leit</string>
     <string name="seek_duration_title">Lengd skrefs</string>
     <string name="clear_queue_confirmation_title">Biðja um staðfestingu áður en röð er hreinsuð</string>
-    <string name="download_thumbnail_title">Sækja smámyndir</string>
     <string name="show_comments_title">Sýna ummæli</string>
     <string name="auto_queue_toggle">Sjálfvirk biðröð</string>
     <string name="settings_category_clear_data_title">Hreinsa gögn</string>
@@ -613,7 +612,6 @@
     <string name="progressive_load_interval_title">Stærð forhleðslu</string>
     <string name="progressive_load_interval_summary">Breyta stærð forhleðslu (nú %s). Lægra gildi gæti flýtt fyrir upphaflegu hleðslu myndbands. Breytingar krefjast endurræsingar spilara</string>
     <string name="clear_queue_confirmation_description">Biðröð spilarans verður skipt út</string>
-    <string name="download_thumbnail_summary">Slökktu á til að hlaða ekki niður smámyndum til að spara bandbreidd og vinnsluminni. Breytingar eyða myndskyndiminni í bæði vinnsluminni og geymslu</string>
     <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um straumhöfund, straumefni eða leitarbeiðni</string>
     <string name="metadata_cache_wipe_summary">Fjarlæga öll síðugögn úr skyndiminni</string>
     <string name="auto_queue_summary">Bæta svipuðum straumum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>

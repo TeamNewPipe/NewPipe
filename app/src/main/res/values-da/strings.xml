@@ -57,8 +57,6 @@
     <string name="popup_remember_size_pos_summary">Husk sidste størrelse og placering af pop op-afspiller</string>
     <string name="use_inexact_seek_title">Brug hurtig og upræcis søgning</string>
     <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist. Søgninger på 5, 15 eller 25 sekunder fungerer ikke med denne indstilling slået til</string>
-    <string name="download_thumbnail_title">Indlæs miniaturebilleder</string>
-    <string name="download_thumbnail_summary">Slå fra for at undgå indlæsning af billeder, hvorved der spares data og hukommelse. Ændringer sletter billedcachen i både ram og lager</string>
     <string name="thumbnail_cache_wipe_complete_notice">Billedcache slettet</string>
     <string name="metadata_cache_wipe_title">Slet metadata-cachen</string>
     <string name="metadata_cache_wipe_summary">Slet alle websidedata fra cachen</string>

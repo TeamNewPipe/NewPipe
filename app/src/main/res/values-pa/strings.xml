@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਪਰ ਅਸਪੱਸ਼ਟ ਸੀਕ ਵਰਤੋ</string>
     <string name="use_inexact_seek_summary">ਅਸਪੱਸ਼ਟ ਸੀਕ ਵੀਡੀਓ ਨੂੰ ਤੇਜ਼ ਪਰ ਅਣ-ਸਟੀਕ ਢੰਗ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ ਲਿਜਾਂਦਾ ਹੈ । ਇਸ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ 5,15 ਜਾਂ 25 ਸਕਿੰਟ ਜਾਣਾ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ</string>
-    <string name="download_thumbnail_title">ਥੰਮਨੇਲ ਲੋਡ ਕਰੋ</string>
-    <string name="download_thumbnail_summary">ਡਾਟਾ ਤੇ ਮੈਮੋਰੀ ਖਪਤ ਦੀ ਬੱਚਤ ਅਤੇ ਥੰਮਨੇਲ ਲੋਡ ਹੋਣ ਤੋਂ ਰੋਕਣ ਲਈ ਬੰਦ ਕਰੋ। ਇਸ ਵਿਚ ਤਬਦੀਲੀ ਕਰਨ ਨਾਲ ਇਨ-ਮੈਮੋਰੀ ਅਤੇ ਆਨ-ਡਿਸਕ ਚਿੱਤਰ ਕੈਸ਼ੇ ਦੋਵੇਂ ਮਿਟ ਜਾਣਗੇ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ਚਿੱਤਰ cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="metadata_cache_wipe_title">ਕੈਸ਼ ਕੀਤਾ ਮੈਟਾ-ਡਾਟਾ ਮਿਟਾਓ</string>
     <string name="metadata_cache_wipe_summary">ਸਾਰੇ ਕੈਸ਼ ਕੀਤੇ ਵੈੱਬ-ਪੇਜਾਂ ਦਾ ਡਾਟਾ ਮਿਟਾਓ</string>

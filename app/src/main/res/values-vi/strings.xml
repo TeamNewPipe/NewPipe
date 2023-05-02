@@ -133,8 +133,6 @@
     <string name="controls_add_to_playlist_title">Thêm vào</string>
     <string name="use_inexact_seek_title">Sử dụng tìm kiếm nhanh không chính xác</string>
     <string name="use_inexact_seek_summary">Tua không chính xác cho phép trình phát tua đến các vị trí nhanh hơn với độ chính xác bị giảm. Tua 5, 15 hay 25 giây không dùng được với chế độ này</string>
-    <string name="download_thumbnail_title">Tải hình thu nhỏ</string>
-    <string name="download_thumbnail_summary">Tắt để ngăn chặn việc tải các hình thu nhỏ, việc này sẽ tiết kiệm lưu lượng mạng và bộ nhớ. Các thay đổi sẽ xóa bộ nhớ đệm hình ảnh cả trong RAM và trong bộ nhớ</string>
     <string name="thumbnail_cache_wipe_complete_notice">Đã xóa bộ nhớ cache hình ảnh</string>
     <string name="metadata_cache_wipe_title">Xóa siêu dữ liệu đã lưu vào bộ nhớ cache</string>
     <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>

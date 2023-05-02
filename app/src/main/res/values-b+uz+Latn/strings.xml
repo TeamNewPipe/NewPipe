@@ -24,10 +24,8 @@
     <string name="metadata_cache_wipe_summary">Barcha keshlangan veb-sahifa ma\'lumotlarini olib tashlash</string>
     <string name="metadata_cache_wipe_title">Keshlangan metadatalarni o\'chirish</string>
     <string name="thumbnail_cache_wipe_complete_notice">Rasm keshi o\'chirildi</string>
-    <string name="download_thumbnail_summary">Eskizlarni yuklash, ma\'lumotlarni tejash va xotiradan foydalanishni oldini olish uchun o\'chirib qo\'ying. O\'zgarishlar xotiradagi va diskdagi rasm keshini tozalaydi.</string>
     <string name="show_comments_summary">sharhlarni yashirishni o\'chirish</string>
     <string name="show_comments_title">Izohlarni ko\'rsatish</string>
-    <string name="download_thumbnail_title">Eskizlarni yuklang</string>
     <string name="clear_queue_confirmation_description">Aktiv ijro etish navbati almashtiriladi</string>
     <string name="clear_queue_confirmation_summary">Bir ijro etishdan boshqasiga o\'tish sizning navbatingizni almashtirishi mumkin</string>
     <string name="clear_queue_confirmation_title">Navbatni tozalashdan oldin tasdiqlashni so\'rash</string>

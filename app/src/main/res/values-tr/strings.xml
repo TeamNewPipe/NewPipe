@@ -280,8 +280,6 @@
     <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın.
 \n
 \nSürdürmek istiyor musunuz\?</string>
-    <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önleyerek veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki resim önbelleğini temizler</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>

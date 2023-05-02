@@ -76,7 +76,6 @@
     <string name="settings_category_player_behavior_title">Behaviour</string>
     <string name="peertube_instance_url_summary">Select your favourite PeerTube instances</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
-    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disc image cache.</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>

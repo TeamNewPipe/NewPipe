@@ -48,8 +48,8 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -147,7 +147,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
         setTitle(name);
         binding.channelTitleView.setText(name);
-        if (!PicassoHelper.getShouldLoadImages()) {
+        if (!PicassoHelper.shouldLoadImages()) {
             // do not waste space for the banner if it is not going to be loaded
             binding.channelBannerImage.setImageDrawable(null);
         }
@@ -578,7 +578,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         currentInfo = result;
         setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
-        if (PicassoHelper.getShouldLoadImages() && !result.getBanners().isEmpty()) {
+        if (PicassoHelper.shouldLoadImages() && !result.getBanners().isEmpty()) {
             PicassoHelper.loadBanner(result.getBanners()).tag(PICASSO_CHANNEL_TAG)
                     .into(binding.channelBannerImage);
         } else {

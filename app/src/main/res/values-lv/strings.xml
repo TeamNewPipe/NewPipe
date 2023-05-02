@@ -517,8 +517,6 @@
     <string name="show_next_and_similar_title">Rādīt \'Nākošos\' un \'Līdzīgos\' videoklipus</string>
     <string name="show_comments_summary">Izslēdziet, lai paslēptu komentārus</string>
     <string name="show_comments_title">Rādīt komentārus</string>
-    <string name="download_thumbnail_summary">Izslēdziet, ja vēlaties nelādēt video attēlus, ietaupot datus un atmiņu. Opcija notīra kešatmiņu, izdzēšot visus saglabātos video attēlus</string>
-    <string name="download_thumbnail_title">Ielādēt video attēlus</string>
     <string name="clear_queue_confirmation_description">Tagadējā atskaņošanas rinda tiks aizvietota</string>
     <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams, notīrīsies jūsu atskaņošanas rinda</string>
     <string name="clear_queue_confirmation_title">Prasīt apstiprinājumu, pirms notīrīt atskaņošanas rindu</string>

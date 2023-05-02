@@ -7,7 +7,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 import java.time.OffsetDateTime
 
 class StreamStatisticsEntry(

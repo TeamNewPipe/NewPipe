@@ -159,7 +159,6 @@
     <string name="notification_actions_summary">撳下面嘅掣去更改對應嘅通知動作。用右手邊嘅格仔剔選最多三個，擺喺精簡通知度</string>
     <string name="notification_actions_at_most_three">精簡通知最多淨係擺到三個動作！</string>
     <string name="notification_action_repeat">循環播放</string>
-    <string name="download_thumbnail_title">載入縮圖</string>
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉去隱藏留言</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
@@ -168,7 +167,6 @@
     <string name="show_description_title">顯示描述</string>
     <string name="thumbnail_cache_wipe_complete_notice">抹除咗影像快取</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁嘅快取資料</string>
-    <string name="download_thumbnail_summary">關閉佢去避免載入條片嘅縮圖，慳返啲數據同埋用少啲 RAM。更改會抹走記憶體以及磁碟機上面嘅影像快取</string>
     <string name="use_inexact_seek_summary">粗略嘅快轉允許播放器比較籠統咁快轉去其他位置。快轉 5、15 或 25 秒就太仔細，做唔到</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="default_content_country_title">預設嘅國家內容</string>

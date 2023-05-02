@@ -196,8 +196,6 @@
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
     <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin hyppäyksin ei toimi tämän kanssa</string>
-    <string name="download_thumbnail_title">Lataa esikatselukuvat</string>
-    <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin</string>
     <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
     <string name="metadata_cache_wipe_title">Poista tallennettu metatieto</string>
     <string name="metadata_cache_wipe_summary">Poista kaikki tallennettu sivutieto</string>

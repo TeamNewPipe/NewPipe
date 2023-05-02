@@ -20,9 +20,10 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -99,8 +100,9 @@ public class App extends Application {
         // Initialize image loader
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         PicassoHelper.init(this);
-        PicassoHelper.setShouldLoadImages(
-                prefs.getBoolean(getString(R.string.download_thumbnail_key), true));
+        PicassoHelper.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
+                prefs.getString(getString(R.string.image_quality_key),
+                        getString(R.string.image_quality_default))));
         PicassoHelper.setIndicatorsEnabled(MainActivity.DEBUG
                 && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 

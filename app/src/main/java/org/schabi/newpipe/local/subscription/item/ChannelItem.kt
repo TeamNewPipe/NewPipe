@@ -9,7 +9,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 
 class ChannelItem(
     private val infoItem: ChannelInfoItem,

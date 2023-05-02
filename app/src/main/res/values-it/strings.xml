@@ -287,8 +287,6 @@
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica copertine</string>
-    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle copertine, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Svuota la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>

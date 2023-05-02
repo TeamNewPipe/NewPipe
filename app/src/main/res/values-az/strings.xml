@@ -136,7 +136,6 @@
 \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
     <string name="peertube_instance_url_title">\"PeerTube\" nümunələri</string>
-    <string name="download_thumbnail_title">Miniatürləri yüklə</string>
     <string name="notification_actions_at_most_three">Yığcam bildirişdə göstərmək üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
     <string name="feed_update_threshold_option_always_update">Həmişə yenilə</string>
     <string name="settings_category_feed_title">Axın</string>
@@ -287,7 +286,6 @@
     <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə ver</string>
     <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz\?</string>
-    <string name="download_thumbnail_summary">Miniatürləri yükləməyi, məlumata qənaət və yaddaş istifadəsin azaltmaq üçün söndür. Dəyişikliklər həm yaddaşdaxilində, həm də diskdə təsvir keşini təmizləyir</string>
     <string name="enqueue_next_stream">Növbətini növbələ</string>
     <string name="retry">Təkrar Cəhd Et</string>
     <string name="settings_category_player_notification_summary">Cari oynatma yayımı bildirişini konfiqurasiya et</string>

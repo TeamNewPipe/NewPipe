@@ -132,8 +132,6 @@
     <string name="notification_channel_name">Notifikasi NewPipe</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="action_history">Riwayat</string>
-    <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan agar thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapus semua data cache halaman web</string>

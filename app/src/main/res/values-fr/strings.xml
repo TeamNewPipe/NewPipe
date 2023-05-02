@@ -244,8 +244,6 @@
     <string name="resize_zoom">Zoomer</string>
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision. Se déplacer de 5, 15 ou 25 secondes est impossible avec cette option</string>
-    <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données des pages Web en cache</string>

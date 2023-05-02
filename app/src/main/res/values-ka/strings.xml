@@ -42,7 +42,6 @@
     <string name="use_inexact_seek_summary">არაზუსტი ძიება საშუალებას აძლევს მოთამაშეს უფრო სწრაფად მოიძიოს პოზიციები შემცირებული სიზუსტით. 5, 15 ან 25 წამის ძიება ამით არ მუშაობს</string>
     <string name="seek_duration_title">სწრაფი წინსვლა/-გადახვევა ძიების ხანგრძლივობა</string>
     <string name="clear_queue_confirmation_summary">ერთი მოთამაშიდან მეორეზე გადართვამ შესაძლოა შეცვალოს თქვენი რიგი</string>
-    <string name="download_thumbnail_summary">გამორთეთ ესკიზების ჩატვირთვის თავიდან ასაცილებლად, მონაცემთა დაზოგვისა და მეხსიერების გამოყენების თავიდან ასაცილებლად. იცვლება როგორც მეხსიერებაში, ასევე დისკზე გამოსახულების ქეშის გასუფთავება</string>
     <string name="show_search_suggestions_title">ძიების შეთავაზებები</string>
     <string name="metadata_cache_wipe_summary">წაშალეთ ყველა ქეშირებული ვებგვერდის მონაცემები</string>
     <string name="auto_queue_title">შემდეგი ნაკადის ავტომატური შეყვანა</string>
@@ -107,7 +106,6 @@
     <string name="black_theme_title">შავი</string>
     <string name="popup_remember_size_pos_title">დამახსოვრება ამომხტარი ფანჯრის თვისებები</string>
     <string name="clear_queue_confirmation_description">აქტიური მოთამაშის რიგი შეიცვლება</string>
-    <string name="download_thumbnail_title">ჩატვირთეთ ესკიზები</string>
     <string name="show_comments_title">კომენტარების ჩვენება</string>
     <string name="show_comments_summary">გამორთეთ კომენტარების დასამალად</string>
     <string name="show_next_and_similar_title">\"შემდეგი\" და \"მსგავსი\" ვიდეოების ჩვენება</string>

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.image;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -46,8 +46,7 @@ public final class PicassoHelper {
     @SuppressLint("StaticFieldLeak")
     private static Picasso picassoInstance;
 
-    private static boolean shouldLoadImages;
-    private static ResolutionLevel preferredResolutionLevel = ResolutionLevel.HIGH;
+    private static PreferredImageQuality preferredImageQuality = PreferredImageQuality.MEDIUM;
 
     public static void init(final Context context) {
         picassoCache = new LruCache(10 * 1024 * 1024);
@@ -93,12 +92,12 @@ public final class PicassoHelper {
         picassoInstance.setIndicatorsEnabled(enabled); // useful for debugging
     }
 
-    public static void setShouldLoadImages(final boolean shouldLoadImages) {
-        PicassoHelper.shouldLoadImages = shouldLoadImages;
+    public static void setPreferredImageQuality(final PreferredImageQuality preferredImageQuality) {
+        PicassoHelper.preferredImageQuality = preferredImageQuality;
     }
 
-    public static boolean getShouldLoadImages() {
-        return shouldLoadImages;
+    public static boolean shouldLoadImages() {
+        return preferredImageQuality != PreferredImageQuality.NONE;
     }
 
 
@@ -231,17 +230,14 @@ public final class PicassoHelper {
 
     @Nullable
     public static String choosePreferredImage(final List<Image> images) {
-        if (!shouldLoadImages) {
-            return null;
-        }
-
         final Comparator<Image> comparator;
-        switch (preferredResolutionLevel) {
+        switch (preferredImageQuality) {
+            case NONE:
+                return null;
             case HIGH:
                 comparator = Comparator.comparingInt(Image::getHeight).reversed();
                 break;
             default:
-            case UNKNOWN:
             case MEDIUM:
                 comparator = Comparator.comparingInt(image -> Math.abs(image.getHeight() - 450));
                 break;

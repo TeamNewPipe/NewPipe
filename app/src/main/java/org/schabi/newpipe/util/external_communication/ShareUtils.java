@@ -24,7 +24,7 @@ import androidx.core.content.FileProvider;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -251,7 +251,7 @@ public final class ShareUtils {
         // If loading of images has been disabled, don't try to generate a content preview
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 && !TextUtils.isEmpty(imagePreviewUrl)
-                && PicassoHelper.getShouldLoadImages()) {
+                && PicassoHelper.shouldLoadImages()) {
 
             final ClipData clipData = generateClipDataForImagePreview(context, imagePreviewUrl);
             if (clipData != null) {

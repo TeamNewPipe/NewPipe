@@ -96,7 +96,6 @@
     <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 2K و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدیویی پیش‌گزیده</string>
     <string name="black_theme_title">سیاه</string>
-    <string name="download_thumbnail_title">بار کردن بندانگشتی‌ها</string>
     <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>
     <string name="show_search_suggestions_title">پیشنهادهای جستجو</string>
     <string name="show_search_suggestions_summary">گزینش پیشنهادها برای نمایش هنگام جست‌وجو</string>
@@ -270,7 +269,6 @@
     <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>
     <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
     <string name="auto_queue_summary">صف پخش در حال پایان (بدون تکرار) را با افزودن یک جریان مرتبط ادامه دهید</string>
-    <string name="download_thumbnail_summary">برای پیش‌گیری از بار کردن بندانگشتی‌ها و ذخیرهٔ داده و فضای ذخیره، خاموش کنید. تغییرات، انبارهٔ تصاویر روی حافظه و دیسک را پاک می‌کند</string>
     <string name="enable_playback_resume_title">ادامه پخش</string>
     <string name="enable_playback_resume_summary">بازگرداندن آخرین موقعیت پخش</string>
     <string name="enable_playback_state_lists_title">موقعیت در فهرست‌ها</string>

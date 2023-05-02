@@ -57,8 +57,6 @@
     <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
     <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan. Mencari 5, 15 atau 25 saat tidak berfungsi dengan ini</string>
-    <string name="download_thumbnail_title">Muatkan thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan ingatan. Perubahan akan menghapus cache imej dari ingatan dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>

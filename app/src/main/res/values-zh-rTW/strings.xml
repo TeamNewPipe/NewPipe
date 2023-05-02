@@ -278,8 +278,6 @@
 \n2. 移至此網址： %1$s 
 \n3. 當被提示時登入帳號 
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
-    <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">關閉以防止載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取</string>
     <string name="thumbnail_cache_wipe_complete_notice">已抹除圖片快取</string>
     <string name="metadata_cache_wipe_title">抹除已快取的中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有已快取的網頁資料</string>

@@ -56,10 +56,8 @@
     <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
     <string name="use_inexact_seek_summary">การข้ามช่วงที่ไม่แม่นยำจะทำให้เลื่อนไปยังตำแหน่งเวลาที่ต้องการได้เร็วขึ้น แต่จะลดความแม่นยำในการลากตำแหน่งลง</string>
-    <string name="download_thumbnail_title">โหลดภาพขนาดย่อ</string>
     <string name="show_comments_title">แสดงความคิดเห็น</string>
     <string name="show_comments_summary">ปิดใช้งานเพื่อซ่อนความคิดเห็น</string>
-    <string name="download_thumbnail_summary">ปิดเพื่อป้องกันการโหลดรูปขนาดย่อ ลดการใช้ข้อมูลและหน่วยความจำ การเปลี่ยนแปลงล้างแคชภาพในหน่วยความจำและบนดิสก์</string>
     <string name="thumbnail_cache_wipe_complete_notice">ล้างแคชของรูปภาพแล้ว</string>
     <string name="metadata_cache_wipe_summary">ลบข้อมูลเว็บเพจที่แคชไว้ทั้งหมด</string>
     <string name="auto_queue_title">คิววีดีโอถัดไปโดยอัตโนมัติ</string>

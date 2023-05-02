@@ -136,8 +136,6 @@
     <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
     <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kisebb pontossággal. Az 5, 15, vagy 25 másodperces tekerés nem működik ebben a módban</string>
-    <string name="download_thumbnail_title">Bélyegképek betöltése</string>
-    <string name="download_thumbnail_summary">Kapcsolja ki, hogy a megelőzze a bélyegképek betöltését, így csökkentve az adat- és memóriahasználatot. A megváltoztatása törli a memóriában és a meghajtón lévő képgyorsítótárat</string>
     <string name="thumbnail_cache_wipe_complete_notice">A bélyegkép gyorsítótár törölve</string>
     <string name="metadata_cache_wipe_title">Gyorsítótárazott metaadatok törlése</string>
     <string name="metadata_cache_wipe_summary">Minden gyorsítótárazott weboldaladat törlése</string>

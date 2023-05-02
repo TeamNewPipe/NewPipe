@@ -80,7 +80,6 @@
     <string name="popup_remember_size_pos_summary">Memori lastan grandon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapidan malekzaktan serĉon</string>
     <string name="use_inexact_seek_summary">Malekzakta serĉo permesas ke, la ludilo serĉi poziciojn pli rapide sed kun malpli ekzakto. Serĉi por 5, 15 aŭ 25 sekundoj ne funckias kun ĉi tio opcio</string>
-    <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
     <string name="duration_live">Nuna</string>
@@ -181,7 +180,6 @@
 \n2. Iru tien: %1$s
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
-    <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn por konservi datumuzadon kaj memoruzadon. Ŝanĝoj vakigi ambaŭ en memoran kaj en diskan bildkaŝmemoron</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildokaŝmemoro vakigis</string>
     <string name="metadata_cache_wipe_title">Vakigi kaŝmemorigitajn metadatumojn</string>
     <string name="metadata_cache_wipe_summary">Vakigi tutajn kaŝmemorigitajn retpaĝajn datumojn</string>

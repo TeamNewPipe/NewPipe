@@ -165,13 +165,11 @@
     <string name="show_higher_resolutions_title">అధిక స్పష్టతను చూపుము</string>
     <string name="black_theme_title">నలుపు</string>
     <string name="popup_remember_size_pos_title">పాప్అప్ లక్షణాలను గుర్తుంచుకో</string>
-    <string name="download_thumbnail_title">సూక్ష్మచిత్రాలను లోడ్ చేయండి</string>
     <string name="show_comments_title">వ్యాఖ్యలను చూపించు</string>
     <string name="show_comments_summary">వ్యాఖ్యలను దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="peertube_instance_url_help">%sలో మీకు నచ్చిన సందర్భాలను కనుగొనండి</string>
     <string name="peertube_instance_url_title">పీర్‌ట్యూబ్ ఉదాహరణలు</string>
     <string name="notification_action_2_title">మూడవ చర్య బటన్</string>
-    <string name="download_thumbnail_summary">థంబ్‌నెయిల్‌లను లోడ్ చేయడం, డేటాను సేవ్ చేయడం మరియు మెమరీ వినియోగాన్ని నిరోధించడానికి ఆఫ్ చేయండి. మార్పులు ఇన్-మెమరీ మరియు ఆన్-డిస్క్ ఇమేజ్ కాష్ రెండింటినీ క్లియర్ చేస్తాయి</string>
     <string name="use_inexact_seek_summary">ఖచ్చితమైన శోధన తగ్గిన ఖచ్చితత్వంతో వేగంగా స్థానాలను పొందేందుకు ఆటగాడిని అనుమతిస్తుంది. 5, 15 లేదా 25 సెకన్ల పాటు కోరడం దీనితో పని చేయదు</string>
     <string name="use_inexact_seek_title">వేగవంతమైన ఖచ్చితమైన శోధనను ఉపయోగించండి</string>
     <string name="controls_add_to_playlist_title">జోడించండి</string>

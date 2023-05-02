@@ -284,14 +284,12 @@
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá consumir muitos dados.
 \n
 \nVocê deseja continuar\?</string>
-    <string name="download_thumbnail_title">Carregar miniaturas</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpo</string>
     <string name="metadata_cache_wipe_title">Limpar cache de metadados</string>
     <string name="metadata_cache_wipe_summary">Remove todos os dados de páginas em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados limpo</string>
     <string name="playback_speed_control">Controles de velocidade de reprodução</string>
     <string name="playback_tempo">Velocidade</string>
-    <string name="download_thumbnail_summary">Desative para não carregar miniaturas e economizar no uso de dados e memória. A alteração limpa todo o cache de imagens em memória e em disco</string>
     <string name="playback_pitch">Afinação</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>

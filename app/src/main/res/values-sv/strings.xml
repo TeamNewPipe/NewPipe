@@ -193,8 +193,6 @@
     <string name="tab_bookmarks">Bokmärkta Spellistor</string>
     <string name="controls_add_to_playlist_title">Lägg till i</string>
     <string name="use_inexact_seek_title">Använd snabb icke-exakt sökning</string>
-    <string name="download_thumbnail_title">Läs in miniatyrbilder</string>
-    <string name="download_thumbnail_summary">Stäng av för att förhindra att miniatyrbilder läses in, vilket sparar data- och minnesanvändning. Ändringarna rensar både bildcacheminnet i minnet och på disken</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cacheminnet för bilder rensat</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="always">Alltid</string>
