@@ -202,7 +202,10 @@ public final class PicassoHelper {
     private static RequestCreator loadImageDefault(@Nullable final String url,
                                                    final int placeholderResId,
                                                    final boolean showPlaceholderWhileLoading) {
-        if (isNullOrEmpty(url)) {
+        // if the URL was chosen with `choosePreferredImage` it will be null, but check again
+        // `shouldLoadImages` in case the URL was chosen with `imageListToDbUrl` (which is the case
+        // for URLs stored in the database)
+        if (isNullOrEmpty(url) || !ImageStrategy.shouldLoadImages()) {
             return picassoInstance
                     .load((String) null)
                     .placeholder(placeholderResId) // show placeholder when no image should load
