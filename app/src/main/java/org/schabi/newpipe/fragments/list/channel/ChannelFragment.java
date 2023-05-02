@@ -355,7 +355,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
                 channel.setData(info.getName(),
-                        ImageStrategy.choosePreferredImage(info.getAvatars()),
+                        ImageStrategy.imageListToDbUrl(info.getAvatars()),
                         info.getDescription(),
                         info.getSubscriberCount());
                 channelSubscription = null;

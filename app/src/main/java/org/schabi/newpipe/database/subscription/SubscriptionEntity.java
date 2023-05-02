@@ -58,7 +58,7 @@ public class SubscriptionEntity {
         final SubscriptionEntity result = new SubscriptionEntity();
         result.setServiceId(info.getServiceId());
         result.setUrl(info.getUrl());
-        result.setData(info.getName(), ImageStrategy.choosePreferredImage(info.getAvatars()),
+        result.setData(info.getName(), ImageStrategy.imageListToDbUrl(info.getAvatars()),
                 info.getDescription(), info.getSubscriberCount());
         return result;
     }
@@ -139,7 +139,7 @@ public class SubscriptionEntity {
     @Ignore
     public ChannelInfoItem toChannelInfoItem() {
         final ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
-        item.setThumbnails(ImageStrategy.urlToImageList(getAvatarUrl()));
+        item.setThumbnails(ImageStrategy.dbUrlToImageList(getAvatarUrl()));
         item.setSubscriberCount(getSubscriberCount());
         item.setDescription(getDescription());
         return item;

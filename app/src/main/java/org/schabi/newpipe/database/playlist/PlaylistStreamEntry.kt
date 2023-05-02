@@ -29,7 +29,7 @@ data class PlaylistStreamEntry(
         item.duration = streamEntity.duration
         item.uploaderName = streamEntity.uploader
         item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.urlToImageList(streamEntity.thumbnailUrl)
+        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
 
         return item
     }

@@ -74,7 +74,7 @@ class SubscriptionManager(context: Context) {
                 Completable.fromRunnable {
                     it.setData(
                         info.name,
-                        ImageStrategy.choosePreferredImage(info.avatars),
+                        ImageStrategy.imageListToDbUrl(info.avatars),
                         info.description,
                         info.subscriberCount
                     )
@@ -105,7 +105,7 @@ class SubscriptionManager(context: Context) {
         } else if (info is ChannelInfo) {
             subscriptionEntity.setData(
                 info.name,
-                ImageStrategy.choosePreferredImage(info.avatars),
+                ImageStrategy.imageListToDbUrl(info.avatars),
                 info.description,
                 info.subscriberCount
             )

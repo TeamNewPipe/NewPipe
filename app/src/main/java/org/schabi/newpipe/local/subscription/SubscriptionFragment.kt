@@ -61,7 +61,6 @@ import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.image.ImageStrategy
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -342,8 +341,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
                 0 -> ShareUtils.shareText(
-                    requireContext(), selectedItem.name, selectedItem.url,
-                    ImageStrategy.choosePreferredImage(selectedItem.thumbnails)
+                    requireContext(), selectedItem.name, selectedItem.url, selectedItem.thumbnails
                 )
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
                 2 -> deleteChannel(selectedItem)
