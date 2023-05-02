@@ -24,6 +24,7 @@ import androidx.core.content.FileProvider;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.io.File;
@@ -251,7 +252,7 @@ public final class ShareUtils {
         // If loading of images has been disabled, don't try to generate a content preview
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 && !TextUtils.isEmpty(imagePreviewUrl)
-                && PicassoHelper.shouldLoadImages()) {
+                && ImageStrategy.shouldLoadImages()) {
 
             final ClipData clipData = generateClipDataForImagePreview(context, imagePreviewUrl);
             if (clipData != null) {
@@ -276,14 +277,14 @@ public final class ShareUtils {
      * @param title   the title of the content
      * @param content the content to share
      * @param images  a set of possible {@link Image}s of the subject, among which to choose with
-     *                {@link PicassoHelper#choosePreferredImage(List)} since that's likely to
+     *                {@link ImageStrategy#choosePreferredImage(List)} since that's likely to
      *                provide an image that is in Picasso's cache
      */
     public static void shareText(@NonNull final Context context,
                                  @NonNull final String title,
                                  final String content,
                                  final List<Image> images) {
-        shareText(context, title, content, PicassoHelper.choosePreferredImage(images));
+        shareText(context, title, content, ImageStrategy.choosePreferredImage(images));
     }
 
     /**

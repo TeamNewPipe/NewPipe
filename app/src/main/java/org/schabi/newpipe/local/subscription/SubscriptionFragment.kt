@@ -61,7 +61,7 @@ import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -343,7 +343,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             when (i) {
                 0 -> ShareUtils.shareText(
                     requireContext(), selectedItem.name, selectedItem.url,
-                    PicassoHelper.choosePreferredImage(selectedItem.thumbnails)
+                    ImageStrategy.choosePreferredImage(selectedItem.thumbnails)
                 )
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
                 2 -> deleteChannel(selectedItem)

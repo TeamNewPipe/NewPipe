@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -100,7 +101,7 @@ public class App extends Application {
         // Initialize image loader
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         PicassoHelper.init(this);
-        PicassoHelper.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
+        ImageStrategy.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
                 prefs.getString(getString(R.string.image_quality_key),
                         getString(R.string.image_quality_default))));
         PicassoHelper.setIndicatorsEnabled(MainActivity.DEBUG

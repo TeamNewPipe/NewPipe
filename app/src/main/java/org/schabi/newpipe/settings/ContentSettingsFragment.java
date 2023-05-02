@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ZipHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
@@ -109,7 +110,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
         imageQualityPreference.setOnPreferenceChangeListener(
                 (preference, newValue) -> {
-                    PicassoHelper.setPreferredImageQuality(PreferredImageQuality
+                    ImageStrategy.setPreferredImageQuality(PreferredImageQuality
                             .fromPreferenceKey(requireContext(), (String) newValue));
                     try {
                         PicassoHelper.clearCache(preference.getContext());

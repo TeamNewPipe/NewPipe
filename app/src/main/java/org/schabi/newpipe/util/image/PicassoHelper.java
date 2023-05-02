@@ -2,13 +2,13 @@ package org.schabi.newpipe.util.image;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.util.image.ImageStrategy.choosePreferredImage;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
 
@@ -21,11 +21,9 @@ import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.extractor.Image.ResolutionLevel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +44,6 @@ public final class PicassoHelper {
     @SuppressLint("StaticFieldLeak")
     private static Picasso picassoInstance;
 
-    private static PreferredImageQuality preferredImageQuality = PreferredImageQuality.MEDIUM;
 
     public static void init(final Context context) {
         picassoCache = new LruCache(10 * 1024 * 1024);
@@ -90,14 +87,6 @@ public final class PicassoHelper {
 
     public static void setIndicatorsEnabled(final boolean enabled) {
         picassoInstance.setIndicatorsEnabled(enabled); // useful for debugging
-    }
-
-    public static void setPreferredImageQuality(final PreferredImageQuality preferredImageQuality) {
-        PicassoHelper.preferredImageQuality = preferredImageQuality;
-    }
-
-    public static boolean shouldLoadImages() {
-        return preferredImageQuality != PreferredImageQuality.NONE;
     }
 
 
@@ -225,43 +214,6 @@ public final class PicassoHelper {
                 requestCreator.placeholder(placeholderResId);
             }
             return requestCreator;
-        }
-    }
-
-    @Nullable
-    public static String choosePreferredImage(final List<Image> images) {
-        final Comparator<Image> comparator;
-        switch (preferredImageQuality) {
-            case NONE:
-                return null;
-            case HIGH:
-                comparator = Comparator.comparingInt(Image::getHeight).reversed();
-                break;
-            default:
-            case MEDIUM:
-                comparator = Comparator.comparingInt(image -> Math.abs(image.getHeight() - 450));
-                break;
-            case LOW:
-                comparator = Comparator.comparingInt(Image::getHeight);
-                break;
-        }
-
-        return images.stream()
-                .filter(image -> image.getEstimatedResolutionLevel() != ResolutionLevel.UNKNOWN)
-                .min(comparator)
-                .map(Image::getUrl)
-                .orElseGet(() -> images.stream()
-                        .findAny()
-                        .map(Image::getUrl)
-                        .orElse(null));
-    }
-
-    @NonNull
-    public static List<Image> urlToImageList(@Nullable final String url) {
-        if (url == null) {
-            return List.of();
-        } else {
-            return List.of(new Image(url, -1, -1, ResolutionLevel.UNKNOWN));
         }
     }
 }

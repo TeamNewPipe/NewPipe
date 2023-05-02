@@ -19,7 +19,7 @@ import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.util.ExtractorHelper
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 
 class SubscriptionManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -74,7 +74,7 @@ class SubscriptionManager(context: Context) {
                 Completable.fromRunnable {
                     it.setData(
                         info.name,
-                        PicassoHelper.choosePreferredImage(info.avatars),
+                        ImageStrategy.choosePreferredImage(info.avatars),
                         info.description,
                         info.subscriberCount
                     )
@@ -105,7 +105,7 @@ class SubscriptionManager(context: Context) {
         } else if (info is ChannelInfo) {
             subscriptionEntity.setData(
                 info.name,
-                PicassoHelper.choosePreferredImage(info.avatars),
+                ImageStrategy.choosePreferredImage(info.avatars),
                 info.description,
                 info.subscriberCount
             )

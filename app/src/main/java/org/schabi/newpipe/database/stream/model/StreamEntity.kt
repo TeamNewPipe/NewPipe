@@ -13,7 +13,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.io.Serializable
 import java.time.OffsetDateTime
 
@@ -68,7 +68,7 @@ data class StreamEntity(
     constructor(item: StreamInfoItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.name,
         streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
-        uploaderUrl = item.uploaderUrl, thumbnailUrl = PicassoHelper.choosePreferredImage(item.thumbnails), viewCount = item.viewCount,
+        uploaderUrl = item.uploaderUrl, thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails), viewCount = item.viewCount,
         textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = item.uploadDate?.isApproximation
     )
@@ -77,7 +77,7 @@ data class StreamEntity(
     constructor(info: StreamInfo) : this(
         serviceId = info.serviceId, url = info.url, title = info.name,
         streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
-        uploaderUrl = info.uploaderUrl, thumbnailUrl = PicassoHelper.choosePreferredImage(info.thumbnails), viewCount = info.viewCount,
+        uploaderUrl = info.uploaderUrl, thumbnailUrl = ImageStrategy.choosePreferredImage(info.thumbnails), viewCount = info.viewCount,
         textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = info.uploadDate?.isApproximation
     )
@@ -87,7 +87,7 @@ data class StreamEntity(
         serviceId = item.serviceId, url = item.url, title = item.title,
         streamType = item.streamType, duration = item.duration, uploader = item.uploader,
         uploaderUrl = item.uploaderUrl,
-        thumbnailUrl = PicassoHelper.choosePreferredImage(item.thumbnails)
+        thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails)
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
@@ -95,7 +95,7 @@ data class StreamEntity(
         item.duration = duration
         item.uploaderName = uploader
         item.uploaderUrl = uploaderUrl
-        item.thumbnails = PicassoHelper.urlToImageList(thumbnailUrl)
+        item.thumbnails = ImageStrategy.urlToImageList(thumbnailUrl)
 
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
