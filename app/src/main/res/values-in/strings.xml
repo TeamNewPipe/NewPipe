@@ -592,7 +592,6 @@
     <string name="metadata_privacy_private">Privasi</string>
     <string name="metadata_privacy_unlisted">Tidak didaftar</string>
     <string name="metadata_privacy_public">Publik</string>
-    <string name="metadata_thumbnail_url">Alamat URL gambar mini/thumbnail</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Dukungan</string>
     <string name="metadata_language">Bahasa</string>

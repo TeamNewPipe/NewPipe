@@ -619,7 +619,6 @@
     <string name="metadata_privacy_internal">Wewnętrzny</string>
     <string name="metadata_privacy_private">Prywatny</string>
     <string name="metadata_privacy_public">Publiczny</string>
-    <string name="metadata_thumbnail_url">Adres URL miniatury</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Wsparcie</string>
     <string name="metadata_language">Język</string>

@@ -698,7 +698,6 @@
     <string name="metadata_tags">Тэгі</string>
     <string name="metadata_licence">Ліцэнзія</string>
     <string name="metadata_host">Хост</string>
-    <string name="metadata_thumbnail_url">URL мініяцюры</string>
     <string name="metadata_privacy_unlisted">Не ў спісе</string>
     <string name="metadata_privacy_private">Прыватная</string>
     <string name="enumeration_comma">,</string>

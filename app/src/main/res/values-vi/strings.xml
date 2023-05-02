@@ -596,7 +596,6 @@
     <string name="metadata_privacy_private">Riêng tư</string>
     <string name="metadata_privacy_unlisted">Chưa được liệt kê</string>
     <string name="metadata_privacy_public">Công khai</string>
-    <string name="metadata_thumbnail_url">URL hình thu nhỏ</string>
     <string name="metadata_host">Nơi chứa</string>
     <string name="metadata_support">Hỗ trợ</string>
     <string name="metadata_language">Ngôn ngữ</string>

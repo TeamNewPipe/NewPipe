@@ -629,7 +629,6 @@
     <string name="metadata_privacy_private">Приватная</string>
     <string name="metadata_privacy_unlisted">Не в списке</string>
     <string name="metadata_privacy_public">Публичная</string>
-    <string name="metadata_thumbnail_url">URL миниатюры</string>
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
     <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>

@@ -602,7 +602,6 @@
     <string name="metadata_privacy_private">Ιδιωτικό</string>
     <string name="metadata_privacy_unlisted">Εκτός λίστας</string>
     <string name="metadata_privacy_public">Δημόσιο</string>
-    <string name="metadata_thumbnail_url">URL εικονιδίου</string>
     <string name="metadata_support">Υποστήριξη</string>
     <string name="metadata_language">Γλώσσα</string>
     <string name="metadata_age_limit">Όριο ηλικίας</string>

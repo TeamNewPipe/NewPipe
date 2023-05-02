@@ -653,7 +653,6 @@
     <string name="low_quality_smaller">Zemas kvalitātes (mazāks)</string>
     <string name="metadata_privacy">Privātums</string>
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
-    <string name="metadata_thumbnail_url">Video attēla URL</string>
     <string name="metadata_host">Uzņēmums</string>
     <string name="remote_search_suggestions">Attālinātie meklēšanas ieteikumi</string>
     <string name="mark_as_watched">Atzīmēt kā skatītu</string>

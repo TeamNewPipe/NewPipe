@@ -587,7 +587,6 @@
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_unlisted">E palistuar</string>
     <string name="metadata_privacy_public">Publike</string>
-    <string name="metadata_thumbnail_url">URL e pamjes statike</string>
     <string name="metadata_host">Mundësuesi</string>
     <string name="metadata_support">Mbështetje</string>
     <string name="metadata_language">Gjuha</string>

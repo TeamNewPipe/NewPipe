@@ -508,7 +508,6 @@
     <string name="metadata_category">分類</string>
     <string name="metadata_tags">標籤</string>
     <string name="metadata_privacy">公開設定</string>
-    <string name="metadata_thumbnail_url">縮圖 URL</string>
     <string name="metadata_privacy_public">公開</string>
     <string name="metadata_privacy_unlisted">憑網址瀏覽</string>
     <string name="detail_pinned_comment_view_description">置頂留言</string>

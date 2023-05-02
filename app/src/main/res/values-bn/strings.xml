@@ -548,7 +548,6 @@
     <string name="feed_load_error">প্রক্রিয়াকরণ ফিডে ত্রুটি</string>
     <string name="open_website_license">ওয়েবসাইট খুলুন</string>
     <string name="account_terminated">অ্যাকাউন্ট ধ্বংসকৃত</string>
-    <string name="metadata_thumbnail_url">প্রতিচ্ছবি সংযোগ</string>
     <string name="metadata_age_limit">বয়সসীমা</string>
     <string name="metadata_privacy_internal">অভ্যন্তরীণ</string>
     <string name="metadata_privacy_private">ব্যক্তিগত</string>

@@ -621,7 +621,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Ulistet</string>
     <string name="metadata_privacy_public">Offentlig</string>
-    <string name="metadata_thumbnail_url">Miniatyrbilde-nettadresse</string>
     <string name="metadata_host">Tjener</string>
     <string name="metadata_support">Støtte</string>
     <string name="metadata_language">Språk</string>

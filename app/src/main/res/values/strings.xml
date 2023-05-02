@@ -753,9 +753,11 @@
     <string name="metadata_language">Language</string>
     <string name="metadata_support">Support</string>
     <string name="metadata_host">Host</string>
-    <string name="metadata_thumbnail_url">Thumbnail URL</string>
-    <string name="metadata_avatar_url">Avatar URL</string>
-    <string name="metadata_banner_url">Banner URL</string>
+    <string name="metadata_thumbnails">Thumbnails</string>
+    <string name="metadata_uploader_avatars">Uploader avatars</string>
+    <string name="metadata_subchannel_avatars">Sub-channel avatars</string>
+    <string name="metadata_avatars">Avatars</string>
+    <string name="metadata_banners">Banners</string>
     <string name="metadata_privacy_public">Public</string>
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>

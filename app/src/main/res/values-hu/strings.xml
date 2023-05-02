@@ -605,7 +605,6 @@
     <string name="metadata_licence">Licenc</string>
     <string name="metadata_age_limit">Korhatár</string>
     <string name="metadata_host">Kiszolgáló</string>
-    <string name="metadata_thumbnail_url">Bélyegkép URL</string>
     <string name="metadata_privacy_public">Nyilvános</string>
     <string name="metadata_privacy_unlisted">Nem listázott</string>
     <string name="off">Ki</string>

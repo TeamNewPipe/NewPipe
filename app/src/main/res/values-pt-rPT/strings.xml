@@ -617,7 +617,6 @@
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_unlisted">Não listado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL da miniatura</string>
     <string name="metadata_host">Servidor</string>
     <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>

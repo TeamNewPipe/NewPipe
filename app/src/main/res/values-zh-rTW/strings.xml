@@ -592,7 +592,6 @@
     <string name="metadata_privacy_private">私人</string>
     <string name="metadata_privacy_unlisted">未列出</string>
     <string name="metadata_privacy_public">公開</string>
-    <string name="metadata_thumbnail_url">縮圖 URL</string>
     <string name="metadata_host">主機</string>
     <string name="metadata_support">支援</string>
     <string name="metadata_language">語言</string>

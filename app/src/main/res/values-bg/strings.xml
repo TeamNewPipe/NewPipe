@@ -422,7 +422,6 @@
     <string name="metadata_support">Поддръжка</string>
     <string name="metadata_host">Сървър</string>
     <string name="metadata_privacy_public">Публичен</string>
-    <string name="metadata_thumbnail_url">Миниатюра линк</string>
     <string name="app_language_title">Език на интерфейса</string>
     <string name="mute">Спри звука</string>
     <string name="post_processing">пост-обработката</string>

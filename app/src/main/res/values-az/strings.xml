@@ -629,7 +629,6 @@
     <string name="metadata_host">Sahib</string>
     <string name="metadata_privacy_unlisted">Siyahıdan kənar</string>
     <string name="metadata_privacy_private">Şəxsi</string>
-    <string name="metadata_thumbnail_url">Miniatür URL</string>
     <string name="metadata_age_limit">Yaş həddi</string>
     <string name="metadata_language">Dil</string>
     <string name="metadata_privacy_public">İctimai</string>

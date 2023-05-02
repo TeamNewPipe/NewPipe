@@ -617,7 +617,6 @@
     <string name="metadata_privacy_public">Viešas</string>
     <string name="metadata_privacy_private">Privatus</string>
     <string name="metadata_privacy_unlisted">Neįtrauktas į sąrašą</string>
-    <string name="metadata_thumbnail_url">Paveikslėlio URL</string>
     <string name="metadata_host">Serveris</string>
     <string name="metadata_support">Pagalba</string>
     <string name="metadata_language">Kalba</string>

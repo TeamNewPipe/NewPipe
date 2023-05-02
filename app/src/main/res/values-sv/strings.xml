@@ -628,7 +628,6 @@
     <string name="featured">Aktuellt</string>
     <string name="night_theme_title">Natt-tema</string>
     <string name="hash_channel_description">Aviseringar för videohashningsframsteg</string>
-    <string name="metadata_thumbnail_url">Miniatyrbild-webbadress</string>
     <string name="disable_media_tunneling_summary">Inaktivera medietunnel om du upplever en svart skärm eller att videouppspelningen hackar.</string>
     <string name="disable_media_tunneling_title">Inaktivera medietunnel</string>
     <string name="detail_heart_img_view_description">Hjärtmärkt av innehållsskaparen</string>

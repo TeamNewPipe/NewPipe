@@ -565,7 +565,6 @@
     <string name="metadata_age_limit">Ასაკობრივი შეზღუდვა</string>
     <string name="metadata_language">Ენა</string>
     <string name="metadata_host">მასპინძელი</string>
-    <string name="metadata_thumbnail_url">მინიატურების URL</string>
     <string name="metadata_privacy_public">საჯარო</string>
     <string name="metadata_privacy_unlisted">დამალული</string>
     <string name="metadata_privacy_private">პირადი</string>

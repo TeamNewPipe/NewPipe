@@ -584,7 +584,6 @@
     <string name="metadata_privacy_internal">Sisemine</string>
     <string name="metadata_privacy_private">Privaatne</string>
     <string name="metadata_privacy_public">Avalik</string>
-    <string name="metadata_thumbnail_url">Pisipildi URL</string>
     <string name="metadata_support">Kasutajatugi</string>
     <string name="metadata_language">Keel</string>
     <string name="metadata_age_limit">Vanusepiir</string>

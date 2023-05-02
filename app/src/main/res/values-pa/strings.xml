@@ -441,7 +441,6 @@
     <string name="metadata_privacy_private">ਨਿੱਜੀ (ਪ੍ਰਾਈਵੇਟ)</string>
     <string name="metadata_privacy_unlisted">ਗੈਰ-ਸੂਚੀਬੱਧ</string>
     <string name="metadata_privacy_public">ਜਨਤਕ</string>
-    <string name="metadata_thumbnail_url">ਥੰਮਨੇਲ URL</string>
     <string name="metadata_host">ਮੇਜ਼ਬਾਨ</string>
     <string name="metadata_support">ਸਹਾਇਤਾ</string>
     <string name="metadata_language">ਭਾਸ਼ਾ/ਬੋਲੀ</string>

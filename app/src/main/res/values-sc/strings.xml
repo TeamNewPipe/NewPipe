@@ -602,7 +602,6 @@
     <string name="metadata_privacy_unlisted">No elencadu</string>
     <string name="metadata_privacy_private">Privadu</string>
     <string name="metadata_privacy_public">Pùblicu</string>
-    <string name="metadata_thumbnail_url">URL de sa miniadura</string>
     <string name="metadata_host">Istrangiadore</string>
     <string name="metadata_support">Suportu</string>
     <string name="metadata_language">Limba</string>

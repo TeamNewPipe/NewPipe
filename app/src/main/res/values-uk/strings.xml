@@ -618,7 +618,6 @@
     <string name="metadata_privacy_public">Публічне</string>
     <string name="metadata_privacy_private">Приватне</string>
     <string name="metadata_privacy_unlisted">Поза списком</string>
-    <string name="metadata_thumbnail_url">URL мініатюри</string>
     <string name="metadata_host">Власник</string>
     <string name="metadata_support">Підтримка</string>
     <string name="metadata_language">Мова</string>

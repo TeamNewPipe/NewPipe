@@ -613,7 +613,6 @@
     <string name="metadata_privacy_unlisted">Não Listado</string>
     <string name="metadata_privacy_public">Público</string>
     <string name="metadata_age_limit">Limite de Idade</string>
-    <string name="metadata_thumbnail_url">URL da Miniatura</string>
     <string name="metadata_host">Hospedado em</string>
     <string name="metadata_support">Suporte</string>
     <string name="metadata_language">Idioma</string>

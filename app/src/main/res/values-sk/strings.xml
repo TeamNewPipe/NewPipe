@@ -611,7 +611,6 @@
     <string name="metadata_privacy_internal">Interné</string>
     <string name="metadata_privacy_private">Súkromné</string>
     <string name="metadata_privacy_unlisted">Nezaradené</string>
-    <string name="metadata_thumbnail_url">URL miniatúry</string>
     <string name="metadata_privacy_public">Verejné</string>
     <string name="metadata_host">Hostiteľ</string>
     <string name="metadata_support">Podpora</string>

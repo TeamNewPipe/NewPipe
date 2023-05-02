@@ -642,7 +642,6 @@
     <string name="metadata_privacy_private">خاص</string>
     <string name="metadata_privacy_unlisted">غير مدرج</string>
     <string name="metadata_privacy_public">عامة</string>
-    <string name="metadata_thumbnail_url">رابط الصورة المصغرة</string>
     <string name="metadata_host">المضيف</string>
     <string name="metadata_support">الدعم</string>
     <string name="metadata_language">اللغة</string>

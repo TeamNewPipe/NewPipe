@@ -618,7 +618,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Nelistat</string>
     <string name="metadata_privacy_public">Public</string>
-    <string name="metadata_thumbnail_url">URL miniatură</string>
     <string name="metadata_host">Gazdă</string>
     <string name="metadata_support">Sprijin</string>
     <string name="metadata_language">Limbă</string>

@@ -622,7 +622,6 @@
     <string name="metadata_privacy_private">פרטי</string>
     <string name="metadata_privacy_unlisted">לא מופיע ברשימות</string>
     <string name="metadata_privacy_public">ציבורי</string>
-    <string name="metadata_thumbnail_url">כתובת תמונה ממוזערת</string>
     <string name="metadata_host">אירוח</string>
     <string name="metadata_support">תמיכה</string>
     <string name="metadata_language">שפה</string>

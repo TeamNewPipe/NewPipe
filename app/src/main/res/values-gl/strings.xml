@@ -547,7 +547,6 @@
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL da miniatura</string>
     <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>
     <string name="metadata_age_limit">Límite de idade</string>

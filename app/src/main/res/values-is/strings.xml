@@ -485,7 +485,6 @@
     <string name="video_detail_by">Frá %s</string>
     <string name="account_terminated">Reikningi lokað</string>
     <string name="metadata_age_limit">Aldurstakmark</string>
-    <string name="metadata_thumbnail_url">Vefslóð smámyndar</string>
     <string name="detail_pinned_comment_view_description">Fest ummæli</string>
     <string name="tablet_mode_title">Spjaldtölvuhamur</string>
     <string name="on">Virkt</string>

@@ -593,7 +593,6 @@
     <string name="metadata_privacy_private">私享</string>
     <string name="metadata_privacy_unlisted">未分类</string>
     <string name="metadata_privacy_public">公开</string>
-    <string name="metadata_thumbnail_url">缩略图 URL</string>
     <string name="metadata_host">所在服务器</string>
     <string name="metadata_support">支持</string>
     <string name="metadata_language">语言</string>

@@ -601,7 +601,6 @@
     <string name="metadata_privacy_private">Gizli</string>
     <string name="metadata_privacy_unlisted">Listelenmemiş</string>
     <string name="metadata_privacy_public">Herkese Açık</string>
-    <string name="metadata_thumbnail_url">Küçük Resim URL\'si</string>
     <string name="metadata_host">Konakçı</string>
     <string name="metadata_support">Destek</string>
     <string name="metadata_language">Dil</string>

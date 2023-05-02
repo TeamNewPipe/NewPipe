@@ -595,7 +595,6 @@
     <string name="restricted_video_no_stream">Tämä video on ikärajoitettu.
 \nYouTuben uusien ikärajoitusperiaatteiden mukaisesti NewPipella ei ole pääsyä videoon eikä sitä voida toistaa.</string>
     <string name="night_theme_title">Yöteema</string>
-    <string name="metadata_thumbnail_url">Pienoiskuvakkeen osoite</string>
     <string name="description_select_disable">Poista käytöstä tekstinvalinta kuvauskentän sisältä</string>
     <string name="description_select_note">Voit nyt valita tekstin kuvauskentän sisältä. Huomioithan, että valintatilan aikana sivu voi vilkkua ja linkit eivät ehkä ole klikattavia.</string>
     <string name="service_provides_reason">%s tuo tämän syyn:</string>

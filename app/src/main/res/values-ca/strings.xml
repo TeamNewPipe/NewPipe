@@ -600,7 +600,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Descatalogat</string>
     <string name="metadata_privacy_public">Públic</string>
-    <string name="metadata_thumbnail_url">URL de la miniatura</string>
     <string name="metadata_host">Amfitrió</string>
     <string name="metadata_support">Suport</string>
     <string name="metadata_language">Idioma</string>

@@ -612,7 +612,6 @@
     <string name="metadata_privacy_private">Privato</string>
     <string name="metadata_privacy_unlisted">Non in elenco</string>
     <string name="metadata_privacy_public">Pubblico</string>
-    <string name="metadata_thumbnail_url">URL copertina</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Supporto</string>
     <string name="metadata_language">Lingua</string>

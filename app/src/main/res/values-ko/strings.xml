@@ -625,7 +625,6 @@
     <string name="detail_heart_img_view_description">창작자의 마음</string>
     <string name="metadata_privacy_private">비공개</string>
     <string name="metadata_privacy_unlisted">비공개</string>
-    <string name="metadata_thumbnail_url">썸네일 URL</string>
     <string name="metadata_host">호스트</string>
     <string name="you_successfully_subscribed">이제 이 채널을 구독했습니다</string>
     <string name="get_notified">알림 받기</string>

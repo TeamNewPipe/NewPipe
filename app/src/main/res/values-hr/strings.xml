@@ -616,7 +616,6 @@
     <string name="metadata_privacy_private">Privatno</string>
     <string name="metadata_privacy_unlisted">Nenavedeno</string>
     <string name="metadata_privacy_public">Javno</string>
-    <string name="metadata_thumbnail_url">URL sličice</string>
     <string name="metadata_host">Poslužitelj</string>
     <string name="metadata_support">Podrška</string>
     <string name="metadata_language">Jezik</string>

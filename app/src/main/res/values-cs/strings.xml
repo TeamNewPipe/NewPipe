@@ -613,7 +613,6 @@
     <string name="metadata_privacy_private">Soukromé</string>
     <string name="metadata_privacy_unlisted">Neuvedeno v seznamu</string>
     <string name="metadata_privacy_public">Veřejné</string>
-    <string name="metadata_thumbnail_url">URL miniatury</string>
     <string name="metadata_host">Server</string>
     <string name="metadata_support">Podpora</string>
     <string name="metadata_language">Jazyk</string>

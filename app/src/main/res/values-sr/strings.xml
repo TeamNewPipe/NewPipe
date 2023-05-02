@@ -612,7 +612,6 @@
     <string name="metadata_privacy_private">лично</string>
     <string name="metadata_privacy_unlisted">ненаведено</string>
     <string name="metadata_privacy_public">јавно</string>
-    <string name="metadata_thumbnail_url">УРЛ сличице</string>
     <string name="metadata_host">Домаћин</string>
     <string name="metadata_support">Подршка</string>
     <string name="metadata_language">Језик</string>

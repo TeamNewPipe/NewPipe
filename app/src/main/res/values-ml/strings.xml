@@ -609,7 +609,6 @@
     <string name="metadata_privacy_private">സ്വകാര്യം</string>
     <string name="metadata_privacy_unlisted">ലിസ്റ്റ് ചെയ്യപ്പെടാത്തത്</string>
     <string name="metadata_privacy_public">പൊതുവായത്</string>
-    <string name="metadata_thumbnail_url">ചെറുചിത്രം URL</string>
     <string name="metadata_host">ഹോസ്റ്റ്</string>
     <string name="metadata_support">പിന്തുണ</string>
     <string name="metadata_language">ഭാഷ</string>
