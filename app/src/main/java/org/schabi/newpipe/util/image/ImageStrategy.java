@@ -38,19 +38,35 @@ public final class ImageStrategy {
                 // images whose size is completely unknown will be in their own subgroups, so
                 // any one of them will do, hence returning the same value for all of them
                 return 0;
-
             } else {
                 return image.getWidth() * image.getWidth() / widthOverHeight;
             }
-
         } else if (image.getWidth() == WIDTH_UNKNOWN) {
             return image.getHeight() * image.getHeight() * widthOverHeight;
-
         } else {
             return image.getHeight() * image.getWidth();
         }
     }
 
+    /**
+     * Chooses an image amongst the provided list based on the user preference previously set with
+     * {@link #setPreferredImageQuality(PreferredImageQuality)}. {@code null} will be returned in
+     * case the list is empty or the user preference is to not show images.
+     * <br>
+     * These properties will be preferred, from most to least important:
+     * <ol>
+     *     <li>The image's {@link Image#getEstimatedResolutionLevel()} is not unknown and is close
+     *     to {@link #preferredImageQuality}</li>
+     *     <li>At least one of the image's width or height are known</li>
+     *     <li>The highest resolution image is finally chosen if the user's preference is {@link
+     *     PreferredImageQuality#HIGH}, otherwise the chosen image is the one that has the closest
+     *     height to {@link #BEST_LOW_H} or {@link #BEST_MEDIUM_H}</li>
+     * </ol>
+     *
+     * @param images the images from which to choose
+     * @return the chosen preferred image, or {@link null} if the list is empty or the user disabled
+     *         images
+     */
     @Nullable
     public static String choosePreferredImage(@NonNull final List<Image> images) {
         if (preferredImageQuality == PreferredImageQuality.NONE) {

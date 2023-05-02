@@ -224,6 +224,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
                     case LOW:
                         urls.append(getString(R.string.image_quality_low));
                         break;
+                    default: // unreachable, Image.ResolutionLevel.UNKNOWN is already filtered out
                     case MEDIUM:
                         urls.append(getString(R.string.image_quality_medium));
                         break;

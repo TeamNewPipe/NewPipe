@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
 
@@ -49,7 +50,7 @@ public final class PicassoHelper {
         picassoCache = new LruCache(10 * 1024 * 1024);
         picassoDownloaderClient = new OkHttpClient.Builder()
                 .cache(new okhttp3.Cache(new File(context.getExternalCacheDir(), "picasso"),
-                        50 * 1024 * 1024))
+                        50L * 1024L * 1024L))
                 // this should already be the default timeout in OkHttp3, but just to be sure...
                 .callTimeout(15, TimeUnit.SECONDS)
                 .build();
@@ -90,50 +91,50 @@ public final class PicassoHelper {
     }
 
 
-    public static RequestCreator loadAvatar(final List<Image> images) {
+    public static RequestCreator loadAvatar(@NonNull final List<Image> images) {
         return loadImageDefault(images, R.drawable.placeholder_person);
     }
 
-    public static RequestCreator loadAvatar(final String url) {
+    public static RequestCreator loadAvatar(@Nullable final String url) {
         return loadImageDefault(url, R.drawable.placeholder_person);
     }
 
-    public static RequestCreator loadThumbnail(final List<Image> images) {
+    public static RequestCreator loadThumbnail(@NonNull final List<Image> images) {
         return loadImageDefault(images, R.drawable.placeholder_thumbnail_video);
     }
 
-    public static RequestCreator loadThumbnail(final String url) {
+    public static RequestCreator loadThumbnail(@Nullable final String url) {
         return loadImageDefault(url, R.drawable.placeholder_thumbnail_video);
     }
 
-    public static RequestCreator loadDetailsThumbnail(final List<Image> images) {
+    public static RequestCreator loadDetailsThumbnail(@NonNull final List<Image> images) {
         return loadImageDefault(choosePreferredImage(images),
                 R.drawable.placeholder_thumbnail_video, false);
     }
 
-    public static RequestCreator loadBanner(final List<Image> images) {
+    public static RequestCreator loadBanner(@NonNull final List<Image> images) {
         return loadImageDefault(images, R.drawable.placeholder_channel_banner);
     }
 
-    public static RequestCreator loadPlaylistThumbnail(final List<Image> images) {
+    public static RequestCreator loadPlaylistThumbnail(@NonNull final List<Image> images) {
         return loadImageDefault(images, R.drawable.placeholder_thumbnail_playlist);
     }
 
-    public static RequestCreator loadPlaylistThumbnail(final String url) {
+    public static RequestCreator loadPlaylistThumbnail(@Nullable final String url) {
         return loadImageDefault(url, R.drawable.placeholder_thumbnail_playlist);
     }
 
-    public static RequestCreator loadSeekbarThumbnailPreview(final String url) {
+    public static RequestCreator loadSeekbarThumbnailPreview(@Nullable final String url) {
         return picassoInstance.load(url);
     }
 
-    public static RequestCreator loadNotificationIcon(final String url) {
+    public static RequestCreator loadNotificationIcon(@Nullable final String url) {
         return loadImageDefault(url, R.drawable.ic_newpipe_triangle_white);
     }
 
 
     public static RequestCreator loadScaledDownThumbnail(final Context context,
-                                                         final List<Image> images) {
+                                                         @NonNull final List<Image> images) {
         // scale down the notification thumbnail for performance
         return PicassoHelper.loadThumbnail(images)
                 .transform(new Transformation() {
@@ -182,18 +183,18 @@ public final class PicassoHelper {
     }
 
     @Nullable
-    public static Bitmap getImageFromCacheIfPresent(final String imageUrl) {
+    public static Bitmap getImageFromCacheIfPresent(@NonNull final String imageUrl) {
         // URLs in the internal cache finish with \n so we need to add \n to image URLs
         return picassoCache.get(imageUrl + "\n");
     }
 
 
-    private static RequestCreator loadImageDefault(final List<Image> images,
+    private static RequestCreator loadImageDefault(@NonNull final List<Image> images,
                                                    final int placeholderResId) {
         return loadImageDefault(choosePreferredImage(images), placeholderResId);
     }
 
-    private static RequestCreator loadImageDefault(final String url,
+    private static RequestCreator loadImageDefault(@Nullable final String url,
                                                    final int placeholderResId) {
         return loadImageDefault(url, placeholderResId, true);
     }

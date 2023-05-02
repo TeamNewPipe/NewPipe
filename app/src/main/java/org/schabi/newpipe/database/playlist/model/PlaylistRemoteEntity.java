@@ -70,7 +70,9 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @Ignore
     public PlaylistRemoteEntity(final PlaylistInfo info) {
         this(info.getServiceId(), info.getName(), info.getUrl(),
-                ImageStrategy.choosePreferredImage(info.getThumbnails()),
+                // use uploader avatar when no thumbnail is available
+                ImageStrategy.choosePreferredImage(info.getThumbnails().isEmpty()
+                        ? info.getUploaderAvatars() : info.getThumbnails()),
                 info.getUploaderName(), info.getStreamCount());
     }
 
@@ -84,6 +86,8 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
                 && getStreamCount() == info.getStreamCount()
                 && TextUtils.equals(getName(), info.getName())
                 && TextUtils.equals(getUrl(), info.getUrl())
+                // we want to update the local playlist data even when either the remote thumbnail
+                // URL changes, or the preferred image quality setting is changed by the user
                 && TextUtils.equals(getThumbnailUrl(),
                 ImageStrategy.choosePreferredImage(info.getThumbnails()))
                 && TextUtils.equals(getUploader(), info.getUploaderName());

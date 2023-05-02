@@ -269,8 +269,8 @@ public final class ShareUtils {
      *
      * <p>
      * For Android 10+ users, a content preview is shown, which includes the title of the shared
-     * content and an image preview the content, if its URL is not null or empty and its
-     * corresponding image is in the image cache.
+     * content and an image preview the content, if the preferred image chosen by {@link
+     * ImageStrategy#choosePreferredImage(List)} is in the image cache.
      * </p>
      *
      * @param context the context to use
