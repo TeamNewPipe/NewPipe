@@ -3,6 +3,7 @@ package org.schabi.newpipe.util.image;
 import android.content.Context;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.Image;
 
 public enum PreferredImageQuality {
     NONE,
@@ -19,6 +20,20 @@ public enum PreferredImageQuality {
             return HIGH;
         } else {
             return MEDIUM; // default to medium
+        }
+    }
+
+    public Image.ResolutionLevel toResolutionLevel() {
+        switch (this) {
+            case LOW:
+                return Image.ResolutionLevel.LOW;
+            case MEDIUM:
+                return Image.ResolutionLevel.MEDIUM;
+            case HIGH:
+                return Image.ResolutionLevel.HIGH;
+            default:
+            case NONE:
+                return Image.ResolutionLevel.UNKNOWN;
         }
     }
 }

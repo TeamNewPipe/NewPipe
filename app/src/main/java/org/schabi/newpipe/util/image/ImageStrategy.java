@@ -1,5 +1,8 @@
 package org.schabi.newpipe.util.image;
 
+import static org.schabi.newpipe.extractor.Image.HEIGHT_UNKNOWN;
+import static org.schabi.newpipe.extractor.Image.WIDTH_UNKNOWN;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -10,9 +13,10 @@ import java.util.List;
 
 public final class ImageStrategy {
 
-    // the height thresholds also used by the extractor (TODO move them to the extractor)
-    private static final int LOW_MEDIUM = 175;
-    private static final int MEDIUM_HIGH = 720;
+    // when preferredImageQuality is LOW or MEDIUM, images are sorted by how close their preferred
+    // image quality is to these values (H stands for "Height")
+    private static final int BEST_LOW_H = 75;
+    private static final int BEST_MEDIUM_H = 250;
 
     private static PreferredImageQuality preferredImageQuality = PreferredImageQuality.MEDIUM;
 
@@ -28,35 +32,18 @@ public final class ImageStrategy {
     }
 
 
-    private static double estimatePixelCount(final Image image,
-                                             final double widthOverHeight,
-                                             final boolean unknownsLast) {
-        if (image.getHeight() == Image.HEIGHT_UNKNOWN) {
-            if (image.getWidth() == Image.WIDTH_UNKNOWN) {
-                switch (image.getEstimatedResolutionLevel()) {
-                    case LOW:
-                        return unknownsLast
-                                ? (LOW_MEDIUM - 1) * (LOW_MEDIUM - 1) * widthOverHeight
-                                : 0;
-                    case MEDIUM:
-                        return unknownsLast
-                                ? (MEDIUM_HIGH - 1) * (MEDIUM_HIGH - 1) * widthOverHeight
-                                : LOW_MEDIUM * LOW_MEDIUM * widthOverHeight;
-                    case HIGH:
-                        return unknownsLast
-                                ? 1e20 // less than 1e21 to prefer over fully unknown image sizes
-                                : MEDIUM_HIGH * MEDIUM_HIGH * widthOverHeight;
-                    default:
-                    case UNKNOWN:
-                        // images whose size is completely unknown will be avoided when possible
-                        return unknownsLast ? 1e21 : -1;
-                }
+    static double estimatePixelCount(final Image image, final double widthOverHeight) {
+        if (image.getHeight() == HEIGHT_UNKNOWN) {
+            if (image.getWidth() == WIDTH_UNKNOWN) {
+                // images whose size is completely unknown will be in their own subgroups, so
+                // any one of them will do, hence returning the same value for all of them
+                return 0;
 
             } else {
                 return image.getWidth() * image.getWidth() / widthOverHeight;
             }
 
-        } else if (image.getWidth() == Image.WIDTH_UNKNOWN) {
+        } else if (image.getWidth() == WIDTH_UNKNOWN) {
             return image.getHeight() * image.getHeight() * widthOverHeight;
 
         } else {
@@ -70,36 +57,57 @@ public final class ImageStrategy {
             return null; // do not load images
         }
 
+        // this will be used to estimate the pixel count for images where only one of height or
+        // width are known
         final double widthOverHeight = images.stream()
-                .filter(image -> image.getHeight() != Image.HEIGHT_UNKNOWN
-                        && image.getWidth() != Image.WIDTH_UNKNOWN)
+                .filter(image -> image.getHeight() != HEIGHT_UNKNOWN
+                        && image.getWidth() != WIDTH_UNKNOWN)
                 .mapToDouble(image -> ((double) image.getWidth()) / image.getHeight())
                 .findFirst()
                 .orElse(1.0);
 
-        final Comparator<Image> comparator;
-        switch (preferredImageQuality) {
-            case LOW:
-                comparator = Comparator.comparingDouble(
-                        image -> estimatePixelCount(image, widthOverHeight, true));
-                break;
-            default:
-            case MEDIUM:
-                comparator = Comparator.comparingDouble(image -> {
-                    final double pixelCount = estimatePixelCount(image, widthOverHeight, true);
-                    final double mediumHeight = (LOW_MEDIUM + MEDIUM_HIGH) / 2.0;
-                    return Math.abs(pixelCount - mediumHeight * mediumHeight * widthOverHeight);
-                });
-                break;
-            case HIGH:
-                comparator = Comparator.<Image>comparingDouble(
-                        image -> estimatePixelCount(image, widthOverHeight, false))
-                        .reversed();
-                break;
-        }
+        final Image.ResolutionLevel preferredLevel = preferredImageQuality.toResolutionLevel();
+        final Comparator<Image> initialComparator = Comparator
+                // the first step splits the images into groups of resolution levels
+                .<Image>comparingInt(i -> {
+                    if (i.getEstimatedResolutionLevel() == Image.ResolutionLevel.UNKNOWN) {
+                        return 3; // avoid unknowns as much as possible
+                    } else if (i.getEstimatedResolutionLevel() == preferredLevel) {
+                        return 0; // prefer a matching resolution level
+                    } else if (i.getEstimatedResolutionLevel() == Image.ResolutionLevel.MEDIUM) {
+                        return 1; // the preferredLevel is only 1 "step" away (either HIGH or LOW)
+                    } else {
+                        return 2; // the preferredLevel is the furthest away possible (2 "steps")
+                    }
+                })
+                // then each level's group is further split into two subgroups, one with known image
+                // size (which is also the preferred subgroup) and the other without
+                .thenComparing(image ->
+                        image.getHeight() == HEIGHT_UNKNOWN && image.getWidth() == WIDTH_UNKNOWN);
+
+        // The third step chooses, within each subgroup with known image size, the best image based
+        // on how close its size is to BEST_LOW_H or BEST_MEDIUM_H (with proper units). Subgroups
+        // without known image size will be left untouched since estimatePixelCount always returns
+        // the same number for those.
+        final Comparator<Image> finalComparator = switch (preferredImageQuality) {
+            case NONE -> initialComparator; // unreachable
+            case LOW -> initialComparator.thenComparingDouble(image -> {
+                final double pixelCount = estimatePixelCount(image, widthOverHeight);
+                return Math.abs(pixelCount - BEST_LOW_H * BEST_LOW_H * widthOverHeight);
+            });
+            case MEDIUM -> initialComparator.thenComparingDouble(image -> {
+                final double pixelCount = estimatePixelCount(image, widthOverHeight);
+                return Math.abs(pixelCount - BEST_MEDIUM_H * BEST_MEDIUM_H * widthOverHeight);
+            });
+            case HIGH -> initialComparator.thenComparingDouble(
+                    // this is reversed with a - so that the highest resolution is chosen
+                    i -> -estimatePixelCount(i, widthOverHeight));
+        };
 
         return images.stream()
-                .min(comparator)
+                // using "min" basically means "take the first group, then take the first subgroup,
+                // then choose the best image, while ignoring all other groups and subgroups"
+                .min(finalComparator)
                 .map(Image::getUrl)
                 .orElse(null);
     }
