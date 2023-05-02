@@ -138,10 +138,12 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
         descBuilder.setExtras(additionalMetadata);
 
-        final Uri thumbnailUri = Uri.parse(
-                ImageStrategy.choosePreferredImage(item.getThumbnails()));
-        if (thumbnailUri != null) {
-            descBuilder.setIconUri(thumbnailUri);
+        try {
+            descBuilder.setIconUri(Uri.parse(
+                    ImageStrategy.choosePreferredImage(item.getThumbnails())));
+        } catch (final Throwable e) {
+            // no thumbnail available at all, or the user disabled image loading,
+            // or the obtained url is not a valid `Uri`
         }
 
         return descBuilder.build();
