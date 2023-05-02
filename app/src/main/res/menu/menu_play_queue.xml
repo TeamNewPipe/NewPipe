@@ -19,6 +19,14 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_audio_track"
+        android:tooltipText="@string/audio_track"
+        android:visible="false"
+        app:showAsAction="ifRoom">
+        <menu />
+    </item>
+
+    <item
         android:id="@+id/action_mute"
         android:icon="@drawable/ic_volume_off"
         android:title="@string/mute"

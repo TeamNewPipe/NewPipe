@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.mediaitem;
 
 import com.google.android.exoplayer2.MediaItem;
 
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -25,25 +26,41 @@ public final class StreamInfoTag implements MediaItemTag {
     @Nullable
     private final MediaItemTag.Quality quality;
     @Nullable
+    private final MediaItemTag.AudioTrack audioTrack;
+    @Nullable
     private final Object extras;
 
     private StreamInfoTag(@NonNull final StreamInfo streamInfo,
                           @Nullable final MediaItemTag.Quality quality,
+                          @Nullable final MediaItemTag.AudioTrack audioTrack,
                           @Nullable final Object extras) {
         this.streamInfo = streamInfo;
         this.quality = quality;
+        this.audioTrack = audioTrack;
         this.extras = extras;
     }
 
     public static StreamInfoTag of(@NonNull final StreamInfo streamInfo,
                                    @NonNull final List<VideoStream> sortedVideoStreams,
-                                   final int selectedVideoStreamIndex) {
+                                   final int selectedVideoStreamIndex,
+                                   @NonNull final List<AudioStream> audioStreams,
+                                   final int selectedAudioStreamIndex) {
         final Quality quality = Quality.of(sortedVideoStreams, selectedVideoStreamIndex);
-        return new StreamInfoTag(streamInfo, quality, null);
+        final AudioTrack audioTrack =
+                AudioTrack.of(audioStreams, selectedAudioStreamIndex);
+        return new StreamInfoTag(streamInfo, quality, audioTrack, null);
+    }
+
+    public static StreamInfoTag of(@NonNull final StreamInfo streamInfo,
+                                   @NonNull final List<AudioStream> audioStreams,
+                                   final int selectedAudioStreamIndex) {
+        final AudioTrack audioTrack =
+                AudioTrack.of(audioStreams, selectedAudioStreamIndex);
+        return new StreamInfoTag(streamInfo, null, audioTrack, null);
     }
 
     public static StreamInfoTag of(@NonNull final StreamInfo streamInfo) {
-        return new StreamInfoTag(streamInfo, null, null);
+        return new StreamInfoTag(streamInfo, null, null, null);
     }
 
     @Override
@@ -103,6 +120,12 @@ public final class StreamInfoTag implements MediaItemTag {
         return Optional.ofNullable(quality);
     }
 
+    @NonNull
+    @Override
+    public Optional<AudioTrack> getMaybeAudioTrack() {
+        return Optional.ofNullable(audioTrack);
+    }
+
     @Override
     public <T> Optional<T> getMaybeExtras(@NonNull final Class<T> type) {
         return Optional.ofNullable(extras).map(type::cast);
@@ -110,6 +133,6 @@ public final class StreamInfoTag implements MediaItemTag {
 
     @Override
     public StreamInfoTag withExtras(@NonNull final Object extra) {
-        return new StreamInfoTag(streamInfo, quality, extra);
+        return new StreamInfoTag(streamInfo, quality, audioTrack, extra);
     }
 }

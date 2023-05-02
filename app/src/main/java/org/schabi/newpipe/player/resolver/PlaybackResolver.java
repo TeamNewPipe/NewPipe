@@ -156,6 +156,16 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             cacheKey.append(audioStream.getAverageBitrate());
         }
 
+        if (audioStream.getAudioTrackId() != null) {
+            cacheKey.append(" ");
+            cacheKey.append(audioStream.getAudioTrackId());
+        }
+
+        if (audioStream.getAudioLocale() != null) {
+            cacheKey.append(" ");
+            cacheKey.append(audioStream.getAudioLocale().getISO3Language());
+        }
+
         return cacheKey.toString();
     }
 

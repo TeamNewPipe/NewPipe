@@ -219,6 +219,8 @@
         <item>@string/none_control_key</item>
     </string-array>
 
+    <string name="prefer_original_audio_key">prefer_original_audio</string>
+    <string name="prefer_descriptive_audio_key">prefer_descriptive_audio</string>
     <string name="last_resize_mode">last_resize_mode</string>
 
     <!-- DEBUG ONLY -->

@@ -11,5 +11,6 @@ public interface PlayerEventListener {
                           PlaybackParameters parameters);
     void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
     void onMetadataUpdate(StreamInfo info, PlayQueue queue);
+    default void onAudioTrackUpdate() { }
     void onServiceStopped();
 }

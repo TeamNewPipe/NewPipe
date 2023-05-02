@@ -162,8 +162,12 @@ public final class VideoDetailFragment
     private boolean showRelatedItems;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes
+    @NonNull
+    final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes
+    @NonNull
+    final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -1040,20 +1044,10 @@ public final class VideoDetailFragment
             player.setRecovery();
         }
 
-        if (!useExternalAudioPlayer) {
-            openNormalBackgroundPlayer(append);
+        if (useExternalAudioPlayer) {
+            showExternalAudioPlaybackDialog();
         } else {
-            final List<AudioStream> audioStreams = getUrlAndNonTorrentStreams(
-                    currentInfo.getAudioStreams());
-            final int index = ListHelper.getDefaultAudioFormat(activity, audioStreams);
-
-            if (index == -1) {
-                Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
-                        Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            startOnExternalPlayer(activity, currentInfo, audioStreams.get(index));
+            openNormalBackgroundPlayer(append);
         }
     }
 
@@ -1106,7 +1100,7 @@ public final class VideoDetailFragment
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            showExternalPlaybackDialog();
+            showExternalVideoPlaybackDialog();
         } else {
             replaceQueueIfUserConfirms(this::openMainPlayer);
         }
@@ -2112,7 +2106,7 @@ public final class VideoDetailFragment
                 }).show();
     }
 
-    private void showExternalPlaybackDialog() {
+    private void showExternalVideoPlaybackDialog() {
         if (currentInfo == null) {
             return;
         }
@@ -2157,6 +2151,44 @@ public final class VideoDetailFragment
             });
         }
         builder.show();
+    }
+
+    private void showExternalAudioPlaybackDialog() {
+        if (currentInfo == null) {
+            return;
+        }
+
+        final List<AudioStream> audioStreams = getUrlAndNonTorrentStreams(
+                currentInfo.getAudioStreams());
+        final List<AudioStream> audioTracks =
+                ListHelper.getFilteredAudioStreams(activity, audioStreams);
+
+        if (audioTracks.isEmpty()) {
+            Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+        } else if (audioTracks.size() == 1) {
+            startOnExternalPlayer(activity, currentInfo, audioTracks.get(0));
+        } else {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle(R.string.select_audio_track_external_players);
+            builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                    ShareUtils.openUrlInBrowser(requireActivity(), url));
+
+            final int selectedAudioStream =
+                    ListHelper.getDefaultAudioFormat(activity, audioTracks);
+            final CharSequence[] trackNames = audioTracks.stream()
+                    .map(audioStream -> Localization.audioTrackName(activity, audioStream))
+                    .toArray(CharSequence[]::new);
+
+            builder.setSingleChoiceItems(trackNames, selectedAudioStream, null);
+            builder.setNegativeButton(R.string.cancel, null);
+            builder.setPositiveButton(R.string.ok, (dialog, i) -> {
+                final int index = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                startOnExternalPlayer(activity, currentInfo,
+                        audioTracks.get(index));
+            });
+            builder.show();
+        }
     }
 
     /*

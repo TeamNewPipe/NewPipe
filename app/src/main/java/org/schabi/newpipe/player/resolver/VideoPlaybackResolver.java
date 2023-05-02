@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
+import static org.schabi.newpipe.util.ListHelper.getFilteredAudioStreams;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 import static org.schabi.newpipe.util.ListHelper.getPlayableStreams;
 
@@ -44,6 +45,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     @Nullable
     private String playbackQuality;
+    @Nullable
+    private String audioTrack;
 
     public enum SourceType {
         LIVE_STREAM,
@@ -74,18 +77,28 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
                 getPlayableStreams(info.getVideoStreams(), info.getServiceId()),
                 getPlayableStreams(info.getVideoOnlyStreams(), info.getServiceId()), false, true);
-        final int index;
+        final List<AudioStream> audioStreamsList =
+                getFilteredAudioStreams(context, info.getAudioStreams());
+
+        final int videoIndex;
         if (videoStreamsList.isEmpty()) {
-            index = -1;
+            videoIndex = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
+            videoIndex = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
+            videoIndex = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
                     getPlaybackQuality());
         }
-        final MediaItemTag tag = StreamInfoTag.of(info, videoStreamsList, index);
+
+        final int audioIndex =
+                ListHelper.getAudioFormatIndex(context, audioStreamsList, audioTrack);
+        final MediaItemTag tag =
+                StreamInfoTag.of(info, videoStreamsList, videoIndex, audioStreamsList, audioIndex);
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
+                .orElse(null);
+        @Nullable final AudioStream audio = tag.getMaybeAudioTrack()
+                .map(MediaItemTag.AudioTrack::getSelectedAudioStream)
                 .orElse(null);
 
         if (video != null) {
@@ -99,15 +112,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             }
         }
 
-        // Create optional audio stream source
-        final List<AudioStream> audioStreams = getPlayableStreams(
-                info.getAudioStreams(), info.getServiceId());
-        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
-                ListHelper.getDefaultAudioFormat(context, audioStreams));
-
         // Use the audio stream if there is no video stream, or
         // merge with audio stream in case if video does not contain audio
-        if (audio != null && (video == null || video.isVideoOnly())) {
+        if (audio != null && (video == null || video.isVideoOnly() || audioTrack != null)) {
             try {
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
                         dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
@@ -178,6 +185,15 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     public void setPlaybackQuality(@Nullable final String playbackQuality) {
         this.playbackQuality = playbackQuality;
+    }
+
+    @Nullable
+    public String getAudioTrack() {
+        return audioTrack;
+    }
+
+    public void setAudioTrack(@Nullable final String audioLanguage) {
+        this.audioTrack = audioLanguage;
     }
 
     public interface QualityResolver {
