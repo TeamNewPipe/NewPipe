@@ -164,6 +164,7 @@ task runKtlint(type: JavaExec) {
     getMainClass().set("com.pinterest.ktlint.Main")
     classpath = configurations.ktlint
     args "src/**/*.kt"
+    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
 task formatKtlint(type: JavaExec) {
@@ -172,6 +173,7 @@ task formatKtlint(type: JavaExec) {
     getMainClass().set("com.pinterest.ktlint.Main")
     classpath = configurations.ktlint
     args "-F", "src/**/*.kt"
+    jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
 afterEvaluate {
