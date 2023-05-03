@@ -61,7 +61,6 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Callback;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
@@ -647,27 +646,6 @@ public final class VideoDetailFragment
         } else {
             playerHolder.startService(false, this);
         }
-    }
-
-    private void initThumbnailViews(@NonNull final StreamInfo info) {
-        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailThumbnailImageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        // nothing to do, the image was loaded correctly into the thumbnail
-                    }
-
-                    @Override
-                    public void onError(final Exception e) {
-                        showSnackBarError(new ErrorInfo(e, UserAction.LOAD_IMAGE,
-                                info.getThumbnailUrl(), info));
-                    }
-                });
-
-        PicassoHelper.loadAvatar(info.getSubChannelAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailSubChannelThumbnailView);
-        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailUploaderThumbnailView);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1480,12 +1458,9 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
 
         if (!isEmpty(info.getSubChannelName())) {
-            displayBothUploaderAndSubChannel(info, activity);
-        } else if (!isEmpty(info.getUploaderName())) {
-            displayUploaderAsSubChannel(info, activity);
+            displayBothUploaderAndSubChannel(info);
         } else {
-            binding.detailUploaderTextView.setVisibility(View.GONE);
-            binding.detailUploaderThumbnailView.setVisibility(View.GONE);
+            displayUploaderAsSubChannel(info);
         }
 
         final Drawable buddyDrawable =
@@ -1559,7 +1534,8 @@ public final class VideoDetailFragment
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         checkUpdateProgressInfo(info);
-        initThumbnailViews(info);
+        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailThumbnailImageView);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
 
@@ -1596,26 +1572,29 @@ public final class VideoDetailFragment
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
-    private void displayUploaderAsSubChannel(final StreamInfo info, final Context context) {
+    private void displayUploaderAsSubChannel(final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
 
         if (info.getUploaderSubscriberCount() > -1) {
             binding.detailUploaderTextView.setText(
-                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
             binding.detailUploaderTextView.setVisibility(View.VISIBLE);
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
+
+        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailSubChannelThumbnailView);
+        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
+        binding.detailUploaderThumbnailView.setVisibility(View.GONE);
     }
 
-    private void displayBothUploaderAndSubChannel(final StreamInfo info, final Context context) {
+    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getSubChannelName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
-
-        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
 
         final StringBuilder subText = new StringBuilder();
         if (!isEmpty(info.getUploaderName())) {
@@ -1627,7 +1606,7 @@ public final class VideoDetailFragment
                 subText.append(Localization.DOT_SEPARATOR);
             }
             subText.append(
-                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
         }
 
         if (subText.length() > 0) {
@@ -1637,6 +1616,13 @@ public final class VideoDetailFragment
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
+
+        PicassoHelper.loadAvatar(info.getSubChannelAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailSubChannelThumbnailView);
+        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
+        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailUploaderThumbnailView);
+        binding.detailUploaderThumbnailView.setVisibility(View.VISIBLE);
     }
 
     public void openDownloadDialog() {
