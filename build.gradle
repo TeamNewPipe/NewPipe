@@ -26,6 +26,13 @@ sonar {
   }
 }
 
+subprojects {
+    apply plugin: 'org.sonarqube'
+    sonarqube {
+        androidVariant "clienttestDebug"
+    }
+}
+
 allprojects {
     repositories {
         google()
