@@ -121,6 +121,13 @@ jobs:
           java-version: 17
           distribution: "temurin"
           cache: 'gradle'
+          
+      - name: Cache SonarServer packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar    
 
       - name: Build and analyze
         env:
