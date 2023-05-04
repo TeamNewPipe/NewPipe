@@ -15,24 +15,6 @@ buildscript {
     }
 }
 
-plugins {
-  id "org.sonarqube" version "4.0.0.2929"
-}
-
-sonar {
-  properties {
-    property "sonar.projectKey", "test"
-    property "sonar.projectName", "test"
-  }
-}
-
-subprojects {
-    apply plugin: 'org.sonarqube'
-    sonarqube {
-        androidVariant "clienttestDebug"
-    }
-}
-
 allprojects {
     repositories {
         google()
