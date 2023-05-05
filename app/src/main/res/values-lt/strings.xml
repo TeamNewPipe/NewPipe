@@ -726,7 +726,6 @@
     <string name="selected_stream_external_player_not_supported">Pasirinktos transliacijos išoriniai grotuvai nepalaiko</string>
     <string name="no_audio_streams_available_for_external_players">Išoriniams grotuvams garso transliacijos nepasiekiamos</string>
     <string name="select_quality_external_players">Pasirinkite kokybę skirtą išoriniams grotuvams</string>
-    <string name="feed_toggle_hide_played_items">Slėpti peržiūrėtus elementus</string>
     <string name="notifications_disabled">Pranešimai yra išjungti</string>
     <string name="progressive_load_interval_exoplayer_default">„ExoPlayer“ numatytasis</string>
     <string name="unknown_quality">Nežinoma kokybė</string>

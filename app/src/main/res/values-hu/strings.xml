@@ -720,7 +720,6 @@
     <string name="faq">Megtekintés a weboldalon</string>
     <string name="sort">Rendezés</string>
     <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat!</string>
-    <string name="feed_toggle_hide_played_items">Megnézett elemek elrejtése</string>
     <string name="fast_mode">Gyors mód</string>
     <string name="import_subscriptions_hint">Feliratkozások importálása vagy exportálása a 3 pontos menüből</string>
     <string name="app_update_unavailable_toast">Ön a Newpipe legfrissebb verzióját futtatja</string>

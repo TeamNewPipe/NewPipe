@@ -715,7 +715,6 @@
     <string name="feed_toggle_show_future_items">Mostrar elementos próximos</string>
     <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos próximos</string>
-    <string name="feed_toggle_hide_played_items">Ocultalos elementos xa ollados</string>
     <string name="faq">Ver na páxina web</string>
     <string name="faq_title">Preguntas máis frecuentes</string>
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>

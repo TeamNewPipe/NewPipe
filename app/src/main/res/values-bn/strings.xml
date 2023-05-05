@@ -636,7 +636,6 @@
         <item quantity="other">%1$sটি ডাউনলোড মুছা হয়েছে</item>
     </plurals>
     <string name="show_crash_the_player_title">\"চালক বন্ধ করো\" দেখাও</string>
-    <string name="feed_toggle_hide_played_items">দেখা ভুক্তি লুকাও</string>
     <string name="notifications_disabled">বিজ্ঞপ্তি নিষ্ক্রিয়</string>
     <string name="feed_toggle_hide_future_items">ভবিষ্যৎ ভুক্তি লুকাও</string>
     <string name="create_error_notification">ত্রুটি বিজ্ঞপ্তি বানাও</string>

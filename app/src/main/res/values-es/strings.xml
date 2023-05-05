@@ -730,7 +730,6 @@
     <string name="unknown_quality">Calidad desconocida</string>
     <string name="feed_toggle_show_future_items">Mostrar elementos futuros</string>
     <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
-    <string name="feed_toggle_hide_played_items">Ocultar los elementos mirados</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos futuros</string>
     <string name="faq">Ver en la página web</string>
     <string name="faq_title">Preguntas frecuentes</string>

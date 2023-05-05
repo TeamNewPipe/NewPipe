@@ -714,7 +714,6 @@
     <string name="unknown_quality">Naməlum keyfiyyət</string>
     <string name="progressive_load_interval_title">Oynatma yükləmə intervalı həcmi</string>
     <string name="feed_toggle_show_future_items">Gələcək elementləri göstər</string>
-    <string name="feed_toggle_hide_played_items">Baxılan elementləri gizlət</string>
     <string name="feed_toggle_hide_future_items">Gələcək elementləri gizlət</string>
     <string name="faq_description">Tətbiqi istifadə etməkdə çətinlik çəkirsinizsə, ümumi suallara bu cavabları yoxladığınıza əmin olun!</string>
     <string name="faq_title">Tez-tez soruşulan suallar</string>

@@ -729,5 +729,4 @@
     <string name="no_appropriate_file_manager_message_android_10">Za ovu radnju nije pronađen odgovrajući upravljač datoteka.
 \nInstaliraj „Storage Access Framework” kompatibilni upravljač datoteka</string>
     <string name="feed_toggle_hide_future_items">Sakrij buduće stavke</string>
-    <string name="feed_toggle_hide_played_items">Sakrij pogledane stavke</string>
 </resources>

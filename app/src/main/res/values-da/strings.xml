@@ -709,7 +709,6 @@
     <string name="app_update_unavailable_toast">Du kører den nyeste version af NewPipe</string>
     <string name="new_seek_duration_toast">På grund af ExoPlayer-begrænsninger blev søgetiden sat til %d sekunder</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Vis kun ikke-grupperede abonnementer</string>
-    <string name="feed_toggle_hide_played_items">Skjul sete elementer</string>
     <string name="playlist_page_summary">Side med spillelister</string>
     <string name="select_night_theme_toast">Du kan vælge dit foretrukne nattema nedenfor</string>
     <string name="night_theme_summary">Vælg dit foretrukne nattema - %s</string>

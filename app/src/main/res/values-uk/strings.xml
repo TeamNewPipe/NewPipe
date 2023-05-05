@@ -731,7 +731,6 @@
     <string name="unknown_quality">Невідома якість</string>
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
     <string name="feed_toggle_show_future_items">Показати наступні елементи</string>
-    <string name="feed_toggle_hide_played_items">Сховати переглянуті елементи</string>
     <string name="feed_toggle_hide_future_items">Сховати майбутні елементи</string>
     <string name="faq">Переглянути на сайті</string>
     <string name="faq_title">Поширені запитання</string>

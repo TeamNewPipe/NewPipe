@@ -697,7 +697,6 @@
     <string name="feed_update_threshold_summary">ଏକ ସଦସ୍ୟତା ପୂର୍ବରୁ ଶେଷ ଅଦ୍ୟତନ ପରେ ସମୟ ପୁରୁଣା ବୋଲି ବିବେଚନା କରାଯାଏ -%s</string>
     <string name="feed_load_error">ଫିଡ୍ ଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି</string>
     <string name="feed_load_error_fast_unknown">ଫାଷ୍ଟ ଫିଡ୍ ମୋଡ୍ ଏହା ଉପରେ ଅଧିକ ସୂଚନା ପ୍ରଦାନ କରେ ନାହିଁ ।</string>
-    <string name="feed_toggle_hide_played_items">ଦେଖାଯାଇଥିବା ଆଇଟମଗୁଡିକ ଲୁଚାନ୍ତୁ</string>
     <string name="content_not_supported">ଏହି ବିଷୟବସ୍ତୁ ଏପର୍ଯ୍ୟନ୍ତ NewPipe ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ ।
 \n
 \nଭବିଷ୍ୟତ ସଂସ୍କରଣରେ ଏହା ସମର୍ଥିତ ହେବ ବୋଲି ଆଶା କରୁଛି ।</string>

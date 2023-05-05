@@ -715,7 +715,6 @@
     <string name="progressive_load_interval_title">اندازهٔ دورهٔ بار کردن پخش</string>
     <string name="feed_toggle_show_future_items">نمایش موارد آینده</string>
     <string name="feed_toggle_hide_future_items">نهفتن موارد آینده</string>
-    <string name="feed_toggle_hide_played_items">نهفتن موارد دیده شده</string>
     <string name="faq_title">سوالات متداول</string>
     <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
     <string name="faq">نمایش در وبسایت</string>

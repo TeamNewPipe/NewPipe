@@ -727,7 +727,6 @@
     <string name="unknown_format">Formato sconosciuto</string>
     <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
     <string name="feed_toggle_show_future_items">Mostra elementi futuri</string>
-    <string name="feed_toggle_hide_played_items">Nascondi elementi visti</string>
     <string name="feed_toggle_hide_future_items">Nascondi elementi futuri</string>
     <string name="faq_title">Domande frequenti</string>
     <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>

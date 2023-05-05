@@ -767,7 +767,6 @@
     <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
     <string name="feed_toggle_show_future_items">عرض العناصر المستقبلية</string>
     <string name="feed_toggle_hide_future_items">إخفاء العناصر المستقبلية</string>
-    <string name="feed_toggle_hide_played_items">إخفاء العناصر التي تمت مشاهدتها</string>
     <string name="faq_title">أسئلة مكررة</string>
     <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
     <string name="faq">مشاهدة على الموقع</string>

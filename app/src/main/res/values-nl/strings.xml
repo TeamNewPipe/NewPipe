@@ -714,7 +714,6 @@
     <string name="unknown_format">Onbekend formaat</string>
     <string name="progressive_load_interval_title">Intervalgrootte tijdens afspelen</string>
     <string name="feed_toggle_show_future_items">Toon toekomstige objecten</string>
-    <string name="feed_toggle_hide_played_items">Verberg bekeken objecten</string>
     <string name="feed_toggle_hide_future_items">Verberg toekomstige objecten</string>
     <string name="faq_title">Veelgestelde vragen</string>
     <string name="faq_description">Als u problemen ondervindt bij het gebruik van de app, bekijk dan deze antwoorden op veelgestelde vragen!</string>

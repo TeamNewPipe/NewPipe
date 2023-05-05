@@ -702,7 +702,6 @@
     <string name="progressive_load_interval_title">播放載入間隔大小</string>
     <string name="feed_toggle_show_future_items">顯示未來項目</string>
     <string name="feed_toggle_hide_future_items">隱藏未來項目</string>
-    <string name="feed_toggle_hide_played_items">隱藏已觀看的項目</string>
     <string name="faq_title">常見問題</string>
     <string name="faq">在網站上檢視</string>
     <string name="sort">排序</string>

@@ -716,7 +716,6 @@
     <string name="feed_toggle_show_future_items">Visa framtida objekt</string>
     <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
     <string name="feed_toggle_hide_future_items">Göm framtida objekt</string>
-    <string name="feed_toggle_hide_played_items">Göm sedda objekt</string>
     <string name="faq_description">Om du har problem med att använda appen, kolla in dessa svar på vanligt ställda frågor!</string>
     <string name="faq_title">Vanligt ställda frågor</string>
     <string name="faq">Visa på webbplats</string>

@@ -714,7 +714,6 @@
     <string name="selected_stream_external_player_not_supported">Su flussu seletzionadu no est galu suportadu dae letores esternos</string>
     <string name="progressive_load_interval_title">Mannària de s\'intervallu de carrigamentu de sa riprodutzione</string>
     <string name="feed_toggle_show_future_items">Ammustra sos elementos imbenientes</string>
-    <string name="feed_toggle_hide_played_items">Cua sos elementos pompiados</string>
     <string name="feed_toggle_hide_future_items">Cua sos elementos imbenientes</string>
     <string name="faq_title">Preguntas fitianas</string>
     <string name="faq_description">Si ses tenende problemas impreende s\'aplicatzione assegura·ti de consultare custas rispostas a preguntas fitianas!</string>

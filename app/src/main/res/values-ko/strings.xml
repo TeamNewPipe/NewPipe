@@ -702,7 +702,6 @@
     <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다.
 \n
 \n이후 버전에서 지원될 예정입니다.</string>
-    <string name="feed_toggle_hide_played_items">감시한 항목 숨기기</string>
     <string name="feed_toggle_hide_future_items">향후 항목 숨기기</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="faq_title">자주 묻는 질문</string>

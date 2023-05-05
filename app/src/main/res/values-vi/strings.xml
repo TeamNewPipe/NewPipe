@@ -706,7 +706,6 @@
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq">Xem trên website</string>
     <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
-    <string name="feed_toggle_hide_played_items">Ẩn các video đã xem</string>
     <string name="import_subscriptions_hint">Nhập hoặc xuất các kênh bạn đăng ký bằng cách nhấn nút 3 chấm ở góc trên màn hình</string>
     <string name="msg_failed_to_copy">Không thể sao chép vào khay nhớ tạm</string>
     <string name="playlist_add_stream_success_duplicate">Đã thêm khoảng thời gian %d trùng lặp (s)</string>

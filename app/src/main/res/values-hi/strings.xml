@@ -663,7 +663,6 @@
     <string name="on">ऑन</string>
     <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
     <string name="feed_groups_header_title">चैनल समूह</string>
-    <string name="feed_toggle_hide_played_items">देखे गए आइटम छुपाएं</string>
     <string name="feed_toggle_hide_future_items">भविष्य आइटम छुपाएं</string>
     <string name="faq_title">कई बार पूछे प्रश्न</string>
     <string name="faq">वेबसाइट पर देखें</string>

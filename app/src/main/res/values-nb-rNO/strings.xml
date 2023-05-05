@@ -703,7 +703,6 @@
     <string name="streams_not_yet_supported_removed">Strømmer som ennå ikke er støttet av nedlasteren, vises ikke</string>
     <string name="select_quality_external_players">Velg kvalitet for eksterne spillere</string>
     <string name="feed_toggle_show_future_items">Vis fremtidige elementer</string>
-    <string name="feed_toggle_hide_played_items">Skjul viste elementer</string>
     <string name="no_video_streams_available_for_external_players">Ingen videostrømmer er tilgjengelige for eksterne spillere</string>
     <string name="unknown_format">Ukjent format</string>
     <string name="unknown_quality">Ukjent kvalitet</string>

@@ -541,7 +541,6 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">ჩართეთ სწრაფი რეჟიმი</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">სწრაფი რეჟიმის გამორთვა</string>
     <string name="feed_toggle_show_played_items">ნანახი ნივთების ჩვენება</string>
-    <string name="feed_toggle_hide_played_items">ნანახი ნივთების დამალვა</string>
     <string name="content_not_supported">ეს შინაარსი ჯერ არ არის მხარდაჭერილი NewPipe-ის მიერ.
 \n
 \n იმედია, ის იქნება მხარდაჭერილი მომავალ ვერსიაში.</string>

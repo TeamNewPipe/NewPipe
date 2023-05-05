@@ -663,7 +663,6 @@
     <string name="show_error_snackbar">ਤਰੁੱਟੀ ਤੇ ਸਨੈਕਬਾਰ ਵਿਖਾਓ</string>
     <string name="feed_use_dedicated_fetch_method_summary">ਕੁਝ ਸੇਵਾਵਾਂ ਵਿੱਚ ਹੀ ਉਪਲੱਬਧ ਇਹ ਤਰੀਕਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਵਿੱਚ ਤੇਜ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ, ਪਰ ਕੁਝ ਗਿਣਤੀ ਦੀਆਂ ਹੀ ਆਈਟਮ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ ਉਹ ਵੀ ਅਕਸਰ ਬਿਨਾਂ ਪੂਰੀ ਜਾਣਕਾਰੀ( ਜਿਵੇਂ ਅਵਧੀ, ਸਟਰੀਮ ਦੀ ਕਿਸਮ, ਕੋਈ ਸਟਰੀਮ ਲਾਈਵ ਹੈ, ਨਹੀਂ ਦੱਸਦਾ)</string>
     <string name="soundcloud_go_plus_content">ਇਹ ਸਾਊਂਡਕਲਾਊਡ ਗੋ-ਪਲੱਸ ਟਰੈਕ ਹੈ, ਤੁਹਾਡੇ ਦੇਸ਼ ਵਿੱਚ ਇਹ ਸਟ੍ਰੀਮ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
-    <string name="feed_toggle_hide_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਲੁਕਾਓ</string>
     <string name="unknown_format">ਅਗਿਆਤ ਫਾਰਮੈਟ</string>
     <string name="unknown_quality">ਅਗਿਆਤ ਕੁਆਲਿਟੀ</string>
     <string name="feed_toggle_show_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਵਿਖਾਓ</string>

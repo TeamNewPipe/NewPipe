@@ -701,7 +701,6 @@
     <string name="unknown_format">Format tidak diketahui</string>
     <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
     <string name="feed_toggle_show_future_items">Tampilkan item mendatang</string>
-    <string name="feed_toggle_hide_played_items">Sembunyikan item yang telah ditonton</string>
     <string name="feed_toggle_hide_future_items">Sembunyikan item mendatang</string>
     <string name="faq_title">Pertanyaan yang sering diajukan</string>
     <string name="faq_description">Jika Anda mengalami masalah menggunakan aplikasi, pastikan untuk melihat jawaban untuk pertanyaan yang umum!</string>

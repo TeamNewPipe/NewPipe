@@ -714,7 +714,6 @@
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
     <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
     <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών αντικειμένων</string>
-    <string name="feed_toggle_hide_played_items">Απόκρυψη θεαθέντων</string>
     <string name="feed_toggle_hide_future_items">Απόκρυψη μελλοντικών αντικειμένων</string>
     <string name="faq_title">Συχνές ερωτήσεις</string>
     <string name="faq">Προβολή στην ιστοσελίδα</string>

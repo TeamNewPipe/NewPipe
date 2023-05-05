@@ -728,7 +728,6 @@
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="feed_toggle_show_future_items">Mostrar itens futuros</string>
     <string name="feed_toggle_hide_future_items">Ocultar itens futuros</string>
-    <string name="feed_toggle_hide_played_items">Ocultar itens assistidos</string>
     <string name="faq">Visualizar no site</string>
     <string name="faq_description">Se você está com problemas ao usar o aplicativo, confira estas respostas para perguntas comuns!</string>
     <string name="faq_title">Perguntas frequentes</string>

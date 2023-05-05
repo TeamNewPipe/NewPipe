@@ -727,7 +727,6 @@
     <string name="unknown_quality">Calitate necunoscută</string>
     <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare de redare</string>
     <string name="feed_toggle_show_future_items">Afișați elementele din viitor</string>
-    <string name="feed_toggle_hide_played_items">Ascunde elementele vizionate</string>
     <string name="feed_toggle_hide_future_items">Ascunde elementele din viitor</string>
     <string name="faq">Vedeți pe website</string>
     <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
