@@ -328,7 +328,6 @@
     <string name="users">使用者</string>
     <string name="unsubscribe">取消訂閱</string>
     <string name="tab_choose">選擇分頁</string>
-    <string name="volume_gesture_control_title">音量手勢控制</string>
     <string name="volume_gesture_control_summary">使用手勢控制播放器音量</string>
     <string name="brightness_gesture_control_title">亮度手勢控制</string>
     <string name="brightness_gesture_control_summary">使用手勢控制播放器亮度</string>

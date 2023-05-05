@@ -329,7 +329,6 @@
     <string name="minimize_on_exit_popup_description">Thu nhỏ vào trình phát popup</string>
     <string name="unsubscribe">Hủy đăng ký</string>
     <string name="tab_choose">Chọn tab</string>
-    <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
     <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh âm lượng</string>
     <string name="brightness_gesture_control_title">Điều khiển độ sáng bằng cử chỉ</string>
     <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh độ sáng</string>

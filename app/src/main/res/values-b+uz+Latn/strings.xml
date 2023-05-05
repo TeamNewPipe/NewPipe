@@ -20,7 +20,6 @@
     <string name="volume_gesture_control_summary">Player tovushini boshqarish uchun imo-ishoralardan foydalanish</string>
     <string name="brightness_gesture_control_summary">Player yorqinligini boshqarish uchun imo-ishoralardan foydalaning</string>
     <string name="brightness_gesture_control_title">Yorqinlik ishoralarini boshqarish</string>
-    <string name="volume_gesture_control_title">Ovoz balandligini ishoralarni boshqarish</string>
     <string name="auto_queue_toggle">Avto-navbat</string>
     <string name="auto_queue_summary">Tegishli stream qo\'shib, ijro etish navbatini tugatishni (takrorlanmaydigan) davom ettirish</string>
     <string name="auto_queue_title">avtomatik navbat next stream</string>

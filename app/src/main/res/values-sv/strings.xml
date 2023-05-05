@@ -334,7 +334,6 @@
     <string name="minimize_on_exit_popup_description">Minimera till popup-spelare</string>
     <string name="unsubscribe">Sluta prenumerera</string>
     <string name="tab_choose">Välj flik</string>
-    <string name="volume_gesture_control_title">Gestkontroll för volym</string>
     <string name="volume_gesture_control_summary">Använd gester för att justera spelarens volym</string>
     <string name="brightness_gesture_control_title">Gestkontroll för ljusstyrka</string>
     <string name="brightness_gesture_control_summary">Använd gester för att justera ljusstyrkan</string>

@@ -325,7 +325,6 @@
     <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
-    <string name="volume_gesture_control_title">ध्वनि नियंत्रण इशारा</string>
     <string name="enqueue">कतारबद्ध करें</string>
     <string name="volume_gesture_control_summary">वीडियो प्लेयर की ध्वनि नियंत्रित करने के लिए इशारो का इस्तेमाल करे</string>
     <string name="brightness_gesture_control_title">रोशनी स्तर नियंत्रण के इशारे</string>

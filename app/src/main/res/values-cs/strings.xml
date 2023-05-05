@@ -337,7 +337,6 @@
     <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
     <string name="unsubscribe">Přestat odebírat</string>
     <string name="tab_choose">Zvolit panel</string>
-    <string name="volume_gesture_control_title">Ovládání hlasitosti gesty</string>
     <string name="volume_gesture_control_summary">Používat gesta pro ovládání hlasitosti přehrávače</string>
     <string name="brightness_gesture_control_title">Ovládání jasu gesty</string>
     <string name="brightness_gesture_control_summary">Používat gesta pro ovládání jasu přehrávače</string>

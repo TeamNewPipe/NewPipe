@@ -394,7 +394,6 @@
     <string name="brightness_gesture_control_summary">Käytä eleitä ohjataksesi soittimen kirkkautta</string>
     <string name="brightness_gesture_control_title">Kirkkauden eleohjaus</string>
     <string name="volume_gesture_control_summary">Käytä eleitä ohjataksesi soittimen äänenvoimakkuutta</string>
-    <string name="volume_gesture_control_title">Äänenvoimakkuuden eleohjaus</string>
     <string name="show_comments_summary">Poista käytöstä piilottaaksesi kommentit</string>
     <string name="watch_history_states_deleted">Toistokohdat poistettu</string>
     <string name="delete_playback_states_alert">Poistetaanko kaikki toistokohdat\?</string>

@@ -500,7 +500,6 @@
     <string name="brightness_gesture_control_summary">Користите покрете за контролу осветљаја</string>
     <string name="brightness_gesture_control_title">Контрола осветљености потезом</string>
     <string name="volume_gesture_control_summary">Користите потезе за контролу јачине звука плејера</string>
-    <string name="volume_gesture_control_title">Контрола јачине звука потезом</string>
     <string name="auto_queue_toggle">Самостално заказивање</string>
     <string name="auto_queue_summary">Наставите да завршавате (не понављајући) ред репродукције додавањем повезаног стрима</string>
     <string name="auto_queue_title">Самостално закажи следећи ток</string>

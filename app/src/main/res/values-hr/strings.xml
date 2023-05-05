@@ -317,7 +317,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj sljedeći stream u popisa izvođenja</string>
     <string name="auto_queue_summary">Nastavi završavati (ne ponavljajući) popis reprodukcija dodavanjem povezanog streama</string>
-    <string name="volume_gesture_control_title">Kontrola glasnoće pomoću gesti</string>
     <string name="volume_gesture_control_summary">Koristi geste za upravljanje glasnoćom playera</string>
     <string name="brightness_gesture_control_title">Kontrola svjetline pomoću gesti</string>
     <string name="brightness_gesture_control_summary">Koristi gesture za upravljanje svjetlinom playera</string>

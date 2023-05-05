@@ -334,7 +334,6 @@
     <string name="users">Erabiltzaileak</string>
     <string name="unsubscribe">Kendu harpidetza</string>
     <string name="tab_choose">Hautatu fitxa</string>
-    <string name="volume_gesture_control_title">Keinuen bidezko bolumenaren kontrola</string>
     <string name="volume_gesture_control_summary">Erabili keinuak erreproduzigailuaren bolumena kontrolatzeko</string>
     <string name="brightness_gesture_control_title">Keinuen bidezko distiraren kontrola</string>
     <string name="brightness_gesture_control_summary">Erabili keinuak erreproduzigailuaren distira kontrolatzeko</string>

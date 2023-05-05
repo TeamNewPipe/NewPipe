@@ -333,7 +333,6 @@
     <string name="minimize_on_exit_popup_description">Minimizar o reprodutor popup</string>
     <string name="local">Limitado</string>
     <string name="peertube_instance_add_https_only">Só son compatibles os URLs HTTPS</string>
-    <string name="volume_gesture_control_title">Control por xestos do volume</string>
     <string name="show_comments_summary">Desactiva para agochalos comentarios</string>
     <string name="enable_playback_resume_title">Retomar a reprodución</string>
     <string name="playlist_page_summary">Páxina das listas de reprodución</string>

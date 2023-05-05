@@ -334,7 +334,6 @@
     <string name="playback_reset">Tilbakestill</string>
     <string name="unsubscribe">Opphev abonnement</string>
     <string name="tab_choose">Velg fane</string>
-    <string name="volume_gesture_control_title">Håndvendingskontroll for lydstyrke</string>
     <string name="volume_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lydstyrke</string>
     <string name="brightness_gesture_control_title">Håndvendingskontroll for lysstyrke</string>
     <string name="brightness_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lysstyrke</string>

@@ -337,7 +337,6 @@
     <string name="users">Utenti</string>
     <string name="unsubscribe">Disiscriviti</string>
     <string name="tab_choose">Scegli scheda</string>
-    <string name="volume_gesture_control_title">Gesti controllo volume</string>
     <string name="volume_gesture_control_summary">Utilizza i gesti per controllare il volume del lettore multimediale</string>
     <string name="brightness_gesture_control_title">Gesti controllo luminosità</string>
     <string name="brightness_gesture_control_summary">Utilizza i gesti per controllare la luminosità del lettore multimediale</string>

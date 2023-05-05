@@ -327,7 +327,6 @@
     <string name="minimize_on_exit_popup_description">הקטנה לנגן צף</string>
     <string name="unsubscribe">ביטול מינוי</string>
     <string name="tab_choose">בחירת לשונית</string>
-    <string name="volume_gesture_control_title">מחוות בקרת עצמת שמע</string>
     <string name="volume_gesture_control_summary">שימוש במחוות כדי לשלוט בעצמת השמע של הנגן</string>
     <string name="brightness_gesture_control_title">מחוות בקרת בהירות</string>
     <string name="brightness_gesture_control_summary">שימוש במחוות כדי לשלוט בבהירות הנגן</string>

@@ -226,7 +226,6 @@
     </plurals>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
-    <string name="volume_gesture_control_title">Control per xestos del volume</string>
     <string name="brightness_gesture_control_title">Control per xestos del brillu</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>

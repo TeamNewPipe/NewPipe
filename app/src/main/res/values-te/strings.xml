@@ -214,7 +214,6 @@
     <string name="metadata_cache_wipe_title">కాష్ చేయబడిన మెటాడేటాను తుడిచివేయండి</string>
     <string name="metadata_cache_wipe_summary">కాష్ చేసిన వెబ్‌పేజీ డేటా మొత్తాన్ని తీసివేయండి</string>
     <string name="metadata_cache_wipe_complete_notice">మెటాడేటా కాష్ తుడిచివేయబడింది</string>
-    <string name="volume_gesture_control_title">వాల్యూమ్ సంజ్ఞ నియంత్రణ</string>
     <string name="volume_gesture_control_summary">ప్లేయర్ వాల్యూమ్‌ను నియంత్రించడానికి సంజ్ఞలను ఉపయోగించండి</string>
     <string name="brightness_gesture_control_title">ప్రకాశం సంజ్ఞ నియంత్రణ</string>
     <string name="show_search_suggestions_title">సూచనలను శోధించండి</string>

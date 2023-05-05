@@ -91,7 +91,6 @@
     <string name="enable_search_history_title">Kasaysayan ng mga hinanap</string>
     <string name="brightness_gesture_control_summary">Gumamit ng gesture para kontrolin ang liwanag ng player</string>
     <string name="brightness_gesture_control_title">Kontrolin ang liwanag gamit gesture</string>
-    <string name="volume_gesture_control_title">Kontrolin ang volume gamit gesture</string>
     <string name="metadata_cache_wipe_title">Linisin ang naka-cache na metadata</string>
     <string name="thumbnail_cache_wipe_complete_notice">Nalinis na ang image cache</string>
     <string name="show_comments_summary">Patayin para itago ang mga komento</string>

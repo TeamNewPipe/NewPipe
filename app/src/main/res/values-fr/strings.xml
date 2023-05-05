@@ -337,7 +337,6 @@
     <string name="minimize_on_exit_popup_description">Réduire vers le lecteur flottant</string>
     <string name="unsubscribe">Se désabonner</string>
     <string name="tab_choose">Sélectionner un onglet</string>
-    <string name="volume_gesture_control_title">Contrôle gestuel du volume</string>
     <string name="volume_gesture_control_summary">Utiliser des gestes pour contrôler le volume du lecteur</string>
     <string name="brightness_gesture_control_title">Contrôle gestuel de la luminosité</string>
     <string name="brightness_gesture_control_summary">Utiliser des gestes pour contrôler la luminosité du lecteur</string>

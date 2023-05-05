@@ -65,7 +65,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metadata-cache slettet</string>
     <string name="auto_queue_title">Føj automatisk næste stream til køen</string>
     <string name="auto_queue_summary">Fortsæt en afspilningskø, der afsluttes (ikke-gentagende), ved at tilføje en lignende stream</string>
-    <string name="volume_gesture_control_title">Juster lydstyrke ved hjælp af fingerbevægelser</string>
     <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere afspillerens lydstyrke</string>
     <string name="brightness_gesture_control_title">Styr lysstyrken med fingerbevægelser</string>
     <string name="brightness_gesture_control_summary">Brug fingerbevægelser til at justere afspillerens lysstyrke</string>

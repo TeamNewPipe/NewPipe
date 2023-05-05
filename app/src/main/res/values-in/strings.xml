@@ -328,7 +328,6 @@
     <string name="unsubscribe">Berhenti Berlanggan</string>
     <string name="tab_choose">Pilih Tab</string>
     <string name="theme_title">Tema</string>
-    <string name="volume_gesture_control_title">Kontrol gestur volume</string>
     <string name="volume_gesture_control_summary">Gunakan gestur untuk mengontrol volume pemutar</string>
     <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
     <string name="brightness_gesture_control_summary">Gunakan gestur untuk mengontrol kecerahan pemutar</string>

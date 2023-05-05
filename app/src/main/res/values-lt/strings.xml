@@ -344,7 +344,6 @@
     <string name="brightness_gesture_control_summary">Naudoti gestus ryškumo valdymui</string>
     <string name="brightness_gesture_control_title">Ryškumo gesto valdymas</string>
     <string name="volume_gesture_control_summary">Naudoti gestus garsumo valdymui</string>
-    <string name="volume_gesture_control_title">Garsumo gesto valdymas</string>
     <string name="auto_queue_toggle">Auto eilė</string>
     <string name="auto_queue_summary">Tęsti atkūrimą į eilę pridedant susijusius srautus</string>
     <string name="auto_queue_title">Automatiškai pridėti sekantį į eilę</string>

@@ -71,7 +71,6 @@
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as subscrições</string>
     <string name="downloads">Transferências</string>
     <string name="feed_processing_message">A processar…</string>
-    <string name="volume_gesture_control_title">Gestos para controlo de volume</string>
     <string name="restricted_video">Este vídeo está restringido a idades.
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>

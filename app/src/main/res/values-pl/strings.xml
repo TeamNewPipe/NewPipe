@@ -340,7 +340,6 @@
     <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzacza w trybie okienkowym</string>
     <string name="unsubscribe">Odsubskrybuj</string>
     <string name="tab_choose">Wybierz kartę</string>
-    <string name="volume_gesture_control_title">Kontrola głośności gestami</string>
     <string name="volume_gesture_control_summary">Używaj gestów do sterowania głośnością odtwarzacza</string>
     <string name="brightness_gesture_control_title">Kontrola jasności gestami</string>
     <string name="brightness_gesture_control_summary">Używaj gestów do sterowania jasnością odtwarzacza</string>

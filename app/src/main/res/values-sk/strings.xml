@@ -337,7 +337,6 @@
     <string name="minimize_on_exit_popup_description">Prehrávať v okne</string>
     <string name="unsubscribe">Zrušiť odber</string>
     <string name="tab_choose">Zvoliť panel</string>
-    <string name="volume_gesture_control_title">Ovládanie hlasitosti gestom</string>
     <string name="volume_gesture_control_summary">Používať gestá pre ovládanie hlasitosti</string>
     <string name="brightness_gesture_control_title">Ovládanie jasu gestom</string>
     <string name="brightness_gesture_control_summary">Použivať gestá pre ovládanie jasu</string>

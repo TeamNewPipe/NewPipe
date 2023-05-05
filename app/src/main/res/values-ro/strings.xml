@@ -277,7 +277,6 @@
     <string name="decline">Refuzați</string>
     <string name="unsubscribe">Dezabonare</string>
     <string name="tab_choose">Alegeți fila</string>
-    <string name="volume_gesture_control_title">Controlul prin gesturi al volumului</string>
     <string name="volume_gesture_control_summary">Utilizați gesturi pentru a controla volumul</string>
     <string name="brightness_gesture_control_title">Controlul prin gesturi a luminozității</string>
     <string name="brightness_gesture_control_summary">Utilizați gesturi pentru a controla luminozitatea</string>

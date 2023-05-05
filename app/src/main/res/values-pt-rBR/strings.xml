@@ -336,7 +336,6 @@
     <string name="users">Usuários</string>
     <string name="unsubscribe">Cancelar inscrição</string>
     <string name="tab_choose">Selecionar aba</string>
-    <string name="volume_gesture_control_title">Gesto para volume</string>
     <string name="volume_gesture_control_summary">Use gestos para mudar volume do player</string>
     <string name="brightness_gesture_control_title">Gesto para brilho</string>
     <string name="brightness_gesture_control_summary">Use gestos para mudar brilho do player</string>
