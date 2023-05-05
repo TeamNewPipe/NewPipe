@@ -628,7 +628,6 @@
     <string name="metadata_privacy">Pribatutasuna</string>
     <string name="service_provides_reason">%s arrazoi hau ematen du:</string>
     <string name="account_terminated">Kontua ezabatu da</string>
-    <string name="feed_toggle_show_played_items">Bistako elementuak erakustea</string>
     <string name="feed_load_error_fast_unknown">Jario azkarrak ez du honi buruz informazio gehiagorik ematen.</string>
     <string name="metadata_age_limit">Adin muga</string>
     <string name="metadata_thumbnail_url">Miniaturaren URL-a</string>

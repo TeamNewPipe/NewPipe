@@ -618,7 +618,6 @@
     <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
-    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
     <string name="feed_load_error_fast_unknown">O modo de feed rápido não fornece mais informações sobre isto.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.
 \nNewPipe não será capaz de carregar este feed no futuro.

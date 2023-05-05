@@ -503,7 +503,6 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
     <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
-    <string name="feed_toggle_show_played_items">Паказаць прагледжаныя матэрыялы</string>
     <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
     <string name="night_theme_summary">Выберыце ўлюбёную начную тэму - %s</string>
     <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>

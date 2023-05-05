@@ -642,7 +642,6 @@
     <string name="off">Inactif</string>
     <string name="on">Actif</string>
     <string name="tablet_mode_title">Mode tablette</string>
-    <string name="feed_toggle_show_played_items">Afficher les éléments visionnés</string>
     <string name="feed_load_error_terminated">Le compte de l’auteur a été résilié.
 \nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>

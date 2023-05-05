@@ -629,7 +629,6 @@
     <string name="seekbar_preview_thumbnail_title">Tekerősáv bélyegkép-előnézete</string>
     <string name="high_quality_larger">Magas minőségű (nagyobb)</string>
     <string name="feed_load_error">Hiba a lista betöltésekor</string>
-    <string name="feed_toggle_show_played_items">Megnézett elemek megjelenítése</string>
     <string name="metadata_language">Nyelv</string>
     <string name="metadata_support">Támogatás</string>
     <string name="open_website_license">Weboldal megnyitása</string>

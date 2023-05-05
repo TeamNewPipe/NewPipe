@@ -489,7 +489,6 @@
     <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb.
 \nNewPipe gələcəkdə bu axını yükləyə bilməyəcək.
 \nBu kanaldan abunəliyi çıxarmaq istəyirsiniz\?</string>
-    <string name="feed_toggle_show_played_items">Baxılan elementləri göstər</string>
     <string name="featured">Seçilmiş</string>
     <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>

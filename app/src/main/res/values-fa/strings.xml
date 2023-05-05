@@ -559,7 +559,6 @@
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
     <string name="high_quality_larger">کیفیت بالا (بزرگ‌تر)</string>
     <string name="comments_are_disabled">نظرها از کار افتاده‌اند</string>
-    <string name="feed_toggle_show_played_items">نمایش موارد دیده‌شده</string>
     <string name="feed_load_error">خطا در بار کردن خوراک</string>
     <string name="disable_media_tunneling_title">از کار انداختن تونل‌زنی رسانه</string>
     <string name="show_channel_details">نمایش جزییات کانال</string>

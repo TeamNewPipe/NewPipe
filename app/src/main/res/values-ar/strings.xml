@@ -675,7 +675,6 @@
     <string name="off">إيقاف</string>
     <string name="on">تشغيل</string>
     <string name="tablet_mode_title">وضع الجهاز اللوحي</string>
-    <string name="feed_toggle_show_played_items">إظهار العناصر التي تمت مشاهدتها</string>
     <string name="comments_are_disabled">تم تعطيل التعليقات</string>
     <string name="dont_show">لا تظهر</string>
     <string name="low_quality_smaller">جودة منخفضة (أصغر)</string>

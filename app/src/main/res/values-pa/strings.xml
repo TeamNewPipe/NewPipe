@@ -647,7 +647,6 @@
     <string name="local_search_suggestions">ਖੋਜ ਦੇ ਸਥਾਨਕ ਸੁਝਾਅ</string>
     <string name="remote_search_suggestions">ਖੋਜ ਦੇ ਰਿਮੋਟ ਸੁਝਾਅ</string>
     <string name="start_main_player_fullscreen_title">ਮੁੱਖ ਪਲੇਅਰ ਪੂਰੀ ਸਕਰੀਨ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="feed_toggle_show_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਵਿਖਾਓ</string>
     <string name="progressive_load_interval_title">ਪਲੇਅਬੈਕ ਲੋਡ ਦਾ ਅੰਤਰਾਲ ਆਕਾਰ</string>
     <plurals name="new_streams">
         <item quantity="one">%s ਨਵੀਂ ਸਟਰੀਮ</item>

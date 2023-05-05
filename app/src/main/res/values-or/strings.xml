@@ -589,7 +589,6 @@
     <string name="feed_load_error_terminated">ଲେଖକଙ୍କ ଆକାଉଣ୍ଟକୁ ବନ୍ଦ କରିଦିଆଯାଇଛି ।
 \nଭବିଷ୍ୟତରେ NewPipe ଏହି ଫିଡ୍ ଲୋଡ୍ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ ।
 \nଆପଣ ଏହି ଚ୍ୟାନେଲରୁ ସଦସ୍ୟତା ରଦ୍ଦ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
-    <string name="feed_toggle_show_played_items">ଦେଖାଯାଇଥିବା ଆଇଟମଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="metadata_privacy_internal">ଅନ୍ତଃସ୍ଥ</string>
     <string name="you_successfully_subscribed">ଆପଣ ବର୍ତ୍ତମାନ ଏହି ଚ୍ୟାନେଲକୁ ସବସ୍କ୍ରାଇବ କରିଛନ୍ତି</string>
     <string name="no_video_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଵିଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>

@@ -550,7 +550,6 @@
     <string name="feed_update_threshold_summary">Tid siden sidste opdatering for at et abonnoment bliver forældet - %s</string>
     <string name="feed_update_threshold_option_always_update">Altid opdater</string>
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
-    <string name="feed_toggle_show_played_items">Vis sete elementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
     <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter, at de er blevet tilføjet til spillelisten, vil blive fjernet.

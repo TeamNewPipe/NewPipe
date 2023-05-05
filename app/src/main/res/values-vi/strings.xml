@@ -616,7 +616,6 @@
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
     <string name="service_provides_reason">%s cung cấp lý do này:</string>
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
-    <string name="feed_toggle_show_played_items">Hiện các mục đã xem</string>
     <string name="feed_load_error_fast_unknown">Chế độ nguồn dữ liệu nhanh không cung cấp thêm thông tin về cái này.</string>
     <string name="feed_load_error_terminated">Tài khoản của người này đã bị chấm dứt.
 \nNewPipe sẽ không thể tải nguồn dữ liệu này trong tương lai.

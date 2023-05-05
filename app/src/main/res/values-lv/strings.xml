@@ -636,7 +636,6 @@
     <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
     <string name="no_dir_yet">Lejupielādes mape vēl nav iestatīta, izvēlieties noklusējuma lejupielādes mapi</string>
     <string name="main_page_content_swipe_remove">Pārvelciet objektus, lai tos noņemtu</string>
-    <string name="feed_toggle_show_played_items">Rādīt noskatītos video</string>
     <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
     <string name="show_image_indicators_title">Rādīt attēlu indikatorus</string>
     <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>

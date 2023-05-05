@@ -633,7 +633,6 @@
     <string name="description_select_disable">Onemogući biranje teksta u opisu</string>
     <string name="description_select_enable">Omogući biranje teksta u opisu</string>
     <string name="account_terminated">Račun ukinut</string>
-    <string name="feed_toggle_show_played_items">Prikaži pogledane stavke</string>
     <string name="feed_load_error_terminated">Autorov račun je ukinut.
 \nNewPipe ubuduće neće moći učitavati ovaj feed.
 \nŽeliš li otkazati pretplatu na ovaj kanal\?</string>

@@ -615,7 +615,6 @@
     <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
     <string name="show_thumbnail_summary">Përdor pamje statike për sfondin e ekranit të kyçur si dhe për njoftimet</string>
-    <string name="feed_toggle_show_played_items">Shfaq objektet e para</string>
     <string name="feed_load_error_fast_unknown">Modaliteti i feed-it të shpejtë nuk mundëson më tepër informacion mbi këtë.</string>
     <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar.
 \nNewPipe nuk do mund ta ngarkojë këtë feed në të ardhmen.

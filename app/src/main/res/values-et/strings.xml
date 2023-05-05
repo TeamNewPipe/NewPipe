@@ -613,7 +613,6 @@
     <string name="feed_use_dedicated_fetch_method_summary">Saadaval mõnedes teenustes. See on tavaliselt palju kiirem, kuid võib tagastada piiratud koguse elemente ja sageli osalise informatsiooni (nt. puudub kestus, elemendi tüüp, laiv olek)</string>
     <string name="description_select_note">Sa saad nüüd valida kirjelduse tekstist. Pane tähele, et valikurežiimis võib leht vilkuda ja lingid ei pruugi olla klõpsatavd.</string>
     <string name="video_detail_by">Autor: %s</string>
-    <string name="feed_toggle_show_played_items">Kuva vaadatud üksused</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Keela kiire režiim</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Luba kiire režiim</string>
     <string name="feed_use_dedicated_fetch_method_title">Hangi võimalusel spetsiaalsest voost</string>

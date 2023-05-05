@@ -613,7 +613,6 @@
     <string name="description_select_enable">Skru på merking av tekst i beskrivelsen</string>
     <string name="service_provides_reason">%s oppgav denne grunnen:</string>
     <string name="account_terminated">Konto terminert</string>
-    <string name="feed_toggle_show_played_items">Vis avspilte elementer</string>
     <string name="feed_load_error_account_info">Kunne ikke laste inn informasjonskanal for «%s».</string>
     <string name="feed_load_error">Kunne ikke laste inn informasjonskanal</string>
     <string name="downloads_storage_use_saf_summary_api_29">Fra Android 10 er kun «lagringstilgangsrammeverk» støttet</string>

@@ -629,7 +629,6 @@
     <string name="metadata_category">Kategoria</string>
     <string name="description_select_enable">Salli tekstin valinta kuvauksessa</string>
     <string name="account_terminated">Tili suljettu</string>
-    <string name="feed_toggle_show_played_items">Näytä katsotut kohteet</string>
     <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu.
 \nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa.
 \nHaluatko poistaa kanavan tilauksesta\?</string>

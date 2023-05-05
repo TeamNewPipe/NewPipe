@@ -646,7 +646,6 @@
     <string name="on">Увімкнути</string>
     <string name="tablet_mode_title">Режим планшета</string>
     <string name="account_terminated">Обліковий запис припинено</string>
-    <string name="feed_toggle_show_played_items">Показувати переглянуті обʼєкти</string>
     <string name="feed_load_error_fast_unknown">Режим швидкої підписки не надає багато інформації щодо цього.</string>
     <string name="comments_are_disabled">Коментарі вимкнено</string>
     <string name="dont_show">Не показувати</string>

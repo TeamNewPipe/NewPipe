@@ -580,7 +580,6 @@
     <string name="feed_load_error_fast_unknown">Hraðstraumshamurinn veitir ekki frekari upplýsingar um þetta.</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Virkja hraðstraumsham</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Afvirkja hraðstraumsham</string>
-    <string name="feed_toggle_show_played_items">Sýna spiluð atriði</string>
     <string name="content_not_supported">NewPipe styður ekki þetta efni.
 \n
 \nÞað verður vonandi stutt í framtíðarútgáfu.</string>

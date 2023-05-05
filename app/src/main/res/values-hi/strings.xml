@@ -622,7 +622,6 @@
     <string name="crash_the_app">ऐप को क्रैश करें</string>
     <string name="metadata_category">श्रेणी</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
-    <string name="feed_toggle_show_played_items">देखे गए आइटम दिखाएं</string>
     <string name="metadata_thumbnail_url">थंमनेल यूआरएल</string>
     <string name="off">ऑफ़</string>
     <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>

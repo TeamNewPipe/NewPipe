@@ -634,7 +634,6 @@
     <string name="off">Kapat</string>
     <string name="on">Aç</string>
     <string name="tablet_mode_title">Tablet kipi</string>
-    <string name="feed_toggle_show_played_items">İzlenen ögeleri göster</string>
     <string name="seekbar_preview_thumbnail_title">Konum çubuğu küçük resim ön izlemesi</string>
     <string name="dont_show">Gösterme</string>
     <string name="low_quality_smaller">Düşük nitelik (küçük)</string>

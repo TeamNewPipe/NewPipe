@@ -647,7 +647,6 @@
     <string name="on">Zapnuté</string>
     <string name="tablet_mode_title">Režim tabletu</string>
     <string name="detail_heart_img_view_description">Obľúbené autorom</string>
-    <string name="feed_toggle_show_played_items">Zobrazovať pozreté položky</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s sťahovanie zmazané</item>
         <item quantity="few">%1$s sťahovania zmazané</item>

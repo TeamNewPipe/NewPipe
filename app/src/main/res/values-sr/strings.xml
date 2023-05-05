@@ -644,7 +644,6 @@
     <string name="off">искљ</string>
     <string name="on">укљ</string>
     <string name="tablet_mode_title">Режим таблета</string>
-    <string name="feed_toggle_show_played_items">Прикажи пуштано</string>
     <string name="enqueue_next_stream">Закажи следеће</string>
     <string name="enqueued_next">Заказано је следеће</string>
     <string name="local_search_suggestions">Местни предлози претраге</string>

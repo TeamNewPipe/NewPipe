@@ -606,7 +606,6 @@
     <string name="private_content">Este contido é privado, polo que non pode ser transmitido nin descarregado polo NewPipe.</string>
     <string name="no_app_to_open_intent">Non posúe ningunha aplicación para abrir isto</string>
     <string name="show_thumbnail_summary">Usar miniaturas para a pantalla de bloqueo e para as notificacións</string>
-    <string name="feed_toggle_show_played_items">Mostrar elementos vistos</string>
     <string name="comments_are_disabled">Os comentarios están desactivados</string>
     <string name="show_age_restricted_content_summary">Mostrar contido potencialmente non apto para menores porque ten unha limitación de idade (como +18)</string>
     <string name="notification_colorize_title">Definir cor da notificación</string>

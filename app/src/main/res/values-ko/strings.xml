@@ -595,7 +595,6 @@
     <string name="recaptcha_solve">해결</string>
     <string name="show_thumbnail_summary">잠금 화면 배경과 알림 모두에 썸네일 사용</string>
     <string name="feed_group_dialog_empty_selection">선택한 구독이 없습니다</string>
-    <string name="feed_toggle_show_played_items">시청 항목 표시</string>
     <string name="auto_queue_toggle">자동 대기열에 추가</string>
     <plurals name="download_finished_notification">
         <item quantity="other">%s 다운로드 완료</item>
