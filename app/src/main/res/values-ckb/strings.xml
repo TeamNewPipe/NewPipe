@@ -148,7 +148,6 @@
     <string name="show_error">پیشاندانی کێشە</string>
     <string name="feed_update_threshold_option_always_update">هەرده‌م نوێ بكرێته‌وه‌</string>
     <string name="subscriptions_import_unsuccessful">ناتوانرێت بەژدارییەکان هاورده‌ بكرێنه‌وه‌</string>
-    <string name="brightness_gesture_control_title">کۆنترۆڵی ڕووناکی بەجوڵەی پەنجە</string>
     <string name="settings_category_appearance_title">دیمه‌ن</string>
     <string name="import_data_title">هاوردە كردنی داتابه‌یس</string>
     <string name="enable_search_history_title">مێژووی گه‌ڕان</string>

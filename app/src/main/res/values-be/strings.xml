@@ -338,7 +338,6 @@
     <string name="minimize_on_exit_popup_description">Плэер у акне</string>
     <string name="unsubscribe">Адпісацца</string>
     <string name="tab_choose">Абярыце ўкладку</string>
-    <string name="brightness_gesture_control_title">Жэст яркасці</string>
     <string name="brightness_gesture_control_summary">Мяняць яркасць плэера жэстамі</string>
     <string name="settings_category_updates_title">Абнаўленні</string>
     <string name="file_deleted">Файл выдалены</string>

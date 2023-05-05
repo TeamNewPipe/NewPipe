@@ -333,7 +333,6 @@
     <string name="enable_playback_state_lists_summary">Lejátszási pozíciók megjelenítése a listákban</string>
     <string name="enable_playback_state_lists_title">Pozíciók a listákban</string>
     <string name="brightness_gesture_control_summary">Gesztusok használata a fényerő szabályozásához</string>
-    <string name="brightness_gesture_control_title">Fényerő gesztus</string>
     <string name="downloads_storage_ask_summary">Meg fogja kérdezni, hogy hova mentse el az egyes letöltéseket.
 \nEngedélyezze a rendszermappa-választót (SAF), ha külső SD-kártyára akar letölteni</string>
     <string name="downloads_storage_ask_title">Kérdezze meg, hova töltse le</string>

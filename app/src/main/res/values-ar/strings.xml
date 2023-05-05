@@ -346,7 +346,6 @@
     <string name="users">المستخدمين</string>
     <string name="unsubscribe">إلغاء الاشتراك</string>
     <string name="tab_choose">اختر علامة التبويب</string>
-    <string name="brightness_gesture_control_title">التحكم بإيماءات السطوع</string>
     <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم بسطوع المشغّل</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="file_deleted">تم حذف الملف</string>

@@ -345,7 +345,6 @@
     <string name="grid">Сiтка</string>
     <string name="unsubscribe">Відписатися</string>
     <string name="tab_choose">Обрати вкладку</string>
-    <string name="brightness_gesture_control_title">Жест керування яскравістю</string>
     <string name="brightness_gesture_control_summary">Змінювати яскравість програвача жестами</string>
     <string name="settings_category_updates_title">Оновлення</string>
     <string name="events">Події</string>

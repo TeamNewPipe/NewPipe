@@ -220,7 +220,6 @@
     <string name="notification_action_nothing">କିଛି ନୁହେଁ</string>
     <string name="default_video_format_title">ଡିଫଲ୍ଟ ଭିଡିଓ ଫର୍ମାଟ୍</string>
     <string name="popup_remember_size_pos_title">ପପ୍ଅପ୍ ଗୁଣଗୁଡିକ ମନେରଖ</string>
-    <string name="brightness_gesture_control_title">ଉଜ୍ଜ୍ୱଳତା ଅଙ୍ଗଭଙ୍ଗୀ ନିୟନ୍ତ୍ରଣ</string>
     <string name="processing_may_take_a_moment">ପ୍ରକ୍ରିୟାକରଣ… କିଛି ସମୟ ନେଇପାରେ</string>
     <string name="caption_setting_description">ପ୍ଲେୟାର କ୍ୟାପସନ୍ ଟେକ୍ସଟ୍ ସ୍କେଲ୍ ଏବଂ ପୃଷ୍ଠଭୂମି ଶୈଳୀକୁ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । କାର୍ଯ୍ୟକାରୀ ହେବାକୁ ଆପ୍ ପୁନଃଆରମ୍ଭ ଆବଶ୍ୟକ କରେ</string>
     <string name="leak_canary_not_available">LeakCanary ଉପଲବ୍ଧ ନାହିଁ</string>

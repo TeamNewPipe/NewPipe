@@ -618,7 +618,6 @@
     <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um straumhöfund, straumefni eða leitarbeiðni</string>
     <string name="metadata_cache_wipe_summary">Fjarlæga öll síðugögn úr skyndiminni</string>
     <string name="auto_queue_summary">Bæta svipuðum straumum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>
-    <string name="brightness_gesture_control_title">Birtustigsbending</string>
     <string name="brightness_gesture_control_summary">Nota bendingar til að stjórna birtustig spilara</string>
     <string name="show_search_suggestions_summary">Veldu tillögur til að sýna þegar leitað er</string>
     <string name="enable_playback_resume_summary">Endurheimta síðustu spilunarstöðu</string>

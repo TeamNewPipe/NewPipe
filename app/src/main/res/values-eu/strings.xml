@@ -334,7 +334,6 @@
     <string name="users">Erabiltzaileak</string>
     <string name="unsubscribe">Kendu harpidetza</string>
     <string name="tab_choose">Hautatu fitxa</string>
-    <string name="brightness_gesture_control_title">Keinuen bidezko distiraren kontrola</string>
     <string name="brightness_gesture_control_summary">Erabili keinuak erreproduzigailuaren distira kontrolatzeko</string>
     <string name="settings_category_updates_title">Eguneraketak</string>
     <string name="events">Gertaerak</string>

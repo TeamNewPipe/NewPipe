@@ -169,7 +169,6 @@
     <string name="show_description_title">顯示描述</string>
     <string name="thumbnail_cache_wipe_complete_notice">抹除咗影像快取</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁嘅快取資料</string>
-    <string name="brightness_gesture_control_title">光暗手勢控制</string>
     <string name="download_thumbnail_summary">關閉佢去避免載入條片嘅縮圖，慳返啲數據同埋用少啲 RAM。更改會抹走記憶體以及磁碟機上面嘅影像快取</string>
     <string name="use_inexact_seek_summary">粗略嘅快轉允許播放器比較籠統咁快轉去其他位置。快轉 5、15 或 25 秒就太仔細，做唔到</string>
     <string name="settings_category_player_title">播放器</string>

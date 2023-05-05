@@ -90,7 +90,6 @@
     <string name="auto_queue_title">Automatski sljedeći prijenos u red stavite</string>
     <string name="auto_queue_summary">Nastavite završni (ne-ponavljajući) reprodukcijski red privlakom srodnog prijenosa</string>
     <string name="auto_queue_toggle">Automatsko redanje</string>
-    <string name="brightness_gesture_control_title">Kontrola osvetljenja sa pokretima</string>
     <string name="show_search_suggestions_title">Prijedlozi za pretragu</string>
     <string name="brightness_gesture_control_summary">Koristite pokrete za kontrolu svjetline pokretača</string>
     <string name="show_search_suggestions_summary">Odaberite prijedloge koje želite prikazati prilikom pretrage</string>

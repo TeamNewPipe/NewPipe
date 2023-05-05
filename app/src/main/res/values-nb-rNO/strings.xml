@@ -334,7 +334,6 @@
     <string name="playback_reset">Tilbakestill</string>
     <string name="unsubscribe">Opphev abonnement</string>
     <string name="tab_choose">Velg fane</string>
-    <string name="brightness_gesture_control_title">Håndvendingskontroll for lysstyrke</string>
     <string name="brightness_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lysstyrke</string>
     <string name="settings_category_updates_title">Oppdateringer</string>
     <string name="events">Hendelser</string>

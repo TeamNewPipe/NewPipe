@@ -334,7 +334,6 @@
     <string name="minimize_on_exit_popup_description">Ελαχιστοποίηση σε αναδυόμενο παράθυρο</string>
     <string name="unsubscribe">Απεγγραφή</string>
     <string name="tab_choose">Επιλογή Καρτέλας</string>
-    <string name="brightness_gesture_control_title">Έλεγχος φωτεινότητας με χειρονομίες</string>
     <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο φωτεινότητας</string>
     <string name="settings_category_updates_title">Ενημερώσεις</string>
     <string name="events">Συμβάντα</string>

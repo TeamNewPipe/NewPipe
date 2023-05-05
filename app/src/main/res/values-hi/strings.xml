@@ -326,7 +326,6 @@
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
     <string name="enqueue">कतारबद्ध करें</string>
-    <string name="brightness_gesture_control_title">रोशनी स्तर नियंत्रण के इशारे</string>
     <string name="brightness_gesture_control_summary">वीडियो चालक की चमक को नियंत्रित करने के लिए इशारो का इस्तेमाल करें</string>
     <string name="settings_category_updates_title">अपडेट</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>

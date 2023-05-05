@@ -255,7 +255,6 @@
     <string name="preferred_player_fetcher_notification_title">A obter informação…</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura da lista de reprodução</string>
-    <string name="brightness_gesture_control_title">Gestos para controlo de brilho</string>
     <string name="drawer_open">Abrir menu</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscritor</item>

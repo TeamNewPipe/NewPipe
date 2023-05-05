@@ -62,7 +62,6 @@
     <string name="show_search_suggestions_summary">Axtarış zamanı göstərmək üçün təklifləri seç</string>
     <string name="show_search_suggestions_title">Axtarış təklifləri</string>
     <string name="brightness_gesture_control_summary">Oynadıcı parlaqlığını nizamlamaq üçün jestlər istifadə et</string>
-    <string name="brightness_gesture_control_title">Parlaqlıq jesti idarəetməsi</string>
     <string name="auto_queue_toggle">Avto-növbələ</string>
     <string name="auto_queue_title">Növbəti Yayımı Avto-növbələ</string>
     <string name="metadata_cache_wipe_complete_notice">Üst məlumat keşi silindi</string>

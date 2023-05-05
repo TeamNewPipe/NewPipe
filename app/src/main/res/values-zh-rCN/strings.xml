@@ -350,7 +350,6 @@
     <string name="tracks">曲目</string>
     <string name="users">用户</string>
     <string name="tab_choose">选择标签</string>
-    <string name="brightness_gesture_control_title">手势控制亮度</string>
     <string name="brightness_gesture_control_summary">使用手势控制播放器的亮度</string>
     <string name="content_language_title">视频默认语言</string>
     <string name="app_update_notification_channel_name">应用更新通知</string>

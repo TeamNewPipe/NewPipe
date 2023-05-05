@@ -333,7 +333,6 @@
     <string name="tracks">Pistes</string>
     <string name="users">Usuaris</string>
     <string name="tab_choose">Trieu una pestanya</string>
-    <string name="brightness_gesture_control_title">Control de brillantor per gestos</string>
     <string name="brightness_gesture_control_summary">Fes servir gestos per controlar la brillantor del reproductor</string>
     <string name="settings_category_updates_title">Actualitzacions</string>
     <string name="file_deleted">S\'ha eliminat el fitxer</string>

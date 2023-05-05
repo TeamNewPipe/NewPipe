@@ -504,7 +504,6 @@
     <string name="show_search_suggestions_summary">Izvēlieties, kādus ieteikumus rādīt, rakstot meklēšanas joslā</string>
     <string name="show_search_suggestions_title">Meklēšanas ieteikumi</string>
     <string name="brightness_gesture_control_summary">Velkot ar pirkstu, mainiet video atskaņošanas spilgtumu</string>
-    <string name="brightness_gesture_control_title">Spilgtuma kontrole, atskaņojot video</string>
     <string name="auto_queue_toggle">Automātiski atskaņot</string>
     <string name="auto_queue_summary">Turpināt atskaņot videoklipus, automātiski pievienojot līdzīgus videoklipus</string>
     <string name="auto_queue_title">Automātiski atskaņot nākošo videoklipu</string>
