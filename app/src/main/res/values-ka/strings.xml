@@ -45,7 +45,6 @@
     <string name="download_thumbnail_summary">გამორთეთ ესკიზების ჩატვირთვის თავიდან ასაცილებლად, მონაცემთა დაზოგვისა და მეხსიერების გამოყენების თავიდან ასაცილებლად. იცვლება როგორც მეხსიერებაში, ასევე დისკზე გამოსახულების ქეშის გასუფთავება</string>
     <string name="show_search_suggestions_title">ძიების შეთავაზებები</string>
     <string name="metadata_cache_wipe_summary">წაშალეთ ყველა ქეშირებული ვებგვერდის მონაცემები</string>
-    <string name="volume_gesture_control_summary">გამოიყენეთ ჟესტები მოთამაშის ხმის გასაკონტროლებლად</string>
     <string name="auto_queue_title">შემდეგი ნაკადის ავტომატური შეყვანა</string>
     <string name="auto_queue_summary">გააგრძელეთ დაკვრის რიგის (არაგანმეორებადი) დასრულება შესაბამისი ნაკადის დამატებით</string>
     <string name="metadata_cache_wipe_complete_notice">მეტამონაცემების ქეში წაშლილია</string>

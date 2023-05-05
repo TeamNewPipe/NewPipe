@@ -327,7 +327,6 @@
     <string name="show_search_suggestions_title">സെർച്ച് നിർദ്ദേശങ്ങൾ</string>
     <string name="brightness_gesture_control_summary">ആംഗ്യത്തിലൂടെ പ്ലയറിലെ പ്രകാശം നിയന്ത്രിക്കാം</string>
     <string name="brightness_gesture_control_title">ആംഗ്യത്തിലൂടെ പ്രകാശം നിയന്ത്രിക്കുക</string>
-    <string name="volume_gesture_control_summary">ആംഗ്യം ഉപയോഗിച്ച് വോള്യം നിയന്ത്രിക്കാം</string>
     <string name="auto_queue_summary">തീരാറായ പ്ലേബാക്ക് ക്യൂവിനെ മറ്റൊരു അനുബന്ധ സ്‌ട്രീമുമായി കൂട്ടിച്ചേർത്ത് തുടരുക</string>
     <string name="auto_queue_title">അടുത്ത സ്ട്രീം ഓട്ടോക്യൂ ചെയ്യുക</string>
     <string name="metadata_cache_wipe_complete_notice">കാഷെ ആയ മെറ്റാഡേറ്റ തുടച്ചുനീക്കി</string>

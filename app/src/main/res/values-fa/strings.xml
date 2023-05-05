@@ -280,7 +280,6 @@
     <string name="show_hold_to_append_title">نمایش نکته «برای صف‌گذاری، نگه‌دارید»</string>
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
-    <string name="volume_gesture_control_summary">از اشارات برای کنترل حجم صدا استفاده شود</string>
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>

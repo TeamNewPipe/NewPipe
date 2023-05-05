@@ -318,7 +318,6 @@
     <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 화질 제한</string>
     <string name="unsubscribe">구독 취소</string>
     <string name="tab_choose">탭 선택</string>
-    <string name="volume_gesture_control_summary">제스처를 사용하여 플레이어의 볼륨 제어</string>
     <string name="brightness_gesture_control_title">제스처 밝기 조작</string>
     <string name="brightness_gesture_control_summary">제스처를 사용하여 플레이어의 밝기 제어</string>
     <string name="settings_category_updates_title">업데이트</string>

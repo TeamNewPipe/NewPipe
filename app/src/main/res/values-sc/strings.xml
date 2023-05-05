@@ -469,7 +469,6 @@
     <string name="show_search_suggestions_title">Cussìgios de chirca</string>
     <string name="brightness_gesture_control_summary">Imprea sos gestos pro controllare sa luminosidade de su riproduidore</string>
     <string name="brightness_gesture_control_title">Gestos de controllu de sa luminosidade</string>
-    <string name="volume_gesture_control_summary">Imprea sos gestos pro controllare su volume de su riproduidore</string>
     <string name="auto_queue_summary">Sighi a riproduire (chene ripetitziones) annanghende unu vìdeu correladu a sa lista</string>
     <string name="auto_queue_title">Annanghe in automàticu su flussu imbeniente a sa lista</string>
     <string name="metadata_cache_wipe_complete_notice">Memòria temporànea de sos metadatos iscarrigada</string>

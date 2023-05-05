@@ -330,7 +330,6 @@
     <string name="users">Kullanıcılar</string>
     <string name="unsubscribe">Abonelikten çık</string>
     <string name="tab_choose">Sekmeyi Seçin</string>
-    <string name="volume_gesture_control_summary">Oynatıcının sesini denetlemek için hareketleri kullan</string>
     <string name="brightness_gesture_control_title">Hareketli parlaklık denetimi</string>
     <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını denetlemek için hareketleri kullan</string>
     <string name="settings_category_updates_title">Güncellemeler</string>

@@ -334,7 +334,6 @@
     <string name="users">Gebruikers</string>
     <string name="unsubscribe">Abonnement opzeggen</string>
     <string name="tab_choose">Kiest een tabblad</string>
-    <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
     <string name="brightness_gesture_control_title">Veegbesturing voor helderheid</string>
     <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
     <string name="settings_category_updates_title">Updates</string>

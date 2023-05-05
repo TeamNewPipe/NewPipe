@@ -530,7 +530,6 @@
     <string name="enable_playback_state_lists_title">Posicións nas listas</string>
     <string name="enable_playback_resume_summary">Restaurar a última posición de reprodución</string>
     <string name="brightness_gesture_control_title">Control do xesto de brillo</string>
-    <string name="volume_gesture_control_summary">Use xestos para controlalo volume do reprodutor</string>
     <string name="show_comments_title">Ensinalos comentarios</string>
     <string name="seek_duration_title">Duración da busca rápida cara a adiante / cara atrás</string>
     <string name="tab_choose">Elixir lapela</string>

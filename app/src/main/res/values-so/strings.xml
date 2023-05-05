@@ -396,7 +396,6 @@
     <string name="show_search_suggestions_title">Soojeedinada raadinta</string>
     <string name="brightness_gesture_control_summary">Isticmaal fartaada adigoo shaashada farta dhinac kaga jiidaya si aad u maamusho iftiinka</string>
     <string name="brightness_gesture_control_title">Maamulista iftiinka (farta)</string>
-    <string name="volume_gesture_control_summary">Isticmaal fartaada adigoo shaashada farta dhinac kaga jiidaya si aad umaamusho codka</string>
     <string name="auto_queue_toggle">Hormada isutalisa</string>
     <string name="auto_queue_summary">Sii wad dhamaystirka (mida aan isku celcelinin) hormada shidan ayadoo lagu sii darayo waxyaabo la xidhiidha shayga daaran</string>
     <string name="auto_queue_title">Ku xiji hormada shayga xiga</string>

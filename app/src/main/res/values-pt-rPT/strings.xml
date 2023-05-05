@@ -241,7 +241,6 @@
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="tab_choose">Escolher separador</string>
-    <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
     <string name="grid">Grelha</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>

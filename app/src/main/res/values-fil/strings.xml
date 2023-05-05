@@ -78,7 +78,6 @@
     <string name="metadata_cache_wipe_complete_notice">Nalinis na ang cache ng metadata</string>
     <string name="auto_queue_title">Kusang ipila ang susunod na stream</string>
     <string name="auto_queue_summary">Ipagpatuloy na tapusin (di umuulit) ang pila sa pamamagitan ng pagdagdag ng isang katulad na stream</string>
-    <string name="volume_gesture_control_summary">Gumamit ng gesture para kontrolin ang volume ng player</string>
     <string name="show_search_suggestions_title">Mga mungkahi sa paghahanap</string>
     <string name="enable_search_history_summary">Itago ang mga hinanap nang lokal</string>
     <string name="enable_watch_history_title">Kasaysayan ng napanood</string>

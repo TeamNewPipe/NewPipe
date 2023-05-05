@@ -142,7 +142,6 @@
     <string name="enable_playback_resume_summary">ଶେଷ ପ୍ଲେବେକ୍ ସ୍ଥିତିକୁ ପୁନଃ ସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="enable_playback_state_lists_summary">ତାଲିକାରେ ପ୍ଲେବେକ୍ ପୋଜିସନ୍ ସୂଚକ ଦେଖାନ୍ତୁ</string>
     <string name="metadata_cache_wipe_summary">ସମସ୍ତ କ୍ୟାଚ୍ ହୋଇଥିବା ୱେବପୃଷ୍ଠା ତଥ୍ୟ ଅପସାରଣ କରନ୍ତୁ</string>
-    <string name="volume_gesture_control_summary">ପ୍ଲେୟାର ଭଲ୍ୟୁମକୁ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="show_search_suggestions_summary">ସନ୍ଧାନ କରିବା ସମୟରେ ଦେଖାଇବାକୁ ପରାମର୍ଶଗୁଡିକ ବାଛନ୍ତୁ</string>
     <string name="resume_on_audio_focus_gain_summary">ବାଧା ପରେ ଖେଳିବା ଜାରି ରଖନ୍ତୁ (ଯଥା ଫୋନକଲ୍)</string>
     <string name="show_hold_to_append_summary">ଭିଡିଓ \"ବିବରଣୀ:\" ରେ ପୃଷ୍ଠଭୂମି କିମ୍ବା ପପ୍ଅପ୍ ବଟନ୍ ଦବାଇବା ସମୟରେ ଟିପ୍ ଦେଖାନ୍ତୁ</string>

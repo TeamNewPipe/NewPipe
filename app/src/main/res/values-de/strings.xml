@@ -336,7 +336,6 @@
     <string name="users">Benutzer</string>
     <string name="unsubscribe">Deabonnieren</string>
     <string name="tab_choose">Tab wählen</string>
-    <string name="volume_gesture_control_summary">Gesten verwenden, um die Lautstärke einzustellen</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
     <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>

@@ -335,7 +335,6 @@
     <string name="enable_disposed_exceptions_summary">Насили докладването на неизпращаеми Rx изключения извън фрагмента или кръговрата на активност след приключване</string>
     <string name="unhook_checkbox">Откачи (може да предизвика промени)</string>
     <string name="unsubscribe">Отписване</string>
-    <string name="volume_gesture_control_summary">Използвай жестове за контрол на звука</string>
     <string name="brightness_gesture_control_title">Контрол на яркостта с жестове</string>
     <string name="brightness_gesture_control_summary">Използвай жестове за контрол на яркостта</string>
     <string name="file_deleted">Файлът е изтрит</string>

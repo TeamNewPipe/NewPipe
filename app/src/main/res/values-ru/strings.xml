@@ -361,7 +361,6 @@
     <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
     <string name="tab_choose">Выберите вкладку</string>
     <string name="unsubscribe">Отписаться</string>
-    <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
     <string name="settings_category_updates_title">Обновления</string>
     <string name="file_deleted">Файл удалён</string>
     <string name="app_update_notification_channel_name">Уведомление об обновлении приложения</string>

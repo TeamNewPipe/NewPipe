@@ -65,7 +65,6 @@
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
-    <string name="volume_gesture_control_summary">Gunakan gestur untuk melaraskan volume pemain</string>
     <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
     <string name="brightness_gesture_control_summary">Gunakan gestur untuk melaraskan kecerahan pemain</string>
     <string name="show_search_suggestions_title">Cadangan carian</string>

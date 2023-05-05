@@ -337,7 +337,6 @@
     <string name="minimize_on_exit_popup_description">Ativar reprodutor \'popup\'</string>
     <string name="unsubscribe">Cancelar subscrição</string>
     <string name="tab_choose">Escolher separador</string>
-    <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
     <string name="brightness_gesture_control_title">Gestos para controlo de brilho</string>
     <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
     <string name="settings_category_updates_title">Atualizações</string>

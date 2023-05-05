@@ -222,7 +222,6 @@
     <string name="show_search_suggestions_title">সার্চ পরামর্শ</string>
     <string name="brightness_gesture_control_summary">প্লেয়ারের উজ্জ্বলতা নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
     <string name="brightness_gesture_control_title">উজ্জ্বলতার নিয়ন্ত্রণ সংকেত</string>
-    <string name="volume_gesture_control_summary">প্লেয়ারের ভলিউম নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
     <string name="auto_queue_title">পরবর্তী স্ট্রিম স্বয়ংক্রিয়ংভাবে সংযোজন করুন</string>
     <string name="metadata_cache_wipe_complete_notice">মেটাডেটা ক্যাশ মুছে ফেলা হয়েছে</string>
     <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
