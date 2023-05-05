@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Націсніце «Пошук», каб пачаць.</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы прайгравальнік не знойдзены. Усталяваць VLC\?</string>
-    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC).</string>
+    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC каб прайграць).</string>
     <string name="install">Усталяваць</string>
     <string name="cancel">Скасаваць</string>
     <string name="open_in_browser">Адкрыць у браўзеры</string>
@@ -765,4 +765,11 @@
     <string name="metadata_privacy">Прыватнасць</string>
     <string name="metadata_language">Мова</string>
     <string name="metadata_support">Падтрымка</string>
+    <string name="left_gesture_control_title">Дзеянне левага жэсту</string>
+    <string name="right_gesture_control_title">Дзеянне правага жэсту</string>
+    <string name="brightness">Яркасць</string>
+    <string name="none">Нічога</string>
+    <string name="left_gesture_control_summary">Выбраць жэст для левай часткі экрана прайгравання</string>
+    <string name="volume">Гук</string>
+    <string name="right_gesture_control_summary">Выбраць жэст для правай часткі экрана прайгравання</string>
 </resources>

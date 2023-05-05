@@ -420,7 +420,7 @@
 \nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę pamięci</string>
     <string name="error_timeout">Minął czas połączenia</string>
     <string name="downloads_storage_use_saf_title">Używaj systemowego selektora folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę pamięci</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework umożliwia pobieranie na kartę pamięci</string>
     <string name="clear_playback_states_title">Wyczyść pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
@@ -529,7 +529,7 @@
     <string name="more_than_100_videos">100+ wideo</string>
     <string name="artists">Artyści</string>
     <string name="albums">Albumy</string>
-    <string name="songs">Piosenki</string>
+    <string name="songs">Utwory</string>
     <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
@@ -642,7 +642,7 @@
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko Storage Access Framework</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>
@@ -761,4 +761,11 @@
     <string name="feed_show_watched">W pełni obejrzane</string>
     <string name="feed_show_partially_watched">Częściowo obejrzane</string>
     <string name="feed_show_upcoming">Nadchodzące</string>
+    <string name="left_gesture_control_summary">Wybierz gest dla lewej strony ekranu odtwarzacza</string>
+    <string name="left_gesture_control_title">Akcja gestu z lewej</string>
+    <string name="right_gesture_control_summary">Wybierz gest dla prawej strony ekranu odtwarzacza</string>
+    <string name="brightness">Jasność</string>
+    <string name="volume">Głośność</string>
+    <string name="none">Brak</string>
+    <string name="right_gesture_control_title">Akcja gestu z prawej</string>
 </resources>

@@ -727,4 +727,11 @@
     <string name="remove_duplicates_title">Hapus duplikat\?</string>
     <string name="remove_duplicates_message">Apakah Anda ingin menghapus semua saluran duplikat di daftar putar ini\?</string>
     <string name="feed_hide_streams_title">Tampilkan saluran berikut</string>
+    <string name="left_gesture_control_summary">Pilih gestur untuk bagian kiri dari layar pemutar</string>
+    <string name="left_gesture_control_title">Tindakan gestur kiri</string>
+    <string name="none">Tidak ada</string>
+    <string name="right_gesture_control_summary">Pilih gestur untuk bagian kanan dari layar pemutar</string>
+    <string name="right_gesture_control_title">Tindakan gestur kanan</string>
+    <string name="brightness">Kecerahan</string>
+    <string name="volume">Volume</string>
 </resources>

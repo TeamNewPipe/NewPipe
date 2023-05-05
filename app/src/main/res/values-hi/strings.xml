@@ -58,7 +58,7 @@
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2के/4के मे वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">कोडी मे चलाए</string>
-    <string name="kore_not_found">लापता Kode ऐप स्थापित करें\?</string>
+    <string name="kore_not_found">गैर- मौजूदा Kore ऐप स्थापित करें\?</string>
     <string name="show_play_with_kodi_title">\"कोडी मे चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
@@ -741,4 +741,11 @@
     <string name="feed_show_hide_streams">स्ट्रीम दिखाएँ / छिपाएँ</string>
     <string name="feed_show_watched">पूरा देखा</string>
     <string name="feed_show_partially_watched">आंशिक रूप से देखा गया</string>
+    <string name="left_gesture_control_title">बाएँ इशारा क्रिया</string>
+    <string name="brightness">चमक</string>
+    <string name="volume">आवाज</string>
+    <string name="none">कोई नहीं</string>
+    <string name="left_gesture_control_summary">प्लेयर स्क्रीन के बाएँ आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_summary">प्लेयर स्क्रीन के दाहिने आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_title">दाएँ इशारा क्रिया</string>
 </resources>

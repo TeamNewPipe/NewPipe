@@ -560,7 +560,7 @@
     <string name="never">אף פעם לא</string>
     <string name="wifi_only">רק עם רשת אלחוטית</string>
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
-    <string name="title_activity_play_queue">לנגן את התור</string>
+    <string name="title_activity_play_queue">תור נגינה</string>
     <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
     <string name="auto_queue_toggle">סידור אוטומטי בתור</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
@@ -758,4 +758,19 @@
     <string name="playlist_add_stream_success_duplicate">הכפיל נוסף %d פעמים</string>
     <string name="ignore_hardware_media_buttons_title">התעלמות מאירועי כפתורי מדיה חומרתיים</string>
     <string name="ignore_hardware_media_buttons_summary">שימושי, למשל, אם יש לך אוזניות עם כפתורי חומרה מקולקלים</string>
+    <string name="left_gesture_control_title">פעולת מחווה שמאלית</string>
+    <string name="right_gesture_control_title">פעולת מחווה ימנית</string>
+    <string name="volume">עוצמת שמע</string>
+    <string name="none">בלי</string>
+    <string name="remove_duplicates_message">להסיר את כל השידורים הכפולים ברשימת הנגינה\?</string>
+    <string name="feed_show_partially_watched">נצפו חלקית</string>
+    <string name="feed_show_upcoming">בקרוב</string>
+    <string name="brightness">בהירות</string>
+    <string name="left_gesture_control_summary">נא לבחור מחווה לחצי השמאלי של מסך הנגן</string>
+    <string name="right_gesture_control_summary">נא לבחור מחווה לחצי הימני של מסך הנגן</string>
+    <string name="remove_duplicates">הסרת כפילויות</string>
+    <string name="remove_duplicates_title">להסיר כפילויות\?</string>
+    <string name="feed_show_watched">נצפו במלואם</string>
+    <string name="feed_hide_streams_title">להציג את השידורים הבאים</string>
+    <string name="feed_show_hide_streams">להציג/להסתיר שידורים</string>
 </resources>

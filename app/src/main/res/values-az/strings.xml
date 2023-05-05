@@ -740,4 +740,11 @@
     <string name="feed_show_partially_watched">Qismən baxılıb</string>
     <string name="remove_duplicates_message">Bu pleylistdəki bütün dublikat yayımları silmək istəyirsiniz\?</string>
     <string name="feed_show_upcoming">Yaxınlaşan</string>
+    <string name="left_gesture_control_title">Sol jest hərəkəti</string>
+    <string name="right_gesture_control_summary">Oynadıcı ekranının sağ yarısı üçün jest seç</string>
+    <string name="right_gesture_control_title">Sağ jest hərəkəti</string>
+    <string name="brightness">Parlaqlıq</string>
+    <string name="volume">Səs səviyyəsi</string>
+    <string name="none">Heç biri</string>
+    <string name="left_gesture_control_summary">Oynadıcı ekranının sol yarısı üçün jest seç</string>
 </resources>

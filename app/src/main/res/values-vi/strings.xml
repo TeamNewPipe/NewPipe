@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
     <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát bằng Kodi</string>
-    <string name="kore_not_found">Cài đặt ứng dụng Kode\?</string>
+    <string name="kore_not_found">Cài đặt ứng dụng Kodi\?</string>
     <string name="show_play_with_kodi_title">Hiện tùy chọn \"Phát bằng Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiện tùy chọn phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
@@ -663,7 +663,7 @@
     <string name="feed_new_items">Mục thông báo mới</string>
     <string name="crash_the_player">Làm trình phát dừng</string>
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
-\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
+\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
     <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
@@ -716,4 +716,13 @@
     <string name="app_update_available_notification_text">Nhấn để tải %s</string>
     <string name="fast_mode">Chế độ tia sét</string>
     <string name="duplicate_in_playlist">Danh sách này bị trùng lặp.</string>
+    <string name="ignore_hardware_media_buttons_summary">Hữu ích trong trường hợp phím bấm âm lượng trên tai nghe hoặc thiết bị của bạn bị hỏng</string>
+    <string name="ignore_hardware_media_buttons_title">Không nhận phím điều khiển âm lượng vật lý</string>
+    <string name="remove_duplicates">Loại bỏ mục trùng lặp</string>
+    <string name="remove_duplicates_title">Loại bỏ mục trùng lặp\?</string>
+    <string name="remove_duplicates_message">Bạn có muốn loại bỏ tất cả các nguồn trùng nhau trong danh sách phát này\?</string>
+    <string name="feed_show_hide_streams">Hiện/Ẩn nguồn phát</string>
+    <string name="feed_hide_streams_title">Hiện các nguồn phát sau</string>
+    <string name="feed_show_watched">Đã xem xong</string>
+    <string name="feed_show_partially_watched">Đã xem 1 phần</string>
 </resources>

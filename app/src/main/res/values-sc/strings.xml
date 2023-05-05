@@ -740,4 +740,11 @@
     <string name="feed_show_watched">Bidu de su totu</string>
     <string name="feed_show_partially_watched">Bidu in parte</string>
     <string name="feed_show_upcoming">Luego</string>
+    <string name="left_gesture_control_title">Atzione de su gestu de manca</string>
+    <string name="right_gesture_control_title">Atzione de su gestu de destra</string>
+    <string name="volume">Volume</string>
+    <string name="left_gesture_control_summary">Issèbera unu gestu pro sa metade de manca de s\'ischermu de su riproduidore</string>
+    <string name="right_gesture_control_summary">Issèbera unu gestu pro sa metade de destra de s\'ischermu de su riproduidore</string>
+    <string name="brightness">Luminosidade</string>
+    <string name="none">Perunu</string>
 </resources>

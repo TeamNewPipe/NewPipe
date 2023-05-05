@@ -197,7 +197,7 @@
     <string name="tab_about">Про застосунок і ЧаП</string>
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
-    <string name="settings_category_debug_title">Зневадження</string>
+    <string name="settings_category_debug_title">Налагодження</string>
     <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
     <plurals name="views">
@@ -595,7 +595,7 @@
     <string name="enqueued">Додано у чергу</string>
     <string name="enqueue_stream">Додати у чергу</string>
     <string name="recaptcha_solve">Розв\'язати</string>
-    <string name="msg_calculating_hash">Обчислення гешу</string>
+    <string name="msg_calculating_hash">Обчислення хешу</string>
     <string name="clear_cookie_summary">Очистити збережені під час вирішення reCAPTCHA реп\'яшки (cookies)</string>
     <string name="recaptcha_cookies_cleared">Реп\'яшки (cookies) reCAPTCHA видалено</string>
     <string name="clear_cookie_title">Очистити реп\'яшки (cookies) reCAPTCHA</string>
@@ -757,4 +757,11 @@
     <string name="feed_hide_streams_title">Показати такі трансляції</string>
     <string name="feed_show_watched">Повністю переглянуто</string>
     <string name="feed_show_partially_watched">Частково переглянуто</string>
+    <string name="brightness">Яскравість</string>
+    <string name="none">Нічого</string>
+    <string name="left_gesture_control_title">Дія жестом ліворуч</string>
+    <string name="left_gesture_control_summary">Виберіть жест для лівої половини екрана програвача</string>
+    <string name="right_gesture_control_summary">Виберіть жест для правої половини екрана програвача</string>
+    <string name="right_gesture_control_title">Дія жесту праворуч</string>
+    <string name="volume">Гучність</string>
 </resources>

@@ -68,7 +68,7 @@
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Никогда такого не было, и вот опять.</string>
-    <string name="error_report_button_text">Отправить по электронной почте</string>
+    <string name="error_report_button_text">Отправить по почте</string>
     <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
@@ -325,7 +325,7 @@
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
     <string name="privacy_policy_title">Конфиденциальность</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никаких данных без вашего согласия.
+    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никакие данные без вашего согласия.
 \nПолитика конфиденциальности подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
     <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
@@ -746,9 +746,9 @@
     <string name="night_theme_available">Доступно, когда Тема установлена в %s</string>
     <string name="unset_playlist_thumbnail">Убрать постоянную миниатюру</string>
     <string name="playlist_add_stream_success_duplicate">Дубликат добавлен %d раз(а)</string>
-    <string name="duplicate_in_playlist">Плейлисты, выделенные серым уже содержат этот объект.</string>
-    <string name="ignore_hardware_media_buttons_title">Игнорировать события аппаратной мультимедийной кнопки</string>
-    <string name="ignore_hardware_media_buttons_summary">Полезно, например, если вы используете гарнитуру со сломанными физическими кнопками</string>
+    <string name="duplicate_in_playlist">Плейлисты, выделенные серым, уже содержат этот объект.</string>
+    <string name="ignore_hardware_media_buttons_title">Игнорировать события аппаратных кнопок</string>
+    <string name="ignore_hardware_media_buttons_summary">Полезно при использовании гарнитуры со сломанными кнопками</string>
     <string name="feed_hide_streams_title">Показать следующие стримы</string>
     <string name="feed_show_hide_streams">Показать/скрыть стримы</string>
     <string name="feed_show_watched">Полностью просмотрено</string>
@@ -756,5 +756,12 @@
     <string name="remove_duplicates">Удалить дубликаты</string>
     <string name="remove_duplicates_title">Удалить дубликаты\?</string>
     <string name="feed_show_partially_watched">Частично просмотрено</string>
-    <string name="remove_duplicates_message">Вы хотите удалить все повторяющиеся потоки в этом плейлисте\?</string>
+    <string name="remove_duplicates_message">Удалить все дубликаты потоков в этом плейлисте\?</string>
+    <string name="left_gesture_control_summary">Жест для левой стороны экрана плеера</string>
+    <string name="left_gesture_control_title">Действие жеста слева</string>
+    <string name="right_gesture_control_summary">Жест для правой стороны экрана плеера</string>
+    <string name="right_gesture_control_title">Действие жеста справа</string>
+    <string name="brightness">Яркость</string>
+    <string name="volume">Громкость</string>
+    <string name="none">Ничего</string>
 </resources>

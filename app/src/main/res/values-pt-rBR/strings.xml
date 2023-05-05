@@ -753,4 +753,11 @@
     <string name="feed_show_partially_watched">Parcialmente assistido</string>
     <string name="feed_show_upcoming">Em breve</string>
     <string name="feed_show_watched">Totalmente assistido</string>
+    <string name="left_gesture_control_summary">Escolha o gesto da mão esquerda da tela do jogador</string>
+    <string name="left_gesture_control_title">Ação do gesto esquerdo</string>
+    <string name="right_gesture_control_summary">Escolha o gesto da mão direita da tela do jogador</string>
+    <string name="brightness">Brilho</string>
+    <string name="volume">Volume</string>
+    <string name="none">Nenhum</string>
+    <string name="right_gesture_control_title">Ação do gesto direito</string>
 </resources>

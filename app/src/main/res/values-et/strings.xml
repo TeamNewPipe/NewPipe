@@ -740,4 +740,11 @@
     <string name="feed_show_upcoming">Tulemas</string>
     <string name="feed_show_watched">Lõpuni vaadatud</string>
     <string name="feed_show_partially_watched">Osaliselt vaadatud</string>
+    <string name="left_gesture_control_title">Toiming viipel vasakul poolel</string>
+    <string name="volume">Helitugevus</string>
+    <string name="none">Määratlemata</string>
+    <string name="left_gesture_control_summary">Vali viibe meediamängija ekraani vasaku poole jaoks</string>
+    <string name="brightness">Eredus</string>
+    <string name="right_gesture_control_summary">Vali viibe meediamängija ekraani parema poole jaoks</string>
+    <string name="right_gesture_control_title">Toiming viipel paremal poolel</string>
 </resources>

@@ -753,4 +753,11 @@
     <string name="feed_show_upcoming">Proximamente</string>
     <string name="remove_duplicates_title">Remover duplicados\?</string>
     <string name="remove_duplicates_message">Quer remover todos os fluxos duplicados nesta lista de reprodução\?</string>
+    <string name="left_gesture_control_title">Ação de gesto de esquerda</string>
+    <string name="right_gesture_control_title">Ação do gesto correto</string>
+    <string name="brightness">Luminosidade</string>
+    <string name="volume">Volume</string>
+    <string name="none">Nenhum</string>
+    <string name="left_gesture_control_summary">Escolher gesto para metade esquerda do ecrã do reprodutor</string>
+    <string name="right_gesture_control_summary">Escolher gesto para metade direita do ecrã do reprodutor</string>
 </resources>

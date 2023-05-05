@@ -756,4 +756,11 @@
     <string name="remove_duplicates">Eliminar los duplicados</string>
     <string name="feed_show_watched">Completamente visto</string>
     <string name="feed_show_partially_watched">Parcialmente visto</string>
+    <string name="left_gesture_control_title">Acción del gesto en la izquierda</string>
+    <string name="right_gesture_control_title">Acción del gesto a la derecha</string>
+    <string name="brightness">Brillo</string>
+    <string name="volume">Volumen</string>
+    <string name="none">Ninguno</string>
+    <string name="left_gesture_control_summary">Elige un gesto para la mitad izquierda de la pantalla del reproductor</string>
+    <string name="right_gesture_control_summary">Elige un gesto para la mitad derecha de la pantalla del reproductor</string>
 </resources>

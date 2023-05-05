@@ -96,7 +96,7 @@
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
-    <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
+    <string name="auto_queue_title">Αυτόματη προσθήκη της επόμενης ροής στην ουρά</string>
     <string name="auto_queue_summary">Συνέχεια της τρέχουσας (μη επαναλαμβανόμενης) ουράς μετά τη λήξη της, με την προσθήκη μιας σχετικής ροής</string>
     <string name="show_search_suggestions_summary">Επιλογή των προτάσεων που εμφανίζονται κατά την αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
@@ -740,4 +740,11 @@
     <string name="remove_duplicates_message">Θέλετε να καταργήσετε όλες τις διπλότυπες ροές σε αυτήν τη λίστα αναπαραγωγής;</string>
     <string name="remove_duplicates">Αφαίρεση διπλοτύπων</string>
     <string name="feed_show_partially_watched">Θεαθέντα μερικώς</string>
+    <string name="left_gesture_control_summary">Επιλέξτε χειρονομία για το αριστερό μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="left_gesture_control_title">Ενέργεια αριστερής χειρονομίας</string>
+    <string name="right_gesture_control_summary">Επιλέξτε χειρονομία για το δεξί μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="right_gesture_control_title">Ενέργεια δεξιάς χειρονομίας</string>
+    <string name="brightness">Φωτεινότητα</string>
+    <string name="volume">Ένταση</string>
+    <string name="none">Καμία</string>
 </resources>

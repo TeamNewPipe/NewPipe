@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için büyütece dokun.</string>
+    <string name="main_bg_subtitle">Başlamak için büyütece dokunun.</string>
     <string name="upload_date_text">%1$s tarihinde yayınlandı</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC kurulsun mu\?</string>
-    <string name="install">Yükle</string>
+    <string name="install">Kur</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
@@ -421,8 +421,8 @@
     <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
     <string name="no_one_watching">Kimse izlemiyor</string>
     <plurals name="watching">
-        <item quantity="one">%s izleyen</item>
-        <item quantity="other">%s izleyen</item>
+        <item quantity="one">%s izleyici</item>
+        <item quantity="other">%s izleyici</item>
     </plurals>
     <string name="no_one_listening">Kimse dinlemiyor</string>
     <plurals name="listening">
@@ -481,8 +481,8 @@
     <string name="feed_group_dialog_select_subscriptions">Abonelikleri seç</string>
     <string name="feed_group_dialog_empty_selection">Abonelik seçilmedi</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d seçildi</item>
-        <item quantity="other">%d seçildi</item>
+        <item quantity="one">%d öğe seçildi</item>
+        <item quantity="other">"%d öğe  seçildi"</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş grup adı</string>
     <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz\?</string>
@@ -683,8 +683,8 @@
     <string name="enable_streams_notifications_title">Yeni akış bildirimleri</string>
     <string name="notifications">Bildirimler</string>
     <plurals name="new_streams">
-        <item quantity="one">%s yeni akış</item>
-        <item quantity="other">%s yeni akış</item>
+        <item quantity="one">%s yeni yayın</item>
+        <item quantity="other">%s yeni yayın</item>
     </plurals>
     <string name="check_new_streams">Yeni akışları denetlemeyi çalıştır</string>
     <string name="settings_category_player_notification_title">Oynatıcı bildirimi</string>
@@ -740,4 +740,8 @@
     <string name="feed_show_watched">Tamamen izlendi</string>
     <string name="feed_show_upcoming">Yaklaşan</string>
     <string name="feed_show_partially_watched">Kısmen izlendi</string>
+    <string name="brightness">Parlaklık</string>
+    <string name="volume">Ses düzeyi</string>
+    <string name="none">Hiçbiri</string>
+    <string name="left_gesture_control_summary">Parmağınızı ekranın sol yarısında kaydırırken ne yapılacağını seçin</string>
 </resources>

@@ -550,7 +550,7 @@
     <string name="never">Nikdy</string>
     <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Automaticky zahájit přehrávání — %s</string>
-    <string name="title_activity_play_queue">Přehrát frontu</string>
+    <string name="title_activity_play_queue">Fronta přehravání</string>
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadanou adresu URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Automatické přehravání</string>
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
@@ -753,4 +753,11 @@
     <string name="feed_show_upcoming">Nadcházející</string>
     <string name="remove_duplicates">Odstranit duplicity</string>
     <string name="remove_duplicates_message">Chcete odstranit všechny duplicitní streamy v tomto playlistu\?</string>
+    <string name="left_gesture_control_title">Akce levého gesta</string>
+    <string name="right_gesture_control_title">Akce pravého gesta</string>
+    <string name="volume">Hlasitost</string>
+    <string name="none">Žádné</string>
+    <string name="left_gesture_control_summary">Vyberte gesto pro levou polovinu obrazovky přehrávače</string>
+    <string name="brightness">Jas</string>
+    <string name="right_gesture_control_summary">Vyberte gesto pro pravou polovinu obrazovky přehrávače</string>
 </resources>

@@ -46,7 +46,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط على العدسة المكبرة للبدء.</string>
+    <string name="main_bg_subtitle">اضغط على \"العدسة المكبرة\" للبدء.</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_subscriptions">الاشتراكات</string>
@@ -792,4 +792,11 @@
     <string name="remove_duplicates_title">إزالة التكرارات؟</string>
     <string name="feed_hide_streams_title">إظهار التدفقات التالية</string>
     <string name="feed_show_watched">شاهدت بالكامل</string>
+    <string name="left_gesture_control_title">إجراء الإيماءة اليسرى</string>
+    <string name="right_gesture_control_title">اجراء الإيماءة اليمنى</string>
+    <string name="brightness">السطوع</string>
+    <string name="none">بدون</string>
+    <string name="left_gesture_control_summary">اختر إيماءة للنصف الأيسر من شاشة المشغل</string>
+    <string name="right_gesture_control_summary">اختر إيماءة للنصف الأيمن من شاشة المشغل</string>
+    <string name="volume">مستوى الصوت</string>
 </resources>

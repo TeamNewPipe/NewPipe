@@ -73,7 +73,7 @@
     <string name="peertube_instance_add_fail">ଉଦାହରଣ ବୈଧ କରିପାରିଲା ନାହିଁ</string>
     <string name="show_description_summary">ଭିଡିଓ ବର୍ଣ୍ଣନା ଏବଂ ଅତିରିକ୍ତ ସୂଚନା ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="play_audio">ଅଡିଓ</string>
-    <string name="use_external_audio_player_title">ବାହ୍ୟ ଅଡିଓ ପ୍ଲେୟାର ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_external_audio_player_title">ବହିଃ-ଅଡ଼ିଓଚାଳକ ଵ୍ୟଵହାର କରିବା</string>
     <string name="subscribe_button_title">ସଦସ୍ୟତା ଯୋଡ଼ନ୍ତୁ</string>
     <string name="subscription_update_failed">ସଦସ୍ୟତା ଅଦ୍ୟତନ କରିପାରିଲା ନାହିଁ</string>
     <string name="tab_choose">ଟ୍ୟାବ୍ ବାଛନ୍ତୁ</string>
@@ -82,7 +82,7 @@
     <string name="download_path_dialog_title">ଭିଡିଓ ଫାଇଲ୍ ପାଇଁ ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ବାଛନ୍ତୁ</string>
     <string name="default_resolution_title">ଡିଫଲ୍ଟ ରେଜୋଲୁସନ</string>
     <string name="play_with_kodi_title">କୋଡି ସହିତ ଖୋଲନ୍ତୁ</string>
-    <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କ୍ରିୟା ବଟନ୍</string>
+    <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_repeat">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
     <string name="notification_colorize_title">ବିଜ୍ଞପ୍ତିକୁ ରଙ୍ଗ କରନ୍ତୁ</string>
     <string name="popup_remember_size_pos_summary">ପପ୍ଅପ୍ ର ଶେଷ ଆକାର ଏବଂ ସ୍ଥିତି ମନେରଖ</string>
@@ -202,21 +202,21 @@
     <string name="default_audio_format_title">ଡିଫଲ୍ଟ ଅଡିଓ ଫର୍ମାଟ୍</string>
     <string name="use_inexact_seek_summary">ଅକ୍ଷୟ ସନ୍ଧାନ ପ୍ଲେୟାରକୁ ହ୍ରାସ ହୋଇଥିବା ସଠିକତା ସହିତ ଶୀଘ୍ର ପଦବୀ ଖୋଜିବାକୁ ଅନୁମତି ଦିଏ । 5, 15 କିମ୍ବା 25 ସେକେଣ୍ଡ ଖୋଜିବା ଏହା ସହିତ କାମ କରେ ନାହିଁ</string>
     <string name="search_showing_result_for">%s ପାଇଁ ଫଳାଫଳ ଦେଖାଉଛି</string>
-    <string name="use_external_video_player_title">ବାହ୍ୟ ଭିଡିଓ ପ୍ଲେୟାର ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_external_video_player_title">ବହିଃ-ଵିଡ଼ିଓଚାଳକ ଵ୍ୟଵହାର କରିବା</string>
     <string name="subscribed_button_title">ସଦସ୍ୟତା</string>
     <string name="unsubscribe">ସଦସ୍ୟତା ରଦ୍ଦ କରନ୍ତୁ</string>
     <string name="channel_unsubscribed">ଚ୍ୟାନେଲ ସଦସ୍ୟତା ରଦ୍ଦ ହେଲା</string>
     <string name="subscription_change_failed">ସଦସ୍ୟତା ପରିବର୍ତ୍ତନ କରିପାରିଲା ନାହିଁ</string>
     <string name="show_info">ସୂଚନା ଦେଖାନ୍ତୁ</string>
-    <string name="controls_add_to_playlist_title">ମିଶାଅ</string>
+    <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
     <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ\?</string>
     <string name="notification_scale_to_square_image_title">ଥମ୍ୱନେଲ କୁ 1:1 ଅନୁପାତରେ କ୍ରୋପ୍ କରନ୍ତୁ</string>
-    <string name="notification_action_0_title">ପ୍ରଥମ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_2_title">ତୃତୀୟ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_3_title">ଚତୁର୍ଥ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_4_title">ପଞ୍ଚମ କ୍ରିୟା ବଟନ୍</string>
+    <string name="notification_action_0_title">ପ୍ରଥମ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_2_title">ତୃତୀୟ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_3_title">ଚତୁର୍ଥ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_4_title">ପଞ୍ଚମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_shuffle">ଶଫଲ୍</string>
     <string name="notification_action_buffering">ବଫରିଂ</string>
     <string name="notification_action_nothing">କିଛି ନୁହେଁ</string>
@@ -253,7 +253,7 @@
     <string name="play_all">ସମସ୍ତ ପ୍ଲେ କରନ୍ତୁ</string>
     <string name="always">ସର୍ବଦା</string>
     <string name="file">ଫାଇଲ୍</string>
-    <string name="notifications">ବିଜ୍ଞପ୍ତି ଗୁଡିକ</string>
+    <string name="notifications">ଵିଜ୍ଞପ୍ତି</string>
     <string name="app_update_notification_channel_name">ଆପ୍ ଅଦ୍ୟତନ ବିଜ୍ଞପ୍ତି</string>
     <string name="app_update_notification_channel_description">ନୂତନ NewPipe ସଂସ୍କରଣ ପାଇଁ ବିଜ୍ଞପ୍ତି</string>
     <string name="hash_channel_name">ଭିଡିଓ ହ୍ୟାସ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -273,7 +273,7 @@
     <string name="clear_playback_states_summary">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ କରେ</string>
     <string name="clear_search_history_title">ସନ୍ଧାନ ଇତିହାସ ସଫା କରନ୍ତୁ</string>
     <string name="delete_search_history_alert">ସମଗ୍ର ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ କରିବେ କି\?</string>
-    <string name="download_to_sdcard_error_title">ବାହ୍ୟ ସଂରକ୍ଷଣ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="download_to_sdcard_error_title">ବହିଃ-ଷ୍ଟୋରେଜ୍ ଅନୁପଲବ୍ଧ</string>
     <string name="network_error">ନେଟୱର୍କ ତ୍ରୁଟି</string>
     <string name="could_not_load_thumbnails">ସମସ୍ତ ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="parsing_error">ୱେବସାଇଟ୍ ପାର୍ସ କରିପାରିଲା ନାହିଁ</string>
@@ -392,7 +392,7 @@
     <string name="close">ବନ୍ଦ କର</string>
     <string name="pause_downloads">ଡାଉନଲୋଡ୍ ବିରତି କରନ୍ତୁ</string>
     <string name="downloads_storage_ask_title">କେଉଁଠାରେ ଡାଉନଲୋଡ୍ କରିବେ ପଚାରନ୍ତୁ</string>
-    <string name="downloads_storage_use_saf_summary">\'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ଏକ ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବାକୁ ଅନୁମତି ଦିଏ</string>
+    <string name="downloads_storage_use_saf_summary">\'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଅନୁମତି ଦିଏ</string>
     <string name="downloads_storage_use_saf_summary_api_29">ଆଣ୍ଡ୍ରଏଡ୍ 10 ରୁ କେବଳ \'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ସମର୍ଥିତ</string>
     <string name="choose_instance_prompt">ଏକ ଉଦାହରଣ ବାଛନ୍ତୁ</string>
     <string name="new_seek_duration_toast">ExoPlayer ପ୍ରତିବନ୍ଧକ ହେତୁ ସନ୍ଧାନ ସମୟସୀମା %d ସେକେଣ୍ଡରେ ସେଟ୍ ହୋଇଥିଲା</string>
@@ -427,7 +427,7 @@
     <string name="overwrite">ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ</string>
     <string name="metadata_thumbnail_url">ଥମ୍ବନେଲ୍ URL</string>
     <string name="metadata_host">ହୋଷ୍ଟ</string>
-    <string name="metadata_privacy_public">ଜନସାଧାରଣ</string>
+    <string name="metadata_privacy_public">ସାର୍ଵଜନୀନ</string>
     <string name="metadata_privacy_unlisted">ତାଲିକାଭୁକ୍ତ ନୁହେଁ</string>
     <string name="metadata_privacy_private">ବ୍ୟକ୍ତିଗତ</string>
     <string name="comments_are_disabled">ମନ୍ତବ୍ୟଗୁଡିକ ଅକ୍ଷମ ହୋଇଛି</string>
@@ -508,7 +508,7 @@
 \nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
     <string name="error_report_title">ତ୍ରୁଟି ରିପୋର୍ଟ</string>
     <string name="albums">ଆଲବମ୍ ଗୁଡ଼ିକ</string>
-    <string name="download_to_sdcard_error_message">ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭବ ନୁହେଁ ।ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରନ୍ତୁ\?</string>
+    <string name="download_to_sdcard_error_message">ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭଵ ନୁହେଁ। ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରିବେ କି\?</string>
     <string name="file_deleted">ଫାଇଲ୍ ଡିଲିଟ୍ ହୋଇଛି</string>
     <string name="just_once">କେବଳ ଥରେ</string>
     <string name="notification_channel_name">ନୂତନ ପାଇପ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -525,7 +525,7 @@
     <string name="general_error">ତ୍ରୁଟି</string>
     <string name="youtube_signature_deobfuscation_error">ଭିଡିଓ URL ଦସ୍ତଖତକୁ ଡିବଫସ୍କେଟ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="player_unrecoverable_failure">ପୁନରୁଦ୍ଧାର ନ ହୋଇପାରିଲା ପରି ପ୍ଲେୟାର ତ୍ରୁଟି ଘଟିଲା</string>
-    <string name="external_player_unsupported_link_type">ବାହ୍ୟ ପ୍ଲେୟାରମାନେ ଏହି ପ୍ରକାର ଲିଙ୍କକୁ ସମର୍ଥନ କରନ୍ତି ନାହିଁ</string>
+    <string name="external_player_unsupported_link_type">ବହିଃ-ଚାଳକ ଏଭଳି ଲିଙ୍କ୍ ସମର୍ଥନ କରେନି</string>
     <string name="missing_file">ଫାଇଲ୍ ଘୁଞ୍ଚିଗଲା କିମ୍ବା ଡିଲିଟ୍ ହେଲା</string>
     <string name="no_playlist_bookmarked_yet">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପ୍ଲେଲିଷ୍ଟ ବୁକମାର୍କ ନାହିଁ</string>
     <string name="invalid_source">ସେପରି କୌଣସି ଫାଇଲ / ବିଷୟବସ୍ତୁ ଉତ୍ସ ନାହିଁ</string>
@@ -590,14 +590,14 @@
 \nଭବିଷ୍ୟତରେ NewPipe ଏହି ଫିଡ୍ ଲୋଡ୍ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ ।
 \nଆପଣ ଏହି ଚ୍ୟାନେଲରୁ ସଦସ୍ୟତା ରଦ୍ଦ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
     <string name="feed_toggle_show_played_items">ଦେଖାଯାଇଥିବା ଆଇଟମଗୁଡିକ ଦେଖାନ୍ତୁ</string>
-    <string name="metadata_privacy_internal">ଆଭ୍ୟନ୍ତରୀଣ</string>
+    <string name="metadata_privacy_internal">ଅନ୍ତଃସ୍ଥ</string>
     <string name="you_successfully_subscribed">ଆପଣ ବର୍ତ୍ତମାନ ଏହି ଚ୍ୟାନେଲକୁ ସବସ୍କ୍ରାଇବ କରିଛନ୍ତି</string>
-    <string name="no_video_streams_available_for_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ କୌଣସି ଭିଡିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="no_video_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଵିଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="detail_heart_img_view_description">ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କ ଦ୍ୱାରା ହୃଦୟ</string>
     <string name="streams_not_yet_supported_removed">ଷ୍ଟ୍ରିମ୍ ଯାହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡର୍ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <string name="unknown_format">ଅଜ୍ଞାତ ଫର୍ମାଟ୍</string>
-    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍ କୁ କେଉଁଠାରେ ସେଭ୍ କରାଯିବ ତାହା ଆପଣଙ୍କୁ ପଚରାଯିବ ।
-\nଯଦି ଆପଣ ଏକ ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
+    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍‍କୁ କେଉଁଠାରେ ସଞ୍ଚୟ କରାଯିବ ତା\' ଆପଣଙ୍କୁ ପଚରାଯିବ।
+\nଯଦି ଆପଣ ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ଚୟକ (SAF)କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="show_memory_leaks">ମେମୋରୀ ଲିକ୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_original_time_ago_title">ଆଇଟମଗୁଡିକରେ ମୂଳ ସମୟ ପୂର୍ବରୁ ଦେଖାନ୍ତୁ</string>
     <string name="enable_disposed_exceptions_summary">ବିସର୍ଜନ ପରେ ଖଣ୍ଡ କିମ୍ବା କାର୍ଯ୍ୟକଳାପ ଜୀବନଚକ୍ର ବାହାରେ ଅଣସଂରକ୍ଷିତ Rx ବ୍ୟତିକ୍ରମଗୁଡିକର ଫୋର୍ସ ରିପୋର୍ଟିଂ</string>
@@ -616,8 +616,8 @@
     <string name="enable_queue_limit_desc">ଗୋଟିଏ ଡାଉନଲୋଡ୍ ଏକ ସମୟରେ ଚାଲିବ</string>
     <string name="recent">ସମ୍ପ୍ରତି</string>
     <string name="tablet_mode_title">ଟାବଲେଟ୍ ମୋଡ୍</string>
-    <string name="no_audio_streams_available_for_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ କୌଣସି ଅଡିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
-    <string name="select_quality_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
+    <string name="no_audio_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଅଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="select_quality_external_players">ବହିଃ-ଚାଳକ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
     <string name="detail_pinned_comment_view_description">ପିନ୍ ହୋଇଥିବା ମନ୍ତବ୍ୟ</string>
     <string name="feed_toggle_hide_future_items">ଭବିଷ୍ୟତର ଆଇଟମ୍ ଲୁଚାନ୍ତୁ</string>
     <string name="open_website_license">ୱେବସାଇଟ୍ ଖୋଲନ୍ତୁ</string>
@@ -706,7 +706,7 @@
     <string name="metadata_tags">ଟ୍ୟାଗ୍ସ</string>
     <string name="get_notified">ସୂଚିତ କର</string>
     <string name="enumeration_comma">,</string>
-    <string name="selected_stream_external_player_not_supported">ମନୋନୀତ ଷ୍ଟ୍ରିମ୍ ବାହ୍ୟ ଖେଳାଳିଙ୍କ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
+    <string name="selected_stream_external_player_not_supported">ମନୋନୀତ ଷ୍ଟ୍ରିମ୍ ବହିଃ-ଚାଳକ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <plurals name="listening">
         <item quantity="one">%s ଜଣ ଶ୍ରୋତା</item>
         <item quantity="other">ମୋଟ %s ଜଣ ଶ୍ରୋତା</item>
@@ -741,4 +741,11 @@
     <string name="feed_show_watched">ପୁରା ଦେଖାଯାଇଛି</string>
     <string name="feed_show_partially_watched">ଆଂଶିକ ଦେଖାଯାଇଛି</string>
     <string name="feed_show_upcoming">ଆଗାମୀ</string>
+    <string name="left_gesture_control_summary">ପ୍ଲେୟାର ସ୍କ୍ରିନର ବାମ ଅଧା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବାଛନ୍ତୁ</string>
+    <string name="left_gesture_control_title">ବାମ ଅଙ୍ଗଭଙ୍ଗୀ କାର୍ଯ୍ୟ</string>
+    <string name="right_gesture_control_summary">ପ୍ଲେୟାର ସ୍କ୍ରିନର ଡାହାଣ ଅଧା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବାଛନ୍ତୁ</string>
+    <string name="right_gesture_control_title">ଡାହାଣ ଅଙ୍ଗଭଙ୍ଗୀ କାର୍ଯ୍ୟ</string>
+    <string name="brightness">ଉଜ୍ଜ୍ୱଳତା</string>
+    <string name="volume">ଭଲ୍ୟୁମ୍</string>
+    <string name="none">କିଛି ନୁହେଁ</string>
 </resources>

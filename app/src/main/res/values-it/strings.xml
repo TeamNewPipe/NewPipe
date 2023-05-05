@@ -750,7 +750,14 @@
     <string name="remove_duplicates_message">Rimuovere tutti gli elementi doppi di questa playlist\?</string>
     <string name="feed_hide_streams_title">Mostra gli elementi seguenti</string>
     <string name="feed_show_hide_streams">Mostra/Nascondi elementi</string>
-    <string name="feed_show_partially_watched">Visto parzialmente</string>
-    <string name="feed_show_watched">Visto completamente</string>
-    <string name="feed_show_upcoming">Prossimamente</string>
+    <string name="feed_show_partially_watched">Visti parzialmente</string>
+    <string name="feed_show_watched">Visti completamente</string>
+    <string name="feed_show_upcoming">Elementi futuri</string>
+    <string name="left_gesture_control_title">Azione gesto sinistro</string>
+    <string name="right_gesture_control_title">Azione gesto destro</string>
+    <string name="brightness">Luminosità</string>
+    <string name="volume">Volume</string>
+    <string name="left_gesture_control_summary">Scegli il gesto per la metà sinistra del riproduttore</string>
+    <string name="none">Nessuno</string>
+    <string name="right_gesture_control_summary">Scegli il gesto per la metà destra del riproduttore</string>
 </resources>

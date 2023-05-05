@@ -727,4 +727,11 @@
     <string name="feed_show_partially_watched">只看了一部分</string>
     <string name="feed_show_upcoming">即将到来</string>
     <string name="remove_duplicates">删除重复</string>
+    <string name="brightness">亮度</string>
+    <string name="volume">音量</string>
+    <string name="right_gesture_control_title">右半边手势动作</string>
+    <string name="left_gesture_control_title">左半边手势动作</string>
+    <string name="left_gesture_control_summary">选择播放器屏幕左半边手势</string>
+    <string name="right_gesture_control_summary">选择播放器屏幕右半边手势</string>
+    <string name="none">无</string>
 </resources>

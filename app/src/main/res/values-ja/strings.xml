@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの画質</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Kode をインストールしますか？</string>
+    <string name="kore_not_found">インストールされてない Kore アプリをインストールしますか？</string>
     <string name="show_play_with_kodi_title">「Kodi で再生」オプションを表示</string>
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音声</string>
@@ -727,4 +727,11 @@
     <string name="feed_show_watched">完全に視聴済み</string>
     <string name="feed_show_partially_watched">一部視聴済み</string>
     <string name="feed_show_upcoming">今後</string>
+    <string name="left_gesture_control_summary">再生画面の左半分用にジェスチャーを選択</string>
+    <string name="left_gesture_control_title">左のジェスチャー動作</string>
+    <string name="right_gesture_control_summary">再生画面の右半分用のジェスチャーを選択</string>
+    <string name="right_gesture_control_title">右のジェスチャー動作</string>
+    <string name="brightness">明るさ</string>
+    <string name="volume">音量</string>
+    <string name="none">無</string>
 </resources>
