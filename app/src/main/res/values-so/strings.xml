@@ -394,7 +394,6 @@
     <string name="enable_search_history_title">Wixii laraadiyay</string>
     <string name="show_search_suggestions_summary">Dooro soojeedinada lasoo bandhigo marka wax la raadinayo</string>
     <string name="show_search_suggestions_title">Soojeedinada raadinta</string>
-    <string name="brightness_gesture_control_summary">Isticmaal fartaada adigoo shaashada farta dhinac kaga jiidaya si aad u maamusho iftiinka</string>
     <string name="auto_queue_toggle">Hormada isutalisa</string>
     <string name="auto_queue_summary">Sii wad dhamaystirka (mida aan isku celcelinin) hormada shidan ayadoo lagu sii darayo waxyaabo la xidhiidha shayga daaran</string>
     <string name="auto_queue_title">Ku xiji hormada shayga xiga</string>

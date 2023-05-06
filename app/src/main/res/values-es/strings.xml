@@ -390,7 +390,6 @@
     <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_choose">Elija la pestaña</string>
-    <string name="brightness_gesture_control_summary">Usar gestos para controlar el brillo del reproductor</string>
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>

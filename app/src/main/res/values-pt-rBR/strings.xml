@@ -336,7 +336,6 @@
     <string name="users">Usuários</string>
     <string name="unsubscribe">Cancelar inscrição</string>
     <string name="tab_choose">Selecionar aba</string>
-    <string name="brightness_gesture_control_summary">Use gestos para mudar brilho do player</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="events">Eventos</string>

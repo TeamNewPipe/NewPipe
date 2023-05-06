@@ -106,7 +106,6 @@
     <string name="show_description_title">ବର୍ଣ୍ଣନା ଦେଖାନ୍ତୁ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ପ୍ରତିଛବି କ୍ୟାଚ୍ ପୋଛି ଦିଆଗଲା</string>
     <string name="metadata_cache_wipe_complete_notice">ମେଟାଡାଟା କ୍ୟାଚ୍ ପୋଛି ହୋଇଗଲା</string>
-    <string name="brightness_gesture_control_summary">ପ୍ଲେୟାରର ଉଜ୍ଜ୍ୱଳତାକୁ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="show_search_suggestions_title">ପରାମର୍ଶ ଖୋଜ</string>
     <string name="local_search_suggestions">ସ୍ଥାନୀୟ ସନ୍ଧାନ ପରାମର୍ଶ</string>
     <string name="remote_search_suggestions">ସୁଦୂର ସନ୍ଧାନ ପରାମର୍ଶ</string>

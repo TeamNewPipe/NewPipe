@@ -334,7 +334,6 @@
     <string name="enable_disposed_exceptions_summary">Jõusta väljaspool fragmenti või elutsüklit olevate kättetoimetamatute Rx erindite raporteerimine nende vabastamise järgselt</string>
     <string name="unsubscribe">Lõpeta tellimine</string>
     <string name="tab_choose">Vali vahekaart</string>
-    <string name="brightness_gesture_control_summary">Kasuta viipeid heleduse reguleerimiseks</string>
     <string name="settings_category_updates_title">Uuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>

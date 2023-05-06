@@ -337,7 +337,6 @@
     <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
     <string name="unsubscribe">Přestat odebírat</string>
     <string name="tab_choose">Zvolit panel</string>
-    <string name="brightness_gesture_control_summary">Používat gesta pro ovládání jasu přehrávače</string>
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>

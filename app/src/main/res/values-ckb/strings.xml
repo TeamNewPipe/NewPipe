@@ -327,7 +327,6 @@
     <string name="subscription_change_failed">ناتوانیت گۆڕانكاری له‌م به‌ژدارییه‌دا بكه‌یت</string>
     <string name="default_resolution_title">قه‌باره‌ی بنەڕەتی</string>
     <string name="minimize_on_exit_popup_description">بچووککردنەوە بۆ پەنجەرە</string>
-    <string name="brightness_gesture_control_summary">جوڵەی پەنجەت لەسەر ڕوونما بەکاربهێنە بۆ گۆڕینی ئاستی ڕووناکی ڕوونما</string>
     <string name="songs">گۆرانییەکان</string>
     <string name="controls_download_desc">دابه‌زاندنی فایلی پەخش</string>
     <string name="list_view_mode">شێوازی پیشاندانی خشتە</string>

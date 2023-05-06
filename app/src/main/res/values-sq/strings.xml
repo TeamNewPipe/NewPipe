@@ -482,7 +482,6 @@
     <string name="enable_search_history_summary">Ruani frazat e kërkuara lokalisht</string>
     <string name="enable_search_history_title">Historia e kërkimit</string>
     <string name="show_search_suggestions_summary">Shfaq sugjerime kur jeni duke kërkuar</string>
-    <string name="brightness_gesture_control_summary">Përdorni gjestet për të kontrolluar ndriçimin e luajtësit</string>
     <string name="auto_queue_summary">Vazhdoje radhën e luajtjes së mbarueshme (e papërsëritur) duke shtuar një stream të ngjashëm</string>
     <string name="auto_queue_title">Auto-radhit stream-in e radhës</string>
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>

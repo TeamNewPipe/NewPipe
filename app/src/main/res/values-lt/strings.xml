@@ -341,7 +341,6 @@
     <string name="settings_category_clear_data_title">Išvalyti duomenis</string>
     <string name="enable_playback_state_lists_summary">Sąraše rodyti atkūrimo vietos indikatorių</string>
     <string name="enable_playback_state_lists_title">Vietos sąraše</string>
-    <string name="brightness_gesture_control_summary">Naudoti gestus ryškumo valdymui</string>
     <string name="auto_queue_toggle">Auto eilė</string>
     <string name="auto_queue_summary">Tęsti atkūrimą į eilę pridedant susijusius srautus</string>
     <string name="auto_queue_title">Automatiškai pridėti sekantį į eilę</string>

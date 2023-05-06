@@ -138,7 +138,6 @@
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_buffering">緩衝緊</string>
     <string name="notification_action_nothing">空寥寥</string>
-    <string name="brightness_gesture_control_summary">用手勢去控制播放器光暗</string>
     <string name="local_search_suggestions">本機搜尋建議</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="enable_search_history_summary">喺本機儲低搵過嘅紀錄</string>

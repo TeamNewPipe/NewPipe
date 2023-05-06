@@ -186,7 +186,6 @@
     <string name="popup_remember_size_pos_summary">పాప్అప్ చివరి పరిమాణం మరియు స్థానాన్ని గుర్తుంచుకోండి</string>
     <string name="show_description_summary">వీడియో వివరణ మరియు అదనపు సమాచారాన్ని దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="show_meta_info_summary">స్ట్రీమ్ సృష్టికర్త, స్ట్రీమ్ కంటెంట్ లేదా శోధన అభ్యర్థన గురించి అదనపు సమాచారంతో మెటా సమాచార పెట్టెలను దాచడానికి ఆఫ్ చేయండి</string>
-    <string name="brightness_gesture_control_summary">ప్లేయర్ ప్రకాశాన్ని నియంత్రించడానికి సంజ్ఞలను ఉపయోగించండి</string>
     <string name="show_search_suggestions_summary">శోధిస్తున్నప్పుడు చూపాల్సిన సూచనలను ఎంచుకోండి</string>
     <string name="enable_playback_resume_summary">చివరి ప్లేబ్యాక్ స్థానాన్ని పునరుద్ధరించండి</string>
     <string name="peertube_instance_url_summary">మీకు ఇష్టమైన పీర్‌ట్యూబ్ సందర్భాలను ఎంచుకోండి</string>

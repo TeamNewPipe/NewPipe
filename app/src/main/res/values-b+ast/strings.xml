@@ -150,7 +150,6 @@
     <string name="playlists">Llistes de reproducción</string>
     <string name="tracks">Pistes</string>
     <string name="users">Usuarios</string>
-    <string name="brightness_gesture_control_summary">Usa xestos pa controlar el brillu del reproductor</string>
     <string name="restore_defaults">Reafitamientu de valores</string>
     <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="updates_setting_title">Anovamientos</string>

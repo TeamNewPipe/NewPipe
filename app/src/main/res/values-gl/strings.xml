@@ -453,7 +453,6 @@
     <string name="app_update_available_notification_title">A actualización de NewPipe está dispoñible!</string>
     <string name="auto">Automático</string>
     <string name="enable_playback_state_lists_summary">Mostra os indicadores de posición de reprodución nas listas</string>
-    <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>
     <string name="grid">Rede</string>
     <string name="list">Lista</string>
     <string name="list_view_mode">Modo de visualización da lista</string>

@@ -115,7 +115,6 @@
     <string name="show_meta_info_title">მეტა ინფორმაციის ჩვენება</string>
     <string name="thumbnail_cache_wipe_complete_notice">სურათის ქეში წაშლილია</string>
     <string name="metadata_cache_wipe_title">წაშალეთ ქეშირებული მეტამონაცემები</string>
-    <string name="brightness_gesture_control_summary">გამოიყენეთ ჟესტები მოთამაშის სიკაშკაშის გასაკონტროლებლად</string>
     <string name="enable_search_history_summary">შეინახეთ საძიებო მოთხოვნები ადგილობრივად</string>
     <string name="enable_watch_history_title">ნახვის ისტორია</string>
     <string name="enable_playback_resume_title">განაახლეთ დაკვრა</string>

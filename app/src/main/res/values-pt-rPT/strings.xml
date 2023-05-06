@@ -474,7 +474,6 @@
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
     <string name="remove_watched">Remover visualizados</string>
     <string name="settings_file_replacement_character_title">Carácter de substituição</string>
     <string name="video">Vídeo</string>

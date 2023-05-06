@@ -337,7 +337,6 @@
     <string name="users">Utenti</string>
     <string name="unsubscribe">Disiscriviti</string>
     <string name="tab_choose">Scegli scheda</string>
-    <string name="brightness_gesture_control_summary">Utilizza i gesti per controllare la luminosità del lettore multimediale</string>
     <string name="settings_category_updates_title">Aggiornamenti</string>
     <string name="file_deleted">File eliminato</string>
     <string name="app_update_notification_channel_name">Notifiche per aggiornamenti dell\'app</string>
