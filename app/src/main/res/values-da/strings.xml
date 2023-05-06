@@ -65,10 +65,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metadata-cache slettet</string>
     <string name="auto_queue_title">Føj automatisk næste stream til køen</string>
     <string name="auto_queue_summary">Fortsæt en afspilningskø, der afsluttes (ikke-gentagende), ved at tilføje en lignende stream</string>
-    <string name="volume_gesture_control_title">Juster lydstyrke ved hjælp af fingerbevægelser</string>
-    <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere afspillerens lydstyrke</string>
-    <string name="brightness_gesture_control_title">Styr lysstyrken med fingerbevægelser</string>
-    <string name="brightness_gesture_control_summary">Brug fingerbevægelser til at justere afspillerens lysstyrke</string>
     <string name="show_search_suggestions_title">Søgeforslag</string>
     <string name="show_search_suggestions_summary">Vælg forslagene, der vises, når der søges</string>
     <string name="enable_search_history_title">Søgehistorik</string>
@@ -550,7 +546,6 @@
     <string name="feed_update_threshold_summary">Tid siden sidste opdatering for at et abonnoment bliver forældet - %s</string>
     <string name="feed_update_threshold_option_always_update">Altid opdater</string>
     <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
-    <string name="feed_toggle_show_played_items">Vis sete elementer</string>
     <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land.</string>
     <string name="video_detail_by">Af %s</string>
     <string name="remove_watched_popup_warning">Videoer, der er blevet set før og efter, at de er blevet tilføjet til spillelisten, vil blive fjernet.
@@ -709,7 +704,6 @@
     <string name="app_update_unavailable_toast">Du kører den nyeste version af NewPipe</string>
     <string name="new_seek_duration_toast">På grund af ExoPlayer-begrænsninger blev søgetiden sat til %d sekunder</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Vis kun ikke-grupperede abonnementer</string>
-    <string name="feed_toggle_hide_played_items">Skjul sete elementer</string>
     <string name="playlist_page_summary">Side med spillelister</string>
     <string name="select_night_theme_toast">Du kan vælge dit foretrukne nattema nedenfor</string>
     <string name="night_theme_summary">Vælg dit foretrukne nattema - %s</string>

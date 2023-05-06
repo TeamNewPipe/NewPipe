@@ -334,10 +334,6 @@
     <string name="users">Erabiltzaileak</string>
     <string name="unsubscribe">Kendu harpidetza</string>
     <string name="tab_choose">Hautatu fitxa</string>
-    <string name="volume_gesture_control_title">Keinuen bidezko bolumenaren kontrola</string>
-    <string name="volume_gesture_control_summary">Erabili keinuak erreproduzigailuaren bolumena kontrolatzeko</string>
-    <string name="brightness_gesture_control_title">Keinuen bidezko distiraren kontrola</string>
-    <string name="brightness_gesture_control_summary">Erabili keinuak erreproduzigailuaren distira kontrolatzeko</string>
     <string name="settings_category_updates_title">Eguneraketak</string>
     <string name="events">Gertaerak</string>
     <string name="file_deleted">Fitxategia ezabatu da</string>
@@ -628,7 +624,6 @@
     <string name="metadata_privacy">Pribatutasuna</string>
     <string name="service_provides_reason">%s arrazoi hau ematen du:</string>
     <string name="account_terminated">Kontua ezabatu da</string>
-    <string name="feed_toggle_show_played_items">Bistako elementuak erakustea</string>
     <string name="feed_load_error_fast_unknown">Jario azkarrak ez du honi buruz informazio gehiagorik ematen.</string>
     <string name="metadata_age_limit">Adin muga</string>
     <string name="metadata_thumbnail_url">Miniaturaren URL-a</string>
@@ -715,7 +710,6 @@
     <string name="feed_toggle_show_future_items">Erakutsi etorkizuneko elementuak</string>
     <string name="select_quality_external_players">Hautatu kanpoko erreproduzigailuen kalitatea</string>
     <string name="feed_toggle_hide_future_items">Ezkutatu etorkizuneko elementuak</string>
-    <string name="feed_toggle_hide_played_items">Ezkutatu ikusitako elementuak</string>
     <string name="duplicate_in_playlist">Grisez idatzitako erreprodukzio-zerrendek jada badute elementu hau.</string>
     <string name="faq">Webgunean ikusi</string>
     <string name="msg_failed_to_copy">Akatsa arbelera kopiatzean</string>

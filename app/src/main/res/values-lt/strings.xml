@@ -341,10 +341,6 @@
     <string name="settings_category_clear_data_title">Išvalyti duomenis</string>
     <string name="enable_playback_state_lists_summary">Sąraše rodyti atkūrimo vietos indikatorių</string>
     <string name="enable_playback_state_lists_title">Vietos sąraše</string>
-    <string name="brightness_gesture_control_summary">Naudoti gestus ryškumo valdymui</string>
-    <string name="brightness_gesture_control_title">Ryškumo gesto valdymas</string>
-    <string name="volume_gesture_control_summary">Naudoti gestus garsumo valdymui</string>
-    <string name="volume_gesture_control_title">Garsumo gesto valdymas</string>
     <string name="auto_queue_toggle">Auto eilė</string>
     <string name="auto_queue_summary">Tęsti atkūrimą į eilę pridedant susijusius srautus</string>
     <string name="auto_queue_title">Automatiškai pridėti sekantį į eilę</string>
@@ -637,7 +633,6 @@
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
     <string name="service_provides_reason">%s pateikia šią priežastį:</string>
     <string name="account_terminated">Paskyra anuliuota</string>
-    <string name="feed_toggle_show_played_items">Rodyti peržiūrėtus elementus</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
     <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.
 \n„NewPipe“ negalės įkelti šio kanalo ateityje.
@@ -726,7 +721,6 @@
     <string name="selected_stream_external_player_not_supported">Pasirinktos transliacijos išoriniai grotuvai nepalaiko</string>
     <string name="no_audio_streams_available_for_external_players">Išoriniams grotuvams garso transliacijos nepasiekiamos</string>
     <string name="select_quality_external_players">Pasirinkite kokybę skirtą išoriniams grotuvams</string>
-    <string name="feed_toggle_hide_played_items">Slėpti peržiūrėtus elementus</string>
     <string name="notifications_disabled">Pranešimai yra išjungti</string>
     <string name="progressive_load_interval_exoplayer_default">„ExoPlayer“ numatytasis</string>
     <string name="unknown_quality">Nežinoma kokybė</string>

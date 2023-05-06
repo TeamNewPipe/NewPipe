@@ -280,10 +280,6 @@
     <string name="show_hold_to_append_title">نمایش نکته «برای صف‌گذاری، نگه‌دارید»</string>
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
-    <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
-    <string name="volume_gesture_control_summary">از اشارات برای کنترل حجم صدا استفاده شود</string>
-    <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
-    <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
     <string name="info_labels">چی:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان اپ:\\nخدمت:\\nزمان GMT\\nپکیج:T:\\nنسخه:\\nنسخه‌اندروید:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
@@ -559,7 +555,6 @@
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
     <string name="high_quality_larger">کیفیت بالا (بزرگ‌تر)</string>
     <string name="comments_are_disabled">نظرها از کار افتاده‌اند</string>
-    <string name="feed_toggle_show_played_items">نمایش موارد دیده‌شده</string>
     <string name="feed_load_error">خطا در بار کردن خوراک</string>
     <string name="disable_media_tunneling_title">از کار انداختن تونل‌زنی رسانه</string>
     <string name="show_channel_details">نمایش جزییات کانال</string>
@@ -715,7 +710,6 @@
     <string name="progressive_load_interval_title">اندازهٔ دورهٔ بار کردن پخش</string>
     <string name="feed_toggle_show_future_items">نمایش موارد آینده</string>
     <string name="feed_toggle_hide_future_items">نهفتن موارد آینده</string>
-    <string name="feed_toggle_hide_played_items">نهفتن موارد دیده شده</string>
     <string name="faq_title">سوالات متداول</string>
     <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
     <string name="faq">نمایش در وبسایت</string>

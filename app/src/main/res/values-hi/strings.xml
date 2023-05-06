@@ -58,7 +58,7 @@
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2के/4के मे वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">कोडी मे चलाए</string>
-    <string name="kore_not_found">लापता Kode ऐप स्थापित करें\?</string>
+    <string name="kore_not_found">गैर- मौजूदा Kore ऐप स्थापित करें\?</string>
     <string name="show_play_with_kodi_title">\"कोडी मे चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
@@ -325,11 +325,7 @@
     <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
-    <string name="volume_gesture_control_title">ध्वनि नियंत्रण इशारा</string>
     <string name="enqueue">कतारबद्ध करें</string>
-    <string name="volume_gesture_control_summary">वीडियो प्लेयर की ध्वनि नियंत्रित करने के लिए इशारो का इस्तेमाल करे</string>
-    <string name="brightness_gesture_control_title">रोशनी स्तर नियंत्रण के इशारे</string>
-    <string name="brightness_gesture_control_summary">वीडियो चालक की चमक को नियंत्रित करने के लिए इशारो का इस्तेमाल करें</string>
     <string name="settings_category_updates_title">अपडेट</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>
     <string name="app_update_notification_channel_name">ऐप अपडेट अधिसूचना</string>
@@ -622,7 +618,6 @@
     <string name="crash_the_app">ऐप को क्रैश करें</string>
     <string name="metadata_category">श्रेणी</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
-    <string name="feed_toggle_show_played_items">देखे गए आइटम दिखाएं</string>
     <string name="metadata_thumbnail_url">थंमनेल यूआरएल</string>
     <string name="off">ऑफ़</string>
     <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>
@@ -663,7 +658,6 @@
     <string name="on">ऑन</string>
     <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
     <string name="feed_groups_header_title">चैनल समूह</string>
-    <string name="feed_toggle_hide_played_items">देखे गए आइटम छुपाएं</string>
     <string name="feed_toggle_hide_future_items">भविष्य आइटम छुपाएं</string>
     <string name="faq_title">कई बार पूछे प्रश्न</string>
     <string name="faq">वेबसाइट पर देखें</string>
@@ -741,4 +735,11 @@
     <string name="feed_show_hide_streams">स्ट्रीम दिखाएँ / छिपाएँ</string>
     <string name="feed_show_watched">पूरा देखा</string>
     <string name="feed_show_partially_watched">आंशिक रूप से देखा गया</string>
+    <string name="left_gesture_control_title">बाएँ इशारा क्रिया</string>
+    <string name="brightness">चमक</string>
+    <string name="volume">आवाज</string>
+    <string name="none">कोई नहीं</string>
+    <string name="left_gesture_control_summary">प्लेयर स्क्रीन के बाएँ आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_summary">प्लेयर स्क्रीन के दाहिने आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_title">दाएँ इशारा क्रिया</string>
 </resources>

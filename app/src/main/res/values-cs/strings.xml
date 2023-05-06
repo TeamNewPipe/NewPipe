@@ -337,10 +337,6 @@
     <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
     <string name="unsubscribe">Přestat odebírat</string>
     <string name="tab_choose">Zvolit panel</string>
-    <string name="volume_gesture_control_title">Ovládání hlasitosti gesty</string>
-    <string name="volume_gesture_control_summary">Používat gesta pro ovládání hlasitosti přehrávače</string>
-    <string name="brightness_gesture_control_title">Ovládání jasu gesty</string>
-    <string name="brightness_gesture_control_summary">Používat gesta pro ovládání jasu přehrávače</string>
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>
@@ -550,7 +546,7 @@
     <string name="never">Nikdy</string>
     <string name="wifi_only">Pouze na Wi-Fi</string>
     <string name="autoplay_summary">Automaticky zahájit přehrávání — %s</string>
-    <string name="title_activity_play_queue">Přehrát frontu</string>
+    <string name="title_activity_play_queue">Fronta přehravání</string>
     <string name="unsupported_url_dialog_message">Nelze rozpoznat zadanou adresu URL. Otevřít pomocí jiné aplikace\?</string>
     <string name="auto_queue_toggle">Automatické přehravání</string>
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
@@ -645,7 +641,6 @@
     <string name="off">Vypnuto</string>
     <string name="on">Zapnuto</string>
     <string name="tablet_mode_title">Režim tabletu</string>
-    <string name="feed_toggle_show_played_items">Zobrazit zhlédnuté položky</string>
     <string name="dont_show">Nezobrazovat</string>
     <string name="low_quality_smaller">Nízká kvalita (menší)</string>
     <string name="high_quality_larger">Vysoká kvalita (větší)</string>
@@ -727,7 +722,6 @@
     <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou k dispozici žádné videostreamy</string>
-    <string name="feed_toggle_hide_played_items">Skrýt zhlédnuté položky</string>
     <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
     <string name="faq_title">Často kladené dotazy</string>
     <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
@@ -753,4 +747,11 @@
     <string name="feed_show_upcoming">Nadcházející</string>
     <string name="remove_duplicates">Odstranit duplicity</string>
     <string name="remove_duplicates_message">Chcete odstranit všechny duplicitní streamy v tomto playlistu\?</string>
+    <string name="left_gesture_control_title">Akce levého gesta</string>
+    <string name="right_gesture_control_title">Akce pravého gesta</string>
+    <string name="volume">Hlasitost</string>
+    <string name="none">Žádné</string>
+    <string name="left_gesture_control_summary">Vyberte gesto pro levou polovinu obrazovky přehrávače</string>
+    <string name="brightness">Jas</string>
+    <string name="right_gesture_control_summary">Vyberte gesto pro pravou polovinu obrazovky přehrávače</string>
 </resources>

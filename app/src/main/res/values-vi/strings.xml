@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
     <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát bằng Kodi</string>
-    <string name="kore_not_found">Cài đặt ứng dụng Kode\?</string>
+    <string name="kore_not_found">Cài đặt ứng dụng Kodi\?</string>
     <string name="show_play_with_kodi_title">Hiện tùy chọn \"Phát bằng Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiện tùy chọn phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
@@ -329,10 +329,6 @@
     <string name="minimize_on_exit_popup_description">Thu nhỏ vào trình phát popup</string>
     <string name="unsubscribe">Hủy đăng ký</string>
     <string name="tab_choose">Chọn tab</string>
-    <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
-    <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh âm lượng</string>
-    <string name="brightness_gesture_control_title">Điều khiển độ sáng bằng cử chỉ</string>
-    <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh độ sáng</string>
     <string name="settings_category_updates_title">Cập nhật</string>
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
@@ -616,7 +612,6 @@
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
     <string name="service_provides_reason">%s cung cấp lý do này:</string>
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
-    <string name="feed_toggle_show_played_items">Hiện các mục đã xem</string>
     <string name="feed_load_error_fast_unknown">Chế độ nguồn dữ liệu nhanh không cung cấp thêm thông tin về cái này.</string>
     <string name="feed_load_error_terminated">Tài khoản của người này đã bị chấm dứt.
 \nNewPipe sẽ không thể tải nguồn dữ liệu này trong tương lai.
@@ -663,7 +658,7 @@
     <string name="feed_new_items">Mục thông báo mới</string>
     <string name="crash_the_player">Làm trình phát dừng</string>
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
-\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
+\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
     <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
@@ -706,7 +701,6 @@
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq">Xem trên website</string>
     <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
-    <string name="feed_toggle_hide_played_items">Ẩn các video đã xem</string>
     <string name="import_subscriptions_hint">Nhập hoặc xuất các kênh bạn đăng ký bằng cách nhấn nút 3 chấm ở góc trên màn hình</string>
     <string name="msg_failed_to_copy">Không thể sao chép vào khay nhớ tạm</string>
     <string name="playlist_add_stream_success_duplicate">Đã thêm khoảng thời gian %d trùng lặp (s)</string>
@@ -716,4 +710,13 @@
     <string name="app_update_available_notification_text">Nhấn để tải %s</string>
     <string name="fast_mode">Chế độ tia sét</string>
     <string name="duplicate_in_playlist">Danh sách này bị trùng lặp.</string>
+    <string name="ignore_hardware_media_buttons_summary">Hữu ích trong trường hợp phím bấm âm lượng trên tai nghe hoặc thiết bị của bạn bị hỏng</string>
+    <string name="ignore_hardware_media_buttons_title">Không nhận phím điều khiển âm lượng vật lý</string>
+    <string name="remove_duplicates">Loại bỏ mục trùng lặp</string>
+    <string name="remove_duplicates_title">Loại bỏ mục trùng lặp\?</string>
+    <string name="remove_duplicates_message">Bạn có muốn loại bỏ tất cả các nguồn trùng nhau trong danh sách phát này\?</string>
+    <string name="feed_show_hide_streams">Hiện/Ẩn nguồn phát</string>
+    <string name="feed_hide_streams_title">Hiện các nguồn phát sau</string>
+    <string name="feed_show_watched">Đã xem xong</string>
+    <string name="feed_show_partially_watched">Đã xem 1 phần</string>
 </resources>

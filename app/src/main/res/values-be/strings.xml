@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Націсніце «Пошук», каб пачаць.</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы прайгравальнік не знойдзены. Усталяваць VLC\?</string>
-    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC).</string>
+    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC каб прайграць).</string>
     <string name="install">Усталяваць</string>
     <string name="cancel">Скасаваць</string>
     <string name="open_in_browser">Адкрыць у браўзеры</string>
@@ -338,10 +338,6 @@
     <string name="minimize_on_exit_popup_description">Плэер у акне</string>
     <string name="unsubscribe">Адпісацца</string>
     <string name="tab_choose">Абярыце ўкладку</string>
-    <string name="volume_gesture_control_title">Жэст гучнасці</string>
-    <string name="volume_gesture_control_summary">Мяняць гучнасць плэера жэстамі</string>
-    <string name="brightness_gesture_control_title">Жэст яркасці</string>
-    <string name="brightness_gesture_control_summary">Мяняць яркасць плэера жэстамі</string>
     <string name="settings_category_updates_title">Абнаўленні</string>
     <string name="file_deleted">Файл выдалены</string>
     <string name="app_update_notification_channel_name">Апавяшчэнне аб абнаўленні праграмы</string>
@@ -503,8 +499,6 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
     <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
-    <string name="feed_toggle_show_played_items">Паказаць прагледжаныя матэрыялы</string>
-    <string name="feed_toggle_hide_played_items">Схаваць прагледжаныя матэрыялы</string>
     <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
     <string name="night_theme_summary">Выберыце ўлюбёную начную тэму - %s</string>
     <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>
@@ -765,4 +759,11 @@
     <string name="metadata_privacy">Прыватнасць</string>
     <string name="metadata_language">Мова</string>
     <string name="metadata_support">Падтрымка</string>
+    <string name="left_gesture_control_title">Дзеянне левага жэсту</string>
+    <string name="right_gesture_control_title">Дзеянне правага жэсту</string>
+    <string name="brightness">Яркасць</string>
+    <string name="none">Нічога</string>
+    <string name="left_gesture_control_summary">Выбраць жэст для левай часткі экрана прайгравання</string>
+    <string name="volume">Гук</string>
+    <string name="right_gesture_control_summary">Выбраць жэст для правай часткі экрана прайгравання</string>
 </resources>

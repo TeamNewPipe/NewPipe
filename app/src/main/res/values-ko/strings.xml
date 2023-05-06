@@ -318,10 +318,6 @@
     <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 화질 제한</string>
     <string name="unsubscribe">구독 취소</string>
     <string name="tab_choose">탭 선택</string>
-    <string name="volume_gesture_control_title">제스처 음량 조작</string>
-    <string name="volume_gesture_control_summary">제스처를 사용하여 플레이어의 볼륨 제어</string>
-    <string name="brightness_gesture_control_title">제스처 밝기 조작</string>
-    <string name="brightness_gesture_control_summary">제스처를 사용하여 플레이어의 밝기 제어</string>
     <string name="settings_category_updates_title">업데이트</string>
     <string name="tracks">트랙</string>
     <string name="users">사용자</string>
@@ -595,7 +591,6 @@
     <string name="recaptcha_solve">해결</string>
     <string name="show_thumbnail_summary">잠금 화면 배경과 알림 모두에 썸네일 사용</string>
     <string name="feed_group_dialog_empty_selection">선택한 구독이 없습니다</string>
-    <string name="feed_toggle_show_played_items">시청 항목 표시</string>
     <string name="auto_queue_toggle">자동 대기열에 추가</string>
     <plurals name="download_finished_notification">
         <item quantity="other">%s 다운로드 완료</item>
@@ -702,7 +697,6 @@
     <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다.
 \n
 \n이후 버전에서 지원될 예정입니다.</string>
-    <string name="feed_toggle_hide_played_items">감시한 항목 숨기기</string>
     <string name="feed_toggle_hide_future_items">향후 항목 숨기기</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="faq_title">자주 묻는 질문</string>

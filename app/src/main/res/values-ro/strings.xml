@@ -204,7 +204,7 @@
     <string name="import_data_title">Importați baza de date</string>
     <string name="export_data_title">Exportați baza de date</string>
     <string name="import_data_summary">Suprascrie istoricul, abonamentele, listele de redare și (opțional) setările curente</string>
-    <string name="export_data_summary">Exportează istoricul, abonamentele, playlist-urile și setările</string>
+    <string name="export_data_summary">Exportați istoricul, abonamentele, listele de redare și setările</string>
     <string name="player_stream_failure">Nu a putut reda acest flux</string>
     <string name="player_unrecoverable_failure">A apărut o eroare irecuperabilă a player-ului</string>
     <string name="player_recoverable_failure">Se recuperează din eroarea player-ului</string>
@@ -277,10 +277,6 @@
     <string name="decline">Refuzați</string>
     <string name="unsubscribe">Dezabonare</string>
     <string name="tab_choose">Alegeți fila</string>
-    <string name="volume_gesture_control_title">Controlul prin gesturi al volumului</string>
-    <string name="volume_gesture_control_summary">Utilizați gesturi pentru a controla volumul</string>
-    <string name="brightness_gesture_control_title">Controlul prin gesturi a luminozității</string>
-    <string name="brightness_gesture_control_summary">Utilizați gesturi pentru a controla luminozitatea</string>
     <string name="settings_category_updates_title">Actualizări</string>
     <string name="events">Evenimente</string>
     <string name="file_deleted">Fișier șters</string>
@@ -638,7 +634,6 @@
     <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar link-urile să nu poată fi accesate în modul de selecție.</string>
     <string name="service_provides_reason">%s oferă acest motiv:</string>
     <string name="account_terminated">Contul a fost închis</string>
-    <string name="feed_toggle_show_played_items">Afișați elementele vizionate</string>
     <string name="feed_load_error_fast_unknown">Modul rapid nu furnizează mai multe informații în acest sens.</string>
     <string name="feed_load_error_terminated">Contul autorului a fost închis.
 \nNewPipe nu va mai putea încărca acest flux în viitor.
@@ -727,15 +722,14 @@
     <string name="unknown_quality">Calitate necunoscută</string>
     <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare de redare</string>
     <string name="feed_toggle_show_future_items">Afișați elementele din viitor</string>
-    <string name="feed_toggle_hide_played_items">Ascunde elementele vizionate</string>
     <string name="feed_toggle_hide_future_items">Ascunde elementele din viitor</string>
-    <string name="faq">Vezi pe website</string>
+    <string name="faq">Vedeți pe website</string>
     <string name="faq_description">Dacă întâmpinați probleme cu utilizarea aplicației, nu uitați să consultați aceste răspunsuri la întrebări frecvente!</string>
     <string name="faq_title">Întrebări frecvente</string>
-    <string name="sort">Sortează</string>
+    <string name="sort">Sortare</string>
     <string name="fast_mode">Modul rapid</string>
     <string name="import_subscriptions_hint">Importați sau exportați abonamente din meniul cu 3 puncte</string>
-    <string name="app_update_unavailable_toast">Rulați cea mai recentă versiune NewPipe</string>
+    <string name="app_update_unavailable_toast">Folosiți cea mai recentă versiune NewPipe</string>
     <string name="app_update_available_notification_text">Atingeți pentru a descărca %s</string>
     <string name="night_theme_available">Această opțiune este disponibilă numai dacă %s este selectată ca temă</string>
     <string name="card">Cartelă</string>
@@ -743,11 +737,11 @@
     <string name="unset_playlist_thumbnail">Dezactivare miniatură permanentă</string>
     <string name="duplicate_in_playlist">Listele de redare care colorate în gri conțin deja acest element.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicat adăugat de %d ori</string>
-    <string name="ignore_hardware_media_buttons_title">Ignoră evenimentele butonului media hardware</string>
-    <string name="ignore_hardware_media_buttons_summary">Util, de exemplu, dacă utilizezi o cască cu butoane fizice defecte</string>
-    <string name="remove_duplicates_message">Dorești să elimini toate fluxurile dublate din această listă de redare\?</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorați evenimentele butonului media hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Util, de exemplu, dacă utilizați o cască cu butoane fizice defecte</string>
+    <string name="remove_duplicates_message">Doriți să eliminați toate fluxurile dublate din această listă de redare\?</string>
     <string name="remove_duplicates">Eliminare dubluri</string>
-    <string name="remove_duplicates_title">Elimini dublurile\?</string>
+    <string name="remove_duplicates_title">Eliminați dublurile\?</string>
     <string name="feed_hide_streams_title">Afișează următoarele fluxuri</string>
     <string name="feed_show_hide_streams">Afișare/Ascundere fluxuri</string>
     <string name="feed_show_watched">Vizionat complet</string>

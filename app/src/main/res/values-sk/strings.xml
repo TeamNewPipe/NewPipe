@@ -337,10 +337,6 @@
     <string name="minimize_on_exit_popup_description">Prehrávať v okne</string>
     <string name="unsubscribe">Zrušiť odber</string>
     <string name="tab_choose">Zvoliť panel</string>
-    <string name="volume_gesture_control_title">Ovládanie hlasitosti gestom</string>
-    <string name="volume_gesture_control_summary">Používať gestá pre ovládanie hlasitosti</string>
-    <string name="brightness_gesture_control_title">Ovládanie jasu gestom</string>
-    <string name="brightness_gesture_control_summary">Použivať gestá pre ovládanie jasu</string>
     <string name="settings_category_updates_title">Aktualizácie</string>
     <string name="events">Udalosti</string>
     <string name="file_deleted">Súbor vymazaný</string>
@@ -647,7 +643,6 @@
     <string name="on">Zapnuté</string>
     <string name="tablet_mode_title">Režim tabletu</string>
     <string name="detail_heart_img_view_description">Obľúbené autorom</string>
-    <string name="feed_toggle_show_played_items">Zobrazovať pozreté položky</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s sťahovanie zmazané</item>
         <item quantity="few">%1$s sťahovania zmazané</item>
@@ -727,7 +722,6 @@
     <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
     <string name="unknown_quality">Neznáma kvalita</string>
     <string name="feed_toggle_show_future_items">Zobraziť budúce položky</string>
-    <string name="feed_toggle_hide_played_items">Skryť videné položky</string>
     <string name="feed_toggle_hide_future_items">Skryť nasledujúce položky</string>
     <string name="faq_title">Často kladené otázky</string>
     <string name="faq">Pozrieť na webovej stránke</string>

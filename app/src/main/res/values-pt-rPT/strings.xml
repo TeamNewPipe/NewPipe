@@ -71,7 +71,6 @@
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as subscrições</string>
     <string name="downloads">Transferências</string>
     <string name="feed_processing_message">A processar…</string>
-    <string name="volume_gesture_control_title">Gestos para controlo de volume</string>
     <string name="restricted_video">Este vídeo está restringido a idades.
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
@@ -242,7 +241,6 @@
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="error_report_button_text">Reportar por e-mail</string>
     <string name="tab_choose">Escolher separador</string>
-    <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
     <string name="grid">Grelha</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
@@ -257,7 +255,6 @@
     <string name="preferred_player_fetcher_notification_title">A obter informação…</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura da lista de reprodução</string>
-    <string name="brightness_gesture_control_title">Gestos para controlo de brilho</string>
     <string name="drawer_open">Abrir menu</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscritor</item>
@@ -477,7 +474,6 @@
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="drawer_close">Fechar menu</string>
-    <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
     <string name="remove_watched">Remover visualizados</string>
     <string name="settings_file_replacement_character_title">Carácter de substituição</string>
     <string name="video">Vídeo</string>
@@ -637,7 +633,6 @@
     <string name="description_select_note">Agora pode selecionar o texto na descrição. Note que a página pode cintilar e as ligações podem não ser clicáveis enquanto estiver no modo de seleção.</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
-    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
     <string name="feed_load_error_fast_unknown">O modo de feed rápido não fornece mais informações sobre isto.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.
 \nNewPipe não será capaz de carregar este feed no futuro.
@@ -727,7 +722,6 @@
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
-    <string name="feed_toggle_hide_played_items">Ocultar itens reproduzidos</string>
     <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq_description">Se tem problemas a usar a app, veja estas respostas para perguntas frequentes!</string>
@@ -753,4 +747,11 @@
     <string name="feed_show_upcoming">Proximamente</string>
     <string name="remove_duplicates_title">Remover duplicados\?</string>
     <string name="remove_duplicates_message">Quer remover todos os fluxos duplicados nesta lista de reprodução\?</string>
+    <string name="left_gesture_control_title">Ação de gesto de esquerda</string>
+    <string name="right_gesture_control_title">Ação do gesto correto</string>
+    <string name="brightness">Luminosidade</string>
+    <string name="volume">Volume</string>
+    <string name="none">Nenhum</string>
+    <string name="left_gesture_control_summary">Escolher gesto para metade esquerda do ecrã do reprodutor</string>
+    <string name="right_gesture_control_summary">Escolher gesto para metade direita do ecrã do reprodutor</string>
 </resources>

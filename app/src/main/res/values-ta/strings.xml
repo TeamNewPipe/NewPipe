@@ -157,10 +157,6 @@
     <string name="error_occurred_detail">ஒரு பிழை நிகழ்ந்தது: %1$s</string>
     <string name="tracks">காணொளிக் கோப்புகள்</string>
     <string name="tab_choose">பக்கத்தை தேர்வு செய்</string>
-    <string name="volume_gesture_control_title">சத்தக் கட்டுப்பாடு செய்கை</string>
-    <string name="volume_gesture_control_summary">இயக்கிச் சத்தத்தைக் கட்டுப்படுத்த சைகையைப் பயன்படுத்து</string>
-    <string name="brightness_gesture_control_title">வெளிச்ச கட்டுப்பாடு செய்கை</string>
-    <string name="brightness_gesture_control_summary">இயக்கி ஒளிர்வைக் கட்டுப்படுத்த சைகையைப் பயன்படுத்து</string>
     <string name="settings_category_updates_title">புதுப்பித்தல்கள்</string>
     <string name="file_deleted">கோப்பு அழிக்கப்பட்டது</string>
     <string name="app_update_notification_channel_name">செயலி புதுப்பித்தல் அறிவிப்பு</string>

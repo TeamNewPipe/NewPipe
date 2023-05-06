@@ -332,10 +332,6 @@
     <string name="settings_category_clear_data_title">Adatok törlése</string>
     <string name="enable_playback_state_lists_summary">Lejátszási pozíciók megjelenítése a listákban</string>
     <string name="enable_playback_state_lists_title">Pozíciók a listákban</string>
-    <string name="brightness_gesture_control_summary">Gesztusok használata a fényerő szabályozásához</string>
-    <string name="brightness_gesture_control_title">Fényerő gesztus</string>
-    <string name="volume_gesture_control_summary">Gesztusok használata a lejátszó hangerejének szabályzásához</string>
-    <string name="volume_gesture_control_title">Hangerő gesztus</string>
     <string name="downloads_storage_ask_summary">Meg fogja kérdezni, hogy hova mentse el az egyes letöltéseket.
 \nEngedélyezze a rendszermappa-választót (SAF), ha külső SD-kártyára akar letölteni</string>
     <string name="downloads_storage_ask_title">Kérdezze meg, hova töltse le</string>
@@ -629,7 +625,6 @@
     <string name="seekbar_preview_thumbnail_title">Tekerősáv bélyegkép-előnézete</string>
     <string name="high_quality_larger">Magas minőségű (nagyobb)</string>
     <string name="feed_load_error">Hiba a lista betöltésekor</string>
-    <string name="feed_toggle_show_played_items">Megnézett elemek megjelenítése</string>
     <string name="metadata_language">Nyelv</string>
     <string name="metadata_support">Támogatás</string>
     <string name="open_website_license">Weboldal megnyitása</string>
@@ -720,7 +715,6 @@
     <string name="faq">Megtekintés a weboldalon</string>
     <string name="sort">Rendezés</string>
     <string name="faq_description">Ha problémája van az alkalmazás használatával, akkor nézze meg az ezekre a gyakori kérdésekre adott válaszokat!</string>
-    <string name="feed_toggle_hide_played_items">Megnézett elemek elrejtése</string>
     <string name="fast_mode">Gyors mód</string>
     <string name="import_subscriptions_hint">Feliratkozások importálása vagy exportálása a 3 pontos menüből</string>
     <string name="app_update_unavailable_toast">Ön a Newpipe legfrissebb verzióját futtatja</string>

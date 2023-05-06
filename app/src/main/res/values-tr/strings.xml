@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için büyütece dokun.</string>
+    <string name="main_bg_subtitle">Başlamak için büyütece dokunun.</string>
     <string name="upload_date_text">%1$s tarihinde yayınlandı</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC kurulsun mu\?</string>
-    <string name="install">Yükle</string>
+    <string name="install">Kur</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
@@ -330,10 +330,6 @@
     <string name="users">Kullanıcılar</string>
     <string name="unsubscribe">Abonelikten çık</string>
     <string name="tab_choose">Sekmeyi Seçin</string>
-    <string name="volume_gesture_control_title">Hareketli ses denetimi</string>
-    <string name="volume_gesture_control_summary">Oynatıcının sesini denetlemek için hareketleri kullan</string>
-    <string name="brightness_gesture_control_title">Hareketli parlaklık denetimi</string>
-    <string name="brightness_gesture_control_summary">Oynatıcının parlaklığını denetlemek için hareketleri kullan</string>
     <string name="settings_category_updates_title">Güncellemeler</string>
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama güncelleme bildirimi</string>
@@ -421,8 +417,8 @@
     <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
     <string name="no_one_watching">Kimse izlemiyor</string>
     <plurals name="watching">
-        <item quantity="one">%s izleyen</item>
-        <item quantity="other">%s izleyen</item>
+        <item quantity="one">%s izleyici</item>
+        <item quantity="other">%s izleyici</item>
     </plurals>
     <string name="no_one_listening">Kimse dinlemiyor</string>
     <plurals name="listening">
@@ -481,8 +477,8 @@
     <string name="feed_group_dialog_select_subscriptions">Abonelikleri seç</string>
     <string name="feed_group_dialog_empty_selection">Abonelik seçilmedi</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d seçildi</item>
-        <item quantity="other">%d seçildi</item>
+        <item quantity="one">%d öğe seçildi</item>
+        <item quantity="other">"%d öğe  seçildi"</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş grup adı</string>
     <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz\?</string>
@@ -634,7 +630,6 @@
     <string name="off">Kapat</string>
     <string name="on">Aç</string>
     <string name="tablet_mode_title">Tablet kipi</string>
-    <string name="feed_toggle_show_played_items">İzlenen ögeleri göster</string>
     <string name="seekbar_preview_thumbnail_title">Konum çubuğu küçük resim ön izlemesi</string>
     <string name="dont_show">Gösterme</string>
     <string name="low_quality_smaller">Düşük nitelik (küçük)</string>
@@ -683,8 +678,8 @@
     <string name="enable_streams_notifications_title">Yeni akış bildirimleri</string>
     <string name="notifications">Bildirimler</string>
     <plurals name="new_streams">
-        <item quantity="one">%s yeni akış</item>
-        <item quantity="other">%s yeni akış</item>
+        <item quantity="one">%s yeni yayın</item>
+        <item quantity="other">%s yeni yayın</item>
     </plurals>
     <string name="check_new_streams">Yeni akışları denetlemeyi çalıştır</string>
     <string name="settings_category_player_notification_title">Oynatıcı bildirimi</string>
@@ -714,7 +709,6 @@
     <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
     <string name="feed_toggle_show_future_items">Gelecekteki ögeleri göster</string>
     <string name="feed_toggle_hide_future_items">Gelecekteki ögeleri gizle</string>
-    <string name="feed_toggle_hide_played_items">İzlenen ögeleri gizle</string>
     <string name="faq_title">Sık Sorulan Sorular</string>
     <string name="faq">Web sitesinde görüntüle</string>
     <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
@@ -740,4 +734,8 @@
     <string name="feed_show_watched">Tamamen izlendi</string>
     <string name="feed_show_upcoming">Yaklaşan</string>
     <string name="feed_show_partially_watched">Kısmen izlendi</string>
+    <string name="brightness">Parlaklık</string>
+    <string name="volume">Ses düzeyi</string>
+    <string name="none">Hiçbiri</string>
+    <string name="left_gesture_control_summary">Parmağınızı ekranın sol yarısında kaydırırken ne yapılacağını seçin</string>
 </resources>

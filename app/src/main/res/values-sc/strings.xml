@@ -467,10 +467,6 @@
     <string name="enable_search_history_title">Cronologia de sas chircas</string>
     <string name="show_search_suggestions_summary">Issèbera sos consìgios de ammustrare in sas chircas</string>
     <string name="show_search_suggestions_title">Cussìgios de chirca</string>
-    <string name="brightness_gesture_control_summary">Imprea sos gestos pro controllare sa luminosidade de su riproduidore</string>
-    <string name="brightness_gesture_control_title">Gestos de controllu de sa luminosidade</string>
-    <string name="volume_gesture_control_summary">Imprea sos gestos pro controllare su volume de su riproduidore</string>
-    <string name="volume_gesture_control_title">Gestos de controllu de su volume</string>
     <string name="auto_queue_summary">Sighi a riproduire (chene ripetitziones) annanghende unu vìdeu correladu a sa lista</string>
     <string name="auto_queue_title">Annanghe in automàticu su flussu imbeniente a sa lista</string>
     <string name="metadata_cache_wipe_complete_notice">Memòria temporànea de sos metadatos iscarrigada</string>
@@ -635,7 +631,6 @@
     <string name="off">Istudadu</string>
     <string name="on">Allutu</string>
     <string name="tablet_mode_title">Modalidade tauledda</string>
-    <string name="feed_toggle_show_played_items">Ammustra sos elementos pompiados</string>
     <string name="dont_show">No ammustres</string>
     <string name="low_quality_smaller">Calidade bassa (prus minore)</string>
     <string name="high_quality_larger">Calidade arta (prus manna)</string>
@@ -714,7 +709,6 @@
     <string name="selected_stream_external_player_not_supported">Su flussu seletzionadu no est galu suportadu dae letores esternos</string>
     <string name="progressive_load_interval_title">Mannària de s\'intervallu de carrigamentu de sa riprodutzione</string>
     <string name="feed_toggle_show_future_items">Ammustra sos elementos imbenientes</string>
-    <string name="feed_toggle_hide_played_items">Cua sos elementos pompiados</string>
     <string name="feed_toggle_hide_future_items">Cua sos elementos imbenientes</string>
     <string name="faq_title">Preguntas fitianas</string>
     <string name="faq_description">Si ses tenende problemas impreende s\'aplicatzione assegura·ti de consultare custas rispostas a preguntas fitianas!</string>
@@ -740,4 +734,11 @@
     <string name="feed_show_watched">Bidu de su totu</string>
     <string name="feed_show_partially_watched">Bidu in parte</string>
     <string name="feed_show_upcoming">Luego</string>
+    <string name="left_gesture_control_title">Atzione de su gestu de manca</string>
+    <string name="right_gesture_control_title">Atzione de su gestu de destra</string>
+    <string name="volume">Volume</string>
+    <string name="left_gesture_control_summary">Issèbera unu gestu pro sa metade de manca de s\'ischermu de su riproduidore</string>
+    <string name="right_gesture_control_summary">Issèbera unu gestu pro sa metade de destra de s\'ischermu de su riproduidore</string>
+    <string name="brightness">Luminosidade</string>
+    <string name="none">Perunu</string>
 </resources>

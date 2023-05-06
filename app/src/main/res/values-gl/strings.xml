@@ -333,7 +333,6 @@
     <string name="minimize_on_exit_popup_description">Minimizar o reprodutor popup</string>
     <string name="local">Limitado</string>
     <string name="peertube_instance_add_https_only">Só son compatibles os URLs HTTPS</string>
-    <string name="volume_gesture_control_title">Control por xestos do volume</string>
     <string name="show_comments_summary">Desactiva para agochalos comentarios</string>
     <string name="enable_playback_resume_title">Retomar a reprodución</string>
     <string name="playlist_page_summary">Páxina das listas de reprodución</string>
@@ -454,7 +453,6 @@
     <string name="app_update_available_notification_title">A actualización de NewPipe está dispoñible!</string>
     <string name="auto">Automático</string>
     <string name="enable_playback_state_lists_summary">Mostra os indicadores de posición de reprodución nas listas</string>
-    <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>
     <string name="grid">Rede</string>
     <string name="list">Lista</string>
     <string name="list_view_mode">Modo de visualización da lista</string>
@@ -530,8 +528,6 @@
     <string name="settings_category_clear_data_title">Eliminar datos</string>
     <string name="enable_playback_state_lists_title">Posicións nas listas</string>
     <string name="enable_playback_resume_summary">Restaurar a última posición de reprodución</string>
-    <string name="brightness_gesture_control_title">Control do xesto de brillo</string>
-    <string name="volume_gesture_control_summary">Use xestos para controlalo volume do reprodutor</string>
     <string name="show_comments_title">Ensinalos comentarios</string>
     <string name="seek_duration_title">Duración da busca rápida cara a adiante / cara atrás</string>
     <string name="tab_choose">Elixir lapela</string>
@@ -606,7 +602,6 @@
     <string name="private_content">Este contido é privado, polo que non pode ser transmitido nin descarregado polo NewPipe.</string>
     <string name="no_app_to_open_intent">Non posúe ningunha aplicación para abrir isto</string>
     <string name="show_thumbnail_summary">Usar miniaturas para a pantalla de bloqueo e para as notificacións</string>
-    <string name="feed_toggle_show_played_items">Mostrar elementos vistos</string>
     <string name="comments_are_disabled">Os comentarios están desactivados</string>
     <string name="show_age_restricted_content_summary">Mostrar contido potencialmente non apto para menores porque ten unha limitación de idade (como +18)</string>
     <string name="notification_colorize_title">Definir cor da notificación</string>
@@ -715,7 +710,6 @@
     <string name="feed_toggle_show_future_items">Mostrar elementos próximos</string>
     <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
     <string name="feed_toggle_hide_future_items">Ocultar elementos próximos</string>
-    <string name="feed_toggle_hide_played_items">Ocultalos elementos xa ollados</string>
     <string name="faq">Ver na páxina web</string>
     <string name="faq_title">Preguntas máis frecuentes</string>
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>

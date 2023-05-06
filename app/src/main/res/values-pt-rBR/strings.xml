@@ -336,10 +336,6 @@
     <string name="users">Usuários</string>
     <string name="unsubscribe">Cancelar inscrição</string>
     <string name="tab_choose">Selecionar aba</string>
-    <string name="volume_gesture_control_title">Gesto para volume</string>
-    <string name="volume_gesture_control_summary">Use gestos para mudar volume do player</string>
-    <string name="brightness_gesture_control_title">Gesto para brilho</string>
-    <string name="brightness_gesture_control_summary">Use gestos para mudar brilho do player</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="events">Eventos</string>
@@ -645,7 +641,6 @@
     <string name="off">Desligado</string>
     <string name="on">Ligado</string>
     <string name="tablet_mode_title">Modo tablet</string>
-    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
@@ -728,7 +723,6 @@
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
     <string name="feed_toggle_show_future_items">Mostrar itens futuros</string>
     <string name="feed_toggle_hide_future_items">Ocultar itens futuros</string>
-    <string name="feed_toggle_hide_played_items">Ocultar itens assistidos</string>
     <string name="faq">Visualizar no site</string>
     <string name="faq_description">Se você está com problemas ao usar o aplicativo, confira estas respostas para perguntas comuns!</string>
     <string name="faq_title">Perguntas frequentes</string>
@@ -753,4 +747,11 @@
     <string name="feed_show_partially_watched">Parcialmente assistido</string>
     <string name="feed_show_upcoming">Em breve</string>
     <string name="feed_show_watched">Totalmente assistido</string>
+    <string name="left_gesture_control_summary">Escolha o gesto da mão esquerda da tela do jogador</string>
+    <string name="left_gesture_control_title">Ação do gesto esquerdo</string>
+    <string name="right_gesture_control_summary">Escolha o gesto da mão direita da tela do jogador</string>
+    <string name="brightness">Brilho</string>
+    <string name="volume">Volume</string>
+    <string name="none">Nenhum</string>
+    <string name="right_gesture_control_title">Ação do gesto direito</string>
 </resources>

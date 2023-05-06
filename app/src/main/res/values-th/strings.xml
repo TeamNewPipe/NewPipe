@@ -64,10 +64,6 @@
     <string name="metadata_cache_wipe_summary">ลบข้อมูลเว็บเพจที่แคชไว้ทั้งหมด</string>
     <string name="auto_queue_title">คิววีดีโอถัดไปโดยอัตโนมัติ</string>
     <string name="auto_queue_summary">ต่อท้ายวีดีโอที่เกี่ยวข้องโดยอัตโนมัติเมื่อเล่นถึงรายการสุดท้ายในกรณีที่ไม่ได้ตั้งให้เล่นซ้ำ</string>
-    <string name="volume_gesture_control_title">การควบคุมระดับเสียงด้วยท่าทาง</string>
-    <string name="volume_gesture_control_summary">ใช้ท่าทางสัมผัสเพื่อควบคุมระดับเสียงของเครื่องเล่น</string>
-    <string name="brightness_gesture_control_title">การควบคุมความสว่างด้วยท่าทาง</string>
-    <string name="brightness_gesture_control_summary">ใช้ท่าทางสัมผัสเพื่อควบคุมความสว่างของเครื่องเล่น</string>
     <string name="show_search_suggestions_title">คำแนะนำการค้นหา</string>
     <string name="show_search_suggestions_summary">แสดงคำแนะนำเมื่อทำการค้นหา</string>
     <string name="enable_search_history_title">ประวัติการค้นหา</string>

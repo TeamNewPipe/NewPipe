@@ -51,7 +51,7 @@
     <string name="content_not_available">Innholdet er utilgjengelig</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
-    <string name="error_report_button_text">Rapporter denne feilen via e-post</string>
+    <string name="error_report_button_text">Rapporter via e-post</string>
     <string name="error_snackbar_message">Beklager, noe gikk galt.</string>
     <string name="error_snackbar_action">Rapporter</string>
     <string name="what_device_headline">Info:</string>
@@ -334,10 +334,6 @@
     <string name="playback_reset">Tilbakestill</string>
     <string name="unsubscribe">Opphev abonnement</string>
     <string name="tab_choose">Velg fane</string>
-    <string name="volume_gesture_control_title">Håndvendingskontroll for lydstyrke</string>
-    <string name="volume_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lydstyrke</string>
-    <string name="brightness_gesture_control_title">Håndvendingskontroll for lysstyrke</string>
-    <string name="brightness_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lysstyrke</string>
     <string name="settings_category_updates_title">Oppdateringer</string>
     <string name="events">Hendelser</string>
     <string name="file_deleted">Fil slettet</string>
@@ -613,7 +609,6 @@
     <string name="description_select_enable">Skru på merking av tekst i beskrivelsen</string>
     <string name="service_provides_reason">%s oppgav denne grunnen:</string>
     <string name="account_terminated">Konto terminert</string>
-    <string name="feed_toggle_show_played_items">Vis avspilte elementer</string>
     <string name="feed_load_error_account_info">Kunne ikke laste inn informasjonskanal for «%s».</string>
     <string name="feed_load_error">Kunne ikke laste inn informasjonskanal</string>
     <string name="downloads_storage_use_saf_summary_api_29">Fra Android 10 er kun «lagringstilgangsrammeverk» støttet</string>
@@ -703,7 +698,6 @@
     <string name="streams_not_yet_supported_removed">Strømmer som ennå ikke er støttet av nedlasteren, vises ikke</string>
     <string name="select_quality_external_players">Velg kvalitet for eksterne spillere</string>
     <string name="feed_toggle_show_future_items">Vis fremtidige elementer</string>
-    <string name="feed_toggle_hide_played_items">Skjul viste elementer</string>
     <string name="no_video_streams_available_for_external_players">Ingen videostrømmer er tilgjengelige for eksterne spillere</string>
     <string name="unknown_format">Ukjent format</string>
     <string name="unknown_quality">Ukjent kvalitet</string>
@@ -731,4 +725,21 @@
     <string name="fast_mode">Hurtigmodus</string>
     <string name="duplicate_in_playlist">Spillelistene som er utgrået inneholder allerede dette elementet.</string>
     <string name="playlist_add_stream_success_duplicate">Duplikat lagt til %d gang(er)</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorer enhetens fysiske knapper</string>
+    <string name="brightness">Lysstyrke</string>
+    <string name="left_gesture_control_summary">Velg håndvending for venstre halvdel av avspillerskjermen</string>
+    <string name="feed_show_watched">Fullført</string>
+    <string name="right_gesture_control_summary">Velg håndvending for høyre halvdel av avspillerskjermen</string>
+    <string name="none">Ingen</string>
+    <string name="remove_duplicates">Fjern duplikater</string>
+    <string name="remove_duplicates_message">Fjern alle duplikatstrømmer i denne spillelisten\?</string>
+    <string name="feed_show_upcoming">Kommende</string>
+    <string name="left_gesture_control_title">Venstre håndvendingshandling</string>
+    <string name="right_gesture_control_title">Høyre håndvendingshandling</string>
+    <string name="volume">Lydstyrke</string>
+    <string name="remove_duplicates_title">Fjern duplikater\?</string>
+    <string name="feed_show_hide_streams">Vis/skjul strømmer</string>
+    <string name="feed_show_partially_watched">Delvis sett</string>
+    <string name="ignore_hardware_media_buttons_summary">Nyttig hvis hodsettet ditt har knapper som fungerer dårlig</string>
+    <string name="feed_hide_streams_title">Vis følgende strømmer</string>
 </resources>

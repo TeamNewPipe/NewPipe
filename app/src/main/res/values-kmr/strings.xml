@@ -228,10 +228,6 @@
     <string name="enable_search_history_title">Dîroka lêgerînê</string>
     <string name="show_search_suggestions_summary">Dema ku lêgerînê pêşniyaran nîşan bidin</string>
     <string name="show_search_suggestions_title">Pêşniyarên lêgerînê</string>
-    <string name="brightness_gesture_control_summary">Tevgerên bikar bînin ku ronahiya lîstikvan kontrol bikin</string>
-    <string name="brightness_gesture_control_title">Kontrola tevgera ronahiyê</string>
-    <string name="volume_gesture_control_summary">Tevgerên bikar bînin da ku hêjmara lîstikvan kontrol bikin</string>
-    <string name="volume_gesture_control_title">Kontrola tevgera deng</string>
     <string name="auto_queue_toggle">Rêzeya-otomatîkî</string>
     <string name="auto_queue_summary">Bi pêvekirina kanalek pêwendîdar rêza lîstikê ya bidawîkirina (ne-dubare) bidomînin</string>
     <string name="auto_queue_title">Çemê din ê dixwe-dorê bike</string>

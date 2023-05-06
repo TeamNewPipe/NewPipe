@@ -328,10 +328,6 @@
     <string name="unsubscribe">Berhenti Berlanggan</string>
     <string name="tab_choose">Pilih Tab</string>
     <string name="theme_title">Tema</string>
-    <string name="volume_gesture_control_title">Kontrol gestur volume</string>
-    <string name="volume_gesture_control_summary">Gunakan gestur untuk mengontrol volume pemutar</string>
-    <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
-    <string name="brightness_gesture_control_summary">Gunakan gestur untuk mengontrol kecerahan pemutar</string>
     <string name="settings_category_updates_title">Pembaruan</string>
     <string name="events">Acara</string>
     <string name="file_deleted">Berkas dihapus</string>
@@ -625,7 +621,6 @@
     <string name="off">Nonaktif</string>
     <string name="on">Aktif</string>
     <string name="tablet_mode_title">Mode tablet</string>
-    <string name="feed_toggle_show_played_items">Tampilkan item yang sudah ditonton</string>
     <string name="dont_show">Jangan tampilkan</string>
     <string name="low_quality_smaller">Kualitas rendah (lebih kecil)</string>
     <string name="high_quality_larger">Kualitas tinggi (lebih besar)</string>
@@ -701,7 +696,6 @@
     <string name="unknown_format">Format tidak diketahui</string>
     <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
     <string name="feed_toggle_show_future_items">Tampilkan item mendatang</string>
-    <string name="feed_toggle_hide_played_items">Sembunyikan item yang telah ditonton</string>
     <string name="feed_toggle_hide_future_items">Sembunyikan item mendatang</string>
     <string name="faq_title">Pertanyaan yang sering diajukan</string>
     <string name="faq_description">Jika Anda mengalami masalah menggunakan aplikasi, pastikan untuk melihat jawaban untuk pertanyaan yang umum!</string>
@@ -727,4 +721,11 @@
     <string name="remove_duplicates_title">Hapus duplikat\?</string>
     <string name="remove_duplicates_message">Apakah Anda ingin menghapus semua saluran duplikat di daftar putar ini\?</string>
     <string name="feed_hide_streams_title">Tampilkan saluran berikut</string>
+    <string name="left_gesture_control_summary">Pilih gestur untuk bagian kiri dari layar pemutar</string>
+    <string name="left_gesture_control_title">Tindakan gestur kiri</string>
+    <string name="none">Tidak ada</string>
+    <string name="right_gesture_control_summary">Pilih gestur untuk bagian kanan dari layar pemutar</string>
+    <string name="right_gesture_control_title">Tindakan gestur kanan</string>
+    <string name="brightness">Kecerahan</string>
+    <string name="volume">Volume</string>
 </resources>

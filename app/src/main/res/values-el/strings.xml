@@ -96,7 +96,7 @@
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
-    <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
+    <string name="auto_queue_title">Αυτόματη προσθήκη της επόμενης ροής στην ουρά</string>
     <string name="auto_queue_summary">Συνέχεια της τρέχουσας (μη επαναλαμβανόμενης) ουράς μετά τη λήξη της, με την προσθήκη μιας σχετικής ροής</string>
     <string name="show_search_suggestions_summary">Επιλογή των προτάσεων που εμφανίζονται κατά την αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
@@ -334,10 +334,6 @@
     <string name="minimize_on_exit_popup_description">Ελαχιστοποίηση σε αναδυόμενο παράθυρο</string>
     <string name="unsubscribe">Απεγγραφή</string>
     <string name="tab_choose">Επιλογή Καρτέλας</string>
-    <string name="volume_gesture_control_title">Έλεγχος ήχου με χειρονομιές</string>
-    <string name="volume_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της έντασης του ήχου</string>
-    <string name="brightness_gesture_control_title">Έλεγχος φωτεινότητας με χειρονομίες</string>
-    <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο φωτεινότητας</string>
     <string name="settings_category_updates_title">Ενημερώσεις</string>
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
@@ -635,7 +631,6 @@
     <string name="off">Ανενεργό</string>
     <string name="on">Ενεργό</string>
     <string name="tablet_mode_title">Κατάσταση tablet</string>
-    <string name="feed_toggle_show_played_items">Εμφάνιση αναπαραχθέντων</string>
     <string name="comments_are_disabled">Τα σχόλια είναι απενεργοποιημένα</string>
     <string name="dont_show">Απόκρυψη</string>
     <string name="low_quality_smaller">Χαμηλή ποιότητα (μικρότερο)</string>
@@ -714,7 +709,6 @@
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
     <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
     <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών αντικειμένων</string>
-    <string name="feed_toggle_hide_played_items">Απόκρυψη θεαθέντων</string>
     <string name="feed_toggle_hide_future_items">Απόκρυψη μελλοντικών αντικειμένων</string>
     <string name="faq_title">Συχνές ερωτήσεις</string>
     <string name="faq">Προβολή στην ιστοσελίδα</string>
@@ -740,4 +734,11 @@
     <string name="remove_duplicates_message">Θέλετε να καταργήσετε όλες τις διπλότυπες ροές σε αυτήν τη λίστα αναπαραγωγής;</string>
     <string name="remove_duplicates">Αφαίρεση διπλοτύπων</string>
     <string name="feed_show_partially_watched">Θεαθέντα μερικώς</string>
+    <string name="left_gesture_control_summary">Επιλέξτε χειρονομία για το αριστερό μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="left_gesture_control_title">Ενέργεια αριστερής χειρονομίας</string>
+    <string name="right_gesture_control_summary">Επιλέξτε χειρονομία για το δεξί μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="right_gesture_control_title">Ενέργεια δεξιάς χειρονομίας</string>
+    <string name="brightness">Φωτεινότητα</string>
+    <string name="volume">Ένταση</string>
+    <string name="none">Καμία</string>
 </resources>

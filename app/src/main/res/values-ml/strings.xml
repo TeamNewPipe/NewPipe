@@ -325,10 +325,6 @@
     <string name="enable_search_history_title">അന്വേഷണ ചരിത്രം</string>
     <string name="show_search_suggestions_summary">സെർച്ച് ചെയ്യുമ്പോൾ നിർദ്ദേശങ്ങൾ തിരഞ്ഞെടുക്കുക</string>
     <string name="show_search_suggestions_title">സെർച്ച് നിർദ്ദേശങ്ങൾ</string>
-    <string name="brightness_gesture_control_summary">ആംഗ്യത്തിലൂടെ പ്ലയറിലെ പ്രകാശം നിയന്ത്രിക്കാം</string>
-    <string name="brightness_gesture_control_title">ആംഗ്യത്തിലൂടെ പ്രകാശം നിയന്ത്രിക്കുക</string>
-    <string name="volume_gesture_control_summary">ആംഗ്യം ഉപയോഗിച്ച് വോള്യം നിയന്ത്രിക്കാം</string>
-    <string name="volume_gesture_control_title">ആംഗ്യത്തിലൂടെ വോള്യം നിയന്ത്രിക്കുക</string>
     <string name="auto_queue_summary">തീരാറായ പ്ലേബാക്ക് ക്യൂവിനെ മറ്റൊരു അനുബന്ധ സ്‌ട്രീമുമായി കൂട്ടിച്ചേർത്ത് തുടരുക</string>
     <string name="auto_queue_title">അടുത്ത സ്ട്രീം ഓട്ടോക്യൂ ചെയ്യുക</string>
     <string name="metadata_cache_wipe_complete_notice">കാഷെ ആയ മെറ്റാഡേറ്റ തുടച്ചുനീക്കി</string>
@@ -627,7 +623,6 @@
     <string name="description_select_note">താക്കൾക് ഇപ്പോൾ ഡിസ്ക്രിപ്ഷൻ ബോക്സിലെ ടെക്സ്റ്റ്‌ തിരഞ്ഞെടുക്കാൻ സാധിക്കും. ശ്രെദ്ധിക്കുക സെലെക്ഷൻ മോഡിൽ പേജ് ചിലപ്പോൾ മിന്നുകയും ലിങ്കുകൾ ക്ലിക്ക് ചെയ്യാനാകാതെയും വന്നേക്കാം.</string>
     <string name="service_provides_reason">ഇതിന്റെ കാരണം %s നൽകും:</string>
     <string name="account_terminated">അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു</string>
-    <string name="feed_toggle_show_played_items">കണ്ട ഐറ്റംസ് കാണിക്കുക</string>
     <string name="feed_load_error_fast_unknown">ഫാസ്റ്റ് ഫീഡ് മോഡ് കൂടുതൽ വിവരങ്ങൾ നൽകില്ല.</string>
     <string name="feed_load_error_terminated">സൃഷ്ടാവിന്റെ അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു.
 \nഭാവിയിൽ ഫീഡ് ലോഡ് ചെയ്യാൻ ന്യൂ പൈപ്പിന് സാധിക്കില്ല.

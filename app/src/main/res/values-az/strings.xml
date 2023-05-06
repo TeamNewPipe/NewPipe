@@ -61,10 +61,6 @@
     <string name="enable_search_history_title">Axtarış tarixçəsi</string>
     <string name="show_search_suggestions_summary">Axtarış zamanı göstərmək üçün təklifləri seç</string>
     <string name="show_search_suggestions_title">Axtarış təklifləri</string>
-    <string name="brightness_gesture_control_summary">Oynadıcı parlaqlığını nizamlamaq üçün jestlər istifadə et</string>
-    <string name="brightness_gesture_control_title">Parlaqlıq jesti idarəetməsi</string>
-    <string name="volume_gesture_control_summary">Oynadıcı səsini nizamlamaq üçün jestlər istifadə et</string>
-    <string name="volume_gesture_control_title">Səs səviyyəsi jesti idarəetməsi</string>
     <string name="auto_queue_toggle">Avto-növbələ</string>
     <string name="auto_queue_title">Növbəti Yayımı Avto-növbələ</string>
     <string name="metadata_cache_wipe_complete_notice">Üst məlumat keşi silindi</string>
@@ -489,7 +485,6 @@
     <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb.
 \nNewPipe gələcəkdə bu axını yükləyə bilməyəcək.
 \nBu kanaldan abunəliyi çıxarmaq istəyirsiniz\?</string>
-    <string name="feed_toggle_show_played_items">Baxılan elementləri göstər</string>
     <string name="featured">Seçilmiş</string>
     <string name="drawer_close">Çəkməcəni Bağla</string>
     <string name="video_player">Video oynadıcı</string>
@@ -714,7 +709,6 @@
     <string name="unknown_quality">Naməlum keyfiyyət</string>
     <string name="progressive_load_interval_title">Oynatma yükləmə intervalı həcmi</string>
     <string name="feed_toggle_show_future_items">Gələcək elementləri göstər</string>
-    <string name="feed_toggle_hide_played_items">Baxılan elementləri gizlət</string>
     <string name="feed_toggle_hide_future_items">Gələcək elementləri gizlət</string>
     <string name="faq_description">Tətbiqi istifadə etməkdə çətinlik çəkirsinizsə, ümumi suallara bu cavabları yoxladığınıza əmin olun!</string>
     <string name="faq_title">Tez-tez soruşulan suallar</string>
@@ -740,4 +734,11 @@
     <string name="feed_show_partially_watched">Qismən baxılıb</string>
     <string name="remove_duplicates_message">Bu pleylistdəki bütün dublikat yayımları silmək istəyirsiniz\?</string>
     <string name="feed_show_upcoming">Yaxınlaşan</string>
+    <string name="left_gesture_control_title">Sol jest hərəkəti</string>
+    <string name="right_gesture_control_summary">Oynadıcı ekranının sağ yarısı üçün jest seç</string>
+    <string name="right_gesture_control_title">Sağ jest hərəkəti</string>
+    <string name="brightness">Parlaqlıq</string>
+    <string name="volume">Səs səviyyəsi</string>
+    <string name="none">Heç biri</string>
+    <string name="left_gesture_control_summary">Oynadıcı ekranının sol yarısı üçün jest seç</string>
 </resources>

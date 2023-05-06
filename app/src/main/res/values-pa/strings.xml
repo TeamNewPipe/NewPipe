@@ -332,10 +332,6 @@
     <string name="users">ਯੂਜ਼ਰਸ</string>
     <string name="unsubscribe">ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
     <string name="tab_choose">ਟੈਬ ਚੁਣੋ</string>
-    <string name="volume_gesture_control_title">ਆਵਾਜ਼ ਸ਼ਵਾਵਾਂ ਕੰਟਰੋਲ</string>
-    <string name="volume_gesture_control_summary">ਆਵਾਜ਼ ਕੰਟਰੋਲ ਕਰਨ ਲਈ ਸ਼ਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
-    <string name="brightness_gesture_control_title">ਸਕ੍ਰੀਨ ਲਾਈਟ ਸ਼ਵਾਵਾਂ ਕੰਟਰੋਲ</string>
-    <string name="brightness_gesture_control_summary">ਵੀਡੀਓ ਸਕ੍ਰੀਨ ਦੀ ਚਮਕ ਕੰਟਰੋਲ ਕਰਨ ਲਈ ਸ਼ਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="content_language_title">ਮੂਲ ਭਾਸ਼ਾ ਸਮੱਗਰੀ</string>
     <string name="settings_category_updates_title">ਅਪਡੇਟਾਂ</string>
     <string name="file_deleted">ਫਾਈਲ ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
@@ -647,7 +643,6 @@
     <string name="local_search_suggestions">ਖੋਜ ਦੇ ਸਥਾਨਕ ਸੁਝਾਅ</string>
     <string name="remote_search_suggestions">ਖੋਜ ਦੇ ਰਿਮੋਟ ਸੁਝਾਅ</string>
     <string name="start_main_player_fullscreen_title">ਮੁੱਖ ਪਲੇਅਰ ਪੂਰੀ ਸਕਰੀਨ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="feed_toggle_show_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਵਿਖਾਓ</string>
     <string name="progressive_load_interval_title">ਪਲੇਅਬੈਕ ਲੋਡ ਦਾ ਅੰਤਰਾਲ ਆਕਾਰ</string>
     <plurals name="new_streams">
         <item quantity="one">%s ਨਵੀਂ ਸਟਰੀਮ</item>
@@ -663,7 +658,6 @@
     <string name="show_error_snackbar">ਤਰੁੱਟੀ ਤੇ ਸਨੈਕਬਾਰ ਵਿਖਾਓ</string>
     <string name="feed_use_dedicated_fetch_method_summary">ਕੁਝ ਸੇਵਾਵਾਂ ਵਿੱਚ ਹੀ ਉਪਲੱਬਧ ਇਹ ਤਰੀਕਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਵਿੱਚ ਤੇਜ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ, ਪਰ ਕੁਝ ਗਿਣਤੀ ਦੀਆਂ ਹੀ ਆਈਟਮ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ ਉਹ ਵੀ ਅਕਸਰ ਬਿਨਾਂ ਪੂਰੀ ਜਾਣਕਾਰੀ( ਜਿਵੇਂ ਅਵਧੀ, ਸਟਰੀਮ ਦੀ ਕਿਸਮ, ਕੋਈ ਸਟਰੀਮ ਲਾਈਵ ਹੈ, ਨਹੀਂ ਦੱਸਦਾ)</string>
     <string name="soundcloud_go_plus_content">ਇਹ ਸਾਊਂਡਕਲਾਊਡ ਗੋ-ਪਲੱਸ ਟਰੈਕ ਹੈ, ਤੁਹਾਡੇ ਦੇਸ਼ ਵਿੱਚ ਇਹ ਸਟ੍ਰੀਮ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
-    <string name="feed_toggle_hide_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਲੁਕਾਓ</string>
     <string name="unknown_format">ਅਗਿਆਤ ਫਾਰਮੈਟ</string>
     <string name="unknown_quality">ਅਗਿਆਤ ਕੁਆਲਿਟੀ</string>
     <string name="feed_toggle_show_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਵਿਖਾਓ</string>
@@ -741,4 +735,11 @@
     <string name="feed_show_upcoming">ਆਗਾਮੀ</string>
     <string name="ignore_hardware_media_buttons_title">ਹਾਰਡਵੇਅਰ ਮੀਡੀਆ ਬਟਨ ਇਵੈਂਟਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕਰੋ</string>
     <string name="feed_show_hide_streams">ਸਟ੍ਰੀਮ ਵਿਖਾਓ/ਲੁਕਾਓ</string>
+    <string name="right_gesture_control_title">ਸੱਜੇ ਪਾਸੇ ਦੀ ਸੰਕੇਤ ਕਿਰਿਆ</string>
+    <string name="left_gesture_control_title">ਖੱਬੇ ਪਾਸੇ ਦੀ ਸੰਕੇਤ ਕਿਰਿਆ</string>
+    <string name="brightness">ਚਮਕ</string>
+    <string name="none">ਕੋਈ ਨਹੀਂ</string>
+    <string name="left_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਖੱਬੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
+    <string name="right_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਸੱਜੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
+    <string name="volume">ਆਵਾਜ਼</string>
 </resources>

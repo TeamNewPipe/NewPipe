@@ -327,10 +327,6 @@
     <string name="users">صارفین</string>
     <string name="unsubscribe">رکنیت چھوڑیں</string>
     <string name="tab_choose">ٹیب منتخب کریں</string>
-    <string name="volume_gesture_control_title">صوتی اشارہ کنٹرول</string>
-    <string name="volume_gesture_control_summary">پلیئر کی آواز کنٹرول کرنے کے لیے اشاروں کا استعمال کریں</string>
-    <string name="brightness_gesture_control_title">چمک کا متحرک کنٹرول</string>
-    <string name="brightness_gesture_control_summary">پلیئرکی چمک کو کنٹرول کرنے کیلئے اشاروں کا استعمال کریں</string>
     <string name="content_language_title">مشمولات کی طےشدہ زبان</string>
     <string name="settings_category_updates_title">تازہ کاریاں</string>
     <string name="file_deleted">فائل حذف ہوگئی</string>

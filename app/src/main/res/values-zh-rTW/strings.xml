@@ -328,10 +328,6 @@
     <string name="users">使用者</string>
     <string name="unsubscribe">取消訂閱</string>
     <string name="tab_choose">選擇分頁</string>
-    <string name="volume_gesture_control_title">音量手勢控制</string>
-    <string name="volume_gesture_control_summary">使用手勢控制播放器音量</string>
-    <string name="brightness_gesture_control_title">亮度手勢控制</string>
-    <string name="brightness_gesture_control_summary">使用手勢控制播放器亮度</string>
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">已刪除檔案</string>
     <string name="app_update_notification_channel_name">應用程式更新通知</string>
@@ -625,7 +621,6 @@
     <string name="off">關閉</string>
     <string name="on">開啟</string>
     <string name="tablet_mode_title">平板電腦模式</string>
-    <string name="feed_toggle_show_played_items">顯示已檢視的項目</string>
     <string name="comments_are_disabled">留言已停用</string>
     <string name="dont_show">不要顯示</string>
     <string name="low_quality_smaller">低品質（較小）</string>
@@ -702,7 +697,6 @@
     <string name="progressive_load_interval_title">播放載入間隔大小</string>
     <string name="feed_toggle_show_future_items">顯示未來項目</string>
     <string name="feed_toggle_hide_future_items">隱藏未來項目</string>
-    <string name="feed_toggle_hide_played_items">隱藏已觀看的項目</string>
     <string name="faq_title">常見問題</string>
     <string name="faq">在網站上檢視</string>
     <string name="sort">排序</string>
@@ -727,4 +721,11 @@
     <string name="feed_show_upcoming">即將到來</string>
     <string name="remove_duplicates">移除重複的</string>
     <string name="remove_duplicates_message">您想要移除所有在此播放清單中重複的串流？</string>
+    <string name="left_gesture_control_title">左側手勢動作</string>
+    <string name="right_gesture_control_title">右側手勢動作</string>
+    <string name="brightness">亮度</string>
+    <string name="volume">音量</string>
+    <string name="left_gesture_control_summary">為播放器畫面左側選擇手勢</string>
+    <string name="right_gesture_control_summary">為播放器畫面右側選擇手勢</string>
+    <string name="none">無</string>
 </resources>

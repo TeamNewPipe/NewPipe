@@ -337,10 +337,6 @@
     <string name="minimize_on_exit_popup_description">Ativar reprodutor \'popup\'</string>
     <string name="unsubscribe">Cancelar subscrição</string>
     <string name="tab_choose">Escolher separador</string>
-    <string name="volume_gesture_control_title">Gestos para controlo de volume</string>
-    <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
-    <string name="brightness_gesture_control_title">Gestos para controlo de brilho</string>
-    <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="file_deleted">Ficheiro eliminado</string>
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
@@ -618,7 +614,6 @@
     <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
-    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
     <string name="feed_load_error_fast_unknown">O modo de feed rápido não fornece mais informações sobre isto.</string>
     <string name="feed_load_error_terminated">A conta do autor foi encerrada.
 \nNewPipe não será capaz de carregar este feed no futuro.
@@ -727,7 +722,6 @@
     <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é suportada por reprodutores externos</string>
     <string name="feed_toggle_show_future_items">Mostrar artigos futuros</string>
     <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
-    <string name="feed_toggle_hide_played_items">Ocultar itens reproduzidos</string>
     <string name="feed_toggle_hide_future_items">Ocultar artigos futuros</string>
     <string name="faq_title">Perguntas frequentes</string>
     <string name="faq">Ver no site</string>
@@ -753,4 +747,11 @@
     <string name="feed_show_watched">Completamente visto</string>
     <string name="feed_hide_streams_title">Mostrar os seguintes vídeos</string>
     <string name="feed_show_partially_watched">Parcialmente visto</string>
+    <string name="left_gesture_control_title">Ação de gesto de esquerda</string>
+    <string name="right_gesture_control_title">Ação do gesto correto</string>
+    <string name="brightness">Luminosidade</string>
+    <string name="volume">Volume</string>
+    <string name="none">Nenhum</string>
+    <string name="left_gesture_control_summary">Escolher gesto para metade esquerda do ecrã do reprodutor</string>
+    <string name="right_gesture_control_summary">Escolher gesto para metade direita do ecrã do reprodutor</string>
 </resources>

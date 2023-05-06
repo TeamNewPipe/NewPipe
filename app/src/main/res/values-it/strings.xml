@@ -337,10 +337,6 @@
     <string name="users">Utenti</string>
     <string name="unsubscribe">Disiscriviti</string>
     <string name="tab_choose">Scegli scheda</string>
-    <string name="volume_gesture_control_title">Gesti controllo volume</string>
-    <string name="volume_gesture_control_summary">Utilizza i gesti per controllare il volume del lettore multimediale</string>
-    <string name="brightness_gesture_control_title">Gesti controllo luminosità</string>
-    <string name="brightness_gesture_control_summary">Utilizza i gesti per controllare la luminosità del lettore multimediale</string>
     <string name="settings_category_updates_title">Aggiornamenti</string>
     <string name="file_deleted">File eliminato</string>
     <string name="app_update_notification_channel_name">Notifiche per aggiornamenti dell\'app</string>
@@ -645,7 +641,6 @@
     <string name="off">Disattivata</string>
     <string name="on">Attiva</string>
     <string name="tablet_mode_title">Modalità tablet</string>
-    <string name="feed_toggle_show_played_items">Mostra elementi visti</string>
     <string name="dont_show">Non mostrare</string>
     <string name="low_quality_smaller">Qualità bassa (più piccola)</string>
     <string name="high_quality_larger">Qualità alta (più grande)</string>
@@ -727,7 +722,6 @@
     <string name="unknown_format">Formato sconosciuto</string>
     <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
     <string name="feed_toggle_show_future_items">Mostra elementi futuri</string>
-    <string name="feed_toggle_hide_played_items">Nascondi elementi visti</string>
     <string name="feed_toggle_hide_future_items">Nascondi elementi futuri</string>
     <string name="faq_title">Domande frequenti</string>
     <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>
@@ -750,7 +744,14 @@
     <string name="remove_duplicates_message">Rimuovere tutti gli elementi doppi di questa playlist\?</string>
     <string name="feed_hide_streams_title">Mostra gli elementi seguenti</string>
     <string name="feed_show_hide_streams">Mostra/Nascondi elementi</string>
-    <string name="feed_show_partially_watched">Visto parzialmente</string>
-    <string name="feed_show_watched">Visto completamente</string>
-    <string name="feed_show_upcoming">Prossimamente</string>
+    <string name="feed_show_partially_watched">Visti parzialmente</string>
+    <string name="feed_show_watched">Visti completamente</string>
+    <string name="feed_show_upcoming">Elementi futuri</string>
+    <string name="left_gesture_control_title">Azione gesto sinistro</string>
+    <string name="right_gesture_control_title">Azione gesto destro</string>
+    <string name="brightness">Luminosità</string>
+    <string name="volume">Volume</string>
+    <string name="left_gesture_control_summary">Scegli il gesto per la metà sinistra del riproduttore</string>
+    <string name="none">Nessuno</string>
+    <string name="right_gesture_control_summary">Scegli il gesto per la metà destra del riproduttore</string>
 </resources>
