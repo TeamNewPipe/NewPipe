@@ -570,15 +570,18 @@ public final class PlayQueueActivity extends AppCompatActivity
         switch (repeatMode) {
             case com.google.android.exoplayer2.Player.REPEAT_MODE_OFF:
                 queueControlBinding.controlRepeat
-                        .setImageResource(R.drawable.exo_controls_repeat_off);
+                        .setImageResource(com.google.android.exoplayer2.ui.R.drawable
+                                .exo_controls_repeat_off);
                 break;
             case com.google.android.exoplayer2.Player.REPEAT_MODE_ONE:
                 queueControlBinding.controlRepeat
-                        .setImageResource(R.drawable.exo_controls_repeat_one);
+                        .setImageResource(com.google.android.exoplayer2.ui.R.drawable
+                                .exo_controls_repeat_one);
                 break;
             case com.google.android.exoplayer2.Player.REPEAT_MODE_ALL:
                 queueControlBinding.controlRepeat
-                        .setImageResource(R.drawable.exo_controls_repeat_all);
+                        .setImageResource(com.google.android.exoplayer2.ui.R.drawable
+                                .exo_controls_repeat_all);
                 break;
         }
 

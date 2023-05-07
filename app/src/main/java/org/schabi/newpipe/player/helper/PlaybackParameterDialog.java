@@ -342,14 +342,16 @@ public class PlaybackParameterDialog extends DialogFragment {
         final Map<Boolean, TextView> pitchCtrlModeComponentMapping =
                 getPitchControlModeComponentMappings();
         pitchCtrlModeComponentMapping.forEach((v, textView) -> textView.setBackground(
-                resolveDrawable(requireContext(), R.attr.selectableItemBackground)));
+                resolveDrawable(requireContext(),
+                        androidx.appcompat.R.attr.selectableItemBackground)));
 
         // Mark the selected textview
         final TextView textView = pitchCtrlModeComponentMapping.get(semitones);
         if (textView != null) {
             textView.setBackground(new LayerDrawable(new Drawable[]{
                     resolveDrawable(requireContext(), R.attr.dashed_border),
-                    resolveDrawable(requireContext(), R.attr.selectableItemBackground)
+                    resolveDrawable(requireContext(),
+                            androidx.appcompat.R.attr.selectableItemBackground)
             }));
         }
 
@@ -415,14 +417,16 @@ public class PlaybackParameterDialog extends DialogFragment {
         // Bring all textviews into a normal state
         final Map<Double, TextView> stepSiteComponentMapping = getStepSizeComponentMappings();
         stepSiteComponentMapping.forEach((v, textView) -> textView.setBackground(
-                resolveDrawable(requireContext(), R.attr.selectableItemBackground)));
+                resolveDrawable(requireContext(),
+                        androidx.appcompat.R.attr.selectableItemBackground)));
 
         // Mark the selected textview
         final TextView textView = stepSiteComponentMapping.get(newStepSize);
         if (textView != null) {
             textView.setBackground(new LayerDrawable(new Drawable[]{
                     resolveDrawable(requireContext(), R.attr.dashed_border),
-                    resolveDrawable(requireContext(), R.attr.selectableItemBackground)
+                    resolveDrawable(requireContext(),
+                            androidx.appcompat.R.attr.selectableItemBackground)
             }));
         }
 
