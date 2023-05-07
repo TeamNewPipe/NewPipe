@@ -658,7 +658,6 @@
     <string name="auto_device_theme_title">자동 (장치 테마)</string>
     <string name="detail_pinned_comment_view_description">고정된 댓글</string>
     <string name="featured">추천</string>
-    <string name="feed_toggle_show_future_items">향후 항목 표시하기</string>
     <string name="unknown_format">알 수 없는 형식</string>
     <string name="select_quality_external_players">외부 플레이어의 품질 선택</string>
     <string name="no_video_streams_available_for_external_players">외부 플레이어에 사용할 수 있는 비디오 스트림이 없음</string>
@@ -697,7 +696,6 @@
     <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다.
 \n
 \n이후 버전에서 지원될 예정입니다.</string>
-    <string name="feed_toggle_hide_future_items">향후 항목 숨기기</string>
     <string name="faq_description">앱 사용에 문제가 있는 경우, 일반적인 질문에 대한 다음 답변을 확인하세요!</string>
     <string name="faq_title">자주 묻는 질문</string>
     <string name="faq">웹사이트에서 보기</string>

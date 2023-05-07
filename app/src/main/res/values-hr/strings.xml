@@ -720,8 +720,6 @@
     <string name="no_audio_streams_available_for_external_players">Nijedan stream audiosnimaka nije dostupan za vanjske playere</string>
     <string name="no_video_streams_available_for_external_players">Nijedan video stream nije dostupan za vanjske playere</string>
     <string name="select_quality_external_players">Odaberi kvalitetu za vanjske playere</string>
-    <string name="feed_toggle_show_future_items">Prikaži buduće stavke</string>
     <string name="no_appropriate_file_manager_message_android_10">Za ovu radnju nije pronađen odgovrajući upravljač datoteka.
 \nInstaliraj „Storage Access Framework” kompatibilni upravljač datoteka</string>
-    <string name="feed_toggle_hide_future_items">Sakrij buduće stavke</string>
 </resources>

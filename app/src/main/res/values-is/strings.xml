@@ -608,7 +608,6 @@
     <string name="delete_downloaded_files">Eyða sóttum skrám</string>
     <string name="confirm_prompt">Viltu hreinsa niðurhalsferilinn eða eyða öllum sóttum skrám\?</string>
     <string name="no_video_streams_available_for_external_players">Engir myndstraumar eru í boði fyrir ytri spilara</string>
-    <string name="feed_toggle_hide_future_items">Fela framtíðaratriði</string>
     <string name="clear_cookie_title">Eyða vefkökum reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Vefkökum reCAPTCHA eytt</string>
     <string name="progressive_load_interval_title">Stærð forhleðslu</string>
@@ -706,7 +705,6 @@
     <string name="selected_stream_external_player_not_supported">Valinn straumur er ekki studdur af ytri spilurum</string>
     <string name="no_audio_streams_available_for_external_players">Engir hljóðstraumar eru í boði fyrir ytri spilara</string>
     <string name="select_quality_external_players">Veldu gæði fyrir ytri spilara</string>
-    <string name="feed_toggle_show_future_items">Sýna framtíðaratriði</string>
     <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
     <string name="faq_title">Algengar spurningar</string>
     <string name="faq">Skoða á vefsíðu</string>

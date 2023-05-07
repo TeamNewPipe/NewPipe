@@ -708,8 +708,6 @@
     <string name="streams_not_yet_supported_removed">Streams, die der Downloader noch nicht unterstützt, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="feed_toggle_show_future_items">Zukünftige Elemente anzeigen</string>
-    <string name="feed_toggle_hide_future_items">Zukünftige Elemente ausblenden</string>
     <string name="faq">Auf der Webseite ansehen</string>
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>

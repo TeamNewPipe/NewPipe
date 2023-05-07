@@ -718,11 +718,9 @@
     <string name="no_audio_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné zvukové streamy</string>
     <string name="unknown_format">Neznámý formát</string>
     <string name="unknown_quality">Neznámá kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobrazit nadcházející položky</string>
     <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
     <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
     <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou k dispozici žádné videostreamy</string>
-    <string name="feed_toggle_hide_future_items">Skrýt nadcházející položky</string>
     <string name="faq_title">Často kladené dotazy</string>
     <string name="faq_description">Pokud máte potíže s používáním aplikace, přečtěte si tyto odpovědi na časté otázky!</string>
     <string name="faq">Zobrazit na webu</string>

@@ -721,8 +721,6 @@
     <string name="streams_not_yet_supported_removed">Streamy nepodporované sťahovačom sa nezobrazujú</string>
     <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
     <string name="unknown_quality">Neznáma kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobraziť budúce položky</string>
-    <string name="feed_toggle_hide_future_items">Skryť nasledujúce položky</string>
     <string name="faq_title">Často kladené otázky</string>
     <string name="faq">Pozrieť na webovej stránke</string>
     <string name="sort">Usporiadať</string>

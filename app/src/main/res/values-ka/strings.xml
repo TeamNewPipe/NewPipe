@@ -590,8 +590,6 @@
     <string name="select_quality_external_players">აირჩიეთ ხარისხი გარე დამკვრელებისთვის</string>
     <string name="unknown_format">უცნობი ფორმატი</string>
     <string name="unknown_quality">უცნობი ხარისხი</string>
-    <string name="feed_toggle_show_future_items">მომავალი ელემენტების ჩვენება</string>
-    <string name="feed_toggle_hide_future_items">სამომავლო ნივთების დამალვა</string>
     <string name="sort">დალაგება</string>
     <string name="peertube_instance_add_exists">ეგეთი უკვე არსებობს</string>
     <string name="peertube_instance_add_fail">ინსტანციის დადასტურება ვერ მოხერხდა</string>

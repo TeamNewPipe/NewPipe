@@ -695,8 +695,6 @@
     <string name="unknown_format">Định dạng không xác định (:P)</string>
     <string name="unknown_quality">Độ phân giải không xác định</string>
     <string name="progressive_load_interval_title">Kích thước khoảng thời gian tải</string>
-    <string name="feed_toggle_show_future_items">Hiện video đề xuất</string>
-    <string name="feed_toggle_hide_future_items">Ẩn video đề xuất</string>
     <string name="sort">Thể loại</string>
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq">Xem trên website</string>

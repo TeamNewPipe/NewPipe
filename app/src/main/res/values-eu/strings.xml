@@ -707,9 +707,7 @@
     <string name="no_video_streams_available_for_external_players">Ez dago kanpoko erreproduzigailu batengatik onartuta dagoen bideo jariorik</string>
     <string name="unknown_format">Formatu ezezaguna</string>
     <string name="unknown_quality">Kalitate ezezaguna</string>
-    <string name="feed_toggle_show_future_items">Erakutsi etorkizuneko elementuak</string>
     <string name="select_quality_external_players">Hautatu kanpoko erreproduzigailuen kalitatea</string>
-    <string name="feed_toggle_hide_future_items">Ezkutatu etorkizuneko elementuak</string>
     <string name="duplicate_in_playlist">Grisez idatzitako erreprodukzio-zerrendek jada badute elementu hau.</string>
     <string name="faq">Webgunean ikusi</string>
     <string name="msg_failed_to_copy">Akatsa arbelera kopiatzean</string>

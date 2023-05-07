@@ -709,8 +709,6 @@
     <string name="unknown_format">Ismeretlen formátum</string>
     <string name="unknown_quality">Ismeretlen minőség</string>
     <string name="semitone">Félhang</string>
-    <string name="feed_toggle_show_future_items">Jövőbeli elemek megjelenítése</string>
-    <string name="feed_toggle_hide_future_items">Jövőbeli elemek elrejtése</string>
     <string name="faq_title">Gyakran ismételt kérdések</string>
     <string name="faq">Megtekintés a weboldalon</string>
     <string name="sort">Rendezés</string>
