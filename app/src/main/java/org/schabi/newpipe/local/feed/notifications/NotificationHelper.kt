@@ -21,7 +21,6 @@ import com.squareup.picasso.Target
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.PicassoHelper
 
@@ -48,12 +47,8 @@ class NotificationHelper(val context: Context) {
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
-            .setContentTitle(Localization.concatenateStrings(data.name, summary))
-            .setContentText(
-                data.listInfo.relatedItems.joinToString(
-                    context.getString(R.string.enumeration_comma)
-                ) { it.name }
-            )
+            .setContentTitle(data.name)
+            .setContentText(summary)
             .setNumber(newStreams.size)
             .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -68,7 +63,6 @@ class NotificationHelper(val context: Context) {
 
         // Build a summary notification for Android versions < 7.0
         val style = NotificationCompat.InboxStyle()
-            .setSummaryText(summary)
             .setBigContentTitle(data.name)
         newStreams.forEach { style.addLine(it.name) }
         summaryBuilder.setStyle(style)
