@@ -80,10 +80,19 @@
             tools:text="234 videos" />
     </RelativeLayout>
 
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/playlist_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playlist_meta"
+        android:paddingHorizontal="@dimen/video_item_search_padding"
+        android:paddingTop="6dp"
+        tools:text="This is a multiline playlist description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_meta">
+        android:layout_below="@id/playlist_description">
 
         <include
             android:id="@+id/playlist_control"
