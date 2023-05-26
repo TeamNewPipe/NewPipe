@@ -1,11 +1,11 @@
 name: Question
 description: Ask about anything NewPipe-related
-labels: [question, needs triage]
+labels: [question]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this issue! :hugs:
+        Thanks for taking the time to fill out this form! :hugs:
 
         Note that you can also ask questions on our [IRC channel](https://web.libera.chat/#newpipe).
 
@@ -14,7 +14,7 @@ body:
     attributes:
       label: "Checklist"
       options:
-        - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+        - label: "I made sure that there are *no existing issues or discussions* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
         - label: "I have read the [FAQ](https://newpipe.net/FAQ/) and my question isn't listed."
           required: true
