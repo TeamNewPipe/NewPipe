@@ -26,6 +26,9 @@ import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -219,10 +222,14 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         sessionConnector.setCustomErrorMessage(playerService.getString(resId), code);
     }
 
+    private void playbackError(@NonNull final ErrorInfo errorInfo) {
+        playbackError(errorInfo.getMessageStringId(), PlaybackStateCompat.ERROR_CODE_APP_ERROR);
+    }
+
     private Single<PlayQueue> extractPlayQueueFromMediaId(final String mediaId) {
         final Uri mediaIdUri = Uri.parse(mediaId);
         if (mediaIdUri == null) {
-            return Single.error(new NullPointerException());
+            return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
         }
         if (mediaId.startsWith(ID_BOOKMARKS)) {
             final var path = mediaIdUri.getPathSegments();
@@ -256,7 +263,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
             }
         }
 
-        return Single.error(new NullPointerException());
+        return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
     }
 
     @Override
@@ -294,8 +301,8 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
                         NavigationHelper.playOnBackgroundPlayer(playerService, playQueue,
                                 playWhenReady);
                     },
-                    throwable -> playbackError(R.string.error_http_not_found,
-                            PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED)
+                    throwable -> playbackError(new ErrorInfo(throwable, UserAction.PLAY_STREAM,
+                            "Failed playback of media ID [" + mediaId + "]: "))
                 );
     }
 
