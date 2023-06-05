@@ -357,15 +357,16 @@
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
+                <data android:host="media.fsfe.org" />
                 <data android:host="peertube.co.uk" />
                 <data android:host="peertube.cpy.re" />
-                <data android:host="peertube.mastodon.host" />
                 <data android:host="peertube.fr" />
-                <data android:host="tilvids.com" />
-                <data android:host="video.ploud.fr" />
-                <data android:host="video.lqdn.fr" />
+                <data android:host="peertube.mastodon.host" />
+                <data android:host="peertube.stream" />
                 <data android:host="skeptikon.fr" />
-                <data android:host="media.fsfe.org" />
+                <data android:host="tilvids.com" />
+                <data android:host="video.lqdn.fr" />
+                <data android:host="video.ploud.fr" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/w/" /> <!-- short video URLs -->
