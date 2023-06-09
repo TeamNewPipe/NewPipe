@@ -675,7 +675,6 @@
     <string name="show_image_indicators_summary">啲圖都要騷 Picasso 三色碼顯示源頭：紅碼係網絡上高落嚟，藍碼係儲存喺磁碟本地，綠碼係潛伏喺記憶體中</string>
     <string name="show_original_time_ago_summary">服務原本嘅字會騷返喺串流項目上面</string>
     <string name="show_image_indicators_title">影像要推三色碼</string>
-    <string name="feed_toggle_show_future_items">未夠鐘上畫嘅項目照顯示</string>
     <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦</string>
     <string name="import_youtube_instructions">點樣用 Google 匯出嚟匯入 YouTube 訂閱：
 \n
@@ -697,7 +696,6 @@
 \nYouTube 就係其中一個有用 RSS 摘要提供呢個快趣門路嘅服務。
 \n
 \n所以就睇你點揀：想快定要準。</string>
-    <string name="feed_toggle_hide_future_items">未夠鐘上畫嘅項目就收埋</string>
     <string name="faq">去網站睇下</string>
     <string name="sort">排序</string>
     <string name="faq_title">常見問題</string>

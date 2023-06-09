@@ -54,8 +54,6 @@
     <string name="no_audio_streams_available_for_external_players">Ingen ljodstraumar er tilgjengelege for ytre spelarar</string>
     <string name="no_video_streams_available_for_external_players">Ingen videostraumar er tilgjengelege for ytre spelarar</string>
     <string name="select_quality_external_players">Vel kvalitet for ytre spelarar</string>
-    <string name="feed_toggle_show_future_items">Vis framtidige ting</string>
-    <string name="feed_toggle_hide_future_items">Skjul framtidige ting</string>
     <string name="sort">Skil ut</string>
     <string name="open_website_license">Opna nettstaden</string>
     <string name="you_successfully_subscribed">Du fylgjer no denne kanalen</string>

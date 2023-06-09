@@ -3,9 +3,7 @@
     <!-- Common dimensions -->
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
-    <dimen name="margin_large">32dp</dimen>
     <dimen name="spacing_mid">12dp</dimen>
-    <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_micro">4dp</dimen>
     <dimen name="spacing_nano">2dp</dimen>
 
@@ -134,9 +132,6 @@
     <dimen name="comment_item_content_text_size">12sp</dimen>
 
     <!-- Feed Groups dimensions-->
-    <dimen name="feed_group_carousel_start_end_margin">12dp</dimen>
-    <dimen name="feed_group_carousel_top_bottom_margin">6dp</dimen>
-    <dimen name="feed_group_carousel_between_items_margin">4dp</dimen>
 
     <dimen name="search_suggestion_text_size">16sp</dimen>
 </resources>

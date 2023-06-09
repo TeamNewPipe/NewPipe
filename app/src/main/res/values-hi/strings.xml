@@ -649,7 +649,6 @@
     <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं\?</string>
     <string name="feed_create_new_group_button_title">नया</string>
     <string name="settings_category_feed_title">फ़ीड</string>
-    <string name="feed_toggle_show_future_items">भविष्य आइटम दिखाएं</string>
     <string name="feed_new_items">नई फ़ीड आइटम</string>
     <string name="feed_processing_message">फ़ीड संसाधित हो रही है …</string>
     <string name="open_website_license">वेबसाइट खोलें</string>
@@ -658,7 +657,6 @@
     <string name="on">ऑन</string>
     <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
     <string name="feed_groups_header_title">चैनल समूह</string>
-    <string name="feed_toggle_hide_future_items">भविष्य आइटम छुपाएं</string>
     <string name="faq_title">कई बार पूछे प्रश्न</string>
     <string name="faq">वेबसाइट पर देखें</string>
     <string name="main_page_content_swipe_remove">आइटम हटाने के लिए स्वाइप करें</string>

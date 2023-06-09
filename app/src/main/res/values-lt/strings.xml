@@ -702,11 +702,9 @@
     </plurals>
     <string name="get_notified">Gaukite pranešimą</string>
     <string name="you_successfully_subscribed">Dabar užsiprenumeravote šį kanalą</string>
-    <string name="feed_toggle_show_future_items">Rodyti būsimus elementus</string>
     <string name="streams_notifications_network_title">Reikalingas tinklo ryšys</string>
     <string name="streams_not_yet_supported_removed">Transliacijos, kurių dar nepalaiko atsisiuntimo programa, nerodomos</string>
     <string name="unknown_format">Nežinomas formatas</string>
-    <string name="feed_toggle_hide_future_items">Slėpti būsimus elementus</string>
     <string name="any_network">Bet koks tinklas</string>
     <string name="delete_downloaded_files_confirm">Ištrinti visus atsisiųstus failus iš disko\?</string>
     <string name="settings_category_player_notification_title">Grotuvo pranešimas</string>

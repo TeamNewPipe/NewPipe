@@ -723,8 +723,6 @@
     <string name="selected_stream_external_player_not_supported">Le flux sélectionné n’est pas pris en charge par les lecteurs externes</string>
     <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n’est disponible pour les lecteurs externes</string>
     <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
-    <string name="feed_toggle_show_future_items">Afficher les éléments à venir</string>
-    <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
     <string name="faq_title">Foire aux questions</string>
     <string name="faq">Voir sur le site web</string>
     <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>

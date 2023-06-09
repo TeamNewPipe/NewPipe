@@ -708,8 +708,6 @@
     <string name="percent">Protsent</string>
     <string name="semitone">Pooltoon</string>
     <string name="progressive_load_interval_title">Taasesituseks vajalike andmete laadimise samm</string>
-    <string name="feed_toggle_show_future_items">Näita tulevasi üksuseid</string>
-    <string name="feed_toggle_hide_future_items">Peida tulevased üksused</string>
     <string name="faq_title">Korduma kippuvad küsimused</string>
     <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>
     <string name="faq">Edasi loe veebisaidist</string>

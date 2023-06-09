@@ -24,7 +24,6 @@
     <string name="faq_url">https://newpipe.net/FAQ/</string>
     <string name="service_kiosk_string">%1$s/%2$s</string>
     <string name="youtube">YouTube</string>
-    <string name="soundcloud">SoundCloud</string>
     <string name="preferred_open_action_share_menu_title">@string/app_name</string>
     <string name="leakcanary">LeakCanary</string>
     <string name="caption_file_name">%1$s-%2$s</string>

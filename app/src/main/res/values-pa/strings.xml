@@ -660,8 +660,6 @@
     <string name="soundcloud_go_plus_content">ਇਹ ਸਾਊਂਡਕਲਾਊਡ ਗੋ-ਪਲੱਸ ਟਰੈਕ ਹੈ, ਤੁਹਾਡੇ ਦੇਸ਼ ਵਿੱਚ ਇਹ ਸਟ੍ਰੀਮ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
     <string name="unknown_format">ਅਗਿਆਤ ਫਾਰਮੈਟ</string>
     <string name="unknown_quality">ਅਗਿਆਤ ਕੁਆਲਿਟੀ</string>
-    <string name="feed_toggle_show_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਵਿਖਾਓ</string>
-    <string name="feed_toggle_hide_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਲੁਕਾਓ</string>
     <string name="faq_title">ਆਮ ਸਵਾਲ</string>
     <string name="faq">ਵੈੱਬਸਾਈਟ \'ਤੇ ਵੇਖੋ</string>
     <string name="loading_stream_details">ਸਟਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</string>

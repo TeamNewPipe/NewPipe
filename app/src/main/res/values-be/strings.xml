@@ -515,8 +515,6 @@
     <string name="select_quality_external_players">Выберыце якасць для знешніх плэераў</string>
     <string name="unknown_quality">Невядомая якасць</string>
     <string name="unknown_format">Невядомы фармат</string>
-    <string name="feed_toggle_show_future_items">Паказаць наступны матэрыял</string>
-    <string name="feed_toggle_hide_future_items">Схаваць наступныя матэрыялы</string>
     <string name="sort">Сартаваць</string>
     <string name="new_seek_duration_toast">З-за абмежаванняў ExoPlayer працягласць пошуку была ўсталявана на %d сякундаў</string>
     <string name="chapters">Раздзелы</string>

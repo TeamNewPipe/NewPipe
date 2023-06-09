@@ -707,8 +707,6 @@
     <string name="unknown_format">Bilinmeyen biçim</string>
     <string name="unknown_quality">Bilinmeyen nitelik</string>
     <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
-    <string name="feed_toggle_show_future_items">Gelecekteki ögeleri göster</string>
-    <string name="feed_toggle_hide_future_items">Gelecekteki ögeleri gizle</string>
     <string name="faq_title">Sık Sorulan Sorular</string>
     <string name="faq">Web sitesinde görüntüle</string>
     <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>

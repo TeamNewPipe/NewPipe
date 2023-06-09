@@ -498,7 +498,6 @@
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer ଡିଫଲ୍ଟ</string>
     <string name="metadata_age_limit">ବୟସ ସୀମା</string>
     <string name="unknown_quality">ଅଜ୍ଞାତ ଗୁଣବତ୍ତା</string>
-    <string name="feed_toggle_show_future_items">ଭବିଷ୍ୟତ ଆଇଟମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="restricted_video">ଏହି ଭିଡିଓ ବୟସ ସୀମିତ ଅଟେ ।
 \n
 \nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
@@ -614,7 +613,6 @@
     <string name="no_audio_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଅଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="select_quality_external_players">ବହିଃ-ଚାଳକ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
     <string name="detail_pinned_comment_view_description">ପିନ୍ ହୋଇଥିବା ମନ୍ତବ୍ୟ</string>
-    <string name="feed_toggle_hide_future_items">ଭବିଷ୍ୟତର ଆଇଟମ୍ ଲୁଚାନ୍ତୁ</string>
     <string name="open_website_license">ୱେବସାଇଟ୍ ଖୋଲନ୍ତୁ</string>
     <string name="short_thousand">ହଜାର</string>
     <string name="preferred_player_fetcher_notification_title">ସୂଚନା ପାଇବା…</string>

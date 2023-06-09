@@ -725,8 +725,6 @@
     <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
     <string name="unknown_quality">Невідома якість</string>
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
-    <string name="feed_toggle_show_future_items">Показати наступні елементи</string>
-    <string name="feed_toggle_hide_future_items">Сховати майбутні елементи</string>
     <string name="faq">Переглянути на сайті</string>
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
