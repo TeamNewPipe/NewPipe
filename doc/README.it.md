@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Sito</a> &bull; <a href="https://newpipe.net/blog/"><i>Blog</i></a> &bull; <a href="https://newpipe.net/FAQ/"><i>FAQ</i></a> &bull; <a href="https://newpipe.net/press/">Stampa</a></p>
 <hr>
 
-*Read this in other languages: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
+*Leggi in altre lingue: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
 
 <b>ATTENZIONE: QUEST'APP È IN BETA, QUINDI POTRESTI IMBATTERTI IN <i>BUG</i>. SE COSÌ FOSSE, APRI UN'<i>ISSUE</i> SUL NOSTRO REPOSITORIO GITHUB COMPILANDO IL <i>TEMPLATE ISSUE</i>.
 
@@ -40,7 +40,7 @@
 
 ### Supported Services
 
-NewPipe supporta al momento questi servizi:
+NewPipe supporta, al momento, questi servizi:
 
 <!-- Mettiamo un link separato ai siti dei servizi per evitare gente che apre un sito senza volere -->
 * YouTube ([sito](https://www.youtube.com/)) e YouTube Music ([sito](https://music.youtube.com/)) ([wiki](https://en.wikipedia.org/wiki/YouTube))
