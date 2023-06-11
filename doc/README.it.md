@@ -13,7 +13,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="<i>Bounty</i> Bountysource><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots"><i>Screenshot</i></a> &bull; <a href="#supported-services">Servizi Supportati</a> &bull; <a href="#description">Descrizione</a> &bull; <a href="#features">Funzionalità</a> &bull; <a href="#installation-and-updates">Installazione e aggiornamenti</a> &bull; <a href="#contribution">Contribuire</a> &bull; <a href="#donate">Donare</a> &bull; <a href="#license">Licenza</a></p>
+<p align="center"><a href="#screenshot"><i>Screenshot</i></a> &bull; <a href="#servizi-supportati">Servizi Supportati</a> &bull; <a href="#descrizione">Descrizione</a> &bull; <a href="#funzionalità">Funzionalità</a> &bull; <a href="#installazione-e-aggiornamenti">Installazione e aggiornamenti</a> &bull; <a href="#contribuire">Contribuire</a> &bull; <a href="#donare">Donare</a> &bull; <a href="#licenza">Licenza</a></p>
 <p align="center"><a href="https://newpipe.net">Sito</a> &bull; <a href="https://newpipe.net/blog/"><i>Blog</i></a> &bull; <a href="https://newpipe.net/FAQ/"><i>FAQ</i></a> &bull; <a href="https://newpipe.net/press/">Stampa</a></p>
 <hr>
 
