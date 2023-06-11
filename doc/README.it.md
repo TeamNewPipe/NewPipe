@@ -103,7 +103,7 @@ Nel frattempo, se vuoi cambiare fonte per la stessa ragione (ad es. la funzional
 3. Scarica l'APK dalla nuova fonte e installalo
 4. Importa i dati del passo 1 da Impostazioni > Contenuti > Importa Database
 
-<b>N.B.: quando stai importando un *database* nell'app ufficiale, assicurati sempre che sia quello che hai esportato _da_ll'app ufficiale . Se importi un *database* esportato da un APK diverso da quello dell'app ufficiale, potrebbe rompere molte cose. Un'azione del genere non è supportata, e dovresti compierla solo se sei assolutamente sicuro di sapere quello che stai facendo.</b>
+<b>N.B.: quando stai importando un *database* nell'app ufficiale, assicurati sempre che sia quello che hai esportato _dall'app_ ufficiale. Se importi un *database* esportato da un APK diverso da quello dell'app ufficiale, potrebbe rompere molte cose. Un'azione del genere non è supportata, e dovresti compierla solo se sei assolutamente sicuro di sapere quello che stai facendo.</b>
 
 ## Contribuire
 
