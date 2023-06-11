@@ -19,7 +19,7 @@
 
 *Leggi in altre lingue: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
 
-<b>ATTENZIONE: QUEST'APP È IN BETA, QUINDI POTRESTI IMBATTERTI IN <i>BUG</i>. SE COSÌ FOSSE, APRI UN'<i>ISSUE</i> SUL NOSTRO REPOSITORIO GITHUB COMPILANDO IL <i>TEMPLATE ISSUE</i>.
+<b>ATTENZIONE: QUEST'APP È IN BETA, QUINDI POTRESTI IMBATTERTI IN <i>BUG</i>. SE COSÌ FOSSE, APRI UN'<i>ISSUE</i> SUL NOSTRO REPOSITORIO GITHUB COMPILANDO IL <i>TEMPLATE ISSUE</i>.</b>
 
 <b>METTERE NEWPIPE, O QUALSIASI SUA <i>FORK</i>, NEL GOOGLE PLAY STORE, VIOLA I LORO TERMINI E CONDIZIONI.</b>
 
