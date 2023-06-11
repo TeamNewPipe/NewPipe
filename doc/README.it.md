@@ -88,8 +88,6 @@ Inoltre, siccome sono programmi liberi e *open-source*, nè l'app nè l'estratto
 
 ## Installazione e aggiornamenti
 
-te: when you're importing a database into the official app, always make sure that it is the one you exported _from_ the official app. If you import a database exported from an APK other than the official app, it may break things. Such an action is unsupported, and you should only do so when you're absolutely certain you know what you're doing.</b>
-
 Puoi installare NewPipe usando uno dei seguenti metodi:
 1. Aggiungi il nostro repo a F-Droid e installalo da lì. Le istruzioni sono qui: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
 2. Scarica l'APK da [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) e installalo.
