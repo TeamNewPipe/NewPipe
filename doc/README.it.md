@@ -23,7 +23,7 @@
 
 <b>METTERE NEWPIPE, O QUALSIASI SUA <i>FORK</i>, NEL GOOGLE PLAY STORE, VIOLA I LORO TERMINI E CONDIZIONI.</b>
 
-## <i>Screenshot</i>
+## Screenshot
 
 [<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
 [<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
@@ -135,7 +135,7 @@ Se ti piace NewPipe, le donazioni sono benvenute. Preferiamo Liberapay, siccome 
   </tr>
 </table>
 
-## <i>Privacy Policy</i>
+## Privacy Policy
 
 Il progetto NewPipe mira a fornire un'esperienza privata e anonima per usare servizi multimediali basati sul *web*. Di conseguenza, l'app non raccoglie alcun dato senza il tuo consenso. La *privacy policy* di NewPipe spiega nel dettaglio quali dati sono inviati e memorizzati quando invii un *crash report*, o lasci un commento nel nostro *blog*. Puoi trovare il documento [qui](https://newpipe.net/legal/privacy/).
 
