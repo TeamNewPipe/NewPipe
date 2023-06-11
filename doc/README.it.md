@@ -1,7 +1,4 @@
-<h3 align="center">Stiamo pianificando di <i>riscrivere</i> grossi pezzi di codice sorgente, per portare <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">un nuovo, stabile e moderno NewPipe</a>!</h3>
-<h4 align="center">Per favore, <b>non</b> aprite <i>pull request</i> per <i>nuove funzionalità</i> per ora, solo le <i>PR</i> di <i>bugfix</i> saranno accettate.</h4>
-
-<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un frontend libero e leggero di streaming per Android.</h4>
 
