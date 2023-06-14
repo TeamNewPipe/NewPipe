@@ -1,0 +1,12 @@
+Új
+• Figyelmeztetés hozzáadása lejátszási lista ismétlődéseinek hozzáadásakor, és gomb hozzáadása ezek eltávolításához
+• Engedélyezve a hardvergombok figyelmen kívül hagyása
+• A hírfolyamban részben megtekintett videók elrejtésének engedélyezése
+
+Fejlesztés
+• Több rácsoszlop használata a nagy képernyőkön
+• A folyamatjelzők összhangban állítása a beállításokkal
+
+Javítva
+• A böngésző nyitó URL-címeinek, letöltéseinek és külső lejátszóinak javítása Android 11+ rendszeren
+• A MIUI két érintést igénylő teljes képernyős kölcsönhatásának javítása

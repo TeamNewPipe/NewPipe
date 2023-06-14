@@ -752,4 +752,26 @@
     <string name="left_gesture_control_summary">Scegli il gesto per la metà sinistra del riproduttore</string>
     <string name="none">Nessuno</string>
     <string name="right_gesture_control_summary">Scegli il gesto per la metà destra del riproduttore</string>
+    <string name="progressive_load_interval_summary">Modifica la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video</string>
+    <string name="prefer_original_audio_title">Preferisci audio originale</string>
+    <string name="prefer_original_audio_summary">Seleziona la traccia audio originale indipendentemente dalla lingua</string>
+    <string name="prefer_descriptive_audio_title">Preferisci audio descrittivo</string>
+    <string name="prefer_descriptive_audio_summary">Se disponibile, seleziona una traccia audio con descrizioni per ipovedenti</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Traccia audio</string>
+    <string name="select_audio_track_external_players">Seleziona traccia audio per lettori esterni</string>
+    <string name="settings_category_exoplayer_summary">Gestisci alcune impostazioni di ExoPlayer. È necessario riavviare il riproduttore per applicarle</string>
+    <string name="unknown_audio_track">Sconosciuta</string>
+    <string name="settings_category_exoplayer_title">Impostazioni ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Usa la funzione di fallback del decoder di ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Usa sempre la soluzione alternativa per impostare la superficie di uscita video di ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">originale</string>
+    <string name="audio_track_type_dubbed">doppiato</string>
+    <string name="audio_track_type_descriptive">descrittivo</string>
+    <string name="audio_track_present_in_video">Per questo elemento dovrebbe già essere presente una traccia audio</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Attivare questa opzione in caso di problemi di inizializzazione del decodificatore. Verranno usati decodificatori di priorità inferiore se l\'inizializzazione di quelli primari fallisce. Le prestazioni di riproduzione potrebbero essere inferiori rispetto all\'uso di quelli primari</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Questa soluzione alternativa rilascia e re-istanzia i codec video quando si verifica una modifica della superficie, invece di impostare direttamente la superficie sul codec. Già usata da ExoPlayer su alcuni dispositivi con questo problema, questa impostazione ha effetto solo su Android 6 e versioni successive
+\n
+\nL\'attivazione di questa opzione potrebbe impedire errori di riproduzione passando al lettore video attuale o passando a schermo intero</string>
 </resources>

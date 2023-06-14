@@ -676,7 +676,7 @@
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
     <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standard</string>
-    <string name="progressive_load_interval_summary">Ändra inläsningsintervallets storlek (för närvarande %s). Ett lägre värde kan påskynda den första videoinläsningen. Ändringar kräver att spelaren startas om</string>
+    <string name="progressive_load_interval_summary">Ändra storleken på laddningsintervallet för progressivt innehåll (för närvarande %s). Ett lägre värde kan påskynda den första laddningen</string>
     <string name="streams_notifications_interval_title">Uppdateringsintervall</string>
     <string name="streams_notifications_network_title">Nödvändig nätverksanslutning</string>
     <string name="any_network">Alla nätverk</string>
@@ -740,4 +740,25 @@
     <string name="left_gesture_control_title">Vänster gest åtgärd</string>
     <string name="right_gesture_control_summary">Välj en gest för den högra halvan av spelarskärmen</string>
     <string name="right_gesture_control_title">Höger gest åtgärd</string>
+    <string name="play_queue_audio_track">Ljud: %s</string>
+    <string name="audio_track">Ljudspår</string>
+    <string name="audio_track_present_in_video">Ett ljudspår bör redan finnas i denna ström</string>
+    <string name="select_audio_track_external_players">Välj ljudspår för externa spelare</string>
+    <string name="unknown_audio_track">Okänt</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer inställningar</string>
+    <string name="settings_category_exoplayer_summary">Hantera vissa ExoPlayer inställningar. Dessa ändringar kräver en omstart av spelaren för att träda i kraft</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Använd alltid ExoPlayers lösning för inställning av videoutgångsyta</string>
+    <string name="prefer_original_audio_title">Föredra originalljud</string>
+    <string name="prefer_original_audio_summary">Välj originalljudspåret oavsett språk</string>
+    <string name="prefer_descriptive_audio_title">Föredra beskrivande ljud</string>
+    <string name="prefer_descriptive_audio_summary">Välj ett ljudspår med beskrivningar för synskadade personer om det finns tillgängligt</string>
+    <string name="use_exoplayer_decoder_fallback_title">Använd ExoPlayers reservfunktion för avkodare</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Aktivera det här alternativet om du har problem med initiering av avkodare, vilket faller tillbaka på avkodare med lägre prioritet om initieringen av primära avkodare misslyckas. Detta kan leda till sämre uppspelningsprestanda än vid användning av primära avkodare</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Denna lösning frigör och återinstansierar videokodeker när en ytförändring inträffar, istället för att ställa in ytan direkt till kodeken. Används redan av ExoPlayer på vissa enheter med detta problem, denna inställning har endast effekt på Android 6 och senare
+\n
+\nOm du aktiverar det här alternativet kan det förhindra uppspelningsfel när du byter aktuell videospelare eller växlar till fullskärm</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_descriptive">beskrivande</string>
+    <string name="audio_track_type_dubbed">dubbad</string>
 </resources>

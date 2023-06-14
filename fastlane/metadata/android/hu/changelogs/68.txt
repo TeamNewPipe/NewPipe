@@ -1,0 +1,31 @@
+# Változások v0.14.1
+
+### Javítva
+- a nem sikerül visszafejteni a videó URL-t #1659
+- a leíró link nem jól kibontható #1657
+
+# Változások v0.14.0
+
+### Új
+- fiókkialakítás #1461
+- testreszabható címlap #1461
+
+### Fejlesztések
+- Átdolgozott gesztusvezérlők #1604
+- Új módja a felugrólejátszó bezárásának #1597
+
+### Javítva
+- a feliratkozók száma nem érhető el hibája. Bezárva a #1649.
+- Ezekben az esetekben „A feliratkozók száma nem érhető el” megjelenítése
+- az NPE, ha egy YouTube lejátszási lista üres
+- Gyors javítás a SoundCloud kioszkjaihoz
+- Refaktor és hibajavítás #1623
+  - a ciklikus keresési eredmény #1562
+  - a keresősáv nincs statikusan elrendezve
+  - az YT Prémium videó nincs megfelelően blokkolva
+  - a videók néha nem töltődnek be (a DASH elemzés miatt)
+  - a linkek a videó leírásában
+  - Figyelmeztetés megjelenítése, ha valaki külső SD-kártyára próbál letölteni
+  - a semmi sem jelenik meg kivétel jelentést vált ki
+  - A bélyegkép nem jelenik meg az Android 8.1 háttérlejátszóban [lásd itt](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- a műsorszóró vevőregisztrációja. Bezárva a #1641.

@@ -765,4 +765,26 @@
     <string name="feed_show_watched">נצפו במלואם</string>
     <string name="feed_hide_streams_title">להציג את השידורים הבאים</string>
     <string name="feed_show_hide_streams">להציג/להסתיר שידורים</string>
+    <string name="prefer_original_audio_title">להעדיף שמע מקורי</string>
+    <string name="prefer_original_audio_summary">לבחור את רצועת השמע המקורית ללא תלות בשפה</string>
+    <string name="prefer_descriptive_audio_title">להעדיף שמע מפורט</string>
+    <string name="prefer_descriptive_audio_summary">לבחור רצועת שמע עם תיאורים לכבדי ראייה אם ניתן</string>
+    <string name="play_queue_audio_track">שמע: %s</string>
+    <string name="audio_track">רצועת שמע</string>
+    <string name="audio_track_present_in_video">רצועת שמע כבר אמורה להיות כחלק מהתזרים</string>
+    <string name="unknown_audio_track">לא ידועה</string>
+    <string name="settings_category_exoplayer_title">הגדרות ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">להשתמש ביכולת הגיבוי של המפענח של ExoPlayer</string>
+    <string name="audio_track_type_original">מקורי</string>
+    <string name="audio_track_type_dubbed">מדובב</string>
+    <string name="select_audio_track_external_players">בחירת רצועת שמע לנגנים חיצוניים</string>
+    <string name="audio_track_type_descriptive">מפורט</string>
+    <string name="settings_category_exoplayer_summary">ניהול חלק מהגדרות של ה־ExoPlayer שלך. השינויים האלו דורשים את הפעלת הנגן מחדש כדי להיכנס לתוקף</string>
+    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית</string>
+    <string name="use_exoplayer_decoder_fallback_summary">יש להפעיל את האפשרות הזאת אם נתקלת בבעיות עם אתחול מפענח, מה שגורם להנחתה למפענחים עם עדיפות נמוכה יותר אם אתחול המפענחים העיקריים נכשל. עלול לגרום לביצועי נגינה נחותים לעומת מפענחים ראשיים</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">תמיד להשתמש במעקף הגדרות משטח פלט הווידאו של ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">המעקף הזה משחרר ומקים מחדש את מפענחי הווידאו כשמשתנה שינוי במשטח, במקום להגדיר את המשטח למפענח ישירות. כבר נעשה בזה שימוש על ידי ExoPlayer בחלק מהמכשירים עם התקלה הזאת, הגדרה זו משפיעה על Android 6 ומעלה בלבד
+\n
+\nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
 </resources>

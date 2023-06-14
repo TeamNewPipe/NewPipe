@@ -668,7 +668,7 @@
     <string name="metadata_licence">लाइसेंस</string>
     <string name="faq_description">यदि आपको ऐप का उपयोग करने में परेशानी हो रही है, तो सामान्य प्रश्नों के इन उत्तरों को देखना सुनिश्चित करें!</string>
     <string name="enqueue_next_stream">कतार में आगे जोड़ें</string>
-    <string name="progressive_load_interval_summary">लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान आरंभिक वीडियो लोडिंग को गति दे सकता है। परिवर्तन के लिए प्लेयर को पुनः आरंभ करने की आवश्यकता होती है</string>
+    <string name="progressive_load_interval_summary">प्रगतिशील सामग्री पर लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान उनकी आरंभिक लोडिंग को गति दे सकता है</string>
     <string name="leak_canary_not_available">लीककैनरी उपलब्ध नहीं है</string>
     <string name="error_report_notification_toast">एक त्रुटी हुई है, अधिसूचना देखें</string>
     <string name="disable_media_tunneling_summary">यदि आप काली स्क्रीन या वीडियो प्लेबैक खड़खड़ाते हुए चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें</string>
@@ -740,4 +740,25 @@
     <string name="left_gesture_control_summary">प्लेयर स्क्रीन के बाएँ आधे हिस्से के लिए जेस्चर चुनें</string>
     <string name="right_gesture_control_summary">प्लेयर स्क्रीन के दाहिने आधे हिस्से के लिए जेस्चर चुनें</string>
     <string name="right_gesture_control_title">दाएँ इशारा क्रिया</string>
+    <string name="prefer_original_audio_title">मूल ऑडियो को प्राथमिकता दें</string>
+    <string name="prefer_descriptive_audio_summary">यदि उपलब्ध हो तो दृष्टिबाधित लोगों के लिए विवरण के साथ एक ऑडियो ट्रैक का चयन करें</string>
+    <string name="prefer_descriptive_audio_title">वर्णनात्मक ऑडियो को प्राथमिकता दें</string>
+    <string name="prefer_original_audio_summary">भाषा की परवाह किए बिना मूल ऑडियो ट्रैक का चयन करें</string>
+    <string name="play_queue_audio_track">ऑडियो: %s</string>
+    <string name="audio_track">ऑडियो ट्रैक</string>
+    <string name="select_audio_track_external_players">बाहरी प्लेयर्स के लिए ऑडियो ट्रैक का चयन करें</string>
+    <string name="unknown_audio_track">अज्ञात</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer सेटिंग्स</string>
+    <string name="use_exoplayer_decoder_fallback_title">एक्सोप्लेयर के डिकोडर फॉलबैक फीचर का उपयोग करें</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">हमेशा ExoPlayer के वीडियो आउटपुट सतह सेटिंग वर्कअराउंड का उपयोग करें</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">मूल</string>
+    <string name="audio_track_type_dubbed">डब</string>
+    <string name="audio_track_type_descriptive">वर्णनात्मक</string>
+    <string name="audio_track_present_in_video">एक ऑडियो ट्रैक पहले से ही इस स्ट्रीम में मौजूद होना चाहिए</string>
+    <string name="use_exoplayer_decoder_fallback_summary">इस विकल्प को सक्षम करें यदि आपके पास डिकोडर आरंभीकरण समस्याएं हैं, जो प्राथमिक डिकोडर आरंभ करने में विफल होने पर कम प्राथमिकता वाले डिकोडर पर वापस आ जाती हैं। प्राथमिक डिकोडर का उपयोग करते समय इसके परिणामस्वरूप खराब प्लेबैक प्रदर्शन हो सकता है</string>
+    <string name="settings_category_exoplayer_summary">कुछ ExoPlayer सेटिंग्स प्रबंधित करें। इन परिवर्तनों को प्रभावी बनाने के लिए किसी प्लेयर को पुनरारंभ करने की आवश्यकता होती है</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है
+\n
+\nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
 </resources>

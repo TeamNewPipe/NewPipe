@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">Voer de downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Kore-app niet gevonden. Deze installeren\?</string>
+    <string name="kore_not_found">Ontbrekende Kore-app installeren\?</string>
     <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
     <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
@@ -725,18 +725,40 @@
     <string name="left_gesture_control_title">Linker gebaaractie</string>
     <string name="right_gesture_control_title">Rechter gebaaractie</string>
     <string name="none">Geen</string>
-    <string name="remove_duplicates">Verwijder duplicaten</string>
-    <string name="remove_duplicates_title">Verwijder duplicaten\?</string>
+    <string name="remove_duplicates">Verwijder dubbelen</string>
+    <string name="remove_duplicates_title">Verwijder dubbelen\?</string>
     <string name="remove_duplicates_message">Wil je alle dubbele streams in deze afspeellijst verwijderen\?</string>
     <string name="feed_show_hide_streams">Streams weergeven/verbergen</string>
     <string name="feed_show_watched">Volledig bekeken</string>
     <string name="feed_show_partially_watched">Gedeeltelijk bekeken</string>
     <string name="feed_show_upcoming">Aanstaande</string>
     <string name="right_gesture_control_summary">Kies een gebaar voor de rechterhelft van het spelersscherm</string>
-    <string name="ignore_hardware_media_buttons_title">Negeer hardware-mediaknopgebeurtenissen</string>
+    <string name="ignore_hardware_media_buttons_title">Fysieke knoppen voor mediabediening negeren</string>
     <string name="brightness">Helderheid</string>
     <string name="volume">Volume</string>
-    <string name="ignore_hardware_media_buttons_summary">Handig als je bijvoorbeeld een headset gebruikt met kapotte fysieke knoppen</string>
+    <string name="ignore_hardware_media_buttons_summary">Handig, als je bijvoorbeeld een headset gebruikt met fysieke knoppen die stuk zijn</string>
     <string name="left_gesture_control_summary">Kies een gebaar voor de linkerhelft van het spelersscherm</string>
     <string name="feed_hide_streams_title">Laat de volgende streams zien</string>
+    <string name="prefer_descriptive_audio_summary">Selecteer een audiotrack met beschrijvingen voor slechtzienden, indien beschikbaar</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Deze tijdelijke oplossing geeft videocodecs vrij en activeert ze opnieuw wanneer er een oppervlakteverandering optreedt, in plaats van de oppervlakte rechtstreeks op de codec in te stellen. Dit wordt al gebruikt door ExoPlayer op sommige apparaten met dit probleem; deze instelling heeft alleen effect op Android 6 en hoger
+\n
+\nAls je deze optie inschakelt, voorkom je mogelijk afspeelfouten bij het wisselen van de huidige videospeler of het overschakelen naar volledig scherm</string>
+    <string name="progressive_load_interval_summary">Wijzig de grootte van het laadinterval voor progressieve inhoud (momenteel %s). Een lagere waarde kan het initiële laden versnellen</string>
+    <string name="prefer_original_audio_title">Geef de voorkeur aan originele audio</string>
+    <string name="prefer_original_audio_summary">Selecteer de originele audiotrack, ongeacht de taal</string>
+    <string name="prefer_descriptive_audio_title">Geef de voorkeur aan beschrijvende audio</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Audiotrack</string>
+    <string name="audio_track_present_in_video">Er zou al een audiotrack in deze stream aanwezig moeten zijn</string>
+    <string name="select_audio_track_external_players">Selecteer audiotrack voor externe spelers</string>
+    <string name="unknown_audio_track">Onbekend</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer-instellingen</string>
+    <string name="settings_category_exoplayer_summary">Beheer enkele ExoPlayer-instellingen. Deze wijzigingen vereisen een herstart van de speler om van kracht te worden</string>
+    <string name="use_exoplayer_decoder_fallback_title">Gebruik de terugvalfunctie van de ExoPlayer-decoder</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Schakel deze optie in als je problemen hebt met de initialisatie van de decoder, die terugvalt op decoders met een lagere prioriteit als de initialisatie van de primaire decoder mislukt. Dit kan leiden tot slechtere afspeelprestaties dan bij gebruik van primaire decoders</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Gebruik altijd de tijdelijke oplossing voor het instellen van het video-uitvoeroppervlak van ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">origineel</string>
+    <string name="audio_track_type_dubbed">nagesynchroniseerd</string>
+    <string name="audio_track_type_descriptive">beschrijvend</string>
 </resources>

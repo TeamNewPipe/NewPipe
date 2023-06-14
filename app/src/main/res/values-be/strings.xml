@@ -584,7 +584,7 @@
         <item quantity="many">%d хвілінаў</item>
         <item quantity="other">%d хвілінаў</item>
     </plurals>
-    <string name="progressive_load_interval_summary">Змяніць памер інтэрвалу загрузкі (зараз %s). Меншае значэнне можа паскорыць пачатковую загрузку відэа. Змены патрабуюць перазапуск плэера</string>
+    <string name="progressive_load_interval_summary">Змяніць памер інтэрвалу загрузкі прагрэсіўнага змесціва (у цяперашні час %s). Меншае значэнне можа паскорыць іх першапачатковую загрузку</string>
     <string name="show_description_summary">Выключыце, каб схаваць апісанне відэа і дадатковую інфармацыю</string>
     <string name="local_search_suggestions">Прапановы лакальнага пошуку</string>
     <string name="settings_category_player_notification_summary">Наладзіць апавяшчэнне аб бягучым прайграванні патоку</string>
@@ -764,4 +764,25 @@
     <string name="left_gesture_control_summary">Выбраць жэст для левай часткі экрана прайгравання</string>
     <string name="volume">Гук</string>
     <string name="right_gesture_control_summary">Выбраць жэст для правай часткі экрана прайгравання</string>
+    <string name="prefer_original_audio_summary">Выбіраць зыходную гукавую дарожку незалежна ад мовы</string>
+    <string name="prefer_original_audio_title">Аддаць перавагу арыгінальнаму гуку</string>
+    <string name="prefer_descriptive_audio_title">Аддаць перавагу апісальнаму гуку</string>
+    <string name="prefer_descriptive_audio_summary">Выберыце гукавую дарожку з апісаннем для людзей са слабым зрокам, калі яна ёсць</string>
+    <string name="play_queue_audio_track">Аўдыё: %s</string>
+    <string name="audio_track">Гукавая дарожка</string>
+    <string name="select_audio_track_external_players">Выберыце гукавую дарожку для знешніх прайгравальнікаў</string>
+    <string name="unknown_audio_track">Невядомая</string>
+    <string name="settings_category_exoplayer_title">Налады ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Выкарыстоўваць функцыю рэзервовага дэкодэра ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Заўсёды выкарыстоўваць спосаб абыходу налад паверхні відэавываду ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">арыгінальны</string>
+    <string name="audio_track_type_dubbed">дубляваны</string>
+    <string name="audio_track_type_descriptive">апісальны</string>
+    <string name="audio_track_present_in_video">Гукавая дарожка ўжо павінна прысутнічаць у гэтай плыні</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Уключыце гэту опцыю, калі ў вас ёсць праблемы з ініцыялізацыяй дэкодэра, якая вяртаецца да дэкодэраў з больш нізкім прыярытэтам, калі ініцыялізацыя асноўных дэкодэраў не ўдаецца. Гэта можа прывесці да нізкай прадукцыйнасці прайгравання, чым пры выкарыстанні асноўных дэкодэраў</string>
+    <string name="settings_category_exoplayer_summary">Кіраванне некаторымі наладамі ExoPlayer. Каб гэтыя змены ўступілі ў сілу, патрабуецца перазапуск гульца</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Гэты абыходны шлях вызваляе і паўторна стварае відэакодэкі, калі адбываецца змяненне паверхні, замест таго, каб усталёўваць паверхню непасрэдна для кодэка. ExoPlayer ужо выкарыстоўваецца на некаторых прыладах з гэтай праблемай, гэты параметр мае ўплыў толькі на прыладах з Android 6 і вышэй
+\n
+\nУключэнне гэтай опцыі можа прадухіліць памылкі прайгравання пры пераключэнні бягучага відэаплэера або пераключэнні ў поўнаэкранны рэжым</string>
 </resources>

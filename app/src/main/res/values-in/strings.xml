@@ -726,4 +726,26 @@
     <string name="right_gesture_control_title">Tindakan gestur kanan</string>
     <string name="brightness">Kecerahan</string>
     <string name="volume">Volume</string>
+    <string name="settings_category_exoplayer_summary">Kelola beberapa pengaturan ExoPlayer. Perubahan ini mengharuskan pemain memulai ulang agar diterapkan</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Aktifkan opsi ini jika Anda mengalami masalah inisialisasi dekoder, yang akan kembali ke dekoder dengan prioritas lebih rendah jika inisialisasi dekoder primer gagal. Hal ini dapat mengakibatkan performa pemutaran yang buruk dibandingkan saat menggunakan dekoder primer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Solusi ini melepaskan dan memasang kembali codec video ketika terjadi perubahan permukaan, alih-alih mengatur permukaan ke codec secara langsung. Sudah digunakan oleh ExoPlayer pada beberapa perangkat dengan masalah ini, pengaturan ini hanya berpengaruh pada Android 6 dan yang lebih tinggi
+\n
+\nMengaktifkan opsi ini dapat mencegah kesalahan pemutaran saat mengganti pemutar video saat ini atau beralih ke layar penuh</string>
+    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan pada konten progresif (saat ini %s). Nilai yang lebih rendah dapat mempercepat pemuatan awalnya</string>
+    <string name="prefer_original_audio_title">Lebih suka audio asli</string>
+    <string name="prefer_original_audio_summary">Pilih trek audio asli apa pun bahasanya</string>
+    <string name="prefer_descriptive_audio_title">Lebih suka audio deskriptif</string>
+    <string name="prefer_descriptive_audio_summary">Pilih trek audio dengan deskripsi untuk orang tunanetra jika tersedia</string>
+    <string name="play_queue_audio_track">Suara: %s</string>
+    <string name="audio_track">Trek audio</string>
+    <string name="audio_track_present_in_video">Trek audio harus sudah ada dalam aliran ini</string>
+    <string name="select_audio_track_external_players">Pilih trek audio untuk pemutar eksternal</string>
+    <string name="unknown_audio_track">Tidak diketahui</string>
+    <string name="settings_category_exoplayer_title">Pengaturan ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Gunakan fitur fallback dekoder ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Selalu gunakan solusi pengaturan permukaan keluaran video ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">asli</string>
+    <string name="audio_track_type_dubbed">disulih suara</string>
+    <string name="audio_track_type_descriptive">deskriptif</string>
 </resources>

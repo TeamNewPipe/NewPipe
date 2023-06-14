@@ -739,4 +739,26 @@
     <string name="brightness">Φωτεινότητα</string>
     <string name="volume">Ένταση</string>
     <string name="none">Καμία</string>
+    <string name="prefer_original_audio_title">Προτίμηση πρωτότυπου ήχου</string>
+    <string name="prefer_original_audio_summary">Επιλογή του πρωτότυπου κομματιού ήχου ανεξάρτητα από τη γλώσσα</string>
+    <string name="prefer_descriptive_audio_title">Προτίμηση του περιγραφικού ήχου</string>
+    <string name="play_queue_audio_track">Ήχος: %s</string>
+    <string name="audio_track">Κομμάτι ήχου</string>
+    <string name="audio_track_present_in_video">Ένα κομμάτι ήχου θα πρέπει να υπάρχει ήδη σε αυτήν τη ροή</string>
+    <string name="select_audio_track_external_players">Επιλογή ήχου για εξωτερικές συσκευές αναπαραγωγής</string>
+    <string name="unknown_audio_track">Άγνωστο</string>
+    <string name="settings_category_exoplayer_title">Ρυθμίσεις ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Διαχειριστείτε ορισμένες ρυθμίσεις του ExoPlayer. Αυτές οι αλλαγές απαιτούν επανεκκίνηση του προγράμματος αναπαραγωγής για να τεθεί σε ισχύ</string>
+    <string name="use_exoplayer_decoder_fallback_title">Χρησιμοποιήστε την δυνατότητα εναλλακτικού αποκωδικοποιητή του ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Ενεργοποιήστε αυτήν την επιλογή εάν αντιμετωπίζετε προβλήματα με την προετοιμασία του αποκωδικοποιητή, η οποία επιστρέφει σε αποκωδικοποιητές χαμηλότερης προτεραιότητας εάν αποτύχει η προετοιμασία του πρωτεύοντος αποκωδικοποιητή. Αυτό μπορεί να έχει ως αποτέλεσμα κακή απόδοση αναπαραγωγής από ότι όταν χρησιμοποιείτε κύριους αποκωδικοποιητές</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Χρησιμοποιείτε πάντα τον εναλλακτικό τρόπο ρύθμισης της επιφάνειας εξόδου βίντεο του ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση.
+\n
+\nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">αρχικό</string>
+    <string name="audio_track_type_dubbed">μεταγλωττισμένο</string>
+    <string name="audio_track_type_descriptive">περιγραφικό</string>
+    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης σε προοδευτικά περιεχόμενα (προς το παρόν %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική τους φόρτωση</string>
+    <string name="prefer_descriptive_audio_summary">Επιλογή ήχου με περιγραφές για άτομα με προβλήματα όρασης, εάν είναι διαθέσιμος</string>
 </resources>

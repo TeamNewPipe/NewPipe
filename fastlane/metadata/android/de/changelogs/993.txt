@@ -1,0 +1,12 @@
+Neu
+• Warnung bei Erstellung von Duplikaten in Wiedergabelisten und neue Schaltfläche um Duplikate zu entfernen
+• Möglichkeit, Hardware Tasten zu ignorieren
+• Möglichkeit, teilweise gesehene Videos im Feed auszublenden
+
+Verbessert
+• Mehr Rasterspalten auf großen Displays
+• Fortschrittsbalken sind jetzt konsistent mit Einstellungen
+
+Behoben
+• Das Öffnen von Browser-URLs, Downloads und externen Videoplayern auf Android 11+
+• Fullscreen-Bedingung benötigte zweimaliges Drücken auf MIUI

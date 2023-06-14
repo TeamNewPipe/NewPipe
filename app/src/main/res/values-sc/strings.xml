@@ -739,4 +739,26 @@
     <string name="right_gesture_control_summary">Issèbera unu gestu pro sa metade de destra de s\'ischermu de su riproduidore</string>
     <string name="brightness">Luminosidade</string>
     <string name="none">Perunu</string>
+    <string name="progressive_load_interval_summary">Modìfica sa mannària de s\'intervallu de càrriga de cuntenutos consecutivos (como %s). Unu valore prus bassu diat pòdere allestrare su carrigamentu initziale issoro</string>
+    <string name="prefer_original_audio_title">Preferi s\'àudio originale</string>
+    <string name="prefer_descriptive_audio_title">Preferi un\'àudio descritivu</string>
+    <string name="prefer_descriptive_audio_summary">Seletziona una rasta àudio cun descritziones pro persones cun problemas de vista, si bi nd\'at a disponimentu</string>
+    <string name="play_queue_audio_track">Àudio: %s</string>
+    <string name="audio_track">Rasta àudio</string>
+    <string name="unknown_audio_track">Disconnotu</string>
+    <string name="settings_category_exoplayer_summary">Manìgia unas cantas impostatziones de ExoPlayer. Custas modìficas tenent bisòngiu de torrare a allùghere su riproduidore pro chi tèngiant efetu</string>
+    <string name="use_exoplayer_decoder_fallback_title">Imprea sa funtzionalidade de riserva de su decodificadore de ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">originale</string>
+    <string name="audio_track_type_dubbed">dopiadu</string>
+    <string name="audio_track_type_descriptive">descritivu</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Imprea semper sa solutzione alternativa de s\'impostatzione de superfìtzie de s\'essida vìdeu de ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Custa solutzione alternativa lìberat e torrat a istantziare sos codificadores de vìdeu cando acontesset unu càmbiu de superfìtzie, in càmbiu de impostare sa superfìtzie e su codificadore in manera direta. Giai impreada dae ExoPlayer in unos cantos dispositivos cun custu problema, custa impostatziones tenet un\'efetu petzi in Android 6 e versiones prus noas.
+\n
+\nS\'abilitatzione de custa optzione diat pòdere prevènnere faddinas de riprodutzione cando si càmbiat su riproduidore vìdeu atuale o si colat a s\'ischermu intreu</string>
+    <string name="select_audio_track_external_players">Seletziona una rasta àudio pro riproduidores esternos</string>
+    <string name="prefer_original_audio_summary">Seletziona sa rasta sonora originale in manera indipendente dae sa limba</string>
+    <string name="audio_track_present_in_video">Una rasta àudio diat dèpere èssere giai presente in custu flussu</string>
+    <string name="settings_category_exoplayer_title">Impostatziones pro ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Abìlita custa optzione si tenes problemas de initzializatzione de su decodificadore, chi colat a decodificadores a prioridade prus bassa si s\'initzializatzione de sos decodificadores primàrios fallit. Custu diat pòdere causare unu rendimentu de riprodutzione bassu cunfronta a s\'impreu de decodificadores primàrios</string>
 </resources>

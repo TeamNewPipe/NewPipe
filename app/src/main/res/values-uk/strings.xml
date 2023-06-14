@@ -756,4 +756,26 @@
     <string name="right_gesture_control_summary">Виберіть жест для правої половини екрана програвача</string>
     <string name="right_gesture_control_title">Дія жесту праворуч</string>
     <string name="volume">Гучність</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження прогресивного вмісту (наразі %s). Нижче значення може прискорити його початкове завантаження</string>
+    <string name="prefer_original_audio_title">Надавати перевагу оригінальному аудіо</string>
+    <string name="prefer_original_audio_summary">Вибирати оригінальну звукову доріжку незалежно від мови</string>
+    <string name="prefer_descriptive_audio_title">Надавати перевагу описовому аудіо</string>
+    <string name="prefer_descriptive_audio_summary">Вибирати звукову доріжку з описом для людей із вадами зору, якщо вона є</string>
+    <string name="play_queue_audio_track">Аудіо: %s</string>
+    <string name="audio_track">Звукова доріжка</string>
+    <string name="select_audio_track_external_players">Вибір звукової доріжки для зовнішніх програвачів</string>
+    <string name="unknown_audio_track">Невідомо</string>
+    <string name="settings_category_exoplayer_title">Налаштування ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Керування деякими налаштуваннями ExoPlayer. Щоб ці зміни набули чинності, потрібно перезапустити програвач</string>
+    <string name="use_exoplayer_decoder_fallback_title">Використовувати запасну функцію декодера ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Завжди використовувати обхідний шлях налаштування поверхні відеовиходу ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">оригінальна</string>
+    <string name="audio_track_type_dubbed">дубльована</string>
+    <string name="audio_track_type_descriptive">описова</string>
+    <string name="audio_track_present_in_video">У цій трансляції вже має бути звукова доріжка</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Увімкніть цю опцію, якщо у вас є проблеми з ініціалізацією декодерів, які повертаються до декодерів нижчого пріоритету, якщо не вдається ініціалізувати первинні декодери. Це може призвести до погіршення якості відтворення порівняно з використанням первинних декодерів</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Цей обхідний шлях вивільняє і повторно встановлює відеокодеки, коли відбувається зміна поверхні, замість того, щоб налаштовувати поверхню на кодек безпосередньо. Це налаштування вже використовується ExoPlayer на деяких пристроях з цією проблемою, але воно працює лише на Android 6 і новіших версіях
+\n
+\nУвімкнення цієї опції може запобігти помилкам відтворення під час перемикання поточного відеопрогравача або переходу до повноекранного режиму</string>
 </resources>

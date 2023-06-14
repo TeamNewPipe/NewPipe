@@ -755,4 +755,26 @@
     <string name="none">Ninguno</string>
     <string name="left_gesture_control_summary">Elige un gesto para la mitad izquierda de la pantalla del reproductor</string>
     <string name="right_gesture_control_summary">Elige un gesto para la mitad derecha de la pantalla del reproductor</string>
+    <string name="prefer_original_audio_title">Prefiero el audio original</string>
+    <string name="prefer_original_audio_summary">Selecciona la pista de audio original independientemente del idioma</string>
+    <string name="prefer_descriptive_audio_title">Prefiero un audio descriptivo</string>
+    <string name="prefer_descriptive_audio_summary">Selecciona una pista de audio con descripciones para personas con discapacidad visual, si está disponible</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Pista de audio</string>
+    <string name="audio_track_present_in_video">Ya debería existir una pista de audio en esta transmisión</string>
+    <string name="select_audio_track_external_players">Selecciona una pista de audio para reproductores externos</string>
+    <string name="unknown_audio_track">Desconocido</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utilice la función de respaldo del decodificador de ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Utiliza siempre la configuración de ExoPlayer para la interfaz de salida del video como una solución alternativa</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">doblado</string>
+    <string name="audio_track_type_descriptive">descriptivo</string>
+    <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga en contenidos progresivos (actualmente %s). Un valor más bajo puede acelerar la carga inicial</string>
+    <string name="settings_category_exoplayer_title">Ajustes para ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gestiona algunos ajustes de ExoPlayer. Estos cambios requieren reiniciar el reproductor para que surtan efecto</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Habilite esta opción si tiene problemas con la inicialización del decodificador recurriendo a decodificadores de menor prioridad si el decodificador principal no se inicializa. Esto puede dar como resultado un rendimiento de reproducción más bajo que cuando se usan decodificadores primarios</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera los códecs de video y los vuelve a instanciar cuando cambia la máscara, en lugar de configurar la máscara directamente en el códec. ExoPlayer ya usa esta configuración en algunos dispositivos con este problema y solo afecta a Android 6 y versiones posteriores
+\n
+\nHabilitar esta opción puede evitar errores de reproducción al cambiar el reproductor de video actual o cambiar al modo de pantalla completa</string>
 </resources>

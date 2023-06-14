@@ -726,4 +726,26 @@
     <string name="left_gesture_control_summary">选择播放器屏幕左半边手势</string>
     <string name="right_gesture_control_summary">选择播放器屏幕右半边手势</string>
     <string name="none">无</string>
+    <string name="progressive_load_interval_summary">更改渐进式内容的加载间隔大小（当前为 %s）。较低的值可加快初始加载</string>
+    <string name="prefer_descriptive_audio_title">偏好描述性音频</string>
+    <string name="prefer_descriptive_audio_summary">如果可用，为视障人群选择带描述的音轨</string>
+    <string name="play_queue_audio_track">音频：%s</string>
+    <string name="audio_track_present_in_video">此串流中应该已经有音轨</string>
+    <string name="select_audio_track_external_players">选择外部播放器音轨</string>
+    <string name="unknown_audio_track">未知</string>
+    <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 设置。这些更改需要重启播放器才能生效</string>
+    <string name="use_exoplayer_decoder_fallback_title">使用 ExoPlayer 的编码器回退功能</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">始终使用 ExoPlayer 的视频输出界面设置变通方法</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此变通方法在发生界面更改时会释放并重新初始化视频编解码器，而不是直接将编解码器设置到新界面。在某些有这个问题的设备上，Exoplayer 已经在使用这个方法。此设置仅适用于 Android 6 及更高的系统版本
+\n
+\n启用此选项可防止切换当前视频播放器或切换到全屏播放时出现播放错误</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">原始</string>
+    <string name="audio_track_type_dubbed">配音</string>
+    <string name="audio_track_type_descriptive">描述</string>
+    <string name="prefer_original_audio_title">偏好原始音频</string>
+    <string name="prefer_original_audio_summary">不管何种语言都选择原始音轨</string>
+    <string name="audio_track">音轨</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer 设置</string>
+    <string name="use_exoplayer_decoder_fallback_summary">如遇解码器初始化方面的问题可开启此选项。启用后，如主解码器初始化失败，ExoPlayer 将使用较低优先级的解码器进行播放。请注意，这可能导致播放性能下降</string>
 </resources>

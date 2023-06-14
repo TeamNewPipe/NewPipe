@@ -745,11 +745,33 @@
     <string name="feed_show_watched">Completamente visto</string>
     <string name="feed_hide_streams_title">Mostrar os seguintes vídeos</string>
     <string name="feed_show_partially_watched">Parcialmente visto</string>
-    <string name="left_gesture_control_title">Ação de gesto de esquerda</string>
-    <string name="right_gesture_control_title">Ação do gesto correto</string>
-    <string name="brightness">Luminosidade</string>
+    <string name="left_gesture_control_title">Ação do gesto para a esquerda</string>
+    <string name="right_gesture_control_title">Ação do gesto para a direita</string>
+    <string name="brightness">Brilho</string>
     <string name="volume">Volume</string>
     <string name="none">Nenhum</string>
-    <string name="left_gesture_control_summary">Escolher gesto para metade esquerda do ecrã do reprodutor</string>
-    <string name="right_gesture_control_summary">Escolher gesto para metade direita do ecrã do reprodutor</string>
+    <string name="left_gesture_control_summary">Escolha o gesto para a metade esquerda do ecrã do reprodutor</string>
+    <string name="right_gesture_control_summary">Escolha o gesto para a metade direita do ecrã do reprodutor</string>
+    <string name="prefer_descriptive_audio_summary">Seleciona o áudio com descrição para pessoas com dificuldades de visão, se disponível</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solução alternativa liberta e re-instancia os codificadores de vídeo quando ocorre uma alteração da superfície, em vez de definir diretamente a superfície para o codificador. Já utilizada pelo ExoPlayer em alguns dispositivos com este problema, esta configuração só tem efeito no Android 6 e superior
+\n
+\nA activação desta opção pode evitar erros de reprodução ao mudar o leitor de vídeo atual ou ao mudar para ecrã inteiro</string>
+    <string name="progressive_load_interval_summary">Altera o tamanho do intervalo de carregamento progressivo (o atual é %s). Um valor menor pode acelerar o carregamento inicial do vídeo</string>
+    <string name="prefer_original_audio_title">Dar preferência ao áudio original</string>
+    <string name="prefer_original_audio_summary">Selecionar o áudio original independentemente do idioma</string>
+    <string name="prefer_descriptive_audio_title">Dar preferência ao áudio descritivo</string>
+    <string name="play_queue_audio_track">Áudio: %s</string>
+    <string name="audio_track">Faixa de áudio</string>
+    <string name="audio_track_present_in_video">Já deve existir uma faixa de áudio nesta transmissão</string>
+    <string name="select_audio_track_external_players">Selecionar faixa de áudio para reprodutores externos</string>
+    <string name="unknown_audio_track">Desconhecida</string>
+    <string name="settings_category_exoplayer_title">Configurações ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gere algumas configurações de ExoPlayer. É necessário reiniciar o reprodutor para aplicar as alterações</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do descodificador do ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Ative esta opção se tiver problemas de inicialização do descodificador, que retorna codificadores de baixa prioridade se o descodificador primário falhar. Isto pode resultar num desempenho inferior de reprodução</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Usar sempre a configuração de saída alternativa de vídeo do ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">dobrado</string>
+    <string name="audio_track_type_descriptive">descritivo</string>
 </resources>
