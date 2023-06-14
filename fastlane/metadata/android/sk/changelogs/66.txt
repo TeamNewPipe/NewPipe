@@ -1,0 +1,33 @@
+# Zoznam zmien verzie v0.13.7
+
+### Opravené
+- Oprava problémov s triediacim filtrom vo verzii v0.13.6
+
+# Zoznam zmien verzie v0.13.6
+
+### Vylepšenia
+
+- Zakázanie animácie ikony burgermenu #1486 
+- Zrušenie odstránenia stiahnutých súborov #1472 
+- Možnosť sťahovania v ponuke zdieľania #1498
+- Pridaná možnosť zdieľania do ponuky dlhého ťuknutia #1454 
+- Minimalizácia hlavného prehrávača pri ukončení #1354 
+- Aktualizácia verzie knižnice a oprava zálohovania databázy #1510 
+- Aktualizácia ExoPlayer 2.8.2 #1392
+  - Prepracované dialógové okno na ovládanie rýchlosti prehrávania tak, aby podporovalo rôzne veľkosti krokov pre rýchlejšiu zmenu rýchlosti.
+  - Pridaný prepínač na rýchle prevíjanie dopredu počas ticha v ovládaní rýchlosti prehrávania. Toto by malo byť užitočné pre audioknihy a niektoré hudobné žánre a môže priniesť skutočne plynulý zážitok (a môže prerušiť skladbu s množstvom ticha =\).  
+  - Prepracované rozlíšenie zdrojov médií, aby bolo možné odovzdávať metadáta spolu s médiami interne v prehrávači, namiesto toho, aby sa to robilo ručne. Teraz máme jediný zdroj metadát a je priamo k dispozícii pri spustení prehrávania.
+  - Opravené neaktualizovanie metadát vzdialeného zoznamu skladieb, keď sú k dispozícii nové metadáta pri otvorení fragmentu zoznamu skladieb.
+  - Rôzne opravy používateľského rozhrania: #1383, ovládacie prvky oznámenia prehrávača na pozadí sú teraz vždy biele, jednoduchšie vypnutie vyskakovacieho prehrávača prostredníctvom hodenia
+- Použitie nového extraktora s preformulovanou architektúrou pre multiservis
+
+### Opravy
+
+- Oprava #1440 Nefunkčné rozloženie informácií o videu #1491 
+- Oprava histórie zobrazenia #1497
+  - #1495 aktualizáciou metadát (miniatúry, názov a počet videí) hneď, ako používateľ vstúpi do zoznamu skladieb. 
+  - #1475, zaregistrovaním zobrazenia v databáze, keď používateľ spustí video v externom prehrávači na detailnom fragmente.
+- Oprava časového limitu creen v prípade popup režimu. #1463 (Opravené #640)
+- Oprava hlavného prehrávača videa č. 1509 
+  - #1412] Opravený režim opakovania spôsobujúci NPE prehrávača, keď je prijatý nový zámer, zatiaľ čo je činnosť prehrávača na pozadí.
+  - Opravené minimalizovanie prehrávača na vyskakovacie okno nezničí prehrávač, keď nie je udelené povolenie na vyskakovanie.

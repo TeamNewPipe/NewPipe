@@ -739,4 +739,26 @@
     <string name="brightness">Eredus</string>
     <string name="right_gesture_control_summary">Vali viibe meediamängija ekraani parema poole jaoks</string>
     <string name="right_gesture_control_title">Toiming viipel paremal poolel</string>
+    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem</string>
+    <string name="prefer_original_audio_title">Eelista algset heliriba</string>
+    <string name="prefer_original_audio_summary">Sõltumata keelevalikutest eelista esmaseks määratud heliriba</string>
+    <string name="prefer_descriptive_audio_title">Eelista kirjeldavat heliriba</string>
+    <string name="prefer_descriptive_audio_summary">Eelista nägemispuudega inimeste jaoks koostatud heliriba, kui selline on olemas</string>
+    <string name="play_queue_audio_track">Heli: %s</string>
+    <string name="audio_track_present_in_video">Selles meediavoos peaks heliriba juba olemas olema</string>
+    <string name="use_exoplayer_decoder_fallback_title">Kasuta ExoPlayer\'i alternatiivset dekooderit</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Kasuta alati ExoPlayer\'i video väljundpinna seadistamise lahendust</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">algne</string>
+    <string name="audio_track_type_dubbed">dubleeritud</string>
+    <string name="audio_track_type_descriptive">kirjeldav</string>
+    <string name="audio_track">Heliriba</string>
+    <string name="select_audio_track_external_players">Vali heliriba väliste meediamängijate jaoks</string>
+    <string name="unknown_audio_track">Teadmata</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer\'i seadistused</string>
+    <string name="settings_category_exoplayer_summary">Järgnevas saad hallata mõningaid ExoPlayer\'i seadistusi. Need muudatused vajavad jõustumiseks meediamängija uuesti käivitamist</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Kasuta seda võimalust, kui põhidekooder ei käivitu korralikult. Selle asemel laaditakse alternatiivne dekooder, kuid tulemuseks võib olla kehvem taasesituse kvaliteet</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Video väljundpinna muutumisel see alternatiivne lahendus eemaldab videokodekid kasutusest ja laadib nad uuesti ega ürita videokodeke uue väljundpinnaga sobitada. See seadistus toimib vaid Android 6 ja uuemates versioonides ning mõne seadme puhul on juba automaatselt kasutusel
+\n
+\nSelle valiku kasutamine hoiab ära mõned vea, mis tekivad ekraani pööramisel ja täisekraanivaate kasutamisel</string>
 </resources>

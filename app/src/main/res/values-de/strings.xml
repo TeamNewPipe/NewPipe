@@ -739,4 +739,26 @@
     <string name="left_gesture_control_title">Linke Gestenaktion</string>
     <string name="brightness">Helligkeit</string>
     <string name="volume">Lautstärke</string>
+    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen.</string>
+    <string name="prefer_original_audio_title">Originalton bevorzugen</string>
+    <string name="prefer_original_audio_summary">Wähle die Originaltonspur unabhängig von der Sprache</string>
+    <string name="prefer_descriptive_audio_title">Beschreibendes Audio bevorzugen</string>
+    <string name="prefer_descriptive_audio_summary">Wähle eine Audiospur mit Beschreibungen für sehbehinderte Menschen, falls verfügbar</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Audiospur</string>
+    <string name="settings_category_exoplayer_summary">Verwalte einige ExoPlayer-Einstellungen. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
+    <string name="use_exoplayer_decoder_fallback_title">Verwende die Decoder-Fallback-Funktion von ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Verwende immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Dieser Workaround gibt die Video-Codecs frei und instanziiert sie neu, wenn sich die Oberfläche ändert, anstatt die Oberfläche direkt auf den Codec zu setzen. Diese Einstellung wird bereits von ExoPlayer auf einigen Geräten mit diesem Problem verwendet und hat nur Auswirkungen auf Android 6 und höher
+\n
+\nDas Aktivieren dieser Option kann Wiedergabefehler beim Wechsel des aktuellen Videoplayers oder beim Wechsel zum Vollbildmodus verhindern</string>
+    <string name="audio_track_type_original">Original</string>
+    <string name="audio_track_type_dubbed">Synchronisiert</string>
+    <string name="audio_track_type_descriptive">Beschreibend</string>
+    <string name="select_audio_track_external_players">Audiospur für externe Player auswählen</string>
+    <string name="audio_track_present_in_video">In diesem Stream sollte bereits eine Audiospur vorhanden sein</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Aktiviere diese Option, wenn du Probleme mit der Decoderinitialisierung hast, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
+    <string name="unknown_audio_track">Unbekannt</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
+    <string name="audio_track_name">%s %s</string>
 </resources>

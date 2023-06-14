@@ -117,7 +117,7 @@
     <string name="settings_category_player_behavior_title">Chování</string>
     <string name="settings_category_history_title">Historie a mezipaměť</string>
     <string name="popup_playing_toast">Přehrávání v okně</string>
-    <string name="disabled">Vypnuto</string>
+    <string name="disabled">Zakázáno</string>
     <string name="clear">Vyčistit</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
@@ -153,7 +153,7 @@
     <string name="title_activity_about">O NewPipe</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="tab_about">O aplikaci a ČKD</string>
+    <string name="tab_about">O aplikaci a FAQ</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Svobodné a nenáročné streamování v Androidu.</string>
     <string name="view_on_github">Zobraz na GitHubu</string>
@@ -356,8 +356,8 @@
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
     <string name="app_update_available_notification_title">Aktualizace NewPipe je k dispozici!</string>
-    <string name="missions_header_finished">Hotovo</string>
-    <string name="missions_header_pending">Vyčkávání</string>
+    <string name="missions_header_finished">Dokončeno</string>
+    <string name="missions_header_pending">Čekání</string>
     <string name="paused">Pozastaveno</string>
     <string name="queued">ve frontě</string>
     <string name="post_processing">zpracování</string>
@@ -366,7 +366,7 @@
     <string name="download_failed">Stahování se nezdařilo</string>
     <string name="generate_unique_name">Vytvořit jedinečný název</string>
     <string name="overwrite">Přepsat</string>
-    <string name="overwrite_unrelated_warning">Stažený soubor s tímto názvem již existuje</string>
+    <string name="overwrite_unrelated_warning">Soubor s tímto názvem již existuje</string>
     <string name="overwrite_finished_warning">Stažený soubor s tímto názvem již existuje</string>
     <string name="download_already_running">Stahování s tímto názvem již probíhá</string>
     <string name="show_error">Zobrazit chybu</string>
@@ -752,4 +752,26 @@
     <string name="left_gesture_control_summary">Vyberte gesto pro levou polovinu obrazovky přehrávače</string>
     <string name="brightness">Jas</string>
     <string name="right_gesture_control_summary">Vyberte gesto pro pravou polovinu obrazovky přehrávače</string>
+    <string name="progressive_load_interval_summary">Změna velikosti intervalu načítání progresivního obsahu (aktuálně %s). Nižší hodnota může urychlit jejich počáteční načítání</string>
+    <string name="prefer_original_audio_title">Upřednostňovat původní zvuk</string>
+    <string name="prefer_original_audio_summary">Vybrat původní zvukovou stopu bez ohledu na jazyk</string>
+    <string name="prefer_descriptive_audio_title">Upřednostňovat popisný zvuk</string>
+    <string name="prefer_descriptive_audio_summary">Vybrat zvukovou stopu s popisem pro zrakově postižené, pokud je k dispozici</string>
+    <string name="unknown_audio_track">Neznámá</string>
+    <string name="settings_category_exoplayer_title">Nastavení přehrávače ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Správa některých nastavení přehrávače ExoPlayer. Tyto změny vyžadují restartování přehrávače, aby se projevily</string>
+    <string name="use_exoplayer_decoder_fallback_title">Použít funkci náhradního dekodéru přehrávače ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Tuto možnost povolte, pokud máte problémy s inicializací dekodéru. V případě selhání inicializace primárních dekodérů se přehrávač vrátí zpět k dekodérům s nižší prioritou. To může mít za následek nižší výkon přehrávání než při použití primárních dekodérů</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použít nastavení povrchu výstupu videa v přehrávači ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">původní</string>
+    <string name="audio_track_type_dubbed">dabovaná</string>
+    <string name="audio_track_type_descriptive">popisná</string>
+    <string name="audio_track">Zvuková stopa</string>
+    <string name="audio_track_present_in_video">V tomto streamu by již měla být přítomna zvuková stopa</string>
+    <string name="select_audio_track_external_players">Vyberte zvukovou stopu pro externí přehrávače</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Toto obejití uvolní a znovu nainstaluje kodeky videa, když dojde ke změně povrchu, místo aby se povrch nastavil přímo na kodek. Toto nastavení, které již bylo použito v přehrávači ExoPlayer na některých zařízeních s tímto problémem, má vliv pouze na Android 6 a vyšší.
+\n
+\nPovolení této možnosti může zabránit chybám při přehrávání při přepnutí aktuálního přehrávače videa nebo při přepnutí na celou obrazovku</string>
+    <string name="play_queue_audio_track">Zvuk: %s</string>
 </resources>

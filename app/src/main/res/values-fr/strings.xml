@@ -672,7 +672,7 @@
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
-    <string name="manual_update_title">Vérifier les mises à jours</string>
+    <string name="manual_update_title">Vérifier les mises à jour</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
     <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
@@ -754,4 +754,26 @@
     <string name="none">Aucune</string>
     <string name="right_gesture_control_title">Action du geste vers la droite</string>
     <string name="brightness">Luminosité</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos</string>
+    <string name="prefer_original_audio_title">Préférence pour l\'audio original</string>
+    <string name="prefer_original_audio_summary">Sélectionner la piste audio originale quelle que soit la langue</string>
+    <string name="prefer_descriptive_audio_title">Préférer l\'audio descriptif</string>
+    <string name="play_queue_audio_track">Audio : %s</string>
+    <string name="audio_track">Piste audio</string>
+    <string name="audio_track_present_in_video">Une piste audio doit déjà être présente dans ce flux</string>
+    <string name="unknown_audio_track">Inconnue</string>
+    <string name="settings_category_exoplayer_title">Paramètres d’ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gérez certains paramètres d\'ExoPlayer. Ces modifications nécessitent un redémarrage du lecteur pour être prises en compte</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utiliser la fonctionnalité de repli du décodeur d\'ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Toujours utiliser la solution de contournement de définition de surface de sortie vidéo d\'ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">doublée</string>
+    <string name="audio_track_type_descriptive">descriptif</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Cette solution de contournement libère et ré-instancie les codecs vidéo lorsqu\'un changement de surface se produit, au lieu de définir la surface du codec directement. Déjà utilisé par ExoPlayer sur certains appareils présentant ce problème, ce paramètre n\'a d\'effet que sur Android 6 et les versions ultérieures.
+\n
+\nL\'activation de cette option peut éviter les erreurs de lecture lors du changement de lecteur vidéo ou du passage en mode plein écran</string>
+    <string name="prefer_descriptive_audio_summary">Sélectionner une piste audio avec des descriptions pour les personnes malvoyantes si disponible</string>
+    <string name="select_audio_track_external_players">Sélectionner la piste audio pour les lecteurs externes</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Activez cette option si vous rencontrez des problèmes d\'initialisation des décodeurs, ce qui permet de revenir à des décodeurs moins prioritaires si l\'initialisation des décodeurs primaires échoue. Les performances de lecture peuvent être moins bonnes que lors de l\'utilisation des décodeurs primaires</string>
 </resources>

@@ -756,4 +756,26 @@
     <string name="brightness">Яркость</string>
     <string name="volume">Громкость</string>
     <string name="none">Ничего</string>
+    <string name="progressive_load_interval_summary">Изменить интервал загрузки (сейчас %s). Меньшее значение может ускорить запуск видео. Нужен перезапуск плеера</string>
+    <string name="prefer_descriptive_audio_title">Отдать предпочтение описательному звуку</string>
+    <string name="play_queue_audio_track">Аудио: %s</string>
+    <string name="audio_track">Звуковая дорожка</string>
+    <string name="unknown_audio_track">Неизвестная</string>
+    <string name="settings_category_exoplayer_title">Настройки ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Управление некоторыми настройками ExoPlayer. Эти изменения требуют перезапуска плеера, чтобы они вступили в силу</string>
+    <string name="use_exoplayer_decoder_fallback_title">Использовать резервную функцию декодера ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Всегда использовать обходной путь настройки поверхности видеовыхода ExoPlayer</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">оригинальный</string>
+    <string name="audio_track_type_dubbed">дублированный</string>
+    <string name="audio_track_type_descriptive">описательный</string>
+    <string name="prefer_original_audio_title">Отдать предпочтение оригинальному звуку</string>
+    <string name="prefer_original_audio_summary">Выбирать исходную звуковую дорожку независимо от языка</string>
+    <string name="prefer_descriptive_audio_summary">Выбирать звуковую дорожку с описаниями для слабовидящих, если они доступны</string>
+    <string name="audio_track_present_in_video">Звуковая дорожка уже должна присутствовать в этом потоке</string>
+    <string name="select_audio_track_external_players">Выберите звуковую дорожку для внешних проигрывателей</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Включите этот параметр, если у вас есть проблемы с инициализацией декодера, который возвращается к декодерам с более низким приоритетом в случае сбоя инициализации основных декодеров. Это может привести к ухудшению качества воспроизведения по сравнению с использованием первичных декодеров</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Этот обходной путь освобождает и повторно создаёт видеокодеки при изменении поверхности вместо того, чтобы напрямую устанавливать поверхность для кодека. Уже используется ExoPlayer на некоторых устройствах с этой проблемой, этот параметр влияет только на устройства с Android 6 и выше
+\n
+\nВключение этого параметра может предотвратить ошибки воспроизведения при переключении текущего видеоплеера или переключении в полноэкранный режим</string>
 </resources>

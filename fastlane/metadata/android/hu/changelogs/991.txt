@@ -10,4 +10,4 @@ Javítások
 
 Hibajavítások
 • Többféle összeomlás lett javítva
-• [YouTube] Javítva lett a csatornák betöltése, a nem dedikált feed és néhány ország visszajátszási gondjait megkerültük
+• [YouTube] Javítva lett a csatornák betöltése, a nem elkülönített feed, és néhány ország lejátszási gondjait megkerültük

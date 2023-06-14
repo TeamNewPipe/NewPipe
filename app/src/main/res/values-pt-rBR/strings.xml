@@ -79,8 +79,8 @@
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="search">Pesquisar</string>
     <string name="show_play_with_kodi_summary">Mostra uma opção para ver vídeo pelo media center do Kodi</string>
-    <string name="use_external_audio_player_title">Usar player de áudio externo</string>
-    <string name="use_external_video_player_title">Usar player de vídeo externo</string>
+    <string name="use_external_audio_player_title">Usar reprodutor de áudio externo</string>
+    <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir com Kodi\"</string>
     <string name="info_labels">O que aconteceu:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do Sistema Operacional:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
@@ -247,7 +247,7 @@
     <string name="enable_disposed_exceptions_title">Reportar erros de out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Forçar entrega de relatórios de erros Rx fora de um fragmento ou atividade de lifecycle após o descarte</string>
     <string name="use_inexact_seek_title">Usar busca de posição rápida (inexata)</string>
-    <string name="use_inexact_seek_summary">A busca inexata permite que o player ache posições mais rápido com a precisão reduzida. Não funciona para voltar ou avançar 5, 15 ou 25 segundos</string>
+    <string name="use_inexact_seek_summary">A busca inexata permite que o reprodutor de vídeo ache posições mais rápido com a precisão reduzida. Não funciona para voltar ou avançar 5, 15 ou 25 segundos</string>
     <string name="auto_queue_title">Pôr próximo vídeo na fila automaticamente</string>
     <string name="auto_queue_summary">Continua a reprodução da fila (sem repetição) adicionando mais vídeos similares</string>
     <string name="file">Arquivo</string>
@@ -550,7 +550,7 @@
     <string name="unsupported_url_dialog_message">Não foi possível reconhecer a URL. Abrir com outro aplicativo\?</string>
     <string name="auto_queue_toggle">Pôr na fila automaticamente</string>
     <string name="clear_queue_confirmation_description">A fila do player ativo será substituída</string>
-    <string name="clear_queue_confirmation_summary">Mudar de um player para outro pode substituir sua fila</string>
+    <string name="clear_queue_confirmation_summary">Mudar de um reprodutor de vídeo para outro pode substituir sua fila</string>
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
     <string name="notification_action_shuffle">Aleatório</string>
     <string name="notification_action_buffering">Carregando</string>
@@ -671,7 +671,7 @@
     <string name="manual_update_title">Procurar por atualizações</string>
     <string name="manual_update_description">Procurar manualmente por novas versões</string>
     <string name="checking_updates_toast">Procurando por atualizações…</string>
-    <string name="crash_the_player">Travar o player</string>
+    <string name="crash_the_player">Travar o reprodutor de vídeo</string>
     <string name="show_crash_the_player_title">Mostrar \"Travar o player\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
     <string name="feed_new_items">Novos itens do feed</string>
@@ -714,7 +714,7 @@
     <string name="percent">Por cento</string>
     <string name="semitone">Semitom</string>
     <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é compatível com players externos</string>
-    <string name="no_audio_streams_available_for_external_players">Nenhum áudio de transmissão está disponível para players externos</string>
+    <string name="no_audio_streams_available_for_external_players">Nenhum transmissão de áudio está disponível para players externos</string>
     <string name="streams_not_yet_supported_removed">Transmissões que ainda não são suportadas pelo downloader não são exibidos</string>
     <string name="no_video_streams_available_for_external_players">Nenhum vídeo de transmissão está disponível para players externos</string>
     <string name="select_quality_external_players">Selecione a qualidade para players externos</string>
@@ -752,4 +752,26 @@
     <string name="volume">Volume</string>
     <string name="none">Nenhum</string>
     <string name="right_gesture_control_title">Ação do gesto direito</string>
+    <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo</string>
+    <string name="prefer_original_audio_title">Dar preferência ao áudio original</string>
+    <string name="prefer_original_audio_summary">Selecionar o áudio original e independentemente do idioma</string>
+    <string name="prefer_descriptive_audio_title">Dar preferência ao áudio descritivo</string>
+    <string name="prefer_descriptive_audio_summary">Selecionar um áudio com descrição para pessoas com dificuldades de visão, se disponível</string>
+    <string name="play_queue_audio_track">Áudio: %s</string>
+    <string name="audio_track">Faixa de áudio</string>
+    <string name="select_audio_track_external_players">Seleciona faixa de áudio para players externo</string>
+    <string name="unknown_audio_track">Desconhecido</string>
+    <string name="settings_category_exoplayer_title">Configurações de ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gerenciar algumas configurações de ExoPlayer. É necessário reiniciar o player para aplicar as mudanças</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">dublado</string>
+    <string name="audio_track_type_descriptive">descritivo</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solução alternativa libera os codificadores de vídeo quando ocorre uma alteração de superfície, em vez de definir a superfície para o codec diretamente. Já usado pelo ExoPlayer em alguns dispositivos com esse problema, essa configuração só tem efeito no Android 6 e superior
+\n
+\nAtivar esta opção pode evitar erros de reprodução ao alternar o reprodutor de vídeo atual ou alternar para tela cheia</string>
+    <string name="audio_track_present_in_video">Uma faixa de áudio já deve estar presente neste stream</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do decodificador do ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Sempre utilizar o configuração de saída de vídeo alternativa do ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Habilite essa opção se você tiver problemas de inicialização do decodificador, que retorna codificadores de baixa prioridade se o decodificador primário falhar. Isso pode resultar em pior desempenho de reprodução</string>
 </resources>

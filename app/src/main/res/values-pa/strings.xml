@@ -639,7 +639,7 @@
     <string name="seekbar_preview_thumbnail_title">ਸੀਕਬਾਰ ਥੰਮਨੇਲ ਦੀ ਝਲਕ</string>
     <string name="feed_update_threshold_summary">ਸਮਾਂ-ਅਵਧੀ ਜਦ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਦੁਬਾਰਾ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਸਕੇ — %s</string>
     <string name="detail_heart_img_view_description">ਰਚਨਾਕਾਰ ਨੇ ਦਿਲੋਂ ਪਸੰਦ ਕੀਤਾ</string>
-    <string name="progressive_load_interval_summary">ਲੋਡ ਅੰਤਰਾਲ ਆਕਾਰ ਬਦਲੋ (ਮੌਜੂਦਾ %s ਤੇ)। ਛੋਟੀ ਸੰਖਿਆ ਵੀਡੀਓ ਜਲਦੀ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਮੱਦਦ ਦੇ ਸਕਦੀ ਹੈ। ਬਦਲਾਅ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਤੇ ਹੀ ਹੋਣਗੇ</string>
+    <string name="progressive_load_interval_summary">ਪ੍ਰਗਤੀਸ਼ੀਲ ਸਮੱਗਰੀ ਉੱਤੇ ਲੋਡ ਅੰਤਰਾਲ ਆਕਾਰ ਬਦਲੋ (ਮੌਜੂਦਾ %s ਤੇ)। ਛੋਟੀ ਸੰਖਿਆ ਉਸਨੂੰ ਜਲਦੀ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਮੱਦਦ ਦੇ ਸਕਦੀ ਹੈ</string>
     <string name="local_search_suggestions">ਖੋਜ ਦੇ ਸਥਾਨਕ ਸੁਝਾਅ</string>
     <string name="remote_search_suggestions">ਖੋਜ ਦੇ ਰਿਮੋਟ ਸੁਝਾਅ</string>
     <string name="start_main_player_fullscreen_title">ਮੁੱਖ ਪਲੇਅਰ ਪੂਰੀ ਸਕਰੀਨ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
@@ -740,4 +740,25 @@
     <string name="left_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਖੱਬੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
     <string name="right_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਸੱਜੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
     <string name="volume">ਆਵਾਜ਼</string>
+    <string name="use_exoplayer_decoder_fallback_summary">ਇਹ ਚੋਣ ਯੋਗ ਕਰੋ, ਜੇ ਤੁਹਾਨੂੰ ਡੀਕੋਡਰ ਸ਼ੁਰੂ ਕਰਨ ਸਬੰਧੀ ਸਮੱਸਿਆਵਾਂ ਹਨ, ਜੋ ਕਿ ਘੱਟ-ਤਰਜੀਹ ਵਾਲੇ ਡੀਕੋਡਰਾਂ \'ਤੇ ਵਾਪਸ ਆ ਜਾਂਦੀਆਂ ਹਨ, ਜੇਕਰ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੋ ਜਾਂਦੇ ਹਨ। ਇਸ ਦੇ ਨਤੀਜੇ ਵਜੋਂ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨਾਲੋਂ ਮਾੜੀ ਪਲੇਬੈਕ ਕਾਰਗੁਜ਼ਾਰੀ ਹੋ ਸਕਦੀ ਹੈ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ਇਹ ਵਰਕਅਰਾਊਂਡ ਸਤਹ ਨੂੰ ਸਿੱਧਾ ਕੋਡੇਕ ਤੇ ਸੈੱਟ ਕਰਨ ਦੀ ਬਜਾਏ, ਜਦੋਂ ਸਤਹ ਵਿੱਚ ਤਬਦੀਲੀ ਹੁੰਦੀ ਹੈ ਤਾਂ ਵੀਡੀਓ ਕੋਡੈਕਸ ਨੂੰ ਰਿਲੀਜ਼ ਕਰਦਾ ਹੈ ਅਤੇ ਮੁੜ-ਇੰਸਟੈਂਟ ਕਰਦਾ ਹੈ। ਇਸ ਸਮੱਸਿਆ ਵਾਲੇ ਕੁਝ ਡਿਵਾਈਸਾਂ \'ਤੇ ਐਕਸੋਪਲੇਅਰ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ, ਇਸ ਸੈਟਿੰਗ ਦਾ ਸਿਰਫ਼ ਐਂਡਰੌਇਡ 6 ਅਤੇ ਉਸ ਤੋਂ ਵੱਧ \'ਤੇ ਪ੍ਰਭਾਵ ਹੈ
+\n
+\nਇਸ ਵਿਕਲਪ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਨਾਲ ਵਰਤਮਾਨ ਵੀਡੀਓ ਪਲੇਅਰ ਦੀ ਅਦਲਾ-ਬਦਲੀ ਕਰਨ ਜਾਂ ਪੂਰੀ ਸਕ੍ਰੀਨ \'ਤੇ ਅਦਲਾ-ਬਦਲੀ ਕਰਨ ਵੇਲੇ ਪਲੇਬੈਕ ਤਰੁੱਟੀਆਂ ਨੂੰ ਰੋਕਿਆ ਜਾ ਸਕਦਾ ਹੈ</string>
+    <string name="prefer_original_audio_title">ਅਸਲੀ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
+    <string name="prefer_original_audio_summary">ਭਾਸ਼ਾ ਦੀ ਪਰਵਾਹ ਕੀਤੇ ਬਿਨਾਂ ਅਸਲੀ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="prefer_descriptive_audio_title">ਵਰਣਨਾਤਮਕ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
+    <string name="prefer_descriptive_audio_summary">ਜੇ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਦ੍ਰਿਸ਼ਟੀ ਤੋਂ ਅਪੰਗ ਲੋਕਾਂ ਵਾਸਤੇ ਵਰਣਨਾਂ ਵਾਲਾ ਕੋਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="play_queue_audio_track">ਆਡੀਓ: %s</string>
+    <string name="audio_track">ਆਡੀਓ ਟਰੈਕ</string>
+    <string name="audio_track_present_in_video">ਇੱਕ ਆਡੀਓ ਟਰੈਕ ਇਸ ਸਟਰੀਮ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
+    <string name="select_audio_track_external_players">ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="unknown_audio_track">ਅਗਿਆਤ</string>
+    <string name="settings_category_exoplayer_title">ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗ</string>
+    <string name="settings_category_exoplayer_summary">ਕੁਝ ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ। ਇਹਨਾਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ</string>
+    <string name="use_exoplayer_decoder_fallback_title">ਐਕਸੋਪਲੇਅਰ ਦੀ ਡੀਕੋਡਰ ਫਾਲਬੈਕ ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">ਹਮੇਸ਼ਾ ਐਕਸੋਪਲੇਅਰ ਦੀ ਵਿਡੀਓ ਆਉਟਪੁੱਟ ਸਤਹ ਸੈਟਿੰਗ ਵਰਕਰਾਊਂਡ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">ਅਸਲੀ</string>
+    <string name="audio_track_type_dubbed">ਡੱਬ ਕੀਤਾ</string>
+    <string name="audio_track_type_descriptive">ਵਰਣਨਾਤਮਕ</string>
 </resources>

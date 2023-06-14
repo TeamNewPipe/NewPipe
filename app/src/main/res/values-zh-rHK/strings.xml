@@ -437,7 +437,7 @@
     <string name="show_thumbnail_summary">喺鎖定畫面背景同埋通知都擺放縮圖</string>
     <string name="download_has_started">開始咗下載</string>
     <string name="metadata_age_limit">年齡限制</string>
-    <string name="no_app_to_open_intent">您部機冇 app 開到佢</string>
+    <string name="no_app_to_open_intent">你部機冇 app 開到佢</string>
     <string name="youtube_music_premium_content">呢部影片係 YouTube Music Premium 會員限定，因此 NewPipe 未能串流或下載。</string>
     <string name="night_theme_summary">揀選啱你心水嘅夜色主題 — %s</string>
     <string name="paid_content">呢部內容係付費使用者限定，因此 NewPipe 未能串流或下載。</string>
@@ -596,7 +596,7 @@
     </plurals>
     <string name="enable_streams_notifications_title">新嘅串流通知</string>
     <string name="delete_downloaded_files_confirm">係咪要喺磁碟機上面消除晒全部下載咗嘅檔案？</string>
-    <string name="notifications_disabled">通知已停用</string>
+    <string name="notifications_disabled">已停用通知</string>
     <string name="tracks">單曲</string>
     <string name="clear_playback_states_summary">全部剷走晒播放到邊個位</string>
     <string name="error_report_open_github_notice">請睇過係咪已經有人喺度講緊你呢次彈 app 嘅狀況。若然重複發表已有嘅議題，就會嘥咗我哋可以真正用嚟修復其他錯漏嘅時間㗎喇。</string>
@@ -641,7 +641,7 @@
     <string name="delete_playback_states_alert">係咪要全部剷走晒之前啲片嘅播放位置嘅紀錄？</string>
     <string name="percent">百分比</string>
     <string name="semitone">半音</string>
-    <string name="progressive_load_interval_summary">更改載入播放間隔大細 (目前係 %s)。細啲或者可以等條片快啲開波。更改要重新開過個播放器先至生效</string>
+    <string name="progressive_load_interval_summary">更改載入播放間隔大細 (目前係 %s)。細啲或者可以等條片快啲開波</string>
     <string name="clear_queue_confirmation_title">問咗先至將排隊列表清走</string>
     <string name="clear_queue_confirmation_description">目前播放器嘅排隊列表將會清走</string>
     <string name="peertube_instance_add_title">加一個站</string>
@@ -653,7 +653,7 @@
     <string name="feed_new_items">新嘅摘要項目</string>
     <string name="choose_instance_prompt">揀選一個站</string>
     <string name="clear_queue_confirmation_summary">轉換播放器嘅時候，排隊列表可能會清走</string>
-    <string name="app_license">NewPipe 係「著佐權」(copyleft) 嘅自由軟件：你可以隨意使用、考究、分享同改進佢。具體而言，你可以依據自由軟件基金會發佈嘅《GNU 通用公眾特許條款》第 3 版或 (按您選擇) 之後任一版本之下嘅條款，重新分發及/或修改呢個軟件。</string>
+    <string name="app_license">NewPipe 係「著佐權」(copyleft) 嘅自由軟件：你可以隨意使用、考究、分享同改進佢。具體而言，你可以依據自由軟件基金會發佈嘅《GNU 通用公眾特許條款》第 3 版或 (按你選擇) 之後任一版本之下嘅條款，重新分發及/或修改呢個軟件。</string>
     <string name="progressive_load_interval_title">載入播放間隔大細</string>
     <string name="kiosk_page_summary">互動頁面</string>
     <string name="default_kiosk_page_summary">預設嘅互動站（Kiosk）</string>
@@ -702,7 +702,7 @@
     <string name="faq_description">若然你係用緊呢個 app嗰陣有疑問，然而「亦有些難啟齒」，不妨睇下常見問題集，話唔定會發現「有場舞還未發表」！</string>
     <string name="fast_mode">快速模式</string>
     <string name="import_subscriptions_hint">右上角嘅選單有得匯入或匯出訂閱</string>
-    <string name="app_update_unavailable_toast">您已經用緊最新版本嘅 NewPipe</string>
+    <string name="app_update_unavailable_toast">你已經用緊最新版本嘅 NewPipe</string>
     <string name="app_update_available_notification_text">撳一下去下載 %s</string>
     <string name="unset_playlist_thumbnail">唔再揀定封面縮圖</string>
     <string name="night_theme_available">色系揀做%s 嘅時候至有得揀</string>
@@ -727,4 +727,25 @@
     <string name="brightness">亮度</string>
     <string name="volume">聲音</string>
     <string name="none">冇</string>
+    <string name="prefer_original_audio_title">首選嘅原始聲音</string>
+    <string name="prefer_descriptive_audio_title">首選嘅敘述性聲音</string>
+    <string name="prefer_descriptive_audio_summary">如果可以用嘅話，會為視障人士揀敘述性音軌</string>
+    <string name="prefer_original_audio_summary">無論語言係咩，都揀選原始音軌</string>
+    <string name="play_queue_audio_track">聲音： %s</string>
+    <string name="audio_track">音軌</string>
+    <string name="unknown_audio_track">未知</string>
+    <string name="audio_track_present_in_video">呢個串流已經有音軌喇</string>
+    <string name="settings_category_exoplayer_title">Exoplayer 設定</string>
+    <string name="settings_category_exoplayer_summary">管理一啲 ExoPlayer 設定。呢啲變更需要重新啟動播放程式先會生效</string>
+    <string name="use_exoplayer_decoder_fallback_title">用 ExoPlayer 嘅解碼器汰退功能</string>
+    <string name="use_exoplayer_decoder_fallback_summary">如果遇到解碼器初始化問題，請啟用呢個選項，如果主解碼器初始化失敗，就會用優先順序較低的解碼器。咁樣可能會導致播放性能比使用主解碼器嗰陣差</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">幾時都用 Exoplayer嘅浮面影片輸出設定解決方法</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">原始嘅</string>
+    <string name="audio_track_type_dubbed">配音嘅</string>
+    <string name="audio_track_type_descriptive">敘述性</string>
+    <string name="select_audio_track_external_players">為外面嘅播放器揀選音軌</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">呢個解決方法係喺發生表面變動嗰陣釋放同埋重新確認視訊編解碼器，而非直接將表面設定做編解碼器。ExoPlayer 已經喺部份有問題嘅裝置上使用了呢個設定，呢個設定僅係對 Android 6 或以上嘅更新版本有效。
+\n
+\n啟用呢個選項可以避免喺切換現有視訊播放程式或切換到全螢幕時出現播放錯誤</string>
 </resources>

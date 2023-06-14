@@ -726,4 +726,26 @@
     <string name="left_gesture_control_summary">為播放器畫面左側選擇手勢</string>
     <string name="right_gesture_control_summary">為播放器畫面右側選擇手勢</string>
     <string name="none">無</string>
+    <string name="prefer_original_audio_title">偏好原始音訊</string>
+    <string name="play_queue_audio_track">音訊：%s</string>
+    <string name="audio_track">音訊軌道</string>
+    <string name="audio_track_present_in_video">此串流應已存在音訊軌道</string>
+    <string name="select_audio_track_external_players">為外部播放程式選取音訊軌道</string>
+    <string name="unknown_audio_track">未知</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer 設定</string>
+    <string name="use_exoplayer_decoder_fallback_title">使用 ExoPlayer 的解碼器汰退功能</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">一律使用 ExoPlayer 的視訊輸出表面設定解決方法</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">原始</string>
+    <string name="audio_track_type_dubbed">配音</string>
+    <string name="audio_track_type_descriptive">描述性</string>
+    <string name="progressive_load_interval_summary">變更漸進式內容的載入間隔大小（目前為 %s）。較低的值可能會加速初始載入速度</string>
+    <string name="prefer_descriptive_audio_title">偏好描述性的音訊</string>
+    <string name="prefer_descriptive_audio_summary">若可用，為視障人士選取帶有描述的音訊軌道</string>
+    <string name="prefer_original_audio_summary">無論語言都選取原始音訊軌道</string>
+    <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 設定。這些變更需要重新啟動播放程式才會生效</string>
+    <string name="use_exoplayer_decoder_fallback_summary">若您有解碼器初始化的問題，請啟用此選項，若主要的解碼器初始化失敗，其將會汰退至較低優先度的解碼器。這可能會導致播放效能比使用主要解碼器時差</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此解決方法是在發生表面變動時釋放並重新確認視訊編解碼器，而非直接將表面設定為編解碼器。ExoPlayer 已在部份有問題的裝置上使用了此設定，此設定僅對 Android 6 或更新版本有效。
+\n
+\n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
 </resources>

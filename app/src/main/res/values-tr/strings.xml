@@ -736,4 +736,19 @@
     <string name="volume">Ses düzeyi</string>
     <string name="none">Hiçbiri</string>
     <string name="left_gesture_control_summary">Parmağınızı ekranın sol yarısında kaydırırken ne yapılacağını seçin</string>
+    <string name="prefer_descriptive_audio_summary">Varsa, görsel engelli kişiler için betimlemeli ses parçasını seç</string>
+    <string name="unknown_audio_track">Bilinmeyen</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer ayarları</string>
+    <string name="settings_category_exoplayer_summary">Kimi ExoPlayer ayarlarını yönet. Bu değişiklikler oynatıcının yeniden başlatılmasını gerektirir</string>
+    <string name="audio_track_type_original">özgün</string>
+    <string name="audio_track_type_dubbed">dublaj</string>
+    <string name="audio_track_type_descriptive">betimlemeli</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="select_audio_track_external_players">Dış oynatıcılar için ses parçası seç</string>
+    <string name="prefer_original_audio_summary">Dil ne olursa olsun özgün ses parçasını seç</string>
+    <string name="play_queue_audio_track">Ses: %s</string>
+    <string name="prefer_original_audio_title">Özgün sesi yeğle</string>
+    <string name="prefer_descriptive_audio_title">Betimlemeli sesi yeğle</string>
+    <string name="audio_track">Ses parçası</string>
+    <string name="audio_track_present_in_video">Bu akışta halihazırda bir ses parçası bulunmalıdır</string>
 </resources>

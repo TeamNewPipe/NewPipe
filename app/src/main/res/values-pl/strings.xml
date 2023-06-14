@@ -760,4 +760,26 @@
     <string name="volume">Głośność</string>
     <string name="none">Brak</string>
     <string name="right_gesture_control_title">Akcja gestu z prawej</string>
+    <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania zawartości progresywnych (aktualnie %s). Niższa wartość może przyspieszyć ich początkowe ładowanie</string>
+    <string name="prefer_original_audio_title">Preferuj oryginalny dźwięk</string>
+    <string name="prefer_original_audio_summary">Wybieraj oryginalną ścieżkę dźwiękową niezależnie od języka</string>
+    <string name="prefer_descriptive_audio_title">Preferuj audiodeskrypcję</string>
+    <string name="play_queue_audio_track">Dźwięk: %s</string>
+    <string name="audio_track">Ścieżka dźwiękowa</string>
+    <string name="audio_track_present_in_video">Ścieżka dźwiękowa powinna już się znajdować w tym strumieniu</string>
+    <string name="select_audio_track_external_players">Wybierz ścieżkę dźwiękową dla zewnętrznych odtwarzaczy</string>
+    <string name="unknown_audio_track">Nieznana</string>
+    <string name="settings_category_exoplayer_title">Ustawienia ExoPlayera</string>
+    <string name="settings_category_exoplayer_summary">Zarządzaj niektórymi ustawieniami ExoPlayera. Zmiany te wymagają ponownego uruchomienia odtwarzacza, aby zostały uwzględnione</string>
+    <string name="use_exoplayer_decoder_fallback_title">Używaj funkcji zapasowego dekodera ExoPlayera</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Włącz tę opcję, jeśli masz problemy z inicjalizacją dekodera. Przywraca dekodery o niższym priorytecie, jeśli inicjalizacja podstawowych dekoderów się nie powiedzie. Może to spowodować słabszą wydajność odtwarzania niż podczas korzystania z podstawowych dekoderów</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Zawsze używaj obejścia ustawienia powierzchni wyjścia wideo ExoPlayera</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">oryginalna</string>
+    <string name="audio_track_type_dubbed">dubbing</string>
+    <string name="audio_track_type_descriptive">audiodeskrypcja</string>
+    <string name="prefer_descriptive_audio_summary">Wybieraj ścieżkę dźwiękową z opisami dla osób niedowidzących, jeśli jest dostępna</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">To obejście zwalnia i ponownie tworzy instancje kodeków wideo, gdy nastąpi zmiana powierzchni, zamiast bezpośrednio ustawiać powierzchnię dla kodeka. Używane już przez ExoPlayera na niektórych urządzeniach z tym problemem, ustawienie to ma wpływ tylko na Androida 6 i nowsze.
+\n
+\nWłączenie tej opcji może zapobiec błędom odtwarzania podczas przełączania obecnego odtwarzacza wideo lub przechodzenia na pełny ekran</string>
 </resources>

@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">비디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
-    <string name="kore_not_found">누락된 한국어 앱을 설치하시겠습니까\?</string>
+    <string name="kore_not_found">누락된 Kore 앱을 설치하겠습니까\?</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi 미디어 센터를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
@@ -335,7 +335,7 @@
     <string name="minimize_on_exit_popup_description">팝업 플레이어로 최소화</string>
     <string name="playback_step">단계</string>
     <string name="playback_reset">초기화</string>
-    <string name="saved_tabs_invalid_json">저장된 탭을 읽을 수 없으므로, 기본 탭을 사용합니다</string>
+    <string name="saved_tabs_invalid_json">저장된 탭을 불러올 수 없었으므로, 기본 탭을 사용합니다</string>
     <string name="restore_defaults">초기화</string>
     <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
     <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
@@ -662,7 +662,7 @@
     <string name="select_quality_external_players">외부 플레이어의 품질 선택</string>
     <string name="no_video_streams_available_for_external_players">외부 플레이어에 사용할 수 있는 비디오 스트림이 없음</string>
     <string name="show_meta_info_summary">스트림 작성자, 스트림 콘텐츠 또는 검색 요청에 대한 추가 정보가 있는 메타 정보 상자를 숨기려면 끄세요</string>
-    <string name="progressive_load_interval_summary">불러오기 간격 크기를 변경합니다 (현재 %s). 값이 낮을수록 초기 비디오 로딩 속도가 빨라질 수 있습니다. 변경하려면 플레이어를 다시 시작해야 합니다</string>
+    <string name="progressive_load_interval_summary">프로그레시브 콘텐츠의 불러오기 간격 크기를 변경합니다 (현재 %s). 값이 낮을수록 초기 로딩 속도가 빨라질 수 있음</string>
     <string name="error_report_open_github_notice">충돌에 대해 논의하는 문제가 이미 존재하는지 확인하세요. 중복 티켓을 생성할 때 실제 버그를 수정하는 데 시간을 할애할 수 있습니다.</string>
     <string name="create_error_notification">오류 알림 생성</string>
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
@@ -705,7 +705,7 @@
     <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다</string>
     <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요.</string>
     <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
-    <string name="night_theme_available">이 옵션은 테마로 %s을 선택한 경우에만 사용할 수 있습니다</string>
+    <string name="night_theme_available">이 옵션은 %s가 테마로 선택되었을 경우에만 사용할 수 있습니다</string>
     <string name="playlist_add_stream_success_duplicate">중복 추가 %d 번</string>
     <string name="duplicate_in_playlist">회색으로 표시된 재생 목록에 이미 이 항목이 포함되어 있습니다.</string>
     <string name="card">카드</string>
@@ -720,4 +720,32 @@
     <string name="ignore_hardware_media_buttons_title">하드웨어 미디어 버튼 이벤트 무시</string>
     <string name="ignore_hardware_media_buttons_summary">예를 들어, 물리적 버튼이 망가진 헤드셋을 사용하는 경우 유용합니다</string>
     <string name="feed_show_hide_streams">스트림 보이기/숨기기</string>
+    <string name="left_gesture_control_summary">플레이어 화면 왼쪽 절반에 대한 제스처 선택</string>
+    <string name="prefer_original_audio_title">원본 오디오 선호</string>
+    <string name="prefer_original_audio_summary">언어에 관계없이 원본 오디오 트랙 선택</string>
+    <string name="prefer_descriptive_audio_summary">가능한 경우 시각 장애인을 위한 설명이 포함된 오디오 트랙 선택</string>
+    <string name="prefer_descriptive_audio_title">설명이 포함된 오디오 선호</string>
+    <string name="right_gesture_control_summary">플레이어 화면 오른쪽 절반에 대한 제스처 선택</string>
+    <string name="right_gesture_control_title">오른쪽 제스처 동작</string>
+    <string name="brightness">밝기</string>
+    <string name="left_gesture_control_title">왼쪽 제스처 동작</string>
+    <string name="volume">볼륨</string>
+    <string name="none">없음</string>
+    <string name="play_queue_audio_track">오디오: %s</string>
+    <string name="audio_track">오디오 트랙</string>
+    <string name="audio_track_present_in_video">이 스트림에 오디오 트랙이 이미 존재해야 함</string>
+    <string name="select_audio_track_external_players">외부 플레이어용 오디오 트랙 선택</string>
+    <string name="unknown_audio_track">알 수 없음</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer 설정</string>
+    <string name="settings_category_exoplayer_summary">ExoPlayer 설정을 관리합니다. 이러한 변경 사항을 적용하려면 플레이어를 다시 시작해야 함</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer의 디코더 폴백 기능 사용</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">항상 ExoPlayer의 비디오 출력 표면 설정 해결 방법 사용</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">원본</string>
+    <string name="audio_track_type_dubbed">더빙됨</string>
+    <string name="audio_track_type_descriptive">설명</string>
+    <string name="use_exoplayer_decoder_fallback_summary">디코더 초기화 문제가 있는 경우 이 옵션을 활성화하면 기본 디코더 초기화에 실패할 경우 우선순위가 낮은 디코더로 되돌아갑니다. 이 경우 기본 디코더를 사용할 때보다 재생 성능이 저하될 수 있음</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용
+\n
+\n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
 </resources>

@@ -649,4 +649,6 @@
     <string name="settings_category_player_notification_title">പ്ലേയർ അറിയിപ്പ്</string>
     <string name="streams_notification_channel_name">പുതിയ സ്ട്രീമുകൾ</string>
     <string name="crash_the_player">പ്ലേയർ തകർക്കുക</string>
+    <string name="prefer_original_audio_title">യഥാർത്ഥ ശബ്ദത്തിന് പരിഗണന കൊടുക്കുക</string>
+    <string name="prefer_original_audio_summary">ഭാഷ ഏതായാലും യഥാർത്ഥ ശബ്ദം തിരഞ്ഞെടുക്കുക</string>
 </resources>
