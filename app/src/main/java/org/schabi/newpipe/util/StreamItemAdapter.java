@@ -41,7 +41,7 @@ import us.shandian.giga.util.Utility;
  */
 public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseAdapter {
     @NonNull
-    private final StreamSizeWrapper<T> streamsWrapper;
+    private final StreamInfoWrapper<T> streamsWrapper;
     @NonNull
     private final SparseArrayCompat<SecondaryStreamHelper<U>> secondaryStreams;
 
@@ -53,7 +53,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     private final boolean hasAnyVideoOnlyStreamWithNoSecondaryStream;
 
     public StreamItemAdapter(
-            @NonNull final StreamSizeWrapper<T> streamsWrapper,
+            @NonNull final StreamInfoWrapper<T> streamsWrapper,
             @NonNull final SparseArrayCompat<SecondaryStreamHelper<U>> secondaryStreams
     ) {
         this.streamsWrapper = streamsWrapper;
@@ -63,7 +63,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 checkHasAnyVideoOnlyStreamWithNoSecondaryStream();
     }
 
-    public StreamItemAdapter(final StreamSizeWrapper<T> streamsWrapper) {
+    public StreamItemAdapter(final StreamInfoWrapper<T> streamsWrapper) {
         this(streamsWrapper, new SparseArrayCompat<>(0));
     }
 
@@ -121,7 +121,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         final TextView sizeView = convertView.findViewById(R.id.stream_size);
 
         final T stream = getItem(position);
-        final MediaFormat mediaFormat = stream.getFormat();
+        final MediaFormat mediaFormat = streamsWrapper.getFormat(position);
 
         int woSoundIconVisibility = View.GONE;
         String qualityString;
@@ -221,16 +221,16 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
      *
      * @param <T> the stream type's class extending {@link Stream}
      */
-    public static class StreamSizeWrapper<T extends Stream> implements Serializable {
-        private static final StreamSizeWrapper<Stream> EMPTY =
-                new StreamSizeWrapper<>(Collections.emptyList(), null);
+    public static class StreamInfoWrapper<T extends Stream> implements Serializable {
+        private static final StreamInfoWrapper<Stream> EMPTY =
+                new StreamInfoWrapper<>(Collections.emptyList(), null);
         private static final int SIZE_UNSET = -2;
 
         private final List<T> streamsList;
         private final long[] streamSizes;
         private final String unknownSize;
 
-        public StreamSizeWrapper(@NonNull final List<T> streamList,
+        public StreamInfoWrapper(@NonNull final List<T> streamList,
                                  @Nullable final Context context) {
             this.streamsList = streamList;
             this.streamSizes = new long[streamsList.size()];
@@ -249,7 +249,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
          */
         @NonNull
         public static <X extends Stream> Single<Boolean> fetchSizeForWrapper(
-                final StreamSizeWrapper<X> streamsWrapper) {
+                final StreamInfoWrapper<X> streamsWrapper) {
             final Callable<Boolean> fetchAndSet = () -> {
                 boolean hasChanged = false;
                 for (final X stream : streamsWrapper.getStreamsList()) {
@@ -275,9 +275,9 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             Arrays.fill(streamSizes, SIZE_UNSET);
         }
 
-        public static <X extends Stream> StreamSizeWrapper<X> empty() {
+        public static <X extends Stream> StreamInfoWrapper<X> empty() {
             //noinspection unchecked
-            return (StreamSizeWrapper<X>) EMPTY;
+            return (StreamInfoWrapper<X>) EMPTY;
         }
 
         public List<T> getStreamsList() {

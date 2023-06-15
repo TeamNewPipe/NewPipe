@@ -84,7 +84,7 @@ class StreamItemAdapterTest {
     @Test
     fun subtitleStreams_noIcon() {
         val adapter = StreamItemAdapter<SubtitlesStream, Stream>(
-            StreamItemAdapter.StreamSizeWrapper(
+            StreamItemAdapter.StreamInfoWrapper(
                 (0 until 5).map {
                     SubtitlesStream.Builder()
                         .setContent("https://example.com", true)
@@ -105,7 +105,7 @@ class StreamItemAdapterTest {
     @Test
     fun audioStreams_noIcon() {
         val adapter = StreamItemAdapter<AudioStream, Stream>(
-            StreamItemAdapter.StreamSizeWrapper(
+            StreamItemAdapter.StreamInfoWrapper(
                 (0 until 5).map {
                     AudioStream.Builder()
                         .setId(Stream.ID_UNKNOWN)
@@ -128,7 +128,7 @@ class StreamItemAdapterTest {
      * [videoOnly] vararg.
      */
     private fun getVideoStreams(vararg videoOnly: Boolean) =
-        StreamItemAdapter.StreamSizeWrapper(
+        StreamItemAdapter.StreamInfoWrapper(
             videoOnly.map {
                 VideoStream.Builder()
                     .setId(Stream.ID_UNKNOWN)
@@ -196,7 +196,7 @@ class StreamItemAdapterTest {
             streams.forEachIndexed { index, stream ->
                 val secondaryStreamHelper: SecondaryStreamHelper<T>? = stream?.let {
                     SecondaryStreamHelper(
-                        StreamItemAdapter.StreamSizeWrapper(streams, context),
+                        StreamItemAdapter.StreamInfoWrapper(streams, context),
                         it
                     )
                 }
