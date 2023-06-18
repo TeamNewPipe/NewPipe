@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import static android.content.Context.INPUT_SERVICE;
+import static android.content.Context.UI_MODE_SERVICE;
 
 import android.annotation.SuppressLint;
 import android.app.UiModeManager;
@@ -57,8 +58,11 @@ public final class DeviceUtils {
         final PackageManager pm = App.getApp().getPackageManager();
 
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
-        boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
-                .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
+        @Nullable
+        UiModeManager uiModeManager =
+                (UiModeManager) context.getApplicationContext().getSystemService(UI_MODE_SERVICE);
+        boolean isTv = uiModeManager != null
+                && uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
                 || isFireTv()
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
 
