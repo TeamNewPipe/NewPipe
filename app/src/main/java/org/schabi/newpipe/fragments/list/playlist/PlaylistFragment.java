@@ -3,7 +3,7 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
+import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.text.HtmlCompat;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -52,10 +51,10 @@ import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PlayButtonHelper;
-import org.schabi.newpipe.util.text.TextLinkifier;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.text.TextEllipsizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -329,13 +328,24 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         final Description description = result.getDescription();
         if (description != null && description != Description.EMPTY_DESCRIPTION
                 && !isBlank(description.getContent())) {
-            TextLinkifier.fromDescription(headerBinding.playlistDescription,
-                    description, HtmlCompat.FROM_HTML_MODE_LEGACY,
-                    result.getService(), result.getUrl(),
-                    disposables, SET_LINK_MOVEMENT_METHOD);
-            headerBinding.playlistDescription.setVisibility(View.VISIBLE);
+            final TextEllipsizer ellipsizer = new TextEllipsizer(
+                    headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
+            ellipsizer.setStateChangeListener(isEllipsized ->
+                headerBinding.playlistDescriptionReadMore.setText(
+                        Boolean.TRUE.equals(isEllipsized) ? R.string.show_more : R.string.show_less
+                ));
+            ellipsizer.setOnContentChanged(canBeEllipsized -> {
+                headerBinding.playlistDescriptionReadMore.setVisibility(
+                        Boolean.TRUE.equals(canBeEllipsized) ? View.VISIBLE : View.GONE);
+                if (Boolean.TRUE.equals(canBeEllipsized)) {
+                    ellipsizer.ellipsize();
+                }
+            });
+            ellipsizer.setContent(description);
+            headerBinding.playlistDescriptionReadMore.setOnClickListener(v -> ellipsizer.toggle());
         } else {
             headerBinding.playlistDescription.setVisibility(View.GONE);
+            headerBinding.playlistDescriptionReadMore.setVisibility(View.GONE);
         }
 
         if (!result.getErrors().isEmpty()) {

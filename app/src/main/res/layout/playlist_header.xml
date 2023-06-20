@@ -87,12 +87,25 @@
         android:layout_below="@id/playlist_meta"
         android:paddingHorizontal="@dimen/video_item_search_padding"
         android:paddingTop="6dp"
-        tools:text="This is a multiline playlist description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
+        android:maxLines="5"
+        tools:text="This is a multiline playlist description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/playlist_description_read_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playlist_description"
+        android:gravity="end"
+        android:paddingHorizontal="@dimen/video_item_search_padding"
+        android:paddingTop="6dp"
+        android:text="@string/show_more"
+        android:layout_marginBottom="6dp"
+        android:textColor="?attr/colorPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_description">
+        android:layout_below="@id/playlist_description_read_more">
 
         <include
             android:id="@+id/playlist_control"
