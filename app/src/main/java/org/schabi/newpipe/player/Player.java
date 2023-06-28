@@ -2065,43 +2065,36 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     public void useVideoSource(final boolean videoEnabled) {
-        if (playQueue == null || isAudioOnly == !videoEnabled || audioPlayerSelected()) {
+        if (playQueue == null || audioPlayerSelected()) {
             return;
         }
 
         isAudioOnly = !videoEnabled;
 
-        // The current metadata may be null sometimes (for e.g. when using an unstable connection
-        // in livestreams) so we will be not able to execute the block below.
-        // Reload the play queue manager in this case, which is the behavior when we don't know the
-        // index of the video renderer or playQueueManagerReloadingNeeded returns true.
         getCurrentStreamInfo().ifPresentOrElse(info -> {
-            // In the case we don't know the source type, fallback to the one with video with audio
-            // or audio-only source.
+            // In case we don't know the source type, fall back to either video-with-audio, or
+            // audio-only source type
             final SourceType sourceType = videoResolver.getStreamSourceType()
                     .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
             if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
                 reloadPlayQueueManager();
-            } else {
-                if (StreamTypeUtil.isAudio(info.getStreamType())) {
-                    // Nothing to do more than setting the recovery position
-                    setRecovery();
-                    return;
-                }
-
-                final var parametersBuilder = trackSelector.buildUponParameters();
-
-                // Enable/disable the video track and the ability to select subtitles
-                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
-                parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
-
-                trackSelector.setParameters(parametersBuilder);
             }
 
             setRecovery();
+
+            // Disable or enable video and subtitles renderers depending of the videoEnabled value
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled)
+                    .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled));
         }, () -> {
-            // This is executed when the current stream info is not available.
+            /*
+            The current metadata may be null sometimes (for e.g. when using an unstable connection
+            in livestreams) so we will be not able to execute the block below
+
+            Reload the play queue manager in this case, which is the behavior when we don't know the
+            index of the video renderer or playQueueManagerReloadingNeeded returns true
+            */
             reloadPlayQueueManager();
             setRecovery();
         });
