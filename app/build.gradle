@@ -107,7 +107,7 @@ android {
 }
 
 ext {
-    checkstyleVersion = '10.11.0'
+    checkstyleVersion = '10.12.1'
 
     androidxLifecycleVersion = '2.5.1'
     androidxRoomVersion = '2.4.3'
@@ -272,7 +272,7 @@ dependencies {
     implementation "io.noties.markwon:linkify:${markwonVersion}"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.9.7"
+    implementation "ch.acra:acra-core:5.10.1"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
