@@ -3,10 +3,11 @@ package org.schabi.newpipe.player.helper;
 import android.content.Context;
 import android.os.Handler;
 
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.Renderer;
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
-import com.google.android.exoplayer2.video.VideoRendererEventListener;
+import androidx.annotation.NonNull;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.Renderer;
+import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
+import androidx.media3.exoplayer.video.VideoRendererEventListener;
 
 import java.util.ArrayList;
 
@@ -28,12 +29,12 @@ public final class CustomRenderersFactory extends DefaultRenderersFactory {
 
     @SuppressWarnings("checkstyle:ParameterNumber")
     @Override
-    protected void buildVideoRenderers(final Context context,
+    protected void buildVideoRenderers(@NonNull final Context context,
                                        @ExtensionRendererMode final int extensionRendererMode,
-                                       final MediaCodecSelector mediaCodecSelector,
+                                       @NonNull final MediaCodecSelector mediaCodecSelector,
                                        final boolean enableDecoderFallback,
-                                       final Handler eventHandler,
-                                       final VideoRendererEventListener eventListener,
+                                       @NonNull final Handler eventHandler,
+                                       @NonNull final VideoRendererEventListener eventListener,
                                        final long allowedVideoJoiningTimeMs,
                                        final ArrayList<Renderer> out) {
         out.add(new CustomMediaCodecVideoRenderer(context, getCodecAdapterFactory(),

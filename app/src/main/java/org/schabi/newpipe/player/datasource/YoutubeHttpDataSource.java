@@ -1,5 +1,5 @@
 /*
- * Based on ExoPlayer's DefaultHttpDataSource, version 2.18.1.
+ * Based on ExoPlayer's DefaultHttpDataSource, version 2.18.5.
  *
  * Original source code copyright (C) 2016 The Android Open Source Project, licensed under the
  * Apache License, Version 2.0.
@@ -7,11 +7,11 @@
 
 package org.schabi.newpipe.player.datasource;
 
-import static com.google.android.exoplayer2.upstream.DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS;
-import static com.google.android.exoplayer2.upstream.DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS;
-import static com.google.android.exoplayer2.upstream.HttpUtil.buildRangeRequestHeader;
-import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
-import static com.google.android.exoplayer2.util.Util.castNonNull;
+import static androidx.media3.common.util.Assertions.checkNotNull;
+import static androidx.media3.common.util.Util.castNonNull;
+import static androidx.media3.datasource.DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS;
+import static androidx.media3.datasource.DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS;
+import static androidx.media3.datasource.HttpUtil.buildRangeRequestHeader;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getAndroidUserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getIosUserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isAndroidStreamingUrl;
@@ -24,20 +24,20 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.media3.common.C;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.util.Log;
+import androidx.media3.common.util.Util;
+import androidx.media3.datasource.BaseDataSource;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.DataSourceException;
+import androidx.media3.datasource.DataSpec;
+import androidx.media3.datasource.DataSpec.HttpMethod;
+import androidx.media3.datasource.DefaultHttpDataSource;
+import androidx.media3.datasource.HttpDataSource;
+import androidx.media3.datasource.HttpUtil;
+import androidx.media3.datasource.TransferListener;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.upstream.BaseDataSource;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DataSourceException;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.DataSpec.HttpMethod;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
-import com.google.android.exoplayer2.upstream.HttpDataSource;
-import com.google.android.exoplayer2.upstream.HttpUtil;
-import com.google.android.exoplayer2.upstream.TransferListener;
-import com.google.android.exoplayer2.util.Log;
-import com.google.android.exoplayer2.util.Util;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ForwardingMap;
 import com.google.common.collect.ImmutableMap;
@@ -64,7 +64,7 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * An {@link HttpDataSource} that uses Android's {@link HttpURLConnection}, based on
- * {@link com.google.android.exoplayer2.upstream.DefaultHttpDataSource}, for YouTube streams.
+ * {@link androidx.media3.datasource.DefaultHttpDataSource}, for YouTube streams.
  *
  * <p>
  * It adds more headers to {@code videoplayback} URLs, such as {@code Origin}, {@code Referer}
@@ -73,7 +73,7 @@ import java.util.zip.GZIPInputStream;
  * </p>
  *
  * There are many unused methods in this class because everything was copied from {@link
- * com.google.android.exoplayer2.upstream.DefaultHttpDataSource} with as little changes as possible.
+ * androidx.media3.datasource.DefaultHttpDataSource} with as little changes as possible.
  * SonarQube warnings were also suppressed for the same reason.
  */
 @SuppressWarnings({"squid:S3011", "squid:S4738"})
@@ -163,7 +163,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
          *
          * <p>
          * Note that it must be not enabled on streams which are using a {@link
-         * com.google.android.exoplayer2.source.ProgressiveMediaSource}, as it will break playback
+         * androidx.media3.exoplayer.source.ProgressiveMediaSource}, as it will break playback
          * for them (some exceptions may be thrown).
          * </p>
          *

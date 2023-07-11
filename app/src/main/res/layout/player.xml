@@ -21,7 +21,7 @@
         android:layout_alignBottom="@+id/surfaceView"
         android:background="@android:color/black" />
 
-    <com.google.android.exoplayer2.ui.SubtitleView
+    <androidx.media3.ui.SubtitleView
         android:id="@+id/subtitleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -593,7 +593,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/exo_controls_repeat_off"
+                android:src="@drawable/exo_styled_controls_repeat_off"
                 android:tint="?attr/colorAccent"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 

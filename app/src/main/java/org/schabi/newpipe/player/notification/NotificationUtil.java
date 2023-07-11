@@ -29,8 +29,8 @@ import java.util.Optional;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static androidx.media.app.NotificationCompat.MediaStyle;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
+import static androidx.media3.common.Player.REPEAT_MODE_ALL;
+import static androidx.media3.common.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_FORWARD;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_REWIND;
@@ -256,19 +256,19 @@ public final class NotificationUtil {
 
             case NotificationConstants.SMART_REWIND_PREVIOUS:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
-                    return getAction(R.drawable.exo_notification_previous,
+                    return getAction(R.drawable.exo_legacy_controls_previous,
                             R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
                 } else {
-                    return getAction(R.drawable.exo_controls_rewind,
+                    return getAction(R.drawable.exo_legacy_controls_rewind,
                             R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
                 }
 
             case NotificationConstants.SMART_FORWARD_NEXT:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
-                    return getAction(R.drawable.exo_notification_next,
+                    return getAction(R.drawable.exo_legacy_controls_next,
                             R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
                 } else {
-                    return getAction(R.drawable.exo_controls_fastforward,
+                    return getAction(R.drawable.exo_legacy_controls_fastforward,
                             R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
                 }
 
@@ -291,31 +291,31 @@ public final class NotificationUtil {
                         || player.getCurrentState() == Player.STATE_PREFLIGHT
                         || player.getCurrentState() == Player.STATE_BLOCKED
                         || player.getCurrentState() == Player.STATE_BUFFERING) {
-                    return getAction(R.drawable.exo_notification_pause,
+                    return getAction(R.drawable.exo_legacy_controls_pause,
                             R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
                 } else {
-                    return getAction(R.drawable.exo_notification_play,
+                    return getAction(R.drawable.exo_legacy_controls_play,
                             R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
                 }
 
             case NotificationConstants.REPEAT:
                 if (player.getRepeatMode() == REPEAT_MODE_ALL) {
-                    return getAction(R.drawable.exo_media_action_repeat_all,
+                    return getAction(R.drawable.exo_styled_controls_repeat_all,
                             R.string.exo_controls_repeat_all_description, ACTION_REPEAT);
                 } else if (player.getRepeatMode() == REPEAT_MODE_ONE) {
-                    return getAction(R.drawable.exo_media_action_repeat_one,
+                    return getAction(R.drawable.exo_styled_controls_repeat_one,
                             R.string.exo_controls_repeat_one_description, ACTION_REPEAT);
                 } else /* player.getRepeatMode() == REPEAT_MODE_OFF */ {
-                    return getAction(R.drawable.exo_media_action_repeat_off,
+                    return getAction(R.drawable.exo_styled_controls_repeat_off,
                             R.string.exo_controls_repeat_off_description, ACTION_REPEAT);
                 }
 
             case NotificationConstants.SHUFFLE:
                 if (player.getPlayQueue() != null && player.getPlayQueue().isShuffled()) {
-                    return getAction(R.drawable.exo_controls_shuffle_on,
+                    return getAction(R.drawable.exo_styled_controls_shuffle_on,
                             R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE);
                 } else {
-                    return getAction(R.drawable.exo_controls_shuffle_off,
+                    return getAction(R.drawable.exo_styled_controls_shuffle_off,
                             R.string.exo_controls_shuffle_off_description, ACTION_SHUFFLE);
                 }
 

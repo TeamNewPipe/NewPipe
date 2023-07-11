@@ -9,8 +9,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-
-import com.google.android.exoplayer2.util.Util;
+import androidx.media3.common.util.Util;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.SharpInputStream;

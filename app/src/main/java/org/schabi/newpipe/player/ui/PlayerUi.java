@@ -6,12 +6,11 @@ import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player.RepeatMode;
-import com.google.android.exoplayer2.Tracks;
-import com.google.android.exoplayer2.text.Cue;
-import com.google.android.exoplayer2.video.VideoSize;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player.RepeatMode;
+import androidx.media3.common.Tracks;
+import androidx.media3.common.VideoSize;
+import androidx.media3.common.text.Cue;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
@@ -117,7 +116,7 @@ public abstract class PlayerUi {
      * @param currentProgress the current progress in milliseconds
      * @param duration        the duration of the stream being played
      * @param bufferPercent   the percentage of stream already buffered, see {@link
-     *                        com.google.android.exoplayer2.BasePlayer#getBufferedPercentage()}
+     *                        androidx.media3.common.BasePlayer#getBufferedPercentage()}
      */
     public void onUpdateProgress(final int currentProgress,
                                  final int duration,
@@ -155,27 +154,27 @@ public abstract class PlayerUi {
     }
 
     /**
-     * @see com.google.android.exoplayer2.Player.Listener#onTracksChanged(Tracks)
+     * @see androidx.media3.common.Player.Listener#onTracksChanged(Tracks)
      * @param currentTracks the available tracks information
      */
     public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
     }
 
     /**
-     * @see com.google.android.exoplayer2.Player.Listener#onPlaybackParametersChanged
+     * @see androidx.media3.common.Player.Listener#onPlaybackParametersChanged
      * @param playbackParameters the new playback parameters
      */
     public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
     }
 
     /**
-     * @see com.google.android.exoplayer2.Player.Listener#onRenderedFirstFrame
+     * @see androidx.media3.common.Player.Listener#onRenderedFirstFrame
      */
     public void onRenderedFirstFrame() {
     }
 
     /**
-     * @see com.google.android.exoplayer2.text.TextOutput#onCues
+     * @see androidx.media3.exoplayer.text.TextOutput#onCues
      * @param cues the cues to pass to the subtitle view
      */
     public void onCues(@NonNull final List<Cue> cues) {
@@ -205,7 +204,7 @@ public abstract class PlayerUi {
 
     /**
      * @param videoSize the new video size, useful to set the surface aspect ratio
-     * @see com.google.android.exoplayer2.Player.Listener#onVideoSizeChanged
+     * @see androidx.media3.common.Player.Listener#onVideoSizeChanged
      */
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
     }

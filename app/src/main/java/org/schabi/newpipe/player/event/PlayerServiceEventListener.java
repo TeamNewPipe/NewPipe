@@ -1,6 +1,6 @@
 package org.schabi.newpipe.player.event;
 
-import com.google.android.exoplayer2.PlaybackException;
+import androidx.media3.common.PlaybackException;
 
 public interface PlayerServiceEventListener extends PlayerEventListener {
     void onViewCreated();

@@ -2,15 +2,17 @@ package org.schabi.newpipe.player.mediasource;
 
 import android.util.Log;
 
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.BaseMediaSource;
-import com.google.android.exoplayer2.source.MediaPeriod;
-import com.google.android.exoplayer2.source.SilenceMediaSource;
-import com.google.android.exoplayer2.source.SinglePeriodTimeline;
-import com.google.android.exoplayer2.upstream.Allocator;
-import com.google.android.exoplayer2.upstream.TransferListener;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Timeline;
+import androidx.media3.datasource.TransferListener;
+import androidx.media3.exoplayer.source.BaseMediaSource;
+import androidx.media3.exoplayer.source.MediaPeriod;
+import androidx.media3.exoplayer.source.SilenceMediaSource;
+import androidx.media3.exoplayer.source.SinglePeriodTimeline;
+import androidx.media3.exoplayer.upstream.Allocator;
 
 import org.schabi.newpipe.player.mediaitem.ExceptionTag;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -18,9 +20,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSource {
     /**
@@ -84,6 +83,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
         return System.currentTimeMillis() >= retryTimestamp;
     }
 
+    @NonNull
     @Override
     public MediaItem getMediaItem() {
         return mediaItem;
@@ -118,10 +118,10 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
      * If the error is not known, e.g. network issue, then the exception is not swallowed here in
      * {@link FailedMediaSource}. The exception is then propagated to the player, which
      * {@link org.schabi.newpipe.player.Player Player} can react to inside
-     * {@link com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)}.
+     * {@link androidx.media3.common.Player.Listener#onPlayerError(PlaybackException)}.
      *
      * @throws IOException An error which will always result in
-     * {@link com.google.android.exoplayer2.PlaybackException#ERROR_CODE_IO_UNSPECIFIED}.
+     * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED}.
      */
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
@@ -140,15 +140,16 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
      * @param startPositionUs   The expected start position, in microseconds.
      * @return The common {@link MediaPeriod} holding the silence.
      */
+    @NonNull
     @Override
-    public MediaPeriod createPeriod(final MediaPeriodId id,
-                                    final Allocator allocator,
+    public MediaPeriod createPeriod(@NonNull final MediaPeriodId id,
+                                    @NonNull final Allocator allocator,
                                     final long startPositionUs) {
         return SILENT_MEDIA;
     }
 
     @Override
-    public void releasePeriod(final MediaPeriod mediaPeriod) {
+    public void releasePeriod(@NonNull final MediaPeriod mediaPeriod) {
         /* Do Nothing (we want to keep re-using the Silent MediaPeriod) */
     }
 

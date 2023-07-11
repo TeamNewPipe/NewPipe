@@ -3,24 +3,23 @@ package org.schabi.newpipe.player.datasource;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import androidx.annotation.NonNull;
-
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory;
-import com.google.android.exoplayer2.upstream.ByteArrayDataSource;
-import com.google.android.exoplayer2.upstream.DataSource;
+import androidx.media3.common.C;
+import androidx.media3.datasource.ByteArrayDataSource;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.exoplayer.hls.HlsDataSourceFactory;
 
 import java.nio.charset.StandardCharsets;
 
 /**
  * A {@link HlsDataSourceFactory} which allows playback of non-URI media HLS playlists for
- * {@link com.google.android.exoplayer2.source.hls.HlsMediaSource HlsMediaSource}s.
+ * {@link androidx.media3.exoplayer.hls.HlsMediaSource HlsMediaSource}s.
  *
  * <p>
  * If media requests are relative, the URI from which the manifest comes from (either the
  * manifest URI (preferred) or the master URI (if applicable)) must be returned, otherwise the
  * content will be not playable, as it will be an invalid URL, or it may be treat as something
  * unexpected, for instance as a file for
- * {@link com.google.android.exoplayer2.upstream.DefaultDataSource DefaultDataSource}s.
+ * {@link androidx.media3.datasource.DefaultDataSource DefaultDataSource}s.
  * </p>
  *
  * <p>
@@ -103,10 +102,10 @@ public final class NonUriHlsDataSourceFactory implements HlsDataSourceFactory {
      * Create a {@link DataSource} for the given data type.
      *
      * <p>
-     * Contrary to {@link com.google.android.exoplayer2.source.hls.DefaultHlsDataSourceFactory
+     * Contrary to {@link androidx.media3.exoplayer.hls.DefaultHlsDataSourceFactory
      * ExoPlayer's default implementation}, this implementation is not always using the
      * {@link DataSource.Factory} passed to the
-     * {@link com.google.android.exoplayer2.source.hls.HlsMediaSource.Factory
+     * {@link androidx.media3.exoplayer.hls.HlsMediaSource.Factory
      * HlsMediaSource.Factory} constructor, only when it's not
      * {@link C#DATA_TYPE_MANIFEST the manifest type}.
      * </p>
