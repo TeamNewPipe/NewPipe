@@ -14,7 +14,7 @@ class DebugApp : App() {
         initStetho()
 
         // Give each object 10 seconds to be GC'ed, before LeakCanary gets nosy on it
-        AppWatcher.config = AppWatcher.config.copy(watchDurationMillis = 10000)
+        AppWatcher.manualInstall(this, retainedDelayMillis = 10000)
         LeakCanary.config = LeakCanary.config.copy(
             dumpHeap = PreferenceManager
                 .getDefaultSharedPreferences(this).getBoolean(

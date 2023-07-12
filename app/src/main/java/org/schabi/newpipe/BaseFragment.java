@@ -81,7 +81,8 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-        AppWatcher.INSTANCE.getObjectWatcher().watch(this);
+        AppWatcher.INSTANCE.getObjectWatcher().expectWeaklyReachable(
+                this, "Watch for leaks from destroyed fragments.");
     }
 
     /*//////////////////////////////////////////////////////////////////////////
