@@ -182,7 +182,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             importDatabase(file, lastImportDataUri))
                     .setNegativeButton(R.string.cancel, (d, id) ->
                             d.cancel())
-                    .create()
                     .show();
         }
     }
@@ -223,20 +222,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             // if settings file exist, ask if it should be imported.
             if (manager.extractSettings(file)) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
-                alert.setTitle(R.string.import_settings);
-
-                alert.setNegativeButton(R.string.cancel, (dialog, which) -> {
-                    dialog.dismiss();
-                    finishImport(importDataUri);
-                });
-                alert.setPositiveButton(R.string.ok, (dialog, which) -> {
-                    dialog.dismiss();
-                    manager.loadSharedPreferences(PreferenceManager
-                            .getDefaultSharedPreferences(requireContext()));
-                    finishImport(importDataUri);
-                });
-                alert.show();
+                new AlertDialog.Builder(requireContext())
+                        .setTitle(R.string.import_settings)
+                        .setNegativeButton(R.string.cancel, (dialog, which) -> {
+                            dialog.dismiss();
+                            finishImport(importDataUri);
+                        })
+                        .setPositiveButton(R.string.ok, (dialog, which) -> {
+                            dialog.dismiss();
+                            manager.loadSharedPreferences(PreferenceManager
+                                    .getDefaultSharedPreferences(requireContext()));
+                            finishImport(importDataUri);
+                        })
+                        .show();
             } else {
                 finishImport(importDataUri);
             }

@@ -325,11 +325,11 @@ public final class NavigationHelper {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
-                        .setPositiveButton(R.string.install,
-                                (dialog, which) -> ShareUtils.installApp(context,
+                        .setPositiveButton(R.string.install, (dialog, which) ->
+                                ShareUtils.installApp(context,
                                         context.getString(R.string.vlc_package)))
-                        .setNegativeButton(R.string.cancel, (dialog, which)
-                                -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
+                        .setNegativeButton(R.string.cancel, (dialog, which) ->
+                                Log.i("NavigationHelper", "You unlocked a secret unicorn."))
                         .show();
             } else {
                 Toast.makeText(context, R.string.no_player_found_toast, Toast.LENGTH_LONG).show();
