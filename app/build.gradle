@@ -119,7 +119,7 @@ ext {
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.9.1'
+    leakCanaryVersion = '2.12'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
 }
@@ -290,7 +290,7 @@ dependencies {
     // Memory leak detection
     implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
     implementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android-core:${leakCanaryVersion}"
     // Debug bridge for Android
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
