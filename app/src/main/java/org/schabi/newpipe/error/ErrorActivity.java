@@ -176,9 +176,7 @@ public class ErrorActivity extends AppCompatActivity {
                         ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL);
                     }
                 })
-                .setNegativeButton(R.string.decline, (dialog, which) -> {
-                    // do nothing
-                })
+                .setNegativeButton(R.string.decline, null)
                 .show();
     }
 

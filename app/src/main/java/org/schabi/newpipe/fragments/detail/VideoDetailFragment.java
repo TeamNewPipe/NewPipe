@@ -2089,7 +2089,8 @@ public final class VideoDetailFragment
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
-                }).show();
+                })
+                .show();
     }
 
     private void showExternalVideoPlaybackDialog() {
@@ -2155,25 +2156,24 @@ public final class VideoDetailFragment
         } else if (audioTracks.size() == 1) {
             startOnExternalPlayer(activity, currentInfo, audioTracks.get(0));
         } else {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle(R.string.select_audio_track_external_players);
-            builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
-                    ShareUtils.openUrlInBrowser(requireActivity(), url));
-
             final int selectedAudioStream =
                     ListHelper.getDefaultAudioFormat(activity, audioTracks);
             final CharSequence[] trackNames = audioTracks.stream()
                     .map(audioStream -> Localization.audioTrackName(activity, audioStream))
                     .toArray(CharSequence[]::new);
 
-            builder.setSingleChoiceItems(trackNames, selectedAudioStream, null);
-            builder.setNegativeButton(R.string.cancel, null);
-            builder.setPositiveButton(R.string.ok, (dialog, i) -> {
-                final int index = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                startOnExternalPlayer(activity, currentInfo,
-                        audioTracks.get(index));
-            });
-            builder.show();
+            new AlertDialog.Builder(activity)
+                    .setTitle(R.string.select_audio_track_external_players)
+                    .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                            ShareUtils.openUrlInBrowser(requireActivity(), url))
+                    .setSingleChoiceItems(trackNames, selectedAudioStream, null)
+                    .setNegativeButton(R.string.cancel, null)
+                    .setPositiveButton(R.string.ok, (dialog, i) -> {
+                        final int index = ((AlertDialog) dialog).getListView()
+                                .getCheckedItemPosition();
+                        startOnExternalPlayer(activity, currentInfo, audioTracks.get(index));
+                    })
+                    .show();
         }
     }
 

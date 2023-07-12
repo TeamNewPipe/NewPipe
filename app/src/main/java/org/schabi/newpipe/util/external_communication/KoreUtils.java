@@ -61,11 +61,12 @@ public final class KoreUtils {
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (!tryOpenIntentInApp(context, intent)) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage(R.string.kore_not_found)
-                    .setPositiveButton(R.string.install, (dialog, which) -> installKore(context))
-                    .setNegativeButton(R.string.cancel, (dialog, which) -> { });
-            builder.create().show();
+            new AlertDialog.Builder(context)
+                    .setMessage(R.string.kore_not_found)
+                    .setPositiveButton(R.string.install, (dialog, which) ->
+                            installKore(context))
+                    .setNegativeButton(R.string.cancel, null)
+                    .show();
         }
     }
 }

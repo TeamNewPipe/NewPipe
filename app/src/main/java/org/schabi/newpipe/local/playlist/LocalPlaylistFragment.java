@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -358,14 +357,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.ok,
-                                (DialogInterface d, int id) -> removeWatchedStreams(false))
+                        .setPositiveButton(R.string.ok, (d, id) ->
+                                removeWatchedStreams(false))
                         .setNeutralButton(
                                 R.string.remove_watched_popup_yes_and_partially_watched_videos,
-                                (DialogInterface d, int id) -> removeWatchedStreams(true))
+                                (d, id) -> removeWatchedStreams(true))
                         .setNegativeButton(R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel())
-                        .create()
+                                (d, id) -> d.cancel())
                         .show();
             }
         } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
@@ -560,15 +558,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         dialogBinding.dialogEditText.setSelection(dialogBinding.dialogEditText.getText().length());
         dialogBinding.dialogEditText.setText(name);
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(getContext())
                 .setTitle(R.string.rename_playlist)
                 .setView(dialogBinding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.rename, (dialogInterface, i) ->
-                        changePlaylistName(dialogBinding.dialogEditText.getText().toString()));
-
-        dialogBuilder.show();
+                        changePlaylistName(dialogBinding.dialogEditText.getText().toString()))
+                .show();
     }
 
     private void changePlaylistName(final String title) {
@@ -634,15 +631,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void openRemoveDuplicatesDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
-
-        builder.setTitle(R.string.remove_duplicates_title)
+        new AlertDialog.Builder(this.getActivity())
+                .setTitle(R.string.remove_duplicates_title)
                 .setMessage(R.string.remove_duplicates_message)
-                .setPositiveButton(R.string.ok,
-                        (dialog, i) -> removeDuplicatesInPlaylist())
-                .setNeutralButton(R.string.cancel, null);
-
-        builder.create().show();
+                .setPositiveButton(R.string.ok, (dialog, i) ->
+                        removeDuplicatesInPlaylist())
+                .setNeutralButton(R.string.cancel, null)
+                .show();
     }
 
     private void removeDuplicatesInPlaylist() {
