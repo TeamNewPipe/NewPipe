@@ -288,8 +288,8 @@ dependencies {
 
 /** Debugging **/
     // Memory leak detection
-    implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
-    implementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
+    debugImplementation "com.squareup.leakcanary:plumber-android:${leakCanaryVersion}"
     debugImplementation "com.squareup.leakcanary:leakcanary-android-core:${leakCanaryVersion}"
     // Debug bridge for Android
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
