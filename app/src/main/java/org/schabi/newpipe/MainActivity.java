@@ -63,6 +63,7 @@ import org.schabi.newpipe.databinding.InstanceSpinnerLayoutBinding;
 import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
@@ -258,8 +259,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean drawerItemSelected(final MenuItem item) {
         switch (item.getGroupId()) {
             case R.id.menu_services_group:
-                changeService(item);
-                break;
+                if (item.getItemId() == ServiceList.PeerTube.getServiceId()
+                        && DeviceUtils.isTv(getApplicationContext())
+                        && !item.isActionViewExpanded()) {
+                    ((Spinner) item.getActionView()).performClick();
+                    return true;
+                } else {
+                    changeService(item);
+                    break;
+                }
             case R.id.menu_tabs_group:
                 try {
                     tabSelected(item);
@@ -383,8 +391,8 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
 
-            // peertube specifics
-            if (s.getServiceId() == 3) {
+            // PeerTube specifics
+            if (s == ServiceList.PeerTube) {
                 enhancePeertubeMenu(menuItem);
             }
         }
