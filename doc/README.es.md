@@ -20,7 +20,7 @@
 
 *Lea esto en otros idiomas: [English](../README.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
 
-<b>AVISO: ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDE ENCONTRAR BUGS. SI ENCUENTRA UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>
+<b>AVISO: ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDES ENCONTRAR BUGS. SI ENCUENTRAS UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>
 
 <b>COLOCAR NEWPIPE O CUALQUIER FORK DE NEWPIPE EN LA GOOGLE PLAY STORE VIOLARÁ SUS TÉRMINOS Y CONDICIONES.</b>
 
@@ -59,7 +59,7 @@ NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. 
 * Buscar a través de YouTube en un idioma específico
 * Mirar/Bloquear videos restringidos por edad
 * Mostrar información general sobre canales
-* Buscar de canales
+* Buscador de canales
 * Mirar videos de un canal
 * Soporte Orbot/Tor (todavía no directamente)
 * Soporte para videos en 1080p/2K/4K
