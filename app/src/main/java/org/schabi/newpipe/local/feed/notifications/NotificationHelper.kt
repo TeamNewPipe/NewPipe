@@ -28,7 +28,7 @@ import org.schabi.newpipe.util.PicassoHelper
  * Helper for everything related to show notifications about new streams to the user.
  */
 class NotificationHelper(val context: Context) {
-    private val manager = context.getSystemService<NotificationManager>()!!
+    private val manager = NotificationManagerCompat.from(context)
     private val iconLoadingTargets = ArrayList<Target>()
 
     /**
