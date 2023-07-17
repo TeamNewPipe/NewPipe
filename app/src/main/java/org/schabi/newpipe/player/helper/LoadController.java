@@ -1,6 +1,6 @@
 package org.schabi.newpipe.player.helper;
 
-import com.google.android.exoplayer2.DefaultLoadControl;
+import androidx.media3.exoplayer.DefaultLoadControl;
 
 public class LoadController extends DefaultLoadControl {
 

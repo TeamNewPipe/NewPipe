@@ -12,8 +12,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.media.session.MediaButtonReceiver;
-
-import com.google.android.exoplayer2.ForwardingPlayer;
+import androidx.media3.common.ForwardingPlayer;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.R;

@@ -4,13 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+import androidx.media3.ui.AspectRatioFrameLayout;
 
 public class ExpandableSurfaceView extends SurfaceView {
-    private int resizeMode = RESIZE_MODE_FIT;
+    private int resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
     private int baseHeight = 0;
     private int maxHeight = 0;
     private float videoAspectRatio = 0.0f;
@@ -32,7 +29,7 @@ public class ExpandableSurfaceView extends SurfaceView {
         final boolean verticalVideo = videoAspectRatio < 1;
         // Use maxHeight only on non-fit resize mode and in vertical videos
         int height = maxHeight != 0
-                && resizeMode != RESIZE_MODE_FIT
+                && resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT
                 && verticalVideo ? maxHeight : baseHeight;
 
         if (height == 0) {
@@ -44,13 +41,13 @@ public class ExpandableSurfaceView extends SurfaceView {
         scaleX = 1.0f;
         scaleY = 1.0f;
 
-        if (resizeMode == RESIZE_MODE_FIT) {
+        if (resizeMode == AspectRatioFrameLayout.RESIZE_MODE_FIT) {
             if (aspectDeformation > 0) {
                 height = (int) (width / videoAspectRatio);
             } else {
                 width = (int) (height * videoAspectRatio);
             }
-        } else if (resizeMode == RESIZE_MODE_ZOOM) {
+        } else if (resizeMode == AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
             if (aspectDeformation < 0) {
                 scaleY = viewAspectRatio / videoAspectRatio;
             } else {

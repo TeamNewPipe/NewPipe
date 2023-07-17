@@ -204,7 +204,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_rewind"
+            android:src="@drawable/exo_legacy_controls_rewind"
             android:tint="?attr/colorAccent" />
 
         <ImageButton
@@ -254,7 +254,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_fastforward"
+            android:src="@drawable/exo_legacy_controls_fastforward"
             android:tint="?attr/colorAccent" />
 
         <androidx.appcompat.widget.AppCompatImageButton

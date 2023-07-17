@@ -2,7 +2,7 @@ package org.schabi.newpipe.error
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import com.google.android.exoplayer2.ExoPlaybackException
+import androidx.media3.exoplayer.ExoPlaybackException
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R

@@ -1,16 +1,15 @@
 package org.schabi.newpipe.player.mediasource;
 
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.CompositeMediaSource;
-import com.google.android.exoplayer2.source.MediaPeriod;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.upstream.Allocator;
+import androidx.annotation.NonNull;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.Timeline;
+import androidx.media3.exoplayer.source.CompositeMediaSource;
+import androidx.media3.exoplayer.source.MediaPeriod;
+import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.upstream.Allocator;
 
 import org.schabi.newpipe.player.mediaitem.PlaceholderTag;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-
-import androidx.annotation.NonNull;
 
 final class PlaceholderMediaSource
         extends CompositeMediaSource<Void> implements ManagedMediaSource {
@@ -19,26 +18,28 @@ final class PlaceholderMediaSource
 
     private PlaceholderMediaSource() { }
 
+    @NonNull
     @Override
     public MediaItem getMediaItem() {
         return MEDIA_ITEM;
     }
 
     @Override
-    protected void onChildSourceInfoRefreshed(final Void id,
-                                              final MediaSource mediaSource,
-                                              final Timeline timeline) {
+    protected void onChildSourceInfoRefreshed(@NonNull final Void id,
+                                              @NonNull final MediaSource mediaSource,
+                                              @NonNull final Timeline timeline) {
         /* Do nothing, no timeline updates or error will stall playback */
     }
 
     @Override
-    public MediaPeriod createPeriod(final MediaPeriodId id, final Allocator allocator,
+    public MediaPeriod createPeriod(@NonNull final MediaPeriodId id,
+                                    @NonNull final Allocator allocator,
                                     final long startPositionUs) {
         return null;
     }
 
     @Override
-    public void releasePeriod(final MediaPeriod mediaPeriod) { }
+    public void releasePeriod(@NonNull final MediaPeriod mediaPeriod) { }
 
     @Override
     public boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,

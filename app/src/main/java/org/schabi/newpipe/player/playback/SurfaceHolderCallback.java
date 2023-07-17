@@ -3,8 +3,8 @@ package org.schabi.newpipe.player.playback;
 import android.content.Context;
 import android.view.SurfaceHolder;
 
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.video.PlaceholderSurface;
+import androidx.media3.common.Player;
+import androidx.media3.exoplayer.video.PlaceholderSurface;
 
 /**
  * Prevent error message: 'Unrecoverable player error occurred'

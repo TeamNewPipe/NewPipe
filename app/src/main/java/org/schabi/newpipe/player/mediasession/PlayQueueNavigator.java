@@ -13,9 +13,8 @@ import android.support.v4.media.session.MediaSessionCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+import androidx.media3.common.util.Util;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
-import com.google.android.exoplayer2.util.Util;
 
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -44,18 +43,18 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     @Override
     public long getSupportedQueueNavigatorActions(
-            @Nullable final com.google.android.exoplayer2.Player exoPlayer) {
+            @Nullable final androidx.media3.common.Player exoPlayer) {
         return ACTION_SKIP_TO_NEXT | ACTION_SKIP_TO_PREVIOUS | ACTION_SKIP_TO_QUEUE_ITEM;
     }
 
     @Override
-    public void onTimelineChanged(@NonNull final com.google.android.exoplayer2.Player exoPlayer) {
+    public void onTimelineChanged(@NonNull final androidx.media3.common.Player exoPlayer) {
         publishFloatingQueueWindow();
     }
 
     @Override
     public void onCurrentMediaItemIndexChanged(
-            @NonNull final com.google.android.exoplayer2.Player exoPlayer) {
+            @NonNull final androidx.media3.common.Player exoPlayer) {
         if (activeQueueItemId == MediaSessionCompat.QueueItem.UNKNOWN_ID
                 || exoPlayer.getCurrentTimeline().getWindowCount() > MAX_QUEUE_SIZE) {
             publishFloatingQueueWindow();
@@ -66,17 +65,17 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     @Override
     public long getActiveQueueItemId(
-            @Nullable final com.google.android.exoplayer2.Player exoPlayer) {
+            @Nullable final androidx.media3.common.Player exoPlayer) {
         return Optional.ofNullable(player.getPlayQueue()).map(PlayQueue::getIndex).orElse(-1);
     }
 
     @Override
-    public void onSkipToPrevious(@NonNull final com.google.android.exoplayer2.Player exoPlayer) {
+    public void onSkipToPrevious(@NonNull final androidx.media3.common.Player exoPlayer) {
         player.playPrevious();
     }
 
     @Override
-    public void onSkipToQueueItem(@NonNull final com.google.android.exoplayer2.Player exoPlayer,
+    public void onSkipToQueueItem(@NonNull final androidx.media3.common.Player exoPlayer,
                                   final long id) {
         if (player.getPlayQueue() != null) {
             player.selectQueueItem(player.getPlayQueue().getItem((int) id));
@@ -84,7 +83,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public void onSkipToNext(@NonNull final com.google.android.exoplayer2.Player exoPlayer) {
+    public void onSkipToNext(@NonNull final androidx.media3.common.Player exoPlayer) {
         player.playNext();
     }
 
@@ -146,7 +145,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public boolean onCommand(@NonNull final com.google.android.exoplayer2.Player exoPlayer,
+    public boolean onCommand(@NonNull final androidx.media3.common.Player exoPlayer,
                              @NonNull final String command,
                              @Nullable final Bundle extras,
                              @Nullable final ResultReceiver cb) {

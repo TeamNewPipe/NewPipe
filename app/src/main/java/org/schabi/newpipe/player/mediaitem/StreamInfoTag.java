@@ -1,6 +1,8 @@
 package org.schabi.newpipe.player.mediaitem;
 
-import com.google.android.exoplayer2.MediaItem;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media3.common.MediaItem;
 
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -10,9 +12,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * This {@link MediaItemTag} object contains metadata for a resolved stream

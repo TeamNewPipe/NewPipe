@@ -1,32 +1,32 @@
 package org.schabi.newpipe.player;
 
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_FILE_NOT_FOUND;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NO_PERMISSION;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_UNSPECIFIED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_CONTAINER_MALFORMED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_MANIFEST_MALFORMED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_TIMEOUT;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AUTO_TRANSITION;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_REMOVE;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SKIP;
-import static com.google.android.exoplayer2.Player.DiscontinuityReason;
-import static com.google.android.exoplayer2.Player.Listener;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static com.google.android.exoplayer2.Player.RepeatMode;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_FILE_NOT_FOUND;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_NO_PERMISSION;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_IO_UNSPECIFIED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_PARSING_CONTAINER_MALFORMED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_PARSING_MANIFEST_MALFORMED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_TIMEOUT;
+import static androidx.media3.common.PlaybackException.ERROR_CODE_UNSPECIFIED;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_AUTO_TRANSITION;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_INTERNAL;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_REMOVE;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_SEEK;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static androidx.media3.common.Player.DISCONTINUITY_REASON_SKIP;
+import static androidx.media3.common.Player.DiscontinuityReason;
+import static androidx.media3.common.Player.Listener;
+import static androidx.media3.common.Player.REPEAT_MODE_OFF;
+import static androidx.media3.common.Player.REPEAT_MODE_ONE;
+import static androidx.media3.common.Player.RepeatMode;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
@@ -61,22 +61,22 @@ import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.math.MathUtils;
+import androidx.media3.common.C;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player.PositionInfo;
+import androidx.media3.common.Timeline;
+import androidx.media3.common.Tracks;
+import androidx.media3.common.VideoSize;
+import androidx.media3.common.text.CueGroup;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.exoplayer.trackselection.MappingTrackSelector;
+import androidx.media3.exoplayer.upstream.DefaultBandwidthMeter;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player.PositionInfo;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.Tracks;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.text.CueGroup;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.video.VideoSize;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -397,7 +397,7 @@ public final class Player implements PlaybackListener, Listener {
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
+                    == androidx.media3.common.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
             }
             simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
@@ -411,7 +411,7 @@ public final class Player implements PlaybackListener, Listener {
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
+                    == androidx.media3.common.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
@@ -713,40 +713,30 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
         }
 
-        switch (intent.getAction()) {
-            case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
-                pause();
-                break;
-            case ACTION_CLOSE:
-                service.stopService();
-                break;
-            case ACTION_PLAY_PAUSE:
-                playPause();
-                break;
-            case ACTION_PLAY_PREVIOUS:
-                playPrevious();
-                break;
-            case ACTION_PLAY_NEXT:
-                playNext();
-                break;
-            case ACTION_FAST_REWIND:
-                fastRewind();
-                break;
-            case ACTION_FAST_FORWARD:
-                fastForward();
-                break;
-            case ACTION_REPEAT:
-                cycleNextRepeatMode();
-                break;
-            case ACTION_SHUFFLE:
-                toggleShuffleModeEnabled();
-                break;
-            case Intent.ACTION_CONFIGURATION_CHANGED:
-                assureCorrectAppLanguage(service);
-                if (DEBUG) {
-                    Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
-                }
-                break;
+        final String action = intent.getAction();
+        if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)) {
+            pause();
+        } else if (ACTION_CLOSE.equals(action)) {
+            service.stopService();
+        } else if (ACTION_PLAY_PAUSE.equals(action)) {
+            playPause();
+        } else if (ACTION_PLAY_PREVIOUS.equals(action)) {
+            playPrevious();
+        } else if (ACTION_PLAY_NEXT.equals(action)) {
+            playNext();
+        } else if (ACTION_FAST_REWIND.equals(action)) {
+            fastRewind();
+        } else if (ACTION_FAST_FORWARD.equals(action)) {
+            fastForward();
+        } else if (ACTION_REPEAT.equals(action)) {
+            cycleNextRepeatMode();
+        } else if (ACTION_SHUFFLE.equals(action)) {
+            toggleShuffleModeEnabled();
+        } else if (Intent.ACTION_CONFIGURATION_CHANGED.equals(action)) {
+            assureCorrectAppLanguage(service);
+            if (DEBUG) {
+                Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
+            }
         }
 
         UIs.call(playerUi -> playerUi.onBroadcastReceived(intent));
@@ -953,7 +943,7 @@ public final class Player implements PlaybackListener, Listener {
                     + "reason = [" + reason + "]");
         }
         final int playbackState = exoPlayerIsNull()
-                ? com.google.android.exoplayer2.Player.STATE_IDLE
+                ? androidx.media3.common.Player.STATE_IDLE
                 : simpleExoPlayer.getPlaybackState();
         updatePlaybackState(playWhenReady, playbackState);
     }
@@ -982,22 +972,22 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         switch (playbackState) {
-            case com.google.android.exoplayer2.Player.STATE_IDLE: // 1
+            case androidx.media3.common.Player.STATE_IDLE: // 1
                 isPrepared = false;
                 break;
-            case com.google.android.exoplayer2.Player.STATE_BUFFERING: // 2
+            case androidx.media3.common.Player.STATE_BUFFERING: // 2
                 if (isPrepared) {
                     changeState(STATE_BUFFERING);
                 }
                 break;
-            case com.google.android.exoplayer2.Player.STATE_READY: //3
+            case androidx.media3.common.Player.STATE_READY: //3
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
                 }
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
-            case com.google.android.exoplayer2.Player.STATE_ENDED: // 4
+            case androidx.media3.common.Player.STATE_ENDED: // 4
                 changeState(STATE_COMPLETED);
                 saveStreamProgressStateCompleted();
                 isPrepared = false;
@@ -1248,13 +1238,13 @@ public final class Player implements PlaybackListener, Listener {
      * This is done because not all source resolution errors are {@link PlaybackException}, which
      * are also captured by {@link ExoPlayer} and stops the playback.</p>
      *
-     * @param player The {@link com.google.android.exoplayer2.Player} whose state changed.
-     * @param events The {@link com.google.android.exoplayer2.Player.Events} that has triggered
+     * @param player The {@link androidx.media3.common.Player} whose state changed.
+     * @param events The {@link androidx.media3.common.Player.Events} that has triggered
      *               the player state changes.
      **/
     @Override
-    public void onEvents(@NonNull final com.google.android.exoplayer2.Player player,
-                         @NonNull final com.google.android.exoplayer2.Player.Events events) {
+    public void onEvents(@NonNull final androidx.media3.common.Player player,
+                         @NonNull final androidx.media3.common.Player.Events events) {
         Listener.super.onEvents(player, events);
         MediaItemTag.from(player.getCurrentMediaItem()).ifPresent(tag -> {
             if (tag == currentMetadata) {
@@ -1380,7 +1370,7 @@ public final class Player implements PlaybackListener, Listener {
     //region Errors
 
     /**
-     * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
+     * Process exceptions produced by {@link ExoPlayer ExoPlayer}.
      * <p>There are multiple types of errors:</p>
      * <ul>
      * <li>{@link PlaybackException#ERROR_CODE_BEHIND_LIVE_WINDOW BEHIND_LIVE_WINDOW}:
@@ -1406,7 +1396,7 @@ public final class Player implements PlaybackListener, Listener {
      * create a notification so users are aware.
      * </ul>
      *
-     * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
+     * @see androidx.media3.common.Player.Listener#onPlayerError(PlaybackException)
      */
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should

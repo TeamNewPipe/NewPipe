@@ -478,7 +478,7 @@ public class MediaSourceManager {
 
     /**
      * Checks if the corresponding MediaSource in
-     * {@link com.google.android.exoplayer2.source.ConcatenatingMediaSource}
+     * {@link androidx.media3.exoplayer.source.ConcatenatingMediaSource}
      * for a given {@link PlayQueueItem} needs replacement, either due to gapless playback
      * readiness or playlist desynchronization.
      * <p>

@@ -73,7 +73,8 @@ android {
         abortOnError false
         // suppress false warning ("Resource IDs will be non-final in Android Gradle Plugin version
         // 5.0, avoid using them in switch case statements"), which affects only library projects
-        disable 'NonConstantResourceId'
+        // NOTE: 'UnsafeOptInUsageError' lint disable is for AndroidX Media3
+        disable 'NonConstantResourceId', 'UnsafeOptInUsageError'
     }
 
     compileOptions {
@@ -110,11 +111,11 @@ ext {
     checkstyleVersion = '10.12.1'
 
     androidxLifecycleVersion = '2.5.1'
+    androidxMedia3Version = '1.0.2'
     androidxRoomVersion = '2.4.3'
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.7'
     googleAutoServiceVersion = '1.0.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
@@ -234,6 +235,14 @@ dependencies {
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
     implementation 'com.google.android.material:material:1.6.1'
 
+    // Media player
+    implementation "androidx.media3:media3-exoplayer:${androidxMedia3Version}"
+    implementation "androidx.media3:media3-exoplayer-dash:${androidxMedia3Version}"
+    implementation "androidx.media3:media3-exoplayer-hls:${androidxMedia3Version}"
+    implementation "androidx.media3:media3-exoplayer-smoothstreaming:${androidxMedia3Version}"
+    //implementation "androidx.media3:media3-session:${androidxMedia3Version}"
+    implementation "androidx.media3:media3-ui:${androidxMedia3Version}"
+
 /** Third-party libraries **/
     // Instance state boilerplate elimination
     implementation "frankiesardo:icepick:${icepickVersion}"
@@ -244,16 +253,6 @@ dependencies {
 
     // HTTP client
     implementation "com.squareup.okhttp3:okhttp:4.11.0"
-
-    // Media player
-    implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-dash:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-database:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-datasource:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-hls:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:exoplayer-ui:${exoPlayerVersion}"
-    implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
     // Metadata generator for service descriptors
     compileOnly "com.google.auto.service:auto-service-annotations:${googleAutoServiceVersion}"
