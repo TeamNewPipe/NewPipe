@@ -849,10 +849,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void setVideoCountAndOverallDuration(final ArrayList<LocalItem> itemsList) {
         if (activity != null && headerBinding != null) {
             final long videoCount = itemsList.size();
-            final long playlistOverallDurationSeconds = itemsList.stream().mapToLong(x ->
-                ((PlaylistStreamEntry) x).getStreamEntity()
-                    .getDuration())
-                .sum();
+            final long playlistOverallDurationSeconds = itemsList.stream()
+                    .filter(PlaylistStreamEntry.class::isInstance)
+                    .map(PlaylistStreamEntry.class::cast)
+                    .map(PlaylistStreamEntry::getStreamEntity)
+                    .mapToLong(StreamEntity::getDuration)
+                    .sum();
             headerBinding.playlistStreamCount.setText(
                     Localization.concatenateStrings(
                             Localization.localizeStreamCount(activity, videoCount),

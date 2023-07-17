@@ -209,10 +209,24 @@ public final class Localization {
                 deletedCount, shortCount(context, deletedCount));
     }
 
+    /**
+     * Get a readable text for a duration in the format {@code days:hours:minutes:seconds}.
+     * Prepended zeros are removed.
+     * @param duration the duration in seconds
+     * @return a formatted duration String or {@code 0:00} if the duration is zero.
+     */
     public static String getDurationString(final long duration) {
         return getDurationString(duration, true);
     }
 
+    /**
+     * Get a readable text for a duration in the format {@code days:hours:minutes:seconds+}.
+     * Prepended zeros are removed. If the given duration is incomplete, a plus is appended to the
+     * duration string.
+     * @param duration the duration in seconds
+     * @param isDurationComplete whether the given duration is complete or whether info is missing
+     * @return a formatted duration String or {@code 0:00} if the duration is zero.
+     */
     public static String getDurationString(final long duration, final boolean isDurationComplete) {
         final String output;
 
