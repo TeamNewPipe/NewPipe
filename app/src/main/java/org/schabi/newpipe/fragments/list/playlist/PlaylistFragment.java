@@ -84,7 +84,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     private MenuItem playlistBookmarkButton;
 
-    private long videoCount;
+    private long streamCount;
     private long playlistOverallDurationSeconds;
 
     public static PlaylistFragment getInstance(final int serviceId, final String url,
@@ -278,7 +278,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        setVideoCountAndOverallDuration(result.getItems(), !result.hasNextPage());
+        setStreamCountAndOverallDuration(result.getItems(), !result.hasNextPage());
     }
 
     @Override
@@ -327,8 +327,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .into(headerBinding.uploaderAvatarView);
         }
 
-        videoCount = result.getStreamCount();
-        setVideoCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
+        streamCount = result.getStreamCount();
+        setStreamCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
@@ -484,15 +484,15 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         playlistBookmarkButton.setTitle(titleRes);
     }
 
-    private void setVideoCountAndOverallDuration(final List<StreamInfoItem> list,
-                                                 final boolean isDurationComplete) {
+    private void setStreamCountAndOverallDuration(final List<StreamInfoItem> list,
+                                                  final boolean isDurationComplete) {
         if (activity != null && headerBinding != null) {
             playlistOverallDurationSeconds += list.stream()
                     .mapToLong(x -> x.getDuration())
                     .sum();
             headerBinding.playlistStreamCount.setText(
                 Localization.concatenateStrings(
-                    Localization.localizeStreamCount(activity, videoCount),
+                    Localization.localizeStreamCount(activity, streamCount),
                     Localization.getDurationString(playlistOverallDurationSeconds,
                             isDurationComplete))
             );
