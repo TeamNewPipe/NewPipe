@@ -19,7 +19,7 @@
   <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; 
   <a href="https://newpipe.net/press/">Press</a></p><hr>
 
-*Read this in other languages: [English](README.md), [Español](doc/README.es.md), [हिन्दी](doc/README.hi.md), [한국어](doc/README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md), [অসমীয়া](doc/README.asm.md).*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](doc/README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md)*
 
 <b>সতৰ্কবাণী: এই এপটো নিৰ্মিয়মান অৱস্থাত আছে, গতিকে আপুনি ব্যৱহাৰ কৰোঁতে কোনো অসুবিধাৰ সন্মুখীন হ'ব পাৰে।  যদি আপুনি অসুবিধাৰ সন্মুখীন হয়, ইছ্যু টেমপ্লেট পূৰণ কৰি আমাৰ GITHUB ৰিপ'জিটৰিত এটা ইছ্যু খোলক।</b>
 
