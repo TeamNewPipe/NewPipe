@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -655,7 +656,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .subscribe(itemsToKeep -> {
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(itemsToKeep);
-                    setVideoCount(itemListAdapter.getItemsList().size());
+                    setVideoCountAndOverallDuration(itemListAdapter.getItemsList());
                     saveChanges();
 
                     hideLoading();
