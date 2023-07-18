@@ -270,6 +270,9 @@
     <string name="caption_settings_key">caption_settings_key</string>
     <string name="caption_user_set_key">caption_user_set_key</string>
 
+    <!-- Main-Tabs Position -->
+    <string name="main_tabs_position_key">main_tabs_position</string>
+
     <!-- Content & History -->
     <string name="show_search_suggestions_key">show_search_suggestions</string>
     <string name="show_local_search_suggestions_key">show_local_search_suggestions</string>

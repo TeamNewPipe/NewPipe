@@ -66,4 +66,12 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/main_tabs_position_key"
+        android:summary="@string/main_tabs_position_summary"
+        android:title="@string/main_tabs_position_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
 </PreferenceScreen>
