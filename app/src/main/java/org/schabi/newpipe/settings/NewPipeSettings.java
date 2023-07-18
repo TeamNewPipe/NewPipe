@@ -76,6 +76,10 @@ public final class NewPipeSettings {
 
         saveDefaultVideoDownloadDirectory(context);
         saveDefaultAudioDownloadDirectory(context);
+
+        if (isFirstRun) { // NOSONAR: isFirstRun is never null
+            setMediaTunneling(context);
+        }
     }
 
     static void saveDefaultVideoDownloadDirectory(final Context context) {
@@ -151,5 +155,19 @@ public final class NewPipeSettings {
                                                       final SharedPreferences sharedPreferences) {
         return showSearchSuggestions(context, sharedPreferences,
                 R.string.show_remote_search_suggestions_key);
+    }
+
+    /**
+     * Check if device does not support media tunneling
+     * and disable that exoplayer feature if necessary.
+     * @see DeviceUtils#shouldSupportMediaTunneling()
+     * @param context
+     */
+    public static void setMediaTunneling(@NonNull final Context context) {
+        if (!DeviceUtils.shouldSupportMediaTunneling()) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putBoolean(context.getString(R.string.disable_media_tunneling_key), true)
+                    .apply();
+        }
     }
 }

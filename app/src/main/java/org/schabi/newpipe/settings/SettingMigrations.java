@@ -128,6 +128,17 @@ public final class SettingMigrations {
         }
     };
 
+    private static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            // PR #8875 added a new settings page for exoplayer introducing a specific setting
+            // to disable media tunneling. However, media tunneling should be disabled by default
+            // for some devices, because they are known for not supporting media tunneling
+            // which can result in a black screen while playing videos.
+            NewPipeSettings.setMediaTunneling(context);
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -140,12 +151,13 @@ public final class SettingMigrations {
             MIGRATION_2_3,
             MIGRATION_3_4,
             MIGRATION_4_5,
+            MIGRATION_5_6,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 5;
+    private static final int VERSION = 6;
 
 
     public static void initMigrations(@NonNull final Context context, final boolean isFirstRun) {

@@ -36,6 +36,31 @@ public final class DeviceUtils {
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
+    /*
+     * Devices that do not support media tunneling
+     */
+
+    /**
+     * Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo.
+     */
+    private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
+            && Build.DEVICE.equals("Hi3798MV200");
+    /**
+     * Zephir TS43UHD-2.
+     */
+    private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
+            && Build.DEVICE.equals("cvt_mt5886_eu_1g");
+    /**
+     * Hilife TV.
+     */
+    private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
+            && Build.DEVICE.equals("RealtekATV");
+    /**
+     * Philips QM16XE.
+     */
+    private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
+            && Build.DEVICE.equals("QM16XE_U");
+
     private DeviceUtils() {
     }
 
@@ -223,5 +248,21 @@ public final class DeviceUtils {
             windowManager.getDefaultDisplay().getSize(point);
             return point.y;
         }
+    }
+
+    /**
+     * Some devices have broken tunneled video playback but claim to support it.
+     * See https://github.com/TeamNewPipe/NewPipe/issues/5911
+     * @Note Add a new {@link org.schabi.newpipe.settings.SettingMigrations.Migration} which calls
+     * {@link org.schabi.newpipe.settings.NewPipeSettings#setMediaTunneling(Context)}
+     * when adding a new device to the method
+     * @return {@code false} if affected device; {@code true} otherwise
+     */
+    public static boolean shouldSupportMediaTunneling() {
+        // Maintainers note: add a new SettingsMigration which calls
+        return !HI3798MV200
+                && !CVT_MT5886_EU_1G
+                && !REALTEKATV
+                && !QM16XE_U;
     }
 }
