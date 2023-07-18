@@ -83,10 +83,12 @@ class NotificationHelper(val context: Context) {
         // a Target is like a listener for image loading events
         val target = object : Target {
             override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-                summaryBuilder.setLargeIcon(bitmap) // set only if there is actually one
+                // set channel icon only if there is actually one (for Android versions < 7.0)
+                summaryBuilder.setLargeIcon(bitmap)
 
-                // Show individual stream notifications
-                showStreamNotifications(newStreams, data.listInfo.serviceId)
+                // Show individual stream notifications, set channel icon only if there is actually
+                // one
+                showStreamNotifications(newStreams, data.listInfo.serviceId, bitmap)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
 
@@ -95,7 +97,7 @@ class NotificationHelper(val context: Context) {
 
             override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
                 // Show individual stream notifications
-                showStreamNotifications(newStreams, data.listInfo.serviceId)
+                showStreamNotifications(newStreams, data.listInfo.serviceId, null)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
@@ -113,20 +115,28 @@ class NotificationHelper(val context: Context) {
         PicassoHelper.loadNotificationIcon(data.avatarUrl).into(target)
     }
 
-    private fun showStreamNotifications(newStreams: List<StreamInfoItem>, serviceId: Int) {
-        newStreams.asSequence()
-            .map { it to createStreamNotification(it, serviceId) }
-            .forEach { (stream, notification) ->
-                manager.notify(stream.url.hashCode(), notification)
-            }
+    private fun showStreamNotifications(
+        newStreams: List<StreamInfoItem>,
+        serviceId: Int,
+        channelIcon: Bitmap?
+    ) {
+        for (stream in newStreams) {
+            val notification = createStreamNotification(stream, serviceId, channelIcon)
+            manager.notify(stream.url.hashCode(), notification)
+        }
     }
 
-    private fun createStreamNotification(item: StreamInfoItem, serviceId: Int): Notification {
+    private fun createStreamNotification(
+        item: StreamInfoItem,
+        serviceId: Int,
+        channelIcon: Bitmap?
+    ): Notification {
         return NotificationCompat.Builder(
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setLargeIcon(channelIcon)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
             .setGroup(item.uploaderUrl)
