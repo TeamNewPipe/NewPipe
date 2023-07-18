@@ -110,7 +110,7 @@ ext {
     checkstyleVersion = '10.12.1'
 
     androidxLifecycleVersion = '2.5.1'
-    androidxRoomVersion = '2.4.3'
+    androidxRoomVersion = '2.5.2'
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
