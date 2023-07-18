@@ -36,10 +36,8 @@ public final class DeviceUtils {
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
-    /*
-     * Devices that do not support media tunneling
-     */
 
+    // region: devices not supporting media tunneling
     /**
      * Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo.
      */
@@ -56,10 +54,52 @@ public final class DeviceUtils {
     private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
             && Build.DEVICE.equals("RealtekATV");
     /**
+     * <p>Phillips 4K (O)LED TV.</p>
+     * Supports custom ROMs with different API levels
+     */
+    private static final boolean PH7M_EU_5596 = Build.VERSION.SDK_INT >= 26
+            && Build.DEVICE.equals("PH7M_EU_5596");
+    /**
      * Philips QM16XE.
      */
     private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
             && Build.DEVICE.equals("QM16XE_U");
+    /**
+     * <p>Sony Bravia VH1.</p>
+     * Processor: MT5895
+     */
+    private static final boolean BRAVIA_VH1 = Build.VERSION.SDK_INT == 29
+            && Build.DEVICE.equals("BRAVIA_VH1");
+    /**
+     * <p>Sony Bravia VH2.</p>
+     * This includes model A90J.
+     */
+    private static final boolean BRAVIA_VH2 = Build.VERSION.SDK_INT == 29
+            && Build.DEVICE.equals("BRAVIA_VH2");
+    /**
+     * <p>Sony Bravia Android TV platform 2.</p>
+     * Uses a MediaTek MT5891 (MT5596) SoC.
+     * @see <a href="https://github.com/CiNcH83/bravia_atv2">
+     *     https://github.com/CiNcH83/bravia_atv2</a>
+     */
+    private static final boolean BRAVIA_ATV2 = Build.DEVICE.equals("BRAVIA_ATV2");
+    /**
+     * <p>Sony Bravia Android TV platform 3 4K.</p>
+     * Uses ARM MT5891 and a {@link #BRAVIA_ATV2} motherboard.
+     * @see <a href="https://browser.geekbench.com/v4/cpu/9101105">
+     *     https://browser.geekbench.com/v4/cpu/9101105</a>
+     */
+    private static final boolean BRAVIA_ATV3_4K = Build.DEVICE.equals("BRAVIA_ATV3_4K");
+    /**
+     * Panasonic 4KTV-JUP.
+     */
+    private static final boolean TX_50JXW834 = Build.DEVICE.equals("TX_50JXW834");
+    /**
+     * <p>Bouygtel4K / Bouygues Telecom Bbox 4K.</p>
+     * Reported at https://github.com/TeamNewPipe/NewPipe/pull/10122#issuecomment-1638475769
+     */
+    private static final boolean HMB9213NW = Build.DEVICE.equals("HMB9213NW");
+    // endregion
 
     private DeviceUtils() {
     }
@@ -251,7 +291,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * Some devices have broken tunneled video playback but claim to support it.
+     * <p>Some devices have broken tunneled video playback but claim to support it.</p>
      * See https://github.com/TeamNewPipe/NewPipe/issues/5911
      * @Note Add a new {@link org.schabi.newpipe.settings.SettingMigrations.Migration} which calls
      * {@link org.schabi.newpipe.settings.NewPipeSettings#setMediaTunneling(Context)}
@@ -263,6 +303,13 @@ public final class DeviceUtils {
         return !HI3798MV200
                 && !CVT_MT5886_EU_1G
                 && !REALTEKATV
-                && !QM16XE_U;
+                && !QM16XE_U
+                && !BRAVIA_VH1
+                && !BRAVIA_VH2
+                && !BRAVIA_ATV2    // crash caused by exiting full screen
+                && !BRAVIA_ATV3_4K // crash caused by exiting full screen
+                && !PH7M_EU_5596
+                && !TX_50JXW834
+                && !HMB9213NW; // crash caused by exiting full screen
     }
 }
