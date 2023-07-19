@@ -154,8 +154,6 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             final AudioStream audioStream = ((AudioStream) stream);
             if (audioStream.getAverageBitrate() > 0) {
                 qualityString = audioStream.getAverageBitrate() + "kbps";
-            } else if (mediaFormat != null) {
-                qualityString = mediaFormat.getName();
             } else {
                 qualityString = context.getString(R.string.unknown_quality);
             }
