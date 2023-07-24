@@ -524,6 +524,7 @@
         <item>zh-TW</item>
         <item>zh-HK</item>
         <item>ja</item>
+        <item>ryu</item>
         <item>ko</item>
     </string-array>
     <string-array name="language_names">
@@ -605,6 +606,7 @@
         <item>中文 (繁體)</item>
         <item>中文 (香港)</item>
         <item>日本語</item>
+        <item>うちなーぐち</item>
         <item>한국어</item>
     </string-array>
 
@@ -1175,6 +1177,7 @@
         <item>pt-pt</item>
         <item>ro</item>
         <item>ru</item>
+        <item>ryu</item>
         <item>sat</item>
         <item>sc</item>
         <item>sk</item>
@@ -1235,6 +1238,7 @@
         <item>Íslenska</item>
         <item>Italiano</item>
         <item>日本語</item>
+        <item>うちなーぐち</item>
         <item>ꦧꦱꦗꦮ</item>
         <item>Taqbaylit</item>
         <item>Kurmancî</item>
