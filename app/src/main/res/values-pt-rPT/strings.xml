@@ -773,5 +773,5 @@
     <string name="settings_category_exoplayer_title">Configurações ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gere algumas configurações de ExoPlayer. É necessário reiniciar o reprodutor para aplicar as alterações</string>
     <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do descodificador do ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
 </resources>

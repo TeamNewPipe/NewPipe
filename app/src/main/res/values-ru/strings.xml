@@ -765,7 +765,7 @@
     <string name="settings_category_exoplayer_summary">Управление некоторыми настройками ExoPlayer. Эти изменения требуют перезапуска плеера, чтобы они вступили в силу</string>
     <string name="use_exoplayer_decoder_fallback_title">Использовать резервную функцию декодера ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Всегда использовать обходной путь настройки поверхности видеовыхода ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">оригинальный</string>
     <string name="audio_track_type_dubbed">дублированный</string>
     <string name="audio_track_type_descriptive">описательный</string>

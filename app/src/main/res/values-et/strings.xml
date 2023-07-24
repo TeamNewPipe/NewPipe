@@ -748,7 +748,7 @@
     <string name="audio_track_present_in_video">Selles meediavoos peaks heliriba juba olemas olema</string>
     <string name="use_exoplayer_decoder_fallback_title">Kasuta ExoPlayer\'i alternatiivset dekooderit</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Kasuta alati ExoPlayer\'i video väljundpinna seadistamise lahendust</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">algne</string>
     <string name="audio_track_type_dubbed">dubleeritud</string>
     <string name="audio_track_type_descriptive">kirjeldav</string>

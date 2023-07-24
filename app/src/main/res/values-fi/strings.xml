@@ -679,6 +679,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Käytä aina ExoPlayerin videolähtöpinnan asetusta</string>
     <string name="audio_track_type_descriptive">kuvaileva</string>
     <string name="audio_track_type_dubbed">dubattu</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">alkuperäinen</string>
 </resources>

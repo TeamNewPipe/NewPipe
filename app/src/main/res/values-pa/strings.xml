@@ -757,7 +757,6 @@
     <string name="settings_category_exoplayer_summary">ਕੁਝ ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ। ਇਹਨਾਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ</string>
     <string name="use_exoplayer_decoder_fallback_title">ਐਕਸੋਪਲੇਅਰ ਦੀ ਡੀਕੋਡਰ ਫਾਲਬੈਕ ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">ਹਮੇਸ਼ਾ ਐਕਸੋਪਲੇਅਰ ਦੀ ਵਿਡੀਓ ਆਉਟਪੁੱਟ ਸਤਹ ਸੈਟਿੰਗ ਵਰਕਰਾਊਂਡ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">ਅਸਲੀ</string>
     <string name="audio_track_type_dubbed">ਡੱਬ ਕੀਤਾ</string>
     <string name="audio_track_type_descriptive">ਵਰਣਨਾਤਮਕ</string>

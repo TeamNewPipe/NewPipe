@@ -782,7 +782,6 @@
     <string name="settings_category_exoplayer_summary">ניהול חלק מהגדרות של ה־ExoPlayer שלך. השינויים האלו דורשים את הפעלת הנגן מחדש כדי להיכנס לתוקף</string>
     <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית</string>
     <string name="use_exoplayer_decoder_fallback_summary">יש להפעיל את האפשרות הזאת אם נתקלת בבעיות עם אתחול מפענח, מה שגורם להנחתה למפענחים עם עדיפות נמוכה יותר אם אתחול המפענחים העיקריים נכשל. עלול לגרום לביצועי נגינה נחותים לעומת מפענחים ראשיים</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">תמיד להשתמש במעקף הגדרות משטח פלט הווידאו של ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">המעקף הזה משחרר ומקים מחדש את מפענחי הווידאו כשמשתנה שינוי במשטח, במקום להגדיר את המשטח למפענח ישירות. כבר נעשה בזה שימוש על ידי ExoPlayer בחלק מהמכשירים עם התקלה הזאת, הגדרה זו משפיעה על Android 6 ומעלה בלבד
 \n

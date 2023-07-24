@@ -774,7 +774,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Używaj funkcji zapasowego dekodera ExoPlayera</string>
     <string name="use_exoplayer_decoder_fallback_summary">Włącz tę opcję, jeśli masz problemy z inicjalizacją dekodera. Przywraca dekodery o niższym priorytecie, jeśli inicjalizacja podstawowych dekoderów się nie powiedzie. Może to spowodować słabszą wydajność odtwarzania niż podczas korzystania z podstawowych dekoderów</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Zawsze używaj obejścia ustawienia powierzchni wyjścia wideo ExoPlayera</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">oryginalna</string>
     <string name="audio_track_type_dubbed">dubbing</string>
     <string name="audio_track_type_descriptive">audiodeskrypcja</string>

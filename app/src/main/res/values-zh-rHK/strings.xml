@@ -740,7 +740,6 @@
     <string name="use_exoplayer_decoder_fallback_title">用 ExoPlayer 嘅解碼器汰退功能</string>
     <string name="use_exoplayer_decoder_fallback_summary">如果遇到解碼器初始化問題，請啟用呢個選項，如果主解碼器初始化失敗，就會用優先順序較低的解碼器。咁樣可能會導致播放性能比使用主解碼器嗰陣差</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">幾時都用 Exoplayer嘅浮面影片輸出設定解決方法</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">原始嘅</string>
     <string name="audio_track_type_dubbed">配音嘅</string>
     <string name="audio_track_type_descriptive">敘述性</string>

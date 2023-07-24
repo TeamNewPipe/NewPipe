@@ -764,7 +764,7 @@
     <string name="use_exoplayer_decoder_fallback_summary">Túto možnosť povoľte, ak máte problémy s inicializáciou dekodéra, ktorý sa v prípade zlyhania inicializácie primárnych dekodérov vráti k dekodérom s nižšou prioritou. To môže mať za následok nižší výkon prehrávania ako pri použití primárnych dekodérov</string>
     <string name="use_exoplayer_decoder_fallback_title">Používať funkciu záložného dekodéra prehrávača ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použiť nastavenia výstupu videa ExoPlayera</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">povodná</string>
     <string name="audio_track_type_dubbed">dabovaná</string>
     <string name="prefer_descriptive_audio_summary">Vyberať zvukovú stopu s popisom pre zrakovo postihnutých ak je k dispozicií</string>

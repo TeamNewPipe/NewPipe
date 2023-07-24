@@ -739,7 +739,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">此变通方法在发生界面更改时会释放并重新初始化视频编解码器，而不是直接将编解码器设置到新界面。在某些有这个问题的设备上，Exoplayer 已经在使用这个方法。此设置仅适用于 Android 6 及更高的系统版本
 \n
 \n启用此选项可防止切换当前视频播放器或切换到全屏播放时出现播放错误</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">原始</string>
     <string name="audio_track_type_dubbed">配音</string>
     <string name="audio_track_type_descriptive">描述</string>

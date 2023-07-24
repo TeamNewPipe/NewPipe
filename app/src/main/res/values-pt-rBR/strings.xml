@@ -763,7 +763,7 @@
     <string name="unknown_audio_track">Desconhecido</string>
     <string name="settings_category_exoplayer_title">Configurações de ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gerenciar algumas configurações de ExoPlayer. É necessário reiniciar o player para aplicar as mudanças</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dublado</string>
     <string name="audio_track_type_descriptive">descritivo</string>

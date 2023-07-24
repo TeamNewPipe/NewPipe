@@ -748,7 +748,7 @@
     <string name="unknown_audio_track">Disconnotu</string>
     <string name="settings_category_exoplayer_summary">Manìgia unas cantas impostatziones de ExoPlayer. Custas modìficas tenent bisòngiu de torrare a allùghere su riproduidore pro chi tèngiant efetu</string>
     <string name="use_exoplayer_decoder_fallback_title">Imprea sa funtzionalidade de riserva de su decodificadore de ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">originale</string>
     <string name="audio_track_type_dubbed">dopiadu</string>
     <string name="audio_track_type_descriptive">descritivu</string>

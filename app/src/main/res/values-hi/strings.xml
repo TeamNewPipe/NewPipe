@@ -751,7 +751,6 @@
     <string name="settings_category_exoplayer_title">ExoPlayer सेटिंग्स</string>
     <string name="use_exoplayer_decoder_fallback_title">एक्सोप्लेयर के डिकोडर फॉलबैक फीचर का उपयोग करें</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">हमेशा ExoPlayer के वीडियो आउटपुट सतह सेटिंग वर्कअराउंड का उपयोग करें</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">मूल</string>
     <string name="audio_track_type_dubbed">डब</string>
     <string name="audio_track_type_descriptive">वर्णनात्मक</string>

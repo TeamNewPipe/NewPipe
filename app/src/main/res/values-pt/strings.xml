@@ -770,7 +770,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do descodificador do ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Ative esta opção se tiver problemas de inicialização do descodificador, que retorna codificadores de baixa prioridade se o descodificador primário falhar. Isto pode resultar num desempenho inferior de reprodução</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usar sempre a configuração de saída alternativa de vídeo do ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dobrado</string>
     <string name="audio_track_type_descriptive">descritivo</string>

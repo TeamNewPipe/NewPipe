@@ -766,7 +766,7 @@
     <string name="unknown_audio_track">Desconocido</string>
     <string name="use_exoplayer_decoder_fallback_title">Utilice la función de respaldo del decodificador de ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Utiliza siempre la configuración de ExoPlayer para la interfaz de salida del video como una solución alternativa</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">doblado</string>
     <string name="audio_track_type_descriptive">descriptivo</string>

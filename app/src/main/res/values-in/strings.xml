@@ -744,7 +744,6 @@
     <string name="settings_category_exoplayer_title">Pengaturan ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_title">Gunakan fitur fallback dekoder ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Selalu gunakan solusi pengaturan permukaan keluaran video ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">asli</string>
     <string name="audio_track_type_dubbed">disulih suara</string>
     <string name="audio_track_type_descriptive">deskriptif</string>

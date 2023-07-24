@@ -740,7 +740,6 @@
     <string name="settings_category_exoplayer_summary">ExoPlayer 설정을 관리합니다. 이러한 변경 사항을 적용하려면 플레이어를 다시 시작해야 함</string>
     <string name="use_exoplayer_decoder_fallback_title">ExoPlayer의 디코더 폴백 기능 사용</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">항상 ExoPlayer의 비디오 출력 표면 설정 해결 방법 사용</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">원본</string>
     <string name="audio_track_type_dubbed">더빙됨</string>
     <string name="audio_track_type_descriptive">설명</string>

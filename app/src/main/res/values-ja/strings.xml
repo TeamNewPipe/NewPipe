@@ -737,7 +737,6 @@
     <string name="play_queue_audio_track">オーディオ: %s</string>
     <string name="unknown_audio_track">不明</string>
     <string name="select_audio_track_external_players">外部プレイヤー用のオーディオトラックを選択</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">オリジナル</string>
     <string name="prefer_original_audio_title">オリジナル音声を優先する</string>
     <string name="prefer_original_audio_summary">言語に関係なくオリジナルのオーディオトラックを選択する</string>

@@ -747,5 +747,4 @@
     <string name="select_audio_track_external_players">Chọn bản âm thanh cho trình phát ngoài</string>
     <string name="settings_category_exoplayer_title">Cài đặt Exoplayer</string>
     <string name="settings_category_exoplayer_summary">Quản lý một số cài đặt trong Exoplayer. Hãy khởi động lại trình phát để áp dụng thay đổi</string>
-    <string name="audio_track_name">%s %s</string>
 </resources>

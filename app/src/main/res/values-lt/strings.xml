@@ -756,7 +756,6 @@
     <string name="settings_category_exoplayer_summary">Tvarkykite kai kuriuos \"ExoPlayer\" nustatymus. Kad šie pakeitimai įsigaliotų, grotuvą reikia paleisti iš naujo</string>
     <string name="use_exoplayer_decoder_fallback_title">Naudokite „ExoPlayer“ dekoderio atsarginę funkciją</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Visada naudokite \"ExoPlayer\" vaizdo išvesties paviršiaus nustatymų apėjimą</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="msg_failed_to_copy">Nepavyko nukopijuoti į iškarpinę</string>
     <string name="audio_track_type_original">originalus</string>
     <string name="right_gesture_control_title">Dešinio gesto veiksmas</string>

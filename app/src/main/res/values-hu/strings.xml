@@ -749,7 +749,7 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ez a kerülőmegoldás elengedi és újból előkészíti a videokodekeket, ha felületváltozás történik, ahelyett, hogy közvetlenül a kodeknél állítaná be a felületet. Ez már alapból használatban van egyes, az ezzel a problémával érintett eszközöknél, a beállításnak Android 6 vagy újabb esetén van hatása.
 \n
 \nA beállítás bekapcsolása megakadályozhatja a lejátszási hibákat, ha átváltja a jelenlegi videolejátszót, vagy teljes képernyőre vált.</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_dubbed">szinkronizált</string>
     <string name="audio_track_type_descriptive">leíró</string>
     <string name="ignore_hardware_media_buttons_summary">Hasznos, ha olyan fülhallgatót használ, melyen meghibásodtak a fizikai gombok</string>

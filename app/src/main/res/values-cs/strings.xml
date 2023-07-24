@@ -763,7 +763,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Použít funkci náhradního dekodéru přehrávače ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Tuto možnost povolte, pokud máte problémy s inicializací dekodéru. V případě selhání inicializace primárních dekodérů se přehrávač vrátí zpět k dekodérům s nižší prioritou. To může mít za následek nižší výkon přehrávání než při použití primárních dekodérů</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použít nastavení povrchu výstupu videa v přehrávači ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">původní</string>
     <string name="audio_track_type_dubbed">dabovaná</string>
     <string name="audio_track_type_descriptive">popisná</string>

@@ -757,7 +757,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Gebruik de terugvalfunctie van de ExoPlayer-decoder</string>
     <string name="use_exoplayer_decoder_fallback_summary">Schakel deze optie in als je problemen hebt met de initialisatie van de decoder, die terugvalt op decoders met een lagere prioriteit als de initialisatie van de primaire decoder mislukt. Dit kan leiden tot slechtere afspeelprestaties dan bij gebruik van primaire decoders</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Gebruik altijd de tijdelijke oplossing voor het instellen van het video-uitvoeroppervlak van ExoPlayer</string>
-    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">origineel</string>
     <string name="audio_track_type_dubbed">nagesynchroniseerd</string>
     <string name="audio_track_type_descriptive">beschrijvend</string>

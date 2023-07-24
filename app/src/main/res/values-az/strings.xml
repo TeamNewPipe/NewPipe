@@ -755,7 +755,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer tərəfindən bu problemi olan bəzi cihazlarda istifadə olunur, bu tənzimləmənin təsiri yalnız Android 6 və daha yüksəkdə var.
 \n
 \nBu seçimi aktivləşdirmə cari video oynadıcı dəyişdiriləndə və ya tam ekrana keçəndə oynatma xətalarının qarşısını ala bilər</string>
-    <string name="audio_track_name">%s %s</string>
     <string name="audio_track_type_original">orijinal</string>
     <string name="audio_track_type_dubbed">dublyaj edilib</string>
     <string name="audio_track_type_descriptive">təsviri</string>
