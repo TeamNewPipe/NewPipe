@@ -331,7 +331,7 @@
     <string name="playback_step">Passo</string>
     <string name="playback_reset">Redefinir</string>
     <string name="channels">Canais</string>
-    <string name="playlists">Playlists</string>
+    <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
     <string name="users">Usuários</string>
     <string name="unsubscribe">Cancelar inscrição</string>
@@ -442,7 +442,7 @@
     <string name="peertube_instance_add_https_only">Apenas links HTTPS são suportados</string>
     <string name="peertube_instance_add_exists">A instância já existe</string>
     <string name="local">Local</string>
-    <string name="recently_added">Recentes</string>
+    <string name="recently_added">Adicionado recentemente</string>
     <string name="most_liked">Mais curtidos</string>
     <string name="playlist_no_uploader">Gerado automaticamente (nenhum uploader encontrado)</string>
     <string name="recovering">recuperando</string>
@@ -582,7 +582,7 @@
     <string name="hash_channel_name">Notificação de hash do vídeo</string>
     <string name="show_meta_info_summary">Desative para ocultar as caixas de informações de metadados com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa</string>
     <string name="show_meta_info_title">Mostrar informação de metadados</string>
-    <string name="recent">Recentes</string>
+    <string name="recent">Recente</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
     <string name="related_items_tab_description">Ítens relacionados</string>
@@ -655,7 +655,7 @@
         <item quantity="other">%1$s downloads apagados</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="one">Download concluído</item>
+        <item quantity="one">%s download concluído</item>
         <item quantity="many">%s downloads concluídos</item>
         <item quantity="other">%s downloads concluídos</item>
     </plurals>
@@ -774,4 +774,6 @@
     <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do decodificador do ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Sempre utilizar o configuração de saída de vídeo alternativa do ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Habilite essa opção se você tiver problemas de inicialização do decodificador, que retorna codificadores de baixa prioridade se o decodificador primário falhar. Isso pode resultar em pior desempenho de reprodução</string>
+    <string name="main_tabs_position_summary">Mova o seletor da aba principal para a parte inferior</string>
+    <string name="main_tabs_position_title">Posição das abas principais</string>
 </resources>

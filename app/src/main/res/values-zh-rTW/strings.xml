@@ -748,4 +748,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">此解決方法是在發生表面變動時釋放並重新確認視訊編解碼器，而非直接將表面設定為編解碼器。ExoPlayer 已在部份有問題的裝置上使用了此設定，此設定僅對 Android 6 或更新版本有效。
 \n
 \n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
+    <string name="main_tabs_position_summary">將主分頁選擇器移動至底部</string>
+    <string name="main_tabs_position_title">主分頁位置</string>
 </resources>

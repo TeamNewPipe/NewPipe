@@ -761,4 +761,6 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_descriptive">beskrivande</string>
     <string name="audio_track_type_dubbed">dubbad</string>
+    <string name="main_tabs_position_summary">Flytta huvudflik väljaren till botten</string>
+    <string name="main_tabs_position_title">Huvudflikarnas position</string>
 </resources>

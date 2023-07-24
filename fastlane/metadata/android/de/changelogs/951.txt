@@ -1,0 +1,11 @@
+Neu
+- Suche nach Abonnements im Feed-Gruppen-Dialog hinzufügen
+- Filter zum Feed-Gruppen-Dialog hinzufügen, um nur nicht gruppierte Abonnements anzuzeigen
+- Registerkarte Wiedergabeliste zur Hauptseite hinzufügen
+- Schneller Vorlauf/Rücklauf im Hintergrund/Pop-up-Player-Warteschlange
+- Suchvorschlag anzeigen: meinten Sie & Ergebnis anzeigen für
+
+Verbessert
+- Anwendungsmetadaten nicht mehr in gemuxte Dateien schreiben
+- Fehlerhafte Streams nicht aus der Warteschlange entfernen
+...

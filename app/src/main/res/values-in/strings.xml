@@ -748,4 +748,6 @@
     <string name="audio_track_type_original">asli</string>
     <string name="audio_track_type_dubbed">disulih suara</string>
     <string name="audio_track_type_descriptive">deskriptif</string>
+    <string name="main_tabs_position_summary">Pindahkan pemilih tab utama ke bawah</string>
+    <string name="main_tabs_position_title">Posisi tab utama</string>
 </resources>

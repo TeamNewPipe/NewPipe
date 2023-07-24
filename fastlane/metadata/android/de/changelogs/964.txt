@@ -1,0 +1,7 @@
+- Unterstützung für Kapitel in der Playersteuerung hinzugefügt
+- [PeerTube] Sepia-Suche hinzugefügt
+- Schaltfläche zum Teilen in der Video-Detailansicht wieder hinzugefügt und Stream-Beschreibung in das Tab-Layout verschoben
+- Deaktiviert die Wiederherstellung der Helligkeit, wenn die Helligkeitsgeste deaktiviert ist
+- Listenelement zum Abspielen von Videos auf Kodi hinzugefügt
+- Absturz behoben, wenn auf manchen Geräten kein Standardbrowser eingestellt ist, und Freigabedialoge verbessert
+...

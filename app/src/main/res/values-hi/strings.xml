@@ -23,7 +23,7 @@
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैश</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
-    <string name="no_views">कोई दर्शक नहीं</string>
+    <string name="no_views">कोई विऊ नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जाने</string>
     <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
@@ -136,8 +136,8 @@
         <item quantity="other">%s सब्सक्राइबर्स</item>
     </plurals>
     <plurals name="views">
-        <item quantity="one">%s दर्शक</item>
-        <item quantity="other">%s दर्शके</item>
+        <item quantity="one">%s विऊ</item>
+        <item quantity="other">%s विऊज़</item>
     </plurals>
     <plurals name="videos">
         <item quantity="one">%s वीडियो</item>
@@ -280,7 +280,7 @@
 \nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ़े</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
-    <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने\' की प्रक्रिया</string>
+    <string name="preferred_open_action_settings_title">तरजीही \'open\' एक्शन</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
     <string name="caption_setting_title">अनुशीर्षक</string>
     <string name="caption_setting_description">प्लेयर अनुशीर्षक के शब्दों का परिमाण और पृष्ठभूमि शैलियों को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है</string>
@@ -416,10 +416,10 @@
     <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
-    <string name="no_one_watching">कोई नहीं देख रहा है</string>
+    <string name="no_one_watching">कोई दर्शक नहीं</string>
     <plurals name="watching">
-        <item quantity="one">%s आदमी देख रहा है</item>
-        <item quantity="other">%s आदमी देख रहे है</item>
+        <item quantity="one">%s दर्शक है</item>
+        <item quantity="other">%s दर्शक हैं</item>
     </plurals>
     <string name="no_one_listening">कोई नहीं सुन रहा है</string>
     <plurals name="listening">
@@ -632,7 +632,7 @@
     <string name="semitone">सैमीटोन</string>
     <plurals name="download_finished_notification">
         <item quantity="one">डाउनलोड समाप्त</item>
-        <item quantity="other">%s डाउनलोड समाप्त</item>
+        <item quantity="other">%s डाउनलोडस समाप्त</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d दिन</item>
@@ -761,4 +761,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है
 \n
 \nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
+    <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
+    <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
 </resources>

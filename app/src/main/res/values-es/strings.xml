@@ -777,4 +777,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera los códecs de video y los vuelve a instanciar cuando cambia la máscara, en lugar de configurar la máscara directamente en el códec. ExoPlayer ya usa esta configuración en algunos dispositivos con este problema y solo afecta a Android 6 y versiones posteriores
 \n
 \nHabilitar esta opción puede evitar errores de reproducción al cambiar el reproductor de video actual o cambiar al modo de pantalla completa</string>
+    <string name="main_tabs_position_title">Posición de las pestañas principales</string>
+    <string name="main_tabs_position_summary">Mover el selector de la pestaña principal a la parte inferior</string>
 </resources>

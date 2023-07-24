@@ -170,7 +170,7 @@
     <string name="switch_to_background">バックグラウンド再生を開始</string>
     <string name="switch_to_popup">ポップアップ再生を開始</string>
     <string name="switch_to_main">メイン再生に切り替え</string>
-    <string name="no_player_found_toast">動画プレイヤーが見つかりません (VLCをインストールして再生できます)。</string>
+    <string name="no_player_found_toast">動画プレイヤーが見つかりませんでした（VLCをインストールすることで再生できます）。</string>
     <string name="default_content_country_title">デフォルトの地域設定</string>
     <string name="always">常に</string>
     <string name="just_once">一度だけ</string>
@@ -433,7 +433,7 @@
     <string name="peertube_instance_add_exists">インスタンスはすでに存在しています</string>
     <string name="local">ローカル</string>
     <string name="recently_added">最近追加された</string>
-    <string name="most_liked">高評価</string>
+    <string name="most_liked">最も評価された</string>
     <string name="recovering">修復中</string>
     <string name="error_download_resource_gone">ダウンロードが修復できません</string>
     <string name="choose_instance_prompt">インスタンスを選択</string>
@@ -726,4 +726,28 @@
     <string name="brightness">明るさ</string>
     <string name="volume">音量</string>
     <string name="none">無</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer 設定</string>
+    <string name="settings_category_exoplayer_summary">ExoPlayer の設定を管理します。これらの変更を反映するにはプレイヤーの再起動が必要です</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer のデコーダ フォールバック機能を使用する</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">常に ExoPlayer の映像出力 サーフェス設定の解決策を使用する</string>
+    <string name="audio_track_type_dubbed">吹き替え</string>
+    <string name="audio_track_type_descriptive">音声解説</string>
+    <string name="prefer_descriptive_audio_title">音声解説を優先する</string>
+    <string name="prefer_descriptive_audio_summary">利用可能な場合に視覚障害者向けの音声解説トラックを選択する</string>
+    <string name="play_queue_audio_track">オーディオ: %s</string>
+    <string name="unknown_audio_track">不明</string>
+    <string name="select_audio_track_external_players">外部プレイヤー用のオーディオトラックを選択</string>
+    <string name="audio_track_name">%s %s</string>
+    <string name="audio_track_type_original">オリジナル</string>
+    <string name="prefer_original_audio_title">オリジナル音声を優先する</string>
+    <string name="prefer_original_audio_summary">言語に関係なくオリジナルのオーディオトラックを選択する</string>
+    <string name="audio_track">オーディオトラック</string>
+    <string name="use_exoplayer_decoder_fallback_summary">デコーダの初期化に問題がある場合は、このオプションを有効化してプライマリ デコーダ初期化失敗時に低い優先度のデコーダにフォールバックします。プライマリ デコーダ使用時よりパフォーマンスが悪化する可能性があります</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">この解決策は直接コーデックをサーフェスに設定する代わりに、サーフェスが変更された際に映像コーデックを開放し再インスタンス化します。すでにいくつかのデバイスでこの解決策が使用されていますが、Android 6 以降でのみ機能します
+\n
+\nこのオプションを有効化することでプレイヤーを切り替えたり、フルスクリーンに切り替えたりする際の再生エラーを防ぎます</string>
+    <string name="progressive_load_interval_summary">読み込み間隔を変更します。（現在 %s）この値を小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です</string>
+    <string name="audio_track_present_in_video">オーディオトラックは既にこのせせらぎに存在している必要があります</string>
+    <string name="main_tabs_position_title">メインタブの場所</string>
+    <string name="main_tabs_position_summary">メインタブセレクタを下に移動</string>
 </resources>

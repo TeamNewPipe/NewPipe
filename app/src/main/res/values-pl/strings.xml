@@ -782,4 +782,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">To obejście zwalnia i ponownie tworzy instancje kodeków wideo, gdy nastąpi zmiana powierzchni, zamiast bezpośrednio ustawiać powierzchnię dla kodeka. Używane już przez ExoPlayera na niektórych urządzeniach z tym problemem, ustawienie to ma wpływ tylko na Androida 6 i nowsze.
 \n
 \nWłączenie tej opcji może zapobiec błędom odtwarzania podczas przełączania obecnego odtwarzacza wideo lub przechodzenia na pełny ekran</string>
+    <string name="main_tabs_position_summary">Przenieś selektor kart głównych na dół</string>
+    <string name="main_tabs_position_title">Pozycja kart głównych</string>
 </resources>

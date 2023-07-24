@@ -33,7 +33,7 @@
         <item quantity="other">%s 个视频</item>
     </plurals>
     <string name="disabled">已停用</string>
-    <string name="controls_background_title">后台播放</string>
+    <string name="controls_background_title">后台</string>
     <string name="show_search_suggestions_title">显示搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
@@ -748,4 +748,6 @@
     <string name="audio_track">音轨</string>
     <string name="settings_category_exoplayer_title">ExoPlayer 设置</string>
     <string name="use_exoplayer_decoder_fallback_summary">如遇解码器初始化方面的问题可开启此选项。启用后，如主解码器初始化失败，ExoPlayer 将使用较低优先级的解码器进行播放。请注意，这可能导致播放性能下降</string>
+    <string name="main_tabs_position_summary">将主标签页选择器移到底部</string>
+    <string name="main_tabs_position_title">主标签页位置</string>
 </resources>

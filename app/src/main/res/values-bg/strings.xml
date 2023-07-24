@@ -558,4 +558,5 @@
     <string name="unknown_format">Неизвестен формат</string>
     <string name="recently_added">Наскоро добавено</string>
     <string name="notification_action_buffering">Буфериране</string>
+    <string name="crash_the_player">Разбийте плейъра</string>
 </resources>

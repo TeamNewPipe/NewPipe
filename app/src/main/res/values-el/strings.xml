@@ -761,4 +761,6 @@
     <string name="audio_track_type_descriptive">περιγραφικό</string>
     <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης σε προοδευτικά περιεχόμενα (προς το παρόν %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική τους φόρτωση</string>
     <string name="prefer_descriptive_audio_summary">Επιλογή ήχου με περιγραφές για άτομα με προβλήματα όρασης, εάν είναι διαθέσιμος</string>
+    <string name="main_tabs_position_summary">Μετακινήστε τον επιλογέα κύριας καρτέλας στο κάτω μέρος</string>
+    <string name="main_tabs_position_title">Θέση κύριων καρτελών</string>
 </resources>

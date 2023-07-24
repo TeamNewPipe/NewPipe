@@ -1,0 +1,12 @@
+Nytt
+• Sök på YouTube Music
+• Grundläggande Android TV-stöd
+
+Förbättrat
+• Lade till möjligheten att ta bort alla visade videor från en lokal spellista
+• Visa meddelande när innehåll inte stöds ännu istället för att krascha
+• Förbättrade ändring av popup-spelarens storlek med nyp gester
+• Köa strömmar på långa tryck på bakgrund och popup-knappar i kanalen
+• Förbättrad storlekshantering av lådans rubriktitel
+
+Och mycket mer

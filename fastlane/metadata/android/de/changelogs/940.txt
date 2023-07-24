@@ -1,0 +1,13 @@
+Neu
+- Unterstützung für SoundCloud-Kommentare hinzufügen
+- YouTube-Einstellung für eingeschränkten Modus hinzufügen
+- Details des übergeordneten PeerTube-Kanals anzeigen
+
+Verbessert
+- Anzeige der Kore-Schaltfläche nur für unterstützte Dienste
+- Blockieren von Player-Gesten, die in der Navigationsleiste oder Statusleiste beginnen
+- Ändern der Hintergrundfarbe der Schaltflächen Wiederholen und Abonnieren, basierend auf der Farbe des Dienstes
+
+Behoben
+- Einfrieren des Download-Dialogs behoben
+...

@@ -761,4 +761,6 @@
     <string name="unknown_audio_track">Unbekannt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
     <string name="audio_track_name">%s %s</string>
+    <string name="main_tabs_position_summary">Hauptauswahltab nach unten verschieben</string>
+    <string name="main_tabs_position_title">Position des Haupttabs</string>
 </resources>

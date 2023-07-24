@@ -761,4 +761,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Video väljundpinna muutumisel see alternatiivne lahendus eemaldab videokodekid kasutusest ja laadib nad uuesti ega ürita videokodeke uue väljundpinnaga sobitada. See seadistus toimib vaid Android 6 ja uuemates versioonides ning mõne seadme puhul on juba automaatselt kasutusel
 \n
 \nSelle valiku kasutamine hoiab ära mõned vea, mis tekivad ekraani pööramisel ja täisekraanivaate kasutamisel</string>
+    <string name="main_tabs_position_summary">Tõsta põhiline vahekaartide valija alla äärde</string>
+    <string name="main_tabs_position_title">Vahekaartide põhiline asukoht</string>
 </resources>

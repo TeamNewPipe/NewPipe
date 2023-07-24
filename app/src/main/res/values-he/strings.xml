@@ -787,4 +787,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">המעקף הזה משחרר ומקים מחדש את מפענחי הווידאו כשמשתנה שינוי במשטח, במקום להגדיר את המשטח למפענח ישירות. כבר נעשה בזה שימוש על ידי ExoPlayer בחלק מהמכשירים עם התקלה הזאת, הגדרה זו משפיעה על Android 6 ומעלה בלבד
 \n
 \nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
+    <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
+    <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
 </resources>

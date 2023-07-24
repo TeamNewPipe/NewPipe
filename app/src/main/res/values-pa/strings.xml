@@ -93,7 +93,7 @@
     <string name="error_report_title">Error ਰਿਪੋਰਟ</string>
     <string name="all">ਸਾਰੇ</string>
     <string name="disabled">ਬੰਦ ਕੀਤਾ</string>
-    <string name="clear">ਮਿਟਾਓ</string>
+    <string name="clear">ਸਾਫ ਕਰੋ</string>
     <string name="best_resolution">ਵਧੀਆ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
     <string name="undo">ਵਾਪਿਸ</string>
     <string name="play_all">ਸਾਰੇ ਚਲਾਓ</string>
@@ -359,10 +359,10 @@
     <string name="enqueue">ਕਤਾਰ ਕਰੋ</string>
     <string name="permission_denied">ਸਿਸਟਮ ਦੁਆਰਾ ਕਾਰਵਾਈ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ</string>
     <string name="download_failed">ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ</string>
-    <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ Generate ਕਰੋ</string>
+    <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ ਬਣਾਓ</string>
     <string name="overwrite">overwrite</string>
     <string name="download_already_running">ਇਸ ਨਾਮ ਦੇ ਨਾਲ ਇੱਕ ਡਾਊਨਲੋਡ ਪਹਿਲਾਂ ਤੋਂ ਜਾਰੀ ਹੈ</string>
-    <string name="show_error">ERROR ਵਿਖਾਓ</string>
+    <string name="show_error">ਤਰੁੱਟੀ ਵਿਖਾਓ</string>
     <string name="error_path_creation">ਮੰਜ਼ਿਲ ਫੋਲਡਰ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
     <string name="error_file_creation">ਫਾਈਲ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕਦੀ</string>
     <string name="error_ssl_exception">ਸੁਰੱਖਿਅਤ ਕੁਨੈਕਸ਼ਨ ਸਥਾਪਤ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
@@ -372,7 +372,7 @@
     <string name="error_http_unsupported_range">ਸਰਵਰ ਮਲਟੀ-Threaded ਡਾਊਨਲੋਡਸ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ @string/msg_threads = 1</string>
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
-    <string name="stop">ਰੁੱਕੋ</string>
+    <string name="stop">ਰੁਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="pause_downloads_on_mobile">ਮੀਟਰ ਕੀਤੇ ਨੈਟਵਰਕਸ ਤੇ ਰੁਕਾਵਟ</string>
@@ -571,7 +571,7 @@
     <string name="clear_playback_states_summary">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="clear_playback_states_title">ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਓ</string>
     <string name="hash_channel_name">ਵੀਡੀਓ ਹੈਸ਼ ਇਤਲਾਹ</string>
-    <string name="albums">ਐਲਬਮਾਂ</string>
+    <string name="albums">ਐਲਬਮ</string>
     <string name="artists">ਕਲਾਕਾਰ</string>
     <string name="songs">ਗੀਤ</string>
     <string name="videos_string">ਵੀਡੀਓ</string>
@@ -582,7 +582,7 @@
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
     <string name="peertube_instance_add_exists">ਸਥਿਤੀ ਪਹਿਲਾਂ ਨੂੰ ਮੌਜੂਦ ਹੈ</string>
-    <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮਾਣਨਯੋਗ ਹਨ</string>
+    <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮੰਨਣਯੋਗ ਹਨ</string>
     <string name="peertube_instance_add_fail">ਸਥਿਤੀ ਦੀ ਜਾਇਜ਼ਗੀ ਤਸਦੀਕ ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="peertube_instance_add_help">ਸਥਿਤੀ URL ਦਾਖ਼ਲ ਕਰੋ</string>
     <string name="peertube_instance_add_title">ਸਥਿਤੀਆਂ ਜੋੜੋ</string>
@@ -761,4 +761,6 @@
     <string name="audio_track_type_original">ਅਸਲੀ</string>
     <string name="audio_track_type_dubbed">ਡੱਬ ਕੀਤਾ</string>
     <string name="audio_track_type_descriptive">ਵਰਣਨਾਤਮਕ</string>
+    <string name="main_tabs_position_title">ਮੁੱਖ ਟੈਬਾਂ ਦੀ ਸਥਿਤੀ</string>
+    <string name="main_tabs_position_summary">ਮੁੱਖ ਟੈਬ ਸਿਲੈਕਟਰ ਨੂੰ ਹੇਠਾਂ ਲੈ ਜਾਓ</string>
 </resources>

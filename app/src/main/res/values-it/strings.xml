@@ -774,4 +774,6 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Questa soluzione alternativa rilascia e re-istanzia i codec video quando si verifica una modifica della superficie, invece di impostare direttamente la superficie sul codec. Già usata da ExoPlayer su alcuni dispositivi con questo problema, questa impostazione ha effetto solo su Android 6 e versioni successive
 \n
 \nL\'attivazione di questa opzione potrebbe impedire errori di riproduzione passando al lettore video attuale o passando a schermo intero</string>
+    <string name="main_tabs_position_title">Posizione delle schede principali</string>
+    <string name="main_tabs_position_summary">Sposta in fondo il selettore della scheda principale</string>
 </resources>

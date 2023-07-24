@@ -1,0 +1,14 @@
+Nytt
+• Prenumerationsgrupper och sorterade flöden
+• Mute-knapp i spelare
+
+Förbättrat
+• Tillåt öppning music.youtube.com och media.ccc.de länkar i NewPipe
+• Flytta två inställningar från Utseende till Innehåll
+• Dölj sökalternativ på 5, 15, 25 sekunder om inexakt sökning är aktiverad
+
+Fixat
+• vissa WebM-videor kan inte sökas
+• databas backup på Android P
+• krasch när du delar en nedladdad fil
+• massor av YouTube problem och mer ...

@@ -73,9 +73,9 @@
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
-    <string name="subscription_change_failed">구독을 변경할 수 없습니다</string>
+    <string name="subscription_change_failed">구독상태를 변경할 수 없었습니다.</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
-    <string name="tab_subscriptions">구독</string>
+    <string name="tab_subscriptions">구독목록</string>
     <string name="fragment_feed_title">새로운 영상</string>
     <string name="controls_background_title">백그라운드</string>
     <string name="controls_popup_title">팝업</string>
@@ -189,7 +189,7 @@
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
     <string name="use_inexact_seek_title">정확하지 않은 빠른 탐색 사용</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색을 사용하면 정확도가 떨어지는 대신 더 빠르게 위치를 탐색할 수 있습니다. 5초, 15초 또는 25초 탐색 기능은 이 기능과 같이 동작하지 않습니다</string>
-    <string name="auto_queue_title">다음 스트림을 자동 대기열에 추가</string>
+    <string name="auto_queue_title">다음 스트림을 자동으로 대기열에 추가</string>
     <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
     <string name="settings_category_debug_title">디버그</string>
@@ -259,15 +259,15 @@
     <string name="previous_export">이전 내보내기</string>
     <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
     <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
-    <string name="import_youtube_instructions">Google 테이크아웃에서 YouTube 구독 가져오기:
+    <string name="import_youtube_instructions">Google 테이크아웃에서 YouTube 구독목록 가져오기:
 \n
 \n1. 이 URL로 이동합니다: %1$s
-\n2. 요청에 따라 로그인을 합니다
-\n3. \"모든 데이터 포함됨\"을 클릭한 다음 \"모두 선택 해제\"를 클릭한 후 \"구독정보\"만 선택하고 \"확인\"을 클릭합니다
+\n2. 요청에 따라 로그인 합니다
+\n3. \"모든 데이터 포함됨\"을 클릭한 뒤, \"모두 선택 해제\"를 클릭한 후 \"구독정보\"만 선택하고 \"확인\"을 클릭합니다
 \n4. \"다음 단계\"를 클릭한 다음 \"내보내기 생성\"을 클릭합니다
 \n5. \"다운로드\" 버튼이 나타나면 클릭합니다
 \n6. 아래의 \"파일 가져오기\"를 클릭하고 다운로드한 .zip 파일을 선택합니다
-\n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 추출하고, 아래의 \"파일 가져오기\"를 클릭한 후 추출한 csv 파일을 선택합니다</string>
+\n7. [.zip 파일 가져오기를 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/구독정보/구독정보.csv\")을 압축해제한 다음, 아래의 \"파일 가져오기\"를 클릭한 후 압축해제한 csv 파일을 선택합니다</string>
     <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다:
 \n 
 \n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다)
@@ -336,7 +336,7 @@
     <string name="playback_step">단계</string>
     <string name="playback_reset">초기화</string>
     <string name="saved_tabs_invalid_json">저장된 탭을 불러올 수 없었으므로, 기본 탭을 사용합니다</string>
-    <string name="restore_defaults">초기화</string>
+    <string name="restore_defaults">기본설정으로 되돌리기</string>
     <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
     <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
     <string name="main_page_content_summary">메인 화면에 표시할 탭을 설정합니다</string>
@@ -622,10 +622,10 @@
     <string name="metadata_support">지원</string>
     <string name="metadata_language">언어</string>
     <string name="metadata_age_limit">연령 제한</string>
-    <string name="metadata_privacy">개인</string>
+    <string name="metadata_privacy">공개상태</string>
     <string name="metadata_licence">라이센스</string>
     <string name="detail_heart_img_view_description">창작자의 마음</string>
-    <string name="metadata_privacy_private">개인</string>
+    <string name="metadata_privacy_private">비공개</string>
     <string name="metadata_privacy_unlisted">비공개</string>
     <string name="metadata_thumbnail_url">썸네일 URL</string>
     <string name="metadata_host">호스트</string>

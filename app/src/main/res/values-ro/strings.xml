@@ -626,7 +626,7 @@
     <string name="metadata_language">Limbă</string>
     <string name="metadata_age_limit">Limita de vârstă</string>
     <string name="metadata_privacy">Vizibilitate</string>
-    <string name="metadata_licence">Liciență</string>
+    <string name="metadata_licence">Licență</string>
     <string name="metadata_tags">Etichete</string>
     <string name="metadata_category">Categorie</string>
     <string name="description_select_disable">Dezactivați selectarea textului în descriere</string>
