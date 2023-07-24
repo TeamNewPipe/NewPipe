@@ -389,7 +389,7 @@
     <string name="enable_playback_state_lists_summary">リストんかいさいせいいちインジケーターひょうじさびーん</string>
     <string name="settings_category_clear_data_title">データさちゅるじょ</string>
     <string name="watch_history_states_deleted">さいせいいちさちゅるじょさびたん</string>
-    <string name="missing_file">ファイルぬうぅいちゃーあらんでぃさくじょさりやびたん＜/string>
+    <string name="missing_file">ファイルぬうぅいちゃーあらんでぃさくじょさりやびたん</string>
     <string name="overwrite_failed">ファイルうわがきなやびらん</string>
     <string name="download_already_pending">いぬファイルめいぬダウンロードぬしでぃにしんこうちゅうやいびーん</string>
     <string name="error_postprocessing_stopped">ファイルぬさぎょうちゅうにNewPipeぬくーららりやびたん</string>
