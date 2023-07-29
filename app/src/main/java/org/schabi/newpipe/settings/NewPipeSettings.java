@@ -167,6 +167,8 @@ public final class NewPipeSettings {
         if (!DeviceUtils.shouldSupportMediaTunneling()) {
             PreferenceManager.getDefaultSharedPreferences(context).edit()
                     .putBoolean(context.getString(R.string.disable_media_tunneling_key), true)
+                    .putInt(context.getString(
+                            R.string.disabled_media_tunneling_automatically_key), 1)
                     .apply();
         }
     }

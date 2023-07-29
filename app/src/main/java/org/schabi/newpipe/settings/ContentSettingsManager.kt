@@ -67,6 +67,9 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, "newpipe.settings")
     }
 
+    /**
+     * Remove all shared preferences from the app and load the preferences supplied to the manager.
+     */
     fun loadSharedPreferences(preferences: SharedPreferences) {
         try {
             val preferenceEditor = preferences.edit()

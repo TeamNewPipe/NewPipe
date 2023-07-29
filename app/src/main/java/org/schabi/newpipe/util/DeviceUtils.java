@@ -255,7 +255,7 @@ public final class DeviceUtils {
      * See https://github.com/TeamNewPipe/NewPipe/issues/5911
      * @Note Add a new {@link org.schabi.newpipe.settings.SettingMigrations.Migration} which calls
      * {@link org.schabi.newpipe.settings.NewPipeSettings#setMediaTunneling(Context)}
-     * when adding a new device to the method
+     * when adding a new device to the method.
      * @return {@code false} if affected device; {@code true} otherwise
      */
     public static boolean shouldSupportMediaTunneling() {
