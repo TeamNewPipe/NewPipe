@@ -244,6 +244,9 @@ dependencies {
 
     // HTTP client
     implementation "com.squareup.okhttp3:okhttp:4.11.0"
+    // okhttp3:4.11.0 introduces a vulnerability from com.squareup.okio:okio@3.3.0,
+    // remove com.squareup.okio:okio when updating okhttp
+    implementation "com.squareup.okio:okio:3.4.0"
 
     // Media player
     implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
