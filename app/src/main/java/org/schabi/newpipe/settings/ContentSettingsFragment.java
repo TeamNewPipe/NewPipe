@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
@@ -230,8 +231,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         })
                         .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
-                            manager.loadSharedPreferences(PreferenceManager
-                                    .getDefaultSharedPreferences(requireContext()));
+                            final Context context = requireContext();
+                            final SharedPreferences prefs = PreferenceManager
+                                    .getDefaultSharedPreferences(context);
+                            manager.loadSharedPreferences(prefs);
+                            cleanImport(context, prefs);
                             finishImport(importDataUri);
                         })
                         .show();
@@ -240,6 +244,38 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(this, "Importing database", e);
+        }
+    }
+
+    /**
+     * Remove settings that are not supposed to be imported on different devices
+     * and reset them to default values.
+     * @param context the context used for the import
+     * @param prefs the preferences used while running the import
+     */
+    private void cleanImport(@NonNull final Context context,
+                             @NonNull final SharedPreferences prefs) {
+        // Check if media tunnelling needs to be disabled automatically,
+        // if it was disabled automatically in the imported preferences.
+        final String tunnelingKey = context.getString(R.string.disable_media_tunneling_key);
+        final String automaticTunnelingKey =
+                context.getString(R.string.disabled_media_tunneling_automatically_key);
+        // R.string.disable_media_tunneling_key should always be true
+        // if R.string.disabled_media_tunneling_automatically_key equals 1,
+        // but we double check here just to be sure and to avoid regressions
+        // caused by possible later modification of the media tunneling functionality.
+        // R.string.disabled_media_tunneling_automatically_key == 0:
+        //     automatic value overridden by user in settings
+        // R.string.disabled_media_tunneling_automatically_key == -1: not set
+        final boolean wasMediaTunnelingDisabledAutomatically =
+                prefs.getInt(automaticTunnelingKey, -1) == 1
+                        && prefs.getBoolean(tunnelingKey, false);
+        if (wasMediaTunnelingDisabledAutomatically) {
+            prefs.edit()
+                    .putInt(automaticTunnelingKey, -1)
+                    .putBoolean(tunnelingKey, false)
+                    .apply();
+            NewPipeSettings.setMediaTunneling(context);
         }
     }
 
