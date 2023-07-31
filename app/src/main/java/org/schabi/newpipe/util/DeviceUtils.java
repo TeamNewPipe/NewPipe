@@ -36,20 +36,32 @@ public final class DeviceUtils {
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
 
-
-    // region: devices not supporting media tunneling
     /**
-     * Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo.
+     * <p>The app version code that corresponds to the last update
+     * of the media tunneling device blacklist.</p>
+     * <p>The value of this variable needs to be updated everytime a new device that does not
+     * support media tunneling to match the <strong>upcoming</strong> version code.</p>
+     * @see #shouldSupportMediaTunneling()
+     */
+    public static final int MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION = 994;
+
+    // region: devices not supporting media tunneling / media tunneling blacklist
+    /**
+     * <p>Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo.</p>
+     * <p>Blacklist reason: black screen</p>
+     * <p>Board: HiSilicon Hi3798MV200</p>
      */
     private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
             && Build.DEVICE.equals("Hi3798MV200");
     /**
-     * Zephir TS43UHD-2.
+     * <p>Zephir TS43UHD-2.</p>
+     * <p>Blacklist reason: black screen</p>
      */
     private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
             && Build.DEVICE.equals("cvt_mt5886_eu_1g");
     /**
      * Hilife TV.
+     * <p>Blacklist reason: black screen</p>
      */
     private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
             && Build.DEVICE.equals("RealtekATV");
@@ -60,19 +72,23 @@ public final class DeviceUtils {
     private static final boolean PH7M_EU_5596 = Build.VERSION.SDK_INT >= 26
             && Build.DEVICE.equals("PH7M_EU_5596");
     /**
-     * Philips QM16XE.
+     * <p>Philips QM16XE.</p>
+     * <p>Blacklist reason: black screen</p>
      */
     private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
             && Build.DEVICE.equals("QM16XE_U");
     /**
      * <p>Sony Bravia VH1.</p>
-     * Processor: MT5895
+     * <p>Processor: MT5895</p>
+     * <p>Blacklist reason: fullscreen crash / stuttering</p>
      */
     private static final boolean BRAVIA_VH1 = Build.VERSION.SDK_INT == 29
             && Build.DEVICE.equals("BRAVIA_VH1");
     /**
      * <p>Sony Bravia VH2.</p>
-     * This includes model A90J.
+     * <p>Blacklist reason: fullscreen crash; this includes model A90J as reported in
+     * <a href="https://github.com/TeamNewPipe/NewPipe/issues/9023#issuecomment-1387106242">
+     * #9023</a></p>
      */
     private static final boolean BRAVIA_VH2 = Build.VERSION.SDK_INT == 29
             && Build.DEVICE.equals("BRAVIA_VH2");
@@ -85,18 +101,22 @@ public final class DeviceUtils {
     private static final boolean BRAVIA_ATV2 = Build.DEVICE.equals("BRAVIA_ATV2");
     /**
      * <p>Sony Bravia Android TV platform 3 4K.</p>
-     * Uses ARM MT5891 and a {@link #BRAVIA_ATV2} motherboard.
+     * <p>Uses ARM MT5891 and a {@link #BRAVIA_ATV2} motherboard.</p>
+     *
      * @see <a href="https://browser.geekbench.com/v4/cpu/9101105">
      *     https://browser.geekbench.com/v4/cpu/9101105</a>
      */
     private static final boolean BRAVIA_ATV3_4K = Build.DEVICE.equals("BRAVIA_ATV3_4K");
     /**
-     * Panasonic 4KTV-JUP.
+     * <p>Panasonic 4KTV-JUP.</p>
+     * <p>Blacklist reason: fullscreen crash</p>
      */
     private static final boolean TX_50JXW834 = Build.DEVICE.equals("TX_50JXW834");
     /**
      * <p>Bouygtel4K / Bouygues Telecom Bbox 4K.</p>
-     * Reported at https://github.com/TeamNewPipe/NewPipe/pull/10122#issuecomment-1638475769
+     * <p>Blacklist reason: black screen; reported at
+     * <a href="https://github.com/TeamNewPipe/NewPipe/pull/10122#issuecomment-1638475769">
+     *     #10122</a></p>
      */
     private static final boolean HMB9213NW = Build.DEVICE.equals("HMB9213NW");
     // endregion
@@ -292,24 +312,27 @@ public final class DeviceUtils {
 
     /**
      * <p>Some devices have broken tunneled video playback but claim to support it.</p>
-     * See https://github.com/TeamNewPipe/NewPipe/issues/5911
-     * @Note Add a new {@link org.schabi.newpipe.settings.SettingMigrations.Migration} which calls
-     * {@link org.schabi.newpipe.settings.NewPipeSettings#setMediaTunneling(Context)}
+     * <p>This can cause a black video player surface while attempting to play a video or
+     * crashes while entering or exiting the full screen player.
+     * The issue effects Android TVs most commonly.
+     * See <a href="https://github.com/TeamNewPipe/NewPipe/issues/5911">#5911</a> and
+     * <a href="https://github.com/TeamNewPipe/NewPipe/issues/9023">#9023</a> for more info.</p>
+     * @Note Update {@link #MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION}
      * when adding a new device to the method.
      * @return {@code false} if affected device; {@code true} otherwise
      */
     public static boolean shouldSupportMediaTunneling() {
-        // Maintainers note: add a new SettingsMigration which calls
+        // Maintainers note: update MEDIA_TUNNELING_DEVICES_UPDATE_APP_VERSION_CODE
         return !HI3798MV200
                 && !CVT_MT5886_EU_1G
                 && !REALTEKATV
                 && !QM16XE_U
                 && !BRAVIA_VH1
                 && !BRAVIA_VH2
-                && !BRAVIA_ATV2    // crash caused by exiting full screen
-                && !BRAVIA_ATV3_4K // crash caused by exiting full screen
+                && !BRAVIA_ATV2
+                && !BRAVIA_ATV3_4K
                 && !PH7M_EU_5596
                 && !TX_50JXW834
-                && !HMB9213NW; // crash caused by exiting full screen
+                && !HMB9213NW;
     }
 }

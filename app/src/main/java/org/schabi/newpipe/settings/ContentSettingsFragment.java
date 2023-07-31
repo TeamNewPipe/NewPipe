@@ -267,10 +267,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         // R.string.disabled_media_tunneling_automatically_key == 0:
         //     automatic value overridden by user in settings
         // R.string.disabled_media_tunneling_automatically_key == -1: not set
-        final boolean wasMediaTunnelingEnabledAutomatically =
+        final boolean wasMediaTunnelingDisabledAutomatically =
                 prefs.getInt(automaticTunnelingKey, -1) == 1
                         && prefs.getBoolean(tunnelingKey, false);
-        if (wasMediaTunnelingEnabledAutomatically) {
+        if (wasMediaTunnelingDisabledAutomatically) {
             prefs.edit()
                     .putInt(automaticTunnelingKey, -1)
                     .putBoolean(tunnelingKey, false)
