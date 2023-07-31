@@ -1082,7 +1082,7 @@ public final class Player implements PlaybackListener, Listener {
 
         UIs.call(PlayerUi::onPrepared);
 
-        if (playWhenReady) {
+        if (playWhenReady && !isMuted()) {
             audioReactor.requestAudioFocus();
         }
     }
@@ -1223,6 +1223,11 @@ public final class Player implements PlaybackListener, Listener {
     public void toggleMute() {
         final boolean wasMuted = isMuted();
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
+        if (wasMuted) {
+            audioReactor.requestAudioFocus();
+        } else {
+            audioReactor.abandonAudioFocus();
+        }
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
     }
@@ -1620,7 +1625,9 @@ public final class Player implements PlaybackListener, Listener {
             return;
         }
 
-        audioReactor.requestAudioFocus();
+        if (!isMuted()) {
+            audioReactor.requestAudioFocus();
+        }
 
         if (currentState == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
