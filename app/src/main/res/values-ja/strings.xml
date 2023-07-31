@@ -749,4 +749,5 @@
     <string name="audio_track_present_in_video">オーディオトラックは既にこのせせらぎに存在している必要があります</string>
     <string name="main_tabs_position_title">メインタブの場所</string>
     <string name="main_tabs_position_summary">メインタブセレクタを下に移動</string>
+    <string name="audio_track_name">%1s %2s</string>
 </resources>

@@ -774,4 +774,6 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dobrado</string>
     <string name="audio_track_type_descriptive">descritivo</string>
+    <string name="main_tabs_position_summary">Mova o seletor da guia principal para a parte inferior</string>
+    <string name="main_tabs_position_title">Posição das guias principais</string>
 </resources>

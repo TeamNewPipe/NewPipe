@@ -788,4 +788,5 @@
 \nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
     <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
     <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
+    <string name="audio_track_name">%1s %2s</string>
 </resources>

@@ -603,7 +603,7 @@
     <string name="restricted_video_no_stream">Cette vidéo est soumise à une limite d’âge.
 \nEn raison des nouvelles politiques de YouTube concernant les vidéos soumises à une limite d’âge, NewPipe ne peut accéder à aucun de ses flux vidéo et ne peut donc pas les lire.</string>
     <string name="radio">Radio</string>
-    <string name="featured">Tendances</string>
+    <string name="featured">Présentés</string>
     <string name="recaptcha_solve">Résoudre</string>
     <string name="auto_device_theme_title">Automatique (thème de l’appareil)</string>
     <string name="night_theme_summary">Sélectionne votre thème de nuit favori — %s</string>
@@ -661,8 +661,8 @@
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Téléchargement terminé</item>
-        <item quantity="many">%s Téléchargements terminés</item>
-        <item quantity="other">%s Téléchargements terminés</item>
+        <item quantity="many">%s téléchargements terminés</item>
+        <item quantity="other">%s téléchargements terminés</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
@@ -776,4 +776,6 @@
     <string name="prefer_descriptive_audio_summary">Sélectionner une piste audio avec des descriptions pour les personnes malvoyantes si disponible</string>
     <string name="select_audio_track_external_players">Sélectionner la piste audio pour les lecteurs externes</string>
     <string name="use_exoplayer_decoder_fallback_summary">Activez cette option si vous rencontrez des problèmes d\'initialisation des décodeurs, ce qui permet de revenir à des décodeurs moins prioritaires si l\'initialisation des décodeurs primaires échoue. Les performances de lecture peuvent être moins bonnes que lors de l\'utilisation des décodeurs primaires</string>
+    <string name="main_tabs_position_summary">Déplacer le sélecteur d\'onglet principal en bas</string>
+    <string name="main_tabs_position_title">Position des onglets principaux</string>
 </resources>

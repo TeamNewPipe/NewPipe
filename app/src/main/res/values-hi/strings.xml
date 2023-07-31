@@ -123,7 +123,7 @@
     <string name="detail_likes_img_view_description">पसंद</string>
     <string name="detail_dislikes_img_view_description">नापसंद</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
-    <string name="empty_list_subtitle">यहां के खालीपन को दूर करने के लिए कुछ सर्च करें या किसी चैनल को सब्सक्राइब करें</string>
+    <string name="empty_list_subtitle">यहां के खालीपन को दूर करने के लिए कुछ सर्च करें या किसी चैनल को सब्सक्राइब करें और प्लेलिसट बनाकर उसमें वीडियो जोड़े</string>
     <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
@@ -248,7 +248,7 @@
     <string name="download_thumbnail_title">थंमनेल लोड करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5, 15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
-    <string name="download_thumbnail_summary">थंमनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है</string>
+    <string name="download_thumbnail_summary">डेटा खपत, मेमोरी उपयोग की बचत और थंमनेल लोड होने से रोकने के लिए बंद करें। इस बदलाव से इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों मिट जाते हैं</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
     <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
@@ -762,4 +762,5 @@
 \nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
     <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
     <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
+    <string name="audio_track_name">%1s %2s</string>
 </resources>

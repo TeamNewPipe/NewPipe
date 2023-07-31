@@ -749,4 +749,5 @@
 \n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
     <string name="main_tabs_position_summary">將主分頁選擇器移動至底部</string>
     <string name="main_tabs_position_title">主分頁位置</string>
+    <string name="audio_track_name">%1s %2s</string>
 </resources>

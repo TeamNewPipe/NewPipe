@@ -801,7 +801,7 @@
     <string name="settings_category_exoplayer_title">إعدادات ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">إدارة بعض إعدادات ExoPlayer. تتطلب هذه التغييرات إعادة تشغيل المشغل لتصبح سارية المفعول</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">استخدم دائمًا الحل البديل لإعداد سطح إخراج فيديو ExoPlayer</string>
-    <string name="audio_track_name">%2s %1s</string>
+    <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">الافتراضي</string>
     <string name="audio_track_type_dubbed">مدبلجة</string>
     <string name="audio_track_type_descriptive">وصفي</string>

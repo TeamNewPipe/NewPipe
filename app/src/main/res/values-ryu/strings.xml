@@ -260,10 +260,12 @@
     <string name="delete_search_history_alert">まじりどぅきらんさくりりきさちゅるじょさびーが？</string>
     <string name="invalid_source">くぬファイル/コンテンツーあいびらん</string>
     <plurals name="subscribers">
+        <item quantity="one">チャンネルとぅうるくしゃすう %sんかいん</item>
         <item quantity="other">チャンネルとぅうるくしゃすう %sんかいん</item>
     </plurals>
     <string name="no_views">さいせいなし</string>
     <plurals name="views">
+        <item quantity="one">さいせいかいすん %sかい</item>
         <item quantity="other">さいせいかいすん %sかい</item>
     </plurals>
     <string name="one_item_deleted">てぃーちぬアイテムぬさちゅるじょさりやびたん。</string>
@@ -415,6 +417,7 @@
     <string name="default_kiosk_page_summary">デフォルトぬKiosk</string>
     <string name="no_one_watching">たーんんーじゃびらん</string>
     <plurals name="watching">
+        <item quantity="one">%sんかいんがしちょうちゅう</item>
         <item quantity="other">%sんかいんがしちょうちゅう</item>
     </plurals>
     <string name="no_one_listening">たーんちちゃびらん</string>
@@ -726,4 +729,11 @@
     <string name="brightness">あかるさ</string>
     <string name="volume">うんりょう</string>
     <string name="none">む</string>
+    <string name="prefer_original_audio_title">オリジナルうんゆいゆーいんしんすん</string>
+    <string name="prefer_original_audio_summary">ぎんぐんかいかんきうぅらなくオリジナルぬオーディオトラックさんたくすん</string>
+    <string name="prefer_descriptive_audio_title">うんせいかいしちゆーいんしんすん</string>
+    <string name="main_tabs_position_summary">メインタブセレクタさるにいちゃー</string>
+    <string name="main_tabs_position_title">メインタブぬばしょ</string>
+    <string name="progressive_load_interval_summary">ゆみくみかんかくへいるかんさびーん。（ぎんじぇー %s）くぬあたいくーくしーねーさいせいかいしまでぃぬじがんがいんちゃくなやびーん。へんかんてぃきようすんがーさいきちゃーがふぃちようやいびーん</string>
+    <string name="prefer_descriptive_audio_summary">りようかのうなばあいんかいしかくしょうがいしゃむきのおんせいかいしちトラックさんたくすん</string>
 </resources>
