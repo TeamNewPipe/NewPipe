@@ -1,0 +1,15 @@
+New
+• Support multiple audio tracks/languages
+• Allow setting volume and brightness gestures on any side of the screen
+• Support for displaying main-tabs at the bottom of the screen
+
+Improved
+• [Bandcamp] Handle tracks behind pay wall
+
+Fixed
+• [YouTube] 403 HTTP errors for streams
+• Black player when switching to main player from playlist view
+• Player service memory leak
+• [PeerTube] Uploader and subchannel avatars were swapped
+
+and more
