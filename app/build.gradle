@@ -20,8 +20,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdk 21
         targetSdk 33
-        versionCode 993
-        versionName "0.25.1"
+        versionCode 994
+        versionName "0.25.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
