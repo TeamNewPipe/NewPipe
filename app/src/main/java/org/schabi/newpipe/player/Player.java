@@ -1446,6 +1446,11 @@ public final class Player implements PlaybackListener, Listener {
             case ERROR_CODE_TIMEOUT:
             case ERROR_CODE_IO_UNSPECIFIED:
             case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
+                isCatchableException = true;
+                simpleExoPlayer.pause();
+                onPaused();
+                ErrorUtil.showErrorToast(context, "No internet connection available");
+                break;
             case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
             case ERROR_CODE_UNSPECIFIED:
                 // Reload playback on unexpected errors:
@@ -1618,6 +1623,11 @@ public final class Player implements PlaybackListener, Listener {
         }
         if (audioReactor == null || playQueue == null || exoPlayerIsNull()) {
             return;
+        }
+
+        if (!isPrepared) {
+            simpleExoPlayer.prepare();
+            isPrepared = true;
         }
 
         audioReactor.requestAudioFocus();

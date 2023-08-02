@@ -93,6 +93,14 @@ class ErrorUtil {
         }
 
         /**
+         * Shortcut to calling [Toast.makeText]
+         */
+        @JvmStatic
+        fun showErrorToast(context: Context, message: String) {
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        }
+
+        /**
          * Create an error notification. Tapping on the notification opens the error activity. Use
          * this method if the exception happens inside a background service (player, subscription
          * import, ...) or there is no activity/fragment from which to extract a root view.
