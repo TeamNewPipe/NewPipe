@@ -40,6 +40,7 @@ public final class SettingsResourceRegistry {
         add(PlayerNotificationSettingsFragment.class, R.xml.player_notification_settings);
         add(UpdateSettingsFragment.class, R.xml.update_settings);
         add(VideoAudioSettingsFragment.class, R.xml.video_audio_settings);
+        add(ExoPlayerSettingsFragment.class, R.xml.exoplayer_settings);
     }
 
     private SettingRegistryEntry add(

@@ -1,0 +1,15 @@
+Nuevo
+• Admite múltiples pistas de audio/idiomas
+• Configurar gestos de volumen y brillo en la pantalla
+• Mostrar pestañas principales en la parte inferior de la pantalla
+
+Mejorado
+• [Bandcamp] Maneja las pistas detrás del muro de pago
+
+Fijado
+• [YouTube] errores HTTP 403 para transmisiones
+• Reproductor en negro al cambiar al reproductor principal desde la lista de reproducción
+• Pérdida de memoria del reproductor
+• [PeerTube] Se intercambiaron los avatares del subcanal y del cargador.
+
+y más

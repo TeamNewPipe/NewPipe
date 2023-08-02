@@ -264,8 +264,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         final boolean isThumbnailPermanent = localPlaylistManager
                 .getIsPlaylistThumbnailPermanent(selectedItem.uid);
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
         final ArrayList<String> items = new ArrayList<>();
         items.add(rename);
         items.add(delete);
@@ -289,7 +287,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             }
         };
 
-        builder.setItems(items.toArray(new String[0]), action).create().show();
+        new AlertDialog.Builder(activity)
+                .setItems(items.toArray(new String[0]), action)
+                .show();
     }
 
     private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
@@ -299,14 +299,13 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         dialogBinding.dialogEditText.setText(selectedItem.name);
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setView(dialogBinding.getRoot())
+        new AlertDialog.Builder(activity)
+                .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
                         changeLocalPlaylistName(
                                 selectedItem.uid,
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
-                .create()
                 .show();
     }
 

@@ -1,1 +1,1 @@
-Een gratis lichtgewicht YouTube frontend voor Android.
+Een gratis en lichtgewicht YouTube-front-end voor Android.

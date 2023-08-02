@@ -1,0 +1,15 @@
+V tejto verzii sa ruší podpora systému Android 4.4 KitKat, teraz je minimálna verzia Android 5 Lollipop!
+
+Novinky
+- Stiahnutie z ponuky dlhého stlačenia
+- Skrytie budúcich videí v kanáli
+- Zdieľanie miestnych zoznamov skladieb
+
+Vylepšenia
+- Prepracovanie kódu prehrávača do malých komponentov: menej použitej pamäte RAM, menej chýb
+- Vylepšenie režimu zmenšovania miniatúr
+- Vektorizácia zástupných znakov obrázkov
+
+Opravy
+- Oprava rôznych problémov s oznámením prehrávača: neaktuálne/chýbajúce informácie o médiách, skreslené miniatúry
+- Oprava zobrazenia na celú obrazovku pomocou 1/4 obrazovky

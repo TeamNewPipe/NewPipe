@@ -6,9 +6,6 @@
     <string name="enable_search_history_title">Riwayatmu biyen cuk</string>
     <string name="show_search_suggestions_summary">Duduhke saran nalika nggoleki</string>
     <string name="show_search_suggestions_title">Goleki saran</string>
-    <string name="brightness_gesture_control_summary">Ngontrol kepadhangan ngaggo gesture</string>
-    <string name="brightness_gesture_control_title">Kontrol kepadhangan nganggo gestur</string>
-    <string name="volume_gesture_control_summary">Gunake gesture gawe ngontrol volum</string>
     <string name="auto_queue_summary">Pokoke teruske muter suara/video</string>
     <string name="auto_queue_title">Antri otomatis stream bare</string>
     <string name="metadata_cache_wipe_complete_notice">Sampah metadata wes dibusak</string>

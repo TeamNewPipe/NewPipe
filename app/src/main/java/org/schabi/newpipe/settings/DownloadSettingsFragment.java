@@ -170,11 +170,11 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void showMessageDialog(@StringRes final int title, @StringRes final int message) {
-        final AlertDialog.Builder msg = new AlertDialog.Builder(ctx);
-        msg.setTitle(title);
-        msg.setMessage(message);
-        msg.setPositiveButton(getString(R.string.ok), null);
-        msg.show();
+        new AlertDialog.Builder(ctx)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.ok), null)
+                .show();
     }
 
     @Override

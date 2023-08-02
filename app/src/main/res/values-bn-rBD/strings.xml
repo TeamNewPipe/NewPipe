@@ -147,10 +147,6 @@
     <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মোছ</string>
     <string name="metadata_cache_wipe_complete_notice">মেটাডেটা ক্যাশ মোছা হয়েছে</string>
     <string name="auto_queue_title">পরবর্তী স্ট্রিম স্বয়ংক্রিয়ংভাবে সংযোজন করো</string>
-    <string name="brightness_gesture_control_summary">প্লেয়ারের উজ্জ্বলতা নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
-    <string name="brightness_gesture_control_title">উজ্জ্বলতার নিয়ন্ত্রণ সংকেত</string>
-    <string name="volume_gesture_control_summary">প্লেয়ারের ভলিউম নিয়ন্ত্রণ করতে সংকেত ব্যবহার করো</string>
-    <string name="volume_gesture_control_title">ভলিউম সংকেত নিয়ন্ত্রণ</string>
     <string name="missions_header_finished">সম্পন্ন</string>
     <string name="list">তালিকা</string>
     <string name="enable_playback_state_lists_title">তালিকা আকারে সাজাও</string>

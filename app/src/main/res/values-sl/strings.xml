@@ -434,10 +434,6 @@
     <string name="show_hold_to_append_summary">Pokaži nasvet, ko boste pritisnili na ozadje ali pojavno okno v \"Podrobnosti:\"</string>
     <string name="autoplay_title">Samodejno predvajanje</string>
     <string name="enable_playback_state_lists_summary">Pokaži indikator položaja predvajalnika na seznamih</string>
-    <string name="brightness_gesture_control_summary">Uporabi poteze za nadzor svetlosti predvajalnika</string>
-    <string name="brightness_gesture_control_title">Poteza za nadzor svetlosti</string>
-    <string name="volume_gesture_control_summary">Uporabi poteze za nadzor glasnosti predvajalnika</string>
-    <string name="volume_gesture_control_title">Nadzor potez za glasnost</string>
     <string name="show_description_summary">Izklopite, če želite skriti opis videa in dodatnih informacij</string>
     <string name="show_description_title">Prikaži opis</string>
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>

@@ -1,0 +1,8 @@
+Nytt
+• Lägg till sökning efter prenumerationsväljare i dialogrutan för flödesgrupp
+• Lägg till filter i dialogrutan för flödesgrupp för att endast visa ogrupperade prenumerationer
+• Lägg till fliken spellista på huvudsidan
+• Snabbspolning framåt / bakåt i bakgrund / popup-spelarkö
+• Visa sökförslag: menade du & visar resultat för
+
+Och mycket mer

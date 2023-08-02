@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">ሰረዝ</string>
+    <string name="open_in_browser">ኣብ ብሮውዘር ክፉት</string>
+    <string name="search_showing_result_for">ውጽኢት ምርኣዩ ን፦%s</string>
+    <string name="main_bg_subtitle">መጀመርታ ምእንቲ ኽትጅምር ነቲ ዜጕልሕ መረጼን ጠውቆ።</string>
+    <string name="upload_date_text">ኣብ %1$s እተሓትመ</string>
+    <string name="no_player_found">ዋላ ሓደ ወሓይዝ ዚጻወት ሰብ ኣይተረኽበን። VLC</string>
+    <string name="ok">ሐራይ</string>
+    <string name="settings">ምድላው</string>
+    <string name="did_you_mean">\"%1$s\" ማለቱ ድዩ፧</string>
+    <string name="mark_as_watched">ዚተሪየ ጋባራ</string>
+    <string name="open_with">ክፉቴ ምሲ</string>
+    <string name="controls_download_desc">ፋይል ውሕጅ ኣራግፍ</string>
+    <string name="search">ድለ</string>
+    <string name="share">ኣካፍሎም</string>
+    <string name="download">ኣራግፍ</string>
+    <string name="share_dialog_title">ኣካፍሎም ምሲ</string>
+</resources>

@@ -334,10 +334,6 @@
     <string name="enable_disposed_exceptions_summary">Jõusta väljaspool fragmenti või elutsüklit olevate kättetoimetamatute Rx erindite raporteerimine nende vabastamise järgselt</string>
     <string name="unsubscribe">Lõpeta tellimine</string>
     <string name="tab_choose">Vali vahekaart</string>
-    <string name="volume_gesture_control_title">Helitugevuse juhtimine viibetega</string>
-    <string name="volume_gesture_control_summary">Kasuta viipeid helitugevuse reguleerimiseks</string>
-    <string name="brightness_gesture_control_title">Ereduse reguleerimine viibetega</string>
-    <string name="brightness_gesture_control_summary">Kasuta viipeid heleduse reguleerimiseks</string>
     <string name="settings_category_updates_title">Uuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
@@ -564,7 +560,7 @@
     <string name="enable_queue_limit">Piira allalaadimiste järjekorda</string>
     <string name="error_progress_lost">Faili kustutamisega läks ka tööjärg kautsi</string>
     <string name="error_postprocessing_stopped">Faili töötlemisel NewPipe lõpetas töö</string>
-    <string name="disable_media_tunneling_summary">Lülita meedia tunneldamine välja juhul, kui esitamisel tekib must ekraan või pildi kuvamine on katkendlik</string>
+    <string name="disable_media_tunneling_summary">Lülita meedia tunneldamine välja juhul, kui esitamisel tekib must ekraan või pildi kuvamine on katkendlik.</string>
     <string name="disable_media_tunneling_title">Lülita meedia tunneldamine välja</string>
     <string name="drawer_header_description">Vaheta teenust, hetkel on kasutusel:</string>
     <string name="content_not_supported">NewPipe hetkel sellist võimaluist ei toeta.
@@ -613,7 +609,6 @@
     <string name="feed_use_dedicated_fetch_method_summary">Saadaval mõnedes teenustes. See on tavaliselt palju kiirem, kuid võib tagastada piiratud koguse elemente ja sageli osalise informatsiooni (nt. puudub kestus, elemendi tüüp, laiv olek)</string>
     <string name="description_select_note">Sa saad nüüd valida kirjelduse tekstist. Pane tähele, et valikurežiimis võib leht vilkuda ja lingid ei pruugi olla klõpsatavd.</string>
     <string name="video_detail_by">Autor: %s</string>
-    <string name="feed_toggle_show_played_items">Kuva vaadatud üksused</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Keela kiire režiim</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Luba kiire režiim</string>
     <string name="feed_use_dedicated_fetch_method_title">Hangi võimalusel spetsiaalsest voost</string>
@@ -681,7 +676,6 @@
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer\'i vaikimisi väärtused</string>
-    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist</string>
     <string name="settings_category_player_notification_title">Meediamängija teavitused</string>
     <string name="notifications_disabled">Teavitused pole kasutusel</string>
     <string name="streams_notifications_interval_title">Kontrollimise sagedus</string>
@@ -714,9 +708,6 @@
     <string name="percent">Protsent</string>
     <string name="semitone">Pooltoon</string>
     <string name="progressive_load_interval_title">Taasesituseks vajalike andmete laadimise samm</string>
-    <string name="feed_toggle_show_future_items">Näita tulevasi üksuseid</string>
-    <string name="feed_toggle_hide_future_items">Peida tulevased üksused</string>
-    <string name="feed_toggle_hide_played_items">Peida vaadatud üksused</string>
     <string name="faq_title">Korduma kippuvad küsimused</string>
     <string name="faq_description">Kui sul tekib selle rakenduse kasutamisel probleeme, siis esmalt vaata, kas vastus leidub korduma kippuvate küsimuste hulgas!</string>
     <string name="faq">Edasi loe veebisaidist</string>
@@ -741,4 +732,36 @@
     <string name="feed_show_upcoming">Tulemas</string>
     <string name="feed_show_watched">Lõpuni vaadatud</string>
     <string name="feed_show_partially_watched">Osaliselt vaadatud</string>
+    <string name="left_gesture_control_title">Toiming viipel vasakul poolel</string>
+    <string name="volume">Helitugevus</string>
+    <string name="none">Määratlemata</string>
+    <string name="left_gesture_control_summary">Vali viibe meediamängija ekraani vasaku poole jaoks</string>
+    <string name="brightness">Eredus</string>
+    <string name="right_gesture_control_summary">Vali viibe meediamängija ekraani parema poole jaoks</string>
+    <string name="right_gesture_control_title">Toiming viipel paremal poolel</string>
+    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem</string>
+    <string name="prefer_original_audio_title">Eelista algset heliriba</string>
+    <string name="prefer_original_audio_summary">Sõltumata keelevalikutest eelista esmaseks määratud heliriba</string>
+    <string name="prefer_descriptive_audio_title">Eelista kirjeldavat heliriba</string>
+    <string name="prefer_descriptive_audio_summary">Eelista nägemispuudega inimeste jaoks koostatud heliriba, kui selline on olemas</string>
+    <string name="play_queue_audio_track">Heli: %s</string>
+    <string name="audio_track_present_in_video">Selles meediavoos peaks heliriba juba olemas olema</string>
+    <string name="use_exoplayer_decoder_fallback_title">Kasuta ExoPlayer\'i alternatiivset dekooderit</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Kasuta alati ExoPlayer\'i video väljundpinna seadistamise lahendust</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">algne</string>
+    <string name="audio_track_type_dubbed">dubleeritud</string>
+    <string name="audio_track_type_descriptive">kirjeldav</string>
+    <string name="audio_track">Heliriba</string>
+    <string name="select_audio_track_external_players">Vali heliriba väliste meediamängijate jaoks</string>
+    <string name="unknown_audio_track">Teadmata</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer\'i seadistused</string>
+    <string name="settings_category_exoplayer_summary">Järgnevas saad hallata mõningaid ExoPlayer\'i seadistusi. Need muudatused vajavad jõustumiseks meediamängija uuesti käivitamist</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Kasuta seda võimalust, kui põhidekooder ei käivitu korralikult. Selle asemel laaditakse alternatiivne dekooder, kuid tulemuseks võib olla kehvem taasesituse kvaliteet</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Video väljundpinna muutumisel see alternatiivne lahendus eemaldab videokodekid kasutusest ja laadib nad uuesti ega ürita videokodeke uue väljundpinnaga sobitada. See seadistus toimib vaid Android 6 ja uuemates versioonides ning mõne seadme puhul on juba automaatselt kasutusel
+\n
+\nSelle valiku kasutamine hoiab ära mõned vea, mis tekivad ekraani pööramisel ja täisekraanivaate kasutamisel</string>
+    <string name="main_tabs_position_summary">Tõsta põhiline vahekaartide valija alla äärde</string>
+    <string name="main_tabs_position_title">Vahekaartide põhiline asukoht</string>
+    <string name="disable_media_tunneling_automatic_info">Kuna on teada, et see seade ei toeta meedia tunneldamist, siis on see funktsionaalsus vaikimisi välja lülitatud.</string>
 </resources>

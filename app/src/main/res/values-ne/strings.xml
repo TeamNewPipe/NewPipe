@@ -66,10 +66,6 @@
     <string name="metadata_cache_wipe_complete_notice">मेटाडाटा क्यास सखाप</string>
     <string name="auto_queue_title">स्वतः लाम अर्को स्ट्रिम</string>
     <string name="auto_queue_summary">अन्त्य (गैर-दोहरो) प्लेब्याक लाम सम्बन्धित धारा स्थिति थप्दै जारी राख्न</string>
-    <string name="volume_gesture_control_title">आवाज मात्रा नियन्त्रण गर्न इशाराको प्रयोग</string>
-    <string name="volume_gesture_control_summary">प्लेयरको आवाज मात्रा नियन्त्रण गर्न इशाराहरू प्रयोग</string>
-    <string name="brightness_gesture_control_title">चमक इशारा नियन्त्रण</string>
-    <string name="brightness_gesture_control_summary">प्लेयरको चमक नियन्त्रण गर्न इशाराहरू प्रयोग</string>
     <string name="show_search_suggestions_title">खोज सुझावहरू</string>
     <string name="show_search_suggestions_summary">खोजी गर्दा सुझावहरू देखाउन</string>
     <string name="enable_search_history_title">खोज इतिहास</string>

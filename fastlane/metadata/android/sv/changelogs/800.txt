@@ -1,0 +1,7 @@
+Nytt
+• Stöd för PeerTube utan P2P (#2201) [Beta]:
+  ◦ Titta på och ladda ner videor från PeerTube-instanser
+  ◦ Lägg till instanser i inställningarna för att få tillgång till hela PeerTube-världen
+  ◦ Det kan uppstå problem med SSL-handskakningar på Android 4.4 och 7.1 vid åtkomst till vissa instanser, vilket resulterar i ett nätverksfel.
+
+Och mycket mer

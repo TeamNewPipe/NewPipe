@@ -3,7 +3,6 @@ package org.schabi.newpipe
 import androidx.preference.PreferenceManager
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import leakcanary.AppWatcher
 import leakcanary.LeakCanary
 import okhttp3.OkHttpClient
 import org.schabi.newpipe.extractor.downloader.Downloader
@@ -13,8 +12,6 @@ class DebugApp : App() {
         super.onCreate()
         initStetho()
 
-        // Give each object 10 seconds to be GC'ed, before LeakCanary gets nosy on it
-        AppWatcher.config = AppWatcher.config.copy(watchDurationMillis = 10000)
         LeakCanary.config = LeakCanary.config.copy(
             dumpHeap = PreferenceManager
                 .getDefaultSharedPreferences(this).getBoolean(

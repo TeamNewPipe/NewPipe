@@ -1,0 +1,43 @@
+Changements dans la version 0.17.1
+
+Nouveauté
+• Localisation en thaïlandais
+
+
+Améliorations
+• Ajout de l'action "Commencer à jouer ici" dans les menus qui s'appuient longuement pour les listes de lecture #2518
+• Ajout d'un commutateur pour le sélecteur de fichiers SAF / hérité #2521
+
+Corrections
+• Correction des boutons qui disparaissent dans la vue des téléchargements lors du changement d'applications #2487
+• Correction de la position de lecture qui est enregistrée même si l'historique de visionnage est désactivé
+• Correction des performances réduites causées par la position de lecture dans les vues de liste #2517
+• [Extractor] Correction de ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor#186
+• [Extractor] [YouTube] Correction de l'erreur de recherche occasionnelle lorsque les listes de lecture sont dans les résultats TeamNewPipe/NewPipeExtractor#185
+
+
+
+Changements dans la version 0.17.0
+
+Nouveautés
+Reprise de lecture #2288
+• Reprise des flux là où vous vous étiez arrêté la dernière fois
+Améliorations du téléchargeur #2149
+• Utilisation du Storage Access Framework pour stocker les téléchargements sur des cartes SD externes
+• Nouveau multiplexeur mp4
+• Possibilité de changer le répertoire de téléchargement avant de commencer un téléchargement
+• Respect des réseaux tarifés
+
+
+Améliorations
+• Suppression des chaînes gema #2295
+• Gestion des changements de (auto)rotation pendant le cycle de vie de l'activité #2444
+• Uniformisation des menus qui s'appuient longuement #2368
+
+Corrections
+• Correction du nom de la piste de sous-titres sélectionnée qui ne s'affiche pas #2394
+• Ne plante pas lorsque la vérification de la mise à jour de l'application échoue (version GitHub) #2423
+• Correction des téléchargements bloqués à 99,9 % #2440
+• Mise à jour des métadonnées de la file de lecture #2453
+• [SoundCloud] Correction du plantage lors du chargement des listes de lecture TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Correction de la durée qui ne peut pas être analysée TeamNewPipe/NewPipeExtractor#177

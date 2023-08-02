@@ -23,7 +23,7 @@
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैश</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
-    <string name="no_views">कोई दर्शक नहीं</string>
+    <string name="no_views">कोई विऊ नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जाने</string>
     <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
@@ -58,7 +58,7 @@
     <string name="show_higher_resolutions_title">उच्च गुणवत्ता स्तर दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाईस 2के/4के मे वीडियो चला सकते हैं</string>
     <string name="play_with_kodi_title">कोडी मे चलाए</string>
-    <string name="kore_not_found">लापता Kode ऐप स्थापित करें\?</string>
+    <string name="kore_not_found">गैर- मौजूदा Kore ऐप स्थापित करें\?</string>
     <string name="show_play_with_kodi_title">\"कोडी मे चलाएं\" वाला विकल्प दिखाएँ</string>
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर से वीडियो चलने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">प्रथम स्थापित ध्वनि फॉर्मेट</string>
@@ -123,7 +123,7 @@
     <string name="detail_likes_img_view_description">पसंद</string>
     <string name="detail_dislikes_img_view_description">नापसंद</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
-    <string name="empty_list_subtitle">यहां के खालीपन को दूर करने के लिए कुछ सर्च करें या किसी चैनल को सब्सक्राइब करें</string>
+    <string name="empty_list_subtitle">यहां के खालीपन को दूर करने के लिए कुछ सर्च करें या किसी चैनल को सब्सक्राइब करें और प्लेलिसट बनाकर उसमें वीडियो जोड़े</string>
     <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
@@ -136,8 +136,8 @@
         <item quantity="other">%s सब्सक्राइबर्स</item>
     </plurals>
     <plurals name="views">
-        <item quantity="one">%s दर्शक</item>
-        <item quantity="other">%s दर्शके</item>
+        <item quantity="one">%s विऊ</item>
+        <item quantity="other">%s विऊज़</item>
     </plurals>
     <plurals name="videos">
         <item quantity="one">%s वीडियो</item>
@@ -248,7 +248,7 @@
     <string name="download_thumbnail_title">थंमनेल लोड करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5, 15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
-    <string name="download_thumbnail_summary">थंमनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है</string>
+    <string name="download_thumbnail_summary">डेटा खपत, मेमोरी उपयोग की बचत और थंमनेल लोड होने से रोकने के लिए बंद करें। इस बदलाव से इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों मिट जाते हैं</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
     <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
@@ -280,7 +280,7 @@
 \nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ़े</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
-    <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने\' की प्रक्रिया</string>
+    <string name="preferred_open_action_settings_title">तरजीही \'open\' एक्शन</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
     <string name="caption_setting_title">अनुशीर्षक</string>
     <string name="caption_setting_description">प्लेयर अनुशीर्षक के शब्दों का परिमाण और पृष्ठभूमि शैलियों को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है</string>
@@ -325,11 +325,7 @@
     <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुने</string>
-    <string name="volume_gesture_control_title">ध्वनि नियंत्रण इशारा</string>
     <string name="enqueue">कतारबद्ध करें</string>
-    <string name="volume_gesture_control_summary">वीडियो प्लेयर की ध्वनि नियंत्रित करने के लिए इशारो का इस्तेमाल करे</string>
-    <string name="brightness_gesture_control_title">रोशनी स्तर नियंत्रण के इशारे</string>
-    <string name="brightness_gesture_control_summary">वीडियो चालक की चमक को नियंत्रित करने के लिए इशारो का इस्तेमाल करें</string>
     <string name="settings_category_updates_title">अपडेट</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>
     <string name="app_update_notification_channel_name">ऐप अपडेट अधिसूचना</string>
@@ -420,10 +416,10 @@
     <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
-    <string name="no_one_watching">कोई नहीं देख रहा है</string>
+    <string name="no_one_watching">कोई दर्शक नहीं</string>
     <plurals name="watching">
-        <item quantity="one">%s आदमी देख रहा है</item>
-        <item quantity="other">%s आदमी देख रहे है</item>
+        <item quantity="one">%s दर्शक है</item>
+        <item quantity="other">%s दर्शक हैं</item>
     </plurals>
     <string name="no_one_listening">कोई नहीं सुन रहा है</string>
     <plurals name="listening">
@@ -622,7 +618,6 @@
     <string name="crash_the_app">ऐप को क्रैश करें</string>
     <string name="metadata_category">श्रेणी</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
-    <string name="feed_toggle_show_played_items">देखे गए आइटम दिखाएं</string>
     <string name="metadata_thumbnail_url">थंमनेल यूआरएल</string>
     <string name="off">ऑफ़</string>
     <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>
@@ -637,7 +632,7 @@
     <string name="semitone">सैमीटोन</string>
     <plurals name="download_finished_notification">
         <item quantity="one">डाउनलोड समाप्त</item>
-        <item quantity="other">%s डाउनलोड समाप्त</item>
+        <item quantity="other">%s डाउनलोडस समाप्त</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d दिन</item>
@@ -654,7 +649,6 @@
     <string name="feed_group_dialog_delete_message">क्या आप इस समूह को हटाना चाहते हैं\?</string>
     <string name="feed_create_new_group_button_title">नया</string>
     <string name="settings_category_feed_title">फ़ीड</string>
-    <string name="feed_toggle_show_future_items">भविष्य आइटम दिखाएं</string>
     <string name="feed_new_items">नई फ़ीड आइटम</string>
     <string name="feed_processing_message">फ़ीड संसाधित हो रही है …</string>
     <string name="open_website_license">वेबसाइट खोलें</string>
@@ -663,8 +657,6 @@
     <string name="on">ऑन</string>
     <string name="playlist_no_uploader">स्वतः बने (कोई अपलोडर नहीं मिला)</string>
     <string name="feed_groups_header_title">चैनल समूह</string>
-    <string name="feed_toggle_hide_played_items">देखे गए आइटम छुपाएं</string>
-    <string name="feed_toggle_hide_future_items">भविष्य आइटम छुपाएं</string>
     <string name="faq_title">कई बार पूछे प्रश्न</string>
     <string name="faq">वेबसाइट पर देखें</string>
     <string name="main_page_content_swipe_remove">आइटम हटाने के लिए स्वाइप करें</string>
@@ -676,10 +668,10 @@
     <string name="metadata_licence">लाइसेंस</string>
     <string name="faq_description">यदि आपको ऐप का उपयोग करने में परेशानी हो रही है, तो सामान्य प्रश्नों के इन उत्तरों को देखना सुनिश्चित करें!</string>
     <string name="enqueue_next_stream">कतार में आगे जोड़ें</string>
-    <string name="progressive_load_interval_summary">लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान आरंभिक वीडियो लोडिंग को गति दे सकता है। परिवर्तन के लिए प्लेयर को पुनः आरंभ करने की आवश्यकता होती है</string>
+    <string name="progressive_load_interval_summary">प्रगतिशील सामग्री पर लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान उनकी आरंभिक लोडिंग को गति दे सकता है</string>
     <string name="leak_canary_not_available">लीककैनरी उपलब्ध नहीं है</string>
     <string name="error_report_notification_toast">एक त्रुटी हुई है, अधिसूचना देखें</string>
-    <string name="disable_media_tunneling_summary">यदि आप काली स्क्रीन या वीडियो प्लेबैक खड़खड़ाते हुए चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें</string>
+    <string name="disable_media_tunneling_summary">यदि वीडियो प्लेबैक पर आप काली स्क्रीन या रुक-रुक कर वीडियो चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें।</string>
     <string name="show_image_indicators_summary">छवियों के शीर्ष पर पिकासो रंगीन रिबन दिखाएँ जो उनके स्रोत को दर्शाता है: नेटवर्क के लिए लाल, डिस्क के लिए नीला और मेमोरी के लिए हरा</string>
     <string name="create_error_notification">गड़बड़ी की सूचना बनाएं</string>
     <string name="error_download_resource_gone">इस डाउनलोड को पुनर्प्राप्त नहीं किया जा सकता</string>
@@ -741,4 +733,35 @@
     <string name="feed_show_hide_streams">स्ट्रीम दिखाएँ / छिपाएँ</string>
     <string name="feed_show_watched">पूरा देखा</string>
     <string name="feed_show_partially_watched">आंशिक रूप से देखा गया</string>
+    <string name="left_gesture_control_title">बाएँ इशारा क्रिया</string>
+    <string name="brightness">चमक</string>
+    <string name="volume">आवाज</string>
+    <string name="none">कोई नहीं</string>
+    <string name="left_gesture_control_summary">प्लेयर स्क्रीन के बाएँ आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_summary">प्लेयर स्क्रीन के दाहिने आधे हिस्से के लिए जेस्चर चुनें</string>
+    <string name="right_gesture_control_title">दाएँ इशारा क्रिया</string>
+    <string name="prefer_original_audio_title">मूल ऑडियो को प्राथमिकता दें</string>
+    <string name="prefer_descriptive_audio_summary">यदि उपलब्ध हो तो दृष्टिबाधित लोगों के लिए विवरण के साथ एक ऑडियो ट्रैक का चयन करें</string>
+    <string name="prefer_descriptive_audio_title">वर्णनात्मक ऑडियो को प्राथमिकता दें</string>
+    <string name="prefer_original_audio_summary">भाषा की परवाह किए बिना मूल ऑडियो ट्रैक का चयन करें</string>
+    <string name="play_queue_audio_track">ऑडियो: %s</string>
+    <string name="audio_track">ऑडियो ट्रैक</string>
+    <string name="select_audio_track_external_players">बाहरी प्लेयर्स के लिए ऑडियो ट्रैक का चयन करें</string>
+    <string name="unknown_audio_track">अज्ञात</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer सेटिंग्स</string>
+    <string name="use_exoplayer_decoder_fallback_title">एक्सोप्लेयर के डिकोडर फॉलबैक फीचर का उपयोग करें</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">हमेशा ExoPlayer के वीडियो आउटपुट सतह सेटिंग वर्कअराउंड का उपयोग करें</string>
+    <string name="audio_track_type_original">मूल</string>
+    <string name="audio_track_type_dubbed">डब</string>
+    <string name="audio_track_type_descriptive">वर्णनात्मक</string>
+    <string name="audio_track_present_in_video">एक ऑडियो ट्रैक पहले से ही इस स्ट्रीम में मौजूद होना चाहिए</string>
+    <string name="use_exoplayer_decoder_fallback_summary">इस विकल्प को सक्षम करें यदि आपके पास डिकोडर आरंभीकरण समस्याएं हैं, जो प्राथमिक डिकोडर आरंभ करने में विफल होने पर कम प्राथमिकता वाले डिकोडर पर वापस आ जाती हैं। प्राथमिक डिकोडर का उपयोग करते समय इसके परिणामस्वरूप खराब प्लेबैक प्रदर्शन हो सकता है</string>
+    <string name="settings_category_exoplayer_summary">कुछ ExoPlayer सेटिंग्स प्रबंधित करें। इन परिवर्तनों को प्रभावी बनाने के लिए किसी प्लेयर को पुनरारंभ करने की आवश्यकता होती है</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है
+\n
+\nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
+    <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
+    <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">आपके डिवाइस पर मीडिया टनलिंग डिफ़ॉल्ट रूप से अक्षम कर दी गई थी क्योंकि यह ज्ञात है कि आपका डिवाइस मॉडल इसका समर्थन नहीं करता।</string>
 </resources>

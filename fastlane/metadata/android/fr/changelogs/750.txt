@@ -1,0 +1,22 @@
+Nouveau
+Reprise de lecture #2288
+• Reprise des flux où ils s'étaient arrêtés
+Améliorations du téléchargeur #2149
+• Utilisation du Storage Access Framework pour stocker sur  cartes SD
+• Nouveau multiplexeur mp4
+• Peut changer le dossier de téléchargement
+• Respect des réseaux tarifés
+
+
+Améliorations
+• Suppression des chaînes gema #2295
+• Gestion des changements de rotation  #2444
+• Uniformisation des menus longue-pression #2368
+
+Corrections
+• Nom de la piste de sous-titres sélectionnée qui ne s'affiche pas #2394
+• Ne plante pas quand la vérification de la mise à jour de l'application échoue  #2423
+• Téléchargements bloqués à 99,9 % #2440
+• Mise à jour des métadonnées de la file de lecture #2453
+• [SoundCloud] Ne plante pas lors du chargement des playlists TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Durée pas analysée TeamNewPipe/NewPipeExtractor#177

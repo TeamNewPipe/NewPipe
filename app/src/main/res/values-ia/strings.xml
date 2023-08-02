@@ -241,7 +241,6 @@
     <string name="metadata_privacy_private">Private</string>
     <string name="open_website_license">Aperir le sito web</string>
     <string name="video_detail_by">Per %s</string>
-    <string name="feed_toggle_show_future_items">Monstrar le videos futur</string>
     <string name="radio">Radio</string>
     <string name="channel_created_by">Create per %s</string>
 </resources>

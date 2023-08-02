@@ -197,7 +197,7 @@
     <string name="tab_about">Про застосунок і ЧаП</string>
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
-    <string name="settings_category_debug_title">Зневадження</string>
+    <string name="settings_category_debug_title">Налагодження</string>
     <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
     <plurals name="views">
@@ -345,10 +345,6 @@
     <string name="grid">Сiтка</string>
     <string name="unsubscribe">Відписатися</string>
     <string name="tab_choose">Обрати вкладку</string>
-    <string name="volume_gesture_control_title">Жест керування гучністю</string>
-    <string name="volume_gesture_control_summary">Змінювати гучність звуку жестами</string>
-    <string name="brightness_gesture_control_title">Жест керування яскравістю</string>
-    <string name="brightness_gesture_control_summary">Змінювати яскравість програвача жестами</string>
     <string name="settings_category_updates_title">Оновлення</string>
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
@@ -595,7 +591,7 @@
     <string name="enqueued">Додано у чергу</string>
     <string name="enqueue_stream">Додати у чергу</string>
     <string name="recaptcha_solve">Розв\'язати</string>
-    <string name="msg_calculating_hash">Обчислення гешу</string>
+    <string name="msg_calculating_hash">Обчислення хешу</string>
     <string name="clear_cookie_summary">Очистити збережені під час вирішення reCAPTCHA реп\'яшки (cookies)</string>
     <string name="recaptcha_cookies_cleared">Реп\'яшки (cookies) reCAPTCHA видалено</string>
     <string name="clear_cookie_title">Очистити реп\'яшки (cookies) reCAPTCHA</string>
@@ -614,7 +610,7 @@
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
     <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Позначте не більше трьох для показу в компактному сповіщенні</string>
     <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
-    <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
+    <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео.</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
     <string name="downloads_storage_use_saf_summary_api_29">«Фреймворк доступу до сховища» (SAF) підтримується лише починаючи з Android 10</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Вас питатиме, куди зберігати кожне завантаження</string>
@@ -646,7 +642,6 @@
     <string name="on">Увімкнути</string>
     <string name="tablet_mode_title">Режим планшета</string>
     <string name="account_terminated">Обліковий запис припинено</string>
-    <string name="feed_toggle_show_played_items">Показувати переглянуті обʼєкти</string>
     <string name="feed_load_error_fast_unknown">Режим швидкої підписки не надає багато інформації щодо цього.</string>
     <string name="comments_are_disabled">Коментарі вимкнено</string>
     <string name="dont_show">Не показувати</string>
@@ -697,7 +692,6 @@
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
     <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача</string>
     <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>
@@ -731,9 +725,6 @@
     <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
     <string name="unknown_quality">Невідома якість</string>
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
-    <string name="feed_toggle_show_future_items">Показати наступні елементи</string>
-    <string name="feed_toggle_hide_played_items">Сховати переглянуті елементи</string>
-    <string name="feed_toggle_hide_future_items">Сховати майбутні елементи</string>
     <string name="faq">Переглянути на сайті</string>
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
@@ -758,4 +749,36 @@
     <string name="feed_hide_streams_title">Показати такі трансляції</string>
     <string name="feed_show_watched">Повністю переглянуто</string>
     <string name="feed_show_partially_watched">Частково переглянуто</string>
+    <string name="brightness">Яскравість</string>
+    <string name="none">Нічого</string>
+    <string name="left_gesture_control_title">Дія жестом ліворуч</string>
+    <string name="left_gesture_control_summary">Виберіть жест для лівої половини екрана програвача</string>
+    <string name="right_gesture_control_summary">Виберіть жест для правої половини екрана програвача</string>
+    <string name="right_gesture_control_title">Дія жесту праворуч</string>
+    <string name="volume">Гучність</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження прогресивного вмісту (наразі %s). Нижче значення може прискорити його початкове завантаження</string>
+    <string name="prefer_original_audio_title">Надавати перевагу оригінальному аудіо</string>
+    <string name="prefer_original_audio_summary">Вибирати оригінальну звукову доріжку незалежно від мови</string>
+    <string name="prefer_descriptive_audio_title">Надавати перевагу описовому аудіо</string>
+    <string name="prefer_descriptive_audio_summary">Вибирати звукову доріжку з описом для людей із вадами зору, якщо вона є</string>
+    <string name="play_queue_audio_track">Аудіо: %s</string>
+    <string name="audio_track">Звукова доріжка</string>
+    <string name="select_audio_track_external_players">Вибір звукової доріжки для зовнішніх програвачів</string>
+    <string name="unknown_audio_track">Невідомо</string>
+    <string name="settings_category_exoplayer_title">Налаштування ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Керування деякими налаштуваннями ExoPlayer. Щоб ці зміни набули чинності, потрібно перезапустити програвач</string>
+    <string name="use_exoplayer_decoder_fallback_title">Використовувати запасну функцію декодера ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Завжди використовувати обхідний шлях налаштування поверхні відеовиходу ExoPlayer</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">оригінальна</string>
+    <string name="audio_track_type_dubbed">дубльована</string>
+    <string name="audio_track_type_descriptive">описова</string>
+    <string name="audio_track_present_in_video">У цій трансляції вже має бути звукова доріжка</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Увімкніть цю опцію, якщо у вас є проблеми з ініціалізацією декодерів, які повертаються до декодерів нижчого пріоритету, якщо не вдається ініціалізувати первинні декодери. Це може призвести до погіршення якості відтворення порівняно з використанням первинних декодерів</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Цей обхідний шлях вивільняє і повторно встановлює відеокодеки, коли відбувається зміна поверхні, замість того, щоб налаштовувати поверхню на кодек безпосередньо. Це налаштування вже використовується ExoPlayer на деяких пристроях з цією проблемою, але воно працює лише на Android 6 і новіших версіях
+\n
+\nУвімкнення цієї опції може запобігти помилкам відтворення під час перемикання поточного відеопрогравача або переходу до повноекранного режиму</string>
+    <string name="main_tabs_position_summary">Перемістити селектор головної вкладки вниз</string>
+    <string name="main_tabs_position_title">Розташування основних вкладок</string>
+    <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
 </resources>

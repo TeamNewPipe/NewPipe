@@ -1,0 +1,11 @@
+Nytt
+• Lägg till stöd för SoundCloud-kommentarer
+• Lägg till inställning för begränsat läge på YouTube
+• Visa information om PeerTubes överordnade kanal
+
+Förbättrat
+• Visa Kore-knappen endast för tjänster som stöds
+• Blockera spelargester som börjar vid navigations baren eller status baren
+• Ändra återförsök och prenumerera knappar bakgrundsfärg baserat på servicefärg
+
+Och mycket mer

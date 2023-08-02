@@ -1,0 +1,15 @@
+Novità
+• Supporto di più tracce audio/lingue
+• Consenti gesti di volume e luminosità su qualsiasi lato dello schermo
+• Supporto per mostrare le schede principali in basso allo schermo
+
+Migliorato
+• [Bandcamp] Gestisci le tracce dietro paywall
+
+Corretto
+• [YouTube] Errori HTTP 403 per i video
+• Player nero quando si passa al player principale dalla scheda playlist
+• Perdita di memoria del servizio del player
+• [PeerTube] Gli avatar dell'uploader e del sottocanale erano scambiati
+
+e altro ancora

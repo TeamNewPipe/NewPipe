@@ -327,10 +327,6 @@
     <string name="minimize_on_exit_popup_description">הקטנה לנגן צף</string>
     <string name="unsubscribe">ביטול מינוי</string>
     <string name="tab_choose">בחירת לשונית</string>
-    <string name="volume_gesture_control_title">מחוות בקרת עצמת שמע</string>
-    <string name="volume_gesture_control_summary">שימוש במחוות כדי לשלוט בעצמת השמע של הנגן</string>
-    <string name="brightness_gesture_control_title">מחוות בקרת בהירות</string>
-    <string name="brightness_gesture_control_summary">שימוש במחוות כדי לשלוט בבהירות הנגן</string>
     <string name="settings_category_updates_title">עדכונים</string>
     <string name="file_deleted">קובץ נמחק</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
@@ -560,7 +556,7 @@
     <string name="never">אף פעם לא</string>
     <string name="wifi_only">רק עם רשת אלחוטית</string>
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
-    <string name="title_activity_play_queue">לנגן את התור</string>
+    <string name="title_activity_play_queue">תור נגינה</string>
     <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
     <string name="auto_queue_toggle">סידור אוטומטי בתור</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
@@ -622,7 +618,7 @@
     <string name="recaptcha_solve">לפתור</string>
     <string name="night_theme_title">ערכת עיצוב לילית</string>
     <string name="show_channel_details">להציג את פרטי הערוץ</string>
-    <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו</string>
+    <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו.</string>
     <string name="disable_media_tunneling_title">השבתת תיעול מדיה</string>
     <string name="metadata_privacy_internal">פנימי</string>
     <string name="metadata_privacy_private">פרטי</string>
@@ -655,7 +651,6 @@
     <string name="off">כבוי</string>
     <string name="on">פעיל</string>
     <string name="tablet_mode_title">מצב מחשב לוח</string>
-    <string name="feed_toggle_show_played_items">הצגת פריטים שנצפו</string>
     <string name="comments_are_disabled">תגובות מושבתות</string>
     <string name="dont_show">לא להציג</string>
     <string name="low_quality_smaller">איכות נמוכה (קטן יותר)</string>
@@ -705,7 +700,6 @@
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
     <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
     <string name="progressive_load_interval_exoplayer_default">ברירת מחדל של ExoPlayer</string>
-    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש</string>
     <string name="streams_notification_channel_description">התראות על תזרימים חדשים להרשמה</string>
     <string name="streams_notifications_interval_title">תדירות בדיקה</string>
     <string name="streams_notifications_network_title">נדרש חיבור לרשת</string>
@@ -740,9 +734,6 @@
     <string name="select_quality_external_players">בחירת איכות לנגנים חיצוניים</string>
     <string name="unknown_format">תצורה לא מוכרת</string>
     <string name="progressive_load_interval_title">גודל משך טעינת נגינה</string>
-    <string name="feed_toggle_show_future_items">הצגת פריטים עתידיים</string>
-    <string name="feed_toggle_hide_played_items">הסתרת פריטים במעקב</string>
-    <string name="feed_toggle_hide_future_items">הסתרת פריטים עתידיים</string>
     <string name="sort">מיון</string>
     <string name="faq">הצגה באתר</string>
     <string name="faq_title">תשובות לשאלות נפוצות</string>
@@ -759,4 +750,44 @@
     <string name="playlist_add_stream_success_duplicate">הכפיל נוסף %d פעמים</string>
     <string name="ignore_hardware_media_buttons_title">התעלמות מאירועי כפתורי מדיה חומרתיים</string>
     <string name="ignore_hardware_media_buttons_summary">שימושי, למשל, אם יש לך אוזניות עם כפתורי חומרה מקולקלים</string>
+    <string name="left_gesture_control_title">פעולת מחווה שמאלית</string>
+    <string name="right_gesture_control_title">פעולת מחווה ימנית</string>
+    <string name="volume">עוצמת שמע</string>
+    <string name="none">בלי</string>
+    <string name="remove_duplicates_message">להסיר את כל השידורים הכפולים ברשימת הנגינה\?</string>
+    <string name="feed_show_partially_watched">נצפו חלקית</string>
+    <string name="feed_show_upcoming">בקרוב</string>
+    <string name="brightness">בהירות</string>
+    <string name="left_gesture_control_summary">נא לבחור מחווה לחצי השמאלי של מסך הנגן</string>
+    <string name="right_gesture_control_summary">נא לבחור מחווה לחצי הימני של מסך הנגן</string>
+    <string name="remove_duplicates">הסרת כפילויות</string>
+    <string name="remove_duplicates_title">להסיר כפילויות\?</string>
+    <string name="feed_show_watched">נצפו במלואם</string>
+    <string name="feed_hide_streams_title">להציג את השידורים הבאים</string>
+    <string name="feed_show_hide_streams">להציג/להסתיר שידורים</string>
+    <string name="prefer_original_audio_title">להעדיף שמע מקורי</string>
+    <string name="prefer_original_audio_summary">לבחור את רצועת השמע המקורית ללא תלות בשפה</string>
+    <string name="prefer_descriptive_audio_title">להעדיף שמע מפורט</string>
+    <string name="prefer_descriptive_audio_summary">לבחור רצועת שמע עם תיאורים לכבדי ראייה אם ניתן</string>
+    <string name="play_queue_audio_track">שמע: %s</string>
+    <string name="audio_track">רצועת שמע</string>
+    <string name="audio_track_present_in_video">רצועת שמע כבר אמורה להיות כחלק מהתזרים</string>
+    <string name="unknown_audio_track">לא ידועה</string>
+    <string name="settings_category_exoplayer_title">הגדרות ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">להשתמש ביכולת הגיבוי של המפענח של ExoPlayer</string>
+    <string name="audio_track_type_original">מקורי</string>
+    <string name="audio_track_type_dubbed">מדובב</string>
+    <string name="select_audio_track_external_players">בחירת רצועת שמע לנגנים חיצוניים</string>
+    <string name="audio_track_type_descriptive">מפורט</string>
+    <string name="settings_category_exoplayer_summary">ניהול חלק מהגדרות של ה־ExoPlayer שלך. השינויים האלו דורשים את הפעלת הנגן מחדש כדי להיכנס לתוקף</string>
+    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית</string>
+    <string name="use_exoplayer_decoder_fallback_summary">יש להפעיל את האפשרות הזאת אם נתקלת בבעיות עם אתחול מפענח, מה שגורם להנחתה למפענחים עם עדיפות נמוכה יותר אם אתחול המפענחים העיקריים נכשל. עלול לגרום לביצועי נגינה נחותים לעומת מפענחים ראשיים</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">תמיד להשתמש במעקף הגדרות משטח פלט הווידאו של ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">המעקף הזה משחרר ומקים מחדש את מפענחי הווידאו כשמשתנה שינוי במשטח, במקום להגדיר את המשטח למפענח ישירות. כבר נעשה בזה שימוש על ידי ExoPlayer בחלק מהמכשירים עם התקלה הזאת, הגדרה זו משפיעה על Android 6 ומעלה בלבד
+\n
+\nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
+    <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
+    <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">תיעול מדיה הושבת כברירת מחדל במכשיר שלך כיוון שדגם המכשיר ידוע בכך שאינו תומך בזה.</string>
 </resources>

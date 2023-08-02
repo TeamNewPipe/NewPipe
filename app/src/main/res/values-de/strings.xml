@@ -318,7 +318,7 @@
     <string name="read_privacy_policy">Datenschutzbestimmungen lesen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
-    <string name="start_accept_privacy_policy">Um der europäischen Datenschutz-Grundverordnung (DSGVO) gerecht zu werden, weisen wir hiermit auf NewPipe\'s Datenschutzerklärung hin. Bitte lies sie sorgfältig durch.
+    <string name="start_accept_privacy_policy">Um der europäischen Datenschutz-Grundverordnung (DSGVO) gerecht zu werden, weisen wir hiermit auf NewPipes Datenschutzerklärung hin. Bitte lies sie sorgfältig durch.
 \nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
@@ -336,10 +336,6 @@
     <string name="users">Benutzer</string>
     <string name="unsubscribe">Deabonnieren</string>
     <string name="tab_choose">Tab wählen</string>
-    <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Gesten verwenden, um die Lautstärke einzustellen</string>
-    <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="settings_category_player_notification_title">Wiedergabebenachrichtigung</string>
     <string name="settings_category_player_notification_summary">Konfiguriert die Benachrichtigung zum aktuell abgespielten Stream</string>
@@ -609,7 +605,7 @@
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
     <string name="show_channel_details">Kanal-Details anzeigen</string>
-    <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt</string>
+    <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt.</string>
     <string name="disable_media_tunneling_title">Media-Tunneling deaktivieren</string>
     <string name="metadata_privacy_internal">Intern</string>
     <string name="metadata_privacy_private">Privat</string>
@@ -642,7 +638,6 @@
     <string name="on">An</string>
     <string name="tablet_mode_title">Tablet-Modus</string>
     <string name="off">Aus</string>
-    <string name="feed_toggle_show_played_items">Angesehene Elemente anzeigen</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
     <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
@@ -682,7 +677,6 @@
 \nBitte installiere einen Storage Access Framework kompatiblen Dateimanager</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
-    <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
@@ -714,9 +708,6 @@
     <string name="streams_not_yet_supported_removed">Streams, die der Downloader noch nicht unterstützt, werden nicht angezeigt</string>
     <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
     <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
-    <string name="feed_toggle_show_future_items">Zukünftige Elemente anzeigen</string>
-    <string name="feed_toggle_hide_played_items">Angesehene Elemente ausblenden</string>
-    <string name="feed_toggle_hide_future_items">Zukünftige Elemente ausblenden</string>
     <string name="faq">Auf der Webseite ansehen</string>
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
@@ -741,4 +732,36 @@
     <string name="feed_show_upcoming">Demnächst</string>
     <string name="feed_show_watched">Vollständig angeschaut</string>
     <string name="feed_show_partially_watched">Teilweise angeschaut</string>
+    <string name="left_gesture_control_summary">Geste für die linke Hälfte des Player-Bildschirms auswählen</string>
+    <string name="right_gesture_control_summary">Geste für die rechte Hälfte des Player-Bildschirms auswählen</string>
+    <string name="none">Keine</string>
+    <string name="right_gesture_control_title">Rechte Gestenaktion</string>
+    <string name="left_gesture_control_title">Linke Gestenaktion</string>
+    <string name="brightness">Helligkeit</string>
+    <string name="volume">Lautstärke</string>
+    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen.</string>
+    <string name="prefer_original_audio_title">Originalton bevorzugen</string>
+    <string name="prefer_original_audio_summary">Wähle die Originaltonspur unabhängig von der Sprache</string>
+    <string name="prefer_descriptive_audio_title">Beschreibendes Audio bevorzugen</string>
+    <string name="prefer_descriptive_audio_summary">Wähle eine Audiospur mit Beschreibungen für sehbehinderte Menschen, falls verfügbar</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Audiospur</string>
+    <string name="settings_category_exoplayer_summary">Verwalte einige ExoPlayer-Einstellungen. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
+    <string name="use_exoplayer_decoder_fallback_title">Verwende die Decoder-Fallback-Funktion von ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Verwende immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Dieser Workaround gibt die Video-Codecs frei und instanziiert sie neu, wenn sich die Oberfläche ändert, anstatt die Oberfläche direkt auf den Codec zu setzen. Diese Einstellung wird bereits von ExoPlayer auf einigen Geräten mit diesem Problem verwendet und hat nur Auswirkungen auf Android 6 und höher
+\n
+\nDas Aktivieren dieser Option kann Wiedergabefehler beim Wechsel des aktuellen Videoplayers oder beim Wechsel zum Vollbildmodus verhindern</string>
+    <string name="audio_track_type_original">Original</string>
+    <string name="audio_track_type_dubbed">Synchronisiert</string>
+    <string name="audio_track_type_descriptive">Beschreibend</string>
+    <string name="select_audio_track_external_players">Audiospur für externe Player auswählen</string>
+    <string name="audio_track_present_in_video">In diesem Stream sollte bereits eine Audiospur vorhanden sein</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Aktiviere diese Option, wenn du Probleme mit der Decoderinitialisierung hast, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
+    <string name="unknown_audio_track">Unbekannt</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="main_tabs_position_summary">Hauptauswahltab nach unten verschieben</string>
+    <string name="main_tabs_position_title">Position des Haupttabs</string>
+    <string name="disable_media_tunneling_automatic_info">Das Media-Tunneling wurde auf dem Gerät standardmäßig deaktiviert, da das Gerätemodell diese Funktion bekanntermaßen nicht unterstützt.</string>
 </resources>

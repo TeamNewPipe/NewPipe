@@ -23,7 +23,7 @@
     <string name="light_theme_title">فاتح</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
-    <string name="open_in_browser">فتح في متصفح الويب</string>
+    <string name="open_in_browser">فتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="search">البحث</string>
@@ -46,7 +46,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط على العدسة المكبرة للبدء.</string>
+    <string name="main_bg_subtitle">اضغط على \"العدسة المكبرة\" للبدء.</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_subscriptions">الاشتراكات</string>
@@ -91,7 +91,7 @@
     <string name="show_age_restricted_content_title">محتوى مقيد للبالغين</string>
     <string name="duration_live">بث مباشر</string>
     <string name="error_report_title">تقرير عن المشكلة</string>
-    <string name="disabled">متوقف</string>
+    <string name="disabled">معطل</string>
     <string name="clear">تنظيف</string>
     <string name="best_resolution">أفضل دقة</string>
     <string name="undo">تراجع</string>
@@ -133,7 +133,7 @@
     <string name="no_videos">لاتوجد فيديوهات</string>
     <string name="start">ابدأ</string>
     <string name="pause">إيقاف مؤقت</string>
-    <string name="delete">حذف</string>
+    <string name="delete">احذف</string>
     <string name="checksum">التوقيع</string>
     <string name="ok">حسناً</string>
     <string name="msg_name">اسم الملف</string>
@@ -158,9 +158,9 @@
     <string name="contribution_title">ساهم</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل!</string>
     <string name="view_on_github">عرض على GitHub</string>
-    <string name="donation_title">تبرع</string>
+    <string name="donation_title">تبرَّع</string>
     <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
-    <string name="give_back">تبرع</string>
+    <string name="give_back">رد الجميل</string>
     <string name="website_title">موقع الويب</string>
     <string name="website_encouragement">قم بزيارة موقع NewPipe لمزيد من المعلومات والمستجدات.</string>
     <string name="app_license_title">تراخيص NewPipe</string>
@@ -174,7 +174,7 @@
     <string name="trending">الشائعة</string>
     <string name="top_50">أفضل ٥٠</string>
     <string name="new_and_hot">جديد وساخن</string>
-    <string name="play_queue_remove">حذف</string>
+    <string name="play_queue_remove">أحذف</string>
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">إعدادات الصوت</string>
     <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة</string>
@@ -346,13 +346,9 @@
     <string name="users">المستخدمين</string>
     <string name="unsubscribe">إلغاء الاشتراك</string>
     <string name="tab_choose">اختر علامة التبويب</string>
-    <string name="volume_gesture_control_summary">استخدم إيماءات التحكم في صوت المشغّل</string>
-    <string name="brightness_gesture_control_title">التحكم بإيماءات السطوع</string>
-    <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم بسطوع المشغّل</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="file_deleted">تم حذف الملف</string>
     <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
-    <string name="volume_gesture_control_title">إيماء التحكم بالصوت</string>
     <string name="events">الأحداث</string>
     <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
@@ -642,7 +638,7 @@
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="night_theme_title">الثيم الليلي</string>
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
-    <string name="disable_media_tunneling_summary">تعطيل نفق الوسائط إذا واجهت شاشة سوداء أو التقطيع في تشغيل الفيديو</string>
+    <string name="disable_media_tunneling_summary">قم بتعطيل نفق الوسائط إذا واجهت شاشة سوداء أو تقطيع اثناء تشغيل الفيديو.</string>
     <string name="disable_media_tunneling_title">تعطيل نفق الوسائط</string>
     <string name="metadata_privacy_internal">داخلي</string>
     <string name="metadata_privacy_private">خاص</string>
@@ -675,7 +671,6 @@
     <string name="off">إيقاف</string>
     <string name="on">تشغيل</string>
     <string name="tablet_mode_title">وضع الجهاز اللوحي</string>
-    <string name="feed_toggle_show_played_items">إظهار العناصر التي تمت مشاهدتها</string>
     <string name="comments_are_disabled">تم تعطيل التعليقات</string>
     <string name="dont_show">لا تظهر</string>
     <string name="low_quality_smaller">جودة منخفضة (أصغر)</string>
@@ -729,7 +724,6 @@
     <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
     <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
     <string name="progressive_load_interval_exoplayer_default">الافتراضي ExoPlayer</string>
-    <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل</string>
     <string name="settings_category_player_notification_summary">تكوين إشعار مشغل البث الحالي</string>
     <string name="notifications">الإشعارات</string>
     <string name="loading_stream_details">تحميل تفاصيل البث…</string>
@@ -766,9 +760,6 @@
     <string name="unknown_format">تنسيق غير معروف</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
-    <string name="feed_toggle_show_future_items">عرض العناصر المستقبلية</string>
-    <string name="feed_toggle_hide_future_items">إخفاء العناصر المستقبلية</string>
-    <string name="feed_toggle_hide_played_items">إخفاء العناصر التي تمت مشاهدتها</string>
     <string name="faq_title">أسئلة مكررة</string>
     <string name="faq_description">إذا كنت تواجه مشكلة في استخدام التطبيق ، فتأكد من مراجعة هذه الإجابات للأسئلة الشائعة!</string>
     <string name="faq">مشاهدة على الموقع</string>
@@ -793,4 +784,36 @@
     <string name="remove_duplicates_title">إزالة التكرارات؟</string>
     <string name="feed_hide_streams_title">إظهار التدفقات التالية</string>
     <string name="feed_show_watched">شاهدت بالكامل</string>
+    <string name="left_gesture_control_title">إجراء الإيماءة اليسرى</string>
+    <string name="right_gesture_control_title">اجراء الإيماءة اليمنى</string>
+    <string name="brightness">السطوع</string>
+    <string name="none">بدون</string>
+    <string name="left_gesture_control_summary">اختر إيماءة للنصف الأيسر من شاشة المشغل</string>
+    <string name="right_gesture_control_summary">اختر إيماءة للنصف الأيمن من شاشة المشغل</string>
+    <string name="volume">مستوى الصوت</string>
+    <string name="progressive_load_interval_summary">قم بتغيير حجم الفاصل الزمني للتحميل على المحتويات التدريجية (حاليا %s). قد تؤدي القيمة المنخفضة إلى تسريع التحميل الأولي</string>
+    <string name="prefer_descriptive_audio_title">تفضل الصوت الوصفي</string>
+    <string name="play_queue_audio_track">الصوت : %s</string>
+    <string name="audio_track">المسار الصوتي</string>
+    <string name="audio_track_present_in_video">يجب أن يكون هناك مسار صوتي موجود بالفعل في هذا البث</string>
+    <string name="select_audio_track_external_players">حدد مسار الصوت للمشغلات الخارجية</string>
+    <string name="unknown_audio_track">غير معروف</string>
+    <string name="settings_category_exoplayer_title">إعدادات ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">إدارة بعض إعدادات ExoPlayer. تتطلب هذه التغييرات إعادة تشغيل المشغل لتصبح سارية المفعول</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">استخدم دائمًا الحل البديل لإعداد سطح إخراج فيديو ExoPlayer</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">الافتراضي</string>
+    <string name="audio_track_type_dubbed">مدبلجة</string>
+    <string name="audio_track_type_descriptive">وصفي</string>
+    <string name="prefer_original_audio_summary">حدد المسار الصوتي الأصلي بغض النظر عن اللغة</string>
+    <string name="prefer_original_audio_title">تفضيل الصوت الأصلي</string>
+    <string name="prefer_descriptive_audio_summary">حدد مسارًا صوتيًا يحتوي على أوصاف للأشخاص ضعاف البصر إذا كان ذلك متاحًا</string>
+    <string name="use_exoplayer_decoder_fallback_title">استخدم ميزة فك ترميز وحدة فك التشفير الاحتياطية في ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">قم بتمكين هذا الخيار إذا كانت لديك مشكلات في تهيئة وحدة فك التشفير ، والتي تعود إلى أجهزة فك التشفير ذات الأولوية الأقل إذا فشلت تهيئة وحدات فك التشفير الأولية. قد ينتج عن ذلك أداء تشغيل ضعيف مقارنة باستخدام وحدات فك التشفير الأساسية</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">يقوم هذا الحل البديل بتحرير وإعادة إنشاء نماذج برامج ترميز الفيديو عند حدوث تغيير في السطح، بدلا من تعيين السطح إلى برنامج الترميز مباشرة. تم استخدام هذا الإعداد بالفعل بواسطة ExoPlayer على بعض الأجهزة التي تعاني من هذه المشكلة ، وهذا الإعداد له تأثير فقط على Android 6 والإصدارات الأحدث
+\n
+\nقد يؤدي تمكين هذا الخيار إلى منع أخطاء التشغيل عند تبديل مشغل الفيديو الحالي أو التبديل إلى وضع ملء الشاشة</string>
+    <string name="main_tabs_position_summary">انقل محدد علامة التبويب الرئيسي إلى الأسفل</string>
+    <string name="main_tabs_position_title">موضع علامات التبويب الرئيسية</string>
+    <string name="disable_media_tunneling_automatic_info">تم تعطيل نفق وسائل الإعلام عن طريق التقصير على جهازك لأن نموذج جهازك معروف بأنه لا يدعمه.</string>
 </resources>

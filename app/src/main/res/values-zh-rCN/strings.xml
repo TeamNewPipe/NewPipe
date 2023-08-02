@@ -33,7 +33,7 @@
         <item quantity="other">%s 个视频</item>
     </plurals>
     <string name="disabled">已停用</string>
-    <string name="controls_background_title">后台播放</string>
+    <string name="controls_background_title">后台</string>
     <string name="show_search_suggestions_title">显示搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
@@ -350,10 +350,6 @@
     <string name="tracks">曲目</string>
     <string name="users">用户</string>
     <string name="tab_choose">选择标签</string>
-    <string name="volume_gesture_control_title">手势控制音量</string>
-    <string name="volume_gesture_control_summary">使用手势控制播放器的音量</string>
-    <string name="brightness_gesture_control_title">手势控制亮度</string>
-    <string name="brightness_gesture_control_summary">使用手势控制播放器的亮度</string>
     <string name="content_language_title">视频默认语言</string>
     <string name="app_update_notification_channel_name">应用更新通知</string>
     <string name="app_update_notification_channel_description">NewPipe 新版本的通知</string>
@@ -592,7 +588,7 @@
     <string name="night_theme_summary">选择你最喜欢的夜间主题 — %s</string>
     <string name="night_theme_title">夜间主题</string>
     <string name="show_channel_details">显示频道详情</string>
-    <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿的情况，请停用媒体隧道</string>
+    <string name="disable_media_tunneling_summary">如果在视频播放中遇到黑屏或卡顿的情况，请停用媒体隧道。</string>
     <string name="disable_media_tunneling_title">停用媒体隧道</string>
     <string name="description_select_disable">停用简介中的文本选择功能</string>
     <string name="metadata_privacy_internal">内部</string>
@@ -623,7 +619,6 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>
-    <string name="feed_toggle_show_played_items">显示已观看的项目</string>
     <string name="off">关闭</string>
     <string name="on">开启</string>
     <string name="comments_are_disabled">评论功能已停用</string>
@@ -668,7 +663,6 @@
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
-    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
     <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>
@@ -701,9 +695,6 @@
     <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
     <string name="unknown_quality">未知画质</string>
     <string name="progressive_load_interval_title">播放加载间隔大小</string>
-    <string name="feed_toggle_show_future_items">显示未来项目</string>
-    <string name="feed_toggle_hide_played_items">隐藏看过的项目</string>
-    <string name="feed_toggle_hide_future_items">隐藏未来项目</string>
     <string name="faq_title">常见问题</string>
     <string name="faq_description">如果你在使用本应用时遇到问题，请务必查看这些常见问题的答案！</string>
     <string name="faq">在网站上查看</string>
@@ -728,4 +719,36 @@
     <string name="feed_show_partially_watched">只看了一部分</string>
     <string name="feed_show_upcoming">即将到来</string>
     <string name="remove_duplicates">删除重复</string>
+    <string name="brightness">亮度</string>
+    <string name="volume">音量</string>
+    <string name="right_gesture_control_title">右半边手势动作</string>
+    <string name="left_gesture_control_title">左半边手势动作</string>
+    <string name="left_gesture_control_summary">选择播放器屏幕左半边手势</string>
+    <string name="right_gesture_control_summary">选择播放器屏幕右半边手势</string>
+    <string name="none">无</string>
+    <string name="progressive_load_interval_summary">更改渐进式内容的加载间隔大小（当前为 %s）。较低的值可加快初始加载</string>
+    <string name="prefer_descriptive_audio_title">偏好描述性音频</string>
+    <string name="prefer_descriptive_audio_summary">如果可用，为视障人群选择带描述的音轨</string>
+    <string name="play_queue_audio_track">音频：%s</string>
+    <string name="audio_track_present_in_video">此串流中应该已经有音轨</string>
+    <string name="select_audio_track_external_players">选择外部播放器音轨</string>
+    <string name="unknown_audio_track">未知</string>
+    <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 设置。这些更改需要重启播放器才能生效</string>
+    <string name="use_exoplayer_decoder_fallback_title">使用 ExoPlayer 的编码器回退功能</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">始终使用 ExoPlayer 的视频输出界面设置变通方法</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">此变通方法在发生界面更改时会释放并重新初始化视频编解码器，而不是直接将编解码器设置到新界面。在某些有这个问题的设备上，Exoplayer 已经在使用这个方法。此设置仅适用于 Android 6 及更高的系统版本
+\n
+\n启用此选项可防止切换当前视频播放器或切换到全屏播放时出现播放错误</string>
+    <string name="audio_track_type_original">原始</string>
+    <string name="audio_track_type_dubbed">配音</string>
+    <string name="audio_track_type_descriptive">描述</string>
+    <string name="prefer_original_audio_title">偏好原始音频</string>
+    <string name="prefer_original_audio_summary">不管何种语言都选择原始音轨</string>
+    <string name="audio_track">音轨</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer 设置</string>
+    <string name="use_exoplayer_decoder_fallback_summary">如遇解码器初始化方面的问题可开启此选项。启用后，如主解码器初始化失败，ExoPlayer 将使用较低优先级的解码器进行播放。请注意，这可能导致播放性能下降</string>
+    <string name="main_tabs_position_summary">将主标签页选择器移到底部</string>
+    <string name="main_tabs_position_title">主标签页位置</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
 </resources>

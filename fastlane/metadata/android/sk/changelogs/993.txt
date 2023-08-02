@@ -1,0 +1,12 @@
+Nové
+- Pridanie upozornenia pri pridávaní duplikátov do zoznamu skladieb a pridanie tlačidla na ich odstránenie
+- Umožniť ignorovanie hardvérových tlačidiel
+- Umožniť skrývanie čiastočne sledovaných videí v kanáli
+
+Vylepšená stránka
+- Použitie väčšieho počtu stĺpcov mriežky na veľkých obrazovkách
+- Zosúladiť ukazovatele priebehu s nastaveniami
+
+Opravená stránka
+- Oprava otvárania adries URL prehliadača, sťahovania a externých prehrávačov v systéme Android 11+
+- Oprava interakcie s celou obrazovkou vyžadujúcou dve ťuknutia na MIUI

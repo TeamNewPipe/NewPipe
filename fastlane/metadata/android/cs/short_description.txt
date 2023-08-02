@@ -1,1 +1,1 @@
-Svobodný a nenáročný YouTube přehrávač for Android.
+Svobodný a nenáročný YouTube frontend pro Android.

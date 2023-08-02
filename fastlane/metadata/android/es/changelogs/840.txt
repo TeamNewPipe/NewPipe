@@ -1,24 +1,22 @@
 Nuevo
-- Se ha añadido un selector de idioma para cambiar el idioma de la aplicación
-- Se ha añadido el botón de enviar a Kodi al menú desplegable del reproductor
-- Se ha añadido la posibilidad de copiar comentarios con una pulsación larga
+• Selector de idioma añadido para cambiar el idioma
+• Se agregó el botón Enviar a Kodi al menú desplegable del reproductor.
+• Se agregó la capacidad de copiar comentarios al presionar prolongadamente
 
 Mejorado
-- Se ha corregido la actividad de ReCaptcha y se han guardado correctamente las cookies obtenidas
-- Menú de puntos eliminado en favor de cajón y botón del historial ocultado cuando no está habilitado el historial de reloj en ajustes
-- Pedir permiso de visualización sobre otras aplicaciones en ajustes correctamente en Android 6 y posteriores
-- Cambiar nombre de lista de reproducción local haciendo un clic largo en MarcadorDePáginasFragmentos
-- Varias mejorías en PeerTube
-- Mejoría de varias cadenas de origen en inglés
+• Corrige la actividad de ReCaptcha y guarda correctamente las cookies obtenidas
+• Se eliminó el menú de puntos a favor del cajón y el botón de ocultar historial cuando el historial de visualización no está habilitado en los ajustes
+• Solicitar permiso para mostrar sobre otras aplicaciones en la configuración en Android 6 y versiones posteriores
+• Cambiar el nombre de la lista de reproducción local haciendo clic largo en BookmarkFragment
+• Varias mejoras de PeerTube
+• Varias cadenas fuente en inglés mejoradas
 
-Corregido
-Corregido que reproductor se reinicie aunque esté en pausa con opción "minimizar al cambiar de app" activada y NewPipe está minimizado
-- Corregido el valor de brillo inicial para el gesto
-- Corregida la descarga de subtítulos .srt que no contienen todos los saltos de línea
-- Corregida descarga a tarjeta SD que falla porque algunos dispositivos Android 5 no son compatibles con CTF
-- Corregida la descarga en Android KitKat
-- Arreglado el archivo de vídeo .mp4 corrupto que era reconocido como archivo de audio
-- Corregidos múltiples problemas de localización, incluyendo códigos de idioma chino erróneos
-- YouTube] Las marcas de tiempo en la descripción vuelven a ser cliqueables
-
-Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
+Fijado
+• Se corrigió que el reproductor volviera a comenzar aunque estaba en pausa cuando la opción "minimizar al cambiar de aplicación" estaba habilitada y NewPipe estaba minimizado
+• Fijar el valor de brillo inicial para el gesto
+• Se corrigieron las descargas de subtítulos .srt que no contenían todos los saltos de línea.
+• Se corrigió la falla de la descarga a la tarjeta SD porque algunos dispositivos con Android 5 no son compatibles con CTF
+• Descarga fija en Android KitKat
+• Se corrigió el archivo corrupto de video .mp4 que se reconoce como archivo de audio
+• Se corrigieron múltiples problemas de localización, incluidos códigos de idioma chino incorrectos.
+• [YouTube] Las marcas de tiempo en la descripción se pueden volver a hacer clic

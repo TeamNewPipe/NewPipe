@@ -340,10 +340,6 @@
     <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzacza w trybie okienkowym</string>
     <string name="unsubscribe">Odsubskrybuj</string>
     <string name="tab_choose">Wybierz kartę</string>
-    <string name="volume_gesture_control_title">Kontrola głośności gestami</string>
-    <string name="volume_gesture_control_summary">Używaj gestów do sterowania głośnością odtwarzacza</string>
-    <string name="brightness_gesture_control_title">Kontrola jasności gestami</string>
-    <string name="brightness_gesture_control_summary">Używaj gestów do sterowania jasnością odtwarzacza</string>
     <string name="settings_category_updates_title">Aktualizacje</string>
     <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
@@ -420,7 +416,7 @@
 \nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę pamięci</string>
     <string name="error_timeout">Minął czas połączenia</string>
     <string name="downloads_storage_use_saf_title">Używaj systemowego selektora folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę pamięci</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework umożliwia pobieranie na kartę pamięci</string>
     <string name="clear_playback_states_title">Wyczyść pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
@@ -529,7 +525,7 @@
     <string name="more_than_100_videos">100+ wideo</string>
     <string name="artists">Artyści</string>
     <string name="albums">Albumy</string>
-    <string name="songs">Piosenki</string>
+    <string name="songs">Utwory</string>
     <string name="restricted_video">To wideo jest objęte ograniczeniem wiekowym.
 \n
 \nWłącz „%1$s” w ustawieniach, jeśli chcesz je zobaczyć.</string>
@@ -617,7 +613,7 @@
     <string name="auto_device_theme_title">Automatyczny (motyw urządzenia)</string>
     <string name="night_theme_title">Motyw nocny</string>
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
-    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś(-aś) czarny ekran bądź brak płynności odtwarzania wideo</string>
+    <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś(-aś) czarny ekran bądź brak płynności odtwarzania wideo.</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
     <string name="metadata_age_limit">Ograniczenie wiekowe</string>
     <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
@@ -642,12 +638,11 @@
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko Storage Access Framework</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>
     <string name="metadata_privacy_unlisted">Niepubliczny</string>
-    <string name="feed_toggle_show_played_items">Pokaż obejrzane pozycje</string>
     <string name="off">Wyłączony</string>
     <string name="on">Włączony</string>
     <string name="tablet_mode_title">Tryb tabletu</string>
@@ -700,7 +695,6 @@
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
     <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
     <string name="progressive_load_interval_title">Rozmiar interwału ładowania odtwarzania</string>
-    <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania (aktualnie %s). Niższa wartość może przyspieszyć początkowe ładowanie wideo. Zmiany wymagają ponownego uruchomienia odtwarzacza</string>
     <string name="progressive_load_interval_exoplayer_default">domyślny ExoPlayera</string>
     <string name="settings_category_player_notification_title">Powiadomienie odtwarzacza</string>
     <string name="settings_category_player_notification_summary">Skonfiguruj powiadomienie aktualnie odtwarzanego strumienia</string>
@@ -735,9 +729,6 @@
     <string name="select_quality_external_players">Wybierz jakość dla zewnętrznych odtwarzaczy</string>
     <string name="unknown_format">Nieznany format</string>
     <string name="unknown_quality">Nieznana jakość</string>
-    <string name="feed_toggle_show_future_items">Pokaż przyszłe pozycje</string>
-    <string name="feed_toggle_hide_played_items">Ukryj obejrzane pozycje</string>
-    <string name="feed_toggle_hide_future_items">Ukryj przyszłe pozycje</string>
     <string name="faq_title">Często zadawane pytania</string>
     <string name="faq_description">Jeśli masz problemy podczas korzystania z aplikacji, koniecznie sprawdź odpowiedzi na najczęściej pojawiające się pytania!</string>
     <string name="faq">Zobacz na stronie internetowej</string>
@@ -762,4 +753,36 @@
     <string name="feed_show_watched">W pełni obejrzane</string>
     <string name="feed_show_partially_watched">Częściowo obejrzane</string>
     <string name="feed_show_upcoming">Nadchodzące</string>
+    <string name="left_gesture_control_summary">Wybierz gest dla lewej strony ekranu odtwarzacza</string>
+    <string name="left_gesture_control_title">Akcja gestu z lewej</string>
+    <string name="right_gesture_control_summary">Wybierz gest dla prawej strony ekranu odtwarzacza</string>
+    <string name="brightness">Jasność</string>
+    <string name="volume">Głośność</string>
+    <string name="none">Brak</string>
+    <string name="right_gesture_control_title">Akcja gestu z prawej</string>
+    <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania zawartości progresywnych (aktualnie %s). Niższa wartość może przyspieszyć ich początkowe ładowanie</string>
+    <string name="prefer_original_audio_title">Preferuj oryginalny dźwięk</string>
+    <string name="prefer_original_audio_summary">Wybieraj oryginalną ścieżkę dźwiękową niezależnie od języka</string>
+    <string name="prefer_descriptive_audio_title">Preferuj audiodeskrypcję</string>
+    <string name="play_queue_audio_track">Dźwięk: %s</string>
+    <string name="audio_track">Ścieżka dźwiękowa</string>
+    <string name="audio_track_present_in_video">Ścieżka dźwiękowa powinna już się znajdować w tym strumieniu</string>
+    <string name="select_audio_track_external_players">Wybierz ścieżkę dźwiękową dla zewnętrznych odtwarzaczy</string>
+    <string name="unknown_audio_track">Nieznana</string>
+    <string name="settings_category_exoplayer_title">Ustawienia ExoPlayera</string>
+    <string name="settings_category_exoplayer_summary">Zarządzaj niektórymi ustawieniami ExoPlayera. Zmiany te wymagają ponownego uruchomienia odtwarzacza, aby zostały uwzględnione</string>
+    <string name="use_exoplayer_decoder_fallback_title">Używaj funkcji zapasowego dekodera ExoPlayera</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Włącz tę opcję, jeśli masz problemy z inicjalizacją dekodera. Przywraca dekodery o niższym priorytecie, jeśli inicjalizacja podstawowych dekoderów się nie powiedzie. Może to spowodować słabszą wydajność odtwarzania niż podczas korzystania z podstawowych dekoderów</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Zawsze używaj obejścia ustawienia powierzchni wyjścia wideo ExoPlayera</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">oryginalna</string>
+    <string name="audio_track_type_dubbed">dubbing</string>
+    <string name="audio_track_type_descriptive">audiodeskrypcja</string>
+    <string name="prefer_descriptive_audio_summary">Wybieraj ścieżkę dźwiękową z opisami dla osób niedowidzących, jeśli jest dostępna</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">To obejście zwalnia i ponownie tworzy instancje kodeków wideo, gdy nastąpi zmiana powierzchni, zamiast bezpośrednio ustawiać powierzchnię dla kodeka. Używane już przez ExoPlayera na niektórych urządzeniach z tym problemem, ustawienie to ma wpływ tylko na Androida 6 i nowsze.
+\n
+\nWłączenie tej opcji może zapobiec błędom odtwarzania podczas przełączania obecnego odtwarzacza wideo lub przechodzenia na pełny ekran</string>
+    <string name="main_tabs_position_summary">Przenieś selektor kart głównych na dół</string>
+    <string name="main_tabs_position_title">Pozycja kart głównych</string>
+    <string name="disable_media_tunneling_automatic_info">Tunelowanie multimediów zostało domyślnie wyłączone na Twoim urządzeniu, ponieważ wiadomo, że model Twojego urządzenia go nie obsługuje</string>
 </resources>

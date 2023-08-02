@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentManager;
 
 import icepick.Icepick;
 import icepick.State;
-import leakcanary.AppWatcher;
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
@@ -75,13 +74,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        AppWatcher.INSTANCE.getObjectWatcher().watch(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

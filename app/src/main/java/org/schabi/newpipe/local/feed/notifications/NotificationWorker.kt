@@ -55,7 +55,7 @@ class NotificationWorker(
             .map { feedUpdateInfoList ->
                 // display notifications for each feedUpdateInfo (i.e. channel)
                 feedUpdateInfoList.forEach { feedUpdateInfo ->
-                    notificationHelper.displayNewStreamsNotification(feedUpdateInfo)
+                    notificationHelper.displayNewStreamsNotifications(feedUpdateInfo)
                 }
                 return@map Result.success()
             }

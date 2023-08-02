@@ -580,8 +580,6 @@
     <string name="feed_load_error_fast_unknown">Hraðstraumshamurinn veitir ekki frekari upplýsingar um þetta.</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Virkja hraðstraumsham</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Afvirkja hraðstraumsham</string>
-    <string name="feed_toggle_show_played_items">Sýna spiluð atriði</string>
-    <string name="feed_toggle_hide_played_items">Fela spiluð atriði</string>
     <string name="content_not_supported">NewPipe styður ekki þetta efni.
 \n
 \nÞað verður vonandi stutt í framtíðarútgáfu.</string>
@@ -610,7 +608,6 @@
     <string name="delete_downloaded_files">Eyða sóttum skrám</string>
     <string name="confirm_prompt">Viltu hreinsa niðurhalsferilinn eða eyða öllum sóttum skrám\?</string>
     <string name="no_video_streams_available_for_external_players">Engir myndstraumar eru í boði fyrir ytri spilara</string>
-    <string name="feed_toggle_hide_future_items">Fela framtíðaratriði</string>
     <string name="clear_cookie_title">Eyða vefkökum reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Vefkökum reCAPTCHA eytt</string>
     <string name="progressive_load_interval_title">Stærð forhleðslu</string>
@@ -620,10 +617,6 @@
     <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um straumhöfund, straumefni eða leitarbeiðni</string>
     <string name="metadata_cache_wipe_summary">Fjarlæga öll síðugögn úr skyndiminni</string>
     <string name="auto_queue_summary">Bæta svipuðum straumum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>
-    <string name="volume_gesture_control_title">Hljóðstyrksbending</string>
-    <string name="volume_gesture_control_summary">Nota bendingar til að stjórna hljóðstyrk spilara</string>
-    <string name="brightness_gesture_control_title">Birtustigsbending</string>
-    <string name="brightness_gesture_control_summary">Nota bendingar til að stjórna birtustig spilara</string>
     <string name="show_search_suggestions_summary">Veldu tillögur til að sýna þegar leitað er</string>
     <string name="enable_playback_resume_summary">Endurheimta síðustu spilunarstöðu</string>
     <string name="enable_playback_state_lists_title">Spilunarstöður í listum</string>
@@ -712,7 +705,6 @@
     <string name="selected_stream_external_player_not_supported">Valinn straumur er ekki studdur af ytri spilurum</string>
     <string name="no_audio_streams_available_for_external_players">Engir hljóðstraumar eru í boði fyrir ytri spilara</string>
     <string name="select_quality_external_players">Veldu gæði fyrir ytri spilara</string>
-    <string name="feed_toggle_show_future_items">Sýna framtíðaratriði</string>
     <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
     <string name="faq_title">Algengar spurningar</string>
     <string name="faq">Skoða á vefsíðu</string>

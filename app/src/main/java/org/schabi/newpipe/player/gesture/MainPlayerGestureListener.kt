@@ -193,18 +193,20 @@ class MainPlayerGestureListener(
         isMoving = true
 
         // -- Brightness and Volume control --
-        val isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(player.context)
-        val isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(player.context)
-        if (isBrightnessGestureEnabled && isVolumeGestureEnabled) {
-            if (getDisplayHalfPortion(initialEvent) === DisplayPortion.LEFT_HALF) {
-                onScrollBrightness(distanceY)
-            } else /* DisplayPortion.RIGHT_HALF */ {
-                onScrollVolume(distanceY)
+        if (getDisplayHalfPortion(initialEvent) == DisplayPortion.RIGHT_HALF) {
+            when (PlayerHelper.getActionForRightGestureSide(player.context)) {
+                player.context.getString(R.string.volume_control_key) ->
+                    onScrollVolume(distanceY)
+                player.context.getString(R.string.brightness_control_key) ->
+                    onScrollBrightness(distanceY)
             }
-        } else if (isBrightnessGestureEnabled) {
-            onScrollBrightness(distanceY)
-        } else if (isVolumeGestureEnabled) {
-            onScrollVolume(distanceY)
+        } else {
+            when (PlayerHelper.getActionForLeftGestureSide(player.context)) {
+                player.context.getString(R.string.volume_control_key) ->
+                    onScrollVolume(distanceY)
+                player.context.getString(R.string.brightness_control_key) ->
+                    onScrollBrightness(distanceY)
+            }
         }
 
         return true

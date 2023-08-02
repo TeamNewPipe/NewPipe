@@ -52,7 +52,7 @@
     <string name="duration_live">Naživo</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>
     <string name="sorry_string">Pardon, toto sa nemalo stať.</string>
-    <string name="error_report_button_text">Nahlásiť túto chybu mejlom</string>
+    <string name="error_report_button_text">Nahlásiť cez e-mail</string>
     <string name="error_snackbar_message">Pardon, niečo sa pokazilo.</string>
     <string name="error_snackbar_action">Správa</string>
     <string name="what_device_headline">Info:</string>
@@ -337,10 +337,6 @@
     <string name="minimize_on_exit_popup_description">Prehrávať v okne</string>
     <string name="unsubscribe">Zrušiť odber</string>
     <string name="tab_choose">Zvoliť panel</string>
-    <string name="volume_gesture_control_title">Ovládanie hlasitosti gestom</string>
-    <string name="volume_gesture_control_summary">Používať gestá pre ovládanie hlasitosti</string>
-    <string name="brightness_gesture_control_title">Ovládanie jasu gestom</string>
-    <string name="brightness_gesture_control_summary">Použivať gestá pre ovládanie jasu</string>
     <string name="settings_category_updates_title">Aktualizácie</string>
     <string name="events">Udalosti</string>
     <string name="file_deleted">Súbor vymazaný</string>
@@ -647,7 +643,6 @@
     <string name="on">Zapnuté</string>
     <string name="tablet_mode_title">Režim tabletu</string>
     <string name="detail_heart_img_view_description">Obľúbené autorom</string>
-    <string name="feed_toggle_show_played_items">Zobrazovať pozreté položky</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s sťahovanie zmazané</item>
         <item quantity="few">%1$s sťahovania zmazané</item>
@@ -693,7 +688,6 @@
     <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
     <string name="create_error_notification">Oznámte chybu</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
-    <string name="progressive_load_interval_summary">Zmeniť interval načítania (aktuálne %s). Menšia hodnota môže zvýšiť rýchlosť prvotného načítania videa. Zmena vyžaduje reštart</string>
     <string name="notifications">Upozornenia</string>
     <string name="streams_notifications_interval_title">Frekvencia kontroly</string>
     <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku\?</string>
@@ -727,9 +721,6 @@
     <string name="streams_not_yet_supported_removed">Streamy nepodporované sťahovačom sa nezobrazujú</string>
     <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
     <string name="unknown_quality">Neznáma kvalita</string>
-    <string name="feed_toggle_show_future_items">Zobraziť budúce položky</string>
-    <string name="feed_toggle_hide_played_items">Skryť videné položky</string>
-    <string name="feed_toggle_hide_future_items">Skryť nasledujúce položky</string>
     <string name="faq_title">Často kladené otázky</string>
     <string name="faq">Pozrieť na webovej stránke</string>
     <string name="sort">Usporiadať</string>
@@ -744,4 +735,43 @@
     <string name="night_theme_available">Táto možnosť je dostupná len pre motív %s</string>
     <string name="fast_mode">Rýchly režim</string>
     <string name="import_subscriptions_hint">Import alebo export odberov z 3-bodkovej ponuky</string>
+    <string name="left_gesture_control_title">Akcia gesta vľavo</string>
+    <string name="right_gesture_control_summary">Akcia pre gesto v pravej polovici obrazovky</string>
+    <string name="right_gesture_control_title">Akcia gesta vpravo</string>
+    <string name="left_gesture_control_summary">Akcia pre gesto v ľavej polovici obrazovky</string>
+    <string name="brightness">Jas</string>
+    <string name="volume">Hlasitosť</string>
+    <string name="none">Nič</string>
+    <string name="remove_duplicates">Odstrániť duplikáty</string>
+    <string name="remove_duplicates_title">Odstrániť duplikáty\?</string>
+    <string name="feed_show_partially_watched">Rozpozerané</string>
+    <string name="feed_show_watched">Dopozerané</string>
+    <string name="ignore_hardware_media_buttons_summary">Toto sa môže hodiť v prípade, že máte pokazené tlačidlo na slúchadlách</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorovať fyzické tlačidlá</string>
+    <string name="progressive_load_interval_summary">Zmena veľkosti intervalu načítania pri progresívnom obsahu (v súčasnosti %s). Nižšia hodnota môže urýchliť ich počiatočné načítanie</string>
+    <string name="prefer_original_audio_title">Preferovať pôvodné audio</string>
+    <string name="prefer_original_audio_summary">Vyberať pôvodnú zvukový stopu bez ohľadu na nastavený jazyk</string>
+    <string name="prefer_descriptive_audio_title">Preferovať prehrávanie popisu</string>
+    <string name="play_queue_audio_track">Zvuk: %s</string>
+    <string name="audio_track">Zvuková stopa</string>
+    <string name="remove_duplicates_message">Chcete odstrániť všetky duplikátne streamy z tohoto zoznamu\?</string>
+    <string name="feed_hide_streams_title">Zobrazovať nasledovné streamy</string>
+    <string name="audio_track_present_in_video">V tomto streame by už mala byť prítomná zvuková stopa</string>
+    <string name="select_audio_track_external_players">Výber zvukovej stopy pre externé prehrávače</string>
+    <string name="unknown_audio_track">Neznáma</string>
+    <string name="feed_show_upcoming">Nadchádzajúce</string>
+    <string name="settings_category_exoplayer_summary">Úprava nastavení prehrávača ExoPlayer. Pre aplikovanie týchto zmien je nutné reštartovať ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Túto možnosť povoľte, ak máte problémy s inicializáciou dekodéra, ktorý sa v prípade zlyhania inicializácie primárnych dekodérov vráti k dekodérom s nižšou prioritou. To môže mať za následok nižší výkon prehrávania ako pri použití primárnych dekodérov</string>
+    <string name="use_exoplayer_decoder_fallback_title">Používať funkciu záložného dekodéra prehrávača ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použiť nastavenia výstupu videa ExoPlayera</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">povodná</string>
+    <string name="audio_track_type_dubbed">dabovaná</string>
+    <string name="prefer_descriptive_audio_summary">Vyberať zvukovú stopu s popisom pre zrakovo postihnutých ak je k dispozicií</string>
+    <string name="feed_show_hide_streams">Zobrazovať/Skrývať streamy</string>
+    <string name="settings_category_exoplayer_title">Nastavenia ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Toto riešenie spôsobí to, že pri zmene textúry sa aktuálne používaný kodek uvoľní a potom znova použije, miesto toho aby sa textúra rovno použila na kodek. Toto nastavenie, ktoré už ExoPlayer používa na niektorých zariadeniach s týmto problémom, má vplyv len na Android 6 a vyšší
+\n
+\nPovolenie tejto možnosti môže zabrániť chybám pri prehrávaní pri prepínaní aktuálneho prehrávača videa alebo prepínaní na celú obrazovku</string>
+    <string name="audio_track_type_descriptive">popisná</string>
 </resources>

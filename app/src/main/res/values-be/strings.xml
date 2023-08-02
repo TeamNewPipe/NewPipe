@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Націсніце «Пошук», каб пачаць.</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы прайгравальнік не знойдзены. Усталяваць VLC\?</string>
-    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC).</string>
+    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC каб прайграць).</string>
     <string name="install">Усталяваць</string>
     <string name="cancel">Скасаваць</string>
     <string name="open_in_browser">Адкрыць у браўзеры</string>
@@ -338,10 +338,6 @@
     <string name="minimize_on_exit_popup_description">Плэер у акне</string>
     <string name="unsubscribe">Адпісацца</string>
     <string name="tab_choose">Абярыце ўкладку</string>
-    <string name="volume_gesture_control_title">Жэст гучнасці</string>
-    <string name="volume_gesture_control_summary">Мяняць гучнасць плэера жэстамі</string>
-    <string name="brightness_gesture_control_title">Жэст яркасці</string>
-    <string name="brightness_gesture_control_summary">Мяняць яркасць плэера жэстамі</string>
     <string name="settings_category_updates_title">Абнаўленні</string>
     <string name="file_deleted">Файл выдалены</string>
     <string name="app_update_notification_channel_name">Апавяшчэнне аб абнаўленні праграмы</string>
@@ -503,8 +499,6 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Падпіскі не выбраны</string>
     <string name="feed_oldest_subscription_update">Апошняе абнаўленне: %s</string>
-    <string name="feed_toggle_show_played_items">Паказаць прагледжаныя матэрыялы</string>
-    <string name="feed_toggle_hide_played_items">Схаваць прагледжаныя матэрыялы</string>
     <string name="auto_device_theme_title">Аўтаматычна (тэма прылады)</string>
     <string name="night_theme_summary">Выберыце ўлюбёную начную тэму - %s</string>
     <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>
@@ -521,8 +515,6 @@
     <string name="select_quality_external_players">Выберыце якасць для знешніх плэераў</string>
     <string name="unknown_quality">Невядомая якасць</string>
     <string name="unknown_format">Невядомы фармат</string>
-    <string name="feed_toggle_show_future_items">Паказаць наступны матэрыял</string>
-    <string name="feed_toggle_hide_future_items">Схаваць наступныя матэрыялы</string>
     <string name="sort">Сартаваць</string>
     <string name="new_seek_duration_toast">З-за абмежаванняў ExoPlayer працягласць пошуку была ўсталявана на %d сякундаў</string>
     <string name="chapters">Раздзелы</string>
@@ -592,7 +584,7 @@
         <item quantity="many">%d хвілінаў</item>
         <item quantity="other">%d хвілінаў</item>
     </plurals>
-    <string name="progressive_load_interval_summary">Змяніць памер інтэрвалу загрузкі (зараз %s). Меншае значэнне можа паскорыць пачатковую загрузку відэа. Змены патрабуюць перазапуск плэера</string>
+    <string name="progressive_load_interval_summary">Змяніць памер інтэрвалу загрузкі прагрэсіўнага змесціва (у цяперашні час %s). Меншае значэнне можа паскорыць іх першапачатковую загрузку</string>
     <string name="show_description_summary">Выключыце, каб схаваць апісанне відэа і дадатковую інфармацыю</string>
     <string name="local_search_suggestions">Прапановы лакальнага пошуку</string>
     <string name="settings_category_player_notification_summary">Наладзіць апавяшчэнне аб бягучым прайграванні патоку</string>
@@ -765,4 +757,32 @@
     <string name="metadata_privacy">Прыватнасць</string>
     <string name="metadata_language">Мова</string>
     <string name="metadata_support">Падтрымка</string>
+    <string name="left_gesture_control_title">Дзеянне левага жэсту</string>
+    <string name="right_gesture_control_title">Дзеянне правага жэсту</string>
+    <string name="brightness">Яркасць</string>
+    <string name="none">Нічога</string>
+    <string name="left_gesture_control_summary">Выбраць жэст для левай часткі экрана прайгравання</string>
+    <string name="volume">Гук</string>
+    <string name="right_gesture_control_summary">Выбраць жэст для правай часткі экрана прайгравання</string>
+    <string name="prefer_original_audio_summary">Выбіраць зыходную гукавую дарожку незалежна ад мовы</string>
+    <string name="prefer_original_audio_title">Аддаць перавагу арыгінальнаму гуку</string>
+    <string name="prefer_descriptive_audio_title">Аддаць перавагу апісальнаму гуку</string>
+    <string name="prefer_descriptive_audio_summary">Выберыце гукавую дарожку з апісаннем для людзей са слабым зрокам, калі яна ёсць</string>
+    <string name="play_queue_audio_track">Аўдыё: %s</string>
+    <string name="audio_track">Гукавая дарожка</string>
+    <string name="select_audio_track_external_players">Выберыце гукавую дарожку для знешніх прайгравальнікаў</string>
+    <string name="unknown_audio_track">Невядомая</string>
+    <string name="settings_category_exoplayer_title">Налады ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Выкарыстоўваць функцыю рэзервовага дэкодэра ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Заўсёды выкарыстоўваць спосаб абыходу налад паверхні відэавываду ExoPlayer</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">арыгінальны</string>
+    <string name="audio_track_type_dubbed">дубляваны</string>
+    <string name="audio_track_type_descriptive">апісальны</string>
+    <string name="audio_track_present_in_video">Гукавая дарожка ўжо павінна прысутнічаць у гэтай плыні</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Уключыце гэту опцыю, калі ў вас ёсць праблемы з ініцыялізацыяй дэкодэра, якая вяртаецца да дэкодэраў з больш нізкім прыярытэтам, калі ініцыялізацыя асноўных дэкодэраў не ўдаецца. Гэта можа прывесці да нізкай прадукцыйнасці прайгравання, чым пры выкарыстанні асноўных дэкодэраў</string>
+    <string name="settings_category_exoplayer_summary">Кіраванне некаторымі наладамі ExoPlayer. Каб гэтыя змены ўступілі ў сілу, патрабуецца перазапуск гульца</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Гэты абыходны шлях вызваляе і паўторна стварае відэакодэкі, калі адбываецца змяненне паверхні, замест таго, каб усталёўваць паверхню непасрэдна для кодэка. ExoPlayer ужо выкарыстоўваецца на некаторых прыладах з гэтай праблемай, гэты параметр мае ўплыў толькі на прыладах з Android 6 і вышэй
+\n
+\nУключэнне гэтай опцыі можа прадухіліць памылкі прайгравання пры пераключэнні бягучага відэаплэера або пераключэнні ў поўнаэкранны рэжым</string>
 </resources>

@@ -42,8 +42,8 @@
     <string name="show_higher_resolutions_summary">ਸਿਰਫ਼ ਕੁਝ ਹੀ ਡਿਵਾਈਸ 2K/4K ਵੀਡੀਓ ਨੂੰ ਚਲਾ ਸਕਦੇ ਹਨ</string>
     <string name="play_with_kodi_title">Kodi ਵਿੱਚ ਚਲਾਓ</string>
     <string name="kore_not_found">Kodi ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ\?</string>
-    <string name="show_play_with_kodi_title">\"Kodi ਵਿੱਚ ਚਲਾਓ\" ਆਪਸ਼ਨ ਦਿਖਾਓ</string>
-    <string name="show_play_with_kodi_summary">Kodi ਮੀਡੀਆ ਸੈਂਟਰ ਰਾਹੀਂ ਵੀਡੀਓ ਚਲਾਉਣ ਦਾ ਵਿਕਲਪ ਦਿਖਾਓ</string>
+    <string name="show_play_with_kodi_title">\"Kodi ਵਿੱਚ ਚਲਾਓ\" ਦਾ ਵਿਕਲਪ ਵਿਖਾਓ</string>
+    <string name="show_play_with_kodi_summary">Kodi ਮੀਡੀਆ ਸੈਂਟਰ ਰਾਹੀਂ ਵੀਡੀਓ ਚਲਾਉਣ ਦਾ ਵਿਕਲਪ ਵਿਖਾਓ</string>
     <string name="play_audio">ਆਡੀਓ</string>
     <string name="default_audio_format_title">ਡੀਫ਼ਾਲਟ ਆਡੀਓ ਫ਼ਾਰਮੈਟ</string>
     <string name="default_video_format_title">ਡੀਫ਼ਾਲਟ ਵੀਡੀਓ ਫ਼ਾਰਮੈਟ</string>
@@ -56,15 +56,15 @@
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਪਰ ਅਸਪੱਸ਼ਟ ਸੀਕ ਵਰਤੋ</string>
     <string name="use_inexact_seek_summary">ਅਸਪੱਸ਼ਟ ਸੀਕ ਵੀਡੀਓ ਨੂੰ ਤੇਜ਼ ਪਰ ਅਣ-ਸਟੀਕ ਢੰਗ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ ਲਿਜਾਂਦਾ ਹੈ । ਇਸ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ 5,15 ਜਾਂ 25 ਸਕਿੰਟ ਜਾਣਾ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ</string>
     <string name="download_thumbnail_title">ਥੰਮਨੇਲ ਲੋਡ ਕਰੋ</string>
-    <string name="download_thumbnail_summary">ਥੰਮਨੇਲ ਲੋਡ, ਡਾਟਾ ਦੀ ਬੱਚਤ ਅਤੇ ਮੈਮੋਰੀ ਦੀ ਵਰਤੋਂ ਨੂੰ ਰੋਕਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ। ਇਸ ਵਿਚ ਤਬਦੀਲੀ ਕਰਨ ਨਾਲ ਇਨ-ਮੈਮੋਰੀ ਅਤੇ ਆਨ-ਡਿਸਕ ਚਿੱਤਰ cache ਦੋਵੇਂ ਮਿਟ ਜਾਣਗੇ</string>
+    <string name="download_thumbnail_summary">ਡਾਟਾ ਤੇ ਮੈਮੋਰੀ ਖਪਤ ਦੀ ਬੱਚਤ ਅਤੇ ਥੰਮਨੇਲ ਲੋਡ ਹੋਣ ਤੋਂ ਰੋਕਣ ਲਈ ਬੰਦ ਕਰੋ। ਇਸ ਵਿਚ ਤਬਦੀਲੀ ਕਰਨ ਨਾਲ ਇਨ-ਮੈਮੋਰੀ ਅਤੇ ਆਨ-ਡਿਸਕ ਚਿੱਤਰ ਕੈਸ਼ੇ ਦੋਵੇਂ ਮਿਟ ਜਾਣਗੇ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ਚਿੱਤਰ cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="metadata_cache_wipe_title">ਕੈਸ਼ ਕੀਤਾ ਮੈਟਾ-ਡਾਟਾ ਮਿਟਾਓ</string>
     <string name="metadata_cache_wipe_summary">ਸਾਰੇ ਕੈਸ਼ ਕੀਤੇ ਵੈੱਬ-ਪੇਜਾਂ ਦਾ ਡਾਟਾ ਮਿਟਾਓ</string>
-    <string name="metadata_cache_wipe_complete_notice">ਮੈਟਾ-ਡਾਟਾ cache ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
+    <string name="metadata_cache_wipe_complete_notice">ਮੈਟਾ-ਡਾਟਾ ਕੈਸ਼ੇ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ</string>
     <string name="auto_queue_title">ਅਗਲੀ ਸਟ੍ਰੀਮ ਨੂੰ ਆਟੋ-ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="auto_queue_summary">ਇੱਕ ਮੁੱਕਣ ਵਾਲੀ ਪਰ ਨਾ-ਦੁਹਰਾਉਣ ਵਾਲੀ ਕਤਾਰ ਨੂੰ, ਸੰਬੰਧਤ ਸਟ੍ਰੀਮ ਜੋੜਦਿਆਂ, ਚਲਾਉਂਦੇ ਜਾਓ</string>
     <string name="show_search_suggestions_title">ਖੋਜ ਸੁਝਾਅ</string>
-    <string name="show_search_suggestions_summary">ਖੋਜ ਕਰਨ ਵੇਲੇ ਦਿਖਾਏ ਜਾਂਦੇ ਸੁਝਾਵਾਂ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="show_search_suggestions_summary">ਖੋਜ ਕਰਨ ਵੇਲੇ ਵਿਖਾਏ ਜਾਂਦੇ ਸੁਝਾਵਾਂ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="enable_search_history_title">ਖੋਜ ਇਤਿਹਾਸ ਨੂੰ ਵੇਖੋ</string>
     <string name="enable_search_history_summary">ਖੋਜ ਇਤਲਾਹਾਂ ਨੂੰ ਸਥਾਨਕ ਤੌਰ ਤੇ ਸਟੋਰ ਕਰੋ</string>
     <string name="enable_watch_history_title">ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦੀ ਸੂਚੀ</string>
@@ -93,23 +93,23 @@
     <string name="error_report_title">Error ਰਿਪੋਰਟ</string>
     <string name="all">ਸਾਰੇ</string>
     <string name="disabled">ਬੰਦ ਕੀਤਾ</string>
-    <string name="clear">ਮਿਟਾਓ</string>
+    <string name="clear">ਸਾਫ ਕਰੋ</string>
     <string name="best_resolution">ਵਧੀਆ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
     <string name="undo">ਵਾਪਿਸ</string>
     <string name="play_all">ਸਾਰੇ ਚਲਾਓ</string>
-    <string name="always">ਹਮੇਸ਼ਾ</string>
+    <string name="always">ਹਮੇਸ਼ਾਂ</string>
     <string name="just_once">ਸਿਰਫ਼ ਇਸ ਬਾਰ</string>
     <string name="file">ਫਾਈਲ</string>
     <string name="notification_channel_name">ਨਿਊਪਾਈਪ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="notification_channel_description">ਨਿਊਪਾਈਪ ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="unknown_content">[ਅਣਜਾਣ]</string>
-    <string name="switch_to_background">ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਚਲਾਓ</string>
+    <string name="switch_to_background">ਬੈਕਗ੍ਰਾਉਂਡ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="switch_to_popup">ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="switch_to_main">ਮੇਨ ਤੇ ਚਲਾਓ</string>
     <string name="import_data_title">ਡਾਟਾਬੇਸ ਆਯਾਤ ਕਰੋ</string>
     <string name="export_data_title">ਡਾਟਾਬੇਸ ਨਿਰਯਾਤ ਕਰੋ</string>
     <string name="import_data_summary">ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਇਤਿਹਾਸ, ਸਬਸਕ੍ਰਿਪਸ਼ਨਜ਼, ਪਲੇਸੂਚੀ ਅਤੇ (ਆਪਨਸ਼ਨਲੀ) ਸੈਟਿੰਗਾਂ ਨੂੰ ਨਵਿਆਂ ਨਾਲ਼ ਬਦਲ ਦਿੰਦਾ ਹੈ</string>
-    <string name="export_data_summary">ਇਤਿਹਾਸ, ਸੁਬਸਕ੍ਰਿਪਸ਼ਨਜ਼, ਪਲੇ-ਸੂਚੀ ਅਤੇ ਸੈਟਿੰਗਾਂ ਦਰਾਮਦ ਕਰੋ</string>
+    <string name="export_data_summary">ਇਤਿਹਾਸ, ਸੁਬਸਕ੍ਰਿਪਸ਼ਨਜ਼, ਪਲੇ-ਸੂਚੀ ਅਤੇ ਸੈਟਿੰਗਾਂ ਨਿਰਯਾਤ ਕਰੋ</string>
     <string name="clear_views_history_title">ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦੀ ਸੂਚੀ ਮਿਟਾਓ</string>
     <string name="clear_views_history_summary">ਚਲਾਏ ਗਏ ਵੀਡੀਓਜ਼ ਦੇ ਇਤਿਹਾਸ ਅਤੇ ਪਲੇ-ਸਥਿਤੀਆਂ ਨੂੰ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="delete_view_history_alert">ਕੀ ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇ\?</string>
@@ -151,7 +151,7 @@
     <string name="detail_likes_img_view_description">ਪਸੰਦਾਂ</string>
     <string name="detail_dislikes_img_view_description">ਨਾਪਸੰਦਾਂ</string>
     <string name="search_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
-    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਖਾਲੀਪਣ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਕੋਈ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ</string>
+    <string name="empty_list_subtitle">ਇਥੇ ਦਾ ਖਾਲੀਪਣ ਦੂਰ ਕਰਨ ਲਈ ਕੁਝ ਸਰਚ ਕਰੋ ਜਾਂ ਚੈਨਲ ਸਬਸਕ੍ਰਾਇਬ ਕਰੋ ਅਤੇ ਪਲੇਲਿਸਟ ਬਣਾ ਕੇ ਕੋਈ ਵੀਡੀਓ ਬੁੱਕਮਾਰਕ ਕਰੋ</string>
     <string name="detail_drag_description">ਮੁੜ-ਕ੍ਰਮਬੱਧ ਕਰਨ ਲਈ ਡਰੈਗ ਕਰੋ</string>
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>
@@ -162,7 +162,7 @@
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਈਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
         <item quantity="one">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
-        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰਸ</item>
+        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
     </plurals>
     <string name="no_views">ਕੋਈ ਵਿਊਜ਼ ਨਹੀਂ</string>
     <plurals name="views">
@@ -224,7 +224,7 @@
     <string name="title_last_played">ਆਖਰੀ ਚਲਾਈ ਗਈ</string>
     <string name="title_most_played">ਸਭ ਤੋਂ ਜਿਆਦਾ ਚਲਾਈ ਗਈ</string>
     <string name="main_page_content">ਮੁੱਖ ਪੰਨੇ ਦੀ ਸਮੱਗਰੀ</string>
-    <string name="blank_page_summary">ਖ਼ਾਲੀ ਪੇਜ</string>
+    <string name="blank_page_summary">ਖ਼ਾਲੀ ਪੰਨਾ</string>
     <string name="kiosk_page_summary">ਕਿਓਸਕ ਪੰਨਾ</string>
     <string name="channel_page_summary">ਚੈਨਲ ਪੰਨਾ</string>
     <string name="select_a_channel">ਚੈਨਲ ਚੁਣੋ</string>
@@ -271,7 +271,7 @@
     <string name="resize_zoom">ਜ਼ੂਮ</string>
     <string name="caption_auto_generated">ਆਪਣੇ-ਆਪ ਬਣੀ</string>
     <string name="caption_setting_title">ਸਿਰਲੇਖ</string>
-    <string name="caption_setting_description">ਪਲੇਅਰ ਸੁਰਖੀ, text ਸਕੇਲ ਅਤੇ ਬੈਕਗ੍ਰਾਊਂਡ ਸਟਾਈਲ ਨੂੰ ਸੋਧੋ। ਪ੍ਰਭਾਵ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਐਪ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="caption_setting_description">ਪਲੇਅਰ ਕੈਪਸ਼ਨ, ਟੈਕਸਟ ਸਕੇਲ ਅਤੇ ਬੈਕਗ੍ਰਾਊਂਡ ਸਟਾਈਲ ਨੂੰ ਬਦਲੋ। ਪ੍ਰਭਾਵ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਐਪ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
     <string name="enable_leak_canary_summary">ਮੈਮੋਰੀ ਲੀਕ ਨਿਗਰਾਨੀ, ਐਪ ਨੂੰ ਆਕ੍ਰਿਆਸ਼ੀਲ ਬਣਾ ਸਕਦੀ ਹੈ ਜਦੋਂ ਹੀਪ ਡੰਪਿੰਗ ਹੁੰਦੀ ਹੈ</string>
     <string name="enable_disposed_exceptions_title">ਚੱਕਰ ਤੋਂ ਬਾਹਰ ਤਰੁੱਟੀਆਂ ਰਿਪੋਰਟ ਕਰੋ</string>
     <string name="enable_disposed_exceptions_summary">ਨਿਪਟਾਰੇ ਦੇ ਬਾਅਦ ਫਰੈਗਮੈਂਟ ਜਾਂ ਐਕਟੀਵਿਟੀ ਦੇ ਚੱਕਰ ਤੋਂ ਬਾਹਰ ਨਾ ਪਹੁੰਚਾਉਣ ਯੋਗ ਆਰ-ਐਕਸ ਅਪਵਾਦਾਂ ਬਾਰੇ ਜ਼ਬਰੀ ਰਿਪੋਰਟ ਕਰਨਾ</string>
@@ -321,8 +321,8 @@
     <string name="minimize_on_exit_title">ਐਪ ਸਵਿੱਚ ਕਰਨ ਤੇ ਮਿਨੀਮਾਈਜ਼ ਕਰੋ</string>
     <string name="minimize_on_exit_summary">ਮੁੱਖ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲ਼ੇ ਕਾਰਵਾਈ — %s</string>
     <string name="minimize_on_exit_none_description">ਕੋਈ ਨਹੀਂ</string>
-    <string name="minimize_on_exit_background_description">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ ਵਿੱਚ Minimize ਕਰੋ</string>
-    <string name="minimize_on_exit_popup_description">ਪੌਪ-ਅਪ ਪਲੇਅਰ ਵਿੱਚ minimize ਕਰੋ</string>
+    <string name="minimize_on_exit_background_description">ਬੈਕਗ੍ਰਾਉਂਡ ਪਲੇਅਰ ਵਿੱਚ ਮਿਨੀਮਾਈਜ਼ ਕਰੋ</string>
+    <string name="minimize_on_exit_popup_description">ਪੌਪ-ਅਪ ਪਲੇਅਰ ਵਿੱਚ ਮਿਨੀਮਾਈਜ਼ ਕਰੋ</string>
     <string name="skip_silence_checkbox">ਚੁੱਪ ਦੌਰਾਨ ਤੇਜ਼ੀ ਨਾਲ ਅੱਗੇ ਕਰੋ</string>
     <string name="playback_step">ਕਦਮ</string>
     <string name="playback_reset">ਰੀਸੈੱਟ</string>
@@ -332,10 +332,6 @@
     <string name="users">ਯੂਜ਼ਰਸ</string>
     <string name="unsubscribe">ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
     <string name="tab_choose">ਟੈਬ ਚੁਣੋ</string>
-    <string name="volume_gesture_control_title">ਆਵਾਜ਼ ਸ਼ਵਾਵਾਂ ਕੰਟਰੋਲ</string>
-    <string name="volume_gesture_control_summary">ਆਵਾਜ਼ ਕੰਟਰੋਲ ਕਰਨ ਲਈ ਸ਼ਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
-    <string name="brightness_gesture_control_title">ਸਕ੍ਰੀਨ ਲਾਈਟ ਸ਼ਵਾਵਾਂ ਕੰਟਰੋਲ</string>
-    <string name="brightness_gesture_control_summary">ਵੀਡੀਓ ਸਕ੍ਰੀਨ ਦੀ ਚਮਕ ਕੰਟਰੋਲ ਕਰਨ ਲਈ ਸ਼ਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="content_language_title">ਮੂਲ ਭਾਸ਼ਾ ਸਮੱਗਰੀ</string>
     <string name="settings_category_updates_title">ਅਪਡੇਟਾਂ</string>
     <string name="file_deleted">ਫਾਈਲ ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
@@ -363,10 +359,10 @@
     <string name="enqueue">ਕਤਾਰ ਕਰੋ</string>
     <string name="permission_denied">ਸਿਸਟਮ ਦੁਆਰਾ ਕਾਰਵਾਈ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ</string>
     <string name="download_failed">ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ</string>
-    <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ Generate ਕਰੋ</string>
+    <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ ਬਣਾਓ</string>
     <string name="overwrite">overwrite</string>
     <string name="download_already_running">ਇਸ ਨਾਮ ਦੇ ਨਾਲ ਇੱਕ ਡਾਊਨਲੋਡ ਪਹਿਲਾਂ ਤੋਂ ਜਾਰੀ ਹੈ</string>
-    <string name="show_error">ERROR ਵਿਖਾਓ</string>
+    <string name="show_error">ਤਰੁੱਟੀ ਵਿਖਾਓ</string>
     <string name="error_path_creation">ਮੰਜ਼ਿਲ ਫੋਲਡਰ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
     <string name="error_file_creation">ਫਾਈਲ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕਦੀ</string>
     <string name="error_ssl_exception">ਸੁਰੱਖਿਅਤ ਕੁਨੈਕਸ਼ਨ ਸਥਾਪਤ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>
@@ -376,7 +372,7 @@
     <string name="error_http_unsupported_range">ਸਰਵਰ ਮਲਟੀ-Threaded ਡਾਊਨਲੋਡਸ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਨਾਲ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ @string/msg_threads = 1</string>
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
-    <string name="stop">ਰੁੱਕੋ</string>
+    <string name="stop">ਰੁਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="pause_downloads_on_mobile">ਮੀਟਰ ਕੀਤੇ ਨੈਟਵਰਕਸ ਤੇ ਰੁਕਾਵਟ</string>
@@ -389,7 +385,7 @@
     <string name="no_comments">ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
     <string name="error_unable_to_load_comments">ਟਿੱਪਣੀਆਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
     <string name="close">ਬੰਦ ਕਰੋ</string>
-    <string name="enable_playback_resume_title">ਪਲੇਅਬੈਕ ਦੋਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ</string>
+    <string name="enable_playback_resume_title">ਪਲੇਅਬੈਕ ਫਿਰ ਚਾਲੂ ਕਰੋ</string>
     <string name="enable_playback_resume_summary">ਪਿਛਲੀ ਪਲੇਅਬੈਕ ਸਥਿਤੀ ਤੋਂ ਮੁੜ ਚਲਾਓ</string>
     <string name="enable_playback_state_lists_title">ਸੂਚੀਆਂ ਦੀ ਸਥਿਤੀ</string>
     <string name="enable_playback_state_lists_summary">ਸੂਚੀਆਂ ਵਿੱਚ ਪਲੇਅਬੈਕ ਸਥਿਤੀ ਸੂਚਕ ਦਿਖਾਓ</string>
@@ -422,7 +418,7 @@
     <string name="new_seek_duration_toast">ਐਕਸੋਪਲੇਅਰ ਦੀਆਂ ਬੰਦਿਸ਼ਾਂ ਕਰਕੇ ਲੱਭਣ ਮਿਆਦ %d ਸਕਿੰਟ ਸੈੱਟ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="error_download_resource_gone">ਇਹ ਡਾਊਨਲੋਡ ਮੁੜ-ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <string name="recovering">ਮੁੜ-ਪ੍ਰਾਪਤੀ</string>
-    <string name="disable_media_tunneling_summary">ਜੇ ਤੁਹਾਨੂੰ ਕਾਲ਼ੀ ਸਕਰੀਨ ਮਿਲੇ ਜਾਂ ਵੀਡਿਓ ਰੁਕ-ਰੁਕ ਕੇ ਚੱਲੇ ਤਾਂ ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰ ਦਿਓ</string>
+    <string name="disable_media_tunneling_summary">ਜੇ ਤੁਹਾਨੂੰ ਕਾਲ਼ੀ ਸਕਰੀਨ ਮਿਲੇ ਜਾਂ ਵੀਡਿਓ ਰੁਕ-ਰੁਕ ਕੇ ਚੱਲੇ ਤਾਂ ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰ ਦਿਓ।</string>
     <string name="disable_media_tunneling_title">ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰੋ</string>
     <string name="show_original_time_ago_summary">ਸੇਵਾਵਾਂ ਵੱਲੋਂ ਆਈ ਅਸਲ ਲਿਖਤ ਸਟ੍ਰੀਮ ਨਗਾਂ ਵਿੱਚ ਵਿਖਾਈ ਦੇਵੇਗੀ</string>
     <string name="show_original_time_ago_title">ਨਗਾਂ ਦੇ ਆਉਣ ਦਾ ਅਸਲੀ ਸਮਾਂ ਵਿਖਾਓ</string>
@@ -437,10 +433,10 @@
     <string name="clear_cookie_summary">reCAPTCHA ਹੱਲ ਕਰਦੇ ਵੇਲ਼ੇ ਨਿਊਪਾਈਪ ਵਿੱਚ ਜਮ੍ਹਾਂ ਹੋਣ ਵਾਲ਼ੀਆਂ ਕੁਕੀਜ਼ ਸਾਫ਼ ਕਰੋ</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA ਦੀਆਂ ਕੁਕੀਜ਼ ਸਾਫ਼ ਹੋ ਗਈਆਂ ਹਨ</string>
     <string name="clear_cookie_title">reCAPTCHA ਦੀਆਂ ਕੁਕੀਜ਼ ਸਾਫ਼ ਕਰੋ</string>
-    <string name="hash_channel_description">ਵੀਡਿਓ ਹੈਸ਼ਿੰਗ ਦੀ ਕਾਰਵਾਈ ਦੀ ਮੌਜੂਦਾ ਹਾਲਤ ਦੀਆਂ ਇਤਲਾਹਾਂ</string>
+    <string name="hash_channel_description">ਵੀਡਿਓ ਹੈਸ਼ਿੰਗ ਦੀ ਕਾਰਵਾਈ ਦੀ ਮੌਜੂਦਾ ਹਾਲਤ ਦੇ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="restricted_video_no_stream">ਇਹ ਵੀਡੀਓ ਉਮਰ-ਹੱਦ ਮੁਤਾਬਕ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।
 \nਯੂਟਿਊਬ ਦੀਆਂ ਉਮਰ-ਹੱਦ ਪਾਬੰਦੀਸ਼ੁਦਾ ਵੀਡੀਓਜ਼ ਬਾਰੇ ਨੀਤੀਆਂ ਦੇ ਕਾਰਨ ਨਿਊ-ਪਾਈਪ ਇਸਦੀਆਂ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੀ ਅਤੇ ਇਸੇ ਕਰਕੇ ਇਸਨੂੰ ਚਲਾ ਵੀ ਨਹੀਂ ਸਕਦੀ।</string>
-    <string name="notification_scale_to_square_image_summary">ਇਤਲਾਹਾਂ ਵਿੱਚ ਵੀਡਿਓ ਥੰਮਨੇਲ ਦੇ ਪੈਮਾਨੇ ਨੂੰ 16:9 ਤੋਂ ਘਟਾ ਕੇ 1:1 ਕਰੋ (ਤਸਵੀਰ ਵਿਗੜੀ ਹੋਈ ਦਿਸ ਸਕਦੀ ਹੈ)</string>
+    <string name="notification_scale_to_square_image_summary">ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵੀਡਿਓ ਥੰਮਨੇਲ ਦੇ ਪੈਮਾਨੇ ਨੂੰ 16:9 ਤੋਂ ਘਟਾ ਕੇ 1:1 ਕਰੋ (ਤਸਵੀਰ ਵਿਗੜੀ ਹੋਈ ਦਿਸ ਸਕਦੀ ਹੈ)</string>
     <string name="open_with">ਇਸ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
     <string name="open_website_license">ਵੈਬਸਾਈਟ ਖੋਲ੍ਹੋ</string>
     <string name="metadata_privacy_internal">ਅੰਦਰੂਨੀ</string>
@@ -462,7 +458,7 @@
     <string name="download_has_started">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਐ</string>
     <string name="select_night_theme_toast">ਤੁਸੀਂ ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਹੇਠਾਂ ਚੁਣ ਸਕਦੇ ਹੋ</string>
     <string name="night_theme_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਚੁਣੋ — %s</string>
-    <string name="auto_device_theme_title">ਆਪ-ਮੁਖ਼ਤਾਰ (ਡਿਵਾਈਸ ਦੀ ਥੀਮ)</string>
+    <string name="auto_device_theme_title">ਆਟੋਮੈਟਿਕ (ਡਿਵਾਈਸ ਥੀਮ)</string>
     <string name="radio">ਰੇਡੀਓ</string>
     <string name="featured">ਉਚੇਚੀ ਪੇਸ਼ਕਸ਼</string>
     <string name="paid_content">ਇਹ ਸਮੱਗਰੀ ਸਿਰਫ਼ ਉਹਨਾਂ ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਉਪਲਬਧ ਹੈ ਜਿੰਨ੍ਹਾਂ ਨੇ ਇਸਦੇ ਲਈ ਕੀਮਤ ਦਿੱਤੀ ਹੈ, ਇਸ ਕਰਕੇ ਨਿਊ-ਪਾਈਪ ਦੁਆਰਾ ਚਲਾਈ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।</string>
@@ -474,7 +470,7 @@
     <string name="no_app_to_open_intent">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਦੀ ਕੋਈ ਵੀ ਐਪ ਇਸ ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਦੀ</string>
     <string name="chapters">ਚੈਪਟਰ</string>
     <string name="recent">ਹਾਲੀਆ</string>
-    <string name="show_thumbnail_summary">ਥੰਮਨੇਲ ਨੂੰ ਤਾਲਾਬੱਧ ਸਕਰੀਨ ਦੇ ਪਿਛੋਕੜ ਅਤੇ ਇਤਲਾਹਾਂ ਦੋਹਾਂ ਲਈ ਵਰਤੋ</string>
+    <string name="show_thumbnail_summary">ਥੰਮਨੇਲ ਨੂੰ ਤਾਲਾਬੱਧ ਸਕਰੀਨ ਦੇ ਪਿਛੋਕੜ ਅਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੋਹਾਂ ਲਈ ਵਰਤੋ</string>
     <string name="show_thumbnail_title">ਥੰਮਨੇਲ ਵਿਖਾਓ</string>
     <string name="playlist_page_summary">ਪਲੇ-ਸੂਚੀ ਪੰਨਾ</string>
     <string name="video_detail_by">%s ਦੁਆਰਾ</string>
@@ -575,7 +571,7 @@
     <string name="clear_playback_states_summary">ਸਾਰੀਆਂ ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਉਂਦਾ ਹੈ</string>
     <string name="clear_playback_states_title">ਪਲੇ-ਸਥਿਤੀਆਂ ਮਿਟਾਓ</string>
     <string name="hash_channel_name">ਵੀਡੀਓ ਹੈਸ਼ ਇਤਲਾਹ</string>
-    <string name="albums">ਐਲਬਮਾਂ</string>
+    <string name="albums">ਐਲਬਮ</string>
     <string name="artists">ਕਲਾਕਾਰ</string>
     <string name="songs">ਗੀਤ</string>
     <string name="videos_string">ਵੀਡੀਓ</string>
@@ -586,7 +582,7 @@
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
     <string name="peertube_instance_add_exists">ਸਥਿਤੀ ਪਹਿਲਾਂ ਨੂੰ ਮੌਜੂਦ ਹੈ</string>
-    <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮਾਣਨਯੋਗ ਹਨ</string>
+    <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮੰਨਣਯੋਗ ਹਨ</string>
     <string name="peertube_instance_add_fail">ਸਥਿਤੀ ਦੀ ਜਾਇਜ਼ਗੀ ਤਸਦੀਕ ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="peertube_instance_add_help">ਸਥਿਤੀ URL ਦਾਖ਼ਲ ਕਰੋ</string>
     <string name="peertube_instance_add_title">ਸਥਿਤੀਆਂ ਜੋੜੋ</string>
@@ -594,7 +590,7 @@
     <string name="peertube_instance_url_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਪੀਅਰਟਿਊਬ ਸਥਿਤੀਆਂ ਚੁਣੋ</string>
     <string name="peertube_instance_url_title">ਪੀਅਰਟਿਊਬ ਸਥਿਤੀਆਂ</string>
     <string name="unsupported_url_dialog_message">URL ਪਛਾਣ ਨਹੀਂ ਹੋਇਆ। ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ਼ ਖੋਲ੍ਹਣਾ ਹੈ\?</string>
-    <string name="auto_queue_toggle">ਆਪ-ਮੁਖ਼ਤਾਰ ਕਤਾਰ ਕਰੋ</string>
+    <string name="auto_queue_toggle">ਆਟੋ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="show_meta_info_summary">ਸਟ੍ਰੀਮ ਦੇ ਕਰਤਾ, ਸਮੱਗਰੀ ਜਾਂ ਖੋਜ ਬੇਨਤੀ ਵਾਲੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਬਕਸਿਆਂ ਵਾਲ਼ੀ ਮੈਟਾ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿਓ</string>
     <string name="show_meta_info_title">ਮੈਟਾ ਜਾਣਕਾਰੀ ਦਿਖਾਓ</string>
     <string name="show_description_summary">ਵੀਡੀਓ ਵੇਰਵਾ ਅਤੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
@@ -605,13 +601,13 @@
     <string name="seek_duration_title">ਅੱਗੇ ਲੰਘਾਉਣ/ਪਿੱਛੇ ਕਰਨ ਦੀ ਸਮਾਂ ਮਿਆਦ</string>
     <string name="night_theme_title">ਰਾਤ ਵਾਲੀ ਥੀਮ</string>
     <string name="notification_colorize_summary">ਐਂਡਰਾਇਡ ਨੂੰ ਥੰਮਨੇਲ ਦੇ ਮੁੱਖ ਰੰਗ ਮੁਤਾਬਕ ਇਲਤਾਹ ਦਾ ਰੰਗ ਬਦਲਣ ਦਿਓ (ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਹਰੇਕ ਡਿਵਾਈਸ \'ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ)</string>
-    <string name="notification_colorize_title">ਰੰਗਦਾਰ ਇਤਲਾਹਾਂ</string>
+    <string name="notification_colorize_title">ਰੰਗਦਾਰ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="notification_action_nothing">ਕੁਝ ਵੀ ਨਹੀਂ</string>
     <string name="notification_action_buffering">ਬਫ਼ਰਿੰਗ</string>
     <string name="notification_action_shuffle">ਸ਼ਫਲ</string>
     <string name="notification_action_repeat">ਦੁਹਰਾਓ</string>
-    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਇਤਲਾਹ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਪਚੀੜੀਆਂ ਇਤਲਾਹਾਂ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ</string>
-    <string name="notification_actions_at_most_three">ਤੁਸੀਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਪਚੀੜੀਆਂ ਇਤਲਾਹਾਂ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ!</string>
+    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ</string>
+    <string name="notification_actions_at_most_three">ਤੁਸੀਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ!</string>
     <string name="notification_action_4_title">ਪੰਜਵਾਂ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_3_title">ਚੌਥਾ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_2_title">ਤੀਜਾ ਕਾਰਵਾਈ ਬਟਨ</string>
@@ -621,10 +617,10 @@
     <string name="on">ਚਾਲੂ ਕਰੋ</string>
     <string name="enumeration_comma">,</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">ਡਾਉਨਲੋਡ ਕੀਤਾ</item>
-        <item quantity="other">%s ਡਾਉਨਲੋਡ ਕੀਤੇ</item>
+        <item quantity="one">ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="other">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
     </plurals>
-    <string name="off">ਬੰਦ ਕਰੋ</string>
+    <string name="off">ਆਫ</string>
     <string name="enqueue_next_stream">ਕਤਾਰ ਵਿੱਚ ਅੱਗੇ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="settings_category_player_notification_title">ਪਲੇਅਰ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="settings_category_player_notification_summary">ਮੋਜੂਦਾ ਚੱਲ ਰਹੀ ਸਟ੍ਰੀਮ ਦੀ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੰਰਚਨਾ ਕਰੋ</string>
@@ -643,11 +639,10 @@
     <string name="seekbar_preview_thumbnail_title">ਸੀਕਬਾਰ ਥੰਮਨੇਲ ਦੀ ਝਲਕ</string>
     <string name="feed_update_threshold_summary">ਸਮਾਂ-ਅਵਧੀ ਜਦ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਦੁਬਾਰਾ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਸਕੇ — %s</string>
     <string name="detail_heart_img_view_description">ਰਚਨਾਕਾਰ ਨੇ ਦਿਲੋਂ ਪਸੰਦ ਕੀਤਾ</string>
-    <string name="progressive_load_interval_summary">ਲੋਡ ਅੰਤਰਾਲ ਆਕਾਰ ਬਦਲੋ (ਮੌਜੂਦਾ %s ਤੇ)। ਛੋਟੀ ਸੰਖਿਆ ਵੀਡੀਓ ਜਲਦੀ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਮੱਦਦ ਦੇ ਸਕਦੀ ਹੈ। ਬਦਲਾਅ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਤੇ ਹੀ ਹੋਣਗੇ</string>
+    <string name="progressive_load_interval_summary">ਪ੍ਰਗਤੀਸ਼ੀਲ ਸਮੱਗਰੀ ਉੱਤੇ ਲੋਡ ਅੰਤਰਾਲ ਆਕਾਰ ਬਦਲੋ (ਮੌਜੂਦਾ %s ਤੇ)। ਛੋਟੀ ਸੰਖਿਆ ਉਸਨੂੰ ਜਲਦੀ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਮੱਦਦ ਦੇ ਸਕਦੀ ਹੈ</string>
     <string name="local_search_suggestions">ਖੋਜ ਦੇ ਸਥਾਨਕ ਸੁਝਾਅ</string>
     <string name="remote_search_suggestions">ਖੋਜ ਦੇ ਰਿਮੋਟ ਸੁਝਾਅ</string>
     <string name="start_main_player_fullscreen_title">ਮੁੱਖ ਪਲੇਅਰ ਪੂਰੀ ਸਕਰੀਨ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="feed_toggle_show_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਵਿਖਾਓ</string>
     <string name="progressive_load_interval_title">ਪਲੇਅਬੈਕ ਲੋਡ ਦਾ ਅੰਤਰਾਲ ਆਕਾਰ</string>
     <plurals name="new_streams">
         <item quantity="one">%s ਨਵੀਂ ਸਟਰੀਮ</item>
@@ -663,11 +658,8 @@
     <string name="show_error_snackbar">ਤਰੁੱਟੀ ਤੇ ਸਨੈਕਬਾਰ ਵਿਖਾਓ</string>
     <string name="feed_use_dedicated_fetch_method_summary">ਕੁਝ ਸੇਵਾਵਾਂ ਵਿੱਚ ਹੀ ਉਪਲੱਬਧ ਇਹ ਤਰੀਕਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਵਿੱਚ ਤੇਜ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ, ਪਰ ਕੁਝ ਗਿਣਤੀ ਦੀਆਂ ਹੀ ਆਈਟਮ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ ਉਹ ਵੀ ਅਕਸਰ ਬਿਨਾਂ ਪੂਰੀ ਜਾਣਕਾਰੀ( ਜਿਵੇਂ ਅਵਧੀ, ਸਟਰੀਮ ਦੀ ਕਿਸਮ, ਕੋਈ ਸਟਰੀਮ ਲਾਈਵ ਹੈ, ਨਹੀਂ ਦੱਸਦਾ)</string>
     <string name="soundcloud_go_plus_content">ਇਹ ਸਾਊਂਡਕਲਾਊਡ ਗੋ-ਪਲੱਸ ਟਰੈਕ ਹੈ, ਤੁਹਾਡੇ ਦੇਸ਼ ਵਿੱਚ ਇਹ ਸਟ੍ਰੀਮ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
-    <string name="feed_toggle_hide_played_items">ਵੇਖ ਚੁੱਕੀਆਂ ਆਈਟਮਾਂ ਲੁਕਾਓ</string>
     <string name="unknown_format">ਅਗਿਆਤ ਫਾਰਮੈਟ</string>
     <string name="unknown_quality">ਅਗਿਆਤ ਕੁਆਲਿਟੀ</string>
-    <string name="feed_toggle_show_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਵਿਖਾਓ</string>
-    <string name="feed_toggle_hide_future_items">ਭਵਿੱਖ-ਪ੍ਰਕਾਸ਼ਤ ਆਈਟਮ ਲੁਕਾਓ</string>
     <string name="faq_title">ਆਮ ਸਵਾਲ</string>
     <string name="faq">ਵੈੱਬਸਾਈਟ \'ਤੇ ਵੇਖੋ</string>
     <string name="loading_stream_details">ਸਟਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</string>
@@ -741,4 +733,35 @@
     <string name="feed_show_upcoming">ਆਗਾਮੀ</string>
     <string name="ignore_hardware_media_buttons_title">ਹਾਰਡਵੇਅਰ ਮੀਡੀਆ ਬਟਨ ਇਵੈਂਟਾਂ ਨੂੰ ਅਣਡਿੱਠ ਕਰੋ</string>
     <string name="feed_show_hide_streams">ਸਟ੍ਰੀਮ ਵਿਖਾਓ/ਲੁਕਾਓ</string>
+    <string name="right_gesture_control_title">ਸੱਜੇ ਪਾਸੇ ਦੀ ਸੰਕੇਤ ਕਿਰਿਆ</string>
+    <string name="left_gesture_control_title">ਖੱਬੇ ਪਾਸੇ ਦੀ ਸੰਕੇਤ ਕਿਰਿਆ</string>
+    <string name="brightness">ਚਮਕ</string>
+    <string name="none">ਕੋਈ ਨਹੀਂ</string>
+    <string name="left_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਖੱਬੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
+    <string name="right_gesture_control_summary">ਪਲੇਅਰ ਸਕ੍ਰੀਨ ਦੇ ਸੱਜੇ ਅੱਧ ਲਈ ਸੰਕੇਤ ਚੁਣੋ</string>
+    <string name="volume">ਆਵਾਜ਼</string>
+    <string name="use_exoplayer_decoder_fallback_summary">ਇਹ ਚੋਣ ਯੋਗ ਕਰੋ, ਜੇ ਤੁਹਾਨੂੰ ਡੀਕੋਡਰ ਸ਼ੁਰੂ ਕਰਨ ਸਬੰਧੀ ਸਮੱਸਿਆਵਾਂ ਹਨ, ਜੋ ਕਿ ਘੱਟ-ਤਰਜੀਹ ਵਾਲੇ ਡੀਕੋਡਰਾਂ \'ਤੇ ਵਾਪਸ ਆ ਜਾਂਦੀਆਂ ਹਨ, ਜੇਕਰ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੋ ਜਾਂਦੇ ਹਨ। ਇਸ ਦੇ ਨਤੀਜੇ ਵਜੋਂ ਪ੍ਰਾਇਮਰੀ ਡੀਕੋਡਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨਾਲੋਂ ਮਾੜੀ ਪਲੇਬੈਕ ਕਾਰਗੁਜ਼ਾਰੀ ਹੋ ਸਕਦੀ ਹੈ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ਇਹ ਵਰਕਅਰਾਊਂਡ ਸਤਹ ਨੂੰ ਸਿੱਧਾ ਕੋਡੇਕ ਤੇ ਸੈੱਟ ਕਰਨ ਦੀ ਬਜਾਏ, ਜਦੋਂ ਸਤਹ ਵਿੱਚ ਤਬਦੀਲੀ ਹੁੰਦੀ ਹੈ ਤਾਂ ਵੀਡੀਓ ਕੋਡੈਕਸ ਨੂੰ ਰਿਲੀਜ਼ ਕਰਦਾ ਹੈ ਅਤੇ ਮੁੜ-ਇੰਸਟੈਂਟ ਕਰਦਾ ਹੈ। ਇਸ ਸਮੱਸਿਆ ਵਾਲੇ ਕੁਝ ਡਿਵਾਈਸਾਂ \'ਤੇ ਐਕਸੋਪਲੇਅਰ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ, ਇਸ ਸੈਟਿੰਗ ਦਾ ਸਿਰਫ਼ ਐਂਡਰੌਇਡ 6 ਅਤੇ ਉਸ ਤੋਂ ਵੱਧ \'ਤੇ ਪ੍ਰਭਾਵ ਹੈ
+\n
+\nਇਸ ਵਿਕਲਪ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਨਾਲ ਵਰਤਮਾਨ ਵੀਡੀਓ ਪਲੇਅਰ ਦੀ ਅਦਲਾ-ਬਦਲੀ ਕਰਨ ਜਾਂ ਪੂਰੀ ਸਕ੍ਰੀਨ \'ਤੇ ਅਦਲਾ-ਬਦਲੀ ਕਰਨ ਵੇਲੇ ਪਲੇਬੈਕ ਤਰੁੱਟੀਆਂ ਨੂੰ ਰੋਕਿਆ ਜਾ ਸਕਦਾ ਹੈ</string>
+    <string name="prefer_original_audio_title">ਅਸਲੀ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
+    <string name="prefer_original_audio_summary">ਭਾਸ਼ਾ ਦੀ ਪਰਵਾਹ ਕੀਤੇ ਬਿਨਾਂ ਅਸਲੀ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="prefer_descriptive_audio_title">ਵਰਣਨਾਤਮਕ ਆਡੀਓ ਨੂੰ ਤਰਜੀਹ ਦਿਓ</string>
+    <string name="prefer_descriptive_audio_summary">ਜੇ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਦ੍ਰਿਸ਼ਟੀ ਤੋਂ ਅਪੰਗ ਲੋਕਾਂ ਵਾਸਤੇ ਵਰਣਨਾਂ ਵਾਲਾ ਕੋਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="play_queue_audio_track">ਆਡੀਓ: %s</string>
+    <string name="audio_track">ਆਡੀਓ ਟਰੈਕ</string>
+    <string name="audio_track_present_in_video">ਇੱਕ ਆਡੀਓ ਟਰੈਕ ਇਸ ਸਟਰੀਮ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
+    <string name="select_audio_track_external_players">ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
+    <string name="unknown_audio_track">ਅਗਿਆਤ</string>
+    <string name="settings_category_exoplayer_title">ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗ</string>
+    <string name="settings_category_exoplayer_summary">ਕੁਝ ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ। ਇਹਨਾਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਪਲੇਅਰ ਦੁਬਾਰਾ ਚਲਾਉਣ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ</string>
+    <string name="use_exoplayer_decoder_fallback_title">ਐਕਸੋਪਲੇਅਰ ਦੀ ਡੀਕੋਡਰ ਫਾਲਬੈਕ ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">ਹਮੇਸ਼ਾ ਐਕਸੋਪਲੇਅਰ ਦੀ ਵਿਡੀਓ ਆਉਟਪੁੱਟ ਸਤਹ ਸੈਟਿੰਗ ਵਰਕਰਾਊਂਡ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="audio_track_type_original">ਅਸਲੀ</string>
+    <string name="audio_track_type_dubbed">ਡੱਬ ਕੀਤਾ</string>
+    <string name="audio_track_type_descriptive">ਵਰਣਨਾਤਮਕ</string>
+    <string name="main_tabs_position_title">ਮੁੱਖ ਟੈਬਾਂ ਦੀ ਸਥਿਤੀ</string>
+    <string name="main_tabs_position_summary">ਮੁੱਖ ਟੈਬ ਸਿਲੈਕਟਰ ਨੂੰ ਹੇਠਾਂ ਲੈ ਜਾਓ</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">ਮੀਡੀਆ ਟਨਲਿੰਗ ਤੁਹਾਡੀ ਡਿਵਾਈਸ \'ਤੇ ਡਿਫ਼ਾਲਟ ਤੌਰ \'ਤੇ ਅਸਮਰੱਥ ਕੀਤੀ ਗਈ ਸੀ ਕਿਉਂਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਮਾਡਲ ਇਸਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।</string>
 </resources>

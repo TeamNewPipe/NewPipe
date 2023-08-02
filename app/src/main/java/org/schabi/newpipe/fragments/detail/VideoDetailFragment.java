@@ -61,7 +61,6 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Callback;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
@@ -162,8 +161,12 @@ public final class VideoDetailFragment
     private boolean showRelatedItems;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes
+    @NonNull
+    final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes
+    @NonNull
+    final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -645,27 +648,6 @@ public final class VideoDetailFragment
         }
     }
 
-    private void initThumbnailViews(@NonNull final StreamInfo info) {
-        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailThumbnailImageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        // nothing to do, the image was loaded correctly into the thumbnail
-                    }
-
-                    @Override
-                    public void onError(final Exception e) {
-                        showSnackBarError(new ErrorInfo(e, UserAction.LOAD_IMAGE,
-                                info.getThumbnailUrl(), info));
-                    }
-                });
-
-        PicassoHelper.loadAvatar(info.getSubChannelAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailSubChannelThumbnailView);
-        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailUploaderThumbnailView);
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // OwnStack
     //////////////////////////////////////////////////////////////////////////*/
@@ -1040,20 +1022,10 @@ public final class VideoDetailFragment
             player.setRecovery();
         }
 
-        if (!useExternalAudioPlayer) {
-            openNormalBackgroundPlayer(append);
+        if (useExternalAudioPlayer) {
+            showExternalAudioPlaybackDialog();
         } else {
-            final List<AudioStream> audioStreams = getUrlAndNonTorrentStreams(
-                    currentInfo.getAudioStreams());
-            final int index = ListHelper.getDefaultAudioFormat(activity, audioStreams);
-
-            if (index == -1) {
-                Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
-                        Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            startOnExternalPlayer(activity, currentInfo, audioStreams.get(index));
+            openNormalBackgroundPlayer(append);
         }
     }
 
@@ -1106,7 +1078,7 @@ public final class VideoDetailFragment
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            showExternalPlaybackDialog();
+            showExternalVideoPlaybackDialog();
         } else {
             replaceQueueIfUserConfirms(this::openMainPlayer);
         }
@@ -1486,12 +1458,9 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
 
         if (!isEmpty(info.getSubChannelName())) {
-            displayBothUploaderAndSubChannel(info, activity);
-        } else if (!isEmpty(info.getUploaderName())) {
-            displayUploaderAsSubChannel(info, activity);
+            displayBothUploaderAndSubChannel(info);
         } else {
-            binding.detailUploaderTextView.setVisibility(View.GONE);
-            binding.detailUploaderThumbnailView.setVisibility(View.GONE);
+            displayUploaderAsSubChannel(info);
         }
 
         final Drawable buddyDrawable =
@@ -1565,7 +1534,8 @@ public final class VideoDetailFragment
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         checkUpdateProgressInfo(info);
-        initThumbnailViews(info);
+        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailThumbnailImageView);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
 
@@ -1602,26 +1572,29 @@ public final class VideoDetailFragment
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
-    private void displayUploaderAsSubChannel(final StreamInfo info, final Context context) {
+    private void displayUploaderAsSubChannel(final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
 
         if (info.getUploaderSubscriberCount() > -1) {
             binding.detailUploaderTextView.setText(
-                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
             binding.detailUploaderTextView.setVisibility(View.VISIBLE);
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
+
+        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailSubChannelThumbnailView);
+        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
+        binding.detailUploaderThumbnailView.setVisibility(View.GONE);
     }
 
-    private void displayBothUploaderAndSubChannel(final StreamInfo info, final Context context) {
+    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getSubChannelName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
-
-        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
 
         final StringBuilder subText = new StringBuilder();
         if (!isEmpty(info.getUploaderName())) {
@@ -1633,7 +1606,7 @@ public final class VideoDetailFragment
                 subText.append(Localization.DOT_SEPARATOR);
             }
             subText.append(
-                    Localization.shortSubscriberCount(context, info.getUploaderSubscriberCount()));
+                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
         }
 
         if (subText.length() > 0) {
@@ -1643,6 +1616,13 @@ public final class VideoDetailFragment
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
+
+        PicassoHelper.loadAvatar(info.getSubChannelAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailSubChannelThumbnailView);
+        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
+        PicassoHelper.loadAvatar(info.getUploaderAvatarUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                .into(binding.detailUploaderThumbnailView);
+        binding.detailUploaderThumbnailView.setVisibility(View.VISIBLE);
     }
 
     public void openDownloadDialog() {
@@ -2013,7 +1993,10 @@ public final class VideoDetailFragment
             restoreDefaultBrightness();
         } else {
             // Do not restore if user has disabled brightness gesture
-            if (!PlayerHelper.isBrightnessGestureEnabled(activity)) {
+            if (!PlayerHelper.getActionForRightGestureSide(activity)
+                    .equals(getString(R.string.brightness_control_key))
+                    && !PlayerHelper.getActionForLeftGestureSide(activity)
+                    .equals(getString(R.string.brightness_control_key))) {
                 return;
             }
             // Restore already saved brightness level
@@ -2106,10 +2089,11 @@ public final class VideoDetailFragment
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
-                }).show();
+                })
+                .show();
     }
 
-    private void showExternalPlaybackDialog() {
+    private void showExternalVideoPlaybackDialog() {
         if (currentInfo == null) {
             return;
         }
@@ -2154,6 +2138,43 @@ public final class VideoDetailFragment
             });
         }
         builder.show();
+    }
+
+    private void showExternalAudioPlaybackDialog() {
+        if (currentInfo == null) {
+            return;
+        }
+
+        final List<AudioStream> audioStreams = getUrlAndNonTorrentStreams(
+                currentInfo.getAudioStreams());
+        final List<AudioStream> audioTracks =
+                ListHelper.getFilteredAudioStreams(activity, audioStreams);
+
+        if (audioTracks.isEmpty()) {
+            Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+        } else if (audioTracks.size() == 1) {
+            startOnExternalPlayer(activity, currentInfo, audioTracks.get(0));
+        } else {
+            final int selectedAudioStream =
+                    ListHelper.getDefaultAudioFormat(activity, audioTracks);
+            final CharSequence[] trackNames = audioTracks.stream()
+                    .map(audioStream -> Localization.audioTrackName(activity, audioStream))
+                    .toArray(CharSequence[]::new);
+
+            new AlertDialog.Builder(activity)
+                    .setTitle(R.string.select_audio_track_external_players)
+                    .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                            ShareUtils.openUrlInBrowser(requireActivity(), url))
+                    .setSingleChoiceItems(trackNames, selectedAudioStream, null)
+                    .setNegativeButton(R.string.cancel, null)
+                    .setPositiveButton(R.string.ok, (dialog, i) -> {
+                        final int index = ((AlertDialog) dialog).getListView()
+                                .getCheckedItemPosition();
+                        startOnExternalPlayer(activity, currentInfo, audioTracks.get(index));
+                    })
+                    .show();
+        }
     }
 
     /*

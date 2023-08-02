@@ -169,7 +169,7 @@ public final class InternalUrlsHandler {
                             .setTitle(R.string.player_stream_failure)
                             .setMessage(
                                     ErrorPanelHelper.Companion.getExceptionDescription(throwable))
-                            .setPositiveButton(R.string.ok, (v, b) -> { })
+                            .setPositiveButton(R.string.ok, null)
                             .show();
                 }));
         return true;

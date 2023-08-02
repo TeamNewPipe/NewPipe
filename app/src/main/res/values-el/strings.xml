@@ -96,7 +96,7 @@
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
-    <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
+    <string name="auto_queue_title">Αυτόματη προσθήκη της επόμενης ροής στην ουρά</string>
     <string name="auto_queue_summary">Συνέχεια της τρέχουσας (μη επαναλαμβανόμενης) ουράς μετά τη λήξη της, με την προσθήκη μιας σχετικής ροής</string>
     <string name="show_search_suggestions_summary">Επιλογή των προτάσεων που εμφανίζονται κατά την αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
@@ -334,10 +334,6 @@
     <string name="minimize_on_exit_popup_description">Ελαχιστοποίηση σε αναδυόμενο παράθυρο</string>
     <string name="unsubscribe">Απεγγραφή</string>
     <string name="tab_choose">Επιλογή Καρτέλας</string>
-    <string name="volume_gesture_control_title">Έλεγχος ήχου με χειρονομιές</string>
-    <string name="volume_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της έντασης του ήχου</string>
-    <string name="brightness_gesture_control_title">Έλεγχος φωτεινότητας με χειρονομίες</string>
-    <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο φωτεινότητας</string>
     <string name="settings_category_updates_title">Ενημερώσεις</string>
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
@@ -635,7 +631,6 @@
     <string name="off">Ανενεργό</string>
     <string name="on">Ενεργό</string>
     <string name="tablet_mode_title">Κατάσταση tablet</string>
-    <string name="feed_toggle_show_played_items">Εμφάνιση αναπαραχθέντων</string>
     <string name="comments_are_disabled">Τα σχόλια είναι απενεργοποιημένα</string>
     <string name="dont_show">Απόκρυψη</string>
     <string name="low_quality_smaller">Χαμηλή ποιότητα (μικρότερο)</string>
@@ -681,7 +676,6 @@
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
     <string name="leak_canary_not_available">Το LeakCanary δεν είναι διαθέσιμο</string>
     <string name="progressive_load_interval_exoplayer_default">Εξ\' ορισμού ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης (επί του παρόντος είναι %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική φόρτωση βίντεο. Οι αλλαγές απαιτούν επανεκκίνηση της εφαρμογής</string>
     <string name="notifications">Ειδοποιήσεις</string>
     <plurals name="new_streams">
         <item quantity="one">%s νέα ροή</item>
@@ -714,9 +708,6 @@
     <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
     <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
-    <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών αντικειμένων</string>
-    <string name="feed_toggle_hide_played_items">Απόκρυψη θεαθέντων</string>
-    <string name="feed_toggle_hide_future_items">Απόκρυψη μελλοντικών αντικειμένων</string>
     <string name="faq_title">Συχνές ερωτήσεις</string>
     <string name="faq">Προβολή στην ιστοσελίδα</string>
     <string name="faq_description">Εάν αντιμετωπίζετε προβλήματα με τη χρήση της εφαρμογής, φροντίστε να ελέγξετε αυτές τις απαντήσεις σε συνήθεις ερωτήσεις!</string>
@@ -741,4 +732,36 @@
     <string name="remove_duplicates_message">Θέλετε να καταργήσετε όλες τις διπλότυπες ροές σε αυτήν τη λίστα αναπαραγωγής;</string>
     <string name="remove_duplicates">Αφαίρεση διπλοτύπων</string>
     <string name="feed_show_partially_watched">Θεαθέντα μερικώς</string>
+    <string name="left_gesture_control_summary">Επιλέξτε χειρονομία για το αριστερό μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="left_gesture_control_title">Ενέργεια αριστερής χειρονομίας</string>
+    <string name="right_gesture_control_summary">Επιλέξτε χειρονομία για το δεξί μισό της οθόνης του προγράμματος αναπαραγωγής</string>
+    <string name="right_gesture_control_title">Ενέργεια δεξιάς χειρονομίας</string>
+    <string name="brightness">Φωτεινότητα</string>
+    <string name="volume">Ένταση</string>
+    <string name="none">Καμία</string>
+    <string name="prefer_original_audio_title">Προτίμηση πρωτότυπου ήχου</string>
+    <string name="prefer_original_audio_summary">Επιλογή του πρωτότυπου κομματιού ήχου ανεξάρτητα από τη γλώσσα</string>
+    <string name="prefer_descriptive_audio_title">Προτίμηση του περιγραφικού ήχου</string>
+    <string name="play_queue_audio_track">Ήχος: %s</string>
+    <string name="audio_track">Κομμάτι ήχου</string>
+    <string name="audio_track_present_in_video">Ένα κομμάτι ήχου θα πρέπει να υπάρχει ήδη σε αυτήν τη ροή</string>
+    <string name="select_audio_track_external_players">Επιλογή ήχου για εξωτερικές συσκευές αναπαραγωγής</string>
+    <string name="unknown_audio_track">Άγνωστο</string>
+    <string name="settings_category_exoplayer_title">Ρυθμίσεις ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Διαχειριστείτε ορισμένες ρυθμίσεις του ExoPlayer. Αυτές οι αλλαγές απαιτούν επανεκκίνηση του προγράμματος αναπαραγωγής για να τεθεί σε ισχύ</string>
+    <string name="use_exoplayer_decoder_fallback_title">Χρησιμοποιήστε την δυνατότητα εναλλακτικού αποκωδικοποιητή του ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Ενεργοποιήστε αυτήν την επιλογή εάν αντιμετωπίζετε προβλήματα με την προετοιμασία του αποκωδικοποιητή, η οποία επιστρέφει σε αποκωδικοποιητές χαμηλότερης προτεραιότητας εάν αποτύχει η προετοιμασία του πρωτεύοντος αποκωδικοποιητή. Αυτό μπορεί να έχει ως αποτέλεσμα κακή απόδοση αναπαραγωγής από ότι όταν χρησιμοποιείτε κύριους αποκωδικοποιητές</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Χρησιμοποιείτε πάντα τον εναλλακτικό τρόπο ρύθμισης της επιφάνειας εξόδου βίντεο του ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση.
+\n
+\nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">αρχικό</string>
+    <string name="audio_track_type_dubbed">μεταγλωττισμένο</string>
+    <string name="audio_track_type_descriptive">περιγραφικό</string>
+    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης σε προοδευτικά περιεχόμενα (προς το παρόν %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική τους φόρτωση</string>
+    <string name="prefer_descriptive_audio_summary">Επιλογή ήχου με περιγραφές για άτομα με προβλήματα όρασης, εάν είναι διαθέσιμος</string>
+    <string name="main_tabs_position_summary">Μετακινήστε τον επιλογέα κύριας καρτέλας στο κάτω μέρος</string>
+    <string name="main_tabs_position_title">Θέση κύριων καρτελών</string>
+    <string name="disable_media_tunneling_automatic_info">Το media tunneling απενεργοποιήθηκε από προεπιλογή στη συσκευή σας, επειδή το μοντέλο της συσκευής σας είναι γνωστό ότι δεν το υποστηρίζει.</string>
 </resources>

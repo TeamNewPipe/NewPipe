@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Nhấn vào nút tìm kiếm để bắt đầu.</string>
+    <string name="main_bg_subtitle">Nhấn vào kính lúp để bắt đầu.</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát. Cài đặt VLC\?</string>
-    <string name="install">Cài đặt</string>
+    <string name="install">Cài vô</string>
     <string name="cancel">Hủy</string>
     <string name="open_in_browser">Mở trong trình duyệt</string>
-    <string name="open_in_popup_mode">Mở bằng chế độ popup</string>
+    <string name="open_in_popup_mode">Mở trong chế độ bật lên</string>
     <string name="share">Chia sẻ</string>
     <string name="download">Tải về</string>
     <string name="search">Tìm kiếm</string>
-    <string name="settings">Cài đặt</string>
+    <string name="settings">Các cài đặt</string>
     <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
@@ -28,7 +28,7 @@
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
     <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát bằng Kodi</string>
-    <string name="kore_not_found">Cài đặt ứng dụng Kode\?</string>
+    <string name="kore_not_found">Cài đặt ứng dụng Kore\?</string>
     <string name="show_play_with_kodi_title">Hiện tùy chọn \"Phát bằng Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiện tùy chọn phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
@@ -67,9 +67,9 @@
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
-    <string name="sorry_string">Hmm, app đã xảy ra lỗi, lướt xuống để xem lỗi.</string>
+    <string name="sorry_string">Có vẻ NewPipe đã xảy ra lỗi, lướt xuống kiểm tra xem.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
-    <string name="error_snackbar_message">Có gì đó không đúng lắm. Kiểm tra xem.</string>
+    <string name="error_snackbar_message">Có gì đó không đúng lắm. Thật khó chịu.</string>
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
@@ -80,7 +80,7 @@
     <string name="detail_uploader_thumbnail_view_description">Hình thu nhỏ của avatar người tải lên</string>
     <string name="detail_likes_img_view_description">Lượt thích</string>
     <string name="detail_dislikes_img_view_description">Lượt không thích</string>
-    <string name="video">Video</string>
+    <string name="video">Băng hình</string>
     <string name="audio">Âm thanh</string>
     <string name="retry">Thử lại</string>
     <string name="short_thousand">nghìn</string>
@@ -106,9 +106,9 @@
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
-    <string name="tab_about">Thông tin &amp; Các câu hỏi</string>
+    <string name="tab_about">Thông tin &amp; FAQ</string>
     <string name="tab_licenses">Giấy phép</string>
-    <string name="app_description">Trình phát video YT nhẹ, mã nguồn mở và không quảng cáo cho Android.</string>
+    <string name="app_description">Trình phát video Yiu tu be nhẹ, mã nguồn mở và không quảng cáo cho Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
     <string name="app_license_title">Giấy phép của NewPipe</string>
     <string name="contribution_encouragement">Sự đóng góp của bạn luôn được hoan nghênh – kể cả khi bạn dịch, thay đổi giao diện, dọn code, thêm tính năng hay thay đổi những thứ khác, sự giúp đỡ của bạn vẫn đáng được trân trọng. Bạn càng làm nhiều, ứng dụng này sẽ càng tốt hơn bao giờ hết !</string>
@@ -125,9 +125,9 @@
     <string name="subscription_change_failed">Không thể thay đổi tình trạng đăng ký</string>
     <string name="subscription_update_failed">Không thể cập nhật tình trạng đăng ký</string>
     <string name="no_player_found_toast">Không tìm thấy trình phát luồng nào (bạn có thể cài đặt VLC để phát).</string>
-    <string name="controls_download_desc">Tải về tệp luồng</string>
+    <string name="controls_download_desc">Tải tệp luồng về</string>
     <string name="show_info">Hiện thông tin</string>
-    <string name="tab_subscriptions">Đăng ký</string>
+    <string name="tab_subscriptions">Kênh đăng ký</string>
     <string name="tab_bookmarks">Danh sách phát được đánh dấu</string>
     <string name="fragment_feed_title">Video mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
@@ -174,7 +174,7 @@
     <string name="clear_views_history_title">Xóa lịch sử xem</string>
     <string name="clear_views_history_summary">Xóa lịch sử những video đã xem và vị trí phát</string>
     <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem\?</string>
-    <string name="watch_history_deleted">Lịch sử xem đã bị xóa</string>
+    <string name="watch_history_deleted">Đã xoá lịch sử xem</string>
     <string name="clear_search_history_title">Xóa lịch sử tìm kiếm</string>
     <string name="clear_search_history_summary">Xóa lịch sử tìm kiếm mà bạn đã ghi</string>
     <string name="delete_search_history_alert">Xóa toàn bộ lịch sử tìm kiếm\?</string>
@@ -243,7 +243,7 @@
     <string name="could_not_import_all_files">Cảnh báo: Không thể nhập tất cả các tệp.</string>
     <string name="override_current_data">Thao tác này sẽ ghi đè cài đặt hiện tại của bạn.</string>
     <string name="import_settings">Bạn cũng muốn nhập cài đặt?</string>
-    <string name="trending">Thịnh hành</string>
+    <string name="trending">Đang thịnh hành</string>
     <string name="new_and_hot">Mới và đang hot</string>
     <string name="play_queue_remove">Loại bỏ</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
@@ -329,10 +329,6 @@
     <string name="minimize_on_exit_popup_description">Thu nhỏ vào trình phát popup</string>
     <string name="unsubscribe">Hủy đăng ký</string>
     <string name="tab_choose">Chọn tab</string>
-    <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
-    <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh âm lượng</string>
-    <string name="brightness_gesture_control_title">Điều khiển độ sáng bằng cử chỉ</string>
-    <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh độ sáng</string>
     <string name="settings_category_updates_title">Cập nhật</string>
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
@@ -393,7 +389,7 @@
     <string name="enable_playback_state_lists_title">Vị trí phát trong danh sách</string>
     <string name="enable_playback_state_lists_summary">Hiện vị trí phát lại trong danh sách</string>
     <string name="settings_category_clear_data_title">Xoá dữ liệu</string>
-    <string name="watch_history_states_deleted">Đã xoá vị trí phát lại</string>
+    <string name="watch_history_states_deleted">Đã xoá vị trí phát</string>
     <string name="missing_file">Tệp đã di chuyển hoặc đã xoá</string>
     <string name="overwrite_unrelated_warning">Tên file này đã tồn tại</string>
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
@@ -439,7 +435,7 @@
     <string name="remove_watched">Xóa video đã xem</string>
     <string name="systems_language">Mặc định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
+    <string name="downloads_storage_use_saf_summary">\'Khung truy cập bộ nhớ\' cho phép tải xuống thẻ SD bên ngoài</string>
     <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
@@ -465,7 +461,7 @@
     <string name="artists">Nghệ sĩ</string>
     <string name="albums">Album</string>
     <string name="songs">Bài hát</string>
-    <string name="videos_string">Video</string>
+    <string name="videos_string">Các video</string>
     <string name="restricted_video">Video này bị giới hạn độ tuổi.
 \n
 \nBật \"%1$s\" trong cài đặt nếu bạn muốn xem video này.</string>
@@ -509,7 +505,7 @@
         <item quantity="other">Đã chọn %d</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Chưa chọn kênh nào</string>
-    <string name="feed_group_dialog_select_subscriptions">Chọn kênh</string>
+    <string name="feed_group_dialog_select_subscriptions">Chọn kênh đăng ký</string>
     <string name="feed_processing_message">Đang xử lý thông báo…</string>
     <string name="feed_subscription_not_loaded_count">Số kênh không tải được: %d</string>
     <string name="feed_notification_loading">Đang tải thông báo…</string>
@@ -616,7 +612,6 @@
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
     <string name="service_provides_reason">%s cung cấp lý do này:</string>
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
-    <string name="feed_toggle_show_played_items">Hiện các mục đã xem</string>
     <string name="feed_load_error_fast_unknown">Chế độ nguồn dữ liệu nhanh không cung cấp thêm thông tin về cái này.</string>
     <string name="feed_load_error_terminated">Tài khoản của người này đã bị chấm dứt.
 \nNewPipe sẽ không thể tải nguồn dữ liệu này trong tương lai.
@@ -663,10 +658,9 @@
     <string name="feed_new_items">Mục thông báo mới</string>
     <string name="crash_the_player">Làm trình phát dừng</string>
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
-\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
+\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
     <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống</string>
-    <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải (tầm khoảng %s). Để ở giá trị thấp hơn có thể sẽ tăng tốc độ tải video hơn ban đầu. Khởi động lại trình phát để áp dụng thay đổi</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer mặc định</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>
@@ -701,13 +695,10 @@
     <string name="unknown_format">Định dạng không xác định (:P)</string>
     <string name="unknown_quality">Độ phân giải không xác định</string>
     <string name="progressive_load_interval_title">Kích thước khoảng thời gian tải</string>
-    <string name="feed_toggle_show_future_items">Hiện video đề xuất</string>
-    <string name="feed_toggle_hide_future_items">Ẩn video đề xuất</string>
     <string name="sort">Thể loại</string>
     <string name="faq_title">Câu hỏi thường gặp</string>
     <string name="faq">Xem trên website</string>
     <string name="faq_description">Nếu bạn gặp vấn đề khi sử dụng ứng dụng , hãy chắc chắn rằng bạn đã tìm kiếm các câu hỏi thường thấy !</string>
-    <string name="feed_toggle_hide_played_items">Ẩn các video đã xem</string>
     <string name="import_subscriptions_hint">Nhập hoặc xuất các kênh bạn đăng ký bằng cách nhấn nút 3 chấm ở góc trên màn hình</string>
     <string name="msg_failed_to_copy">Không thể sao chép vào khay nhớ tạm</string>
     <string name="playlist_add_stream_success_duplicate">Đã thêm khoảng thời gian %d trùng lặp (s)</string>
@@ -715,6 +706,45 @@
     <string name="app_update_unavailable_toast">Bạn đang dùng phiên bản mới nhất</string>
     <string name="night_theme_available">Tùy chọn này chỉ được bật khi chủ đề %s được dùng</string>
     <string name="app_update_available_notification_text">Nhấn để tải %s</string>
-    <string name="fast_mode">Chế độ tia sét</string>
+    <string name="fast_mode">Chế độ tăng tốc</string>
     <string name="duplicate_in_playlist">Danh sách này bị trùng lặp.</string>
+    <string name="ignore_hardware_media_buttons_summary">Hữu ích trong trường hợp phím bấm âm lượng trên tai nghe hoặc thiết bị của bạn bị hỏng</string>
+    <string name="ignore_hardware_media_buttons_title">Không nhận phím điều khiển âm lượng vật lý</string>
+    <string name="remove_duplicates">Loại bỏ mục trùng lặp</string>
+    <string name="remove_duplicates_title">Loại bỏ mục trùng lặp\?</string>
+    <string name="remove_duplicates_message">Bạn có muốn loại bỏ tất cả các nguồn trùng nhau trong danh sách phát này\?</string>
+    <string name="feed_show_hide_streams">Hiện/Ẩn nguồn phát</string>
+    <string name="feed_hide_streams_title">Hiện các nguồn phát sau</string>
+    <string name="feed_show_watched">Đã xem</string>
+    <string name="feed_show_partially_watched">Đã xem 1 phần</string>
+    <string name="unset_playlist_thumbnail">Bỏ đặt hình thumbnail</string>
+    <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải (tầm khoảng %s). Để ở giá trị thấp hơn có thể sẽ tăng tốc độ tải video hơn ban đầu. Khởi động lại trình phát để áp dụng thay đổi</string>
+    <string name="audio_track_present_in_video">Bản âm thanh đã có sẳn trong stream này</string>
+    <string name="use_exoplayer_decoder_fallback_title">Sử dụng tính năng giải mã ExoPlayer dự phòng</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Giải pháp thay thế này phát hành và khởi tạo lại codec video khi xảy ra thay đổi bề mặt, thay vì đặt trực tiếp bề mặt vào codec. Đã được ExoPlayer sử dụng trên một số thiết bị gặp sự cố, cài đặt này chỉ ảnh hưởng cho thiết bị chạy Android 6 trở lên
+\n
+\nBật tùy chọn này có thể ngăn lỗi phát lại khi chuyển đổi trình phát video hiện tại hoặc chuyển sang chế độ toàn màn hình</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Bật tùy chọn này nếu bạn gặp sự cố khởi tạo bộ giải mã, vấn đề này sẽ quay trở lại bộ giải mã có mức độ ưu tiên thấp hơn nếu quá trình khởi tạo bộ giải mã chính thất bại. Điều này có thể dẫn đến hiệu suất phát lại kém hơn so với khi sử dụng bộ giải mã chính</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Luôn dùng biện pháp thay thế cho bề mặt đầu ra video cho ExoPlayer</string>
+    <string name="audio_track_type_original">Nguyên gốc</string>
+    <string name="audio_track_type_descriptive">Phần mô tả</string>
+    <string name="audio_track_type_dubbed">Lồng tiếng</string>
+    <string name="prefer_original_audio_title">Chọn âm thanh gốc bạn thích</string>
+    <string name="prefer_original_audio_summary">Chọn bản âm thanh gốc kể cả nhiều ngôn ngữ</string>
+    <string name="prefer_descriptive_audio_title">Âm thanh mô tả bạn thích</string>
+    <string name="prefer_descriptive_audio_summary">Chọn bản âm thanh có phần mô tả cho người kiếm thị nếu có</string>
+    <string name="left_gesture_control_summary">Chọn cử chỉ vuốt cho phía bên trái nửa màn hình của trình chơi</string>
+    <string name="left_gesture_control_title">Hành động cho cử chỉ trái</string>
+    <string name="right_gesture_control_summary">Chọn cử chỉ vuốt cho phía bên phải nửa màn hình của trình chơi</string>
+    <string name="right_gesture_control_title">Hành động cho cử chỉ phải</string>
+    <string name="brightness">Độ sáng</string>
+    <string name="volume">Âm lượng</string>
+    <string name="none">Không</string>
+    <string name="play_queue_audio_track">Âm thanh: %s</string>
+    <string name="audio_track">Bản âm thanh</string>
+    <string name="feed_show_upcoming">Sắp đến</string>
+    <string name="unknown_audio_track">Không rõ</string>
+    <string name="select_audio_track_external_players">Chọn bản âm thanh cho trình phát ngoài</string>
+    <string name="settings_category_exoplayer_title">Cài đặt Exoplayer</string>
+    <string name="settings_category_exoplayer_summary">Quản lý một số cài đặt trong Exoplayer. Hãy khởi động lại trình phát để áp dụng thay đổi</string>
 </resources>

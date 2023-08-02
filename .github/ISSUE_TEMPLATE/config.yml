@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: ❓ Question
+    url: https://github.com/TeamNewPipe/NewPipe/discussions/new?category=questions
+    about: Ask about anything NewPipe-related
   - name: 💬 IRC
     url: https://web.libera.chat/#newpipe
     about: Chat with us via IRC for quick Q/A
