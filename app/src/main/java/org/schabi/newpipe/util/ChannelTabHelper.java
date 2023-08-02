@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
+import org.schabi.newpipe.extractor.channel.tabs.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 
 import java.util.List;
