@@ -638,7 +638,7 @@
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="night_theme_title">الثيم الليلي</string>
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
-    <string name="disable_media_tunneling_summary">تعطيل نفق الوسائط إذا واجهت شاشة سوداء أو التقطيع في تشغيل الفيديو</string>
+    <string name="disable_media_tunneling_summary">قم بتعطيل نفق الوسائط إذا واجهت شاشة سوداء أو تقطيع اثناء تشغيل الفيديو.</string>
     <string name="disable_media_tunneling_title">تعطيل نفق الوسائط</string>
     <string name="metadata_privacy_internal">داخلي</string>
     <string name="metadata_privacy_private">خاص</string>
@@ -815,4 +815,5 @@
 \nقد يؤدي تمكين هذا الخيار إلى منع أخطاء التشغيل عند تبديل مشغل الفيديو الحالي أو التبديل إلى وضع ملء الشاشة</string>
     <string name="main_tabs_position_summary">انقل محدد علامة التبويب الرئيسي إلى الأسفل</string>
     <string name="main_tabs_position_title">موضع علامات التبويب الرئيسية</string>
+    <string name="disable_media_tunneling_automatic_info">تم تعطيل نفق وسائل الإعلام عن طريق التقصير على جهازك لأن نموذج جهازك معروف بأنه لا يدعمه.</string>
 </resources>

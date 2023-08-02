@@ -618,7 +618,7 @@
     <string name="recaptcha_solve">לפתור</string>
     <string name="night_theme_title">ערכת עיצוב לילית</string>
     <string name="show_channel_details">להציג את פרטי הערוץ</string>
-    <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו</string>
+    <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו.</string>
     <string name="disable_media_tunneling_title">השבתת תיעול מדיה</string>
     <string name="metadata_privacy_internal">פנימי</string>
     <string name="metadata_privacy_private">פרטי</string>
@@ -789,4 +789,5 @@
     <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
     <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
     <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">תיעול מדיה הושבת כברירת מחדל במכשיר שלך כיוון שדגם המכשיר ידוע בכך שאינו תומך בזה.</string>
 </resources>

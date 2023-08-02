@@ -588,7 +588,7 @@
     <string name="night_theme_summary">选择你最喜欢的夜间主题 — %s</string>
     <string name="night_theme_title">夜间主题</string>
     <string name="show_channel_details">显示频道详情</string>
-    <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿的情况，请停用媒体隧道</string>
+    <string name="disable_media_tunneling_summary">如果在视频播放中遇到黑屏或卡顿的情况，请停用媒体隧道。</string>
     <string name="disable_media_tunneling_title">停用媒体隧道</string>
     <string name="description_select_disable">停用简介中的文本选择功能</string>
     <string name="metadata_privacy_internal">内部</string>
@@ -750,4 +750,5 @@
     <string name="main_tabs_position_summary">将主标签页选择器移到底部</string>
     <string name="main_tabs_position_title">主标签页位置</string>
     <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
 </resources>

@@ -671,7 +671,7 @@
     <string name="progressive_load_interval_summary">प्रगतिशील सामग्री पर लोड अंतराल आकार बदलें (वर्तमान में %s)। एक कम मान उनकी आरंभिक लोडिंग को गति दे सकता है</string>
     <string name="leak_canary_not_available">लीककैनरी उपलब्ध नहीं है</string>
     <string name="error_report_notification_toast">एक त्रुटी हुई है, अधिसूचना देखें</string>
-    <string name="disable_media_tunneling_summary">यदि आप काली स्क्रीन या वीडियो प्लेबैक खड़खड़ाते हुए चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें</string>
+    <string name="disable_media_tunneling_summary">यदि वीडियो प्लेबैक पर आप काली स्क्रीन या रुक-रुक कर वीडियो चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें।</string>
     <string name="show_image_indicators_summary">छवियों के शीर्ष पर पिकासो रंगीन रिबन दिखाएँ जो उनके स्रोत को दर्शाता है: नेटवर्क के लिए लाल, डिस्क के लिए नीला और मेमोरी के लिए हरा</string>
     <string name="create_error_notification">गड़बड़ी की सूचना बनाएं</string>
     <string name="error_download_resource_gone">इस डाउनलोड को पुनर्प्राप्त नहीं किया जा सकता</string>
@@ -763,4 +763,5 @@
     <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
     <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
     <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">आपके डिवाइस पर मीडिया टनलिंग डिफ़ॉल्ट रूप से अक्षम कर दी गई थी क्योंकि यह ज्ञात है कि आपका डिवाइस मॉडल इसका समर्थन नहीं करता।</string>
 </resources>

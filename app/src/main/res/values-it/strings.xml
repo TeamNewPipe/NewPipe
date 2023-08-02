@@ -608,7 +608,7 @@
     <string name="auto_device_theme_title">Automatico (tema del dispositivo)</string>
     <string name="night_theme_title">Tema notturno</string>
     <string name="show_channel_details">Mostra dettagli canale</string>
-    <string name="disable_media_tunneling_summary">Disattiva il tunneling multimediale se durante la riproduzione dei video si verificano schermate nere o irregolarità nell\'audio</string>
+    <string name="disable_media_tunneling_summary">Disattiva il tunneling multimediale se durante la riproduzione dei video si verificano schermate nere o irregolarità nell\'audio.</string>
     <string name="disable_media_tunneling_title">Disattiva tunneling multimediale</string>
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privato</string>
@@ -776,4 +776,5 @@
 \nL\'attivazione di questa opzione potrebbe impedire errori di riproduzione passando al lettore video attuale o passando a schermo intero</string>
     <string name="main_tabs_position_title">Posizione delle schede principali</string>
     <string name="main_tabs_position_summary">Sposta in fondo il selettore della scheda principale</string>
+    <string name="disable_media_tunneling_automatic_info">Il tunneling multimediale è stato disabilitato per impostazione predefinita sul dispositivo in uso, poiché è noto che il modello del dispositivo non lo supporta.</string>
 </resources>

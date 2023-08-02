@@ -418,7 +418,7 @@
     <string name="new_seek_duration_toast">ਐਕਸੋਪਲੇਅਰ ਦੀਆਂ ਬੰਦਿਸ਼ਾਂ ਕਰਕੇ ਲੱਭਣ ਮਿਆਦ %d ਸਕਿੰਟ ਸੈੱਟ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="error_download_resource_gone">ਇਹ ਡਾਊਨਲੋਡ ਮੁੜ-ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <string name="recovering">ਮੁੜ-ਪ੍ਰਾਪਤੀ</string>
-    <string name="disable_media_tunneling_summary">ਜੇ ਤੁਹਾਨੂੰ ਕਾਲ਼ੀ ਸਕਰੀਨ ਮਿਲੇ ਜਾਂ ਵੀਡਿਓ ਰੁਕ-ਰੁਕ ਕੇ ਚੱਲੇ ਤਾਂ ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰ ਦਿਓ</string>
+    <string name="disable_media_tunneling_summary">ਜੇ ਤੁਹਾਨੂੰ ਕਾਲ਼ੀ ਸਕਰੀਨ ਮਿਲੇ ਜਾਂ ਵੀਡਿਓ ਰੁਕ-ਰੁਕ ਕੇ ਚੱਲੇ ਤਾਂ ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰ ਦਿਓ।</string>
     <string name="disable_media_tunneling_title">ਮੀਡੀਆ ਟਨਲਿੰਗ ਬੰਦ ਕਰੋ</string>
     <string name="show_original_time_ago_summary">ਸੇਵਾਵਾਂ ਵੱਲੋਂ ਆਈ ਅਸਲ ਲਿਖਤ ਸਟ੍ਰੀਮ ਨਗਾਂ ਵਿੱਚ ਵਿਖਾਈ ਦੇਵੇਗੀ</string>
     <string name="show_original_time_ago_title">ਨਗਾਂ ਦੇ ਆਉਣ ਦਾ ਅਸਲੀ ਸਮਾਂ ਵਿਖਾਓ</string>
@@ -617,10 +617,10 @@
     <string name="on">ਚਾਲੂ ਕਰੋ</string>
     <string name="enumeration_comma">,</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">ਡਾਉਨਲੋਡ ਕੀਤਾ</item>
-        <item quantity="other">%s ਡਾਉਨਲੋਡ ਕੀਤੇ</item>
+        <item quantity="one">ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="other">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
     </plurals>
-    <string name="off">ਬੰਦ ਕਰੋ</string>
+    <string name="off">ਆਫ</string>
     <string name="enqueue_next_stream">ਕਤਾਰ ਵਿੱਚ ਅੱਗੇ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="settings_category_player_notification_title">ਪਲੇਅਰ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="settings_category_player_notification_summary">ਮੋਜੂਦਾ ਚੱਲ ਰਹੀ ਸਟ੍ਰੀਮ ਦੀ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੰਰਚਨਾ ਕਰੋ</string>
@@ -763,4 +763,5 @@
     <string name="main_tabs_position_title">ਮੁੱਖ ਟੈਬਾਂ ਦੀ ਸਥਿਤੀ</string>
     <string name="main_tabs_position_summary">ਮੁੱਖ ਟੈਬ ਸਿਲੈਕਟਰ ਨੂੰ ਹੇਠਾਂ ਲੈ ਜਾਓ</string>
     <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">ਮੀਡੀਆ ਟਨਲਿੰਗ ਤੁਹਾਡੀ ਡਿਵਾਈਸ \'ਤੇ ਡਿਫ਼ਾਲਟ ਤੌਰ \'ਤੇ ਅਸਮਰੱਥ ਕੀਤੀ ਗਈ ਸੀ ਕਿਉਂਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਮਾਡਲ ਇਸਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।</string>
 </resources>

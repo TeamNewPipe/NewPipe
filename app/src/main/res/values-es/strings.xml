@@ -637,7 +637,7 @@
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
-    <string name="disable_media_tunneling_summary">Deshabilitar el túnel de medios si experimenta una pantalla negra o interrupciones en la reproduccción de videos</string>
+    <string name="disable_media_tunneling_summary">Desactiva la tunelización de los medios si experimentas una pantalla negra durante la reproducción o si la visualización de la imagen es intermitente.</string>
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
     <string name="no_dir_yet">Aún no se ha seleccionado ninguna carpeta de descargas, elija la carpeta de descargas por defecto ahora</string>
     <string name="metadata_host">Anfitrión</string>
@@ -779,4 +779,5 @@
 \nHabilitar esta opción puede evitar errores de reproducción al cambiar el reproductor de video actual o cambiar al modo de pantalla completa</string>
     <string name="main_tabs_position_title">Posición de las pestañas principales</string>
     <string name="main_tabs_position_summary">Mover el selector de la pestaña principal a la parte inferior</string>
+    <string name="disable_media_tunneling_automatic_info">Como se sabe que este dispositivo no es compatible con la tunelización de medios, esta función está desactivada de forma predeterminada.</string>
 </resources>
