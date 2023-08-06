@@ -41,6 +41,7 @@
             tools:ignore="HardcodedText,UnusedAttribute" />
 
         <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/empty_state_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
