@@ -23,12 +23,14 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -44,11 +46,15 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPreparer {
+
     private static final String TAG = MediaBrowserConnector.class.getSimpleName();
 
+    @NonNull
     private final PlayerService playerService;
-    private final @NonNull MediaSessionConnector sessionConnector;
-    private final @NonNull MediaSessionCompat mediaSession;
+    @NonNull
+    private final MediaSessionConnector sessionConnector;
+    @NonNull
+    private final MediaSessionCompat mediaSession;
 
     private AppDatabase database;
     private LocalPlaylistManager localPlaylistManager;
@@ -63,7 +69,8 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         playerService.setSessionToken(mediaSession.getSessionToken());
     }
 
-    public @NonNull MediaSessionConnector getSessionConnector() {
+    @NonNull
+    public MediaSessionConnector getSessionConnector() {
         return sessionConnector;
     }
 
@@ -86,32 +93,35 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         builder.setMediaId(mediaId);
         builder.setTitle(folderName);
 
-        final var extras = new Bundle();
+        final Bundle extras = new Bundle();
         extras.putString(MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
                 playerService.getString(R.string.app_name));
         builder.setExtras(extras);
         return new MediaItem(builder.build(), MediaItem.FLAG_BROWSABLE);
     }
 
-    private MediaItem createPlaylistMediaItem(final PlaylistMetadataEntry playlist) {
+    @NonNull
+    private MediaItem createPlaylistMediaItem(@NonNull final PlaylistMetadataEntry playlist) {
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(createMediaIdForPlaylist(playlist.getUid()))
-            .setTitle(playlist.name)
-            .setIconUri(Uri.parse(playlist.thumbnailUrl));
+                .setTitle(playlist.name)
+                .setIconUri(Uri.parse(playlist.thumbnailUrl));
 
-        final var extras = new Bundle();
+        final Bundle extras = new Bundle();
         extras.putString(MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
                 playerService.getResources().getString(R.string.tab_bookmarks));
         builder.setExtras(extras);
         return new MediaItem(builder.build(), MediaItem.FLAG_BROWSABLE);
     }
 
+    @NonNull
     private String createMediaIdForPlaylist(final long playlistId) {
         return ID_BOOKMARKS + '/' + playlistId;
     }
 
+    @NonNull
     private MediaItem createPlaylistStreamMediaItem(final long playlistId,
-                                                    final PlaylistStreamEntry item,
+                                                    @NonNull final PlaylistStreamEntry item,
                                                     final int index) {
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(createMediaIdForPlaylistIndex(playlistId, index))
@@ -121,6 +131,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
          return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
     }
 
+    @NonNull
     private String createMediaIdForPlaylistIndex(final long playlistId, final int index) {
         return createMediaIdForPlaylist(playlistId) + '/' + index;
     }
@@ -143,7 +154,6 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         }
 
         final List<MediaItem> mediaItems = new ArrayList<>();
-        final var parentIdUri = Uri.parse(parentId);
 
         if (parentId.equals(ID_ROOT)) {
             mediaItems.add(
@@ -153,14 +163,15 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
                     createRootMediaItem(ID_HISTORY,
                             playerService.getResources().getString(R.string.action_history)));
         } else if (parentId.startsWith(ID_BOOKMARKS)) {
-            final var path = parentIdUri.getPathSegments();
+            final Uri parentIdUri = Uri.parse(parentId);
+            final List<String> path = parentIdUri.getPathSegments();
             if (path.size() == 2) {
                 return populateBookmarks();
             } else if (path.size() == 3) {
-                final var playlistId = Long.parseLong(path.get(2));
+                final long playlistId = Long.parseLong(path.get(2));
                 return populatePlaylist(playlistId);
             } else {
-                Log.w(TAG, "Unknown playlist uri " + parentId);
+                Log.w(TAG, "Unknown playlist URI: " + parentId);
             }
         } else if (parentId.equals(ID_HISTORY)) {
             return populateHistory();
@@ -169,17 +180,19 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     }
 
     private Single<List<MediaItem>> populateHistory() {
-        final var streamHistory = getDatabase().streamHistoryDAO();
+        final StreamHistoryDAO streamHistory = getDatabase().streamHistoryDAO();
         final var history = streamHistory.getHistory().firstOrError();
-        return history.map(items ->
-                items.stream().map(this::createHistoryMediaItem).collect(Collectors.toList()));
+        return history.map(items -> items.stream()
+                .map(this::createHistoryMediaItem)
+                .collect(Collectors.toList()));
     }
 
+    @NonNull
     private MediaItem createHistoryMediaItem(@NonNull final StreamHistoryEntry streamHistoryEntry) {
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(ID_STREAM + '/' + streamHistoryEntry.getStreamId())
-            .setTitle(streamHistoryEntry.getStreamEntity().getTitle())
-            .setIconUri(Uri.parse(streamHistoryEntry.getStreamEntity().getThumbnailUrl()));
+                .setTitle(streamHistoryEntry.getStreamEntity().getTitle())
+                .setIconUri(Uri.parse(streamHistoryEntry.getStreamEntity().getThumbnailUrl()));
 
         return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
     }
@@ -198,10 +211,14 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         return localPlaylistManager;
     }
 
+    // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
+    // available in Android API 34 and not currently available with desugaring
+    @SuppressWarnings("squid:S6204")
     private Single<List<MediaItem>> populateBookmarks() {
         final var playlists = getPlaylistManager().getPlaylists().firstOrError();
-        return playlists.map(playlist ->
-                playlist.stream().map(this::createPlaylistMediaItem).collect(Collectors.toList()));
+        return playlists.map(playlist -> playlist.stream()
+                .map(this::createPlaylistMediaItem)
+                .collect(Collectors.toList()));
     }
 
     private Single<List<MediaItem>> populatePlaylist(final long playlistId) {
@@ -209,7 +226,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         return playlist.map(items -> {
             final List<MediaItem> results = new ArrayList<>();
             int index = 0;
-            for (final var item : items) {
+            for (final PlaylistStreamEntry item : items) {
                 results.add(createPlaylistStreamMediaItem(playlistId, item, index));
                 ++index;
             }
@@ -231,36 +248,33 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         if (mediaIdUri == null) {
             return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
         }
-        if (mediaId.startsWith(ID_BOOKMARKS)) {
-            final var path = mediaIdUri.getPathSegments();
-            if (path.size() == 4) {
-                final long playlistId = Long.parseLong(path.get(2));
-                final int index = Integer.parseInt(path.get(3));
 
-                return getPlaylistManager()
-                        .getPlaylistStreams(playlistId)
-                        .firstOrError()
-                        .map(items -> {
-                            final var infoItems = items.stream()
-                                    .map(PlaylistStreamEntry::toStreamInfoItem)
-                                    .collect(Collectors.toList());
-                            return new SinglePlayQueue(infoItems, index);
-                        });
-            }
-        } else if (mediaId.startsWith(ID_STREAM)) {
-            final var path = mediaIdUri.getPathSegments();
-            if (path.size() == 3) {
-                final long streamId = Long.parseLong(path.get(2));
-                return getDatabase().streamHistoryDAO().getHistory()
-                        .firstOrError()
-                        .map(items -> {
-                            final var infoItems = items.stream()
-                                    .filter(it -> it.getStreamId() == streamId)
-                                    .map(StreamHistoryEntry::toStreamInfoItem)
-                                    .collect(Collectors.toList());
-                            return new SinglePlayQueue(infoItems, 0);
-                        });
-            }
+        final List<String> path = mediaIdUri.getPathSegments();
+
+        if (mediaId.startsWith(ID_BOOKMARKS) && path.size() == 4) {
+            final long playlistId = Long.parseLong(path.get(2));
+            final int index = Integer.parseInt(path.get(3));
+
+            return getPlaylistManager()
+                    .getPlaylistStreams(playlistId)
+                    .firstOrError()
+                    .map(items -> {
+                        final List<StreamInfoItem> infoItems = items.stream()
+                                .map(PlaylistStreamEntry::toStreamInfoItem)
+                                .collect(Collectors.toList());
+                        return new SinglePlayQueue(infoItems, index);
+                    });
+        } else if (mediaId.startsWith(ID_STREAM) && path.size() == 3) {
+            final long streamId = Long.parseLong(path.get(2));
+            return getDatabase().streamHistoryDAO().getHistory()
+                    .firstOrError()
+                    .map(items -> {
+                        final List<StreamInfoItem> infoItems = items.stream()
+                                .filter(it -> it.getStreamId() == streamId)
+                                .map(StreamHistoryEntry::toStreamInfoItem)
+                                .collect(Collectors.toList());
+                        return new SinglePlayQueue(infoItems, 0);
+                    });
         }
 
         return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
@@ -285,7 +299,8 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     }
 
     @Override
-    public void onPrepareFromMediaId(@NonNull final String mediaId, final boolean playWhenReady,
+    public void onPrepareFromMediaId(@NonNull final String mediaId,
+                                     final boolean playWhenReady,
                                      @Nullable final Bundle extras) {
         if (DEBUG) {
             Log.d(TAG, String.format("MediaBrowserConnector.onPrepareFromMediaId(%s, %s, %s)",
@@ -307,22 +322,26 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     }
 
     @Override
-    public void onPrepareFromSearch(@NonNull final String query, final boolean playWhenReady,
+    public void onPrepareFromSearch(@NonNull final String query,
+                                    final boolean playWhenReady,
                                     @Nullable final Bundle extras) {
         disposePrepareOrPlayCommands();
         playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED);
     }
 
     @Override
-    public void onPrepareFromUri(@NonNull final Uri uri, final boolean playWhenReady,
+    public void onPrepareFromUri(@NonNull final Uri uri,
+                                 final boolean playWhenReady,
                                  @Nullable final Bundle extras) {
         disposePrepareOrPlayCommands();
         playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED);
     }
 
     @Override
-    public boolean onCommand(@NonNull final Player player, @NonNull final String command,
-                             @Nullable final Bundle extras, @Nullable final ResultReceiver cb) {
+    public boolean onCommand(@NonNull final Player player,
+                             @NonNull final String command,
+                             @Nullable final Bundle extras,
+                             @Nullable final ResultReceiver cb) {
         return false;
     }
 }

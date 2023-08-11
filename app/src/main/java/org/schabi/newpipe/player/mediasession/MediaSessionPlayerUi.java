@@ -38,8 +38,10 @@ public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MediaSessUi";
 
-    private final @NonNull MediaSessionCompat mediaSession;
-    private final @NonNull MediaSessionConnector sessionConnector;
+    @NonNull
+    private final MediaSessionCompat mediaSession;
+    @NonNull
+    private final MediaSessionConnector sessionConnector;
 
     private final String ignoreHardwareMediaButtonsKey;
     private boolean shouldIgnoreHardwareMediaButtons = false;
