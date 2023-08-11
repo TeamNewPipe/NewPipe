@@ -98,9 +98,9 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         }
 
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                && player.getPlayQueue() == null) {
-            // No need to process media button's actions if the player is not working, otherwise the
-            // player service would strangely start with nothing to play
+                && (player == null || player.getPlayQueue() == null)) {
+            // No need to process media button's actions if the player is not working, otherwise
+            // the player service would strangely start with nothing to play
             return START_NOT_STICKY;
         }
 
@@ -117,7 +117,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             Log.d(TAG, "stopForImmediateReusing() called");
         }
 
-        if (!player.exoPlayerIsNull()) {
+        if (player != null && !player.exoPlayerIsNull()) {
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
@@ -128,7 +128,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     @Override
     public void onTaskRemoved(final Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-        if (!player.videoPlayerSelected()) {
+        if (player != null && !player.videoPlayerSelected()) {
             return;
         }
         onDestroy();
