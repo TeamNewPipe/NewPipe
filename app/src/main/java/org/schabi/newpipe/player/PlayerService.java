@@ -43,8 +43,10 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.lang.ref.WeakReference;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * One service for all players.
@@ -53,6 +55,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
 
+    @Nullable
     private Player player;
 
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
@@ -79,7 +82,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         mediaBrowserConnector = new MediaBrowserConnector(this);
     }
 
-    private void initializePlayer() {
+    private void initializePlayerIfNeeded() {
         if (player == null) {
             player = new Player(this);
             /*
@@ -93,6 +96,9 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         }
     }
 
+    // Suppress Sonar warning to not always return the same value, as we need to do some actions
+    // before returning
+    @SuppressWarnings("squid:S3516")
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if (DEBUG) {
@@ -127,8 +133,8 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             return START_NOT_STICKY;
         }
 
-        initializePlayer();
-        player.handleIntent(intent);
+        initializePlayerIfNeeded();
+        Objects.requireNonNull(player).handleIntent(intent);
         player.UIs().get(MediaSessionPlayerUi.class)
                 .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
 
@@ -164,11 +170,14 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
+
         cleanup();
+
         if (mediaBrowserConnector != null) {
             mediaBrowserConnector.release();
             mediaBrowserConnector = null;
         }
+
         compositeDisposableLoadChildren.clear();
     }
 
@@ -190,36 +199,23 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     }
 
     @Override
-    public IBinder onBind(final Intent intent) {
+    public IBinder onBind(@NonNull final Intent intent) {
         if (SERVICE_INTERFACE.equals(intent.getAction())) {
             return super.onBind(intent);
         }
         return mBinder;
     }
 
+    @NonNull
     public MediaSessionConnector getSessionConnector() {
         return mediaBrowserConnector.getSessionConnector();
-    }
-    public static class LocalBinder extends Binder {
-        private final WeakReference<PlayerService> playerService;
-
-        LocalBinder(final PlayerService playerService) {
-            this.playerService = new WeakReference<>(playerService);
-        }
-
-        public PlayerService getService() {
-            return playerService.get();
-        }
-
-        public Player getPlayer() {
-            return playerService.get().player;
-        }
     }
 
     // MediaBrowserServiceCompat methods
     @Nullable
     @Override
-    public BrowserRoot onGetRoot(@NonNull final String clientPackageName, final int clientUid,
+    public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
+                                 final int clientUid,
                                  @Nullable final Bundle rootHints) {
         return mediaBrowserConnector.onGetRoot(clientPackageName, clientUid, rootHints);
     }
@@ -228,8 +224,26 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public void onLoadChildren(@NonNull final String parentId,
                                @NonNull final Result<List<MediaItem>> result) {
         result.detach();
-        final var disposable = mediaBrowserConnector.onLoadChildren(parentId)
+        final Disposable disposable = mediaBrowserConnector.onLoadChildren(parentId)
                 .subscribe(result::sendResult);
         compositeDisposableLoadChildren.add(disposable);
+    }
+
+    public static final class LocalBinder extends Binder {
+        private final WeakReference<PlayerService> playerService;
+
+        LocalBinder(final PlayerService playerService) {
+            this.playerService = new WeakReference<>(playerService);
+        }
+
+        @Nullable
+        public PlayerService getService() {
+            return playerService.get();
+        }
+
+        @Nullable
+        public Player getPlayer() {
+            return playerService.get().player;
+        }
     }
 }
