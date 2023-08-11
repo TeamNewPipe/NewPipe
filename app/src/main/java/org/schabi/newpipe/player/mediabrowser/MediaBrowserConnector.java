@@ -2,6 +2,8 @@ package org.schabi.newpipe.player.mediabrowser;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
+import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -11,6 +13,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -88,10 +91,20 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     @NonNull
     private static final String ID_STREAM = ID_ROOT + "/stream";
 
-    private MediaItem createRootMediaItem(final String mediaId, final String folderName) {
+    @NonNull
+    private MediaItem createRootMediaItem(@Nullable final String mediaId,
+                                          final String folderName,
+                                          @DrawableRes final int iconResId) {
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(mediaId);
         builder.setTitle(folderName);
+        final Resources resources = playerService.getResources();
+        builder.setIconUri(new Uri.Builder()
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(iconResId))
+                .appendPath(resources.getResourceTypeName(iconResId))
+                .appendPath(resources.getResourceEntryName(iconResId))
+                .build());
 
         final Bundle extras = new Bundle();
         extras.putString(MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
@@ -158,10 +171,12 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         if (parentId.equals(ID_ROOT)) {
             mediaItems.add(
                     createRootMediaItem(ID_BOOKMARKS,
-                            playerService.getResources().getString(R.string.tab_bookmarks)));
+                            playerService.getResources().getString(R.string.tab_bookmarks),
+                            R.drawable.ic_bookmark));
             mediaItems.add(
                     createRootMediaItem(ID_HISTORY,
-                            playerService.getResources().getString(R.string.action_history)));
+                            playerService.getResources().getString(R.string.action_history),
+                            R.drawable.ic_history));
         } else if (parentId.startsWith(ID_BOOKMARKS)) {
             final Uri parentIdUri = Uri.parse(parentId);
             final List<String> path = parentIdUri.getPathSegments();
