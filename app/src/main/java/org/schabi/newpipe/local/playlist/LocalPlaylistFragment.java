@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -96,8 +95,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private AtomicBoolean isLoadingComplete;
     /* Has the playlist been modified (e.g. items reordered or deleted) */
     private AtomicBoolean isModified;
-    /* Is the playlist currently being processed to remove watched videos */
-    private boolean isRemovingWatched = false;
+    /* Flag to prevent simultaneous rewrites of the playlist */
+    private boolean isRewritingPlaylist = false;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         final LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -354,19 +353,22 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
             createRenameDialog();
         } else if (item.getItemId() == R.id.menu_item_remove_watched) {
-            if (!isRemovingWatched) {
+            if (!isRewritingPlaylist) {
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.ok,
-                                (DialogInterface d, int id) -> removeWatchedStreams(false))
+                        .setPositiveButton(R.string.ok, (d, id) ->
+                                removeWatchedStreams(false))
                         .setNeutralButton(
                                 R.string.remove_watched_popup_yes_and_partially_watched_videos,
-                                (DialogInterface d, int id) -> removeWatchedStreams(true))
+                                (d, id) -> removeWatchedStreams(true))
                         .setNegativeButton(R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel())
-                        .create()
+                                (d, id) -> d.cancel())
                         .show();
+            }
+        } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
+            if (!isRewritingPlaylist) {
+                openRemoveDuplicatesDialog();
             }
         } else {
             return super.onOptionsItemSelected(item);
@@ -389,10 +391,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
-        if (isRemovingWatched) {
+        if (isRewritingPlaylist) {
             return;
         }
-        isRemovingWatched = true;
+        isRewritingPlaylist = true;
         showLoading();
 
         final var recordManager = new HistoryRecordManager(getContext());
@@ -470,7 +472,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
 
                     hideLoading();
-                    isRemovingWatched = false;
+                    isRewritingPlaylist = false;
                 }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
                         "Removing watched videos, partially watched=" + removePartiallyWatched))));
     }
@@ -556,15 +558,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         dialogBinding.dialogEditText.setSelection(dialogBinding.dialogEditText.getText().length());
         dialogBinding.dialogEditText.setText(name);
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(getContext())
                 .setTitle(R.string.rename_playlist)
                 .setView(dialogBinding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.rename, (dialogInterface, i) ->
-                        changePlaylistName(dialogBinding.dialogEditText.getText().toString()));
-
-        dialogBuilder.show();
+                        changePlaylistName(dialogBinding.dialogEditText.getText().toString()))
+                .show();
     }
 
     private void changePlaylistName(final String title) {
@@ -627,6 +628,41 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         changeThumbnailStreamId(thumbnailStreamId, false);
+    }
+
+    private void openRemoveDuplicatesDialog() {
+        new AlertDialog.Builder(this.getActivity())
+                .setTitle(R.string.remove_duplicates_title)
+                .setMessage(R.string.remove_duplicates_message)
+                .setPositiveButton(R.string.ok, (dialog, i) ->
+                        removeDuplicatesInPlaylist())
+                .setNeutralButton(R.string.cancel, null)
+                .show();
+    }
+
+    private void removeDuplicatesInPlaylist() {
+        if (isRewritingPlaylist) {
+            return;
+        }
+        isRewritingPlaylist = true;
+        showLoading();
+
+        final var streamsMaybe = playlistManager
+                .getDistinctPlaylistStreams(playlistId).firstElement();
+
+
+        disposables.add(streamsMaybe.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(itemsToKeep -> {
+                    itemListAdapter.clearStreamItemList();
+                    itemListAdapter.addItems(itemsToKeep);
+                    setVideoCount(itemListAdapter.getItemsList().size());
+                    saveChanges();
+
+                    hideLoading();
+                    isRewritingPlaylist = false;
+                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_BOOKMARK,
+                        "Removing duplicated streams"))));
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {

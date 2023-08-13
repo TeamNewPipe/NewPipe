@@ -29,6 +29,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.PendingIntentCompat
 import androidx.core.app.ServiceCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -42,7 +43,6 @@ import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
-import org.schabi.newpipe.util.PendingIntentCompat
 import java.util.concurrent.TimeUnit
 
 class FeedLoadService : Service() {
@@ -95,13 +95,7 @@ class FeedLoadService : Service() {
             .doOnSubscribe {
                 startForeground(NOTIFICATION_ID, notificationBuilder.build())
             }
-            .subscribe { _, error ->
-                // There seems to be a bug in the kotlin plugin as it tells you when
-                // building that this can't be null:
-                // "Condition 'error != null' is always 'true'"
-                // However it can indeed be null
-                // The suppression may be removed in further versions
-                @Suppress("SENSELESS_COMPARISON")
+            .subscribe { _, error: Throwable? -> // explicitly mark error as nullable
                 if (error != null) {
                     Log.e(TAG, "Error while storing result", error)
                     handleError(error)
@@ -152,8 +146,8 @@ class FeedLoadService : Service() {
     private lateinit var notificationBuilder: NotificationCompat.Builder
 
     private fun createNotification(): NotificationCompat.Builder {
-        val cancelActionIntent =
-            PendingIntentCompat.getBroadcast(this, NOTIFICATION_ID, Intent(ACTION_CANCEL), 0)
+        val cancelActionIntent = PendingIntentCompat
+            .getBroadcast(this, NOTIFICATION_ID, Intent(ACTION_CANCEL), 0, false)
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
             .setOngoing(true)

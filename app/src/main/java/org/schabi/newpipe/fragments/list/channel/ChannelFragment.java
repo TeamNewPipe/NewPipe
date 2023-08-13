@@ -573,7 +573,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
         channelBinding.channelKaomoji.setText("(︶︹︺)");
         channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
-        channelBinding.channelNoVideos.setVisibility(View.GONE);
+        channelBinding.emptyStateMessage.setVisibility(View.GONE);
     }
 
     private PlayQueue getPlayQueue() {

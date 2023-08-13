@@ -32,6 +32,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -39,8 +40,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -453,9 +452,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             getParentActivity().map(Activity::getWindow).ifPresent(window -> {
                 window.setStatusBarColor(Color.TRANSPARENT);
                 window.setNavigationBarColor(Color.TRANSPARENT);
-                WindowCompat.setDecorFitsSystemWindows(window, false);
-                WindowCompat.getInsetsController(window, window.getDecorView())
-                        .show(WindowInsetsCompat.Type.systemBars());
+                final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                window.getDecorView().setSystemUiVisibility(visibility);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             });
         }
     }

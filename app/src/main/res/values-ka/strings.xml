@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="no_player_found_toast">ნაკადის პლეერი ვერ მოიძებნა (მის დასაკრავად შეგიძლიათ დააინსტალიროთ VLC).</string>
-    <string name="no_player_found">"ნაკადის მოთამაშე ვერ მოიძებნა.  დააინსტალირე VLC\?"</string>
+    <string name="no_player_found">ნაკადის მოთამაშე ვერ მოიძებნა. დააყენეთ VLC\?</string>
     <string name="cancel">გაუქმება</string>
     <string name="share_dialog_title">გააზიარეთ როგორც</string>
     <string name="use_external_video_player_title">გამოიყენეთ გარე ვიდეო დამკვრელი</string>
@@ -18,7 +18,7 @@
     <string name="crash_the_player">დაარტყა დამკვრელი</string>
     <string name="notification_scale_to_square_image_title">ესკიზის ჩამოჭრა ასპექტის თანაფარდობაზე 1:1</string>
     <string name="notification_actions_at_most_three">თქვენ შეგიძლიათ აირჩიოთ მაქსიმუმ სამი მოქმედება კომპაქტურ შეტყობინებაში საჩვენებლად!</string>
-    <string name="notification_actions_summary">"შეცვალეთ თითოეული შეტყობინებების მოქმედება ქვემოთ მასზე შეხებით.  აირჩიეთ მაქსიმუმ სამი მათგანი, რომლებიც ნაჩვენები იქნება კომპაქტურ შეტყობინებაში მარჯვნივ მდებარე ველების გამოყენებით"</string>
+    <string name="notification_actions_summary">შეცვალეთ თითოეული შეტყობინებების მოქმედება ქვემოთ მასზე შეხებით. აირჩიეთ მაქსიმუმ სამი მათგანი, რომლებიც ნაჩვენები იქნება კომპაქტურ შეტყობინებაში მარჯვნივ მდებარე ველების გამოყენებით</string>
     <string name="remote_search_suggestions">დისტანციური ძიების შეთავაზებები</string>
     <string name="show_description_summary">გამორთეთ ვიდეოს აღწერილობისა და დამატებითი ინფორმაციის დასამალად</string>
     <string name="theme_title">თემა</string>
@@ -33,19 +33,18 @@
     <string name="resume_on_audio_focus_gain_title">გააგრძელეთ დაკვრა</string>
     <string name="resume_on_audio_focus_gain_summary">გააგრძელეთ დაკვრა შეფერხებების შემდეგ (მაგ. სატელეფონო ზარები</string>
     <string name="start_main_player_fullscreen_title">დაიწყეთ მთავარი მოთამაშე სრულ ეკრანზე</string>
-    <string name="unsupported_url_dialog_message">"URL-ის ამოცნობა ვერ მოხერხდა.  სხვა აპით გახსნა\?"</string>
+    <string name="unsupported_url_dialog_message">URL-ის ამოცნობა ვერ მოხერხდა. გავხსნა სხვა აპით\?</string>
     <string name="default_audio_format_title">ნაგულისხმევი აუდიო ფორმატი</string>
     <string name="peertube_instance_url_summary">აირჩიეთ თქვენი საყვარელი PeerTube ეგზემპლარები</string>
     <string name="progressive_load_interval_title">დაკვრის დატვირთვის ინტერვალის ზომა</string>
-    <string name="progressive_load_interval_summary">"შეცვალეთ დატვირთვის ინტერვალის ზომა (ამჟამად %s).  დაბალმა მნიშვნელობამ შეიძლება დააჩქაროს საწყისი ვიდეოს ჩატვირთვა.  ცვლილებები მოითხოვს მოთამაშის გადატვირთვას"</string>
+    <string name="progressive_load_interval_summary">შეცვალეთ დატვირთვის ინტერვალის ზომა (ამჟამად %s). დაბალმა მნიშვნელობამ შეიძლება დააჩქაროს საწყისი ვიდეოს ჩატვირთვა. ცვლილებები მოითხოვს მოთამაშის გადატვირთვას</string>
     <string name="clear_queue_confirmation_title">მოითხოვეთ დადასტურება რიგის გასუფთავებამდე</string>
-    <string name="use_inexact_seek_summary">"არაზუსტი ძიება საშუალებას აძლევს მოთამაშეს უფრო სწრაფად მოიძიოს პოზიციები შემცირებული სიზუსტით.  5, 15 ან 25 წამის ძიება ამით არ მუშაობს"</string>
+    <string name="use_inexact_seek_summary">არაზუსტი ძიება საშუალებას აძლევს მოთამაშეს უფრო სწრაფად მოიძიოს პოზიციები შემცირებული სიზუსტით. 5, 15 ან 25 წამის ძიება ამით არ მუშაობს</string>
     <string name="seek_duration_title">სწრაფი წინსვლა/-გადახვევა ძიების ხანგრძლივობა</string>
     <string name="clear_queue_confirmation_summary">ერთი მოთამაშიდან მეორეზე გადართვამ შესაძლოა შეცვალოს თქვენი რიგი</string>
     <string name="download_thumbnail_summary">გამორთეთ ესკიზების ჩატვირთვის თავიდან ასაცილებლად, მონაცემთა დაზოგვისა და მეხსიერების გამოყენების თავიდან ასაცილებლად. იცვლება როგორც მეხსიერებაში, ასევე დისკზე გამოსახულების ქეშის გასუფთავება</string>
     <string name="show_search_suggestions_title">ძიების შეთავაზებები</string>
     <string name="metadata_cache_wipe_summary">წაშალეთ ყველა ქეშირებული ვებგვერდის მონაცემები</string>
-    <string name="volume_gesture_control_summary">გამოიყენეთ ჟესტები მოთამაშის ხმის გასაკონტროლებლად</string>
     <string name="auto_queue_title">შემდეგი ნაკადის ავტომატური შეყვანა</string>
     <string name="auto_queue_summary">გააგრძელეთ დაკვრის რიგის (არაგანმეორებადი) დასრულება შესაბამისი ნაკადის დამატებით</string>
     <string name="metadata_cache_wipe_complete_notice">მეტამონაცემების ქეში წაშლილია</string>
@@ -84,12 +83,12 @@
     <string name="tab_subscriptions">გამოწერები</string>
     <string name="controls_background_title">ფონი</string>
     <string name="controls_popup_title">ამომხტარი ფანჯარა</string>
-    <string name="controls_add_to_playlist_title">დამატება:</string>
+    <string name="controls_add_to_playlist_title">დამატება</string>
     <string name="download_path_title">ვიდეოს ჩამოტვირთვის საქაღალდე</string>
     <string name="download_path_summary">გადმოწერილი ვიდეო ფაილები ინახება აქ</string>
     <string name="download_path_audio_title">აუდიოს ჩამოტვირთვის საქაღალდე</string>
     <string name="show_higher_resolutions_title">უფრო მაღალი რეზოლუციის ჩვენება</string>
-    <string name="kore_not_found">დააინსტალიროთ დაკარგული Kore აპი\?</string>
+    <string name="kore_not_found">დავაყენო აუცილებელი Kore აპი\?</string>
     <string name="show_play_with_kodi_title">აჩვენეთ \"დაუკარი კოდით\" ვარიანტი</string>
     <string name="show_play_with_kodi_summary">აჩვენეთ ვიდეოს დაკვრის ვარიანტი Kodi მედია ცენტრის საშუალებით</string>
     <string name="notification_scale_to_square_image_summary">შეტყობინებაში ნაჩვენები ვიდეოს ესკიზის ამოჭრა 16:9-დან 1:1-მდე ასპექტის თანაფარდობით</string>
@@ -116,15 +115,12 @@
     <string name="show_meta_info_title">მეტა ინფორმაციის ჩვენება</string>
     <string name="thumbnail_cache_wipe_complete_notice">სურათის ქეში წაშლილია</string>
     <string name="metadata_cache_wipe_title">წაშალეთ ქეშირებული მეტამონაცემები</string>
-    <string name="volume_gesture_control_title">ხმის ჟესტების კონტროლი</string>
-    <string name="brightness_gesture_control_title">სიკაშკაშის ჟესტების კონტროლი</string>
-    <string name="brightness_gesture_control_summary">გამოიყენეთ ჟესტები მოთამაშის სიკაშკაშის გასაკონტროლებლად</string>
     <string name="enable_search_history_summary">შეინახეთ საძიებო მოთხოვნები ადგილობრივად</string>
     <string name="enable_watch_history_title">ნახვის ისტორია</string>
     <string name="enable_playback_resume_title">განაახლეთ დაკვრა</string>
     <string name="enable_playback_resume_summary">აღადგინეთ დაკვრის ბოლო პოზიცია</string>
     <string name="autoplay_title">Ავტომატური ჩართვა</string>
-    <string name="show_hold_to_append_title">აჩვენეთ წვერი \"შეაჩერე რიგში\".</string>
+    <string name="show_hold_to_append_title">აჩვენეთ წვერი \"შეაჩერე რიგში\"</string>
     <string name="show_hold_to_append_summary">რჩევის ჩვენება ფონზე ან ამომხტარ ღილაკზე დაჭერისას ვიდეოში \"დეტალები:\"</string>
     <string name="unsupported_url">URL მხარდაუჭერელია</string>
     <string name="default_content_country_title">ნაგულისხმევი კონტენტის ქვეყანა</string>
@@ -223,7 +219,7 @@
     <string name="error_report_notification_title">NewPipe-ს შეექმნა შეცდომა, შეეხეთ შეტყობინებისთვის</string>
     <string name="error_report_notification_toast">მოხდა შეცდომა, იხილეთ შეტყობინება</string>
     <string name="sorry_string">უკაცრავად, ეს არ უნდა მომხდარიყო.</string>
-    <string name="error_report_button_text">შეატყობინეთ ამ შეცდომის შესახებ ელფოსტით</string>
+    <string name="error_report_button_text">ელფოსტით შეტყობინება</string>
     <string name="copy_for_github">დააკოპირეთ ფორმატირებული ანგარიში</string>
     <string name="error_report_open_issue_button_text">მოხსენება GitHub-ზე</string>
     <string name="error_snackbar_message">Ბოდიში, რაღაც არ არის რიგზე.</string>
@@ -292,7 +288,8 @@
     <string name="msg_calculating_hash">ჰეშის გაანგარიშება</string>
     <string name="msg_wait">გთხოვთ მოიცადოთ…</string>
     <string name="msg_copied">კოპირებულია ბუფერში</string>
-    <string name="msg_popup_permission">ეს ნებართვა საჭიროა ამომხტარი ფანჯრის რეჟიმში გასახსნელად</string>
+    <string name="msg_popup_permission">ეს უფლება აუცილებელია
+\nმხტუნარა რეჟიმში გასახსნელად</string>
     <string name="one_item_deleted">1 ელემენტი წაიშალა.</string>
     <string name="title_activity_recaptcha">reCAPTCHA გამოწვევა</string>
     <string name="subtitle_activity_recaptcha">როდესაც მოგვარდება, დააჭირეთ შესრულებულია</string>
@@ -312,8 +309,8 @@
     <string name="website_title">საიტი</string>
     <string name="website_encouragement">ეწვიეთ NewPipe ვებსაიტს დამატებითი ინფორმაციისა და სიახლეებისთვის.</string>
     <string name="privacy_policy_title">NewPipe-ის კონფიდენციალურობის პოლიტიკა</string>
-    <string name="privacy_policy_encouragement">"NewPipe პროექტი თქვენს კონფიდენციალურობას ძალიან სერიოზულად ეკიდება.  ამიტომ, აპლიკაცია არ აგროვებს მონაცემებს თქვენი თანხმობის გარეშე.
-\n NewPipe-ის კონფიდენციალურობის პოლიტიკა დეტალურად განმარტავს, თუ რა მონაცემები იგზავნება და ინახება ავარიის ანგარიშის გაგზავნისას."</string>
+    <string name="privacy_policy_encouragement">NewPipe პროექტი თქვენს კონფიდენციალურობას ძალიან სერიოზულად ეკიდება. ამიტომ, აპლიკაცია არ აგროვებს მონაცემებს თქვენი თანხმობის გარეშე.
+\nNewPipe-ის კონფიდენციალურობის პოლიტიკა დეტალურად განმარტავს, თუ რა მონაცემები იგზავნება და ინახება ავარიის ანგარიშის გაგზავნისას.</string>
     <string name="read_privacy_policy">წაიკითხეთ კონფიდენციალურობის პოლიტიკა</string>
     <string name="app_license_title">NewPipe-ის ლიცენზია</string>
     <string name="read_full_license">წაიკითხეთ ლიცენზია</string>
@@ -539,8 +536,6 @@
     <string name="feed_use_dedicated_fetch_method_title">მიიღეთ გამოყოფილი არხიდან, როცა ხელმისაწვდომია</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">ჩართეთ სწრაფი რეჟიმი</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">სწრაფი რეჟიმის გამორთვა</string>
-    <string name="feed_toggle_show_played_items">ნანახი ნივთების ჩვენება</string>
-    <string name="feed_toggle_hide_played_items">ნანახი ნივთების დამალვა</string>
     <string name="content_not_supported">ეს შინაარსი ჯერ არ არის მხარდაჭერილი NewPipe-ის მიერ.
 \n
 \n იმედია, ის იქნება მხარდაჭერილი მომავალ ვერსიაში.</string>
@@ -557,7 +552,7 @@
     <string name="georestricted_content">ეს კონტენტი მიუწვდომელია თქვენს ქვეყანაში.</string>
     <string name="private_content">ეს კონტენტი პირადია, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
     <string name="account_terminated">ანგარიში შეწყვეტილია</string>
-    <string name="service_provides_reason">%s იძლევა ამ მიზეზს</string>
+    <string name="service_provides_reason">%s იძლევა ამ მიზეზს:</string>
     <string name="paid_content">ეს კონტენტი ხელმისაწვდომია მხოლოდ მომხმარებლებისთვის, რომლებმაც გადაიხადეს, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
     <string name="featured">გამორჩეული</string>
     <string name="radio">რადიო</string>
@@ -595,14 +590,13 @@
     <string name="select_quality_external_players">აირჩიეთ ხარისხი გარე დამკვრელებისთვის</string>
     <string name="unknown_format">უცნობი ფორმატი</string>
     <string name="unknown_quality">უცნობი ხარისხი</string>
-    <string name="feed_toggle_show_future_items">მომავალი ელემენტების ჩვენება</string>
-    <string name="feed_toggle_hide_future_items">სამომავლო ნივთების დამალვა</string>
     <string name="sort">დალაგება</string>
     <string name="peertube_instance_add_exists">ეგეთი უკვე არსებობს</string>
     <string name="peertube_instance_add_fail">ინსტანციის დადასტურება ვერ მოხერხდა</string>
     <string name="youtube_restricted_mode_enabled_title">ჩართეთ YouTube-ის „შეზღუდული რეჟიმი“</string>
-    <string name="restricted_video">"ეს ვიდეო ასაკობრივი შეზღუდულია.
-\n  თუ გსურთ მისი ნახვა, ჩართეთ „%1$s“ პარამეტრებში."</string>
+    <string name="restricted_video">ეს ვიდეო ასაკობრივი შეზღუდულია.
+\n
+\nთუ გსურთ მისი ნახვა, ჩართეთ „%1$s“ პარამეტრებში.</string>
     <string name="duration_live">ლაივი</string>
     <string name="restricted_video_no_stream">ეს ვიდეო ასაკობრივად შეზღუდულია.
 \n YouTube-ის ახალი წესების გამო ასაკობრივად შეზღუდული ვიდეოებით, NewPipe-ს არ შეუძლია წვდომა მის რომელიმე ვიდეო ნაკადზე და, შესაბამისად, ვერ ახერხებს მის დაკვრას.</string>
@@ -619,7 +613,7 @@
     <string name="external_player_unsupported_link_type">გარე დამკვრელს არ აქვთ ამ ტიპის ბმულების მხარდაჭერა</string>
     <string name="invalid_file">ფაილი არ არსებობს ან მასზე წაკითხვის ან ჩაწერის ნებართვა აკლია</string>
     <string name="saved_tabs_invalid_json">შენახული ჩანართების წაკითხვა ვერ მოხერხდა, ამიტომ გამოიყენეთ ნაგულისხმევი ჩანართები</string>
-    <string name="info_labels">რა:\\nმოითხოვეთ:\\შინაარსის ენა:\\nშინაარსის ქვეყანა:\\nაპლიკაციის ენა:\\nმომსახურება:\\nGMT დრო:\\პაკეტი:\\ვერსია:\\nOS ვერსია:</string>
+    <string name="info_labels">რა:\\nმოითხოვეთ:\\nშემცველობის ენა:\\nშემცველობის ქვეყანა:\\nაპლიკაციის ენა:\\nსერვისი:\\nGMT დრო:\\nპაკეტი:\\nვერსია:\\nOS ვერსია:</string>
     <string name="detail_uploader_thumbnail_view_description">ამტვირთველის ავატარის ესკიზი</string>
     <string name="comments_are_disabled">კომენტარები გამორთულია</string>
     <string name="create">Შექმნა</string>
@@ -644,7 +638,7 @@
 \n 4. დააწკაპუნეთ „შემდეგი ნაბიჯი“ და შემდეგ „ექსპორტის შექმნა“
 \n 5. დააწკაპუნეთ ღილაკზე „ჩამოტვირთვა“ მისი გამოჩენის შემდეგ
 \n 6. დააწკაპუნეთ IMPORT FILE ქვემოთ და აირჩიეთ გადმოწერილი .zip ფაილი
-\n 7. [თუ .zip-ის იმპორტი ვერ მოხერხდა] ამოიღეთ.</string>
+\n 7. [თუ .zip-ის შემოტანავერ მოხერხდა] ამოიღეთ</string>
     <string name="playback_pitch">მოედანი</string>
     <string name="enable_streams_notifications_title">ახალი ნაკადების შეტყობინებები</string>
     <string name="start_accept_privacy_policy">მონაცემთა დაცვის ევროპული ზოგადი რეგულაციის (GDPR) შესაბამისობის მიზნით, ჩვენ ვაქცევთ თქვენს ყურადღებას NewPipe-ის კონფიდენციალურობის პოლიტიკაზე. გთხოვთ ყურადღებით წაიკითხოთ.
@@ -688,7 +682,7 @@
     <string name="processing_may_take_a_moment">დამუშავება… შეიძლება რამდენიმე წუთი დასჭირდეს</string>
     <string name="delete_playlist_prompt">წაშალოთ ეს დასაკრავი სია\?</string>
     <string name="show_memory_leaks">მეხსიერების გაჟონვის ჩვენება</string>
-    <string name="recovering">აღდგენა.</string>
+    <string name="recovering">აღდგენა</string>
     <string name="enqueue">რიგი</string>
     <string name="subscriptions_import_unsuccessful">გამოწერების იმპორტი ვერ მოხერხდა</string>
     <string name="enable_disposed_exceptions_title">შეატყობინეთ სასიცოცხლო ციკლის შეცდომებს</string>
@@ -698,7 +692,7 @@
     <string name="feed_load_error_account_info">„%s“-ის არხის ჩატვირთვა ვერ მოხერხდა.</string>
     <string name="feed_use_dedicated_fetch_method_summary">ხელმისაწვდომია ზოგიერთ სერვისში, როგორც წესი, ბევრად უფრო სწრაფია, მაგრამ შეიძლება დააბრუნოს შეზღუდული რაოდენობის ელემენტი და ხშირად არასრული ინფორმაცია (მაგ. ხანგრძლივობის გარეშე, ელემენტის ტიპი, არ არის ლაივის სტატუსი)</string>
     <string name="show_thumbnail_summary">გამოიყენეთ ესკიზი როგორც ჩაკეტილი ეკრანის ფონისთვის, ასევე შეტყობინებებისთვის</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">"როგორ ფიქრობთ, არხის ჩატვირთვა ძალიან ნელია\?  თუ ასეა, სცადეთ ჩართოთ სწრაფი ჩატვირთვა (შეგიძლიათ შეცვალოთ ის პარამეტრებში ან ქვემოთ მოცემულ ღილაკზე დაჭერით).
+    <string name="feed_use_dedicated_fetch_method_help_text">როგორ ფიქრობთ, არხის ჩატვირთვა ძალიან ნელია\? თუ ასეა, სცადეთ ჩართოთ სწრაფი ჩატვირთვა (შეგიძლიათ შეცვალოთ ის პარამეტრებში ან ქვემოთ მოცემულ ღილაკზე დაჭერით).
 \n
 \n NewPipe გთავაზობთ არხის ჩატვირთვის ორ სტრატეგიას:
 \n • მთელი სააბონენტო არხის მიღება, რომელიც ნელია, მაგრამ დასრულებულია.
@@ -708,7 +702,7 @@
 \n
 \n YouTube არის სერვისის მაგალითი, რომელიც გთავაზობთ ამ სწრაფ მეთოდს თავისი RSS არხით.
 \n
-\n ასე რომ, არჩევანი დამოკიდებულია იმაზე, თუ რა გირჩევნიათ: სიჩქარე ან ზუსტი ინფორმაცია."</string>
+\n ასე რომ, არჩევანი დამოკიდებულია იმაზე, თუ რა გირჩევნიათ: სიჩქარე ან ზუსტი ინფორმაცია.</string>
     <string name="soundcloud_go_plus_content">ეს არის SoundCloud Go+ სიმღერა, ყოველ შემთხვევაში თქვენს ქვეყანაში, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
     <string name="no_appropriate_file_manager_message">ამ მოქმედებისთვის შესაბამისი ფაილების მენეჯერი ვერ მოიძებნა.
 \n გთხოვთ, დააინსტალიროთ ფაილის მენეჯერი ან სცადოთ გამორთოთ \'%s\' ჩამოტვირთვის პარამეტრებში</string>
@@ -718,4 +712,32 @@
     <string name="description_select_note">ახლა შეგიძლიათ აირჩიოთ ტექსტი აღწერილობაში. გაითვალისწინეთ, რომ გვერდი შეიძლება ციმციმდეს და ბმულები არ იყოს დაწკაპუნებული შერჩევის რეჟიმში.</string>
     <string name="metadata_support">მხარდაჭერა</string>
     <string name="no_audio_streams_available_for_external_players">აუდიო ნაკადები არ არის ხელმისაწვდომი გარე დამკვრელებისთვის</string>
+    <string name="left_gesture_control_title">მარცხენა ჟესტის ქმედება</string>
+    <string name="right_gesture_control_title">მარჯვენა ჟესტის ქმედება</string>
+    <string name="brightness">სიკაშკაშე</string>
+    <string name="msg_failed_to_copy">ბუფერში კოპირების შეცდომა</string>
+    <string name="card">ბარათი</string>
+    <string name="remove_duplicates_message">გნებავთ წავშალო ყველა დუბლირებული ნაკადი ამ დასაკრავი სიიდან\?</string>
+    <string name="playlist_add_stream_success_duplicate">ასლი დამატებულია %d-ჯერ</string>
+    <string name="app_update_available_notification_text">%s-ის გადმოსაწერად დაატყაპუნეთ</string>
+    <string name="ignore_hardware_media_buttons_title">აპარატურული მედია ღილაკების მოვლენების გამოტოვება</string>
+    <string name="feed_show_hide_streams">ნაკადების ჩვენება/დამალვა</string>
+    <string name="feed_hide_streams_title">შემდეგი ნაკადების ჩვენება</string>
+    <string name="feed_show_watched">სრულად ნანახი</string>
+    <string name="night_theme_available">ეს პარამეტრი ხელმისაწვდომია მხოლოდ როცა თემისთვის %s-ა მონიშნული</string>
+    <string name="ignore_hardware_media_buttons_summary">სასარგებლოა, მაგალითად, თუ იყენებთ ყურსაცვამდებს, რომლის ფიზიკური ღილაკებიც დაზიანებულია</string>
+    <string name="left_gesture_control_summary">აირჩიეთ ჟესტი მოთამაშის ეკრანის მარცხენა ნახევრისთვის</string>
+    <string name="right_gesture_control_summary">აირჩიეთ ჟესტი მოთამაშის ეკრანის მარჯვენა ნახევრისთვის</string>
+    <string name="none">არაფერი</string>
+    <string name="fast_mode">სწრაფი რეჟიმი</string>
+    <string name="feed_show_upcoming">მომავალი</string>
+    <string name="volume">ხმა</string>
+    <string name="app_update_available_notification_title">ხელმისაწვდომია NewPipe-ის განახლება!</string>
+    <string name="import_subscriptions_hint">გამოწერების შეტანა/გამოტანა სამწერტილიანი მენიუდან</string>
+    <string name="duplicate_in_playlist">განაცრისფერებული დასაკრავი სიები ამ ელემენტს უკვე შეიცავენ.</string>
+    <string name="app_update_unavailable_toast">თქვენი NewPipe-ის ვერსია უახლესია</string>
+    <string name="remove_duplicates">დუბლიკატების წაშლა</string>
+    <string name="unset_playlist_thumbnail">მუდმივი მინიატურის მოხსნა</string>
+    <string name="remove_duplicates_title">წავშალო დუბლიკატები\?</string>
+    <string name="feed_show_partially_watched">ნაწილობრივ ნანახი</string>
 </resources>

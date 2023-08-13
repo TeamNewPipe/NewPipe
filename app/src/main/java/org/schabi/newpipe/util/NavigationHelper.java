@@ -325,11 +325,11 @@ public final class NavigationHelper {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
-                        .setPositiveButton(R.string.install,
-                                (dialog, which) -> ShareUtils.installApp(context,
+                        .setPositiveButton(R.string.install, (dialog, which) ->
+                                ShareUtils.installApp(context,
                                         context.getString(R.string.vlc_package)))
-                        .setNegativeButton(R.string.cancel, (dialog, which)
-                                -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
+                        .setNegativeButton(R.string.cancel, (dialog, which) ->
+                                Log.i("NavigationHelper", "You unlocked a secret unicorn."))
                         .show();
             } else {
                 Toast.makeText(context, R.string.no_player_found_toast, Toast.LENGTH_LONG).show();
@@ -563,11 +563,8 @@ public final class NavigationHelper {
                                        @Nullable final PlayQueue playQueue,
                                        final boolean switchingPlayers) {
 
-        final Intent intent = getOpenIntent(context, url, serviceId,
-                StreamingService.LinkType.STREAM);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.KEY_TITLE, title);
-        intent.putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
+        final Intent intent = getStreamIntent(context, serviceId, url, title)
+                .putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
 
         if (playQueue != null) {
             final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
@@ -678,6 +675,15 @@ public final class NavigationHelper {
                                           final int serviceId,
                                           final String url) {
         return getOpenIntent(context, url, serviceId, StreamingService.LinkType.CHANNEL);
+    }
+
+    public static Intent getStreamIntent(final Context context,
+                                         final int serviceId,
+                                         final String url,
+                                         @Nullable final String title) {
+        return getOpenIntent(context, url, serviceId, StreamingService.LinkType.STREAM)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(Constants.KEY_TITLE, title);
     }
 
     /**

@@ -1,0 +1,17 @@
+Mới
+• Số người đăng ký trong chi tiết video
+• Tải xuống từ hàng đợi
+• Đặt hình thu nhỏ danh sách phát vĩnh viễn
+• Nhấn và giữ liên kết và thẻ bắt đầu bằng #
+• Chế độ xem thẻ
+
+Cải tiến
+• Nút đóng trình phát mini lớn hơn
+• Thu nhỏ hình thu nhỏ mượt mà hơn
+• Nhắm mục tiêu Android 13 (API 33)
+• Tìm kiếm không còn tạm dừng trình phát
+
+Đã sửa
+• Sửa lớp phủ trên DeX/chuột
+• Cho phép trình phát nền không có luồng âm thanh riêng biệt
+• Các bản sửa lỗi khác nhau của YouTube và hơn thế nữa…

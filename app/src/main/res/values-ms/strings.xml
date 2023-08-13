@@ -43,7 +43,7 @@
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
-    <string name="kore_not_found">Pasangkan aplikasi Kore yang tidak dijumpai\?</string>
+    <string name="kore_not_found">Pasangkan aplikasi Kode yang tidak dijumpai\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Paparkan opsyen untuk memain video dengan Kodi</string>
     <string name="play_audio">Audio</string>
@@ -65,10 +65,6 @@
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
-    <string name="volume_gesture_control_title">Kontrol gestur volume</string>
-    <string name="volume_gesture_control_summary">Gunakan gestur untuk melaraskan volume pemain</string>
-    <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
-    <string name="brightness_gesture_control_summary">Gunakan gestur untuk melaraskan kecerahan pemain</string>
     <string name="show_search_suggestions_title">Cadangan carian</string>
     <string name="show_search_suggestions_summary">Tunjukkan cadangan semasa mencari</string>
     <string name="enable_search_history_title">Sejarah carian</string>

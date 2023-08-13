@@ -29,7 +29,7 @@
     <string name="show_higher_resolutions_title">Rodyti didesnes raiškas</string>
     <string name="show_higher_resolutions_summary">Tik kai kurie įrenginiai palaiko 2K/4K vaizdo įrašų peržiūrą</string>
     <string name="play_with_kodi_title">Groti su Kodi</string>
-    <string name="kore_not_found">Įdiegti nereastą Kore programėlę\?</string>
+    <string name="kore_not_found">Įdiegti nereastą Kode programėlę\?</string>
     <string name="show_play_with_kodi_title">Rodyti „Peržiūra su Kodi“ pasirinkimą</string>
     <string name="show_play_with_kodi_summary">Rodyti pasirinkimą peržiūrėti vaizdo įrašus per Kodi mediacentrą</string>
     <string name="play_audio">Garso įrašas</string>
@@ -70,7 +70,7 @@
     <string name="could_not_setup_download_menu">Negalima sutvarkyti atsisiuntimų meniu</string>
     <string name="app_ui_crash">Programėlė/ vartotojo sąsaja nulūžo</string>
     <string name="sorry_string">Atsiprašome, taip neturėjo įvykti.</string>
-    <string name="error_report_button_text">Pranešti apie šią klaidą el. paštu</string>
+    <string name="error_report_button_text">Pranešti el. paštu</string>
     <string name="error_snackbar_message">Atsiprašome, kažkas ne taip.</string>
     <string name="error_snackbar_action">Ataskaita</string>
     <string name="what_device_headline">Informacija:</string>
@@ -341,10 +341,6 @@
     <string name="settings_category_clear_data_title">Išvalyti duomenis</string>
     <string name="enable_playback_state_lists_summary">Sąraše rodyti atkūrimo vietos indikatorių</string>
     <string name="enable_playback_state_lists_title">Vietos sąraše</string>
-    <string name="brightness_gesture_control_summary">Naudoti gestus ryškumo valdymui</string>
-    <string name="brightness_gesture_control_title">Ryškumo gesto valdymas</string>
-    <string name="volume_gesture_control_summary">Naudoti gestus garsumo valdymui</string>
-    <string name="volume_gesture_control_title">Garsumo gesto valdymas</string>
     <string name="auto_queue_toggle">Auto eilė</string>
     <string name="auto_queue_summary">Tęsti atkūrimą į eilę pridedant susijusius srautus</string>
     <string name="auto_queue_title">Automatiškai pridėti sekantį į eilę</string>
@@ -637,7 +633,6 @@
     <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
     <string name="service_provides_reason">%s pateikia šią priežastį:</string>
     <string name="account_terminated">Paskyra anuliuota</string>
-    <string name="feed_toggle_show_played_items">Rodyti peržiūrėtus elementus</string>
     <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
     <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.
 \n„NewPipe“ negalės įkelti šio kanalo ateityje.
@@ -707,18 +702,16 @@
     </plurals>
     <string name="get_notified">Gaukite pranešimą</string>
     <string name="you_successfully_subscribed">Dabar užsiprenumeravote šį kanalą</string>
-    <string name="feed_toggle_show_future_items">Rodyti būsimus elementus</string>
     <string name="streams_notifications_network_title">Reikalingas tinklo ryšys</string>
     <string name="streams_not_yet_supported_removed">Transliacijos, kurių dar nepalaiko atsisiuntimo programa, nerodomos</string>
     <string name="unknown_format">Nežinomas formatas</string>
-    <string name="feed_toggle_hide_future_items">Slėpti būsimus elementus</string>
     <string name="any_network">Bet koks tinklas</string>
     <string name="delete_downloaded_files_confirm">Ištrinti visus atsisiųstus failus iš disko\?</string>
     <string name="settings_category_player_notification_title">Grotuvo pranešimas</string>
     <string name="streams_notification_channel_description">Pranešimai apie naujas transliacijas prenumeratoms</string>
     <string name="streams_notification_channel_name">Naujos transliacijos</string>
     <string name="loading_stream_details">Įkeliama išsami transliacijos informacija…</string>
-    <string name="progressive_load_interval_summary">Pakeiskite pakrovimo intervalo dydį (šiuo metu %s). Mažesnė vertė gali pagreitinti pradinį vaizdo įrašo įkėlimą. Dėl pakeitimų reikia iš naujo paleisti grotuvą</string>
+    <string name="progressive_load_interval_summary">Pakeiskite pakrovimo intervalo dydį progresiniam turiniui (šiuo metu %s). Mažesnė vertė gali pagreitinti pradinį įkėlimą</string>
     <string name="percent">Procentai</string>
     <string name="semitone">Pustonis</string>
     <string name="progressive_load_interval_title">Atkūrimo pakrovimo intervalo dydis</string>
@@ -726,7 +719,6 @@
     <string name="selected_stream_external_player_not_supported">Pasirinktos transliacijos išoriniai grotuvai nepalaiko</string>
     <string name="no_audio_streams_available_for_external_players">Išoriniams grotuvams garso transliacijos nepasiekiamos</string>
     <string name="select_quality_external_players">Pasirinkite kokybę skirtą išoriniams grotuvams</string>
-    <string name="feed_toggle_hide_played_items">Slėpti peržiūrėtus elementus</string>
     <string name="notifications_disabled">Pranešimai yra išjungti</string>
     <string name="progressive_load_interval_exoplayer_default">„ExoPlayer“ numatytasis</string>
     <string name="unknown_quality">Nežinoma kokybė</string>
@@ -738,4 +730,47 @@
     <string name="fast_mode">Greitasis režimas</string>
     <string name="app_update_unavailable_toast">Naudojate naujausią „NewPipe“ versiją</string>
     <string name="app_update_available_notification_text">Bakstelėkite, kad atsisiųstumėte %s</string>
+    <string name="remove_duplicates_message">Ar norite pašalinti visus pasikartojančius srautus iš šio grojaraščio\?</string>
+    <string name="feed_show_upcoming">Būsimas</string>
+    <string name="duplicate_in_playlist">Grojaraščiai jau turintys šį elementą išaktyvuoti.</string>
+    <string name="playlist_add_stream_success_duplicate">Kartojasi pridėta %d kartus</string>
+    <string name="unset_playlist_thumbnail">Atjungti nuolatinę peržiūrą</string>
+    <string name="ignore_hardware_media_buttons_title">Nepaisyti aparatinės įrangos media mygtukų įvykių</string>
+    <string name="ignore_hardware_media_buttons_summary">Naudinga naudojant ausines su sugedusiais fiziniais mygtukais</string>
+    <string name="feed_show_watched">Pilnai peržiūrėta</string>
+    <string name="prefer_original_audio_title">Pageidaujama originalus garso takelis</string>
+    <string name="prefer_original_audio_summary">Pasirinkti originalų audio takelį nepaisant kalbos nustatymo</string>
+    <string name="prefer_descriptive_audio_title">Pageidaujama pasirinktinis garso takelis</string>
+    <string name="prefer_descriptive_audio_summary">Jei įmanoma, pasirinkti garso takelį su aprašymu žmonėms su klausos negalia</string>
+    <string name="left_gesture_control_summary">Pasirinkti gęstą kairei grotuvo ekrano pusei</string>
+    <string name="left_gesture_control_title">Kairio gesto veiksmas</string>
+    <string name="right_gesture_control_summary">Pasirinkite gestą dešiniai grotuvo ekrano pusej</string>
+    <string name="play_queue_audio_track">Garsas: %s</string>
+    <string name="audio_track">Audio takelis</string>
+    <string name="card">Kortelė</string>
+    <string name="remove_duplicates">Pašalinti besikartojančius</string>
+    <string name="remove_duplicates_title">Pašalinti besikartojančius\?</string>
+    <string name="feed_hide_streams_title">Rodyti šiuos srautus</string>
+    <string name="feed_show_partially_watched">Iš dalies peržiūrėta</string>
+    <string name="settings_category_exoplayer_title">\"ExoPlayer\" nustatymai</string>
+    <string name="settings_category_exoplayer_summary">Tvarkykite kai kuriuos \"ExoPlayer\" nustatymus. Kad šie pakeitimai įsigaliotų, grotuvą reikia paleisti iš naujo</string>
+    <string name="use_exoplayer_decoder_fallback_title">Naudokite „ExoPlayer“ dekoderio atsarginę funkciją</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Visada naudokite \"ExoPlayer\" vaizdo išvesties paviršiaus nustatymų apėjimą</string>
+    <string name="msg_failed_to_copy">Nepavyko nukopijuoti į iškarpinę</string>
+    <string name="audio_track_type_original">originalus</string>
+    <string name="right_gesture_control_title">Dešinio gesto veiksmas</string>
+    <string name="brightness">Ryškumas</string>
+    <string name="volume">Garsas</string>
+    <string name="none">Nieko</string>
+    <string name="feed_show_hide_streams">Rodyti / slėpti srautus</string>
+    <string name="night_theme_available">Ši parinktis galima tik tada, kai %s pasirinkta kaip tema</string>
+    <string name="audio_track_present_in_video">Šiame sraute jau turėtų būti garso takelis</string>
+    <string name="select_audio_track_external_players">Pasirinkite garso takelį išoriniams grotuvams</string>
+    <string name="unknown_audio_track">Nežinomas</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Šis apeinamasis sprendimas atlaisvina ir iš naujo nustato vaizdo kodekus, kai pasikeičia paviršius, užuot tiesiogiai nustatęs paviršių kodekui. Šis nustatymas jau naudojamas \"ExoPlayer\" kai kuriuose įrenginiuose, kuriuose buvo ši problema, šis nustatymas turi poveikį tik \"Android 6\" ir naujesniuose įrenginiuose.
+\n
+\nĮjungus šią parinktį gali būti išvengta atkūrimo klaidų, kai perjungiamas dabartinis vaizdo grotuvas arba pereinama į visą ekraną</string>
+    <string name="audio_track_type_dubbed">dubliuotas</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Įjunkite šią parinktį, jei kyla dekoderio inicializavimo problemų, o nepavykus inicializuoti pagrindinių dekoderių, grįžtama prie žemesnio prioriteto dekoderių. Dėl to atkūrimo našumas gali būti prastesnis nei naudojant pirminius dekoderius</string>
+    <string name="audio_track_type_descriptive">aprašomasis</string>
 </resources>

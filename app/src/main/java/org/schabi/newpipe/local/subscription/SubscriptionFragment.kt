@@ -352,7 +352,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         AlertDialog.Builder(requireContext())
             .setCustomTitle(dialogTitleBinding.root)
             .setItems(commands, actions)
-            .create()
             .show()
     }
 

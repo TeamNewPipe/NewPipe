@@ -48,8 +48,6 @@
     <string name="thumbnail_cache_wipe_complete_notice">تصویر دی کیش ہٹا دتی گئی اے</string>
     <string name="metadata_cache_wipe_summary">کیش وچ سارے ویب‌سائیٹ دے ڈیٹے ہٹاؤ</string>
     <string name="auto_queue_summary">اِکّ نا دہراؤݨ والی کتار نوں، سمبندھت سٹریم جوڑدیاں، مُکاؤندے رہو</string>
-    <string name="volume_gesture_control_title">آواز اشرہ کنٹرول</string>
-    <string name="volume_gesture_control_summary">آواز کنٹرول کرن لئی شواواں دی ورتون کرو</string>
     <string name="download_dialog_title">ڈاؤن‌لوڈ</string>
     <string name="enable_watch_history_title">پہلاں توں ویکھیاں ہوئیاں چیزاں دی لسٹ</string>
     <string name="enable_playback_resume_title">پلےبیک دوبارہ شروع کرو</string>

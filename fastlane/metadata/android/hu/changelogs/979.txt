@@ -1,0 +1,2 @@
+- Javítva a lejátszásfolytatás
+- Fejlesztések annak biztosítására, hogy az a szolgáltatás, amely meghatározza, hogy a NewPipe új verzióellenőrzéseket keres-e, ne induljon el a háttérben

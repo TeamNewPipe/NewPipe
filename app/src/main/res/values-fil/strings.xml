@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Pindutin ang magnifying glass upang magsimula.</string>
+    <string name="main_bg_subtitle">Pindutin ang magnifying glass para magsimula.</string>
     <string name="upload_date_text">Inilathala noong %1$s</string>
     <string name="no_player_found">Walang nakitang stream player. I-install ang VLC\?</string>
     <string name="no_player_found_toast">Walang nakitang stream player (pwede mong i-install ang VLC para ma-play ito).</string>
@@ -16,11 +16,11 @@
     <string name="did_you_mean">\"%1$s\" ba ang tinutukoy mo\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
     <string name="use_external_video_player_title">Gumamit ng ibang video player</string>
-    <string name="use_external_video_player_summary">Natatanggal ang tunog sa ilang mga resolusyon</string>
+    <string name="use_external_video_player_summary">Nawawala ang tunog sa ilang resolusyon</string>
     <string name="use_external_audio_player_title">Gumamit ng ibang audio player</string>
     <string name="subscribe_button_title">Sumubaybay</string>
-    <string name="subscribed_button_title">Sinusubaybayan</string>
-    <string name="unsubscribe">Ihinto ang pagsubaybay</string>
+    <string name="subscribed_button_title">Sumusubaybay</string>
+    <string name="unsubscribe">Tumigil sa pagsubaybay</string>
     <string name="channel_unsubscribed">Hininto ang pagsubaybay sa channel</string>
     <string name="subscription_change_failed">Hindi mabago ang pagsubaybay</string>
     <string name="subscription_update_failed">Hindi ma-update ang pagsubaybay</string>
@@ -48,7 +48,6 @@
     <string name="notification_action_1_title">Pangalawang action button</string>
     <string name="notification_action_2_title">Pangatlong action button</string>
     <string name="use_inexact_seek_summary">Pinapayagan ng di-saktong seek ang player na mag-seek sa mga posisyon nang mabilis ngunit na may pinababang kasaktuhan. Di ito gagana sa pag-seek nang 5, 15, o 25 segundo.</string>
-    <string name="progressive_load_interval_summary">Baguhin ang laki ng pagitan na ilo-load (kasalukuyang %s). Maaaring mapabilis ang unang pag-load sa video kung mababa ito. Kailangang i-restart ang player para gumana ang pagbabago.</string>
     <string name="download_thumbnail_summary">Patayin para mapigilan ang pag-load sa mga thumbnail, para makatipid ng data at paggamit sa memory. Lilinisin ang parehong image cache na nasa memory at nasa disk</string>
     <string name="show_search_suggestions_summary">Piliin ang mga mungkahing ipapakita habang naghahanap</string>
     <string name="show_description_summary">Patayin para itago ang paglalarawan ng video at karagdagang impormasyon</string>
@@ -58,7 +57,7 @@
     <string name="theme_title">Tema</string>
     <string name="local_search_suggestions">Lokal na mungkahi</string>
     <string name="remote_search_suggestions">Remote na mungkahi</string>
-    <string name="mark_as_watched">Markahan bilang napanood</string>
+    <string name="mark_as_watched">Markahan bilang napanood na</string>
     <string name="auto_queue_toggle">Kusang ipila</string>
     <string name="notification_action_repeat">Ulitin</string>
     <string name="notification_action_shuffle">Halo-halo</string>
@@ -79,7 +78,6 @@
     <string name="metadata_cache_wipe_complete_notice">Nalinis na ang cache ng metadata</string>
     <string name="auto_queue_title">Kusang ipila ang susunod na stream</string>
     <string name="auto_queue_summary">Ipagpatuloy na tapusin (di umuulit) ang pila sa pamamagitan ng pagdagdag ng isang katulad na stream</string>
-    <string name="volume_gesture_control_summary">Gumamit ng gesture para kontrolin ang volume ng player</string>
     <string name="show_search_suggestions_title">Mga mungkahi sa paghahanap</string>
     <string name="enable_search_history_summary">Itago ang mga hinanap nang lokal</string>
     <string name="enable_watch_history_title">Kasaysayan ng napanood</string>
@@ -90,9 +88,6 @@
     <string name="enable_playback_state_lists_summary">Ipakita ang pananda ng posisyon ng pag-play sa mga listahan</string>
     <string name="enable_playback_state_lists_title">Mga posisyon sa listahan</string>
     <string name="enable_search_history_title">Kasaysayan ng mga hinanap</string>
-    <string name="brightness_gesture_control_summary">Gumamit ng gesture para kontrolin ang liwanag ng player</string>
-    <string name="brightness_gesture_control_title">Kontrolin ang liwanag gamit gesture</string>
-    <string name="volume_gesture_control_title">Kontrolin ang volume gamit gesture</string>
     <string name="metadata_cache_wipe_title">Linisin ang naka-cache na metadata</string>
     <string name="thumbnail_cache_wipe_complete_notice">Nalinis na ang image cache</string>
     <string name="show_comments_summary">Patayin para itago ang mga komento</string>
@@ -104,7 +99,7 @@
     <string name="popup_remember_size_pos_title">Tandaan ang mga property ng popup</string>
     <string name="default_popup_resolution_title">Panimulang linaw ng popup</string>
     <string name="show_higher_resolutions_summary">Mape-play lang ng ilang device ang mga video na 2K/4K</string>
-    <string name="kore_not_found">I-install ang nawawalang Kore app\?</string>
+    <string name="kore_not_found">I-install ang nawawalang Kode app\?</string>
     <string name="notification_scale_to_square_image_title">I-scale ang thumbnail sa 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">I-scale ang thumbnail ng video sa abiso mula 16:9 papuntang 1:1 aspect ratio (pwedeng magkaroon ng distortion)</string>
     <string name="notification_action_0_title">Unang action button</string>

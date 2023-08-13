@@ -132,7 +132,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     disposables.add(getWholeStreamHistoryDisposable(context, recordManager));
                     disposables.add(getRemoveOrphanedRecordsDisposable(context, recordManager));
                 }))
-                .create()
                 .show();
     }
 
@@ -144,7 +143,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                 .setPositiveButton(R.string.delete, ((dialog, which) ->
                         disposables.add(getDeletePlaybackStatesDisposable(context, recordManager))))
-                .create()
                 .show();
     }
 
@@ -156,7 +154,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                 .setPositiveButton(R.string.delete, ((dialog, which) ->
                         disposables.add(getDeleteSearchHistoryDisposable(context, recordManager))))
-                .create()
                 .show();
     }
 }

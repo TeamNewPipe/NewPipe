@@ -1,1 +1,1 @@
-Une interface pour YouTube libre et légère sur Android.
+Une interface YouTube libre et légère pour Android.

@@ -150,8 +150,6 @@
     <string name="playlists">Llistes de reproducción</string>
     <string name="tracks">Pistes</string>
     <string name="users">Usuarios</string>
-    <string name="volume_gesture_control_summary">Usa xestos pa controlar el volume del reproductor</string>
-    <string name="brightness_gesture_control_summary">Usa xestos pa controlar el brillu del reproductor</string>
     <string name="restore_defaults">Reafitamientu de valores</string>
     <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="updates_setting_title">Anovamientos</string>
@@ -226,8 +224,6 @@
     </plurals>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
-    <string name="volume_gesture_control_title">Control per xestos del volume</string>
-    <string name="brightness_gesture_control_title">Control per xestos del brillu</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>
     <string name="localization_changes_requires_app_restart">La llingua va camudar namás que se reanicie l\'aplicación.</string>
@@ -277,7 +273,7 @@
     <string name="metadata_cache_wipe_summary">Desanicia tolos datos na caché de les páxines web</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="kore_not_found">¿Instalar Kore\?</string>
+    <string name="kore_not_found">¿Instalar Kode\?</string>
     <string name="info_labels">Qué asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nPaís del conteníu:\\nLlingua de l\'aplicación:\\nServiciu:\\nHora en GMT:\\nPaquete:\\nVersión de l\'aplicación:\\nVersión del SO:</string>
     <string name="no_player_found_toast">Nun s\'atopó nengún reproductor de fluxos (pues instalar VLC pa reproducilos).</string>
     <string name="show_thumbnail_summary">Amuesa una miniatura nel fondu de la pantalla de bloquéu y dientro de los avisos</string>

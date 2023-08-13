@@ -73,7 +73,7 @@
     <string name="peertube_instance_add_fail">ଉଦାହରଣ ବୈଧ କରିପାରିଲା ନାହିଁ</string>
     <string name="show_description_summary">ଭିଡିଓ ବର୍ଣ୍ଣନା ଏବଂ ଅତିରିକ୍ତ ସୂଚନା ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="play_audio">ଅଡିଓ</string>
-    <string name="use_external_audio_player_title">ବାହ୍ୟ ଅଡିଓ ପ୍ଲେୟାର ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_external_audio_player_title">ବହିଃ-ଅଡ଼ିଓଚାଳକ ଵ୍ୟଵହାର କରିବା</string>
     <string name="subscribe_button_title">ସଦସ୍ୟତା ଯୋଡ଼ନ୍ତୁ</string>
     <string name="subscription_update_failed">ସଦସ୍ୟତା ଅଦ୍ୟତନ କରିପାରିଲା ନାହିଁ</string>
     <string name="tab_choose">ଟ୍ୟାବ୍ ବାଛନ୍ତୁ</string>
@@ -82,7 +82,7 @@
     <string name="download_path_dialog_title">ଭିଡିଓ ଫାଇଲ୍ ପାଇଁ ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ବାଛନ୍ତୁ</string>
     <string name="default_resolution_title">ଡିଫଲ୍ଟ ରେଜୋଲୁସନ</string>
     <string name="play_with_kodi_title">କୋଡି ସହିତ ଖୋଲନ୍ତୁ</string>
-    <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କ୍ରିୟା ବଟନ୍</string>
+    <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_repeat">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
     <string name="notification_colorize_title">ବିଜ୍ଞପ୍ତିକୁ ରଙ୍ଗ କରନ୍ତୁ</string>
     <string name="popup_remember_size_pos_summary">ପପ୍ଅପ୍ ର ଶେଷ ଆକାର ଏବଂ ସ୍ଥିତି ମନେରଖ</string>
@@ -106,8 +106,6 @@
     <string name="show_description_title">ବର୍ଣ୍ଣନା ଦେଖାନ୍ତୁ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ପ୍ରତିଛବି କ୍ୟାଚ୍ ପୋଛି ଦିଆଗଲା</string>
     <string name="metadata_cache_wipe_complete_notice">ମେଟାଡାଟା କ୍ୟାଚ୍ ପୋଛି ହୋଇଗଲା</string>
-    <string name="volume_gesture_control_title">ଭଲ୍ୟୁମ୍ ଅଙ୍ଗଭଙ୍ଗୀ ନିୟନ୍ତ୍ରଣ</string>
-    <string name="brightness_gesture_control_summary">ପ୍ଲେୟାରର ଉଜ୍ଜ୍ୱଳତାକୁ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="show_search_suggestions_title">ପରାମର୍ଶ ଖୋଜ</string>
     <string name="local_search_suggestions">ସ୍ଥାନୀୟ ସନ୍ଧାନ ପରାମର୍ଶ</string>
     <string name="remote_search_suggestions">ସୁଦୂର ସନ୍ଧାନ ପରାମର୍ଶ</string>
@@ -118,7 +116,7 @@
     <string name="enable_watch_history_summary">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକର ଟ୍ରାକ୍ ରଖନ୍ତୁ</string>
     <string name="resume_on_audio_focus_gain_title">ଖେଳିବା ଆରମ୍ଭ କରନ୍ତୁ</string>
     <string name="start_main_player_fullscreen_title">ଫୁଲ ସ୍କ୍ରିନରେ ମୁଖ୍ୟ ପ୍ଲେୟାର ଆରମ୍ଭ କରନ୍ତୁ</string>
-    <string name="autoplay_title">ସ୍ଵତଃ ଚଳିତ</string>
+    <string name="autoplay_title">ସ୍ୱତଃଚାଳନ</string>
     <string name="unsupported_url_dialog_message">URL ଚିହ୍ନି ପାରିଲା ନାହିଁ । ଅନ୍ୟ ଏକ ଆପ୍ ସହିତ ଖୋଲନ୍ତୁ\?</string>
     <string name="default_content_country_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଦେଶ</string>
     <string name="content_language_title">ଡିଫଲ୍ଟ ବିଷୟବସ୍ତୁ ଭାଷା</string>
@@ -128,7 +126,7 @@
     <string name="peertube_instance_add_exists">ଇନଷ୍ଟାଣ୍ଟ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="settings_category_player_title">ପ୍ଲେୟାର</string>
     <string name="settings_category_history_title">ଇତିହାସ ଏବଂ କ୍ୟାଚ୍</string>
-    <string name="settings_category_appearance_title">ଦୃଶ୍ୟ</string>
+    <string name="settings_category_appearance_title">ରୂପ</string>
     <string name="settings_category_debug_title">ତ୍ରୁଟି ନିବାରଣ କରନ୍ତୁ</string>
     <string name="settings_category_updates_title">ଅଦ୍ୟତନଗୁଡିକ</string>
     <string name="progressive_load_interval_title">ପ୍ଲେବେକ୍ ଲୋଡ୍ ବ୍ୟବଧାନ ଆକାର</string>
@@ -143,13 +141,12 @@
     <string name="enable_playback_resume_summary">ଶେଷ ପ୍ଲେବେକ୍ ସ୍ଥିତିକୁ ପୁନଃ ସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="enable_playback_state_lists_summary">ତାଲିକାରେ ପ୍ଲେବେକ୍ ପୋଜିସନ୍ ସୂଚକ ଦେଖାନ୍ତୁ</string>
     <string name="metadata_cache_wipe_summary">ସମସ୍ତ କ୍ୟାଚ୍ ହୋଇଥିବା ୱେବପୃଷ୍ଠା ତଥ୍ୟ ଅପସାରଣ କରନ୍ତୁ</string>
-    <string name="volume_gesture_control_summary">ପ୍ଲେୟାର ଭଲ୍ୟୁମକୁ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="show_search_suggestions_summary">ସନ୍ଧାନ କରିବା ସମୟରେ ଦେଖାଇବାକୁ ପରାମର୍ଶଗୁଡିକ ବାଛନ୍ତୁ</string>
     <string name="resume_on_audio_focus_gain_summary">ବାଧା ପରେ ଖେଳିବା ଜାରି ରଖନ୍ତୁ (ଯଥା ଫୋନକଲ୍)</string>
     <string name="show_hold_to_append_summary">ଭିଡିଓ \"ବିବରଣୀ:\" ରେ ପୃଷ୍ଠଭୂମି କିମ୍ବା ପପ୍ଅପ୍ ବଟନ୍ ଦବାଇବା ସମୟରେ ଟିପ୍ ଦେଖାନ୍ତୁ</string>
     <string name="peertube_instance_url_summary">ଆପଣଙ୍କର ପ୍ରିୟ PeerTube ଉଦାହରଣଗୁଡିକ ବାଛନ୍ତୁ</string>
     <string name="settings_category_player_behavior_title">ବ୍ୟବହାର</string>
-    <string name="settings_category_video_audio_title">ଭିଡିଓ ଏବଂ ଅଡିଓ</string>
+    <string name="settings_category_video_audio_title">ଵିଡ଼ିଓ ଓ ଅଡ଼ିଓ</string>
     <string name="start_main_player_fullscreen_summary">ମିନି ପ୍ଲେୟାରରେ ଭିଡିଓ ଆରମ୍ଭ କରନ୍ତୁ ନାହିଁ, କିନ୍ତୁ ଅଟୋ ଘୂର୍ଣ୍ଣନ ବନ୍ଦ ହୋଇଗଲେ ସିଧାସଳଖ ଫୁଲ୍ ସ୍କ୍ରିନ୍ ମୋଡ୍ କୁ ଯାଆନ୍ତୁ। ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଛାଡି ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ମିନି ପ୍ଲେୟାରକୁ ପ୍ରବେଶ କରିପାରିବେ</string>
     <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ୍ କରି ନିମ୍ନରେ ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟ ସଂପାଦନ କରନ୍ତୁ। ଡାହାଣରେ ଥିବା ଚେକ୍ ବକ୍ସ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦେଖାଯିବାକୁ ସେମାନଙ୍କ ମଧ୍ୟରୁ ତିନୋଟି ପର୍ଯ୍ୟନ୍ତ ଚୟନ କରନ୍ତୁ</string>
     <string name="download_thumbnail_summary">ଥମ୍ବନେଲ ଲୋଡିଂ, ଡାଟା ଏବଂ ମେମୋରୀ ବ୍ୟବହାରକୁ ରୋକିବା ପାଇଁ ବନ୍ଦ କରନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ଉଭୟ ଇନ-ମେମୋରୀ ଏବଂ ଅନ୍-ଡିସ୍କ ଇମେଜ୍ କ୍ୟାଚ୍ ସଫା କରେ</string>
@@ -202,27 +199,26 @@
     <string name="default_audio_format_title">ଡିଫଲ୍ଟ ଅଡିଓ ଫର୍ମାଟ୍</string>
     <string name="use_inexact_seek_summary">ଅକ୍ଷୟ ସନ୍ଧାନ ପ୍ଲେୟାରକୁ ହ୍ରାସ ହୋଇଥିବା ସଠିକତା ସହିତ ଶୀଘ୍ର ପଦବୀ ଖୋଜିବାକୁ ଅନୁମତି ଦିଏ । 5, 15 କିମ୍ବା 25 ସେକେଣ୍ଡ ଖୋଜିବା ଏହା ସହିତ କାମ କରେ ନାହିଁ</string>
     <string name="search_showing_result_for">%s ପାଇଁ ଫଳାଫଳ ଦେଖାଉଛି</string>
-    <string name="use_external_video_player_title">ବାହ୍ୟ ଭିଡିଓ ପ୍ଲେୟାର ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_external_video_player_title">ବହିଃ-ଵିଡ଼ିଓଚାଳକ ଵ୍ୟଵହାର କରିବା</string>
     <string name="subscribed_button_title">ସଦସ୍ୟତା</string>
     <string name="unsubscribe">ସଦସ୍ୟତା ରଦ୍ଦ କରନ୍ତୁ</string>
     <string name="channel_unsubscribed">ଚ୍ୟାନେଲ ସଦସ୍ୟତା ରଦ୍ଦ ହେଲା</string>
     <string name="subscription_change_failed">ସଦସ୍ୟତା ପରିବର୍ତ୍ତନ କରିପାରିଲା ନାହିଁ</string>
     <string name="show_info">ସୂଚନା ଦେଖାନ୍ତୁ</string>
-    <string name="controls_add_to_playlist_title">ମିଶାଅ</string>
+    <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
     <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ\?</string>
     <string name="notification_scale_to_square_image_title">ଥମ୍ୱନେଲ କୁ 1:1 ଅନୁପାତରେ କ୍ରୋପ୍ କରନ୍ତୁ</string>
-    <string name="notification_action_0_title">ପ୍ରଥମ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_2_title">ତୃତୀୟ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_3_title">ଚତୁର୍ଥ କ୍ରିୟା ବଟନ୍</string>
-    <string name="notification_action_4_title">ପଞ୍ଚମ କ୍ରିୟା ବଟନ୍</string>
+    <string name="notification_action_0_title">ପ୍ରଥମ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_2_title">ତୃତୀୟ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_3_title">ଚତୁର୍ଥ କୃତ୍ୟ ବଟନ୍</string>
+    <string name="notification_action_4_title">ପଞ୍ଚମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_shuffle">ଶଫଲ୍</string>
     <string name="notification_action_buffering">ବଫରିଂ</string>
     <string name="notification_action_nothing">କିଛି ନୁହେଁ</string>
     <string name="default_video_format_title">ଡିଫଲ୍ଟ ଭିଡିଓ ଫର୍ମାଟ୍</string>
     <string name="popup_remember_size_pos_title">ପପ୍ଅପ୍ ଗୁଣଗୁଡିକ ମନେରଖ</string>
-    <string name="brightness_gesture_control_title">ଉଜ୍ଜ୍ୱଳତା ଅଙ୍ଗଭଙ୍ଗୀ ନିୟନ୍ତ୍ରଣ</string>
     <string name="processing_may_take_a_moment">ପ୍ରକ୍ରିୟାକରଣ… କିଛି ସମୟ ନେଇପାରେ</string>
     <string name="caption_setting_description">ପ୍ଲେୟାର କ୍ୟାପସନ୍ ଟେକ୍ସଟ୍ ସ୍କେଲ୍ ଏବଂ ପୃଷ୍ଠଭୂମି ଶୈଳୀକୁ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । କାର୍ଯ୍ୟକାରୀ ହେବାକୁ ଆପ୍ ପୁନଃଆରମ୍ଭ ଆବଶ୍ୟକ କରେ</string>
     <string name="leak_canary_not_available">LeakCanary ଉପଲବ୍ଧ ନାହିଁ</string>
@@ -253,7 +249,7 @@
     <string name="play_all">ସମସ୍ତ ପ୍ଲେ କରନ୍ତୁ</string>
     <string name="always">ସର୍ବଦା</string>
     <string name="file">ଫାଇଲ୍</string>
-    <string name="notifications">ବିଜ୍ଞପ୍ତି ଗୁଡିକ</string>
+    <string name="notifications">ଵିଜ୍ଞପ୍ତି</string>
     <string name="app_update_notification_channel_name">ଆପ୍ ଅଦ୍ୟତନ ବିଜ୍ଞପ୍ତି</string>
     <string name="app_update_notification_channel_description">ନୂତନ NewPipe ସଂସ୍କରଣ ପାଇଁ ବିଜ୍ଞପ୍ତି</string>
     <string name="hash_channel_name">ଭିଡିଓ ହ୍ୟାସ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -273,7 +269,7 @@
     <string name="clear_playback_states_summary">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ କରେ</string>
     <string name="clear_search_history_title">ସନ୍ଧାନ ଇତିହାସ ସଫା କରନ୍ତୁ</string>
     <string name="delete_search_history_alert">ସମଗ୍ର ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ କରିବେ କି\?</string>
-    <string name="download_to_sdcard_error_title">ବାହ୍ୟ ସଂରକ୍ଷଣ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="download_to_sdcard_error_title">ବହିଃ-ଷ୍ଟୋରେଜ୍ ଅନୁପଲବ୍ଧ</string>
     <string name="network_error">ନେଟୱର୍କ ତ୍ରୁଟି</string>
     <string name="could_not_load_thumbnails">ସମସ୍ତ ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="parsing_error">ୱେବସାଇଟ୍ ପାର୍ସ କରିପାରିଲା ନାହିଁ</string>
@@ -287,7 +283,7 @@
     <string name="restore_defaults_confirmation">ଆପଣ ଡିଫଲ୍ଟ ପୁନଃସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
     <string name="error_report_notification_title">NewPipe ଏକ ତ୍ରୁଟିର ସମ୍ମୁଖୀନ ହେଲା, ରିପୋର୍ଟ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="sorry_string">ଦୁଃଖିତ, ତାହା ହୋଇ ନଥାନ୍ତା ।</string>
-    <string name="error_report_button_text">ଇ-ମେଲ ମାଧ୍ୟମରେ ଏହି ତ୍ରୁଟି ରିପୋର୍ଟ କରନ୍ତୁ</string>
+    <string name="error_report_button_text">ଇ-ମେଲ ମାଧ୍ୟମରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
     <string name="error_report_open_issue_button_text">GitHub ରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
     <string name="video">ଭିଡିଓ</string>
     <string name="audio">ଅଡିଓ</string>
@@ -392,7 +388,7 @@
     <string name="close">ବନ୍ଦ କର</string>
     <string name="pause_downloads">ଡାଉନଲୋଡ୍ ବିରତି କରନ୍ତୁ</string>
     <string name="downloads_storage_ask_title">କେଉଁଠାରେ ଡାଉନଲୋଡ୍ କରିବେ ପଚାରନ୍ତୁ</string>
-    <string name="downloads_storage_use_saf_summary">\'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ଏକ ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବାକୁ ଅନୁମତି ଦିଏ</string>
+    <string name="downloads_storage_use_saf_summary">\'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଅନୁମତି ଦିଏ</string>
     <string name="downloads_storage_use_saf_summary_api_29">ଆଣ୍ଡ୍ରଏଡ୍ 10 ରୁ କେବଳ \'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ସମର୍ଥିତ</string>
     <string name="choose_instance_prompt">ଏକ ଉଦାହରଣ ବାଛନ୍ତୁ</string>
     <string name="new_seek_duration_toast">ExoPlayer ପ୍ରତିବନ୍ଧକ ହେତୁ ସନ୍ଧାନ ସମୟସୀମା %d ସେକେଣ୍ଡରେ ସେଟ୍ ହୋଇଥିଲା</string>
@@ -427,7 +423,7 @@
     <string name="overwrite">ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ</string>
     <string name="metadata_thumbnail_url">ଥମ୍ବନେଲ୍ URL</string>
     <string name="metadata_host">ହୋଷ୍ଟ</string>
-    <string name="metadata_privacy_public">ଜନସାଧାରଣ</string>
+    <string name="metadata_privacy_public">ସାର୍ଵଜନୀନ</string>
     <string name="metadata_privacy_unlisted">ତାଲିକାଭୁକ୍ତ ନୁହେଁ</string>
     <string name="metadata_privacy_private">ବ୍ୟକ୍ତିଗତ</string>
     <string name="comments_are_disabled">ମନ୍ତବ୍ୟଗୁଡିକ ଅକ୍ଷମ ହୋଇଛି</string>
@@ -446,7 +442,7 @@
     <string name="detail_dislikes_img_view_description">ନାପସନ୍ଦ</string>
     <string name="comments_tab_description">ମନ୍ତବ୍ୟ ଗୁଡିକ</string>
     <string name="description_tab_description">ବର୍ଣ୍ଣନା</string>
-    <string name="short_million">ମିଲିୟନ</string>
+    <string name="short_million">ନିୟୁତ</string>
     <string name="recaptcha_solve">ସମାଧାନ</string>
     <string name="playback_speed_control">ପ୍ଲେବେକ୍ ସ୍ପିଡ୍ ନିୟନ୍ତ୍ରଣ</string>
     <string name="playback_tempo">ଟେମ୍ପୋ</string>
@@ -502,13 +498,12 @@
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer ଡିଫଲ୍ଟ</string>
     <string name="metadata_age_limit">ବୟସ ସୀମା</string>
     <string name="unknown_quality">ଅଜ୍ଞାତ ଗୁଣବତ୍ତା</string>
-    <string name="feed_toggle_show_future_items">ଭବିଷ୍ୟତ ଆଇଟମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="restricted_video">ଏହି ଭିଡିଓ ବୟସ ସୀମିତ ଅଟେ ।
 \n
 \nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
     <string name="error_report_title">ତ୍ରୁଟି ରିପୋର୍ଟ</string>
     <string name="albums">ଆଲବମ୍ ଗୁଡ଼ିକ</string>
-    <string name="download_to_sdcard_error_message">ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭବ ନୁହେଁ ।ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରନ୍ତୁ\?</string>
+    <string name="download_to_sdcard_error_message">ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭଵ ନୁହେଁ। ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରିବେ କି\?</string>
     <string name="file_deleted">ଫାଇଲ୍ ଡିଲିଟ୍ ହୋଇଛି</string>
     <string name="just_once">କେବଳ ଥରେ</string>
     <string name="notification_channel_name">ନୂତନ ପାଇପ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -525,7 +520,7 @@
     <string name="general_error">ତ୍ରୁଟି</string>
     <string name="youtube_signature_deobfuscation_error">ଭିଡିଓ URL ଦସ୍ତଖତକୁ ଡିବଫସ୍କେଟ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="player_unrecoverable_failure">ପୁନରୁଦ୍ଧାର ନ ହୋଇପାରିଲା ପରି ପ୍ଲେୟାର ତ୍ରୁଟି ଘଟିଲା</string>
-    <string name="external_player_unsupported_link_type">ବାହ୍ୟ ପ୍ଲେୟାରମାନେ ଏହି ପ୍ରକାର ଲିଙ୍କକୁ ସମର୍ଥନ କରନ୍ତି ନାହିଁ</string>
+    <string name="external_player_unsupported_link_type">ବହିଃ-ଚାଳକ ଏଭଳି ଲିଙ୍କ୍ ସମର୍ଥନ କରେନି</string>
     <string name="missing_file">ଫାଇଲ୍ ଘୁଞ୍ଚିଗଲା କିମ୍ବା ଡିଲିଟ୍ ହେଲା</string>
     <string name="no_playlist_bookmarked_yet">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପ୍ଲେଲିଷ୍ଟ ବୁକମାର୍କ ନାହିଁ</string>
     <string name="invalid_source">ସେପରି କୌଣସି ଫାଇଲ / ବିଷୟବସ୍ତୁ ଉତ୍ସ ନାହିଁ</string>
@@ -538,7 +533,7 @@
     <string name="related_items_tab_description">ସମ୍ବନ୍ଧୀୟ ଆଇଟମ୍ ଗୁଡ଼ିକ</string>
     <string name="detail_drag_description">ପୁନଃ ସଯାଇବାକୁ ଡ୍ରାଗ୍ କରନ୍ତୁ</string>
     <string name="pause">ବିରାମ</string>
-    <string name="short_billion">ବିଲିଅନ୍</string>
+    <string name="short_billion">ଵୃନ୍ଦ</string>
     <string name="no_subscribers">କୌଣସି ଗ୍ରାହକ ନାହାଁନ୍ତି</string>
     <string name="create">ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="msg_running_detail">ବିବରଣୀ ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
@@ -589,15 +584,14 @@
     <string name="feed_load_error_terminated">ଲେଖକଙ୍କ ଆକାଉଣ୍ଟକୁ ବନ୍ଦ କରିଦିଆଯାଇଛି ।
 \nଭବିଷ୍ୟତରେ NewPipe ଏହି ଫିଡ୍ ଲୋଡ୍ କରିବାକୁ ସମର୍ଥ ହେବ ନାହିଁ ।
 \nଆପଣ ଏହି ଚ୍ୟାନେଲରୁ ସଦସ୍ୟତା ରଦ୍ଦ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
-    <string name="feed_toggle_show_played_items">ଦେଖାଯାଇଥିବା ଆଇଟମଗୁଡିକ ଦେଖାନ୍ତୁ</string>
-    <string name="metadata_privacy_internal">ଆଭ୍ୟନ୍ତରୀଣ</string>
+    <string name="metadata_privacy_internal">ଅନ୍ତଃସ୍ଥ</string>
     <string name="you_successfully_subscribed">ଆପଣ ବର୍ତ୍ତମାନ ଏହି ଚ୍ୟାନେଲକୁ ସବସ୍କ୍ରାଇବ କରିଛନ୍ତି</string>
-    <string name="no_video_streams_available_for_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ କୌଣସି ଭିଡିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="no_video_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଵିଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="detail_heart_img_view_description">ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କ ଦ୍ୱାରା ହୃଦୟ</string>
     <string name="streams_not_yet_supported_removed">ଷ୍ଟ୍ରିମ୍ ଯାହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡର୍ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <string name="unknown_format">ଅଜ୍ଞାତ ଫର୍ମାଟ୍</string>
-    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍ କୁ କେଉଁଠାରେ ସେଭ୍ କରାଯିବ ତାହା ଆପଣଙ୍କୁ ପଚରାଯିବ ।
-\nଯଦି ଆପଣ ଏକ ବାହ୍ୟ SD କାର୍ଡକୁ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
+    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍‍କୁ କେଉଁଠାରେ ସଞ୍ଚୟ କରାଯିବ ତା\' ଆପଣଙ୍କୁ ପଚରାଯିବ।
+\nଯଦି ଆପଣ ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ଚୟକ (SAF)କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="show_memory_leaks">ମେମୋରୀ ଲିକ୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_original_time_ago_title">ଆଇଟମଗୁଡିକରେ ମୂଳ ସମୟ ପୂର୍ବରୁ ଦେଖାନ୍ତୁ</string>
     <string name="enable_disposed_exceptions_summary">ବିସର୍ଜନ ପରେ ଖଣ୍ଡ କିମ୍ବା କାର୍ଯ୍ୟକଳାପ ଜୀବନଚକ୍ର ବାହାରେ ଅଣସଂରକ୍ଷିତ Rx ବ୍ୟତିକ୍ରମଗୁଡିକର ଫୋର୍ସ ରିପୋର୍ଟିଂ</string>
@@ -616,10 +610,9 @@
     <string name="enable_queue_limit_desc">ଗୋଟିଏ ଡାଉନଲୋଡ୍ ଏକ ସମୟରେ ଚାଲିବ</string>
     <string name="recent">ସମ୍ପ୍ରତି</string>
     <string name="tablet_mode_title">ଟାବଲେଟ୍ ମୋଡ୍</string>
-    <string name="no_audio_streams_available_for_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ କୌଣସି ଅଡିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
-    <string name="select_quality_external_players">ବାହ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
+    <string name="no_audio_streams_available_for_external_players">ବହିଃ-ଚାଳକ ନିମନ୍ତେ କୌଣସି ଅଡ଼ିଓ ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="select_quality_external_players">ବହିଃ-ଚାଳକ ପାଇଁ ଗୁଣବତ୍ତା ଚୟନ କରନ୍ତୁ</string>
     <string name="detail_pinned_comment_view_description">ପିନ୍ ହୋଇଥିବା ମନ୍ତବ୍ୟ</string>
-    <string name="feed_toggle_hide_future_items">ଭବିଷ୍ୟତର ଆଇଟମ୍ ଲୁଚାନ୍ତୁ</string>
     <string name="open_website_license">ୱେବସାଇଟ୍ ଖୋଲନ୍ତୁ</string>
     <string name="short_thousand">ହଜାର</string>
     <string name="preferred_player_fetcher_notification_title">ସୂଚନା ପାଇବା…</string>
@@ -697,7 +690,6 @@
     <string name="feed_update_threshold_summary">ଏକ ସଦସ୍ୟତା ପୂର୍ବରୁ ଶେଷ ଅଦ୍ୟତନ ପରେ ସମୟ ପୁରୁଣା ବୋଲି ବିବେଚନା କରାଯାଏ -%s</string>
     <string name="feed_load_error">ଫିଡ୍ ଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି</string>
     <string name="feed_load_error_fast_unknown">ଫାଷ୍ଟ ଫିଡ୍ ମୋଡ୍ ଏହା ଉପରେ ଅଧିକ ସୂଚନା ପ୍ରଦାନ କରେ ନାହିଁ ।</string>
-    <string name="feed_toggle_hide_played_items">ଦେଖାଯାଇଥିବା ଆଇଟମଗୁଡିକ ଲୁଚାନ୍ତୁ</string>
     <string name="content_not_supported">ଏହି ବିଷୟବସ୍ତୁ ଏପର୍ଯ୍ୟନ୍ତ NewPipe ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ ।
 \n
 \nଭବିଷ୍ୟତ ସଂସ୍କରଣରେ ଏହା ସମର୍ଥିତ ହେବ ବୋଲି ଆଶା କରୁଛି ।</string>
@@ -706,7 +698,7 @@
     <string name="metadata_tags">ଟ୍ୟାଗ୍ସ</string>
     <string name="get_notified">ସୂଚିତ କର</string>
     <string name="enumeration_comma">,</string>
-    <string name="selected_stream_external_player_not_supported">ମନୋନୀତ ଷ୍ଟ୍ରିମ୍ ବାହ୍ୟ ଖେଳାଳିଙ୍କ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
+    <string name="selected_stream_external_player_not_supported">ମନୋନୀତ ଷ୍ଟ୍ରିମ୍ ବହିଃ-ଚାଳକ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <plurals name="listening">
         <item quantity="one">%s ଜଣ ଶ୍ରୋତା</item>
         <item quantity="other">ମୋଟ %s ଜଣ ଶ୍ରୋତା</item>
@@ -731,4 +723,21 @@
     <string name="unset_playlist_thumbnail">ସ୍ଥାୟୀ ଥମ୍ୱନେଲ୍ ସେଟ୍ କରନ୍ତୁ</string>
     <string name="duplicate_in_playlist">ଧୂସର ହୋଇଯାଇଥିବା ପ୍ଲେଲିଷ୍ଟଗୁଡିକ ପୂର୍ବରୁ ଏହି ଆଇଟମ୍ ଧାରଣ କରିଥାଏ ।</string>
     <string name="playlist_add_stream_success_duplicate">ନକଲ %d ସମୟ (ମୋଟ) ଯୋଡି ହୋଇଛି</string>
+    <string name="ignore_hardware_media_buttons_title">ହାର୍ଡୱେର୍ ମିଡିଆ ବଟନ୍ ଇଭେଣ୍ଟଗୁଡ଼ିକୁ ଉପେକ୍ଷା କରନ୍ତୁ</string>
+    <string name="ignore_hardware_media_buttons_summary">ଉପଯୋଗୀ, ଉଦାହରଣ ସ୍ୱରୂପ, ଯଦି ଆପଣ ଭଙ୍ଗା ଶାରୀରିକ ବଟନ୍ ସହିତ ହେଡସେଟ୍ ବ୍ୟବହାର କରୁଛନ୍ତି</string>
+    <string name="remove_duplicates">ନକଲଗୁଡିକ ଅପସାରଣ କରନ୍ତୁ</string>
+    <string name="remove_duplicates_title">ନକଲ ଗୁଡିକ ହଟାନ୍ତୁ\?</string>
+    <string name="remove_duplicates_message">ଆପଣ ଏହି ପ୍ଲେଲିଷ୍ଟରେ ଥିବା ସମସ୍ତ ନକଲ ଷ୍ଟ୍ରିମ୍ ଅପସାରଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
+    <string name="feed_hide_streams_title">ନିମ୍ନଲିଖିତ ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ</string>
+    <string name="feed_show_hide_streams">ଷ୍ଟ୍ରିମ୍ ଗୁଡିକ ଦେଖାନ୍ତୁ/ଲୁଚାନ୍ତୁ</string>
+    <string name="feed_show_watched">ପୁରା ଦେଖାଯାଇଛି</string>
+    <string name="feed_show_partially_watched">ଆଂଶିକ ଦେଖାଯାଇଛି</string>
+    <string name="feed_show_upcoming">ଆଗାମୀ</string>
+    <string name="left_gesture_control_summary">ପ୍ଲେୟାର ସ୍କ୍ରିନର ବାମ ଅଧା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବାଛନ୍ତୁ</string>
+    <string name="left_gesture_control_title">ବାମ ଅଙ୍ଗଭଙ୍ଗୀ କାର୍ଯ୍ୟ</string>
+    <string name="right_gesture_control_summary">ପ୍ଲେୟାର ସ୍କ୍ରିନର ଡାହାଣ ଅଧା ପାଇଁ ଅଙ୍ଗଭଙ୍ଗୀ ବାଛନ୍ତୁ</string>
+    <string name="right_gesture_control_title">ଡାହାଣ ଅଙ୍ଗଭଙ୍ଗୀ କାର୍ଯ୍ୟ</string>
+    <string name="brightness">ଉଜ୍ଜ୍ୱଳତା</string>
+    <string name="volume">ଭଲ୍ୟୁମ୍</string>
+    <string name="none">କିଛି ନୁହେଁ</string>
 </resources>

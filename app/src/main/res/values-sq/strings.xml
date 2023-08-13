@@ -482,10 +482,6 @@
     <string name="enable_search_history_summary">Ruani frazat e kërkuara lokalisht</string>
     <string name="enable_search_history_title">Historia e kërkimit</string>
     <string name="show_search_suggestions_summary">Shfaq sugjerime kur jeni duke kërkuar</string>
-    <string name="brightness_gesture_control_summary">Përdorni gjestet për të kontrolluar ndriçimin e luajtësit</string>
-    <string name="brightness_gesture_control_title">Kontrolli i gjesteve të ndriçimit</string>
-    <string name="volume_gesture_control_summary">Përdorni gjeste për të kontrolluar volumin e luajtësit</string>
-    <string name="volume_gesture_control_title">Kontrolli i gjesteve të volumit</string>
     <string name="auto_queue_summary">Vazhdoje radhën e luajtjes së mbarueshme (e papërsëritur) duke shtuar një stream të ngjashëm</string>
     <string name="auto_queue_title">Auto-radhit stream-in e radhës</string>
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>
@@ -556,7 +552,7 @@
     <string name="notification_action_2_title">Butoni i tretë i veprimit</string>
     <string name="notification_action_1_title">Butoni i dytë i veprimit</string>
     <string name="notification_action_0_title">Butoni i parë i veprimit</string>
-    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1 (mund të shfaqë deformime)</string>
+    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1</string>
     <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
     <string name="show_memory_leaks">Shfaq rrjedhjet e memories</string>
     <string name="recaptcha_cookies_cleared">Biskotat reCAPTCHA janë pastruar</string>
@@ -615,7 +611,6 @@
     <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
     <string name="show_thumbnail_summary">Përdor pamje statike për sfondin e ekranit të kyçur si dhe për njoftimet</string>
-    <string name="feed_toggle_show_played_items">Shfaq objektet e para</string>
     <string name="feed_load_error_fast_unknown">Modaliteti i feed-it të shpejtë nuk mundëson më tepër informacion mbi këtë.</string>
     <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar.
 \nNewPipe nuk do mund ta ngarkojë këtë feed në të ardhmen.

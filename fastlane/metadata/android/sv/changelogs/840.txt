@@ -1,0 +1,6 @@
+Nytt
+• Lagt till språkväljare för att ändra appens språk
+• Lägg till knappen Skicka till Kodi i spelarens hopfällbara meny
+• Lagt till möjlighet att kopiera kommentarer vid lång tryck
+
+Och mycket mer

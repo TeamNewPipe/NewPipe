@@ -4,4 +4,23 @@
     <string name="did_you_mean">ඔබ අදහස් කළේ \"%1$s\" ද\?</string>
     <string name="settings">සැකසුම්</string>
     <string name="search">සොයන්න</string>
+    <string name="use_external_video_player_title">බාහිර මෘදුකාංගයක් භාවිත කරන්න</string>
+    <string name="subscribe_button_title">Subscribe කිරීම</string>
+    <string name="tab_choose">ටැබය තෝරන්න</string>
+    <string name="download_path_summary">භාගත කල චලන රූප මෙහි තැන්පත් ය</string>
+    <string name="main_bg_subtitle">ආරම්භ කිරීමට අණ්වීක්ෂය ඔබන්න.</string>
+    <string name="open_with">හරහා විවෘත කරන්න</string>
+    <string name="share">බෙදාගන්න</string>
+    <string name="upload_date_text">පලකරන ලද්දේ %1$s</string>
+    <string name="install">ස්ථාපනය කරන්න</string>
+    <string name="cancel">අවලංගු කරන්න</string>
+    <string name="open_in_browser">Browser එක මගින් විවෘත කරන්න</string>
+    <string name="download">බාගත කරන්න</string>
+    <string name="mark_as_watched">බැලූ ලෙස සලකුණු කරන්න</string>
+    <string name="ok">හරි</string>
+    <string name="search_showing_result_for">%s සඳහා ප්‍රතිපල පෙන්වයි</string>
+    <string name="subscribed_button_title">Subscribe කර ඇත</string>
+    <string name="controls_add_to_playlist_title">ඇතුලත් කරන්න මෙයට</string>
+    <string name="download_path_title">චලන රූප භාගත කරන ස්තානය</string>
+    <string name="download_path_dialog_title">චලන රූප ගබඩා කිරීමට ස්තානයක් තෝරන්න</string>
 </resources>

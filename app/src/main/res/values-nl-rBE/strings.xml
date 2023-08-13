@@ -334,10 +334,6 @@
     <string name="users">Gebruikers</string>
     <string name="unsubscribe">Abonnement opzeggen</string>
     <string name="tab_choose">Kiest een tabblad</string>
-    <string name="volume_gesture_control_title">Veegbesturing voor volume</string>
-    <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
-    <string name="brightness_gesture_control_title">Veegbesturing voor helderheid</string>
-    <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="events">Gebeurtenissen</string>
     <string name="file_deleted">Bestand verwijderd</string>
@@ -564,8 +560,8 @@
     <string name="notification_action_2_title">Derde actie knop</string>
     <string name="notification_action_1_title">Tweede actie knop</string>
     <string name="notification_action_0_title">Eerste actie knop</string>
-    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van 16:9 naar 1:1 verhouding (kan vervorming creëren)</string>
-    <string name="notification_scale_to_square_image_title">Schaal miniatuurafbeelding naar verhouding 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Snij de miniatuurafbeelding van de video die getoond wordt in de notificatie bij van 16:9 naar een 1:1 verhouding</string>
+    <string name="notification_scale_to_square_image_title">Miniatuurafbeelding naar verhouding 1:1 bijknippen</string>
     <string name="show_original_time_ago_title">Toon oorspronkelijke tijd geleden op items</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
@@ -625,7 +621,6 @@
     <string name="streams_notification_channel_name">Nieuwe streams</string>
     <string name="streams_notification_channel_description">Meldingen over nieuwe streams voor abonnementen</string>
     <string name="error_report_notification_title">NewPipe meldt een fout, tik om te rapporteren</string>
-    <string name="progressive_load_interval_summary">Verander het laadinterval (momenteel %s). Een lagere waarde kan het laden van video versnellen. Vereist een herstart van de speler.</string>
     <plurals name="new_streams">
         <item quantity="one">%s nieuwe stream</item>
         <item quantity="other">%s nieuwe streams</item>

@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
-    <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
+    <string name="kore_not_found">Asennetaanko puuttuva Kode-sovellus\?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
@@ -391,10 +391,6 @@
     <string name="settings_category_clear_data_title">Tietojen tyhjennys</string>
     <string name="enable_playback_resume_title">Jatka toistoa</string>
     <string name="show_original_time_ago_summary">Palvelujen alkuperäiset tekstit näkyvät suoratoistettavassa sisällössä</string>
-    <string name="brightness_gesture_control_summary">Käytä eleitä ohjataksesi soittimen kirkkautta</string>
-    <string name="brightness_gesture_control_title">Kirkkauden eleohjaus</string>
-    <string name="volume_gesture_control_summary">Käytä eleitä ohjataksesi soittimen äänenvoimakkuutta</string>
-    <string name="volume_gesture_control_title">Äänenvoimakkuuden eleohjaus</string>
     <string name="show_comments_summary">Poista käytöstä piilottaaksesi kommentit</string>
     <string name="watch_history_states_deleted">Toistokohdat poistettu</string>
     <string name="delete_playback_states_alert">Poistetaanko kaikki toistokohdat\?</string>
@@ -629,7 +625,6 @@
     <string name="metadata_category">Kategoria</string>
     <string name="description_select_enable">Salli tekstin valinta kuvauksessa</string>
     <string name="account_terminated">Tili suljettu</string>
-    <string name="feed_toggle_show_played_items">Näytä katsotut kohteet</string>
     <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu.
 \nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa.
 \nHaluatko poistaa kanavan tilauksesta\?</string>
@@ -681,4 +676,9 @@
     <string name="show_error_snackbar">Näytä virheen ponnahdusilmoitus</string>
     <string name="feed_new_items">Uudet syötteet</string>
     <string name="notifications">Ilmoitukset</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Käytä aina ExoPlayerin videolähtöpinnan asetusta</string>
+    <string name="audio_track_type_descriptive">kuvaileva</string>
+    <string name="audio_track_type_dubbed">dubattu</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">alkuperäinen</string>
 </resources>

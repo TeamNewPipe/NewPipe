@@ -31,6 +31,8 @@ import android.util.Log;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * One service for all players.
@@ -41,7 +43,7 @@ public final class PlayerService extends Service {
 
     private Player player;
 
-    private final IBinder mBinder = new PlayerService.LocalBinder();
+    private final IBinder mBinder = new PlayerService.LocalBinder(this);
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -134,14 +136,19 @@ public final class PlayerService extends Service {
         return mBinder;
     }
 
-    public class LocalBinder extends Binder {
+    public static class LocalBinder extends Binder {
+        private final WeakReference<PlayerService> playerService;
+
+        LocalBinder(final PlayerService playerService) {
+            this.playerService = new WeakReference<>(playerService);
+        }
 
         public PlayerService getService() {
-            return PlayerService.this;
+            return playerService.get();
         }
 
         public Player getPlayer() {
-            return PlayerService.this.player;
+            return playerService.get().player;
         }
     }
 }

@@ -53,7 +53,7 @@
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="sorry_string">Désolé, cela n’aurait pas dû se produire.</string>
-    <string name="error_report_button_text">Signaler cette erreur par courriel</string>
+    <string name="error_report_button_text">Signaler par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
     <string name="your_comment">Votre commentaire (en anglais) :</string>
@@ -257,7 +257,7 @@
     <string name="file_name_empty_error">Le nom du fichier ne peut pas être vide</string>
     <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="controls_download_desc">Télécharger le flux</string>
-    <string name="auto_queue_title">Ajout automatique du flux suivant à la file</string>
+    <string name="auto_queue_title">Ajout automatique du flux suivant à la file de lecture</string>
     <string name="auto_queue_summary">Continue la file de lecture (non répétitive) en ajoutant un flux lié</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
@@ -337,10 +337,6 @@
     <string name="minimize_on_exit_popup_description">Réduire vers le lecteur flottant</string>
     <string name="unsubscribe">Se désabonner</string>
     <string name="tab_choose">Sélectionner un onglet</string>
-    <string name="volume_gesture_control_title">Contrôle gestuel du volume</string>
-    <string name="volume_gesture_control_summary">Utiliser des gestes pour contrôler le volume du lecteur</string>
-    <string name="brightness_gesture_control_title">Contrôle gestuel de la luminosité</string>
-    <string name="brightness_gesture_control_summary">Utiliser des gestes pour contrôler la luminosité du lecteur</string>
     <string name="settings_category_updates_title">Mises à jour</string>
     <string name="file_deleted">Fichier supprimé</string>
     <string name="app_update_notification_channel_name">Notification de mise à jour de l’application</string>
@@ -556,7 +552,7 @@
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
     <string name="title_activity_play_queue">Liste de lecture</string>
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
-    <string name="auto_queue_toggle">Ajout automatique à la file</string>
+    <string name="auto_queue_toggle">Ajout auto. à la file</string>
     <string name="clear_queue_confirmation_description">La file de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une file de lecture</string>
     <string name="notification_action_nothing">Rien</string>
@@ -607,7 +603,7 @@
     <string name="restricted_video_no_stream">Cette vidéo est soumise à une limite d’âge.
 \nEn raison des nouvelles politiques de YouTube concernant les vidéos soumises à une limite d’âge, NewPipe ne peut accéder à aucun de ses flux vidéo et ne peut donc pas les lire.</string>
     <string name="radio">Radio</string>
-    <string name="featured">Tendances</string>
+    <string name="featured">Présentés</string>
     <string name="recaptcha_solve">Résoudre</string>
     <string name="auto_device_theme_title">Automatique (thème de l’appareil)</string>
     <string name="night_theme_summary">Sélectionne votre thème de nuit favori — %s</string>
@@ -642,7 +638,6 @@
     <string name="off">Inactif</string>
     <string name="on">Actif</string>
     <string name="tablet_mode_title">Mode tablette</string>
-    <string name="feed_toggle_show_played_items">Afficher les éléments visionnés</string>
     <string name="feed_load_error_terminated">Le compte de l’auteur a été résilié.
 \nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
@@ -666,18 +661,18 @@
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Téléchargement terminé</item>
-        <item quantity="many">%s Téléchargements terminés</item>
-        <item quantity="other">%s Téléchargements terminés</item>
+        <item quantity="many">%s téléchargements terminés</item>
+        <item quantity="other">%s téléchargements terminés</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Placer en suivant dans la file</string>
-    <string name="enqueued_next">Placé en suivant dans la file</string>
+    <string name="enqueue_next_stream">Ajouter à la file de lecture</string>
+    <string name="enqueued_next">Ajouté à la file de lecture</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
-    <string name="manual_update_title">Vérifier les mises à jours</string>
+    <string name="manual_update_title">Vérifier les mises à jour</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
     <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
@@ -694,7 +689,6 @@
 \nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver « %s » dans les paramètres de téléchargement</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
-    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos. Changer cette valeur nécessite de redémarrer le lecteur</string>
     <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
     <string name="streams_notification_channel_name">Nouveaux flux</string>
     <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>
@@ -721,17 +715,14 @@
     <string name="toggle_all">Tout basculer</string>
     <string name="percent">Pourcent</string>
     <string name="semitone">Demi-ton</string>
-    <string name="streams_not_yet_supported_removed">Les flux qui ne sont pas encore supportés ne sont pas montrés</string>
-    <string name="no_audio_streams_available_for_external_players">Aucun flux audio n\'est disponible pour les lecteurs externes</string>
+    <string name="streams_not_yet_supported_removed">Les flux qui ne sont pas encore pris en charge ne sont pas montrés</string>
+    <string name="no_audio_streams_available_for_external_players">Aucun flux audio n’est disponible pour les lecteurs externes</string>
     <string name="select_quality_external_players">Sélectionner la qualité pour les lecteurs externes</string>
     <string name="unknown_format">Format inconnu</string>
     <string name="unknown_quality">Qualité inconnue</string>
-    <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
-    <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
+    <string name="selected_stream_external_player_not_supported">Le flux sélectionné n’est pas pris en charge par les lecteurs externes</string>
+    <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n’est disponible pour les lecteurs externes</string>
     <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
-    <string name="feed_toggle_show_future_items">Afficher les éléments à venir</string>
-    <string name="feed_toggle_hide_played_items">Masquer les éléments visionnés</string>
-    <string name="feed_toggle_hide_future_items">Masquer les éléments à venir</string>
     <string name="faq_title">Foire aux questions</string>
     <string name="faq">Voir sur le site web</string>
     <string name="faq_description">Si vous avez des difficultés à utiliser l\'application, consultez les réponses aux questions les plus fréquentes !</string>
@@ -744,4 +735,47 @@
     <string name="night_theme_available">Cette option est disponible seulement si %s est sélectionné pour le thème</string>
     <string name="duplicate_in_playlist">Les listes de lecture grisées contiennent déjà cet élément.</string>
     <string name="card">Carte</string>
+    <string name="ignore_hardware_media_buttons_summary">Utile si, par exemple, vous utilisez un casque avec des boutons dysfonctionnels</string>
+    <string name="remove_duplicates">Effacer les doublons</string>
+    <string name="remove_duplicates_title">Effacer les doublons \?</string>
+    <string name="remove_duplicates_message">Voulez-vous retirer tous les doublons de cette liste \?</string>
+    <string name="feed_hide_streams_title">Afficher les flux suivants</string>
+    <string name="feed_show_watched">Entièrement vu</string>
+    <string name="feed_show_partially_watched">Partiellement vu</string>
+    <string name="feed_show_upcoming">À venir</string>
+    <string name="ignore_hardware_media_buttons_title">Ignorer les évènements des boutons média physiques</string>
+    <string name="playlist_add_stream_success_duplicate">Doublon ajouté %d fois</string>
+    <string name="feed_show_hide_streams">Afficher/Cacher les flux</string>
+    <string name="unset_playlist_thumbnail">Enlever la miniature permanente</string>
+    <string name="left_gesture_control_summary">Choisir le geste pour la moitié gauche de l’écran du lecteur</string>
+    <string name="left_gesture_control_title">Action du geste vers la gauche</string>
+    <string name="right_gesture_control_summary">Choisir le geste pour la moitié droite de l’écran du lecteur</string>
+    <string name="volume">Volume</string>
+    <string name="none">Aucune</string>
+    <string name="right_gesture_control_title">Action du geste vers la droite</string>
+    <string name="brightness">Luminosité</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos</string>
+    <string name="prefer_original_audio_title">Préférence pour l\'audio original</string>
+    <string name="prefer_original_audio_summary">Sélectionner la piste audio originale quelle que soit la langue</string>
+    <string name="prefer_descriptive_audio_title">Préférer l\'audio descriptif</string>
+    <string name="play_queue_audio_track">Audio : %s</string>
+    <string name="audio_track">Piste audio</string>
+    <string name="audio_track_present_in_video">Une piste audio doit déjà être présente dans ce flux</string>
+    <string name="unknown_audio_track">Inconnue</string>
+    <string name="settings_category_exoplayer_title">Paramètres d’ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gérez certains paramètres d\'ExoPlayer. Ces modifications nécessitent un redémarrage du lecteur pour être prises en compte</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utiliser la fonctionnalité de repli du décodeur d\'ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Toujours utiliser la solution de contournement de définition de surface de sortie vidéo d\'ExoPlayer</string>
+    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_dubbed">doublée</string>
+    <string name="audio_track_type_descriptive">descriptif</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Cette solution de contournement libère et ré-instancie les codecs vidéo lorsqu\'un changement de surface se produit, au lieu de définir la surface du codec directement. Déjà utilisé par ExoPlayer sur certains appareils présentant ce problème, ce paramètre n\'a d\'effet que sur Android 6 et les versions ultérieures.
+\n
+\nL\'activation de cette option peut éviter les erreurs de lecture lors du changement de lecteur vidéo ou du passage en mode plein écran</string>
+    <string name="prefer_descriptive_audio_summary">Sélectionner une piste audio avec des descriptions pour les personnes malvoyantes si disponible</string>
+    <string name="select_audio_track_external_players">Sélectionner la piste audio pour les lecteurs externes</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Activez cette option si vous rencontrez des problèmes d\'initialisation des décodeurs, ce qui permet de revenir à des décodeurs moins prioritaires si l\'initialisation des décodeurs primaires échoue. Les performances de lecture peuvent être moins bonnes que lors de l\'utilisation des décodeurs primaires</string>
+    <string name="main_tabs_position_summary">Déplacer le sélecteur d\'onglet principal en bas</string>
+    <string name="main_tabs_position_title">Position des onglets principaux</string>
 </resources>

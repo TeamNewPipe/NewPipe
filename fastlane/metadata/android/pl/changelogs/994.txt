@@ -1,0 +1,15 @@
+Nowe
+• Obsługa wielu ścieżek/języków dźwiękowych
+• Zezwolenie na ustawienie gestów głośności i jasności po dowolnej stronie ekranu
+• Obsługa wyświetlania kart głównych na dole ekranu
+
+Ulepszone
+• [Bandcamp] Obsługa utworów schowanych za paywallem
+
+Naprawione
+• [YouTube] Błędy 403 HTTP dla strumieni
+• Czarny odtwarzacz podczas przełączania do głównego odtwarzacza z widoku playlisty
+• Wyciek pamięci usługi odtwarzacza
+• [PeerTube] Awatary przesyłającego i podkanału zostały zamienione
+
+i więcej

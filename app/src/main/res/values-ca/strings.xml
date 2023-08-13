@@ -333,10 +333,6 @@
     <string name="tracks">Pistes</string>
     <string name="users">Usuaris</string>
     <string name="tab_choose">Trieu una pestanya</string>
-    <string name="volume_gesture_control_title">Control de volum per gestos</string>
-    <string name="volume_gesture_control_summary">Fes servir gestos per controlar el volum del reproductor</string>
-    <string name="brightness_gesture_control_title">Control de brillantor per gestos</string>
-    <string name="brightness_gesture_control_summary">Fes servir gestos per controlar la brillantor del reproductor</string>
     <string name="settings_category_updates_title">Actualitzacions</string>
     <string name="file_deleted">S\'ha eliminat el fitxer</string>
     <string name="download_to_sdcard_error_title">L\'emmagatzematge extern no està disponible</string>
@@ -574,8 +570,8 @@
     <string name="notification_action_2_title">Tercer botó d\'acció</string>
     <string name="notification_action_1_title">Segon botó d\'acció</string>
     <string name="notification_action_0_title">Primer botó d\'acció</string>
-    <string name="notification_scale_to_square_image_summary">Escala la miniatura del vídeo mostrat a la notificació de 16:9 a raó d\'1:1 (pot causar deformacions)</string>
-    <string name="notification_scale_to_square_image_title">Escala a raó d\'1:1</string>
+    <string name="notification_scale_to_square_image_summary">Retalla la miniatura del vídeo mostrat a la notificació de 16:9 a 1:1</string>
+    <string name="notification_scale_to_square_image_title">Retalla la miniatura amb una relació d\'aspecte 1:1</string>
     <string name="search_showing_result_for">Mostrant resultats per a: %s</string>
     <string name="chapters">Capítols</string>
     <string name="description_tab_description">Descripció</string>
@@ -624,7 +620,6 @@
     <string name="auto_device_theme_title">Automàtic (tema del dispositiu)</string>
     <string name="service_provides_reason">%s dóna aquesta raó:</string>
     <string name="account_terminated">Usuari suspes</string>
-    <string name="feed_toggle_show_played_items">Mostra contingut visualitzat</string>
     <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat.
 \nNewPipe no serà capaç de carregar aquest fil en el futur.
 \nUs voleu desubscriure d\'aquest canal\?</string>
@@ -702,4 +697,8 @@
     <string name="sort">Ordenar</string>
     <string name="settings_category_player_notification_summary">Configura la notificació de reproducció actual.</string>
     <string name="progressive_load_interval_summary">Canvia la mida de l\'interval de càrrega (actualment %s). Un valor inferior pot accelerar la càrrega inicial del vídeo. Els canvis requereixen un reinici del jugador.</string>
+    <string name="ignore_hardware_media_buttons_title">Ignora els esdeveniments dels botons de reproducció físics</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, per exemple, si feu servir uns auriculars amb els botons físicament trencats</string>
+    <string name="left_gesture_control_summary">Trieu un gest per la part esquerra de la pantalla</string>
+    <string name="progressive_load_interval_title">Mida de l\'interval de càrrega de reproducció</string>
 </resources>

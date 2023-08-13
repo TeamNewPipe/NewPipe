@@ -1,0 +1,3 @@
+- [YouTube] Oprava nekonečného načítavania pri pokuse o prehrávanie akéhokoľvek videa
+- [YouTube] Oprava obmedzovania výkonu pri niektorých videách
+- Aktualizácia knižnice jep na verziu 1.15.3, ktorá obsahuje opravu zabezpečenia

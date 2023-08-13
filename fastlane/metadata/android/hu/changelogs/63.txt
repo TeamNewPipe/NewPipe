@@ -5,4 +5,4 @@
 - GDPR információk hozzáadása #1420
 
 ### Javítva
-- Letöltés: A befejezetlen .giga fájlokból történő betöltés közbeni összeomlás javítása #1407
+- Letöltő: A befejezetlen .giga fájl letöltések betöltése közbeni összeomlás javítása #1407

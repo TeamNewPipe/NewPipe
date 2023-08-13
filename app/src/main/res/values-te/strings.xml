@@ -186,7 +186,6 @@
     <string name="popup_remember_size_pos_summary">పాప్అప్ చివరి పరిమాణం మరియు స్థానాన్ని గుర్తుంచుకోండి</string>
     <string name="show_description_summary">వీడియో వివరణ మరియు అదనపు సమాచారాన్ని దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="show_meta_info_summary">స్ట్రీమ్ సృష్టికర్త, స్ట్రీమ్ కంటెంట్ లేదా శోధన అభ్యర్థన గురించి అదనపు సమాచారంతో మెటా సమాచార పెట్టెలను దాచడానికి ఆఫ్ చేయండి</string>
-    <string name="brightness_gesture_control_summary">ప్లేయర్ ప్రకాశాన్ని నియంత్రించడానికి సంజ్ఞలను ఉపయోగించండి</string>
     <string name="show_search_suggestions_summary">శోధిస్తున్నప్పుడు చూపాల్సిన సూచనలను ఎంచుకోండి</string>
     <string name="enable_playback_resume_summary">చివరి ప్లేబ్యాక్ స్థానాన్ని పునరుద్ధరించండి</string>
     <string name="peertube_instance_url_summary">మీకు ఇష్టమైన పీర్‌ట్యూబ్ సందర్భాలను ఎంచుకోండి</string>
@@ -214,9 +213,6 @@
     <string name="metadata_cache_wipe_title">కాష్ చేయబడిన మెటాడేటాను తుడిచివేయండి</string>
     <string name="metadata_cache_wipe_summary">కాష్ చేసిన వెబ్‌పేజీ డేటా మొత్తాన్ని తీసివేయండి</string>
     <string name="metadata_cache_wipe_complete_notice">మెటాడేటా కాష్ తుడిచివేయబడింది</string>
-    <string name="volume_gesture_control_title">వాల్యూమ్ సంజ్ఞ నియంత్రణ</string>
-    <string name="volume_gesture_control_summary">ప్లేయర్ వాల్యూమ్‌ను నియంత్రించడానికి సంజ్ఞలను ఉపయోగించండి</string>
-    <string name="brightness_gesture_control_title">ప్రకాశం సంజ్ఞ నియంత్రణ</string>
     <string name="show_search_suggestions_title">సూచనలను శోధించండి</string>
     <string name="enable_search_history_title">శోధన చరిత్ర</string>
     <string name="enable_search_history_summary">శోధన ప్రశ్నలను స్థానికంగా నిల్వ చేయండి</string>
@@ -417,7 +413,6 @@
     <string name="resize_zoom">పరివీక్షణ</string>
     <string name="switch_to_popup">తేలియాడే విధంగా మార్చు</string>
     <string name="auto_queue_title">తదుపరి స్ట్రీమ్‌ను స్వీయ-ఎన్క్యూ</string>
-    <string name="progressive_load_interval_summary">లోడ్ విరామం పరిమాణాన్ని మార్చండి (ప్రస్తుతం %s). తక్కువ విలువ ప్రారంభ వీడియో లోడింగ్‌ని వేగవంతం చేయవచ్చు. మార్పులకు ప్లేయర్ రీస్టార్ట్ అవసరం.</string>
     <string name="leak_canary_not_available">LeakCanary అందుబాటులో లేదు</string>
     <string name="caption_setting_description">ప్లేయర్ శీర్షిక వచన స్థాయి మరియు నేపథ్య శైలులను సవరించండి. అమలులోకి రావడానికి యాప్ రీస్టార్ట్ అవసరం</string>
     <string name="playlist_no_uploader">స్వయంచాలకంగా రూపొందించబడింది (ఎక్కించినవారు కనబడుటలేదు)</string>

@@ -80,4 +80,9 @@
     <string name="upload_date_text">Published on %1$s</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>
+    <string name="no_player_found">No stream player found. Install VLC\?</string>
+    <string name="install">Install</string>
+    <string name="ok">Okay</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="no_player_found_toast">No stream player found (you can install VLC to play it).</string>
 </resources>

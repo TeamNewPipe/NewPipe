@@ -1,26 +1,26 @@
 ### Fejlesztések
 
-- A burgermenu ikon animációjának letiltása #1486
+- A burgermenü ikonanimációjának letiltása #1486
 - a letöltések törlésének visszavonása #1472
-- Letöltési lehetőség a #1498 megosztás menüben
+- Letöltési lehetőség a megosztás menüben #1498
 - Megosztási lehetőség hozzáadva a hosszú érintéssel #1454
-- A fő játékos minimalizálása a 1354-es kijáratnál
+- A fő lejátszó minimalizálása a kilépésnél #1354
 - A könyvtár verziójának frissítése és az adatbázis biztonsági mentésének javítása #1510
 - ExoPlayer 2.8.2 frissítés #1392
-  - Átdolgoztuk a lejátszási sebesség-vezérlő párbeszédpanelt, hogy támogassa a különböző lépésméreteket a gyorsabb sebességváltás érdekében.
-  - Hozzáadott egy kapcsolót a gyors előretekeréshez a lejátszási sebesség szabályozásában a csendek alatt. Ez hasznos lehet hangoskönyvek és bizonyos zenei műfajok esetében, és valódi zökkenőmentes élményt nyújthat (és megszakíthat egy dalt sok csenddel =\\).
-  - Átdolgozott médiaforrás felbontás, amely lehetővé teszi a metaadatok továbbítását a média mellett a lejátszón belül, nem pedig manuálisan. Most már egyetlen metaadatforrásunk van, és közvetlenül elérhető a lejátszás megkezdésekor.
-  - Javítva a távoli lejátszási lista metaadatai, amelyek nem frissülnek, amikor új metaadatok állnak rendelkezésre a lejátszási lista töredékének megnyitásakor.
-  - Különféle felhasználói felület-javítások: #1383, a háttérben lévő lejátszó értesítési vezérlői mostantól mindig fehérek, a felugró lejátszót egyszerűbben le lehet állítani dobással
-- Használjon új kivonatot refaktorált architektúrával a többszolgáltatáshoz
+  - Átdolgoztuk a lejátszásisebesség-vezérlő párbeszédpanelt, hogy támogassa a különböző lépésmértéket a gyorsabb sebességváltás érdekében.
+  - Hozzáadott kapcsoló a gyors előre- hátratekeréshez a lejátszásisebesség-vezérlőben a csendek alatt. Ez hasznos lehet hangoskönyvek és bizonyos zenei műfajok esetében és valódi zökkenőmentes élményt nyújthat (és megtörhet egy dalt sok csenddel =\\).
+  - Átdolgozott médiaforrás felbontás, amely lehetővé teszi a metaadatok továbbítását a média mellett a lejátszón belül, manuális helyett. Most már egyetlen metaadatforrásunk van és közvetlenül elérhető a lejátszás megkezdésekor.
+  - Javítva a távoli lejátszási lista metaadatai nem frissülnek, amikor új metaadatok állnak rendelkezésre a lejátszási lista töredékének megnyitásakor.
+  - Különféle felhasználóifelület-javítások: #1383, a háttérlejátszó értesítési vezérlői mostantól mindig fehérek, a felugró lejátszót egyszerűbben le lehet állítani eldobással
+- Újraírt extractor használata több szolgáltatáshoz
 
 ### Javítások
 
-- Javítás: #1440 Sérült videó információs elrendezés #1491
-- Előzmények megtekintése #1497. javítás
+- a #1440 Sérült videó információs elrendezés #1491
+- Előzmények megtekintése #1497
   - #1495, a metaadatok (bélyegkép, cím és videószám) frissítésével, amint a felhasználó hozzáfér a lejátszási listához.
   - #1475, egy nézet regisztrálásával az adatbázisban, amikor a felhasználó elindít egy videót a külső lejátszón a részletrészleten.
-- Javítsa ki a képernyő időtúllépését felugró mód esetén. #1463 (fix #640)
-- Fő videólejátszó javítás #1509
-  - [#1412] Javítva az ismétlési mód, ami a játékos NPE-jét okozza, ha új szándék érkezik, miközben a játékos tevékenysége a háttérben van.
-  - Javítva, hogy a lejátszó előugró ablakra minimalizálja, nem semmisíti meg a lejátszót ha a popup engedélyt nem adják meg.
+- a képernyő időtúllépése felugró mód esetén. #1463 (javítva #640)
+- Fő videólejátszó #1509
+  - [#1412] az ismétlés mód, ami a lejátszó NPE-t okozza, ha új szándék érkezik, miközben a lejátszó a háttérben fut.
+  - a lejátszó felugró ablakra minimalizálása nem semmisíti meg a lejátszót, ha a felugró ablak nem engedélyezett.

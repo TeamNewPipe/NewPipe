@@ -330,10 +330,6 @@
     <string name="minimize_on_exit_popup_description">Смали го во прозорче</string>
     <string name="unsubscribe">Откажете претплата</string>
     <string name="tab_choose">Одбери јазиче</string>
-    <string name="volume_gesture_control_title">Гест за контрола на гласност</string>
-    <string name="volume_gesture_control_summary">Користете гестови за подесување на гласноста</string>
-    <string name="brightness_gesture_control_title">Гестови за контрола на осветленост</string>
-    <string name="brightness_gesture_control_summary">Користете гест за контрола на осветленоста</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="file_deleted">Дадотеката е избришана</string>
     <string name="app_update_notification_channel_name">Известување за ажурирање на апликација</string>

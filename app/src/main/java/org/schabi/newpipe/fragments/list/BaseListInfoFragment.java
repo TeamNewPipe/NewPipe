@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list;
 
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -7,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -250,6 +253,20 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                         errorUserAction, "Start loading: " + url, serviceId));
             }
         }
+    }
+
+    @Override
+    public void showEmptyState() {
+        // show "no streams" for SoundCloud; otherwise "no videos"
+        // showing "no live streams" is handled in KioskFragment
+        if (emptyStateView != null) {
+            if (currentInfo.getService() == SoundCloud) {
+                setEmptyStateMessage(R.string.no_streams);
+            } else {
+                setEmptyStateMessage(R.string.no_videos);
+            }
+        }
+        super.showEmptyState();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -497,10 +497,6 @@
     <string name="enable_playback_state_lists_title">Позиције на листама</string>
     <string name="enable_playback_resume_summary">Вратите последњу позицију репродукције</string>
     <string name="enable_playback_resume_title">Наставак репродукције</string>
-    <string name="brightness_gesture_control_summary">Користите покрете за контролу осветљаја</string>
-    <string name="brightness_gesture_control_title">Контрола осветљености потезом</string>
-    <string name="volume_gesture_control_summary">Користите потезе за контролу јачине звука плејера</string>
-    <string name="volume_gesture_control_title">Контрола јачине звука потезом</string>
     <string name="auto_queue_toggle">Самостално заказивање</string>
     <string name="auto_queue_summary">Наставите да завршавате (не понављајући) ред репродукције додавањем повезаног стрима</string>
     <string name="auto_queue_title">Самостално закажи следећи ток</string>
@@ -644,7 +640,6 @@
     <string name="off">искљ</string>
     <string name="on">укљ</string>
     <string name="tablet_mode_title">Режим таблета</string>
-    <string name="feed_toggle_show_played_items">Прикажи пуштано</string>
     <string name="enqueue_next_stream">Закажи следеће</string>
     <string name="enqueued_next">Заказано је следеће</string>
     <string name="local_search_suggestions">Местни предлози претраге</string>

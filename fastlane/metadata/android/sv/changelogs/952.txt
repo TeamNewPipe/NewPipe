@@ -1,0 +1,7 @@
+Förbättrat
+• Automatisk spelning är tillgängligt för alla tjänster (istället för bara YouTube)
+
+Fixat
+• Fixade relaterade strömmar genom att stödja YouTubes nya fortsättningar
+• Fixade åldersbegränsade YouTube-videor
+• [Android TV] Fixade kvardröjande fokus markerade överlägg

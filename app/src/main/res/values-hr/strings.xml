@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Prikaži veće rezolucije</string>
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videa</string>
     <string name="play_with_kodi_title">Reproduciraj s Kodijem</string>
-    <string name="kore_not_found">Instalirati nedostajući Kore program\?</string>
+    <string name="kore_not_found">Instalirati nedostajući Kode program\?</string>
     <string name="show_play_with_kodi_title">Prikaži opciju „Reproduciraj pomoću Kodija”</string>
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videozapisa putem Kodija</string>
     <string name="play_audio">Audiosnimka</string>
@@ -317,10 +317,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj sljedeći stream u popisa izvođenja</string>
     <string name="auto_queue_summary">Nastavi završavati (ne ponavljajući) popis reprodukcija dodavanjem povezanog streama</string>
-    <string name="volume_gesture_control_title">Kontrola glasnoće pomoću gesti</string>
-    <string name="volume_gesture_control_summary">Koristi geste za upravljanje glasnoćom playera</string>
-    <string name="brightness_gesture_control_title">Kontrola svjetline pomoću gesti</string>
-    <string name="brightness_gesture_control_summary">Koristi gesture za upravljanje svjetlinom playera</string>
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
     <string name="settings_category_debug_title">Otkrivanje grešaka</string>
     <string name="app_update_notification_channel_name">Obavijest o novoj verziji programa</string>
@@ -633,7 +629,6 @@
     <string name="description_select_disable">Onemogući biranje teksta u opisu</string>
     <string name="description_select_enable">Omogući biranje teksta u opisu</string>
     <string name="account_terminated">Račun ukinut</string>
-    <string name="feed_toggle_show_played_items">Prikaži pogledane stavke</string>
     <string name="feed_load_error_terminated">Autorov račun je ukinut.
 \nNewPipe ubuduće neće moći učitavati ovaj feed.
 \nŽeliš li otkazati pretplatu na ovaj kanal\?</string>
@@ -725,9 +720,6 @@
     <string name="no_audio_streams_available_for_external_players">Nijedan stream audiosnimaka nije dostupan za vanjske playere</string>
     <string name="no_video_streams_available_for_external_players">Nijedan video stream nije dostupan za vanjske playere</string>
     <string name="select_quality_external_players">Odaberi kvalitetu za vanjske playere</string>
-    <string name="feed_toggle_show_future_items">Prikaži buduće stavke</string>
     <string name="no_appropriate_file_manager_message_android_10">Za ovu radnju nije pronađen odgovrajući upravljač datoteka.
 \nInstaliraj „Storage Access Framework” kompatibilni upravljač datoteka</string>
-    <string name="feed_toggle_hide_future_items">Sakrij buduće stavke</string>
-    <string name="feed_toggle_hide_played_items">Sakrij pogledane stavke</string>
 </resources>

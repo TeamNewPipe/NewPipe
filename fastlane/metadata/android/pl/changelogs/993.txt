@@ -1,0 +1,12 @@
+Nowe
+• Ostrzeż. podczas dodaw. duplikatów playlist i przycisk, aby je usunąć
+• Opcja ignorow. przycisków sprzęt.
+• Opcja ukryw. częściowo obejrzanych wideo w kanale
+
+Ulepszone
+• Używ. więcej kol. siatki na dużych ekranach
+• Ujednol. wskaź. postępu z ustawieniami
+
+Naprawione
+• Otwier. URL-i przeglądarki, pobranych i zew. odtwarzaczy na Androidzie 11+
+• Interakcja z trybem pełnoekr. wymagającym dwóch naciśnięć na MIUI

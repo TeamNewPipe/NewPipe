@@ -202,10 +202,6 @@
     <string name="users">Uzantoj</string>
     <string name="unsubscribe">Malaboni</string>
     <string name="tab_choose">Elektu ongleton</string>
-    <string name="volume_gesture_control_title">Kontrolo de volumena gesto</string>
-    <string name="volume_gesture_control_summary">Uzi gestojn por kontroli la volumon</string>
-    <string name="brightness_gesture_control_title">Kontrolo de gesto de brilo</string>
-    <string name="brightness_gesture_control_summary">Uzi gestojn por kontroli la brilon</string>
     <string name="settings_category_updates_title">Ĝisdatigoj</string>
     <string name="file_deleted">Dosiero forviŝita</string>
     <string name="app_update_notification_channel_name">Sciigo por ĝisdatigi apon</string>

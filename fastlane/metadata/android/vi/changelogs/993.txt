@@ -1,0 +1,12 @@
+Mới
+• Thêm cảnh báo khi thêm danh sách phát trùng lặp và nút thêm để xóa chúng
+• Cho phép bỏ qua các nút phần cứng
+• Cho phép ẩn video đã xem một phần trong nguồn cấp dữ liệu
+
+Cải tiến
+• Sử dụng nhiều cột lưới hơn trên màn hình lớn
+• Làm cho các chỉ báo tiến độ nhất quán với cài đặt
+
+Đã sửa
+• Sửa lỗi mở URL trình duyệt, nội dung tải xuống và trình phát bên ngoài trên Android 11 trở lên
+• Sửa lỗi tương tác với toàn màn hình yêu cầu hai lần nhấn trên MIUI

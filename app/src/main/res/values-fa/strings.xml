@@ -51,7 +51,7 @@
     <string name="content_not_available">محتوا در دسترس نیست</string>
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت</string>
     <string name="sorry_string">ببخشید! نباید این اتّفاق زخ می‌داد.</string>
-    <string name="error_report_button_text">این خطا را با رایانامه گزارش کنید</string>
+    <string name="error_report_button_text">گزارش با رایانامه</string>
     <string name="error_snackbar_message">ببخشید، چیزی به درستی پیش نرفت.</string>
     <string name="error_snackbar_action">گزارش</string>
     <string name="what_device_headline">اطّلاعات:</string>
@@ -280,10 +280,6 @@
     <string name="show_hold_to_append_title">نمایش نکته «برای صف‌گذاری، نگه‌دارید»</string>
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
-    <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
-    <string name="volume_gesture_control_summary">از اشارات برای کنترل حجم صدا استفاده شود</string>
-    <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
-    <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی استفاده شود</string>
     <string name="undo">بازگردانی</string>
     <string name="info_labels">چی:\\nدرخواست:\\nزبان محتوا:\\nکشور محتوا:\\nزبان اپ:\\nخدمت:\\nزمان GMT\\nپکیج:T:\\nنسخه:\\nنسخه‌اندروید:</string>
     <string name="title_activity_recaptcha">چالش ری‌کپچا</string>
@@ -559,7 +555,6 @@
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
     <string name="high_quality_larger">کیفیت بالا (بزرگ‌تر)</string>
     <string name="comments_are_disabled">نظرها از کار افتاده‌اند</string>
-    <string name="feed_toggle_show_played_items">نمایش موارد دیده‌شده</string>
     <string name="feed_load_error">خطا در بار کردن خوراک</string>
     <string name="disable_media_tunneling_title">از کار انداختن تونل‌زنی رسانه</string>
     <string name="show_channel_details">نمایش جزییات کانال</string>
@@ -680,7 +675,6 @@
     <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
-    <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند</string>
     <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
     <string name="notifications">آگاهی‌ها</string>
     <string name="loading_stream_details">بار کردن جزییات جریان…</string>
@@ -714,9 +708,6 @@
     <string name="unknown_format">قالب ناشناخته</string>
     <string name="unknown_quality">کیفیت ناشناخته</string>
     <string name="progressive_load_interval_title">اندازهٔ دورهٔ بار کردن پخش</string>
-    <string name="feed_toggle_show_future_items">نمایش موارد آینده</string>
-    <string name="feed_toggle_hide_future_items">نهفتن موارد آینده</string>
-    <string name="feed_toggle_hide_played_items">نهفتن موارد دیده شده</string>
     <string name="faq_title">سوالات متداول</string>
     <string name="faq_description">اگر حین استفاده از اپ مشکلی دارید، حتما پاسخ‌ها به سوالات متداول را بررسی کنید!</string>
     <string name="faq">نمایش در وبسایت</string>
@@ -729,4 +720,12 @@
     <string name="card">کارت</string>
     <string name="msg_failed_to_copy">شکست در رونوشت به تخته‌گیره</string>
     <string name="unset_playlist_thumbnail">ناتنظیم بندانگشتی ثابت</string>
+    <string name="ignore_hardware_media_buttons_title">چشم‌پوشی از رخدادهای دکمهٔ رسانهٔ سخت‌افزاری</string>
+    <string name="remove_duplicates">برداشتن تکراری‌ها</string>
+    <string name="remove_duplicates_title">برداشتن تکراری‌ها؟</string>
+    <string name="feed_show_hide_streams">نمایش یا نهفتن جریان‌ها</string>
+    <string name="feed_hide_streams_title">نمایش جریان‌های زیر</string>
+    <string name="feed_show_upcoming">پیش رو</string>
+    <string name="feed_show_watched">کامل دیده شده</string>
+    <string name="feed_show_partially_watched">نیمه دیده شده</string>
 </resources>
