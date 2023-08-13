@@ -69,6 +69,8 @@
     <module name="SuppressWarningsFilter" />
 
     <module name="TreeWalker">
+        <module name="SuppressionCommentFilter"/>
+
         <!-- Checks for Javadoc comments.                     -->
         <!-- See https://checkstyle.org/config_javadoc.html -->
         <module name="InvalidJavadocPosition"/>
