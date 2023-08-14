@@ -766,7 +766,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void showFailedDialog(@StringRes final int msg) {
-        assureCorrectAppLanguage(getContext());
+        assureCorrectAppLanguage(requireContext());
         new AlertDialog.Builder(context)
                 .setTitle(R.string.general_error)
                 .setMessage(msg)
@@ -799,7 +799,7 @@ public class DownloadDialog extends DialogFragment
                     filenameTmp += "opus";
                 } else if (format != null) {
                     mimeTmp = format.mimeType;
-                    filenameTmp += format.suffix;
+                    filenameTmp += format.getSuffix();
                 }
                 break;
             case R.id.video_button:
@@ -808,7 +808,7 @@ public class DownloadDialog extends DialogFragment
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 if (format != null) {
                     mimeTmp = format.mimeType;
-                    filenameTmp += format.suffix;
+                    filenameTmp += format.getSuffix();
                 }
                 break;
             case R.id.subtitle_button:
@@ -820,9 +820,9 @@ public class DownloadDialog extends DialogFragment
                 }
 
                 if (format == MediaFormat.TTML) {
-                    filenameTmp += MediaFormat.SRT.suffix;
+                    filenameTmp += MediaFormat.SRT.getSuffix();
                 } else if (format != null) {
-                    filenameTmp += format.suffix;
+                    filenameTmp += format.getSuffix();
                 }
                 break;
             default:
