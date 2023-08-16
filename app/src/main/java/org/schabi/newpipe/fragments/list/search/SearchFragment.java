@@ -384,6 +384,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle bundle) {
+        searchEditText.setText(searchEditText.getText().toString().trim());
         searchString = searchEditText != null
                 ? searchEditText.getText().toString()
                 : searchString;
@@ -396,8 +397,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void reloadContent() {
-        if (!TextUtils.isEmpty(searchString)
-                || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
+        if (!TextUtils.isEmpty(searchString) || (searchEditText != null
+                && TextUtils.getTrimmedLength(searchEditText.getText()) > 0)) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
                     : searchEditText.getText().toString(), this.contentFilter, "");
@@ -494,7 +495,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
         searchEditText.setText(searchString);
 
-        if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
+        if (TextUtils.isEmpty(searchString)
+                || TextUtils.getTrimmedLength(searchEditText.getText()) == 0) {
             searchToolbarContainer.setTranslationX(100);
             searchToolbarContainer.setAlpha(0.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
@@ -518,7 +520,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (TextUtils.isEmpty(searchEditText.getText())) {
+            if (TextUtils.getTrimmedLength(searchEditText.getText()) == 0) {
                 NavigationHelper.gotoMainFragment(getFM());
                 return;
             }
@@ -580,9 +582,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchEditText.removeTextChangedListener(textWatcher);
         }
         textWatcher = new TextWatcher() {
+            private boolean isPastedText = false;
+
             @Override
             public void beforeTextChanged(final CharSequence s, final int start,
                                           final int count, final int after) {
+                isPastedText = TextUtils.isEmpty(s) && after > 1;
             }
 
             @Override
@@ -597,8 +602,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     s.removeSpan(span);
                 }
 
-                final String newText = searchEditText.getText().toString();
+                final String newText = searchEditText.getText().toString().trim();
                 suggestionPublisher.onNext(newText);
+
+                if (isPastedText) {
+                    // trim pasted text
+                    searchEditText.setText(newText);
+                }
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
@@ -613,6 +623,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     } else if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                             || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
+                        searchEditText.setText(searchEditText.getText().toString().trim());
                         search(searchEditText.getText().toString(), new String[0], "");
                         return true;
                     }
@@ -717,9 +728,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .getRelatedSearches(query, similarQueryLimit, 25)
                 .toObservable()
                 .map(searchHistoryEntries ->
-                    searchHistoryEntries.stream()
-                            .map(entry -> new SuggestionItem(true, entry))
-                            .collect(Collectors.toList()));
+                        searchHistoryEntries.stream()
+                                .map(entry -> new SuggestionItem(true, entry))
+                                .collect(Collectors.toList()));
     }
 
     private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
@@ -786,12 +797,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             } else if (listNotification.isOnError()
                                     && listNotification.getError() != null
                                     && !ExceptionUtils.isInterruptedCaused(
-                                            listNotification.getError())) {
+                                    listNotification.getError())) {
                                 showSnackBarError(new ErrorInfo(listNotification.getError(),
                                         UserAction.GET_SUGGESTIONS, searchString, serviceId));
                             }
                         }, throwable -> showSnackBarError(new ErrorInfo(
-                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
+                                throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
     }
 
     @Override
@@ -804,6 +815,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         final String theSortFilter) {
         if (DEBUG) {
             Log.d(TAG, "search() called with: query = [" + theSearchString + "]");
+            final String trimmedSearchString = theSearchString.trim();
+            if (!trimmedSearchString.equals(theSearchString)) {
+                Log.d(TAG, "The precondition is not satisfied. "
+                        + "\"theSearchString\" is not allowed to have leading or trailing spaces");
+            }
         }
         if (theSearchString.isEmpty()) {
             return;
@@ -839,7 +855,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ignored -> { },
+                        ignored -> {
+                        },
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));
@@ -973,6 +990,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         searchSuggestion = result.getSearchSuggestion();
+        if (searchSuggestion != null) {
+            searchSuggestion = searchSuggestion.trim();
+        }
         isCorrectedSearch = result.isCorrectedSearch();
 
         // List<MetaInfo> cannot be bundled without creating some containers

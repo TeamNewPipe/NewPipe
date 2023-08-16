@@ -8,6 +8,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
@@ -25,8 +26,11 @@ class DatabaseMigrationTest {
         private const val DEFAULT_UPLOADER_NAME = "Uploader Test"
         private const val DEFAULT_THUMBNAIL = "https://example.com/example.jpg"
 
-        private const val DEFAULT_SECOND_SERVICE_ID = 0
+        private const val DEFAULT_SECOND_SERVICE_ID = 1
         private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
+
+        private const val DEFAULT_SEARCH1 = " abc "
+        private const val DEFAULT_SEARCH2 = " abc"
     }
 
     @get:Rule
@@ -106,6 +110,11 @@ class DatabaseMigrationTest {
             Migrations.MIGRATION_6_7
         )
 
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
+            true, Migrations.MIGRATION_5_6
+        )
+
         val migratedDatabaseV3 = getMigratedDatabase()
         val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
 
@@ -138,6 +147,56 @@ class DatabaseMigrationTest {
         assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
         assertNull(secondStreamFromMigratedDatabase.uploadDate)
         assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
+    }
+
+    @Test
+    fun migrateDatabaseFrom5to6() {
+        val databaseInV5 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_5)
+
+        databaseInV5.run {
+            insert(
+                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("search", DEFAULT_SEARCH1)
+                }
+            )
+            insert(
+                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("search", DEFAULT_SEARCH2)
+                }
+            )
+            insert(
+                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                    put("search", DEFAULT_SEARCH1)
+                }
+            )
+            insert(
+                "search_history", SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                    put("search", DEFAULT_SEARCH2)
+                }
+            )
+            close()
+        }
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
+            true, Migrations.MIGRATION_5_6
+        )
+
+        val migratedDatabaseV6 = getMigratedDatabase()
+        val listFromDB = migratedDatabaseV6.searchHistoryDAO().all.blockingFirst()
+
+        assertEquals(2, listFromDB.size)
+        assertEquals("abc", listFromDB[0].search)
+        assertEquals("abc", listFromDB[1].search)
+        assertNotEquals(listFromDB[0].serviceId, listFromDB[1].serviceId)
     }
 
     private fun getMigratedDatabase(): AppDatabase {
