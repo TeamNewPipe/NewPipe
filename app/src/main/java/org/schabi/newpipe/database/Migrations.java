@@ -239,8 +239,8 @@ public final class Migrations {
     public static final Migration MIGRATION_7_8 = new Migration(DB_VER_7, DB_VER_8) {
         @Override
         public void migrate(@NonNull final SupportSQLiteDatabase database) {
-            database.execSQL("DELETE FROM search_history WHERE id NOT IN (SELECT id FROM "
-                    + "(SELECT id FROM search_history GROUP BY trim(search), service_id) tmp)");
+            database.execSQL("DELETE FROM search_history WHERE id NOT IN (SELECT id FROM (SELECT "
+                    + "MIN(id) as id FROM search_history GROUP BY trim(search), service_id ) tmp)");
             database.execSQL("UPDATE search_history SET search = trim(search)");
         }
     };

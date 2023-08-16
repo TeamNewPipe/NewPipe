@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list.search;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static java.util.Arrays.asList;
@@ -398,7 +399,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void reloadContent() {
         if (!TextUtils.isEmpty(searchString) || (searchEditText != null
-                && TextUtils.getTrimmedLength(searchEditText.getText()) > 0)) {
+                && !isBlank(searchEditText.getText().toString()))) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
                     : searchEditText.getText().toString(), this.contentFilter, "");
@@ -496,7 +497,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchEditText.setText(searchString);
 
         if (TextUtils.isEmpty(searchString)
-                || TextUtils.getTrimmedLength(searchEditText.getText()) == 0) {
+                || isBlank(searchEditText.getText().toString())) {
             searchToolbarContainer.setTranslationX(100);
             searchToolbarContainer.setAlpha(0.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
@@ -520,7 +521,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (TextUtils.getTrimmedLength(searchEditText.getText()) == 0) {
+            if (isBlank(searchEditText.getText().toString())) {
                 NavigationHelper.gotoMainFragment(getFM());
                 return;
             }
@@ -582,12 +583,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchEditText.removeTextChangedListener(textWatcher);
         }
         textWatcher = new TextWatcher() {
-            private boolean isPastedText = false;
-
             @Override
             public void beforeTextChanged(final CharSequence s, final int start,
                                           final int count, final int after) {
-                isPastedText = TextUtils.isEmpty(s) && after > 1;
             }
 
             @Override
@@ -604,11 +602,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
                 final String newText = searchEditText.getText().toString().trim();
                 suggestionPublisher.onNext(newText);
-
-                if (isPastedText) {
-                    // trim pasted text
-                    searchEditText.setText(newText);
-                }
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
@@ -817,7 +810,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "search() called with: query = [" + theSearchString + "]");
             final String trimmedSearchString = theSearchString.trim();
             if (!trimmedSearchString.equals(theSearchString)) {
-                Log.d(TAG, "The precondition is not satisfied. "
+                Log.w(TAG, "The precondition is not satisfied. "
                         + "\"theSearchString\" is not allowed to have leading or trailing spaces");
             }
         }

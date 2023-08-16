@@ -111,8 +111,10 @@ class DatabaseMigrationTest {
         )
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
-            true, Migrations.MIGRATION_5_6
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_8,
+            true,
+            Migrations.MIGRATION_7_8
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()
@@ -150,10 +152,13 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun migrateDatabaseFrom5to6() {
-        val databaseInV5 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_5)
+    fun migrateDatabaseFrom7to8() {
+        val databaseInV7 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_7)
 
-        databaseInV5.run {
+        val defaultSearch1 = " abc "
+        val defaultSearch2 = " abc"
+
+        databaseInV7.run {
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
@@ -186,12 +191,12 @@ class DatabaseMigrationTest {
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
-            true, Migrations.MIGRATION_5_6
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_8,
+            true, Migrations.MIGRATION_7_8
         )
 
-        val migratedDatabaseV6 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV6.searchHistoryDAO().all.blockingFirst()
+        val migratedDatabaseV8 = getMigratedDatabase()
+        val listFromDB = migratedDatabaseV8.searchHistoryDAO().all.blockingFirst()
 
         assertEquals(2, listFromDB.size)
         assertEquals("abc", listFromDB[0].search)
