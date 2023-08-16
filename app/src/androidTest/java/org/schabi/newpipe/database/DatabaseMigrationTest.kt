@@ -13,6 +13,7 @@ import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.stream.StreamType
 
 @RunWith(AndroidJUnit4::class)
@@ -26,7 +27,7 @@ class DatabaseMigrationTest {
         private const val DEFAULT_UPLOADER_NAME = "Uploader Test"
         private const val DEFAULT_THUMBNAIL = "https://example.com/example.jpg"
 
-        private const val DEFAULT_SECOND_SERVICE_ID = 1
+        private const val DEFAULT_SECOND_SERVICE_ID = 0
         private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
     }
 
@@ -155,32 +156,37 @@ class DatabaseMigrationTest {
         val defaultSearch1 = " abc "
         val defaultSearch2 = " abc"
 
+        val serviceId = DEFAULT_SERVICE_ID // YouTube
+        // Use id different to YouTube because two searches with the same query
+        // but different service are considered not equal.
+        val otherServiceId = ServiceList.SoundCloud.serviceId
+
         databaseInV7.run {
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("service_id", serviceId)
                     put("search", defaultSearch1)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("service_id", serviceId)
                     put("search", defaultSearch2)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                    put("service_id", otherServiceId)
                     put("search", defaultSearch1)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
+                    put("service_id", otherServiceId)
                     put("search", defaultSearch2)
                 }
             )
