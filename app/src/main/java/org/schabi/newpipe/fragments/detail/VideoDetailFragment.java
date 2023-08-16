@@ -85,6 +85,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.EmptyFragment;
+import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -482,6 +483,8 @@ public final class VideoDetailFragment
                 // commit previous pending changes to database
                 if (fragment instanceof LocalPlaylistFragment) {
                     ((LocalPlaylistFragment) fragment).commitChanges();
+                } else if (fragment instanceof MainFragment) {
+                    ((MainFragment) fragment).commitPlaylistTabs();
                 }
 
                 disposables.add(PlaylistDialog.createCorrespondingDialog(requireContext(),
