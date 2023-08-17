@@ -802,40 +802,42 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // no-op
     }
 
-    private void search(final String theSearchString,
+    /**
+     * Perform a search.
+     * @param theSearchString the trimmed search string
+     * @param theContentFilter the content filter to use. FIXME: unused param
+     * @param theSortFilter FIXME: unused param
+     */
+    private void search(@NonNull final String theSearchString,
                         final String[] theContentFilter,
                         final String theSortFilter) {
         if (DEBUG) {
             Log.d(TAG, "search() called with: query = [" + theSearchString + "]");
-            final String trimmedSearchString = theSearchString.trim();
-            if (!trimmedSearchString.equals(theSearchString)) {
-                Log.w(TAG, "The precondition is not satisfied. "
-                        + "\"theSearchString\" is not allowed to have leading or trailing spaces");
-            }
         }
         if (theSearchString.isEmpty()) {
             return;
         }
 
+        // Check if theSearchString is a URL which can be opened by NewPipe directly
+        // and open it if possible.
         try {
             final StreamingService streamingService = NewPipe.getServiceByUrl(theSearchString);
-            if (streamingService != null) {
-                showLoading();
-                disposables.add(Observable
-                        .fromCallable(() -> NavigationHelper.getIntentByLink(activity,
-                                streamingService, theSearchString))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(intent -> {
-                            getFM().popBackStackImmediate();
-                            activity.startActivity(intent);
-                        }, throwable -> showTextError(getString(R.string.unsupported_url))));
-                return;
-            }
+            showLoading();
+            disposables.add(Observable
+                    .fromCallable(() -> NavigationHelper.getIntentByLink(activity,
+                            streamingService, theSearchString))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(intent -> {
+                        getFM().popBackStackImmediate();
+                        activity.startActivity(intent);
+                    }, throwable -> showTextError(getString(R.string.unsupported_url))));
+            return;
         } catch (final Exception ignored) {
             // Exception occurred, it's not a url
         }
 
+        // prepare search
         lastSearchedString = this.searchString;
         this.searchString = theSearchString;
         infoListAdapter.clearStreamItemList();
@@ -844,6 +846,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 searchBinding.searchMetaInfoSeparator, disposables);
         hideKeyboardSearch();
 
+        // store search query if search history is enabled
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -852,6 +855,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));
+
+        // load search results
         suggestionPublisher.onNext(theSearchString);
         startLoading(false);
     }
