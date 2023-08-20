@@ -139,6 +139,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(createMediaIdForPlaylistIndex(playlistId, index))
                 .setTitle(item.getStreamEntity().getTitle())
+                .setSubtitle(item.getStreamEntity().getUploader())
                 .setIconUri(Uri.parse(item.getStreamEntity().getThumbnailUrl()));
 
          return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
@@ -207,6 +208,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         final var builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(ID_STREAM + '/' + streamHistoryEntry.getStreamId())
                 .setTitle(streamHistoryEntry.getStreamEntity().getTitle())
+                .setSubtitle(streamHistoryEntry.getStreamEntity().getUploader())
                 .setIconUri(Uri.parse(streamHistoryEntry.getStreamEntity().getThumbnailUrl()));
 
         return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
