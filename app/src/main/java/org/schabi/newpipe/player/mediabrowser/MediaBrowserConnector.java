@@ -70,6 +70,8 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setPlaybackPreparer(this);
         playerService.setSessionToken(mediaSession.getSessionToken());
+
+        setupBookmarksNotifications();
     }
 
     @NonNull
@@ -79,6 +81,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
 
     public void release() {
         disposePrepareOrPlayCommands();
+        disposeBookmarksNotifications();
         mediaSession.release();
     }
 
@@ -226,6 +229,20 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
             localPlaylistManager = new LocalPlaylistManager(getDatabase());
         }
         return localPlaylistManager;
+    }
+
+    @Nullable Disposable bookmarksNotificationsDisposable;
+
+    private void setupBookmarksNotifications() {
+        bookmarksNotificationsDisposable = getPlaylistManager().getPlaylists().subscribe(
+                playlistMetadataEntries -> playerService.notifyChildrenChanged(ID_BOOKMARKS));
+    }
+
+    private void disposeBookmarksNotifications() {
+        if (bookmarksNotificationsDisposable != null) {
+            bookmarksNotificationsDisposable.dispose();
+            bookmarksNotificationsDisposable = null;
+        }
     }
 
     // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
