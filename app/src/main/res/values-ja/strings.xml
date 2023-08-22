@@ -749,7 +749,7 @@
     <string name="audio_track_present_in_video">オーディオトラックは既にこのせせらぎに存在している必要があります</string>
     <string name="main_tabs_position_title">メインタブの場所</string>
     <string name="main_tabs_position_summary">メインタブセレクタを下に移動</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">お使いのデバイスのモデルではメディアトンネリングがサポートされていないため、このデバイスではメディアトンネリングがデフォルトで無効になっています。</string>
     <string name="no_streams">ストリームはありません</string>
     <string name="no_live_streams">ライブ配信はありません</string>

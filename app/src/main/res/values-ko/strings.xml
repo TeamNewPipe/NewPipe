@@ -748,7 +748,7 @@
 \n
 \n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
     <string name="main_tabs_position_summary">메인 탭 선택기를 하단으로 이동</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_title">메인 탭 위치</string>
     <string name="disable_media_tunneling_automatic_info">장치 모델에서 미디어 터널링을 지원하지 않는 것으로 알려져 있기 때문에 장치에서 기본적으로 미디어 터널링이 비활성화되었습니다.</string>
 </resources>

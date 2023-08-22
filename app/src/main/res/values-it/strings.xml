@@ -765,7 +765,7 @@
     <string name="settings_category_exoplayer_title">Impostazioni ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_title">Usa la funzione di fallback del decoder di ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usa sempre la soluzione alternativa per impostare la superficie di uscita video di ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">originale</string>
     <string name="audio_track_type_dubbed">doppiato</string>
     <string name="audio_track_type_descriptive">descrittivo</string>

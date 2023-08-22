@@ -743,7 +743,7 @@
     <string name="audio_track_type_original">özgün</string>
     <string name="audio_track_type_dubbed">dublaj</string>
     <string name="audio_track_type_descriptive">betimlemeli</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="select_audio_track_external_players">Dış oynatıcılar için ses parçası seç</string>
     <string name="prefer_original_audio_summary">Dil ne olursa olsun özgün ses parçasını seç</string>
     <string name="play_queue_audio_track">Ses: %s</string>

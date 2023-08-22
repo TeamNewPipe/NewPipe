@@ -762,7 +762,7 @@
     <string name="audio_track_type_descriptive">ਵਰਣਨਾਤਮਕ</string>
     <string name="main_tabs_position_title">ਮੁੱਖ ਟੈਬਾਂ ਦੀ ਸਥਿਤੀ</string>
     <string name="main_tabs_position_summary">ਮੁੱਖ ਟੈਬ ਸਿਲੈਕਟਰ ਨੂੰ ਹੇਠਾਂ ਲੈ ਜਾਓ</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">ਮੀਡੀਆ ਟਨਲਿੰਗ ਤੁਹਾਡੀ ਡਿਵਾਈਸ \'ਤੇ ਡਿਫ਼ਾਲਟ ਤੌਰ \'ਤੇ ਅਸਮਰੱਥ ਕੀਤੀ ਗਈ ਸੀ ਕਿਉਂਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਮਾਡਲ ਇਸਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।</string>
     <string name="no_streams">ਕੋਈ ਸਟ੍ਰੀਮ ਨਹੀਂ</string>
     <string name="no_live_streams">ਕੋਈ ਲਾਈਵ ਸਟ੍ਰੀਮ ਨਹੀਂ</string>

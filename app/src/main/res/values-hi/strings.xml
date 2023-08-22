@@ -762,7 +762,7 @@
 \nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
     <string name="main_tabs_position_title">मुख्य टैब की स्थिति</string>
     <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">आपके डिवाइस पर मीडिया टनलिंग डिफ़ॉल्ट रूप से अक्षम कर दी गई थी क्योंकि यह ज्ञात है कि आपका डिवाइस मॉडल इसका समर्थन नहीं करता।</string>
     <string name="no_streams">कोई स्ट्रीम नहीं</string>
     <string name="no_live_streams">कोई लाइव स्ट्रीम नहीं</string>

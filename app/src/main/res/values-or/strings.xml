@@ -745,7 +745,7 @@
     <string name="settings_category_exoplayer_summary">କିଛି ExoPlayer ବିନ୍ୟାସକୁ ପରିଚାଳନା କରନ୍ତୁ । ଏହି ପରିବର୍ତ୍ତନଗୁଡ଼ିକୁ ପ୍ରଭାବୀ ହେବା ପାଇଁ ଗୋଟିଏ ଚାଳକକୁ ପୁନଃଚାଳନ କରିବା ଆବଶ୍ୟକ</string>
     <string name="use_exoplayer_decoder_fallback_title">ExoPlayer ର ଡିକୋଡର୍ ଫଲବ୍ୟାକ୍ ବୈଶିଷ୍ଟ୍ୟକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="use_exoplayer_decoder_fallback_summary">ଯଦି ଆପଣଙ୍କର ଡିକୋଡର ପ୍ରାରମ୍ଭିକ ସମସ୍ୟା ଅଛି ତେବେ ଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରନ୍ତୁ, ଯାହା ପ୍ରାଥମିକ ଡିକୋଡର ପ୍ରାରମ୍ଭିକତା ବିଫଳ ହେଲେ ନିମ୍ନ ପ୍ରାଥମିକତା ଡିକୋଡରକୁ ଫେରିଥାଏ । ପ୍ରାଥମିକ ଡିକୋଡର ବ୍ୟବହାର କରିବା ସମୟରେ ଏହା ଖରାପ ପ୍ଲେବ୍ୟାକ ପ୍ରଦର୍ଶନର କାରଣ ହୋଇପାରେ</string>
-    <string name="audio_track_name">%1s ଓ %2s</string>
+    <string name="audio_track_name">%1$s ଓ %2$s</string>
     <string name="audio_track_type_descriptive">ବର୍ଣ୍ଣନାତ୍ମକ</string>
     <string name="audio_track_type_original">ମୂଳ</string>
     <string name="audio_track_type_dubbed">ଡବିଙ୍ଗ୍ ହୋଇଛି</string>

@@ -775,7 +775,7 @@
     <string name="settings_category_exoplayer_title">Налады ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_title">Выкарыстоўваць функцыю рэзервовага дэкодэра ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Заўсёды выкарыстоўваць спосаб абыходу налад паверхні відэавываду ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">арыгінальны</string>
     <string name="audio_track_type_dubbed">дубляваны</string>
     <string name="audio_track_type_descriptive">апісальны</string>

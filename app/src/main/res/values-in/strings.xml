@@ -749,6 +749,6 @@
     <string name="audio_track_type_descriptive">deskriptif</string>
     <string name="main_tabs_position_summary">Pindahkan pemilih tab utama ke bawah</string>
     <string name="main_tabs_position_title">Posisi tab utama</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">Terowongan media dinonaktifkan secara bawaan di perangkat Anda karena model perangkat Anda tidak mendukungnya.</string>
 </resources>

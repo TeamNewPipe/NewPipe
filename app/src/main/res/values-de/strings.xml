@@ -760,7 +760,7 @@
     <string name="use_exoplayer_decoder_fallback_summary">Einschalten, wenn es Probleme mit der Decoderinitialisierung gibt, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
     <string name="unknown_audio_track">Unbekannt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_summary">Hauptauswahltab nach unten verschieben</string>
     <string name="main_tabs_position_title">Position des Haupttabs</string>
     <string name="disable_media_tunneling_automatic_info">Das Media-Tunneling wurde auf dem Gerät standardmäßig deaktiviert, da das Gerätemodell diese Funktion bekanntermaßen nicht unterstützt.</string>

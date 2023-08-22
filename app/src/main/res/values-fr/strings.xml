@@ -766,7 +766,7 @@
     <string name="settings_category_exoplayer_summary">Gérez certains paramètres d\'ExoPlayer. Ces modifications nécessitent un redémarrage du lecteur pour être prises en compte</string>
     <string name="use_exoplayer_decoder_fallback_title">Utiliser la fonctionnalité de repli du décodeur d\'ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Toujours utiliser la solution de contournement de définition de surface de sortie vidéo d\'ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">doublée</string>
     <string name="audio_track_type_descriptive">descriptif</string>

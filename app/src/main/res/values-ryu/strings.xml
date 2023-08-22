@@ -760,7 +760,7 @@
     <string name="audio_track_type_dubbed">ふきけー</string>
     <string name="settings_category_exoplayer_summary">ExoPlayerぬしっていかんりさびーん。くりらぬへんかんはんえいすんがープレイヤーぬさいきちゃーがふぃちようやいびーん</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">ちゃーExoPlayerぬえいぞうしーゅちりょくサーフェスしっていぬかいきちさくしようすん</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_descriptive">うんせいかいしち</string>
     <string name="use_exoplayer_decoder_fallback_title">ExoPlayerぬデコーダフォールバックちぬーさすん</string>
     <string name="audio_track_type_original">オリジナル</string>
