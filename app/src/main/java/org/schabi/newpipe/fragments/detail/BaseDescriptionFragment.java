@@ -129,10 +129,13 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     private void disableDescriptionSelection() {
         // show description content again, otherwise some links are not clickable
-        TextLinkifier.fromDescription(binding.detailDescriptionView,
-                getDescription(), HtmlCompat.FROM_HTML_MODE_LEGACY,
-                getService(), getStreamUrl(),
-                descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
+        final Description description = getDescription();
+        if (description != null) {
+            TextLinkifier.fromDescription(binding.detailDescriptionView,
+                    description, HtmlCompat.FROM_HTML_MODE_LEGACY,
+                    getService(), getStreamUrl(),
+                    descriptionDisposables, SET_LINK_MOVEMENT_METHOD);
+        }
 
         binding.detailDescriptionNoteView.setVisibility(View.GONE);
         binding.detailDescriptionView.setTextIsSelectable(false);
@@ -144,10 +147,10 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
     }
 
     protected void addMetadataItem(final LayoutInflater inflater,
-                                 final LinearLayout layout,
-                                 final boolean linkifyContent,
-                                 @StringRes final int type,
-                                 @Nullable final String content) {
+                                   final LinearLayout layout,
+                                   final boolean linkifyContent,
+                                   @StringRes final int type,
+                                   @Nullable final String content) {
         if (isBlank(content)) {
             return;
         }
