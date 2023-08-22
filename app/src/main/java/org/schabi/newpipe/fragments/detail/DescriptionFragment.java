@@ -73,6 +73,7 @@ public class DescriptionFragment extends BaseDescriptionFragment {
         return streamInfo.getTags();
     }
 
+    @Override
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
         if (streamInfo.getUploadDate() != null) {

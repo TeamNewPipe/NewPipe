@@ -80,6 +80,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         return channelInfo.getTags();
     }
 
+    @Override
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
         final Context context = getContext();
