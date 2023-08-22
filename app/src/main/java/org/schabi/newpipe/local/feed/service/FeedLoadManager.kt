@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.feed.service
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -13,6 +14,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.feed.FeedInfo
@@ -108,99 +110,7 @@ class FeedLoadManager(private val context: Context) {
             .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
             .filter { !cancelSignal.get() }
             .map { subscriptionEntity ->
-                var error: Throwable? = null
-                val storeOriginalErrorAndRethrow = { e: Throwable ->
-                    // keep original to prevent blockingGet() from wrapping it into RuntimeException
-                    error = e
-                    throw e
-                }
-
-                try {
-                    // check for and load new streams
-                    // either by using the dedicated feed method or by getting the channel info
-                    var originalInfo: Info? = null
-                    var streams: List<StreamInfoItem>? = null
-                    val errors = ArrayList<Throwable>()
-
-                    if (useFeedExtractor) {
-                        NewPipe.getService(subscriptionEntity.serviceId)
-                            .getFeedExtractor(subscriptionEntity.url)
-                            ?.also { feedExtractor ->
-                                // the user wants to use a feed extractor and there is one, use it
-                                val feedInfo = FeedInfo.getInfo(feedExtractor)
-                                errors.addAll(feedInfo.errors)
-                                originalInfo = feedInfo
-                                streams = feedInfo.relatedItems
-                            }
-                    }
-
-                    if (originalInfo == null) {
-                        // use the normal channel tabs extractor if either the user wants it, or
-                        // the current service does not have a dedicated feed extractor
-
-                        val channelInfo = getChannelInfo(
-                            subscriptionEntity.serviceId,
-                            subscriptionEntity.url, true
-                        )
-                            .onErrorReturn(storeOriginalErrorAndRethrow)
-                            .blockingGet()
-                        errors.addAll(channelInfo.errors)
-                        originalInfo = channelInfo
-
-                        streams = channelInfo.tabs
-                            .filter { tab ->
-                                ChannelTabHelper.fetchFeedChannelTab(
-                                    context,
-                                    defaultSharedPreferences,
-                                    tab
-                                )
-                            }
-                            .map {
-                                Pair(
-                                    getChannelTab(subscriptionEntity.serviceId, it, true)
-                                        .onErrorReturn(storeOriginalErrorAndRethrow)
-                                        .blockingGet(),
-                                    it
-                                )
-                            }
-                            .flatMap { (channelTabInfo, linkHandler) ->
-                                errors.addAll(channelTabInfo.errors)
-                                if (channelTabInfo.relatedItems.isEmpty() &&
-                                    channelTabInfo.nextPage != null
-                                ) {
-                                    val infoItemsPage = getMoreChannelTabItems(
-                                        subscriptionEntity.serviceId,
-                                        linkHandler, channelTabInfo.nextPage
-                                    )
-                                        .blockingGet()
-
-                                    errors.addAll(infoItemsPage.errors)
-                                    return@flatMap infoItemsPage.items
-                                } else {
-                                    return@flatMap channelTabInfo.relatedItems
-                                }
-                            }
-                            .filterIsInstance<StreamInfoItem>()
-                    }
-
-                    return@map Notification.createOnNext(
-                        FeedUpdateInfo(
-                            subscriptionEntity,
-                            originalInfo!!,
-                            streams!!,
-                            errors,
-                        )
-                    )
-                } catch (e: Throwable) {
-                    val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                    val wrapper = FeedLoadService.RequestException(
-                        subscriptionEntity.uid,
-                        request,
-                        // do this to prevent blockingGet() from wrapping into RuntimeException
-                        error ?: e
-                    )
-                    return@map Notification.createOnError<FeedUpdateInfo>(wrapper)
-                }
+                loadStreams(subscriptionEntity, useFeedExtractor, defaultSharedPreferences)
             }
             .sequential()
             .observeOn(AndroidSchedulers.mainThread())
@@ -224,6 +134,107 @@ class FeedLoadManager(private val context: Context) {
                 maxProgress.get()
             )
         )
+    }
+
+    private fun loadStreams(
+        subscriptionEntity: SubscriptionEntity,
+        useFeedExtractor: Boolean,
+        defaultSharedPreferences: SharedPreferences
+    ):
+        Notification<FeedUpdateInfo> {
+        var error: Throwable? = null
+        val storeOriginalErrorAndRethrow = { e: Throwable ->
+            // keep original to prevent blockingGet() from wrapping it into RuntimeException
+            error = e
+            throw e
+        }
+
+        try {
+            // check for and load new streams
+            // either by using the dedicated feed method or by getting the channel info
+            var originalInfo: Info? = null
+            var streams: List<StreamInfoItem>? = null
+            val errors = ArrayList<Throwable>()
+
+            if (useFeedExtractor) {
+                NewPipe.getService(subscriptionEntity.serviceId)
+                    .getFeedExtractor(subscriptionEntity.url)
+                    ?.also { feedExtractor ->
+                        // the user wants to use a feed extractor and there is one, use it
+                        val feedInfo = FeedInfo.getInfo(feedExtractor)
+                        errors.addAll(feedInfo.errors)
+                        originalInfo = feedInfo
+                        streams = feedInfo.relatedItems
+                    }
+            }
+
+            if (originalInfo == null) {
+                // use the normal channel tabs extractor if either the user wants it, or
+                // the current service does not have a dedicated feed extractor
+
+                val channelInfo = getChannelInfo(
+                    subscriptionEntity.serviceId,
+                    subscriptionEntity.url, true
+                )
+                    .onErrorReturn(storeOriginalErrorAndRethrow)
+                    .blockingGet()
+                errors.addAll(channelInfo.errors)
+                originalInfo = channelInfo
+
+                streams = channelInfo.tabs
+                    .filter { tab ->
+                        ChannelTabHelper.fetchFeedChannelTab(
+                            context,
+                            defaultSharedPreferences,
+                            tab
+                        )
+                    }
+                    .map {
+                        Pair(
+                            getChannelTab(subscriptionEntity.serviceId, it, true)
+                                .onErrorReturn(storeOriginalErrorAndRethrow)
+                                .blockingGet(),
+                            it
+                        )
+                    }
+                    .flatMap { (channelTabInfo, linkHandler) ->
+                        errors.addAll(channelTabInfo.errors)
+                        if (channelTabInfo.relatedItems.isEmpty() &&
+                            channelTabInfo.nextPage != null
+                        ) {
+                            val infoItemsPage = getMoreChannelTabItems(
+                                subscriptionEntity.serviceId,
+                                linkHandler, channelTabInfo.nextPage
+                            )
+                                .blockingGet()
+
+                            errors.addAll(infoItemsPage.errors)
+                            return@flatMap infoItemsPage.items
+                        } else {
+                            return@flatMap channelTabInfo.relatedItems
+                        }
+                    }
+                    .filterIsInstance<StreamInfoItem>()
+            }
+
+            return Notification.createOnNext(
+                FeedUpdateInfo(
+                    subscriptionEntity,
+                    originalInfo!!,
+                    streams!!,
+                    errors,
+                )
+            )
+        } catch (e: Throwable) {
+            val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
+            val wrapper = FeedLoadService.RequestException(
+                subscriptionEntity.uid,
+                request,
+                // do this to prevent blockingGet() from wrapping into RuntimeException
+                error ?: e
+            )
+            return Notification.createOnError(wrapper)
+        }
     }
 
     /**
