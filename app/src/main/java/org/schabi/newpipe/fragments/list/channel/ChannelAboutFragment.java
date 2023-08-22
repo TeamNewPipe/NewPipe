@@ -84,6 +84,8 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
         final Context context = getContext();
+        // There is no upload date available for channels, so hide the relevant UI element
+        binding.detailUploadDateView.setVisibility(View.GONE);
 
         if (channelInfo.getSubscriberCount() != UNKNOWN_SUBSCRIBER_COUNT) {
             addMetadataItem(inflater, layout, false, R.string.metadata_subscribers,
