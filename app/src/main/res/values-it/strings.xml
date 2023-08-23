@@ -777,4 +777,6 @@
     <string name="main_tabs_position_title">Posizione delle schede principali</string>
     <string name="main_tabs_position_summary">Sposta in fondo il selettore della scheda principale</string>
     <string name="disable_media_tunneling_automatic_info">Il tunneling multimediale è stato disabilitato per impostazione predefinita sul dispositivo in uso, poiché è noto che il modello del dispositivo non lo supporta.</string>
+    <string name="no_streams">Nessuna trasmissione</string>
+    <string name="no_live_streams">Nessuna trasmissione in diretta</string>
 </resources>

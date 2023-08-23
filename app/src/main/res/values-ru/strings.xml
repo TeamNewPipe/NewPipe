@@ -39,7 +39,7 @@
     <string name="light_theme_title">Светлая</string>
     <string name="network_error">Ошибка сети</string>
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
-    <string name="download_path_audio_summary">Папка для скачанного аудио</string>
+    <string name="download_path_audio_summary">Загруженные аудиофайлы хранятся здесь</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
     <string name="main_bg_subtitle">Нажмите на лупу, чтобы начать.</string>
     <string name="msg_wait">Подождите…</string>
@@ -345,7 +345,7 @@
     <string name="minimize_on_exit_summary">При переключении со встроенного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Фоновый плеер</string>
-    <string name="minimize_on_exit_popup_description">Плеер в окне</string>
+    <string name="minimize_on_exit_popup_description">Свернуть в плеер в окне</string>
     <string name="list_view_mode">Вид списка</string>
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
@@ -616,7 +616,7 @@
     <string name="featured">Популярное</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
-    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками</string>
+    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками.</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
     <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны.</string>
     <string name="metadata_support">Поддержка</string>
@@ -686,7 +686,7 @@
     <string name="streams_notification_channel_name">Новые видео</string>
     <string name="streams_notification_channel_description">Уведомления о новых видео в подписках</string>
     <string name="streams_notifications_interval_title">Частота проверки</string>
-    <string name="enable_streams_notifications_title">Новые видео</string>
+    <string name="enable_streams_notifications_title">Уведомления о новых видео</string>
     <string name="enable_streams_notifications_summary">Уведомлять о новых видео в подписках</string>
     <string name="streams_notifications_network_title">Тип подключения</string>
     <string name="any_network">Любая сеть</string>
@@ -778,4 +778,9 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Этот обходной путь освобождает и повторно создаёт видеокодеки при изменении поверхности вместо того, чтобы напрямую устанавливать поверхность для кодека. Уже используется ExoPlayer на некоторых устройствах с этой проблемой, этот параметр влияет только на устройства с Android 6 и выше
 \n
 \nВключение этого параметра может предотвратить ошибки воспроизведения при переключении текущего видеоплеера или переключении в полноэкранный режим</string>
+    <string name="main_tabs_position_summary">Переместить основные вкладки в нижнюю часть экрана</string>
+    <string name="main_tabs_position_title">Положение основных вкладок</string>
+    <string name="no_streams">Нет стримов</string>
+    <string name="no_live_streams">Нет прямых трансляций</string>
+    <string name="disable_media_tunneling_automatic_info">Медиа-туннелирование на вашем устройстве отключено по умолчанию, поскольку известно, что ваша модель устройства его не поддерживает.</string>
 </resources>

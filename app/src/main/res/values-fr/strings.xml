@@ -610,7 +610,7 @@
     <string name="select_night_theme_toast">Vous pouvez sélectionner votre thème de nuit favori ci-dessous</string>
     <string name="download_has_started">Le téléchargement a démarré</string>
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
-    <string name="disable_media_tunneling_summary">Désactivez la tunnelisation multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d’une vidéo</string>
+    <string name="disable_media_tunneling_summary">Désactivez la tunnelisation multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d’une vidéo.</string>
     <string name="disable_media_tunneling_title">Désactiver la tunnelisation média</string>
     <string name="description_select_disable">Désactiver la sélection de texte dans la description</string>
     <string name="description_select_enable">Permettre la sélection de texte dans la description</string>
@@ -778,4 +778,7 @@
     <string name="use_exoplayer_decoder_fallback_summary">Activez cette option si vous rencontrez des problèmes d\'initialisation des décodeurs, ce qui permet de revenir à des décodeurs moins prioritaires si l\'initialisation des décodeurs primaires échoue. Les performances de lecture peuvent être moins bonnes que lors de l\'utilisation des décodeurs primaires</string>
     <string name="main_tabs_position_summary">Déplacer le sélecteur d\'onglet principal en bas</string>
     <string name="main_tabs_position_title">Position des onglets principaux</string>
+    <string name="disable_media_tunneling_automatic_info">La tunnelisation multimédia a été désactivée par défaut sur votre appareil car votre modèle d\'appareil est connu pour ne pas la supporter.</string>
+    <string name="no_streams">Aucun flux</string>
+    <string name="no_live_streams">Aucun direct</string>
 </resources>

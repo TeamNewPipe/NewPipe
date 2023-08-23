@@ -758,4 +758,7 @@
     <string name="prefer_descriptive_audio_summary">Seleciona o audio con descrición para persoas con dificuldades de visión, se estar dispoñíbel</string>
     <string name="prefer_descriptive_audio_title">Prefirir o audio descritivo</string>
     <string name="left_gesture_control_summary">Escolla o xesto para a metade esquerda da pantalla do reprodutor</string>
+    <string name="main_tabs_position_summary">Mova o selector da lapela principal para a parte inferior</string>
+    <string name="main_tabs_position_title">Posición prinicipal das lapelas</string>
+    <string name="disable_media_tunneling_automatic_info">A tunelización da multimedia foi deshabilitada por defecto, porque o seu modelo de dispositivo carece de soporte.</string>
 </resources>

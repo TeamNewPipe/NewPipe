@@ -751,4 +751,6 @@
     <string name="main_tabs_position_title">主分頁位置</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="disable_media_tunneling_automatic_info">因為您的裝置型號已知不支援媒體隧道，因此已預設停用。</string>
+    <string name="no_streams">無串流</string>
+    <string name="no_live_streams">無直播串流</string>
 </resources>

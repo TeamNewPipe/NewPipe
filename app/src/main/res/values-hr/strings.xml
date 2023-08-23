@@ -608,7 +608,7 @@
     <string name="recaptcha_solve">Riješi</string>
     <string name="night_theme_title">Noćna tema</string>
     <string name="show_channel_details">Prikaži detalje kanala</string>
-    <string name="disable_media_tunneling_summary">Isključi tuneliranje medija ako doživiš crni ekran ili isprekidanu reprodukciju videa</string>
+    <string name="disable_media_tunneling_summary">Isključi tuneliranje medija ako doživiš crni ekran ili isprekidanu reprodukciju videa.</string>
     <string name="disable_media_tunneling_title">Iskljuci medija tuneling</string>
     <string name="off">Isklj.</string>
     <string name="on">Uklj.</string>

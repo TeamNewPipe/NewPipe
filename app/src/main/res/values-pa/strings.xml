@@ -38,7 +38,7 @@
     <string name="download_path_audio_dialog_title">ਆਡੀਓ ਫ਼ਾਈਲਾਂ ਲਈ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੁਣੋ</string>
     <string name="default_resolution_title">ਡਿਫ਼ਾਲਟ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
     <string name="default_popup_resolution_title">ਪੌਪ-ਅਪ ਲਈ ਡਿਫ਼ਾਲਟ ਰੈਜ਼ੋਲਿਊਸ਼ਨ</string>
-    <string name="show_higher_resolutions_title">ਵੱਡੀਆਂ ਰੈਜ਼ੋਲਿਊਸ਼ਨਜ਼ ਦਿਖਾਓ</string>
+    <string name="show_higher_resolutions_title">ਉੱਚੀਆਂ ਰੈਜ਼ੋਲਿਊਸ਼ਨਾਂ ਵਿਖਾਓ</string>
     <string name="show_higher_resolutions_summary">ਸਿਰਫ਼ ਕੁਝ ਹੀ ਡਿਵਾਈਸ 2K/4K ਵੀਡੀਓ ਨੂੰ ਚਲਾ ਸਕਦੇ ਹਨ</string>
     <string name="play_with_kodi_title">Kodi ਵਿੱਚ ਚਲਾਓ</string>
     <string name="kore_not_found">Kodi ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ\?</string>
@@ -271,7 +271,7 @@
     <string name="resize_zoom">ਜ਼ੂਮ</string>
     <string name="caption_auto_generated">ਆਪਣੇ-ਆਪ ਬਣੀ</string>
     <string name="caption_setting_title">ਸਿਰਲੇਖ</string>
-    <string name="caption_setting_description">ਪਲੇਅਰ ਕੈਪਸ਼ਨ, ਟੈਕਸਟ ਸਕੇਲ ਅਤੇ ਬੈਕਗ੍ਰਾਊਂਡ ਸਟਾਈਲ ਨੂੰ ਬਦਲੋ। ਪ੍ਰਭਾਵ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਐਪ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="caption_setting_description">ਪਲੇਅਰ ਕੈਪਸ਼ਨ, ਟੈਕਸਟ ਸਕੇਲ ਅਤੇ ਬੈਕਗ੍ਰਾਊਂਡ ਸਟਾਈਲ ਨੂੰ ਬਦਲੋ। ਪ੍ਰਭਾਵੀ ਕਰਨ ਲਈ ਐਪ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
     <string name="enable_leak_canary_summary">ਮੈਮੋਰੀ ਲੀਕ ਨਿਗਰਾਨੀ, ਐਪ ਨੂੰ ਆਕ੍ਰਿਆਸ਼ੀਲ ਬਣਾ ਸਕਦੀ ਹੈ ਜਦੋਂ ਹੀਪ ਡੰਪਿੰਗ ਹੁੰਦੀ ਹੈ</string>
     <string name="enable_disposed_exceptions_title">ਚੱਕਰ ਤੋਂ ਬਾਹਰ ਤਰੁੱਟੀਆਂ ਰਿਪੋਰਟ ਕਰੋ</string>
     <string name="enable_disposed_exceptions_summary">ਨਿਪਟਾਰੇ ਦੇ ਬਾਅਦ ਫਰੈਗਮੈਂਟ ਜਾਂ ਐਕਟੀਵਿਟੀ ਦੇ ਚੱਕਰ ਤੋਂ ਬਾਹਰ ਨਾ ਪਹੁੰਚਾਉਣ ਯੋਗ ਆਰ-ਐਕਸ ਅਪਵਾਦਾਂ ਬਾਰੇ ਜ਼ਬਰੀ ਰਿਪੋਰਟ ਕਰਨਾ</string>
@@ -345,7 +345,7 @@
     <string name="subscribers_count_not_available">ਸਬਸਕ੍ਰਾਈਬਰਾਂ ਦੀ ਗਿਣਤੀ ਅਣ-ਉਪਲਬਧ</string>
     <string name="main_page_content_summary">ਮੁੱਖ ਪੰਨੇ ਤੇ ਕਿਹੜੇ ਟੈਬ ਵਿਖਾਏ ਜਾਣਗੇ</string>
     <string name="updates_setting_title">ਅਪਡੇਟਾਂ</string>
-    <string name="updates_setting_description">ਜਦੋਂ ਨਵਾਂ ਸੰਸਕਰਣ ਉਪਲਬਧ ਹੁੰਦਾ ਹੈ ਤਾਂ ਐਪ ਅਪਡੇਟ ਨੂੰ ਪੁੱਛਣ ਲਈ ਇੱਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦਿਖਾਓ</string>
+    <string name="updates_setting_description">ਜਦੋਂ ਨਵਾਂ ਸੰਸਕਰਣ ਉਪਲਬਧ ਹੁੰਦਾ ਹੈ ਤਾਂ ਐਪ ਅੱਪਡੇਟ ਕਰਨ ਨੂੰ ਪੁੱਛਣ ਲਈ ਇੱਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿਖਾਓ</string>
     <string name="list_view_mode">ਲਿਸਟ ਵਿਊ ਮੋਡ</string>
     <string name="list">ਲਿਸਟ</string>
     <string name="grid">ਗਰਿੱਡ</string>
@@ -379,7 +379,7 @@
     <string name="pause_downloads_on_mobile_desc">ਮੋਬਾਈਲ ਡਾਟਾ ਤੇ ਸਵਿੱਚ ਕਰਨ ਵੇਲੇ ਲਾਭਦਾਇਕ ਹੈ, ਹਾਲਾਂਕਿ ਕੁਝ ਡਾਉਨਲੋਡਾਂ ਨੂੰ ਮੁਅੱਤਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <string name="events">ਇਵੇੰਟਸ</string>
     <string name="conferences">ਕਾਨਫਰੰਸਾਂ</string>
-    <string name="show_comments_title">ਟਿੱਪਣੀਆਂ ਦਿਖਾਓ</string>
+    <string name="show_comments_title">ਟਿੱਪਣੀਆਂ ਵਿਖਾਓ</string>
     <string name="show_comments_summary">ਟਿੱਪਣੀਆਂ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
     <string name="autoplay_title">ਆਟੋ-ਪਲੇਅ</string>
     <string name="no_comments">ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
@@ -388,7 +388,7 @@
     <string name="enable_playback_resume_title">ਪਲੇਅਬੈਕ ਫਿਰ ਚਾਲੂ ਕਰੋ</string>
     <string name="enable_playback_resume_summary">ਪਿਛਲੀ ਪਲੇਅਬੈਕ ਸਥਿਤੀ ਤੋਂ ਮੁੜ ਚਲਾਓ</string>
     <string name="enable_playback_state_lists_title">ਸੂਚੀਆਂ ਦੀ ਸਥਿਤੀ</string>
-    <string name="enable_playback_state_lists_summary">ਸੂਚੀਆਂ ਵਿੱਚ ਪਲੇਅਬੈਕ ਸਥਿਤੀ ਸੂਚਕ ਦਿਖਾਓ</string>
+    <string name="enable_playback_state_lists_summary">ਸੂਚੀਆਂ ਵਿੱਚ ਪਲੇਅਬੈਕ ਸਥਿਤੀ ਸੂਚਕ ਵਿਖਾਓ</string>
     <string name="settings_category_clear_data_title">ਡਾਟਾ ਮਿਟਾਓ</string>
     <string name="watch_history_deleted">ਵੇਖੀਆਂ ਸਟ੍ਰੀਮਾਂ ਦੀ ਇਤਿਹਾਸ ਸੂਚੀ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ</string>
     <string name="watch_history_states_deleted">ਪਲੇਬੈਕ ਸਥਿਤੀਆਂ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ</string>
@@ -454,7 +454,7 @@
     <string name="metadata_category">ਵਰਗ</string>
     <string name="description_select_disable">ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਚੁਣਨਾ ਬੰਦ ਕਰੋ</string>
     <string name="description_select_enable">ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਚੁਣਨਾ ਚਾਲੂ ਕਰੋ</string>
-    <string name="description_select_note">ਤੁਸੀਂ ਹੁਣ ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਨੂੰ ਚੁਣ ਸਕਦੇ ਹੋ। ਧਿਆਦੇ ਦਿਓ ਕਿ ਲਿਖਤ ਸਲੈਕਟ ਮੋਡ ਵਿੱਚ ਪੰਨਾ ਜਗ-ਬੁੱਝ ਸਕਦਾ ਹੈ ਅਤੇ ਲਿੰਕ ਵੀ ਕਲਿਕ ਕਰਨ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।</string>
+    <string name="description_select_note">ਤੁਸੀਂ ਹੁਣ ਵੇਰਵੇ \'ਚੋਂ ਲਿਖਤ ਨੂੰ ਚੁਣ ਸਕਦੇ ਹੋ। ਨੋਟ ਕਰੋ ਕਿ ਪੰਨਾ ਜਗ-ਬੁੱਝ ਸਕਦਾ ਹੈ ਅਤੇ ਚੋਣ ਮੋਡ ਵਿੱਚ ਹੋਣ ਵੇਲੇ ਲਿੰਕ ਕਲਿੱਕ ਕਰਨ ਯੋਗ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।</string>
     <string name="download_has_started">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਐ</string>
     <string name="select_night_theme_toast">ਤੁਸੀਂ ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਹੇਠਾਂ ਚੁਣ ਸਕਦੇ ਹੋ</string>
     <string name="night_theme_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਰਾਤ ਦੀ ਥੀਮ ਚੁਣੋ — %s</string>
@@ -592,14 +592,14 @@
     <string name="unsupported_url_dialog_message">URL ਪਛਾਣ ਨਹੀਂ ਹੋਇਆ। ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ਼ ਖੋਲ੍ਹਣਾ ਹੈ\?</string>
     <string name="auto_queue_toggle">ਆਟੋ ਕਤਾਰਬੱਧ ਕਰੋ</string>
     <string name="show_meta_info_summary">ਸਟ੍ਰੀਮ ਦੇ ਕਰਤਾ, ਸਮੱਗਰੀ ਜਾਂ ਖੋਜ ਬੇਨਤੀ ਵਾਲੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਬਕਸਿਆਂ ਵਾਲ਼ੀ ਮੈਟਾ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰ ਦਿਓ</string>
-    <string name="show_meta_info_title">ਮੈਟਾ ਜਾਣਕਾਰੀ ਦਿਖਾਓ</string>
+    <string name="show_meta_info_title">ਮੈਟਾ ਜਾਣਕਾਰੀ ਵਿਖਾਓ</string>
     <string name="show_description_summary">ਵੀਡੀਓ ਵੇਰਵਾ ਅਤੇ ਵਾਧੂ ਜਾਣਕਾਰੀ ਲੁਕਾਉਣ ਲਈ ਇਸਨੂੰ ਬੰਦ ਕਰੋ</string>
-    <string name="show_description_title">ਵੇਰਵਾ ਦਿਖਾਓ</string>
+    <string name="show_description_title">ਵੇਰਵਾ ਵਿਖਾਓ</string>
     <string name="clear_queue_confirmation_description">ਸਰਗਰਮ ਪਲੇਅਰ ਕਤਾਰ ਬਦਲ ਜਾਵੇਗੀ</string>
     <string name="clear_queue_confirmation_summary">ਪਲੇਅਰ ਬਦਲਣ ਨਾਲ ਤੁਹਾਡੀ ਕਤਾਰ ਬਦਲ ਸਕਦੀ ਹੈ</string>
     <string name="clear_queue_confirmation_title">ਕਤਾਰ ਨੂੰ ਖ਼ਾਲੀ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤਸਦੀਕ ਕਰਨ ਲਈ ਪੁੱਛੋ</string>
     <string name="seek_duration_title">ਅੱਗੇ ਲੰਘਾਉਣ/ਪਿੱਛੇ ਕਰਨ ਦੀ ਸਮਾਂ ਮਿਆਦ</string>
-    <string name="night_theme_title">ਰਾਤ ਵਾਲੀ ਥੀਮ</string>
+    <string name="night_theme_title">ਰਾਤਰੀ ਥੀਮ</string>
     <string name="notification_colorize_summary">ਐਂਡਰਾਇਡ ਨੂੰ ਥੰਮਨੇਲ ਦੇ ਮੁੱਖ ਰੰਗ ਮੁਤਾਬਕ ਇਲਤਾਹ ਦਾ ਰੰਗ ਬਦਲਣ ਦਿਓ (ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਹਰੇਕ ਡਿਵਾਈਸ \'ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ)</string>
     <string name="notification_colorize_title">ਰੰਗਦਾਰ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="notification_action_nothing">ਕੁਝ ਵੀ ਨਹੀਂ</string>
@@ -631,7 +631,7 @@
     <string name="error_report_notification_toast">ਇੱਕ ਖਾਮੀ ਪ੍ਰਭਾਵੀ ਹੋਈ ਹੈ, ਨੋਟੀਫੀਕੇਸ਼ਨ ਵੇਖੋ</string>
     <string name="main_page_content_swipe_remove">ਆਈਟਮਾਂ ਨੂੰ ਇੱਕ ਪਾਸੇ ਖਿੱਚ ਕੇ ਹਟਾਓ</string>
     <string name="show_image_indicators_title">ਦ੍ਰਿਸ਼ ਸੂਚਕ ਵਿਖਾਓ</string>
-    <string name="show_image_indicators_summary">ਵਿਖਾਊ ਪਿਕਾਸੋ ਦੇ ਰੰਗਦਾਰ ਰੀਬਨ ਦ੍ਰਿਸ਼ਾਂ ਦੇ ਉੱਪਰ ਉਹਨਾਂ ਦੀ ਸਰੋਤ-ਪਛਾਣ ਅਨੁਸਾਰ: ਨੈੱਟਵਰਕ ਲਈ ਲਾਲ, ਡਿਸਕ ਲਈ ਨੀਲਾ ਤੇ ਮੈਮਰੀ ਲਈ ਹਰਾ</string>
+    <string name="show_image_indicators_summary">ਦ੍ਰਿਸ਼ਾਂ ਦੇ ਉੱਪਰ ਉਹਨਾਂ ਦੀ ਸਰੋਤ-ਪਛਾਣ ਲਈ ਪਿਕਾਸੋ ਦੇ ਰੰਗਦਾਰ ਰਿਬਨ ਵਿਖਾਓ : ਨੈੱਟਵਰਕ ਲਈ ਲਾਲ, ਡਿਸਕ ਲਈ ਨੀਲੇ ਤੇ ਮੈਮਰੀ ਲਈ ਹਰੇ</string>
     <string name="enable_streams_notifications_title">ਨਵੀਂ ਸਟ੍ਰੀਮ ਦੇ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="detail_pinned_comment_view_description">ਪਿੰਨ ਕੀਤੀ ਟਿੱਪਣੀ</string>
     <string name="checking_updates_toast">ਅੱਪਡੇਟ ਦੀ ਉਪਲੱਬਧਤਾ ਪਰਖੀ ਜਾ ਰਹੀ…</string>
@@ -645,8 +645,8 @@
     <string name="start_main_player_fullscreen_title">ਮੁੱਖ ਪਲੇਅਰ ਪੂਰੀ ਸਕਰੀਨ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="progressive_load_interval_title">ਪਲੇਅਬੈਕ ਲੋਡ ਦਾ ਅੰਤਰਾਲ ਆਕਾਰ</string>
     <plurals name="new_streams">
-        <item quantity="one">%s ਨਵੀਂ ਸਟਰੀਮ</item>
-        <item quantity="other">%s ਨਵੀਆਂ ਸਟਰੀਮਾਂ</item>
+        <item quantity="one">%s ਨਵੀਂ ਸਟ੍ਰੀਮ</item>
+        <item quantity="other">%s ਨਵੀਆਂ ਸਟ੍ਰੀਮਾਂ</item>
     </plurals>
     <string name="feed_new_items">ਨਵੀਂਆ ਫੀਡ ਇਕਾਈਆਂ</string>
     <string name="get_notified">ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਕਰੋ</string>
@@ -656,13 +656,13 @@
     <string name="comments_are_disabled">ਟਿੱਪਣੀਆਂ ਬੰਦ ਕੀਤੀਆਂ ਹੋਈਆਂ ਹਨ</string>
     <string name="leak_canary_not_available">ਲੀਕ-ਕੈਨਰੀ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="show_error_snackbar">ਤਰੁੱਟੀ ਤੇ ਸਨੈਕਬਾਰ ਵਿਖਾਓ</string>
-    <string name="feed_use_dedicated_fetch_method_summary">ਕੁਝ ਸੇਵਾਵਾਂ ਵਿੱਚ ਹੀ ਉਪਲੱਬਧ ਇਹ ਤਰੀਕਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਵਿੱਚ ਤੇਜ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ, ਪਰ ਕੁਝ ਗਿਣਤੀ ਦੀਆਂ ਹੀ ਆਈਟਮ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ ਉਹ ਵੀ ਅਕਸਰ ਬਿਨਾਂ ਪੂਰੀ ਜਾਣਕਾਰੀ( ਜਿਵੇਂ ਅਵਧੀ, ਸਟਰੀਮ ਦੀ ਕਿਸਮ, ਕੋਈ ਸਟਰੀਮ ਲਾਈਵ ਹੈ, ਨਹੀਂ ਦੱਸਦਾ)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">ਕੁਝ ਸੇਵਾਵਾਂ ਵਿੱਚ ਹੀ ਉਪਲੱਬਧ ਇਹ ਤਰੀਕਾ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫੀਡ ਵਿੱਚ ਤੇਜ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ, ਪਰ ਕੁਝ ਗਿਣਤੀ ਦੀਆਂ ਹੀ ਆਈਟਮ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ ਉਹ ਵੀ ਅਕਸਰ ਬਿਨਾਂ ਪੂਰੀ ਜਾਣਕਾਰੀ( ਜਿਵੇਂ ਅਵਧੀ, ਸਟ੍ਰੀਮ ਦੀ ਕਿਸਮ, ਕੋਈ ਸਟ੍ਰੀਮ ਲਾਈਵ ਹੈ, ਨਹੀਂ ਦੱਸਦਾ)</string>
     <string name="soundcloud_go_plus_content">ਇਹ ਸਾਊਂਡਕਲਾਊਡ ਗੋ-ਪਲੱਸ ਟਰੈਕ ਹੈ, ਤੁਹਾਡੇ ਦੇਸ਼ ਵਿੱਚ ਇਹ ਸਟ੍ਰੀਮ ਜਾਂ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
     <string name="unknown_format">ਅਗਿਆਤ ਫਾਰਮੈਟ</string>
     <string name="unknown_quality">ਅਗਿਆਤ ਕੁਆਲਿਟੀ</string>
     <string name="faq_title">ਆਮ ਸਵਾਲ</string>
     <string name="faq">ਵੈੱਬਸਾਈਟ \'ਤੇ ਵੇਖੋ</string>
-    <string name="loading_stream_details">ਸਟਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</string>
+    <string name="loading_stream_details">ਸਟ੍ਰੀਮ ਲੋਡ ਹੋ ਰਹੀ ਹੈ…</string>
     <string name="processing_may_take_a_moment">ਕਾਰਵਾਈ ਵਿੱਚ... ਕੁਝ ਸਮਾਂ ਲੱਗ ਰਿਹਾ ਹੈ</string>
     <string name="show_crash_the_player_title">\"ਪਲੇਅਰ ਕਰੈਸ਼ ਕਰੋ\" ਵਿਖਾਉ</string>
     <string name="show_crash_the_player_summary">ਵਰਤਦੇ ਸਮੇਂ ਪਲੇਅਰ ਕਰੈਸ਼ ਦਾ ਵਿਕਲਪ ਵਿਖਾਉਂਦਾ ਹੈ</string>
@@ -686,9 +686,9 @@
     <string name="tablet_mode_title">ਟੈਬਲੇਟ ਮੋਡ</string>
     <string name="notifications_disabled">ਨੋਟੀਫਿਕੇਸ਼ਨ ਬੰਦ ਕੀਤੇ ਹੋਏ ਹਨ</string>
     <string name="toggle_all">ਸਭ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
-    <string name="selected_stream_external_player_not_supported">ਚੁਣੀ ਸਟਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਸਹਿਯੋਗੀ ਨਹੀਂ ਹੈ</string>
-    <string name="streams_not_yet_supported_removed">ਜਿਹੜੀਆਂ ਸਟਰੀਮਾਂ ਨੂੰ ਹਾਲੇ ਐਪ ਡਾਊਨਲੋਡ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ ਉਹ ਛੁਪਾ ਦਿੱਤੀਆਂ ਹਨ</string>
-    <string name="no_audio_streams_available_for_external_players">ਕੋਈ ਆਡੀਓ ਸਟਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
+    <string name="selected_stream_external_player_not_supported">ਚੁਣੀ ਗਈ ਸਟ੍ਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਸਹਿਯੋਗੀ ਨਹੀਂ ਹੈ</string>
+    <string name="streams_not_yet_supported_removed">ਜਿਹੜੀਆਂ ਸਟ੍ਰੀਮਾਂ ਦਾ ਹਾਲੇ ਐਪ ਡਾਊਨਲੋਡ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ ਉਹ ਛੁਪਾ ਦਿੱਤੀਆਂ ਗਈਆਂ ਹਨ</string>
+    <string name="no_audio_streams_available_for_external_players">ਕੋਈ ਆਡੀਓ ਸਟ੍ਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="sort">ਲੜੀਬੱਧ ਕਰੋ</string>
     <string name="crash_the_player">ਪਲੇਅਰ ਕਰੈਸ਼ ਕਰੋ</string>
     <string name="start_main_player_fullscreen_summary">ਵੀਡੀਓ ਮਿੰਨੀ ਪਲੇਅਰ ਚਲਾਉਣ ਦੀ ਵਜਾਏ ਪੂਰੇ ਸਕਰੀਨ ਵਿੱਚ ਚਲਾਉਂਦਾ ਹੈ। ਜੇ ਆਟੋ-ਰੋਟੇਸ਼ਨ ਲਾਕ ਹੈ ਮੇਨ-ਪਲੇਅਰ ਤੋਂ ਬਾਹਰ ਆਕੇ ਤੇ ਮਿੰਨੀ-ਪਲੇਅਰ ਤੱਕ ਰਸਾਈ ਹਾਸਿਲ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ</string>
@@ -700,7 +700,7 @@
     <string name="no_appropriate_file_manager_message">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ।
 \nਕ੍ਰਿਪਾ ਕਰਕੇ ਫਾਈਲ ਮੈਨੇਜਰ ਇੰਨਸਟਾਲ ਕਰੋ ਜਾਂ ਡਾਊਨਲੋਡ ਸੈਟਿੰਗ ਵਿੱਚ \'%s\' ਅਸਮਰੱਥ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <string name="you_successfully_subscribed">ਤੁਸੀਂ ਇਸ ਚੈਨਲ ਨੂੰ ਸਬਸਕ੍ਰਾਈਬ ਕਰ ਲਿਆ ਹੈ</string>
-    <string name="no_video_streams_available_for_external_players">ਕੋਈ ਵੀਡੀਓ ਸਟਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
+    <string name="no_video_streams_available_for_external_players">ਕੋਈ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="progressive_load_interval_exoplayer_default">ਐਕਸੋਪਲੇਅਰ ਡਿਫਾਲਟ</string>
     <string name="feed_use_dedicated_fetch_method_help_text">ਕੀ ਤੁਹਾਨੂੰ ਲੱਗਦਾ ਹੈ ਫੀਡ ਹੌਲੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ\? ਅਜਿਹਾ ਹੈ ਤਾਂ ਤੇਜ਼ ਫੀਡ ਕ੍ਰਿਆਸ਼ੀਲ ਕਰਕੇ ਵੇਖੋ (ਤੁਸੀਂ ਇਸਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾ ਕੇ ਜਾਂ ਹੇਠਲਾ ਬਟਨ ਦੱਬ ਕੇ ਕਰ ਸਕਦੇ ਹੋ ) 
 \n 
@@ -750,7 +750,7 @@
     <string name="prefer_descriptive_audio_summary">ਜੇ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਦ੍ਰਿਸ਼ਟੀ ਤੋਂ ਅਪੰਗ ਲੋਕਾਂ ਵਾਸਤੇ ਵਰਣਨਾਂ ਵਾਲਾ ਕੋਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
     <string name="play_queue_audio_track">ਆਡੀਓ: %s</string>
     <string name="audio_track">ਆਡੀਓ ਟਰੈਕ</string>
-    <string name="audio_track_present_in_video">ਇੱਕ ਆਡੀਓ ਟਰੈਕ ਇਸ ਸਟਰੀਮ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
+    <string name="audio_track_present_in_video">ਇੱਕ ਆਡੀਓ ਟਰੈਕ ਇਸ ਸਟ੍ਰੀਮ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
     <string name="select_audio_track_external_players">ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਆਡੀਓ ਟਰੈਕ ਚੁਣੋ</string>
     <string name="unknown_audio_track">ਅਗਿਆਤ</string>
     <string name="settings_category_exoplayer_title">ਐਕਸੋਪਲੇਅਰ ਸੈਟਿੰਗ</string>
@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">ਮੁੱਖ ਟੈਬ ਸਿਲੈਕਟਰ ਨੂੰ ਹੇਠਾਂ ਲੈ ਜਾਓ</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="disable_media_tunneling_automatic_info">ਮੀਡੀਆ ਟਨਲਿੰਗ ਤੁਹਾਡੀ ਡਿਵਾਈਸ \'ਤੇ ਡਿਫ਼ਾਲਟ ਤੌਰ \'ਤੇ ਅਸਮਰੱਥ ਕੀਤੀ ਗਈ ਸੀ ਕਿਉਂਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਮਾਡਲ ਇਸਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।</string>
+    <string name="no_streams">ਕੋਈ ਸਟ੍ਰੀਮ ਨਹੀਂ</string>
+    <string name="no_live_streams">ਕੋਈ ਲਾਈਵ ਸਟ੍ਰੀਮ ਨਹੀਂ</string>
 </resources>

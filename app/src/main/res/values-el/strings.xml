@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">Μετακινήστε τον επιλογέα κύριας καρτέλας στο κάτω μέρος</string>
     <string name="main_tabs_position_title">Θέση κύριων καρτελών</string>
     <string name="disable_media_tunneling_automatic_info">Το media tunneling απενεργοποιήθηκε από προεπιλογή στη συσκευή σας, επειδή το μοντέλο της συσκευής σας είναι γνωστό ότι δεν το υποστηρίζει.</string>
+    <string name="no_live_streams">Καμία ζωντανή ροή</string>
+    <string name="no_streams">Καμία ροή</string>
 </resources>

@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
     <string name="show_higher_resolutions_summary">Vain jotkin laitteet voivat toistaa 2K/4K-videota</string>
     <string name="play_with_kodi_title">Toista Kodissa</string>
-    <string name="kore_not_found">Asennetaanko puuttuva Kode-sovellus\?</string>
+    <string name="kore_not_found">Asennetaanko puuttuva Kore-sovellus\?</string>
     <string name="show_play_with_kodi_title">Näytä ”Toista Kodissa”-vaihtoehto</string>
     <string name="show_play_with_kodi_summary">Näyttää vaihtoehdon videon toistamiseen Kodi-mediasoittimessa</string>
     <string name="play_audio">Ääni</string>
@@ -553,8 +553,8 @@
     <string name="notification_action_2_title">Kolmas toimintopainike</string>
     <string name="notification_action_1_title">Toinen toimintopainike</string>
     <string name="notification_action_0_title">Ensimmäinen toimintopainike</string>
-    <string name="notification_scale_to_square_image_summary">Skaalaa ilmoituksessa näytettävä videon esikatselukuva kuvasuhteesta 16:9 kuvasuhteeseen 1:1 (saattaa aiheuttaa vääristymiä)</string>
-    <string name="notification_scale_to_square_image_title">Skaalaa esikatselukuva 1:1-kuvasuhteeseen</string>
+    <string name="notification_scale_to_square_image_summary">Rajaa ilmoituksessa näytettävä videon esikatselukuva kuvasuhteesta 16:9 kuvasuhteeseen 1:1</string>
+    <string name="notification_scale_to_square_image_title">Rajaa esikatselukuva 1:1-kuvasuhteeseen</string>
     <string name="show_memory_leaks">Näytä muistivuodot</string>
     <string name="enqueued">Lisätty jonoon</string>
     <string name="enqueue_stream">Lisää jonoon</string>
@@ -681,4 +681,22 @@
     <string name="audio_track_type_dubbed">dubattu</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="audio_track_type_original">alkuperäinen</string>
+    <string name="settings_category_player_notification_title">Soittimen ilmoitus</string>
+    <string name="settings_category_player_notification_summary">Määritä toistettavan lähetysvirran ilmoitus</string>
+    <string name="left_gesture_control_title">Vasemman eleen toiminto</string>
+    <string name="right_gesture_control_summary">Valitse soitinnäytön oikean puoliskon ele</string>
+    <string name="right_gesture_control_title">Oikean eleen toiminto</string>
+    <string name="brightness">Kirkkaus</string>
+    <string name="volume">Äänenvoimakkuus</string>
+    <string name="none">Ei mitään</string>
+    <string name="progressive_load_interval_title">Toiston latausvälin koko</string>
+    <string name="ignore_hardware_media_buttons_title">Ohita laitteiston mediapainikkeiden tapahtumat</string>
+    <string name="prefer_original_audio_title">Suosi alkuperäistä ääntä</string>
+    <string name="prefer_original_audio_summary">Valitse alkuperäinen ääniraita kielestä riippumatta</string>
+    <string name="prefer_descriptive_audio_title">Suosi kuvailutulkkausta</string>
+    <string name="prefer_descriptive_audio_summary">Valitse näkövammaisille tarkoitetun kuvailutulkkauksen sisältävä ääniraita, mikäli saatavilla</string>
+    <string name="left_gesture_control_summary">Valitse soitinnäytön vasemman puoliskon ele</string>
+    <string name="streams_notification_channel_name">Uusia lähetysvirtoja</string>
+    <string name="progressive_load_interval_summary">Muuta progressiivisen sisällön latausvälin kokoa (tällä hetkellä %s). Pienempi arvo saattaa nopeuttaa ensimmäistä latausta.</string>
+    <string name="ignore_hardware_media_buttons_summary">Tästä on hyötyä esim. silloin, jos käyttämiesi kuulokkeiden fyysiset painikkeet eivät toimi.</string>
 </resources>

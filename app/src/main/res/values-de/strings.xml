@@ -104,7 +104,7 @@
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
-    <string name="show_search_suggestions_summary">Wähle die Vorschläge aus, die bei der Suche angezeigt werden sollen</string>
+    <string name="show_search_suggestions_summary">Vorschläge auswählen, die bei der Suche angezeigt werden sollen</string>
     <string name="clear">Löschen</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="title_activity_about">Über NewPipe</string>
@@ -270,7 +270,7 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher</string>
+    <string name="download_thumbnail_summary">Ausschalten, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="bookmark_playlist">Wiedergabeliste mit Lesezeichen versehen</string>
@@ -579,7 +579,7 @@
     <string name="hash_channel_name">Video-Hash Benachrichtigung</string>
     <string name="recent">Letzte</string>
     <string name="show_meta_info_title">Metadaten anzeigen</string>
-    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
+    <string name="show_meta_info_summary">Ausschalten, um Metadaten-Felder mit zusätzlichen Informationen zu Stream-Ersteller, -Inhalten oder einer Suchanfrage auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
     <string name="related_items_tab_description">Verwandte Elemente</string>
@@ -739,16 +739,16 @@
     <string name="left_gesture_control_title">Linke Gestenaktion</string>
     <string name="brightness">Helligkeit</string>
     <string name="volume">Lautstärke</string>
-    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen.</string>
+    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen</string>
     <string name="prefer_original_audio_title">Originalton bevorzugen</string>
-    <string name="prefer_original_audio_summary">Wähle die Originaltonspur unabhängig von der Sprache</string>
+    <string name="prefer_original_audio_summary">Originaltonspur unabhängig von der Sprache wählen</string>
     <string name="prefer_descriptive_audio_title">Beschreibendes Audio bevorzugen</string>
-    <string name="prefer_descriptive_audio_summary">Wähle eine Audiospur mit Beschreibungen für sehbehinderte Menschen, falls verfügbar</string>
+    <string name="prefer_descriptive_audio_summary">Wenn möglich Audiospur mit Beschreibungen für sehbehinderte Menschen wählen</string>
     <string name="play_queue_audio_track">Audio: %s</string>
     <string name="audio_track">Audiospur</string>
-    <string name="settings_category_exoplayer_summary">Verwalte einige ExoPlayer-Einstellungen. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
-    <string name="use_exoplayer_decoder_fallback_title">Verwende die Decoder-Fallback-Funktion von ExoPlayer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_title">Verwende immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung</string>
+    <string name="settings_category_exoplayer_summary">Einige ExoPlayer-Einstellungen steuern. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
+    <string name="use_exoplayer_decoder_fallback_title">Die Decoder-Fallback-Funktion von ExoPlayer verwenden</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung verwenden</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Dieser Workaround gibt die Video-Codecs frei und instanziiert sie neu, wenn sich die Oberfläche ändert, anstatt die Oberfläche direkt auf den Codec zu setzen. Diese Einstellung wird bereits von ExoPlayer auf einigen Geräten mit diesem Problem verwendet und hat nur Auswirkungen auf Android 6 und höher
 \n
 \nDas Aktivieren dieser Option kann Wiedergabefehler beim Wechsel des aktuellen Videoplayers oder beim Wechsel zum Vollbildmodus verhindern</string>
@@ -757,11 +757,13 @@
     <string name="audio_track_type_descriptive">Beschreibend</string>
     <string name="select_audio_track_external_players">Audiospur für externe Player auswählen</string>
     <string name="audio_track_present_in_video">In diesem Stream sollte bereits eine Audiospur vorhanden sein</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Aktiviere diese Option, wenn du Probleme mit der Decoderinitialisierung hast, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Einschalten, wenn es Probleme mit der Decoderinitialisierung gibt, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
     <string name="unknown_audio_track">Unbekannt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="main_tabs_position_summary">Hauptauswahltab nach unten verschieben</string>
     <string name="main_tabs_position_title">Position des Haupttabs</string>
     <string name="disable_media_tunneling_automatic_info">Das Media-Tunneling wurde auf dem Gerät standardmäßig deaktiviert, da das Gerätemodell diese Funktion bekanntermaßen nicht unterstützt.</string>
+    <string name="no_live_streams">Keine Live-Streams</string>
+    <string name="no_streams">Keine Streams</string>
 </resources>

@@ -781,4 +781,6 @@
     <string name="main_tabs_position_summary">Перемістити селектор головної вкладки вниз</string>
     <string name="main_tabs_position_title">Розташування основних вкладок</string>
     <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
+    <string name="no_streams">Немає трансляцій</string>
+    <string name="no_live_streams">Немає трансляцій наживо</string>
 </resources>

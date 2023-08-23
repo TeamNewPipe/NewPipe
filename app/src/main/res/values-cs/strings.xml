@@ -608,7 +608,7 @@
     <string name="restricted_video_no_stream">Toto video je věkově omezeno.
 \nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže NewPipe získat přístup na streamy videa, a tak je nemůže přehrát.</string>
     <string name="night_theme_title">Noční motiv</string>
-    <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud zaznamenáte temnou obrazovku nebo zadrhávání během playbacku</string>
+    <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud během přehrávání zaznamenáte temnou obrazovku nebo zadrhávání.</string>
     <string name="disable_media_tunneling_title">Vypnout media-tunelling</string>
     <string name="open_website_license">Přejít na website</string>
     <string name="metadata_privacy_internal">Interní</string>
@@ -776,4 +776,7 @@
     <string name="play_queue_audio_track">Zvuk: %s</string>
     <string name="main_tabs_position_title">Pozice hlavních karet</string>
     <string name="main_tabs_position_summary">Přesunout výběr hlavní karty dolů</string>
+    <string name="disable_media_tunneling_automatic_info">Na vašem zařízení byl zakázán media tunelling, protože model vašeho zařízení jej nepodporuje.</string>
+    <string name="no_streams">Žádná videa</string>
+    <string name="no_live_streams">Žádné živé přenosy</string>
 </resources>

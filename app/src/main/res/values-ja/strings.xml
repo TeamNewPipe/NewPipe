@@ -588,7 +588,7 @@
     <string name="show_channel_details">チャンネルの詳細を表示</string>
     <string name="radio">ラジオ</string>
     <string name="featured">おすすめ</string>
-    <string name="disable_media_tunneling_summary">ビデオ再生が止まったり出ない場合はメディアトンネリングを無効にしてください</string>
+    <string name="disable_media_tunneling_summary">動画の再生が止まったり動画が出ない場合はメディアトンネリングを無効にしてください。</string>
     <string name="disable_media_tunneling_title">マルチメディアトンネリングを無効にする</string>
     <string name="metadata_privacy_public">公開</string>
     <string name="metadata_privacy_unlisted">限定公開</string>
@@ -750,4 +750,7 @@
     <string name="main_tabs_position_title">メインタブの場所</string>
     <string name="main_tabs_position_summary">メインタブセレクタを下に移動</string>
     <string name="audio_track_name">%1s %2s</string>
+    <string name="disable_media_tunneling_automatic_info">お使いのデバイスのモデルではメディアトンネリングがサポートされていないため、このデバイスではメディアトンネリングがデフォルトで無効になっています。</string>
+    <string name="no_streams">ストリームはありません</string>
+    <string name="no_live_streams">ライブ配信はありません</string>
 </resources>

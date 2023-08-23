@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">मुख्य टैब सिलेक्टर को नीचे ले जाएँ</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="disable_media_tunneling_automatic_info">आपके डिवाइस पर मीडिया टनलिंग डिफ़ॉल्ट रूप से अक्षम कर दी गई थी क्योंकि यह ज्ञात है कि आपका डिवाइस मॉडल इसका समर्थन नहीं करता।</string>
+    <string name="no_streams">कोई स्ट्रीम नहीं</string>
+    <string name="no_live_streams">कोई लाइव स्ट्रीम नहीं</string>
 </resources>

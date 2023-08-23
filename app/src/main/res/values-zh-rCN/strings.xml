@@ -751,4 +751,6 @@
     <string name="main_tabs_position_title">主标签页位置</string>
     <string name="audio_track_name">%1s %2s</string>
     <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
+    <string name="no_live_streams">无直播</string>
+    <string name="no_streams">无音视频流</string>
 </resources>

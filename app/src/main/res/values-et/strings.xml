@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">Tõsta põhiline vahekaartide valija alla äärde</string>
     <string name="main_tabs_position_title">Vahekaartide põhiline asukoht</string>
     <string name="disable_media_tunneling_automatic_info">Kuna on teada, et see seade ei toeta meedia tunneldamist, siis on see funktsionaalsus vaikimisi välja lülitatud.</string>
+    <string name="no_streams">Meediavoogusid ei leidu</string>
+    <string name="no_live_streams">Otseeetris meediavoogusid ei leidu</string>
 </resources>

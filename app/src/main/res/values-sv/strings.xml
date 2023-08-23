@@ -631,7 +631,7 @@
     <string name="night_theme_title">Natt-tema</string>
     <string name="hash_channel_description">Aviseringar för videohashningsframsteg</string>
     <string name="metadata_thumbnail_url">Miniatyrbild-webbadress</string>
-    <string name="disable_media_tunneling_summary">Inaktivera medietunnel om du upplever en svart skärm eller stamning vid videouppspelning</string>
+    <string name="disable_media_tunneling_summary">Inaktivera medietunnel om du upplever en svart skärm eller att videouppspelningen hackar.</string>
     <string name="disable_media_tunneling_title">Inaktivera medietunnel</string>
     <string name="detail_heart_img_view_description">Hjärtmärkt av innehållsskaparen</string>
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
@@ -763,4 +763,7 @@
     <string name="audio_track_type_dubbed">dubbad</string>
     <string name="main_tabs_position_summary">Flytta huvudflik väljaren till botten</string>
     <string name="main_tabs_position_title">Huvudflikarnas position</string>
+    <string name="no_streams">Inga strömmar</string>
+    <string name="no_live_streams">Inga live-strömmar</string>
+    <string name="disable_media_tunneling_automatic_info">Medietunnel har inaktiverats som standard på din enhet eftersom att enhetsmodellen inte stöder funktionen.</string>
 </resources>
