@@ -86,7 +86,7 @@ module.exports = async ({github, context}) => {
         });
     }
 
-    // Asnyc replace function from https://stackoverflow.com/a/48032528
+    // Async replace function from https://stackoverflow.com/a/48032528
     async function replaceAsync(str, regex, asyncFn) {
         const promises = [];
         str.replace(regex, (match, ...args) => {
@@ -138,7 +138,7 @@ module.exports = async ({github, context}) => {
             if (shouldModify) {
                 wasMatchModified = true;
                 console.log(`Modifying match '${match}'`);
-                return `<img alt="${g1}" src="${g2}" width=${Math.min(600, (IMG_MAX_HEIGHT_PX * probeAspectRatio).toFixed(0))} />`;
+                return `<img alt="${g1}" src="${g2}" width=${Math.min(600, Math.floor(IMG_MAX_HEIGHT_PX * probeAspectRatio))} />`;
             }
 
             console.log(`Match '${match}' is ok/will not be modified`);
