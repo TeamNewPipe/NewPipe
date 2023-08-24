@@ -1,0 +1,15 @@
+Nové
+- Podpora více zvukových stop/jazyků
+- Umožňuje nastavení hlasitosti a jasu gesty na libovolné straně obrazovky
+- Podpora zobrazování hlavních karet ve spodní části obrazovky
+
+Vylepšeno
+- [Bandcamp] Zpracování skladeb za paywallem
+
+Opraveno
+- [YouTube] Chyby 403 HTTP pro streamy
+- Černý přehrávač při přepnutí do hlavního přehrávače ze zobrazení seznamu skladeb
+- Únik paměti služby přehrávače
+- [PeerTube] Avatary nahrávače a podkanálu byly prohozeny
+
+a další

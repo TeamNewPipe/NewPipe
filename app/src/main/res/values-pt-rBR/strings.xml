@@ -606,9 +606,9 @@
     <string name="select_night_theme_toast">Você pode selecionar seu tema noturno favorito abaixo</string>
     <string name="night_theme_summary">Selecione seu tema noturno favorito — %s</string>
     <string name="auto_device_theme_title">Automático (tema do dispositivo)</string>
-    <string name="night_theme_title">Tema Noturno</string>
+    <string name="night_theme_title">Tema noturno</string>
     <string name="show_channel_details">Mostrar detalhes do canal</string>
-    <string name="disable_media_tunneling_summary">Desative o tunelamento de mídia se aparecer uma tela preta ou se tiver engasgos durante a reprodução do vídeo</string>
+    <string name="disable_media_tunneling_summary">Desative o tunelamento de mídia se aparecer uma tela preta ou se tiver engasgos durante a reprodução do vídeo.</string>
     <string name="disable_media_tunneling_title">Desativar tunelamento de mídia</string>
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privado</string>
@@ -763,7 +763,7 @@
     <string name="unknown_audio_track">Desconhecido</string>
     <string name="settings_category_exoplayer_title">Configurações de ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gerenciar algumas configurações de ExoPlayer. É necessário reiniciar o player para aplicar as mudanças</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dublado</string>
     <string name="audio_track_type_descriptive">descritivo</string>
@@ -776,4 +776,7 @@
     <string name="use_exoplayer_decoder_fallback_summary">Habilite essa opção se você tiver problemas de inicialização do decodificador, que retorna codificadores de baixa prioridade se o decodificador primário falhar. Isso pode resultar em pior desempenho de reprodução</string>
     <string name="main_tabs_position_summary">Mova o seletor da aba principal para a parte inferior</string>
     <string name="main_tabs_position_title">Posição das abas principais</string>
+    <string name="no_streams">Nenhuma transmissão</string>
+    <string name="no_live_streams">Nenhuma transmissão ao vivo</string>
+    <string name="disable_media_tunneling_automatic_info">O tunelamento de mídia foi desabilitado por padrão em seu dispositivo porque seu modelo é conhecido por não suportá-lo.</string>
 </resources>

@@ -774,7 +774,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Używaj funkcji zapasowego dekodera ExoPlayera</string>
     <string name="use_exoplayer_decoder_fallback_summary">Włącz tę opcję, jeśli masz problemy z inicjalizacją dekodera. Przywraca dekodery o niższym priorytecie, jeśli inicjalizacja podstawowych dekoderów się nie powiedzie. Może to spowodować słabszą wydajność odtwarzania niż podczas korzystania z podstawowych dekoderów</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Zawsze używaj obejścia ustawienia powierzchni wyjścia wideo ExoPlayera</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">oryginalna</string>
     <string name="audio_track_type_dubbed">dubbing</string>
     <string name="audio_track_type_descriptive">audiodeskrypcja</string>
@@ -785,4 +785,6 @@
     <string name="main_tabs_position_summary">Przenieś selektor kart głównych na dół</string>
     <string name="main_tabs_position_title">Pozycja kart głównych</string>
     <string name="disable_media_tunneling_automatic_info">Tunelowanie multimediów zostało domyślnie wyłączone na Twoim urządzeniu, ponieważ wiadomo, że model Twojego urządzenia go nie obsługuje</string>
+    <string name="no_streams">Brak strumieni</string>
+    <string name="no_live_streams">Brak transmisji na żywo</string>
 </resources>

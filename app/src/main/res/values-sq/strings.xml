@@ -637,4 +637,22 @@
     <string name="seekbar_preview_thumbnail_title">Parapamje e pamjes miniaturë të lëvizësit të kohës</string>
     <string name="comments_are_disabled">Komentet janë të ç\'aktivizuara</string>
     <string name="mark_as_watched">Shëno si të parë</string>
+    <string name="brightness">Drita</string>
+    <string name="volume">Volumi</string>
+    <string name="get_notified">Njoftohu</string>
+    <string name="unknown_quality">Qualitet i panjohur</string>
+    <string name="any_network">Cilidi rrjet</string>
+    <string name="card">Kartë</string>
+    <string name="unknown_audio_track">Panjohur</string>
+    <string name="unknown_format">Format i panjohur</string>
+    <string name="remove_duplicates_title">Hiq duplikatet\?</string>
+    <string name="feed_show_upcoming">Së shpejti</string>
+    <string name="feed_show_watched">Te shikuara në plotësi</string>
+    <string name="feed_show_partially_watched">Gjysmë të shikuar</string>
+    <string name="audio_track_type_original">origjinal</string>
+    <string name="audio_track_type_dubbed">dubluar</string>
+    <string name="audio_track_type_descriptive">përshkruese</string>
+    <string name="remove_duplicates">Hiq duplikatet</string>
+    <string name="fast_mode">Modi i shpejtë</string>
+    <string name="sort">Rradhit</string>
 </resources>

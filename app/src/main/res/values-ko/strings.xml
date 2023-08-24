@@ -73,7 +73,7 @@
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
-    <string name="subscription_change_failed">구독상태를 변경할 수 없었습니다.</string>
+    <string name="subscription_change_failed">구독을 변경할 수 없음</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
     <string name="tab_subscriptions">구독목록</string>
     <string name="fragment_feed_title">새로운 영상</string>
@@ -547,7 +547,7 @@
     <string name="loading_stream_details">스트림 세부정보 불러오는 중…</string>
     <string name="disable_media_tunneling_title">미디어 터널링 비활성화</string>
     <string name="show_original_time_ago_summary">서비스의 원본 텍스트가 스트림 항목에 표시됩니다</string>
-    <string name="disable_media_tunneling_summary">비디오 재생 시 검은색 화면이나 끊김 현상이 발생하는 경우 미디어 터널링을 비활성화합니다</string>
+    <string name="disable_media_tunneling_summary">동영상 재생 시 검은 화면이 나타나거나 끊김 현상이 발생하면 미디어 터널링을 비활성화하세요.</string>
     <string name="show_image_indicators_title">이미지 표시기 표시</string>
     <string name="show_image_indicators_summary">원본을 나타내는 이미지 위에 피카소 컬러 리본 표시: 네트워크는 빨간색, 디스크는 파란색, 메모리는 녹색</string>
     <string name="show_crash_the_player_title">\"플레이어 충돌\" 표시</string>
@@ -747,4 +747,8 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용
 \n
 \n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
+    <string name="main_tabs_position_summary">메인 탭 선택기를 하단으로 이동</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="main_tabs_position_title">메인 탭 위치</string>
+    <string name="disable_media_tunneling_automatic_info">장치 모델에서 미디어 터널링을 지원하지 않는 것으로 알려져 있기 때문에 장치에서 기본적으로 미디어 터널링이 비활성화되었습니다.</string>
 </resources>

@@ -181,7 +181,7 @@
     <string name="no_appropriate_file_manager_message">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
 \nଦୟାକରି ଏକ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ କିମ୍ବା ଡାଉନଲୋଡ୍ ସେଟିଂସମୂହରେ \'%s\' ଅକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="youtube_music_premium_content">ଏହି ଭିଡିଓ କେବଳ ୟୁଟ୍ୟୁବ୍ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ସଦସ୍ୟଙ୍କ ପାଇଁ ଉପଲବ୍ଧ, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
-    <string name="progressive_load_interval_summary">ଲୋଡ୍ ବ୍ୟବଧାନ ଆକାର ପରିବର୍ତ୍ତନ କରନ୍ତୁ (currently %s)। ଏକ କମ୍ ମୂଲ୍ୟ ପ୍ରାରମ୍ଭିକ ଭିଡିଓ ଲୋଡିଂକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ । ପରିବର୍ତ୍ତନଗୁଡିକ ଏକ ପ୍ଲେୟାର ପୁନଃଆରମ୍ଭ ଆବଶ୍ୟକ କରେ</string>
+    <string name="progressive_load_interval_summary">ଧାରଣ ଅନ୍ତରାଳର ଆକାରକୁ ପ୍ରଗତିଶୀଳ ବିଷୟବସ୍ତୁ (ବର୍ତ୍ତମାନ %s) ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । ଗୋଟିଏ ନିମ୍ନମାନ ସେମାନଙ୍କର ପ୍ରାରମ୍ଭିକ ଧାରଣକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ</string>
     <string name="no_appropriate_file_manager_message_android_10">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
 \nଦୟାକରି ଏକ ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ ସୁସଙ୍ଗତ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="soundcloud_go_plus_content">ଅନ୍ତତଃ ପକ୍ଷେ ଆପଣଙ୍କ ଦେଶରେ ଏହା ଏକ ସାଉଣ୍ଡକ୍ଲାଉଡ୍ ଗୋ + ଟ୍ରାକ୍, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
@@ -343,7 +343,7 @@
     <string name="enable_leak_canary_summary">ମେମୋରୀ ଲିକ୍ ମନିଟରିଂ ହିପ୍ ଡମ୍ପିଂ କରିବା ସମୟରେ ଆପ୍ ପ୍ରତିକ୍ରିୟାଶୀଳ ହୋଇପାରେ</string>
     <string name="show_original_time_ago_summary">ସେବାଗୁଡିକରୁ ମୂଳ ଲେଖା ଷ୍ଟ୍ରିମ୍ ଆଇଟମ୍ ଗୁଡିକରେ ଦୃଶ୍ୟମାନ ହେବ</string>
     <string name="disable_media_tunneling_title">ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
-    <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
+    <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ ।</string>
     <string name="show_image_indicators_summary">ଚିତ୍ରଗୁଡ଼ିକର ଉପରେ ପିକାସୋ ରଙ୍ଗୀନ ଫିତା ଦେଖାନ୍ତୁ: ସେମାନଙ୍କର ଉତ୍ସକୁ ସୂଚାଇଥାଏ: ନେଟୱାର୍କ ପାଇଁ ନାଲି, ଡିସ୍କ ପାଇଁ ନୀଳ ଏବଂ ସ୍ମୃତି ପାଇଁ ସବୁଜ</string>
     <string name="import_title">ଆମଦାନି କରନ୍ତୁ</string>
     <string name="import_from">ଠାରୁ ଆମଦାନୀ କରନ୍ତୁ</string>
@@ -740,4 +740,30 @@
     <string name="brightness">ଉଜ୍ଜ୍ୱଳତା</string>
     <string name="volume">ଭଲ୍ୟୁମ୍</string>
     <string name="none">କିଛି ନୁହେଁ</string>
+    <string name="main_tabs_position_summary">ମୂଖ୍ୟ ଟ୍ୟାବ ଚୟନକର୍ତ୍ତାଙ୍କୁ ତଳ ଭାଗକୁ ଘୁଞ୍ଚାନ୍ତୁ</string>
+    <string name="main_tabs_position_title">ମୂଖ୍ଯ ଟ୍ୟାବ ଅବସ୍ଥାନ</string>
+    <string name="settings_category_exoplayer_summary">କିଛି ExoPlayer ବିନ୍ୟାସକୁ ପରିଚାଳନା କରନ୍ତୁ । ଏହି ପରିବର୍ତ୍ତନଗୁଡ଼ିକୁ ପ୍ରଭାବୀ ହେବା ପାଇଁ ଗୋଟିଏ ଚାଳକକୁ ପୁନଃଚାଳନ କରିବା ଆବଶ୍ୟକ</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer ର ଡିକୋଡର୍ ଫଲବ୍ୟାକ୍ ବୈଶିଷ୍ଟ୍ୟକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_exoplayer_decoder_fallback_summary">ଯଦି ଆପଣଙ୍କର ଡିକୋଡର ପ୍ରାରମ୍ଭିକ ସମସ୍ୟା ଅଛି ତେବେ ଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରନ୍ତୁ, ଯାହା ପ୍ରାଥମିକ ଡିକୋଡର ପ୍ରାରମ୍ଭିକତା ବିଫଳ ହେଲେ ନିମ୍ନ ପ୍ରାଥମିକତା ଡିକୋଡରକୁ ଫେରିଥାଏ । ପ୍ରାଥମିକ ଡିକୋଡର ବ୍ୟବହାର କରିବା ସମୟରେ ଏହା ଖରାପ ପ୍ଲେବ୍ୟାକ ପ୍ରଦର୍ଶନର କାରଣ ହୋଇପାରେ</string>
+    <string name="audio_track_name">%1$s ଓ %2$s</string>
+    <string name="audio_track_type_descriptive">ବର୍ଣ୍ଣନାତ୍ମକ</string>
+    <string name="audio_track_type_original">ମୂଳ</string>
+    <string name="audio_track_type_dubbed">ଡବିଙ୍ଗ୍ ହୋଇଛି</string>
+    <string name="prefer_original_audio_title">ମୂଳ ଧ୍ୱନିକୁ ପସନ୍ଦ କରନ୍ତୁ</string>
+    <string name="prefer_original_audio_summary">ଭାଷା ନିର୍ବିଶେଷରେ ମୂଳ ଧ୍ୱନି ଟ୍ରାକକୁ ବାଛନ୍ତୁ</string>
+    <string name="prefer_descriptive_audio_title">ବର୍ଣ୍ଣନାମୂଳକ ଧ୍ୱନିକୁ ପସନ୍ଦ କରନ୍ତୁ</string>
+    <string name="play_queue_audio_track">ଧ୍ୱନି: %s</string>
+    <string name="audio_track">ଧ୍ୱନି ଟ୍ରାକ୍</string>
+    <string name="audio_track_present_in_video">ଏହି ଧାରାରେ ଗୋଟିଏ ଧ୍ୱନୀ ଟ୍ରାକ ପୂର୍ବରୁ ଉପସ୍ଥିତ ହେବା ଉଚିତ</string>
+    <string name="select_audio_track_external_players">ବାହ୍ୟ ଚାଳକମାନଙ୍କ ପାଇଁ ଧ୍ୱନୀ ଟ୍ରାକ ବାଛନ୍ତୁ</string>
+    <string name="unknown_audio_track">ଅଜଣା</string>
+    <string name="prefer_descriptive_audio_summary">ଉପଲବ୍ଧ ହେଲେ ଦୃଷ୍ଟିହୀନ ବ୍ୟକ୍ତିଙ୍କ ପାଇଁ ବର୍ଣ୍ଣନା ସହିତ ଗୋଟିଏ ଧ୍ୱନି ଟ୍ରାକ ଚୟନ କରନ୍ତୁ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">ସର୍ବଦା ExoPlayer ର ଭିଡ଼ିଓ ଆଉଟପୁଟ୍ ପୃଷ୍ଠ ବିନ୍ୟାସ କାର୍ଯ୍ଯକ୍ଷେତ୍ରକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="disable_media_tunneling_automatic_info">ଆପଣଙ୍କର ଡିଭାଇସରେ ଡିଫଲ୍ଟ ଭାବରେ ମିଡିଆ ସୁଡଙ୍ଗକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଛି କାରଣ ଆପଣଙ୍କର ଡିଭାଇସ ମଡେଲ ଏହାକୁ ସମର୍ଥନ କରୁନାହିଁ ବୋଲି ଜଣାଅଛି ।</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer ବିନ୍ୟାସଗୁଡ଼ିକ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ଏହି ୱାର୍କଆରାଉଣ୍ଡ ଭିଡିଓ କୋଡେକଗୁଡ଼ିକୁ ରିଲିଜ କରିଥାଏ ଏବଂ ପୁନଃସ୍ଥାପନ କରିଥାଏ ଯେତେବେଳେ ଗୋଟିଏ ପୃଷ୍ଠ ପରିବର୍ତ୍ତନ ହୋଇଥାଏ, ଭୂପୃଷ୍ଠକୁ ସିଧାସଳଖ କୋଡେକରେ ସେଟ କରିବା ପରିବର୍ତ୍ତେ । ଏହି ସମସ୍ୟା ସହିତ କିଛି ଉପକରଣରେ ExoPlayer ଦ୍ୱାରା ପୂର୍ବରୁ ବ୍ୟବହୃତ, ଏହି ସଂରଚନା କେବଳ ଆଣ୍ଡ୍ରଏଡ 6 ଏବଂ ଉଚ୍ଚତର ଉପରେ ପ୍ରଭାବ ପକାଇଥାଏ
+\n
+\nଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରିବା ସାମ୍ପ୍ରତିକ ଭିଡିଓ ପ୍ଲେୟାରକୁ ବଦଳାଇବା କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ପରଦାକୁ ପରିବର୍ତ୍ତନ କରିବା ସମୟରେ ପ୍ଲେବ୍ୟାକ ତ୍ରୁଟିକୁ ପ୍ରତିରୋଧ କରିପାରେ</string>
+    <string name="no_streams">କୌଣସି ସ୍ରୋତ ନାହିଁ</string>
+    <string name="no_live_streams">କୌଣସି ଲାଇଭ ଷ୍ଟ୍ରିମ୍ ନାହିଁ</string>
 </resources>

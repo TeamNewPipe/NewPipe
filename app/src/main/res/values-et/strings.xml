@@ -748,7 +748,7 @@
     <string name="audio_track_present_in_video">Selles meediavoos peaks heliriba juba olemas olema</string>
     <string name="use_exoplayer_decoder_fallback_title">Kasuta ExoPlayer\'i alternatiivset dekooderit</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Kasuta alati ExoPlayer\'i video väljundpinna seadistamise lahendust</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">algne</string>
     <string name="audio_track_type_dubbed">dubleeritud</string>
     <string name="audio_track_type_descriptive">kirjeldav</string>
@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">Tõsta põhiline vahekaartide valija alla äärde</string>
     <string name="main_tabs_position_title">Vahekaartide põhiline asukoht</string>
     <string name="disable_media_tunneling_automatic_info">Kuna on teada, et see seade ei toeta meedia tunneldamist, siis on see funktsionaalsus vaikimisi välja lülitatud.</string>
+    <string name="no_streams">Meediavoogusid ei leidu</string>
+    <string name="no_live_streams">Otseeetris meediavoogusid ei leidu</string>
 </resources>

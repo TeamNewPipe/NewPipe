@@ -788,6 +788,8 @@
 \nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
     <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
     <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">תיעול מדיה הושבת כברירת מחדל במכשיר שלך כיוון שדגם המכשיר ידוע בכך שאינו תומך בזה.</string>
+    <string name="no_live_streams">אין תזרימים חיים</string>
+    <string name="no_streams">אין תזרימים</string>
 </resources>

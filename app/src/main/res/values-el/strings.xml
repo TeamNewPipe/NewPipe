@@ -755,7 +755,7 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση.
 \n
 \nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">αρχικό</string>
     <string name="audio_track_type_dubbed">μεταγλωττισμένο</string>
     <string name="audio_track_type_descriptive">περιγραφικό</string>
@@ -764,4 +764,6 @@
     <string name="main_tabs_position_summary">Μετακινήστε τον επιλογέα κύριας καρτέλας στο κάτω μέρος</string>
     <string name="main_tabs_position_title">Θέση κύριων καρτελών</string>
     <string name="disable_media_tunneling_automatic_info">Το media tunneling απενεργοποιήθηκε από προεπιλογή στη συσκευή σας, επειδή το μοντέλο της συσκευής σας είναι γνωστό ότι δεν το υποστηρίζει.</string>
+    <string name="no_live_streams">Καμία ζωντανή ροή</string>
+    <string name="no_streams">Καμία ροή</string>
 </resources>
