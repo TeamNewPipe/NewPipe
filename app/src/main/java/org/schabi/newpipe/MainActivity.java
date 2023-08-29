@@ -69,6 +69,7 @@ import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.player.Player;
@@ -546,13 +547,25 @@ public class MainActivity extends AppCompatActivity {
         // interacts with a fragment inside fragment_holder so all back presses should be
         // handled by it
         if (bottomSheetHiddenOrCollapsed()) {
-            final Fragment fragment = getSupportFragmentManager()
-                    .findFragmentById(R.id.fragment_holder);
+            final FragmentManager fm = getSupportFragmentManager();
+            final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)
             // delegate the back press to it
             if (fragment instanceof BackPressable) {
                 if (((BackPressable) fragment).onBackPressed()) {
                     return;
+                }
+            } else if (fragment instanceof CommentRepliesFragment) {
+                // expand DetailsFragment if CommentRepliesFragment was opened
+                // to show the top level comments again
+                // Expand DetailsFragment if CommentRepliesFragment was opened
+                // and no other CommentRepliesFragments are on top of the back stack
+                // to show the top level comments again.
+                final FragmentManager.BackStackEntry bse = fm.getBackStackEntryAt(
+                        fm.getBackStackEntryCount() - 2); // current fragment is at the top
+                if (!CommentRepliesFragment.TAG.equals(bse.getName())) {
+                    BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
+                            .setState(BottomSheetBehavior.STATE_EXPANDED);
                 }
             }
 
@@ -629,10 +642,23 @@ public class MainActivity extends AppCompatActivity {
      * </pre>
      */
     private void onHomeButtonPressed() {
-        // If search fragment wasn't found in the backstack...
-        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
-            // ...go to the main fragment
-            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        final FragmentManager fm = getSupportFragmentManager();
+        final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
+
+        if (fragment instanceof CommentRepliesFragment) {
+            // Expand DetailsFragment if CommentRepliesFragment was opened
+            // and no other CommentRepliesFragments are on top of the back stack
+            // to show the top level comments again.
+            fm.popBackStackImmediate();
+            final FragmentManager.BackStackEntry bse = fm.getBackStackEntryAt(
+                    fm.getBackStackEntryCount() - 1);
+            if (!CommentRepliesFragment.TAG.equals(bse.getName())) {
+                BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
+                        .setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
+            // If search fragment wasn't found in the backstack go to the main fragment
+            NavigationHelper.gotoMainFragment(fm);
         }
     }
 

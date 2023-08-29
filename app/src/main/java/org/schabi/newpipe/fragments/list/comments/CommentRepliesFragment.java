@@ -36,6 +36,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public final class CommentRepliesFragment
         extends BaseListInfoFragment<CommentsInfoItem, CommentRepliesInfo> {
 
+    public static final String TAG = CommentRepliesFragment.class.getSimpleName();
+
     private CommentsInfoItem commentsInfoItem; // the comment to show replies of
     private final CompositeDisposable disposables = new CompositeDisposable();
 
@@ -156,4 +158,5 @@ public final class CommentRepliesFragment
     protected ItemViewMode getItemViewMode() {
         return ItemViewMode.LIST;
     }
+
 }
