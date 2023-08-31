@@ -504,7 +504,8 @@ public final class NavigationHelper {
     public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
                                                   final CommentsInfoItem commentsInfoItem) {
         defaultTransaction(activity.getSupportFragmentManager())
-                .replace(R.id.fragment_holder, new CommentRepliesFragment(commentsInfoItem))
+                .replace(R.id.fragment_holder, new CommentRepliesFragment(commentsInfoItem),
+                        CommentRepliesFragment.TAG)
                 .addToBackStack(CommentRepliesFragment.TAG)
                 .commit();
     }

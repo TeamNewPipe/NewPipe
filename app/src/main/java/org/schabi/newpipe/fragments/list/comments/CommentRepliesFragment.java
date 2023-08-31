@@ -159,4 +159,10 @@ public final class CommentRepliesFragment
         return ItemViewMode.LIST;
     }
 
+    /**
+     * @return the comment to which the replies are shown
+     */
+    public CommentsInfoItem getCommentsInfoItem() {
+        return commentsInfoItem;
+    }
 }

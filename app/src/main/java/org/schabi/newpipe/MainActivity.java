@@ -563,10 +563,7 @@ public class MainActivity extends AppCompatActivity {
                 // to show the top level comments again.
                 final FragmentManager.BackStackEntry bse = fm.getBackStackEntryAt(
                         fm.getBackStackEntryCount() - 2); // current fragment is at the top
-                if (!CommentRepliesFragment.TAG.equals(bse.getName())) {
-                    BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
-                            .setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
+                openDetailFragmentFromCommentReplies(fm, bse);
             }
 
         } else {
@@ -652,10 +649,7 @@ public class MainActivity extends AppCompatActivity {
             fm.popBackStackImmediate();
             final FragmentManager.BackStackEntry bse = fm.getBackStackEntryAt(
                     fm.getBackStackEntryCount() - 1);
-            if (!CommentRepliesFragment.TAG.equals(bse.getName())) {
-                BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
-                        .setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
+            openDetailFragmentFromCommentReplies(fm, bse);
         } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
             // If search fragment wasn't found in the backstack go to the main fragment
             NavigationHelper.gotoMainFragment(fm);
@@ -851,6 +845,42 @@ public class MainActivity extends AppCompatActivity {
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
             registerReceiver(broadcastReceiver, intentFilter);
+        }
+    }
+
+    private void openDetailFragmentFromCommentReplies(
+            @NonNull final FragmentManager fm,
+            @NonNull final FragmentManager.BackStackEntry bse) {
+        if (!CommentRepliesFragment.TAG.equals(bse.getName())) {
+            final CommentRepliesFragment commentRepliesFragment =
+                    (CommentRepliesFragment) fm.findFragmentByTag(
+                            CommentRepliesFragment.TAG);
+            final BottomSheetBehavior bsb = BottomSheetBehavior
+                    .from(mainBinding.fragmentPlayerHolder);
+            bsb.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull final View bottomSheet,
+                                           final int newState) {
+                    if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                        final Fragment detailFragment = fm.findFragmentById(
+                                R.id.fragment_player_holder);
+                        if (detailFragment instanceof VideoDetailFragment
+                                && commentRepliesFragment != null) {
+                            // should always be the case
+                            ((VideoDetailFragment) detailFragment).scrollToComment(
+                                    commentRepliesFragment.getCommentsInfoItem());
+                        }
+                        bsb.removeBottomSheetCallback(this);
+                    }
+                }
+
+                @Override
+                public void onSlide(@NonNull final View bottomSheet,
+                                    final float slideOffset) {
+                    // not needed, listener is removed once the sheet is expanded
+                }
+            });
+            bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
     }
 
