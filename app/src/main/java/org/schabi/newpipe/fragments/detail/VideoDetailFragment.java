@@ -112,6 +112,7 @@ import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.PlayButtonHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -535,9 +536,11 @@ public final class VideoDetailFragment
         }));
 
         binding.detailControlsBackground.setOnLongClickListener(makeOnLongClickListener(info ->
-                openBackgroundPlayer(true)));
+            openBackgroundPlayer(true)
+        ));
         binding.detailControlsPopup.setOnLongClickListener(makeOnLongClickListener(info ->
-                openPopupPlayer(true)));
+            openPopupPlayer(true)
+        ));
         binding.detailControlsDownload.setOnLongClickListener(makeOnLongClickListener(info ->
                 NavigationHelper.openDownloads(activity)));
 
@@ -620,8 +623,7 @@ public final class VideoDetailFragment
 
         final View.OnTouchListener controlsTouchListener = (view, motionEvent) -> {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN
-                && PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+                    && PlayButtonHelper.shouldShowHoldToAppendTip(activity)) {
 
                 animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA, 0, () ->
                         animate(binding.touchAppendDetail, false, 1500, AnimationType.ALPHA, 1000));
