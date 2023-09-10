@@ -45,6 +45,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.download.LoadingDialog;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
@@ -812,19 +813,24 @@ public class RouterActivity extends AppCompatActivity {
         @SuppressLint("CheckResult")
         private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
             inFlight(true);
+            final LoadingDialog loadingDialog = new LoadingDialog();
+            loadingDialog.show(getParentFragmentManager(), "loadingDialog");
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .compose(this::pleaseWait)
                     .subscribe(result ->
                         runOnVisible(ctx -> {
+                            loadingDialog.dismiss();
                             final FragmentManager fm = ctx.getSupportFragmentManager();
                             final DownloadDialog downloadDialog = new DownloadDialog(ctx, result);
                             // dismiss listener to be handled by FragmentManager
                             downloadDialog.show(fm, "downloadDialog");
                         }
-                    ), throwable -> runOnVisible(ctx ->
-                            ((RouterActivity) ctx).showUnsupportedUrlDialog(currentUrl))));
+                        ), throwable -> runOnVisible(ctx -> {
+                        loadingDialog.dismiss();
+                        ((RouterActivity) ctx).showUnsupportedUrlDialog(currentUrl);
+                    })));
         }
 
         private void openAddToPlaylistDialog(final int currentServiceId, final String currentUrl) {
