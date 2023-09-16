@@ -1,6 +1,5 @@
 package org.schabi.newpipe.download;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
@@ -17,11 +17,29 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DownloadLoadingDialogBinding;
 import org.schabi.newpipe.util.PermissionHelper;
 
-
+/**
+ * This class contains a dialog which shows a loading indicator and has a customizable title.
+ */
 public class LoadingDialog extends DialogFragment {
     private static final String TAG = "LoadingDialog";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private DownloadLoadingDialogBinding dialogLoadingBinding;
+    private final @StringRes int title;
+
+    /**
+     * <p>Create a new LoadingDialog.</p>
+     *
+     * <p>
+     *     The dialog contains a loading indicator and has a customizable title.
+     *     <br/>
+     *     Use {@code show()} to display the dialog to the user.
+     * </p>
+     *
+     * @param title an informative title shown in the dialog's toolbar
+     */
+    public LoadingDialog(final @StringRes int title) {
+        this.title = title;
+    }
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -62,29 +80,14 @@ public class LoadingDialog extends DialogFragment {
         if (DEBUG) {
             Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
         }
-        toolbar.setTitle("Loading Metadata...");
+        toolbar.setTitle(requireContext().getString(title));
         toolbar.setNavigationOnClickListener(v -> dismiss());
 
-    }
-
-    @Override
-    public void onDismiss(@NonNull final DialogInterface dialog) {
-        super.onDismiss(dialog);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
     public void onDestroyView() {
         dialogLoadingBinding = null;
         super.onDestroyView();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull final Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 }

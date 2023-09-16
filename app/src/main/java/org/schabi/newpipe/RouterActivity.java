@@ -790,10 +790,10 @@ public class RouterActivity extends AppCompatActivity {
                     }
                 }
 
-            }, () -> {
+            }, () ->
                 // this branch is executed if there is no activity context
-                inFlight(false);
-            });
+                inFlight(false)
+            );
         }
 
         <T> Single<T> pleaseWait(final Single<T> single) {
@@ -813,7 +813,7 @@ public class RouterActivity extends AppCompatActivity {
         @SuppressLint("CheckResult")
         private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
             inFlight(true);
-            final LoadingDialog loadingDialog = new LoadingDialog();
+            final LoadingDialog loadingDialog = new LoadingDialog(R.string.loading_metadata_title);
             loadingDialog.show(getParentFragmentManager(), "loadingDialog");
             disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
                     .subscribeOn(Schedulers.io())
