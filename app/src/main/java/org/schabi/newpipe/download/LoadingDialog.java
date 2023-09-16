@@ -15,7 +15,6 @@ import androidx.fragment.app.DialogFragment;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DownloadLoadingDialogBinding;
-import org.schabi.newpipe.util.PermissionHelper;
 
 /**
  * This class contains a dialog which shows a loading indicator and has a customizable title.
