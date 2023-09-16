@@ -48,11 +48,6 @@ public class LoadingDialog extends DialogFragment {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
-        if (!PermissionHelper.checkStoragePermissions(getActivity(),
-                PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-            dismiss();
-            return;
-        }
         this.setCancelable(false);
     }
 
