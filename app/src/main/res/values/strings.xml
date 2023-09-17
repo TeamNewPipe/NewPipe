@@ -151,7 +151,6 @@
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_debug_title">Debug</string>
-    <string name="settings_category_reset_title">Reset All Settings</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
@@ -596,8 +595,10 @@
         <item quantity="one">Download finished</item>
         <item quantity="other">%s downloads finished</item>
     </plurals>
+    <string name="reset_settings_title">Reset settings</string>
+    <string name="reset_settings_summary">Reset all settings to their default values</string>
     <!-- dialog about resetting settings -->
-    <string name="reset_all_settings">Resetting all settings will discard all of your preferred settings and restarts the app. Are you sure you want to proceed?</string>
+    <string name="reset_all_settings">Resetting all settings will discard all of your preferred settings and restarts the app.\n\nAre you sure you want to proceed?</string>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
