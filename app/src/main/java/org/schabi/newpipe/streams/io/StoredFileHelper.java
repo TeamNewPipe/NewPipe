@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import us.shandian.giga.io.FileStream;
 import us.shandian.giga.io.FileStreamSAF;
@@ -36,7 +39,7 @@ public class StoredFileHelper implements Serializable {
 
     private transient DocumentFile docFile;
     private transient DocumentFile docTree;
-    private transient File ioFile;
+    private transient Path ioPath;
     private transient Context context;
 
     protected String source;
@@ -49,7 +52,8 @@ public class StoredFileHelper implements Serializable {
 
     public StoredFileHelper(final Context context, final Uri uri, final String mime) {
         if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            ioFile = Utils.getFileForUri(uri);
+            final File ioFile = Utils.getFileForUri(uri);
+            ioPath = ioFile.toPath();
             source = Uri.fromFile(ioFile).toString();
         } else {
             docFile = DocumentFile.fromSingleUri(context, uri);
@@ -100,26 +104,18 @@ public class StoredFileHelper implements Serializable {
         this.srcType = this.docFile.getType();
     }
 
-    StoredFileHelper(final File location, final String filename, final String mime)
+    StoredFileHelper(final Path location, final String filename, final String mime)
             throws IOException {
-        this.ioFile = new File(location, filename);
+        ioPath = location.resolve(filename);
 
-        if (this.ioFile.exists()) {
-            if (!this.ioFile.isFile() && !this.ioFile.delete()) {
-                throw new IOException("The filename is already in use by non-file entity "
-                        + "and cannot overwrite it");
-            }
-        } else {
-            if (!this.ioFile.createNewFile()) {
-                throw new IOException("Cannot create the file");
-            }
-        }
+        Files.deleteIfExists(ioPath);
+        Files.createFile(ioPath);
 
-        this.source = Uri.fromFile(this.ioFile).toString();
-        this.sourceTree = Uri.fromFile(location).toString();
+        source = Uri.fromFile(ioPath.toFile()).toString();
+        sourceTree = Uri.fromFile(location.toFile()).toString();
 
-        this.srcName = ioFile.getName();
-        this.srcType = mime;
+        srcName = ioPath.getFileName().toString();
+        srcType = mime;
     }
 
     public StoredFileHelper(final Context context, @Nullable final Uri parent,
@@ -129,12 +125,12 @@ public class StoredFileHelper implements Serializable {
 
         if (path.getScheme() == null
                 || path.getScheme().equalsIgnoreCase(ContentResolver.SCHEME_FILE)) {
-            this.ioFile = new File(URI.create(this.source));
+            this.ioPath = Paths.get(URI.create(this.source));
         } else {
             final DocumentFile file = DocumentFile.fromSingleUri(context, path);
 
             if (file == null) {
-                throw new RuntimeException("SAF not available");
+                throw new IOException("SAF not available");
             }
 
             this.context = context;
@@ -187,7 +183,7 @@ public class StoredFileHelper implements Serializable {
         assertValid();
 
         if (docFile == null) {
-            return new FileStream(ioFile);
+            return new FileStream(ioPath.toFile());
         } else {
             return new FileStreamSAF(context.getContentResolver(), docFile.getUri());
         }
@@ -211,7 +207,7 @@ public class StoredFileHelper implements Serializable {
     public Uri getUri() {
         assertValid();
 
-        return docFile == null ? Uri.fromFile(ioFile) : docFile.getUri();
+        return docFile == null ? Uri.fromFile(ioPath.toFile()) : docFile.getUri();
     }
 
     public Uri getParentUri() {
@@ -233,7 +229,12 @@ public class StoredFileHelper implements Serializable {
             return true;
         }
         if (docFile == null) {
-            return ioFile.delete();
+            try {
+                return Files.deleteIfExists(ioPath);
+            } catch (final IOException e) {
+                Log.e(TAG, "Exception while deleting " + ioPath, e);
+                return false;
+            }
         }
 
         final boolean res = docFile.delete();
@@ -252,21 +253,30 @@ public class StoredFileHelper implements Serializable {
     public long length() {
         assertValid();
 
-        return docFile == null ? ioFile.length() : docFile.length();
+        if (docFile == null) {
+            try {
+                return Files.size(ioPath);
+            } catch (final IOException e) {
+                Log.e(TAG, "Exception while getting the size of " + ioPath, e);
+                return 0;
+            }
+        } else {
+            return docFile.length();
+        }
     }
 
     public boolean canWrite() {
         if (source == null) {
             return false;
         }
-        return docFile == null ? ioFile.canWrite() : docFile.canWrite();
+        return docFile == null ? Files.isWritable(ioPath) : docFile.canWrite();
     }
 
     public String getName() {
         if (source == null) {
             return srcName;
         } else if (docFile == null) {
-            return ioFile.getName();
+            return ioPath.getFileName().toString();
         }
 
         final String name = docFile.getName();
@@ -287,12 +297,11 @@ public class StoredFileHelper implements Serializable {
     }
 
     public boolean existsAsFile() {
-        if (source == null || (docFile == null && ioFile == null)) {
+        if (source == null || (docFile == null && ioPath == null)) {
             if (DEBUG) {
                 Log.d(TAG, "existsAsFile called but something is null: source = ["
                         + (source == null ? "null => storage is invalid" : source)
-                        + "], docFile = [" + (docFile == null ? "null" : docFile)
-                        + "], ioFile = [" + (ioFile == null ? "null" : ioFile) + "]");
+                        + "], docFile = [" + docFile + "], ioPath = [" + ioPath + "]");
             }
             return false;
         }
@@ -300,7 +309,7 @@ public class StoredFileHelper implements Serializable {
         // WARNING: DocumentFile.exists() and DocumentFile.isFile() methods are slow
         // docFile.isVirtual() means it is non-physical?
         return docFile == null
-                ? (ioFile.exists() && ioFile.isFile())
+                ? Files.isRegularFile(ioPath)
                 : (docFile.exists() && docFile.isFile());
     }
 
@@ -310,8 +319,10 @@ public class StoredFileHelper implements Serializable {
 
         if (docFile == null) {
             try {
-                result = ioFile.createNewFile();
+                Files.createFile(ioPath);
+                result = true;
             } catch (final IOException e) {
+                Log.e(TAG, "Exception while creating " + ioPath, e);
                 return false;
             }
         } else if (docTree == null) {
@@ -332,7 +343,8 @@ public class StoredFileHelper implements Serializable {
         }
 
         if (result) {
-            source = (docFile == null ? Uri.fromFile(ioFile) : docFile.getUri()).toString();
+            source = (docFile == null ? Uri.fromFile(ioPath.toFile()) : docFile.getUri())
+                    .toString();
             srcName = getName();
             srcType = getType();
         }
@@ -352,7 +364,7 @@ public class StoredFileHelper implements Serializable {
 
         docTree = null;
         docFile = null;
-        ioFile = null;
+        ioPath = null;
         context = null;
     }
 
@@ -383,7 +395,7 @@ public class StoredFileHelper implements Serializable {
         }
 
         if (this.isDirect()) {
-            return this.ioFile.getPath().equalsIgnoreCase(storage.ioFile.getPath());
+            return this.ioPath.equals(storage.ioPath);
         }
 
         return DocumentsContract.getDocumentId(this.docFile.getUri())
