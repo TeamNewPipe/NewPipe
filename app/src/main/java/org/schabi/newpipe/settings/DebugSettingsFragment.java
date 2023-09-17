@@ -1,19 +1,15 @@
 package org.schabi.newpipe.settings;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.Optional;
@@ -39,8 +35,6 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
                 findPreference(getString(R.string.show_error_snackbar_key));
         final Preference createErrorNotificationPreference =
                 findPreference(getString(R.string.create_error_notification_key));
-        final Preference resetSettings =
-                findPreference(getString(R.string.reset_settings));
 
         assert allowHeapDumpingPreference != null;
         assert showMemoryLeaksPreference != null;
@@ -90,32 +84,6 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         createErrorNotificationPreference.setOnPreferenceClickListener(preference -> {
             ErrorUtil.createNotification(requireContext(),
                     new ErrorInfo(new RuntimeException(DUMMY), UserAction.UI_ERROR, DUMMY));
-            return true;
-        });
-
-        // Resets all settings by deleting shared preference and restarting the app
-        // A dialogue will pop up to confirm if user intends to reset all settings
-        assert resetSettings != null;
-        resetSettings.setOnPreferenceClickListener(preference -> {
-            // Show Alert Dialogue
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage(R.string.reset_all_settings);
-            builder.setCancelable(true);
-            builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                // Deletes all shared preferences xml files.
-                final SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(requireContext());
-                sharedPreferences.edit().clear().apply();
-                // Restarts the app
-                if (getActivity() == null) {
-                    return;
-                }
-                NavigationHelper.restartApp(getActivity());
-            });
-            builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-            });
-            final AlertDialog alertDialog = builder.create();
-            alertDialog.show();
             return true;
         });
     }
