@@ -50,9 +50,6 @@ android {
             }
         }
 
-        // Keep the release build type at the end of the list to override 'archivesBaseName' of
-        // debug build. This seems to be a Gradle bug, therefore
-        // TODO: update Gradle version
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
@@ -115,7 +112,7 @@ ext {
 
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.18.7'
-    googleAutoServiceVersion = '1.0.1'
+    googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
@@ -208,7 +205,7 @@ dependencies {
     ktlint 'com.pinterest:ktlint:0.45.2'
 
 /** Kotlin **/
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 
 /** AndroidX **/
     implementation 'androidx.appcompat:appcompat:1.5.1'
