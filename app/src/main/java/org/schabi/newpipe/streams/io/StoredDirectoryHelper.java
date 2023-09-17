@@ -102,22 +102,22 @@ public class StoredDirectoryHelper {
             }
         }
 
-        if (matches.size() < 1) {
+        if (matches.isEmpty()) {
             return createFile(name, mime, true);
-        } else {
-            // check if the filename is in use
-            String lcName = name.toLowerCase();
-            for (final String testName : matches) {
-                if (testName.equals(lcName)) {
-                    lcName = null;
-                    break;
-                }
-            }
+        }
 
-            // check if not in use
-            if (lcName != null) {
-                return createFile(name, mime, true);
+        // check if the filename is in use
+        String lcName = name.toLowerCase();
+        for (final String testName : matches) {
+            if (testName.equals(lcName)) {
+                lcName = null;
+                break;
             }
+        }
+
+        // create file if filename not in use
+        if (lcName != null) {
+            return createFile(name, mime, true);
         }
 
         Collections.sort(matches, String::compareTo);
@@ -261,6 +261,12 @@ public class StoredDirectoryHelper {
         }
     }
 
+    /**
+     * Splits the filename into the name and extension.
+     *
+     * @param filename The filename to split
+     * @return A String array with the name at index 0 and extension at index 1
+     */
     private static String[] splitFilename(@NonNull final String filename) {
         final int dotIndex = filename.lastIndexOf('.');
 
