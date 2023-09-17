@@ -130,7 +130,7 @@ public class StoredFileHelper implements Serializable {
             final DocumentFile file = DocumentFile.fromSingleUri(context, path);
 
             if (file == null) {
-                throw new RuntimeException("SAF not available");
+                throw new IOException("SAF not available");
             }
 
             this.context = context;
