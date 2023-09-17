@@ -26,7 +26,7 @@ public class LoadingDialog extends DialogFragment {
     private final @StringRes int title;
 
     /**
-     * <p>Create a new LoadingDialog.</p>
+     * Create a new LoadingDialog.
      *
      * <p>
      *     The dialog contains a loading indicator and has a customizable title.
