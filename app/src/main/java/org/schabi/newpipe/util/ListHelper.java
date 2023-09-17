@@ -240,20 +240,31 @@ public final class ListHelper {
                 videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
     }
 
+    /**
+     * Get a sorted list containing a set of default resolution info
+     * and additional resolution info if showHigherResolutions is true.
+     *
+     * @param resources the resources to get the resolutions from
+     * @param defaultResolutionKey the settings key of the default resolution
+     * @param additionalResolutionKey the settings key of the additional resolutions
+     * @param showHigherResolutions if higher resolutions should be included in the sorted list
+     * @return a sorted list containing the default and maybe additional resolutions
+     */
     public static List<String> getSortedResolutionList(
             final Resources resources,
             final int defaultResolutionKey,
             final int additionalResolutionKey,
             final boolean showHigherResolutions) {
-        final List<String> defaultResolution = new ArrayList<String>(Arrays.asList(
+        final List<String> resolutions = new ArrayList<>(Arrays.asList(
                 resources.getStringArray(defaultResolutionKey)));
         if (!showHigherResolutions) {
-            return defaultResolution;
+            return resolutions;
         }
         final List<String> additionalResolutions = Arrays.asList(
                 resources.getStringArray(additionalResolutionKey));
-        defaultResolution.addAll(1, additionalResolutions);
-        return defaultResolution;
+        // keep "best resolution" at the top
+        resolutions.addAll(1, additionalResolutions);
+        return resolutions;
     }
 
     public static boolean isHighResolutionSelected(final String selectedResolution,
