@@ -374,16 +374,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     /**
-     * Share the playlist as a newline-separated list of stream URLs.
+     * Share the playlist as a newline-separated list of stream URLs and video names.
      */
     public void sharePlaylist() {
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .flatMapSingle(playlist -> Single.just(playlist.stream()
                         .map(PlaylistStreamEntry::getStreamEntity)
-                        .map(StreamEntity::getUrl)
+                        .map(streamEntity -> String.format("- %s: %s",
+                                streamEntity.getTitle(), streamEntity.getUrl()))
                         .collect(Collectors.joining("\n"))))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(urlsText -> ShareUtils.shareText(requireContext(), name, urlsText),
+                .subscribe(urlsText -> ShareUtils.shareText(
+                                requireContext(), name, String.format("%s\n%s", name, urlsText)),
                         throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
     }
 
