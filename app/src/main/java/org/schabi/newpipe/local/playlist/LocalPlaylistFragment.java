@@ -22,7 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -42,17 +41,18 @@ import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.PlayButtonHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,7 +69,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
-public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
+public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void>
+        implements PlaylistControlViewHolder {
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
@@ -265,14 +266,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (itemListAdapter != null) {
             itemListAdapter.unsetSelectedListener();
         }
-        if (playlistControlBinding != null) {
-            playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(null);
-            playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(null);
-            playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(null);
 
-            headerBinding = null;
-            playlistControlBinding = null;
-        }
+        headerBinding = null;
+        playlistControlBinding = null;
+
 
         if (databaseSubscription != null) {
             databaseSubscription.cancel();
@@ -498,36 +495,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         setVideoCount(itemListAdapter.getItemsList().size());
 
-        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view -> {
-            NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
-            showHoldToAppendTipIfNeeded();
-        });
-        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view -> {
-            NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false);
-            showHoldToAppendTipIfNeeded();
-        });
-        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view -> {
-            NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false);
-            showHoldToAppendTipIfNeeded();
-        });
-        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
-            return true;
-        });
-
-        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
-            return true;
-        });
+        PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
         hideLoading();
-    }
-
-    private void showHoldToAppendTipIfNeeded() {
-        if (PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
-            Toast.makeText(activity, R.string.hold_to_append, Toast.LENGTH_SHORT).show();
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -853,7 +823,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
     }
 
-    private PlayQueue getPlayQueue() {
+    public PlayQueue getPlayQueue() {
         return getPlayQueue(0);
     }
 

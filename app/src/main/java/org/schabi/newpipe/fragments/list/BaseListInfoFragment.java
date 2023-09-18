@@ -16,7 +16,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
-import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.views.NewPipeRecyclerView;
@@ -234,11 +233,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                 showListFooter(hasMoreItems());
             } else {
                 infoListAdapter.clearStreamItemList();
-                // showEmptyState should be called only if there is no item as
-                // well as no header in infoListAdapter
-                if (!(result instanceof ChannelInfo && infoListAdapter.getItemCount() == 1)) {
-                    showEmptyState();
-                }
+                showEmptyState();
             }
         }
 

@@ -714,6 +714,8 @@
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="feed_hide_streams_title">Show the following streams</string>
     <string name="feed_show_hide_streams">Show/Hide streams</string>
+    <string name="feed_fetch_channel_tabs">Fetch channel tabs</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabs to fetch when updating the feed. This option has no effect if a channel is updated using fast mode.</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -754,10 +756,13 @@
     <string name="metadata_support">Support</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_thumbnail_url">Thumbnail URL</string>
+    <string name="metadata_avatar_url">Avatar URL</string>
+    <string name="metadata_banner_url">Banner URL</string>
     <string name="metadata_privacy_public">Public</string>
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_internal">Internal</string>
+    <string name="metadata_subscribers">Subscribers</string>
     <string name="detail_pinned_comment_view_description">Pinned comment</string>
     <string name="detail_heart_img_view_description">Hearted by creator</string>
     <string name="open_website_license">Open website</string>
@@ -796,4 +801,14 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dubbed</string>
     <string name="audio_track_type_descriptive">descriptive</string>
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_tracks">Tracks</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="channel_tab_channels">Channels</string>
+    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="channel_tab_about">About</string>
+    <string name="show_channel_tabs">Channel tabs</string>
+    <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
 </resources>

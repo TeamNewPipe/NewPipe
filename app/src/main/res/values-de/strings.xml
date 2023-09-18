@@ -620,6 +620,7 @@
     <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
     <string name="metadata_host">Server</string>
     <string name="metadata_support">Unterstützung</string>
+    <string name="metadata_subscribers">Abonnenten</string>
     <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
     <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
     <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
@@ -766,4 +767,12 @@
     <string name="disable_media_tunneling_automatic_info">Das Media-Tunneling wurde auf dem Gerät standardmäßig deaktiviert, da das Gerätemodell diese Funktion bekanntermaßen nicht unterstützt.</string>
     <string name="no_live_streams">Keine Live-Streams</string>
     <string name="no_streams">Keine Streams</string>
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_playlists">Wiedergabelisten</string>
+    <string name="channel_tab_channels">Kanäle</string>
+    <string name="channel_tab_albums">Alben</string>
+    <string name="show_channel_tabs">Tabs auf den Kanalseiten</string>
+    <string name="show_channel_tabs_summary">Welche Tabs auf den Kanalseiten angezeigt werden</string>
 </resources>

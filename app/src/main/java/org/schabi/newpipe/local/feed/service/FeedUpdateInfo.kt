@@ -2,7 +2,7 @@ package org.schabi.newpipe.local.feed.service
 
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.extractor.ListInfo
+import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
 data class FeedUpdateInfo(
@@ -11,24 +11,30 @@ data class FeedUpdateInfo(
     val notificationMode: Int,
     val name: String,
     val avatarUrl: String,
-    val listInfo: ListInfo<StreamInfoItem>,
+    val originalInfo: Info,
+    val streams: List<StreamInfoItem>,
+    val errors: List<Throwable>,
 ) {
     constructor(
         subscription: SubscriptionEntity,
-        listInfo: ListInfo<StreamInfoItem>,
+        originalInfo: Info,
+        streams: List<StreamInfoItem>,
+        errors: List<Throwable>,
     ) : this(
         uid = subscription.uid,
         notificationMode = subscription.notificationMode,
         name = subscription.name,
         avatarUrl = subscription.avatarUrl,
-        listInfo = listInfo,
+        originalInfo = originalInfo,
+        streams = streams,
+        errors = errors,
     )
 
     /**
      * Integer id, can be used as notification id, etc.
      */
     val pseudoId: Int
-        get() = listInfo.url.hashCode()
+        get() = originalInfo.url.hashCode()
 
     lateinit var newStreams: List<StreamInfoItem>
 }

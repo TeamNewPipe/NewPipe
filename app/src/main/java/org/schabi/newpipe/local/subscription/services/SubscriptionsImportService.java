@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.streams.io.SharpInputStream;
@@ -48,6 +50,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -199,12 +202,19 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
                 .parallel(PARALLEL_EXTRACTIONS)
                 .runOn(Schedulers.io())
-                .map((Function<SubscriptionItem, Notification<ChannelInfo>>) subscriptionItem -> {
+                .map((Function<SubscriptionItem, Notification<Pair<ChannelInfo,
+                        List<ChannelTabInfo>>>>) subscriptionItem -> {
                     try {
-                        return Notification.createOnNext(ExtractorHelper
+                        final ChannelInfo channelInfo = ExtractorHelper
                                 .getChannelInfo(subscriptionItem.getServiceId(),
                                         subscriptionItem.getUrl(), true)
-                                .blockingGet());
+                                .blockingGet();
+                        return Notification.createOnNext(new Pair<>(channelInfo,
+                                Collections.singletonList(
+                                        ExtractorHelper.getChannelTab(
+                                                subscriptionItem.getServiceId(),
+                                                channelInfo.getTabs().get(0), true).blockingGet()
+                                )));
                     } catch (final Throwable e) {
                         return Notification.createOnError(e);
                     }
@@ -223,7 +233,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
     }
 
     private Subscriber<List<SubscriptionEntity>> getSubscriber() {
-        return new Subscriber<List<SubscriptionEntity>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 subscription = s;
@@ -254,10 +264,11 @@ public class SubscriptionsImportService extends BaseImportExportService {
         };
     }
 
-    private Consumer<Notification<ChannelInfo>> getNotificationsConsumer() {
+    private Consumer<Notification<Pair<ChannelInfo,
+            List<ChannelTabInfo>>>> getNotificationsConsumer() {
         return notification -> {
             if (notification.isOnNext()) {
-                final String name = notification.getValue().getName();
+                final String name = notification.getValue().first.getName();
                 eventListener.onItemCompleted(!TextUtils.isEmpty(name) ? name : "");
             } else if (notification.isOnError()) {
                 final Throwable error = notification.getError();
@@ -275,10 +286,12 @@ public class SubscriptionsImportService extends BaseImportExportService {
         };
     }
 
-    private Function<List<Notification<ChannelInfo>>, List<SubscriptionEntity>> upsertBatch() {
+    private Function<List<Notification<Pair<ChannelInfo, List<ChannelTabInfo>>>>,
+            List<SubscriptionEntity>> upsertBatch() {
         return notificationList -> {
-            final List<ChannelInfo> infoList = new ArrayList<>(notificationList.size());
-            for (final Notification<ChannelInfo> n : notificationList) {
+            final List<Pair<ChannelInfo, List<ChannelTabInfo>>> infoList =
+                    new ArrayList<>(notificationList.size());
+            for (final Notification<Pair<ChannelInfo, List<ChannelTabInfo>>> n : notificationList) {
                 if (n.isOnNext()) {
                     infoList.add(n.getValue());
                 }

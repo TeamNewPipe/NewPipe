@@ -58,7 +58,7 @@ class NotificationHelper(val context: Context) {
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
             .setGroupSummary(true)
-            .setGroup(data.listInfo.url)
+            .setGroup(data.originalInfo.url)
             .setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY)
 
         // Build a summary notification for Android versions < 7.0
@@ -73,7 +73,7 @@ class NotificationHelper(val context: Context) {
                 context,
                 data.pseudoId,
                 NavigationHelper
-                    .getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
+                    .getChannelIntent(context, data.originalInfo.serviceId, data.originalInfo.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 0,
                 false
@@ -88,7 +88,7 @@ class NotificationHelper(val context: Context) {
 
                 // Show individual stream notifications, set channel icon only if there is actually
                 // one
-                showStreamNotifications(newStreams, data.listInfo.serviceId, bitmap)
+                showStreamNotifications(newStreams, data.originalInfo.serviceId, bitmap)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
 
@@ -97,7 +97,7 @@ class NotificationHelper(val context: Context) {
 
             override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
                 // Show individual stream notifications
-                showStreamNotifications(newStreams, data.listInfo.serviceId, null)
+                showStreamNotifications(newStreams, data.originalInfo.serviceId, null)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
