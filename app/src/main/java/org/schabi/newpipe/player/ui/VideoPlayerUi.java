@@ -41,6 +41,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.BitmapCompat;
 import androidx.core.graphics.Insets;
@@ -103,6 +104,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     // other constants (TODO remove playback speeds and use normal menu for popup, too)
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f};
 
+    private enum PlayButtonAction {
+        PLAY, PAUSE, REPLAY
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -755,6 +759,29 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         // only MainPlayerUi can be in fullscreen, so overridden there
         return false;
     }
+
+    /**
+     * Update the play/pause button ({@link R.id.playPauseButton}) to reflect the action
+     * that will be performed when the button is clicked..
+     * @param action the action that is performed when the play/pause button is clicked
+     */
+    private void updatePlayPauseButton(final PlayButtonAction action) {
+        final AppCompatImageButton button = binding.playPauseButton;
+        switch (action) {
+            case PLAY:
+                button.setContentDescription(context.getString(R.string.play));
+                button.setImageResource(R.drawable.ic_play_arrow);
+                break;
+            case PAUSE:
+                button.setContentDescription(context.getString(R.string.pause));
+                button.setImageResource(R.drawable.ic_pause);
+                break;
+            case REPLAY:
+                button.setContentDescription(context.getString(R.string.replay));
+                button.setImageResource(R.drawable.ic_replay);
+                break;
+        }
+    }
     //endregion
 
 
@@ -785,7 +812,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         animate(binding.loadingPanel, true, 0);
         animate(binding.surfaceForeground, true, 100);
 
-        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
+        updatePlayPauseButton(PlayButtonAction.PLAY);
         animatePlayButtons(false, 100);
         binding.getRoot().setKeepScreenOn(false);
     }
@@ -806,7 +833,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_pause);
+                    updatePlayPauseButton(PlayButtonAction.PAUSE);
                     animatePlayButtons(true, 200);
                     if (!isAnyListViewOpen()) {
                         binding.playPauseButton.requestFocus();
@@ -836,7 +863,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
             animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                     () -> {
-                        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
+                        updatePlayPauseButton(PlayButtonAction.PLAY);
                         animatePlayButtons(true, 200);
                         if (!isAnyListViewOpen()) {
                             binding.playPauseButton.requestFocus();
@@ -860,7 +887,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_replay);
+                    updatePlayPauseButton(PlayButtonAction.REPLAY);
                     animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 });
 

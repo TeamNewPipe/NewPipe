@@ -614,7 +614,8 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
@@ -675,7 +676,7 @@
                 android:contentDescription="@string/title_activity_play_queue"
                 android:scaleType="center"
                 android:src="@drawable/ic_list"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                tools:ignore="RtlHardcoded" />
 
             <ImageButton
                 android:id="@+id/overlay_play_pause_button"
