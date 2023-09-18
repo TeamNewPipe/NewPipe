@@ -233,8 +233,6 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
                 showListFooter(hasMoreItems());
             } else {
                 infoListAdapter.clearStreamItemList();
-                // showEmptyState should be called only if there is no item as
-                // well as no header in infoListAdapter
                 showEmptyState();
             }
         }

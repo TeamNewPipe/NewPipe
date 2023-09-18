@@ -52,6 +52,9 @@ public class DescriptionFragment extends BaseDescriptionFragment {
 
     @Override
     protected int getServiceId() {
+        if (streamInfo == null) {
+            return -1;
+        }
         return streamInfo.getServiceId();
     }
 
@@ -76,11 +79,15 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     @Override
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
-        if (streamInfo.getUploadDate() != null) {
+        if (streamInfo != null && streamInfo.getUploadDate() != null) {
             binding.detailUploadDateView.setText(Localization
                     .localizeUploadDate(activity, streamInfo.getUploadDate().offsetDateTime()));
         } else {
             binding.detailUploadDateView.setVisibility(View.GONE);
+        }
+
+        if (streamInfo == null) {
+            return;
         }
 
         addMetadataItem(inflater, layout, false, R.string.metadata_category,

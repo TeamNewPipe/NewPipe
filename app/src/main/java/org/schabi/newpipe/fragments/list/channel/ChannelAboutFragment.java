@@ -62,6 +62,9 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
 
     @Override
     protected int getServiceId() {
+        if (channelInfo == null) {
+            return -1;
+        }
         return channelInfo.getServiceId();
     }
 
@@ -83,10 +86,14 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @Override
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
-        final Context context = getContext();
         // There is no upload date available for channels, so hide the relevant UI element
         binding.detailUploadDateView.setVisibility(View.GONE);
 
+        if (channelInfo == null) {
+            return;
+        }
+
+        final Context context = getContext();
         if (channelInfo.getSubscriberCount() != UNKNOWN_SUBSCRIBER_COUNT) {
             addMetadataItem(inflater, layout, false, R.string.metadata_subscribers,
                     Localization.localizeNumber(context, channelInfo.getSubscriberCount()));

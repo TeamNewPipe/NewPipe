@@ -140,8 +140,7 @@ class FeedLoadManager(private val context: Context) {
         subscriptionEntity: SubscriptionEntity,
         useFeedExtractor: Boolean,
         defaultSharedPreferences: SharedPreferences
-    ):
-        Notification<FeedUpdateInfo> {
+    ): Notification<FeedUpdateInfo> {
         var error: Throwable? = null
         val storeOriginalErrorAndRethrow = { e: Throwable ->
             // keep original to prevent blockingGet() from wrapping it into RuntimeException

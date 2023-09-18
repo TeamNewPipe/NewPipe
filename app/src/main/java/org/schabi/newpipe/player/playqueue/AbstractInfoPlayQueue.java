@@ -29,9 +29,12 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
 
     protected AbstractInfoPlayQueue(final T info) {
         this(info.getServiceId(), info.getUrl(), info.getNextPage(),
-                info.getRelatedItems().stream().filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast).collect(
-                                Collectors.toList()), 0);
+                info.getRelatedItems()
+                        .stream()
+                        .filter(StreamInfoItem.class::isInstance)
+                        .map(StreamInfoItem.class::cast)
+                        .collect(Collectors.toList()),
+                0);
     }
 
     protected AbstractInfoPlayQueue(final int serviceId,
@@ -76,10 +79,11 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
                 }
                 nextPage = result.getNextPage();
 
-                append(extractListItems(result.getRelatedItems().stream()
+                append(extractListItems(result.getRelatedItems()
+                        .stream()
                         .filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast).collect(
-                                Collectors.toList())));
+                        .map(StreamInfoItem.class::cast)
+                        .collect(Collectors.toList())));
 
                 fetchReactor.dispose();
                 fetchReactor = null;
@@ -114,10 +118,11 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
                 }
                 nextPage = result.getNextPage();
 
-                append(extractListItems(result.getItems().stream()
+                append(extractListItems(result.getItems()
+                        .stream()
                         .filter(StreamInfoItem.class::isInstance)
-                        .map(StreamInfoItem.class::cast).collect(
-                                Collectors.toList())));
+                        .map(StreamInfoItem.class::cast)
+                        .collect(Collectors.toList())));
 
                 fetchReactor.dispose();
                 fetchReactor = null;

@@ -125,7 +125,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     @Override
-    public void onAttach(final @NonNull Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         subscriptionManager = new SubscriptionManager(activity);
     }
@@ -138,7 +138,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         return binding.getRoot();
     }
 
-    @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
+    @Override // called from onViewCreated in BaseFragment.onViewCreated
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
@@ -202,7 +202,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     @Override
-    public void onPrepareOptionsMenu(final @NonNull Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull final Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menuRssButton = menu.findItem(R.id.menu_item_rss);
         menuNotifyButton = menu.findItem(R.id.menu_item_notify);
@@ -210,7 +210,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_notify:
                 final boolean value = !item.isChecked();
@@ -561,8 +561,8 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 .subscribe(result -> {
                     isLoading.set(false);
                     handleResult(result);
-                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
-                        url == null ? "no url" : url, serviceId)));
+                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_CHANNEL,
+                        url == null ? "No URL" : url, serviceId)));
     }
 
     @Override

@@ -22,13 +22,13 @@ public final class PlayButtonHelper {
     }
 
     /**
-     * <p>Initialize {@link android.view.View.OnClickListener OnClickListener}
+     * Initialize {@link android.view.View.OnClickListener OnClickListener}
      * and {@link android.view.View.OnLongClickListener OnLongClickListener} for playlist control
-     * buttons defined in {@code R.layout.playlist_control}.</p>
+     * buttons defined in {@link R.layout#playlist_control}.
      *
      * @param activity The activity to use for the {@link android.widget.Toast Toast}.
      * @param playlistControlBinding The binding of the
-     *        {@link R.layout.playlist_control playlist control layout}.
+     *        {@link R.layout#playlist_control playlist control layout}.
      * @param fragment The fragment to get the play queue from.
      */
     public static void initPlaylistControlClickListener(
@@ -61,7 +61,7 @@ public final class PlayButtonHelper {
     }
 
     /**
-     * <p>Show the "hold to append" toast if the corresponding preference is enabled.</p>
+     * Show the "hold to append" toast if the corresponding preference is enabled.
      *
      * @param context The context to show the toast.
      */
@@ -73,7 +73,7 @@ public final class PlayButtonHelper {
     }
 
     /**
-     * <p>Check if the "hold to append" toast should be shown.</p>
+     * Check if the "hold to append" toast should be shown.
      *
      * <p>
      * The tip is shown if the corresponding preference is enabled.

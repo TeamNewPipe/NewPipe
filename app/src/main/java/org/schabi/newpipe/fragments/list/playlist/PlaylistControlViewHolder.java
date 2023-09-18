@@ -7,7 +7,5 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
  * to give access to the play queue.
  */
 public interface PlaylistControlViewHolder {
-
     PlayQueue getPlayQueue();
-
 }

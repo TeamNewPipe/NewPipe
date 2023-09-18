@@ -34,12 +34,15 @@ import io.reactivex.rxjava3.core.Single;
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo>
         implements PlaylistControlViewHolder {
 
+    // states must be protected and not private for IcePick being able to access them
     @State
     protected ListLinkHandler tabHandler;
     @State
     protected String channelName;
 
     private PlaylistControlBinding playlistControlBinding;
+
+    @NonNull
     public static ChannelTabFragment getInstance(final int serviceId,
                                                  final ListLinkHandler tabHandler,
                                                  final String channelName) {
@@ -99,11 +102,16 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
 
     @Override
     public void setTitle(final String title) {
+        // The channel name is displayed as title in the toolbar.
+        // The title is always a description of the content of the tab fragment.
+        // It should be unique for each channel because multiple channel tabs
+        // can be added to the main page. Therefore, the channel name is used.
+        // Using the title variable would cause the title to be the same for all channel tabs.
         super.setTitle(channelName);
     }
 
     @Override
-    public void handleResult(final @NonNull ChannelTabInfo result) {
+    public void handleResult(@NonNull final ChannelTabInfo result) {
         super.handleResult(result);
 
         if (playlistControlBinding != null) {

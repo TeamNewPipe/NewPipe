@@ -34,7 +34,7 @@ import java.util.List;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public abstract class BaseDescriptionFragment extends BaseFragment {
-    final CompositeDisposable descriptionDisposables = new CompositeDisposable();
+    private final CompositeDisposable descriptionDisposables = new CompositeDisposable();
     protected FragmentDescriptionBinding binding;
 
     @Override
@@ -75,7 +75,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
     protected abstract int getServiceId();
 
     /**
-     * Get the URL of the described video. Used for generating description links.
+     * Get the URL of the described video or audio, used to generate description links.
      * @return stream URL
      */
     @Nullable

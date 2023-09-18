@@ -135,10 +135,10 @@ public final class ExtractorHelper {
                         ChannelTabInfo.getInfo(NewPipe.getService(serviceId), listLinkHandler)));
     }
 
-    public static Single<InfoItemsPage<InfoItem>> getMoreChannelTabItems(final int serviceId,
-                                                                         final ListLinkHandler
-                                                                                 listLinkHandler,
-                                                                         final Page nextPage) {
+    public static Single<InfoItemsPage<InfoItem>> getMoreChannelTabItems(
+            final int serviceId,
+            final ListLinkHandler listLinkHandler,
+            final Page nextPage) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 ChannelTabInfo.getMoreItems(NewPipe.getService(serviceId),
