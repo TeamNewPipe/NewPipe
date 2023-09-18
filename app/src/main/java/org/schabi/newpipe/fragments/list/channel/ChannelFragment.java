@@ -146,6 +146,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         binding.viewPager.setAdapter(tabAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
 
+        setTitle(name);
         binding.channelTitleView.setText(name);
         if (!PicassoHelper.getShouldLoadImages()) {
             // do not waste space for the banner if it is not going to be loaded
