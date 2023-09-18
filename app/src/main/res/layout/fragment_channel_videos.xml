@@ -49,15 +49,6 @@
             android:text="@string/empty_view_no_videos"
             android:textSize="24sp" />
 
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/error_content_not_supported"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/content_not_supported"
-            android:textSize="15sp"
-            android:visibility="gone" />
-
     </LinearLayout>
 
     <!--ERROR PANEL-->
