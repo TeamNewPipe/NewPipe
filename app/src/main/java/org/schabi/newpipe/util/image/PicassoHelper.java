@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.BitmapCompat;
@@ -190,17 +191,17 @@ public final class PicassoHelper {
 
 
     private static RequestCreator loadImageDefault(@NonNull final List<Image> images,
-                                                   final int placeholderResId) {
+                                                   @DrawableRes final int placeholderResId) {
         return loadImageDefault(choosePreferredImage(images), placeholderResId);
     }
 
     private static RequestCreator loadImageDefault(@Nullable final String url,
-                                                   final int placeholderResId) {
+                                                   @DrawableRes final int placeholderResId) {
         return loadImageDefault(url, placeholderResId, true);
     }
 
     private static RequestCreator loadImageDefault(@Nullable final String url,
-                                                   final int placeholderResId,
+                                                   @DrawableRes final int placeholderResId,
                                                    final boolean showPlaceholderWhileLoading) {
         // if the URL was chosen with `choosePreferredImage` it will be null, but check again
         // `shouldLoadImages` in case the URL was chosen with `imageListToDbUrl` (which is the case
