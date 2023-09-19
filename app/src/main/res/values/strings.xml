@@ -828,4 +828,5 @@
     <string name="image_quality_low">Low quality</string>
     <string name="image_quality_medium">Medium quality</string>
     <string name="image_quality_high">High quality</string>
+    <string name="question_mark">\?</string>
 </resources>

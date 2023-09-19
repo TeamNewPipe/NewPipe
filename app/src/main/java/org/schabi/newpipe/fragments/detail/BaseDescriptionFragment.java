@@ -186,7 +186,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     private String imageSizeToText(final int heightOrWidth) {
         if (heightOrWidth < 0) {
-            return "?";
+            return getString(R.string.question_mark);
         } else {
             return String.valueOf(heightOrWidth);
         }
