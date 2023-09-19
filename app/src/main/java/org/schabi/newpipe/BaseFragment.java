@@ -80,9 +80,29 @@ public abstract class BaseFragment extends Fragment {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * This method is called in {@link #onViewCreated(View, Bundle)} to initialize the views.
+     *
+     * <p>
+     * {@link #initListeners()} is called after this method to initialize the corresponding
+     * listeners.
+     * </p>
+     * @param rootView The inflated view for this fragment
+     *                 (provided by {@link #onViewCreated(View, Bundle)})
+     * @param savedInstanceState The saved state of this fragment
+ *                               (provided by {@link #onViewCreated(View, Bundle)})
+     */
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
     }
 
+    /**
+     * Initialize the listeners for this fragment.
+     *
+     * <p>
+     * This method is called after {@link #initViews(View, Bundle)}
+     * in {@link #onViewCreated(View, Bundle)}.
+     * </p>
+     */
     protected void initListeners() {
     }
 

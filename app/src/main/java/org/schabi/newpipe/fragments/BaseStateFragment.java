@@ -80,6 +80,8 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (errorPanelHelper != null) {
             errorPanelHelper.dispose();
         }
+        emptyStateView = null;
+        emptyStateMessageView = null;
     }
 
     protected void onRetryButtonClicked() {
