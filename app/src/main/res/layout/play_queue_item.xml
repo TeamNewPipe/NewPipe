@@ -16,7 +16,7 @@
         android:layout_height="@dimen/play_queue_thumbnail_height"
         android:layout_marginStart="@dimen/video_item_search_image_right_margin"
         android:layout_marginTop="@dimen/video_item_search_image_right_margin"
-        android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
+        android:layout_marginBottom="@dimen/video_item_search_image_bottom_margin"
         android:scaleType="fitCenter"
         android:src="@drawable/placeholder_thumbnail_video"
         app:layout_constraintBottom_toBottomOf="parent"

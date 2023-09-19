@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
+        android:layout_marginBottom="@dimen/video_item_search_image_bottom_margin"
         android:layout_toEndOf="@+id/detail_pinned_view"
         android:ellipsize="end"
         android:lines="1"
