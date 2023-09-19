@@ -196,7 +196,7 @@ class StreamItemAdapterTest {
 
     @Test
     fun retrieveMediaFormatFromContentTypeHeader() {
-        val streams = getIncompleteAudioStreams(10)
+        val streams = getIncompleteAudioStreams(12)
         val wrapper = StreamInfoWrapper(streams, context)
         val retrieveMediaFormat = { stream: AudioStream, response: Response ->
             StreamInfoWrapper.retrieveMediaFormatFromContentTypeHeader(stream, wrapper, response)
@@ -209,18 +209,20 @@ class StreamItemAdapterTest {
         helper.assertInvalidResponse(getResponse(mapOf(Pair("Content-Type", "mp3"))), 3)
         helper.assertInvalidResponse(getResponse(mapOf(Pair("Content-Type", "audio/mpeg"))), 4)
         helper.assertInvalidResponse(getResponse(mapOf(Pair("Content-Type", "audio/aif"))), 5)
+        helper.assertInvalidResponse(getResponse(mapOf(Pair("Content-Type", "whatever"))), 6)
+        helper.assertInvalidResponse(getResponse(mapOf()), 7)
 
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/flac"))), 6, MediaFormat.FLAC
+            getResponse(mapOf(Pair("Content-Type", "audio/flac"))), 8, MediaFormat.FLAC
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/wav"))), 7, MediaFormat.WAV
+            getResponse(mapOf(Pair("Content-Type", "audio/wav"))), 9, MediaFormat.WAV
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/opus"))), 8, MediaFormat.OPUS
+            getResponse(mapOf(Pair("Content-Type", "audio/opus"))), 10, MediaFormat.OPUS
         )
         helper.assertValidResponse(
-            getResponse(mapOf(Pair("Content-Type", "audio/aiff"))), 9, MediaFormat.AIFF
+            getResponse(mapOf(Pair("Content-Type", "audio/aiff"))), 11, MediaFormat.AIFF
         )
     }
 

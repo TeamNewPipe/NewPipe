@@ -27,7 +27,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Utils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -400,17 +399,21 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 @NonNull final Response response) {
             // try to get the format by content type
             // some mime types are not unique for every format, those are omitted
-            final List<MediaFormat> formats = MediaFormat.getAllFromMimeType(
-                    response.getHeader("Content-Type"));
-            final List<MediaFormat> uniqueFormats = new ArrayList<>(formats.size());
-            for (int i = 0; i < formats.size(); i++) {
-                final MediaFormat format = formats.get(i);
-                if (uniqueFormats.stream().filter(f -> f.id == format.id).count() == 0) {
-                    uniqueFormats.add(format);
+            final String contentTypeHeader = response.getHeader("Content-Type");
+            if (contentTypeHeader == null) {
+                return false;
+            }
+
+            @Nullable MediaFormat foundFormat = null;
+            for (final MediaFormat format : MediaFormat.getAllFromMimeType(contentTypeHeader)) {
+                if (foundFormat == null) {
+                    foundFormat = format;
+                } else if (foundFormat.id != format.id) {
+                    return false;
                 }
             }
-            if (uniqueFormats.size() == 1) {
-                streamsWrapper.setFormat(stream, uniqueFormats.get(0));
+            if (foundFormat != null) {
+                streamsWrapper.setFormat(stream, foundFormat);
                 return true;
             }
             return false;
