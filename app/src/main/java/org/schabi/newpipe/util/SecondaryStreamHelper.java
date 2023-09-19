@@ -7,15 +7,15 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
 
 import java.util.List;
 
 public class SecondaryStreamHelper<T extends Stream> {
     private final int position;
-    private final StreamSizeWrapper<T> streams;
+    private final StreamInfoWrapper<T> streams;
 
-    public SecondaryStreamHelper(@NonNull final StreamSizeWrapper<T> streams,
+    public SecondaryStreamHelper(@NonNull final StreamInfoWrapper<T> streams,
                                  final T selectedStream) {
         this.streams = streams;
         this.position = streams.getStreamsList().indexOf(selectedStream);
