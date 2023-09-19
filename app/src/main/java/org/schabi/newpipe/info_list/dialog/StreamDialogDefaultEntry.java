@@ -122,6 +122,9 @@ public enum StreamDialogDefaultEntry {
                     })
     ),
 
+    OPEN_IN_YOUTUBE(R.string.open_in_youtube, (fragment, item) ->
+            ShareUtils.openUrlInYoutube(fragment.requireContext(), item.getUrl())),
+
     OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
 

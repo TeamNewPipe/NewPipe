@@ -325,6 +325,7 @@ public final class InfoItemDialog {
                     StreamDialogDefaultEntry.DOWNLOAD,
                     StreamDialogDefaultEntry.APPEND_PLAYLIST,
                     StreamDialogDefaultEntry.SHARE,
+                    StreamDialogDefaultEntry.OPEN_IN_YOUTUBE,
                     StreamDialogDefaultEntry.OPEN_IN_BROWSER
             );
             addPlayWithKodiEntryIfNeeded();

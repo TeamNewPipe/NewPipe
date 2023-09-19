@@ -59,8 +59,8 @@
     <color name="video_overlay_color">#64000000</color>
 
     <color name="subscribe_text_color">#fff</color>
-    <color name="subscribed_background_color">#d6d6d6</color>
-    <color name="subscribed_text_color">#717171</color>
+    <color name="subscribed_background_color">#c8E53935</color>
+    <color name="subscribed_text_color">#fff</color>
 
     <color name="transparent_background_color">#00000000</color>
     <color name="selected_background_color">#96717171</color>

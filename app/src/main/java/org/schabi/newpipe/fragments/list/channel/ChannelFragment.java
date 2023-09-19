@@ -231,6 +231,11 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                     ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
                 }
                 break;
+            case R.id.menu_item_openInYoutube:
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInYoutube(requireContext(), currentInfo.getOriginalUrl());
+                }
+                break;
             case R.id.menu_item_share:
                 if (currentInfo != null) {
                     ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl(),

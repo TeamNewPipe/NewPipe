@@ -24,14 +24,20 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/menu_item_openInBrowser"
+        android:id="@+id/menu_item_openInYoutube"
         android:orderInCategory="2"
+        android:title="@string/open_in_youtube"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_openInBrowser"
+        android:orderInCategory="3"
         android:title="@string/open_in_browser"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_item_append_playlist"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/add_to_playlist"
         app:showAsAction="never" />
 </menu>

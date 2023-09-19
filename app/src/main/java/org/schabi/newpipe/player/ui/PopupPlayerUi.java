@@ -168,6 +168,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         binding.share.setVisibility(View.GONE);
         binding.playWithKodi.setVisibility(View.GONE);
         binding.openInBrowser.setVisibility(View.GONE);
+        binding.openInYoutube.setVisibility(View.GONE);
         binding.switchMute.setVisibility(View.GONE);
         binding.playerCloseButton.setVisibility(View.GONE);
         binding.topControls.bringToFront();

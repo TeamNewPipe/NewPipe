@@ -232,6 +232,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
             case R.id.menu_item_openInBrowser:
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
+            case R.id.menu_item_openInYoutube:
+                ShareUtils.openUrlInYoutube(requireContext(), url);
+                break;
             case R.id.menu_item_share:
                 ShareUtils.shareText(requireContext(), name, url,
                         currentInfo == null ? null : currentInfo.getThumbnailUrl());

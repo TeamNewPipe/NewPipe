@@ -236,6 +236,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }));
         binding.playWithKodi.setOnClickListener(makeOnClickListener(this::onPlayWithKodiClicked));
         binding.openInBrowser.setOnClickListener(makeOnClickListener(this::onOpenInBrowserClicked));
+        binding.openInYoutube.setOnClickListener(makeOnClickListener(this::onOpenInYoutubeClicked));
         binding.playerCloseButton.setOnClickListener(makeOnClickListener(() ->
                 // set package to this app's package to prevent the intent from being seen outside
                 context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
@@ -300,6 +301,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.screenRotationButton.setOnClickListener(null);
         binding.playWithKodi.setOnClickListener(null);
         binding.openInBrowser.setOnClickListener(null);
+        binding.openInYoutube.setOnClickListener(null);
         binding.playerCloseButton.setOnClickListener(null);
         binding.switchMute.setOnClickListener(null);
 
@@ -1499,6 +1501,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private void onOpenInBrowserClicked() {
         player.getCurrentStreamInfo().ifPresent(streamInfo ->
                 ShareUtils.openUrlInBrowser(player.getContext(), streamInfo.getOriginalUrl()));
+    }
+
+    private void onOpenInYoutubeClicked() {
+        player.getCurrentStreamInfo().ifPresent(streamInfo ->
+                ShareUtils.openUrlInYoutube(player.getContext(), streamInfo.getOriginalUrl()));
     }
     //endregion
 

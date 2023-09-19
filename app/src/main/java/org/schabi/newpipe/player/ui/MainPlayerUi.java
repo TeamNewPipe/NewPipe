@@ -283,6 +283,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 R.drawable.ic_expand_more));
         binding.share.setVisibility(View.VISIBLE);
         binding.openInBrowser.setVisibility(View.VISIBLE);
+        binding.openInYoutube.setVisibility(View.VISIBLE);
         binding.switchMute.setVisibility(View.VISIBLE);
         binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         // Top controls have a large minHeight which is allows to drag the player
