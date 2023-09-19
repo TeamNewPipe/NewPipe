@@ -11,13 +11,19 @@ plugins {
     id "org.sonarqube" version "4.0.0.2929"
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     compileSdk 33
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
-        applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        applicationId "org.schabi.xnewpipe"
+        resValue "string", "app_name", "XPipe"
         minSdk 21
         targetSdk 33
         versionCode 994
@@ -29,6 +35,15 @@ android {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
         }
     }
 
@@ -60,6 +75,7 @@ android {
             shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             archivesBaseName = 'app'
+            signingConfig = signingConfigs.release
         }
     }
 

@@ -484,6 +484,8 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.shareText(requireContext(), info.getName(), info.getUrl(),
                         info.getThumbnailUrl())));
+        binding.detailControlsOpenInYoutube.setOnClickListener(makeOnClickListener(info ->
+                ShareUtils.openUrlInYoutube(requireContext(), info.getUrl())));
         binding.detailControlsOpenInBrowser.setOnClickListener(makeOnClickListener(info ->
                 ShareUtils.openUrlInBrowser(requireContext(), info.getUrl())));
         binding.detailControlsPlayWithKodi.setOnClickListener(makeOnClickListener(info ->

@@ -18,3 +18,5 @@ app/release/
 bin/
 .vscode/
 *.code-workspace
+/key.properties
+/upload-keystore

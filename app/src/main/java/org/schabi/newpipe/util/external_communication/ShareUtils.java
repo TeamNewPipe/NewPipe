@@ -58,6 +58,11 @@ public final class ShareUtils {
         }
     }
 
+    public static void openUrlInYoutube(@NonNull final Context context, @NonNull final String url) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        tryOpenIntentInApp(context, intent);
+    }
+
     /**
      * Open the url with the system default browser. If no browser is set as default, falls back to
      * {@link #openAppChooser(Context, Intent, boolean)}.
@@ -198,9 +203,9 @@ public final class ShareUtils {
                 final ClipData.Item item = new ClipData.Item(intent.getData());
                 final String[] mimeTypes;
                 if (intent.getType() != null) {
-                    mimeTypes = new String[] {intent.getType()};
+                    mimeTypes = new String[]{intent.getType()};
                 } else {
-                    mimeTypes = new String[] {};
+                    mimeTypes = new String[]{};
                 }
                 targetClipData = new ClipData(null, mimeTypes, item);
             }
@@ -370,9 +375,9 @@ public final class ShareUtils {
             fileOutputStream.close();
 
             final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(), "",
-                        FileProvider.getUriForFile(applicationContext,
-                                BuildConfig.APPLICATION_ID + ".provider",
-                                thumbnailPreviewFile));
+                    FileProvider.getUriForFile(applicationContext,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            thumbnailPreviewFile));
 
             if (DEBUG) {
                 Log.d(TAG, "ClipData successfully generated for Android share sheet: " + clipData);
