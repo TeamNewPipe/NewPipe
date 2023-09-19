@@ -329,6 +329,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
         val commands = arrayOf(
             getString(R.string.share),
+            getString(R.string.open_in_youtube),
             getString(R.string.open_in_browser),
             getString(R.string.unsubscribe)
         )
@@ -339,8 +340,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     requireContext(), selectedItem.name, selectedItem.url,
                     selectedItem.thumbnailUrl
                 )
-                1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
-                2 -> deleteChannel(selectedItem)
+                1 -> ShareUtils.openUrlInYoutube(requireContext(), selectedItem.url)
+                2 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
+                3 -> deleteChannel(selectedItem)
             }
         }
 
