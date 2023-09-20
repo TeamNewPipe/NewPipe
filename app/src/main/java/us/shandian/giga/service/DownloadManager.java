@@ -30,9 +30,9 @@ public class DownloadManager {
 
     enum NetworkState {Unavailable, Operating, MeteredOperating}
 
-    public final static int SPECIAL_NOTHING = 0;
-    public final static int SPECIAL_PENDING = 1;
-    public final static int SPECIAL_FINISHED = 2;
+    public static final int SPECIAL_NOTHING = 0;
+    public static final int SPECIAL_PENDING = 1;
+    public static final int SPECIAL_FINISHED = 2;
 
     public static final String TAG_AUDIO = "audio";
     public static final String TAG_VIDEO = "video";

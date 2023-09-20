@@ -167,6 +167,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     /*////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * TextWatcher to remove rich-text formatting on the search EditText when pasting content
+     * from the clipboard.
+     */
     private TextWatcher textWatcher;
 
     public static SearchFragment getInstance(final int serviceId, final String searchString) {
@@ -583,11 +587,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             @Override
             public void beforeTextChanged(final CharSequence s, final int start,
                                           final int count, final int after) {
+                // Do nothing, old text is already clean
             }
 
             @Override
             public void onTextChanged(final CharSequence s, final int start,
                                       final int before, final int count) {
+                // Changes are handled in afterTextChanged; CharSequence cannot be changed here.
             }
 
             @Override
