@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
-        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@id/itemThumbnailView"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/comment_item_content_text_size"
         tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
@@ -37,7 +37,7 @@
         android:layout_width="@dimen/video_item_detail_like_image_width"
         android:layout_height="@dimen/video_item_detail_like_image_height"
         android:layout_below="@id/itemCommentContentView"
-        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toRightOf="@id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
         android:src="@drawable/ic_thumb_up" />
 

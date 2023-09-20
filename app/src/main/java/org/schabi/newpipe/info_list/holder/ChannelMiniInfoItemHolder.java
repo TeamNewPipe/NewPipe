@@ -2,10 +2,11 @@ package org.schabi.newpipe.info_list.holder;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -13,11 +14,11 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
 
 public class ChannelMiniInfoItemHolder extends InfoItemHolder {
-    private final ImageView itemThumbnailView;
+    private final ShapeableImageView itemThumbnailView;
     private final TextView itemTitleView;
     private final TextView itemAdditionalDetailView;
     private final TextView itemChannelDescriptionView;
@@ -89,6 +90,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
 
     /**
      * Returns max number of allowed lines for the description field.
+     *
      * @param content additional detail content (video / sub count)
      * @return max line count
      */

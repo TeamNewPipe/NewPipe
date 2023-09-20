@@ -1,19 +1,20 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
 
 public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     private final TextView itemStreamCountView;
     public final TextView itemTitleView;
     public final TextView itemUploaderView;

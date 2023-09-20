@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +12,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -151,7 +152,7 @@ public class SelectKioskFragment extends DialogFragment {
 
         public class SelectKioskItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final ImageView thumbnailView;
+            final ShapeableImageView thumbnailView;
             final TextView titleView;
 
             SelectKioskItemHolder(final View v) {

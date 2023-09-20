@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -200,7 +201,7 @@ public class SelectChannelFragment extends DialogFragment {
 
         public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final ImageView thumbnailView;
+            final ShapeableImageView thumbnailView;
             final TextView titleView;
             SelectChannelItemHolder(final View v) {
                 super(v);

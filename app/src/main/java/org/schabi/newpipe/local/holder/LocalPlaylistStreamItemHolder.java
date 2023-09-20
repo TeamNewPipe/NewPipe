@@ -3,10 +3,11 @@ package org.schabi.newpipe.local.holder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -24,7 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     private final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;

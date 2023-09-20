@@ -2,11 +2,12 @@ package org.schabi.newpipe.local.holder;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -44,7 +45,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class LocalStatisticStreamItemHolder extends LocalItemHolder {
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;

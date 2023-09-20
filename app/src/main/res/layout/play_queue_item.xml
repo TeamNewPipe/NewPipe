@@ -10,7 +10,7 @@
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/play_queue_thumbnail_width"
         android:layout_height="@dimen/play_queue_thumbnail_height"

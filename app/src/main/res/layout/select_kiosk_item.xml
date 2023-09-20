@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:padding="5dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="48dp"
         android:layout_height="42dp"

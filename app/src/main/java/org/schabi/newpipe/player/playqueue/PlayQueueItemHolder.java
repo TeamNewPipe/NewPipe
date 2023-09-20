@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import org.schabi.newpipe.R;
 
 /**
@@ -37,7 +39,7 @@ public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
     public final TextView itemDurationView;
     final TextView itemAdditionalDetailsView;
 
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     final ImageView itemHandle;
 
     public final View itemRoot;

@@ -1,8 +1,8 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
-import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.imageview.ShapeableImageView
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
@@ -29,9 +29,12 @@ class ChannelItem(
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         val itemTitleView = viewHolder.root.findViewById<TextView>(R.id.itemTitleView)
-        val itemAdditionalDetails = viewHolder.root.findViewById<TextView>(R.id.itemAdditionalDetails)
-        val itemChannelDescriptionView = viewHolder.root.findViewById<TextView>(R.id.itemChannelDescriptionView)
-        val itemThumbnailView = viewHolder.root.findViewById<ImageView>(R.id.itemThumbnailView)
+        val itemAdditionalDetails =
+            viewHolder.root.findViewById<TextView>(R.id.itemAdditionalDetails)
+        val itemChannelDescriptionView =
+            viewHolder.root.findViewById<TextView>(R.id.itemChannelDescriptionView)
+        val itemThumbnailView =
+            viewHolder.root.findViewById<ShapeableImageView>(R.id.itemThumbnailView)
 
         itemTitleView.text = infoItem.name
         itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
@@ -55,7 +58,8 @@ class ChannelItem(
         }
 
         if (itemVersion == ItemVersion.NORMAL && infoItem.streamCount >= 0) {
-            val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
+            val formattedVideoAmount =
+                Localization.localizeStreamCount(context, infoItem.streamCount)
             details = Localization.concatenateStrings(details, formattedVideoAmount)
         }
         return details

@@ -2,10 +2,11 @@ package org.schabi.newpipe.info_list.holder;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
@@ -23,7 +24,7 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 import java.util.concurrent.TimeUnit;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;

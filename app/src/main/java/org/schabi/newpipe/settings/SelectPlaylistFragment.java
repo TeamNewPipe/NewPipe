@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -178,7 +179,7 @@ public class SelectPlaylistFragment extends DialogFragment {
 
         public class SelectPlaylistItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final ImageView thumbnailView;
+            final ShapeableImageView thumbnailView;
             final TextView titleView;
 
             SelectPlaylistItemHolder(final View v) {

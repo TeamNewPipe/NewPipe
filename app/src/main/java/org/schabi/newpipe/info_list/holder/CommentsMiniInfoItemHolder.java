@@ -9,13 +9,14 @@ import android.text.style.URLSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -54,15 +55,18 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final float ellipsisWidthPx;
 
     private final RelativeLayout itemRoot;
-    private final ImageView itemThumbnailView;
+    private final ShapeableImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
-    @Nullable private Description commentText;
-    @Nullable private StreamingService streamService;
-    @Nullable private String streamUrl;
+    @Nullable
+    private Description commentText;
+    @Nullable
+    private StreamingService streamService;
+    @Nullable
+    private String streamUrl;
 
     CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                                final ViewGroup parent) {

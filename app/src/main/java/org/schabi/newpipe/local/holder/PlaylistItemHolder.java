@@ -1,8 +1,9 @@
 package org.schabi.newpipe.local.holder;
 
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -12,7 +13,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import java.time.format.DateTimeFormatter;
 
 public abstract class PlaylistItemHolder extends LocalItemHolder {
-    public final ImageView itemThumbnailView;
+    public final ShapeableImageView itemThumbnailView;
     final TextView itemStreamCountView;
     public final TextView itemTitleView;
     public final TextView itemUploaderView;
