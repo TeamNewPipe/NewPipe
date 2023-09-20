@@ -11,10 +11,10 @@ import java.util.Objects;
 
 public class CircularFileWriter extends SharpStream {
 
-    private final static int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
-    private final static int COPY_BUFFER_SIZE = 128 * 1024; // 128 KiB
-    private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
-    private final static int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
+    private static final int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
+    private static final int COPY_BUFFER_SIZE = 128 * 1024; // 128 KiB
+    private static final int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
+    private static final int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
 
     private final OffsetChecker callback;
 
