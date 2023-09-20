@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import androidx.core.math.MathUtils
+import androidx.core.view.isVisible
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
@@ -235,14 +235,16 @@ class PopupPlayerGestureListener(
         isMoving = true
 
         val diffX = (movingEvent.rawX - initialEvent.rawX)
-        val posX = MathUtils.clamp(
-            initialPopupX + diffX,
-            0f, (playerUi.screenWidth - playerUi.popupLayoutParams.width).toFloat()
+        val posX = (initialPopupX + diffX).coerceIn(
+            0f,
+            (playerUi.screenWidth - playerUi.popupLayoutParams.width).toFloat()
+                .coerceAtLeast(0f)
         )
         val diffY = (movingEvent.rawY - initialEvent.rawY)
-        val posY = MathUtils.clamp(
-            initialPopupY + diffY,
-            0f, (playerUi.screenHeight - playerUi.popupLayoutParams.height).toFloat()
+        val posY = (initialPopupY + diffY).coerceIn(
+            0f,
+            (playerUi.screenHeight - playerUi.popupLayoutParams.height).toFloat()
+                .coerceAtLeast(0f)
         )
 
         playerUi.popupLayoutParams.x = posX.toInt()
@@ -251,8 +253,7 @@ class PopupPlayerGestureListener(
         // -- Determine if the ClosingOverlayView (red X) has to be shown or hidden --
         val showClosingOverlayView: Boolean = playerUi.isInsideClosingRadius(movingEvent)
         // Check if an view is in expected state and if not animate it into the correct state
-        val expectedVisibility = if (showClosingOverlayView) View.VISIBLE else View.GONE
-        if (binding.closingOverlay.visibility != expectedVisibility) {
+        if (binding.closingOverlay.isVisible != showClosingOverlayView) {
             binding.closingOverlay.animate(showClosingOverlayView, 200)
         }
 
