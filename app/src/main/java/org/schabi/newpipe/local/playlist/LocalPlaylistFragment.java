@@ -352,8 +352,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_item_share_playlist) {
-            if (sharedPreferences.getBoolean(requireContext().getString(
-                    R.string.share_playlist_with_details_can_show_dialog_key), true)) {
+            if (!sharedPreferences.getBoolean(requireContext().getString(
+                    R.string.remember_local_playlist_sharing_option_key), false)) {
                 createShareConfirmationDialog();
             } else {
                 sharePlaylist();
@@ -388,14 +388,19 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
      * Share the playlist as a newline-separated list of stream URLs and video names.
      */
     private void sharePlaylist() {
+        final Context context = getContext();
+        if (context == null) {
+            return;
+        }
+
         final boolean shouldSharePlaylistDetails = sharedPreferences.getBoolean(
-                requireContext().getString(R.string.share_playlist_with_details_key), false);
+                context.getString(R.string.share_playlist_with_details_key), false);
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .flatMapSingle(playlist -> Single.just(playlist.stream()
                         .map(PlaylistStreamEntry::getStreamEntity)
                         .map(streamEntity -> {
                             if (shouldSharePlaylistDetails) {
-                                return String.format("- %s: %s",
+                                return context.getString(R.string.video_details_list_item,
                                         streamEntity.getTitle(), streamEntity.getUrl());
                             } else {
                                 return streamEntity.getUrl();
@@ -404,8 +409,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         .collect(Collectors.joining("\n"))))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urlsText -> ShareUtils.shareText(
-                                requireContext(), name, shouldSharePlaylistDetails
-                                        ? String.format("%s\n%s", name, urlsText) : urlsText),
+                                context, name, shouldSharePlaylistDetails
+                                        ? context.getString(R.string.share_playlist_content_details,
+                                        name, urlsText) : urlsText),
                         throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
     }
 
@@ -877,26 +883,26 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setCancelable(true)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.share_playlist_with_details, (dialog, which) -> {
-                    sharedPreferences.edit()
-                            .putBoolean(requireContext().getString(
-                                    R.string.share_playlist_with_details_can_show_dialog_key),
-                                    !dialogBinding.rememberChoiceCheckBox.isChecked())
-                            .putBoolean(requireContext().getString(
-                                    R.string.share_playlist_with_details_key), true)
-                            .commit();
-                    sharePlaylist();
+                    savePreferencesAndSharePlaylist(
+                            dialogBinding.rememberChoiceCheckBox.isChecked(), true);
                 })
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) -> {
-                    sharedPreferences.edit()
-                            .putBoolean(requireContext().getString(
-                                    R.string.share_playlist_with_details_can_show_dialog_key),
-                                    !dialogBinding.rememberChoiceCheckBox.isChecked())
-                            .putBoolean(requireContext().getString(
-                                    R.string.share_playlist_with_details_key), false)
-                            .commit();
-                    sharePlaylist();
+                    savePreferencesAndSharePlaylist(
+                            dialogBinding.rememberChoiceCheckBox.isChecked(), false);
                 })
                 .show();
+    }
+
+    private void savePreferencesAndSharePlaylist(final boolean rememberPlaylistSharingOption,
+                                                 final boolean sharePlaylistWithDetails) {
+        sharedPreferences.edit()
+                .putBoolean(requireContext().getString(
+                        R.string.remember_local_playlist_sharing_option_key),
+                        rememberPlaylistSharingOption)
+                .putBoolean(requireContext().getString(
+                        R.string.share_playlist_with_details_key), sharePlaylistWithDetails)
+                .apply();
+        sharePlaylist();
     }
 }
 
