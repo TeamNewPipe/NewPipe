@@ -170,8 +170,8 @@ public class StoredDirectoryHelper {
 
     /**
      * Only using Java I/O. Creates the directory named by this abstract pathname, including any
-     * necessary but nonexistent parent directories.  Note that if this
-     * operation fails it may have succeeded in creating some of the necessary
+     * necessary but nonexistent parent directories.
+     * Note that if this operation fails it may have succeeded in creating some of the necessary
      * parent directories.
      *
      * @return <code>true</code> if and only if the directory was created,
@@ -180,9 +180,12 @@ public class StoredDirectoryHelper {
      */
     public boolean mkdirs() {
         if (docTree == null) {
-            // TODO: Use Files.createDirectories() when AGP 8.1 is available:
-            // https://issuetracker.google.com/issues/282544786
-            return Files.exists(ioTree) || ioTree.toFile().mkdirs();
+            try {
+                Files.createDirectories(ioTree);
+            } catch (final IOException e) {
+                Log.e(TAG, "Error while creating directories at " + ioTree, e);
+            }
+            return Files.exists(ioTree);
         }
 
         if (docTree.exists()) {
