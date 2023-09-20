@@ -170,8 +170,8 @@ public class StoredDirectoryHelper {
 
     /**
      * Only using Java I/O. Creates the directory named by this abstract pathname, including any
-     * necessary but nonexistent parent directories.  Note that if this
-     * operation fails it may have succeeded in creating some of the necessary
+     * necessary but nonexistent parent directories.
+     * Note that if this operation fails it may have succeeded in creating some of the necessary
      * parent directories.
      *
      * @return <code>true</code> if and only if the directory was created,
