@@ -804,4 +804,15 @@
     <string name="channel_tab_tracks">רצועות</string>
     <string name="channel_tab_channels">ערוצים</string>
     <string name="channel_tab_livestreams">שידור חי</string>
+    <string name="toggle_screen_orientation">החלפת כיוון מסך</string>
+    <string name="toggle_fullscreen">מילוי המסך/רגיל</string>
+    <string name="next_stream">התזרים הבא</string>
+    <string name="open_play_queue">פתיחת תור נגינה</string>
+    <string name="forward">דילוג קדימה</string>
+    <string name="rewind">החזרה אחורה</string>
+    <string name="replay">נגינה חוזרת</string>
+    <string name="play">נגינה</string>
+    <string name="more_options">אפשרויות נוספות</string>
+    <string name="duration">משך</string>
+    <string name="previous_stream">התזרים הקודם</string>
 </resources>
