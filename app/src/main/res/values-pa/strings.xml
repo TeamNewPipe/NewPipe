@@ -778,4 +778,15 @@
     <string name="channel_tab_tracks">ਟ੍ਰੈਕਸ</string>
     <string name="channel_tab_channels">ਚੈਨਲਜ਼</string>
     <string name="channel_tab_livestreams">ਲਾਈਵ</string>
+    <string name="toggle_screen_orientation">ਸਕ੍ਰੀਨ ਸਥਿਤੀ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
+    <string name="toggle_fullscreen">ਫੁੱਲ ਸਕ੍ਰੀਨ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
+    <string name="next_stream">ਅਗਲੀ ਸਟ੍ਰੀਮ</string>
+    <string name="open_play_queue">ਪਲੇ ਕਤਾਰ ਖੋਲ੍ਹੋ</string>
+    <string name="forward">ਅੱਗੇ ਕਰੋ</string>
+    <string name="rewind">ਰੀਵਾਈਂਡ ਕਰੋ</string>
+    <string name="replay">ਰੀਪਲੇਅ</string>
+    <string name="play">ਚਲਾਓ</string>
+    <string name="more_options">ਹੋਰ ਵਿਕਲਪ</string>
+    <string name="duration">ਮਿਆਦ</string>
+    <string name="previous_stream">ਪਿਛਲੀ ਸਟ੍ਰੀਮ</string>
 </resources>
