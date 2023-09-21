@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
+        app:shapeAppearance="@style/RoundedImageView"
         android:layout_width="@dimen/video_item_grid_thumbnail_image_width"
         android:layout_height="@dimen/video_item_grid_thumbnail_image_height"
         android:layout_alignParentTop="true"
