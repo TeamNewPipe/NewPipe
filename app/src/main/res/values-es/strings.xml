@@ -794,4 +794,15 @@
     <string name="channel_tab_tracks">Pistas</string>
     <string name="channel_tab_channels">Canales</string>
     <string name="channel_tab_livestreams">En directo</string>
+    <string name="toggle_screen_orientation">Alternar la orientación de la pantalla</string>
+    <string name="toggle_fullscreen">Alternar a pantalla completa</string>
+    <string name="next_stream">Siguiente retransmisión</string>
+    <string name="open_play_queue">Abrir la cola de reproducción</string>
+    <string name="forward">Avanzar</string>
+    <string name="rewind">Rebobinar</string>
+    <string name="replay">Volver a reproducir</string>
+    <string name="play">Reproducir</string>
+    <string name="more_options">Más opciones</string>
+    <string name="duration">Duración</string>
+    <string name="previous_stream">Retransmisión anterior</string>
 </resources>
