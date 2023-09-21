@@ -39,6 +39,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/duration_text_color"
         android:textSize="@dimen/video_item_search_duration_text_size"
+        android:contentDescription="@string/duration"
         app:layout_constraintBottom_toBottomOf="@+id/itemThumbnailView"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
         tools:text="1:09:10" />

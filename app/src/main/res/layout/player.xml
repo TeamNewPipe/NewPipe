@@ -115,7 +115,8 @@
                         android:src="@drawable/ic_close"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                        android:contentDescription="@string/close"
+                        tools:ignore="RtlHardcoded" />
 
                     <LinearLayout
                         android:id="@+id/metadataView"
@@ -217,7 +218,8 @@
                         android:src="@drawable/ic_list"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                        android:contentDescription="@string/open_play_queue"
+                        tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/segmentsButton"
@@ -235,7 +237,8 @@
                         android:src="@drawable/ic_menu_book"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                        android:contentDescription="@string/chapters"
+                        tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/moreOptionsButton"
@@ -248,7 +251,8 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_expand_more"
                         app:tint="@color/white"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                        android:contentDescription="@string/more_options"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -368,9 +372,10 @@
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_fullscreen"
+                        android:contentDescription="@string/toggle_fullscreen"
                         android:visibility="gone"
                         app:tint="@color/white"
-                        tools:ignore="ContentDescription,RtlHardcoded"
+                        tools:ignore="RtlHardcoded"
                         tools:visibility="visible" />
 
                 </LinearLayout>
@@ -493,8 +498,9 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_fullscreen"
                     android:visibility="gone"
+                    android:contentDescription="@string/toggle_screen_orientation"
                     app:tint="@color/white"
-                    tools:ignore="ContentDescription,RtlHardcoded"
+                    tools:ignore="RtlHardcoded"
                     tools:visibility="visible" />
             </LinearLayout>
         </RelativeLayout>
@@ -517,8 +523,8 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_previous"
-                app:tint="@color/white"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/previous_stream"
+                app:tint="@color/white" />
 
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -529,8 +535,8 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_pause"
-                app:tint="@color/white"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/pause"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playNextButton"
@@ -543,8 +549,8 @@
                 android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_next"
-                app:tint="@color/white"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/next_stream"
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -595,7 +601,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/exo_controls_repeat_off"
                 android:tint="?attr/colorAccent"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                android:contentDescription="@string/notification_action_repeat"
+                tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/shuffleButton"
@@ -610,7 +617,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_shuffle"
                 android:tint="?attr/colorAccent"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                android:contentDescription="@string/notification_action_shuffle"
+                tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/itemsListHeaderDuration"
@@ -636,7 +644,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_playlist_add"
                 android:tint="?attr/colorAccent"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                android:contentDescription="@string/add_to_playlist"
+                tools:ignore="RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/itemsListClose"
