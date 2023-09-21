@@ -795,4 +795,15 @@
     <string name="channel_tab_tracks">Доріжки</string>
     <string name="channel_tab_channels">Канали</string>
     <string name="channel_tab_livestreams">Наживо</string>
+    <string name="toggle_screen_orientation">Змінити орієнтацію екрана</string>
+    <string name="toggle_fullscreen">Перемкнути повноекранний режим</string>
+    <string name="next_stream">Наступний стрим</string>
+    <string name="open_play_queue">Відкрити чергу відтворення</string>
+    <string name="forward">Перемотати вперед</string>
+    <string name="rewind">Відмотати назад</string>
+    <string name="replay">Повторити</string>
+    <string name="play">Відтворити</string>
+    <string name="more_options">Інші опції</string>
+    <string name="duration">Тривалість</string>
+    <string name="previous_stream">Попередній стрим</string>
 </resources>
