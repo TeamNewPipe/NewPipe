@@ -781,4 +781,15 @@
     <string name="channel_tab_tracks">トラック</string>
     <string name="channel_tab_channels">チャンネル</string>
     <string name="channel_tab_livestreams">ライブ</string>
+    <string name="toggle_screen_orientation">やしがみんぬむききりかいーん</string>
+    <string name="toggle_fullscreen">フルスクリーンんかいきりかいーん</string>
+    <string name="next_stream">ちぎぬストリーム</string>
+    <string name="open_play_queue">さいせいキューふぃらちゅん</string>
+    <string name="forward">フォワード</string>
+    <string name="rewind">まきんどぅし</string>
+    <string name="replay">リプレイ</string>
+    <string name="play">さいせい</string>
+    <string name="more_options">うぬふかぬオプション</string>
+    <string name="duration">ちかん</string>
+    <string name="previous_stream">めーぬストリーム</string>
 </resources>
