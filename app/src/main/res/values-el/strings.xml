@@ -778,4 +778,15 @@
     <string name="channel_tab_tracks">Κομμάτια</string>
     <string name="channel_tab_channels">Κανάλια</string>
     <string name="channel_tab_livestreams">Ζωντανά</string>
+    <string name="toggle_screen_orientation">Εναλλαγή προσανατολισμού οθόνης</string>
+    <string name="toggle_fullscreen">Λειτουργία πλήρους οθόνης</string>
+    <string name="next_stream">Επόμενη ροή</string>
+    <string name="open_play_queue">Άνοιγμα ουράς αναπαραγωγής</string>
+    <string name="forward">Εμπρός</string>
+    <string name="rewind">Πίσω</string>
+    <string name="replay">Επανάληψη</string>
+    <string name="play">Αναπαραγωγή</string>
+    <string name="more_options">Περισσότερες επιλογές</string>
+    <string name="duration">Διάρκεια</string>
+    <string name="previous_stream">Προηγούμενη ροή</string>
 </resources>
