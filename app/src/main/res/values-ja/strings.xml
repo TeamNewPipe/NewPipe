@@ -765,4 +765,15 @@
     <string name="channel_tab_tracks">トラック</string>
     <string name="channel_tab_channels">チャンネル</string>
     <string name="channel_tab_livestreams">ライブ</string>
+    <string name="toggle_screen_orientation">画面の向きを切り替える</string>
+    <string name="toggle_fullscreen">フルスクリーンに切り替える</string>
+    <string name="next_stream">次のストリーム</string>
+    <string name="open_play_queue">再生キューを開く</string>
+    <string name="forward">フォワード</string>
+    <string name="rewind">巻き戻し</string>
+    <string name="replay">リプレイ</string>
+    <string name="play">再生</string>
+    <string name="more_options">その他のオプション</string>
+    <string name="duration">期間</string>
+    <string name="previous_stream">前のストリーム</string>
 </resources>
