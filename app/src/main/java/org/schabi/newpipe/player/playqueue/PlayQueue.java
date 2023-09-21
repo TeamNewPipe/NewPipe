@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
@@ -41,21 +42,27 @@ public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
     @NonNull
     private final AtomicInteger queueIndex;
-    private final List<PlayQueueItem> history = new ArrayList<>();
+    private final List<PlayQueueItem> history;
 
-    private List<PlayQueueItem> backup;
+    // volatile is needed for the isShuffled method
+    private volatile List<PlayQueueItem> backup;
     private List<PlayQueueItem> streams;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
-    private transient Flowable<PlayQueueEvent> broadcastReceiver;
-    private transient boolean disposed = false;
+    private transient volatile Flowable<PlayQueueEvent> broadcastReceiver;
+
+    // volatile is needed for the isDisposed method
+    private transient volatile boolean disposed = false;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
-        streams = new ArrayList<>(startWith);
 
-        if (streams.size() > index) {
-            history.add(streams.get(index));
+        List<PlayQueueItem> h = new ArrayList<>();
+        if (startWith.size() > index) {
+            h.add(startWith.get(index));
         }
+        history = h;
+
+        streams = new ArrayList<>(startWith);
 
         queueIndex = new AtomicInteger(index);
     }
@@ -70,18 +77,19 @@ public abstract class PlayQueue implements Serializable {
      * Also starts a self reporter for logging if debug mode is enabled.
      * </p>
      */
-    public void init() {
-        eventBroadcast = BehaviorSubject.create();
+    public synchronized void init() { // todo: cas mechanics
+        BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
 
-        broadcastReceiver = eventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
+        broadcastReceiver = b.toFlowable(BackpressureStrategy.BUFFER)
                 .observeOn(AndroidSchedulers.mainThread())
                 .startWithItem(new InitEvent());
+        eventBroadcast = b;
     }
 
     /**
      * Dispose the play queue by stopping all message buses.
      */
-    public void dispose() {
+    public synchronized void dispose() { // todo: cas mechanics
         if (eventBroadcast != null) {
             eventBroadcast.onComplete();
         }
@@ -169,7 +177,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the current item that should be played, or null if the queue is empty
      */
     @Nullable
-    public PlayQueueItem getItem() {
+    public synchronized PlayQueueItem getItem() {
         return getItem(getIndex());
     }
 
@@ -178,7 +186,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the item at the given index, or null if the index is out of bounds
      */
     @Nullable
-    public PlayQueueItem getItem(final int index) {
+    public synchronized PlayQueueItem getItem(final int index) {
         if (index < 0 || index >= streams.size()) {
             return null;
         }
@@ -192,14 +200,14 @@ public abstract class PlayQueue implements Serializable {
      * @param item the item to find the index of
      * @return the index of the given item
      */
-    public int indexOf(@NonNull final PlayQueueItem item) {
+    public synchronized int indexOf(@NonNull final PlayQueueItem item) {
         return streams.indexOf(item);
     }
 
     /**
      * @return the current size of play queue.
      */
-    public int size() {
+    public synchronized int size() {
         return streams.size();
     }
 
@@ -208,7 +216,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * @return whether the play queue is empty
      */
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return streams.isEmpty();
     }
 
@@ -225,7 +233,7 @@ public abstract class PlayQueue implements Serializable {
      * @return an immutable view of the play queue
      */
     @NonNull
-    public List<PlayQueueItem> getStreams() {
+    public synchronized List<PlayQueueItem> getStreams() { // todo: iterator race
         return Collections.unmodifiableList(streams);
     }
 
@@ -522,25 +530,29 @@ public abstract class PlayQueue implements Serializable {
         if (other == null) {
             return false;
         }
-        if (size() != other.size()) {
-            return false;
-        }
-        for (int i = 0; i < size(); i++) {
-            final PlayQueueItem stream = streams.get(i);
-            final PlayQueueItem otherStream = other.streams.get(i);
-            // Check is based on serviceId and URL
-            if (stream.getServiceId() != otherStream.getServiceId()
-                    || !stream.getUrl().equals(otherStream.getUrl())) {
+        synchronized (this) {
+            if (size() != other.size()) {
                 return false;
             }
+            for (int i = 0; i < size(); i++) {
+                final PlayQueueItem stream = streams.get(i);
+                final PlayQueueItem otherStream = other.streams.get(i);
+                // Check is based on serviceId and URL
+                if (stream.getServiceId() != otherStream.getServiceId()
+                        || !stream.getUrl().equals(otherStream.getUrl())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
     }
 
     public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
         if (equalStreams(other)) {
-            //noinspection ConstantConditions
-            return other.getIndex() == getIndex(); //NOSONAR: other is not null
+            synchronized (this) {
+                //noinspection ConstantConditions
+                return other.getIndex() == getIndex(); //NOSONAR: other is not null
+            }
         }
         return false;
     }
