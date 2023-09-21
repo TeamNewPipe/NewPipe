@@ -18,8 +18,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
@@ -54,9 +52,9 @@ public abstract class PlayQueue implements Serializable {
     // volatile is needed for the isDisposed method
     private transient volatile boolean disposed = false;
 
-    PlayQueue(final int index, final List<PlayQueueItem> startWith) {
+    PlayQueue(final int index, @NonNull final List<PlayQueueItem> startWith) {
 
-        List<PlayQueueItem> h = new ArrayList<>();
+        final List<PlayQueueItem> h = new ArrayList<>();
         if (startWith.size() > index) {
             h.add(startWith.get(index));
         }
@@ -79,7 +77,7 @@ public abstract class PlayQueue implements Serializable {
      */
     public synchronized void init() {
         if (broadcastReceiver == null || eventBroadcast == null) {
-            BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
+            final BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
 
             broadcastReceiver = b.toFlowable(BackpressureStrategy.BUFFER)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -332,7 +330,8 @@ public abstract class PlayQueue implements Serializable {
      */
     public synchronized void error() {
         final int oldIndex = queueIndex;
-        final int nextIndex = queueIndex = oldIndex + 1;
+        queueIndex = oldIndex + 1;
+        final int nextIndex = queueIndex;
         if (streams.size() > nextIndex) {
             history.add(streams.get(nextIndex));
         }
@@ -345,13 +344,14 @@ public abstract class PlayQueue implements Serializable {
 
         int nextIndex = currentIndex;
         if (currentIndex > removeIndex) {
-            queueIndex = nextIndex = currentIndex - 1;
-
+            nextIndex = currentIndex - 1;
+            queueIndex = nextIndex;
         } else if (currentIndex >= size) {
-            queueIndex = nextIndex = currentIndex % (size - 1);
-
+            nextIndex = currentIndex % (size - 1);
+            queueIndex = nextIndex;
         } else if (currentIndex == removeIndex && currentIndex == size - 1) {
-            queueIndex = nextIndex = 0;
+            nextIndex = 0;
+            queueIndex = nextIndex;
         }
 
         if (backup != null) {
@@ -450,7 +450,7 @@ public abstract class PlayQueue implements Serializable {
         // Note: The backup-list has to be created at all cost (even when size <= 2).
         // Otherwise it's not possible to enter shuffle-mode!
 
-        List<PlayQueueItem> copy = backup == null ? new ArrayList<>(streams) : null;
+        final List<PlayQueueItem> copy = backup == null ? new ArrayList<>(streams) : null;
 
         // Can't shuffle a list that's empty or only has one element
         if (size() <= 2) {
@@ -469,8 +469,9 @@ public abstract class PlayQueue implements Serializable {
 
         history.add(currentItem);
 
-        if (copy != null)
+        if (copy != null) {
             backup = copy;
+        }
 
         broadcast(new ReorderEvent(originalIndex, 0));
     }
@@ -493,7 +494,6 @@ public abstract class PlayQueue implements Serializable {
         final PlayQueueItem current = getItem(originIndex);
 
         streams = backup;
-        // storeStoreFence
         backup = null;
 
         final int newIndex = streams.indexOf(current);
