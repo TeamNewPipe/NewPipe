@@ -1,5 +1,5 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>XPipe (Extended NewPipe)</b></h2>
+<h2 align="center"><b>XPipe (Dark Extended NewPipe)</b></h2>
 <h4 align="center">A libre lightweight streaming front-end for Android.</h4>
 
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p>
