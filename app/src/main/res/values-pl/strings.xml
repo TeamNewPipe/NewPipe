@@ -799,4 +799,15 @@
     <string name="channel_tab_tracks">Utwory</string>
     <string name="channel_tab_channels">Kanały</string>
     <string name="channel_tab_livestreams">Na żywo</string>
+    <string name="toggle_screen_orientation">Przełącz orientację ekranu</string>
+    <string name="toggle_fullscreen">Włącz/Wyłącz pełny ekran</string>
+    <string name="next_stream">Następny strumień</string>
+    <string name="open_play_queue">Otwórz kolejkę odtwarzania</string>
+    <string name="forward">Przewiń do przodu</string>
+    <string name="rewind">Przewiń do tyłu</string>
+    <string name="replay">Odtwórz ponownie</string>
+    <string name="play">Odtwórz</string>
+    <string name="more_options">Więcej opcji</string>
+    <string name="duration">Czas trwania</string>
+    <string name="previous_stream">Poprzedni strumień</string>
 </resources>
