@@ -785,4 +785,8 @@
     <string name="rewind">Zurückspulen</string>
     <string name="replay">Wiederholen</string>
     <string name="play">Abspielen</string>
+    <string name="next_stream">Nächster Stream</string>
+    <string name="more_options">Mehr Optionen</string>
+    <string name="duration">Dauer</string>
+    <string name="previous_stream">Vorheriger Stream</string>
 </resources>
