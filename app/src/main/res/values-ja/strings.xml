@@ -749,4 +749,20 @@
     <string name="disable_media_tunneling_automatic_info">お使いのデバイスのモデルではメディアトンネリングがサポートされていないため、このデバイスではメディアトンネリングがデフォルトで無効になっています。</string>
     <string name="no_streams">ストリームはありません</string>
     <string name="no_live_streams">ライブ配信はありません</string>
+    <string name="metadata_subscribers">登録者</string>
+    <string name="loading_metadata_title">メタ情報を読み込んでいます…</string>
+    <string name="metadata_banner_url">バナーのURL</string>
+    <string name="metadata_avatar_url">アバターのURL</string>
+    <string name="channel_tab_videos">動画</string>
+    <string name="show_channel_tabs_summary">チャンネルページに表示されるタブ</string>
+    <string name="show_channel_tabs">チャンネルタブ</string>
+    <string name="channel_tab_shorts">ショート</string>
+    <string name="feed_fetch_channel_tabs">チャンネルタブを取得する</string>
+    <string name="channel_tab_about">詳細</string>
+    <string name="channel_tab_albums">アルバム</string>
+    <string name="feed_fetch_channel_tabs_summary">フィードを更新するときに取得するタブ。 高速モードを使用してチャンネルを更新する場合は、効果がありません。</string>
+    <string name="channel_tab_playlists">プレイリスト</string>
+    <string name="channel_tab_tracks">トラック</string>
+    <string name="channel_tab_channels">チャンネル</string>
+    <string name="channel_tab_livestreams">ライブ</string>
 </resources>

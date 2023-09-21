@@ -592,9 +592,9 @@
     <string name="select_night_theme_toast">Gözde gece temanızı aşağıdan seçebilirsiniz</string>
     <string name="night_theme_summary">Gözde gece temanızı seçin — %s</string>
     <string name="auto_device_theme_title">Otomatik (cihaz teması)</string>
-    <string name="night_theme_title">Gece Teması</string>
+    <string name="night_theme_title">Gece teması</string>
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
-    <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
+    <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın.</string>
     <string name="disable_media_tunneling_title">Ortam tünellemeyi devre dışı bırak</string>
     <string name="metadata_privacy_internal">İç</string>
     <string name="metadata_privacy_private">Gizli</string>
@@ -747,4 +747,19 @@
     <string name="prefer_descriptive_audio_title">Betimlemeli sesi yeğle</string>
     <string name="audio_track">Ses parçası</string>
     <string name="audio_track_present_in_video">Bu akışta halihazırda bir ses parçası bulunmalıdır</string>
+    <string name="no_streams">Akış yok</string>
+    <string name="no_live_streams">Canlı akış yok</string>
+    <string name="right_gesture_control_title">Sağ kaydırma eylemi</string>
+    <string name="main_tabs_position_summary">Ana sekme seçiciyi alta taşı</string>
+    <string name="main_tabs_position_title">Ana sekme konumu</string>
+    <string name="disable_media_tunneling_automatic_info">Ortam tünelleme öntanımlı olarak devre dışı bırakılmıştır çünkü aygıt modelinizin desteği bilinmemektedir.</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Çözücü ilklendirme sorunlarınız varsa bu seçeneği etkinleştirin, eğer birincil çözücülerin ilklendirmesi başarısızsa düşük öncelikli çözücülere dönülür. Bu, birincil çözücüler kullanılırkenki başarımdan daha kötü sonuçlanabilir</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Her zaman ExoPlayer\'ın video çıktısı yüzey ayar çözümünü kullan</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu çözüm, bir yüzey değişimi yaşandığında yüzeyi doğrudan kodlayıcıya ayarlamaktansa video kodlayıcısını serbest bırakır ve yeniden örneklendirir. Bu sorunu olan bazı aygıtlarda ExoPlayer tarafından halihazırda kullanılır, bu ayar yalnızca Android 6 ve üstünde etkilidir
+\n
+\nBu ayarı etkinleştirmek, geçerli video oynatıcısını değiştirirken veya tam ekrana geçerkenki oynatma hatalarını önleyebilir</string>
+    <string name="progressive_load_interval_summary">Progresif içeriklerdeki yükleme aralığı boyutunu değiştir (şu anda %s). Daha düşük değer ilk yüklemeyi hızlandırabilir</string>
+    <string name="left_gesture_control_title">Sol kaydırma eylemi</string>
+    <string name="right_gesture_control_summary">Parmağınızı ekranın sağ yarısında kaydırırken ne yapılacağını seçin</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer\'ın çözücü yedek özelliğini kullan</string>
 </resources>

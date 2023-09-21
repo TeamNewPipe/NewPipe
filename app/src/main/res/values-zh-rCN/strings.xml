@@ -749,4 +749,20 @@
     <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
     <string name="no_live_streams">无直播</string>
     <string name="no_streams">无音视频流</string>
+    <string name="channel_tab_videos">视频</string>
+    <string name="metadata_subscribers">订阅者</string>
+    <string name="show_channel_tabs_summary">展示在频道页面上的标签页</string>
+    <string name="show_channel_tabs">频道标签页</string>
+    <string name="channel_tab_shorts">短视频</string>
+    <string name="loading_metadata_title">正在加载元数据…</string>
+    <string name="feed_fetch_channel_tabs">获取频道标签页</string>
+    <string name="channel_tab_about">关于</string>
+    <string name="metadata_banner_url">横幅 URL</string>
+    <string name="channel_tab_albums">专辑</string>
+    <string name="feed_fetch_channel_tabs_summary">更新数据源时要获取的标签页。如果使用快速模式更新频道，则该选项无效果。</string>
+    <string name="metadata_avatar_url">头像 URL</string>
+    <string name="channel_tab_playlists">播放列表</string>
+    <string name="channel_tab_tracks">歌曲</string>
+    <string name="channel_tab_channels">频道</string>
+    <string name="channel_tab_livestreams">直播</string>
 </resources>

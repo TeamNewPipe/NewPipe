@@ -44,7 +44,7 @@
     <string name="open_with">ଏଥିରେ ଖୋଲନ୍ତୁ</string>
     <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
     <string name="mark_as_watched">ଦେଖାଯାଇଥିବା ପରି ଚିହ୍ନିତ କର</string>
-    <string name="download">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="download">ଡାଉନଲୋଡ୍ କରିବା</string>
     <string name="settings">ସେଟିଂ</string>
     <string name="did_you_mean">ତୁମେ ଏହା ଚାଂହ କି \"%1$s\"\?</string>
     <string name="controls_download_desc">ଫାଇଲ୍ ଡାଉନଲୋଡ କରନ୍ତୁ</string>
@@ -202,7 +202,7 @@
     <string name="unsubscribe">ସଦସ୍ୟତା ରଦ୍ଦ କରନ୍ତୁ</string>
     <string name="channel_unsubscribed">ଚ୍ୟାନେଲ ସଦସ୍ୟତା ରଦ୍ଦ ହେଲା</string>
     <string name="subscription_change_failed">ସଦସ୍ୟତା ପରିବର୍ତ୍ତନ କରିପାରିଲା ନାହିଁ</string>
-    <string name="show_info">ସୂଚନା ଦେଖାନ୍ତୁ</string>
+    <string name="show_info">ସୂଚନା ଦେଖାଅ</string>
     <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
@@ -214,7 +214,7 @@
     <string name="notification_action_4_title">ପଞ୍ଚମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_shuffle">ଶଫଲ୍</string>
     <string name="notification_action_buffering">ବଫରିଂ</string>
-    <string name="notification_action_nothing">କିଛି ନୁହେଁ</string>
+    <string name="notification_action_nothing">କିଛି ନାହିଁ</string>
     <string name="default_video_format_title">ଡିଫଲ୍ଟ ଭିଡିଓ ଫର୍ମାଟ୍</string>
     <string name="popup_remember_size_pos_title">ପପ୍ଅପ୍ ଗୁଣଗୁଡିକ ମନେରଖ</string>
     <string name="processing_may_take_a_moment">ପ୍ରକ୍ରିୟାକରଣ… କିଛି ସମୟ ନେଇପାରେ</string>

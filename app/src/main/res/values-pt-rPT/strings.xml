@@ -773,4 +773,6 @@
     <string name="main_tabs_position_summary">Mova o seletor da guia principal para a parte inferior</string>
     <string name="main_tabs_position_title">Posição das guias principais</string>
     <string name="disable_media_tunneling_automatic_info">O túnel multimédia foi desativado por predefinição no seu dispositivo porque se sabe que o modelo do dispositivo não o suporta.</string>
+    <string name="no_live_streams">Nenhum vídeo em direto</string>
+    <string name="no_streams">Nenhum vídeo</string>
 </resources>

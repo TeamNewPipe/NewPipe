@@ -749,4 +749,20 @@
     <string name="disable_media_tunneling_automatic_info">因為您的裝置型號已知不支援媒體隧道，因此已預設停用。</string>
     <string name="no_streams">無串流</string>
     <string name="no_live_streams">無直播串流</string>
+    <string name="channel_tab_videos">影片</string>
+    <string name="metadata_subscribers">訂閱者</string>
+    <string name="show_channel_tabs_summary">頻道頁面上顯示哪些分頁</string>
+    <string name="show_channel_tabs">頻道分頁</string>
+    <string name="channel_tab_shorts">短片</string>
+    <string name="loading_metadata_title">正在載入詮釋資料……</string>
+    <string name="feed_fetch_channel_tabs">擷取頻道分頁</string>
+    <string name="channel_tab_about">關於</string>
+    <string name="metadata_banner_url">橫幅 URL</string>
+    <string name="channel_tab_albums">專輯</string>
+    <string name="feed_fetch_channel_tabs_summary">更新 feed 時要擷取的分頁。若使用快速模式更新頻道，則此選項無效。</string>
+    <string name="metadata_avatar_url">大頭照 URL</string>
+    <string name="channel_tab_playlists">播放清單</string>
+    <string name="channel_tab_tracks">軌道</string>
+    <string name="channel_tab_channels">頻道</string>
+    <string name="channel_tab_livestreams">直播</string>
 </resources>

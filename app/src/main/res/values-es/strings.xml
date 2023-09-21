@@ -494,7 +494,7 @@
     <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
     <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
-    <string name="settings_category_feed_title">Contenido</string>
+    <string name="settings_category_feed_title">Fuente</string>
     <string name="feed_update_threshold_title">Velocidad de actualización del contenido</string>
     <string name="feed_update_threshold_summary">Tiempo para que una suscripción se considere desactualizada — %s</string>
     <string name="feed_update_threshold_option_always_update">Actualizar siempre</string>
@@ -778,4 +778,20 @@
     <string name="disable_media_tunneling_automatic_info">Como se sabe que este dispositivo no es compatible con la tunelización de medios, esta función está desactivada de forma predeterminada.</string>
     <string name="no_streams">Sin retransmisiones</string>
     <string name="no_live_streams">Sin transmisiones en directo</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="metadata_subscribers">Suscriptores</string>
+    <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas de los canales</string>
+    <string name="show_channel_tabs">Pestañas del canal</string>
+    <string name="channel_tab_shorts">Cortos</string>
+    <string name="loading_metadata_title">Cargando los metadatos…</string>
+    <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
+    <string name="channel_tab_about">Acerca de</string>
+    <string name="metadata_banner_url">Dirección url del anuncio</string>
+    <string name="channel_tab_albums">Álbumes</string>
+    <string name="feed_fetch_channel_tabs_summary">Pestañas para recuperar al actualizar el canal. Esta opción no tiene efecto si el canal se actualiza en modo rápido.</string>
+    <string name="metadata_avatar_url">Dirección url del avatar</string>
+    <string name="channel_tab_playlists">Listas de reproducción</string>
+    <string name="channel_tab_tracks">Pistas</string>
+    <string name="channel_tab_channels">Canales</string>
+    <string name="channel_tab_livestreams">En directo</string>
 </resources>

@@ -588,7 +588,7 @@
     <string name="show_description_summary">Desactíveo para ocultar a descrición do vídeo e a información adicional</string>
     <string name="show_description_title">Ver descrición</string>
     <string name="clear_queue_confirmation_title">Pedir confirmación antes de baleirar unha cola</string>
-    <string name="night_theme_title">Tema Escuro</string>
+    <string name="night_theme_title">Tema escuro</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="open_with">Abrir con</string>
     <string name="metadata_privacy_unlisted">Non listado</string>
@@ -628,7 +628,7 @@
     </plurals>
     <string name="seekbar_preview_thumbnail_title">Miniatura na barra de busca</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imaxe</string>
-    <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentaren unha pantalla en negro ou interrupcións na reprodución</string>
+    <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentar unha pantalla en negro ou interrupcións na reprodución.</string>
     <string name="disable_media_tunneling_title">Desactivar túnel multimedia</string>
     <string name="enqueued">Engadido á cola</string>
     <string name="no_dir_yet">Cartafol de descarga aínda non definido, escolla o cartafol agora</string>
@@ -709,7 +709,7 @@
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
-    <string name="app_update_unavailable_toast">Estás executandola última versión de NewPipe</string>
+    <string name="app_update_unavailable_toast">Estás executando a última versión de NewPipe</string>
     <string name="app_update_available_notification_text">Toca para descargar %s</string>
     <string name="import_subscriptions_hint">Importa ou exporta subscricións dende o menú dos 3 puntos</string>
     <string name="night_theme_available">Esta opción só está dispoñible se %s está seleccionado para o tema</string>
@@ -757,4 +757,5 @@
     <string name="main_tabs_position_summary">Mova o selector da lapela principal para a parte inferior</string>
     <string name="main_tabs_position_title">Posición prinicipal das lapelas</string>
     <string name="disable_media_tunneling_automatic_info">A tunelización da multimedia foi deshabilitada por defecto, porque o seu modelo de dispositivo carece de soporte.</string>
+    <string name="no_streams">Sen emisións</string>
 </resources>

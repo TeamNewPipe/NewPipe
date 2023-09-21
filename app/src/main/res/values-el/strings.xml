@@ -762,4 +762,20 @@
     <string name="disable_media_tunneling_automatic_info">Το media tunneling απενεργοποιήθηκε από προεπιλογή στη συσκευή σας, επειδή το μοντέλο της συσκευής σας είναι γνωστό ότι δεν το υποστηρίζει.</string>
     <string name="no_live_streams">Καμία ζωντανή ροή</string>
     <string name="no_streams">Καμία ροή</string>
+    <string name="loading_metadata_title">Φόρτωση μεταδεδομένων…</string>
+    <string name="channel_tab_videos">Βίντεο</string>
+    <string name="metadata_subscribers">Συνδρομητές</string>
+    <string name="show_channel_tabs_summary">Ποιες καρτέλες εμφανίζονται στις σελίδες των καναλιών</string>
+    <string name="show_channel_tabs">Καρτέλες καναλιών</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="feed_fetch_channel_tabs">Λήψη καρτελών καναλιών</string>
+    <string name="channel_tab_about">Σχετικά</string>
+    <string name="metadata_banner_url">Banner URL</string>
+    <string name="channel_tab_albums">Άλμπουμ</string>
+    <string name="feed_fetch_channel_tabs_summary">Καρτέλες για ανάκτηση κατά την ενημέρωση της ροής. Αυτή η επιλογή δεν έχει καμία επίδραση εάν ένα κανάλι ενημερώνεται χρησιμοποιώντας τη γρήγορη λειτουργία.</string>
+    <string name="metadata_avatar_url">URL άβαταρ</string>
+    <string name="channel_tab_playlists">Λίστες</string>
+    <string name="channel_tab_tracks">Κομμάτια</string>
+    <string name="channel_tab_channels">Κανάλια</string>
+    <string name="channel_tab_livestreams">Ζωντανά</string>
 </resources>

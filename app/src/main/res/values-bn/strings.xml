@@ -278,7 +278,7 @@
     <string name="settings">সেটিংস</string>
     <string name="search">খুঁজুন</string>
     <string name="controls_download_desc">স্ট্রিম ফাইল ডাউনলোড করুন</string>
-    <string name="download">ডাউনলোউড</string>
+    <string name="download">ডাউনলোড</string>
     <string name="share">শেয়ার</string>
     <string name="open_in_popup_mode">ভাসমান অবস্থায় খুলো</string>
     <string name="open_in_browser">ব্রাউজারে খুলো</string>
@@ -342,7 +342,7 @@
     <string name="recaptcha_cookies_cleared">রিক্যাপচা কুকিগুলো পরিষ্কার করা হয়েছে</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">হ্যাঁ, এবং আংশিকভাবে দেখা ভিডিও</string>
     <string name="permission_denied">ব্যবস্থা দ্বারা ক্রিয়া অস্বীকার করা হয়েছে</string>
-    <string name="autoplay_summary">"স্বয়ংক্রিয়ভাবে প্লেব্যাক শুরু করো  %s — তে"</string>
+    <string name="autoplay_summary">স্বয়ংক্রিয়ভাবে প্লেব্যাক শুরু করো %s — তে</string>
     <string name="start_here_on_popup">একটি পপ-আপে প্লে শুরু করো</string>
     <string name="start_here_on_background">পটভূমিতে প্লে শুরু করো</string>
     <string name="app_description">অ্যান্ড্রয়েডে মুক্তভাবে ও সহজে প্রচার দেখার অ্যাপ।</string>
@@ -531,7 +531,8 @@
     <string name="clear_cookie_summary">রিক্যাপচা পূরণ করলে নিউপাইপ যেসব কুকি রাখে তা মুছো</string>
     <string name="show_original_time_ago_summary">ধারা ভুক্তিতে সেবাগুলোর মূল লেখা দৃশ্যমান হবে</string>
     <string name="delete_item_search_history">অনুসন্ধান ইতিহাস থেকে এই ভুক্তিটি মুছবে\?</string>
-    <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে</string>
+    <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে।
+\nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
     <string name="localization_changes_requires_app_restart">অ্যাপ আবার শুরু হলে ভাষা পাল্টাবে</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
@@ -566,8 +567,8 @@
     <string name="off">বন্ধ</string>
     <string name="on">চালু</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">ডাউনলোড সমাপ্ত</item>
-        <item quantity="other">%sটি ডাউনলোড সমাপ্ত</item>
+        <item quantity="one">ডাউনলোড শেষ</item>
+        <item quantity="other">%sটি ডাউনলোড শেষ</item>
     </plurals>
     <string name="mark_as_watched">দেখা হয়েছে চিহ্নিত করো</string>
     <string name="settings_category_player_notification_title">চালক বিজ্ঞপ্তি</string>
@@ -623,8 +624,8 @@
     <string name="show_error_snackbar">ত্রুটি স্ন্যাকবার দেখাও</string>
     <string name="manual_update_description">নতুন সংস্করণের জন্য নিজে দেখো</string>
     <plurals name="deleted_downloads_toast">
-        <item quantity="one">%1$sটি ডাউনলোড মুছা হয়েছে</item>
-        <item quantity="other">%1$sটি ডাউনলোড মুছা হয়েছে</item>
+        <item quantity="one">%1$sটি ডাউনলোড মোছা হয়েছে</item>
+        <item quantity="other">%1$sটি ডাউনলোড মোছা হয়েছে</item>
     </plurals>
     <string name="show_crash_the_player_title">\"চালক বন্ধ করো\" দেখাও</string>
     <string name="notifications_disabled">বিজ্ঞপ্তি নিষ্ক্রিয়</string>

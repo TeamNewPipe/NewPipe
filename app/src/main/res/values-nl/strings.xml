@@ -710,7 +710,7 @@
     <string name="sort">Sorteer</string>
     <string name="fast_mode">Snelle modus</string>
     <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
-    <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
+    <string name="app_update_unavailable_toast">U heeft de nieuwste versie van NewPipe</string>
     <string name="app_update_available_notification_text">Druk om %s te downloaden</string>
     <string name="msg_failed_to_copy">Kon niet naar klembord kopiëren</string>
     <string name="night_theme_available">Deze instelling is alleen beschikbaar als %s als thema ingesteld is</string>
@@ -757,7 +757,7 @@
     <string name="audio_track_type_original">origineel</string>
     <string name="audio_track_type_dubbed">nagesynchroniseerd</string>
     <string name="audio_track_type_descriptive">beschrijvend</string>
-    <string name="main_tabs_position_summary">Secties onderaan weergeven</string>
+    <string name="main_tabs_position_summary">Verplaats de tabselector naar beneden</string>
     <string name="main_tabs_position_title">Positie van sectie-tabbladen</string>
     <string name="no_streams">Geen streams</string>
     <string name="no_live_streams">Geen live-streams</string>

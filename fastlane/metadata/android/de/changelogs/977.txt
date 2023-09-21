@@ -1,7 +1,7 @@
-• Die Schaltfläche „Weiter abspielen“ wurde dem Langdruckmenü hinzugefügt
-• YouTube Shorts Pfadpräfix zum Absichtsfilter hinzugefügt
+• Die Schaltfläche „Weiter abspielen“ dem Langdruckmenü hinzugefügt
+• YouTube-Shorts-Pfadpräfix zum Absichtsfilter hinzugefügt
 • Import von Einstellungen behoben
-• Position der Suchleiste mit Player-Schaltflächen im Warteschlangen-Bildschirm vertauscht
+• Position der Suchleiste mit Player-Schaltflächen im Warteschlangen-Bildschirm getauscht
 • Verschiedene Korrekturen im Zusammenhang mit MediasessionManager
 • Die Suchleiste wurde nach dem Ende des Videos nicht abgeschlossen
 …

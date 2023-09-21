@@ -783,4 +783,20 @@
     <string name="disable_media_tunneling_automatic_info">Tunelowanie multimediów zostało domyślnie wyłączone na Twoim urządzeniu, ponieważ wiadomo, że model Twojego urządzenia go nie obsługuje</string>
     <string name="no_streams">Brak strumieni</string>
     <string name="no_live_streams">Brak transmisji na żywo</string>
+    <string name="channel_tab_videos">Wideo</string>
+    <string name="metadata_subscribers">Subskrybujący</string>
+    <string name="show_channel_tabs_summary">Karty wyświetlane na stronach kanałów</string>
+    <string name="show_channel_tabs">Karty kanałów</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Ładowanie metadanych…</string>
+    <string name="feed_fetch_channel_tabs">Pobieranie kart kanału</string>
+    <string name="channel_tab_about">Informacje</string>
+    <string name="metadata_banner_url">Adres URL banera</string>
+    <string name="channel_tab_albums">Albumy</string>
+    <string name="feed_fetch_channel_tabs_summary">Karty do pobrania podczas aktualizacji kanału. Ta opcja nie działa, jeśli kanał jest aktualizowany w trybie szybkim</string>
+    <string name="metadata_avatar_url">Adres URL awatara</string>
+    <string name="channel_tab_playlists">Playlisty</string>
+    <string name="channel_tab_tracks">Utwory</string>
+    <string name="channel_tab_channels">Kanały</string>
+    <string name="channel_tab_livestreams">Na żywo</string>
 </resources>

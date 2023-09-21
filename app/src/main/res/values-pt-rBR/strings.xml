@@ -775,4 +775,20 @@
     <string name="no_streams">Nenhuma transmissão</string>
     <string name="no_live_streams">Nenhuma transmissão ao vivo</string>
     <string name="disable_media_tunneling_automatic_info">O tunelamento de mídia foi desabilitado por padrão em seu dispositivo porque seu modelo é conhecido por não suportá-lo.</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="metadata_subscribers">Inscritos</string>
+    <string name="show_channel_tabs_summary">Quais guias são mostradas nas páginas do canal</string>
+    <string name="show_channel_tabs">Guias de canal</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Carregando metadados…</string>
+    <string name="feed_fetch_channel_tabs">Buscar guias de canal</string>
+    <string name="channel_tab_about">Sobre</string>
+    <string name="metadata_banner_url">URL do banner</string>
+    <string name="channel_tab_albums">Álbuns</string>
+    <string name="feed_fetch_channel_tabs_summary">Guias a serem buscadas ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado usando o modo rápido.</string>
+    <string name="metadata_avatar_url">URL do avatar</string>
+    <string name="channel_tab_playlists">Playlists</string>
+    <string name="channel_tab_tracks">Faixas</string>
+    <string name="channel_tab_channels">Canais</string>
+    <string name="channel_tab_livestreams">Ao vivo</string>
 </resources>

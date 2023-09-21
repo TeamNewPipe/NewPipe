@@ -788,4 +788,20 @@
     <string name="disable_media_tunneling_automatic_info">תיעול מדיה הושבת כברירת מחדל במכשיר שלך כיוון שדגם המכשיר ידוע בכך שאינו תומך בזה.</string>
     <string name="no_live_streams">אין תזרימים חיים</string>
     <string name="no_streams">אין תזרימים</string>
+    <string name="channel_tab_videos">סרטונים</string>
+    <string name="metadata_subscribers">מנויים</string>
+    <string name="show_channel_tabs_summary">אין לשוניות מופיעות בעמודי הערוץ</string>
+    <string name="show_channel_tabs">לשוניות ערוץ</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">נתוני העל נטענים…</string>
+    <string name="feed_fetch_channel_tabs">משיכת לשוניות הערוץ</string>
+    <string name="channel_tab_about">על אודות</string>
+    <string name="metadata_banner_url">כתובת כרזה</string>
+    <string name="channel_tab_albums">אלבומים</string>
+    <string name="feed_fetch_channel_tabs_summary">לשוניות למשיכה בעת עדכון ערוץ העדכונים. לאפשרות זו אין השפעה אם הערוץ מתעדכן במצב מהיר.</string>
+    <string name="metadata_avatar_url">כתובת תמונה ייצוגית</string>
+    <string name="channel_tab_playlists">רשימות נגינה</string>
+    <string name="channel_tab_tracks">רצועות</string>
+    <string name="channel_tab_channels">ערוצים</string>
+    <string name="channel_tab_livestreams">שידור חי</string>
 </resources>

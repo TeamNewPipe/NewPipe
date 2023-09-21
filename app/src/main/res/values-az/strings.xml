@@ -268,7 +268,7 @@
     <string name="related_items_tab_description">Əlaqəli elementlər</string>
     <string name="mark_as_watched">Baxılmış kimi işarələ</string>
     <string name="open_with">ilə aç</string>
-    <string name="night_theme_title">Gecə Teması</string>
+    <string name="night_theme_title">Gecə teması</string>
     <string name="popup_remember_size_pos_title">Ani pəncərə xüsusiyyətlərini xatırla</string>
     <string name="popup_remember_size_pos_summary">Ani pəncərənin son ölçüsü və mövqeyini xatırla</string>
     <string name="video_streams_empty">Video yayımı tapılmadı</string>
@@ -657,7 +657,7 @@
     <string name="no_playlist_bookmarked_yet">Hələ,əlfəcinlənmiş pleylistlər yoxdur</string>
     <string name="override_current_data">Bu, cari quraşdırmanızı ləğv edəcək.</string>
     <string name="enqueue_stream">Növbəyə qoy</string>
-    <string name="disable_media_tunneling_summary">Qara ekranla qarşılaşsanız və ya videonu oynatdıqda səs qırılarsa, media tunelini deaktiv edin</string>
+    <string name="disable_media_tunneling_summary">Qara ekranla qarşılaşsanız və ya videonu oynatdıqda səs pozularsa, media tunelin qeyri-aktiv edin</string>
     <string name="enqueued_next">Növbəti sıraya salındı</string>
     <string name="start_here_on_background">Fonda oynatmağa başla</string>
     <string name="loading_stream_details">Yayım təfərrüatları yüklənir…</string>
@@ -756,4 +756,10 @@
     <string name="audio_track_type_descriptive">təsviri</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Həmişə ExoPlayer-in video çıxış səthi tənzimləməsin istifadə et</string>
     <string name="progressive_load_interval_summary">Qabaqcıl məzmunda yükləmə aralığı həcmin dəyişdir (hazırda %s). Daha aşağı dəyər onların ilkin yüklənilməsin sürətləndirə bilər</string>
+    <string name="no_streams">Yayım yoxdur</string>
+    <string name="no_live_streams">Canlı yayım yoxdur</string>
+    <string name="disable_media_tunneling_automatic_info">Media tunelləmə cihazınızda standart olaraq qeyri-aktiv edilib, çünki cihazınızın modelinin bunu dəstəkləmədiyi məlumdur.</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="main_tabs_position_title">Əsas səhifə mövqeyi</string>
+    <string name="main_tabs_position_summary">Əsas səhifə seçicini aşağıya köçür</string>
 </resources>

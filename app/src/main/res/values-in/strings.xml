@@ -747,4 +747,22 @@
     <string name="main_tabs_position_title">Posisi tab utama</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">Terowongan media dinonaktifkan secara bawaan di perangkat Anda karena model perangkat Anda tidak mendukungnya.</string>
+    <string name="no_live_streams">Tidak ada siaran langsung</string>
+    <string name="channel_tab_videos">Video</string>
+    <string name="metadata_subscribers">Pelanggan</string>
+    <string name="show_channel_tabs_summary">Tab apa saja yang ditampilkan di halaman saluran</string>
+    <string name="show_channel_tabs">Tab saluran</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Memuat Metadata…</string>
+    <string name="feed_fetch_channel_tabs">Dapatjan tab saluran</string>
+    <string name="channel_tab_about">Tentang</string>
+    <string name="metadata_banner_url">URL banner</string>
+    <string name="channel_tab_albums">Album</string>
+    <string name="feed_fetch_channel_tabs_summary">Tab untuk didapatkan ketika memperarui umpan. Opsi ini tidak memiliki efek jika saluran diperbarui menggunakan mode cepat.</string>
+    <string name="metadata_avatar_url">URL avatar</string>
+    <string name="channel_tab_playlists">Daftar putar</string>
+    <string name="channel_tab_tracks">Trek</string>
+    <string name="no_streams">Tidak ada saluran</string>
+    <string name="channel_tab_channels">Saluran</string>
+    <string name="channel_tab_livestreams">Langsung</string>
 </resources>

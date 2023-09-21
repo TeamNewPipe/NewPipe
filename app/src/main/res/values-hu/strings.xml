@@ -757,4 +757,9 @@
     <string name="remove_duplicates_title">Eltávolítja az ismétlődéseket\?</string>
     <string name="remove_duplicates_message">Eltávolítja az összes ismétlődő közvetítést ebből a lejátszólistáról\?</string>
     <string name="audio_track_type_original">eredeti</string>
+    <string name="main_tabs_position_title">Kezdőlap pozíció</string>
+    <string name="disable_media_tunneling_automatic_info">A médiacsatornázás alapértelmezés szerint le van tiltva az Ön készülékén, mivel az Ön készülékmodellje nem támogatja azt.</string>
+    <string name="main_tabs_position_summary">Kezdőlap választó alulra helyezése</string>
+    <string name="no_live_streams">Nincs élő adatfolyam</string>
+    <string name="no_streams">Nincs adatfolyam</string>
 </resources>

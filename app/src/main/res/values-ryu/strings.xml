@@ -765,4 +765,20 @@
     <string name="audio_track_type_original">オリジナル</string>
     <string name="no_streams">ストリームーあいびらん</string>
     <string name="no_live_streams">ライブーいしのーあいびらん</string>
+    <string name="channel_tab_videos">ちゃーしが</string>
+    <string name="metadata_subscribers">とうるくさゃ</string>
+    <string name="show_channel_tabs_summary">チャンネルページんかいひょうじさりーんタブ</string>
+    <string name="show_channel_tabs">チャンネルタブ</string>
+    <string name="channel_tab_shorts">ショート</string>
+    <string name="loading_metadata_title">メタじょうほうゆみくどーいびーん…</string>
+    <string name="feed_fetch_channel_tabs">チャンネルタブしーゅとぅくしーん</string>
+    <string name="channel_tab_about">しょうさい</string>
+    <string name="metadata_banner_url">バナーぬURL</string>
+    <string name="channel_tab_albums">アルバム</string>
+    <string name="feed_fetch_channel_tabs_summary">フィードこうしんすんとぅちなしゅとぅくしーんタブ。 こうすくモードさしてぃチャンネルこうしんすーあえー、かんがぬあいびらん。</string>
+    <string name="metadata_avatar_url">アバターぬURL</string>
+    <string name="channel_tab_playlists">プレイリスト</string>
+    <string name="channel_tab_tracks">トラック</string>
+    <string name="channel_tab_channels">チャンネル</string>
+    <string name="channel_tab_livestreams">ライブ</string>
 </resources>

@@ -779,4 +779,20 @@
     <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
     <string name="no_streams">Немає трансляцій</string>
     <string name="no_live_streams">Немає трансляцій наживо</string>
+    <string name="channel_tab_videos">Відео</string>
+    <string name="metadata_subscribers">Підписники</string>
+    <string name="show_channel_tabs_summary">Які вкладки показуються на сторінках каналів</string>
+    <string name="show_channel_tabs">Вкладки каналу</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Завантаження метаданих…</string>
+    <string name="feed_fetch_channel_tabs">Отримання вкладок каналу</string>
+    <string name="channel_tab_about">Про канал</string>
+    <string name="metadata_banner_url">URL банера</string>
+    <string name="channel_tab_albums">Альбоми</string>
+    <string name="feed_fetch_channel_tabs_summary">Отримувані вкладки під час оновлення стрічки. Ця опція не застосовується, якщо канал оновлюється за допомогою швидкого режиму.</string>
+    <string name="metadata_avatar_url">URL аватара</string>
+    <string name="channel_tab_playlists">Добірки</string>
+    <string name="channel_tab_tracks">Доріжки</string>
+    <string name="channel_tab_channels">Канали</string>
+    <string name="channel_tab_livestreams">Наживо</string>
 </resources>
