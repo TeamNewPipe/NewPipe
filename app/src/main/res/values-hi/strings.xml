@@ -778,4 +778,15 @@
     <string name="channel_tab_tracks">ट्रैक्स</string>
     <string name="channel_tab_channels">चैनल्स</string>
     <string name="channel_tab_livestreams">लाइव</string>
+    <string name="toggle_screen_orientation">स्क्रीन ओरिएंटेशन टॉगल करें</string>
+    <string name="toggle_fullscreen">फ़ुलस्क्रीन टॉगल करें</string>
+    <string name="next_stream">अगली स्ट्रीम</string>
+    <string name="open_play_queue">प्ले कतार खोलें</string>
+    <string name="forward">फॉरवर्ड करें</string>
+    <string name="rewind">रिवाइंड करें</string>
+    <string name="replay">पुनः चलाएं</string>
+    <string name="play">चलाएं</string>
+    <string name="more_options">अधिक विकल्प</string>
+    <string name="duration">अवधि</string>
+    <string name="previous_stream">पिछली स्ट्रीम</string>
 </resources>
