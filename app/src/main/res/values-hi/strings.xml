@@ -245,10 +245,8 @@
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
     <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग ऐप को अनुत्तरदायी बना सकता है</string>
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
-    <string name="download_thumbnail_title">थंमनेल लोड करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5, 15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
-    <string name="download_thumbnail_summary">डेटा खपत, मेमोरी उपयोग की बचत और थंमनेल लोड होने से रोकने के लिए बंद करें। इस बदलाव से इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों मिट जाते हैं</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
     <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
@@ -618,7 +616,6 @@
     <string name="crash_the_app">ऐप को क्रैश करें</string>
     <string name="metadata_category">श्रेणी</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">आपसे पूछा जाएगा कि प्रत्येक डाउनलोड को कहां सहेजना है</string>
-    <string name="metadata_thumbnail_url">थंमनेल यूआरएल</string>
     <string name="off">ऑफ़</string>
     <string name="feed_update_threshold_option_always_update">हमेशा अपडेट करें</string>
     <string name="description_select_disable">विवरण में पाठ का चयन अक्षम करें</string>

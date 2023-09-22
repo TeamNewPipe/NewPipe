@@ -73,7 +73,6 @@
     <string name="clear_queue_confirmation_summary">Prebacivanje sa jednog pokretača na drugi bi van moglo zamijeniti pokretni red</string>
     <string name="show_comments_summary">Isključite da sakrijete komentare</string>
     <string name="clear_queue_confirmation_title">Pitajte za potvrdu prije isčišćavanja reda</string>
-    <string name="download_thumbnail_summary">Isključite kako bi ste spriječili učitavanje sličica, sto če vam spasiti korištenje podataka i memorije. Promjene čiste slike oboje u memoriji i predmešiju na disku</string>
     <string name="show_comments_title">Prikažite komentare</string>
     <string name="show_next_and_similar_title">Pokažite \'Sljedeće\' i \'Slične\' video zapise</string>
     <string name="show_description_title">Prikažite opis</string>
@@ -115,5 +114,4 @@
     <string name="play_with_kodi_title">Pokrenite s KODI-jem</string>
     <string name="seek_duration_title">Vrijeme premotavanja naprijed/nazad</string>
     <string name="clear_queue_confirmation_description">Aktivni pokretni red će biti zamijenjen</string>
-    <string name="download_thumbnail_title">Učitajte sličice</string>
 </resources>

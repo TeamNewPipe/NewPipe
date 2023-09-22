@@ -140,8 +140,6 @@
     <string name="seek_duration_title">দ্রুত-ফরওয়ার্ড/-পুনরায় সন্ধান সময়কাল</string>
     <string name="show_comments_summary">মন্তব্যসমূহ লুকাতে বন্ধ করুন</string>
     <string name="show_comments_title">মন্তব্যসমূহ দেখাও</string>
-    <string name="download_thumbnail_title">থাম্বনেইল লোড করো</string>
-    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে।</string>
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মোছা হয়েছে</string>
     <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
     <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মোছ</string>

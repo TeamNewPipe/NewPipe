@@ -473,10 +473,8 @@
     <string name="metadata_cache_wipe_summary">Boga totu sos datos de sa pàgina web in sa memòria temporànea</string>
     <string name="metadata_cache_wipe_title">Iscantzella sos metadatos in sa memòria temporànea</string>
     <string name="thumbnail_cache_wipe_complete_notice">Memòria temporànea de sas immàgines isboidada</string>
-    <string name="download_thumbnail_summary">Istuda pro prevènnere su carrigamentu de sas miniaduras, su sarvamentu de sos datos e s\'impreu de sa memòria. Sas modìficas ant a isbodiare siat sa memòria temporànea de sa memòria siat cussa de su discu</string>
     <string name="show_comments_summary">Istuda pro cuare sos cummentos</string>
     <string name="show_comments_title">Ammustra sos cummentos</string>
-    <string name="download_thumbnail_title">Càrriga sas miniaduras</string>
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
     <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
@@ -604,7 +602,6 @@
     <string name="metadata_privacy_unlisted">No elencadu</string>
     <string name="metadata_privacy_private">Privadu</string>
     <string name="metadata_privacy_public">Pùblicu</string>
-    <string name="metadata_thumbnail_url">URL de sa miniadura</string>
     <string name="metadata_host">Istrangiadore</string>
     <string name="metadata_support">Suportu</string>
     <string name="metadata_language">Limba</string>

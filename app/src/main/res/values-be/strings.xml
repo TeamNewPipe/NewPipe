@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
     <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру знаходзіць пазіцыі хутчэй са зніжанай дакладнасцю. Пошук цягам 5, 15 ці 25 секунд пры гэтым немажлівы</string>
-    <string name="download_thumbnail_title">Загружаць мініяцюры</string>
-    <string name="download_thumbnail_summary">Адключыце, каб не загружаць мініяцюры і зэканоміць трафік і памяць. Змена налады ачысьціць кэш малюнкаў</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш малюнкаў ачышчаны</string>
     <string name="metadata_cache_wipe_title">Ачысціць кэш метададзеных</string>
     <string name="metadata_cache_wipe_summary">Выдаліць усе загружаныя дадзеныя вэб-старонак</string>
@@ -700,7 +698,6 @@
     <string name="metadata_tags">Тэгі</string>
     <string name="metadata_licence">Ліцэнзія</string>
     <string name="metadata_host">Хост</string>
-    <string name="metadata_thumbnail_url">URL мініяцюры</string>
     <string name="metadata_privacy_unlisted">Не ў спісе</string>
     <string name="metadata_privacy_private">Прыватная</string>
     <string name="enumeration_comma">,</string>

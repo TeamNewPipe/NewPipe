@@ -218,7 +218,6 @@
     <string name="show_info">Prikaži informacije</string>
     <string name="tab_bookmarks">Zabilježene playliste</string>
     <string name="controls_add_to_playlist_title">Dodaj u</string>
-    <string name="download_thumbnail_title">Učitaj sličice</string>
     <string name="thumbnail_cache_wipe_complete_notice">Slikovna predmemorija obrisana</string>
     <string name="metadata_cache_wipe_title">Izbriši metapodatke iz predmemorije</string>
     <string name="channels">Kanali</string>
@@ -312,7 +311,6 @@
     <string name="app_update_available_notification_title">Dostupna je nova verzija za NewPipe!</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="show_error">Prikaži pogrešku</string>
-    <string name="download_thumbnail_summary">Isključi za sprečavanje učitavanja sličica, čime se štedi korištenje podataka i memorije. Promjene čiste predmemoriju slika radne memorije i diska</string>
     <string name="metadata_cache_wipe_summary">Izbriši sve podatke web-stranica iz predmemorije</string>
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj sljedeći stream u popisa izvođenja</string>
@@ -618,7 +616,6 @@
     <string name="metadata_privacy_private">Privatno</string>
     <string name="metadata_privacy_unlisted">Nenavedeno</string>
     <string name="metadata_privacy_public">Javno</string>
-    <string name="metadata_thumbnail_url">URL sličice</string>
     <string name="metadata_host">Poslužitelj</string>
     <string name="metadata_support">Podrška</string>
     <string name="metadata_language">Jezik</string>

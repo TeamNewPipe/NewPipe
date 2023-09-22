@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Pea hüpikakna viimane suurus ja asukoht meeles</string>
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
     <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab meediamängijal otsida asukohta kiiremini täpsuse arvel. Sellega ei tööta 5, 15 või 25 sekundi kaupa kerimine</string>
-    <string name="download_thumbnail_title">Laadi pisipildid</string>
-    <string name="download_thumbnail_summary">Lülita välja, et keelata pisipiltide laadimist, andmete salvestamist ja mälukasutust. Muutmine puhastab vahemälu nii kettal kui ka mälus</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pildid kustutati vahemälust</string>
     <string name="metadata_cache_wipe_title">Kustuta metaandmed vahemälust</string>
     <string name="metadata_cache_wipe_summary">Kustuta veebilehtede andmed vahemälust</string>
@@ -586,7 +584,6 @@
     <string name="metadata_privacy_internal">Sisemine</string>
     <string name="metadata_privacy_private">Privaatne</string>
     <string name="metadata_privacy_public">Avalik</string>
-    <string name="metadata_thumbnail_url">Pisipildi URL</string>
     <string name="metadata_support">Kasutajatugi</string>
     <string name="metadata_language">Keel</string>
     <string name="metadata_age_limit">Vanusepiir</string>

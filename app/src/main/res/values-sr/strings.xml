@@ -201,8 +201,6 @@
     <string name="hold_to_append">Задржи за стављање у ред</string>
     <string name="use_inexact_seek_title">Користи брзо, непрецизно премотавање</string>
     <string name="use_inexact_seek_summary">Непрецизно премотавање омогућава плејеру да брже долази до позиције уз смањену прецизност. Премотавање за 5, 15 или 25 секунди са овом опцијом не ради</string>
-    <string name="download_thumbnail_title">Учитај сличице</string>
-    <string name="download_thumbnail_summary">Искључите да спречите преузимање сличица, смањујући утрошак преноса података и меморије. Изменом ће се очистити и меморијски и диск кеш</string>
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>
     <string name="metadata_cache_wipe_title">Уклони кеширане метаподатке</string>
     <string name="metadata_cache_wipe_summary">Уклања све податке кешираних веб-страна</string>
@@ -614,7 +612,6 @@
     <string name="metadata_privacy_private">лично</string>
     <string name="metadata_privacy_unlisted">ненаведено</string>
     <string name="metadata_privacy_public">јавно</string>
-    <string name="metadata_thumbnail_url">УРЛ сличице</string>
     <string name="metadata_host">Домаћин</string>
     <string name="metadata_support">Подршка</string>
     <string name="metadata_language">Језик</string>

@@ -243,7 +243,6 @@
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
     <string name="use_inexact_seek_summary">خاصية التقديم الغير دقيق تسمح للمشغل بالقفز خلال الفديو بشكل أسرع مع دقة قفز أقل. خاصية القفز ل5، 15 او 25 لا تعمل مع القفز الغير دقيق</string>
-    <string name="download_thumbnail_title">تحميل الصور المصغرة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
     <string name="invalid_directory">لا يوجد مثل هذا المجلد</string>
@@ -260,7 +259,6 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">معرفك, soundcloud.com/هويتك</string>
-    <string name="download_thumbnail_summary">قم بإيقاف تشغيله لمنع تحميل الصور المصغرة وحفظ البيانات واستخدام الذاكرة. تمسح التغييرات كلاً من ذاكرة التخزين المؤقت للصورة الموجودة في الذاكرة والموجودة على القرص</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفيّة المخزّنة مؤقّتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقّتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقتّة للبيانات الوصفيّة</string>
@@ -644,7 +642,6 @@
     <string name="metadata_privacy_private">خاص</string>
     <string name="metadata_privacy_unlisted">غير مدرج</string>
     <string name="metadata_privacy_public">عامة</string>
-    <string name="metadata_thumbnail_url">رابط الصورة المصغرة</string>
     <string name="metadata_host">المضيف</string>
     <string name="metadata_support">الدعم</string>
     <string name="metadata_language">اللغة</string>

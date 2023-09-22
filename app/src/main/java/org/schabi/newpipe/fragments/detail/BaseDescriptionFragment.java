@@ -4,7 +4,13 @@ import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +29,12 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentDescriptionBinding;
 import org.schabi.newpipe.databinding.ItemMetadataBinding;
 import org.schabi.newpipe.databinding.ItemMetadataTagsBinding;
+import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.text.TextLinkifier;
 
 import java.util.List;
@@ -173,6 +181,74 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
         itemBinding.metadataContentView.setClickable(true);
 
+        layout.addView(itemBinding.getRoot());
+    }
+
+    private String imageSizeToText(final int heightOrWidth) {
+        if (heightOrWidth < 0) {
+            return getString(R.string.question_mark);
+        } else {
+            return String.valueOf(heightOrWidth);
+        }
+    }
+
+    protected void addImagesMetadataItem(final LayoutInflater inflater,
+                                         final LinearLayout layout,
+                                         @StringRes final int type,
+                                         final List<Image> images) {
+        final String preferredImageUrl = ImageStrategy.choosePreferredImage(images);
+        if (preferredImageUrl == null) {
+            return; // null will be returned in case there is no image
+        }
+
+        final ItemMetadataBinding itemBinding =
+                ItemMetadataBinding.inflate(inflater, layout, false);
+        itemBinding.metadataTypeView.setText(type);
+
+        final SpannableStringBuilder urls = new SpannableStringBuilder();
+        for (final Image image : images) {
+            if (urls.length() != 0) {
+                urls.append(", ");
+            }
+            final int entryBegin = urls.length();
+
+            if (image.getHeight() != Image.HEIGHT_UNKNOWN
+                    || image.getWidth() != Image.WIDTH_UNKNOWN
+                    // if even the resolution level is unknown, ?x? will be shown
+                    || image.getEstimatedResolutionLevel() == Image.ResolutionLevel.UNKNOWN) {
+                urls.append(imageSizeToText(image.getHeight()));
+                urls.append('x');
+                urls.append(imageSizeToText(image.getWidth()));
+            } else {
+                switch (image.getEstimatedResolutionLevel()) {
+                    case LOW:
+                        urls.append(getString(R.string.image_quality_low));
+                        break;
+                    default: // unreachable, Image.ResolutionLevel.UNKNOWN is already filtered out
+                    case MEDIUM:
+                        urls.append(getString(R.string.image_quality_medium));
+                        break;
+                    case HIGH:
+                        urls.append(getString(R.string.image_quality_high));
+                        break;
+                }
+            }
+
+            urls.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull final View widget) {
+                    ShareUtils.openUrlInBrowser(requireContext(), image.getUrl());
+                }
+            }, entryBegin, urls.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            if (preferredImageUrl.equals(image.getUrl())) {
+                urls.setSpan(new StyleSpan(Typeface.BOLD), entryBegin, urls.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
+        itemBinding.metadataContentView.setText(urls);
+        itemBinding.metadataContentView.setMovementMethod(LinkMovementMethod.getInstance());
         layout.addView(itemBinding.getRoot());
     }
 

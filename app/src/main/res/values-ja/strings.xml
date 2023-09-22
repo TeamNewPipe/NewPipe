@@ -196,7 +196,6 @@
     <string name="controls_download_desc">動画をダウンロード</string>
     <string name="show_info">情報を表示</string>
     <string name="tab_bookmarks">ブックマークしたプレイリスト</string>
-    <string name="download_thumbnail_title">サムネイルを読み込む</string>
     <string name="thumbnail_cache_wipe_complete_notice">画像キャッシュを消去しました</string>
     <string name="metadata_cache_wipe_title">キャッシュを消去</string>
     <string name="metadata_cache_wipe_summary">アプリ内のキャッシュデータをすべて削除します</string>
@@ -254,7 +253,6 @@
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません</string>
-    <string name="download_thumbnail_summary">サムネイルの読み込みと保存を無効化します。(このオプションを切り替えるとメモリとディスク上の画像キャッシュが消去されます)</string>
     <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
@@ -602,7 +600,6 @@
     <string name="metadata_language">言語</string>
     <string name="metadata_support">サポート</string>
     <string name="metadata_host">ホスト</string>
-    <string name="metadata_thumbnail_url">サムネイルの URL</string>
     <string name="open_website_license">ウェブサイトを開く</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードのたびに保存する場所を尋ねます</string>
     <string name="no_dir_yet">ダウンロードフォルダーがまだ設定されていません。今すぐデフォルトのフォルダーを選択してください</string>

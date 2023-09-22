@@ -374,8 +374,6 @@
     <string name="enable_playback_resume_summary">Atstatyti paskutinį atkūrimo laiką</string>
     <string name="enable_playback_resume_title">Tęsti atkūrimą</string>
     <string name="show_description_title">Rodyti aprašymą</string>
-    <string name="download_thumbnail_summary">Norėdami taupyti duomenų srautą, atminties naudojimą išjunkite. Pakeitimai išvalys duomenis atmintyje ir diske</string>
-    <string name="download_thumbnail_title">Įkelti miniatiūras</string>
     <string name="clear_queue_confirmation_description">Aktyvaus grotuvo eilė bus pakeista</string>
     <string name="clear_queue_confirmation_summary">Perjungimas iš vieno grotuvo į kitą gali pakeisti jūsų eilę</string>
     <string name="clear_queue_confirmation_title">Prieš išvalant eilę prašyti patvirtinimo</string>
@@ -619,7 +617,6 @@
     <string name="metadata_privacy_public">Viešas</string>
     <string name="metadata_privacy_private">Privatus</string>
     <string name="metadata_privacy_unlisted">Neįtrauktas į sąrašą</string>
-    <string name="metadata_thumbnail_url">Paveikslėlio URL</string>
     <string name="metadata_host">Serveris</string>
     <string name="metadata_support">Pagalba</string>
     <string name="metadata_language">Kalba</string>

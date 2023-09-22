@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
     <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
     <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے۔ 5 ، 15 یا 25 سیکنڈ کی تلاش اس کے ساتھ کام نہیں کرتی ہے:</string>
-    <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
-    <string name="download_thumbnail_summary">ڈیٹا کی بچت اور میموری کے استعمال کو روکنے کیلئے تھمب نیل کو بند کریں۔ تبدیلیاں میموری اور آن ڈسک ایمیج کیشے کو صاف کریں گی</string>
     <string name="thumbnail_cache_wipe_complete_notice">تصویری کیشے کی صفائی ہوئی</string>
     <string name="metadata_cache_wipe_title">کیشے میٹا ڈیٹا کو صاف کریں</string>
     <string name="metadata_cache_wipe_summary">ویب پیج کے سبھی کیشے ڈیٹا کو ہٹا دیں</string>

@@ -101,7 +101,6 @@
     <string name="clear_queue_confirmation_title">ଏକ ଧାଡି ସଫା କରିବା ପୂର୍ବରୁ ନିଶ୍ଚିତକରଣ ମାଗନ୍ତୁ</string>
     <string name="clear_queue_confirmation_summary">ଗୋଟିଏ ଖେଳାଳୀରୁ ଅନ୍ୟ ଖେଳାଳୀକୁ ପରିବର୍ତ୍ତନ କରିବା ଆପଣଙ୍କ ଧାଡି ବଦଳାଇପାରେ</string>
     <string name="clear_queue_confirmation_description">ସକ୍ରିୟ ପ୍ଲେୟାର କ୍ୟୁ ବଦଳାଯିବ</string>
-    <string name="download_thumbnail_title">ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="show_next_and_similar_title">\'ପରବର୍ତ୍ତୀ\' ଏବଂ \'ସମାନ\' ଭିଡିଓଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="show_description_title">ବର୍ଣ୍ଣନା ଦେଖାନ୍ତୁ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ପ୍ରତିଛବି କ୍ୟାଚ୍ ପୋଛି ଦିଆଗଲା</string>
@@ -149,7 +148,6 @@
     <string name="settings_category_video_audio_title">ଵିଡ଼ିଓ ଓ ଅଡ଼ିଓ</string>
     <string name="start_main_player_fullscreen_summary">ମିନି ପ୍ଲେୟାରରେ ଭିଡିଓ ଆରମ୍ଭ କରନ୍ତୁ ନାହିଁ, କିନ୍ତୁ ଅଟୋ ଘୂର୍ଣ୍ଣନ ବନ୍ଦ ହୋଇଗଲେ ସିଧାସଳଖ ଫୁଲ୍ ସ୍କ୍ରିନ୍ ମୋଡ୍ କୁ ଯାଆନ୍ତୁ। ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଛାଡି ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ମିନି ପ୍ଲେୟାରକୁ ପ୍ରବେଶ କରିପାରିବେ</string>
     <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ୍ କରି ନିମ୍ନରେ ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟ ସଂପାଦନ କରନ୍ତୁ। ଡାହାଣରେ ଥିବା ଚେକ୍ ବକ୍ସ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦେଖାଯିବାକୁ ସେମାନଙ୍କ ମଧ୍ୟରୁ ତିନୋଟି ପର୍ଯ୍ୟନ୍ତ ଚୟନ କରନ୍ତୁ</string>
-    <string name="download_thumbnail_summary">ଥମ୍ବନେଲ ଲୋଡିଂ, ଡାଟା ଏବଂ ମେମୋରୀ ବ୍ୟବହାରକୁ ରୋକିବା ପାଇଁ ବନ୍ଦ କରନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ଉଭୟ ଇନ-ମେମୋରୀ ଏବଂ ଅନ୍-ଡିସ୍କ ଇମେଜ୍ କ୍ୟାଚ୍ ସଫା କରେ</string>
     <string name="show_meta_info_summary">ଷ୍ଟ୍ରିମ୍ ସୃଷ୍ଟିକର୍ତ୍ତା, ଷ୍ଟ୍ରିମ୍ ବିଷୟବସ୍ତୁ କିମ୍ବା ଏକ ସନ୍ଧାନ ଅନୁରୋଧ ବିଷୟରେ ଅତିରିକ୍ତ ସୂଚନା ସହିତ ମେଟା ସୂଚନା ବାକ୍ସଗୁଡ଼ିକୁ ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="show_age_restricted_content_summary">ପିଲାମାନଙ୍କ ପାଇଁ ସମ୍ଭବତ content ଅନୁପଯୁକ୍ତ ବିଷୟବସ୍ତୁ ଦେଖାନ୍ତୁ କାରଣ ଏହାର ବୟସ ସୀମା ଅଛି (ଯେପରିକି 18+)</string>
     <string name="restricted_video_no_stream">ଏହି ଭିଡିଓ ବୟସ-ସୀମିତ ଅଟେ ।
@@ -421,7 +419,6 @@
     <string name="drawer_header_description">ଟୋଗଲ୍ ସେବା, ବର୍ତ୍ତମାନ ମନୋନୀତ:</string>
     <string name="give_back">ଫେରସ୍ତ କର</string>
     <string name="overwrite">ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ</string>
-    <string name="metadata_thumbnail_url">ଥମ୍ବନେଲ୍ URL</string>
     <string name="metadata_host">ହୋଷ୍ଟ</string>
     <string name="metadata_privacy_public">ସାର୍ଵଜନୀନ</string>
     <string name="metadata_privacy_unlisted">ତାଲିକାଭୁକ୍ତ ନୁହେଁ</string>

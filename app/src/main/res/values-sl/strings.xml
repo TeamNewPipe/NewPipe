@@ -198,7 +198,6 @@
     <string name="create">Ustvari</string>
     <string name="dismiss">Opusti</string>
     <string name="rename">Preimenuj</string>
-    <string name="download_thumbnail_title">Naloži sličice</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="downloads_storage_use_saf_title">Uporabi SAF</string>
     <string name="downloads_storage_ask_title">Vprašaj kam shraniti</string>
@@ -309,7 +308,6 @@
     <string name="metadata_cache_wipe_complete_notice">Predpomnjeni metapodatki so bili odstranjeni</string>
     <string name="show_meta_info_title">Prikaži meta informacije</string>
     <string name="show_comments_summary">Onemogoči da se ustavi prikazovanje komentarjev</string>
-    <string name="download_thumbnail_summary">Izklopite, če želite preprečiti nalaganje sličic, s tem bo varčeval na podatkih in uporabi spomina. Spremembe bodo izbrisale predpomnilnik v spominu in na disku</string>
     <string name="clear_queue_confirmation_description">Dejavna vrsta bo zamenjana</string>
     <string name="clear_queue_confirmation_summary">Preklop na drugi predvajanik lahko zamenja vašo čakalno vrsto</string>
     <string name="clear_queue_confirmation_title">Vprašaj za potrditev pred čiščenjem vrste</string>

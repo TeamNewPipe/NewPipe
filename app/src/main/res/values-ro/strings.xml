@@ -181,8 +181,6 @@
     <string name="controls_add_to_playlist_title">Salvare în</string>
     <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
-    <string name="download_thumbnail_title">Încarcă miniaturi</string>
-    <string name="download_thumbnail_summary">Dezactivați pentru a preveni încărcarea miniaturilor, economisirea datelor și utilizarea memoriei. Modificările șterg atât memoria cache a imaginilor în memorie, cât și pe disc</string>
     <string name="thumbnail_cache_wipe_complete_notice">Datele cache de imagini au fost șterse</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
@@ -620,7 +618,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Nelistat</string>
     <string name="metadata_privacy_public">Public</string>
-    <string name="metadata_thumbnail_url">URL miniatură</string>
     <string name="metadata_host">Gazdă</string>
     <string name="metadata_support">Sprijin</string>
     <string name="metadata_language">Limbă</string>

@@ -288,8 +288,6 @@
     <string name="import_network_expensive_warning">Esta operación puede causar un uso intensivo de la red.
 \n
 \n¿Quieres continuar\?</string>
-    <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
     <string name="metadata_cache_wipe_title">Vaciar metadatos en memoria caché</string>
     <string name="metadata_cache_wipe_summary">Quitar todos los datos guardados de páginas web</string>
@@ -616,7 +614,6 @@
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_unlisted">No listado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL de la miniatura</string>
     <string name="metadata_support">Soporte</string>
     <string name="metadata_language">Lenguaje</string>
     <string name="metadata_age_limit">Límite de edad</string>

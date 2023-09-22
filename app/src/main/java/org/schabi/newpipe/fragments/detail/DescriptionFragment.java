@@ -112,8 +112,13 @@ public class DescriptionFragment extends BaseDescriptionFragment {
                 streamInfo.getSupportInfo());
         addMetadataItem(inflater, layout, true, R.string.metadata_host,
                 streamInfo.getHost());
-        addMetadataItem(inflater, layout, true, R.string.metadata_thumbnail_url,
-                streamInfo.getThumbnailUrl());
+
+        addImagesMetadataItem(inflater, layout, R.string.metadata_thumbnails,
+                streamInfo.getThumbnails());
+        addImagesMetadataItem(inflater, layout, R.string.metadata_uploader_avatars,
+                streamInfo.getUploaderAvatars());
+        addImagesMetadataItem(inflater, layout, R.string.metadata_subchannel_avatars,
+                streamInfo.getSubChannelAvatars());
     }
 
     private void addPrivacyMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {

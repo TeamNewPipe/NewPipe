@@ -206,8 +206,6 @@
 \n3. Anicia sesión cuando se te pida
 \n4. Copia la URL del perfil al que te redirixeron.</string>
     <string name="import_soundcloud_instructions_hint">soundcloud.com/LaToID</string>
-    <string name="download_thumbnail_title">Cargar les miniatures</string>
-    <string name="download_thumbnail_summary">Desactiva esta opción pa eviar la carga de miniatures y aforrar datos y usu de memoria. Los cambeos llimpien la caché d\'imáxenes temporal y permanente.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar d\'aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>

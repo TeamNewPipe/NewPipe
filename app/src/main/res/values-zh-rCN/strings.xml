@@ -46,7 +46,6 @@
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>
     <string name="file">文件</string>
-    <string name="download_thumbnail_title">加载封面</string>
     <string name="clear_views_history_title">清空播放历史</string>
     <string name="minimize_on_exit_none_description">无</string>
     <string name="minimize_on_exit_background_description">最小化至后台播放</string>
@@ -310,7 +309,6 @@
     <string name="import_network_expensive_warning">该操作消耗大量流量，
 \n
 \n你想继续吗？</string>
-    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用。切换该选项将立即清除内存与存储中的图片缓存</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
     <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
     <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
@@ -595,7 +593,6 @@
     <string name="metadata_privacy_private">私享</string>
     <string name="metadata_privacy_unlisted">未分类</string>
     <string name="metadata_privacy_public">公开</string>
-    <string name="metadata_thumbnail_url">缩略图 URL</string>
     <string name="metadata_host">所在服务器</string>
     <string name="metadata_support">支持</string>
     <string name="metadata_language">语言</string>

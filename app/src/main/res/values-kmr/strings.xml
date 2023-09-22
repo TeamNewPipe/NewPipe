@@ -242,8 +242,6 @@
     <string name="show_next_and_similar_title">Vîdyoyên \'Pêş\' û \'Bi vî rengî\' nîşan bidin</string>
     <string name="show_comments_summary">Zivirandin da ku şîroveyan veşêrin</string>
     <string name="show_comments_title">Şîroveyan nîşan bide</string>
-    <string name="download_thumbnail_summary">Ji bo pêşîgirtina li barkirina nîgarkêşan, daneya daneyê û karanîna bîranînê xilas bibe vemirînin. Guherandinên kaşeya wêneyê hem di bîra û hem jî li ser dîskê paqij dikin.</string>
-    <string name="download_thumbnail_title">Nîgarên barkêş</string>
     <string name="clear_queue_confirmation_description">Dê rêza lîstikvanê çalak were guhertin</string>
     <string name="clear_queue_confirmation_summary">Guhertina ji lîstikvanek bi yeke din dibe ku dewsa dorê we bigire</string>
     <string name="clear_queue_confirmation_title">Berî paqijkirina dorê ji pejirandinê bipirsin</string>

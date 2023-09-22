@@ -298,8 +298,6 @@
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
 \n 
 \nПродолжить?</string>
-    <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -631,7 +629,6 @@
     <string name="metadata_privacy_private">Приватная</string>
     <string name="metadata_privacy_unlisted">Не в списке</string>
     <string name="metadata_privacy_public">Публичная</string>
-    <string name="metadata_thumbnail_url">URL миниатюры</string>
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
     <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>
