@@ -1,0 +1,15 @@
+Nové
+• Podpora viacerých zvukových skladieb / jazykov
+• Umožňuje nastaviť objem a jasové gestá na každej strane obrazovky
+• Podpora pre zobrazenie hlavných bodov v dolnej časti obrazovky
+
+Zlepšené
+• [Bandcamp] podpora skladieb dostupná pre predplatiteľov
+
+Opravené
+• [YouTube] 403 HTTP chýb pre streamy
+• Čierná obrazovka pri prepínaní do hlavného prehrávača zo zobraznia z playlistu
+• Pretečenie pamäte prehrávača
+• [PeerTube] Avatary uploadera a subkanála boli vymenené
+
+a viac
