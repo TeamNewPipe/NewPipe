@@ -778,4 +778,11 @@
     <string name="feed_fetch_channel_tabs">Tabs der Kanalseiten abrufen</string>
     <string name="feed_fetch_channel_tabs_summary">Tabs, die beim Aktualisieren des Feeds abgerufen werden. Diese Option hat keine Auswirkungen, wenn ein Kanal im Schnellmodus aktualisiert wird.</string>
     <string name="channel_tab_tracks">Titel</string>
+    <string name="toggle_screen_orientation">Bildschirmausrichtung umschalten</string>
+    <string name="toggle_fullscreen">Vollbildmodus umschalten</string>
+    <string name="open_play_queue">Wiedergabewarteschlange öffnen</string>
+    <string name="forward">Vorspulen</string>
+    <string name="rewind">Zurückspulen</string>
+    <string name="replay">Wiederholen</string>
+    <string name="play">Abspielen</string>
 </resources>
