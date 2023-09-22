@@ -195,7 +195,6 @@
     <string name="controls_download_desc">ちゃーしがダウンロード</string>
     <string name="show_info">じょうほうひょうじ</string>
     <string name="tab_bookmarks">ブックマークさるプレイリスト</string>
-    <string name="download_thumbnail_title">サムネイルゆみくむん</string>
     <string name="thumbnail_cache_wipe_complete_notice">やしがぞうキャッシュしーょうきょさびたん</string>
     <string name="metadata_cache_wipe_title">キャッシュしーょうきょ</string>
     <string name="metadata_cache_wipe_summary">アプリねーんぬキャッシュデータまじりさくじょさます</string>
@@ -253,7 +252,6 @@
     <string name="read_privacy_policy">プライバシーポリシーかくにん</string>
     <string name="use_inexact_seek_title">おおまかやるシーク</string>
     <string name="use_inexact_seek_summary">おおまかやるシークしようするくとぅっしさいどぅがさがいるかわりんかいこうすくんかいシークぬなやびーん。5びょう、15びょうあらんでぃ25びょうかんかくぬシークーなやびらん</string>
-    <string name="download_thumbnail_summary">サムネイルぬゆみくみとぅふずんんーかなやーさびーん。（くぬオプションきりけーいねーメモリとぅディスクじょうぬがぞうキャッシュぬしーょうきょさりやびーん）</string>
     <string name="auto_queue_summary">キューんかいかんりんちゃーがちいからちさいせいちづきーん（くいけーしさんーあい）</string>
     <string name="delete_view_history_alert">まじりぬさいせいりりきさちゅるじょさびーが？</string>
     <string name="delete_search_history_alert">まじりどぅきらんさくりりきさちゅるじょさびーが？</string>
@@ -611,7 +609,6 @@
     <string name="metadata_language">ぎんぐ</string>
     <string name="metadata_support">サポート</string>
     <string name="metadata_host">ホスト</string>
-    <string name="metadata_thumbnail_url">サムネイルぬURL</string>
     <string name="open_website_license">ウェブサイトふぃらちゅん</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードぬかーじにふずんすーしょたんにやびーん</string>
     <string name="no_dir_yet">ダウンロードフォルダーぬなーらしっていさりやびらん。なまちゃーきデフォルトぬフォルダーさんたくちくぃみそーれー</string>
@@ -773,10 +770,8 @@
     <string name="loading_metadata_title">メタじょうほうゆみくどーいびーん…</string>
     <string name="feed_fetch_channel_tabs">チャンネルタブしーゅとぅくしーん</string>
     <string name="channel_tab_about">しょうさい</string>
-    <string name="metadata_banner_url">バナーぬURL</string>
     <string name="channel_tab_albums">アルバム</string>
     <string name="feed_fetch_channel_tabs_summary">フィードこうしんすんとぅちなしゅとぅくしーんタブ。 こうすくモードさしてぃチャンネルこうしんすーあえー、かんがぬあいびらん。</string>
-    <string name="metadata_avatar_url">アバターぬURL</string>
     <string name="channel_tab_playlists">プレイリスト</string>
     <string name="channel_tab_tracks">トラック</string>
     <string name="channel_tab_channels">チャンネル</string>

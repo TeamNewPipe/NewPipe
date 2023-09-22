@@ -787,10 +787,8 @@
     <string name="loading_metadata_title">Завантаження метаданих…</string>
     <string name="feed_fetch_channel_tabs">Отримання вкладок каналу</string>
     <string name="channel_tab_about">Про канал</string>
-    <string name="metadata_banner_url">URL банера</string>
     <string name="channel_tab_albums">Альбоми</string>
     <string name="feed_fetch_channel_tabs_summary">Отримувані вкладки під час оновлення стрічки. Ця опція не застосовується, якщо канал оновлюється за допомогою швидкого режиму.</string>
-    <string name="metadata_avatar_url">URL аватара</string>
     <string name="channel_tab_playlists">Добірки</string>
     <string name="channel_tab_tracks">Доріжки</string>
     <string name="channel_tab_channels">Канали</string>

@@ -773,8 +773,6 @@
     <string name="show_channel_tabs_summary">Welche Tabs auf den Kanalseiten angezeigt werden</string>
     <string name="loading_metadata_title">Lade Metadaten …</string>
     <string name="channel_tab_about">Über</string>
-    <string name="metadata_banner_url">Banner-URL</string>
-    <string name="metadata_avatar_url">Avatar-URL</string>
     <string name="feed_fetch_channel_tabs">Tabs der Kanalseiten abrufen</string>
     <string name="feed_fetch_channel_tabs_summary">Tabs, die beim Aktualisieren des Feeds abgerufen werden. Diese Option hat keine Auswirkungen, wenn ein Kanal im Schnellmodus aktualisiert wird.</string>
     <string name="channel_tab_tracks">Titel</string>

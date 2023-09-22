@@ -778,9 +778,7 @@
     <string name="metadata_subscribers">Пратиоци</string>
     <string name="loading_metadata_title">Учитавање метаподатака…</string>
     <string name="feed_fetch_channel_tabs">Прикупи картице канала</string>
-    <string name="metadata_banner_url">URL банера</string>
     <string name="feed_fetch_channel_tabs_summary">Картице за прикупљање приликом ажурирања фида. Ова опција нема ефекта ако се канал ажурира у брзом режиму.</string>
-    <string name="metadata_avatar_url">URL аватара</string>
     <string name="channel_tab_videos">Видео снимци</string>
     <string name="show_channel_tabs_summary">Које картице се приказују на страницама канала</string>
     <string name="show_channel_tabs">Картице канала</string>

@@ -770,10 +770,8 @@
     <string name="loading_metadata_title">मेटाडेटा लोड हो रहा है…</string>
     <string name="feed_fetch_channel_tabs">चैनल टैब प्राप्त करें</string>
     <string name="channel_tab_about">बारे में</string>
-    <string name="metadata_banner_url">बैनर URL</string>
     <string name="channel_tab_albums">एल्बम्स</string>
     <string name="feed_fetch_channel_tabs_summary">फ़ीड अपडेट करते समय प्राप्त करने वाले टैब। यदि किसी चैनल को तेज़ मोड का उपयोग करके अपडेट किया जाता है तो इस विकल्प का कोई प्रभाव नहीं पड़ता है।</string>
-    <string name="metadata_avatar_url">अवतार URL</string>
     <string name="channel_tab_playlists">प्लेलिस्ट्स</string>
     <string name="channel_tab_tracks">ट्रैक्स</string>
     <string name="channel_tab_channels">चैनल्स</string>

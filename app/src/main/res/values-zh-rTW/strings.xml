@@ -757,10 +757,8 @@
     <string name="loading_metadata_title">正在載入詮釋資料……</string>
     <string name="feed_fetch_channel_tabs">擷取頻道分頁</string>
     <string name="channel_tab_about">關於</string>
-    <string name="metadata_banner_url">橫幅 URL</string>
     <string name="channel_tab_albums">專輯</string>
     <string name="feed_fetch_channel_tabs_summary">更新 feed 時要擷取的分頁。若使用快速模式更新頻道，則此選項無效。</string>
-    <string name="metadata_avatar_url">大頭照 URL</string>
     <string name="channel_tab_playlists">播放清單</string>
     <string name="channel_tab_tracks">軌道</string>
     <string name="channel_tab_channels">頻道</string>

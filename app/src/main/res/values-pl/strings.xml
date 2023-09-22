@@ -791,10 +791,8 @@
     <string name="loading_metadata_title">Ładowanie metadanych…</string>
     <string name="feed_fetch_channel_tabs">Pobieranie kart kanału</string>
     <string name="channel_tab_about">Informacje</string>
-    <string name="metadata_banner_url">Adres URL banera</string>
     <string name="channel_tab_albums">Albumy</string>
     <string name="feed_fetch_channel_tabs_summary">Karty do pobrania podczas aktualizacji kanału. Ta opcja nie działa, jeśli kanał jest aktualizowany w trybie szybkim</string>
-    <string name="metadata_avatar_url">Adres URL awatara</string>
     <string name="channel_tab_playlists">Playlisty</string>
     <string name="channel_tab_tracks">Utwory</string>
     <string name="channel_tab_channels">Kanały</string>

@@ -756,10 +756,8 @@
     <string name="loading_metadata_title">Memuat Metadata…</string>
     <string name="feed_fetch_channel_tabs">Dapatjan tab saluran</string>
     <string name="channel_tab_about">Tentang</string>
-    <string name="metadata_banner_url">URL banner</string>
     <string name="channel_tab_albums">Album</string>
     <string name="feed_fetch_channel_tabs_summary">Tab untuk didapatkan ketika memperarui umpan. Opsi ini tidak memiliki efek jika saluran diperbarui menggunakan mode cepat.</string>
-    <string name="metadata_avatar_url">URL avatar</string>
     <string name="channel_tab_playlists">Daftar putar</string>
     <string name="channel_tab_tracks">Trek</string>
     <string name="no_streams">Tidak ada saluran</string>

@@ -826,13 +826,11 @@
     <string name="next_stream">البث التالي</string>
     <string name="open_play_queue">فتح قائمة انتظار التسغيل</string>
     <string name="channel_tab_about">حول</string>
-    <string name="metadata_banner_url">عنوان الافتة</string>
     <string name="forward">تقديم المحتوى</string>
     <string name="channel_tab_albums">الألبومات</string>
     <string name="rewind">إعادة المحتوى</string>
     <string name="replay">إعادة التشغيل</string>
     <string name="feed_fetch_channel_tabs_summary">علامات التبويب لجلبها عند تحديث الخلاصة. ليس لهذا الخيار أي تأثير إذا تم تحديث القناة باستخدام الوضع السريع.</string>
-    <string name="metadata_avatar_url">عنوان الصورة الرمزية</string>
     <string name="channel_tab_playlists">قوائم التشغيل</string>
     <string name="play">شغِّل</string>
     <string name="more_options">المزيد من الخيارات</string>

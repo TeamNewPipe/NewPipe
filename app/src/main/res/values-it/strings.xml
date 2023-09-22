@@ -783,10 +783,8 @@
     <string name="loading_metadata_title">Caricamento metadati…</string>
     <string name="feed_fetch_channel_tabs">Recupera schede del canale</string>
     <string name="channel_tab_about">Informazioni</string>
-    <string name="metadata_banner_url">URL banner</string>
     <string name="channel_tab_albums">Album</string>
     <string name="feed_fetch_channel_tabs_summary">Schede da recuperare quando si aggiorna il feed. Questa opzione non ha effetto se un canale viene aggiornato usando la modalità veloce.</string>
-    <string name="metadata_avatar_url">URL avatar</string>
     <string name="channel_tab_playlists">Playlist</string>
     <string name="channel_tab_tracks">Tracce</string>
     <string name="channel_tab_channels">Canali</string>

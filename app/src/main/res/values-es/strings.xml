@@ -786,10 +786,8 @@
     <string name="loading_metadata_title">Cargando los metadatos…</string>
     <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
     <string name="channel_tab_about">Acerca de</string>
-    <string name="metadata_banner_url">Dirección url del anuncio</string>
     <string name="channel_tab_albums">Álbumes</string>
     <string name="feed_fetch_channel_tabs_summary">Pestañas para recuperar al actualizar el canal. Esta opción no tiene efecto si el canal se actualiza en modo rápido.</string>
-    <string name="metadata_avatar_url">Dirección url del avatar</string>
     <string name="channel_tab_playlists">Listas de reproducción</string>
     <string name="channel_tab_tracks">Pistas</string>
     <string name="channel_tab_channels">Canales</string>

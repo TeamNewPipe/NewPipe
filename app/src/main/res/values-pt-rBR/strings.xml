@@ -783,10 +783,8 @@
     <string name="loading_metadata_title">Carregando metadados…</string>
     <string name="feed_fetch_channel_tabs">Buscar guias de canal</string>
     <string name="channel_tab_about">Sobre</string>
-    <string name="metadata_banner_url">URL do banner</string>
     <string name="channel_tab_albums">Álbuns</string>
     <string name="feed_fetch_channel_tabs_summary">Guias a serem buscadas ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado usando o modo rápido.</string>
-    <string name="metadata_avatar_url">URL do avatar</string>
     <string name="channel_tab_playlists">Playlists</string>
     <string name="channel_tab_tracks">Faixas</string>
     <string name="channel_tab_channels">Canais</string>

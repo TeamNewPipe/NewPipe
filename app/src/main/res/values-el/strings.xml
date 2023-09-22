@@ -770,10 +770,8 @@
     <string name="channel_tab_shorts">Shorts</string>
     <string name="feed_fetch_channel_tabs">Λήψη καρτελών καναλιών</string>
     <string name="channel_tab_about">Σχετικά</string>
-    <string name="metadata_banner_url">Banner URL</string>
     <string name="channel_tab_albums">Άλμπουμ</string>
     <string name="feed_fetch_channel_tabs_summary">Καρτέλες για ανάκτηση κατά την ενημέρωση της ροής. Αυτή η επιλογή δεν έχει καμία επίδραση εάν ένα κανάλι ενημερώνεται χρησιμοποιώντας τη γρήγορη λειτουργία.</string>
-    <string name="metadata_avatar_url">URL άβαταρ</string>
     <string name="channel_tab_playlists">Λίστες</string>
     <string name="channel_tab_tracks">Κομμάτια</string>
     <string name="channel_tab_channels">Κανάλια</string>

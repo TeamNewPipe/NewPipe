@@ -784,13 +784,11 @@
     <string name="disable_media_tunneling_automatic_info">Vaše zariadenie nepodporuje tunelovanie medií a preto bolo tunelovanie medií zakázané.</string>
     <string name="open_play_queue">Otvoriť zoznam prehrávania</string>
     <string name="channel_tab_about">O kanále</string>
-    <string name="metadata_banner_url">URL Bannera</string>
     <string name="forward">Dopredu</string>
     <string name="channel_tab_albums">Albumy</string>
     <string name="rewind">Dozadu</string>
     <string name="replay">Opakovať</string>
     <string name="feed_fetch_channel_tabs_summary">Karty na načítanie pri aktualizácii informačného kanála. Táto možnosť nemá žiadny účinok, ak je kanál aktualizovaný pomocou rýchleho režimu.</string>
-    <string name="metadata_avatar_url">URL Avatara</string>
     <string name="channel_tab_playlists">Zoznamy skladieb</string>
     <string name="main_tabs_position_summary">Presunúť lištu kariet dolu</string>
     <string name="no_live_streams">Žiadne živé prenosy</string>

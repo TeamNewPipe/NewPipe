@@ -751,8 +751,6 @@
     <string name="no_live_streams">ライブ配信はありません</string>
     <string name="metadata_subscribers">登録者</string>
     <string name="loading_metadata_title">メタ情報を読み込んでいます…</string>
-    <string name="metadata_banner_url">バナーのURL</string>
-    <string name="metadata_avatar_url">アバターのURL</string>
     <string name="channel_tab_videos">動画</string>
     <string name="show_channel_tabs_summary">チャンネルページに表示されるタブ</string>
     <string name="show_channel_tabs">チャンネルタブ</string>
