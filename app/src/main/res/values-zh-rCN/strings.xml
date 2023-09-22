@@ -765,4 +765,15 @@
     <string name="channel_tab_tracks">歌曲</string>
     <string name="channel_tab_channels">频道</string>
     <string name="channel_tab_livestreams">直播</string>
+    <string name="toggle_screen_orientation">切换全屏方向</string>
+    <string name="toggle_fullscreen">切换全屏</string>
+    <string name="next_stream">下一条串流</string>
+    <string name="open_play_queue">打开播放队列</string>
+    <string name="forward">前进</string>
+    <string name="rewind">后退</string>
+    <string name="replay">重放</string>
+    <string name="play">播放</string>
+    <string name="more_options">更多选项</string>
+    <string name="duration">持续时间</string>
+    <string name="previous_stream">上一条串流</string>
 </resources>
