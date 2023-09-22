@@ -765,4 +765,15 @@
     <string name="no_streams">Tidak ada saluran</string>
     <string name="channel_tab_channels">Saluran</string>
     <string name="channel_tab_livestreams">Langsung</string>
+    <string name="toggle_screen_orientation">Saklar orientasi layar</string>
+    <string name="toggle_fullscreen">Saklar layar penuh</string>
+    <string name="next_stream">Saluran berikutnya</string>
+    <string name="open_play_queue">Buka antrean pemain</string>
+    <string name="forward">Maju</string>
+    <string name="rewind">Mundur</string>
+    <string name="replay">Putar ulang</string>
+    <string name="play">Putar</string>
+    <string name="more_options">Opsi tambahan</string>
+    <string name="duration">Durasi</string>
+    <string name="previous_stream">Saluran sebelumnya</string>
 </resources>
