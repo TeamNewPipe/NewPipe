@@ -36,7 +36,6 @@
     <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
     <string name="show_next_and_similar_title">Montri \'Sekvajn\' kaj \'Similajn\' videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
-    <string name="youtube_signature_deobfuscation_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
     <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>

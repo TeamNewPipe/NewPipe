@@ -133,7 +133,6 @@
     <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
-    <string name="youtube_signature_deobfuscation_error">Tidak dapat menyahsulit tanda tangan URL video</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
     <string name="could_not_setup_download_menu">Tidak dapat menyediakan menu muat turun</string>

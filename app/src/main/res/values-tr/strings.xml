@@ -46,7 +46,6 @@
     <string name="general_error">Hata</string>
     <string name="network_error">Ağ hatası</string>
     <string name="could_not_load_thumbnails">Küçük resimlerin tamamı yüklenemedi</string>
-    <string name="youtube_signature_deobfuscation_error">Video URL imzasının şifresi çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>

@@ -98,7 +98,6 @@
     <string name="could_not_setup_download_menu">Menuya dakêşanê nehat saz kirin</string>
     <string name="content_not_available">Naverok tune</string>
     <string name="parsing_error">Malperê nekare parsek bike</string>
-    <string name="youtube_signature_deobfuscation_error">Nekarî îmzeya URL-ya vîdyoyê deobfuscate bike</string>
     <string name="could_not_load_thumbnails">Nekarî hemî wêneyan barkir</string>
     <string name="network_error">Çewtiya torê</string>
     <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>

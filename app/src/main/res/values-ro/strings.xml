@@ -41,7 +41,6 @@
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
     <string name="could_not_load_thumbnails">Nu s-au putut încărca toate miniaturile</string>
-    <string name="youtube_signature_deobfuscation_error">Nu s-a putut deobfusca semnătura URL-ului video</string>
     <string name="parsing_error">Nu s-a putut analiza site-ul web</string>
     <string name="content_not_available">Conținut indisponibil</string>
     <string name="could_not_setup_download_menu">Nu s-a putut configura meniul de descărcare</string>

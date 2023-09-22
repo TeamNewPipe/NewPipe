@@ -42,7 +42,6 @@
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
-    <string name="youtube_signature_deobfuscation_error">Не вдалося розшифрувати URL-підпис відео</string>
     <string name="parsing_error">Не вдалося проаналізувати вебсайт</string>
     <string name="content_not_available">Вміст недоступний</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>

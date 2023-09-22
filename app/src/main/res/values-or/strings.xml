@@ -515,7 +515,6 @@
     <string name="delete_playback_states_alert">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ବିଲୋପ କରିବେ କି\?</string>
     <string name="clear_search_history_summary">ସନ୍ଧାନ କୀ ଶବ୍ଦର ଇତିହାସ ବିଲୋପ କରେ</string>
     <string name="general_error">ତ୍ରୁଟି</string>
-    <string name="youtube_signature_deobfuscation_error">ଭିଡିଓ URL ଦସ୍ତଖତକୁ ଡିବଫସ୍କେଟ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="player_unrecoverable_failure">ପୁନରୁଦ୍ଧାର ନ ହୋଇପାରିଲା ପରି ପ୍ଲେୟାର ତ୍ରୁଟି ଘଟିଲା</string>
     <string name="external_player_unsupported_link_type">ବହିଃ-ଚାଳକ ଏଭଳି ଲିଙ୍କ୍ ସମର୍ଥନ କରେନି</string>
     <string name="missing_file">ଫାଇଲ୍ ଘୁଞ୍ଚିଗଲା କିମ୍ବା ଡିଲିଟ୍ ହେଲା</string>

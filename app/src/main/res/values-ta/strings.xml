@@ -362,7 +362,6 @@
     <string name="notifications">அறிவிப்புகள்</string>
     <string name="hash_channel_name">வீடியோ ஹாஷ் அறிவிப்பு</string>
     <string name="streams_notification_channel_name">புதிய நீரோடைகள்</string>
-    <string name="youtube_signature_deobfuscation_error">வீடியோ URL கையொப்பத்தை நீக்க முடியவில்லை</string>
     <string name="hash_channel_description">வீடியோ ஹேஷிங் முன்னேற்றத்திற்கான அறிவிப்புகள்</string>
     <string name="streams_notification_channel_description">சந்தாவுக்கான புதிய ஸ்ட்ரீம்கள் பற்றிய அறிவிப்புகள்</string>
     <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது.

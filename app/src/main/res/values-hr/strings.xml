@@ -77,7 +77,6 @@
     <string name="general_error">Greška</string>
     <string name="network_error">Greška u mreži</string>
     <string name="could_not_load_thumbnails">Nije bilo moguće učitati sve sličice</string>
-    <string name="youtube_signature_deobfuscation_error">Nije bilo moguće dešifrirati URL potpis videozapisa</string>
     <string name="parsing_error">Nije bilo moguće obraditi stranicu</string>
     <string name="content_not_available">Sadržaj nije dostupan</string>
     <string name="could_not_setup_download_menu">Nije bilo moguće postaviti izbornik za preuzimanje</string>

@@ -118,7 +118,6 @@
     <string name="general_error">ਤਰੁੱਟੀ</string>
     <string name="network_error">ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ</string>
     <string name="could_not_load_thumbnails">ਸਾਰੇ ਥੰਮਨੇਲ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ</string>
-    <string name="youtube_signature_deobfuscation_error">ਵੀਡੀਓ URL ਦਸਤਖਤ ਦੀ ਅਸਪੱਸ਼ਟਤਾ ਦੂਰ ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="parsing_error">ਵੈਬਸਾਈਟ parse ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="content_not_available">ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="could_not_setup_download_menu">ਡਾਊਨਲੋਡ ਮੀਨੂੰ ਸੈਟ-ਅਪ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>

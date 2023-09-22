@@ -46,7 +46,6 @@
     <string name="general_error">Błąd</string>
     <string name="network_error">Błąd sieci</string>
     <string name="could_not_load_thumbnails">Nie udało się załadować wszystkich miniatur</string>
-    <string name="youtube_signature_deobfuscation_error">Nie udało się odszyfrować sygnatury URL wideo</string>
     <string name="parsing_error">Nie udało się przetworzyć strony internetowej</string>
     <string name="content_not_available">Treść niedostępna</string>
     <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>

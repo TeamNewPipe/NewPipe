@@ -195,7 +195,6 @@
     <string name="download_to_sdcard_error_title">გარე მეხსიერება მიუწვდომელია</string>
     <string name="network_error">Ქსელის შეცდომა</string>
     <string name="could_not_load_thumbnails">ყველა ესკიზის ჩატვირთვა ვერ მოხერხდა</string>
-    <string name="youtube_signature_deobfuscation_error">ვიდეოს URL-ის ხელმოწერის დებფუსირება ვერ მოხერხდა</string>
     <string name="parsing_error">ვებსაიტის გარჩევა ვერ მოხერხდა</string>
     <string name="content_not_available">კონტენტი მიუწვდომელია</string>
     <string name="could_not_setup_download_menu">ჩამოტვირთვის მენიუს დაყენება ვერ მოხერხდა</string>

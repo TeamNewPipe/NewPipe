@@ -645,7 +645,6 @@
     <string name="watch_history_deleted">Áhorfsferli eytt</string>
     <string name="clear_playback_states_title">Eyða spilunarstöðum</string>
     <string name="clear_playback_states_summary">Eyðir öllum spilunarstöðum</string>
-    <string name="youtube_signature_deobfuscation_error">Mistókst að afkóða vefslóð myndbandar</string>
     <string name="download_to_sdcard_error_message">Niðurhal á SD kort er ekki mögulegt. Endurstilla niðurhalsmöppu\?</string>
     <string name="main_page_content_swipe_remove">Strjúktu til að fjarlægja</string>
     <string name="no_playlist_bookmarked_yet">Engir spilunarlistar bókamerktir ennþá</string>

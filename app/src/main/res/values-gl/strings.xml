@@ -123,7 +123,6 @@
     <string name="general_error">Erro</string>
     <string name="network_error">Erro de rede</string>
     <string name="could_not_load_thumbnails">Non foi posíbel carregar todas as miniaturas</string>
-    <string name="youtube_signature_deobfuscation_error">Non foi posíbel descifrar a asinatura do vídeo</string>
     <string name="parsing_error">Non foi posíbel procesar o sitio web</string>
     <string name="content_not_available">Contido non dispoñíbel</string>
     <string name="could_not_setup_download_menu">Non foi posíbel configurar o menú de descargas</string>

@@ -138,7 +138,6 @@
     <string name="error_report_title">反馈错误</string>
     <string name="general_error">错误</string>
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
-    <string name="youtube_signature_deobfuscation_error">无法解密视频的 URL 签名</string>
     <string name="parsing_error">无法解析网址</string>
     <string name="content_not_available">内容不可用</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>

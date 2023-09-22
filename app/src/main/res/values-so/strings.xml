@@ -289,7 +289,6 @@
     <string name="could_not_setup_download_menu">Lama soo kicin karo tusmada dajinta</string>
     <string name="content_not_available">shaygan lama heli karo</string>
     <string name="parsing_error">Lama furi karo website-ka</string>
-    <string name="youtube_signature_deobfuscation_error">Lama baddali karo sixiixa tixraaca muuqaalka</string>
     <string name="could_not_load_thumbnails">Lama soo wada kicin karo galalkoo dhan</string>
     <string name="network_error">khalad xaga khadka ah</string>
     <string name="download_to_sdcard_error_message">Ku dajinta kaydka dibadda (mimoriga) suurtogal ma aha. Dib u fadhiisi khaanada wax lagu dajiyo\?</string>
