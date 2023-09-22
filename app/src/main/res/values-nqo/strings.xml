@@ -151,7 +151,6 @@
     <string name="general_error">ߝߎ߬ߕߎ߲߬ߕߌ</string>
     <string name="download_to_sdcard_error_title">ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲߫ ߕߍ߫ ߦߋ߲߬</string>
     <string name="network_error">ߞߙߏ߬ߝߏ߫ ߝߎ߬ߕߎ߲߬ߕߌ</string>
-    <string name="youtube_signature_deobfuscation_error">ߦߋߡߍ߲ߕߊ߫ ߛߘߌ߬ߜߋ߲߫ ߞߟߊ߬ߣߐ߮ ߡߊ߫ ߝߙߍߕߍߓߐ߫ ߟߊ߫</string>
     <string name="parsing_error">ߗߍߦߙߐ ߡߊ߫ ߛߋ߫ ߘߐߛߏ߯ߙߋ߫ ߟߊ߫</string>
     <string name="content_not_available">ߞߣߐߘߐ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="app_ui_crash">ߟߥߊ߬ߟߌ߬ߟߊ߲ ߓߘߊ߫ ߜߊߘߊ߲߫</string>

@@ -25,7 +25,6 @@
     <string name="duration_live">En direuto</string>
     <string name="general_error">Fallu</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
-    <string name="youtube_signature_deobfuscation_error">Nun pudo sabese la robla de la URL del videu</string>
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>

@@ -43,7 +43,6 @@
     <string name="download_path_audio_dialog_title">うんがくファイルダウンロードするフォルダーさんたくちくぃみそーれー</string>
     <string name="general_error">エラー</string>
     <string name="could_not_load_thumbnails">まじりぬサムネイルゆみくみやびらんたん</string>
-    <string name="youtube_signature_deobfuscation_error">ちゃーしがぬURLふくごうなやびらんたん</string>
     <string name="parsing_error">ウェブサイトこーいしちなやびらんたん</string>
     <string name="content_not_available">コンテンツがいようなやびらん</string>
     <string name="could_not_setup_download_menu">ふずんメニューしっていなやびらんたん</string>

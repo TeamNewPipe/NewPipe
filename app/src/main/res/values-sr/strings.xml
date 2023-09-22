@@ -43,7 +43,6 @@
     <string name="download_path_audio_summary">Преузети аудио записи се чувају овде</string>
     <string name="general_error">Грешка</string>
     <string name="could_not_load_thumbnails">Не могу да учитам све сличице</string>
-    <string name="youtube_signature_deobfuscation_error">Не могу да дешифрујем потпис видео урл-а</string>
     <string name="parsing_error">Не могу да рашчланим веб-сајт</string>
     <string name="content_not_available">Садржај је недоступан</string>
     <string name="content">Садржај</string>

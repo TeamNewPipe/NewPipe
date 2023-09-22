@@ -64,7 +64,6 @@
     <string name="general_error">Klaida</string>
     <string name="network_error">Tinklo klaida</string>
     <string name="could_not_load_thumbnails">Negalima įkelti visų miniatiūrų</string>
-    <string name="youtube_signature_deobfuscation_error">Negalima iššifruoti vaizdo įrašo skaitmeninio parašo</string>
     <string name="parsing_error">Negalima apdoroti tinklapio</string>
     <string name="content_not_available">Turinys neprieinamas</string>
     <string name="could_not_setup_download_menu">Negalima sutvarkyti atsisiuntimų meniu</string>

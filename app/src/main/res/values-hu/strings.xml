@@ -55,7 +55,6 @@
     <string name="sorry_string">Elnézést, ennek nem kellett volna megtörténnie.</string>
     <string name="error_report_button_text">Jelentés e-mailben</string>
     <string name="could_not_setup_download_menu">Nem sikerült a letöltési menü beállítása</string>
-    <string name="youtube_signature_deobfuscation_error">Nem sikerült a videó URL aláírásának feloldása</string>
     <string name="retry">Újra</string>
     <string name="video">Videó</string>
     <string name="audio">Hang</string>

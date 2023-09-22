@@ -312,7 +312,6 @@
     <string name="could_not_setup_download_menu">Yuklab olish menyusi sozlanmadi</string>
     <string name="content_not_available">Tarkib mavjud emas</string>
     <string name="parsing_error">Veb-saytni tahlil qilib bo\'lmadi</string>
-    <string name="youtube_signature_deobfuscation_error">Videoning URL manzilini o\'chirib bo\'lmadi</string>
     <string name="could_not_load_thumbnails">Barcha eskizlarni yuklab bo\'lmadi</string>
     <string name="network_error">Tarmoqda xato</string>
     <string name="download_to_sdcard_error_message">Tashqi SD-kartaga yuklab olishning iloji yo\'q. Yuklash papkasining joylashuvi tiklansinmi\?</string>

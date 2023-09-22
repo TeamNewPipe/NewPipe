@@ -47,7 +47,6 @@
     <string name="duration_live">實況</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">載入唔晒全部縮圖</string>
-    <string name="youtube_signature_deobfuscation_error">影片 URL 簽章解唔到碼</string>
     <string name="parsing_error">解析唔到網站</string>
     <string name="could_not_setup_download_menu">設定唔到下載功能表</string>
     <string name="sorry_string">啫係嗱，世事講唔埋嘅，真係唔好意思。</string>

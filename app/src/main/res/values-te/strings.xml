@@ -263,7 +263,6 @@
     <string name="watch_history_states_deleted">ప్లేబ్యాక్ స్థానాలు తొలగించబడ్డాయి</string>
     <string name="external_player_unsupported_link_type">బాహ్య ప్లేయర్‌లు ఈ రకమైన లింక్‌లకు మద్దతు ఇవ్వవు</string>
     <string name="checksum">చెక్సమ్</string>
-    <string name="youtube_signature_deobfuscation_error">వీడియో URL సంతకాన్ని డీఓబ్‌ఫస్కేట్ చేయడం సాధ్యపడలేదు</string>
     <string name="error_report_open_issue_button_text">GitHubపై నివేదించు</string>
     <string name="empty_list_subtitle">ఇక్కడ క్రికెట్‌లు తప్ప మరేమీ లేదు</string>
     <string name="no_one_listening">ఎవరూ వినడం లేదు</string>

@@ -51,7 +51,6 @@
     <string name="show_age_restricted_content_title">Afficher le contenu avec limite d’âge</string>
     <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="sorry_string">Désolé, cela n’aurait pas dû se produire.</string>
     <string name="error_report_button_text">Signaler par courriel</string>
     <string name="what_device_headline">Information :</string>

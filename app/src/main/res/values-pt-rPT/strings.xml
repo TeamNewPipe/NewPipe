@@ -217,7 +217,6 @@
     <string name="new_and_hot">Novos e tendências</string>
     <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
-    <string name="youtube_signature_deobfuscation_error">Não foi possível decifrar a assinatura do URL</string>
     <string name="select_a_playlist">Selecione uma lista de reprodução</string>
     <string name="feed_oldest_subscription_update">Última atualização: %s</string>
     <string name="import_data_title">Importar base de dados</string>

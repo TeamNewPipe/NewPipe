@@ -641,7 +641,6 @@
     <string name="settings_category_player_notification_title">Oynadıcı bildirişi</string>
     <string name="streams_notification_channel_name">Yeni yayımlar</string>
     <string name="error_report_channel_name">Xəta hesabatı bildirişi</string>
-    <string name="youtube_signature_deobfuscation_error">Video URL\'i imzası şifrəsi qırılmadı</string>
     <string name="no_streams_available_download">Endirmək üçün yayım mövcud deyil</string>
     <string name="error_report_notification_toast">Xəta baş verdi, bildirişi gör</string>
     <string name="your_comment">Şərhiniz (İngiliscə):</string>

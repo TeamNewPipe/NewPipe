@@ -192,7 +192,6 @@
     <string name="could_not_setup_download_menu">Nevarēja iestatīt lejupielādes izvēlni</string>
     <string name="content_not_available">Saturs nav pieejams</string>
     <string name="parsing_error">Nevarēja apstrādāt mājaslapu</string>
-    <string name="youtube_signature_deobfuscation_error">Nevarēja saprast video URL parakstu</string>
     <string name="could_not_load_thumbnails">Nevarēja ielādēt visus video attēlus</string>
     <string name="network_error">Tīkla kļūda</string>
     <string name="download_to_sdcard_error_message">Lejupielādēt uz SD karti nav iespējams. Atiestatīt lejupielāžu mapes lokāciju\?</string>

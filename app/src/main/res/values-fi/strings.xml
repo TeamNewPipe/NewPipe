@@ -82,7 +82,6 @@
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
-    <string name="youtube_signature_deobfuscation_error">Videon URL-allekirjoituksen salausta ei voitu purkaa</string>
     <string name="parsing_error">Verkkosivua ei voitu jäsentää</string>
     <string name="content_not_available">Sisältö ei ole saatavilla</string>
     <string name="could_not_setup_download_menu">Latausvalikkoa ei voitu asettaa</string>

@@ -100,7 +100,6 @@
     <string name="notification_channel_name">NewPipe avisering</string>
     <string name="notification_channel_description">Aviseringar för NewPipes spelare</string>
     <string name="unknown_content">[Okänd]</string>
-    <string name="youtube_signature_deobfuscation_error">Kunde inte dekryptera video URL signatur</string>
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
