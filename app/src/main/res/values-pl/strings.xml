@@ -455,7 +455,7 @@
     <string name="app_language_title">Język aplikacji</string>
     <string name="systems_language">Domyślny systemowy</string>
     <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
-    <string name="recaptcha_done_button">Gotowe</string>
+    <string name="done">Gotowe</string>
     <string name="videos_string">Wideo</string>
     <plurals name="seconds">
         <item quantity="one">%d sekunda</item>

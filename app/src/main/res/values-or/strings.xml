@@ -304,7 +304,7 @@
     <string name="msg_copied">କ୍ଲିପବୋର୍ଡରେ କପି କରାଯାଇଛି</string>
     <string name="one_item_deleted">1 ଆଇଟମ୍ ଡିଲିଟ୍ ହୋଇଛି ।</string>
     <string name="title_activity_recaptcha">reCAPTCHA ଆହ୍ୱାନ</string>
-    <string name="recaptcha_done_button">ସମାପ୍ତ</string>
+    <string name="done">ସମାପ୍ତ</string>
     <string name="settings_category_downloads_title">ଡାଉନଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="settings_file_replacement_character_summary">ଅବୈଧ ବର୍ଣ୍ଣଗୁଡିକ ଏହି ମୂଲ୍ୟ ସହିତ ବଦଳାଯାଏ</string>
     <string name="settings_file_replacement_character_title">ପ୍ରତିସ୍ଥାପନ ବର୍ଣ୍ଣ</string>

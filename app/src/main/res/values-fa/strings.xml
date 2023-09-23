@@ -471,7 +471,7 @@
     <string name="local">محلی</string>
     <string name="localization_changes_requires_app_restart">با آغاز دوبارهٔ کاره، زبان تغییر خواهد کرد</string>
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
-    <string name="recaptcha_done_button">انجام شد</string>
+    <string name="done">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>
     <string name="infinite_videos">∞ ویدیو</string>
     <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>

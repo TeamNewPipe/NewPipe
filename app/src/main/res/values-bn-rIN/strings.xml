@@ -239,7 +239,7 @@
     <string name="contribution_title">যোগদান</string>
     <string name="title_activity_about">নিউ পাইপ এর সম্বন্ধে</string>
     <string name="charset_letters_and_digits">শব্দ ও নম্বর</string>
-    <string name="recaptcha_done_button">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>

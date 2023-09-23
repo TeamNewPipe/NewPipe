@@ -457,7 +457,7 @@
     <string name="feed_group_dialog_select_subscriptions">Feliratkozások kiválasztása</string>
     <string name="copyright">© %1$s %2$s, %3$s licenc alatt</string>
     <string name="title_licenses">Harmadik féltől származó licencek</string>
-    <string name="recaptcha_done_button">Kész</string>
+    <string name="done">Kész</string>
     <string name="no_comments">Nincs megjegyzés</string>
     <string name="infinite_videos">∞ videó</string>
     <string name="more_than_100_videos">100+ videó</string>

@@ -446,7 +446,7 @@
     <string name="app_language_title">Aplikazioaren hizkuntza</string>
     <string name="systems_language">Sistemaren lehenetsia</string>
     <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
-    <string name="recaptcha_done_button">Egina</string>
+    <string name="done">Egina</string>
     <string name="videos_string">Bideoak</string>
     <plurals name="seconds">
         <item quantity="one">segundu %d</item>

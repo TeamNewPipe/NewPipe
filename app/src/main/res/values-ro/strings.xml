@@ -337,7 +337,7 @@
     <string name="peertube_instance_url_summary">Selectați instanțele PeerTube preferate</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
     <string name="seek_duration_title">Durată derulare rapidă înainte/înapoi</string>
-    <string name="recaptcha_done_button">Gata</string>
+    <string name="done">Gata</string>
     <string name="subtitle_activity_recaptcha">Apăsați \"Gata\" după ce ați rezolvat problema</string>
     <string name="error_report_open_issue_button_text">Raportați pe GitHub</string>
     <string name="clear_cookie_summary">Ștergeți cookie-urile pe care NewPipe le stochează atunci când rezolvați un reCAPTCHA</string>

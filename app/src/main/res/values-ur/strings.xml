@@ -513,7 +513,7 @@
         <item quantity="other">%s نئی اسٹریمز</item>
     </plurals>
     <string name="no_dir_yet">ابھی تک کوئی ڈاؤن لوڈ فولڈر سیٹ نہیں ہے، ابھی ڈیفالٹ ڈاؤن لوڈ فولڈر کا انتخاب کریں</string>
-    <string name="recaptcha_done_button">Done</string>
+    <string name="done">Done</string>
     <string name="title_activity_play_queue">قطار چلائیں</string>
     <string name="play_queue_audio_track">آڈیو: %s</string>
     <string name="audio_track">آڈیو ٹریک</string>

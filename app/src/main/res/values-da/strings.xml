@@ -620,7 +620,7 @@
     <string name="most_liked">Mest likede</string>
     <string name="error_unable_to_load_comments">Kunne ikke indlæse kommentarer</string>
     <string name="default_kiosk_page_summary">Standard Kiosk</string>
-    <string name="recaptcha_done_button">Færdig</string>
+    <string name="done">Færdig</string>
     <string name="subtitle_activity_recaptcha">Tryk på \"Færdig\" når den er løst</string>
     <string name="no_comments">Ingen kommentarer</string>
     <string name="infinite_videos">∞ videoer</string>

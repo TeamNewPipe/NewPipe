@@ -292,7 +292,7 @@
     <string name="subtitle_activity_recaptcha">როდესაც მოგვარდება, დააჭირეთ შესრულებულია</string>
     <string name="recaptcha_request_toast">მოთხოვნილია reCAPTCHA გამოწვევა</string>
     <string name="recaptcha_solve">ამოხსნა</string>
-    <string name="recaptcha_done_button">შესრულებულია</string>
+    <string name="done">შესრულებულია</string>
     <string name="settings_file_replacement_character_title">შემცვლელი პერსონაჟი</string>
     <string name="charset_letters_and_digits">ასოები და ციფრები</string>
     <string name="title_activity_about">NewPipe-ის შესახებ</string>

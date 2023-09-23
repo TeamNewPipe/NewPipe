@@ -340,7 +340,7 @@
     <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
-    <string name="recaptcha_done_button">Valmis</string>
+    <string name="done">Valmis</string>
     <string name="subtitle_activity_recaptcha">Paina ”Valmis”, kun ratkaistu</string>
     <string name="infinite_videos">∞ videota</string>
     <string name="more_than_100_videos">100+ videota</string>

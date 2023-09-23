@@ -451,7 +451,7 @@
     <string name="app_language_title">Jazyk aplikácie</string>
     <string name="systems_language">Predvolený</string>
     <string name="subtitle_activity_recaptcha">Vyrieš a stlač \"Hotovo\"</string>
-    <string name="recaptcha_done_button">Hotovo</string>
+    <string name="done">Hotovo</string>
     <string name="videos_string">Videá</string>
     <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na %d sekúnd</string>
     <string name="mute">Stlmiť</string>

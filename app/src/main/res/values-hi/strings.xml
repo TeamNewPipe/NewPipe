@@ -445,7 +445,7 @@
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पन्ना</string>
     <string name="search_showing_result_for">%s : के लिए परिणाम दिखाया जा रहा है</string>
-    <string name="recaptcha_done_button">संपन्न</string>
+    <string name="done">संपन्न</string>
     <string name="artists">कलाकार</string>
     <string name="songs">गीत</string>
     <string name="never">कभी नहीं</string>

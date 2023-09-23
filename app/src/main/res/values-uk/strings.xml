@@ -448,7 +448,7 @@
     <string name="app_language_title">Мова</string>
     <string name="systems_language">Мова телефону</string>
     <string name="subtitle_activity_recaptcha">Розв\'язавши натисніть «Готово»</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Бажаєте видалити цю групу\?</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>

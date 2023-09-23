@@ -542,7 +542,7 @@
     <string name="local">ਸਥਾਨਕ</string>
     <string name="localization_changes_requires_app_restart">ਭਾਸ਼ਾ ਐਪ ਨੂੰ ਦੋਬਾਰਾ ਚਲਾਉਣ \'ਤੇ ਬਦਲੇਗੀ</string>
     <string name="select_a_playlist">ਪਲੇ-ਸੂਚੀ ਚੁਣੋ</string>
-    <string name="recaptcha_done_button">ਹੋ ਗਿਆ</string>
+    <string name="done">ਹੋ ਗਿਆ</string>
     <string name="recaptcha_solve">ਹੱਲ ਕਰੋ</string>
     <string name="subtitle_activity_recaptcha">ਹੱਲ ਹੋਣ \'ਤੇ \"ਹੋ ਗਿਆ\" ਨੱਪੋ</string>
     <string name="no_dir_yet">ਹਾਲੇ ਕੋਈ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ ਹੋਇਆ, ਹੁਣੇ ਡਿਫ਼ਾਲਟ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਚੁਣੋ</string>

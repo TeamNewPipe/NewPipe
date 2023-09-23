@@ -189,7 +189,7 @@
     <string name="settings_file_replacement_character_summary">Xarfaha aan la taageerin waxaa lagu bdadali midkan</string>
     <string name="settings_file_charset_title">Xarafyada magaca shayga loo ogol yahay</string>
     <string name="settings_category_downloads_title">Dajinta</string>
-    <string name="recaptcha_done_button">Dhameeyay</string>
+    <string name="done">Dhameeyay</string>
     <string name="recaptcha_request_toast">Tijaabada reCAPTCHA ayaa la codsaday</string>
     <string name="subtitle_activity_recaptcha">Taabo \"Dhameeyay\" ✅ markaad xaliso</string>
     <string name="title_activity_recaptcha">Tijaabada reCAPTCHA</string>

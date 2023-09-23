@@ -377,7 +377,7 @@
         <item quantity="other">%s pendengar</item>
     </plurals>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
-    <string name="recaptcha_done_button">Selesai</string>
+    <string name="done">Selesai</string>
     <string name="recaptcha_solve">Selesaikan</string>
     <string name="no_comments">Tidak ada ulasan</string>
     <plurals name="videos">

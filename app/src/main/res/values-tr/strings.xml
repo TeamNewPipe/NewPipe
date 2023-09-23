@@ -445,7 +445,7 @@
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" düğmesine basın</string>
-    <string name="recaptcha_done_button">Bitti</string>
+    <string name="done">Bitti</string>
     <string name="videos_string">Videolar</string>
     <plurals name="seconds">
         <item quantity="one">%d saniye</item>

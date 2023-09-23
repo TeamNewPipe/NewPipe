@@ -494,7 +494,7 @@
     <string name="no_playlist_bookmarked_yet">Esitusloendi järjehoidjaid veel pole</string>
     <string name="select_a_playlist">Vali esitusloend</string>
     <string name="default_kiosk_page_summary">Vaikimisi seadistatud kiosk</string>
-    <string name="recaptcha_done_button">Valmis</string>
+    <string name="done">Valmis</string>
     <string name="subtitle_activity_recaptcha">Kui oled lõpetanud, siis vajuta „Valmis“ nuppu</string>
     <string name="no_comments">Kommentaare pole</string>
     <string name="infinite_videos">∞ videot</string>

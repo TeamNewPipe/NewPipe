@@ -115,7 +115,7 @@
     <string name="settings_file_replacement_character_summary">Sos caràteres non vàlidos benint remplasados cun custu valore</string>
     <string name="settings_file_charset_title">Caràteres permìtidos in sos nùmenes de sos documentos</string>
     <string name="settings_category_downloads_title">Iscàrriga</string>
-    <string name="recaptcha_done_button">Fatu</string>
+    <string name="done">Fatu</string>
     <string name="recaptcha_request_toast">B\'at bisòngiu de risòlvere unu reCAPTCHA</string>
     <string name="subtitle_activity_recaptcha">Incarca \"Fatu\" cando est risoltu</string>
     <string name="title_activity_recaptcha">Disafiu reCAPTCHA</string>

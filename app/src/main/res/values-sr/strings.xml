@@ -387,7 +387,7 @@
     <string name="privacy_policy_encouragement">Пројекат NewPipe веома озбиљно схвата вашу приватност. Стога, апликација не прикупља никакве податке без вашег пристанка.
 \nПолитика приватности NewPipe-а детаљно објашњава који се подаци шаљу и чувају када пошаљете извештај о отказивању апликације.</string>
     <string name="privacy_policy_title">Политика приватности NewPipe-а</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="recaptcha_solve">Реши</string>
     <string name="subtitle_activity_recaptcha">Притисните „Готово“ када решите</string>
     <string name="one_item_deleted">Избрисана је 1 ставка.</string>
