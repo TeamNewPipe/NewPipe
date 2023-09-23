@@ -348,7 +348,7 @@
     <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
     <string name="recaptcha_solve">Solve</string>
-    <string name="recaptcha_done_button">Done</string>
+    <string name="done">Done</string>
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>

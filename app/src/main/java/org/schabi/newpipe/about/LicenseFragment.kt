@@ -106,15 +106,12 @@ class LicenseFragment : Fragment() {
                         .setView(webView)
                         .setOnCancelListener { activeSoftwareComponent = null }
                         .setOnDismissListener { activeSoftwareComponent = null }
-                    if (softwareComponent == NEWPIPE_SOFTWARE_COMPONENT) {
-                        builder.setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
-                    } else {
-                        builder.setPositiveButton(R.string.dismiss) { dialog, _ ->
-                            dialog.dismiss()
+                        .setPositiveButton(R.string.done) { dialog, _ -> dialog.dismiss() }
+
+                    if (softwareComponent != NEWPIPE_SOFTWARE_COMPONENT) {
+                        builder.setNeutralButton(R.string.open_website_license) { _, _ ->
+                            ShareUtils.openUrlInApp(requireContext(), softwareComponent.link)
                         }
-                            .setNeutralButton(R.string.open_website_license) { _, _ ->
-                                ShareUtils.openUrlInApp(requireContext(), softwareComponent.link)
-                            }
                     }
 
                     builder.show()

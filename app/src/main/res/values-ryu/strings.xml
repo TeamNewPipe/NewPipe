@@ -446,7 +446,7 @@
     <string name="app_language_title">アプリぬぎんぐ</string>
     <string name="systems_language">システムぬっちうぅい</string>
     <string name="subtitle_activity_recaptcha">とぅきーねー「かんりょう」うちくぃみそーれー</string>
-    <string name="recaptcha_done_button">かんりょう</string>
+    <string name="done">かんりょう</string>
     <string name="videos_string">ちゃーしが</string>
     <plurals name="seconds">
         <item quantity="one">%dびょう</item>

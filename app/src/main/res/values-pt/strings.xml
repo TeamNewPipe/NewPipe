@@ -451,7 +451,7 @@
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Prima \"Feito\" ao resolver</string>
-    <string name="recaptcha_done_button">Aceitar</string>
+    <string name="done">Aceitar</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
 \n
 \nNewPipe oferece duas estratégias de carregamento:

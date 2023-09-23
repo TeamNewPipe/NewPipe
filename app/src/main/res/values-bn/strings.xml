@@ -78,7 +78,7 @@
     <string name="title_activity_about">নিউপাইপ এর সম্বন্ধে</string>
     <string name="charset_letters_and_digits">শব্দ ও নম্বর</string>
     <string name="settings_category_downloads_title">ডাউনলোড</string>
-    <string name="recaptcha_done_button">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>

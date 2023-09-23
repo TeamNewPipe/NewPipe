@@ -257,7 +257,7 @@
     <string name="peertube_instance_url_title">পিয়ার টিউব এর ইন্সটান্স সমূহ</string>
     <string name="grid">ছক</string>
     <string name="local">স্থানীয়</string>
-    <string name="recaptcha_done_button">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
     <string name="minimize_on_exit_none_description">কোনোটি না</string>

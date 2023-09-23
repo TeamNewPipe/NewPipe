@@ -192,7 +192,7 @@
     <string name="select_a_playlist">Նշել նվագացանկ</string>
     <string name="charset_letters_and_digits">Տառեր և թվեր</string>
     <string name="settings_category_downloads_title">Բեռնումներ</string>
-    <string name="recaptcha_done_button">Եղավ</string>
+    <string name="done">Եղավ</string>
     <string name="play_all">Նվագել ամենը</string>
     <string name="duration_live">Ուղիղ</string>
     <string name="enable_playback_resume_title">Շարունակել նվագարկումը</string>

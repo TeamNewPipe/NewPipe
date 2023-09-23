@@ -451,7 +451,7 @@
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
-    <string name="recaptcha_done_button">Terminé</string>
+    <string name="done">Terminé</string>
     <string name="videos_string">Vidéos</string>
     <string name="new_seek_duration_toast">En raison des contraintes d’ExoPlayer, le pas de déplacement a été réglée à %d secondes</string>
     <string name="mute">Couper le son</string>

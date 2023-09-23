@@ -443,7 +443,7 @@
     <string name="recently_added">Thêm vào gần đây</string>
     <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
-    <string name="recaptcha_done_button">Đã hoàn thành</string>
+    <string name="done">Đã hoàn thành</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <plurals name="listening">

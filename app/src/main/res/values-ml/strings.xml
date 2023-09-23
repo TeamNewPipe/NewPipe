@@ -131,7 +131,7 @@
     <string name="settings_file_replacement_character_summary">സ്വീകാര്യമല്ലാത്ത അടയാളങ്ങൾ ഈ അടയാളം കൊണ്ട് മാറ്റുന്നതാണ്</string>
     <string name="settings_file_charset_title">ഫയൽനാമങ്ങളിൽ അനുവദിച്ചിട്ടുള്ള അടയാളങ്ങൾ</string>
     <string name="settings_category_downloads_title">ഡൗൺലോഡ്</string>
-    <string name="recaptcha_done_button">ഓകെ</string>
+    <string name="done">ഓകെ</string>
     <string name="recaptcha_request_toast">reCAPTCHA ചാലഞ്ചിനായി അഭ്യർത്ഥിച്ചു</string>
     <string name="subtitle_activity_recaptcha">തീർന്നാൽ \"Done\" അമർത്തുക</string>
     <string name="title_activity_recaptcha">reCAPTCHA ചാലഞ്ച്</string>

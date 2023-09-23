@@ -451,7 +451,7 @@
     <string name="app_language_title">Idioma do app</string>
     <string name="systems_language">Padrão do sistema</string>
     <string name="subtitle_activity_recaptcha">Toque em \"Pronto\" ao resolver</string>
-    <string name="recaptcha_done_button">Pronto</string>
+    <string name="done">Pronto</string>
     <string name="videos_string">Vídeos</string>
     <plurals name="seconds">
         <item quantity="one">%d segundo</item>

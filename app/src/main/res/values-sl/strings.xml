@@ -264,7 +264,7 @@
     <string name="read_privacy_policy">Preberi pravilnik zasebnosti</string>
     <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
-    <string name="recaptcha_done_button">Končano</string>
+    <string name="done">Končano</string>
     <string name="no_comments">Ni komantarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>
     <string name="no_one_watching">Nobeden ne gleda</string>

@@ -451,7 +451,7 @@
     <string name="app_language_title">Jazyk aplikace</string>
     <string name="systems_language">Jazyk systému</string>
     <string name="subtitle_activity_recaptcha">Po vyřešení klepněte na „Hotovo“</string>
-    <string name="recaptcha_done_button">Hotovo</string>
+    <string name="done">Hotovo</string>
     <string name="videos_string">Videa</string>
     <plurals name="seconds">
         <item quantity="one">%d vteřina</item>

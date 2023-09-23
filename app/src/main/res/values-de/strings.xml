@@ -455,7 +455,7 @@
     <string name="app_language_title">Sprache der App</string>
     <string name="systems_language">Systemstandard</string>
     <string name="subtitle_activity_recaptcha">„Fertig“ drücken, wenn es gelöst wurde</string>
-    <string name="recaptcha_done_button">Fertig</string>
+    <string name="done">Fertig</string>
     <string name="videos_string">Videos</string>
     <plurals name="seconds">
         <item quantity="one">%d Sekunde</item>

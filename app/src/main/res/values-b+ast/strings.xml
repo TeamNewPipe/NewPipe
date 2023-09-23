@@ -420,7 +420,7 @@
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
     <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
     <string name="settings_file_replacement_character_summary">Los caráuteres que nun son válidos van trocase por esti valor</string>
-    <string name="recaptcha_done_button">Fecho</string>
+    <string name="done">Fecho</string>
     <string name="subtitle_activity_recaptcha">Primi «Fecho» al resolvelu</string>
     <string name="one_item_deleted">Desanicióse 1 elementu.</string>
     <string name="no_available_dir">Defini una capeta de descargues dempués, nos axustes de l\'aplicación</string>

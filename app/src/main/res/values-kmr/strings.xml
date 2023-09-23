@@ -537,7 +537,7 @@
     <string name="settings_file_replacement_character_summary">Karakteyên nederbasdar bi vê nirxê têne veguheztin</string>
     <string name="settings_file_charset_title">Di navên pelan de tîpan destûr dan</string>
     <string name="settings_category_downloads_title">Dakêşînin</string>
-    <string name="recaptcha_done_button">Kirî</string>
+    <string name="done">Kirî</string>
     <string name="recaptcha_request_toast">reCAPTCHA dijwarî xwestin</string>
     <string name="subtitle_activity_recaptcha">Dema ku çareser bibe \"Kirî\" çap bikin</string>
     <string name="import_youtube_instructions">Tevlêbûnên YouTube-ê ji barkirina Google-ê bikişînin:

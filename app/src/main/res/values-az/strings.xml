@@ -327,7 +327,7 @@
     <string name="no_dir_yet">Hələ endirmə qovluğu təyin edilməyib, indi standart endirmə qovluğu seç</string>
     <string name="title_activity_recaptcha">reCAPTCHA çağırışı</string>
     <string name="recaptcha_request_toast">reCAPTCHA sorğusu göndərildi</string>
-    <string name="recaptcha_done_button">Bitdi</string>
+    <string name="done">Bitdi</string>
     <string name="settings_file_replacement_character_summary">Etibarsız simvollar bu dəyərlə əvəz olunur</string>
     <string name="settings_file_replacement_character_title">Əvəzedici xarakter</string>
     <string name="charset_most_special_characters">Ən xüsusi simvollar</string>

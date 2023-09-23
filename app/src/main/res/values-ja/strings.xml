@@ -441,7 +441,7 @@
     <string name="app_language_title">アプリの言語</string>
     <string name="systems_language">システムの既定</string>
     <string name="subtitle_activity_recaptcha">解けたら「完了」を押してください</string>
-    <string name="recaptcha_done_button">完了</string>
+    <string name="done">完了</string>
     <string name="videos_string">動画</string>
     <plurals name="seconds">
         <item quantity="other">%d 秒</item>

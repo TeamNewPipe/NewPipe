@@ -293,7 +293,7 @@
     <string name="download_already_pending">دابه‌زاندنێكی دیكه‌ له‌ نۆره‌دایه‌ بەهەمان ناو</string>
     <string name="feed_group_dialog_empty_selection">هیچ بەژدارییەک دیار نەکراوە</string>
     <string name="feed_group_dialog_empty_name">ناوی کۆمەڵە بەتاڵە</string>
-    <string name="recaptcha_done_button">كرا</string>
+    <string name="done">كرا</string>
     <string name="detail_likes_img_view_description">بەدڵه‌كان</string>
     <string name="popup_remember_size_pos_summary">بیرهاتنه‌وه‌ی كۆتا قه‌باره‌ و شوێنی په‌نجه‌ره‌</string>
     <string name="create">سازکردن</string>

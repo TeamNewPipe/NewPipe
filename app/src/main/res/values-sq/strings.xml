@@ -255,7 +255,7 @@
     <string name="settings_file_replacement_character_summary">Karakteret e palejuara zëvendësohen me këtë vlerë</string>
     <string name="settings_file_charset_title">Karakteret e lejuara në emrat e skedarëve</string>
     <string name="settings_category_downloads_title">Shkarko</string>
-    <string name="recaptcha_done_button">U bë</string>
+    <string name="done">U bë</string>
     <string name="recaptcha_request_toast">sfida reCAPTCHA u kërkua</string>
     <string name="subtitle_activity_recaptcha">Shtyp \"U bë\" kur ta zgjidhni</string>
     <string name="title_activity_recaptcha">sfida reCAPTCHA</string>

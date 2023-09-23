@@ -443,7 +443,7 @@
     <string name="app_language_title">App-taal</string>
     <string name="systems_language">Systeemtaal gebruiken</string>
     <string name="subtitle_activity_recaptcha">Druk op ‘Klaar’ als u dit heeft opgelost</string>
-    <string name="recaptcha_done_button">Klaar</string>
+    <string name="done">Klaar</string>
     <string name="videos_string">Video\'s</string>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
     <string name="mute">Geluid dempen</string>

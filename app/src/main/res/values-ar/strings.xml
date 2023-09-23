@@ -466,7 +466,7 @@
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>
     <string name="subtitle_activity_recaptcha">اضغط على \"تم\" عند حلها</string>
-    <string name="recaptcha_done_button">منجز</string>
+    <string name="done">منجز</string>
     <string name="videos_string">الفيديوهات</string>
     <plurals name="seconds">
         <item quantity="zero">%d ثانية</item>

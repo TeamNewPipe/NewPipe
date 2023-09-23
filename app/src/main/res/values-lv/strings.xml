@@ -77,7 +77,7 @@
     <string name="settings_file_replacement_character_summary">Nederīgas rakstzīmes tiks aizvietotas ar šo</string>
     <string name="settings_file_charset_title">Atļautās rakstzīmes failu nosaukumos</string>
     <string name="settings_category_downloads_title">Lejupielādēt</string>
-    <string name="recaptcha_done_button">Pabeigts</string>
+    <string name="done">Pabeigts</string>
     <string name="recaptcha_request_toast">reCAPTCHA izaicinājums dots</string>
     <string name="subtitle_activity_recaptcha">Nospiediet \"Pabeigts\", kad to atrisinat</string>
     <string name="title_activity_recaptcha">reCAPTCHA izaicinājums</string>

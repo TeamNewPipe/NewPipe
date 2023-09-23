@@ -537,7 +537,7 @@
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="paused">em pausa</string>
     <string name="show_comments_title">Mostrar comentários</string>
-    <string name="recaptcha_done_button">Aceitar</string>
+    <string name="done">Aceitar</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="never">Nunca</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>

@@ -434,7 +434,7 @@
     <string name="most_liked">Mest gillade</string>
     <string name="recently_added">Nyligen tillagd</string>
     <string name="local">Lokala</string>
-    <string name="recaptcha_done_button">Klar</string>
+    <string name="done">Klar</string>
     <string name="youtube_restricted_mode_enabled_title">Slå på YouTubes \"Begränsat läge\"</string>
     <string name="localization_changes_requires_app_restart">Språket ändras när appen startas om</string>
     <string name="error_unable_to_load_comments">Det gick inte att läsa in kommentarerna</string>
