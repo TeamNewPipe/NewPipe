@@ -836,8 +836,6 @@
     <string name="share_playlist_with_details_message">Share playlist with details such as playlist name and video titles or as a simple list of video URLs</string>
     <string name="share_playlist_with_details">Share with details</string>
     <string name="share_playlist_with_list">Share URL list</string>
-    <string name="remember_my_choice">Remember my choice</string>
-    <string name="share_playlist_with_details_settings_item">Share playlist with details such as playlist name and video titles</string>
     <string name="video_details_list_item">- %s: %s</string>
     <string name="share_playlist_content_details">%s\n%s</string>
 </resources>

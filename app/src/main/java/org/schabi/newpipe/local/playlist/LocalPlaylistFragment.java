@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -38,7 +36,6 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
-import org.schabi.newpipe.databinding.DialogSharePlaylistBinding;
 import org.schabi.newpipe.databinding.LocalPlaylistHeaderBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -54,8 +51,8 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,8 +99,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     /* Flag to prevent simultaneous rewrites of the playlist */
     private boolean isRewritingPlaylist = false;
 
-    private SharedPreferences sharedPreferences;
-
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         final LocalPlaylistFragment instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
@@ -124,7 +119,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         isLoadingComplete = new AtomicBoolean();
         isModified = new AtomicBoolean();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
     }
 
     @Override
@@ -352,12 +346,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_item_share_playlist) {
-            if (!sharedPreferences.getBoolean(requireContext().getString(
-                    R.string.remember_local_playlist_sharing_option_key), false)) {
-                createShareConfirmationDialog();
-            } else {
-                sharePlaylist();
-            }
+            createShareConfirmationDialog();
         } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
             createRenameDialog();
         } else if (item.getItemId() == R.id.menu_item_remove_watched) {
@@ -385,16 +374,19 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     /**
-     * Share the playlist as a newline-separated list of stream URLs and video names.
+     * Shares the playlist as a list of stream URLs if {@code shouldSharePlaylistDetails} is
+     * set to {@code false}. Shares the playlist name along with a list of video titles and URLs
+     * if {@code shouldSharePlaylistDetails} is set to {@code true}.
+     *
+     * @param shouldSharePlaylistDetails Whether the playlist details should be included in the
+     *                                   shared content.
      */
-    private void sharePlaylist() {
+    private void sharePlaylist(final boolean shouldSharePlaylistDetails) {
         final Context context = getContext();
         if (context == null) {
             return;
         }
 
-        final boolean shouldSharePlaylistDetails = sharedPreferences.getBoolean(
-                context.getString(R.string.share_playlist_with_details_key), false);
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .flatMapSingle(playlist -> Single.just(playlist.stream()
                         .map(PlaylistStreamEntry::getStreamEntity)
@@ -875,34 +867,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        final DialogSharePlaylistBinding dialogBinding = DialogSharePlaylistBinding
-                .inflate(getLayoutInflater());
-
         new AlertDialog.Builder(getContext())
                 .setTitle(R.string.share_playlist)
+                .setMessage(R.string.share_playlist_with_details_message)
                 .setCancelable(true)
-                .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.share_playlist_with_details, (dialog, which) -> {
-                    savePreferencesAndSharePlaylist(
-                            dialogBinding.rememberChoiceCheckBox.isChecked(), true);
+                    sharePlaylist(/* shouldSharePlaylistDetails= */ true);
                 })
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) -> {
-                    savePreferencesAndSharePlaylist(
-                            dialogBinding.rememberChoiceCheckBox.isChecked(), false);
+                    sharePlaylist(/* shouldSharePlaylistDetails= */ false);
                 })
                 .show();
-    }
-
-    private void savePreferencesAndSharePlaylist(final boolean rememberPlaylistSharingOption,
-                                                 final boolean sharePlaylistWithDetails) {
-        sharedPreferences.edit()
-                .putBoolean(requireContext().getString(
-                        R.string.remember_local_playlist_sharing_option_key),
-                        rememberPlaylistSharingOption)
-                .putBoolean(requireContext().getString(
-                        R.string.share_playlist_with_details_key), sharePlaylistWithDetails)
-                .apply();
-        sharePlaylist();
     }
 }
 
