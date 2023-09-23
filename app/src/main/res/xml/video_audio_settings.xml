@@ -154,6 +154,16 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
+        <ListPreference
+            android:defaultValue="@string/popup_mode_legacy"
+            android:entries="@array/popup_mode_description"
+            android:entryValues="@array/popup_mode_values"
+            android:key="@string/popup_configuration_key"
+            android:summary="%s"
+            android:title="@string/settings_category_player_popup_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/start_main_player_fullscreen_key"

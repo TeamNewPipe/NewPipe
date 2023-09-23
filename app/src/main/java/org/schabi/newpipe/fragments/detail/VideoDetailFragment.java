@@ -101,6 +101,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
+import org.schabi.newpipe.util.PictureInPictureHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -439,6 +440,30 @@ public final class VideoDetailFragment
             default:
                 Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
                 break;
+        }
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(final boolean isInPictureInPictureMode) {
+        final int visibility = isInPictureInPictureMode ? View.GONE : View.VISIBLE;
+
+        // Hide thumbnail view controls to avoid black bars in PiP
+        for (int i = 0; i < binding.detailThumbnailRootLayout.getChildCount(); i++) {
+            final var child = binding.detailThumbnailRootLayout.getChildAt(i);
+            if (child != binding.playerPlaceholder) {
+                child.setVisibility(visibility);
+            }
+        }
+
+        // Hide other controls
+        binding.overlayLayout.setVisibility(visibility);
+        binding.tabLayout.setVisibility(visibility);
+        binding.detailContentRootLayout.setVisibility(visibility);
+        binding.viewPager.setVisibility(visibility);
+
+        // Hide related videos sidebar on tablets
+        if (binding.relatedItemsLayout != null) {
+            binding.relatedItemsLayout.setVisibility(visibility);
         }
     }
 
@@ -1033,7 +1058,20 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (!PermissionHelper.isPopupEnabledElseAsk(activity)) {
+        final var activity = requireActivity();
+        if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(activity)) {
+            if (canEnterAndroidPipMode()) {
+                PictureInPictureHelper.enterPictureInPictureMode(activity);
+            } else {
+                Toast.makeText(activity, R.string.popup_not_available, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            openPreNougatPopupPlayer(append);
+        }
+    }
+
+    private void openPreNougatPopupPlayer(final boolean append) {
+        if (!PermissionHelper.isPopupEnabled(activity)) {
             return;
         }
 
@@ -2418,6 +2456,13 @@ public final class VideoDetailFragment
     // helpers to check the state of player and playerService
     boolean isPlayerAvailable() {
         return player != null;
+    }
+
+    public boolean canEnterAndroidPipMode() {
+        final var playerType = playerHolder.getType();
+        return player != null && player.isPlaying()
+                && bottomSheetState == BottomSheetBehavior.STATE_EXPANDED
+                && playerType != null && playerType != PlayerType.AUDIO;
     }
 
     boolean isPlayerServiceAvailable() {
