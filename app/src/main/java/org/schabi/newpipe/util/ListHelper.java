@@ -46,10 +46,10 @@ public final class ListHelper {
             List.of(MediaFormat.MP3, MediaFormat.M4A, MediaFormat.WEBMA);
     // Use a Set for better performance
     private static final Set<String> HIGH_RESOLUTION_LIST = Set.of("1440p", "2160p");
-    // Audio track types in order of priotity. 0=lowest, n=highest
+    // Audio track types in order of priority. 0=lowest, n=highest
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING =
             List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL);
-    // Audio track types in order of priotity when descriptive audio is preferred.
+    // Audio track types in order of priority when descriptive audio is preferred.
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE =
             List.of(AudioTrackType.ORIGINAL, AudioTrackType.DUBBED, AudioTrackType.DESCRIPTIVE);
 
@@ -689,7 +689,7 @@ public final class ListHelper {
         }
     }
 
-    private static boolean isLimitingDataUsage(final Context context) {
+    static boolean isLimitingDataUsage(@NonNull final Context context) {
         return getResolutionLimit(context) != null;
     }
 
@@ -731,7 +731,7 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
-     * <p>The prefered stream will be ordered last.</p>
+     * <p>The preferred stream will be ordered last.</p>
      *
      * @param context app context
      * @return Comparator
@@ -746,7 +746,7 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
-     * <p>The prefered stream will be ordered last.</p>
+     * <p>The preferred stream will be ordered last.</p>
      *
      * @param defaultFormat  the default format to look for
      * @param limitDataUsage choose low bitrate audio stream
@@ -788,7 +788,7 @@ public final class ListHelper {
      * <li>Language is English</li>
      * </ol>
      *
-     * <p>The prefered track will be ordered last.</p>
+     * <p>The preferred track will be ordered last.</p>
      *
      * @param context App context
      * @return Comparator
@@ -825,7 +825,7 @@ public final class ListHelper {
      * <li>Language is English</li>
      * </ol>
      *
-     * <p>The prefered track will be ordered last.</p>
+     * <p>The preferred track will be ordered last.</p>
      *
      * @param preferredLanguage      Preferred audio stream language
      * @param preferOriginalAudio    Get the original audio track regardless of its language
