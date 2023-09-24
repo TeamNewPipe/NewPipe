@@ -1,5 +1,7 @@
 name: "PR size labeler"
 on: [pull_request]
+permissions:
+  pull-requests: write
 
 jobs:
   changed-lines-count-labeler:
