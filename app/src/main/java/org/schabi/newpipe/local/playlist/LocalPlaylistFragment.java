@@ -869,9 +869,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         new AlertDialog.Builder(getContext())
                 .setTitle(R.string.share_playlist)
-                .setMessage(R.string.share_playlist_with_details_message)
+                .setMessage(R.string.share_playlist_with_titles_message)
                 .setCancelable(true)
-                .setPositiveButton(R.string.share_playlist_with_details, (dialog, which) -> {
+                .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) -> {
                     sharePlaylist(/* shouldSharePlaylistDetails= */ true);
                 })
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) -> {
