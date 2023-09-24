@@ -4,6 +4,7 @@ import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import androidx.annotation.NonNull;
@@ -237,6 +238,41 @@ public final class ListHelper {
 
         return getSortedStreamVideosList(defaultFormat, showHigherResolutions, videoStreams,
                 videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
+    }
+
+    /**
+     * Get a sorted list containing a set of default resolution info
+     * and additional resolution info if showHigherResolutions is true.
+     *
+     * @param resources the resources to get the resolutions from
+     * @param defaultResolutionKey the settings key of the default resolution
+     * @param additionalResolutionKey the settings key of the additional resolutions
+     * @param showHigherResolutions if higher resolutions should be included in the sorted list
+     * @return a sorted list containing the default and maybe additional resolutions
+     */
+    public static List<String> getSortedResolutionList(
+            final Resources resources,
+            final int defaultResolutionKey,
+            final int additionalResolutionKey,
+            final boolean showHigherResolutions) {
+        final List<String> resolutions = new ArrayList<>(Arrays.asList(
+                resources.getStringArray(defaultResolutionKey)));
+        if (!showHigherResolutions) {
+            return resolutions;
+        }
+        final List<String> additionalResolutions = Arrays.asList(
+                resources.getStringArray(additionalResolutionKey));
+        // keep "best resolution" at the top
+        resolutions.addAll(1, additionalResolutions);
+        return resolutions;
+    }
+
+    public static boolean isHighResolutionSelected(final String selectedResolution,
+                                             final int additionalResolutionKey,
+                                             final Resources resources) {
+        return Arrays.asList(resources.getStringArray(
+                        additionalResolutionKey))
+                .contains(selectedResolution);
     }
 
     /**
