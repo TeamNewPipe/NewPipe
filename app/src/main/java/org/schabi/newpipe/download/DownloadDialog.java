@@ -267,8 +267,8 @@ public class DownloadDialog extends DialogFragment
             if (!videoStreams.get(i).isVideoOnly()) {
                 continue;
             }
-            final AudioStream audioStream = SecondaryStreamHelper
-                    .getAudioStreamFor(audioStreams.getStreamsList(), videoStreams.get(i));
+            final AudioStream audioStream = SecondaryStreamHelper.getAudioStreamFor(
+                    context, audioStreams.getStreamsList(), videoStreams.get(i));
 
             if (audioStream != null) {
                 secondaryStreams.append(i, new SecondaryStreamHelper<>(audioStreams, audioStream));
