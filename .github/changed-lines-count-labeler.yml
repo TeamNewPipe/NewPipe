@@ -1,0 +1,17 @@
+# Add 'size/small' label to any changes with less than 50 lines
+size/small:
+  max: 49
+
+# Add 'size/medium' label to any changes between 50 and 249 lines
+size/medium:
+  min: 50
+  max: 249
+
+# Add 'size/large' label to any changes between 250 and 749 lines
+size/large:
+  min: 250
+  max: 749
+
+# Add 'size/giant' label to any changes for more than 749 lines
+size/giant:
+  min: 750
