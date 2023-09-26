@@ -382,10 +382,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
      *                                   shared content.
      */
     private void sharePlaylist(final boolean shouldSharePlaylistDetails) {
-        final Context context = getContext();
-        if (context == null) {
-            return;
-        }
+        final Context context = requireContext();
 
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
                 .flatMapSingle(playlist -> Single.just(playlist.stream()
@@ -862,21 +859,22 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return new SinglePlayQueue(streamInfoItems, index);
     }
 
+    /**
+     * Creates a dialog to confirm whether the user wants to share the playlist
+     * with the playlist details or just the list of stream URLs.
+     * After the user has made a choice, the playlist is shared.
+     */
     private void createShareConfirmationDialog() {
-        if (getContext() == null) {
-            return;
-        }
-
-        new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.share_playlist)
                 .setMessage(R.string.share_playlist_with_titles_message)
                 .setCancelable(true)
-                .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) -> {
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ true);
-                })
-                .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) -> {
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ false);
-                })
+                .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
+                    sharePlaylist(/* shouldSharePlaylistDetails= */ true)
+                )
+                .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
+                    sharePlaylist(/* shouldSharePlaylistDetails= */ false)
+                )
                 .show();
     }
 }
