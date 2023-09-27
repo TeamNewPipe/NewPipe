@@ -8,6 +8,8 @@ jobs:
   changed-lines-count-labeler:
     runs-on: ubuntu-latest
     name: Automatically labelling pull requests based on the changed lines count
+    permissions:
+      pull-requests: write
     steps:
     - name: Set a label
       uses: vkirilichev/changed-lines-count-labeler@v0.2
