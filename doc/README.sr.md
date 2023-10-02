@@ -20,7 +20,7 @@
 <p align="center"><a href="https://newpipe.net">Веб-сајт</a> &bull; <a href="https://newpipe.net/blog/">Блог</a> &bull; <a href="https://newpipe.net/FAQ/">ЧПП</a> &bull; <a href="https://newpipe.net/press/">Штампа</a></p>
 <hr>
 
-*Прочитајте овај документ на другим језицима: [Deutsch](doc/README.de.md), [English](README.md), [Español](doc/README.es.md), [Français](doc/README.fr.md), [हिन्दी](doc/README.hi.md), [Italiano](doc/README.it.md), [한국어](doc/README.ko.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [ਪੰਜਾਬੀ ](doc/README.pa.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Soomaali](doc/README.so.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md), [অসমীয়া](doc/README.asm.md), [Српски](doc/README.sr.md)*
+*Прочитајте овај документ на другим језицима: [Deutsch](README.de.md), [English](README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [Српски](README.sr.md)*
 
 <b>УПОЗОРЕЊЕ: ОВА АПЛИКАЦИЈА ЈЕ У БЕТА ВЕРЗИЈИ, ТАКО ДА МОЖЕТЕ НАИЋИ НА ГРЕШКЕ. АКО НАИЂЕТЕ, НАПИШИТЕ ИЗВЕШТАЈ У НАШЕМ GITHUB РЕПОЗИТОРИЈУМУ ПОПУЊАВАЊЕМ ШАБЛОНА ИЗВЕШТАЈА.</b>
 
