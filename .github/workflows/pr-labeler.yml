@@ -12,7 +12,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Set a label
-      uses: vkirilichev/changed-lines-count-labeler@v0.2
+      uses: TeamNewPipe/changed-lines-count-labeler@main
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         configuration-path: .github/changed-lines-count-labeler.yml
