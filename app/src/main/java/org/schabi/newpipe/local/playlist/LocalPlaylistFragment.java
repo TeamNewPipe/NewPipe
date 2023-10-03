@@ -41,6 +41,7 @@ import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
@@ -71,7 +72,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void>
         implements PlaylistControlViewHolder {
-    // Save the list 10 seconds after the last change occurred
+    /** Save the list 10 seconds after the last change occurred. */
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
@@ -92,12 +93,19 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private PublishSubject<Long> debouncedSaveSignal;
     private CompositeDisposable disposables;
 
-    /* Has the playlist been fully loaded from db */
+    /** Whether the playlist has been fully loaded from db. */
     private AtomicBoolean isLoadingComplete;
-    /* Has the playlist been modified (e.g. items reordered or deleted) */
+    /** Whether the playlist has been modified (e.g. items reordered or deleted) */
     private AtomicBoolean isModified;
-    /* Flag to prevent simultaneous rewrites of the playlist */
+    /** Flag to prevent simultaneous rewrites of the playlist. */
     private boolean isRewritingPlaylist = false;
+
+    /**
+     * The pager adapter that the fragment is created from when it is used as frontpage, i.e.
+     * {@link #useAsFrontPage} is {@link true}.
+     */
+    @Nullable
+    private MainFragment.SelectedTabsPagerAdapter tabsPagerAdapter = null;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         final LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -156,6 +164,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         headerBinding.playlistTitleView.setSelected(true);
 
         return headerBinding;
+    }
+
+    /**
+     * <p>Commit changes immediately if the playlist has been modified.</p>
+     *  Delete operations and other modifications will be committed to ensure that the database
+     *  is up to date, e.g. when the user adds the just deleted stream from another fragment.
+     */
+    public void commitChanges() {
+        if (isModified != null && isModified.get()) {
+            saveImmediate();
+        }
     }
 
     @Override
@@ -290,6 +309,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         if (disposables != null) {
             disposables.dispose();
+        }
+        if (tabsPagerAdapter != null) {
+            tabsPagerAdapter.getLocalPlaylistFragments().remove(this);
         }
 
         debouncedSaveSignal = null;
@@ -876,6 +898,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     sharePlaylist(/* shouldSharePlaylistDetails= */ false)
                 )
                 .show();
+    }
+
+    public void setTabsPagerAdapter(
+            @Nullable final MainFragment.SelectedTabsPagerAdapter tabsPagerAdapter) {
+        this.tabsPagerAdapter = tabsPagerAdapter;
     }
 }
 
