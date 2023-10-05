@@ -774,4 +774,23 @@
     <string name="more_options">Opsi tambahan</string>
     <string name="duration">Durasi</string>
     <string name="previous_stream">Saluran sebelumnya</string>
+    <string name="image_quality_title">Kualitas gambar</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Kualitas rendah</string>
+    <string name="metadata_avatars">Avatar</string>
+    <string name="metadata_subchannel_avatars">Avatar sub-channel</string>
+    <string name="image_quality_none">Jangan tampilkan gambar</string>
+    <string name="image_quality_high">Kualitas tinggi</string>
+    <string name="image_quality_medium">Kualitas sedang</string>
+    <string name="metadata_uploader_avatars">Avatar pengunggah</string>
+    <string name="image_quality_summary">Pilih kualitas dan visibilitas gambar, untuk mengurangi penggunaan data dan memori. Perubahan menghapus cache dalam diska dan memori - %s</string>
+    <string name="metadata_thumbnails">Thumbnail</string>
+    <string name="share_playlist_with_list">Bagikan daftar URL</string>
+    <string name="share_playlist_with_titles">Bagikan dengan Judul</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Bagikan Daftar Putar</string>
+    <string name="share_playlist_with_titles_message">Bagikan daftar putar dengan detail seperti nama daftar putar dan judul video atau sebagai daftar video URL yang sederhana</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

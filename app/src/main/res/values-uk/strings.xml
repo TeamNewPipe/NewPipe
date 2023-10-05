@@ -804,4 +804,23 @@
     <string name="more_options">Інші опції</string>
     <string name="duration">Тривалість</string>
     <string name="previous_stream">Попередній стрим</string>
+    <string name="image_quality_title">Якість зображення</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Низька якість</string>
+    <string name="metadata_avatars">Аватари</string>
+    <string name="metadata_subchannel_avatars">Аватари підканалів</string>
+    <string name="image_quality_none">Не завантажувати зображення</string>
+    <string name="image_quality_high">Висока якість</string>
+    <string name="image_quality_medium">Середня якість</string>
+    <string name="metadata_uploader_avatars">Вивантажувач аватарів</string>
+    <string name="metadata_banners">Банери</string>
+    <string name="image_quality_summary">Виберіть якість зображень і чи завантажувати зображення взагалі, щоб знизити використання даних і пам\'яті. Зміни очищують кеш зображень як у пам\'яті, так і на диску — %s</string>
+    <string name="metadata_thumbnails">Мініатюри</string>
+    <string name="share_playlist_with_list">Поділитися списком URL-адрес</string>
+    <string name="share_playlist_with_titles">Поділитися з назвами</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Поділитися добіркою</string>
+    <string name="share_playlist_with_titles_message">Поділитися добіркою з подробицями, такими як назва добірки та назви відео, або просто списком URL-адрес відео</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

@@ -787,4 +787,23 @@
     <string name="more_options">अधिक विकल्प</string>
     <string name="duration">अवधि</string>
     <string name="previous_stream">पिछली स्ट्रीम</string>
+    <string name="image_quality_title">छवि की गुणवत्ता</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">कम गुणवत्ता</string>
+    <string name="metadata_avatars">अवतार</string>
+    <string name="metadata_subchannel_avatars">उप-चैनल अवतार</string>
+    <string name="image_quality_none">छवियाँ लोड न करें</string>
+    <string name="image_quality_high">उच्च गुणवत्ता</string>
+    <string name="image_quality_medium">मध्यम गुणवत्ता</string>
+    <string name="metadata_uploader_avatars">अपलोडर अवतार</string>
+    <string name="metadata_banners">बैनर</string>
+    <string name="image_quality_summary">डेटा और मेमोरी उपयोग को कम करने के लिए छवियों की गुणवत्ता और छवियों को लोड करना है या नहीं, चुनें। परिवर्तन इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को साफ़ करते हैं - %s</string>
+    <string name="metadata_thumbnails">थंमनेल</string>
+    <string name="share_playlist_with_list">URL सूची साझा करें</string>
+    <string name="share_playlist_with_titles">शीर्षकों के साथ साझा करें</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">प्लेलिस्ट साझा करें</string>
+    <string name="share_playlist_with_titles_message">प्लेलिस्ट को प्लेलिस्ट नाम और वीडियो शीर्षक जैसे विवरण के साथ या वीडियो यूआरएल की एक सरल सूची के रूप में साझा करें</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

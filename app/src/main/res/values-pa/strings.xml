@@ -48,9 +48,9 @@
     <string name="default_audio_format_title">ਡੀਫ਼ਾਲਟ ਆਡੀਓ ਫ਼ਾਰਮੈਟ</string>
     <string name="default_video_format_title">ਡੀਫ਼ਾਲਟ ਵੀਡੀਓ ਫ਼ਾਰਮੈਟ</string>
     <string name="theme_title">ਥੀਮ</string>
-    <string name="light_theme_title">ਸਫੈਦ</string>
-    <string name="dark_theme_title">ਗੂੜਾ</string>
-    <string name="black_theme_title">ਕਾਲ੍ਹਾ</string>
+    <string name="light_theme_title">ਸਫ਼ੈਦ</string>
+    <string name="dark_theme_title">ਗੂੜ੍ਹਾ</string>
+    <string name="black_theme_title">ਕਾਲ਼ਾ</string>
     <string name="popup_remember_size_pos_title">ਪੌਪ-ਅਪ ਦਾ ਆਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਪਰ ਅਸਪੱਸ਼ਟ ਸੀਕ ਵਰਤੋ</string>
@@ -787,4 +787,23 @@
     <string name="more_options">ਹੋਰ ਵਿਕਲਪ</string>
     <string name="duration">ਮਿਆਦ</string>
     <string name="previous_stream">ਪਿਛਲੀ ਸਟ੍ਰੀਮ</string>
+    <string name="image_quality_title">ਚਿੱਤਰ ਕੁਆਲਿਟੀ</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">ਘੱਟ ਕੁਆਲਿਟੀ</string>
+    <string name="metadata_avatars">ਅਵਤਾਰ</string>
+    <string name="metadata_subchannel_avatars">ਉਪ-ਚੈਨਲ ਅਵਤਾਰ</string>
+    <string name="image_quality_none">ਚਿੱਤਰ ਲੋਡ ਨਾ ਕਰੋ</string>
+    <string name="image_quality_high">ਉੱਚ ਕੁਆਲਿਟੀ</string>
+    <string name="image_quality_medium">ਦਰਮਿਆਨੀ ਕੁਆਲਿਟੀ</string>
+    <string name="metadata_uploader_avatars">ਅਪਲੋਡਰ ਅਵਤਾਰ</string>
+    <string name="metadata_banners">ਬੈਨਰ</string>
+    <string name="image_quality_summary">ਡਾਟਾ ਅਤੇ ਮੈਮੋਰੀ ਵਰਤੋਂ ਨੂੰ ਘਟਾਉਣ ਲਈ ਚਿੱਤਰਾਂ ਦੀ ਗੁਣਵੱਤਾ ਅਤੇ ਚਿੱਤਰਾਂ ਨੂੰ ਬਿਲਕੁਲ ਲੋਡ ਕਰਨਾ ਹੈ ਜਾਂ ਨਹੀਂ, ਚੁਣੋ। ਤਬਦੀਲੀਆਂ ਇਨ-ਮੈਮੋਰੀ ਅਤੇ ਆਨ-ਡਿਸਕ ਚਿੱਤਰ ਕੈਸ਼ ਨੂੰ ਸਾਫ਼ ਕਰਦੀਆਂ ਹਨ — %s</string>
+    <string name="metadata_thumbnails">ਥੰਮਨੇਲ</string>
+    <string name="share_playlist_with_list">URL ਸੂਚੀ ਸਾਂਝੀ ਕਰੋ</string>
+    <string name="share_playlist_with_titles">ਸਿਰਲੇਖਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">ਪਲੇਲਿਸਟ ਸਾਂਝੀ ਕਰੋ</string>
+    <string name="share_playlist_with_titles_message">ਪਲੇਲਿਸਟ ਦੇ ਨਾਮ ਅਤੇ ਵੀਡੀਓ ਸਿਰਲੇਖਾਂ ਜਾਂ ਵੀਡੀਓ URL ਦੀ ਇੱਕ ਸਧਾਰਨ ਸੂਚੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਰਵਿਆਂ ਨਾਲ ਪਲੇਲਿਸਟ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

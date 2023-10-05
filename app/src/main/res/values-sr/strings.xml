@@ -22,7 +22,7 @@
     <string name="play_audio">Аудио снимак</string>
     <string name="default_audio_format_title">Подразумевани формат аудио снимка</string>
     <string name="download_dialog_title">Преузимање</string>
-    <string name="unsupported_url">URL није подржан</string>
+    <string name="unsupported_url">URL адреса није подржана</string>
     <string name="show_next_and_similar_title">Прикажи „следеће“ и „сличне“ видео снимке</string>
     <string name="content_language_title">Подразумевани језик садржаја</string>
     <string name="settings_category_video_audio_title">Видео и аудио снимци</string>
@@ -104,7 +104,7 @@
     <string name="show_search_suggestions_title">Предлози за претрагу</string>
     <string name="show_search_suggestions_summary">Изаберите предлоге који ће се приказати приликом претраге</string>
     <string name="subscribed_button_title">Пратите</string>
-    <string name="subscribe_button_title">Прати</string>
+    <string name="subscribe_button_title">Запрати</string>
     <string name="tab_subscriptions">Праћења</string>
     <string name="fragment_feed_title">Шта је ново</string>
     <string name="enable_search_history_title">Историја претраге</string>
@@ -127,7 +127,7 @@
     <string name="settings_file_charset_title">Дозвољени знакови у називима фајлова</string>
     <string name="charset_letters_and_digits">Слова и бројеви</string>
     <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
-    <string name="channel_unsubscribed">Отказано праћење канала</string>
+    <string name="channel_unsubscribed">Прекинуто праћење канала</string>
     <string name="subscription_change_failed">Није могуће променити праћење</string>
     <string name="subscription_update_failed">Није могуће ажурирати праћење</string>
     <string name="settings_category_player_title">Плејер</string>
@@ -203,7 +203,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>
     <string name="metadata_cache_wipe_title">Уклони кеширане метаподатке</string>
     <string name="metadata_cache_wipe_summary">Уклања све податке кешираних веб-страница</string>
-    <string name="unsubscribe">Откажи праћење</string>
+    <string name="unsubscribe">Прекини праћење</string>
     <string name="tab_choose">Изаберите картицу</string>
     <string name="show_comments_title">Приказ коментара</string>
     <string name="show_comments_summary">Искључите да бисте сакрили коментаре</string>
@@ -297,12 +297,12 @@
 \n
 \nЖелите ли да наставите\?</string>
     <string name="import_soundcloud_instructions_hint">ВашID, soundcloud.com/yourid</string>
-    <string name="import_soundcloud_instructions">Увезите SoundCloud профил тако што ћете откуцати URL или свој ID:
+    <string name="import_soundcloud_instructions">Увезите SoundCloud профил тако што ћете откуцати URL адресу или свој ID:
 \n
-\n1. Омогућите „десктоп режим“ у веб-прегледачу (веб-локација није доступна за мобилне уређаје)
+\n1. Омогућите „верзију сајта за рачунар“ у веб-прегледачу (сајт није доступан за мобилне уређаје)
 \n2. Идите на ову URL адресу: %1$s
 \n3. Пријавите се када се то од вас затражи
-\n4. Копирајте URL профила на који сте преусмерени.</string>
+\n4. Копирајте URL адресу профила на који сте преусмерени.</string>
     <string name="import_youtube_instructions">Увезите YouTube праћења из Google Takeout-а:
 \n
 \n1. Идите на ову URL адресу: %1$s
@@ -483,12 +483,12 @@
     <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
     <string name="peertube_instance_add_https_only">Подржане су само HTTPS URL адресе</string>
     <string name="peertube_instance_add_fail">Није могуће потврдити инстанцу</string>
-    <string name="peertube_instance_add_help">Унесите URL инстанце</string>
+    <string name="peertube_instance_add_help">Унесите URL адресу инстанце</string>
     <string name="peertube_instance_add_title">Додајте инстанцу</string>
     <string name="peertube_instance_url_help">Пронађите инстанце које Вам се свиђају на %s</string>
     <string name="peertube_instance_url_title">PeerTube инстанце</string>
     <string name="peertube_instance_url_summary">Изаберите своје омиљене PeerTube инстанце</string>
-    <string name="unsupported_url_dialog_message">URL није препознат. Отворити помоћу друге апликације\?</string>
+    <string name="unsupported_url_dialog_message">URL адреса није препозната. Отворити помоћу друге апликације\?</string>
     <string name="autoplay_title">Аутоматско пуштање</string>
     <string name="settings_category_clear_data_title">Очисти податке</string>
     <string name="enable_playback_state_lists_summary">Прикажите индикаторе положаја репродукције на листама</string>
@@ -610,7 +610,7 @@
     <string name="open_website_license">Отвори веб-сајт</string>
     <string name="metadata_privacy_internal">Унутрашње</string>
     <string name="metadata_privacy_private">Приватно</string>
-    <string name="metadata_privacy_unlisted">Неизлистано</string>
+    <string name="metadata_privacy_unlisted">По позиву</string>
     <string name="metadata_privacy_public">Јавно</string>
     <string name="metadata_host">Домаћин</string>
     <string name="metadata_support">Подршка</string>
@@ -628,7 +628,7 @@
     <string name="feed_load_error_fast_unknown">Режим брзог фида не пружа више информација о овоме.</string>
     <string name="feed_load_error_terminated">Налог аутора је укинут.
 \nNewPipe убудуће неће моћи да учита овај фид.
-\nЖелите ли да откажете праћење овог канала\?</string>
+\nЖелите ли да прекинете праћење овог канала\?</string>
     <string name="feed_load_error_account_info">Није могуће учитати фид за „%s“.</string>
     <string name="feed_load_error">Грешка при учитавању фида</string>
     <string name="downloads_storage_use_saf_summary_api_29">Од Android-а 10 само „Storage Access Framework“ је подржан</string>
@@ -789,4 +789,34 @@
     <string name="channel_tab_tracks">Снимци</string>
     <string name="channel_tab_channels">Канали</string>
     <string name="channel_tab_livestreams">Уживо</string>
+    <string name="image_quality_title">Квалитет слике</string>
+    <string name="question_mark">\?</string>
+    <string name="toggle_screen_orientation">Укључи оријентацију екрана</string>
+    <string name="image_quality_low">Низак квалитет</string>
+    <string name="toggle_fullscreen">Укључи цео екран</string>
+    <string name="metadata_avatars">Аватари</string>
+    <string name="next_stream">Следећи стрим</string>
+    <string name="metadata_subchannel_avatars">Аватари потканала</string>
+    <string name="open_play_queue">Отвори ред чекања за пуштање</string>
+    <string name="image_quality_none">Не учитавај слике</string>
+    <string name="image_quality_high">Висок квалитет</string>
+    <string name="forward">Унапред</string>
+    <string name="rewind">Премотавање</string>
+    <string name="replay">Поново пусти</string>
+    <string name="image_quality_medium">Средњи квалитет</string>
+    <string name="metadata_uploader_avatars">Аватари отпремаоца</string>
+    <string name="metadata_banners">Банери</string>
+    <string name="image_quality_summary">Изаберите квалитет слика и да ли ћете уопште учитавати слике да бисте смањили потрошњу података и меморије. Промене бришу кеш слике у меморији и на диску — %s</string>
+    <string name="play">Пусти</string>
+    <string name="more_options">Више опција</string>
+    <string name="metadata_thumbnails">Сличице</string>
+    <string name="duration">Трајање</string>
+    <string name="previous_stream">Претходни стрим</string>
+    <string name="share_playlist_with_list">Дели листу URL адреса</string>
+    <string name="share_playlist_with_titles">Дели са насловима</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Дели плејлисту</string>
+    <string name="share_playlist_with_titles_message">Делите плејлисту са детаљима, као што су назив плејлисте и наслови видео снимака или као једноставна листа URL адреса видео снимака</string>
+    <string name="video_details_list_item">-%1$s: %2$s</string>
 </resources>

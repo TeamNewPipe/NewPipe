@@ -839,4 +839,23 @@
     <string name="channel_tab_channels">القنوات</string>
     <string name="previous_stream">البث السابق</string>
     <string name="channel_tab_livestreams">مباشر</string>
+    <string name="image_quality_title">جودة الصورة</string>
+    <string name="question_mark">؟</string>
+    <string name="image_quality_low">جودة منخفضة</string>
+    <string name="metadata_avatars">الصور الرمزية</string>
+    <string name="metadata_subchannel_avatars">الصور الرمزية للقناة الفرعية</string>
+    <string name="image_quality_none">لا تقم بتحميل الصور</string>
+    <string name="image_quality_high">عالية الجودة</string>
+    <string name="image_quality_medium">النوعية متوسطة</string>
+    <string name="metadata_uploader_avatars">الصورة الرمزية للرفع</string>
+    <string name="metadata_banners">اللافتات</string>
+    <string name="image_quality_summary">اختر جودة الصور وما إذا كنت تريد تحميل الصور على الإطلاق، لتقليل استخدام البيانات والذاكرة. تؤدي التغييرات إلى مسح ذاكرة التخزين المؤقت للصور الموجودة في الذاكرة وعلى القرص — %s</string>
+    <string name="metadata_thumbnails">الصور المصغرة</string>
+    <string name="share_playlist_with_list">مشاركة عنوان القائمة</string>
+    <string name="share_playlist_with_titles">مشاركة العناوين</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">مشاركة قائمة التشغيل</string>
+    <string name="share_playlist_with_titles_message">شارك تفاصيل قائمة التشغيل مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين URL للفيديو</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

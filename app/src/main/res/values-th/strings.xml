@@ -33,10 +33,10 @@
     <string name="controls_add_to_playlist_title">เพิ่มไปยัง</string>
     <string name="download_path_title">เส้นทางการดาวน์โหลดวิดีโอ</string>
     <string name="download_path_summary">เส้นทางในการจัดเก็บวิดีโอที่ดาวน์โหลดมา</string>
-    <string name="download_path_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับวิดีโอ</string>
+    <string name="download_path_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์วิดีโอ</string>
     <string name="download_path_audio_title">โฟลเดอร์ที่ดาวน์โหลดเสียง</string>
-    <string name="download_path_audio_summary">เสียงที่ดาวน์โหลดจะถูกเก็บไว้ที่นี่</string>
-    <string name="download_path_audio_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
+    <string name="download_path_audio_summary">ไฟล์เสียงที่ดาวน์โหลดไว้จะถูกเก็บไว้ที่นี่</string>
+    <string name="download_path_audio_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดป๊อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>

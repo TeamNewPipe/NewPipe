@@ -787,4 +787,23 @@
     <string name="more_options">うぬふかぬオプション</string>
     <string name="duration">ちかん</string>
     <string name="previous_stream">めーぬストリーム</string>
+    <string name="image_quality_title">ふぃんしち</string>
+    <string name="question_mark">？</string>
+    <string name="image_quality_low">ていふぃんしち</string>
+    <string name="metadata_avatars">アバター</string>
+    <string name="metadata_subchannel_avatars">サブチャンネルぬアバター</string>
+    <string name="image_quality_none">やしがぞうゆみくまん</string>
+    <string name="image_quality_high">かんふぃんしち</string>
+    <string name="image_quality_medium">ちゅうふぃんしち</string>
+    <string name="metadata_uploader_avatars">アップローダーぬアバター</string>
+    <string name="metadata_banners">バナー</string>
+    <string name="image_quality_summary">やしがぞうぬふぃんしちとぅぬぞうゆみくむがちゃーがさんたくち、データとぅメモリぬしようりょうさくぎんさびーん。 へんかんにゆり、メモリねーんとぅディスクじょうぬがぞうキャッシュぬりょうほうがクリアさりやびーん — %s</string>
+    <string name="metadata_thumbnails">サムネイル</string>
+    <string name="share_playlist_with_list">URLリストっしちゅーゆーいん</string>
+    <string name="share_playlist_with_titles">タイトルちきっしちゅーゆーいん</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">プレイリストちゅーゆーいん</string>
+    <string name="share_playlist_with_titles_message">プレイリストめいてぃがろービデオタイトルんでーぬしょうさいくくむるプレイリスト、あらんでぃビデオURLぬみぬシンプルやるリストとぅしてぃプレイリストちゅーゆーいんさびーん</string>
+    <string name="video_details_list_item">- %1$s： %2$s</string>
 </resources>

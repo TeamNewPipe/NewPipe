@@ -787,4 +787,23 @@
     <string name="more_options">Περισσότερες επιλογές</string>
     <string name="duration">Διάρκεια</string>
     <string name="previous_stream">Προηγούμενη ροή</string>
+    <string name="image_quality_title">Ποιότητα εικόνας</string>
+    <string name="question_mark">;</string>
+    <string name="image_quality_low">Χαμηλή ποιότητα</string>
+    <string name="metadata_avatars">Άβαταρ</string>
+    <string name="metadata_subchannel_avatars">Άβαταρ υπο-καναλιών</string>
+    <string name="image_quality_none">Μη φόρτωση εικόνων</string>
+    <string name="image_quality_high">Υψηλή ποιότητα</string>
+    <string name="image_quality_medium">Μέτρια ποιότητα</string>
+    <string name="metadata_uploader_avatars">Άβαταρ δημιουργών</string>
+    <string name="image_quality_summary">Επιλέξτε την ποιότητα των εικόνων και εάν δε θέλετε να φορτώσετε εικόνες, για να μειώσετε τη χρήση δεδομένων και μνήμης. Οι αλλαγές εκκαθαρίζουν την κρυφή μνήμη εικόνων, τόσο στη μνήμη όσο και στον δίσκο — %s</string>
+    <string name="metadata_thumbnails">Μικρογραφίες</string>
+    <string name="metadata_banners">Ταμπέλες</string>
+    <string name="share_playlist_with_list">Κοινοποίηση λίστας URL</string>
+    <string name="share_playlist_with_titles">Κοινοποίηση με τίτλους</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Κοινοποίηση λίστας</string>
+    <string name="share_playlist_with_titles_message">Μοιραστείτε τη λίστα αναπαραγωγής με λεπτομέρειες όπως το όνομα της λίστας αναπαραγωγής και τους τίτλους βίντεο ή ως μια απλή λίστα διευθύνσεων URL βίντεο</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

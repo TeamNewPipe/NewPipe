@@ -27,7 +27,7 @@
     <string name="settings_category_video_audio_title">Video und Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
-    <string name="detail_uploader_thumbnail_view_description">Avatarbild des Benutzers</string>
+    <string name="detail_uploader_thumbnail_view_description">Profilbild des Benutzers</string>
     <string name="detail_dislikes_img_view_description">Gefällt mir nicht</string>
     <string name="detail_likes_img_view_description">Gefällt mir</string>
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
@@ -598,7 +598,7 @@
     <string name="recaptcha_solve">Lösen</string>
     <string name="download_has_started">Download hat begonnen</string>
     <string name="select_night_theme_toast">Du kannst dein bevorzugtes Nachtdesign unten auswählen</string>
-    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign – %s</string>
+    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign — %s</string>
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
     <string name="show_channel_details">Kanaldetails anzeigen</string>
@@ -787,4 +787,23 @@
     <string name="more_options">Mehr Optionen</string>
     <string name="duration">Dauer</string>
     <string name="previous_stream">Vorheriger Stream</string>
+    <string name="image_quality_title">Bildqualität</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Geringe Qualität</string>
+    <string name="image_quality_none">Bilder nicht laden</string>
+    <string name="image_quality_high">Hohe Qualität</string>
+    <string name="image_quality_medium">Mittlere Qualität</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="metadata_thumbnails">Vorschaubilder</string>
+    <string name="metadata_avatars">Profilbilder</string>
+    <string name="metadata_subchannel_avatars">Profilbilder des Unterkanals</string>
+    <string name="metadata_uploader_avatars">Profilbilder des Benutzers</string>
+    <string name="image_quality_summary">Wähle die Bildqualität und ob überhaupt Bilder geladen werden sollen, um die Daten- und Speichernutzung zu reduzieren. Änderungen löschen sowohl den Bilder-Cache im Speicher als auch auf der Festplatte — %s</string>
+    <string name="share_playlist_with_list">URL-Liste teilen</string>
+    <string name="share_playlist_with_titles">Mit Titeln teilen</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Wiedergabeliste teilen</string>
+    <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

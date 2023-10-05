@@ -792,7 +792,7 @@
     <string name="metadata_subscribers">מנויים</string>
     <string name="show_channel_tabs_summary">אין לשוניות מופיעות בעמודי הערוץ</string>
     <string name="show_channel_tabs">לשוניות ערוץ</string>
-    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_shorts">Shorts‎</string>
     <string name="loading_metadata_title">נתוני העל נטענים…</string>
     <string name="feed_fetch_channel_tabs">משיכת לשוניות הערוץ</string>
     <string name="channel_tab_about">על אודות</string>
@@ -813,4 +813,23 @@
     <string name="more_options">אפשרויות נוספות</string>
     <string name="duration">משך</string>
     <string name="previous_stream">התזרים הקודם</string>
+    <string name="image_quality_title">איכות תמונה</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">איכות נמוכה</string>
+    <string name="metadata_avatars">תמונות ייצוגיות</string>
+    <string name="metadata_subchannel_avatars">תמונות ייצוגיות של תת־ערוצים</string>
+    <string name="image_quality_none">לא לטעון תמונות</string>
+    <string name="image_quality_high">איכות גבוהה</string>
+    <string name="image_quality_medium">איכות בינונית</string>
+    <string name="metadata_uploader_avatars">תמונות ייצוגיות של מעלים</string>
+    <string name="metadata_banners">כרזות</string>
+    <string name="image_quality_summary">נא לבחור את איכות התמונות והאם בכלל להוריד אותן כדי לחסוך בצריכת נתונים ושימוש בזיכרון. השינויים מפנים הן את מטמון השמירה בזיכרון והן בכונן — %s</string>
+    <string name="metadata_thumbnails">תמונות ממוזערות</string>
+    <string name="share_playlist_with_list">שיתוף רשימת כתובות</string>
+    <string name="share_playlist_with_titles">שיתוף עם כותרות</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">שיתוף רשימת נגינה</string>
+    <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

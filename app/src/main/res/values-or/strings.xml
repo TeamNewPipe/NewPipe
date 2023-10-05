@@ -83,7 +83,7 @@
     <string name="default_resolution_title">ଡିଫଲ୍ଟ ରେଜୋଲୁସନ</string>
     <string name="play_with_kodi_title">କୋଡି ସହିତ ଖୋଲନ୍ତୁ</string>
     <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କୃତ୍ୟ ବଟନ୍</string>
-    <string name="notification_action_repeat">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
+    <string name="notification_action_repeat">ପୁନର୍ବାର କରନ୍ତୁ</string>
     <string name="notification_colorize_title">ବିଜ୍ଞପ୍ତିକୁ ରଙ୍ଗ କରନ୍ତୁ</string>
     <string name="popup_remember_size_pos_summary">ପପ୍ଅପ୍ ର ଶେଷ ଆକାର ଏବଂ ସ୍ଥିତି ମନେରଖ</string>
     <string name="use_inexact_seek_title">ଦ୍ରୁତ ନିଷ୍କ୍ରିୟ ସନ୍ଧାନ ବ୍ୟବହାର କରନ୍ତୁ</string>
@@ -762,4 +762,48 @@
 \nଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରିବା ସାମ୍ପ୍ରତିକ ଭିଡିଓ ପ୍ଲେୟାରକୁ ବଦଳାଇବା କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ପରଦାକୁ ପରିବର୍ତ୍ତନ କରିବା ସମୟରେ ପ୍ଲେବ୍ୟାକ ତ୍ରୁଟିକୁ ପ୍ରତିରୋଧ କରିପାରେ</string>
     <string name="no_streams">କୌଣସି ସ୍ରୋତ ନାହିଁ</string>
     <string name="no_live_streams">କୌଣସି ଲାଇଭ ଷ୍ଟ୍ରିମ୍ ନାହିଁ</string>
+    <string name="image_quality_title">ପ୍ରତିଛବି ଗୁଣବତ୍ତା</string>
+    <string name="channel_tab_videos">ଭିଡିଓଗୁଡିକ</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">ଗ୍ରାହକଗଣ</string>
+    <string name="show_channel_tabs_summary">ଚ୍ୟାନେଲ ପୃଷ୍ଠାଗୁଡ଼ିକରେ କେଉଁ ଟ୍ୟାବଗୁଡ଼ିକ ଦେଖାଯାଏ</string>
+    <string name="show_channel_tabs">ଚ୍ୟାନେଲ ଟ୍ୟାବଗୁଡ଼ିକ</string>
+    <string name="channel_tab_shorts">ସର୍ଟସ୍</string>
+    <string name="loading_metadata_title">ମେଟାଡାଟା ଧାରଣ କରୁଅଛି…</string>
+    <string name="toggle_screen_orientation">ସ୍କ୍ରିନ୍ ଆରିଏଣ୍ଟେସନ୍ ଟୋଗଲ୍ କରନ୍ତୁ</string>
+    <string name="image_quality_low">ନିମ୍ନମାନର</string>
+    <string name="toggle_fullscreen">ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଟୋଗଲ୍ କରନ୍ତୁ</string>
+    <string name="feed_fetch_channel_tabs">ଚ୍ୟାନେଲ ଟ୍ୟାବଗୁଡ଼ିକୁ ଆଣନ୍ତୁ</string>
+    <string name="metadata_avatars">ଅବତାର</string>
+    <string name="next_stream">ପରବର୍ତ୍ତୀ ଷ୍ଟ୍ରିମ୍</string>
+    <string name="metadata_subchannel_avatars">ଉପ-ଚାନେଲ ଅବତାରଗୁଡ଼ିକ</string>
+    <string name="open_play_queue">ଖେଳ ଧାଡ଼ି ଖୋଲନ୍ତୁ</string>
+    <string name="image_quality_none">ପ୍ରତିଛବିଗୁଡ଼ିକୁ ଧାରଣ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="image_quality_high">ଉଚ୍ଚ ଗୁଣବତ୍ତା</string>
+    <string name="channel_tab_about">ବିଷୟରେ</string>
+    <string name="forward">ଆଗକୁ</string>
+    <string name="channel_tab_albums">ଆଲବମ୍</string>
+    <string name="rewind">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
+    <string name="replay">ପୁନର୍ବାର ଚଲାନ୍ତୁ</string>
+    <string name="feed_fetch_channel_tabs_summary">ଫିଡକୁ ଅଦ୍ୟତନ କରିବା ସମୟରେ ଆଣିବା ପାଇଁ ଟ୍ୟାବଗୁଡ଼ିକ । ଫାଷ୍ଟ ମୋଡ ବ୍ୟବହାର କରି ଚ୍ୟାନେଲକୁ ଅଦ୍ୟତନ କରାଗଲେ ଏହି ବିକଳ୍ପର କୌଣସି ପ୍ରଭାବ ପଡ଼ିବ ନାହିଁ ।</string>
+    <string name="image_quality_medium">ମଧ୍ୟମ ଗୁଣବତ୍ତା</string>
+    <string name="metadata_uploader_avatars">ଅପଲୋଡର ଅବତାରଗୁଡ଼ିକ</string>
+    <string name="metadata_banners">ବ୍ୟାନରଗୁଡିକ</string>
+    <string name="channel_tab_playlists">ପ୍ଲେଲିଷ୍ଟଗୁଡିକ</string>
+    <string name="image_quality_summary">ତଥ୍ୟ ଏବଂ ସ୍ମୃତିଶକ୍ତି ବ୍ୟବହାରକୁ ହ୍ରାସ କରିବା ପାଇଁ ପ୍ରତିଛବିଗୁଡ଼ିକର ଗୁଣବତ୍ତା ଏବଂ ସମ୍ପୂର୍ଣ୍ଣ ଭାବରେ ପ୍ରତିଛବିଗୁଡ଼ିକୁ ଧାରଣ କରିବା ଉଚିତ କି ନୁହଁ ବାଛନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ସ୍ମରଣୀୟ ଏବଂ ଡିସ୍କ ପ୍ରତିଛବି କ୍ୟାଶେ ଉଭୟକୁ ସଫା କରିଥାଏ — %s</string>
+    <string name="play">ଚଲାନ୍ତୁ</string>
+    <string name="more_options">ଅଧିକ ବିକଳ୍ପ</string>
+    <string name="metadata_thumbnails">ଥମ୍ବନେଲଗୁଡିକ</string>
+    <string name="channel_tab_tracks">ଟ୍ରାକଗୁଡିକ</string>
+    <string name="duration">ଅବଧି</string>
+    <string name="channel_tab_channels">ଚ୍ୟାନେଲଗୁଡିକ</string>
+    <string name="previous_stream">ପୂର୍ବ ଷ୍ଟ୍ରିମ୍</string>
+    <string name="channel_tab_livestreams">ଲାଇଭ୍</string>
+    <string name="share_playlist_with_list">URL ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
+    <string name="share_playlist_with_titles">ଶୀର୍ଷକଗୁଡ଼ିକ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">ଖେଳ ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
+    <string name="share_playlist_with_titles_message">ପ୍ଲେ-ଲିଷ୍ଟ ନାମ ଏବଂ ଭିଡିଓ ଶୀର୍ଷକ କିମ୍ବା ଭିଡିଓ URLଗୁଡ଼ିକର ଏକ ସରଳ ତାଲିକା ଭାବରେ ବିବରଣୀ ସହିତ ପ୍ଲେ-ଲିଷ୍ଟ ଅଂଶୀଦାର କରନ୍ତୁ</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

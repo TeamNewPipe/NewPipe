@@ -774,4 +774,23 @@
     <string name="more_options">更多選項</string>
     <string name="duration">持續時間</string>
     <string name="previous_stream">上一個串流</string>
+    <string name="image_quality_title">畫質</string>
+    <string name="image_quality_none">不要載入圖片</string>
+    <string name="metadata_thumbnails">影片縮圖</string>
+    <string name="question_mark">？</string>
+    <string name="image_quality_low">低品質</string>
+    <string name="metadata_avatars">大頭照</string>
+    <string name="metadata_subchannel_avatars">子頻道大頭照</string>
+    <string name="image_quality_high">高品質</string>
+    <string name="image_quality_medium">中等品質</string>
+    <string name="metadata_uploader_avatars">上傳者大頭照</string>
+    <string name="metadata_banners">橫幅</string>
+    <string name="image_quality_summary">選擇影像品質以及是否載入影像，以減少資料與記憶體使用。變更會清除記憶體中與磁碟上的影像快取 — %s</string>
+    <string name="share_playlist_with_list">分享 URL 清單</string>
+    <string name="share_playlist_with_titles">分享標題</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">分享播放清單</string>
+    <string name="share_playlist_with_titles_message">分享包含播放清單名稱與影片標題等詳細資訊的播放清單，或是僅作為簡單的影片 URL 清單</string>
+    <string name="video_details_list_item">- %1$s：%2$s</string>
 </resources>

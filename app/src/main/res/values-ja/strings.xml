@@ -774,4 +774,23 @@
     <string name="more_options">その他のオプション</string>
     <string name="duration">期間</string>
     <string name="previous_stream">前のストリーム</string>
+    <string name="image_quality_title">品質</string>
+    <string name="question_mark">？</string>
+    <string name="image_quality_low">低品質</string>
+    <string name="metadata_avatars">アバター</string>
+    <string name="metadata_subchannel_avatars">サブチャンネルのアバター</string>
+    <string name="image_quality_none">画像を読み込まない</string>
+    <string name="image_quality_high">高品質</string>
+    <string name="image_quality_medium">中品質</string>
+    <string name="metadata_uploader_avatars">アップローダーのアバター</string>
+    <string name="metadata_banners">バナー</string>
+    <string name="image_quality_summary">画像の品質と画像を読み込むかどうかを選択して、データとメモリの使用量を削減します。 変更により、メモリ内とディスク上の画像キャッシュの両方がクリアされます — %s</string>
+    <string name="metadata_thumbnails">サムネイル</string>
+    <string name="share_playlist_with_list">URLリストで共有</string>
+    <string name="share_playlist_with_titles">タイトル付きで共有</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">プレイリストを共有</string>
+    <string name="share_playlist_with_titles_message">プレイリスト名やビデオタイトルなどの詳細を含むプレイリスト、またはビデオURLのみのシンプルなリストとしてプレイリストを共有します</string>
+    <string name="video_details_list_item">- %1$s： %2$s</string>
 </resources>

@@ -762,4 +762,11 @@
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_title">Əsas səhifə mövqeyi</string>
     <string name="main_tabs_position_summary">Əsas səhifə seçicini aşağıya köçür</string>
+    <string name="loading_metadata_title">Üst Məlumat Yüklənir…</string>
+    <string name="feed_fetch_channel_tabs">Kanal səhifələrin əldə et</string>
+    <string name="metadata_avatars">Avatarlar</string>
+    <string name="metadata_subchannel_avatars">Alt kanal avatarları</string>
+    <string name="feed_fetch_channel_tabs_summary">Axın yenilənərkən əldə edilən səhifələr.Kanal sürətli rejim istifadə edərək yenilənirsə, bu seçimin heç bir təsiri yoxdur.</string>
+    <string name="metadata_uploader_avatars">Yükləyici avatarları</string>
+    <string name="metadata_thumbnails">Miniatürlər</string>
 </resources>

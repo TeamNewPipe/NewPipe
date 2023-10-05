@@ -789,4 +789,34 @@
     <string name="channel_tab_tracks">Tracce</string>
     <string name="channel_tab_channels">Canali</string>
     <string name="channel_tab_livestreams">Dirette</string>
+    <string name="image_quality_title">Qualità immagine</string>
+    <string name="question_mark">\?</string>
+    <string name="toggle_screen_orientation">Cambia orientamento schermo</string>
+    <string name="image_quality_low">Qualità bassa</string>
+    <string name="toggle_fullscreen">Attiva/disattiva schermo intero</string>
+    <string name="metadata_avatars">Avatar</string>
+    <string name="next_stream">Video successivo</string>
+    <string name="metadata_subchannel_avatars">Avatar del sotto-canale</string>
+    <string name="open_play_queue">Apri coda di riproduzione</string>
+    <string name="image_quality_none">Non caricare immagini</string>
+    <string name="image_quality_high">Qualità alta</string>
+    <string name="forward">Avanti</string>
+    <string name="rewind">Riavvolgi</string>
+    <string name="replay">Ricomincia</string>
+    <string name="image_quality_medium">Qualità media</string>
+    <string name="metadata_uploader_avatars">Avatar dell\'autore</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="image_quality_summary">Scegli la qualità delle immagini e se caricarle o meno, per ridurre l\'utilizzo di dati e memoria. Le modifiche svuotano la cache immagini sia in memoria che su disco — %s</string>
+    <string name="play">Riproduci</string>
+    <string name="more_options">Altre opzioni</string>
+    <string name="metadata_thumbnails">Miniature</string>
+    <string name="duration">Durata</string>
+    <string name="previous_stream">Video precedente</string>
+    <string name="share_playlist_with_list">Condividi elenco URL</string>
+    <string name="share_playlist_with_titles">Condividi con i titoli</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Condividi playlist</string>
+    <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

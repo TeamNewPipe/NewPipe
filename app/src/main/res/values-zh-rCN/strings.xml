@@ -774,4 +774,23 @@
     <string name="more_options">更多选项</string>
     <string name="duration">持续时间</string>
     <string name="previous_stream">上一条串流</string>
+    <string name="image_quality_title">图片质量</string>
+    <string name="question_mark">？</string>
+    <string name="image_quality_low">低质量</string>
+    <string name="metadata_avatars">头像</string>
+    <string name="metadata_subchannel_avatars">子频道头像</string>
+    <string name="image_quality_none">不加载图片</string>
+    <string name="image_quality_high">高质量</string>
+    <string name="image_quality_medium">中等质量</string>
+    <string name="metadata_uploader_avatars">上传者头像</string>
+    <string name="metadata_banners">横幅</string>
+    <string name="image_quality_summary">选择图片质量以及是否根本不加载图片来降低数据和内存使用。更改选项会清除内存中和磁盘上的图片缓存 - %s</string>
+    <string name="metadata_thumbnails">缩略图</string>
+    <string name="share_playlist_with_list">只包含视频网址</string>
+    <string name="share_playlist_with_titles">分享时带视频标题</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">分享播放列表</string>
+    <string name="share_playlist_with_titles_message">分享详细的播放列表（带名称和视频标题等信息）或只分享视频网址列表</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>
