@@ -803,4 +803,9 @@
     <string name="channel_tab_shorts">Shorts</string>
     <string name="feed_fetch_channel_tabs">Onglets de chaîne à récupérer</string>
     <string name="feed_fetch_channel_tabs_summary">Onglets à récupérer lors de la mise à jour du flux. Cette option n’a aucun effet si une chaîne est mise à jour en utilisant le mode rapide.</string>
+    <string name="share_playlist_with_list">Partager l’URL de la liste</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Partager la liste de lecture</string>
+    <string name="video_details_list_item">- %1$s : %2$s</string>
 </resources>

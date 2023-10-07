@@ -1,0 +1,2 @@
+Menghapus dukungan MediaParser untuk memperbaiki pemutaran yang gagal dilanjutkan setelah buffering di Android 11+.
+Menonaktifkan terowongan media pada Philips QM16XE untuk memperbaiki masalah pemutaran.

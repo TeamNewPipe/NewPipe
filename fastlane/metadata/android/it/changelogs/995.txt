@@ -1,0 +1,14 @@
+Novità
+• Supporto a schede dei canali
+• Selezione qualità dell'immagine
+• Ottieni URL per tutte le immagini
+
+Migliorato
+• Accessibilità delle interfacce del player
+• Opzione per aggiungere il nome della playlist e il nome video al contenuto di condivisione della playlist
+• Miglioramenti interni e aggiornamenti delle dipendenze
+
+Corretto
+• Selezione di lingue errate nel selettore
+• Il focus audio del player non rispettava il muto
+• Aggiungere elementi a playlist non funzionava in casi specifici

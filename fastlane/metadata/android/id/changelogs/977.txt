@@ -1,0 +1,10 @@
+• Menambahkan tombol "mainkan berikutnya" ke menu tekan lama
+• Menambahkan awalan jalur pendek YouTube ke filter maksud
+• Impor Pengaturan Tetap
+• Tukar posisi seekbar dengan tombol pemutar di layar Antrian
+• Berbagai perbaikan terkait MediasessionManager
+• Memperbaiki bilah pencari yang tidak selesai setelah video berakhir
+• Menonaktifkan terowongan media di RealtekATV
+• Memperluas area yang dapat diklik tombol pemutar yang diperkecil
+
+Untuk melihat perubahan lebih lanjut, lihat log perubahan (dan postingan blog) dari tab Tautan di bawah.

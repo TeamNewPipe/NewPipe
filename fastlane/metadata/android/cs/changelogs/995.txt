@@ -1,0 +1,14 @@
+Nové
+• Podpora karet kanálů
+• Výběr kvality obrázků
+• Získání URL všech obrázků
+
+Vylepšeno
+• Přístupnost rozhraní přehrávače
+• Možnost přidat název playlistu a název videa do sdíleného obsahu playlistu
+• Interní vylepšení a aktualizace závislostí
+
+Opraveno
+• Výběr nesprávných jazyků ve výběru jazyka
+• Zaměření zvuku přehrávače nerespektovalo ztlumení
+• Přidávání položek do playlistů v určitých případech nefungovalo

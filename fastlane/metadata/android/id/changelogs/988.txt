@@ -1,0 +1,2 @@
+[YouTube] Perbaiki kesalahan "Tidak dapat memperoleh streaming apa pun" saat mencoba memutar video apa pun
+[YouTube] Perbaiki "Konten berikut tidak tersedia di aplikasi ini." pesan ditampilkan alih-alih video yang diminta

@@ -19,12 +19,12 @@
     <string name="no_video_streams_available_for_external_players">لا تتوفر تدفقات فيديو للاعبين الخارجيين</string>
     <string name="description_select_disable">تعطيل تحديد النص في الوصف</string>
     <plurals name="deleted_downloads_toast">
-        <item quantity="zero"/>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">لم يتم حذف أي تنزيل</item>
+        <item quantity="one">تم حذف تنزيل واحد</item>
+        <item quantity="two">تم حذف تنزيلَيْن</item>
+        <item quantity="few">تم حذف %1$s تنزيلات</item>
+        <item quantity="many">تم حذف %1$s تنزيلاً</item>
+        <item quantity="other">تم حذف %1$s تنزيل</item>
     </plurals>
     <string name="notification_action_1_title">زر الإجراء الثاني</string>
     <string name="audio_track_type_original">الافتراضي</string>
@@ -40,12 +40,12 @@
     <string name="recovering">استرد</string>
     <string name="youtube_restricted_mode_enabled_title">قم بتشغيل \"وضع تقييد المحتوى\" في يوتيوب</string>
     <plurals name="hours">
-        <item quantity="zero"/>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">لا ساعة</item>
+        <item quantity="one">ساعة واحدة</item>
+        <item quantity="two">ساعتان</item>
+        <item quantity="few">%d ساعات</item>
+        <item quantity="many">%d ساعة</item>
+        <item quantity="other">%d ساعة</item>
     </plurals>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل؟</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
@@ -166,12 +166,12 @@
     <string name="search_no_results">لم يتم العثور على نتائج</string>
     <string name="open_website_license">فتح الموقع</string>
     <plurals name="new_streams">
-        <item quantity="zero"/>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">لا موجَزات</item>
+        <item quantity="one">موجَز واحد</item>
+        <item quantity="two">موجَزان</item>
+        <item quantity="few">%s موجَزات</item>
+        <item quantity="many">%s موجَزًا</item>
+        <item quantity="other">%s موجز</item>
     </plurals>
     <string name="tablet_mode_title">وضع الجهاز اللوحي</string>
     <string name="unsupported_url_dialog_message">تعذر التعرف على الرابط. فتح باستخدام تطبيق آخر؟</string>
@@ -228,7 +228,7 @@
     <string name="show_age_restricted_content_summary">عرض المحتوى الذي يُحتمل أن يكون غير مناسب للأطفال لأن له حدًا عمريًا (مثل 18+)</string>
     <string name="start_here_on_background">بدأ التشغيل في الخلفية</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
-    <string name="channel_tab_shorts">الفديوهات القصيرة</string>
+    <string name="channel_tab_shorts">القصيرة</string>
     <string name="playlists">قوائم التشغيل</string>
     <string name="clear">تنظيف</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
@@ -249,12 +249,12 @@
     <string name="duplicate_in_playlist">تحتوي قوائم التشغيل رمادية اللون بالفعل على هذا العنصر.</string>
     <string name="playlist_add_stream_success">تمت إضافتها إلى قائمة التشغيل</string>
     <plurals name="days">
-        <item quantity="zero"/>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">منذ يوم واحد</item>
+        <item quantity="two">منذ يومَين</item>
+        <item quantity="few">منذ %d أيام</item>
+        <item quantity="many">منذ %d يومًا</item>
+        <item quantity="other">منذ %d يوم</item>
     </plurals>
     <string name="error_report_open_issue_button_text">تقرير على GitHub</string>
     <string name="black_theme_title">أسود</string>
@@ -592,12 +592,12 @@
 \n
 \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
     <plurals name="minutes">
-        <item quantity="zero"/>
-        <item quantity="one"/>
-        <item quantity="two"/>
-        <item quantity="few"/>
-        <item quantity="many"/>
-        <item quantity="other"/>
+        <item quantity="zero">لا دقيقة</item>
+        <item quantity="one">دقيقة واحدة</item>
+        <item quantity="two">دقيقتان</item>
+        <item quantity="few">%d دقائق</item>
+        <item quantity="many">%d دقيقة</item>
+        <item quantity="other">%d دقيقة</item>
     </plurals>
     <string name="popup_player">المشغل المنبثق</string>
     <string name="metadata_uploader_avatars">الصورة الرمزية للرفع</string>
@@ -851,4 +851,11 @@
     <string name="video_detail_by">بواسطة %s</string>
     <string name="description_tab_description">وصف</string>
     <string name="missions_header_pending">ريثما</string>
+    <string name="share_playlist_with_list">شارك الرابط التشعبي للقائمة</string>
+    <string name="share_playlist_with_titles">شارِكها بالترجمات النصية</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">شارِك قائمة التشغيل</string>
+    <string name="share_playlist_with_titles_message">شارِك قائمة التشغيل بتفاصيليها مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين تشعّبيّة للفيديوهات</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

@@ -1,0 +1,14 @@
+Nowe
+• Obsługa kart kanałów
+• Wybieranie jakości obrazów
+• Uzyskiwanie adresów URL do wszystkich obrazów
+
+Ulepszone
+• Dostępność interfejsów odtwarzacza
+• Opcja dodania nazwy playlisty i tytułów wideo do udostępnianej zawartości playlisty
+• Wewnętrzne ulepszenia i aktualizacje zależności
+
+Naprawione
+• Wybór błędnych języków w selektorze języków
+• Skupienie na dźwięku odtwarzacza nie uwzględniało wyciszenia
+• Dodawanie pozycji do playlist nie działało w określonych przypadkach

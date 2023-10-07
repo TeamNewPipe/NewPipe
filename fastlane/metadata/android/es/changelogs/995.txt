@@ -1,0 +1,14 @@
+Nuevo
+• Pestañas del canal
+• Calidad de la imagen
+• URLs a todas las imágenes
+
+Mejorado
+• Accesibilidad de las interfaces de los reproductores
+• Opción para añadir el nombre de la lista de reproducción y el nombre del vídeo a la lista de reproducción compartida
+• Mejoras internas y actualizaciones de dependencias
+
+Fijo
+• Idiomas incorrectos en el selector de idiomas
+• El audio del reproductor no se silenciaba
+• Agregar elementos a listas de reproducción que no funcionan en casos específicos

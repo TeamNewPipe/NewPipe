@@ -243,7 +243,7 @@
     <string name="start_here_on_popup">ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="drawer_open">ਡਰਾਅਰ ਖੋਲੋ</string>
     <string name="drawer_close">ਡਰਾਅਰ ਬੰਦ ਕਰੋ</string>
-    <string name="preferred_open_action_settings_title">ਤਰਜੀਹੀ \'ਖੋਲ੍ਹੋ\' ਐਕਸ਼ਨ</string>
+    <string name="preferred_open_action_settings_title">\'ਖੋਲ੍ਹਣ\' ਤੇ ਤਰਜੀਹੀ ਐਕਸ਼ਨ</string>
     <string name="preferred_open_action_settings_summary">ਸਮੱਗਰੀ ਖੋਲ੍ਹਣ ਸਮੇਂ ਡਿਫ਼ਾਲਟ ਕਾਰਵਾਈ — %s</string>
     <string name="video_player">ਵੀਡੀਓ ਪਲੇਅਰ</string>
     <string name="background_player">ਬੈਕਗ੍ਰਾਊਂਡ ਪਲੇਅਰ</string>

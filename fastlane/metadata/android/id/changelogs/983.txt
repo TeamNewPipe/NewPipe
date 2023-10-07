@@ -1,0 +1,9 @@
+Tambahkan UI dan perilaku ketuk dua kali untuk mencari
+Jadikan pengaturan dapat dicari
+Sorot komentar yang disematkan seperti itu
+Tambahkan dukungan terbuka dengan aplikasi untuk instance PeerTube FSFE
+Tambahkan pemberitahuan kesalahan
+Perbaiki pemutaran ulang item antrian pertama saat pergantian pemain
+Tunggu lebih lama saat melakukan buffering selama streaming langsung sebelum gagal
+Perbaiki urutan hasil pencarian lokal
+Perbaiki bidang item kosong di antrian putar
