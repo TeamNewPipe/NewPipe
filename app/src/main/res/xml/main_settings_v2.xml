@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="general_preferences"
+    android:title="@string/settings">
+
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.VideoAudioSettingsFragment"
+        android:icon="@drawable/ic_headset"
+        android:title="@string/settings_category_player_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:title="@string/settings_category_player_behavior_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_file_download"
+        android:title="@string/settings_category_downloads_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:title="@string/settings_category_appearance_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_history"
+        android:title="@string/settings_category_history_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_live_tv"
+        android:title="@string/settings_category_content_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/settings_category_feed_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:title="@string/settings_category_services_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_language"
+        android:title="@string/settings_category_language_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_save"
+        android:title="@string/settings_category_backup_restore_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_repeat"
+        android:title="@string/settings_category_updates_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_bug_report"
+        android:title="@string/settings_category_debug_title"
+        app:iconSpaceReserved="false" />
+</PreferenceScreen>

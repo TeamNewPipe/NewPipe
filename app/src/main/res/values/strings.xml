@@ -490,6 +490,7 @@
     <string name="crash_the_app">Crash the app</string>
     <string name="show_error_snackbar">Show an error snackbar</string>
     <string name="create_error_notification">Create an error notification</string>
+    <string name="settings_layout_redesign">Enable the Redesigned Settings page</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
@@ -838,4 +839,9 @@
     <string name="share_playlist_with_list">Share URL list</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s\n%2$s</string>
+    <!-- Settings redesign -->
+    <string name="settings_category_content_title">Content</string>
+    <string name="settings_category_services_title">Services</string>
+    <string name="settings_category_language_title">Language</string>
+    <string name="settings_category_backup_restore_title">Backup and restore</string>
 </resources>
