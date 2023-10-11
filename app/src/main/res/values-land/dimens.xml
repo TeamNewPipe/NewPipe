@@ -55,4 +55,5 @@
     <dimen name="search_suggestion_text_size">14sp</dimen>
 
     <dimen name="comment_item_avatar_right_margin">13dp</dimen>
+    <dimen name="activity_horizontal_margin">48dp</dimen>
 </resources>

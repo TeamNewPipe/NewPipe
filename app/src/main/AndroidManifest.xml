@@ -9,12 +9,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-
-    <!-- We need to be able to open links in the browser on API 30+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- We need to be able to open links in the browser on API 30+ -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="http" />
         </intent>
     </queries>
@@ -36,6 +35,16 @@
         android:resizeableActivity="true"
         android:theme="@style/OpeningTheme"
         tools:ignore="AllowBackup">
+        <activity
+            android:name=".settings.profile.ManageAccounts"
+            android:exported="false" />
+        <activity
+            android:name=".settings.profile.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -71,12 +80,10 @@
             android:exported="false"
             android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
             android:label="@string/settings" />
-
         <activity
             android:name=".about.AboutActivity"
             android:exported="false"
@@ -98,18 +105,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ExitActivity"
             android:exported="false"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-
         <activity
             android:name=".error.ErrorActivity"
-            android:exported="false" />
-
-        <!-- giga get related -->
+            android:exported="false" /> <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"
             android:exported="false"
@@ -125,10 +128,10 @@
             android:theme="@style/FilePickerThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".error.ReCaptchaActivity"
             android:exported="false"
@@ -319,7 +322,9 @@
             <!-- Share filter -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
 
@@ -337,7 +342,7 @@
                 <data android:host="media.ccc.de" />
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/" />
-                <!-- channel prefix-->
+                <!-- channel prefix -->
                 <data android:pathPrefix="/c/" />
                 <data android:pathPrefix="/b/" />
             </intent-filter>
@@ -353,7 +358,6 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-
                 <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
@@ -367,7 +371,6 @@
                 <data android:host="tilvids.com" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="video.ploud.fr" />
-
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/w/" /> <!-- short video URLs -->
                 <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
@@ -404,24 +407,21 @@
                 <data android:scheme="https" />
                 <data android:sspPattern="bandcamp.com/?show=*" />
             </intent-filter>
-
         </activity>
+
         <service
             android:name=".RouterActivity$FetcherService"
-            android:exported="false" />
-
-        <!-- opting out of sending metrics to Google in Android System WebView -->
+            android:exported="false" /> <!-- opting out of sending metrics to Google in Android System WebView -->
         <meta-data
             android:name="android.webkit.WebView.MetricsOptOut"
-            android:value="true" />
-        <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
+            android:value="true" /> <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
         <meta-data
             android:name="com.samsung.android.keepalive.density"
-            android:value="true" />
-        <!-- Version >= 3.0. DeX Dual Mode support -->
+            android:value="true" /> <!-- Version >= 3.0. DeX Dual Mode support -->
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
             android:value="true" />
     </application>
+
 </manifest>

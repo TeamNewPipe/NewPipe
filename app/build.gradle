@@ -188,6 +188,8 @@ sonar {
 }
 
 dependencies {
+    implementation 'androidx.annotation:annotation:1.6.0'
+
 /** Desugaring **/
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.3'
 
