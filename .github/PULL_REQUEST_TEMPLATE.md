@@ -2,15 +2,13 @@
 
 #### What is it?
 - [ ] Bugfix (user facing)
-- [ ] Feature (user facing)
+- [x] Feature (user facing)
 - [ ] Codebase improvement (dev facing)
 - [ ] Meta improvement to the project (dev facing)
 
 #### Description of the changes in your PR
 <!-- While bullet points are the norm in this section, feel free to write free-form text instead of a list -->
-- record videos
-- create clones
-- take over the world
+- allow user login to differnt accounts from settings pane
 
 #### Before/After Screenshots/Screen Record
 <!-- If your PR changes the app's UI in any way, please include screenshots or a video showing exactly what changed, so that developers and users can pinpoint it easily. Delete this if it doesn't apply to your PR.-->
@@ -31,4 +29,4 @@
 The APK can be found by going to the "Checks" tab below the title. On the left pane, click on "CI", scroll down to "artifacts" and click "app" to download the zip file which contains the debug APK of this PR. You can find more info and a video demonstration [on this wiki page](https://github.com/TeamNewPipe/NewPipe/wiki/Download-APK-for-PR).
 
 #### Due diligence
-- [ ] I read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md).
+- [x] I read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md).
