@@ -10,7 +10,6 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Heerka Turjimaada"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#sawir-shaashadeed">Sawir-shaashadeed</a> &bull; <a href="#faahfaahin">Faahfaahin</a> &bull; <a href="#waxqabadka">Waxqabadka</a> &bull; <a href="#kushubida-iyo-cusboonaysiinta">Kushubida iyo cusboonaysiinta</a> &bull; <a href="#kusoo-kordhin">Kusoo Kordhin</a> &bull; <a href="#ugu-deeq">Ugu Deeq</a> &bull; <a href="#laysinka">Laysinka</a></p>

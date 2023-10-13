@@ -10,7 +10,6 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Состояние сборки"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Состояние перевода"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="Канал IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Награды Bountysource"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Скриншоты</a> &bull; <a href="#supported-services">Поддерживаемые сервисы</a> &bull; <a href="#description">Описание</a> &bull; <a href="#features">Возможности</a> &bull; <a href="#installation-and-updates">Установка и обновления</a> &bull; <a href="#contribution">Участие</a> &bull; <a href="#donate">Пожертвование</a> &bull; <a href="#license">Лицензия</a></p>

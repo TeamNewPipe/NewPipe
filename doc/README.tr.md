@@ -10,7 +10,6 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Derleme Durumu"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Çeviri Durumu"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC kanalı: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource ödülleri"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#ekran-fotoğrafları">Ekran fotoğrafları</a> &bull; <a href="#açıklama">Açıklama</a> &bull; <a href="#özellikler">Özellikler</a> &bull; <a href="#kurulum-ve-güncellemeler">Kurulum ve güncellemeler</a> &bull; <a href="#katkıda-bulunma">Katkıda bulunma</a> &bull; <a href="#bağış">Bağış</a> &bull; <a href="#lisans">Lisans</a></p>
