@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class FilenameUtils {
@@ -51,7 +52,7 @@ public final class FilenameUtils {
 
         final Pattern pattern = Pattern.compile(charset);
 
-        return createFilename(title, pattern, replacementChar);
+        return createFilename(title, pattern, Matcher.quoteReplacement(replacementChar));
     }
 
     /**
