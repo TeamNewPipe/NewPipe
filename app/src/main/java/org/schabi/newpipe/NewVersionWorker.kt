@@ -120,13 +120,13 @@ class NewVersionWorker(
 
         // Parse the json from the response.
         try {
-            val githubStableObject = JsonParser.`object`()
+            val newpipeVersionInfo = JsonParser.`object`()
                 .from(response.responseBody()).getObject("flavors")
-                .getObject("github").getObject("stable")
+                .getObject("newpipe")
 
-            val versionName = githubStableObject.getString("version")
-            val versionCode = githubStableObject.getInt("version_code")
-            val apkLocationUrl = githubStableObject.getString("apk")
+            val versionName = newpipeVersionInfo.getString("version")
+            val versionCode = newpipeVersionInfo.getInt("version_code")
+            val apkLocationUrl = newpipeVersionInfo.getString("apk")
             compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode)
         } catch (e: JsonParserException) {
             // Most likely something is wrong in data received from NEWPIPE_API_URL.
