@@ -5,11 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.provider.DocumentsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 
 import org.schabi.newpipe.settings.NewPipeSettings;
@@ -23,12 +27,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
 import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+
+import us.shandian.giga.util.Utility;
 
 public class StoredDirectoryHelper {
     private static final String TAG = StoredDirectoryHelper.class.getSimpleName();
@@ -166,6 +173,44 @@ public class StoredDirectoryHelper {
      */
     public boolean isDirect() {
         return docTree == null;
+    }
+
+    /**
+     * Get free memory of the storage partition (root of the directory).
+     * @return amount of free memory in the volume of current directory (bytes)
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)  // Necessary for `getStorageVolume()`
+    public long getFreeMemory() {
+        final Uri uri = getUri();
+        final StorageManager storageManager = (StorageManager) context.
+                getSystemService(Context.STORAGE_SERVICE);
+        final List<StorageVolume> volumes = storageManager.getStorageVolumes();
+
+        final String docId = DocumentsContract.getDocumentId(uri);
+        final String[] split = docId.split(":");
+        if (split.length > 0) {
+            final String volumeId = split[0];
+
+            for (final StorageVolume volume : volumes) {
+                // if the volume is an internal system volume
+                if (volume.isPrimary() && volumeId.equalsIgnoreCase("primary")) {
+                    return Utility.getSystemFreeMemory();
+                }
+
+                // if the volume is a removable volume (normally an SD card)
+                if (volume.isRemovable() && !volume.isPrimary()) {
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        try {
+                            final String sdCardUUID = volume.getUuid();
+                            return storageManager.getAllocatableBytes(UUID.fromString(sdCardUUID));
+                        } catch (final Exception e) {
+                            // do nothing
+                        }
+                    }
+                }
+            }
+        }
+        return Long.MAX_VALUE;
     }
 
     /**
