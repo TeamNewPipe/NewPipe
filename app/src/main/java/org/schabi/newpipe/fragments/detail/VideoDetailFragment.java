@@ -24,7 +24,6 @@ import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -111,12 +110,12 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -1482,10 +1481,6 @@ public final class VideoDetailFragment
             displayUploaderAsSubChannel(info);
         }
 
-        final Drawable buddyDrawable =
-                AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
-        binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
-        binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
         if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
@@ -1547,6 +1542,7 @@ public final class VideoDetailFragment
             binding.detailDurationView.setVisibility(View.GONE);
         }
 
+
         binding.detailTitleRootLayout.setClickable(true);
         binding.detailToggleSecondaryControlsView.setRotation(0);
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
@@ -1591,6 +1587,9 @@ public final class VideoDetailFragment
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
+    /**
+     * @param info : streamInfo
+     **/
     private void displayUploaderAsSubChannel(final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
@@ -1603,11 +1602,18 @@ public final class VideoDetailFragment
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
         }
+        boolean avatarsExist = false;
+        if (ExtractorHelper.isCached(info.getServiceId(),
+                info.getUrl(), InfoItem.InfoType.STREAM)) {
+            binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
+            binding.detailUploaderThumbnailView.setVisibility(View.GONE);
+            avatarsExist = (null != PicassoHelper.loadAvatar(info.getUploaderAvatars()));
+        }
+        if (avatarsExist) {
+            PicassoHelper.loadAvatar(info.getUploaderAvatars()).tag(PICASSO_VIDEO_DETAILS_TAG)
+                    .into(binding.detailSubChannelThumbnailView);
+        }
 
-        PicassoHelper.loadAvatar(info.getUploaderAvatars()).tag(PICASSO_VIDEO_DETAILS_TAG)
-                .into(binding.detailSubChannelThumbnailView);
-        binding.detailSubChannelThumbnailView.setVisibility(View.VISIBLE);
-        binding.detailUploaderThumbnailView.setVisibility(View.GONE);
     }
 
     private void displayBothUploaderAndSubChannel(final StreamInfo info) {
