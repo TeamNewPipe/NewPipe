@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -16,8 +18,6 @@ import org.schabi.newpipe.util.DeviceUtils;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
 
 /**
  * In order to add a migration, follow these steps, given P is the previous version:<br>
@@ -154,7 +154,7 @@ public final class SettingMigrations {
             MIGRATION_2_3,
             MIGRATION_3_4,
             MIGRATION_4_5,
-            MIGRATION_5_6,
+            MIGRATION_5_6
     };
 
     /**

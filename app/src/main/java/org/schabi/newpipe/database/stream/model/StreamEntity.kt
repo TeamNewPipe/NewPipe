@@ -62,7 +62,11 @@ data class StreamEntity(
     var uploadDate: OffsetDateTime? = null,
 
     @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
-    var isUploadDateApproximation: Boolean? = null
+    var isUploadDateApproximation: Boolean? = null,
+
+    @ColumnInfo(name = STREAM_AVATAR_URL)
+    var streamAvatar: String? = null
+
 ) : Serializable {
     @Ignore
     constructor(item: StreamInfoItem) : this(
@@ -71,7 +75,8 @@ data class StreamEntity(
         uploaderUrl = item.uploaderUrl,
         thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails), viewCount = item.viewCount,
         textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
-        isUploadDateApproximation = item.uploadDate?.isApproximation
+        isUploadDateApproximation = item.uploadDate?.isApproximation,
+        streamAvatar = ImageStrategy.imageListToDbUrl(item.uploaderAvatars)
     )
 
     @Ignore
@@ -81,7 +86,8 @@ data class StreamEntity(
         uploaderUrl = info.uploaderUrl,
         thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails), viewCount = info.viewCount,
         textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
-        isUploadDateApproximation = info.uploadDate?.isApproximation
+        isUploadDateApproximation = info.uploadDate?.isApproximation,
+        streamAvatar = ImageStrategy.imageListToDbUrl(info.uploaderAvatars)
     )
 
     @Ignore
@@ -98,7 +104,7 @@ data class StreamEntity(
         item.uploaderName = uploader
         item.uploaderUrl = uploaderUrl
         item.thumbnails = ImageStrategy.dbUrlToImageList(thumbnailUrl)
-
+        item.uploaderAvatars = ImageStrategy.dbUrlToImageList(streamAvatar)
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
         item.uploadDate = uploadDate?.let {
@@ -124,5 +130,7 @@ data class StreamEntity(
         const val STREAM_TEXTUAL_UPLOAD_DATE = "textual_upload_date"
         const val STREAM_UPLOAD_DATE = "upload_date"
         const val STREAM_IS_UPLOAD_DATE_APPROXIMATION = "is_upload_date_approximation"
+
+        const val STREAM_AVATAR_URL = "stream_avatar_url"
     }
 }
