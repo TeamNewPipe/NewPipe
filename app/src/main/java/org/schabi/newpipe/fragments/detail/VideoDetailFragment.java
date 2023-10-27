@@ -872,6 +872,7 @@ public final class VideoDetailFragment
     // Tabs
     //////////////////////////////////////////////////////////////////////////*/
 
+
     private void initTabs() {
         if (pageAdapter.getCount() != 0) {
             selectedTabTag = pageAdapter.getItemTitle(binding.viewPager.getCurrentItem());
