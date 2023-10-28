@@ -21,7 +21,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -33,7 +37,8 @@ public class BookmarkImportService {
 
     private CompositeDisposable disposable;
 
-    List<StreamEntity> streams;
+    List<StreamEntity> streams = new ArrayList<>();
+
     public BookmarkImportService(final Uri textFileUri,
                                  final RemotePlaylistManager remotePlaylistManager,
                                  final LocalPlaylistManager localPlaylistManager,
@@ -59,7 +64,7 @@ public class BookmarkImportService {
                     String line;
 
                     while ((line = reader.readLine()) != null) {
-                        Toast.makeText(activity, handleUrl(line), LENGTH_SHORT).show();
+                        handleUrl(activity, line);
                         if (count == 0) {
                             //cannot create an empty playlist
                             createNewPlayListWithOneEntry();
@@ -70,6 +75,8 @@ public class BookmarkImportService {
                     }
                     reader.close();
                     inputStream.close();
+                } else {
+                    Toast.makeText(activity, "File is empty", LENGTH_SHORT).show();
                 }
             } catch (final IOException e) {
                 throw new RuntimeException(e);
@@ -82,7 +89,7 @@ public class BookmarkImportService {
     public void addEntries() {
         System.out.println("LOL");
     }
-    public String handleUrl(final String url) {
+    public String handleUrl(final Activity activity, final String url) {
         final StreamingService service;
         final StreamingService.LinkType linkType;
         try {
@@ -98,10 +105,20 @@ public class BookmarkImportService {
                 }
                 final Single<StreamInfo> single =
                         ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
-                if (single == null) {
-                    return "null";
+                if (single != null) {
+                    // Use a cached thread pool
+                    final Executor executor = Executors.newCachedThreadPool();
+                    executor.execute(() -> {
+                        // Blocking network call
+                        final StreamInfo streamInfo = single.blockingGet();
+                        final StreamEntity streamEntity =  new StreamEntity(streamInfo);
+                        // Update UI
+                        activity.runOnUiThread(() -> {
+                            streams.add(streamEntity);
+                        });
+                    });
+                    ((ExecutorService) executor).shutdown();
                 }
-                return "not null";
             }
         } catch (final ExtractionException e) {
             return "false1";
