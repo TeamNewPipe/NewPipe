@@ -36,7 +36,7 @@ public class BookmarkImportService {
     private int addedByBackgroundThreadCount = 0;
 
     private String filename;
-    List<StreamEntity> streams;
+    List<StreamEntity> streams; //holds the collection of videos to be added
 
     public BookmarkImportService(final Uri textFileUri, final LocalPlaylistManager
             localPlaylistManager, final String filename) {
@@ -44,20 +44,18 @@ public class BookmarkImportService {
         this.localPlaylistManager = localPlaylistManager;
         this.filename = filename;
     }
-
-    public void importBookmarks(final Activity activity) {
-        readTextFile(activity);
-    }
     public void readTextFile(final Activity activity) {
         if (textFileUri != null) {
             try {
                 final InputStream inputStream =
                         activity.getContentResolver().openInputStream(textFileUri);
                 if (inputStream != null) {
+                    //FileReader
                     final BufferedReader reader =
                             new BufferedReader(new InputStreamReader(inputStream));
                     String line;
                     streams = new ArrayList<>();
+                    //iterate through all lines
                     while ((line = reader.readLine()) != null) {
                         readerLineCount++;
                         handleUrl(activity, line);
@@ -77,8 +75,11 @@ public class BookmarkImportService {
         final StreamingService service;
         final StreamingService.LinkType linkType;
         try {
+            //Extract information from the URL
             service = NewPipe.getServiceByUrl(url);
             linkType = service.getLinkTypeByUrl(url);
+            //the link must belong to a stream(video)
+            // A playlist cannot have another playlist inside it, or be empty
             if (linkType == StreamingService.LinkType.STREAM) {
                 final LinkHandlerFactory factory = service.getStreamLHFactory();
                 final String cleanUrl;
@@ -100,7 +101,6 @@ public class BookmarkImportService {
                         // Update the streams list.
                         activity.runOnUiThread(() -> {
                             streams.add(streamEntity);
-
                             if (addedByBackgroundThreadCount == readerLineCount) {
                                 //All background threads done.
                                 //Add playlist

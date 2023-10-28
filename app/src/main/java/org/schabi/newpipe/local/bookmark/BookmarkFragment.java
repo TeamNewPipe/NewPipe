@@ -117,6 +117,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 return super.onOptionsItemSelected(item);
         }
     }
+    //open file manager
     private final ActivityResultLauncher<Intent> requestImportFileLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestImportFileResult);
@@ -129,6 +130,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final String mimeType = getActivity().getContentResolver().getType(uri);
             // Check if the selected file is a text file
             if (mimeType != null && mimeType.equals("text/plain")) {
+                //get filename. Name of Playlist is the same as filename
                 String fileName = "";
                 final Cursor returnCursor = getActivity().getContentResolver().query(uri, null,
                         null, null, null);
