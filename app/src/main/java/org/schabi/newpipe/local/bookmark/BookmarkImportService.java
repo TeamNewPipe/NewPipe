@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 
 public class BookmarkImportService {
     private Uri textFileUri;
+
     public BookmarkImportService(final Uri textFileUri) {
         this.textFileUri = textFileUri;
     }
