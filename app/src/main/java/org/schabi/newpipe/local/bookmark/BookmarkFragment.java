@@ -3,9 +3,11 @@ package org.schabi.newpipe.local.bookmark;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -127,8 +129,17 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final String mimeType = getActivity().getContentResolver().getType(uri);
             // Check if the selected file is a text file
             if (mimeType != null && mimeType.equals("text/plain")) {
+                String fileName = "";
+                final Cursor returnCursor = getActivity().getContentResolver().query(uri, null,
+                        null, null, null);
+                if (returnCursor != null) {
+                    final int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    returnCursor.moveToFirst();
+                    fileName = returnCursor.getString(nameIndex);
+                    returnCursor.close();
+                }
                 final BookmarkImportService parser = new BookmarkImportService(uri,
-                        localPlaylistManager);
+                        localPlaylistManager, fileName);
                 parser.readTextFile(activity);
         } else {
                 Toast.makeText(getActivity(), "Please select a .txt file!",

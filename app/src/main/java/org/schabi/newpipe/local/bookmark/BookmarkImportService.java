@@ -35,12 +35,14 @@ public class BookmarkImportService {
     private int readerLineCount = 0;
     private int addedByBackgroundThreadCount = 0;
 
+    private String filename;
     List<StreamEntity> streams;
 
-    public BookmarkImportService(final Uri textFileUri,
-                                 final LocalPlaylistManager localPlaylistManager) {
+    public BookmarkImportService(final Uri textFileUri, final LocalPlaylistManager
+            localPlaylistManager, final String filename) {
         this.textFileUri = textFileUri;
         this.localPlaylistManager = localPlaylistManager;
+        this.filename = filename;
     }
 
     public void importBookmarks(final Activity activity) {
@@ -103,7 +105,9 @@ public class BookmarkImportService {
                                 //All background threads done.
                                 //Add playlist
                                 final Maybe<List<Long>> playlistIds =
-                                        localPlaylistManager.createPlaylist("Sample", streams);
+                                        localPlaylistManager.createPlaylist(
+                                                filename.substring(0, filename.lastIndexOf('.')),
+                                                streams);
                                 playlistIds.subscribe(list -> {
                                     //this is to make the fragment fetch data from the database
                                     //I could not find another way to do this.
