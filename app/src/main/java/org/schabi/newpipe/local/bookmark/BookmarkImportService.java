@@ -1,17 +1,21 @@
 package org.schabi.newpipe.local.bookmark;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.app.Activity;
 import android.net.Uri;
+import android.widget.Toast;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,21 +24,24 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class BookmarkImportService {
     private Uri textFileUri;
     private RemotePlaylistManager remotePlaylistManager;
     private LocalPlaylistManager localPlaylistManager;
-    private StreamingService streamingService;
-    private Single<StreamInfo> streamInfoSingle;
-    private StreamInfo streamInfo;
+
+    private CompositeDisposable disposable;
+
     List<StreamEntity> streams;
     public BookmarkImportService(final Uri textFileUri,
                                  final RemotePlaylistManager remotePlaylistManager,
-                                 final LocalPlaylistManager localPlaylistManager) {
+                                 final LocalPlaylistManager localPlaylistManager,
+                                 final CompositeDisposable compositeDisposable) {
         this.textFileUri = textFileUri;
         this.remotePlaylistManager = remotePlaylistManager;
         this.localPlaylistManager = localPlaylistManager;
+        this.disposable = compositeDisposable;
     }
 
     public void importBookmarks(final Activity activity) {
@@ -52,11 +59,11 @@ public class BookmarkImportService {
                     String line;
 
                     while ((line = reader.readLine()) != null) {
+                        Toast.makeText(activity, handleUrl(line), LENGTH_SHORT).show();
                         if (count == 0) {
                             //cannot create an empty playlist
                             createNewPlayListWithOneEntry();
                             count++;
-                            getStreamEntity(line);
                         } else {
                             addEntries();
                         }
@@ -75,37 +82,30 @@ public class BookmarkImportService {
     public void addEntries() {
         System.out.println("LOL");
     }
-    public void getStreamEntity(final String url) {
+    public String handleUrl(final String url) {
+        final StreamingService service;
+        final StreamingService.LinkType linkType;
         try {
-            streamingService = NewPipe.getServiceByUrl(url);
-
-            streamInfoSingle =
-                    ExtractorHelper.getStreamInfo(streamingService.getServiceId(),
-                            url, true);
-            convertToStreamEntity(streamInfoSingle);
+            service = NewPipe.getServiceByUrl(url);
+            linkType = service.getLinkTypeByUrl(url);
+            if (linkType == StreamingService.LinkType.STREAM) {
+                final LinkHandlerFactory factory = service.getStreamLHFactory();
+                final String cleanUrl;
+                try {
+                    cleanUrl = factory.getUrl(factory.getId(url));
+                } catch (final ParsingException e) {
+                    return "parsingException";
+                }
+                final Single<StreamInfo> single =
+                        ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
+                if (single == null) {
+                    return "null";
+                }
+                return "not null";
+            }
         } catch (final ExtractionException e) {
-            throw new RuntimeException(e);
+            return "false1";
         }
-    }
-    public void convertToStreamEntity(final Single<StreamInfo> singleStreamInfo) {
-        streamInfo = singleStreamInfo.blockingGet();
-       final StreamEntity streamEntity =  new StreamEntity(
-                Long.parseLong(streamInfo.getId()),
-                streamInfo.getServiceId(),
-                streamInfo.getUrl(),
-                streamInfo.getName(),
-                streamInfo.getStreamType(),
-                streamInfo.getDuration(),
-                streamInfo.getUploaderName(),
-                streamInfo.getUploaderUrl(),
-                ImageStrategy.imageListToDbUrl(streamInfo.getThumbnails()),
-                streamInfo.getViewCount(),
-                streamInfo.getTextualUploadDate(),
-                streamInfo.getUploadDate() != null
-                        ? streamInfo.getUploadDate().offsetDateTime() : null,
-                streamInfo.getUploadDate() != null
-                        ? streamInfo.getUploadDate().isApproximation() : null
-        );
-        streams.add(streamEntity);
+        return "false2";
     }
 }

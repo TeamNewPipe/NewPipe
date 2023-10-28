@@ -129,7 +129,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             if (mimeType != null && mimeType.equals("text/plain")) {
 
                 final BookmarkImportService parser = new BookmarkImportService(uri,
-                        remotePlaylistManager, localPlaylistManager);
+                        remotePlaylistManager, localPlaylistManager, disposables);
                 parser.importBookmarks(activity);
                 System.out.println(parser);
         } else {
