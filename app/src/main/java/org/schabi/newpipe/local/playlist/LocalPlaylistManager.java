@@ -30,6 +30,7 @@ public class LocalPlaylistManager {
     private final PlaylistDAO playlistTable;
     private final PlaylistStreamDAO playlistStreamTable;
 
+
     public LocalPlaylistManager(final AppDatabase db) {
         database = db;
         streamTable = db.streamDAO();

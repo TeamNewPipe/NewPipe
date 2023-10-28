@@ -14,7 +14,6 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
-import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.BufferedReader;
@@ -27,33 +26,27 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class BookmarkImportService {
     private Uri textFileUri;
-    private RemotePlaylistManager remotePlaylistManager;
     private LocalPlaylistManager localPlaylistManager;
+    private int readerLineCount = 0;
+    private int addedByBackgroundThreadCount = 0;
 
-    private CompositeDisposable disposable;
-
-    List<StreamEntity> streams = new ArrayList<>();
+    List<StreamEntity> streams;
 
     public BookmarkImportService(final Uri textFileUri,
-                                 final RemotePlaylistManager remotePlaylistManager,
-                                 final LocalPlaylistManager localPlaylistManager,
-                                 final CompositeDisposable compositeDisposable) {
+                                 final LocalPlaylistManager localPlaylistManager) {
         this.textFileUri = textFileUri;
-        this.remotePlaylistManager = remotePlaylistManager;
         this.localPlaylistManager = localPlaylistManager;
-        this.disposable = compositeDisposable;
     }
 
     public void importBookmarks(final Activity activity) {
         readTextFile(activity);
     }
     public void readTextFile(final Activity activity) {
-        int count = 0;
         if (textFileUri != null) {
             try {
                 final InputStream inputStream =
@@ -62,19 +55,14 @@ public class BookmarkImportService {
                     final BufferedReader reader =
                             new BufferedReader(new InputStreamReader(inputStream));
                     String line;
-
+                    streams = new ArrayList<>();
                     while ((line = reader.readLine()) != null) {
+                        readerLineCount++;
                         handleUrl(activity, line);
-                        if (count == 0) {
-                            //cannot create an empty playlist
-                            createNewPlayListWithOneEntry();
-                            count++;
-                        } else {
-                            addEntries();
-                        }
                     }
                     reader.close();
                     inputStream.close();
+
                 } else {
                     Toast.makeText(activity, "File is empty", LENGTH_SHORT).show();
                 }
@@ -83,13 +71,7 @@ public class BookmarkImportService {
             }
         }
     }
-    public void createNewPlayListWithOneEntry() {
-        System.out.println("LOL");
-    }
-    public void addEntries() {
-        System.out.println("LOL");
-    }
-    public String handleUrl(final Activity activity, final String url) {
+    public boolean handleUrl(final Activity activity, final String url) {
         final StreamingService service;
         final StreamingService.LinkType linkType;
         try {
@@ -101,7 +83,7 @@ public class BookmarkImportService {
                 try {
                     cleanUrl = factory.getUrl(factory.getId(url));
                 } catch (final ParsingException e) {
-                    return "parsingException";
+                    return false;
                 }
                 final Single<StreamInfo> single =
                         ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
@@ -112,17 +94,30 @@ public class BookmarkImportService {
                         // Blocking network call
                         final StreamInfo streamInfo = single.blockingGet();
                         final StreamEntity streamEntity =  new StreamEntity(streamInfo);
-                        // Update UI
+                        addedByBackgroundThreadCount++;
+                        // Update the streams list.
                         activity.runOnUiThread(() -> {
                             streams.add(streamEntity);
+
+                            if (addedByBackgroundThreadCount == readerLineCount) {
+                                //All background threads done.
+                                //Add playlist
+                                final Maybe<List<Long>> playlistIds =
+                                        localPlaylistManager.createPlaylist("Sample", streams);
+                                playlistIds.subscribe(list -> {
+                                    //this is to make the fragment fetch data from the database
+                                    //I could not find another way to do this.
+                                });
+                                Toast.makeText(activity, "Playlist added", LENGTH_SHORT).show();
+                            }
                         });
                     });
                     ((ExecutorService) executor).shutdown();
                 }
             }
         } catch (final ExtractionException e) {
-            return "false1";
+            return false;
         }
-        return "false2";
+        return false;
     }
 }

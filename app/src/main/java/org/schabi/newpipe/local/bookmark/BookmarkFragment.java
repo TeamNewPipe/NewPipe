@@ -127,11 +127,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final String mimeType = getActivity().getContentResolver().getType(uri);
             // Check if the selected file is a text file
             if (mimeType != null && mimeType.equals("text/plain")) {
-
                 final BookmarkImportService parser = new BookmarkImportService(uri,
-                        remotePlaylistManager, localPlaylistManager, disposables);
-                parser.importBookmarks(activity);
-                System.out.println(parser);
+                        localPlaylistManager);
+                parser.readTextFile(activity);
         } else {
                 Toast.makeText(getActivity(), "Please select a .txt file!",
                         Toast.LENGTH_SHORT).show();
