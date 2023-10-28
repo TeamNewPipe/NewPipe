@@ -41,7 +41,6 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
@@ -58,8 +57,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
     @State
     protected Parcelable itemsListState;
-    @State
-    int currentServiceId = Constants.NO_SERVICE_ID;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -131,7 +128,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             // Check if the selected file is a text file
             if (mimeType != null && mimeType.equals("text/plain")) {
 
-                final BookmarkImportService parser = new BookmarkImportService(uri);
+                final BookmarkImportService parser = new BookmarkImportService(uri,
+                        remotePlaylistManager, localPlaylistManager);
                 parser.importBookmarks(activity);
                 System.out.println(parser);
         } else {
