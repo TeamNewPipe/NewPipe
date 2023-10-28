@@ -1,6 +1,9 @@
 package org.schabi.newpipe.local.bookmark;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -11,7 +14,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -32,6 +39,9 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
@@ -48,6 +58,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
     @State
     protected Parcelable itemsListState;
+    @State
+    int currentServiceId = Constants.NO_SERVICE_ID;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -91,11 +103,43 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.import_playlist:
+                //open files app
+                NoFileManagerSafeGuard.launchSafe(
+                        requestImportFileLauncher,
+                        //make sure the selected file is a text file.
+                        StoredFileHelper.getPicker(activity, "*/*"),
+                        TAG,
+                        getContext()
+                );
+
+                //read youtube links, has more conditions
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    private final ActivityResultLauncher<Intent> requestImportFileLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    this::requestImportFileResult);
+    private void requestImportFileResult(final ActivityResult result) {
+        if (result.getData() == null) {
+            return;
+        }
+        final Uri uri = result.getData().getData();
+        if (result.getResultCode() == Activity.RESULT_OK && uri != null) {
+            final String mimeType = getActivity().getContentResolver().getType(uri);
+            // Check if the selected file is a text file
+            if (mimeType != null && mimeType.equals("text/plain")) {
+
+                final BookmarkImportService parser = new BookmarkImportService(uri);
+                parser.importBookmarks(activity);
+                System.out.println(parser);
+        } else {
+                Toast.makeText(getActivity(), "Please select a .txt file!",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+        }
 
     @Override
     public void onResume() {
