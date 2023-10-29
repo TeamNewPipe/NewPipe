@@ -157,6 +157,15 @@
                             android:layout_height="match_parent"
                             android:descendantFocusability="afterDescendants" />
 
+                        <ImageButton
+                            android:id="@+id/magnify_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:contentDescription="@string/toggle_fullscreen"
+                            android:background="?attr/selectableItemBackground"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_fullscreen_exit" />
                     </FrameLayout>
 
                 </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>

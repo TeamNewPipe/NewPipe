@@ -62,7 +62,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     private static final int MENU_ID_AUDIO_TRACK = 71;
 
     private Player player;
-
+    private boolean isFullscreen = false;
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
@@ -526,7 +526,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         unbind();
         finish();
     }
-
     ////////////////////////////////////////////////////////////////////////////
     // Binding Service Helper
     ////////////////////////////////////////////////////////////////////////////

@@ -140,11 +140,22 @@
                         tools:progress="40"
                         tools:visibility="visible" />
 
+
                     <!-- Player will be inserted here in realtime -->
                     <FrameLayout
                         android:id="@+id/player_placeholder"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+
+                    <ImageButton
+                        android:id="@+id/magnify_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical|end"
+                        android:contentDescription="@string/toggle_fullscreen"
+                        android:background="?attr/selectableItemBackground"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_fullscreen" />
 
                 </FrameLayout>
             </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>

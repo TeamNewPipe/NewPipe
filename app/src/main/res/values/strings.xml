@@ -466,6 +466,7 @@
     <string name="caption_none">No Captions</string>
     <string name="resize_fit">Fit</string>
     <string name="resize_fill">Fill</string>
+    <string name="fullscreen">Fullscreen</string>
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Auto-generated</string>
     <!-- Caption Settings -->

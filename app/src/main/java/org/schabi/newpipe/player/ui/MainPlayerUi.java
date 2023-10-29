@@ -271,7 +271,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         closeItemsList();
         showHideKodiButton();
-        binding.fullScreenButton.setVisibility(View.GONE);
+        binding.fullScreenButton.setVisibility(View.VISIBLE);
         setupScreenRotationButton();
         binding.resizeTextView.setVisibility(View.VISIBLE);
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);

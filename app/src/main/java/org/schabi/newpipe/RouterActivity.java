@@ -550,7 +550,6 @@ public class RouterActivity extends AppCompatActivity {
         final AdapterChoiceItem popupPlayer = new AdapterChoiceItem(
                 getString(R.string.popup_player_key), getString(R.string.popup_player),
                 R.drawable.ic_picture_in_picture);
-
         final List<AdapterChoiceItem> returnedItems = new ArrayList<>();
         returnedItems.add(showInfo); // Always present
 

@@ -387,7 +387,7 @@ public final class PlayerHelper {
         // 0: Screen orientation is locked
         // if the accelerometer sensor is missing completely, assume locked orientation
         return android.provider.Settings.System.getInt(
-                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 1) == 0
                     || !context.getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
     }
