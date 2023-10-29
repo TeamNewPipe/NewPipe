@@ -78,6 +78,8 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private Menu menu;
 
+    private ImageButton fullscreenButton;
+
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -96,6 +98,13 @@ public final class PlayQueueActivity extends AppCompatActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_activity_play_queue);
         }
+        fullscreenButton = findViewById(R.id.magnify_button);
+        fullscreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                toggleFullscreen();
+            }
+        });
 
         serviceConnection = getServiceConnection();
         bind();
@@ -525,6 +534,39 @@ public final class PlayQueueActivity extends AppCompatActivity
     public void onServiceStopped() {
         unbind();
         finish();
+    }
+
+    private void toggleFullscreen() {
+        if (isFullscreen) {
+            // Code to exit fullscreen mode
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_VISIBLE
+            );
+
+            // If you're using an ActionBar, show it
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().show();
+            }
+            fullscreenButton.setImageResource(R.drawable.ic_fullscreen);
+            fullscreenButton.setContentDescription(getString(R.string.fullscreen));
+        } else {
+            // Code to enter fullscreen mode
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            );
+
+            // If you're using an ActionBar, hide it
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().hide();
+                fullscreenButton.setImageResource(R.drawable.ic_fullscreen_exit);
+                fullscreenButton.setContentDescription(getString(R.string.fullscreen));
+            }
+        }
+        isFullscreen = !isFullscreen;
     }
     ////////////////////////////////////////////////////////////////////////////
     // Binding Service Helper
