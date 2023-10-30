@@ -28,14 +28,19 @@ public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MediaSessUi";
 
-    private MediaSessionCompat mediaSession;
-    private MediaSessionConnector sessionConnector;
+    @NonNull
+    private final MediaSessionCompat mediaSession;
+    @NonNull
+    private final MediaSessionConnector sessionConnector;
 
     private final String ignoreHardwareMediaButtonsKey;
     private boolean shouldIgnoreHardwareMediaButtons = false;
 
-    public MediaSessionPlayerUi(@NonNull final Player player) {
+    public MediaSessionPlayerUi(@NonNull final Player player,
+                                @NonNull final MediaSessionConnector sessionConnector) {
         super(player);
+        this.mediaSession = sessionConnector.mediaSession;
+        this.sessionConnector = sessionConnector;
         ignoreHardwareMediaButtonsKey =
                 context.getString(R.string.ignore_hardware_media_buttons_key);
     }
@@ -45,10 +50,8 @@ public class MediaSessionPlayerUi extends PlayerUi
         super.initPlayer();
         destroyPlayer(); // release previously used resources
 
-        mediaSession = new MediaSessionCompat(context, TAG);
         mediaSession.setActive(true);
 
-        sessionConnector = new MediaSessionConnector(mediaSession);
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, player));
         sessionConnector.setPlayer(getForwardingPlayer());
 
@@ -61,7 +64,6 @@ public class MediaSessionPlayerUi extends PlayerUi
         updateShouldIgnoreHardwareMediaButtons(player.getPrefs());
         player.getPrefs().registerOnSharedPreferenceChangeListener(this);
 
-        sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setMediaMetadataProvider(exoPlayer -> buildMediaMetadata());
     }
 
@@ -69,26 +71,20 @@ public class MediaSessionPlayerUi extends PlayerUi
     public void destroyPlayer() {
         super.destroyPlayer();
         player.getPrefs().unregisterOnSharedPreferenceChangeListener(this);
-        if (sessionConnector != null) {
-            sessionConnector.setMediaButtonEventHandler(null);
-            sessionConnector.setPlayer(null);
-            sessionConnector.setQueueNavigator(null);
-            sessionConnector = null;
-        }
-        if (mediaSession != null) {
-            mediaSession.setActive(false);
-            mediaSession.release();
-            mediaSession = null;
-        }
+        sessionConnector.setMediaButtonEventHandler(null);
+        sessionConnector.setPlayer(null);
+        sessionConnector.setQueueNavigator(null);
+        sessionConnector.setMediaMetadataProvider(null);
+
+        mediaSession.setActive(false);
     }
 
     @Override
     public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         super.onThumbnailLoaded(bitmap);
-        if (sessionConnector != null) {
-            // the thumbnail is now loaded: invalidate the metadata to trigger a metadata update
-            sessionConnector.invalidateMediaSessionMetadata();
-        }
+
+        // the thumbnail is now loaded: invalidate the metadata to trigger a metadata update
+        sessionConnector.invalidateMediaSessionMetadata();
     }
 
 
@@ -111,7 +107,7 @@ public class MediaSessionPlayerUi extends PlayerUi
     }
 
     public Optional<MediaSessionCompat.Token> getSessionToken() {
-        return Optional.ofNullable(mediaSession).map(MediaSessionCompat::getSessionToken);
+        return Optional.of(mediaSession.getSessionToken());
     }
 
 
