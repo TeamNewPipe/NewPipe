@@ -137,7 +137,7 @@ class NotificationWorker(
                 .enqueueUniquePeriodicWork(
                     WORK_TAG,
                     if (force) {
-                        ExistingPeriodicWorkPolicy.REPLACE
+                        ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE
                     } else {
                         ExistingPeriodicWorkPolicy.KEEP
                     },
