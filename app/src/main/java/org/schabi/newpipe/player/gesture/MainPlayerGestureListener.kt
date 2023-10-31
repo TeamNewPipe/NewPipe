@@ -160,13 +160,12 @@ class MainPlayerGestureListener(
     }
 
     override fun onScroll(
-        initialEvent: MotionEvent,
+        initialEvent: MotionEvent?,
         movingEvent: MotionEvent,
         distanceX: Float,
         distanceY: Float
     ): Boolean {
-
-        if (!playerUi.isFullscreen) {
+        if (initialEvent == null || !playerUi.isFullscreen) {
             return false
         }
 
