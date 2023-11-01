@@ -132,7 +132,7 @@ checkstyle {
     toolVersion = checkstyleVersion
 }
 
-task runCheckstyle(type: Checkstyle) {
+tasks.register('runCheckstyle', Checkstyle) {
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
@@ -153,7 +153,7 @@ task runCheckstyle(type: Checkstyle) {
 def outputDir = "${project.buildDir}/reports/ktlint/"
 def inputFiles = project.fileTree(dir: "src", include: "**/*.kt")
 
-task runKtlint(type: JavaExec) {
+tasks.register('runKtlint', JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     getMainClass().set("com.pinterest.ktlint.Main")
@@ -162,7 +162,7 @@ task runKtlint(type: JavaExec) {
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
-task formatKtlint(type: JavaExec) {
+tasks.register('formatKtlint', JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     getMainClass().set("com.pinterest.ktlint.Main")
