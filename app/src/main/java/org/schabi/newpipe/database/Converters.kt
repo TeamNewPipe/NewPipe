@@ -7,7 +7,7 @@ import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
-object Converters {
+class Converters {
     /**
      * Convert a long value to a [OffsetDateTime].
      *
