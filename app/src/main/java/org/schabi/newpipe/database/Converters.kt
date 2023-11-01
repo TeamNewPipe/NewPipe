@@ -47,6 +47,6 @@ object Converters {
 
     @TypeConverter
     fun feedGroupIconOf(id: Int): FeedGroupIcon {
-        return FeedGroupIcon.values().first { it.id == id }
+        return FeedGroupIcon.entries.first { it.id == id }
     }
 }

@@ -110,8 +110,8 @@ class FeedGroupDialogViewModel(
     }
 
     sealed class DialogEvent {
-        object ProcessingEvent : DialogEvent()
-        object SuccessEvent : DialogEvent()
+        data object ProcessingEvent : DialogEvent()
+        data object SuccessEvent : DialogEvent()
     }
 
     data class Filter(val query: String, val showOnlyUngrouped: Boolean)

@@ -118,7 +118,6 @@ ext {
 
     leakCanaryVersion = '2.12'
     stethoVersion = '1.6.0'
-    mockitoVersion = '4.0.0'
 }
 
 configurations {
@@ -237,13 +236,10 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     // HTML parser
-    implementation "org.jsoup:jsoup:1.16.1"
+    implementation "org.jsoup:jsoup:1.16.2"
 
     // HTTP client
-    implementation "com.squareup.okhttp3:okhttp:4.11.0"
-    // okhttp3:4.11.0 introduces a vulnerability from com.squareup.okio:okio@3.3.0,
-    // remove com.squareup.okio:okio when updating okhttp
-    implementation "com.squareup.okio:okio:3.4.0"
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"
 
     // Media player
     implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
@@ -272,19 +268,19 @@ dependencies {
     implementation "io.noties.markwon:linkify:${markwonVersion}"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.10.1"
+    implementation "ch.acra:acra-core:5.11.3"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
-    implementation "io.reactivex.rxjava3:rxjava:3.1.6"
+    implementation "io.reactivex.rxjava3:rxjava:3.1.8"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     // Date and time formatting
-    implementation "org.ocpsoft.prettytime:prettytime:5.0.6.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.7.Final"
 
 /** Debugging **/
     // Memory leak detection
@@ -297,13 +293,12 @@ dependencies {
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+    testImplementation 'org.mockito:mockito-core:5.6.0'
 
     androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
-    androidTestImplementation "org.assertj:assertj-core:3.23.1"
+    androidTestImplementation "org.assertj:assertj-core:3.24.2"
 }
 
 static String getGitWorkingBranch() {
