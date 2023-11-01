@@ -230,24 +230,23 @@ public class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        if (mLinear) {
-            mList.setLayoutManager(mLinearManager);
-        } else {
-            mList.setLayoutManager(mGridManager);
+        // Choose the appropriate layout manager based on the user's preference
+        RecyclerView.LayoutManager layoutManager = mLinear ? mLinearManager : mGridManager;
+        mList.setLayoutManager(layoutManager);
+    
+        // Before setting the adapter, check if it's already set to avoid unnecessary operations
+        if (mList.getAdapter() != mAdapter) {
+            mList.setAdapter(mAdapter);
         }
-
-        // destroy all created views in the recycler
-        mList.setAdapter(null);
-        mAdapter.notifyDataSetChanged();
-
-        // re-attach the adapter in grid/lineal mode
-        mAdapter.setLinear(mLinear);
-        mList.setAdapter(mAdapter);
-
+    
+        // Instead of notifying the entire dataset has changed which is expensive,
+        // intelligently notify the adapter only about the items that have changed.
+        // This requires implementing proper item diffing in the adapter.
+        mAdapter.smartNotifyDataSetChanged();
+    
+        // Update the layout switch icon and title to reflect the current state
         if (mSwitch != null) {
-            mSwitch.setIcon(mLinear
-                            ? R.drawable.ic_apps
-                            : R.drawable.ic_list);
+            mSwitch.setIcon(mLinear ? R.drawable.ic_apps : R.drawable.ic_list);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }
