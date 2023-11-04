@@ -29,7 +29,7 @@ public class MediaSessionPlayerUi extends PlayerUi
     private static final String TAG = "MediaSessUi";
 
     private MediaSessionCompat mediaSession;
-    private MediaSessionConnector sessionConnector;
+    public MediaSessionConnector sessionConnector;
 
     private final String ignoreHardwareMediaButtonsKey;
     private boolean shouldIgnoreHardwareMediaButtons = false;

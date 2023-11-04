@@ -1,10 +1,13 @@
 package org.schabi.newpipe.player.notification;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
@@ -39,6 +42,8 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PREVIOUS;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
+
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 /**
  * This is a utility class for player notifications.
@@ -220,56 +225,108 @@ public final class NotificationUtil {
     @SuppressLint("RestrictedApi")
     private void updateActions(final NotificationCompat.Builder builder) {
         builder.mActions.clear();
+        final var customActionProviders =
+                new java.util.ArrayList<MediaSessionConnector.CustomActionProvider>();
         for (int i = 0; i < 5; ++i) {
-            addAction(builder, notificationSlots[i]);
+            addAction(builder, notificationSlots[i], customActionProviders);
+        }
+        // Starting with android 13, instead of Notification.Builder#addAction, we need to use
+        // PlaybackState.CustomAction . The way to route that through exoplayer2 seems to be
+        // sessionConnector.setCustomActionProviders .
+        // Only do this in Android >= 13 , since I haven't been able to test if this breaks
+        // anything for earlier versions.
+        // https://developer.android.com/about/versions/13/behavior-changes-13#playback-controls
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            player.UIs()
+                    .get(MediaSessionPlayerUi.class)
+                    .ifPresent(mediaSessionPlayerUi -> {
+                        mediaSessionPlayerUi.sessionConnector.setCustomActionProviders(
+                                customActionProviders.toArray(
+                                        new MediaSessionConnector.CustomActionProvider[0]));
+                    });
         }
     }
+    // A simple CustomActionProvider that just broadcasts an intent for the given action
+    // on the given context.
+    private static class IntentBroadcastAction implements MediaSessionConnector.CustomActionProvider {
+        private final String action;
+        private final CharSequence name;
+        private final int icon;
+        private final Context context;
+        IntentBroadcastAction(final String action, final CharSequence name,
+                              final int icon, final Context context) {
+            this.action = action;
+            this.name = name;
+            this.icon = icon;
+            this.context = context;
+        }
+        @Override
+        public void onCustomAction(final com.google.android.exoplayer2.Player player,
+                                   final String action, @Nullable final Bundle extras) {
+            context.sendBroadcast(new Intent(this.action));
+        }
 
+        @Nullable
+        @Override
+        public PlaybackStateCompat.CustomAction
+        getCustomAction(final com.google.android.exoplayer2.Player player) {
+            return new PlaybackStateCompat.CustomAction.Builder(action, name, icon).build();
+        }
+    }
     private void addAction(final NotificationCompat.Builder builder,
-                           @NotificationConstants.Action final int slot) {
-        final NotificationCompat.Action action = getAction(slot);
+                           @NotificationConstants.Action final int slot,
+                           final List<MediaSessionConnector.CustomActionProvider> actions) {
+        String[] intentAction = new String[1];
+        final NotificationCompat.Action action = getAction(slot, intentAction);
+
         if (action != null) {
             builder.addAction(action);
+            if (intentAction[0] != null && intentAction[0] != ACTION_PLAY_PAUSE) {
+                actions.add(new IntentBroadcastAction(intentAction[0],
+                        action.getTitle().toString(),
+                        action.getIconCompat().getResId(), player.getContext()));
+            }
         }
     }
 
     @Nullable
     private NotificationCompat.Action getAction(
-            @NotificationConstants.Action final int selectedAction) {
+            @NotificationConstants.Action final int selectedAction,
+            String[] outIntentAction) {
         final int baseActionIcon = NotificationConstants.ACTION_ICONS[selectedAction];
         switch (selectedAction) {
             case NotificationConstants.PREVIOUS:
                 return getAction(baseActionIcon,
-                        R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
+                        R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS, outIntentAction);
 
             case NotificationConstants.NEXT:
                 return getAction(baseActionIcon,
-                        R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
+                        R.string.exo_controls_next_description, ACTION_PLAY_NEXT, outIntentAction);
 
             case NotificationConstants.REWIND:
                 return getAction(baseActionIcon,
-                        R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
+                        R.string.exo_controls_rewind_description, ACTION_FAST_REWIND, outIntentAction);
 
             case NotificationConstants.FORWARD:
                 return getAction(baseActionIcon,
-                        R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
+                        R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD, outIntentAction);
 
             case NotificationConstants.SMART_REWIND_PREVIOUS:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return getAction(R.drawable.exo_notification_previous,
-                            R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
+                            R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS, outIntentAction);
                 } else {
                     return getAction(R.drawable.exo_controls_rewind,
-                            R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
+                            R.string.exo_controls_rewind_description, ACTION_FAST_REWIND, outIntentAction);
                 }
 
             case NotificationConstants.SMART_FORWARD_NEXT:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return getAction(R.drawable.exo_notification_next,
-                            R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
+                            R.string.exo_controls_next_description, ACTION_PLAY_NEXT, outIntentAction);
                 } else {
                     return getAction(R.drawable.exo_controls_fastforward,
-                            R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
+                            R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD, outIntentAction);
                 }
 
             case NotificationConstants.PLAY_PAUSE_BUFFERING:
@@ -277,6 +334,7 @@ public final class NotificationUtil {
                         || player.getCurrentState() == Player.STATE_BLOCKED
                         || player.getCurrentState() == Player.STATE_BUFFERING) {
                     // null intent -> show hourglass icon that does nothing when clicked
+                    outIntentAction[0] = null;
                     return new NotificationCompat.Action(R.drawable.ic_hourglass_top,
                             player.getContext().getString(R.string.notification_action_buffering),
                             null);
@@ -286,42 +344,45 @@ public final class NotificationUtil {
             case NotificationConstants.PLAY_PAUSE:
                 if (player.getCurrentState() == Player.STATE_COMPLETED) {
                     return getAction(R.drawable.ic_replay,
-                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
+                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE, outIntentAction);
                 } else if (player.isPlaying()
                         || player.getCurrentState() == Player.STATE_PREFLIGHT
                         || player.getCurrentState() == Player.STATE_BLOCKED
                         || player.getCurrentState() == Player.STATE_BUFFERING) {
                     return getAction(R.drawable.exo_notification_pause,
-                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
+                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE, outIntentAction);
                 } else {
                     return getAction(R.drawable.exo_notification_play,
-                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
+                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE, outIntentAction);
                 }
 
             case NotificationConstants.REPEAT:
                 if (player.getRepeatMode() == REPEAT_MODE_ALL) {
                     return getAction(R.drawable.exo_media_action_repeat_all,
-                            R.string.exo_controls_repeat_all_description, ACTION_REPEAT);
+                            R.string.exo_controls_repeat_all_description,
+                            ACTION_REPEAT, outIntentAction);
                 } else if (player.getRepeatMode() == REPEAT_MODE_ONE) {
                     return getAction(R.drawable.exo_media_action_repeat_one,
-                            R.string.exo_controls_repeat_one_description, ACTION_REPEAT);
+                            R.string.exo_controls_repeat_one_description,
+                            ACTION_REPEAT, outIntentAction);
                 } else /* player.getRepeatMode() == REPEAT_MODE_OFF */ {
                     return getAction(R.drawable.exo_media_action_repeat_off,
-                            R.string.exo_controls_repeat_off_description, ACTION_REPEAT);
+                            R.string.exo_controls_repeat_off_description,
+                            ACTION_REPEAT, outIntentAction);
                 }
 
             case NotificationConstants.SHUFFLE:
                 if (player.getPlayQueue() != null && player.getPlayQueue().isShuffled()) {
                     return getAction(R.drawable.exo_controls_shuffle_on,
-                            R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE);
+                            R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE, outIntentAction);
                 } else {
                     return getAction(R.drawable.exo_controls_shuffle_off,
-                            R.string.exo_controls_shuffle_off_description, ACTION_SHUFFLE);
+                            R.string.exo_controls_shuffle_off_description, ACTION_SHUFFLE, outIntentAction);
                 }
 
             case NotificationConstants.CLOSE:
                 return getAction(R.drawable.ic_close,
-                        R.string.close, ACTION_CLOSE);
+                        R.string.close, ACTION_CLOSE, outIntentAction);
 
             case NotificationConstants.NOTHING:
             default:
@@ -332,7 +393,9 @@ public final class NotificationUtil {
 
     private NotificationCompat.Action getAction(@DrawableRes final int drawable,
                                                 @StringRes final int title,
-                                                final String intentAction) {
+                                                final String intentAction,
+                                                final String[] outIntentAction) {
+        outIntentAction[0] = intentAction;
         return new NotificationCompat.Action(drawable, player.getContext().getString(title),
                 PendingIntentCompat.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(intentAction), FLAG_UPDATE_CURRENT, false));
