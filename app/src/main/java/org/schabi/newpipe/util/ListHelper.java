@@ -189,13 +189,16 @@ public final class ListHelper {
 
     /**
      * Return a {@link Stream} list which only contains streams which can be played by the player.
-     * <br>
-     * Some formats are not supported. For more info, see {@link #SUPPORTED_ITAG_IDS}.
-     * Torrent streams are also removed, because they cannot be retrieved.
+     *
+     * <p>
+     * Some formats are not supported, see {@link #SUPPORTED_ITAG_IDS} for more details.
+     * Torrent streams are also removed, because they cannot be retrieved, like OPUS streams using
+     * HLS as their delivery method, since they are not supported by ExoPlayer.
+     * </p>
      *
      * @param <S>        the item type's class that extends {@link Stream}
      * @param streamList the original stream list
-     * @param serviceId
+     * @param serviceId  the service ID from which the streams' list comes from
      * @return a stream list which only contains streams that can be played the player
      */
     @NonNull
@@ -204,6 +207,8 @@ public final class ListHelper {
         final int youtubeServiceId = YouTube.getServiceId();
         return getFilteredStreamList(streamList,
                 stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT
+                        && (stream.getDeliveryMethod() != DeliveryMethod.HLS
+                        || stream.getFormat() != MediaFormat.OPUS)
                         && (serviceId != youtubeServiceId
                         || stream.getItagItem() == null
                         || SUPPORTED_ITAG_IDS.contains(stream.getItagItem().id)));
@@ -295,7 +300,9 @@ public final class ListHelper {
         final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
         for (final AudioStream stream : audioStreams) {
-            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
+            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
+                    || (stream.getDeliveryMethod() == DeliveryMethod.HLS
+                    && stream.getFormat() == MediaFormat.OPUS)) {
                 continue;
             }
 
