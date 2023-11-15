@@ -619,11 +619,13 @@ public final class PlayQueueActivity extends AppCompatActivity
 
         final MenuItem audioTrackSelector = menu.findItem(R.id.action_audio_track);
         final List<AudioStream> availableStreams =
-                Optional.ofNullable(player.getCurrentMetadata())
+                Optional.ofNullable(player)
+                        .map(Player::getCurrentMetadata)
                         .flatMap(MediaItemTag::getMaybeAudioTrack)
                         .map(MediaItemTag.AudioTrack::getAudioStreams)
                         .orElse(null);
-        final Optional<AudioStream> selectedAudioStream = player.getSelectedAudioStream();
+        final Optional<AudioStream> selectedAudioStream = Optional.ofNullable(player)
+                .flatMap(Player::getSelectedAudioStream);
 
         if (availableStreams == null || availableStreams.size() < 2
                 || selectedAudioStream.isEmpty()) {
