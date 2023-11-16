@@ -92,15 +92,21 @@ public final class NotificationUtil {
         final NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(player.getContext(),
                 player.getContext().getString(R.string.notification_channel_id));
+        final MediaStyle mediaStyle = new MediaStyle();
 
-        final int[] compactSlots = initializeNotificationSlots();
-
-        final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
+        // setup media style (compact notification slots and media session)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            final int[] compactSlots = initializeNotificationSlots();
+            mediaStyle.setShowActionsInCompactView(compactSlots);
+        }
         player.UIs()
                 .get(MediaSessionPlayerUi.class)
                 .flatMap(MediaSessionPlayerUi::getSessionToken)
                 .ifPresent(mediaStyle::setMediaSession);
 
+        // setup notification builder
         builder.setStyle(mediaStyle)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -135,7 +141,11 @@ public final class NotificationUtil {
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
 
-        updateActions(notificationBuilder);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            updateActions(notificationBuilder);
+        }
     }
 
 
