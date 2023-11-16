@@ -29,6 +29,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
+import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
@@ -59,6 +60,14 @@ public final class PlayerService extends Service {
         ThemeHelper.setTheme(this);
 
         player = new Player(this);
+        /*
+        Create the player notification and start immediately the service in foreground,
+        otherwise if nothing is played or initializing the player and its components (especially
+        loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
+        service would never be put in the foreground while we said to the system we would do so
+         */
+        player.UIs().get(NotificationPlayerUi.class)
+                .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
     }
 
     @Override
@@ -68,16 +77,38 @@ public final class PlayerService extends Service {
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
 
+        /*
+        Be sure that the player notification is set and the service is started in foreground,
+        otherwise, the app may crash on Android 8+ as the service would never be put in the
+        foreground while we said to the system we would do so
+        The service is always requested to be started in foreground, so always creating a
+        notification if there is no one already and starting the service in foreground should
+        not create any issues
+        If the service is already started in foreground, requesting it to be started shouldn't
+        do anything
+         */
+        if (player != null) {
+            player.UIs().get(NotificationPlayerUi.class)
+                    .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        }
+
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                && player.getPlayQueue() == null) {
-            // No need to process media button's actions if the player is not working, otherwise the
-            // player service would strangely start with nothing to play
+                && (player == null || player.getPlayQueue() == null)) {
+            /*
+            No need to process media button's actions if the player is not working, otherwise
+            the player service would strangely start with nothing to play
+            Stop the service in this case, which will be removed from the foreground and its
+            notification cancelled in its destruction
+             */
+            stopSelf();
             return START_NOT_STICKY;
         }
 
-        player.handleIntent(intent);
-        player.UIs().get(MediaSessionPlayerUi.class)
-                .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
+        if (player != null) {
+            player.handleIntent(intent);
+            player.UIs().get(MediaSessionPlayerUi.class)
+                    .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
+        }
 
         return START_NOT_STICKY;
     }
@@ -87,7 +118,7 @@ public final class PlayerService extends Service {
             Log.d(TAG, "stopForImmediateReusing() called");
         }
 
-        if (!player.exoPlayerIsNull()) {
+        if (player != null && !player.exoPlayerIsNull()) {
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
@@ -98,7 +129,7 @@ public final class PlayerService extends Service {
     @Override
     public void onTaskRemoved(final Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-        if (!player.videoPlayerSelected()) {
+        if (player != null && !player.videoPlayerSelected()) {
             return;
         }
         onDestroy();
