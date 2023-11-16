@@ -5,6 +5,7 @@ import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_T
 import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.v4.media.MediaDescriptionCompat;
@@ -46,7 +47,16 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     @Override
     public long getSupportedQueueNavigatorActions(
             @Nullable final com.google.android.exoplayer2.Player exoPlayer) {
-        return ACTION_SKIP_TO_NEXT | ACTION_SKIP_TO_PREVIOUS | ACTION_SKIP_TO_QUEUE_ITEM;
+        // As documented in
+        // https://developer.android.com/about/versions/13/behavior-changes-13#playback-controls
+        // starting with android 13, setting ACTION_SKIP_TO_PREVIOUS and ACTION_SKIP_TO_NEXT forces
+        // buttons 2 and 3 to be the system provided "Previous" and "Next".
+        // Thus, we pretend to not support those actions to have the ability to customize them in
+        // MediaSessionPlayerUi.updateMediaSessionActions().
+        return ACTION_SKIP_TO_QUEUE_ITEM
+                | (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+                        ? ACTION_SKIP_TO_NEXT | ACTION_SKIP_TO_PREVIOUS
+                        : 0);
     }
 
     @Override

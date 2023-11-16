@@ -91,23 +91,34 @@ public final class NotificationUtil {
                 new NotificationCompat.Builder(player.getContext(),
                 player.getContext().getString(R.string.notification_channel_id));
 
-        initializeNotificationSlots();
+        MediaStyle mediaStyle = new MediaStyle();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi, so don't play around with compact actions
 
-        // count the number of real slots, to make sure compact slots indices are not out of bound
-        int nonNothingSlotCount = 5;
-        if (notificationSlots[3] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
+            initializeNotificationSlots();
+
+            // count the number of real slots, to make sure compact slots indices are not out of
+            // bound
+            int nonNothingSlotCount = 5;
+            if (notificationSlots[3] == NotificationConstants.NOTHING) {
+                --nonNothingSlotCount;
+            }
+            if (notificationSlots[4] == NotificationConstants.NOTHING) {
+                --nonNothingSlotCount;
+            }
+
+            // build the compact slot indices array (need code to convert from Integer... because
+            // Java)
+            final List<Integer> compactSlotList =
+                    NotificationConstants.getCompactSlotsFromPreferences(
+                            player.getContext(), player.getPrefs(), nonNothingSlotCount);
+            final int[] compactSlots =
+                    compactSlotList.stream().mapToInt(Integer::intValue).toArray();
+
+            mediaStyle = mediaStyle.setShowActionsInCompactView(compactSlots);
         }
-        if (notificationSlots[4] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
-        }
 
-        // build the compact slot indices array (need code to convert from Integer... because Java)
-        final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
-                player.getContext(), player.getPrefs(), nonNothingSlotCount);
-        final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
-
-        final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
         player.UIs()
                 .get(MediaSessionPlayerUi.class)
                 .flatMap(MediaSessionPlayerUi::getSessionToken)
@@ -200,6 +211,12 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     private void initializeNotificationSlots() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            return;
+        }
+
         for (int i = 0; i < 5; ++i) {
             notificationSlots[i] = player.getPrefs().getInt(
                     player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
@@ -209,6 +226,12 @@ public final class NotificationUtil {
 
     @SuppressLint("RestrictedApi")
     private void updateActions(final NotificationCompat.Builder builder) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            return;
+        }
+
         builder.mActions.clear();
         for (int i = 0; i < 5; ++i) {
             addAction(builder, notificationSlots[i]);
