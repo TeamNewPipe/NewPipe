@@ -98,7 +98,9 @@ android {
         resources {
             // remove two files which belong to jsoup
             // no idea how they ended up in the META-INF dir...
-            excludes += ['META-INF/README.md', 'META-INF/CHANGES']
+            excludes += ['META-INF/README.md', 'META-INF/CHANGES',
+                         // 'COPYRIGHT' belongs to RxJava...
+                         'META-INF/COPYRIGHT']
         }
     }
 }
