@@ -18,7 +18,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
@@ -39,25 +38,31 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject;
  */
 public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
-    @NonNull
-    private final AtomicInteger queueIndex;
-    private final List<PlayQueueItem> history = new ArrayList<>();
 
-    private List<PlayQueueItem> backup;
+    private volatile int queueIndex;
+    private final List<PlayQueueItem> history;
+
+    // volatile is needed for the isShuffled method
+    private volatile List<PlayQueueItem> backup;
     private List<PlayQueueItem> streams;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
-    private transient Flowable<PlayQueueEvent> broadcastReceiver;
-    private transient boolean disposed = false;
+    private transient volatile Flowable<PlayQueueEvent> broadcastReceiver;
 
-    PlayQueue(final int index, final List<PlayQueueItem> startWith) {
+    // volatile is needed for the isDisposed method
+    private transient volatile boolean disposed = false;
+
+    PlayQueue(final int index, @NonNull final List<PlayQueueItem> startWith) {
+
+        final List<PlayQueueItem> h = new ArrayList<>();
+        if (startWith.size() > index) {
+            h.add(startWith.get(index));
+        }
+        history = h;
+
         streams = new ArrayList<>(startWith);
 
-        if (streams.size() > index) {
-            history.add(streams.get(index));
-        }
-
-        queueIndex = new AtomicInteger(index);
+        queueIndex = index;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -70,18 +75,21 @@ public abstract class PlayQueue implements Serializable {
      * Also starts a self reporter for logging if debug mode is enabled.
      * </p>
      */
-    public void init() {
-        eventBroadcast = BehaviorSubject.create();
+    public synchronized void init() {
+        if (broadcastReceiver == null || eventBroadcast == null) {
+            final BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
 
-        broadcastReceiver = eventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
-                .observeOn(AndroidSchedulers.mainThread())
-                .startWithItem(new InitEvent());
+            broadcastReceiver = b.toFlowable(BackpressureStrategy.BUFFER)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .startWithItem(new InitEvent());
+            eventBroadcast = b;
+        }
     }
 
     /**
      * Dispose the play queue by stopping all message buses.
      */
-    public void dispose() {
+    public synchronized void dispose() {
         if (eventBroadcast != null) {
             eventBroadcast.onComplete();
         }
@@ -115,7 +123,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the current index that should be played
      */
     public int getIndex() {
-        return queueIndex.get();
+        return queueIndex;
     }
 
     /**
@@ -151,7 +159,7 @@ public abstract class PlayQueue implements Serializable {
             newIndex = streams.size() - 1;
         }
 
-        queueIndex.set(newIndex);
+        queueIndex = newIndex;
 
         if (oldIndex != newIndex) {
             history.add(streams.get(newIndex));
@@ -169,7 +177,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the current item that should be played, or null if the queue is empty
      */
     @Nullable
-    public PlayQueueItem getItem() {
+    public synchronized PlayQueueItem getItem() {
         return getItem(getIndex());
     }
 
@@ -178,7 +186,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the item at the given index, or null if the index is out of bounds
      */
     @Nullable
-    public PlayQueueItem getItem(final int index) {
+    public synchronized PlayQueueItem getItem(final int index) {
         if (index < 0 || index >= streams.size()) {
             return null;
         }
@@ -192,14 +200,14 @@ public abstract class PlayQueue implements Serializable {
      * @param item the item to find the index of
      * @return the index of the given item
      */
-    public int indexOf(@NonNull final PlayQueueItem item) {
+    public synchronized int indexOf(@NonNull final PlayQueueItem item) {
         return streams.indexOf(item);
     }
 
     /**
      * @return the current size of play queue.
      */
-    public int size() {
+    public synchronized int size() {
         return streams.size();
     }
 
@@ -208,7 +216,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * @return whether the play queue is empty
      */
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return streams.isEmpty();
     }
 
@@ -225,8 +233,8 @@ public abstract class PlayQueue implements Serializable {
      * @return an immutable view of the play queue
      */
     @NonNull
-    public List<PlayQueueItem> getStreams() {
-        return Collections.unmodifiableList(streams);
+    public synchronized List<PlayQueueItem> getStreams() {
+        return Collections.unmodifiableList(new ArrayList<>(streams));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -275,20 +283,22 @@ public abstract class PlayQueue implements Serializable {
      *
      * @param items {@link PlayQueueItem}s to append
      */
-    public synchronized void append(@NonNull final List<PlayQueueItem> items) {
+    public void append(@NonNull final List<PlayQueueItem> items) {
         final List<PlayQueueItem> itemList = new ArrayList<>(items);
 
-        if (isShuffled()) {
-            backup.addAll(itemList);
-            Collections.shuffle(itemList);
-        }
-        if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued()
-                && !itemList.get(0).isAutoQueued()) {
-            streams.remove(streams.size() - 1);
-        }
-        streams.addAll(itemList);
+        synchronized (this) {
+            if (isShuffled()) {
+                backup.addAll(itemList);
+                Collections.shuffle(itemList);
+            }
+            if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued()
+                    && !itemList.get(0).isAutoQueued()) {
+                streams.remove(streams.size() - 1);
+            }
+            streams.addAll(itemList);
 
-        broadcast(new AppendEvent(itemList.size()));
+            broadcast(new AppendEvent(itemList.size()));
+        }
     }
 
     /**
@@ -319,35 +329,37 @@ public abstract class PlayQueue implements Serializable {
      * </p>
      */
     public synchronized void error() {
-        final int oldIndex = getIndex();
-        queueIndex.incrementAndGet();
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        final int oldIndex = queueIndex;
+        queueIndex = oldIndex + 1;
+        final int nextIndex = queueIndex;
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
-        broadcast(new ErrorEvent(oldIndex, getIndex()));
+        broadcast(new ErrorEvent(oldIndex, nextIndex));
     }
 
     private synchronized void removeInternal(final int removeIndex) {
-        final int currentIndex = queueIndex.get();
+        final int currentIndex = queueIndex;
         final int size = size();
 
+        int nextIndex = currentIndex;
         if (currentIndex > removeIndex) {
-            queueIndex.decrementAndGet();
-
+            nextIndex = currentIndex - 1;
+            queueIndex = nextIndex;
         } else if (currentIndex >= size) {
-            queueIndex.set(currentIndex % (size - 1));
-
+            nextIndex = currentIndex % (size - 1);
+            queueIndex = nextIndex;
         } else if (currentIndex == removeIndex && currentIndex == size - 1) {
-            queueIndex.set(0);
+            nextIndex = 0;
+            queueIndex = nextIndex;
         }
 
         if (backup != null) {
             backup.remove(getItem(removeIndex));
         }
-
         history.remove(streams.remove(removeIndex));
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
     }
 
@@ -364,27 +376,29 @@ public abstract class PlayQueue implements Serializable {
      * @param source the original index of the item
      * @param target the new index of the item
      */
-    public synchronized void move(final int source, final int target) {
+    public void move(final int source, final int target) {
         if (source < 0 || target < 0) {
             return;
         }
-        if (source >= streams.size() || target >= streams.size()) {
-            return;
-        }
+        synchronized (this) {
+            if (source >= streams.size() || target >= streams.size()) {
+                return;
+            }
 
-        final int current = getIndex();
-        if (source == current) {
-            queueIndex.set(target);
-        } else if (source < current && target >= current) {
-            queueIndex.decrementAndGet();
-        } else if (source > current && target <= current) {
-            queueIndex.incrementAndGet();
-        }
+            final int current = queueIndex;
+            if (source == current) {
+                queueIndex = target;
+            } else if (source < current && target >= current) {
+                queueIndex = current - 1;
+            } else if (source > current && target <= current) {
+                queueIndex = current + 1;
+            }
 
-        final PlayQueueItem playQueueItem = streams.remove(source);
-        playQueueItem.setAutoQueued(false);
-        streams.add(target, playQueueItem);
-        broadcast(new MoveEvent(source, target));
+            final PlayQueueItem playQueueItem = streams.remove(source);
+            playQueueItem.setAutoQueued(false);
+            streams.add(target, playQueueItem);
+            broadcast(new MoveEvent(source, target));
+        }
     }
 
     /**
@@ -435,25 +449,29 @@ public abstract class PlayQueue implements Serializable {
         // Create a backup if it doesn't already exist
         // Note: The backup-list has to be created at all cost (even when size <= 2).
         // Otherwise it's not possible to enter shuffle-mode!
-        if (backup == null) {
-            backup = new ArrayList<>(streams);
-        }
+
+        final List<PlayQueueItem> copy = backup == null ? new ArrayList<>(streams) : null;
+
         // Can't shuffle a list that's empty or only has one element
         if (size() <= 2) {
             return;
         }
 
         final int originalIndex = getIndex();
-        final PlayQueueItem currentItem = getItem();
+        final PlayQueueItem currentItem = getItem(originalIndex);
 
         Collections.shuffle(streams);
 
         // Move currentItem to the head of the queue
         streams.remove(currentItem);
         streams.add(0, currentItem);
-        queueIndex.set(0);
+        queueIndex = 0;
 
         history.add(currentItem);
+
+        if (copy != null) {
+            backup = copy;
+        }
 
         broadcast(new ReorderEvent(originalIndex, 0));
     }
@@ -473,22 +491,21 @@ public abstract class PlayQueue implements Serializable {
             return;
         }
         final int originIndex = getIndex();
-        final PlayQueueItem current = getItem();
+        final PlayQueueItem current = getItem(originIndex);
 
         streams = backup;
         backup = null;
 
         final int newIndex = streams.indexOf(current);
-        if (newIndex != -1) {
-            queueIndex.set(newIndex);
-        } else {
-            queueIndex.set(0);
-        }
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        final int nextIndex = newIndex != -1 ? newIndex : 0;
+
+        queueIndex = nextIndex;
+
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
 
-        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
+        broadcast(new ReorderEvent(originIndex, nextIndex));
     }
 
     /**
@@ -500,13 +517,14 @@ public abstract class PlayQueue implements Serializable {
      * @return true if history is not empty and the item can be played
      * */
     public synchronized boolean previous() {
-        if (history.size() <= 1) {
+        final int sz = history.size();
+        if (sz <= 1) {
             return false;
         }
 
-        history.remove(history.size() - 1);
+        history.remove(sz - 1);
 
-        final PlayQueueItem last = history.remove(history.size() - 1);
+        final PlayQueueItem last = history.remove(sz - 1);
         setIndex(indexOf(last));
 
         return true;
@@ -522,25 +540,30 @@ public abstract class PlayQueue implements Serializable {
         if (other == null) {
             return false;
         }
-        if (size() != other.size()) {
-            return false;
-        }
-        for (int i = 0; i < size(); i++) {
-            final PlayQueueItem stream = streams.get(i);
-            final PlayQueueItem otherStream = other.streams.get(i);
-            // Check is based on serviceId and URL
-            if (stream.getServiceId() != otherStream.getServiceId()
-                    || !stream.getUrl().equals(otherStream.getUrl())) {
+        synchronized (this) {
+            final int size = size();
+            if (size != other.size()) {
                 return false;
             }
+            for (int i = 0; i < size; i++) {
+                final PlayQueueItem stream = streams.get(i);
+                final PlayQueueItem otherStream = other.streams.get(i);
+                // Check is based on serviceId and URL
+                if (stream.getServiceId() != otherStream.getServiceId()
+                        || !stream.getUrl().equals(otherStream.getUrl())) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
     }
 
     public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
         if (equalStreams(other)) {
-            //noinspection ConstantConditions
-            return other.getIndex() == getIndex(); //NOSONAR: other is not null
+            synchronized (this) {
+                //noinspection ConstantConditions
+                return other.getIndex() == getIndex(); //NOSONAR: other is not null
+            }
         }
         return false;
     }
