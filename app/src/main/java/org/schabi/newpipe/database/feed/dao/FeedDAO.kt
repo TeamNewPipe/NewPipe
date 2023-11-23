@@ -107,8 +107,10 @@ abstract class FeedDAO {
         WHERE feed.stream_id IN (SELECT uid from (
               SELECT s.uid,
               (SELECT MAX(upload_date)
-                    FROM streams
-                    WHERE uploader_url = s.uploader_url) max_upload_date
+                    FROM streams s1
+                    INNER JOIN feed f1
+                    ON s1.uid = f1.stream_id
+                    WHERE f1.subscription_id = f.subscription_id) max_upload_date
               FROM streams s
               INNER JOIN feed f
               ON s.uid = f.stream_id
