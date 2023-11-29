@@ -33,7 +33,6 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,6 +53,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.TypedValueCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -111,12 +111,12 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -990,8 +990,8 @@ public final class VideoDetailFragment
                     final int height = DeviceUtils.getWindowHeight(activity.getWindowManager());
                     final int viewPagerVisibleHeight = height - pagerHitRect.top;
                     // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
-                    final float tabLayoutHeight = TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
+                    final float tabLayoutHeight = TypedValueCompat.dpToPx(48,
+                            getResources().getDisplayMetrics());
 
                     if (viewPagerVisibleHeight > tabLayoutHeight * 2) {
                         // no translation at all when viewPagerVisibleHeight > tabLayout.height * 3

@@ -12,7 +12,6 @@ import android.hardware.input.InputManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.util.TypedValue;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.WindowInsets;
@@ -22,6 +21,7 @@ import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.TypedValueCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -266,18 +266,12 @@ public final class DeviceUtils {
 
     public static int dpToPx(@Dimension(unit = Dimension.DP) final int dp,
                              @NonNull final Context context) {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                context.getResources().getDisplayMetrics());
+        return (int) TypedValueCompat.dpToPx(dp, context.getResources().getDisplayMetrics());
     }
 
     public static int spToPx(@Dimension(unit = Dimension.SP) final int sp,
                              @NonNull final Context context) {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP,
-                sp,
-                context.getResources().getDisplayMetrics());
+        return (int) TypedValueCompat.spToPx(sp, context.getResources().getDisplayMetrics());
     }
 
     public static boolean isLandscape(final Context context) {
