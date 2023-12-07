@@ -93,18 +93,30 @@ abstract class FeedDAO {
         uploadDateBefore: OffsetDateTime?
     ): Maybe<List<StreamWithState>>
 
+    /**
+     * Remove links to streams that are older than the given date
+     * **but keep at least one stream per uploader**.
+     *
+     * One stream per uploader is kept because it is needed as reference
+     * when fetching new streams to check if they are new or not.
+     * @param offsetDateTime the newest date to keep, older streams are removed
+     */
     @Query(
         """
-        DELETE FROM feed WHERE
-
-        feed.stream_id IN (
-            SELECT s.uid FROM streams s
-
-            INNER JOIN feed f
-            ON s.uid = f.stream_id
-
-            WHERE s.upload_date < :offsetDateTime
-        )
+        DELETE FROM feed
+        WHERE feed.stream_id IN (SELECT uid from (
+              SELECT s.uid,
+              (SELECT MAX(upload_date)
+                    FROM streams s1
+                    INNER JOIN feed f1
+                    ON s1.uid = f1.stream_id
+                    WHERE f1.subscription_id = f.subscription_id) max_upload_date
+              FROM streams s
+              INNER JOIN feed f
+              ON s.uid = f.stream_id
+        
+              WHERE s.upload_date < :offsetDateTime
+              AND   s.upload_date <> max_upload_date))
         """
     )
     abstract fun unlinkStreamsOlderThan(offsetDateTime: OffsetDateTime)
