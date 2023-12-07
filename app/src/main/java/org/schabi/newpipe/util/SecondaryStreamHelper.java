@@ -28,12 +28,15 @@ public class SecondaryStreamHelper<T extends Stream> {
     }
 
     /**
-     * Find the correct audio stream for the desired video stream.
+     * Finds an audio stream compatible with the provided video-only stream, so that the two streams
+     * can be combined in a single file by the downloader. If there are multiple available audio
+     * streams, chooses either the highest or the lowest quality one based on
+     * {@link ListHelper#isLimitingDataUsage(Context)}.
      *
      * @param context      Android context
      * @param audioStreams list of audio streams
-     * @param videoStream  desired video ONLY stream
-     * @return selected audio stream or null if a candidate was not found
+     * @param videoStream  desired video-ONLY stream
+     * @return the selected audio stream or null if a candidate was not found
      */
     @Nullable
     public static AudioStream getAudioStreamFor(@NonNull final Context context,
