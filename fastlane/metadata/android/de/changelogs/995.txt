@@ -1,0 +1,14 @@
+Neu
+• Unterstützung von Kanaltabs
+• Bildqualität auswählbar
+• URLs zu allen Bildern erhalten
+
+Verbessert
+• Zugänglichkeit der Player-Oberflächen
+• Option zum Hinzufügen von Wiedergabelisten- und Videonamen beim Teilen von Inhalten
+• Interne Verbesserungen und Aktualisierungen der Abhängigkeiten
+
+Behoben
+• Auswahl der falschen Sprachen in der Sprachauswahl
+• Der Audio-Fokus des Players respektierte die Stummschaltung nicht
+• Das Hinzufügen von Elementen zu Wiedergabelisten in bestimmten Fällen

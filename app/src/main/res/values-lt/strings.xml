@@ -189,7 +189,7 @@
     <string name="play_queue_stream_detail">Išsami informacija</string>
     <string name="play_queue_audio_settings">Garso nustatymai</string>
     <string name="hold_to_append">Laikykite, kad įtrauktumėte į eilę</string>
-    <string name="start_here_on_background">Pradėti groti foniniame rėžime</string>
+    <string name="start_here_on_background">Pradėti groti foniniame režime</string>
     <string name="start_here_on_popup">Pradėti groti langelio grotuve</string>
     <string name="no_player_found_toast">Nerastas srauto grotuvas (galite įdiegti VLC kad grotumėte).</string>
     <string name="controls_download_desc">Parsisiųsti srauto failą</string>

@@ -1,0 +1,14 @@
+Novo
+- Separadores de canais de suporte
+- Selecionar a qualidade da imagem
+- Obter URLs para todas as imagens
+
+Melhorado
+- Acessibilidade das interfaces do leitor
+- Opção para adicionar o nome da lista de reprodução e o nome do vídeo ao conteúdo de partilha da lista de reprodução
+- Melhorias internas e atualizações de dependências
+
+Corrigido
+- Seleção de idiomas errados no seletor de idiomas
+- O foco do áudio do leitor não estava a respeitar o silêncio
+- A adição de itens a listas de reprodução não funcionava em casos específicos

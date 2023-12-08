@@ -1,10 +1,10 @@
 Verbesserungen
--Menü Animation deaktiviert #1486
+-Menüanimation deaktiviert #1486
 -Löschen von Downloads rückgängig machen #1472
--Option zum Downloaden im Austausch Menu #1498
--hinzufügen der Teilen Funktion im Menü #1454
--Minimieren der Wiedergabe beim beenden #1354
+-Option zum Downloaden im Teilen-Menü #1498
+-hinzufügen der Teilen-Funktion im Menü #1454
+-Minimieren der Wiedergabe beim Beenden #1354
 -Datenbank Versions Aktualisierung und Datenbestand Wiederherstellung #1510
 -ExoPlayer 2.8.2 aktualisiert #1392
--Überarbeitung der Wiedergabegeschwindigkeitskolntrolle um Änderungen besser zu unterstützen
--hinzufügen der Möglichkeit Stille zu überspringen(Hilfreich bei Audiobücher und einigen Musik Arten) unterstützt dadurch eine nahtlose Wiedergabe (nicht so toll bei Liedern in denen es auch Stille Passagen gibt)
+-Überarbeitung der Wiedergabegeschwindigkeitskontrolle um Änderungen besser zu unterstützen
+-hinzufügen der Möglichkeit Stille zu überspringen(Hilfreich bei Audiobücher und einigen Musikarten) unterstützt dadurch eine nahtlose Wiedergabe (Nicht so toll bei Liedern, in denen es auch stille Passagen gibt.)

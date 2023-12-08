@@ -601,7 +601,7 @@
     <string name="paid_content">Acest conținut este disponibil doar pentru utilizatorii care au plătit, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
     <string name="youtube_music_premium_content">Acest videoclip este disponibil doar pentru membrii YouTube Music Premium, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
     <string name="private_content">Acest conținut este privat, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara ta, deci nu poate fi difuzată sau descărcată de NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de NewPipe.</string>
     <string name="georestricted_content">Acest conținut nu este disponibil în țara dumneavoastră.</string>
     <string name="show_channel_details">Afișați detaliile canalului</string>
     <string name="night_theme_title">Temă Nocturnă</string>

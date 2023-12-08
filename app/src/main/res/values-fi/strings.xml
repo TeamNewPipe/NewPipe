@@ -789,5 +789,7 @@
     <string name="channel_tab_channels">Kanavat</string>
     <string name="you_successfully_subscribed">Olet nyt tilannut tämän kanavan</string>
     <string name="previous_stream">Edellinen stream</string>
-    <string name="channel_tab_livestreams"></string>
+    <string name="channel_tab_livestreams"/>
+    <string name="remove_duplicates_message">Haluatko poistaa kaikki ylimääräiset identtiset suoratoistot tästä soittolistasta\?</string>
+    <string name="streams_not_yet_supported_removed">Suoratoistot, joita lataaja ei vielä tue, ei näytetä</string>
 </resources>

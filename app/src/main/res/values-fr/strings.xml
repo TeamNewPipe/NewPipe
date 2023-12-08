@@ -663,8 +663,8 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Ajouter à la file de lecture</string>
-    <string name="enqueued_next">Ajouté à la file de lecture</string>
+    <string name="enqueue_next_stream">Placer en suivant dans la file</string>
+    <string name="enqueued_next">Placé en suivant dans la file</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
@@ -803,9 +803,22 @@
     <string name="channel_tab_shorts">Shorts</string>
     <string name="feed_fetch_channel_tabs">Onglets de chaîne à récupérer</string>
     <string name="feed_fetch_channel_tabs_summary">Onglets à récupérer lors de la mise à jour du flux. Cette option n’a aucun effet si une chaîne est mise à jour en utilisant le mode rapide.</string>
-    <string name="share_playlist_with_list">Partager l’URL de la liste</string>
+    <string name="share_playlist_with_list">Partager une liste d\'URLs</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Partager la liste de lecture</string>
     <string name="video_details_list_item">- %1$s : %2$s</string>
+    <string name="show_channel_tabs_summary">Choisir quels onglets seront visibles sur les pages de chaîne</string>
+    <string name="toggle_screen_orientation">Changer l’orientation de l’écran</string>
+    <string name="toggle_fullscreen">Basculer en plein écran</string>
+    <string name="share_playlist_with_titles">Partager avec les noms</string>
+    <string name="metadata_subchannel_avatars">Avatars de sous-chaîne</string>
+    <string name="open_play_queue">Ouvrir la file de lecture</string>
+    <string name="forward">En avant</string>
+    <string name="rewind">Rembobiner</string>
+    <string name="replay">Relancer</string>
+    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le nom de ses vidéos ou simplement la liste des URL des vidéos</string>
+    <string name="metadata_uploader_avatars">Mise en ligne des avatars</string>
+    <string name="image_quality_summary">Sélectionnez la qualités des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vide à la fois le cache des images en mémoire et sur le disque — %s</string>
+    <string name="play">Lancer</string>
 </resources>

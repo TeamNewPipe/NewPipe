@@ -1,0 +1,9 @@
+##Cải thiện:
+
+- Tắt hoạt ảnh icon burgermenu #1486
+- Cho phép hoàn tắc nội dung đã tải xuống #1472
+- Tùy chọn tải xuống ở menu chia sẻ #1498
+- Đã thêm tùy chọn chia sẻ vào menu nhẫn giữ #1454
+- Thu nhỏ bộ phát phương tiện chính khi thoát #1354
+- Sửa lỗi Cập nhật thư viện và cơ sở dữ liệu dự phòng #1510
+- Cập nhật trình phát ExoPlayer 2.8.2 #1392

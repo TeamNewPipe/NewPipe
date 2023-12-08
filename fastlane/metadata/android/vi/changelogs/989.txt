@@ -1,0 +1,3 @@
+• [YouTube] Sửa lỗi tải vô hạn khi cố gắng phát bất kỳ video nào
+• [YouTube] Sửa lỗi điều tiết trên một số video
+• Nâng cấp thư viện jsoup lên 1.15.3, bao gồm bản sửa lỗi bảo mật

@@ -1,0 +1,12 @@
+Mới
+• Hỗ trợ các phương thức phân phối khác ngoài HTTP lũy tiến: thời gian tải nhanh hơn, sửa lỗi cho PeerTube và SoundCloud, phát lại các luồng trực tiếp YouTube đã kết thúc gần đây
+• Thêm nút để thêm danh sách phát từ xa vào danh sách phát cục bộ
+• Xem trước hình ảnh trong bảng chia sẻ Android 10+
+
+Cải thiện
+• Cải thiện hộp thoại thông số phát lại
+• Di chuyển các nút nhập / xuất đăng ký sang menu ba chấm
+
+Cố định
+• Khắc phục sự cố xóa video đã xem đầy đủ khỏi danh sách phát
+• Sửa chủ đề thực đơn chia sẻ và mục "thêm vào danh sách phát"

@@ -20,7 +20,7 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -102,7 +102,7 @@
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seç</string>
+    <string name="show_search_suggestions_summary">Arama yaparken öneriler gösterilsin mi</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
@@ -212,11 +212,11 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Çalma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
-    <string name="dismiss">Reddet</string>
+    <string name="dismiss">Dışla</string>
     <string name="rename">Yeniden adlandır</string>
     <string name="title_last_played">Son Oynatılan</string>
     <string name="title_most_played">En Çok Oynatılan</string>
@@ -279,7 +279,7 @@
     <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın.
 \n
 \nSürdürmek istiyor musunuz\?</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
@@ -623,7 +623,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
-    <string name="off">Kapat</string>
+    <string name="off">Kapalı</string>
     <string name="on">Aç</string>
     <string name="tablet_mode_title">Tablet kipi</string>
     <string name="seekbar_preview_thumbnail_title">Konum çubuğu küçük resim ön izlemesi</string>

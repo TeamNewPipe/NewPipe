@@ -11,7 +11,7 @@
     <string name="share">ਸਾਂਝਾ ਕਰੋ</string>
     <string name="download">ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <string name="controls_download_desc">ਸਟ੍ਰੀਮ ਫ਼ਾਈਲ ਡਾਊਨਲੋਡ ਕਰੋ</string>
-    <string name="search">ਲੱਭੋ</string>
+    <string name="search">ਖੋਜ ਕਰੋ</string>
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ ਸੀ \"%1$s\"\?</string>
     <string name="share_dialog_title">ਇਸ ਨਾਲ਼ ਸਾਂਝਾ ਕਰੋ</string>
@@ -113,8 +113,8 @@
     <string name="delete_view_history_alert">ਕੀ ਵੇਖੇ ਗਏ ਵੀਡੀਓਜ਼ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇ\?</string>
     <string name="clear_search_history_title">ਖੋਜ ਸੂਚੀ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾਓ</string>
     <string name="clear_search_history_summary">ਖੋਜ ਸ਼ਬਦਾਂ ਦੀ ਸੂਚੀ ਮਿਟਾਉਂਦਾ ਹੈ</string>
-    <string name="delete_search_history_alert">ਕੀ ਸਾਰੀ ਖੋਜ ਸੂਚੀ ਮਿਟਾ ਦਿਤੀ ਜਾਵੇ \?</string>
-    <string name="search_history_deleted">ਖੋਜ ਸੂਚੀ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿਤਾ ਗਿਆ</string>
+    <string name="delete_search_history_alert">ਕੀ ਸਾਰੀ ਖੋਜ ਸੂਚੀ ਮਿਟਾ ਦਿੱਤੀ ਜਾਵੇ \?</string>
+    <string name="search_history_deleted">ਖੋਜ ਸੂਚੀ ਦਾ ਇਤਿਹਾਸ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ</string>
     <string name="general_error">ਤਰੁੱਟੀ</string>
     <string name="network_error">ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ</string>
     <string name="could_not_load_thumbnails">ਸਾਰੇ ਥੰਮਨੇਲ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ</string>
