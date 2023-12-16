@@ -768,6 +768,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
                 String searchString = intent.getStringExtra(Constants.KEY_SEARCH_STRING);
+                Log.d("Filter", searchString);
                 if (searchString == null) {
                     searchString = "";
                 }

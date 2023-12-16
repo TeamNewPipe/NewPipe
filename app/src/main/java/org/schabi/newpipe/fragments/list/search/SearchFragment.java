@@ -67,6 +67,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.FilterUrlsOnline;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -106,6 +107,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @State
     int filterItemCheckedId = -1;
+
+    int loadNextItemsCount = 0;
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -971,6 +974,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void handleResult(@NonNull final SearchInfo result) {
         final List<Throwable> exceptions = result.getErrors();
+        final List<InfoItem> RelatedItems = FilterUrlsOnline.filterItems(result.getRelatedItems());
+        loadNextItemsCount = 0;
         if (!exceptions.isEmpty()
                 && !(exceptions.size() == 1
                 && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
@@ -992,8 +997,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         nextPage = result.getNextPage();
 
         if (infoListAdapter.getItemsList().isEmpty()) {
-            if (!result.getRelatedItems().isEmpty()) {
-                infoListAdapter.addInfoItemList(result.getRelatedItems());
+            if (!RelatedItems.isEmpty()) {
+                infoListAdapter.addInfoItemList(RelatedItems);
             } else {
                 infoListAdapter.clearStreamItemList();
                 showEmptyState();
@@ -1038,7 +1043,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage<?> result) {
         showListFooter(false);
-        infoListAdapter.addInfoItemList(result.getItems());
+        final List<InfoItem> Items = FilterUrlsOnline.filterNextItems(result.getItems());
+        if (loadNextItemsCount == 10) {
+            Log.d("Filter", "loadNextItemsCount == 10");
+            showListFooter(true);
+            return;
+        }
+        loadNextItemsCount = loadNextItemsCount + 1;
+        infoListAdapter.addInfoItemList(Items);
         nextPage = result.getNextPage();
 
         if (!result.getErrors().isEmpty()) {
