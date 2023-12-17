@@ -69,22 +69,23 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     protected Supplier<View> getListHeaderSupplier() {
-        if (relatedItemInfo == null || relatedItemInfo.getRelatedItems() == null) {
-            return null;
-        }
-
-        headerBinding = RelatedItemsHeaderBinding
-                .inflate(activity.getLayoutInflater(), itemsList, false);
-
-        final SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
-        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-        headerBinding.autoplaySwitch.setChecked(autoplay);
-        headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
-                PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                        .putBoolean(getString(R.string.auto_queue_key), b).apply());
-
-        return headerBinding::getRoot;
+        return null;
+//        if (relatedItemInfo == null || relatedItemInfo.getRelatedItems() == null) {
+//            return null;
+//        }
+//
+//        headerBinding = RelatedItemsHeaderBinding
+//                .inflate(activity.getLayoutInflater(), itemsList, false);
+//
+//        final SharedPreferences pref = PreferenceManager
+//                .getDefaultSharedPreferences(requireContext());
+//        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+//        headerBinding.autoplaySwitch.setChecked(autoplay);
+//        headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
+//                PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+//                        .putBoolean(getString(R.string.auto_queue_key), b).apply());
+//
+//        return headerBinding::getRoot;
     }
 
     @Override
@@ -98,7 +99,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     protected Single<RelatedItemInfo> loadResult(final boolean forceLoad) {
-        return Single.fromCallable(() -> relatedItemInfo);
+        return Single.never();
     }
 
     @Override

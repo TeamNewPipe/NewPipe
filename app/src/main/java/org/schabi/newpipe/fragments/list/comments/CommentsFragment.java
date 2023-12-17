@@ -75,7 +75,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+        return null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -849,6 +849,7 @@ public final class VideoDetailFragment
                             getString(R.string.show_age_restricted_content), false)) {
                         hideAgeRestrictedContent();
                     } else {
+                        Log.d("Filter", "Video Url that is playing");
                         handleResult(result);
                         showContent();
                         if (addToBackStack) {
@@ -881,19 +882,6 @@ public final class VideoDetailFragment
         tabIcons.clear();
         tabContentDescriptions.clear();
 
-        if (shouldShowComments()) {
-            pageAdapter.addFragment(
-                    CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
-            tabIcons.add(R.drawable.ic_comment);
-            tabContentDescriptions.add(R.string.comments_tab_description);
-        }
-
-        if (showRelatedItems && binding.relatedItemsLayout == null) {
-            // temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(EmptyFragment.newInstance(false), RELATED_TAB_TAG);
-            tabIcons.add(R.drawable.ic_art_track);
-            tabContentDescriptions.add(R.string.related_items_tab_description);
-        }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
@@ -935,16 +923,7 @@ public final class VideoDetailFragment
     }
 
     private void updateTabs(@NonNull final StreamInfo info) {
-        if (showRelatedItems) {
-            if (binding.relatedItemsLayout == null) { // phone
-                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedItemsFragment.getInstance(info));
-            } else { // tablet + TV
-                getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedItemsLayout, RelatedItemsFragment.getInstance(info))
-                        .commitAllowingStateLoss();
-                binding.relatedItemsLayout.setVisibility(isFullscreen() ? View.GONE : View.VISIBLE);
-            }
-        }
+
 
         if (showDescription) {
             pageAdapter.updateItem(DESCRIPTION_TAB_TAG, new DescriptionFragment(info));
