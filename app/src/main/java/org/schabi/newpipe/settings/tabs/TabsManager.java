@@ -28,13 +28,14 @@ public final class TabsManager {
     }
 
     public List<Tab> getTabs() {
-        final String savedJson = sharedPreferences.getString(savedTabsKey, null);
-        try {
-            return TabsJsonHelper.getTabsFromJson(savedJson);
-        } catch (final TabsJsonHelper.InvalidJsonException e) {
-            Toast.makeText(context, R.string.saved_tabs_invalid_json, Toast.LENGTH_SHORT).show();
-            return getDefaultTabs();
-        }
+        return getDefaultTabs();
+//        final String savedJson = sharedPreferences.getString(savedTabsKey, null);
+//        try {
+//            return TabsJsonHelper.getTabsFromJson(savedJson);
+//        } catch (final TabsJsonHelper.InvalidJsonException e) {
+//            Toast.makeText(context, R.string.saved_tabs_invalid_json, Toast.LENGTH_SHORT).show();
+//            return getDefaultTabs();
+//        }
     }
 
     public void saveTabs(final List<Tab> tabList) {

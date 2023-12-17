@@ -193,8 +193,9 @@ public final class ServiceHelper {
     }
 
     public static void initServices(final Context context) {
-        for (final StreamingService s : ServiceList.all()) {
-            initService(context, s.getServiceId());
-        }
+        initService(context, ServiceList.YouTube.getServiceId());
+//        for (final StreamingService s : ServiceList.all()) {
+//            initService(context, ServiceList.YouTube.getServiceId());
+//        }
     }
 }

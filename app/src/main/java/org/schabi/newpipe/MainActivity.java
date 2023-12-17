@@ -221,27 +221,27 @@ public class MainActivity extends AppCompatActivity {
 
         int kioskMenuItemId = 0;
 
-        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-            drawerLayoutBinding.navigation.getMenu()
-                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
-                            .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks));
-            kioskMenuItemId++;
-        }
+//        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+//            drawerLayoutBinding.navigation.getMenu()
+//                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
+//                            .getTranslatedKioskName(ks, this))
+//                    .setIcon(KioskTranslator.getKioskIcon(ks));
+//            kioskMenuItemId++;
+//        }
 
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
-                        R.string.tab_subscriptions)
-                .setIcon(R.drawable.ic_tv);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-                .setIcon(R.drawable.ic_subscriptions);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
-                .setIcon(R.drawable.ic_bookmark);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
-                .setIcon(R.drawable.ic_file_download);
+//        drawerLayoutBinding.navigation.getMenu()
+//                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
+//                        R.string.tab_subscriptions)
+//                .setIcon(R.drawable.ic_tv);
+//        drawerLayoutBinding.navigation.getMenu()
+//                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
+//                .setIcon(R.drawable.ic_subscriptions);
+//        drawerLayoutBinding.navigation.getMenu()
+//                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
+//                .setIcon(R.drawable.ic_bookmark);
+//        drawerLayoutBinding.navigation.getMenu()
+//                .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
+//                .setIcon(R.drawable.ic_file_download);
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerHeader() {
-        drawerHeaderBinding.drawerHeaderActionButton.setOnClickListener(view -> toggleServices());
+//        drawerHeaderBinding.drawerHeaderActionButton.setOnClickListener(view -> toggleServices());
 
         // If the current app name is bigger than the default "NewPipe" (7 chars),
         // let the text view grow a little more as well.
