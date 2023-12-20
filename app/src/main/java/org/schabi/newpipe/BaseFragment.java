@@ -120,9 +120,20 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    /**
+     * Finds the root fragment by looping through all of the parent fragments. The root fragment
+     * is supposed to be {@link org.schabi.newpipe.fragments.MainFragment}, and is the fragment that
+     * handles keeping the backstack of opened fragments in NewPipe, and also the player bottom
+     * sheet. This function therefore returns the fragment manager of said fragment.
+     *
+     * @return the fragment manager of the root fragment, i.e.
+     *         {@link org.schabi.newpipe.fragments.MainFragment}
+     */
     protected FragmentManager getFM() {
-        return getParentFragment() == null
-                ? getFragmentManager()
-                : getParentFragment().getFragmentManager();
+        Fragment current = this;
+        while (current.getParentFragment() != null) {
+            current = current.getParentFragment();
+        }
+        return current.getFragmentManager();
     }
 }
