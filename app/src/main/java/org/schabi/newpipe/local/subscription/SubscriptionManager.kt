@@ -12,12 +12,11 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo
-import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
@@ -97,19 +96,15 @@ class SubscriptionManager(context: Context) {
             }
     }
 
-    fun updateFromInfo(subscriptionId: Long, info: Info) {
-        val subscriptionEntity = subscriptionTable.getSubscription(subscriptionId)
+    fun updateFromInfo(info: FeedUpdateInfo) {
+        val subscriptionEntity = subscriptionTable.getSubscription(info.uid)
 
-        if (info is FeedInfo) {
-            subscriptionEntity.name = info.name
-        } else if (info is ChannelInfo) {
-            subscriptionEntity.setData(
-                info.name,
-                ImageStrategy.imageListToDbUrl(info.avatars),
-                info.description,
-                info.subscriberCount
-            )
-        }
+        subscriptionEntity.name = info.name
+        subscriptionEntity.avatarUrl = info.avatarUrl
+
+        // these two fields are null if the feed info was fetched using the fast feed method
+        info.description?.let { subscriptionEntity.description = it }
+        info.subscriberCount?.let { subscriptionEntity.subscriberCount = it }
 
         subscriptionTable.update(subscriptionEntity)
     }
