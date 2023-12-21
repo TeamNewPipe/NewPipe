@@ -29,7 +29,7 @@
     <string name="start_downloads">Initiar discargas</string>
     <string name="pause_downloads">Pausar le discargas</string>
     <string name="choose_instance_prompt">Seliger un instantia</string>
-    <string name="error_connect_host">Non poteva connecter con le servitor</string>
+    <string name="error_connect_host">Non pote connecter con le servitor</string>
     <string name="upload_date_text">Publicate le %1$s</string>
     <string name="controls_download_desc">Discargar le file de fluxo</string>
     <string name="default_resolution_title">Resolution predefinite</string>
@@ -104,7 +104,7 @@
     <string name="clear_views_history_title">Vacuar le chronologia de reproductiones</string>
     <string name="videos_string">Videos</string>
     <string name="clear_views_history_summary">Dele le chronologia del contenido observate e positiones de reproduction</string>
-    <string name="watch_history_states_deleted">Positiones de reproduction delite.</string>
+    <string name="watch_history_states_deleted">Positiones de reproduction delite</string>
     <string name="clear_search_history_title">Vacuar le chronologia de cerca</string>
     <string name="network_error">Error de rete</string>
     <string name="content_not_available">Contento non disponibile</string>
@@ -127,7 +127,7 @@
     <string name="msg_running">NewPipe discargante</string>
     <string name="title_activity_about">A proposito de NewPipe</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sub %3$s</string>
-    <string name="tab_about">A proposito de</string>
+    <string name="tab_about">FAQ e A proposito de</string>
     <string name="tab_licenses">Licentias</string>
     <string name="contribution_title">Contribuer</string>
     <string name="view_on_github">Vider in GitHub</string>
@@ -140,7 +140,7 @@
     <string name="title_most_played">Le plus reproducite</string>
     <string name="main_page_content">Contento del pagina principal</string>
     <string name="select_a_channel">Selige un canal</string>
-    <string name="recaptcha_done_button">Preste</string>
+    <string name="done">Preste</string>
     <string name="popup_remember_size_pos_summary">Rememorar ultime grandor e position del reproductor emergente</string>
     <string name="popup_remember_size_pos_title">Rememorar grandor e position del fenestra emergente</string>
     <plurals name="videos">
@@ -160,7 +160,7 @@
     <string name="title_activity_history">Chronologia</string>
     <string name="clear_search_history_summary">Dele le chronologia de parolas clave de cerca</string>
     <string name="delete_search_history_alert">Deler omne chronologia de cerca\?</string>
-    <string name="search_history_deleted">Chronologia de cerca delite.</string>
+    <string name="search_history_deleted">Chronologia de recerca delite</string>
     <string name="export_data_summary">Exportar le chronologia, subscriptiones, listas de reproduction e configurationes</string>
     <string name="import_data_summary">Reimplaciar tu chronologia, subscriptiones e (optionalmente) configurationes currente</string>
     <string name="remove_watched_popup_warning">Le videos jam observate ante e post de esser addite al lista de reproduction essera removite.
@@ -173,7 +173,7 @@
         <item quantity="other">%s visualisationes</item>
     </plurals>
     <string name="no_one_watching">Nemo is observante</string>
-    <string name="watch_history_deleted">Chronologia de reproductiones vacuate.</string>
+    <string name="watch_history_deleted">Chronologia de reproductiones vacuate</string>
     <string name="delete_view_history_alert">Deler omne chronologia de reproductiones\?</string>
     <string name="error_snackbar_message">Pardono, qualcosa vadeva incorrecte.</string>
     <string name="sorry_string">Pardono, illo non deberea haber ocurrite.</string>
@@ -227,7 +227,6 @@
     <string name="metadata_privacy_internal">Interne</string>
     <string name="open_with">Aperir con</string>
     <string name="remote_search_suggestions">Suggestiones de recerca remote</string>
-    <string name="download_thumbnail_title">Cargar miniaturas</string>
     <string name="search_showing_result_for">Monstrante resultatos pro: %s</string>
     <string name="show_higher_resolutions_summary">Solmente alicun apparatos pote reproducer videos 2K/4K</string>
     <string name="start_main_player_fullscreen_title">Initiar le reproductor principal in schermo plen</string>
@@ -243,4 +242,7 @@
     <string name="video_detail_by">Per %s</string>
     <string name="radio">Radio</string>
     <string name="channel_created_by">Create per %s</string>
+    <string name="mark_as_watched">Marcar como reguardate</string>
+    <string name="ok">OK</string>
+    <string name="use_external_video_player_title">Usar reproductor de video externe</string>
 </resources>

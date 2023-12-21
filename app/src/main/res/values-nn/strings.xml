@@ -90,7 +90,6 @@
     <string name="clear_queue_confirmation_title">Stadfest radtømming</string>
     <string name="clear_queue_confirmation_summary">Byte ifrå ein avspelar til ein annan kan skifta ut rada di</string>
     <string name="clear_queue_confirmation_description">Den noverande avspelingsrada vil verta skift ut</string>
-    <string name="download_thumbnail_title">Hent fram småbilete</string>
     <string name="ignore_hardware_media_buttons_title">Sjå bort ifrå mediaknappetrykk</string>
     <string name="ignore_hardware_media_buttons_summary">Nyttig om du til dømes nyttar høyretelefonar med skadde knappar</string>
     <string name="none">Ingen</string>

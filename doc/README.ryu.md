@@ -10,14 +10,13 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ビルドじょうたい"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="ふんやちゅるじょうたい"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysourceちーふ"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">スクリーンショット</a> &bull; <a href="#description">しちめい</a> &bull; <a href="#features">ちぬー</a> &bull; <a href="#installation-and-updates">インストールとぅこうしん</a> &bull; <a href="#contribution">こうきん</a> &bull; <a href="#donate">ちーふ</a> &bull; <a href="#license">ライセンス</a></p>
 <p align="center"><a href="https://newpipe.net">ウェブサイト</a> &bull; <a href="https://newpipe.net/blog/">ブログ</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">ニュース</a></p>
 <hr>
 
-*ふかぬぎんぐっしゆむん： [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [うちなーぐち](README.ryu.md)。*
+*ふかぬぎんぐっしゆむん： [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
 <b>ちゅうい：くれーベータばんぬたみ、バグぬはっせいすがのうゆいがあいびーん。むしバグぬはっせいさーあい、GitHubぬリポジトリっしIssueふぃらちくぃみそーれー。</b>
 
@@ -121,19 +120,9 @@ NewPipeーふくすんぬサービスんかいたいおうそーいびーん。[
 
 <table>
   <tr>
-    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="../assets/bitcoin_qr_code.png" alt="Bitcoin QR コード" width="100px"></td>
-    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
-  </tr>
-  <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.comっしNewPipeちゅーん" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapayなちーふ" height="35px"></a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="bountysource.comっしNewPipeちゅーん" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="うんじゅがじるふどぅどぅちふいらりーるぬがかくにんさびら。"></a></td>
   </tr>
 </table>
 

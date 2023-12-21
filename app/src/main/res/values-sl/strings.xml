@@ -43,7 +43,6 @@
     <string name="download_path_audio_dialog_title">Izberite mapo za prenos avdio datotek</string>
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
-    <string name="youtube_signature_deobfuscation_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča</string>
     <string name="content_not_available">Vsebina ni na voljo</string>
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek</string>
@@ -198,7 +197,6 @@
     <string name="create">Ustvari</string>
     <string name="dismiss">Opusti</string>
     <string name="rename">Preimenuj</string>
-    <string name="download_thumbnail_title">Naloži sličice</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="downloads_storage_use_saf_title">Uporabi SAF</string>
     <string name="downloads_storage_ask_title">Vprašaj kam shraniti</string>
@@ -266,7 +264,7 @@
     <string name="read_privacy_policy">Preberi pravilnik zasebnosti</string>
     <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
-    <string name="recaptcha_done_button">Končano</string>
+    <string name="done">Končano</string>
     <string name="no_comments">Ni komantarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>
     <string name="no_one_watching">Nobeden ne gleda</string>
@@ -309,7 +307,6 @@
     <string name="metadata_cache_wipe_complete_notice">Predpomnjeni metapodatki so bili odstranjeni</string>
     <string name="show_meta_info_title">Prikaži meta informacije</string>
     <string name="show_comments_summary">Onemogoči da se ustavi prikazovanje komentarjev</string>
-    <string name="download_thumbnail_summary">Izklopite, če želite preprečiti nalaganje sličic, s tem bo varčeval na podatkih in uporabi spomina. Spremembe bodo izbrisale predpomnilnik v spominu in na disku</string>
     <string name="clear_queue_confirmation_description">Dejavna vrsta bo zamenjana</string>
     <string name="clear_queue_confirmation_summary">Preklop na drugi predvajanik lahko zamenja vašo čakalno vrsto</string>
     <string name="clear_queue_confirmation_title">Vprašaj za potrditev pred čiščenjem vrste</string>

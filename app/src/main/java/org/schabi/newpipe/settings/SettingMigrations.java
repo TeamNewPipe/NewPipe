@@ -128,6 +128,20 @@ public final class SettingMigrations {
         }
     };
 
+    public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            final boolean loadImages = sp.getBoolean("download_thumbnail_key", true);
+
+            sp.edit()
+                    .putString(context.getString(R.string.image_quality_key),
+                            context.getString(loadImages
+                                    ? R.string.image_quality_default
+                                    : R.string.image_quality_none_key))
+                    .apply();
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -140,12 +154,13 @@ public final class SettingMigrations {
             MIGRATION_2_3,
             MIGRATION_3_4,
             MIGRATION_4_5,
+            MIGRATION_5_6,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 5;
+    private static final int VERSION = 6;
 
 
     public static void runMigrationsIfNeeded(@NonNull final Context context,

@@ -4,6 +4,7 @@ import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
 import androidx.annotation.NonNull;
@@ -45,10 +46,10 @@ public final class ListHelper {
             List.of(MediaFormat.MP3, MediaFormat.M4A, MediaFormat.WEBMA);
     // Use a Set for better performance
     private static final Set<String> HIGH_RESOLUTION_LIST = Set.of("1440p", "2160p");
-    // Audio track types in order of priotity. 0=lowest, n=highest
+    // Audio track types in order of priority. 0=lowest, n=highest
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING =
             List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL);
-    // Audio track types in order of priotity when descriptive audio is preferred.
+    // Audio track types in order of priority when descriptive audio is preferred.
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE =
             List.of(AudioTrackType.ORIGINAL, AudioTrackType.DUBBED, AudioTrackType.DESCRIPTIVE);
 
@@ -188,13 +189,16 @@ public final class ListHelper {
 
     /**
      * Return a {@link Stream} list which only contains streams which can be played by the player.
-     * <br>
-     * Some formats are not supported. For more info, see {@link #SUPPORTED_ITAG_IDS}.
-     * Torrent streams are also removed, because they cannot be retrieved.
+     *
+     * <p>
+     * Some formats are not supported, see {@link #SUPPORTED_ITAG_IDS} for more details.
+     * Torrent streams are also removed, because they cannot be retrieved, like OPUS streams using
+     * HLS as their delivery method, since they are not supported by ExoPlayer.
+     * </p>
      *
      * @param <S>        the item type's class that extends {@link Stream}
      * @param streamList the original stream list
-     * @param serviceId
+     * @param serviceId  the service ID from which the streams' list comes from
      * @return a stream list which only contains streams that can be played the player
      */
     @NonNull
@@ -203,6 +207,8 @@ public final class ListHelper {
         final int youtubeServiceId = YouTube.getServiceId();
         return getFilteredStreamList(streamList,
                 stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT
+                        && (stream.getDeliveryMethod() != DeliveryMethod.HLS
+                        || stream.getFormat() != MediaFormat.OPUS)
                         && (serviceId != youtubeServiceId
                         || stream.getItagItem() == null
                         || SUPPORTED_ITAG_IDS.contains(stream.getItagItem().id)));
@@ -240,6 +246,41 @@ public final class ListHelper {
     }
 
     /**
+     * Get a sorted list containing a set of default resolution info
+     * and additional resolution info if showHigherResolutions is true.
+     *
+     * @param resources the resources to get the resolutions from
+     * @param defaultResolutionKey the settings key of the default resolution
+     * @param additionalResolutionKey the settings key of the additional resolutions
+     * @param showHigherResolutions if higher resolutions should be included in the sorted list
+     * @return a sorted list containing the default and maybe additional resolutions
+     */
+    public static List<String> getSortedResolutionList(
+            final Resources resources,
+            final int defaultResolutionKey,
+            final int additionalResolutionKey,
+            final boolean showHigherResolutions) {
+        final List<String> resolutions = new ArrayList<>(Arrays.asList(
+                resources.getStringArray(defaultResolutionKey)));
+        if (!showHigherResolutions) {
+            return resolutions;
+        }
+        final List<String> additionalResolutions = Arrays.asList(
+                resources.getStringArray(additionalResolutionKey));
+        // keep "best resolution" at the top
+        resolutions.addAll(1, additionalResolutions);
+        return resolutions;
+    }
+
+    public static boolean isHighResolutionSelected(final String selectedResolution,
+                                             final int additionalResolutionKey,
+                                             final Resources resources) {
+        return Arrays.asList(resources.getStringArray(
+                        additionalResolutionKey))
+                .contains(selectedResolution);
+    }
+
+    /**
      * Filter the list of audio streams and return a list with the preferred stream for
      * each audio track. Streams are sorted with the preferred language in the first position.
      *
@@ -259,7 +300,9 @@ public final class ListHelper {
         final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
         for (final AudioStream stream : audioStreams) {
-            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
+            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
+                    || (stream.getDeliveryMethod() == DeliveryMethod.HLS
+                    && stream.getFormat() == MediaFormat.OPUS)) {
                 continue;
             }
 
@@ -653,7 +696,7 @@ public final class ListHelper {
         }
     }
 
-    private static boolean isLimitingDataUsage(final Context context) {
+    static boolean isLimitingDataUsage(@NonNull final Context context) {
         return getResolutionLimit(context) != null;
     }
 
@@ -695,7 +738,7 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
-     * <p>The prefered stream will be ordered last.</p>
+     * <p>The preferred stream will be ordered last.</p>
      *
      * @param context app context
      * @return Comparator
@@ -710,7 +753,7 @@ public final class ListHelper {
     /**
      * Get a {@link Comparator} to compare {@link AudioStream}s by their format and bitrate.
      *
-     * <p>The prefered stream will be ordered last.</p>
+     * <p>The preferred stream will be ordered last.</p>
      *
      * @param defaultFormat  the default format to look for
      * @param limitDataUsage choose low bitrate audio stream
@@ -752,7 +795,7 @@ public final class ListHelper {
      * <li>Language is English</li>
      * </ol>
      *
-     * <p>The prefered track will be ordered last.</p>
+     * <p>The preferred track will be ordered last.</p>
      *
      * @param context App context
      * @return Comparator
@@ -789,7 +832,7 @@ public final class ListHelper {
      * <li>Language is English</li>
      * </ol>
      *
-     * <p>The prefered track will be ordered last.</p>
+     * <p>The preferred track will be ordered last.</p>
      *
      * @param preferredLanguage      Preferred audio stream language
      * @param preferOriginalAudio    Get the original audio track regardless of its language

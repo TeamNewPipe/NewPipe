@@ -73,10 +73,8 @@ public final class TabsManager {
 
     private SharedPreferences.OnSharedPreferenceChangeListener getPreferenceChangeListener() {
         return (sp, key) -> {
-            if (savedTabsKey.equals(key)) {
-                if (savedTabsChangeListener != null) {
-                    savedTabsChangeListener.onTabsChanged();
-                }
+            if (savedTabsKey.equals(key) && savedTabsChangeListener != null) {
+                savedTabsChangeListener.onTabsChanged();
             }
         };
     }

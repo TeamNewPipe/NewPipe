@@ -309,7 +309,7 @@ public final class StateSaver {
     }
 
     /**
-     * Used for describe how to save/read the objects.
+     * Used for describing how to save/read the objects.
      * <p>
      * Queue was chosen by its FIFO property.
      */

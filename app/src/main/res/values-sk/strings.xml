@@ -39,7 +39,6 @@
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba siete</string>
     <string name="could_not_load_thumbnails">Nemožno zobraziť všetky náhľady</string>
-    <string name="youtube_signature_deobfuscation_error">Nepodarilo sa dekódovať URL videa</string>
     <string name="parsing_error">Nemožno analyzovať webovú stránku</string>
     <string name="content_not_available">Obsah nie je dostupný</string>
     <string name="detail_thumbnail_view_description">Prehrať video, dĺžka:</string>
@@ -246,8 +245,6 @@
     <string name="resize_zoom">Zväčšiť</string>
     <string name="use_inexact_seek_title">Používať rýchly posun</string>
     <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou. Posun o 5, 15 alebo 25 sekúnd v tomto prípade nie je možný</string>
-    <string name="download_thumbnail_title">Načítanie miniatúr</string>
-    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte</string>
     <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
     <string name="metadata_cache_wipe_title">Vymazať metadáta uložené vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
@@ -301,7 +298,7 @@
     <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
-    <string name="unhook_checkbox">Spraviť nezavislími (môže spôsobovať skreslenie)</string>
+    <string name="unhook_checkbox">Spraviť nezávislými (môže spôsobovať skreslenie)</string>
     <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
@@ -454,7 +451,7 @@
     <string name="app_language_title">Jazyk aplikácie</string>
     <string name="systems_language">Predvolený</string>
     <string name="subtitle_activity_recaptcha">Vyrieš a stlač \"Hotovo\"</string>
-    <string name="recaptcha_done_button">Hotovo</string>
+    <string name="done">Hotovo</string>
     <string name="videos_string">Videá</string>
     <string name="new_seek_duration_toast">Pre obmedzenie ExoPlayera bolo prehľadávania nastavené na %d sekúnd</string>
     <string name="mute">Stlmiť</string>
@@ -607,13 +604,12 @@
     <string name="featured">Najlepšie</string>
     <string name="show_channel_details">Zobraziť podrobnosti kanála</string>
     <string name="recaptcha_solve">Vyrieš</string>
-    <string name="night_theme_title">Nočná Téma</string>
+    <string name="night_theme_title">Nočná téma</string>
     <string name="disable_media_tunneling_summary">Ak vám video pri prehrávaní seká alebo sa zobrazuje čierna obrazovka zakážte tunelovanie médií</string>
     <string name="disable_media_tunneling_title">Zakázať tunelovanie médií</string>
     <string name="metadata_privacy_internal">Interné</string>
     <string name="metadata_privacy_private">Súkromné</string>
     <string name="metadata_privacy_unlisted">Nezaradené</string>
-    <string name="metadata_thumbnail_url">URL miniatúry</string>
     <string name="metadata_privacy_public">Verejné</string>
     <string name="metadata_host">Hostiteľ</string>
     <string name="metadata_support">Podpora</string>
@@ -764,7 +760,7 @@
     <string name="use_exoplayer_decoder_fallback_summary">Túto možnosť povoľte, ak máte problémy s inicializáciou dekodéra, ktorý sa v prípade zlyhania inicializácie primárnych dekodérov vráti k dekodérom s nižšou prioritou. To môže mať za následok nižší výkon prehrávania ako pri použití primárnych dekodérov</string>
     <string name="use_exoplayer_decoder_fallback_title">Používať funkciu záložného dekodéra prehrávača ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Vždy použiť nastavenia výstupu videa ExoPlayera</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">povodná</string>
     <string name="audio_track_type_dubbed">dabovaná</string>
     <string name="prefer_descriptive_audio_summary">Vyberať zvukovú stopu s popisom pre zrakovo postihnutých ak je k dispozicií</string>
@@ -774,4 +770,34 @@
 \n
 \nPovolenie tejto možnosti môže zabrániť chybám pri prehrávaní pri prepínaní aktuálneho prehrávača videa alebo prepínaní na celú obrazovku</string>
     <string name="audio_track_type_descriptive">popisná</string>
+    <string name="channel_tab_videos">Videá</string>
+    <string name="metadata_subscribers">Odberatelia</string>
+    <string name="show_channel_tabs_summary">Karty zobrazované na stránkach kanála</string>
+    <string name="show_channel_tabs">Karty kanálov</string>
+    <string name="channel_tab_shorts">Krátke</string>
+    <string name="loading_metadata_title">Načítavanie metadát…</string>
+    <string name="toggle_screen_orientation">Prepnúť orientáciu obrazovky</string>
+    <string name="main_tabs_position_title">Pozícia hlavných kariet</string>
+    <string name="toggle_fullscreen">Prepnúť na celú obrazovku</string>
+    <string name="feed_fetch_channel_tabs">Načítať karty kanála</string>
+    <string name="next_stream">Ďalší prúd</string>
+    <string name="disable_media_tunneling_automatic_info">Vaše zariadenie nepodporuje tunelovanie medií a preto bolo tunelovanie medií zakázané.</string>
+    <string name="open_play_queue">Otvoriť zoznam prehrávania</string>
+    <string name="channel_tab_about">O kanále</string>
+    <string name="forward">Dopredu</string>
+    <string name="channel_tab_albums">Albumy</string>
+    <string name="rewind">Dozadu</string>
+    <string name="replay">Opakovať</string>
+    <string name="feed_fetch_channel_tabs_summary">Karty na načítanie pri aktualizácii informačného kanála. Táto možnosť nemá žiadny účinok, ak je kanál aktualizovaný pomocou rýchleho režimu.</string>
+    <string name="channel_tab_playlists">Zoznamy skladieb</string>
+    <string name="main_tabs_position_summary">Presunúť lištu kariet dolu</string>
+    <string name="no_live_streams">Žiadne živé prenosy</string>
+    <string name="play">Prehrať</string>
+    <string name="more_options">Ďalšie možnosti</string>
+    <string name="channel_tab_tracks">Stopy</string>
+    <string name="duration">Dĺžka</string>
+    <string name="no_streams">Žiadne videá</string>
+    <string name="channel_tab_channels">Kanály</string>
+    <string name="previous_stream">Predchádzajúci prúd</string>
+    <string name="channel_tab_livestreams">Naživo</string>
 </resources>

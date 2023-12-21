@@ -46,7 +46,6 @@
     <string name="just_once">仅一次</string>
     <string name="controls_add_to_playlist_title">添加至</string>
     <string name="file">文件</string>
-    <string name="download_thumbnail_title">加载封面</string>
     <string name="clear_views_history_title">清空播放历史</string>
     <string name="minimize_on_exit_none_description">无</string>
     <string name="minimize_on_exit_background_description">最小化至后台播放</string>
@@ -139,7 +138,6 @@
     <string name="error_report_title">反馈错误</string>
     <string name="general_error">错误</string>
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
-    <string name="youtube_signature_deobfuscation_error">无法解密视频的 URL 签名</string>
     <string name="parsing_error">无法解析网址</string>
     <string name="content_not_available">内容不可用</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>
@@ -310,7 +308,6 @@
     <string name="import_network_expensive_warning">该操作消耗大量流量，
 \n
 \n你想继续吗？</string>
-    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用。切换该选项将立即清除内存与存储中的图片缓存</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
     <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
     <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
@@ -444,7 +441,7 @@
     <string name="app_language_title">应用语言</string>
     <string name="systems_language">系统默认</string>
     <string name="subtitle_activity_recaptcha">完成后请点击“完成”</string>
-    <string name="recaptcha_done_button">完成</string>
+    <string name="done">完成</string>
     <string name="videos_string">视频</string>
     <plurals name="seconds">
         <item quantity="other">%d 秒</item>
@@ -595,7 +592,6 @@
     <string name="metadata_privacy_private">私享</string>
     <string name="metadata_privacy_unlisted">未分类</string>
     <string name="metadata_privacy_public">公开</string>
-    <string name="metadata_thumbnail_url">缩略图 URL</string>
     <string name="metadata_host">所在服务器</string>
     <string name="metadata_support">支持</string>
     <string name="metadata_language">语言</string>
@@ -749,6 +745,52 @@
     <string name="use_exoplayer_decoder_fallback_summary">如遇解码器初始化方面的问题可开启此选项。启用后，如主解码器初始化失败，ExoPlayer 将使用较低优先级的解码器进行播放。请注意，这可能导致播放性能下降</string>
     <string name="main_tabs_position_summary">将主标签页选择器移到底部</string>
     <string name="main_tabs_position_title">主标签页位置</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">媒体隧道功能在你的设备上默认停用，因为已知你的设备型号不支持它。</string>
+    <string name="no_live_streams">无直播</string>
+    <string name="no_streams">无音视频流</string>
+    <string name="channel_tab_videos">视频</string>
+    <string name="metadata_subscribers">订阅者</string>
+    <string name="show_channel_tabs_summary">展示在频道页面上的标签页</string>
+    <string name="show_channel_tabs">频道标签页</string>
+    <string name="channel_tab_shorts">短视频</string>
+    <string name="loading_metadata_title">正在加载元数据…</string>
+    <string name="feed_fetch_channel_tabs">获取频道标签页</string>
+    <string name="channel_tab_about">关于</string>
+    <string name="channel_tab_albums">专辑</string>
+    <string name="feed_fetch_channel_tabs_summary">更新数据源时要获取的标签页。如果使用快速模式更新频道，则该选项无效果。</string>
+    <string name="channel_tab_playlists">播放列表</string>
+    <string name="channel_tab_tracks">歌曲</string>
+    <string name="channel_tab_channels">频道</string>
+    <string name="channel_tab_livestreams">直播</string>
+    <string name="toggle_screen_orientation">切换全屏方向</string>
+    <string name="toggle_fullscreen">切换全屏</string>
+    <string name="next_stream">下一条串流</string>
+    <string name="open_play_queue">打开播放队列</string>
+    <string name="forward">前进</string>
+    <string name="rewind">后退</string>
+    <string name="replay">重放</string>
+    <string name="play">播放</string>
+    <string name="more_options">更多选项</string>
+    <string name="duration">持续时间</string>
+    <string name="previous_stream">上一条串流</string>
+    <string name="image_quality_title">图片质量</string>
+    <string name="question_mark">？</string>
+    <string name="image_quality_low">低质量</string>
+    <string name="metadata_avatars">头像</string>
+    <string name="metadata_subchannel_avatars">子频道头像</string>
+    <string name="image_quality_none">不加载图片</string>
+    <string name="image_quality_high">高质量</string>
+    <string name="image_quality_medium">中等质量</string>
+    <string name="metadata_uploader_avatars">上传者头像</string>
+    <string name="metadata_banners">横幅</string>
+    <string name="image_quality_summary">选择图片质量以及是否根本不加载图片来降低数据和内存使用。更改选项会清除内存中和磁盘上的图片缓存 - %s</string>
+    <string name="metadata_thumbnails">缩略图</string>
+    <string name="share_playlist_with_list">只包含视频网址</string>
+    <string name="share_playlist_with_titles">分享时带视频标题</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">分享播放列表</string>
+    <string name="share_playlist_with_titles_message">分享详细的播放列表（带名称和视频标题等信息）或只分享视频网址列表</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

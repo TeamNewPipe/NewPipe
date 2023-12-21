@@ -1,0 +1,10 @@
+• Ditambahkan opsi untuk langsung membuka pemutar dalam layar penuh
+• Izinkan memilih jenis saran pencarian yang akan ditampilkan
+• Tema gelap kini lebih gelap + layar splash gelap ditambahkan
+• Peningkatan pemilih file untuk menghilangkan file yang tidak diinginkan
+• Memperbaiki impor langganan YouTube
+• Memutar ulang streaming memerlukan ketukan pada tombol putar ulang lagi
+• Memperbaiki sesi audio penutup
+• [Android TV] Memperbaiki lompatan seekbar yang panjang saat menggunakan DPad
+
+Untuk melihat perubahan lebih lanjut, lihat log perubahan (dan postingan blog) dari tab Tautan di bawah.

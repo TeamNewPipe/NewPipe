@@ -87,6 +87,7 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -117,7 +118,7 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
@@ -805,10 +806,10 @@ public final class Player implements PlaybackListener, Listener {
         };
     }
 
-    private void loadCurrentThumbnail(final String url) {
+    private void loadCurrentThumbnail(final List<Image> thumbnails) {
         if (DEBUG) {
-            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with url = ["
-                    + (url == null ? "null" : url) + "]");
+            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with thumbnails = ["
+                    + thumbnails.size() + "]");
         }
 
         // first cancel any previous loading
@@ -817,12 +818,12 @@ public final class Player implements PlaybackListener, Listener {
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
         // session metadata while the new thumbnail is being loaded by Picasso.
         onThumbnailLoaded(null);
-        if (isNullOrEmpty(url)) {
+        if (thumbnails.isEmpty()) {
             return;
         }
 
         // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, url)
+        PicassoHelper.loadScaledDownThumbnail(context, thumbnails)
                 .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
                 .into(currentThumbnailTarget);
     }
@@ -1082,7 +1083,7 @@ public final class Player implements PlaybackListener, Listener {
 
         UIs.call(PlayerUi::onPrepared);
 
-        if (playWhenReady) {
+        if (playWhenReady && !isMuted()) {
             audioReactor.requestAudioFocus();
         }
     }
@@ -1223,6 +1224,11 @@ public final class Player implements PlaybackListener, Listener {
     public void toggleMute() {
         final boolean wasMuted = isMuted();
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
+        if (wasMuted) {
+            audioReactor.requestAudioFocus();
+        } else {
+            audioReactor.abandonAudioFocus();
+        }
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
     }
@@ -1620,7 +1626,9 @@ public final class Player implements PlaybackListener, Listener {
             return;
         }
 
-        audioReactor.requestAudioFocus();
+        if (!isMuted()) {
+            audioReactor.requestAudioFocus();
+        }
 
         if (currentState == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
@@ -1785,7 +1793,7 @@ public final class Player implements PlaybackListener, Listener {
 
         maybeAutoQueueNextStream(info);
 
-        loadCurrentThumbnail(info.getThumbnailUrl());
+        loadCurrentThumbnail(info.getThumbnails());
         registerStreamViewed();
 
         notifyMetadataUpdateToListeners();

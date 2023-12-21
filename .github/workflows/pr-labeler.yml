@@ -1,0 +1,18 @@
+name: "PR size labeler"
+on: [pull_request]
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  changed-lines-count-labeler:
+    runs-on: ubuntu-latest
+    name: Automatically labelling pull requests based on the changed lines count
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Set a label
+      uses: TeamNewPipe/changed-lines-count-labeler@main
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        configuration-path: .github/changed-lines-count-labeler.yml

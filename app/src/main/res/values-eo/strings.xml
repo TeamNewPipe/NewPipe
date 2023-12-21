@@ -36,7 +36,6 @@
     <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
     <string name="show_next_and_similar_title">Montri \'Sekvajn\' kaj \'Similajn\' videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
-    <string name="youtube_signature_deobfuscation_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
     <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>
@@ -80,7 +79,6 @@
     <string name="popup_remember_size_pos_summary">Memori lastan grandon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapidan malekzaktan serĉon</string>
     <string name="use_inexact_seek_summary">Malekzakta serĉo permesas ke, la ludilo serĉi poziciojn pli rapide sed kun malpli ekzakto. Serĉi por 5, 15 aŭ 25 sekundoj ne funckias kun ĉi tio opcio</string>
-    <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
     <string name="duration_live">Nuna</string>
@@ -113,8 +111,8 @@
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
     <string name="enable_watch_history_title">Rigardu historion</string>
     <string name="enable_watch_history_summary">Spuri la viditajn filmetojn</string>
-    <string name="notification_channel_name">NewPipe Sciigo</string>
-    <string name="notification_channel_description">Sciigoj por NewPipe fonaj kaj ŝprucfenestraj ludiloj</string>
+    <string name="notification_channel_name">Sciigo de NewPipe</string>
+    <string name="notification_channel_description">Sciigoj por ludilo de NewPipe</string>
     <string name="settings_category_player_title">Ludilo</string>
     <string name="settings_category_player_behavior_title">Konduto</string>
     <string name="settings_category_history_title">Historio kaj kaŝmemoro</string>
@@ -181,7 +179,6 @@
 \n2. Iru tien: %1$s
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
-    <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn por konservi datumuzadon kaj memoruzadon. Ŝanĝoj vakigi ambaŭ en memoran kaj en diskan bildkaŝmemoron</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildokaŝmemoro vakigis</string>
     <string name="metadata_cache_wipe_title">Vakigi kaŝmemorigitajn metadatumojn</string>
     <string name="metadata_cache_wipe_summary">Vakigi tutajn kaŝmemorigitajn retpaĝajn datumojn</string>
@@ -204,8 +201,8 @@
     <string name="tab_choose">Elektu ongleton</string>
     <string name="settings_category_updates_title">Ĝisdatigoj</string>
     <string name="file_deleted">Dosiero forviŝita</string>
-    <string name="app_update_notification_channel_name">Sciigo por ĝisdatigi apon</string>
-    <string name="app_update_notification_channel_description">Sciigo por nova versio de NewPipe</string>
+    <string name="app_update_notification_channel_name">Sciigo por ĝisdatigo de apo</string>
+    <string name="app_update_notification_channel_description">Sciigo por novaj versioj de NewPipe</string>
     <string name="download_to_sdcard_error_title">Ekstera konservejo malhavebla</string>
     <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas restarigi la elŝutan dosierujon \?</string>
     <string name="queued">viciĝita</string>
@@ -448,7 +445,7 @@
     <string name="app_language_title">Preferata aplingvo</string>
     <string name="systems_language">Sistemnormo</string>
     <string name="subtitle_activity_recaptcha">Premu “Finita” kiam solvita</string>
-    <string name="recaptcha_done_button">Finita</string>
+    <string name="done">Finita</string>
     <plurals name="seconds">
         <item quantity="one">%d sekundo</item>
         <item quantity="other">%d sekundoj</item>
@@ -549,4 +546,68 @@
     <string name="crash_the_player">Kraŝi la ludilo</string>
     <string name="enqueued">Envicigita</string>
     <string name="enqueue_stream">Envicigi</string>
+    <string name="volume">Laŭteco</string>
+    <string name="none">Neniu</string>
+    <string name="notification_colorize_summary">Permesi al Android agordi koloron de sciigo laŭ la precipa koloro de videaĵminiaturo (noti, ke ĉi tio ne disponeblas en ĉiuj iloj)</string>
+    <string name="auto_queue_toggle">Aŭtomata vicigado</string>
+    <string name="right_gesture_control_title">Ago de dekstra gesto</string>
+    <string name="notification_actions_summary">Redakti ĉiun agon de sciigo per tuŝi gin. Elekti maksimume tri agon por montri en la kompakta sciigo per markobutonoj dekstre.</string>
+    <string name="prefer_original_audio_summary">Elekti la originalan aŭdiotrakon malgraŭ lingvo</string>
+    <string name="prefer_descriptive_audio_summary">Elekti aŭdiotrakon kun priskriboj por vidmalkapabluloj kiam ebla</string>
+    <string name="left_gesture_control_title">Ago de maldekstra gesto</string>
+    <string name="prefer_descriptive_audio_title">Preferi priskribajn aŭdiotrakojn</string>
+    <string name="progressive_load_interval_summary">Ŝangi la grandecon de elŝuta intervalo por progresiva enhavo (aktuale %s). Malplia valoro eble povas rapidigi ĝian komencan ŝargadon</string>
+    <string name="prefer_original_audio_title">Preferi originalan aŭdaĵon</string>
+    <string name="right_gesture_control_summary">Elekti geston por dekstra duono de ludil-ekrano</string>
+    <string name="ignore_hardware_media_buttons_summary">Utila, ekzemple, se vi uzas kaptelefonon, kiu havas difektajn fizikajn butonojn</string>
+    <string name="progressive_load_interval_title">Grandeco de intervalo de legada elŝuto</string>
+    <string name="brightness">Heleco</string>
+    <string name="notification_actions_at_most_three">Vi povas elekti maksimume tri agoj por montri en la kompakta sciigo!</string>
+    <string name="ignore_hardware_media_buttons_title">Ignori eventoj de aparataroj plurmediaj butonoj</string>
+    <string name="left_gesture_control_summary">Elekti geston por maldekstra duono de ludil-ekrano</string>
+    <string name="youtube_restricted_mode_enabled_title">Ŝalti \"Limigitan Reĝimon\" de YouTube</string>
+    <string name="fast_mode">Rapida reĝimo</string>
+    <string name="unsupported_url_dialog_message">Ne eblas rekoni la ligilon. Ĉu malfermi per alia apo\?</string>
+    <string name="recaptcha_cookies_cleared">Kuketojn de reCAPTCHA estis forigita</string>
+    <string name="show_age_restricted_content_summary">Montri enhavon, kiu eble maltaŭgas por infanoj, ĉar ĝi havas aĝo-limon (kiel \"18+\")</string>
+    <string name="streams_notification_channel_name">Novaj fluoj</string>
+    <string name="remote_search_suggestions">Foraj serĉsugestoj</string>
+    <string name="error_report_channel_description">Sciigoj por raporti erarojn</string>
+    <string name="loading_metadata_title">Ŝargante metadatumoj…</string>
+    <string name="hash_channel_description">Sciigo por kreado de haketaĵoj de videoj</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provizas \"Limigitan Reĝimon\", kiu kaŝas enhavon, kiu potence maltaŭgas por infanoj</string>
+    <string name="restricted_video_no_stream">Ĉi tiu video estas aĝo-limigita.
+\nPro novaj reguloj de YouTube, kiuj aplikas al aĝo-limigitaj videoj, NewPipe ne povas atingi iun ajn video-fluoj de ĉi tiu video kaj konsekvence ne povas ludi ĝin.</string>
+    <string name="error_report_channel_name">Sciigo por erar-raportoj</string>
+    <string name="notifications">Sciigoj</string>
+    <string name="settings_category_player_notification_title">Ludila sciigo</string>
+    <string name="hash_channel_name">Sciigo por haketado de videoj</string>
+    <string name="local_search_suggestions">Lokaj serĉsugestoj</string>
+    <string name="start_main_player_fullscreen_title">Ŝalti ĉefan ludilon plenekrane</string>
+    <string name="streams_notification_channel_description">Sciigo por novaj fluoj de abonoj</string>
+    <string name="clear_cookie_title">Forigi kuketojn de reCAPTCHA</string>
+    <string name="settings_category_player_notification_summary">Agordi la sciigon por ĉi-momente ludantaj datumtorentoj</string>
+    <string name="start_main_player_fullscreen_summary">Ne komenci ludi videojn en la mini-ludilo, sed ŝalti plenekranan reĝimon rekte, se aŭtomata rotacio ŝlositas. Vi ankoraŭ povus atingi mini-ludilon, se vi elirus plenekranan reĝimon.</string>
+    <string name="clear_cookie_summary">Forigi kuketojn, kiujn NewPipe konservas, kiam vi solvas reCAPTCHA-taskojn</string>
+    <string name="error_report_notification_title">NewPipe renkontis eraron, tuŝi por raporti</string>
+    <string name="main_tabs_position_title">Pozicio de la ĉefaj langetoj</string>
+    <string name="main_tabs_position_summary">Transloki la ĉefan langet-elektilon al la malsupro</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nova fluo</item>
+        <item quantity="other">%s novaj fluoj</item>
+    </plurals>
+    <string name="error_report_open_issue_button_text">Raporti per GitHub</string>
+    <string name="comments_are_disabled">Komentoj malŝaltitas</string>
+    <string name="error_report_notification_toast">Eraro okazis, vidu sciigon</string>
+    <string name="no_live_streams">Neniuj tujelsendoj</string>
+    <string name="no_streams">Neniuj fluoj</string>
+    <string name="copy_for_github">Kopii formatitan raporton</string>
+    <string name="import_subscriptions_hint">Importi aŭ eksporti abonojn per la tri-punkta menuo</string>
+    <string name="msg_calculating_hash">Kalkulado de haketaĵo</string>
+    <string name="faq_title">Oftaj demandoj</string>
+    <string name="no_dir_yet">Neniu dosierujo por elŝutoj agordita, bonvolu elekti la defaŭltan elŝuto-dosierujon nun</string>
+    <string name="error_report_open_github_notice">Bonvolu certigi, ĉu erarraporto, kiu diskutas pri via eraro, jam ekzistas. Kreado de duoblaĵaj erarraportoj forprenas tempon el ni, kiun ni povus uzi por ripari la veran eraron.</string>
+    <string name="related_items_tab_description">Rilatajn erojn</string>
+    <string name="recaptcha_solve">Solvi</string>
+    <string name="msg_failed_to_copy">Malsukcesis kopii al la tondujo</string>
 </resources>

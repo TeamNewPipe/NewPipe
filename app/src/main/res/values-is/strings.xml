@@ -177,7 +177,6 @@
     <string name="use_inexact_seek_title">Nota hraða en ónákvæma leit</string>
     <string name="seek_duration_title">Lengd skrefs</string>
     <string name="clear_queue_confirmation_title">Biðja um staðfestingu áður en röð er hreinsuð</string>
-    <string name="download_thumbnail_title">Sækja smámyndir</string>
     <string name="show_comments_title">Sýna ummæli</string>
     <string name="auto_queue_toggle">Sjálfvirk biðröð</string>
     <string name="settings_category_clear_data_title">Hreinsa gögn</string>
@@ -251,7 +250,7 @@
     <string name="msg_copied">Afritað á klemmuspjald</string>
     <string name="one_item_deleted">1 atriði eytt.</string>
     <string name="recaptcha_solve">Leysa</string>
-    <string name="recaptcha_done_button">Lokið</string>
+    <string name="done">Lokið</string>
     <string name="recaptcha_request_toast">Beðið eftir þraut reCAPTCHA</string>
     <string name="title_licenses">Leyfi þriðja aðila</string>
     <string name="tab_licenses">Hugbúnaðarleyfi</string>
@@ -486,7 +485,6 @@
     <string name="video_detail_by">Frá %s</string>
     <string name="account_terminated">Reikningi lokað</string>
     <string name="metadata_age_limit">Aldurstakmark</string>
-    <string name="metadata_thumbnail_url">Vefslóð smámyndar</string>
     <string name="detail_pinned_comment_view_description">Fest ummæli</string>
     <string name="tablet_mode_title">Spjaldtölvuhamur</string>
     <string name="on">Virkt</string>
@@ -613,7 +611,6 @@
     <string name="progressive_load_interval_title">Stærð forhleðslu</string>
     <string name="progressive_load_interval_summary">Breyta stærð forhleðslu (nú %s). Lægra gildi gæti flýtt fyrir upphaflegu hleðslu myndbands. Breytingar krefjast endurræsingar spilara</string>
     <string name="clear_queue_confirmation_description">Biðröð spilarans verður skipt út</string>
-    <string name="download_thumbnail_summary">Slökktu á til að hlaða ekki niður smámyndum til að spara bandbreidd og vinnsluminni. Breytingar eyða myndskyndiminni í bæði vinnsluminni og geymslu</string>
     <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um straumhöfund, straumefni eða leitarbeiðni</string>
     <string name="metadata_cache_wipe_summary">Fjarlæga öll síðugögn úr skyndiminni</string>
     <string name="auto_queue_summary">Bæta svipuðum straumum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>
@@ -648,7 +645,6 @@
     <string name="watch_history_deleted">Áhorfsferli eytt</string>
     <string name="clear_playback_states_title">Eyða spilunarstöðum</string>
     <string name="clear_playback_states_summary">Eyðir öllum spilunarstöðum</string>
-    <string name="youtube_signature_deobfuscation_error">Mistókst að afkóða vefslóð myndbandar</string>
     <string name="download_to_sdcard_error_message">Niðurhal á SD kort er ekki mögulegt. Endurstilla niðurhalsmöppu\?</string>
     <string name="main_page_content_swipe_remove">Strjúktu til að fjarlægja</string>
     <string name="no_playlist_bookmarked_yet">Engir spilunarlistar bókamerktir ennþá</string>

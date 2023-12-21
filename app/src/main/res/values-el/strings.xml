@@ -90,8 +90,6 @@
     <string name="popup_remember_size_pos_summary">Ενθύμηση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
     <string name="use_inexact_seek_title">Χρήση γρήγορης ανακριβούς αναζήτησης</string>
     <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων</string>
-    <string name="download_thumbnail_title">Φόρτωση μικρογραφιών</string>
-    <string name="download_thumbnail_summary">Με την απενεργοποίηση δε φορτώνονται οι μικρογραφίες, εξοικονομώντας δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στη μνήμη και στον δίσκο</string>
     <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικόνων</string>
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
@@ -147,7 +145,6 @@
     <string name="delete_search_history_alert">Διαγραφή ολόκληρου του ιστορικού αναζητήσεων;</string>
     <string name="search_history_deleted">Το ιστορικό αναζητήσεων διαγράφηκε</string>
     <string name="could_not_load_thumbnails">Δεν ήταν δυνατή η φόρτωση όλων των εικονιδίων</string>
-    <string name="youtube_signature_deobfuscation_error">Δεν ήταν δυνατή η αποκρυπτογράφηση της υπογραφής της URL του βίντεο</string>
     <string name="parsing_error">Δεν ήταν δυνατή η ανάλυση του ιστοτόπου</string>
     <string name="content_not_available">Το περιεχόμενο δεν είναι διαθέσιμο</string>
     <string name="could_not_setup_download_menu">Δεν ήταν δυνατή η ρύθμιση του μενού λήψεων</string>
@@ -462,7 +459,7 @@
     <string name="title_activity_play_queue">Αναπαραγωγή ουράς</string>
     <string name="no_playlist_bookmarked_yet">Δεν υπάρχουν σελιδοδείκτες λίστας αναπαραγωγής ακόμα</string>
     <string name="select_a_playlist">Επιλέξτε μια λίστα αναπαραγωγής</string>
-    <string name="recaptcha_done_button">Τέλος</string>
+    <string name="done">Τέλος</string>
     <string name="subtitle_activity_recaptcha">Πατήστε «Τέλος» όταν επιλυθεί</string>
     <string name="infinite_videos">∞ βίντεο</string>
     <string name="more_than_100_videos">100+ βίντεο</string>
@@ -604,7 +601,6 @@
     <string name="metadata_privacy_private">Ιδιωτικό</string>
     <string name="metadata_privacy_unlisted">Εκτός λίστας</string>
     <string name="metadata_privacy_public">Δημόσιο</string>
-    <string name="metadata_thumbnail_url">URL εικονιδίου</string>
     <string name="metadata_support">Υποστήριξη</string>
     <string name="metadata_language">Γλώσσα</string>
     <string name="metadata_age_limit">Όριο ηλικίας</string>
@@ -755,7 +751,7 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Αυτή η λύση απελευθερώνει και επαναφέρει τους κωδικοποιητές βίντεο όταν συμβαίνει μια αλλαγή επιφάνειας, αντί να ρυθμίζει την επιφάνεια απευθείας στον κωδικοποιητή. Χρησιμοποιείται ήδη από το ExoPlayer σε ορισμένες συσκευές με αυτό το πρόβλημα, αυτή η ρύθμιση έχει επίδραση μόνο σε Android 6 και νεότερη έκδοση.
 \n
 \nΗ ενεργοποίηση αυτής της επιλογής μπορεί να αποτρέψει σφάλματα αναπαραγωγής κατά την εναλλαγή του τρέχοντος προγράμματος αναπαραγωγής βίντεο ή τη μετάβαση σε πλήρη οθόνη</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">αρχικό</string>
     <string name="audio_track_type_dubbed">μεταγλωττισμένο</string>
     <string name="audio_track_type_descriptive">περιγραφικό</string>
@@ -764,4 +760,50 @@
     <string name="main_tabs_position_summary">Μετακινήστε τον επιλογέα κύριας καρτέλας στο κάτω μέρος</string>
     <string name="main_tabs_position_title">Θέση κύριων καρτελών</string>
     <string name="disable_media_tunneling_automatic_info">Το media tunneling απενεργοποιήθηκε από προεπιλογή στη συσκευή σας, επειδή το μοντέλο της συσκευής σας είναι γνωστό ότι δεν το υποστηρίζει.</string>
+    <string name="no_live_streams">Καμία ζωντανή ροή</string>
+    <string name="no_streams">Καμία ροή</string>
+    <string name="loading_metadata_title">Φόρτωση μεταδεδομένων…</string>
+    <string name="channel_tab_videos">Βίντεο</string>
+    <string name="metadata_subscribers">Συνδρομητές</string>
+    <string name="show_channel_tabs_summary">Ποιες καρτέλες εμφανίζονται στις σελίδες των καναλιών</string>
+    <string name="show_channel_tabs">Καρτέλες καναλιών</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="feed_fetch_channel_tabs">Λήψη καρτελών καναλιών</string>
+    <string name="channel_tab_about">Σχετικά</string>
+    <string name="channel_tab_albums">Άλμπουμ</string>
+    <string name="feed_fetch_channel_tabs_summary">Καρτέλες για ανάκτηση κατά την ενημέρωση της ροής. Αυτή η επιλογή δεν έχει καμία επίδραση εάν ένα κανάλι ενημερώνεται χρησιμοποιώντας τη γρήγορη λειτουργία.</string>
+    <string name="channel_tab_playlists">Λίστες</string>
+    <string name="channel_tab_tracks">Κομμάτια</string>
+    <string name="channel_tab_channels">Κανάλια</string>
+    <string name="channel_tab_livestreams">Ζωντανά</string>
+    <string name="toggle_screen_orientation">Εναλλαγή προσανατολισμού οθόνης</string>
+    <string name="toggle_fullscreen">Λειτουργία πλήρους οθόνης</string>
+    <string name="next_stream">Επόμενη ροή</string>
+    <string name="open_play_queue">Άνοιγμα ουράς αναπαραγωγής</string>
+    <string name="forward">Εμπρός</string>
+    <string name="rewind">Πίσω</string>
+    <string name="replay">Επανάληψη</string>
+    <string name="play">Αναπαραγωγή</string>
+    <string name="more_options">Περισσότερες επιλογές</string>
+    <string name="duration">Διάρκεια</string>
+    <string name="previous_stream">Προηγούμενη ροή</string>
+    <string name="image_quality_title">Ποιότητα εικόνας</string>
+    <string name="question_mark">;</string>
+    <string name="image_quality_low">Χαμηλή ποιότητα</string>
+    <string name="metadata_avatars">Άβαταρ</string>
+    <string name="metadata_subchannel_avatars">Άβαταρ υπο-καναλιών</string>
+    <string name="image_quality_none">Μη φόρτωση εικόνων</string>
+    <string name="image_quality_high">Υψηλή ποιότητα</string>
+    <string name="image_quality_medium">Μέτρια ποιότητα</string>
+    <string name="metadata_uploader_avatars">Άβαταρ δημιουργών</string>
+    <string name="image_quality_summary">Επιλέξτε την ποιότητα των εικόνων και εάν δε θέλετε να φορτώσετε εικόνες, για να μειώσετε τη χρήση δεδομένων και μνήμης. Οι αλλαγές εκκαθαρίζουν την κρυφή μνήμη εικόνων, τόσο στη μνήμη όσο και στον δίσκο — %s</string>
+    <string name="metadata_thumbnails">Μικρογραφίες</string>
+    <string name="metadata_banners">Ταμπέλες</string>
+    <string name="share_playlist_with_list">Κοινοποίηση λίστας URL</string>
+    <string name="share_playlist_with_titles">Κοινοποίηση με τίτλους</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Κοινοποίηση λίστας</string>
+    <string name="share_playlist_with_titles_message">Μοιραστείτε τη λίστα αναπαραγωγής με λεπτομέρειες όπως το όνομα της λίστας αναπαραγωγής και τους τίτλους βίντεο ή ως μια απλή λίστα διευθύνσεων URL βίντεο</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

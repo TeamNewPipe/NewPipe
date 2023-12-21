@@ -92,11 +92,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    protected void initViews(final View rootView, final Bundle savedInstanceState) {
-        super.initViews(rootView, savedInstanceState);
-    }
-
-    @Override
     protected void initListeners() {
         super.initListeners();
 

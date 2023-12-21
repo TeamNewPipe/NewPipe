@@ -85,7 +85,6 @@
     <string name="clear_queue_confirmation_description">ߛߋ߲߬ߠߊ߬ ߕߏߟߏ߲ߟߊ߲ ߠߊ߫ ߕߎ߲߰ߠߌ߲ ߘߌߣߊ߬ ߣߐ߬ߘߐߓߌ߬ߟߊ߬</string>
     <string name="ignore_hardware_media_buttons_title">ߞߊ߬ ߕߙߏߞߏ ߞߟߋߞߟߋ߫ ߞߘߎ ߟߊ߫ ߖߊ߲߬ߖߊ߲߬ ߠߎ߬ ߡߊߓߌ߬ߟߊ߬</string>
     <string name="ignore_hardware_media_buttons_summary">ߏ߬ ߢߊߕߣߐ ߞߊߓߏ߬߸ ߣߴߌ ߦߋ߫ ߕߟߏߡߊߘߏ߲ ߠߊߓߊ߯ߙߊ ߟߊ߫ ߡߍ߲ ߞߘߎ߬ ߜߎ ߟߎ߬ ߕߍ߫ ߛߐ߲߬</string>
-    <string name="download_thumbnail_title">ߞߊ߬ ߞߏ߬ߋߞߏ߬ߋ ߟߎ߬ ߖߛߐ߫</string>
     <string name="left_gesture_control_title">ߣߎߡߊ߲߫ ߖߍ߰ߙߍ ߞߍߟߌ</string>
     <string name="right_gesture_control_summary">ߕߏߟߏ߲ߟߊ߲߫ ߥߊ߲߬ߥߊ߲ ߞߌߣߌ߲߫ ߕߟߊ ߖߍ߰ߙߍ ߛߎߥߊ߲ߘߌ߫</string>
     <string name="right_gesture_control_title">ߞߌߣߌ߲߫ ߖߍ߰ߙߍ ߞߍߟߌ</string>
@@ -151,7 +150,6 @@
     <string name="general_error">ߝߎ߬ߕߎ߲߬ߕߌ</string>
     <string name="download_to_sdcard_error_title">ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲߫ ߕߍ߫ ߦߋ߲߬</string>
     <string name="network_error">ߞߙߏ߬ߝߏ߫ ߝߎ߬ߕߎ߲߬ߕߌ</string>
-    <string name="youtube_signature_deobfuscation_error">ߦߋߡߍ߲ߕߊ߫ ߛߘߌ߬ߜߋ߲߫ ߞߟߊ߬ߣߐ߮ ߡߊ߫ ߝߙߍߕߍߓߐ߫ ߟߊ߫</string>
     <string name="parsing_error">ߗߍߦߙߐ ߡߊ߫ ߛߋ߫ ߘߐߛߏ߯ߙߋ߫ ߟߊ߫</string>
     <string name="content_not_available">ߞߣߐߘߐ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="app_ui_crash">ߟߥߊ߬ߟߌ߬ߟߊ߲ ߓߘߊ߫ ߜߊߘߊ߲߫</string>
@@ -207,7 +205,6 @@
     <string name="clear_playback_states_summary">ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߬ ߓߍ߯ ߖߐ߬ߛߌ߫</string>
     <string name="download_to_sdcard_error_message">ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲߫ ߞߊ߲߬ ߟߊ߬ߖߌ߰ߟߌ ߕߍ߫ ߓߍ߲߬. ߦߴߊ߬ ߝߍ߬ ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ߬ ߞߎ߲ߓߍ߲ ߘߌ߲߬ߞߌߙߊ ߢߡߊߛߊ߬ߦߌ߬ ؟</string>
     <string name="could_not_setup_download_menu">ߟߊ߬ߖߌ߰ߟߌ ߢߣߊߥߟߊ߫ ߕߍ߫ ߛߋ߫ ߘߐߛߌ߰ ߟߊ߫</string>
-    <string name="download_thumbnail_summary">ߊ߬ ߟߊߛߊ߬ ߞߏߛߊ߫ ߞߏ߬ߋߞߏ߬ߋ ߟߎ߬ ߞߊߣߊ߬ ߖߛߐ߫߸ ߞߊ߬ ߟߐ߲ߕߊ ߣߌ߫ ߦߟߌߕߏߟߊ߲ ߡߊߞߐߙߐ߲ߞߐߙߐ߲߫. ߡߝߊ߬ߟߋ߲߬ߠߌ߲ ߘߌ߫ ߖߌ߬ߦߊ߬ߓߍ ߟߎ߬ ߦߟߌߡߊߛߌ ߓߍ߯ ߖߏ߬ߛߌ߫ ߦߟߌߕߏߟߊ߲ ߣߌ߫ ߝߘߍ߬ߜߍߟߍ߲ ߞߊ߲߬</string>
     <string name="show_comments_title">ߞߊ߬ ߞߊ߲߬ߞߎߡߊ ߟߎ߫ ߦߌ߬ߘߊ߬</string>
     <string name="show_comments_summary">ߊ߬ ߟߊߛߊ߬ ߞߊ߬ ߞߊ߲߬ߞߎߡߊ ߟߎ߬ ߢߡߊߘߏ߲߰</string>
     <string name="show_next_and_similar_title">ߞߊ߬ ߦߋߡߍ߲ߕߊ߫ ߣߊ߬ߕߊ ߟߎ߬ ߣߌ߫ ߢߐ߲߰ߘߐ ߟߎ߫ ߦߌ߬ߘߊ߬</string>
@@ -385,7 +382,7 @@
     <string name="settings_file_charset_title">ߞߟߏߘߋ߲߫ ߠߊߘߌ߬ߢߍ߬ߣߍ߲ ߠߎ߬ ߞߐߕߐ߯ ߕߐ߮ ߘߐ߫</string>
     <string name="settings_file_replacement_character_summary">ߞߟߏߘߋ߲߫ ߠߊߘߌ߬ߢߍ߬ߓߊߟߌ ߟߎ߫ ߣߐ߬ߘߐߓߌ߬ߟߊ߬ߕߐ߫ ߡߐ߬ߟߐ߲ ߣߌ߬ ߠߋ߬ ߟߊ߫</string>
     <string name="settings_file_replacement_character_title">ߣߘߐ߬ߓߌ߬ߟߊ߬ߟߌ߬ ߞߟߏߘߋ߲</string>
-    <string name="recaptcha_done_button">ߊ߬ ߓߘߊ߫ ߓߊ߲߫</string>
+    <string name="done">ߊ߬ ߓߘߊ߫ ߓߊ߲߫</string>
     <string name="settings_category_downloads_title">ߟߊ߬ߖߌ߰ߟߌ</string>
     <string name="tab_licenses">ߟߊ߬ߘߌߢߍ ߟߎ߬</string>
     <string name="view_on_github">ߊ߬ ߡߊߝߍߣߍ߲߫ GitHub ߞߊ߲߬</string>
@@ -646,7 +643,6 @@
     <string name="metadata_language">ߞߊ߲</string>
     <string name="metadata_support">ߞߐߞߘߐߓߌ߲ߓߌ߲</string>
     <string name="metadata_host">ߖߊ߬ߕߌ߮</string>
-    <string name="metadata_thumbnail_url">ߞߏ߬ߋߞߏ߬ߋ߫ ߛߘߌ߬ߜߋ߲</string>
     <string name="metadata_privacy_public">ߝߘߏ߬ߓߊ</string>
     <string name="metadata_privacy_unlisted">ߊ߬ ߛߙߍߘߍߦߊߣߍ߲߫ ߕߍ߫</string>
     <string name="metadata_privacy_private">ߘߎ߲߬ߘߎ߬ߡߊ</string>

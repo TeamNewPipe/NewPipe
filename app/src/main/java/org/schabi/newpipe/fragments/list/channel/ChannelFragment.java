@@ -5,6 +5,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,51 +17,50 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.NotificationMode;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
-import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.detail.TabAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
-import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
-import org.schabi.newpipe.player.PlayerType;
-import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
-import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.util.ChannelTabHelper;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
+import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
@@ -68,29 +68,37 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, ChannelInfo>
-        implements View.OnClickListener {
+public class ChannelFragment extends BaseStateFragment<ChannelInfo>
+        implements StateSaver.WriteRead {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
     private static final String PICASSO_CHANNEL_TAG = "PICASSO_CHANNEL_TAG";
 
+    @State
+    protected int serviceId = Constants.NO_SERVICE_ID;
+    @State
+    protected String name;
+    @State
+    protected String url;
+
+    private ChannelInfo currentInfo;
+    private Disposable currentWorker;
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
-
+    private SubscriptionManager subscriptionManager;
+    private int lastTab;
     private boolean channelContentNotSupported = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private SubscriptionManager subscriptionManager;
-
-    private FragmentChannelBinding channelBinding;
-    private ChannelHeaderBinding headerBinding;
-    private PlaylistControlBinding playlistControlBinding;
+    private FragmentChannelBinding binding;
+    private TabAdapter tabAdapter;
 
     private MenuItem menuRssButton;
     private MenuItem menuNotifyButton;
+    private SubscriptionEntity channelSubscription;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -99,21 +107,22 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         return instance;
     }
 
-    public ChannelFragment() {
-        super(UserAction.REQUESTED_CHANNEL);
+    private void setInitialData(final int sid, final String u, final String title) {
+        this.serviceId = sid;
+        this.url = u;
+        this.name = !TextUtils.isEmpty(title) ? title : "";
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (activity != null && useAsFrontPage) {
-            setTitle(currentInfo != null ? currentInfo.getName() : name);
-        }
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public void onAttach(@NonNull final Context context) {
@@ -125,48 +134,57 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_channel, container, false);
+        binding = FragmentChannelBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
-    @Override
-    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
-        super.onViewCreated(rootView, savedInstanceState);
-        channelBinding = FragmentChannelBinding.bind(rootView);
-        showContentNotSupportedIfNeeded();
-    }
+    @Override // called from onViewCreated in BaseFragment.onViewCreated
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
-        if (subscribeButtonMonitor != null) {
-            subscribeButtonMonitor.dispose();
+        tabAdapter = new TabAdapter(getChildFragmentManager());
+        binding.viewPager.setAdapter(tabAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+
+        setTitle(name);
+        binding.channelTitleView.setText(name);
+        if (!ImageStrategy.shouldLoadImages()) {
+            // do not waste space for the banner if it is not going to be loaded
+            binding.channelBannerImage.setImageDrawable(null);
         }
-        channelBinding = null;
-        headerBinding = null;
-        playlistControlBinding = null;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected Supplier<View> getListHeaderSupplier() {
-        headerBinding = ChannelHeaderBinding
-                .inflate(activity.getLayoutInflater(), itemsList, false);
-        playlistControlBinding = headerBinding.playlistControl;
-
-        return headerBinding::getRoot;
     }
 
     @Override
     protected void initListeners() {
         super.initListeners();
 
-        headerBinding.subChannelTitleView.setOnClickListener(this);
-        headerBinding.subChannelAvatarView.setOnClickListener(this);
+        final View.OnClickListener openSubChannel = v -> {
+            if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
+                try {
+                    NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                            currentInfo.getParentChannelUrl(),
+                            currentInfo.getParentChannelName());
+                } catch (final Exception e) {
+                    ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
+                }
+            } else if (DEBUG) {
+                Log.i(TAG, "Can't open parent channel because we got no channel URL");
+            }
+        };
+        binding.subChannelAvatarView.setOnClickListener(openSubChannel);
+        binding.subChannelTitleView.setOnClickListener(openSubChannel);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+        disposables.clear();
+        binding = null;
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
@@ -176,31 +194,32 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        final ActionBar supportActionBar = activity.getSupportActionBar();
-        if (useAsFrontPage && supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(false);
-        } else {
-            inflater.inflate(R.menu.menu_channel, menu);
+        inflater.inflate(R.menu.menu_channel, menu);
 
-            if (DEBUG) {
-                Log.d(TAG, "onCreateOptionsMenu() called with: "
-                        + "menu = [" + menu + "], inflater = [" + inflater + "]");
-            }
-            menuRssButton = menu.findItem(R.id.menu_item_rss);
-            menuNotifyButton = menu.findItem(R.id.menu_item_notify);
+        if (DEBUG) {
+            Log.d(TAG, "onCreateOptionsMenu() called with: "
+                    + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
+    public void onPrepareOptionsMenu(@NonNull final Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menuRssButton = menu.findItem(R.id.menu_item_rss);
+        menuNotifyButton = menu.findItem(R.id.menu_item_notify);
+        updateNotifyButton(channelSubscription);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                NavigationHelper.openSettings(requireContext());
-                break;
             case R.id.menu_item_notify:
                 final boolean value = !item.isChecked();
                 item.setEnabled(false);
                 setNotify(value);
+                break;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(requireContext());
                 break;
             case R.id.menu_item_rss:
                 if (currentInfo != null) {
@@ -215,7 +234,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
             case R.id.menu_item_share:
                 if (currentInfo != null) {
                     ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl(),
-                            currentInfo.getAvatarUrl());
+                            currentInfo.getAvatars());
                 }
                 break;
             default:
@@ -224,13 +243,14 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         return true;
     }
 
+
     /*//////////////////////////////////////////////////////////////////////////
     // Channel Subscription
     //////////////////////////////////////////////////////////////////////////*/
 
     private void monitorSubscription(final ChannelInfo info) {
         final Consumer<Throwable> onError = (Throwable throwable) -> {
-            animate(headerBinding.channelSubscribeButton, false, 100);
+            animate(binding.channelSubscribeButton, false, 100);
             showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_GET,
                     "Get subscription status", currentInfo));
         };
@@ -263,10 +283,9 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 }, onError));
     }
 
-    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription,
-                                                    final ChannelInfo info) {
+    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
         return (@NonNull Object o) -> {
-            subscriptionManager.insertSubscription(subscription, info);
+            subscriptionManager.insertSubscription(subscription);
             return o;
         };
     }
@@ -298,8 +317,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 .subscribe(onComplete, onError));
     }
 
-    private Disposable monitorSubscribeButton(final Button subscribeButton,
-                                              final Function<Object, Object> action) {
+    private Disposable monitorSubscribeButton(final Function<Object, Object> action) {
         final Consumer<Object> onNext = (@NonNull Object o) -> {
             if (DEBUG) {
                 Log.d(TAG, "Changed subscription status to this channel!");
@@ -311,7 +329,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                         "Changing subscription for " + currentInfo.getUrl(), currentInfo));
 
         /* Emit clicks from main thread unto io thread */
-        return RxView.clicks(subscribeButton)
+        return RxView.clicks(binding.channelSubscribeButton)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
                 .debounce(BUTTON_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS) // Ignore rapid clicks
@@ -337,20 +355,20 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
                 channel.setData(info.getName(),
-                        info.getAvatarUrl(),
+                        ImageStrategy.imageListToDbUrl(info.getAvatars()),
                         info.getDescription(),
                         info.getSubscriberCount());
+                channelSubscription = null;
                 updateNotifyButton(null);
-                subscribeButtonMonitor = monitorSubscribeButton(
-                        headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));
+                subscribeButtonMonitor = monitorSubscribeButton(mapOnSubscribe(channel));
             } else {
                 if (DEBUG) {
                     Log.d(TAG, "Found subscription to this channel!");
                 }
-                final SubscriptionEntity subscription = subscriptionEntities.get(0);
-                updateNotifyButton(subscription);
-                subscribeButtonMonitor = monitorSubscribeButton(
-                        headerBinding.channelSubscribeButton, mapOnUnsubscribe(subscription));
+                channelSubscription = subscriptionEntities.get(0);
+                updateNotifyButton(channelSubscription);
+                subscribeButtonMonitor =
+                        monitorSubscribeButton(mapOnUnsubscribe(channelSubscription));
             }
         };
     }
@@ -361,34 +379,33 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                     + "isSubscribed = [" + isSubscribed + "]");
         }
 
-        final boolean isButtonVisible = headerBinding.channelSubscribeButton.getVisibility()
+        final boolean isButtonVisible = binding.channelSubscribeButton.getVisibility()
                 == View.VISIBLE;
         final int backgroundDuration = isButtonVisible ? 300 : 0;
         final int textDuration = isButtonVisible ? 200 : 0;
 
-        final int subscribeBackground = ThemeHelper
-                .resolveColorFromAttr(activity, R.attr.colorPrimary);
-        final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
         final int subscribedBackground = ContextCompat
                 .getColor(activity, R.color.subscribed_background_color);
         final int subscribedText = ContextCompat.getColor(activity, R.color.subscribed_text_color);
+        final int subscribeBackground = ColorUtils.blendARGB(ThemeHelper
+                .resolveColorFromAttr(activity, R.attr.colorPrimary), subscribedBackground, 0.35f);
+        final int subscribeText = ContextCompat.getColor(activity, R.color.subscribe_text_color);
 
-        if (!isSubscribed) {
-            headerBinding.channelSubscribeButton.setText(R.string.subscribe_button_title);
-            animateBackgroundColor(headerBinding.channelSubscribeButton, backgroundDuration,
-                    subscribedBackground, subscribeBackground);
-            animateTextColor(headerBinding.channelSubscribeButton, textDuration, subscribedText,
-                    subscribeText);
-        } else {
-            headerBinding.channelSubscribeButton.setText(R.string.subscribed_button_title);
-            animateBackgroundColor(headerBinding.channelSubscribeButton, backgroundDuration,
+        if (isSubscribed) {
+            binding.channelSubscribeButton.setText(R.string.subscribed_button_title);
+            animateBackgroundColor(binding.channelSubscribeButton, backgroundDuration,
                     subscribeBackground, subscribedBackground);
-            animateTextColor(headerBinding.channelSubscribeButton, textDuration, subscribeText,
+            animateTextColor(binding.channelSubscribeButton, textDuration, subscribeText,
                     subscribedText);
+        } else {
+            binding.channelSubscribeButton.setText(R.string.subscribe_button_title);
+            animateBackgroundColor(binding.channelSubscribeButton, backgroundDuration,
+                    subscribedBackground, subscribeBackground);
+            animateTextColor(binding.channelSubscribeButton, textDuration, subscribedText,
+                    subscribeText);
         }
 
-        animate(headerBinding.channelSubscribeButton, true, 100,
-                AnimationType.LIGHT_SCALE_AND_ALPHA);
+        animate(binding.channelSubscribeButton, true, 100, AnimationType.LIGHT_SCALE_AND_ALPHA);
     }
 
     private void updateNotifyButton(@Nullable final SubscriptionEntity subscription) {
@@ -424,106 +441,177 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
      * Show a snackbar with the option to enable notifications on new streams for this channel.
      */
     private void showNotifySnackbar() {
-        Snackbar.make(itemsList, R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.getRoot(), R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
                 .setAction(R.string.get_notified, v -> setNotify(true))
                 .setActionTextColor(Color.YELLOW)
                 .show();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Load and handle
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
-    }
-
-    @Override
-    protected Single<ChannelInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad);
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // OnClick
+    // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onClick(final View v) {
-        if (isLoading.get() || currentInfo == null) {
-            return;
-        }
+    private void updateTabs() {
+        tabAdapter.clearAllItems();
 
-        switch (v.getId()) {
-            case R.id.sub_channel_avatar_view:
-            case R.id.sub_channel_title_view:
-                if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
-                    try {
-                        NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
-                                currentInfo.getParentChannelUrl(),
-                                currentInfo.getParentChannelName());
-                    } catch (final Exception e) {
-                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
-                    }
-                } else if (DEBUG) {
-                    Log.i(TAG, "Can't open parent channel because we got no channel URL");
+        if (currentInfo != null && !channelContentNotSupported) {
+            final Context context = requireContext();
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(context);
+
+            for (final ListLinkHandler linkHandler : currentInfo.getTabs()) {
+                final String tab = linkHandler.getContentFilters().get(0);
+                if (ChannelTabHelper.showChannelTab(context, preferences, tab)) {
+                    final ChannelTabFragment channelTabFragment =
+                            ChannelTabFragment.getInstance(serviceId, linkHandler, name);
+                    channelTabFragment.useAsFrontPage(useAsFrontPage);
+                    tabAdapter.addFragment(channelTabFragment,
+                            context.getString(ChannelTabHelper.getTranslationKey(tab)));
                 }
-                break;
+            }
+
+            if (ChannelTabHelper.showChannelTab(
+                    context, preferences, R.string.show_channel_tabs_about)) {
+                tabAdapter.addFragment(
+                        ChannelAboutFragment.getInstance(currentInfo),
+                        context.getString(R.string.channel_tab_about));
+            }
+        }
+
+        tabAdapter.notifyDataSetUpdate();
+
+        for (int i = 0; i < tabAdapter.getCount(); i++) {
+            binding.tabLayout.getTabAt(i).setText(tabAdapter.getItemTitle(i));
+        }
+
+        // Restore previously selected tab
+        final TabLayout.Tab ltab = binding.tabLayout.getTabAt(lastTab);
+        if (ltab != null) {
+            binding.tabLayout.selectTab(ltab);
         }
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public String generateSuffix() {
+        return null;
+    }
+
+    @Override
+    public void writeTo(final Queue<Object> objectsToSave) {
+        objectsToSave.add(currentInfo);
+        objectsToSave.add(binding == null ? 0 : binding.tabLayout.getSelectedTabPosition());
+    }
+
+    @Override
+    public void readFrom(@NonNull final Queue<Object> savedObjects) {
+        currentInfo = (ChannelInfo) savedObjects.poll();
+        lastTab = (Integer) savedObjects.poll();
+    }
+
+    @Override
+    public void onSaveInstanceState(final @NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (binding != null) {
+            outState.putInt("LastTab", binding.tabLayout.getSelectedTabPosition());
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        lastTab = savedInstanceState.getInt("LastTab", 0);
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Contract
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    protected void doInitialLoadLogic() {
+        if (currentInfo == null) {
+            startLoading(false);
+        } else {
+            handleResult(currentInfo);
+        }
+    }
+
+    @Override
+    public void startLoading(final boolean forceLoad) {
+        super.startLoading(forceLoad);
+
+        currentInfo = null;
+        updateTabs();
+        if (currentWorker != null) {
+            currentWorker.dispose();
+        }
+
+        runWorker(forceLoad);
+    }
+
+    private void runWorker(final boolean forceLoad) {
+        currentWorker = ExtractorHelper.getChannelInfo(serviceId, url, forceLoad)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    isLoading.set(false);
+                    handleResult(result);
+                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_CHANNEL,
+                        url == null ? "No URL" : url, serviceId)));
+    }
+
+    @Override
     public void showLoading() {
         super.showLoading();
         PicassoHelper.cancelTag(PICASSO_CHANNEL_TAG);
-        animate(headerBinding.channelSubscribeButton, false, 100);
+        animate(binding.channelSubscribeButton, false, 100);
     }
 
     @Override
     public void handleResult(@NonNull final ChannelInfo result) {
         super.handleResult(result);
+        currentInfo = result;
+        setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
-        headerBinding.getRoot().setVisibility(View.VISIBLE);
-        PicassoHelper.loadBanner(result.getBannerUrl()).tag(PICASSO_CHANNEL_TAG)
-                .into(headerBinding.channelBannerImage);
-        PicassoHelper.loadAvatar(result.getAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
-                .into(headerBinding.channelAvatarView);
-        PicassoHelper.loadAvatar(result.getParentChannelAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
-                .into(headerBinding.subChannelAvatarView);
+        if (ImageStrategy.shouldLoadImages() && !result.getBanners().isEmpty()) {
+            PicassoHelper.loadBanner(result.getBanners()).tag(PICASSO_CHANNEL_TAG)
+                    .into(binding.channelBannerImage);
+        } else {
+            // do not waste space for the banner, if the user disabled images or there is not one
+            binding.channelBannerImage.setImageDrawable(null);
+        }
 
-        headerBinding.channelSubscriberView.setVisibility(View.VISIBLE);
+        PicassoHelper.loadAvatar(result.getAvatars()).tag(PICASSO_CHANNEL_TAG)
+                .into(binding.channelAvatarView);
+        PicassoHelper.loadAvatar(result.getParentChannelAvatars()).tag(PICASSO_CHANNEL_TAG)
+                .into(binding.subChannelAvatarView);
+
+        binding.channelTitleView.setText(result.getName());
+        binding.channelSubscriberView.setVisibility(View.VISIBLE);
         if (result.getSubscriberCount() >= 0) {
-            headerBinding.channelSubscriberView.setText(Localization
+            binding.channelSubscriberView.setText(Localization
                     .shortSubscriberCount(activity, result.getSubscriberCount()));
         } else {
-            headerBinding.channelSubscriberView.setText(R.string.subscribers_count_not_available);
+            binding.channelSubscriberView.setText(R.string.subscribers_count_not_available);
         }
 
         if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
-            headerBinding.subChannelTitleView.setText(String.format(
+            binding.subChannelTitleView.setText(String.format(
                     getString(R.string.channel_created_by),
                     currentInfo.getParentChannelName())
             );
-            headerBinding.subChannelTitleView.setVisibility(View.VISIBLE);
-            headerBinding.subChannelAvatarView.setVisibility(View.VISIBLE);
-        } else {
-            headerBinding.subChannelTitleView.setVisibility(View.GONE);
+            binding.subChannelTitleView.setVisibility(View.VISIBLE);
+            binding.subChannelAvatarView.setVisibility(View.VISIBLE);
         }
 
         if (menuRssButton != null) {
             menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
-        }
-
-        // PlaylistControls should be visible only if there is some item in
-        // infoListAdapter other than header
-        if (infoListAdapter.getItemCount() != 1) {
-            playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
-        } else {
-            playlistControlBinding.getRoot().setVisibility(View.GONE);
         }
 
         channelContentNotSupported = false;
@@ -539,62 +627,21 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         if (subscribeButtonMonitor != null) {
             subscribeButtonMonitor.dispose();
         }
+
+        updateTabs();
         updateSubscription(result);
         monitorSubscription(result);
-
-        playlistControlBinding.playlistCtrlPlayAllButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnMainPlayer(activity, getPlayQueue()));
-        playlistControlBinding.playlistCtrlPlayPopupButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnPopupPlayer(activity, getPlayQueue(), false));
-        playlistControlBinding.playlistCtrlPlayBgButton
-                .setOnClickListener(view -> NavigationHelper
-                        .playOnBackgroundPlayer(activity, getPlayQueue(), false));
-
-        playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
-            return true;
-        });
-
-        playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
-            return true;
-        });
     }
 
     private void showContentNotSupportedIfNeeded() {
         // channelBinding might not be initialized when handleResult() is called
         // (e.g. after rotating the screen, #6696)
-        if (!channelContentNotSupported || channelBinding == null) {
+        if (!channelContentNotSupported || binding == null) {
             return;
         }
 
-        channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
-        channelBinding.channelKaomoji.setText("(︶︹︺)");
-        channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
-        channelBinding.channelNoVideos.setVisibility(View.GONE);
-    }
-
-    private PlayQueue getPlayQueue() {
-        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
-                .filter(StreamInfoItem.class::isInstance)
-                .map(StreamInfoItem.class::cast)
-                .collect(Collectors.toList());
-
-        return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
-                currentInfo.getNextPage(), streamItems, 0);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void setTitle(final String title) {
-        super.setTitle(title);
-        if (!useAsFrontPage) {
-            headerBinding.channelTitleView.setText(title);
-        }
+        binding.errorContentNotSupported.setVisibility(View.VISIBLE);
+        binding.channelKaomoji.setText("(︶︹︺)");
+        binding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
     }
 }

@@ -41,7 +41,6 @@
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
     <string name="could_not_load_thumbnails">Nu s-au putut încărca toate miniaturile</string>
-    <string name="youtube_signature_deobfuscation_error">Nu s-a putut deobfusca semnătura URL-ului video</string>
     <string name="parsing_error">Nu s-a putut analiza site-ul web</string>
     <string name="content_not_available">Conținut indisponibil</string>
     <string name="could_not_setup_download_menu">Nu s-a putut configura meniul de descărcare</string>
@@ -181,8 +180,6 @@
     <string name="controls_add_to_playlist_title">Salvare în</string>
     <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
-    <string name="download_thumbnail_title">Încarcă miniaturi</string>
-    <string name="download_thumbnail_summary">Dezactivați pentru a preveni încărcarea miniaturilor, economisirea datelor și utilizarea memoriei. Modificările șterg atât memoria cache a imaginilor în memorie, cât și pe disc</string>
     <string name="thumbnail_cache_wipe_complete_notice">Datele cache de imagini au fost șterse</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
@@ -340,7 +337,7 @@
     <string name="peertube_instance_url_summary">Selectați instanțele PeerTube preferate</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
     <string name="seek_duration_title">Durată derulare rapidă înainte/înapoi</string>
-    <string name="recaptcha_done_button">Gata</string>
+    <string name="done">Gata</string>
     <string name="subtitle_activity_recaptcha">Apăsați \"Gata\" după ce ați rezolvat problema</string>
     <string name="error_report_open_issue_button_text">Raportați pe GitHub</string>
     <string name="clear_cookie_summary">Ștergeți cookie-urile pe care NewPipe le stochează atunci când rezolvați un reCAPTCHA</string>
@@ -485,7 +482,7 @@
     <string name="error_http_unsupported_range">Serverul nu acceptă descărcări cu mai multe fire, încercați din nou cu @string/msg_threads = 1</string>
     <string name="error_http_no_content">Serverul nu trimite date</string>
     <string name="error_connect_host">Nu se poate conecta la server</string>
-    <string name="error_unknown_host">Nu s-a putut găsi server-ul</string>
+    <string name="error_unknown_host">Nu s-a putut găsi serverul</string>
     <string name="error_ssl_exception">Nu s-a putut stabili o conexiune sigură</string>
     <string name="error_path_creation">Folderul de destinație nu poate fi creat</string>
     <string name="error_file_creation">Fișierul nu poate fi creat</string>
@@ -604,7 +601,7 @@
     <string name="paid_content">Acest conținut este disponibil doar pentru utilizatorii care au plătit, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
     <string name="youtube_music_premium_content">Acest videoclip este disponibil doar pentru membrii YouTube Music Premium, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
     <string name="private_content">Acest conținut este privat, ca atare nu poate fi difuzat sau descărcat de NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara ta, deci nu poate fi difuzată sau descărcată de NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de NewPipe.</string>
     <string name="georestricted_content">Acest conținut nu este disponibil în țara dumneavoastră.</string>
     <string name="show_channel_details">Afișați detaliile canalului</string>
     <string name="night_theme_title">Temă Nocturnă</string>
@@ -620,7 +617,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Nelistat</string>
     <string name="metadata_privacy_public">Public</string>
-    <string name="metadata_thumbnail_url">URL miniatură</string>
     <string name="metadata_host">Gazdă</string>
     <string name="metadata_support">Sprijin</string>
     <string name="metadata_language">Limbă</string>
@@ -666,7 +662,7 @@
     <string name="seekbar_preview_thumbnail_title">Miniatură de previzualizare în bara de derulare</string>
     <string name="show_image_indicators_summary">Afișați panglici colorate de Picasso deasupra imaginilor, indicând sursa acestora: roșu pentru rețea, albastru pentru disc și verde pentru memorie</string>
     <string name="show_image_indicators_title">Afișați indicatorii de imagine</string>
-    <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video</string>
+    <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video.</string>
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
     <string name="manual_update_title">Verifică dacă există actualizări</string>
     <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
@@ -745,4 +741,80 @@
     <string name="feed_show_watched">Vizionat complet</string>
     <string name="feed_show_partially_watched">Vizionat parțial</string>
     <string name="feed_show_upcoming">Urmează</string>
+    <string name="image_quality_title">Calitatea imaginii</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="channel_tab_videos">Videouri</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Abonați</string>
+    <string name="unknown_audio_track">Necunoscut</string>
+    <string name="show_channel_tabs_summary">Ce file sunt afișate pe paginile canalelor</string>
+    <string name="audio_track_type_descriptive">descriptiv</string>
+    <string name="share_playlist_with_list">Distribuiți lista URL</string>
+    <string name="share_playlist_with_titles">Distribuiți cu titluri</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Filele canalului</string>
+    <string name="volume">Volum</string>
+    <string name="use_exoplayer_decoder_fallback_title">Utilizați funcționalitatea de rezervă a decodorului din ExoPlayer</string>
+    <string name="none">Niciunul</string>
+    <string name="loading_metadata_title">Se încarcă metadata…</string>
+    <string name="toggle_screen_orientation">Schimbați orientarea ecranului</string>
+    <string name="settings_category_exoplayer_summary">Gestionați unele setări pentru ExoPlayer. Aceste schimbări necesită un restart la player ca să aibă efect</string>
+    <string name="image_quality_low">Calitate scăzută</string>
+    <string name="main_tabs_position_title">Poziția filelor principale</string>
+    <string name="toggle_fullscreen">Schimbați pe ecran complet</string>
+    <string name="feed_fetch_channel_tabs">Preluați filele canalului</string>
+    <string name="metadata_avatars">Avatare</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Activați această opțiune dacă aveți probleme cu inițializarea decodorului care trece înapoi la decodoare cu prioritate mai scăzută dacă inițializarea decodoarelor principale eșuează. Asta poate duce la performanță de redare mai slabă decât atunci când se utilizează decodoarele principale.</string>
+    <string name="right_gesture_control_title">Acțiunea gestului din dreapta</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Utilizați întotdeauna configurarația suprafeței de ieșire video din ExoPlayer ca soluție alternativă</string>
+    <string name="next_stream">Transmisia viitoare</string>
+    <string name="disable_media_tunneling_automatic_info">Tunelizarea media a fost dezactivată în mod implicit pe dispozitivul dumneavoastră deoarece se cunoaște despre acest model de dispozitiv că nu o suportă.</string>
+    <string name="metadata_subchannel_avatars">Avatarele subcanalelor</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Această soluție alternativă eliberează și reinstanțează codecurile video când se întamplă o schimbare a suprafeței, în loc de a seta suprafața pentru codec direct. Deja 
+\n folosită de ExoPlayer pe unele dispozitive cu această problemă, această setare are efect doar pe Android 6 sau mai mare
+\n
+\nActivarea acestei opțiuni poate preveni erorile de redare când se schimbă playerul video curent sau se trece pe ecran complet</string>
+    <string name="audio_track_present_in_video">O coloană sonoră ar trebui să fie deja prezentă în această transmisie</string>
+    <string name="open_play_queue">Deschideți coada de redare</string>
+    <string name="prefer_original_audio_summary">Selectați coloana sonoră originală indiferent de limbă</string>
+    <string name="image_quality_none">Nu încărcați imagini</string>
+    <string name="image_quality_high">Calitate înaltă</string>
+    <string name="channel_tab_about">Despre</string>
+    <string name="share_playlist">Distribuiți playlistul</string>
+    <string name="forward">Avansați</string>
+    <string name="select_audio_track_external_players">Selectați coloana sonoră pentru playeri externi</string>
+    <string name="channel_tab_albums">Albume</string>
+    <string name="rewind">Derulați</string>
+    <string name="replay">Reluați</string>
+    <string name="audio_track_type_dubbed">dublat</string>
+    <string name="feed_fetch_channel_tabs_summary">File ce vor fi preluate când se actualizează fluxul. Această opțiune nu are niciun efect dacă un canal este actualizat folosind modul rapid.</string>
+    <string name="prefer_descriptive_audio_summary">Selectați o coloană sonoră cu descrieri pentru persoane cu deficiențe vizuale, dacă este disponibilă</string>
+    <string name="left_gesture_control_title">Acțiunea gestului din stânga</string>
+    <string name="share_playlist_with_titles_message">Distribuiți playlistul cu detalii precum numele playlistului și titlurile videourilor sau ca o simplă listă de URL-uri a videourilor</string>
+    <string name="image_quality_medium">Calitate medie</string>
+    <string name="prefer_descriptive_audio_title">Preferați audioul descriptiv</string>
+    <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare pentru conținuturi progresive (în prezent %s). O valoare mai mică poate accelera încărcarea lor inițială</string>
+    <string name="prefer_original_audio_title">Preferați audioul original</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="metadata_banners">Bannere</string>
+    <string name="channel_tab_playlists">Playlisturi</string>
+    <string name="right_gesture_control_summary">Alegeți un gest pentru jumătatea dreaptă din ecranul playerului</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="main_tabs_position_summary">Mutați fila principală în partea de jos</string>
+    <string name="audio_track">Coloană sonoră</string>
+    <string name="no_live_streams">Fără transmisii în direct</string>
+    <string name="image_quality_summary">Alegeți calitatea imaginilor și dacă să se încarce sau nu imaginile, pentru a reduce utilizarea datelor și memoriei. Schimbările șterg cache-ul atât din memoria internă cât și din disc --%s</string>
+    <string name="play">Redați</string>
+    <string name="more_options">Mai multe opțiuni</string>
+    <string name="metadata_thumbnails">Miniaturi</string>
+    <string name="settings_category_exoplayer_title">Setări pentru ExoPlayer</string>
+    <string name="brightness">Luminozitate</string>
+    <string name="duration">Durată</string>
+    <string name="no_streams">Fără transmisii</string>
+    <string name="channel_tab_channels">Canale</string>
+    <string name="previous_stream">Transmisia anterioară</string>
+    <string name="left_gesture_control_summary">Alegeți un gest pentru jumătatea stângă din ecranul playerului</string>
+    <string name="channel_tab_livestreams">În direct</string>
 </resources>

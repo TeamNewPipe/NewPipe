@@ -17,13 +17,13 @@
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Ontbrekende Kore-app installeren\?</string>
-    <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
-    <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
+    <string name="show_play_with_kodi_title">Optie ‘Afspelen met Kodi’ tonen</string>
+    <string name="show_play_with_kodi_summary">Toont een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="unsupported_url">URL wordt niet ondersteund</string>
-    <string name="show_next_and_similar_title">Toon ‘volgende’ en ‘vergelijkbare’ video’s</string>
+    <string name="show_next_and_similar_title">‘Volgende’ en ‘Vergelijkbare’ video\'s tonen</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
@@ -31,7 +31,7 @@
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
     <string name="detail_uploader_thumbnail_view_description">Gebruikersafbeelding van uploader</string>
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
-    <string name="download_path_audio_title">Downloadfolder voor audio</string>
+    <string name="download_path_audio_title">Download­map voor audio</string>
     <string name="download_path_audio_summary">Gedownloade muziek wordt hier opgeslagen</string>
     <string name="download_path_audio_dialog_title">Voer de downloadlocatie in voor audiobestanden</string>
     <string name="theme_title">Thema</string>
@@ -40,11 +40,10 @@
     <string name="settings_category_appearance_title">Uiterlijk</string>
     <string name="background_player_playing_toast">Speelt af op achtergrond</string>
     <string name="content">Inhoud</string>
-    <string name="show_age_restricted_content_title">Toon inhoud met leeftijdsbeperking</string>
+    <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking tonen</string>
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kan niet alle miniatuurvoorbeelden laden</string>
-    <string name="youtube_signature_deobfuscation_error">Kan video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kan website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>
@@ -60,7 +59,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Tik op het vergrootglas om te beginnen.</string>
+    <string name="main_bg_subtitle">Druk op het vergrootglas om te beginnen.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -91,7 +90,7 @@
     <string name="msg_popup_permission">Deze machtiging is vereist om te
 \nopenen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
-    <string name="default_video_format_title">Standaard videoformaat</string>
+    <string name="default_video_format_title">Standaard­videoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="default_popup_resolution_title">Standaardresolutie van pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties tonen</string>
@@ -161,7 +160,7 @@
         <item quantity="other">%s video’s</item>
     </plurals>
     <string name="delete_item_search_history">Wil je dit item verwijderen uit je zoekgeschiedenis?</string>
-    <string name="show_hold_to_append_title">Toon tip \"Ingedrukt houden om toe te voegen\"</string>
+    <string name="show_hold_to_append_title">Tip ‘Ingedrukt houden om toe te voegen’ tonen</string>
     <string name="show_hold_to_append_summary">Toon tip als de achtergrond- of pop-upknop wordt ingedrukt op de videogegevenspagina</string>
     <string name="play_all">Alles afspelen</string>
     <string name="player_stream_failure">Deze stream kan niet worden afgespeeld</string>
@@ -180,7 +179,7 @@
     <string name="play_queue_remove">Verwijderen</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio-instellingen</string>
-    <string name="hold_to_append">Houd ingedrukt om toe te voegen aan wachtrij</string>
+    <string name="hold_to_append">Houd ingedrukt om toe te voegen aan de wachtrij</string>
     <string name="unknown_content">[onbekend]</string>
     <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
     <string name="start_here_on_popup">Begin met afspelen in pop-up</string>
@@ -189,7 +188,7 @@
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Bezoek de website van NewPipe voor meer informatie en het laatste nieuws.</string>
-    <string name="default_content_country_title">Standaard inhoudsland</string>
+    <string name="default_content_country_title">Standaard­land voor inhoud</string>
     <string name="switch_to_background">Verplaatsen naar achtergrond</string>
     <string name="switch_to_popup">Verplaatsen naar pop-up</string>
     <string name="switch_to_main">Verplaatsen naar hoofdvenster</string>
@@ -269,11 +268,11 @@
 \n
 \n1. Ga naar dit adres: %1$s
 \n2. Log in op je account
-\n3. Klik op \"Alle YouTube-gegevens inbegrepen\", dan op \"Selectie van alle items ongedaan maken\", dan selecteer alleen \"abonnementen\" en klik op \"OK\"
-\n4. Klik op \"Volgende stap\", dan op \"Export maken\"
-\n5. Klik op de knop \"Downloaden\" nadat deze verschijnt
-\n6. Klik onder op \"Bestand importeren\" en selecteer de gedownloade zip file
-\n7. [Als de zip import faalt] Uit de zip file, pak de .csv uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.csv\"), klik onder op \"Bestand importeren\" en selecteer de uitgepakte zip file</string>
+\n3. Druk op ‘Alle YouTube-gegevens inbegrepen’, dan op ‘Selectie van alle items ongedaan maken’, dan selecteer alleen ‘abonnementen’ en druk op ‘OK’
+\n4. Druk op ‘Volgende stap’, dan op ‘Export maken’
+\n5. Druk op de knop ‘Downloaden’ nadat deze verschijnt
+\n6. Druk onder op ‘Bestand importeren’ en selecteer de gedownloade zip file
+\n7. [Als de zip-import faalt] Uit het zip-bestand, pak de .csv uit (normaal in de map ‘YouTube en YouTube Music/abonnementen/abonnementen.csv’), druk onder op ‘Bestand importeren’ en selecteer het uitgepakte zip-bestand</string>
     <string name="import_soundcloud_instructions">Importeer een SoundCloud-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
@@ -284,8 +283,6 @@
     <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je mobiele netwerk gebruiken. 
 \n 
 \nWil je doorgaan?</string>
-    <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -340,13 +337,13 @@
     <string name="app_update_notification_channel_description">Meldingen voor nieuwe New Pipe versies</string>
     <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
     <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Download map opnieuw instellen\?</string>
-    <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaardtabbladen worden gebruikt</string>
+    <string name="saved_tabs_invalid_json">Fout bij lezen van opgeslagen tabbladen, standaard­tabbladen worden gebruikt</string>
     <string name="restore_defaults">Standaardinstellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wil je de standaardinstellingen herstellen\?</string>
     <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
     <string name="updates_setting_title">Bijwerken</string>
-    <string name="updates_setting_description">Toon een melding om de applicatie te updaten wanneer er een nieuwe versie beschikbaar is</string>
+    <string name="updates_setting_description">Toon een melding om de app bij te werken wanneer een nieuwe versie beschikbaar is</string>
     <string name="list_view_mode">Lijstweergavemodus</string>
     <string name="list">Lijst</string>
     <string name="grid">Raster</string>
@@ -357,14 +354,14 @@
     <string name="paused">gepauzeerd</string>
     <string name="queued">aan de wachtrij toegevoegd</string>
     <string name="post_processing">nabewerking</string>
-    <string name="enqueue">Wachtrij</string>
+    <string name="enqueue">In wachtrij plaatsen</string>
     <string name="permission_denied">Actie door het systeem geweigerd</string>
     <string name="download_failed">Downloaden mislukt</string>
     <string name="generate_unique_name">Genereer een unieke naam</string>
     <string name="overwrite">Overschrijven</string>
     <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
     <string name="download_already_running">Er is een download aan de gang met deze naam</string>
-    <string name="show_error">Toon foutmelding</string>
+    <string name="show_error">Foutmelding tonen</string>
     <string name="error_file_creation">Het bestand kan niet worden gemaakt</string>
     <string name="error_path_creation">De doelmap kan niet worden gemaakt</string>
     <string name="error_ssl_exception">Kon geen beveiligde verbinding opzetten</string>
@@ -402,7 +399,7 @@
     <string name="error_insufficient_storage">Geen vrije ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
     <string name="confirm_prompt">Wilt u de downloadgeschiedenis of alle gedownloade bestanden verwijderen\?</string>
-    <string name="enable_queue_limit">Limiteer de download wachtrij</string>
+    <string name="enable_queue_limit">Download­wachtrij limiteren</string>
     <string name="enable_queue_limit_desc">Er zal maximaal 1 bestand tegelijk worden gedownload</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
@@ -410,7 +407,7 @@
     <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen.
 \nSchakel de systeem map kiezer (SAF) in als u naar een externe SD-kaart wilt downloaden</string>
     <string name="downloads_storage_use_saf_title">Mapkiezer van systeem gebruiken (SAF)</string>
-    <string name="clear_playback_states_title">Verwijder afspeelposities</string>
+    <string name="clear_playback_states_title">Afspeelposities verwijderen</string>
     <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
     <string name="no_one_watching">Niemand is aan het kijken</string>
@@ -426,14 +423,14 @@
     <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
-    <string name="peertube_instance_url_title">PeerTube kanaal</string>
-    <string name="peertube_instance_url_summary">Selecteer je favorite PeerTube kanaal</string>
-    <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vindt op %s</string>
-    <string name="peertube_instance_add_title">Kanaal toevoegen</string>
-    <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
-    <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
-    <string name="peertube_instance_add_https_only">Alleen HTTPS URL\'s worden ondersteund</string>
-    <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
+    <string name="peertube_instance_url_title">PeerTube-instanties</string>
+    <string name="peertube_instance_url_summary">Selecteer je favorite PeerTube-instanties</string>
+    <string name="peertube_instance_url_help">Vind de instanties die je leuk vindt op %s</string>
+    <string name="peertube_instance_add_title">Instantie toevoegen</string>
+    <string name="peertube_instance_add_help">Instantie-URL invoeren</string>
+    <string name="peertube_instance_add_fail">Kon instantie niet valideren</string>
+    <string name="peertube_instance_add_https_only">Alleen HTTPS-URL\'s worden ondersteund</string>
+    <string name="peertube_instance_add_exists">Instantie bestaat al</string>
     <string name="local">Lokaal</string>
     <string name="recently_added">Recentelijk toegevoegd</string>
     <string name="playlist_no_uploader">Automatisch gegenereerd (geen uploader gevonden)</string>
@@ -445,8 +442,8 @@
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">App-taal</string>
     <string name="systems_language">Systeemtaal gebruiken</string>
-    <string name="subtitle_activity_recaptcha">Druk op \"Klaar\" zodra opgelost</string>
-    <string name="recaptcha_done_button">Klaar</string>
+    <string name="subtitle_activity_recaptcha">Druk op ‘Klaar’ als u dit heeft opgelost</string>
+    <string name="done">Klaar</string>
     <string name="videos_string">Video\'s</string>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
     <string name="mute">Geluid dempen</string>
@@ -517,17 +514,17 @@
     <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
 \n
-\nSchakel \"%1$s\" in bij de instellingen als u die wilt zien.</string>
+\nSchakel ‘%1$s’ in onder instellingen als u het wilt zien.</string>
     <string name="remove_watched">Bekeken verwijderen</string>
     <string name="show_original_time_ago_summary">Originele teksten van services zijn zichtbaar in stream-items</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube \"Beperkte modus\" aanzetten</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube\'s ‘Beperkte modus’ inschakelen</string>
     <string name="show_original_time_ago_title">Laat originele tijd geleden zien</string>
     <string name="detail_sub_channel_thumbnail_view_description">Avatarminiatuur van kanaal</string>
     <string name="video_detail_by">Door %s</string>
     <string name="channel_created_by">Gemaakt door %s</string>
-    <string name="playlist_page_summary">Afspeellijst pagina</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Toon enkel ongegroepeerde abonnementen</string>
-    <string name="no_playlist_bookmarked_yet">Geen afspeellijst bookmarks</string>
+    <string name="playlist_page_summary">Afspeellijst­pagina</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Enkel ongegroepeerde abonnementen tonen</string>
+    <string name="no_playlist_bookmarked_yet">Nog geen afspeellijst­bladwijzers</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="error_report_open_github_notice">Controleer of er al een probleem bestaat dat uw crash beschrijft. Wanneer u dubbele tickets aanmaakt, neemt dit tijd van ons in beslag die we beter kunnen besteden aan het oplossen van het daadwerkelijke probleem.</string>
     <string name="error_report_open_issue_button_text">In GitHub rapporteren</string>
@@ -536,9 +533,9 @@
     <string name="never">Nooit</string>
     <string name="wifi_only">Enkel via Wi-Fi</string>
     <string name="autoplay_summary">Start automatisch met afspelen — %s</string>
-    <string name="title_activity_play_queue">Speel wachtrij af</string>
+    <string name="title_activity_play_queue">Wachtrij afspelen</string>
     <string name="unsupported_url_dialog_message">Kon de URL niet herkennen. In een andere app openen\?</string>
-    <string name="clear_queue_confirmation_description">De actieve spelerswachtrij wordt vervangen</string>
+    <string name="clear_queue_confirmation_description">De actieve speler­wachtrij zal worden vervangen</string>
     <string name="clear_queue_confirmation_summary">Veranderen van één speler naar een andere kan jouw wachtrij vervangen</string>
     <string name="clear_queue_confirmation_title">Vraag bevestiging alvorens de wachtrij te wissen</string>
     <string name="notification_action_nothing">Niets</string>
@@ -546,27 +543,27 @@
     <string name="notification_action_shuffle">Willekeurig afspelen</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant</string>
+    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
     <string name="notification_action_2_title">Derde actieknop</string>
     <string name="notification_action_1_title">Tweede actieknop</string>
     <string name="notification_action_0_title">Eerste actieknop</string>
-    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Schaalt de miniatuurafbeelding van de video die getoond wordt in de melding van verhouding 16:9 naar 1:1</string>
     <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
-    <string name="auto_queue_toggle">Automatisch in de wachtrij plaatsen</string>
-    <string name="show_memory_leaks">Toon memory leaks</string>
+    <string name="auto_queue_toggle">Automatisch in wachtrij plaatsen</string>
+    <string name="show_memory_leaks">Geheugen­lekken tonen</string>
     <string name="enqueued">In de wachtrij geplaatst</string>
     <string name="enqueue_stream">In de wachtrij plaatsen</string>
     <string name="clear_cookie_summary">Verwijder cookies die NewPipe opslaat wanneer u een reCAPTCHA oplost</string>
-    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies zijn verwijderd</string>
-    <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"Beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA-cookies zijn gewist</string>
+    <string name="clear_cookie_title">reCAPTCHA-cookies wissen</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een ‘Beperkte modus’ aan, dit verbergt materiaal voor volwassenen</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Meldingkleur aanpassen</string>
-    <string name="show_thumbnail_summary">Toon miniatuurafbeelding op het vergrendelscherm als achtergrond en in de notificaties</string>
-    <string name="show_thumbnail_title">Toon miniatuurafbeelding</string>
+    <string name="show_thumbnail_summary">Toon miniatuurafbeelding op het vergrendelscherm als achtergrond en in de meldingen</string>
+    <string name="show_thumbnail_title">Miniatuur tonen</string>
     <string name="recent">Recente</string>
     <string name="msg_calculating_hash">Hash berekenen</string>
     <string name="hash_channel_description">Meldingen over de voortgang van video-hashing</string>
@@ -588,7 +585,7 @@
     <string name="private_content">Deze inhoud is privé en kan dus niet worden gestreamd of gedownload door NewPipe.</string>
     <string name="soundcloud_go_plus_content">Dit is een SoundCloud Go + -track, althans in jouw land, dus het kan niet worden gestreamd of gedownload door NewPipe.</string>
     <string name="georestricted_content">Deze inhoud is niet beschikbaar in uw land.</string>
-    <string name="crash_the_app">De app laten crashen</string>
+    <string name="crash_the_app">App laten crashen</string>
     <string name="recaptcha_solve">Oplossen</string>
     <string name="restricted_video_no_stream">Deze video heeft een leeftijdsbeperking.
 \nVanwege nieuw YouTube-beleid over video\'s met leeftijdsbeperking, heeft NewPipe geen toegang tot zijn videostreams en kan deze dus niet afspelen.</string>
@@ -596,13 +593,12 @@
     <string name="select_night_theme_toast">U kunt uw favoriete nachtthema hieronder selecteren</string>
     <string name="night_theme_summary">Selecteer uw favoriete nachtthema — %s</string>
     <string name="auto_device_theme_title">Automatisch (systeemthema)</string>
-    <string name="show_channel_details">Toon details van kanaal</string>
+    <string name="show_channel_details">Kanaal­details tonen</string>
     <string name="night_theme_title">Nachtthema</string>
     <string name="metadata_privacy_internal">Intern</string>
     <string name="metadata_privacy_private">Privé</string>
     <string name="metadata_privacy_unlisted">Niet vermeld</string>
     <string name="metadata_privacy_public">Openbaar</string>
-    <string name="metadata_thumbnail_url">Miniatuur-URL</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Ondersteuning</string>
     <string name="metadata_language">Taal</string>
@@ -614,7 +610,7 @@
     <string name="description_select_disable">Tekst selecteren in de beschrijving uitschakelen</string>
     <string name="description_select_enable">Tekst selecteren in de beschrijving inschakelen</string>
     <string name="description_select_note">U kunt nu tekst in de beschrijving selecteren. Houd er rekening mee dat de pagina kan flikkeren en dat links mogelijk niet klikbaar zijn in de selectiemodus.</string>
-    <string name="disable_media_tunneling_summary">Media tunneling uitschakelen als u een zwart scherm ervaart of video hapert bij het afspelen</string>
+    <string name="disable_media_tunneling_summary">Schakel media-tunneling uit als u een zwart scherm ervaart of de video hapert bij het afspelen.</string>
     <string name="disable_media_tunneling_title">Media tunneling uitschakelen</string>
     <string name="off">Uit</string>
     <string name="on">Aan</string>
@@ -630,14 +626,14 @@
     <string name="feed_load_error">Error bij het inladen van de feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">Vanaf Android 10 is enkel \'Storage Access Framework\' ondersteund</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
-    <string name="no_dir_yet">Nog geen downloadfolder gekozen, kies de standaard downloadfolder</string>
+    <string name="no_dir_yet">Nog geen download­map gekozen, kies nu de standaard­download­map</string>
     <string name="detail_heart_img_view_description">Geliefd door de maker</string>
     <string name="dont_show">Niet laten zien</string>
     <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
     <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
     <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurafbeelding voorbeeld</string>
     <string name="show_image_indicators_summary">Toon Picasso-gekleurde linten bovenop afbeeldingen die hun bron aangeven: rood voor netwerk, blauw voor schijf en groen voor geheugen</string>
-    <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
+    <string name="show_image_indicators_title">Afbeeldings­indicatoren tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
     <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>
@@ -651,14 +647,14 @@
         <item quantity="other">%s downloads voltooid</item>
     </plurals>
     <string name="enqueued_next">Volgende item in de wachtrij geplaatst</string>
-    <string name="enqueue_next_stream">Plaats volgende item in de wachtrij</string>
+    <string name="enqueue_next_stream">Volgende item in de wachtrij plaatsen</string>
     <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
     <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
     <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
-    <string name="crash_the_player">Crash de speler</string>
-    <string name="show_crash_the_player_title">Toon \"crash de speler\"</string>
-    <string name="show_crash_the_player_summary">Toon een crash overzicht bij gebruik van de speler</string>
+    <string name="crash_the_player">Speler crashen</string>
+    <string name="show_crash_the_player_title">‘Speler crashen’ tonen</string>
+    <string name="show_crash_the_player_summary">Toont een crash-optie bij gebruik van de speler</string>
     <string name="manual_update_description">Controleer handmatig op nieuwe versies</string>
     <string name="manual_update_title">Controleren op updates</string>
     <string name="checking_updates_toast">Bezig met controleren op updates…</string>
@@ -686,7 +682,7 @@
     <string name="enable_streams_notifications_title">Meldingen over nieuwe streams</string>
     <string name="enable_streams_notifications_summary">Melding over nieuwe streams van abonnementen</string>
     <string name="streams_notifications_interval_title">Frequentie van controleren</string>
-    <string name="streams_notifications_network_title">Vereiste netwerk connectie</string>
+    <string name="streams_notifications_network_title">Vereiste netwerk­verbinding</string>
     <string name="any_network">Elk netwerk</string>
     <string name="notifications_disabled">Meldingen zijn uitgeschakeld</string>
     <string name="get_notified">Meldingen</string>
@@ -714,8 +710,8 @@
     <string name="sort">Sorteer</string>
     <string name="fast_mode">Snelle modus</string>
     <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
-    <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
-    <string name="app_update_available_notification_text">Klik om %s te downloaden</string>
+    <string name="app_update_unavailable_toast">U heeft de nieuwste versie van NewPipe</string>
+    <string name="app_update_available_notification_text">Druk om %s te downloaden</string>
     <string name="msg_failed_to_copy">Kon niet naar klembord kopiëren</string>
     <string name="night_theme_available">Deze instelling is alleen beschikbaar als %s als thema ingesteld is</string>
     <string name="card">Kaart</string>
@@ -757,8 +753,57 @@
     <string name="use_exoplayer_decoder_fallback_title">Gebruik de terugvalfunctie van de ExoPlayer-decoder</string>
     <string name="use_exoplayer_decoder_fallback_summary">Schakel deze optie in als je problemen hebt met de initialisatie van de decoder, die terugvalt op decoders met een lagere prioriteit als de initialisatie van de primaire decoder mislukt. Dit kan leiden tot slechtere afspeelprestaties dan bij gebruik van primaire decoders</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Gebruik altijd de tijdelijke oplossing voor het instellen van het video-uitvoeroppervlak van ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">origineel</string>
     <string name="audio_track_type_dubbed">nagesynchroniseerd</string>
     <string name="audio_track_type_descriptive">beschrijvend</string>
+    <string name="main_tabs_position_summary">Verplaats de tabselector naar beneden</string>
+    <string name="main_tabs_position_title">Positie van sectie-tabbladen</string>
+    <string name="no_streams">Geen streams</string>
+    <string name="no_live_streams">Geen live-streams</string>
+    <string name="disable_media_tunneling_automatic_info">Media-tunneling is standaard uitgeschakeld op uw apparaat omdat uw apparaatmodel dit niet ondersteunt.</string>
+    <string name="image_quality_title">Afbeeldings­kwaliteit</string>
+    <string name="channel_tab_videos">Video\'s</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Abonnees</string>
+    <string name="show_channel_tabs_summary">Welke tabbladen worden getoond op kanaal­pagina\'s</string>
+    <string name="show_channel_tabs">Kanaal­tabbladen</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Metagegevens laden…</string>
+    <string name="toggle_screen_orientation">Scherm­oriëntatie omschakelen</string>
+    <string name="image_quality_low">Lage kwaliteit</string>
+    <string name="toggle_fullscreen">Volledig scherm omschakelen</string>
+    <string name="feed_fetch_channel_tabs">Kanaal­tabbladen ophalen</string>
+    <string name="metadata_avatars">Profielfoto\'s</string>
+    <string name="next_stream">Volgende stream</string>
+    <string name="metadata_subchannel_avatars">Subkanaal-profielfoto\'s</string>
+    <string name="open_play_queue">Wachtrij openen</string>
+    <string name="image_quality_none">Afbeeldingen niet laden</string>
+    <string name="image_quality_high">Hoge kwaliteit</string>
+    <string name="channel_tab_about">Over</string>
+    <string name="forward">Vooruitspoelen</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="rewind">Terugspoelen</string>
+    <string name="replay">Opnieuw afspelen</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabbladen om op te halen bij het bijwerken van de feed. Deze optie heeft geen effect als een kanaal wordt bingewerkt via de snelle modus.</string>
+    <string name="image_quality_medium">Gemiddelde kwaliteit</string>
+    <string name="metadata_uploader_avatars">Uploader-profielfoto\'s</string>
+    <string name="metadata_banners">Banieren</string>
+    <string name="channel_tab_playlists">Afspeellijsten</string>
+    <string name="image_quality_summary">Kies de kwaliteit van afbeeldingen en of deze überhaupt geladen moeten worden, om gegevens- en geheugengebruik te verminderen. Wijzigingen wissen de afbeeldings­cache — %s</string>
+    <string name="play">Afspelen</string>
+    <string name="more_options">Meer opties</string>
+    <string name="metadata_thumbnails">Miniaturen</string>
+    <string name="channel_tab_tracks">Nummers</string>
+    <string name="duration">Duur</string>
+    <string name="channel_tab_channels">Kanalen</string>
+    <string name="previous_stream">Vorige stream</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="share_playlist_with_list">URL-lijst delen</string>
+    <string name="share_playlist_with_titles">Delen met titels</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Afspeellijst delen</string>
+    <string name="share_playlist_with_titles_message">Deel afspeellijst met details zoals afspeellijstnaam en videotitels of als een eenvoudige lijst met video-URL\'s</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

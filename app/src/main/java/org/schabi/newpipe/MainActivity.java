@@ -219,14 +219,14 @@ public class MainActivity extends AppCompatActivity {
         final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
         final StreamingService service = NewPipe.getService(currentServiceId);
 
-        int kioskId = 0;
+        int kioskMenuItemId = 0;
 
         for (final String ks : service.getKioskList().getAvailableKiosks()) {
             drawerLayoutBinding.navigation.getMenu()
-                    .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
+                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
                             .getTranslatedKioskName(ks, this))
                     .setIcon(KioskTranslator.getKioskIcon(ks));
-            kioskId++;
+            kioskMenuItemId++;
         }
 
         drawerLayoutBinding.navigation.getMenu()
@@ -306,20 +306,16 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
             default:
-                final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-                final StreamingService service = NewPipe.getService(currentServiceId);
-                String serviceName = "";
-
-                int kioskId = 0;
-                for (final String ks : service.getKioskList().getAvailableKiosks()) {
-                    if (kioskId == item.getItemId()) {
-                        serviceName = ks;
+                final StreamingService currentService = ServiceHelper.getSelectedService(this);
+                int kioskMenuItemId = 0;
+                for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
+                    if (kioskMenuItemId == item.getItemId()) {
+                        NavigationHelper.openKioskFragment(getSupportFragmentManager(),
+                                currentService.getServiceId(), kioskId);
+                        break;
                     }
-                    kioskId++;
+                    kioskMenuItemId++;
                 }
-
-                NavigationHelper.openKioskFragment(getSupportFragmentManager(), currentServiceId,
-                        serviceName);
                 break;
         }
     }

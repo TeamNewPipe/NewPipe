@@ -151,7 +151,6 @@
     <string name="controls_add_to_playlist_title">Добавяне към</string>
     <string name="use_inexact_seek_title">Използвай бързо, но неточно превъртане</string>
     <string name="use_inexact_seek_summary">По-бързо превъртане с по-ниска прецизност. Превъртане с по 5, 15 или 25 секунди няма да работи с тази опция</string>
-    <string name="download_thumbnail_title">Зареждай миниатюри</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш-паметта с изображения е изтрита</string>
     <string name="metadata_cache_wipe_title">Изтрий кешираните метаданни</string>
     <string name="metadata_cache_wipe_summary">Премахни всички метаданни за уебстраници от кеш-паметта</string>
@@ -177,7 +176,6 @@
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията\?</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
-    <string name="youtube_signature_deobfuscation_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
     <string name="invalid_directory">Невалидна директория</string>
     <string name="invalid_source">Невалиден файл или източник на съдържание</string>
@@ -205,7 +203,6 @@
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
     <string name="app_license_title">Лицензът на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
-    <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита</string>
     <string name="show_hold_to_append_summary">Показвай подсказка при избор на фоновия режим или режим в прозорец от екрана за „Детайли“ към видео</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
@@ -424,7 +421,6 @@
     <string name="metadata_support">Поддръжка</string>
     <string name="metadata_host">Сървър</string>
     <string name="metadata_privacy_public">Публичен</string>
-    <string name="metadata_thumbnail_url">Миниатюра линк</string>
     <string name="app_language_title">Език на интерфейса</string>
     <string name="mute">Спри звука</string>
     <string name="post_processing">пост-обработката</string>
@@ -449,7 +445,7 @@
     <string name="detail_heart_img_view_description">Отбелязан със сърце от автора</string>
     <string name="conferences">Конференции</string>
     <string name="most_liked">Най-харесвани</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="comments_tab_description">Коментари</string>
     <string name="localization_changes_requires_app_restart">Езикът ще се смени след рестартиране на приложението</string>
     <string name="metadata_privacy_unlisted">Скрит</string>
@@ -559,4 +555,19 @@
     <string name="recently_added">Наскоро добавено</string>
     <string name="notification_action_buffering">Буфериране</string>
     <string name="crash_the_player">Разбийте плейъра</string>
+    <string name="show_meta_info_summary">Изключете, за да скриете полетата с мета информация с допълнителна информация за създателя на потока, съдържанието на потока или заявка за търсене</string>
+    <string name="auto_queue_toggle">Автоматично поставяне в опашка</string>
+    <string name="notification_actions_summary">Редактирайте всяко действие за известяване по-долу, като го докоснете. Изберете до три от тях, които да бъдат показани в компактното известие, като използвате квадратчетата за отметка вдясно</string>
+    <string name="prefer_original_audio_summary">Изберете оригиналния аудио запис независимо от езика</string>
+    <string name="clear_queue_confirmation_summary">Превключването от един плейър на друг може да замени вашата опашка</string>
+    <string name="prefer_descriptive_audio_summary">Изберете аудиозапис с описания за хора с увредено зрение, ако има такъв</string>
+    <string name="left_gesture_control_title">Действие с жест наляво</string>
+    <string name="prefer_descriptive_audio_title">Предпочитай описателно аудио</string>
+    <string name="progressive_load_interval_summary">Променете размера на интервала на зареждане на прогресивно съдържание (в момента %s). По-ниска стойност може да ускори първоначалното им зареждане</string>
+    <string name="prefer_original_audio_title">Предпочитай оригинално аудио</string>
+    <string name="clear_queue_confirmation_description">Опашката на активния плейър ще бъде заменена</string>
+    <string name="ignore_hardware_media_buttons_summary">Полезно, например, ако използвате слушалки със счупени физически бутони</string>
+    <string name="progressive_load_interval_title">Размер на интервала на зареждане при възпроизвеждане</string>
+    <string name="ignore_hardware_media_buttons_title">Игнорирайте събитията с хардуерни медийни бутони</string>
+    <string name="left_gesture_control_summary">Изберете жест за лявата половина на екрана на плейъра</string>
 </resources>

@@ -80,9 +80,29 @@ public abstract class BaseFragment extends Fragment {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * This method is called in {@link #onViewCreated(View, Bundle)} to initialize the views.
+     *
+     * <p>
+     * {@link #initListeners()} is called after this method to initialize the corresponding
+     * listeners.
+     * </p>
+     * @param rootView The inflated view for this fragment
+     *                 (provided by {@link #onViewCreated(View, Bundle)})
+     * @param savedInstanceState The saved state of this fragment
+ *                               (provided by {@link #onViewCreated(View, Bundle)})
+     */
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
     }
 
+    /**
+     * Initialize the listeners for this fragment.
+     *
+     * <p>
+     * This method is called after {@link #initViews(View, Bundle)}
+     * in {@link #onViewCreated(View, Bundle)}.
+     * </p>
+     */
     protected void initListeners() {
     }
 
@@ -100,9 +120,20 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    /**
+     * Finds the root fragment by looping through all of the parent fragments. The root fragment
+     * is supposed to be {@link org.schabi.newpipe.fragments.MainFragment}, and is the fragment that
+     * handles keeping the backstack of opened fragments in NewPipe, and also the player bottom
+     * sheet. This function therefore returns the fragment manager of said fragment.
+     *
+     * @return the fragment manager of the root fragment, i.e.
+     *         {@link org.schabi.newpipe.fragments.MainFragment}
+     */
     protected FragmentManager getFM() {
-        return getParentFragment() == null
-                ? getFragmentManager()
-                : getParentFragment().getFragmentManager();
+        Fragment current = this;
+        while (current.getParentFragment() != null) {
+            current = current.getParentFragment();
+        }
+        return current.getFragmentManager();
     }
 }

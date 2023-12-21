@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.END
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
@@ -127,7 +126,6 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         /**
          * Determines if the playback should forward/rewind or do nothing.
          */
-        @NonNull
         fun getFastSeekDirection(portion: DisplayPortion): FastSeekDirection
         fun seek(forward: Boolean)
 

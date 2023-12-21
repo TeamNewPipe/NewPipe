@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
     <string name="use_inexact_seek_title">Snel, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie. 5, 15 en 25 seconden werken niet</string>
-    <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit voor het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -114,7 +112,6 @@
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
-    <string name="youtube_signature_deobfuscation_error">Kon video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kon website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
     <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen</string>
@@ -493,7 +490,7 @@
     <string name="no_playlist_bookmarked_yet">Geen afspeellijst bladwijzers</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
-    <string name="recaptcha_done_button">Klaar</string>
+    <string name="done">Klaar</string>
     <string name="subtitle_activity_recaptcha">Tik op ‘Klaar’ zodra opgelost</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>

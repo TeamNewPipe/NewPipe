@@ -41,6 +41,16 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <MultiSelectListPreference
+        android:key="@string/show_channel_tabs_key"
+        android:summary="@string/show_channel_tabs_summary"
+        android:title="@string/show_channel_tabs"
+        android:entries="@array/show_channel_tabs_description_list"
+        android:entryValues="@array/show_channel_tabs_value_list"
+        android:defaultValue="@array/show_channel_tabs_value_list"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
         android:key="@string/peertube_instance_setup_key"
@@ -75,11 +85,13 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="@string/download_thumbnail_key"
-        android:summary="@string/download_thumbnail_summary"
-        android:title="@string/download_thumbnail_title"
+    <ListPreference
+        android:defaultValue="@string/image_quality_default"
+        android:entries="@array/image_quality_description"
+        android:entryValues="@array/image_quality_values"
+        android:key="@string/image_quality_key"
+        android:summary="@string/image_quality_summary"
+        android:title="@string/image_quality_title"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
@@ -151,6 +163,16 @@
             android:title="@string/feed_use_dedicated_fetch_method_title"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
+
+        <MultiSelectListPreference
+            android:key="@string/feed_fetch_channel_tabs_key"
+            android:summary="@string/feed_fetch_channel_tabs_summary"
+            android:title="@string/feed_fetch_channel_tabs"
+            android:entries="@array/feed_fetch_channel_tabs_description_list"
+            android:entryValues="@array/feed_fetch_channel_tabs_value_list"
+            android:defaultValue="@array/feed_fetch_channel_tabs_value_list"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
 
     </PreferenceCategory>
 </PreferenceScreen>

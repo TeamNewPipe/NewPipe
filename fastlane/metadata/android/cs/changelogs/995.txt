@@ -1,0 +1,16 @@
+Nové
+• Podpora karet kanálů
+• Výběr kvality obrázků
+• Získání URL všech obrázků
+
+Vylepšeno
+• Přístupnost rozhraní přehrávače
+• Lepší výběr zvuku pro stahování videa
+• Možnost přidat název playlistů a videí do obsahu sdíleného playlistu
+
+Opraveno
+• [YouTube] Opraveno získání počtů líbí se
+• Opraveny popupy neodpovídání přehrávače a pády
+• Výběr nesprávných jazyků ve výběru jazyka
+• Zaměření zvuku přehrávače nerespektovalo ztlumení
+• Přidávání položek do playlistů někdy nefungovalo

@@ -10,7 +10,7 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.Optional;
 

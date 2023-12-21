@@ -38,6 +38,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -139,6 +140,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -187,7 +194,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         binding.pager.setAdapter(null);
-        binding.pager.setOffscreenPageLimit(tabsList.size());
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
@@ -209,6 +215,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private void updateTitleForTab(final int tabPosition) {
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+    }
+
+    public void commitPlaylistTabs() {
+        pagerAdapter.getLocalPlaylistFragments()
+                .stream()
+                .forEach(LocalPlaylistFragment::commitChanges);
     }
 
     private void updateTabLayoutPosition() {
@@ -262,10 +274,18 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         updateTitleForTab(tab.getPosition());
     }
 
-    private static final class SelectedTabsPagerAdapter
+    public static final class SelectedTabsPagerAdapter
             extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
+        /**
+         * Keep reference to LocalPlaylistFragments, because their data can be modified by the user
+         * during runtime and changes are not committed immediately. However, in some cases,
+         * the changes need to be committed immediately by calling
+         * {@link LocalPlaylistFragment#commitChanges()}.
+         * The fragments are removed when {@link LocalPlaylistFragment#onDestroy()} is called.
+         */
+        private final List<LocalPlaylistFragment> localPlaylistFragments = new ArrayList<>();
 
         private SelectedTabsPagerAdapter(final Context context,
                                          final FragmentManager fragmentManager,
@@ -292,7 +312,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 ((BaseFragment) fragment).useAsFrontPage(true);
             }
 
+            if (fragment instanceof LocalPlaylistFragment) {
+                localPlaylistFragments.add((LocalPlaylistFragment) fragment);
+            }
+
             return fragment;
+        }
+
+        public List<LocalPlaylistFragment> getLocalPlaylistFragments() {
+            return localPlaylistFragments;
         }
 
         @Override

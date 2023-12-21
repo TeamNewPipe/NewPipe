@@ -10,14 +10,13 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Состояние сборки"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Состояние перевода"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="Канал IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Награды Bountysource"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Скриншоты</a> &bull; <a href="#supported-services">Поддерживаемые сервисы</a> &bull; <a href="#description">Описание</a> &bull; <a href="#features">Возможности</a> &bull; <a href="#installation-and-updates">Установка и обновления</a> &bull; <a href="#contribution">Участие</a> &bull; <a href="#donate">Пожертвование</a> &bull; <a href="#license">Лицензия</a></p>
 <p align="center"><a href="https://newpipe.net">Сайт</a> &bull; <a href="https://newpipe.net/blog/">Блог</a> &bull; <a href="https://newpipe.net/FAQ/">ЧЗВ</a> &bull; <a href="https://newpipe.net/press/">Пресса</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md)*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
 <b>ВНИМАНИЕ: ЭТО ПРИЛОЖЕНИЕ НАХОДИТСЯ В СТАДИИ БЕТА, ПОЭТОМУ ВЫ МОЖЕТЕ ОБНАРУЖИТЬ ОШИБКИ. ЕСЛИ ЭТО СЛУЧИТСЯ, ОТКРОЙТЕ ВОПРОС В НАШЕМ РЕПОЗИТОРИИ GITHUB, ЗАПОЛНЯ ЕГО ПО ШАБЛОНУ.</b>
 
@@ -120,16 +119,6 @@ NewPipe работает, извлекая необходимые данные �
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Посетите NewPipe на liberapay.com" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Пожертвование через Liberapay" height="35px"></a></td>
-  </tr>
-  <tr>
-    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="assets/bitcoin_qr_code.png" alt="QR-код Bitcoin" width="100px"></td>
-    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Посетите NewPipe на bountysource.com" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Проверьте, сколько наград вы можете заработать."></a></td>
   </tr>
 </table>
 

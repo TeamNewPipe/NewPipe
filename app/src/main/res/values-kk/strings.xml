@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="main_bg_subtitle">Бастау үшін үлкейткіш әйнекті басыңыз.</string>
+    <string name="upload_date_text">%1$s жарияланды</string>
+    <string name="no_player_found_toast">Ағындық ойнатқыш табылмады (оны ойнату үшін VLC орнатуға болады).</string>
+    <string name="no_player_found">Ағындық ойнатқыш табылмады. VLC орнату керек пе\?</string>
+</resources>

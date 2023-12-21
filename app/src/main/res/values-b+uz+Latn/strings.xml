@@ -24,10 +24,8 @@
     <string name="metadata_cache_wipe_summary">Barcha keshlangan veb-sahifa ma\'lumotlarini olib tashlash</string>
     <string name="metadata_cache_wipe_title">Keshlangan metadatalarni o\'chirish</string>
     <string name="thumbnail_cache_wipe_complete_notice">Rasm keshi o\'chirildi</string>
-    <string name="download_thumbnail_summary">Eskizlarni yuklash, ma\'lumotlarni tejash va xotiradan foydalanishni oldini olish uchun o\'chirib qo\'ying. O\'zgarishlar xotiradagi va diskdagi rasm keshini tozalaydi.</string>
     <string name="show_comments_summary">sharhlarni yashirishni o\'chirish</string>
     <string name="show_comments_title">Izohlarni ko\'rsatish</string>
-    <string name="download_thumbnail_title">Eskizlarni yuklang</string>
     <string name="clear_queue_confirmation_description">Aktiv ijro etish navbati almashtiriladi</string>
     <string name="clear_queue_confirmation_summary">Bir ijro etishdan boshqasiga o\'tish sizning navbatingizni almashtirishi mumkin</string>
     <string name="clear_queue_confirmation_title">Navbatni tozalashdan oldin tasdiqlashni so\'rash</string>
@@ -216,7 +214,7 @@
     <string name="settings_file_replacement_character_summary">Noto\'g\'ri belgilar ushbu qiymat bilan almashtiriladi</string>
     <string name="settings_file_charset_title">Fayl nomidagi ruxsat berilgan belgilar</string>
     <string name="settings_category_downloads_title">Yuklab olish</string>
-    <string name="recaptcha_done_button">Bajarildi</string>
+    <string name="done">Bajarildi</string>
     <string name="recaptcha_request_toast">reCAPTCHA muammosi so\'raldi</string>
     <string name="subtitle_activity_recaptcha">Hal etilganda \"Bajarildi\" tugmasini bosing</string>
     <string name="title_activity_recaptcha">reCAPTCHA muammosi</string>
@@ -314,7 +312,6 @@
     <string name="could_not_setup_download_menu">Yuklab olish menyusi sozlanmadi</string>
     <string name="content_not_available">Tarkib mavjud emas</string>
     <string name="parsing_error">Veb-saytni tahlil qilib bo\'lmadi</string>
-    <string name="youtube_signature_deobfuscation_error">Videoning URL manzilini o\'chirib bo\'lmadi</string>
     <string name="could_not_load_thumbnails">Barcha eskizlarni yuklab bo\'lmadi</string>
     <string name="network_error">Tarmoqda xato</string>
     <string name="download_to_sdcard_error_message">Tashqi SD-kartaga yuklab olishning iloji yo\'q. Yuklash papkasining joylashuvi tiklansinmi\?</string>

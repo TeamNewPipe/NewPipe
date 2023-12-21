@@ -42,7 +42,6 @@
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
-    <string name="youtube_signature_deobfuscation_error">Не вдалося розшифрувати URL-підпис відео</string>
     <string name="parsing_error">Не вдалося проаналізувати вебсайт</string>
     <string name="content_not_available">Вміст недоступний</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
@@ -292,8 +291,6 @@
     <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
 \n
 \nБажаєте продовжити\?</string>
-    <string name="download_thumbnail_title">Завантажувати ескізи</string>
-    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік і внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">Видалити всі кешовані дані вебсторінок</string>
@@ -451,7 +448,7 @@
     <string name="app_language_title">Мова</string>
     <string name="systems_language">Мова телефону</string>
     <string name="subtitle_activity_recaptcha">Розв\'язавши натисніть «Готово»</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Бажаєте видалити цю групу\?</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
@@ -620,7 +617,6 @@
     <string name="metadata_privacy_public">Публічне</string>
     <string name="metadata_privacy_private">Приватне</string>
     <string name="metadata_privacy_unlisted">Поза списком</string>
-    <string name="metadata_thumbnail_url">URL мініатюри</string>
     <string name="metadata_host">Власник</string>
     <string name="metadata_support">Підтримка</string>
     <string name="metadata_language">Мова</string>
@@ -769,7 +765,7 @@
     <string name="settings_category_exoplayer_summary">Керування деякими налаштуваннями ExoPlayer. Щоб ці зміни набули чинності, потрібно перезапустити програвач</string>
     <string name="use_exoplayer_decoder_fallback_title">Використовувати запасну функцію декодера ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Завжди використовувати обхідний шлях налаштування поверхні відеовиходу ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">оригінальна</string>
     <string name="audio_track_type_dubbed">дубльована</string>
     <string name="audio_track_type_descriptive">описова</string>
@@ -781,4 +777,50 @@
     <string name="main_tabs_position_summary">Перемістити селектор головної вкладки вниз</string>
     <string name="main_tabs_position_title">Розташування основних вкладок</string>
     <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
+    <string name="no_streams">Немає трансляцій</string>
+    <string name="no_live_streams">Немає трансляцій наживо</string>
+    <string name="channel_tab_videos">Відео</string>
+    <string name="metadata_subscribers">Підписники</string>
+    <string name="show_channel_tabs_summary">Які вкладки показуються на сторінках каналів</string>
+    <string name="show_channel_tabs">Вкладки каналу</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Завантаження метаданих…</string>
+    <string name="feed_fetch_channel_tabs">Отримання вкладок каналу</string>
+    <string name="channel_tab_about">Про канал</string>
+    <string name="channel_tab_albums">Альбоми</string>
+    <string name="feed_fetch_channel_tabs_summary">Отримувані вкладки під час оновлення стрічки. Ця опція не застосовується, якщо канал оновлюється за допомогою швидкого режиму.</string>
+    <string name="channel_tab_playlists">Добірки</string>
+    <string name="channel_tab_tracks">Доріжки</string>
+    <string name="channel_tab_channels">Канали</string>
+    <string name="channel_tab_livestreams">Наживо</string>
+    <string name="toggle_screen_orientation">Змінити орієнтацію екрана</string>
+    <string name="toggle_fullscreen">Перемкнути повноекранний режим</string>
+    <string name="next_stream">Наступний стрим</string>
+    <string name="open_play_queue">Відкрити чергу відтворення</string>
+    <string name="forward">Перемотати вперед</string>
+    <string name="rewind">Відмотати назад</string>
+    <string name="replay">Повторити</string>
+    <string name="play">Відтворити</string>
+    <string name="more_options">Інші опції</string>
+    <string name="duration">Тривалість</string>
+    <string name="previous_stream">Попередній стрим</string>
+    <string name="image_quality_title">Якість зображення</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Низька якість</string>
+    <string name="metadata_avatars">Аватари</string>
+    <string name="metadata_subchannel_avatars">Аватари підканалів</string>
+    <string name="image_quality_none">Не завантажувати зображення</string>
+    <string name="image_quality_high">Висока якість</string>
+    <string name="image_quality_medium">Середня якість</string>
+    <string name="metadata_uploader_avatars">Вивантажувач аватарів</string>
+    <string name="metadata_banners">Банери</string>
+    <string name="image_quality_summary">Виберіть якість зображень і чи завантажувати зображення взагалі, щоб знизити використання даних і пам\'яті. Зміни очищують кеш зображень як у пам\'яті, так і на диску — %s</string>
+    <string name="metadata_thumbnails">Мініатюри</string>
+    <string name="share_playlist_with_list">Поділитися списком URL-адрес</string>
+    <string name="share_playlist_with_titles">Поділитися з назвами</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Поділитися добіркою</string>
+    <string name="share_playlist_with_titles_message">Поділитися добіркою з подробицями, такими як назва добірки та назви відео, або просто списком URL-адрес відео</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

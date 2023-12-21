@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
     <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
     <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے۔ 5 ، 15 یا 25 سیکنڈ کی تلاش اس کے ساتھ کام نہیں کرتی ہے:</string>
-    <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
-    <string name="download_thumbnail_summary">ڈیٹا کی بچت اور میموری کے استعمال کو روکنے کیلئے نظرِ انگشتی کو بند کریں۔ تبدیلیاں میموری اور آن ڈسک عکس کے کیشے کو صاف کرتی ہیں۔</string>
     <string name="thumbnail_cache_wipe_complete_notice">تصویری کیشے کی صفائی ہوئی</string>
     <string name="metadata_cache_wipe_title">کیشے میٹا ڈیٹا کو صاف کریں</string>
     <string name="metadata_cache_wipe_summary">ویب پیج کے سبھی کیشے ڈیٹا کو ہٹا دیں</string>
@@ -73,7 +71,7 @@
     <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلانا جاری رکھیں (مثلاً فون کالز)</string>
     <string name="download_dialog_title">ڈاؤن لوڈ</string>
     <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
-    <string name="show_hold_to_append_title">’’شامل کرنے کے لئے پکڑیں‘‘ اشارہ دکھائیں</string>
+    <string name="show_hold_to_append_title">’’شامل کرنے کے لئے ہولڈ کریں‘‘ اشارہ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو کی \"تفصیلات:\" میں پس منظر یا پاپ اپ بٹن دبانے پر اشارے دکھائیں</string>
     <string name="unsupported_url">غیر موافق URL</string>
     <string name="default_content_country_title">مشمولات کا طے شدہ ملک</string>
@@ -113,7 +111,6 @@
     <string name="general_error">خرابی</string>
     <string name="network_error">نیٹ ورک کی خرابی</string>
     <string name="could_not_load_thumbnails">تمام نظرِ انگشتی لوڈ نہیں کر سکے</string>
-    <string name="youtube_signature_deobfuscation_error">ویڈیو یو آر ایل کے دستخط ڈکرپٹ نہیں ہو سکے</string>
     <string name="parsing_error">ویب سائٹ کو تجزیہ نہیں کیا جاسکا</string>
     <string name="content_not_available">مواد دستیاب نہیں ہے</string>
     <string name="could_not_setup_download_menu">ڈاؤن لوڈ مینو ترتیب نہیں دے سکتے</string>
@@ -467,7 +464,7 @@
     <string name="show_age_restricted_content_summary">وہ مواد دکھائیں جو بچوں کے لیے ممکنہ طور پر نا مناسب ہیں کیوں کہ اس میں عمر کی حد ہے (جیسے 18+)</string>
     <string name="unsupported_url_dialog_message">URL کو نہیں پہچان سکے۔ کسی اور ایپ کے ساتھ کھولیں؟</string>
     <string name="auto_queue_toggle">خود کار قطار</string>
-    <string name="show_meta_info_summary">اسٹریم کے موجد، اسٹریم مواد یا تلاش کی درخواست کے بارے میں اضافی معلومات والے میٹا انفارمیشن بکسوں کو چھپانے کیلئے بند کریں۔</string>
+    <string name="show_meta_info_summary">اسٹریم کے موجد، اسٹریم مواد یا تلاش کی درخواست کے بارے میں اضافی معلومات والے میٹا انفارمیشن بکسوں کو چھپانے کیلئے بند کریں</string>
     <string name="show_meta_info_title">میٹا معلومات دکھائیں</string>
     <string name="show_description_summary">ویڈیو کی تفصیل اور اضافی معلومات کو چھپانے کیلئے بند کریں</string>
     <string name="show_description_title">تفصیل دکھائیں</string>
@@ -495,7 +492,7 @@
     <string name="mark_as_watched">دیکھے ہوئے کو نشان لگائیں</string>
     <string name="local_search_suggestions">مقامی تلاش کی سفارشات</string>
     <string name="notifications">اطلاعات</string>
-    <string name="start_main_player_fullscreen_title">فل اسکرین میں مین پلیئر شروع کریں</string>
+    <string name="start_main_player_fullscreen_title">مین پلیئر فل اسکرین میں شروع کریں</string>
     <string name="error_report_channel_name">خرابی کی اطلاع کا نوٹیفکیشن</string>
     <string name="error_report_channel_description">خرابیوں کی اطلاع کی نوٹیفیکیشنس</string>
     <string name="subtitle_activity_recaptcha">جب ٹھیک ہو جائے تو \"Done\" دبائیں</string>
@@ -516,7 +513,7 @@
         <item quantity="other">%s نئی اسٹریمز</item>
     </plurals>
     <string name="no_dir_yet">ابھی تک کوئی ڈاؤن لوڈ فولڈر سیٹ نہیں ہے، ابھی ڈیفالٹ ڈاؤن لوڈ فولڈر کا انتخاب کریں</string>
-    <string name="recaptcha_done_button">Done</string>
+    <string name="done">Done</string>
     <string name="title_activity_play_queue">قطار چلائیں</string>
     <string name="play_queue_audio_track">آڈیو: %s</string>
     <string name="audio_track">آڈیو ٹریک</string>
@@ -555,4 +552,7 @@
     <string name="progressive_load_interval_title">ترتیب کے لیے عنوان۔ ترتیب کی تفصیل یہاں محفوظ ہے: https://hosted.weblate.org/translate/newpipe/strings/en/\?checksum=b23a75618764df0f</string>
     <string name="prefer_descriptive_audio_summary">اگر دستیاب ہو تو بصارت سے محروم افراد کے لئے تفصیل کے ساتھ آڈیو ٹریک منتخب کریں</string>
     <string name="left_gesture_control_title">بائیں اشارے کی کارروائی</string>
+    <string name="unset_playlist_thumbnail">مستقل تھمب نیل کو ان سیٹ کریں</string>
+    <string name="ignore_hardware_media_buttons_title">ہارڈ ویئر میڈیا بٹن کے واقعات کو نظر انداز کریں</string>
+    <string name="ignore_hardware_media_buttons_summary">کار آمد، مثلاً، اگر آپ ہیڈسیٹ ٹوٹے ہوئے فزیکل بٹن کے ساتھ استعمال کر رہے ہیں</string>
 </resources>

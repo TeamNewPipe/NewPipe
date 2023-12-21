@@ -31,8 +31,10 @@ import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ZipHelper;
+import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,9 +107,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
 
-        findPreference(getString(R.string.download_thumbnail_key)).setOnPreferenceChangeListener(
+        final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
+        imageQualityPreference.setOnPreferenceChangeListener(
                 (preference, newValue) -> {
-                    PicassoHelper.setShouldLoadImages((Boolean) newValue);
+                    ImageStrategy.setPreferredImageQuality(PreferredImageQuality
+                            .fromPreferenceKey(requireContext(), (String) newValue));
                     try {
                         PicassoHelper.clearCache(preference.getContext());
                         Toast.makeText(preference.getContext(),

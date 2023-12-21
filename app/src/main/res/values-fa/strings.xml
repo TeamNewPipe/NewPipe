@@ -46,7 +46,6 @@
     <string name="general_error">خطا</string>
     <string name="network_error">خطای شبکه</string>
     <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
-    <string name="youtube_signature_deobfuscation_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد</string>
     <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد</string>
     <string name="content_not_available">محتوا در دسترس نیست</string>
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت</string>
@@ -96,7 +95,6 @@
     <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 2K و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدیویی پیش‌گزیده</string>
     <string name="black_theme_title">سیاه</string>
-    <string name="download_thumbnail_title">بار کردن بندانگشتی‌ها</string>
     <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>
     <string name="show_search_suggestions_title">پیشنهادهای جستجو</string>
     <string name="show_search_suggestions_summary">گزینش پیشنهادها برای نمایش هنگام جست‌وجو</string>
@@ -270,7 +268,6 @@
     <string name="resume_on_audio_focus_gain_title">پخش ادامه یابد</string>
     <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
     <string name="auto_queue_summary">صف پخش در حال پایان (بدون تکرار) را با افزودن یک جریان مرتبط ادامه دهید</string>
-    <string name="download_thumbnail_summary">برای پیش‌گیری از بار کردن بندانگشتی‌ها و ذخیرهٔ داده و فضای ذخیره، خاموش کنید. تغییرات، انبارهٔ تصاویر روی حافظه و دیسک را پاک می‌کند</string>
     <string name="enable_playback_resume_title">ادامه پخش</string>
     <string name="enable_playback_resume_summary">بازگرداندن آخرین موقعیت پخش</string>
     <string name="enable_playback_state_lists_title">موقعیت در فهرست‌ها</string>
@@ -474,7 +471,7 @@
     <string name="local">محلی</string>
     <string name="localization_changes_requires_app_restart">با آغاز دوبارهٔ کاره، زبان تغییر خواهد کرد</string>
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
-    <string name="recaptcha_done_button">انجام شد</string>
+    <string name="done">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>
     <string name="infinite_videos">∞ ویدیو</string>
     <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>
@@ -569,7 +566,6 @@
     <string name="tablet_mode_title">حالت رایانک</string>
     <string name="open_website_license">گشودن پایگاه وب</string>
     <string name="account_terminated">حساب از بین رفت</string>
-    <string name="metadata_thumbnail_url">نشانی بندانگشتی</string>
     <string name="metadata_age_limit">کرانهٔ عمر</string>
     <string name="related_items_tab_description">موارد مرتبط</string>
     <string name="show_description_title">نمایش شرح</string>

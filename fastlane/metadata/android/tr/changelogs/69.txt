@@ -1,0 +1,19 @@
+### Yenilikler
+- Aboneliklerde uzun dokunarak silme ve paylaşma işlemleri eklendi #1516
+- Tablet kullanıcı arayüzü ve kılavuz liste düzeni eklendi #1617
+
+### İyileştirmeler
+- En son kullanılan en-boy oranını kaydetme ve tekrar yükleme eklendi #1748
+- İndirmeler etkinliğinde tam video isimleriyle lineer düzen etkinleştirildi #1771
+- Abonelikleri doğrudan abonelikler sekmesi içinden silme ve paylaşma eklendi #1516
+- Kuyrukta oynatma zaten sona ermişse video oynatmayı tetikleyen sıra eklendi #1783
+- Ses ve parlaklık jestleri için ayrı ayarlar eklendi #1644
+- Yerelleştirme desteği eklendi #1792
+
+### Düzeltmeler
+- Finlandiya'da kullanılabilmesi için nokta biçemi için zaman ayrıştırma düzeltildi
+- Abonelik sayısı düzeltildi
+- API 28+ cihazlar için öncelikli hizmet izni eklendi #1830
+
+### Bilinen Hatalar
+- Oynatma durumu Android P üzerinde kaydedilemiyor

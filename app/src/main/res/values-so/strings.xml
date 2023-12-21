@@ -189,7 +189,7 @@
     <string name="settings_file_replacement_character_summary">Xarfaha aan la taageerin waxaa lagu bdadali midkan</string>
     <string name="settings_file_charset_title">Xarafyada magaca shayga loo ogol yahay</string>
     <string name="settings_category_downloads_title">Dajinta</string>
-    <string name="recaptcha_done_button">Dhameeyay</string>
+    <string name="done">Dhameeyay</string>
     <string name="recaptcha_request_toast">Tijaabada reCAPTCHA ayaa la codsaday</string>
     <string name="subtitle_activity_recaptcha">Taabo \"Dhameeyay\" ✅ markaad xaliso</string>
     <string name="title_activity_recaptcha">Tijaabada reCAPTCHA</string>
@@ -289,7 +289,6 @@
     <string name="could_not_setup_download_menu">Lama soo kicin karo tusmada dajinta</string>
     <string name="content_not_available">shaygan lama heli karo</string>
     <string name="parsing_error">Lama furi karo website-ka</string>
-    <string name="youtube_signature_deobfuscation_error">Lama baddali karo sixiixa tixraaca muuqaalka</string>
     <string name="could_not_load_thumbnails">Lama soo wada kicin karo galalkoo dhan</string>
     <string name="network_error">khalad xaga khadka ah</string>
     <string name="download_to_sdcard_error_message">Ku dajinta kaydka dibadda (mimoriga) suurtogal ma aha. Dib u fadhiisi khaanada wax lagu dajiyo\?</string>
@@ -401,10 +400,8 @@
     <string name="metadata_cache_wipe_summary">Tirtir waxyaabaha K/G ah ee boga website-ka</string>
     <string name="metadata_cache_wipe_title">Tirtir faahfaahinada yaryar</string>
     <string name="thumbnail_cache_wipe_complete_notice">kaydkii kumeelgaadhka ahaa ee sawirka waa la tirtiray</string>
-    <string name="download_thumbnail_summary">Xidh si aad u joojiso soo bandhiga galka muuqaalada, adigoo yaraynaya isticmalka khadka iyo maskaxda aalada. Wax ka baddalkan wuxuu nadiifin doonaa waxa kaydka hore iyo ka caadiga ah kumeelgaadh ahaan ugu jira</string>
     <string name="show_comments_summary">Xidh si aad uqariso faallooyinka</string>
     <string name="show_comments_title">Tus faallooyinka</string>
-    <string name="download_thumbnail_title">Soodhig galalka</string>
     <string name="clear_queue_confirmation_description">Hormada daareha hadda wax shidaya waa la baddali doonaa</string>
     <string name="clear_queue_confirmation_summary">Kala baddalka daareha waxay badali kartaa hormada sidaas darteed waydii in la xaqiijiyo intaan hormada la tirtirin</string>
     <string name="clear_queue_confirmation_title">Xaqiijinta tirtirka hormada</string>
@@ -604,7 +601,6 @@
     <string name="metadata_privacy_private">Gaar ah</string>
     <string name="metadata_privacy_unlisted">Aan liistada kujirin</string>
     <string name="metadata_privacy_public">Lawada arko</string>
-    <string name="metadata_thumbnail_url">Tixraaca galka</string>
     <string name="metadata_host">Martigaliye</string>
     <string name="metadata_support">Taageero</string>
     <string name="metadata_language">Luuqada</string>

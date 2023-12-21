@@ -57,8 +57,6 @@
     <string name="popup_remember_size_pos_summary">Husk sidste størrelse og placering af pop op-afspiller</string>
     <string name="use_inexact_seek_title">Brug hurtig og upræcis søgning</string>
     <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist. Søgninger på 5, 15 eller 25 sekunder fungerer ikke med denne indstilling slået til</string>
-    <string name="download_thumbnail_title">Indlæs miniaturebilleder</string>
-    <string name="download_thumbnail_summary">Slå fra for at undgå indlæsning af billeder, hvorved der spares data og hukommelse. Ændringer sletter billedcachen i både ram og lager</string>
     <string name="thumbnail_cache_wipe_complete_notice">Billedcache slettet</string>
     <string name="metadata_cache_wipe_title">Slet metadata-cachen</string>
     <string name="metadata_cache_wipe_summary">Slet alle websidedata fra cachen</string>
@@ -138,7 +136,6 @@
     <string name="download_to_sdcard_error_message">Det er endnu ikke muligt at downloade til et eksternt SD-kort. Nulstil download-mappens placering\?</string>
     <string name="network_error">Netværksfejl</string>
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
-    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere URL-signatur for video</string>
     <string name="parsing_error">Kunne ikke analysere websted</string>
     <string name="content_not_available">Indhold ikke tilgængeligt</string>
     <string name="could_not_setup_download_menu">Kunne ikke oprette downloadmenu</string>
@@ -623,7 +620,7 @@
     <string name="most_liked">Mest likede</string>
     <string name="error_unable_to_load_comments">Kunne ikke indlæse kommentarer</string>
     <string name="default_kiosk_page_summary">Standard Kiosk</string>
-    <string name="recaptcha_done_button">Færdig</string>
+    <string name="done">Færdig</string>
     <string name="subtitle_activity_recaptcha">Tryk på \"Færdig\" når den er løst</string>
     <string name="no_comments">Ingen kommentarer</string>
     <string name="infinite_videos">∞ videoer</string>
@@ -671,7 +668,6 @@
 \nAktiver systemet mappevælger (SAF), hvis du vil downloade til et eksternt SD-kort</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil være synlige i stream-emner</string>
     <string name="no_video_streams_available_for_external_players">Ingen videostreams er tilgængelige for eksterne afspillere</string>
-    <string name="metadata_thumbnail_url">URL til miniaturebillede</string>
     <string name="off">Fra</string>
     <string name="tablet_mode_title">Tablet-tilstand</string>
     <string name="youtube_music_premium_content">Denne video er kun tilgængelig for YouTube Music Premium-medlemmer, så den kan ikke streames eller downloades af NewPipe.</string>
@@ -722,4 +718,7 @@
     <string name="duplicate_in_playlist">Playlists der er grået ud, indeholder allerede dette objekt.</string>
     <string name="unset_playlist_thumbnail">Inaktiver permanent thumbnail</string>
     <string name="msg_failed_to_copy">Fejlede at kopiere til udklipsholderen</string>
+    <string name="prefer_original_audio_summary">Brug det originale lydspor uanset sprog</string>
+    <string name="prefer_descriptive_audio_title">Foretræk lydbeskrivelser</string>
+    <string name="prefer_original_audio_title">Foretræk original lyd</string>
 </resources>

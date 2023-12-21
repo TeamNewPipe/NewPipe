@@ -1,0 +1,22 @@
+Sure, I can provide a Turkish translation for your list:
+
+**Geliştirmeler**
+- Yorumlardaki bağlantıları tıklanabilir yap, metin boyutunu artır
+- Zaman damgası bağlantılarına tıklanınca konumu ayarla
+- Son seçilen duruma göre tercih edilen sekme göster
+- Çalma listesi penceresinde 'Arka Plan' üzerine uzun tıklayarak sıraya ekle
+- URL olmayan paylaşılan metni ara
+- Ana video oynatıcısına 'şu anki zamanda paylaş' düğmesi ekle
+- Video sırası bittiğinde ana oynatıcıya kapat düğmesi ekle
+- Video listesi öğeleri için uzun tıklama menüsüne 'Arka Planda Doğrudan Oynat' ekle
+- Play/Enqueue komutları için İngilizce çevirileri iyileştir
+- Küçük performans iyileştirmeleri
+- Kullanılmayan dosyaları kaldır
+- ExoPlayer'ı 2.9.6 sürümüne güncelle
+- Invidious bağlantılarına destek ekle
+
+**Düzeltmeler**
+- Yorumlar ve ilgili akışlar devre dışı bırakıldığında kaydırma sorununu düzelt
+- CheckForNewAppVersionTask'in gereksiz yürütülmesini düzelt
+- Geçersiz URL'leri olan abonelikleri yok say ve başlığı boş olanları sakla
+- Geçersiz YouTube URL'lerini düzelt: İmza etiket adı her zaman "signature" olmadığından akışların yüklenmesini engelle

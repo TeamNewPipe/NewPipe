@@ -33,10 +33,10 @@
     <string name="controls_add_to_playlist_title">เพิ่มไปยัง</string>
     <string name="download_path_title">เส้นทางการดาวน์โหลดวิดีโอ</string>
     <string name="download_path_summary">เส้นทางในการจัดเก็บวิดีโอที่ดาวน์โหลดมา</string>
-    <string name="download_path_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับวิดีโอ</string>
+    <string name="download_path_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์วิดีโอ</string>
     <string name="download_path_audio_title">โฟลเดอร์ที่ดาวน์โหลดเสียง</string>
-    <string name="download_path_audio_summary">เสียงที่ดาวน์โหลดจะถูกเก็บไว้ที่นี่</string>
-    <string name="download_path_audio_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
+    <string name="download_path_audio_summary">ไฟล์เสียงที่ดาวน์โหลดไว้จะถูกเก็บไว้ที่นี่</string>
+    <string name="download_path_audio_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดป๊อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>
@@ -56,10 +56,8 @@
     <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
     <string name="use_inexact_seek_summary">การข้ามช่วงที่ไม่แม่นยำจะทำให้เลื่อนไปยังตำแหน่งเวลาที่ต้องการได้เร็วขึ้น แต่จะลดความแม่นยำในการลากตำแหน่งลง</string>
-    <string name="download_thumbnail_title">โหลดภาพขนาดย่อ</string>
     <string name="show_comments_title">แสดงความคิดเห็น</string>
     <string name="show_comments_summary">ปิดใช้งานเพื่อซ่อนความคิดเห็น</string>
-    <string name="download_thumbnail_summary">ปิดเพื่อป้องกันการโหลดรูปขนาดย่อ ลดการใช้ข้อมูลและหน่วยความจำ การเปลี่ยนแปลงล้างแคชภาพในหน่วยความจำและบนดิสก์</string>
     <string name="thumbnail_cache_wipe_complete_notice">ล้างแคชของรูปภาพแล้ว</string>
     <string name="metadata_cache_wipe_summary">ลบข้อมูลเว็บเพจที่แคชไว้ทั้งหมด</string>
     <string name="auto_queue_title">คิววีดีโอถัดไปโดยอัตโนมัติ</string>
@@ -133,7 +131,6 @@
     <string name="download_to_sdcard_error_message">การดาวน์โหลดไปยังการ์ดความจำภายนอกยังไม่สามารถทำได้ รีเซ็ตตำแหน่งโฟลเดอร์ดาวน์โหลดหรือไม่\?</string>
     <string name="network_error">ข้อผิดพลาดของเครือข่าย</string>
     <string name="could_not_load_thumbnails">ไม่สามารถโหลดรูปขนาดย่อทั้งหมด</string>
-    <string name="youtube_signature_deobfuscation_error">ไม่สามารถถอดรหัสลายเซ็น URL ของวิดีโอ</string>
     <string name="parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์</string>
     <string name="content_not_available">เนื้อหาไม่พร้อมใช้งาน</string>
     <string name="could_not_setup_download_menu">ไม่สามารถตั้งค่าเมนูดาวน์โหลด</string>

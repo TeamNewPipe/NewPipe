@@ -136,7 +136,6 @@
 \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
     <string name="peertube_instance_url_title">\"PeerTube\" nümunələri</string>
-    <string name="download_thumbnail_title">Miniatürləri yüklə</string>
     <string name="notification_actions_at_most_three">Yığcam bildirişdə göstərmək üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
     <string name="feed_update_threshold_option_always_update">Həmişə yenilə</string>
     <string name="settings_category_feed_title">Axın</string>
@@ -269,7 +268,7 @@
     <string name="related_items_tab_description">Əlaqəli elementlər</string>
     <string name="mark_as_watched">Baxılmış kimi işarələ</string>
     <string name="open_with">ilə aç</string>
-    <string name="night_theme_title">Gecə Teması</string>
+    <string name="night_theme_title">Gecə teması</string>
     <string name="popup_remember_size_pos_title">Ani pəncərə xüsusiyyətlərini xatırla</string>
     <string name="popup_remember_size_pos_summary">Ani pəncərənin son ölçüsü və mövqeyini xatırla</string>
     <string name="video_streams_empty">Video yayımı tapılmadı</string>
@@ -287,7 +286,6 @@
     <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
     <string name="permission_display_over_apps">Digər tətbiqlərin üzərində göstərməyə icazə ver</string>
     <string name="restore_defaults_confirmation">İlkin tənzimləmələri qaytarmaq istəyirsiniz\?</string>
-    <string name="download_thumbnail_summary">Miniatürləri yükləməyi, məlumata qənaət və yaddaş istifadəsin azaltmaq üçün söndür. Dəyişikliklər həm yaddaşdaxilində, həm də diskdə təsvir keşini təmizləyir</string>
     <string name="enqueue_next_stream">Növbətini növbələ</string>
     <string name="retry">Təkrar Cəhd Et</string>
     <string name="settings_category_player_notification_summary">Cari oynatma yayımı bildirişini konfiqurasiya et</string>
@@ -329,7 +327,7 @@
     <string name="no_dir_yet">Hələ endirmə qovluğu təyin edilməyib, indi standart endirmə qovluğu seç</string>
     <string name="title_activity_recaptcha">reCAPTCHA çağırışı</string>
     <string name="recaptcha_request_toast">reCAPTCHA sorğusu göndərildi</string>
-    <string name="recaptcha_done_button">Bitdi</string>
+    <string name="done">Bitdi</string>
     <string name="settings_file_replacement_character_summary">Etibarsız simvollar bu dəyərlə əvəz olunur</string>
     <string name="settings_file_replacement_character_title">Əvəzedici xarakter</string>
     <string name="charset_most_special_characters">Ən xüsusi simvollar</string>
@@ -631,7 +629,6 @@
     <string name="metadata_host">Sahib</string>
     <string name="metadata_privacy_unlisted">Siyahıdan kənar</string>
     <string name="metadata_privacy_private">Şəxsi</string>
-    <string name="metadata_thumbnail_url">Miniatür URL</string>
     <string name="metadata_age_limit">Yaş həddi</string>
     <string name="metadata_language">Dil</string>
     <string name="metadata_privacy_public">İctimai</string>
@@ -644,7 +641,6 @@
     <string name="settings_category_player_notification_title">Oynadıcı bildirişi</string>
     <string name="streams_notification_channel_name">Yeni yayımlar</string>
     <string name="error_report_channel_name">Xəta hesabatı bildirişi</string>
-    <string name="youtube_signature_deobfuscation_error">Video URL\'i imzası şifrəsi qırılmadı</string>
     <string name="no_streams_available_download">Endirmək üçün yayım mövcud deyil</string>
     <string name="error_report_notification_toast">Xəta baş verdi, bildirişi gör</string>
     <string name="your_comment">Şərhiniz (İngiliscə):</string>
@@ -661,7 +657,7 @@
     <string name="no_playlist_bookmarked_yet">Hələ,əlfəcinlənmiş pleylistlər yoxdur</string>
     <string name="override_current_data">Bu, cari quraşdırmanızı ləğv edəcək.</string>
     <string name="enqueue_stream">Növbəyə qoy</string>
-    <string name="disable_media_tunneling_summary">Qara ekranla qarşılaşsanız və ya videonu oynatdıqda səs qırılarsa, media tunelini deaktiv edin</string>
+    <string name="disable_media_tunneling_summary">Qara ekranla qarşılaşsanız və ya videonu oynatdıqda səs pozularsa, media tunelin qeyri-aktiv edin</string>
     <string name="enqueued_next">Növbəti sıraya salındı</string>
     <string name="start_here_on_background">Fonda oynatmağa başla</string>
     <string name="loading_stream_details">Yayım təfərrüatları yüklənir…</string>
@@ -760,4 +756,17 @@
     <string name="audio_track_type_descriptive">təsviri</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Həmişə ExoPlayer-in video çıxış səthi tənzimləməsin istifadə et</string>
     <string name="progressive_load_interval_summary">Qabaqcıl məzmunda yükləmə aralığı həcmin dəyişdir (hazırda %s). Daha aşağı dəyər onların ilkin yüklənilməsin sürətləndirə bilər</string>
+    <string name="no_streams">Yayım yoxdur</string>
+    <string name="no_live_streams">Canlı yayım yoxdur</string>
+    <string name="disable_media_tunneling_automatic_info">Media tunelləmə cihazınızda standart olaraq qeyri-aktiv edilib, çünki cihazınızın modelinin bunu dəstəkləmədiyi məlumdur.</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="main_tabs_position_title">Əsas səhifə mövqeyi</string>
+    <string name="main_tabs_position_summary">Əsas səhifə seçicini aşağıya köçür</string>
+    <string name="loading_metadata_title">Üst Məlumat Yüklənir…</string>
+    <string name="feed_fetch_channel_tabs">Kanal səhifələrin əldə et</string>
+    <string name="metadata_avatars">Avatarlar</string>
+    <string name="metadata_subchannel_avatars">Alt kanal avatarları</string>
+    <string name="feed_fetch_channel_tabs_summary">Axın yenilənərkən əldə edilən səhifələr.Kanal sürətli rejim istifadə edərək yenilənirsə, bu seçimin heç bir təsiri yoxdur.</string>
+    <string name="metadata_uploader_avatars">Yükləyici avatarları</string>
+    <string name="metadata_thumbnails">Miniatürlər</string>
 </resources>

@@ -56,10 +56,8 @@
     <string name="popup_remember_size_pos_summary">पछिल्लो आकार र पपअप को स्थिति सम्झना</string>
     <string name="use_inexact_seek_title">तेज \'inexact\' खोज्न प्रयोग गर्नुहोस</string>
     <string name="use_inexact_seek_summary">\'Inexact\' प्लेयर कम सटीक छिटो स्थितिहरू गर्न खोज्न अनुमति दिन्छ खोज्छन्। 5, 15 वा 25 सेकेन्ड को लागि खोजी यो काम गर्दैन।</string>
-    <string name="download_thumbnail_title">थम्बनेल लोड</string>
     <string name="show_comments_title">टिप्पणीहरू देखाऊ</string>
     <string name="show_comments_summary">टिप्पणीहरू लुकाउन, बन्द गर्नुहोस</string>
-    <string name="download_thumbnail_summary">डाटा र स्मृति उपयोग सुरक्षित गर्न, थम्बनेलहरू लोड रोक्न, बन्द गर्नुहोस। परिवर्तनहरू दुवै मा-स्मृति र-डिस्क छवि क्यास खाली गर्छ।</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि क्यास सखाप</string>
     <string name="metadata_cache_wipe_title">क्यास मेटाडाटा हटाउ</string>
     <string name="metadata_cache_wipe_summary">सबै क्यास वेबपेज डाटा हटाउ</string>
@@ -140,7 +138,6 @@
     <string name="download_to_sdcard_error_message">बाह्य एस डी कार्ड (SD card) छैन। डाउनलोड फोल्डर स्थान रिसेट गर्ने\?</string>
     <string name="network_error">नेटवर्क त्रुटि</string>
     <string name="could_not_load_thumbnails">सबै थम्बनेल लोड गर्न सकेन</string>
-    <string name="youtube_signature_deobfuscation_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
     <string name="parsing_error">वेबसाइट पार्स गर्न सकिँएन</string>
     <string name="content_not_available">सामग्री अनउपलब्ध</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनु स्थापित गर्न सकिएन</string>
@@ -444,7 +441,7 @@
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>
     <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="subtitle_activity_recaptcha">प्रेस हल गर्दा \"डन\"</string>
-    <string name="recaptcha_done_button">सकियो</string>
+    <string name="done">सकियो</string>
     <string name="videos_string">भिडियोहरु</string>
     <plurals name="seconds">
         <item quantity="one">%d सेकेन्ड</item>

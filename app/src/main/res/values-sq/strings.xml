@@ -18,7 +18,6 @@
     <string name="play_with_kodi_title">Luaj me Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="black_theme_title">E zezë</string>
-    <string name="download_thumbnail_title">Ngarko pamjet miniaturë</string>
     <string name="show_search_suggestions_title">Sugjerimet e kërkimit</string>
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
@@ -256,7 +255,7 @@
     <string name="settings_file_replacement_character_summary">Karakteret e palejuara zëvendësohen me këtë vlerë</string>
     <string name="settings_file_charset_title">Karakteret e lejuara në emrat e skedarëve</string>
     <string name="settings_category_downloads_title">Shkarko</string>
-    <string name="recaptcha_done_button">U bë</string>
+    <string name="done">U bë</string>
     <string name="recaptcha_request_toast">sfida reCAPTCHA u kërkua</string>
     <string name="subtitle_activity_recaptcha">Shtyp \"U bë\" kur ta zgjidhni</string>
     <string name="title_activity_recaptcha">sfida reCAPTCHA</string>
@@ -402,7 +401,6 @@
     <string name="could_not_setup_download_menu">Nuk u arrit të vendosej menuja e shkarkimeve</string>
     <string name="content_not_available">Përmbajtja e padisponueshme</string>
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
-    <string name="youtube_signature_deobfuscation_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
     <string name="network_error">Problem rrjeti</string>
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
@@ -487,7 +485,6 @@
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>
     <string name="metadata_cache_wipe_summary">Boshatis depon e të gjitha të dhënave të faqeve të internetit</string>
     <string name="metadata_cache_wipe_title">Boshatis depon e të dhënave meta</string>
-    <string name="download_thumbnail_summary">Fikeni për të ndaluar shfaqjen e pamjeve statike, duke kursyer internet dhe memorje. Ndryshimet boshatisin depon e imazheve në memorje dhe në disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Depoja e imazheve u boshatis</string>
     <string name="show_comments_summary">Fikeni për të fshehur komentet</string>
     <string name="show_comments_title">Shfaq komentet</string>
@@ -589,7 +586,6 @@
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_unlisted">E palistuar</string>
     <string name="metadata_privacy_public">Publike</string>
-    <string name="metadata_thumbnail_url">URL e pamjes statike</string>
     <string name="metadata_host">Mundësuesi</string>
     <string name="metadata_support">Mbështetje</string>
     <string name="metadata_language">Gjuha</string>
@@ -637,4 +633,22 @@
     <string name="seekbar_preview_thumbnail_title">Parapamje e pamjes miniaturë të lëvizësit të kohës</string>
     <string name="comments_are_disabled">Komentet janë të ç\'aktivizuara</string>
     <string name="mark_as_watched">Shëno si të parë</string>
+    <string name="brightness">Drita</string>
+    <string name="volume">Volumi</string>
+    <string name="get_notified">Njoftohu</string>
+    <string name="unknown_quality">Qualitet i panjohur</string>
+    <string name="any_network">Cilidi rrjet</string>
+    <string name="card">Kartë</string>
+    <string name="unknown_audio_track">Panjohur</string>
+    <string name="unknown_format">Format i panjohur</string>
+    <string name="remove_duplicates_title">Hiq duplikatet\?</string>
+    <string name="feed_show_upcoming">Së shpejti</string>
+    <string name="feed_show_watched">Te shikuara në plotësi</string>
+    <string name="feed_show_partially_watched">Gjysmë të shikuar</string>
+    <string name="audio_track_type_original">origjinal</string>
+    <string name="audio_track_type_dubbed">dubluar</string>
+    <string name="audio_track_type_descriptive">përshkruese</string>
+    <string name="remove_duplicates">Hiq duplikatet</string>
+    <string name="fast_mode">Modi i shpejtë</string>
+    <string name="sort">Rradhit</string>
 </resources>

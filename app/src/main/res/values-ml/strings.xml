@@ -131,7 +131,7 @@
     <string name="settings_file_replacement_character_summary">സ്വീകാര്യമല്ലാത്ത അടയാളങ്ങൾ ഈ അടയാളം കൊണ്ട് മാറ്റുന്നതാണ്</string>
     <string name="settings_file_charset_title">ഫയൽനാമങ്ങളിൽ അനുവദിച്ചിട്ടുള്ള അടയാളങ്ങൾ</string>
     <string name="settings_category_downloads_title">ഡൗൺലോഡ്</string>
-    <string name="recaptcha_done_button">ഓകെ</string>
+    <string name="done">ഓകെ</string>
     <string name="recaptcha_request_toast">reCAPTCHA ചാലഞ്ചിനായി അഭ്യർത്ഥിച്ചു</string>
     <string name="subtitle_activity_recaptcha">തീർന്നാൽ \"Done\" അമർത്തുക</string>
     <string name="title_activity_recaptcha">reCAPTCHA ചാലഞ്ച്</string>
@@ -226,7 +226,6 @@
     <string name="could_not_setup_download_menu">ഡൗൺലോഡ് മെനു തുറക്കാനായില്ല</string>
     <string name="content_not_available">കന്റെന്റ് ലഭ്യമല്ല</string>
     <string name="parsing_error">വെബ്സൈറ്റ് വ്യാപരിക്കാനായില്ല</string>
-    <string name="youtube_signature_deobfuscation_error">വീഡിയോ URL സിഗ്നേച്ചർ ഡീക്രിപ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല</string>
     <string name="could_not_load_thumbnails">ലഘുചിത്രങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</string>
     <string name="network_error">നെറ്റ്‌വർക്ക് പിശക്</string>
     <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>
@@ -331,10 +330,8 @@
     <string name="metadata_cache_wipe_summary">കാഷെ ആയ ഡേറ്റ നീക്കംചെയ്യുക</string>
     <string name="metadata_cache_wipe_title">കാഷെ ആയ മെറ്റാഡേറ്റ തുടച്ചുനീക്കി</string>
     <string name="thumbnail_cache_wipe_complete_notice">ഇമേജ് കാചെ തുടച്ചുമാറ്റി</string>
-    <string name="download_thumbnail_summary">ലഘുചിങ്ങൾ ലോഡ് ചെയ്യാതിരിക്കാനും ഡേറ്റയും മെമ്മറിയും ലാഭിക്കാനുമായി ഓഫ്ചെയ്യുക. എസ് ഡീ കാർഡിലെയും മെമ്മറിയിലെയും കാച്ചേ ക്ലിയർ ചെയ്യും</string>
     <string name="show_comments_summary">കമന്റുകൾ മറയ്ക്കാനായി ഓഫ് ചെയ്യുക</string>
     <string name="show_comments_title">കമന്റുകൾ കാണിക്കുക</string>
-    <string name="download_thumbnail_title">ലഘുചിത്രങ്ങൾ ലോഡ്‌ ചെയ്യുക</string>
     <string name="seek_duration_title">ഫാസ്റ്റ്-ഫോർവേർഡ്/റീവൈൻഡ് സമയദൈർഘ്യം</string>
     <string name="use_inexact_seek_title">Inexact seek ഉപയോഗിക്കുക</string>
     <string name="use_inexact_seek_summary">കുറഞ്ഞ കൃത്യതയോടെ സീക് ചെയ്യാൻ ഇൻ എക്സക്ട് സഹായിക്കുന്നു. 5,15,25 സെക്കൻഡ് സീക്‌ ഈ മോഡിൽ പ്രവർത്തിക്കുകയില്ല</string>
@@ -611,7 +608,6 @@
     <string name="metadata_privacy_private">സ്വകാര്യം</string>
     <string name="metadata_privacy_unlisted">ലിസ്റ്റ് ചെയ്യപ്പെടാത്തത്</string>
     <string name="metadata_privacy_public">പൊതുവായത്</string>
-    <string name="metadata_thumbnail_url">ചെറുചിത്രം URL</string>
     <string name="metadata_host">ഹോസ്റ്റ്</string>
     <string name="metadata_support">പിന്തുണ</string>
     <string name="metadata_language">ഭാഷ</string>

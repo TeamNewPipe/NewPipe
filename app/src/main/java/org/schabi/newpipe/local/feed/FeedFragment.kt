@@ -38,7 +38,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
-import androidx.core.math.MathUtils
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -60,6 +59,7 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
@@ -453,23 +453,32 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             if (t is FeedLoadService.RequestException &&
                 t.cause is ContentNotAvailableException
             ) {
-                Single.fromCallable {
-                    NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
-                        .getSubscription(t.subscriptionId)
-                }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { subscriptionEntity ->
-                            handleFeedNotAvailable(
-                                subscriptionEntity,
-                                t.cause,
-                                errors.subList(i + 1, errors.size)
-                            )
-                        },
-                        { throwable -> Log.e(TAG, "Unable to process", throwable) }
-                    )
-                return // this will be called on the remaining errors by handleFeedNotAvailable()
+                disposables.add(
+                    Single.fromCallable {
+                        NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
+                            .getSubscription(t.subscriptionId)
+                    }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                            { subscriptionEntity ->
+                                handleFeedNotAvailable(
+                                    subscriptionEntity,
+                                    t.cause,
+                                    errors.subList(i + 1, errors.size)
+                                )
+                            },
+                            { throwable -> Log.e(TAG, "Unable to process", throwable) }
+                        )
+                )
+                // this will be called on the remaining errors by handleFeedNotAvailable()
+                return@handleItemsErrors
             }
+        }
+
+        if (errors.isNotEmpty()) {
+            // if no error was a ContentNotAvailableException, show a general error snackbar
+            ErrorUtil.showSnackbar(this, ErrorInfo(errors, UserAction.REQUESTED_FEED, ""))
         }
     }
 
@@ -579,7 +588,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         // state until the user scrolls them out of the visible area which causes a update/bind-call
         groupAdapter.notifyItemRangeChanged(
             0,
-            MathUtils.clamp(highlightCount, lastNewItemsCount, groupAdapter.itemCount)
+            highlightCount.coerceIn(lastNewItemsCount, groupAdapter.itemCount)
         )
 
         if (highlightCount > 0) {
@@ -598,9 +607,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 execOnEnd = {
                     // Disabled animations would result in immediately hiding the button
                     // after it showed up
-                    if (DeviceUtils.hasAnimationsAnimatorDurationEnabled(context)) {
-                        // Hide the new items-"popup" after 10s
-                        hideNewItemsLoaded(true, 10000)
+                    // Context can be null in some cases, so we have to make sure it is not null in
+                    // order to avoid a NullPointerException
+                    context?.let {
+                        if (DeviceUtils.hasAnimationsAnimatorDurationEnabled(it)) {
+                            // Hide the new items button after 10s
+                            hideNewItemsLoaded(true, 10000)
+                        }
                     }
                 }
             )

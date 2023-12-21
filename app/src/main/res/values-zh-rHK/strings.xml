@@ -20,9 +20,9 @@
     <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片嘅選項</string>
     <string name="play_audio">聲音</string>
     <string name="default_audio_format_title">預設聲音檔案格式</string>
-    <string name="theme_title">主題</string>
-    <string name="dark_theme_title">黑暗</string>
-    <string name="light_theme_title">明亮</string>
+    <string name="theme_title">主題色系</string>
+    <string name="dark_theme_title">黑眼睛</string>
+    <string name="light_theme_title">白頭浪</string>
     <string name="download_dialog_title">下載</string>
     <string name="show_next_and_similar_title">顯示「接續落」同「咁上下」嘅影片</string>
     <string name="unsupported_url">唔支援呢個網址</string>
@@ -47,7 +47,6 @@
     <string name="duration_live">實況</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">載入唔晒全部縮圖</string>
-    <string name="youtube_signature_deobfuscation_error">影片 URL 簽章解唔到碼</string>
     <string name="parsing_error">解析唔到網站</string>
     <string name="could_not_setup_download_menu">設定唔到下載功能表</string>
     <string name="sorry_string">啫係嗱，世事講唔埋嘅，真係唔好意思。</string>
@@ -83,7 +82,7 @@
     <string name="show_higher_resolutions_title">顯示更高解像度</string>
     <string name="show_higher_resolutions_summary">得某啲機先播到 2K/4K 影片</string>
     <string name="default_video_format_title">預設嘅影片檔案格式</string>
-    <string name="black_theme_title">純黑</string>
+    <string name="black_theme_title">紅日降</string>
     <string name="popup_playing_toast">浮面播緊</string>
     <string name="all">全部嘢</string>
     <string name="app_ui_crash">App/界面閃退</string>
@@ -149,7 +148,7 @@
     <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 剪成 1:1 長寬比</string>
     <string name="notification_colorize_title">通知色彩化</string>
     <string name="notification_colorize_summary">等 Android 根據縮圖嘅主色自訂通知嘅顏色 (注意：唔係部部機都用得)</string>
-    <string name="night_theme_title">夜間</string>
+    <string name="night_theme_title">晚風色系</string>
     <string name="seek_duration_title">跳前/跳後嘅快轉長短</string>
     <string name="show_description_summary">閂埋佢去隱藏影片描述同附加資訊</string>
     <string name="mark_as_watched">剔低睇過</string>
@@ -159,7 +158,6 @@
     <string name="notification_actions_summary">撳下面嘅掣去更改對應嘅通知動作。用右手邊嘅格仔剔選最多三個，擺喺精簡通知度</string>
     <string name="notification_actions_at_most_three">精簡通知最多淨係擺到三個動作！</string>
     <string name="notification_action_repeat">循環播放</string>
-    <string name="download_thumbnail_title">載入縮圖</string>
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉去隱藏留言</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
@@ -168,7 +166,6 @@
     <string name="show_description_title">顯示描述</string>
     <string name="thumbnail_cache_wipe_complete_notice">抹除咗影像快取</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁嘅快取資料</string>
-    <string name="download_thumbnail_summary">關閉佢去避免載入條片嘅縮圖，慳返啲數據同埋用少啲 RAM。更改會抹走記憶體以及磁碟機上面嘅影像快取</string>
     <string name="use_inexact_seek_summary">粗略嘅快轉允許播放器比較籠統咁快轉去其他位置。快轉 5、15 或 25 秒就太仔細，做唔到</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="default_content_country_title">預設嘅國家內容</string>
@@ -320,7 +317,7 @@
     <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料夾</string>
     <string name="one_item_deleted">刪除咗 1 個項目。</string>
     <string name="recaptcha_solve">執執佢</string>
-    <string name="recaptcha_done_button">搞掂</string>
+    <string name="done">搞掂</string>
     <string name="privacy_policy_encouragement">NewPipe 專案非常著重你嘅私隱。因此，呢個 app 未得你同意係唔會收集任何資料。
 \nNewPipe 嘅私隱政策會詳述，當你傳送彈 app 報告嗰陣，有咩資料會傳送同保存。</string>
     <string name="title_last_played">最近播放</string>
@@ -501,7 +498,7 @@
     <string name="georestricted_content">呢部內容限區，喺你所在國家未有提供。</string>
     <string name="soundcloud_go_plus_content">呢首 (至少喺你所在國家而言) 係 SoundCloud Go+ 單曲，因此 NewPipe 未能串流或下載。</string>
     <string name="private_content">呢部內容係私人嘢，因此 NewPipe 未能串流或下載。</string>
-    <string name="auto_device_theme_title">自動 (跟返部機嘅主題色系)</string>
+    <string name="auto_device_theme_title">明或暗 (跟返部機嘅主題色系)</string>
     <string name="featured">精選</string>
     <string name="radio">廣播</string>
     <string name="description_select_note">你而家可以揀選喺描述入面嘅文字喇。不過要單聲先，喺揀選模式嘅時候，版面可能會有啲眨，同埋啲連結可能會撳唔到。</string>
@@ -510,7 +507,6 @@
     <string name="metadata_category">分類</string>
     <string name="metadata_tags">標籤</string>
     <string name="metadata_privacy">公開設定</string>
-    <string name="metadata_thumbnail_url">縮圖 URL</string>
     <string name="metadata_privacy_public">公開</string>
     <string name="metadata_privacy_unlisted">憑網址瀏覽</string>
     <string name="detail_pinned_comment_view_description">置頂留言</string>
@@ -675,7 +671,7 @@
     <string name="show_image_indicators_summary">啲圖都要騷 Picasso 三色碼顯示源頭：紅碼係網絡上高落嚟，藍碼係儲存喺磁碟本地，綠碼係潛伏喺記憶體中</string>
     <string name="show_original_time_ago_summary">服務原本嘅字會騷返喺串流項目上面</string>
     <string name="show_image_indicators_title">影像要推三色碼</string>
-    <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦</string>
+    <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦。</string>
     <string name="import_youtube_instructions">點樣用 Google 匯出嚟匯入 YouTube 訂閱：
 \n
 \n一、去呢個網址：%1$s
@@ -705,7 +701,7 @@
     <string name="app_update_unavailable_toast">你已經用緊最新版本嘅 NewPipe</string>
     <string name="app_update_available_notification_text">撳一下去下載 %s</string>
     <string name="unset_playlist_thumbnail">唔再揀定封面縮圖</string>
-    <string name="night_theme_available">色系揀做%s 嘅時候至有得揀</string>
+    <string name="night_theme_available">主題色系揀做%s 嘅時候至有得揀</string>
     <string name="msg_failed_to_copy">複製唔到去剪貼簿</string>
     <string name="card">一張張</string>
     <string name="duplicate_in_playlist">灰咗嘅播放清單，即係已經有呢個項目。</string>
@@ -724,13 +720,13 @@
     <string name="left_gesture_control_title">左手邊手勢動作</string>
     <string name="right_gesture_control_summary">揀選右手邊播放器螢幕嘅手勢</string>
     <string name="right_gesture_control_title">右手邊手勢動作</string>
-    <string name="brightness">亮度</string>
-    <string name="volume">聲音</string>
-    <string name="none">冇</string>
-    <string name="prefer_original_audio_title">首選嘅原始聲音</string>
-    <string name="prefer_descriptive_audio_title">首選嘅敘述性聲音</string>
-    <string name="prefer_descriptive_audio_summary">如果可以用嘅話，會為視障人士揀敘述性音軌</string>
-    <string name="prefer_original_audio_summary">無論語言係咩，都揀選原始音軌</string>
+    <string name="brightness">調整光暗度</string>
+    <string name="volume">調整大細聲</string>
+    <string name="none">乜都唔使做</string>
+    <string name="prefer_original_audio_title">優先揀原聲</string>
+    <string name="prefer_descriptive_audio_title">優先揀旁述</string>
+    <string name="prefer_descriptive_audio_summary">揀選為視障人士而設嘅旁述音軌 (如有提供)</string>
+    <string name="prefer_original_audio_summary">揀選原始音軌，唔理佢講咩話</string>
     <string name="play_queue_audio_track">聲音： %s</string>
     <string name="audio_track">音軌</string>
     <string name="unknown_audio_track">未知</string>
@@ -740,11 +736,61 @@
     <string name="use_exoplayer_decoder_fallback_title">用 ExoPlayer 嘅解碼器汰退功能</string>
     <string name="use_exoplayer_decoder_fallback_summary">如果遇到解碼器初始化問題，請啟用呢個選項，如果主解碼器初始化失敗，就會用優先順序較低的解碼器。咁樣可能會導致播放性能比使用主解碼器嗰陣差</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">幾時都用 Exoplayer嘅浮面影片輸出設定解決方法</string>
-    <string name="audio_track_type_original">原始嘅</string>
-    <string name="audio_track_type_dubbed">配音嘅</string>
-    <string name="audio_track_type_descriptive">敘述性</string>
+    <string name="audio_track_type_original">原聲</string>
+    <string name="audio_track_type_dubbed">配音</string>
+    <string name="audio_track_type_descriptive">旁述</string>
     <string name="select_audio_track_external_players">為外面嘅播放器揀選音軌</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">呢個解決方法係喺發生表面變動嗰陣釋放同埋重新確認視訊編解碼器，而非直接將表面設定做編解碼器。ExoPlayer 已經喺部份有問題嘅裝置上使用了呢個設定，呢個設定僅係對 Android 6 或以上嘅更新版本有效。
 \n
 \n啟用呢個選項可以避免喺切換現有視訊播放程式或切換到全螢幕時出現播放錯誤</string>
+    <string name="image_quality_title">啲圖嘅畫質</string>
+    <string name="channel_tab_videos">影片</string>
+    <string name="question_mark">？</string>
+    <string name="metadata_subscribers">訂閱者</string>
+    <string name="show_channel_tabs_summary">頻道頁要騷邊啲分頁出嚟</string>
+    <string name="share_playlist_with_list">齋分享 URL 清單</string>
+    <string name="share_playlist_with_titles">分享埋片名</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">頻道分頁</string>
+    <string name="channel_tab_shorts">短片</string>
+    <string name="loading_metadata_title">載入緊元資料…</string>
+    <string name="toggle_screen_orientation">橫豎轉換</string>
+    <string name="image_quality_low">低畫質</string>
+    <string name="main_tabs_position_title">主畫面分頁擺位</string>
+    <string name="toggle_fullscreen">切換全螢幕</string>
+    <string name="feed_fetch_channel_tabs">攞邊啲頻道分頁</string>
+    <string name="metadata_avatars">頭像</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="next_stream">下一個串流</string>
+    <string name="disable_media_tunneling_automatic_info">已知您部機個型號唔支援多媒體隧道，因此預設已經停用咗先。</string>
+    <string name="metadata_subchannel_avatars">子頻道嘅頭像</string>
+    <string name="open_play_queue">跳去排隊播</string>
+    <string name="image_quality_none">唔要載入啲圖</string>
+    <string name="image_quality_high">高畫質</string>
+    <string name="channel_tab_about">簡介</string>
+    <string name="share_playlist">分享播放清單</string>
+    <string name="forward">跳前</string>
+    <string name="channel_tab_albums">專輯</string>
+    <string name="rewind">跳後</string>
+    <string name="replay">重播</string>
+    <string name="feed_fetch_channel_tabs_summary">更新摘要嘅時候要攞邊啲分頁返嚟。若果頻道用快速模式更新，就橫豎都無相干嘞。</string>
+    <string name="share_playlist_with_titles_message">分享播放清單要詳細包含播放清單個名同埋入面啲片名，定簡單得啲影片嘅 URL</string>
+    <string name="image_quality_medium">一般畫質</string>
+    <string name="metadata_uploader_avatars">上載者嘅頭像</string>
+    <string name="metadata_banners">橫額</string>
+    <string name="channel_tab_playlists">播放清單</string>
+    <string name="video_details_list_item">- %1$s：%2$s</string>
+    <string name="main_tabs_position_summary">主畫面嘅分頁揀選搬落最底</string>
+    <string name="no_live_streams">無直播串流</string>
+    <string name="image_quality_summary">揀選啲圖嘅畫質，定索性唔載入啲圖，去慳啲用數據同記憶體。更改會抹走記憶體同磁碟入面嘅影像快取 — %s</string>
+    <string name="play">播放</string>
+    <string name="more_options">其他選項</string>
+    <string name="metadata_thumbnails">縮圖</string>
+    <string name="channel_tab_tracks">曲目</string>
+    <string name="duration">片長</string>
+    <string name="no_streams">無串流</string>
+    <string name="channel_tab_channels">頻道</string>
+    <string name="previous_stream">上一個串流</string>
+    <string name="channel_tab_livestreams">直播</string>
 </resources>

@@ -1,0 +1,17 @@
+Baru
+• Tampilkan pratinjau thumbnail saat mencari
+• Mendeteksi komentar yang dinonaktifkan
+• Izinkan menandai item feed sebagai ditonton
+• Tampilkan komentar hati
+
+Ditingkatkan
+• Memperbaiki metadata dan tata letak tag
+• Menerapkan warna layanan ke komponen UI
+
+Tetap
+• Perbaiki thumbnail di mini player
+• Memperbaiki buffering tanpa akhir pada item antrian duplikat
+• Beberapa perbaikan pemain seperti rotasi dan penutupan lebih cepat
+• Perbaiki ReCAPTCHA yang tersisa dimuat di latar belakang
+• Nonaktifkan klik saat menyegarkan feed
+• Memperbaiki beberapa pengunduh yang mogok

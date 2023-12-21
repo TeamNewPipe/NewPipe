@@ -46,7 +46,6 @@
     <string name="show_age_restricted_content_title">Vis aldersbegrenset innhold</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
-    <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
     <string name="parsing_error">Kunne ikke tolke nettside</string>
     <string name="content_not_available">Innholdet er utilgjengelig</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
@@ -257,7 +256,6 @@
     <string name="export_ongoing">Eksporterer…</string>
     <string name="import_file_title">Importer fil</string>
     <string name="previous_export">Forrige eksport</string>
-    <string name="download_thumbnail_title">Last miniatyrbilder</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildehurtiglager tømt</string>
     <string name="metadata_cache_wipe_title">Tøm hurtiglagret metadata</string>
     <string name="metadata_cache_wipe_summary">Fjern all hurtiglagret nettsidedata</string>
@@ -304,7 +302,6 @@
 \n3. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig spoling lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette</string>
-    <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager</string>
     <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Overvåkning av minnelekkasjer kan forårsake at appen ikke svarer under heap dumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
@@ -449,7 +446,7 @@
     <string name="app_language_title">Programspråk</string>
     <string name="systems_language">Systemforvalg</string>
     <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
-    <string name="recaptcha_done_button">Ferdig</string>
+    <string name="done">Ferdig</string>
     <string name="videos_string">Videoer</string>
     <plurals name="seconds">
         <item quantity="one">%d sekund</item>
@@ -596,7 +593,7 @@
     <string name="radio">Radio</string>
     <string name="featured">Framhevet</string>
     <string name="recaptcha_solve">Løs</string>
-    <string name="night_theme_title">Nattema</string>
+    <string name="night_theme_title">Nattdrakt</string>
     <string name="show_channel_details">Vis kanaldetaljer</string>
     <string name="disable_media_tunneling_summary">Skru av media-tunnelering hvis du opplever svart skjerm eller videohakking</string>
     <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
@@ -623,7 +620,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Ulistet</string>
     <string name="metadata_privacy_public">Offentlig</string>
-    <string name="metadata_thumbnail_url">Miniatyrbilde-nettadresse</string>
     <string name="metadata_host">Tjener</string>
     <string name="metadata_support">Støtte</string>
     <string name="metadata_language">Språk</string>
@@ -677,7 +673,7 @@
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
     <string name="progressive_load_interval_title">Intervallstørrelse for avspillingsinnlasting</string>
-    <string name="progressive_load_interval_summary">Bytt avspillinginnlastingens intervallstørrelse (for øyeblikket %s). En lavere verdi kan øke hastigheten på den første videoinnlastingen. Endringer krever en omstart av spilleren</string>
+    <string name="progressive_load_interval_summary">Endre størrelsen på lasteintervallet på progressivt innhold (for øyeblikket %s). En lavere verdi kan øke hastigheten på den første videoinnlastingen. Endringer krever omstart av spilleren</string>
     <string name="settings_category_player_notification_title">Spillervarsel</string>
     <string name="notifications">Varsler</string>
     <string name="streams_notification_channel_name">Nye strømmer</string>
@@ -740,4 +736,40 @@
     <string name="feed_show_partially_watched">Delvis sett</string>
     <string name="ignore_hardware_media_buttons_summary">Nyttig hvis hodsettet ditt har knapper som fungerer dårlig</string>
     <string name="feed_hide_streams_title">Vis følgende strømmer</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Abonnenter</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Kanalfaner</string>
+    <string name="loading_metadata_title">Laster inn metadata …</string>
+    <string name="image_quality_low">Lav kvalitet</string>
+    <string name="feed_fetch_channel_tabs">Hent kanalfaner</string>
+    <string name="metadata_avatars">Avatarer</string>
+    <string name="next_stream">Neste strøm</string>
+    <string name="metadata_subchannel_avatars">Underkanalavatarer</string>
+    <string name="open_play_queue">Åpne avspillingskø</string>
+    <string name="prefer_original_audio_summary">Velg opprinnelig lydspor uavhengig av språk</string>
+    <string name="image_quality_none">Ikke last inn bilder</string>
+    <string name="image_quality_high">Høy kvalitet</string>
+    <string name="channel_tab_about">Om</string>
+    <string name="share_playlist">Del spilleliste</string>
+    <string name="channel_tab_albums">Album</string>
+    <string name="replay">Gjenta</string>
+    <string name="prefer_descriptive_audio_summary">Velg et lydspor med beskrivelser for synshemmede hvis tilgjengelig</string>
+    <string name="image_quality_medium">Middels kvalitet</string>
+    <string name="prefer_descriptive_audio_title">Foretrekk beskrivende lyd</string>
+    <string name="metadata_uploader_avatars">Opplasteravatarer</string>
+    <string name="prefer_original_audio_title">Foretrekk opprinnelig lyd</string>
+    <string name="play_queue_audio_track">Lyd: %s</string>
+    <string name="channel_tab_playlists">Spillelister</string>
+    <string name="audio_track">Lydspor</string>
+    <string name="no_live_streams">Ingen direktestrømmer</string>
+    <string name="play">Spill av</string>
+    <string name="more_options">Flere alternativer</string>
+    <string name="metadata_thumbnails">Miniatyrbilder</string>
+    <string name="channel_tab_tracks">Spor</string>
+    <string name="duration">Varighet</string>
+    <string name="no_streams">Ingen strømmer</string>
+    <string name="channel_tab_channels">Kanaler</string>
+    <string name="previous_stream">Forrige strøm</string>
 </resources>

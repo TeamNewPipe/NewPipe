@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
@@ -531,18 +532,19 @@ public final class PlayQueueActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private void onStateChanged(final int state) {
+        final ImageButton playPauseButton = queueControlBinding.controlPlayPause;
         switch (state) {
             case Player.STATE_PAUSED:
-                queueControlBinding.controlPlayPause
-                        .setImageResource(R.drawable.ic_play_arrow);
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow);
+                playPauseButton.setContentDescription(getString(R.string.play));
                 break;
             case Player.STATE_PLAYING:
-                queueControlBinding.controlPlayPause
-                        .setImageResource(R.drawable.ic_pause);
+                playPauseButton.setImageResource(R.drawable.ic_pause);
+                playPauseButton.setContentDescription(getString(R.string.pause));
                 break;
             case Player.STATE_COMPLETED:
-                queueControlBinding.controlPlayPause
-                        .setImageResource(R.drawable.ic_replay);
+                playPauseButton.setImageResource(R.drawable.ic_replay);
+                playPauseButton.setContentDescription(getString(R.string.replay));
                 break;
             default:
                 break;
@@ -585,11 +587,9 @@ public final class PlayQueueActivity extends AppCompatActivity
     }
 
     private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {
-        if (parameters != null) {
-            if (menu != null && player != null) {
-                final MenuItem item = menu.findItem(R.id.action_playback_speed);
-                item.setTitle(formatSpeed(parameters.speed));
-            }
+        if (parameters != null && menu != null && player != null) {
+            final MenuItem item = menu.findItem(R.id.action_playback_speed);
+            item.setTitle(formatSpeed(parameters.speed));
         }
     }
 
@@ -619,11 +619,13 @@ public final class PlayQueueActivity extends AppCompatActivity
 
         final MenuItem audioTrackSelector = menu.findItem(R.id.action_audio_track);
         final List<AudioStream> availableStreams =
-                Optional.ofNullable(player.getCurrentMetadata())
+                Optional.ofNullable(player)
+                        .map(Player::getCurrentMetadata)
                         .flatMap(MediaItemTag::getMaybeAudioTrack)
                         .map(MediaItemTag.AudioTrack::getAudioStreams)
                         .orElse(null);
-        final Optional<AudioStream> selectedAudioStream = player.getSelectedAudioStream();
+        final Optional<AudioStream> selectedAudioStream = Optional.ofNullable(player)
+                .flatMap(Player::getSelectedAudioStream);
 
         if (availableStreams == null || availableStreams.size() < 2
                 || selectedAudioStream.isEmpty()) {

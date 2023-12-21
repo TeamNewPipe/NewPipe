@@ -44,7 +44,7 @@
     <string name="open_with">ଏଥିରେ ଖୋଲନ୍ତୁ</string>
     <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
     <string name="mark_as_watched">ଦେଖାଯାଇଥିବା ପରି ଚିହ୍ନିତ କର</string>
-    <string name="download">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="download">ଡାଉନଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="settings">ସେଟିଂ</string>
     <string name="did_you_mean">ତୁମେ ଏହା ଚାଂହ କି \"%1$s\"\?</string>
     <string name="controls_download_desc">ଫାଇଲ୍ ଡାଉନଲୋଡ କରନ୍ତୁ</string>
@@ -83,7 +83,7 @@
     <string name="default_resolution_title">ଡିଫଲ୍ଟ ରେଜୋଲୁସନ</string>
     <string name="play_with_kodi_title">କୋଡି ସହିତ ଖୋଲନ୍ତୁ</string>
     <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କୃତ୍ୟ ବଟନ୍</string>
-    <string name="notification_action_repeat">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
+    <string name="notification_action_repeat">ପୁନର୍ବାର କରନ୍ତୁ</string>
     <string name="notification_colorize_title">ବିଜ୍ଞପ୍ତିକୁ ରଙ୍ଗ କରନ୍ତୁ</string>
     <string name="popup_remember_size_pos_summary">ପପ୍ଅପ୍ ର ଶେଷ ଆକାର ଏବଂ ସ୍ଥିତି ମନେରଖ</string>
     <string name="use_inexact_seek_title">ଦ୍ରୁତ ନିଷ୍କ୍ରିୟ ସନ୍ଧାନ ବ୍ୟବହାର କରନ୍ତୁ</string>
@@ -101,7 +101,6 @@
     <string name="clear_queue_confirmation_title">ଏକ ଧାଡି ସଫା କରିବା ପୂର୍ବରୁ ନିଶ୍ଚିତକରଣ ମାଗନ୍ତୁ</string>
     <string name="clear_queue_confirmation_summary">ଗୋଟିଏ ଖେଳାଳୀରୁ ଅନ୍ୟ ଖେଳାଳୀକୁ ପରିବର୍ତ୍ତନ କରିବା ଆପଣଙ୍କ ଧାଡି ବଦଳାଇପାରେ</string>
     <string name="clear_queue_confirmation_description">ସକ୍ରିୟ ପ୍ଲେୟାର କ୍ୟୁ ବଦଳାଯିବ</string>
-    <string name="download_thumbnail_title">ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="show_next_and_similar_title">\'ପରବର୍ତ୍ତୀ\' ଏବଂ \'ସମାନ\' ଭିଡିଓଗୁଡିକ ଦେଖାନ୍ତୁ</string>
     <string name="show_description_title">ବର୍ଣ୍ଣନା ଦେଖାନ୍ତୁ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ପ୍ରତିଛବି କ୍ୟାଚ୍ ପୋଛି ଦିଆଗଲା</string>
@@ -149,7 +148,6 @@
     <string name="settings_category_video_audio_title">ଵିଡ଼ିଓ ଓ ଅଡ଼ିଓ</string>
     <string name="start_main_player_fullscreen_summary">ମିନି ପ୍ଲେୟାରରେ ଭିଡିଓ ଆରମ୍ଭ କରନ୍ତୁ ନାହିଁ, କିନ୍ତୁ ଅଟୋ ଘୂର୍ଣ୍ଣନ ବନ୍ଦ ହୋଇଗଲେ ସିଧାସଳଖ ଫୁଲ୍ ସ୍କ୍ରିନ୍ ମୋଡ୍ କୁ ଯାଆନ୍ତୁ। ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଛାଡି ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ମିନି ପ୍ଲେୟାରକୁ ପ୍ରବେଶ କରିପାରିବେ</string>
     <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ୍ କରି ନିମ୍ନରେ ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟ ସଂପାଦନ କରନ୍ତୁ। ଡାହାଣରେ ଥିବା ଚେକ୍ ବକ୍ସ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦେଖାଯିବାକୁ ସେମାନଙ୍କ ମଧ୍ୟରୁ ତିନୋଟି ପର୍ଯ୍ୟନ୍ତ ଚୟନ କରନ୍ତୁ</string>
-    <string name="download_thumbnail_summary">ଥମ୍ବନେଲ ଲୋଡିଂ, ଡାଟା ଏବଂ ମେମୋରୀ ବ୍ୟବହାରକୁ ରୋକିବା ପାଇଁ ବନ୍ଦ କରନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ଉଭୟ ଇନ-ମେମୋରୀ ଏବଂ ଅନ୍-ଡିସ୍କ ଇମେଜ୍ କ୍ୟାଚ୍ ସଫା କରେ</string>
     <string name="show_meta_info_summary">ଷ୍ଟ୍ରିମ୍ ସୃଷ୍ଟିକର୍ତ୍ତା, ଷ୍ଟ୍ରିମ୍ ବିଷୟବସ୍ତୁ କିମ୍ବା ଏକ ସନ୍ଧାନ ଅନୁରୋଧ ବିଷୟରେ ଅତିରିକ୍ତ ସୂଚନା ସହିତ ମେଟା ସୂଚନା ବାକ୍ସଗୁଡ଼ିକୁ ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="show_age_restricted_content_summary">ପିଲାମାନଙ୍କ ପାଇଁ ସମ୍ଭବତ content ଅନୁପଯୁକ୍ତ ବିଷୟବସ୍ତୁ ଦେଖାନ୍ତୁ କାରଣ ଏହାର ବୟସ ସୀମା ଅଛି (ଯେପରିକି 18+)</string>
     <string name="restricted_video_no_stream">ଏହି ଭିଡିଓ ବୟସ-ସୀମିତ ଅଟେ ।
@@ -181,7 +179,7 @@
     <string name="no_appropriate_file_manager_message">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
 \nଦୟାକରି ଏକ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ କିମ୍ବା ଡାଉନଲୋଡ୍ ସେଟିଂସମୂହରେ \'%s\' ଅକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="youtube_music_premium_content">ଏହି ଭିଡିଓ କେବଳ ୟୁଟ୍ୟୁବ୍ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ସଦସ୍ୟଙ୍କ ପାଇଁ ଉପଲବ୍ଧ, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
-    <string name="progressive_load_interval_summary">ଲୋଡ୍ ବ୍ୟବଧାନ ଆକାର ପରିବର୍ତ୍ତନ କରନ୍ତୁ (currently %s)। ଏକ କମ୍ ମୂଲ୍ୟ ପ୍ରାରମ୍ଭିକ ଭିଡିଓ ଲୋଡିଂକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ । ପରିବର୍ତ୍ତନଗୁଡିକ ଏକ ପ୍ଲେୟାର ପୁନଃଆରମ୍ଭ ଆବଶ୍ୟକ କରେ</string>
+    <string name="progressive_load_interval_summary">ଧାରଣ ଅନ୍ତରାଳର ଆକାରକୁ ପ୍ରଗତିଶୀଳ ବିଷୟବସ୍ତୁ (ବର୍ତ୍ତମାନ %s) ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । ଗୋଟିଏ ନିମ୍ନମାନ ସେମାନଙ୍କର ପ୍ରାରମ୍ଭିକ ଧାରଣକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ</string>
     <string name="no_appropriate_file_manager_message_android_10">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
 \nଦୟାକରି ଏକ ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ ସୁସଙ୍ଗତ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ</string>
     <string name="soundcloud_go_plus_content">ଅନ୍ତତଃ ପକ୍ଷେ ଆପଣଙ୍କ ଦେଶରେ ଏହା ଏକ ସାଉଣ୍ଡକ୍ଲାଉଡ୍ ଗୋ + ଟ୍ରାକ୍, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
@@ -204,7 +202,7 @@
     <string name="unsubscribe">ସଦସ୍ୟତା ରଦ୍ଦ କରନ୍ତୁ</string>
     <string name="channel_unsubscribed">ଚ୍ୟାନେଲ ସଦସ୍ୟତା ରଦ୍ଦ ହେଲା</string>
     <string name="subscription_change_failed">ସଦସ୍ୟତା ପରିବର୍ତ୍ତନ କରିପାରିଲା ନାହିଁ</string>
-    <string name="show_info">ସୂଚନା ଦେଖାନ୍ତୁ</string>
+    <string name="show_info">ସୂଚନା ଦେଖାଅ</string>
     <string name="controls_add_to_playlist_title">ଏଥିରେ ଯୋଡ଼ିବା</string>
     <string name="default_popup_resolution_title">ଡିଫଲ୍ଟ ପପ୍ଅପ୍ ରେଜୋଲୁସନ</string>
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
@@ -216,7 +214,7 @@
     <string name="notification_action_4_title">ପଞ୍ଚମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_shuffle">ଶଫଲ୍</string>
     <string name="notification_action_buffering">ବଫରିଂ</string>
-    <string name="notification_action_nothing">କିଛି ନୁହେଁ</string>
+    <string name="notification_action_nothing">କିଛି ନାହିଁ</string>
     <string name="default_video_format_title">ଡିଫଲ୍ଟ ଭିଡିଓ ଫର୍ମାଟ୍</string>
     <string name="popup_remember_size_pos_title">ପପ୍ଅପ୍ ଗୁଣଗୁଡିକ ମନେରଖ</string>
     <string name="processing_may_take_a_moment">ପ୍ରକ୍ରିୟାକରଣ… କିଛି ସମୟ ନେଇପାରେ</string>
@@ -306,7 +304,7 @@
     <string name="msg_copied">କ୍ଲିପବୋର୍ଡରେ କପି କରାଯାଇଛି</string>
     <string name="one_item_deleted">1 ଆଇଟମ୍ ଡିଲିଟ୍ ହୋଇଛି ।</string>
     <string name="title_activity_recaptcha">reCAPTCHA ଆହ୍ୱାନ</string>
-    <string name="recaptcha_done_button">ସମାପ୍ତ</string>
+    <string name="done">ସମାପ୍ତ</string>
     <string name="settings_category_downloads_title">ଡାଉନଲୋଡ୍ କରନ୍ତୁ</string>
     <string name="settings_file_replacement_character_summary">ଅବୈଧ ବର୍ଣ୍ଣଗୁଡିକ ଏହି ମୂଲ୍ୟ ସହିତ ବଦଳାଯାଏ</string>
     <string name="settings_file_replacement_character_title">ପ୍ରତିସ୍ଥାପନ ବର୍ଣ୍ଣ</string>
@@ -343,7 +341,7 @@
     <string name="enable_leak_canary_summary">ମେମୋରୀ ଲିକ୍ ମନିଟରିଂ ହିପ୍ ଡମ୍ପିଂ କରିବା ସମୟରେ ଆପ୍ ପ୍ରତିକ୍ରିୟାଶୀଳ ହୋଇପାରେ</string>
     <string name="show_original_time_ago_summary">ସେବାଗୁଡିକରୁ ମୂଳ ଲେଖା ଷ୍ଟ୍ରିମ୍ ଆଇଟମ୍ ଗୁଡିକରେ ଦୃଶ୍ୟମାନ ହେବ</string>
     <string name="disable_media_tunneling_title">ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
-    <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
+    <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ ।</string>
     <string name="show_image_indicators_summary">ଚିତ୍ରଗୁଡ଼ିକର ଉପରେ ପିକାସୋ ରଙ୍ଗୀନ ଫିତା ଦେଖାନ୍ତୁ: ସେମାନଙ୍କର ଉତ୍ସକୁ ସୂଚାଇଥାଏ: ନେଟୱାର୍କ ପାଇଁ ନାଲି, ଡିସ୍କ ପାଇଁ ନୀଳ ଏବଂ ସ୍ମୃତି ପାଇଁ ସବୁଜ</string>
     <string name="import_title">ଆମଦାନି କରନ୍ତୁ</string>
     <string name="import_from">ଠାରୁ ଆମଦାନୀ କରନ୍ତୁ</string>
@@ -421,7 +419,6 @@
     <string name="drawer_header_description">ଟୋଗଲ୍ ସେବା, ବର୍ତ୍ତମାନ ମନୋନୀତ:</string>
     <string name="give_back">ଫେରସ୍ତ କର</string>
     <string name="overwrite">ଓଭର୍ ରାଇଟ୍ କରନ୍ତୁ</string>
-    <string name="metadata_thumbnail_url">ଥମ୍ବନେଲ୍ URL</string>
     <string name="metadata_host">ହୋଷ୍ଟ</string>
     <string name="metadata_privacy_public">ସାର୍ଵଜନୀନ</string>
     <string name="metadata_privacy_unlisted">ତାଲିକାଭୁକ୍ତ ନୁହେଁ</string>
@@ -518,7 +515,6 @@
     <string name="delete_playback_states_alert">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ବିଲୋପ କରିବେ କି\?</string>
     <string name="clear_search_history_summary">ସନ୍ଧାନ କୀ ଶବ୍ଦର ଇତିହାସ ବିଲୋପ କରେ</string>
     <string name="general_error">ତ୍ରୁଟି</string>
-    <string name="youtube_signature_deobfuscation_error">ଭିଡିଓ URL ଦସ୍ତଖତକୁ ଡିବଫସ୍କେଟ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="player_unrecoverable_failure">ପୁନରୁଦ୍ଧାର ନ ହୋଇପାରିଲା ପରି ପ୍ଲେୟାର ତ୍ରୁଟି ଘଟିଲା</string>
     <string name="external_player_unsupported_link_type">ବହିଃ-ଚାଳକ ଏଭଳି ଲିଙ୍କ୍ ସମର୍ଥନ କରେନି</string>
     <string name="missing_file">ଫାଇଲ୍ ଘୁଞ୍ଚିଗଲା କିମ୍ବା ଡିଲିଟ୍ ହେଲା</string>
@@ -740,4 +736,74 @@
     <string name="brightness">ଉଜ୍ଜ୍ୱଳତା</string>
     <string name="volume">ଭଲ୍ୟୁମ୍</string>
     <string name="none">କିଛି ନୁହେଁ</string>
+    <string name="main_tabs_position_summary">ମୂଖ୍ୟ ଟ୍ୟାବ ଚୟନକର୍ତ୍ତାଙ୍କୁ ତଳ ଭାଗକୁ ଘୁଞ୍ଚାନ୍ତୁ</string>
+    <string name="main_tabs_position_title">ମୂଖ୍ଯ ଟ୍ୟାବ ଅବସ୍ଥାନ</string>
+    <string name="settings_category_exoplayer_summary">କିଛି ExoPlayer ବିନ୍ୟାସକୁ ପରିଚାଳନା କରନ୍ତୁ । ଏହି ପରିବର୍ତ୍ତନଗୁଡ଼ିକୁ ପ୍ରଭାବୀ ହେବା ପାଇଁ ଗୋଟିଏ ଚାଳକକୁ ପୁନଃଚାଳନ କରିବା ଆବଶ୍ୟକ</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer ର ଡିକୋଡର୍ ଫଲବ୍ୟାକ୍ ବୈଶିଷ୍ଟ୍ୟକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="use_exoplayer_decoder_fallback_summary">ଯଦି ଆପଣଙ୍କର ଡିକୋଡର ପ୍ରାରମ୍ଭିକ ସମସ୍ୟା ଅଛି ତେବେ ଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରନ୍ତୁ, ଯାହା ପ୍ରାଥମିକ ଡିକୋଡର ପ୍ରାରମ୍ଭିକତା ବିଫଳ ହେଲେ ନିମ୍ନ ପ୍ରାଥମିକତା ଡିକୋଡରକୁ ଫେରିଥାଏ । ପ୍ରାଥମିକ ଡିକୋଡର ବ୍ୟବହାର କରିବା ସମୟରେ ଏହା ଖରାପ ପ୍ଲେବ୍ୟାକ ପ୍ରଦର୍ଶନର କାରଣ ହୋଇପାରେ</string>
+    <string name="audio_track_name">%1$s ଓ %2$s</string>
+    <string name="audio_track_type_descriptive">ବର୍ଣ୍ଣନାତ୍ମକ</string>
+    <string name="audio_track_type_original">ମୂଳ</string>
+    <string name="audio_track_type_dubbed">ଡବିଙ୍ଗ୍ ହୋଇଛି</string>
+    <string name="prefer_original_audio_title">ମୂଳ ଧ୍ୱନିକୁ ପସନ୍ଦ କରନ୍ତୁ</string>
+    <string name="prefer_original_audio_summary">ଭାଷା ନିର୍ବିଶେଷରେ ମୂଳ ଧ୍ୱନି ଟ୍ରାକକୁ ବାଛନ୍ତୁ</string>
+    <string name="prefer_descriptive_audio_title">ବର୍ଣ୍ଣନାମୂଳକ ଧ୍ୱନିକୁ ପସନ୍ଦ କରନ୍ତୁ</string>
+    <string name="play_queue_audio_track">ଧ୍ୱନି: %s</string>
+    <string name="audio_track">ଧ୍ୱନି ଟ୍ରାକ୍</string>
+    <string name="audio_track_present_in_video">ଏହି ଧାରାରେ ଗୋଟିଏ ଧ୍ୱନୀ ଟ୍ରାକ ପୂର୍ବରୁ ଉପସ୍ଥିତ ହେବା ଉଚିତ</string>
+    <string name="select_audio_track_external_players">ବାହ୍ୟ ଚାଳକମାନଙ୍କ ପାଇଁ ଧ୍ୱନୀ ଟ୍ରାକ ବାଛନ୍ତୁ</string>
+    <string name="unknown_audio_track">ଅଜଣା</string>
+    <string name="prefer_descriptive_audio_summary">ଉପଲବ୍ଧ ହେଲେ ଦୃଷ୍ଟିହୀନ ବ୍ୟକ୍ତିଙ୍କ ପାଇଁ ବର୍ଣ୍ଣନା ସହିତ ଗୋଟିଏ ଧ୍ୱନି ଟ୍ରାକ ଚୟନ କରନ୍ତୁ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">ସର୍ବଦା ExoPlayer ର ଭିଡ଼ିଓ ଆଉଟପୁଟ୍ ପୃଷ୍ଠ ବିନ୍ୟାସ କାର୍ଯ୍ଯକ୍ଷେତ୍ରକୁ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="disable_media_tunneling_automatic_info">ଆପଣଙ୍କର ଡିଭାଇସରେ ଡିଫଲ୍ଟ ଭାବରେ ମିଡିଆ ସୁଡଙ୍ଗକୁ ନିଷ୍କ୍ରିୟ କରାଯାଇଛି କାରଣ ଆପଣଙ୍କର ଡିଭାଇସ ମଡେଲ ଏହାକୁ ସମର୍ଥନ କରୁନାହିଁ ବୋଲି ଜଣାଅଛି ।</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer ବିନ୍ୟାସଗୁଡ଼ିକ</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">ଏହି ୱାର୍କଆରାଉଣ୍ଡ ଭିଡିଓ କୋଡେକଗୁଡ଼ିକୁ ରିଲିଜ କରିଥାଏ ଏବଂ ପୁନଃସ୍ଥାପନ କରିଥାଏ ଯେତେବେଳେ ଗୋଟିଏ ପୃଷ୍ଠ ପରିବର୍ତ୍ତନ ହୋଇଥାଏ, ଭୂପୃଷ୍ଠକୁ ସିଧାସଳଖ କୋଡେକରେ ସେଟ କରିବା ପରିବର୍ତ୍ତେ । ଏହି ସମସ୍ୟା ସହିତ କିଛି ଉପକରଣରେ ExoPlayer ଦ୍ୱାରା ପୂର୍ବରୁ ବ୍ୟବହୃତ, ଏହି ସଂରଚନା କେବଳ ଆଣ୍ଡ୍ରଏଡ 6 ଏବଂ ଉଚ୍ଚତର ଉପରେ ପ୍ରଭାବ ପକାଇଥାଏ
+\n
+\nଏହି ବିକଳ୍ପକୁ ସକ୍ରିୟ କରିବା ସାମ୍ପ୍ରତିକ ଭିଡିଓ ପ୍ଲେୟାରକୁ ବଦଳାଇବା କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ପରଦାକୁ ପରିବର୍ତ୍ତନ କରିବା ସମୟରେ ପ୍ଲେବ୍ୟାକ ତ୍ରୁଟିକୁ ପ୍ରତିରୋଧ କରିପାରେ</string>
+    <string name="no_streams">କୌଣସି ସ୍ରୋତ ନାହିଁ</string>
+    <string name="no_live_streams">କୌଣସି ଲାଇଭ ଷ୍ଟ୍ରିମ୍ ନାହିଁ</string>
+    <string name="image_quality_title">ପ୍ରତିଛବି ଗୁଣବତ୍ତା</string>
+    <string name="channel_tab_videos">ଭିଡିଓଗୁଡିକ</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">ଗ୍ରାହକଗଣ</string>
+    <string name="show_channel_tabs_summary">ଚ୍ୟାନେଲ ପୃଷ୍ଠାଗୁଡ଼ିକରେ କେଉଁ ଟ୍ୟାବଗୁଡ଼ିକ ଦେଖାଯାଏ</string>
+    <string name="show_channel_tabs">ଚ୍ୟାନେଲ ଟ୍ୟାବଗୁଡ଼ିକ</string>
+    <string name="channel_tab_shorts">ସର୍ଟସ୍</string>
+    <string name="loading_metadata_title">ମେଟାଡାଟା ଧାରଣ କରୁଅଛି…</string>
+    <string name="toggle_screen_orientation">ସ୍କ୍ରିନ୍ ଆରିଏଣ୍ଟେସନ୍ ଟୋଗଲ୍ କରନ୍ତୁ</string>
+    <string name="image_quality_low">ନିମ୍ନମାନର</string>
+    <string name="toggle_fullscreen">ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଟୋଗଲ୍ କରନ୍ତୁ</string>
+    <string name="feed_fetch_channel_tabs">ଚ୍ୟାନେଲ ଟ୍ୟାବଗୁଡ଼ିକୁ ଆଣନ୍ତୁ</string>
+    <string name="metadata_avatars">ଅବତାର</string>
+    <string name="next_stream">ପରବର୍ତ୍ତୀ ଷ୍ଟ୍ରିମ୍</string>
+    <string name="metadata_subchannel_avatars">ଉପ-ଚାନେଲ ଅବତାରଗୁଡ଼ିକ</string>
+    <string name="open_play_queue">ଖେଳ ଧାଡ଼ି ଖୋଲନ୍ତୁ</string>
+    <string name="image_quality_none">ପ୍ରତିଛବିଗୁଡ଼ିକୁ ଧାରଣ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="image_quality_high">ଉଚ୍ଚ ଗୁଣବତ୍ତା</string>
+    <string name="channel_tab_about">ବିଷୟରେ</string>
+    <string name="forward">ଆଗକୁ</string>
+    <string name="channel_tab_albums">ଆଲବମ୍</string>
+    <string name="rewind">ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
+    <string name="replay">ପୁନର୍ବାର ଚଲାନ୍ତୁ</string>
+    <string name="feed_fetch_channel_tabs_summary">ଫିଡକୁ ଅଦ୍ୟତନ କରିବା ସମୟରେ ଆଣିବା ପାଇଁ ଟ୍ୟାବଗୁଡ଼ିକ । ଫାଷ୍ଟ ମୋଡ ବ୍ୟବହାର କରି ଚ୍ୟାନେଲକୁ ଅଦ୍ୟତନ କରାଗଲେ ଏହି ବିକଳ୍ପର କୌଣସି ପ୍ରଭାବ ପଡ଼ିବ ନାହିଁ ।</string>
+    <string name="image_quality_medium">ମଧ୍ୟମ ଗୁଣବତ୍ତା</string>
+    <string name="metadata_uploader_avatars">ଅପଲୋଡର ଅବତାରଗୁଡ଼ିକ</string>
+    <string name="metadata_banners">ବ୍ୟାନରଗୁଡିକ</string>
+    <string name="channel_tab_playlists">ପ୍ଲେଲିଷ୍ଟଗୁଡିକ</string>
+    <string name="image_quality_summary">ତଥ୍ୟ ଏବଂ ସ୍ମୃତିଶକ୍ତି ବ୍ୟବହାରକୁ ହ୍ରାସ କରିବା ପାଇଁ ପ୍ରତିଛବିଗୁଡ଼ିକର ଗୁଣବତ୍ତା ଏବଂ ସମ୍ପୂର୍ଣ୍ଣ ଭାବରେ ପ୍ରତିଛବିଗୁଡ଼ିକୁ ଧାରଣ କରିବା ଉଚିତ କି ନୁହଁ ବାଛନ୍ତୁ । ପରିବର୍ତ୍ତନଗୁଡ଼ିକ ସ୍ମରଣୀୟ ଏବଂ ଡିସ୍କ ପ୍ରତିଛବି କ୍ୟାଶେ ଉଭୟକୁ ସଫା କରିଥାଏ — %s</string>
+    <string name="play">ଚଲାନ୍ତୁ</string>
+    <string name="more_options">ଅଧିକ ବିକଳ୍ପ</string>
+    <string name="metadata_thumbnails">ଥମ୍ବନେଲଗୁଡିକ</string>
+    <string name="channel_tab_tracks">ଟ୍ରାକଗୁଡିକ</string>
+    <string name="duration">ଅବଧି</string>
+    <string name="channel_tab_channels">ଚ୍ୟାନେଲଗୁଡିକ</string>
+    <string name="previous_stream">ପୂର୍ବ ଷ୍ଟ୍ରିମ୍</string>
+    <string name="channel_tab_livestreams">ଲାଇଭ୍</string>
+    <string name="share_playlist_with_list">URL ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
+    <string name="share_playlist_with_titles">ଶୀର୍ଷକଗୁଡ଼ିକ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">ଖେଳ ତାଲିକା ସହଭାଗ କରନ୍ତୁ</string>
+    <string name="share_playlist_with_titles_message">ପ୍ଲେ-ଲିଷ୍ଟ ନାମ ଏବଂ ଭିଡିଓ ଶୀର୍ଷକ କିମ୍ବା ଭିଡିଓ URLଗୁଡ଼ିକର ଏକ ସରଳ ତାଲିକା ଭାବରେ ବିବରଣୀ ସହିତ ପ୍ଲେ-ଲିଷ୍ଟ ଅଂଶୀଦାର କରନ୍ତୁ</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

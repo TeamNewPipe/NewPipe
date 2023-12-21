@@ -50,7 +50,6 @@
     <string name="black_theme_title">கருமை</string>
     <string name="popup_remember_size_pos_title">திரைமேல் பண்புகளை நினைவுகொள்</string>
     <string name="popup_remember_size_pos_summary">திரைமேல் நிலையின் கடைசி அளவையும் இடத்தையும் நினைவுகொள்</string>
-    <string name="download_thumbnail_title">சிறுபடத்தைக் இறக்கு</string>
     <string name="thumbnail_cache_wipe_complete_notice">பட பதுக்ககம் அழிக்கப்பட்டது</string>
     <string name="metadata_cache_wipe_title">மேல்நிலைத்தரவின் பதுக்ககம் அழிக்கப்பட்டது</string>
     <string name="metadata_cache_wipe_summary">பதுக்ககப்படுத்திய வலைப்பக்கத் தரவை நீக்கு</string>
@@ -264,7 +263,6 @@
     <string name="short_thousand">ஆ</string>
     <string name="short_million">ப.ல</string>
     <string name="crash_the_player">இயக்கியைச் சிதை</string>
-    <string name="download_thumbnail_summary">சிறுபடங்களேற்றுவதை தவிர்த்து தரவு மற்றும் நினைவகப் பயன்பாட்டைச் சேமிக்க அணை. மாற்றங்கள் நினைவகத்துள் மற்றும் வட்டின்மீதுள்ள பிடிதரவைத் துடைக்கும்</string>
     <string name="enable_playback_state_lists_summary">பட்டியல்களில் இயக்கக குறியட நிலைகாட்டிகளைக் காட்டு</string>
     <string name="start_main_player_fullscreen_summary">துணையியக்கியில் காணொளிகளை துவக்காதே, ஆனால் தானாக சுழற்றல் பூட்டப்பட்டிருந்தால் நேரடியாக முழுதிரைக்குத் திரும்பு. முழுதிரையை வெளியேறி நீங்கள் இன்னும் துணையியக்கியை அணுகலாம்</string>
     <string name="unsupported_url_dialog_message">உரலியை அங்கீகரக்க முடியவில்லை. மற்றொரு செயலியில் திறக்கவா\?</string>
@@ -364,7 +362,6 @@
     <string name="notifications">அறிவிப்புகள்</string>
     <string name="hash_channel_name">வீடியோ ஹாஷ் அறிவிப்பு</string>
     <string name="streams_notification_channel_name">புதிய நீரோடைகள்</string>
-    <string name="youtube_signature_deobfuscation_error">வீடியோ URL கையொப்பத்தை நீக்க முடியவில்லை</string>
     <string name="hash_channel_description">வீடியோ ஹேஷிங் முன்னேற்றத்திற்கான அறிவிப்புகள்</string>
     <string name="streams_notification_channel_description">சந்தாவுக்கான புதிய ஸ்ட்ரீம்கள் பற்றிய அறிவிப்புகள்</string>
     <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது.

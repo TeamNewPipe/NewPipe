@@ -31,7 +31,8 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.text.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.text.TextLinkifier;
@@ -97,8 +98,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        PicassoHelper.loadAvatar(item.getUploaderAvatarUrl()).into(itemThumbnailView);
-        if (PicassoHelper.getShouldLoadImages()) {
+        PicassoHelper.loadAvatar(item.getUploaderAvatars()).into(itemThumbnailView);
+        if (ImageStrategy.shouldLoadImages()) {
             itemThumbnailView.setVisibility(View.VISIBLE);
             itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,
                     commentVerticalPadding, commentVerticalPadding);

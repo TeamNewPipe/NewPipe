@@ -43,7 +43,6 @@
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di connessione</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le copertine</string>
-    <string name="youtube_signature_deobfuscation_error">Impossibile decriptare la firma dell\'URL del video</string>
     <string name="content_not_available">Contenuto non disponibile</string>
     <string name="parsing_error">Impossibile analizzare il sito web</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
@@ -287,8 +286,6 @@
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica copertine</string>
-    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle copertine, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Svuota la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
@@ -454,7 +451,7 @@
     <string name="app_language_title">Lingua dell\'applicazione</string>
     <string name="systems_language">Predefinita di sistema</string>
     <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
-    <string name="recaptcha_done_button">Fatto</string>
+    <string name="done">Fatto</string>
     <string name="videos_string">Video</string>
     <plurals name="seconds">
         <item quantity="one">%d secondo</item>
@@ -614,7 +611,6 @@
     <string name="metadata_privacy_private">Privato</string>
     <string name="metadata_privacy_unlisted">Non in elenco</string>
     <string name="metadata_privacy_public">Pubblico</string>
-    <string name="metadata_thumbnail_url">URL copertina</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Supporto</string>
     <string name="metadata_language">Lingua</string>
@@ -765,7 +761,7 @@
     <string name="settings_category_exoplayer_title">Impostazioni ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_title">Usa la funzione di fallback del decoder di ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usa sempre la soluzione alternativa per impostare la superficie di uscita video di ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">originale</string>
     <string name="audio_track_type_dubbed">doppiato</string>
     <string name="audio_track_type_descriptive">descrittivo</string>
@@ -777,4 +773,50 @@
     <string name="main_tabs_position_title">Posizione delle schede principali</string>
     <string name="main_tabs_position_summary">Sposta in fondo il selettore della scheda principale</string>
     <string name="disable_media_tunneling_automatic_info">Il tunneling multimediale è stato disabilitato per impostazione predefinita sul dispositivo in uso, poiché è noto che il modello del dispositivo non lo supporta.</string>
+    <string name="no_streams">Nessuna trasmissione</string>
+    <string name="no_live_streams">Nessuna trasmissione in diretta</string>
+    <string name="channel_tab_videos">Video</string>
+    <string name="metadata_subscribers">Iscritti</string>
+    <string name="show_channel_tabs_summary">Quali schede mostrare nelle pagine del canale</string>
+    <string name="show_channel_tabs">Schede canale</string>
+    <string name="channel_tab_shorts">Short</string>
+    <string name="loading_metadata_title">Caricamento metadati…</string>
+    <string name="feed_fetch_channel_tabs">Recupera schede del canale</string>
+    <string name="channel_tab_about">Informazioni</string>
+    <string name="channel_tab_albums">Album</string>
+    <string name="feed_fetch_channel_tabs_summary">Schede da recuperare quando si aggiorna il feed. Questa opzione non ha effetto se un canale viene aggiornato usando la modalità veloce.</string>
+    <string name="channel_tab_playlists">Playlist</string>
+    <string name="channel_tab_tracks">Tracce</string>
+    <string name="channel_tab_channels">Canali</string>
+    <string name="channel_tab_livestreams">Dirette</string>
+    <string name="image_quality_title">Qualità immagine</string>
+    <string name="question_mark">\?</string>
+    <string name="toggle_screen_orientation">Cambia orientamento schermo</string>
+    <string name="image_quality_low">Qualità bassa</string>
+    <string name="toggle_fullscreen">Attiva/disattiva schermo intero</string>
+    <string name="metadata_avatars">Avatar</string>
+    <string name="next_stream">Video successivo</string>
+    <string name="metadata_subchannel_avatars">Avatar del sotto-canale</string>
+    <string name="open_play_queue">Apri coda di riproduzione</string>
+    <string name="image_quality_none">Non caricare immagini</string>
+    <string name="image_quality_high">Qualità alta</string>
+    <string name="forward">Avanti</string>
+    <string name="rewind">Riavvolgi</string>
+    <string name="replay">Ricomincia</string>
+    <string name="image_quality_medium">Qualità media</string>
+    <string name="metadata_uploader_avatars">Avatar dell\'autore</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="image_quality_summary">Scegli la qualità delle immagini e se caricarle o meno, per ridurre l\'utilizzo di dati e memoria. Le modifiche svuotano la cache immagini sia in memoria che su disco — %s</string>
+    <string name="play">Riproduci</string>
+    <string name="more_options">Altre opzioni</string>
+    <string name="metadata_thumbnails">Miniature</string>
+    <string name="duration">Durata</string>
+    <string name="previous_stream">Video precedente</string>
+    <string name="share_playlist_with_list">Condividi elenco URL</string>
+    <string name="share_playlist_with_titles">Condividi con i titoli</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Condividi playlist</string>
+    <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

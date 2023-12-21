@@ -57,8 +57,6 @@
     <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
     <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan. Mencari 5, 15 atau 25 saat tidak berfungsi dengan ini</string>
-    <string name="download_thumbnail_title">Muatkan thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan ingatan. Perubahan akan menghapus cache imej dari ingatan dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
@@ -135,7 +133,6 @@
     <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
-    <string name="youtube_signature_deobfuscation_error">Tidak dapat menyahsulit tanda tangan URL video</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
     <string name="could_not_setup_download_menu">Tidak dapat menyediakan menu muat turun</string>
@@ -380,7 +377,7 @@
         <item quantity="other">%s pendengar</item>
     </plurals>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
-    <string name="recaptcha_done_button">Selesai</string>
+    <string name="done">Selesai</string>
     <string name="recaptcha_solve">Selesaikan</string>
     <string name="no_comments">Tidak ada ulasan</string>
     <plurals name="videos">

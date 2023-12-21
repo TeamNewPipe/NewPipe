@@ -44,7 +44,6 @@
     <string name="could_not_setup_download_menu">ডাউনলোড মেনু সেটআপ করা যায়নি</string>
     <string name="content_not_available">কন্টেন্ট উপলব্ধ নয়</string>
     <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি</string>
-    <string name="youtube_signature_deobfuscation_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
     <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="general_error">ত্রুটি</string>
@@ -79,10 +78,8 @@
     <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
     <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মুছো</string>
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মুছে ফেলা হয়েছে</string>
-    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে</string>
     <string name="show_comments_summary">মতামত প্রদর্শন বন্ধ করতে অপশনটি বন্ধ করুন</string>
     <string name="show_comments_title">মতামত প্রদর্শন করুন</string>
-    <string name="download_thumbnail_title">থাম্বনেইল লোড করুন</string>
     <string name="seek_duration_title">দ্রুত-ফরওয়ার্ড/-পুনরায় সন্ধান সময়কাল</string>
     <string name="use_inexact_seek_summary">অনির্দিষ্ট সন্ধান প্লেয়ারকে আরো দ্রুত গতিতে সন্ধান করার সুবিধা দেয়, কিন্তু এটি সম্পূর্ণ নির্ভুল নাও হতে পারে ৷ ৫, ১৫ ও ২৫ সেকেন্ডের জন্য এটা কাজ করবে না ৷</string>
     <string name="use_inexact_seek_title">দ্রুত টানা ব্যাবহার করুন</string>
@@ -242,7 +239,7 @@
     <string name="contribution_title">যোগদান</string>
     <string name="title_activity_about">নিউ পাইপ এর সম্বন্ধে</string>
     <string name="charset_letters_and_digits">শব্দ ও নম্বর</string>
-    <string name="recaptcha_done_button">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>

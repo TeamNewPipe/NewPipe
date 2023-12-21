@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Запамти ја последната големина и место на прозорчето</string>
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување се пребарува побрзо, но со намалена презицност.</string>
-    <string name="download_thumbnail_title">Прочитај мали видео-сликички</string>
-    <string name="download_thumbnail_summary">Оневозможете, за да не се читаат малите видео-сликички за штедење на меморија и интернет. Промената на оваа опцијата ќе ја избрише кеш-меморијата.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кешираните слики се избришани</string>
     <string name="metadata_cache_wipe_title">Избришете ги кешираните мета-податоци</string>
     <string name="metadata_cache_wipe_summary">Избришете ги сите кеш-податоци од веб-страни</string>
@@ -114,7 +112,6 @@
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
-    <string name="youtube_signature_deobfuscation_error">Невозможно децифрирање на URL потписот</string>
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>
     <string name="could_not_setup_download_menu">Неуспешно поставување на менито за превземања</string>

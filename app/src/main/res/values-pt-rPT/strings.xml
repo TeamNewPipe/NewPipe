@@ -44,8 +44,8 @@
     <string name="enable_watch_history_title">Histórico de visualizações</string>
     <plurals name="views">
         <item quantity="one">%s visualização</item>
-        <item quantity="many">%s subscritores</item>
-        <item quantity="other">%s subscritores</item>
+        <item quantity="many">%s visualizações</item>
+        <item quantity="other">%s visualizações</item>
     </plurals>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
     <string name="settings_category_history_title">Histórico e cache</string>
@@ -137,7 +137,6 @@
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="no_subscribers">Sem subscritores</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="enqueue">Enfileirar</string>
@@ -218,7 +217,6 @@
     <string name="new_and_hot">Novos e tendências</string>
     <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
-    <string name="youtube_signature_deobfuscation_error">Não foi possível decifrar a assinatura do URL</string>
     <string name="select_a_playlist">Selecione uma lista de reprodução</string>
     <string name="feed_oldest_subscription_update">Última atualização: %s</string>
     <string name="import_data_title">Importar base de dados</string>
@@ -442,7 +440,6 @@
     <string name="default_audio_format_title">Formato padrão de áudio</string>
     <string name="invalid_file">O ficheiro não existe ou não tem permissões para ler e/ou escrever</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
-    <string name="download_thumbnail_title">Carregar miniaturas</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
     <string name="search">Pesquisar</string>
@@ -540,7 +537,7 @@
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="paused">em pausa</string>
     <string name="show_comments_title">Mostrar comentários</string>
-    <string name="recaptcha_done_button">Aceitar</string>
+    <string name="done">Concluído</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="never">Nunca</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>
@@ -608,7 +605,7 @@
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="night_theme_title">Tema escuro</string>
     <string name="show_channel_details">Mostrar detalhes do canal</string>
-    <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
+    <string name="disable_media_tunneling_summary">Desactive o túnel multimédia se tiver um ecrã preto ou gaguejo na reprodução de vídeo.</string>
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
     <string name="off">Desligado</string>
     <string name="on">Ligado</string>
@@ -619,7 +616,6 @@
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_unlisted">Não listado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL da miniatura</string>
     <string name="metadata_host">Servidor</string>
     <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>
@@ -773,7 +769,54 @@
     <string name="settings_category_exoplayer_title">Configurações ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gere algumas configurações de ExoPlayer. É necessário reiniciar o reprodutor para aplicar as alterações</string>
     <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do descodificador do ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_summary">Mova o seletor da guia principal para a parte inferior</string>
     <string name="main_tabs_position_title">Posição das guias principais</string>
+    <string name="disable_media_tunneling_automatic_info">O túnel multimédia foi desativado por predefinição no seu dispositivo porque se sabe que o modelo do dispositivo não o suporta.</string>
+    <string name="no_live_streams">Nenhum vídeo em direto</string>
+    <string name="no_streams">Nenhum vídeo</string>
+    <string name="image_quality_title">Qualidade da imagem</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Subscritores</string>
+    <string name="show_channel_tabs_summary">Os separadores a mostrar na página Canal</string>
+    <string name="share_playlist_with_list">Partilhar lista de URLs</string>
+    <string name="share_playlist_with_titles">Partilhar com títulos</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Separadores do canal</string>
+    <string name="channel_tab_shorts">Curtos</string>
+    <string name="loading_metadata_title">A carregar metadados…</string>
+    <string name="toggle_screen_orientation">Alternar orientação do ecrã</string>
+    <string name="image_quality_low">Baixa qualidade</string>
+    <string name="toggle_fullscreen">Alternar ecrã completo</string>
+    <string name="feed_fetch_channel_tabs">Obter separadores de canais</string>
+    <string name="metadata_avatars">Avatars</string>
+    <string name="next_stream">Fluxo seguinte</string>
+    <string name="metadata_subchannel_avatars">Avatar de subcanais</string>
+    <string name="open_play_queue">Abrir fila de reprodução</string>
+    <string name="image_quality_none">Não carregar imagens</string>
+    <string name="image_quality_high">Alta qualidade</string>
+    <string name="channel_tab_about">Acerca</string>
+    <string name="share_playlist">Partilhar lista de reprodução</string>
+    <string name="forward">Avançar</string>
+    <string name="channel_tab_albums">Álbuns</string>
+    <string name="rewind">Recuar</string>
+    <string name="replay">Repetição</string>
+    <string name="feed_fetch_channel_tabs_summary">Separadores a obter ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado utilizando o modo rápido.</string>
+    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
+    <string name="image_quality_medium">Média qualidade</string>
+    <string name="metadata_uploader_avatars">Avatar dos publicadores</string>
+    <string name="metadata_banners">Bandeiras</string>
+    <string name="channel_tab_playlists">Listas de reprodução</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="image_quality_summary">Escolha a qualidade das imagens e se pretende carregar imagens, para reduzir a utilização de dados e de memória. As alterações limpam a cache de imagens na memória e no disco - %s</string>
+    <string name="play">Reproduzir</string>
+    <string name="more_options">Mais opções</string>
+    <string name="metadata_thumbnails">Miniaturas</string>
+    <string name="channel_tab_tracks">Faixas</string>
+    <string name="duration">Duração</string>
+    <string name="channel_tab_channels">Canais</string>
+    <string name="previous_stream">Fluxo anterior</string>
+    <string name="channel_tab_livestreams">Direto</string>
 </resources>

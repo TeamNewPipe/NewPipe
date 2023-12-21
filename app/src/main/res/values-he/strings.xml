@@ -63,7 +63,6 @@
     <string name="general_error">שגיאה</string>
     <string name="network_error">שגיאת רשת</string>
     <string name="could_not_load_thumbnails">אין אפשרות לטעון את כל התמונות הממוזערות</string>
-    <string name="youtube_signature_deobfuscation_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
     <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="content_not_available">תוכן אינו זמין</string>
     <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדה</string>
@@ -268,8 +267,6 @@
     <string name="playback_tempo">קצב</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת</string>
-    <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
-    <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן</string>
     <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
     <string name="auto_queue_title">הוספת התזרים הבא לרשימת הנגינה אוטומטית</string>
     <string name="auto_queue_summary">להמשיך תור נגינה סופית (בלתי מחזורית) על ידי הוספת תזרים קשור</string>
@@ -459,7 +456,7 @@
     <string name="app_language_title">שפת היישומון</string>
     <string name="systems_language">ברירת המחדל של המערכת</string>
     <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
-    <string name="recaptcha_done_button">סיום</string>
+    <string name="done">סיום</string>
     <string name="videos_string">סרטונים</string>
     <plurals name="seconds">
         <item quantity="one">שנייה אחת</item>
@@ -624,7 +621,6 @@
     <string name="metadata_privacy_private">פרטי</string>
     <string name="metadata_privacy_unlisted">לא מופיע ברשימות</string>
     <string name="metadata_privacy_public">ציבורי</string>
-    <string name="metadata_thumbnail_url">כתובת תמונה ממוזערת</string>
     <string name="metadata_host">אירוח</string>
     <string name="metadata_support">תמיכה</string>
     <string name="metadata_language">שפה</string>
@@ -788,6 +784,52 @@
 \nהפעלת האפשרות עשויה למנוע שגיאות נגינה בעת חזרה לנגן הווידאו הנוכחית או במעבר למסך מלא</string>
     <string name="main_tabs_position_title">מקום לשוניות ראשיות</string>
     <string name="main_tabs_position_summary">להעביר את בורר הלשוניות הראשי לתחתית</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">תיעול מדיה הושבת כברירת מחדל במכשיר שלך כיוון שדגם המכשיר ידוע בכך שאינו תומך בזה.</string>
+    <string name="no_live_streams">אין תזרימים חיים</string>
+    <string name="no_streams">אין תזרימים</string>
+    <string name="channel_tab_videos">סרטונים</string>
+    <string name="metadata_subscribers">מנויים</string>
+    <string name="show_channel_tabs_summary">אין לשוניות מופיעות בעמודי הערוץ</string>
+    <string name="show_channel_tabs">לשוניות ערוץ</string>
+    <string name="channel_tab_shorts">Shorts‎</string>
+    <string name="loading_metadata_title">נתוני העל נטענים…</string>
+    <string name="feed_fetch_channel_tabs">משיכת לשוניות הערוץ</string>
+    <string name="channel_tab_about">על אודות</string>
+    <string name="channel_tab_albums">אלבומים</string>
+    <string name="feed_fetch_channel_tabs_summary">לשוניות למשיכה בעת עדכון ערוץ העדכונים. לאפשרות זו אין השפעה אם הערוץ מתעדכן במצב מהיר.</string>
+    <string name="channel_tab_playlists">רשימות נגינה</string>
+    <string name="channel_tab_tracks">רצועות</string>
+    <string name="channel_tab_channels">ערוצים</string>
+    <string name="channel_tab_livestreams">שידור חי</string>
+    <string name="toggle_screen_orientation">החלפת כיוון מסך</string>
+    <string name="toggle_fullscreen">מילוי המסך/רגיל</string>
+    <string name="next_stream">התזרים הבא</string>
+    <string name="open_play_queue">פתיחת תור נגינה</string>
+    <string name="forward">דילוג קדימה</string>
+    <string name="rewind">החזרה אחורה</string>
+    <string name="replay">נגינה חוזרת</string>
+    <string name="play">נגינה</string>
+    <string name="more_options">אפשרויות נוספות</string>
+    <string name="duration">משך</string>
+    <string name="previous_stream">התזרים הקודם</string>
+    <string name="image_quality_title">איכות תמונה</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">איכות נמוכה</string>
+    <string name="metadata_avatars">תמונות ייצוגיות</string>
+    <string name="metadata_subchannel_avatars">תמונות ייצוגיות של תת־ערוצים</string>
+    <string name="image_quality_none">לא לטעון תמונות</string>
+    <string name="image_quality_high">איכות גבוהה</string>
+    <string name="image_quality_medium">איכות בינונית</string>
+    <string name="metadata_uploader_avatars">תמונות ייצוגיות של מעלים</string>
+    <string name="metadata_banners">כרזות</string>
+    <string name="image_quality_summary">נא לבחור את איכות התמונות והאם בכלל להוריד אותן כדי לחסוך בצריכת נתונים ושימוש בזיכרון. השינויים מפנים הן את מטמון השמירה בזיכרון והן בכונן — %s</string>
+    <string name="metadata_thumbnails">תמונות ממוזערות</string>
+    <string name="share_playlist_with_list">שיתוף רשימת כתובות</string>
+    <string name="share_playlist_with_titles">שיתוף עם כותרות</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">שיתוף רשימת נגינה</string>
+    <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

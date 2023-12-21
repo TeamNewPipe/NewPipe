@@ -20,7 +20,7 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -46,7 +46,6 @@
     <string name="general_error">Hata</string>
     <string name="network_error">Ağ hatası</string>
     <string name="could_not_load_thumbnails">Küçük resimlerin tamamı yüklenemedi</string>
-    <string name="youtube_signature_deobfuscation_error">Video URL imzasının şifresi çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
@@ -58,7 +57,7 @@
     <string name="what_happened_headline">Ne oldu:</string>
     <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nİçerik Ülkesi:\\nUygulama Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
     <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
-    <string name="detail_uploader_thumbnail_view_description">Yükleyicinin avatar küçük resmi</string>
+    <string name="detail_uploader_thumbnail_view_description">Yükleyenin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
     <string name="detail_dislikes_img_view_description">Beğenmeme</string>
     <string name="video">Video</string>
@@ -103,7 +102,7 @@
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seç</string>
+    <string name="show_search_suggestions_summary">Arama yaparken öneriler gösterilsin mi</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
@@ -213,11 +212,11 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Çalma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
-    <string name="dismiss">Reddet</string>
+    <string name="dismiss">Dışla</string>
     <string name="rename">Yeniden adlandır</string>
     <string name="title_last_played">Son Oynatılan</string>
     <string name="title_most_played">En Çok Oynatılan</string>
@@ -238,13 +237,13 @@
     <string name="resize_fill">Doldur</string>
     <string name="resize_zoom">Yakınlaştır</string>
     <string name="settings_category_debug_title">Hata ayıklama</string>
-    <string name="caption_auto_generated">Otomatik oluşturulan</string>
+    <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
     <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıtlamamasına neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır</string>
-    <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
+    <string name="auto_queue_title">Sonraki akışı kuyruğa kendiliğinden ekle</string>
     <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlanacak (yinelemeyen) oynatma sırasını sürdür</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böylesi klasör yok</string>
@@ -280,9 +279,7 @@
     <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın.
 \n
 \nSürdürmek istiyor musunuz\?</string>
-    <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önleyerek veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki resim önbelleğini temizler</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
@@ -346,7 +343,7 @@
     <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
-    <string name="auto">Otomatik</string>
+    <string name="auto">Kendiliğinden</string>
     <string name="missions_header_finished">Tamamlandı</string>
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>
@@ -378,7 +375,7 @@
     <string name="missions_header_pending">Beklemede</string>
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
-    <string name="autoplay_title">Otomatik oynatma</string>
+    <string name="autoplay_title">Kendiliğinden oynat</string>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
     <string name="close">Kapat</string>
@@ -438,7 +435,7 @@
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>
     <string name="most_liked">En çok beğenilen</string>
-    <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
+    <string name="playlist_no_uploader">Kendiliğinden oluşturulan (yükleyen bulunamadı)</string>
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Oluşum seçin</string>
@@ -448,7 +445,7 @@
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" düğmesine basın</string>
-    <string name="recaptcha_done_button">Bitti</string>
+    <string name="done">Bitti</string>
     <string name="videos_string">Videolar</string>
     <plurals name="seconds">
         <item quantity="one">%d saniye</item>
@@ -534,10 +531,10 @@
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi</string>
-    <string name="autoplay_summary">Oynatmayı otomatik başlat — %s</string>
+    <string name="autoplay_summary">Oynatmayı kendiliğinden başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
     <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
-    <string name="auto_queue_toggle">Otomatik kuyruğa alma</string>
+    <string name="auto_queue_toggle">Kendiliğinden kuyruğa alış</string>
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
     <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
     <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
@@ -594,16 +591,15 @@
     <string name="download_has_started">İndirme başladı</string>
     <string name="select_night_theme_toast">Gözde gece temanızı aşağıdan seçebilirsiniz</string>
     <string name="night_theme_summary">Gözde gece temanızı seçin — %s</string>
-    <string name="auto_device_theme_title">Otomatik (cihaz teması)</string>
-    <string name="night_theme_title">Gece Teması</string>
+    <string name="auto_device_theme_title">Kendiliğinden (aygıt teması)</string>
+    <string name="night_theme_title">Gece teması</string>
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
-    <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
+    <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın.</string>
     <string name="disable_media_tunneling_title">Ortam tünellemeyi devre dışı bırak</string>
     <string name="metadata_privacy_internal">İç</string>
     <string name="metadata_privacy_private">Gizli</string>
     <string name="metadata_privacy_unlisted">Listelenmemiş</string>
     <string name="metadata_privacy_public">Herkese Açık</string>
-    <string name="metadata_thumbnail_url">Küçük Resim URL\'si</string>
     <string name="metadata_host">Konakçı</string>
     <string name="metadata_support">Destek</string>
     <string name="metadata_language">Dil</string>
@@ -627,7 +623,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
-    <string name="off">Kapat</string>
+    <string name="off">Kapalı</string>
     <string name="on">Aç</string>
     <string name="tablet_mode_title">Tablet kipi</string>
     <string name="seekbar_preview_thumbnail_title">Konum çubuğu küçük resim ön izlemesi</string>
@@ -650,7 +646,7 @@
         <item quantity="other">%s indirme tamamlandı</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
-    <string name="start_main_player_fullscreen_summary">Videoları mini oynatıcıda başlatmayın, otomatik döndürme kilitliyse doğrudan tam ekran moduna geçin. Tam ekrandan çıkarak mini oynatıcıya erişmeye devam edebilirsiniz</string>
+    <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişebilirsiniz</string>
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
     <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
     <string name="enqueued_next">Sonraki sıraya eklendi</string>
@@ -743,7 +739,7 @@
     <string name="audio_track_type_original">özgün</string>
     <string name="audio_track_type_dubbed">dublaj</string>
     <string name="audio_track_type_descriptive">betimlemeli</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="select_audio_track_external_players">Dış oynatıcılar için ses parçası seç</string>
     <string name="prefer_original_audio_summary">Dil ne olursa olsun özgün ses parçasını seç</string>
     <string name="play_queue_audio_track">Ses: %s</string>
@@ -751,4 +747,63 @@
     <string name="prefer_descriptive_audio_title">Betimlemeli sesi yeğle</string>
     <string name="audio_track">Ses parçası</string>
     <string name="audio_track_present_in_video">Bu akışta halihazırda bir ses parçası bulunmalıdır</string>
+    <string name="no_streams">Akış yok</string>
+    <string name="no_live_streams">Canlı akış yok</string>
+    <string name="right_gesture_control_title">Sağ kaydırma eylemi</string>
+    <string name="main_tabs_position_summary">Ana sekme seçiciyi alta taşı</string>
+    <string name="main_tabs_position_title">Ana sekme konumu</string>
+    <string name="disable_media_tunneling_automatic_info">Ortam tünelleme öntanımlı olarak devre dışı bırakılmıştır çünkü aygıt modelinizin desteği bilinmemektedir.</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Çözücü ilklendirme sorunlarınız varsa bu seçeneği etkinleştirin, eğer birincil çözücülerin ilklendirmesi başarısızsa düşük öncelikli çözücülere dönülür. Bu, birincil çözücüler kullanılırkenki başarımdan daha kötü sonuçlanabilir</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Her zaman ExoPlayer\'ın video çıktısı yüzey ayar çözümünü kullan</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu çözüm, bir yüzey değişimi yaşandığında yüzeyi doğrudan kodlayıcıya ayarlamaktansa video kodlayıcısını serbest bırakır ve yeniden örneklendirir. Bu sorunu olan bazı aygıtlarda ExoPlayer tarafından halihazırda kullanılır, bu ayar yalnızca Android 6 ve üstünde etkilidir
+\n
+\nBu ayarı etkinleştirmek, geçerli video oynatıcısını değiştirirken veya tam ekrana geçerkenki oynatma hatalarını önleyebilir</string>
+    <string name="progressive_load_interval_summary">Progresif içeriklerdeki yükleme aralığı boyutunu değiştir (şu anda %s). Daha düşük değer ilk yüklemeyi hızlandırabilir</string>
+    <string name="left_gesture_control_title">Sol kaydırma eylemi</string>
+    <string name="right_gesture_control_summary">Parmağınızı ekranın sağ yarısında kaydırırken ne yapılacağını seçin</string>
+    <string name="use_exoplayer_decoder_fallback_title">ExoPlayer\'ın çözücü yedek özelliğini kullan</string>
+    <string name="image_quality_title">Resim niteliği</string>
+    <string name="channel_tab_videos">Videolar</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Aboneler</string>
+    <string name="show_channel_tabs_summary">Kanal sayfalarında hangi sekmelerin gösterileceği</string>
+    <string name="share_playlist_with_list">Adres Listesiyle Paylaş</string>
+    <string name="share_playlist_with_titles">Başlıklarla Paylaş</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Kanal sekmeleri</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Üst Veri Yükleniyor…</string>
+    <string name="toggle_screen_orientation">Ekran yönelimini değiştir</string>
+    <string name="image_quality_low">Düşük nitelik</string>
+    <string name="toggle_fullscreen">Tam ekranı değiştir</string>
+    <string name="feed_fetch_channel_tabs">Kanal sekmelerini al</string>
+    <string name="metadata_avatars">Avatarlar</string>
+    <string name="next_stream">Sonraki akış</string>
+    <string name="metadata_subchannel_avatars">Alt kanal avatarları</string>
+    <string name="open_play_queue">Oynatma kuyruğunu aç</string>
+    <string name="image_quality_none">Resimleri yükleme</string>
+    <string name="image_quality_high">Yüksek nitelik</string>
+    <string name="channel_tab_about">Hakkında</string>
+    <string name="share_playlist">Oynatma Listesini Paylaş</string>
+    <string name="forward">İleri sar</string>
+    <string name="channel_tab_albums">Albümler</string>
+    <string name="rewind">Geri sar</string>
+    <string name="replay">Yeniden oynat</string>
+    <string name="feed_fetch_channel_tabs_summary">Besleme güncellenirken alınacak sekmeler. Hızlı kip kullanılırken kanal güncelleniyorsa bu seçeneğin etkisi yoktur.</string>
+    <string name="share_playlist_with_titles_message">Oynatma listesini, oynatma listesi adı ve video başlıkları gibi ayrıntılarla ya da video adreslerinin basit listesi olarak paylaş</string>
+    <string name="image_quality_medium">Orta nitelik</string>
+    <string name="metadata_uploader_avatars">Yükleyen avatarları</string>
+    <string name="metadata_banners">Afişler</string>
+    <string name="channel_tab_playlists">Oynatma listeleri</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="image_quality_summary">Veriyi ve bellek kullanımını düşürmek için resimlerin niteliğini ve tümünün yüklenip yüklenmemesini seçin. Değişiklikler bellek ve diskteki resim önbelleğini temizler — %s</string>
+    <string name="play">Oynat</string>
+    <string name="more_options">Daha çok seçenekler</string>
+    <string name="metadata_thumbnails">Küçük resimler</string>
+    <string name="channel_tab_tracks">Parçalar</string>
+    <string name="duration">Süre</string>
+    <string name="channel_tab_channels">Kanallar</string>
+    <string name="previous_stream">Önceki akış</string>
+    <string name="channel_tab_livestreams">Canlı</string>
 </resources>

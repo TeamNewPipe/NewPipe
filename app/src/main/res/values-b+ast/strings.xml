@@ -25,7 +25,6 @@
     <string name="duration_live">En direuto</string>
     <string name="general_error">Fallu</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
-    <string name="youtube_signature_deobfuscation_error">Nun pudo sabese la robla de la URL del videu</string>
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
@@ -206,8 +205,6 @@
 \n3. Anicia sesión cuando se te pida
 \n4. Copia la URL del perfil al que te redirixeron.</string>
     <string name="import_soundcloud_instructions_hint">soundcloud.com/LaToID</string>
-    <string name="download_thumbnail_title">Cargar les miniatures</string>
-    <string name="download_thumbnail_summary">Desactiva esta opción pa eviar la carga de miniatures y aforrar datos y usu de memoria. Los cambeos llimpien la caché d\'imáxenes temporal y permanente.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar d\'aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>
@@ -423,7 +420,7 @@
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
     <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
     <string name="settings_file_replacement_character_summary">Los caráuteres que nun son válidos van trocase por esti valor</string>
-    <string name="recaptcha_done_button">Fecho</string>
+    <string name="done">Fecho</string>
     <string name="subtitle_activity_recaptcha">Primi «Fecho» al resolvelu</string>
     <string name="one_item_deleted">Desanicióse 1 elementu.</string>
     <string name="no_available_dir">Defini una capeta de descargues dempués, nos axustes de l\'aplicación</string>

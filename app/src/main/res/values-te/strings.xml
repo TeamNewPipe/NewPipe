@@ -165,13 +165,11 @@
     <string name="show_higher_resolutions_title">అధిక స్పష్టతను చూపుము</string>
     <string name="black_theme_title">నలుపు</string>
     <string name="popup_remember_size_pos_title">పాప్అప్ లక్షణాలను గుర్తుంచుకో</string>
-    <string name="download_thumbnail_title">సూక్ష్మచిత్రాలను లోడ్ చేయండి</string>
     <string name="show_comments_title">వ్యాఖ్యలను చూపించు</string>
     <string name="show_comments_summary">వ్యాఖ్యలను దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="peertube_instance_url_help">%sలో మీకు నచ్చిన సందర్భాలను కనుగొనండి</string>
     <string name="peertube_instance_url_title">పీర్‌ట్యూబ్ ఉదాహరణలు</string>
     <string name="notification_action_2_title">మూడవ చర్య బటన్</string>
-    <string name="download_thumbnail_summary">థంబ్‌నెయిల్‌లను లోడ్ చేయడం, డేటాను సేవ్ చేయడం మరియు మెమరీ వినియోగాన్ని నిరోధించడానికి ఆఫ్ చేయండి. మార్పులు ఇన్-మెమరీ మరియు ఆన్-డిస్క్ ఇమేజ్ కాష్ రెండింటినీ క్లియర్ చేస్తాయి</string>
     <string name="use_inexact_seek_summary">ఖచ్చితమైన శోధన తగ్గిన ఖచ్చితత్వంతో వేగంగా స్థానాలను పొందేందుకు ఆటగాడిని అనుమతిస్తుంది. 5, 15 లేదా 25 సెకన్ల పాటు కోరడం దీనితో పని చేయదు</string>
     <string name="use_inexact_seek_title">వేగవంతమైన ఖచ్చితమైన శోధనను ఉపయోగించండి</string>
     <string name="controls_add_to_playlist_title">జోడించండి</string>
@@ -265,7 +263,6 @@
     <string name="watch_history_states_deleted">ప్లేబ్యాక్ స్థానాలు తొలగించబడ్డాయి</string>
     <string name="external_player_unsupported_link_type">బాహ్య ప్లేయర్‌లు ఈ రకమైన లింక్‌లకు మద్దతు ఇవ్వవు</string>
     <string name="checksum">చెక్సమ్</string>
-    <string name="youtube_signature_deobfuscation_error">వీడియో URL సంతకాన్ని డీఓబ్‌ఫస్కేట్ చేయడం సాధ్యపడలేదు</string>
     <string name="error_report_open_issue_button_text">GitHubపై నివేదించు</string>
     <string name="empty_list_subtitle">ఇక్కడ క్రికెట్‌లు తప్ప మరేమీ లేదు</string>
     <string name="no_one_listening">ఎవరూ వినడం లేదు</string>
@@ -348,7 +345,7 @@
     <string name="one_item_deleted">1 అంశం తొలగించబడింది.</string>
     <string name="subtitle_activity_recaptcha">పరిష్కరించబడినప్పుడు \"పూర్తయింది\" నొక్కండి</string>
     <string name="recaptcha_solve">పరిష్కరించండి</string>
-    <string name="recaptcha_done_button">పూర్తి</string>
+    <string name="done">పూర్తి</string>
     <string name="charset_most_special_characters">చాలా ప్రత్యేక పాత్రలు</string>
     <string name="app_description">ఆండ్రాయిడ్‌లో లిబ్రే తేలికపాటి స్ట్రీమింగ్.</string>
     <string name="donation_encouragement">వాలంటీర్లు తమ ఖాళీ సమయాన్ని వెచ్చిస్తూ మీకు ఉత్తమ వినియోగదారు అనుభవాన్ని అందించడం ద్వారా NewPipe అభివృద్ధి చేయబడింది. డెవలపర్‌లు ఒక కప్పు కాఫీని ఆస్వాదిస్తున్నప్పుడు న్యూపైప్‌ని మరింత మెరుగ్గా చేయడంలో సహాయపడటానికి తిరిగి ఇవ్వండి.</string>

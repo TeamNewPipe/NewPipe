@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="no_player_found">Não tem um reprodutor de vídeo. Instalar o VLC\?</string>
+    <string name="no_player_found">Reprodutor de vídeo não encontrado. Instalar VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -15,12 +15,12 @@
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_path_title">Pasta para os ficheiros de vídeo</string>
     <string name="download_path_summary">Os ficheiros de vídeo descarregados serão guardados aqui</string>
-    <string name="download_path_dialog_title">Escolha a pasta para colocar os ficheiros de vídeo</string>
+    <string name="download_path_dialog_title">Escolha a pasta para guardar os ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="kore_not_found">Instalar Kore\?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostrar uma opção para reproduzir o vídeo no Kodi</string>
+    <string name="show_play_with_kodi_summary">Mostrar opção para reproduzir o vídeo no Kodi</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato padrão de áudio</string>
     <string name="download_dialog_title">Descarregar</string>
@@ -38,12 +38,11 @@
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="background_player_playing_toast">Reprodução em segundo plano</string>
     <string name="network_error">Erro de rede</string>
-    <string name="download_path_audio_title">Pasta para ficheiros de áudio</string>
+    <string name="download_path_audio_title">Pasta para os ficheiros de áudio</string>
     <string name="download_path_audio_summary">Os ficheiros de áudio descarregados serão guardados aqui</string>
-    <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
+    <string name="download_path_audio_dialog_title">Escolha a pasta para guardar os ficheiros de áudio</string>
     <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
-    <string name="youtube_signature_deobfuscation_error">Não foi possível decifrar a assinatura do URL</string>
     <string name="parsing_error">Não foi possível processar o site</string>
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="content">Conteúdo</string>
@@ -62,8 +61,8 @@
     <string name="retry">Tentar novamente</string>
     <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="duration_live">Em direto</string>
-    <string name="downloads">Transferências</string>
-    <string name="downloads_title">Transferências</string>
+    <string name="downloads">Descargas</string>
+    <string name="downloads_title">Descargas</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="start">Iniciar</string>
     <string name="pause">Pausa</string>
@@ -83,7 +82,7 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
     <string name="msg_popup_permission">Esta permissão é necessária
@@ -123,7 +122,7 @@
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="tab_subscriptions">Subscrições</string>
     <string name="fragment_feed_title">Novidades</string>
-    <string name="enable_search_history_title">Histórico de pesquisa</string>
+    <string name="enable_search_history_title">Pesquisar histórico</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Histórico de visualizações</string>
     <string name="enable_watch_history_summary">Manter histórico dos vídeos visualizados</string>
@@ -132,7 +131,7 @@
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Histórico e cache</string>
-    <string name="undo">Anular</string>
+    <string name="undo">Desfazer</string>
     <string name="notification_channel_name">Notificação NewPipe</string>
     <string name="notification_channel_description">Notificações para o reprodutor do NewPipe</string>
     <string name="search_no_results">Sem resultados</string>
@@ -194,18 +193,16 @@
     <string name="switch_to_popup">Mudar para popup</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="player_stream_failure">Não foi possível reproduzir este vídeo</string>
-    <string name="external_player_unsupported_link_type">Os reprodutores externos não suportam este tipo de hiperligações</string>
+    <string name="external_player_unsupported_link_type">Os reprodutores externos não possuem suporte a este tipo de ligações</string>
     <string name="detail_drag_description">Arraste para reordenar</string>
     <string name="create">Criar</string>
     <string name="rename">Mudar nome</string>
     <string name="donation_title">Doar</string>
-    <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar o VLC para reproduzir).</string>
-    <string name="controls_download_desc">Descarregar ficheiro de vídeo</string>
+    <string name="no_player_found_toast">Reprodutor de vídeo não encontrado (pode instalar VLC para o efeito).</string>
+    <string name="controls_download_desc">Descarregar ficheiro</string>
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
-    <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida, mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente</string>
-    <string name="download_thumbnail_title">Carregar miniaturas</string>
-    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
+    <string name="use_inexact_seek_summary">Este tipo de pesquisa e mais rápida mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
     <string name="default_content_country_title">País padrão para conteúdo</string>
     <string name="settings_category_debug_title">Depuração</string>
@@ -283,16 +280,16 @@
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para enfileirar\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes\" da janela popup</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
     <string name="users">Utilizadores</string>
     <string name="clear_views_history_summary">Remove o histórico dos vídeos reproduzidos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Remover todo o histórico de visualizações\?</string>
-    <string name="watch_history_deleted">Histórico de vídeos apagado</string>
-    <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
+    <string name="watch_history_deleted">Histórico de vídeos eliminado</string>
+    <string name="clear_search_history_title">Remover histórico de pesquisas</string>
     <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="search_history_deleted">Histórico de pesquisa removido</string>
@@ -343,7 +340,7 @@
     <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
     <string name="download_to_sdcard_error_message">Não é possível guardar no cartão SD. Repor pasta de descargas\?</string>
-    <string name="saved_tabs_invalid_json">Não foi possível ler as guias gravadas, portanto usando as guias predefinidas</string>
+    <string name="saved_tabs_invalid_json">Não foi possível ler os separadores guardados e vamos usar os separadores padrão</string>
     <string name="restore_defaults">Repor predefinições</string>
     <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
     <string name="subscribers_count_not_available">Contagem de subscrições indisponível</string>
@@ -414,7 +411,7 @@
 \nAtive o seletor de pastas do sistema (SAF) se quiser transferir para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Utilizar seletor de pastas do sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite transferências para um cartão SD externo</string>
-    <string name="clear_playback_states_title">Limpar posições de reprodução</string>
+    <string name="clear_playback_states_title">Remover posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
     <string name="drawer_header_description">Alternar serviço atualmente selecionado:</string>
@@ -434,12 +431,12 @@
     <string name="localization_changes_requires_app_restart">O idioma será alterado assim que reiniciar a app</string>
     <string name="seek_duration_title">Duração da pesquisa de avanço/recuo rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
-    <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
+    <string name="peertube_instance_url_summary">Defina as suas instâncias PeerTube preferidas</string>
     <string name="peertube_instance_url_help">Encontre as instâncias que gosta em %s</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="peertube_instance_add_help">Digite o URL da instância</string>
     <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
-    <string name="peertube_instance_add_https_only">Apenas os URL HTTPS são suportados</string>
+    <string name="peertube_instance_add_https_only">Apenas são suportados os URL HTTPS</string>
     <string name="peertube_instance_add_exists">Instância já existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentes</string>
@@ -454,7 +451,7 @@
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="subtitle_activity_recaptcha">Prima \"Feito\" ao resolver</string>
-    <string name="recaptcha_done_button">Aceitar</string>
+    <string name="done">Concluído</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
 \n
 \nNewPipe oferece duas estratégias de carregamento:
@@ -521,7 +518,7 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbuns</string>
     <string name="songs">Músicas</string>
-    <string name="restricted_video">Este vídeo está restringido a idades.
+    <string name="restricted_video">Este vídeo está restringido a adultos.
 \n
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
@@ -547,7 +544,7 @@
     <string name="notification_action_2_title">Terceiro botão de ação</string>
     <string name="notification_action_1_title">Segundo botão de ação</string>
     <string name="notification_action_0_title">Primeiro botão de ação</string>
-    <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1 (pode introduzir distorções)</string>
+    <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1</string>
     <string name="notification_scale_to_square_image_title">Cortar miniatura na proporção 1:1</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
@@ -560,8 +557,8 @@
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
-    <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
-    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três delas para serem mostrados na notificação compacta a usar as caixas de seleção à direita</string>
+    <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar a fila</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo com um toque. Selecione até três para serem mostradas na notificação compacta utilizando as caixas de seleção à direita</string>
     <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
@@ -571,14 +568,14 @@
     <string name="clear_cookie_summary">Limpar cookies que NewPipe armazena quando resolve um reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Os cookies reCAPTCHA foram limpos</string>
     <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo restrito\" que oculta o conteúdo destinado a adultos</string>
+    <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo restrito\" que oculta conteúdo, potencialmente, destinado a adultos</string>
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+)</string>
-    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação conforme a cor principal na miniatura (esta opção não está disponível em todos os dispositivos)</string>
-    <string name="notification_colorize_title">Colorir notificação</string>
+    <string name="notification_colorize_summary">Personalizar cor da notificação com a cor principal da miniatura (esta opção não está disponível em todos os dispositivos)</string>
+    <string name="notification_colorize_title">Notificação colorida</string>
     <string name="show_thumbnail_summary">Usar miniaturas no fundo do ecrã de bloqueio e em notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
     <string name="msg_calculating_hash">A calcular \'hash\'</string>
-    <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
+    <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' dos vídeos</string>
     <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
     <string name="recent">Recentes</string>
     <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa</string>
@@ -593,7 +590,7 @@
     <string name="open_with">Abrir com</string>
     <string name="crash_the_app">A app travou</string>
     <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade.
-\nDevido às novas políticas do YouTube quanto a vídeos com restrição de idade, o NewPipe não pode aceder as estes vídeos, por isso não consegue reproduzi-lo.</string>
+\nDevido às novas políticas do YouTube quanto a restrição de alguns vídeos, o NewPipe não pode aceder a estes vídeos e, por isso, não os consegue reproduzir.</string>
     <string name="paid_content">Este conteúdo só está disponível para utilizadores que pagaram, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
     <string name="youtube_music_premium_content">Este vídeo está disponível apenas para os membros do YouTube Music Premium, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
     <string name="private_content">Este conteúdo é privado, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
@@ -608,7 +605,7 @@
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="night_theme_title">Tema escuro</string>
     <string name="show_channel_details">Mostrar detalhes do canal</string>
-    <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
+    <string name="disable_media_tunneling_summary">Desative o túnel multimédia se tiver um ecrã preto ou gaguejo na reprodução de vídeo.</string>
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
@@ -632,7 +629,6 @@
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_unlisted">Não listado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL da miniatura</string>
     <string name="metadata_host">Servidor</string>
     <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>
@@ -663,7 +659,7 @@
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
-    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos em mini-reprodutor e ativar ecrã completo, se a rotação automática estiver bloqueada. Pode aceder ao mini-reprodutor se sair do modo de ecrã completo.</string>
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Pôr na fila o próximo</string>
@@ -675,9 +671,9 @@
     <string name="crash_the_player">Travar o reprodutor</string>
     <string name="show_crash_the_player_title">Mostrar \"Travar o reprodutor\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
-    <string name="error_report_channel_name">Notificação de relatório de erros</string>
+    <string name="error_report_channel_name">Notificação para relatórios de erro</string>
     <string name="error_report_channel_description">Notificações para reportar erros</string>
-    <string name="error_report_notification_title">NewPipe encontrou um erro, toque para relatar</string>
+    <string name="error_report_notification_title">NewPipe encontrou um erro, toque para reportar</string>
     <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
     <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
     <string name="create_error_notification">Criar uma notificação de erro</string>
@@ -689,7 +685,7 @@
     <string name="leak_canary_not_available">LeakCanary não está disponível</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
-    <string name="settings_category_player_notification_summary">Configurar a notificação da reprodução do vídeo atual</string>
+    <string name="settings_category_player_notification_summary">Configurar notificação da reprodução do vídeo atual</string>
     <string name="notifications">Notificações</string>
     <string name="loading_stream_details">A carregar detalhes do vídeo…</string>
     <string name="check_new_streams">Verificar se há novos vídeos</string>
@@ -702,7 +698,7 @@
     <string name="toggle_all">Alternar tudo</string>
     <string name="delete_downloaded_files_confirm">Apagar todos os ficheiros descarregados do disco\?</string>
     <string name="streams_notification_channel_name">Novos vídeos</string>
-    <string name="streams_notification_channel_description">Notificações sobre novos vídeos para assinaturas</string>
+    <string name="streams_notification_channel_description">Notificações sobre novos vídeos nas subscrições</string>
     <plurals name="new_streams">
         <item quantity="one">%s vídeo novo</item>
         <item quantity="many">%s vídeos novos</item>
@@ -726,7 +722,7 @@
     <string name="faq_description">Se está a ter problemas a usar a aplicação, veja estas respostas para perguntas mais comuns!</string>
     <string name="sort">Ordenação</string>
     <string name="fast_mode">Modo rápido</string>
-    <string name="import_subscriptions_hint">Importar ou exportar subscrições do menu de 3 pontos</string>
+    <string name="import_subscriptions_hint">Importe ou exporte subscrições no menu 3 pontos</string>
     <string name="app_update_unavailable_toast">Já está a executar a versão mais recente do NewPipe</string>
     <string name="app_update_available_notification_text">Toque para descarregar %s</string>
     <string name="night_theme_available">Esta opção só está disponível se estiver selecionado %s para o tema</string>
@@ -736,7 +732,7 @@
     <string name="duplicate_in_playlist">As listas de reprodução acinzentadas já contêm este item.</string>
     <string name="playlist_add_stream_success_duplicate">Duplicar adicionado %d vez(es)</string>
     <string name="ignore_hardware_media_buttons_title">Ignorar eventos com botões físicos</string>
-    <string name="ignore_hardware_media_buttons_summary">Útil por exemplo se estiver a utilizar auscultadores com botões físicos danificados</string>
+    <string name="ignore_hardware_media_buttons_summary">Útil, por exemplo, se estiver a utilizar auscultadores com botões físicos danificados</string>
     <string name="remove_duplicates">Remover duplicados</string>
     <string name="remove_duplicates_title">Remover duplicados\?</string>
     <string name="feed_show_hide_streams">Mostrar/ocultar vídeos</string>
@@ -758,7 +754,7 @@
 \nA activação desta opção pode evitar erros de reprodução ao mudar o leitor de vídeo atual ou ao mudar para ecrã inteiro</string>
     <string name="progressive_load_interval_summary">Altera o tamanho do intervalo de carregamento progressivo (o atual é %s). Um valor menor pode acelerar o carregamento inicial do vídeo</string>
     <string name="prefer_original_audio_title">Dar preferência ao áudio original</string>
-    <string name="prefer_original_audio_summary">Selecionar o áudio original independentemente do idioma</string>
+    <string name="prefer_original_audio_summary">Seleciona o áudio original, independentemente do idioma</string>
     <string name="prefer_descriptive_audio_title">Dar preferência ao áudio descritivo</string>
     <string name="play_queue_audio_track">Áudio: %s</string>
     <string name="audio_track">Faixa de áudio</string>
@@ -770,10 +766,57 @@
     <string name="use_exoplayer_decoder_fallback_title">Utilizar a função de fallback do descodificador do ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Ative esta opção se tiver problemas de inicialização do descodificador, que retorna codificadores de baixa prioridade se o descodificador primário falhar. Isto pode resultar num desempenho inferior de reprodução</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usar sempre a configuração de saída alternativa de vídeo do ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dobrado</string>
     <string name="audio_track_type_descriptive">descritivo</string>
-    <string name="main_tabs_position_summary">Mova o seletor da guia principal para a parte inferior</string>
-    <string name="main_tabs_position_title">Posição das guias principais</string>
+    <string name="main_tabs_position_summary">Mova o seletor do separador principal para a parte inferior</string>
+    <string name="main_tabs_position_title">Posição dos separadores principais</string>
+    <string name="disable_media_tunneling_automatic_info">O túnel multimédia foi desativado por predefinição no seu dispositivo porque se sabe que o modelo do dispositivo não o suporta.</string>
+    <string name="no_live_streams">Nenhum vídeo em direto</string>
+    <string name="no_streams">Nenhum vídeo</string>
+    <string name="loading_metadata_title">A carregar metadados…</string>
+    <string name="feed_fetch_channel_tabs">Obter separadores de canais</string>
+    <string name="feed_fetch_channel_tabs_summary">Separadores a obter ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado utilizando o modo rápido.</string>
+    <string name="image_quality_title">Qualidade da imagem</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Subscritores</string>
+    <string name="show_channel_tabs_summary">Os separadores a mostrar na página Canal</string>
+    <string name="share_playlist_with_list">Partilhar URL</string>
+    <string name="share_playlist_with_titles">Partilhar com título</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Separadores do canal</string>
+    <string name="channel_tab_shorts">Curtos</string>
+    <string name="toggle_screen_orientation">Alternar orientação do ecrã</string>
+    <string name="image_quality_low">Baixa qualidade</string>
+    <string name="toggle_fullscreen">Alternar ecrã completo</string>
+    <string name="metadata_avatars">Avatars</string>
+    <string name="next_stream">Fluxo seguinte</string>
+    <string name="metadata_subchannel_avatars">Avatar de subcanais</string>
+    <string name="open_play_queue">Abrir fila de reprodução</string>
+    <string name="image_quality_none">Não carregar imagens</string>
+    <string name="image_quality_high">Alta qualidade</string>
+    <string name="channel_tab_about">Acerca</string>
+    <string name="share_playlist">Partilhar lista de reprodução</string>
+    <string name="forward">Avançar</string>
+    <string name="channel_tab_albums">Álbuns</string>
+    <string name="rewind">Recuar</string>
+    <string name="replay">Repetição</string>
+    <string name="image_quality_medium">Média qualidade</string>
+    <string name="metadata_uploader_avatars">Avatar dos publicadores</string>
+    <string name="metadata_banners">Banners</string>
+    <string name="channel_tab_playlists">Listas de reprodução</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="play">Reproduzir</string>
+    <string name="more_options">Mais opções</string>
+    <string name="metadata_thumbnails">Miniaturas</string>
+    <string name="channel_tab_tracks">Faixas</string>
+    <string name="duration">Duração</string>
+    <string name="channel_tab_channels">Canais</string>
+    <string name="previous_stream">Fluxo anterior</string>
+    <string name="channel_tab_livestreams">Direto</string>
+    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
+    <string name="image_quality_summary">Escolha a qualidade das imagens e se pretende carregar imagens, para reduzir a utilização de dados e de memória. As alterações limpam a cache de imagens na memória e no disco - %s</string>
 </resources>

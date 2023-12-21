@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk kaca pembesar untuk segera memulai.</string>
-    <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
+    <string name="main_bg_subtitle">Sentuh kaca pembesar untuk memulai.</string>
+    <string name="upload_date_text">Dipublikasikan pada %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
     <string name="open_in_browser">Buka di browser</string>
@@ -74,8 +74,7 @@
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
-    <string name="no_player_found">Pemutar stream tidak ditemukan. Pasang VLC\?</string>
-    <string name="youtube_signature_deobfuscation_error">Tidak bisa dekripsi tanda tangan URL video</string>
+    <string name="no_player_found">Pemutar stream tidak ada. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
@@ -132,8 +131,6 @@
     <string name="notification_channel_name">Notifikasi NewPipe</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="action_history">Riwayat</string>
-    <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan agar thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapus semua data cache halaman web</string>
@@ -240,7 +237,7 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="no_player_found_toast">Pemutar stream tidak ditemukan (Anda bisa memasang VLC untuk memutarnya).</string>
+    <string name="no_player_found_toast">Pemutar stream tidak ada (pasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa mengubah langganan</string>
     <string name="show_info">Tampilkan info</string>
@@ -442,7 +439,7 @@
     <string name="permission_display_over_apps">Izinkan untuk ditampilkan di atas aplikasi lain</string>
     <string name="app_language_title">Bahasa apl</string>
     <string name="systems_language">Default sistem</string>
-    <string name="recaptcha_done_button">Selesai</string>
+    <string name="done">Selesai</string>
     <string name="seek_duration_title">Durasi maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
     <string name="videos_string">Video</string>
@@ -588,13 +585,12 @@
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
     <string name="show_channel_details">Tampilkan detail channel</string>
-    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
+    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video.</string>
     <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
     <string name="metadata_privacy_internal">Internal</string>
     <string name="metadata_privacy_private">Privasi</string>
     <string name="metadata_privacy_unlisted">Tidak didaftar</string>
     <string name="metadata_privacy_public">Publik</string>
-    <string name="metadata_thumbnail_url">Alamat URL gambar mini/thumbnail</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Dukungan</string>
     <string name="metadata_language">Bahasa</string>
@@ -749,5 +745,52 @@
     <string name="audio_track_type_descriptive">deskriptif</string>
     <string name="main_tabs_position_summary">Pindahkan pemilih tab utama ke bawah</string>
     <string name="main_tabs_position_title">Posisi tab utama</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="disable_media_tunneling_automatic_info">Terowongan media dinonaktifkan secara bawaan di perangkat Anda karena model perangkat Anda tidak mendukungnya.</string>
+    <string name="no_live_streams">Tidak ada siaran langsung</string>
+    <string name="channel_tab_videos">Video</string>
+    <string name="metadata_subscribers">Pelanggan</string>
+    <string name="show_channel_tabs_summary">Tab apa saja yang ditampilkan di halaman saluran</string>
+    <string name="show_channel_tabs">Tab saluran</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Memuat Metadata…</string>
+    <string name="feed_fetch_channel_tabs">Dapatjan tab saluran</string>
+    <string name="channel_tab_about">Tentang</string>
+    <string name="channel_tab_albums">Album</string>
+    <string name="feed_fetch_channel_tabs_summary">Tab untuk didapatkan ketika memperarui umpan. Opsi ini tidak memiliki efek jika saluran diperbarui menggunakan mode cepat.</string>
+    <string name="channel_tab_playlists">Daftar putar</string>
+    <string name="channel_tab_tracks">Trek</string>
+    <string name="no_streams">Tidak ada saluran</string>
+    <string name="channel_tab_channels">Saluran</string>
+    <string name="channel_tab_livestreams">Langsung</string>
+    <string name="toggle_screen_orientation">Saklar orientasi layar</string>
+    <string name="toggle_fullscreen">Saklar layar penuh</string>
+    <string name="next_stream">Saluran berikutnya</string>
+    <string name="open_play_queue">Buka antrean pemain</string>
+    <string name="forward">Maju</string>
+    <string name="rewind">Mundur</string>
+    <string name="replay">Putar ulang</string>
+    <string name="play">Putar</string>
+    <string name="more_options">Opsi tambahan</string>
+    <string name="duration">Durasi</string>
+    <string name="previous_stream">Saluran sebelumnya</string>
+    <string name="image_quality_title">Kualitas gambar</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Kualitas rendah</string>
+    <string name="metadata_avatars">Avatar</string>
+    <string name="metadata_subchannel_avatars">Avatar sub-channel</string>
+    <string name="image_quality_none">Jangan tampilkan gambar</string>
+    <string name="image_quality_high">Kualitas tinggi</string>
+    <string name="image_quality_medium">Kualitas sedang</string>
+    <string name="metadata_uploader_avatars">Avatar pengunggah</string>
+    <string name="image_quality_summary">Pilih kualitas dan visibilitas gambar, untuk mengurangi penggunaan data dan memori. Perubahan menghapus cache dalam diska dan memori - %s</string>
+    <string name="metadata_thumbnails">Thumbnail</string>
+    <string name="share_playlist_with_list">Bagikan daftar URL</string>
+    <string name="share_playlist_with_titles">Bagikan dengan Judul</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Bagikan Daftar Putar</string>
+    <string name="share_playlist_with_titles_message">Bagikan daftar putar dengan detail seperti nama daftar putar dan judul video atau sebagai daftar video URL yang sederhana</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

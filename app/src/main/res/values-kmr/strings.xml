@@ -98,7 +98,6 @@
     <string name="could_not_setup_download_menu">Menuya dakêşanê nehat saz kirin</string>
     <string name="content_not_available">Naverok tune</string>
     <string name="parsing_error">Malperê nekare parsek bike</string>
-    <string name="youtube_signature_deobfuscation_error">Nekarî îmzeya URL-ya vîdyoyê deobfuscate bike</string>
     <string name="could_not_load_thumbnails">Nekarî hemî wêneyan barkir</string>
     <string name="network_error">Çewtiya torê</string>
     <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>
@@ -242,8 +241,6 @@
     <string name="show_next_and_similar_title">Vîdyoyên \'Pêş\' û \'Bi vî rengî\' nîşan bidin</string>
     <string name="show_comments_summary">Zivirandin da ku şîroveyan veşêrin</string>
     <string name="show_comments_title">Şîroveyan nîşan bide</string>
-    <string name="download_thumbnail_summary">Ji bo pêşîgirtina li barkirina nîgarkêşan, daneya daneyê û karanîna bîranînê xilas bibe vemirînin. Guherandinên kaşeya wêneyê hem di bîra û hem jî li ser dîskê paqij dikin.</string>
-    <string name="download_thumbnail_title">Nîgarên barkêş</string>
     <string name="clear_queue_confirmation_description">Dê rêza lîstikvanê çalak were guhertin</string>
     <string name="clear_queue_confirmation_summary">Guhertina ji lîstikvanek bi yeke din dibe ku dewsa dorê we bigire</string>
     <string name="clear_queue_confirmation_title">Berî paqijkirina dorê ji pejirandinê bipirsin</string>
@@ -540,7 +537,7 @@
     <string name="settings_file_replacement_character_summary">Karakteyên nederbasdar bi vê nirxê têne veguheztin</string>
     <string name="settings_file_charset_title">Di navên pelan de tîpan destûr dan</string>
     <string name="settings_category_downloads_title">Dakêşînin</string>
-    <string name="recaptcha_done_button">Kirî</string>
+    <string name="done">Kirî</string>
     <string name="recaptcha_request_toast">reCAPTCHA dijwarî xwestin</string>
     <string name="subtitle_activity_recaptcha">Dema ku çareser bibe \"Kirî\" çap bikin</string>
     <string name="import_youtube_instructions">Tevlêbûnên YouTube-ê ji barkirina Google-ê bikişînin:

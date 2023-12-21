@@ -77,7 +77,7 @@
     <string name="settings_file_replacement_character_summary">Nederīgas rakstzīmes tiks aizvietotas ar šo</string>
     <string name="settings_file_charset_title">Atļautās rakstzīmes failu nosaukumos</string>
     <string name="settings_category_downloads_title">Lejupielādēt</string>
-    <string name="recaptcha_done_button">Pabeigts</string>
+    <string name="done">Pabeigts</string>
     <string name="recaptcha_request_toast">reCAPTCHA izaicinājums dots</string>
     <string name="subtitle_activity_recaptcha">Nospiediet \"Pabeigts\", kad to atrisinat</string>
     <string name="title_activity_recaptcha">reCAPTCHA izaicinājums</string>
@@ -192,7 +192,6 @@
     <string name="could_not_setup_download_menu">Nevarēja iestatīt lejupielādes izvēlni</string>
     <string name="content_not_available">Saturs nav pieejams</string>
     <string name="parsing_error">Nevarēja apstrādāt mājaslapu</string>
-    <string name="youtube_signature_deobfuscation_error">Nevarēja saprast video URL parakstu</string>
     <string name="could_not_load_thumbnails">Nevarēja ielādēt visus video attēlus</string>
     <string name="network_error">Tīkla kļūda</string>
     <string name="download_to_sdcard_error_message">Lejupielādēt uz SD karti nav iespējams. Atiestatīt lejupielāžu mapes lokāciju\?</string>
@@ -517,8 +516,6 @@
     <string name="show_next_and_similar_title">Rādīt \'Nākošos\' un \'Līdzīgos\' videoklipus</string>
     <string name="show_comments_summary">Izslēdziet, lai paslēptu komentārus</string>
     <string name="show_comments_title">Rādīt komentārus</string>
-    <string name="download_thumbnail_summary">Izslēdziet, ja vēlaties nelādēt video attēlus, ietaupot datus un atmiņu. Opcija notīra kešatmiņu, izdzēšot visus saglabātos video attēlus</string>
-    <string name="download_thumbnail_title">Ielādēt video attēlus</string>
     <string name="clear_queue_confirmation_description">Tagadējā atskaņošanas rinda tiks aizvietota</string>
     <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams, notīrīsies jūsu atskaņošanas rinda</string>
     <string name="clear_queue_confirmation_title">Prasīt apstiprinājumu, pirms notīrīt atskaņošanas rindu</string>
@@ -655,7 +652,6 @@
     <string name="low_quality_smaller">Zemas kvalitātes (mazāks)</string>
     <string name="metadata_privacy">Privātums</string>
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
-    <string name="metadata_thumbnail_url">Video attēla URL</string>
     <string name="metadata_host">Uzņēmums</string>
     <string name="remote_search_suggestions">Attālinātie meklēšanas ieteikumi</string>
     <string name="mark_as_watched">Atzīmēt kā skatītu</string>

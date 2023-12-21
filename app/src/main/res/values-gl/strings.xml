@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Lembrar o tamaño e a posición anteriores do «popup»</string>
     <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
     <string name="use_inexact_seek_summary">A busca inexacta permite ao reprodutor procurar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto</string>
-    <string name="download_thumbnail_title">Carregar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactíveo para evitar a carga de miniaturas e poupar datos e memoria. Modificar esta opción limpa a caché de imaxes da memoria e do disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">A caché de imaxes foi limpada</string>
     <string name="metadata_cache_wipe_title">Os metadatos da caché foron eliminados</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos os datos de páxinas en caché</string>
@@ -125,7 +123,6 @@
     <string name="general_error">Erro</string>
     <string name="network_error">Erro de rede</string>
     <string name="could_not_load_thumbnails">Non foi posíbel carregar todas as miniaturas</string>
-    <string name="youtube_signature_deobfuscation_error">Non foi posíbel descifrar a asinatura do vídeo</string>
     <string name="parsing_error">Non foi posíbel procesar o sitio web</string>
     <string name="content_not_available">Contido non dispoñíbel</string>
     <string name="could_not_setup_download_menu">Non foi posíbel configurar o menú de descargas</string>
@@ -472,7 +469,7 @@
     <string name="select_a_playlist">Seleccionar unha lista de reprodución</string>
     <string name="default_kiosk_page_summary">Quiosco predeterminado</string>
     <string name="main_page_content_summary">Que lapelas se amosan na páxina principal</string>
-    <string name="recaptcha_done_button">Feito</string>
+    <string name="done">Feito</string>
     <string name="subtitle_activity_recaptcha">Prema \"Feito\" cando o resolva</string>
     <string name="no_comments">Ningún comentario</string>
     <string name="infinite_videos">∞ vídeos</string>
@@ -549,7 +546,6 @@
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_public">Público</string>
-    <string name="metadata_thumbnail_url">URL da miniatura</string>
     <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>
     <string name="metadata_age_limit">Límite de idade</string>
@@ -592,7 +588,7 @@
     <string name="show_description_summary">Desactíveo para ocultar a descrición do vídeo e a información adicional</string>
     <string name="show_description_title">Ver descrición</string>
     <string name="clear_queue_confirmation_title">Pedir confirmación antes de baleirar unha cola</string>
-    <string name="night_theme_title">Tema Escuro</string>
+    <string name="night_theme_title">Tema escuro</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="open_with">Abrir con</string>
     <string name="metadata_privacy_unlisted">Non listado</string>
@@ -632,7 +628,7 @@
     </plurals>
     <string name="seekbar_preview_thumbnail_title">Miniatura na barra de busca</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imaxe</string>
-    <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentaren unha pantalla en negro ou interrupcións na reprodución</string>
+    <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentar unha pantalla en negro ou interrupcións na reprodución.</string>
     <string name="disable_media_tunneling_title">Desactivar túnel multimedia</string>
     <string name="enqueued">Engadido á cola</string>
     <string name="no_dir_yet">Cartafol de descarga aínda non definido, escolla o cartafol agora</string>
@@ -713,7 +709,7 @@
     <string name="faq_description">Se tes problemas para usala aplicación, asegúrate de consultar estas respostas ás preguntas comúns!</string>
     <string name="sort">Ordenar</string>
     <string name="fast_mode">Modo rápido</string>
-    <string name="app_update_unavailable_toast">Estás executandola última versión de NewPipe</string>
+    <string name="app_update_unavailable_toast">Estás executando a última versión de NewPipe</string>
     <string name="app_update_available_notification_text">Toca para descargar %s</string>
     <string name="import_subscriptions_hint">Importa ou exporta subscricións dende o menú dos 3 puntos</string>
     <string name="night_theme_available">Esta opción só está dispoñible se %s está seleccionado para o tema</string>
@@ -748,7 +744,7 @@
     <string name="use_exoplayer_decoder_fallback_title">Use a función fallback do decodificador do ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_summary">Habilite esta opción se ten problemas na inciciación do decodificador. Usaranse decodificadores de menor prioridade se os primarios fallan. Isto pode resultar nun menor rendemento comparado co dos primarios</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Usar sempre Explayer como alternativa de saída de vídeo</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">orixinal</string>
     <string name="audio_track_type_dubbed">dobrado</string>
     <string name="audio_track_type_descriptive">descritivo</string>
@@ -758,4 +754,8 @@
     <string name="prefer_descriptive_audio_summary">Seleciona o audio con descrición para persoas con dificuldades de visión, se estar dispoñíbel</string>
     <string name="prefer_descriptive_audio_title">Prefirir o audio descritivo</string>
     <string name="left_gesture_control_summary">Escolla o xesto para a metade esquerda da pantalla do reprodutor</string>
+    <string name="main_tabs_position_summary">Mova o selector da lapela principal para a parte inferior</string>
+    <string name="main_tabs_position_title">Posición prinicipal das lapelas</string>
+    <string name="disable_media_tunneling_automatic_info">A tunelización da multimedia foi deshabilitada por defecto, porque o seu modelo de dispositivo carece de soporte.</string>
+    <string name="no_streams">Sen emisións</string>
 </resources>

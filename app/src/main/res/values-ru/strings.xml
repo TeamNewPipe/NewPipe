@@ -39,7 +39,7 @@
     <string name="light_theme_title">Светлая</string>
     <string name="network_error">Ошибка сети</string>
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
-    <string name="download_path_audio_summary">Папка для скачанного аудио</string>
+    <string name="download_path_audio_summary">Загруженные аудиофайлы хранятся здесь</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
     <string name="main_bg_subtitle">Нажмите на лупу, чтобы начать.</string>
     <string name="msg_wait">Подождите…</string>
@@ -78,7 +78,6 @@
     <string name="audio">Аудио</string>
     <string name="retry">Повтор</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_deobfuscation_error">Не удалось расшифровать подпись URL у видео</string>
     <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
@@ -298,8 +297,6 @@
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
 \n 
 \nПродолжить?</string>
-    <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -345,7 +342,7 @@
     <string name="minimize_on_exit_summary">При переключении со встроенного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Фоновый плеер</string>
-    <string name="minimize_on_exit_popup_description">Плеер в окне</string>
+    <string name="minimize_on_exit_popup_description">Свернуть в плеер в окне</string>
     <string name="list_view_mode">Вид списка</string>
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
@@ -460,7 +457,7 @@
     <string name="app_language_title">Язык интерфейса</string>
     <string name="systems_language">Как в системе</string>
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="videos_string">Видео</string>
     <plurals name="seconds">
         <item quantity="one">%d секунда</item>
@@ -616,7 +613,7 @@
     <string name="featured">Популярное</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
-    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками</string>
+    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками.</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
     <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны.</string>
     <string name="metadata_support">Поддержка</string>
@@ -631,7 +628,6 @@
     <string name="metadata_privacy_private">Приватная</string>
     <string name="metadata_privacy_unlisted">Не в списке</string>
     <string name="metadata_privacy_public">Публичная</string>
-    <string name="metadata_thumbnail_url">URL миниатюры</string>
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
     <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>
@@ -686,7 +682,7 @@
     <string name="streams_notification_channel_name">Новые видео</string>
     <string name="streams_notification_channel_description">Уведомления о новых видео в подписках</string>
     <string name="streams_notifications_interval_title">Частота проверки</string>
-    <string name="enable_streams_notifications_title">Новые видео</string>
+    <string name="enable_streams_notifications_title">Уведомления о новых видео</string>
     <string name="enable_streams_notifications_summary">Уведомлять о новых видео в подписках</string>
     <string name="streams_notifications_network_title">Тип подключения</string>
     <string name="any_network">Любая сеть</string>
@@ -765,7 +761,7 @@
     <string name="settings_category_exoplayer_summary">Управление некоторыми настройками ExoPlayer. Эти изменения требуют перезапуска плеера, чтобы они вступили в силу</string>
     <string name="use_exoplayer_decoder_fallback_title">Использовать резервную функцию декодера ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Всегда использовать обходной путь настройки поверхности видеовыхода ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">оригинальный</string>
     <string name="audio_track_type_dubbed">дублированный</string>
     <string name="audio_track_type_descriptive">описательный</string>
@@ -778,4 +774,53 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Этот обходной путь освобождает и повторно создаёт видеокодеки при изменении поверхности вместо того, чтобы напрямую устанавливать поверхность для кодека. Уже используется ExoPlayer на некоторых устройствах с этой проблемой, этот параметр влияет только на устройства с Android 6 и выше
 \n
 \nВключение этого параметра может предотвратить ошибки воспроизведения при переключении текущего видеоплеера или переключении в полноэкранный режим</string>
+    <string name="main_tabs_position_summary">Переместить основные вкладки в нижнюю часть экрана</string>
+    <string name="main_tabs_position_title">Положение основных вкладок</string>
+    <string name="no_streams">Нет стримов</string>
+    <string name="no_live_streams">Нет прямых трансляций</string>
+    <string name="disable_media_tunneling_automatic_info">Медиа-туннелирование на вашем устройстве отключено по умолчанию, поскольку известно, что ваша модель устройства его не поддерживает.</string>
+    <string name="image_quality_title">Качество изображения</string>
+    <string name="channel_tab_videos">Видео</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Подписчики</string>
+    <string name="show_channel_tabs_summary">Какие вкладки отображаются на страницах каналов</string>
+    <string name="share_playlist_with_list">Поделиться списком URL-адресов</string>
+    <string name="share_playlist_with_titles">Поделиться названиями</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Вкладки канала</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Загрузка метаданных…</string>
+    <string name="toggle_screen_orientation">Изменить ориентацию экрана</string>
+    <string name="image_quality_low">Низкое качество</string>
+    <string name="toggle_fullscreen">Переключить полноэкранный режим</string>
+    <string name="feed_fetch_channel_tabs">Получение вкладок канала</string>
+    <string name="metadata_avatars">Аватары</string>
+    <string name="next_stream">Следующий стрим</string>
+    <string name="metadata_subchannel_avatars">Аватары подканалов</string>
+    <string name="open_play_queue">Открыть очередь воспроизведения</string>
+    <string name="image_quality_none">Не загружать изображения</string>
+    <string name="image_quality_high">Высокое качество</string>
+    <string name="channel_tab_about">О канале</string>
+    <string name="share_playlist">Поделиться подборкой</string>
+    <string name="forward">Перемотать вперёд</string>
+    <string name="channel_tab_albums">Альбомы</string>
+    <string name="rewind">Перемотать назад</string>
+    <string name="replay">Повторить</string>
+    <string name="feed_fetch_channel_tabs_summary">Получаемые вкладки при обновлении ленты. Эта функция не применяется, если канал обновляется с помощью быстрого режима.</string>
+    <string name="share_playlist_with_titles_message">Поделиться подборкой с подробностями, такими как название подборки и названия видео, или просто списком URL видео</string>
+    <string name="image_quality_medium">Среднее качество</string>
+    <string name="metadata_uploader_avatars">Загрузчик аватаров</string>
+    <string name="metadata_banners">Баннеры</string>
+    <string name="channel_tab_playlists">Подборки</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="image_quality_summary">Выберите качество изображений и загружать ли изображения вообще, чтобы снизить использование данных и памяти. Изменения очищают кэш изображений как в памяти, так и на диске – %s</string>
+    <string name="play">Воспроизвести</string>
+    <string name="more_options">Другие опции</string>
+    <string name="metadata_thumbnails">Миниатюры</string>
+    <string name="channel_tab_tracks">Дорожки</string>
+    <string name="duration">Продолжительность</string>
+    <string name="channel_tab_channels">Каналы</string>
+    <string name="previous_stream">Предыдущий стрим</string>
+    <string name="channel_tab_livestreams">Живая трансляция</string>
 </resources>

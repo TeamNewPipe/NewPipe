@@ -121,7 +121,6 @@
     <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
     <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
     <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió. Cerques de 5, 15 o 25 segons no funcionaran</string>
-    <string name="download_thumbnail_title">Carrega les miniatures</string>
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
@@ -138,7 +137,6 @@
     <string name="notification_channel_name">Notificació de NewPipe</string>
     <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
-    <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
@@ -217,7 +215,6 @@
     <string name="main_bg_subtitle">Toca \"Cerca\" per començar.</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per no guardar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Crea un historial de vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn la reproducció</string>
@@ -538,7 +535,7 @@
     <string name="local">Local</string>
     <string name="no_playlist_bookmarked_yet">Encara no hi ha llistes de reproducció favorites</string>
     <string name="select_a_playlist">Sel·leccioneu una llista de reproducció</string>
-    <string name="recaptcha_done_button">Fet</string>
+    <string name="done">Fet</string>
     <string name="msg_calculating_hash">Calculant-ne la funció de verificació</string>
     <string name="error_report_open_github_notice">Si us plau, comproveu abans si el problema que ha causat aquesta fallada ja ha estat informat. Els tiquets per duplicat fan que perdem temps que podríem aprofitar resolent-los.</string>
     <string name="error_report_open_issue_button_text">Avisa del problema a GitHub</string>
@@ -602,7 +599,6 @@
     <string name="metadata_privacy_private">Privat</string>
     <string name="metadata_privacy_unlisted">Descatalogat</string>
     <string name="metadata_privacy_public">Públic</string>
-    <string name="metadata_thumbnail_url">URL de la miniatura</string>
     <string name="metadata_host">Amfitrió</string>
     <string name="metadata_support">Suport</string>
     <string name="metadata_language">Idioma</string>

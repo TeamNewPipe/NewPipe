@@ -47,7 +47,6 @@
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
-    <string name="youtube_signature_deobfuscation_error">비디오 URL 서명을 복호화할 수 없습니다</string>
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
@@ -73,7 +72,7 @@
     <string name="subscribe_button_title">구독</string>
     <string name="subscribed_button_title">구독중</string>
     <string name="channel_unsubscribed">구독 취소됨</string>
-    <string name="subscription_change_failed">구독상태를 변경할 수 없었습니다.</string>
+    <string name="subscription_change_failed">구독을 변경할 수 없음</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
     <string name="tab_subscriptions">구독목록</string>
     <string name="fragment_feed_title">새로운 영상</string>
@@ -278,8 +277,6 @@
     <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
 \n 
 \n계속하시겠습니까\?</string>
-    <string name="download_thumbnail_title">썸네일 로드하기</string>
-    <string name="download_thumbnail_summary">동영상 썸네일을 로드하지 않으며, 데이터와 메모리 사용을 최대한 줄입니다. 이 옵션을 선택 시 모든 메모리 캐시와 저장소 캐시를 삭제합니다</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
     <string name="metadata_cache_wipe_title">캐시된 메타데이터 지우기</string>
     <string name="metadata_cache_wipe_summary">캐시된 모든 웹페이지 데이터 지우기</string>
@@ -462,7 +459,7 @@
     <string name="restricted_video">이 비디오는 연령제한이 있습니다.
 \n
 \n만약, 시청을 원한다면 설정에 \"%1$s\"를 활성화 하세요.</string>
-    <string name="recaptcha_done_button">완료</string>
+    <string name="done">완료</string>
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>
     <string name="videos_string">비디오</string>
@@ -547,7 +544,7 @@
     <string name="loading_stream_details">스트림 세부정보 불러오는 중…</string>
     <string name="disable_media_tunneling_title">미디어 터널링 비활성화</string>
     <string name="show_original_time_ago_summary">서비스의 원본 텍스트가 스트림 항목에 표시됩니다</string>
-    <string name="disable_media_tunneling_summary">비디오 재생 시 검은색 화면이나 끊김 현상이 발생하는 경우 미디어 터널링을 비활성화합니다</string>
+    <string name="disable_media_tunneling_summary">동영상 재생 시 검은 화면이 나타나거나 끊김 현상이 발생하면 미디어 터널링을 비활성화하세요.</string>
     <string name="show_image_indicators_title">이미지 표시기 표시</string>
     <string name="show_image_indicators_summary">원본을 나타내는 이미지 위에 피카소 컬러 리본 표시: 네트워크는 빨간색, 디스크는 파란색, 메모리는 녹색</string>
     <string name="show_crash_the_player_title">\"플레이어 충돌\" 표시</string>
@@ -627,7 +624,6 @@
     <string name="detail_heart_img_view_description">창작자의 마음</string>
     <string name="metadata_privacy_private">비공개</string>
     <string name="metadata_privacy_unlisted">비공개</string>
-    <string name="metadata_thumbnail_url">썸네일 URL</string>
     <string name="metadata_host">호스트</string>
     <string name="you_successfully_subscribed">이제 이 채널을 구독했습니다</string>
     <string name="get_notified">알림 받기</string>
@@ -703,7 +699,7 @@
     <string name="fast_mode">빠른 모드</string>
     <string name="import_subscriptions_hint">점 3개 메뉴에서 구독 가져오기 또는 내보내기</string>
     <string name="app_update_unavailable_toast">최신 버전의 NewPipe를 실행 중입니다</string>
-    <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요.</string>
+    <string name="app_update_available_notification_text">%s를 다운로드하려면 탭하세요</string>
     <string name="unset_playlist_thumbnail">영구 썸네일 설정 해제</string>
     <string name="night_theme_available">이 옵션은 %s가 테마로 선택되었을 경우에만 사용할 수 있습니다</string>
     <string name="playlist_add_stream_success_duplicate">중복 추가 %d 번</string>
@@ -747,4 +743,54 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용
 \n
 \n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
+    <string name="main_tabs_position_summary">메인 탭 선택기를 하단으로 이동</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="main_tabs_position_title">메인 탭 위치</string>
+    <string name="disable_media_tunneling_automatic_info">장치 모델에서 미디어 터널링을 지원하지 않는 것으로 알려져 있기 때문에 장치에서 기본적으로 미디어 터널링이 비활성화되었습니다.</string>
+    <string name="image_quality_title">이미지 품질</string>
+    <string name="channel_tab_videos">동영상</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">구독자</string>
+    <string name="show_channel_tabs_summary">채널 페이지에 표시되는 탭</string>
+    <string name="share_playlist_with_list">URL 목록 공유</string>
+    <string name="share_playlist_with_titles">타이틀로 공유</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">채널 탭</string>
+    <string name="channel_tab_shorts">쇼츠</string>
+    <string name="loading_metadata_title">메타데이터 불러오기 중…</string>
+    <string name="toggle_screen_orientation">화면 방향 전환</string>
+    <string name="image_quality_low">낮은 품질</string>
+    <string name="toggle_fullscreen">전체화면 전환</string>
+    <string name="feed_fetch_channel_tabs">채널 탭 가져오기</string>
+    <string name="metadata_avatars">아바타</string>
+    <string name="next_stream">다음 스트림</string>
+    <string name="metadata_subchannel_avatars">하위 채널 아바타</string>
+    <string name="open_play_queue">재생 대기열 열기</string>
+    <string name="image_quality_none">이미지를 불러오지 마세요</string>
+    <string name="image_quality_high">높은 품질</string>
+    <string name="channel_tab_about">정보</string>
+    <string name="share_playlist">재생목록 공유</string>
+    <string name="forward">앞으로</string>
+    <string name="channel_tab_albums">앨범</string>
+    <string name="rewind">되감기</string>
+    <string name="replay">다시 재생</string>
+    <string name="feed_fetch_channel_tabs_summary">피드를 업데이트할 때 가져올 탭입니다. 빠른 모드를 사용하여 채널을 업데이트하는 경우 이 옵션은 효과가 없습니다.</string>
+    <string name="share_playlist_with_titles_message">재생목록 이름, 동영상 제목 등의 세부정보 또는 간단한 동영상 URL 목록으로 재생목록을 공유하세요</string>
+    <string name="image_quality_medium">중간 품질</string>
+    <string name="metadata_uploader_avatars">업로더 아바타</string>
+    <string name="metadata_banners">배너</string>
+    <string name="channel_tab_playlists">재생목록</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="no_live_streams">실시간 스트림 없음</string>
+    <string name="image_quality_summary">데이터 및 메모리 사용량을 줄이기 위해 이미지 품질과 이미지 불러오기 여부를 선택하세요. 변경 사항이 메모리 내 및 디스크 내 이미지 캐시를 모두 지움 — %s</string>
+    <string name="play">재생</string>
+    <string name="more_options">추가 옵션</string>
+    <string name="metadata_thumbnails">썸네일</string>
+    <string name="channel_tab_tracks">트랙</string>
+    <string name="duration">지속</string>
+    <string name="no_streams">스트림 없음</string>
+    <string name="channel_tab_channels">채널</string>
+    <string name="previous_stream">이전 스트림</string>
+    <string name="channel_tab_livestreams">실시간</string>
 </resources>

@@ -55,7 +55,6 @@
     <string name="sorry_string">Elnézést, ennek nem kellett volna megtörténnie.</string>
     <string name="error_report_button_text">Jelentés e-mailben</string>
     <string name="could_not_setup_download_menu">Nem sikerült a letöltési menü beállítása</string>
-    <string name="youtube_signature_deobfuscation_error">Nem sikerült a videó URL aláírásának feloldása</string>
     <string name="retry">Újra</string>
     <string name="video">Videó</string>
     <string name="audio">Hang</string>
@@ -136,8 +135,6 @@
     <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
     <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kisebb pontossággal. Az 5, 15, vagy 25 másodperces tekerés nem működik ebben a módban</string>
-    <string name="download_thumbnail_title">Bélyegképek betöltése</string>
-    <string name="download_thumbnail_summary">Kapcsolja ki, hogy a megelőzze a bélyegképek betöltését, így csökkentve az adat- és memóriahasználatot. A megváltoztatása törli a memóriában és a meghajtón lévő képgyorsítótárat</string>
     <string name="thumbnail_cache_wipe_complete_notice">A bélyegkép gyorsítótár törölve</string>
     <string name="metadata_cache_wipe_title">Gyorsítótárazott metaadatok törlése</string>
     <string name="metadata_cache_wipe_summary">Minden gyorsítótárazott weboldaladat törlése</string>
@@ -460,7 +457,7 @@
     <string name="feed_group_dialog_select_subscriptions">Feliratkozások kiválasztása</string>
     <string name="copyright">© %1$s %2$s, %3$s licenc alatt</string>
     <string name="title_licenses">Harmadik féltől származó licencek</string>
-    <string name="recaptcha_done_button">Kész</string>
+    <string name="done">Kész</string>
     <string name="no_comments">Nincs megjegyzés</string>
     <string name="infinite_videos">∞ videó</string>
     <string name="more_than_100_videos">100+ videó</string>
@@ -607,7 +604,6 @@
     <string name="metadata_licence">Licenc</string>
     <string name="metadata_age_limit">Korhatár</string>
     <string name="metadata_host">Kiszolgáló</string>
-    <string name="metadata_thumbnail_url">Bélyegkép URL</string>
     <string name="metadata_privacy_public">Nyilvános</string>
     <string name="metadata_privacy_unlisted">Nem listázott</string>
     <string name="off">Ki</string>
@@ -749,7 +745,7 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ez a kerülőmegoldás elengedi és újból előkészíti a videokodekeket, ha felületváltozás történik, ahelyett, hogy közvetlenül a kodeknél állítaná be a felületet. Ez már alapból használatban van egyes, az ezzel a problémával érintett eszközöknél, a beállításnak Android 6 vagy újabb esetén van hatása.
 \n
 \nA beállítás bekapcsolása megakadályozhatja a lejátszási hibákat, ha átváltja a jelenlegi videolejátszót, vagy teljes képernyőre vált.</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_dubbed">szinkronizált</string>
     <string name="audio_track_type_descriptive">leíró</string>
     <string name="ignore_hardware_media_buttons_summary">Hasznos, ha olyan fülhallgatót használ, melyen meghibásodtak a fizikai gombok</string>
@@ -761,4 +757,9 @@
     <string name="remove_duplicates_title">Eltávolítja az ismétlődéseket\?</string>
     <string name="remove_duplicates_message">Eltávolítja az összes ismétlődő közvetítést ebből a lejátszólistáról\?</string>
     <string name="audio_track_type_original">eredeti</string>
+    <string name="main_tabs_position_title">Kezdőlap pozíció</string>
+    <string name="disable_media_tunneling_automatic_info">A médiacsatornázás alapértelmezés szerint le van tiltva az Ön készülékén, mivel az Ön készülékmodellje nem támogatja azt.</string>
+    <string name="main_tabs_position_summary">Kezdőlap választó alulra helyezése</string>
+    <string name="no_live_streams">Nincs élő adatfolyam</string>
+    <string name="no_streams">Nincs adatfolyam</string>
 </resources>

@@ -42,7 +42,6 @@
     <string name="use_inexact_seek_summary">არაზუსტი ძიება საშუალებას აძლევს მოთამაშეს უფრო სწრაფად მოიძიოს პოზიციები შემცირებული სიზუსტით. 5, 15 ან 25 წამის ძიება ამით არ მუშაობს</string>
     <string name="seek_duration_title">სწრაფი წინსვლა/-გადახვევა ძიების ხანგრძლივობა</string>
     <string name="clear_queue_confirmation_summary">ერთი მოთამაშიდან მეორეზე გადართვამ შესაძლოა შეცვალოს თქვენი რიგი</string>
-    <string name="download_thumbnail_summary">გამორთეთ ესკიზების ჩატვირთვის თავიდან ასაცილებლად, მონაცემთა დაზოგვისა და მეხსიერების გამოყენების თავიდან ასაცილებლად. იცვლება როგორც მეხსიერებაში, ასევე დისკზე გამოსახულების ქეშის გასუფთავება</string>
     <string name="show_search_suggestions_title">ძიების შეთავაზებები</string>
     <string name="metadata_cache_wipe_summary">წაშალეთ ყველა ქეშირებული ვებგვერდის მონაცემები</string>
     <string name="auto_queue_title">შემდეგი ნაკადის ავტომატური შეყვანა</string>
@@ -57,14 +56,14 @@
     <string name="download_dialog_title">ჩამოტვირთვა</string>
     <string name="enable_watch_history_summary">თვალყური ადევნეთ ნანახ ვიდეოებს</string>
     <string name="start_main_player_fullscreen_summary">არ დაიწყოთ ვიდეოები მინი პლეერში, არამედ პირდაპირ გადადით სრულეკრანიან რეჟიმში, თუ ავტომატური როტაცია დაბლოკილია. თქვენ კვლავ შეგიძლიათ მინი პლეერზე წვდომა სრულეკრანიდან გასვლით</string>
-    <string name="main_bg_subtitle">დასაწყებად შეეხეთ გამადიდებელ შუშას.</string>
-    <string name="upload_date_text">გამოქვეყნდა%1$s</string>
-    <string name="install">დაინსტალირება</string>
+    <string name="main_bg_subtitle">დასაწყებად შეეხეთ გამადიდებელს.</string>
+    <string name="upload_date_text">გამოქვეყნების თარიღი: %1$s</string>
+    <string name="install">დაყენება</string>
     <string name="ok">კარგი</string>
-    <string name="open_in_browser">გახსენით ბრაუზერში</string>
+    <string name="open_in_browser">გახსენი ვებგვერდად</string>
     <string name="mark_as_watched">მონიშნეთ ნანახად</string>
-    <string name="open_in_popup_mode">გახსენით popup რეჟიმში</string>
-    <string name="open_with">გახსნა როგორც</string>
+    <string name="open_in_popup_mode">გახსენი ამომხტარ მდგომარეობაში</string>
+    <string name="open_with">გახსენი რაღაცით</string>
     <string name="share">გაზიარება</string>
     <string name="download">გადმოწერა</string>
     <string name="controls_download_desc">ნაკადის ფაილი ჩამოტვირთვა</string>
@@ -107,7 +106,6 @@
     <string name="black_theme_title">შავი</string>
     <string name="popup_remember_size_pos_title">დამახსოვრება ამომხტარი ფანჯრის თვისებები</string>
     <string name="clear_queue_confirmation_description">აქტიური მოთამაშის რიგი შეიცვლება</string>
-    <string name="download_thumbnail_title">ჩატვირთეთ ესკიზები</string>
     <string name="show_comments_title">კომენტარების ჩვენება</string>
     <string name="show_comments_summary">გამორთეთ კომენტარების დასამალად</string>
     <string name="show_next_and_similar_title">\"შემდეგი\" და \"მსგავსი\" ვიდეოების ჩვენება</string>
@@ -123,7 +121,7 @@
     <string name="show_hold_to_append_title">აჩვენეთ წვერი \"შეაჩერე რიგში\"</string>
     <string name="show_hold_to_append_summary">რჩევის ჩვენება ფონზე ან ამომხტარ ღილაკზე დაჭერისას ვიდეოში \"დეტალები:\"</string>
     <string name="unsupported_url">URL მხარდაუჭერელია</string>
-    <string name="default_content_country_title">ნაგულისხმევი კონტენტის ქვეყანა</string>
+    <string name="default_content_country_title">ჩანაწერის სასურველი ქვეყანა</string>
     <string name="content_language_title">ნაგულისხმევი შინაარსის ენა</string>
     <string name="peertube_instance_url_title">PeerTube-ის შემთხვევები</string>
     <string name="peertube_instance_url_help">იპოვეთ თქვენთვის სასურველი შემთხვევები %s-ზე</string>
@@ -141,9 +139,9 @@
     <string name="settings_category_player_notification_summary">მიმდინარე დამკვრელი ნაკადის შეტყობინების კონფიგურაცია</string>
     <string name="background_player_playing_toast">ვუკრავ ფონზე</string>
     <string name="popup_playing_toast">ვუკრავ ამომხტარი ფანჯარაში</string>
-    <string name="content">კონტენტი</string>
-    <string name="show_age_restricted_content_title">ასაკით შეზღუდული კონტენტის ჩვენება</string>
-    <string name="show_age_restricted_content_summary">ბავშვებისთვის შესაძლოა შეუფერებელი კონტენტის ჩვენება, რადგან მას აქვს ასაკობრივი ზღვარი (როგორიცაა 18+)</string>
+    <string name="content">მასალა</string>
+    <string name="show_age_restricted_content_title">მაჩვენე ასაკით შეზღუდული მასალა</string>
+    <string name="show_age_restricted_content_summary">მაჩვენე ბავშვებისთვის შეუფერებელი მასალა (თუნდაც 18 წლის ქვევით შეზღუდული)</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube გთავაზობთ „შეზღუდულ რეჟიმს“, რომელიც მალავს პოტენციურად ზრდასრულთა კონტენტს</string>
     <string name="downloads">ჩამოტვირთვები</string>
     <string name="downloads_title">ჩამოტვირთვები</string>
@@ -197,9 +195,8 @@
     <string name="download_to_sdcard_error_title">გარე მეხსიერება მიუწვდომელია</string>
     <string name="network_error">Ქსელის შეცდომა</string>
     <string name="could_not_load_thumbnails">ყველა ესკიზის ჩატვირთვა ვერ მოხერხდა</string>
-    <string name="youtube_signature_deobfuscation_error">ვიდეოს URL-ის ხელმოწერის დებფუსირება ვერ მოხერხდა</string>
     <string name="parsing_error">ვებსაიტის გარჩევა ვერ მოხერხდა</string>
-    <string name="content_not_available">კონტენტი მიუწვდომელია</string>
+    <string name="content_not_available">მასალა ხელმიუწვდომელია</string>
     <string name="could_not_setup_download_menu">ჩამოტვირთვის მენიუს დაყენება ვერ მოხერხდა</string>
     <string name="app_ui_crash">აპი/UI გათიშულია</string>
     <string name="player_stream_failure">ამ ნაკადის დაკვრა ვერ მოხერხდა</string>
@@ -295,7 +292,7 @@
     <string name="subtitle_activity_recaptcha">როდესაც მოგვარდება, დააჭირეთ შესრულებულია</string>
     <string name="recaptcha_request_toast">მოთხოვნილია reCAPTCHA გამოწვევა</string>
     <string name="recaptcha_solve">ამოხსნა</string>
-    <string name="recaptcha_done_button">შესრულებულია</string>
+    <string name="done">შესრულებულია</string>
     <string name="settings_file_replacement_character_title">შემცვლელი პერსონაჟი</string>
     <string name="charset_letters_and_digits">ასოები და ციფრები</string>
     <string name="title_activity_about">NewPipe-ის შესახებ</string>
@@ -321,7 +318,7 @@
     <string name="action_history">ისტორია</string>
     <string name="delete_item_search_history">გსურთ წაშალოთ ეს ელემენტი ძიების ისტორიიდან\?</string>
     <string name="title_last_played">ბოლოს დაუკრა</string>
-    <string name="title_most_played">უმეტესად დაკვრილი</string>
+    <string name="title_most_played">ხშირად დაკრული</string>
     <string name="main_page_content">მთავარი გვერდის შინაარსი</string>
     <string name="main_page_content_summary">რა ჩანართებია ნაჩვენები მთავარ გვერდზე</string>
     <string name="main_page_content_swipe_remove">გადაფურცლეთ ელემენტები მათი ამოსაშლელად</string>
@@ -361,7 +358,7 @@
     <string name="background_player">ფონური დამკვრელი</string>
     <string name="popup_player">ამომხტარი დამკვრელი</string>
     <string name="always_ask_open_action">ყოველთვის იკითხე</string>
-    <string name="preferred_player_fetcher_notification_message">მოთხოვნილი კონტენტის ჩატვირთვა</string>
+    <string name="preferred_player_fetcher_notification_message">მოთხოვნილი მასალა მზადდება</string>
     <string name="rename_playlist">გადარქმევა</string>
     <string name="name">სახელი</string>
     <string name="add_to_playlist">დასაკრავ სიაში დამატება</string>
@@ -549,11 +546,11 @@
     <string name="no_app_to_open_intent">თქვენს მოწყობილობაზე არცერთ აპლიკაციას არ შეუძლია ამის გახსნა</string>
     <string name="no_appropriate_file_manager_message_android_10">ამ მოქმედებისთვის შესაბამისი ფაილების მენეჯერი ვერ მოიძებნა.
 \n გთხოვთ, დააინსტალიროთ Storage Access Framework თავსებადი ფაილ მენეჯერი</string>
-    <string name="georestricted_content">ეს კონტენტი მიუწვდომელია თქვენს ქვეყანაში.</string>
-    <string name="private_content">ეს კონტენტი პირადია, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
+    <string name="georestricted_content">ეს ხელმიუწვდომელია თქვენი ქვეყნიდან.</string>
+    <string name="private_content">ეს მასალა პირადულია, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="account_terminated">ანგარიში შეწყვეტილია</string>
     <string name="service_provides_reason">%s იძლევა ამ მიზეზს:</string>
-    <string name="paid_content">ეს კონტენტი ხელმისაწვდომია მხოლოდ მომხმარებლებისთვის, რომლებმაც გადაიხადეს, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
+    <string name="paid_content">ეს მასალა ხელმისაწვდომია მხოლოდ გადამხდელებისთვის, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="featured">გამორჩეული</string>
     <string name="radio">რადიო</string>
     <string name="night_theme_summary">აირჩიეთ თქვენი საყვარელი ღამის თემა — %s</string>
@@ -567,7 +564,6 @@
     <string name="metadata_age_limit">Ასაკობრივი შეზღუდვა</string>
     <string name="metadata_language">Ენა</string>
     <string name="metadata_host">მასპინძელი</string>
-    <string name="metadata_thumbnail_url">მინიატურების URL</string>
     <string name="metadata_privacy_public">საჯარო</string>
     <string name="metadata_privacy_unlisted">დამალული</string>
     <string name="metadata_privacy_private">პირადი</string>
@@ -740,4 +736,10 @@
     <string name="unset_playlist_thumbnail">მუდმივი მინიატურის მოხსნა</string>
     <string name="remove_duplicates_title">წავშალო დუბლიკატები\?</string>
     <string name="feed_show_partially_watched">ნაწილობრივ ნანახი</string>
+    <string name="loading_metadata_title">მზადდება ზედაპირული მახასიათებლები…</string>
+    <string name="prefer_original_audio_summary">თავდაპირველი ხმის ჩანაწერი აირჩიე ენის მიუხედავად</string>
+    <string name="prefer_descriptive_audio_summary">აირჩიე მხედველობადაქვეითებულებისათვის დახასიათებული ხმის ჩანაწერი, თუ არის</string>
+    <string name="prefer_original_audio_title">არჩიე თავდაპირველი ხმის ჩანაწერი</string>
+    <string name="play_queue_audio_track">ხმა: %s</string>
+    <string name="audio_track">ხმის ჩანაწერი</string>
 </resources>

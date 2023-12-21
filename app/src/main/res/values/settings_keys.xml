@@ -124,6 +124,16 @@
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
 
+    <string-array name="high_resolution_list_values">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
+    <string-array name="high_resolution_list_descriptions">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
     <string-array name="resolution_list_values">
         <item>@string/best_resolution_key</item>
         <item>1080p60</item>
@@ -274,6 +284,35 @@
     <string name="main_tabs_position_key">main_tabs_position</string>
 
     <!-- Content & History -->
+    <string name="show_channel_tabs_key">channel_tabs</string>
+    <string name="show_channel_tabs_videos">show_channel_tabs_videos</string>
+    <string name="show_channel_tabs_tracks">show_channel_tabs_tracks</string>
+    <string name="show_channel_tabs_shorts">show_channel_tabs_shorts</string>
+    <string name="show_channel_tabs_livestreams">show_channel_tabs_livestreams</string>
+    <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
+    <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
+    <string name="show_channel_tabs_albums">show_channel_tabs_albums</string>
+    <string name="show_channel_tabs_about">show_channel_tabs_about</string>
+    <string-array name="show_channel_tabs_value_list">
+        <item>@string/show_channel_tabs_videos</item>
+        <item>@string/show_channel_tabs_tracks</item>
+        <item>@string/show_channel_tabs_shorts</item>
+        <item>@string/show_channel_tabs_livestreams</item>
+        <item>@string/show_channel_tabs_channels</item>
+        <item>@string/show_channel_tabs_playlists</item>
+        <item>@string/show_channel_tabs_albums</item>
+        <item>@string/show_channel_tabs_about</item>
+    </string-array>
+    <string-array name="show_channel_tabs_description_list">
+        <item>@string/channel_tab_videos</item>
+        <item>@string/channel_tab_tracks</item>
+        <item>@string/channel_tab_shorts</item>
+        <item>@string/channel_tab_livestreams</item>
+        <item>@string/channel_tab_channels</item>
+        <item>@string/channel_tab_playlists</item>
+        <item>@string/channel_tab_albums</item>
+        <item>@string/channel_tab_about</item>
+    </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
     <string name="show_local_search_suggestions_key">show_local_search_suggestions</string>
     <string name="show_remote_search_suggestions_key">show_remote_search_suggestions</string>
@@ -343,13 +382,29 @@
     </string-array>
     <string name="feed_use_dedicated_fetch_method_key">feed_use_dedicated_fetch_method</string>
 
+    <string name="feed_fetch_channel_tabs_key">feed_fetch_channel_tabs</string>
+    <string name="fetch_channel_tabs_videos">fetch_channel_tabs_videos</string>
+    <string name="fetch_channel_tabs_tracks">fetch_channel_tabs_tracks</string>
+    <string name="fetch_channel_tabs_shorts">fetch_channel_tabs_shorts</string>
+    <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_livestreams</string>
+    <string-array name="feed_fetch_channel_tabs_value_list">
+        <item>@string/fetch_channel_tabs_videos</item>
+        <item>@string/fetch_channel_tabs_tracks</item>
+        <item>@string/fetch_channel_tabs_shorts</item>
+        <item>@string/fetch_channel_tabs_livestreams</item>
+    </string-array>
+    <string-array name="feed_fetch_channel_tabs_description_list">
+        <item>@string/channel_tab_videos</item>
+        <item>@string/channel_tab_tracks</item>
+        <item>@string/channel_tab_shorts</item>
+        <item>@string/channel_tab_livestreams</item>
+    </string-array>
+
     <string name="import_export_data_path">import_export_data_path</string>
     <string name="import_data">import_data</string>
     <string name="export_data">export_data</string>
 
     <string name="clear_cookie_key">clear_cookie</string>
-
-    <string name="download_thumbnail_key">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key">cache_wipe_key</string>
     <string name="clear_views_history_key">clear_play_history</string>
@@ -1238,7 +1293,6 @@
         <item>Íslenska</item>
         <item>Italiano</item>
         <item>日本語</item>
-        <item>うちなーぐち</item>
         <item>ꦧꦱꦗꦮ</item>
         <item>Taqbaylit</item>
         <item>Kurmancî</item>
@@ -1263,6 +1317,7 @@
         <item>Português (PT)</item>
         <item>Română</item>
         <item>Pусский</item>
+        <item>うちなーぐち</item>
         <item>ᱥᱟᱱᱛᱟᱲᱤ</item>
         <item>sardu</item>
         <item>Slovenčina</item>
@@ -1299,6 +1354,11 @@
         <item>360p</item>
         <item>240p</item>
         <item>144p</item>
+    </string-array>
+
+    <string-array name="high_resolution_limit_data_usage_values_list">
+        <item>2160p</item>
+        <item>1440p</item>
     </string-array>
 
     <string name="list_view_mode_key">list_view_mode</string>
@@ -1386,4 +1446,24 @@
     <string name="media_tunneling_device_blacklist_version">media_tunneling_device_blacklist_version</string>
     <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_key">always_use_exoplayer_set_output_surface_workaround_key</string>
+
+    <!-- Image quality -->
+    <string name="image_quality_key">image_quality_key</string>
+    <string name="image_quality_none_key">image_quality_none</string>
+    <string name="image_quality_low_key">image_quality_low</string>
+    <string name="image_quality_medium_key">image_quality_medium</string>
+    <string name="image_quality_high_key">image_quality_high</string>
+    <string name="image_quality_default">@string/image_quality_medium_key</string>
+    <string-array name="image_quality_description">
+        <item>@string/image_quality_none</item>
+        <item>@string/image_quality_low</item>
+        <item>@string/image_quality_medium</item>
+        <item>@string/image_quality_high</item>
+    </string-array>
+    <string-array name="image_quality_values">
+        <item>@string/image_quality_none_key</item>
+        <item>@string/image_quality_low_key</item>
+        <item>@string/image_quality_medium_key</item>
+        <item>@string/image_quality_high_key</item>
+    </string-array>
 </resources>

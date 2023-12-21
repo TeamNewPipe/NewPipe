@@ -11,7 +11,6 @@ import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor.DeobfuscateException
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.ServiceHelper
 
@@ -96,7 +95,6 @@ class ErrorInfo(
                 throwable is ContentNotAvailableException -> R.string.content_not_available
                 throwable != null && throwable.isNetworkRelated -> R.string.network_error
                 throwable is ContentNotSupportedException -> R.string.content_not_supported
-                throwable is DeobfuscateException -> R.string.youtube_signature_deobfuscation_error
                 throwable is ExtractionException -> R.string.parsing_error
                 throwable is ExoPlaybackException -> {
                     when (throwable.type) {

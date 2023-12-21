@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Запамінаць памер і становішча ўсплываючага акна</string>
     <string name="use_inexact_seek_title">Хуткі пошук пазіцыі</string>
     <string name="use_inexact_seek_summary">Недакладны пошук дазваляе плэеру знаходзіць пазіцыі хутчэй са зніжанай дакладнасцю. Пошук цягам 5, 15 ці 25 секунд пры гэтым немажлівы</string>
-    <string name="download_thumbnail_title">Загружаць мініяцюры</string>
-    <string name="download_thumbnail_summary">Адключыце, каб не загружаць мініяцюры і зэканоміць трафік і памяць. Змена налады ачысьціць кэш малюнкаў</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш малюнкаў ачышчаны</string>
     <string name="metadata_cache_wipe_title">Ачысціць кэш метададзеных</string>
     <string name="metadata_cache_wipe_summary">Выдаліць усе загружаныя дадзеныя вэб-старонак</string>
@@ -126,7 +124,6 @@
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
     <string name="could_not_load_thumbnails">Не атрымалася загрузіць усе мініяцюры</string>
-    <string name="youtube_signature_deobfuscation_error">Не атрымалася расшыфраваць подпіс URL у відэа</string>
     <string name="parsing_error">Не атрымалася разабраць вэб-сайт</string>
     <string name="content_not_available">Кантэнт недаступны</string>
     <string name="could_not_setup_download_menu">Не атрымалася стварыць меню загрузкі</string>
@@ -334,7 +331,7 @@
     <string name="minimize_on_exit_title">Пры згортванні плэера</string>
     <string name="minimize_on_exit_summary">Дзеянне пры пераключэнні са стандартнага плэера на іншае прыкладанне — %s</string>
     <string name="minimize_on_exit_none_description">Нічога не рабіць</string>
-    <string name="minimize_on_exit_background_description">Фонавы плэер</string>
+    <string name="minimize_on_exit_background_description">Згарнуць у фонавы плэер</string>
     <string name="minimize_on_exit_popup_description">Плэер у акне</string>
     <string name="unsubscribe">Адпісацца</string>
     <string name="tab_choose">Абярыце ўкладку</string>
@@ -456,7 +453,7 @@
     <string name="no_playlist_bookmarked_yet">Няма закладак у плейлісце</string>
     <string name="select_a_playlist">Выберыце плэйліст</string>
     <string name="default_kiosk_page_summary">Кіёск па змаўчанні</string>
-    <string name="recaptcha_done_button">Так</string>
+    <string name="done">Так</string>
     <string name="subtitle_activity_recaptcha">Націсніце \"Так\" калі вырашана</string>
     <string name="infinite_videos">∞ відэа</string>
     <string name="more_than_100_videos">100+ відэа</string>
@@ -626,7 +623,7 @@
     <string name="playlist_add_stream_success_duplicate">Дублікат дададзены %d раз</string>
     <string name="leak_canary_not_available">LeakCanary недаступны</string>
     <string name="show_memory_leaks">Паказаць уцечкі памяці</string>
-    <string name="disable_media_tunneling_summary">Адключыце мультымедыйнае тунэляванне, калі ў вас з\'яўляецца чорны экран або заіканне падчас прайгравання відэа</string>
+    <string name="disable_media_tunneling_summary">Адключыце мультымедыйнае тунэляванне, калі ў вас з\'яўляецца чорны экран або заіканне падчас прайгравання відэа.</string>
     <string name="msg_failed_to_copy">Не ўдалося скапіраваць у буфер абмену</string>
     <string name="no_dir_yet">Папка спампоўкі пакуль не ўстаноўлена, выберыце папку спампоўкі па змаўчанні</string>
     <string name="faq_title">Часта задаюць пытанні</string>
@@ -700,7 +697,6 @@
     <string name="metadata_tags">Тэгі</string>
     <string name="metadata_licence">Ліцэнзія</string>
     <string name="metadata_host">Хост</string>
-    <string name="metadata_thumbnail_url">URL мініяцюры</string>
     <string name="metadata_privacy_unlisted">Не ў спісе</string>
     <string name="metadata_privacy_private">Прыватная</string>
     <string name="enumeration_comma">,</string>
@@ -775,7 +771,7 @@
     <string name="settings_category_exoplayer_title">Налады ExoPlayer</string>
     <string name="use_exoplayer_decoder_fallback_title">Выкарыстоўваць функцыю рэзервовага дэкодэра ExoPlayer</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Заўсёды выкарыстоўваць спосаб абыходу налад паверхні відэавываду ExoPlayer</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="audio_track_type_original">арыгінальны</string>
     <string name="audio_track_type_dubbed">дубляваны</string>
     <string name="audio_track_type_descriptive">апісальны</string>
@@ -785,4 +781,53 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Гэты абыходны шлях вызваляе і паўторна стварае відэакодэкі, калі адбываецца змяненне паверхні, замест таго, каб усталёўваць паверхню непасрэдна для кодэка. ExoPlayer ужо выкарыстоўваецца на некаторых прыладах з гэтай праблемай, гэты параметр мае ўплыў толькі на прыладах з Android 6 і вышэй
 \n
 \nУключэнне гэтай опцыі можа прадухіліць памылкі прайгравання пры пераключэнні бягучага відэаплэера або пераключэнні ў поўнаэкранны рэжым</string>
+    <string name="image_quality_title">Якасць выявы</string>
+    <string name="channel_tab_videos">Відэа</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Падпісчыкі</string>
+    <string name="show_channel_tabs_summary">Якія ўкладкі паказаны на старонках канала</string>
+    <string name="share_playlist_with_list">Падзяліцца спісам URL-адрасоў</string>
+    <string name="share_playlist_with_titles">Падзяліцца назвамі</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_channel_tabs">Ўкладкі канала</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Загрузка метаданых…</string>
+    <string name="toggle_screen_orientation">Змяніць арыентацыю экрана</string>
+    <string name="image_quality_low">Нізкая якасць</string>
+    <string name="main_tabs_position_title">Размяшчэнне асноўных укладак</string>
+    <string name="toggle_fullscreen">Пераключыцца ў поўнаэкранны рэжым</string>
+    <string name="feed_fetch_channel_tabs">Атрыманне ўкладак канала</string>
+    <string name="metadata_avatars">Аватары</string>
+    <string name="next_stream">Наступны стрым</string>
+    <string name="disable_media_tunneling_automatic_info">Медыятунэляванне было адключана па змаўчанні на вашай прыладзе, таму што ваша мадэль не падтрымлівае яго.</string>
+    <string name="metadata_subchannel_avatars">Аватары падканалаў</string>
+    <string name="open_play_queue">Адкрыйце чаргу прайгравання</string>
+    <string name="image_quality_none">Не загружаць выявы</string>
+    <string name="image_quality_high">Высокая якасць</string>
+    <string name="channel_tab_about">Аб канале</string>
+    <string name="share_playlist">Падзеліцца падборкай</string>
+    <string name="forward">Пераматаць наперад</string>
+    <string name="channel_tab_albums">Альбомы</string>
+    <string name="rewind">Пераматаць назад</string>
+    <string name="replay">Паўтарыць</string>
+    <string name="feed_fetch_channel_tabs_summary">Атрыманыя ўкладкі пры абнаўленні стужкі. Гэты параметр не прымяняецца, калі канал абнаўляецца ў хуткім рэжыме.</string>
+    <string name="share_playlist_with_titles_message">Падзяліцца падборкай з такімі дэталямі, як назва спіса прайгравання і назвы відэа, або проста спіс URL-адрасоў відэа</string>
+    <string name="image_quality_medium">Сярэдняя якасць</string>
+    <string name="metadata_uploader_avatars">Загрузнік аватараў</string>
+    <string name="metadata_banners">Банеры</string>
+    <string name="channel_tab_playlists">Падборкі</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="main_tabs_position_summary">Перамясціць селектар галоўнай укладкі ўніз</string>
+    <string name="no_live_streams">Няма жывых трансляцый</string>
+    <string name="image_quality_summary">Выберыце якасць выявы і ці спампоўваць выявы ўвогуле, каб паменшыць выкарыстанне дадзеных і памяці. Змены ачышчаюць кэш малюнкаў як у памяці, так і на дыску - %s</string>
+    <string name="play">Прайграць</string>
+    <string name="more_options">Іншыя опцыі</string>
+    <string name="metadata_thumbnails">Мініяцюры</string>
+    <string name="channel_tab_tracks">Дарожкі</string>
+    <string name="duration">Працягласць</string>
+    <string name="no_streams">Няма трансляцый</string>
+    <string name="channel_tab_channels">Каналы</string>
+    <string name="previous_stream">Папярэдні стрым</string>
+    <string name="channel_tab_livestreams">Жывая трансляцыя</string>
 </resources>

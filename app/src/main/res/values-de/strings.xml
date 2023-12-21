@@ -27,7 +27,7 @@
     <string name="settings_category_video_audio_title">Video und Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
-    <string name="detail_uploader_thumbnail_view_description">Avatarbild des Benutzers</string>
+    <string name="detail_uploader_thumbnail_view_description">Profilbild des Benutzers</string>
     <string name="detail_dislikes_img_view_description">Gefällt mir nicht</string>
     <string name="detail_likes_img_view_description">Gefällt mir</string>
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
@@ -43,7 +43,6 @@
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
-    <string name="youtube_signature_deobfuscation_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
     <string name="parsing_error">Konnte Webseite nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="content">Inhalt</string>
@@ -100,11 +99,11 @@
     <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
-    <string name="popup_remember_size_pos_title">Pop-up Eigenschaften merken</string>
+    <string name="popup_remember_size_pos_title">Eigenschaften des Pop-ups merken</string>
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
-    <string name="show_search_suggestions_summary">Wähle die Vorschläge aus, die bei der Suche angezeigt werden sollen</string>
+    <string name="show_search_suggestions_summary">Vorschläge auswählen, die bei der Suche angezeigt werden sollen</string>
     <string name="clear">Löschen</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="title_activity_about">Über NewPipe</string>
@@ -172,17 +171,17 @@
     <string name="play_queue_audio_settings">Audio-Einstellungen</string>
     <string name="player_stream_failure">Konnte diesen Stream nicht abspielen</string>
     <string name="main_page_content">Inhalt der Hauptseite</string>
-    <string name="channel_page_summary">Kanal-Seite</string>
+    <string name="channel_page_summary">Kanalseite</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
     <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>
     <string name="player_recoverable_failure">Wiederherstellen nach einem Wiedergabefehler</string>
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Knopf „Details:“ im Video gedrückt wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn die Hintergrundwiedergabe- oder Pop-up-Schaltfläche „Details:“ im Video gedrückt wird</string>
     <string name="new_and_hot">Neu und Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
-    <string name="show_hold_to_append_title">„Halten zum Einreihen“ Tipp anzeigen</string>
+    <string name="show_hold_to_append_title">„Halten zum Einreihen“-Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
@@ -206,7 +205,7 @@
     <string name="video_player">Video-Player</string>
     <string name="background_player">Wiedergabe im Hintergrund</string>
     <string name="popup_player">Popup-Player</string>
-    <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen …</string>
+    <string name="preferred_player_fetcher_notification_title">Erhalte Informationen …</string>
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
     <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
@@ -253,7 +252,6 @@
     <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
 \n 
 \nMöchtest du fortfahren\?</string>
-    <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
     <string name="metadata_cache_wipe_title">Zwischengespeicherte (Metadaten) löschen</string>
     <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Website-Daten entfernen</string>
@@ -270,7 +268,6 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="bookmark_playlist">Wiedergabeliste mit Lesezeichen versehen</string>
@@ -458,7 +455,7 @@
     <string name="app_language_title">Sprache der App</string>
     <string name="systems_language">Systemstandard</string>
     <string name="subtitle_activity_recaptcha">„Fertig“ drücken, wenn es gelöst wurde</string>
-    <string name="recaptcha_done_button">Fertig</string>
+    <string name="done">Fertig</string>
     <string name="videos_string">Videos</string>
     <plurals name="seconds">
         <item quantity="one">%d Sekunde</item>
@@ -497,15 +494,15 @@
     <string name="feed_update_threshold_summary">Zeit nach der letzten Aktualisierung, bevor ein Abonnement als veraltet angesehen wird — %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Schnellmodus aktivieren</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Schnellmodus deaktivieren</string>
-    <string name="feed_oldest_subscription_update">Abos zuletzt aktualisiert: %s</string>
+    <string name="feed_oldest_subscription_update">Feed zuletzt aktualisiert: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
-    <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abholen wenn verfügbar</string>
+    <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abrufen wenn verfügbar</string>
     <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist\? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
-\n• die Abholung des gesamten abonnierten Kanals, was langsam aber vollständig geschieht.
-\n• die Verwendung eines fest zugeordneten Serviceendpunkts, was schnell aber für gewöhnlich inkomplett ist.
+\n• das Abrufen des gesamten abonnierten Kanals, was langsam aber vollständig geschieht.
+\n• das Verwenden eines fest zugeordneten Serviceendpunkts, was schnell aber für gewöhnlich inkomplett ist.
 \n
 \nDer Unterschied zwischen den beiden ist, dass der schnellen normalerweise einige Informationen fehlen, wie die Dauer oder der Typ des Elements (keine Unterscheidung zwischen Live-Videos und normalen) und sie eventuell weniger Elemente liefert.
 \n
@@ -576,10 +573,10 @@
     <string name="show_thumbnail_title">Vorschaubild anzeigen</string>
     <string name="msg_calculating_hash">Hash wird berechnet</string>
     <string name="hash_channel_description">Benachrichtigungen über den Hashing-Fortschritt von Videos</string>
-    <string name="hash_channel_name">Video-Hash Benachrichtigung</string>
+    <string name="hash_channel_name">Video-Hash-Benachrichtigung</string>
     <string name="recent">Letzte</string>
     <string name="show_meta_info_title">Metadaten anzeigen</string>
-    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
+    <string name="show_meta_info_summary">Ausschalten, um Metadaten-Felder mit zusätzlichen Informationen zu Stream-Ersteller, -Inhalten oder einer Suchanfrage auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
     <string name="related_items_tab_description">Verwandte Elemente</string>
@@ -601,10 +598,10 @@
     <string name="recaptcha_solve">Lösen</string>
     <string name="download_has_started">Download hat begonnen</string>
     <string name="select_night_theme_toast">Du kannst dein bevorzugtes Nachtdesign unten auswählen</string>
-    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign – %s</string>
+    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign — %s</string>
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
-    <string name="show_channel_details">Kanal-Details anzeigen</string>
+    <string name="show_channel_details">Kanaldetails anzeigen</string>
     <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt.</string>
     <string name="disable_media_tunneling_title">Media-Tunneling deaktivieren</string>
     <string name="metadata_privacy_internal">Intern</string>
@@ -617,9 +614,9 @@
     <string name="metadata_tags">Schlagwörter</string>
     <string name="metadata_category">Kategorie</string>
     <string name="metadata_privacy_unlisted">Nicht gelistet</string>
-    <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
     <string name="metadata_host">Server</string>
     <string name="metadata_support">Unterstützung</string>
+    <string name="metadata_subscribers">Abonnenten</string>
     <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
     <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
     <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
@@ -627,7 +624,7 @@
 \nNewPipe wird diesen Feed in Zukunft nicht mehr laden können.
 \nMöchtest du dich von diesem Kanal abmelden\?</string>
     <string name="account_terminated">Konto geschlossen</string>
-    <string name="feed_load_error_fast_unknown">Der Schnelllademodus liefert hierzu keine weiteren Informationen.</string>
+    <string name="feed_load_error_fast_unknown">Der Schnellmodus liefert hierzu keine weiteren Informationen.</string>
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
     <string name="open_website_license">Webseite öffnen</string>
     <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
@@ -665,7 +662,7 @@
     <string name="show_crash_the_player_title">\"Player abstürzen lassen\" anzeigen</string>
     <string name="crash_the_player">Player abstürzen lassen</string>
     <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
-    <string name="error_report_channel_name">Benachrichtigung über Fehlerberichte</string>
+    <string name="error_report_channel_name">Fehlerbericht-Benachrichtigung</string>
     <string name="error_report_channel_description">Benachrichtigungen zur Meldung von Fehlern</string>
     <string name="error_report_notification_title">Bei NewPipe ist ein Fehler aufgetreten. Zum Melden antippen</string>
     <string name="error_report_notification_toast">Ein Fehler ist aufgetreten, siehe die Benachrichtigung</string>
@@ -685,7 +682,7 @@
         <item quantity="one">%s neuer Stream</item>
         <item quantity="other">%s neue Streams</item>
     </plurals>
-    <string name="loading_stream_details">Stream-Details laden …</string>
+    <string name="loading_stream_details">Lade Stream-Details …</string>
     <string name="enable_streams_notifications_summary">Über neue Streams aus Abonnements benachrichtigen</string>
     <string name="enumeration_comma">,</string>
     <string name="any_network">Jedes Netzwerk</string>
@@ -712,7 +709,7 @@
     <string name="faq_title">Häufig gestellte Fragen</string>
     <string name="faq_description">Wenn du Probleme bei der Verwendung der App hast, lies bitte die Antworten auf häufig gestellte Fragen!</string>
     <string name="sort">Sortieren</string>
-    <string name="fast_mode">Schneller Modus</string>
+    <string name="fast_mode">Schnellmodus</string>
     <string name="app_update_unavailable_toast">Du verwendest die neueste Version von NewPipe</string>
     <string name="app_update_available_notification_text">Antippen um %s herunterzuladen</string>
     <string name="import_subscriptions_hint">Importieren oder Exportieren von Abonnements über das 3-Punkte-Menü</string>
@@ -739,16 +736,16 @@
     <string name="left_gesture_control_title">Linke Gestenaktion</string>
     <string name="brightness">Helligkeit</string>
     <string name="volume">Lautstärke</string>
-    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen.</string>
+    <string name="progressive_load_interval_summary">Ändere die Größe des Ladeintervalls für progressive Inhalte (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden der Inhalte beschleunigen</string>
     <string name="prefer_original_audio_title">Originalton bevorzugen</string>
-    <string name="prefer_original_audio_summary">Wähle die Originaltonspur unabhängig von der Sprache</string>
+    <string name="prefer_original_audio_summary">Originaltonspur unabhängig von der Sprache wählen</string>
     <string name="prefer_descriptive_audio_title">Beschreibendes Audio bevorzugen</string>
-    <string name="prefer_descriptive_audio_summary">Wähle eine Audiospur mit Beschreibungen für sehbehinderte Menschen, falls verfügbar</string>
+    <string name="prefer_descriptive_audio_summary">Wenn möglich Audiospur mit Beschreibungen für sehbehinderte Menschen wählen</string>
     <string name="play_queue_audio_track">Audio: %s</string>
     <string name="audio_track">Audiospur</string>
-    <string name="settings_category_exoplayer_summary">Verwalte einige ExoPlayer-Einstellungen. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
-    <string name="use_exoplayer_decoder_fallback_title">Verwende die Decoder-Fallback-Funktion von ExoPlayer</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_title">Verwende immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung</string>
+    <string name="settings_category_exoplayer_summary">Einige ExoPlayer-Einstellungen steuern. Diese Änderungen erfordern einen Neustart des Players, um wirksam zu werden</string>
+    <string name="use_exoplayer_decoder_fallback_title">Die Decoder-Fallback-Funktion von ExoPlayer verwenden</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Immer die ExoPlayer-Einstellung für die Videoausgangsoberfläche als Umgehung verwenden</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Dieser Workaround gibt die Video-Codecs frei und instanziiert sie neu, wenn sich die Oberfläche ändert, anstatt die Oberfläche direkt auf den Codec zu setzen. Diese Einstellung wird bereits von ExoPlayer auf einigen Geräten mit diesem Problem verwendet und hat nur Auswirkungen auf Android 6 und höher
 \n
 \nDas Aktivieren dieser Option kann Wiedergabefehler beim Wechsel des aktuellen Videoplayers oder beim Wechsel zum Vollbildmodus verhindern</string>
@@ -757,11 +754,56 @@
     <string name="audio_track_type_descriptive">Beschreibend</string>
     <string name="select_audio_track_external_players">Audiospur für externe Player auswählen</string>
     <string name="audio_track_present_in_video">In diesem Stream sollte bereits eine Audiospur vorhanden sein</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Aktiviere diese Option, wenn du Probleme mit der Decoderinitialisierung hast, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Einschalten, wenn es Probleme mit der Decoderinitialisierung gibt, die auf Decoder mit niedrigerer Priorität zurückgreift, wenn die Initialisierung des primären Decoders fehlschlägt. Dies kann zu einer schlechteren Wiedergabeleistung führen als bei der Verwendung von Primärdecodern</string>
     <string name="unknown_audio_track">Unbekannt</string>
     <string name="settings_category_exoplayer_title">ExoPlayer-Einstellungen</string>
-    <string name="audio_track_name">%1s %2s</string>
+    <string name="audio_track_name">%1$s %2$s</string>
     <string name="main_tabs_position_summary">Hauptauswahltab nach unten verschieben</string>
     <string name="main_tabs_position_title">Position des Haupttabs</string>
     <string name="disable_media_tunneling_automatic_info">Das Media-Tunneling wurde auf dem Gerät standardmäßig deaktiviert, da das Gerätemodell diese Funktion bekanntermaßen nicht unterstützt.</string>
+    <string name="no_live_streams">Keine Live-Streams</string>
+    <string name="no_streams">Keine Streams</string>
+    <string name="channel_tab_videos">Videos</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_playlists">Wiedergabelisten</string>
+    <string name="channel_tab_channels">Kanäle</string>
+    <string name="channel_tab_albums">Alben</string>
+    <string name="show_channel_tabs">Tabs auf den Kanalseiten</string>
+    <string name="show_channel_tabs_summary">Welche Tabs auf den Kanalseiten angezeigt werden</string>
+    <string name="loading_metadata_title">Lade Metadaten …</string>
+    <string name="channel_tab_about">Über</string>
+    <string name="feed_fetch_channel_tabs">Tabs der Kanalseiten abrufen</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabs, die beim Aktualisieren des Feeds abgerufen werden. Diese Option hat keine Auswirkungen, wenn ein Kanal im Schnellmodus aktualisiert wird.</string>
+    <string name="channel_tab_tracks">Titel</string>
+    <string name="toggle_screen_orientation">Bildschirmausrichtung umschalten</string>
+    <string name="toggle_fullscreen">Vollbildmodus umschalten</string>
+    <string name="open_play_queue">Wiedergabewarteschlange öffnen</string>
+    <string name="forward">Vorspulen</string>
+    <string name="rewind">Zurückspulen</string>
+    <string name="replay">Wiederholen</string>
+    <string name="play">Abspielen</string>
+    <string name="next_stream">Nächster Stream</string>
+    <string name="more_options">Mehr Optionen</string>
+    <string name="duration">Dauer</string>
+    <string name="previous_stream">Vorheriger Stream</string>
+    <string name="image_quality_title">Bildqualität</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Geringe Qualität</string>
+    <string name="image_quality_none">Bilder nicht laden</string>
+    <string name="image_quality_high">Hohe Qualität</string>
+    <string name="image_quality_medium">Mittlere Qualität</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="metadata_thumbnails">Vorschaubilder</string>
+    <string name="metadata_avatars">Profilbilder</string>
+    <string name="metadata_subchannel_avatars">Profilbilder des Unterkanals</string>
+    <string name="metadata_uploader_avatars">Profilbilder des Benutzers</string>
+    <string name="image_quality_summary">Wähle die Bildqualität und ob überhaupt Bilder geladen werden sollen, um die Daten- und Speichernutzung zu reduzieren. Änderungen löschen sowohl den Bilder-Cache im Speicher als auch auf der Festplatte — %s</string>
+    <string name="share_playlist_with_list">URL-Liste teilen</string>
+    <string name="share_playlist_with_titles">Mit Titeln teilen</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Wiedergabeliste teilen</string>
+    <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>
