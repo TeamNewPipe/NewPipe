@@ -1,0 +1,16 @@
+Baru
+• Mendukung tab saluran
+• Pilih kualitas gambar
+• Dapatkan URL ke semua gambar
+
+Ditingkatkan
+• Aksesibilitas antarmuka pemain
+• Pilihan audio yang lebih baik untuk download video saja
+• Pilihan untuk memasukkan nama playlist dan video ke konten playlist bersama
+
+Tetap
+• [YouTube] Perbaiki penghitungan jumlah suka
+• Memperbaiki pemain yang tidak merespons popup dan crash
+• Pemilihan bahasa yang salah di pemilih bahasa
+• Fokus audio pemutar tidak menerapkan mode senyap
+• Penambahan item playlist terkadang tidak berfungsi

@@ -1,14 +1,16 @@
 Nuevo
-• Pestañas del canal
-• Calidad de la imagen
-• URLs a todas las imágenes
+• Pestañas de canal
+• Calidad de imagen
+• URLs de las imágenes
 
-Mejorado
+Mejora de
 • Accesibilidad de las interfaces de los reproductores
-• Opción para añadir el nombre de la lista de reproducción y el nombre del vídeo a la lista de reproducción compartida
-• Mejoras internas y actualizaciones de dependencias
+• Mejor selección de audio para descargas de vídeo
+• Incluir nombres de listas de reproducción y vídeos en listas compartidas
 
-Fijo
-• Idiomas incorrectos en el selector de idiomas
-• El audio del reproductor no se silenciaba
-• Agregar elementos a listas de reproducción que no funcionan en casos específicos
+Corregido
+• [YouTube] Corrección del recuento "Me gusta"
+• Ventanas emergentes y bloqueos
+• Idiomas incorrectos en selector de idiomas
+• Audio del reproductor no respetaba silencio
+• La lista de reproducción no funcionaba ocasionalmente

@@ -5,10 +5,12 @@ Novità
 
 Migliorato
 • Accessibilità delle interfacce del player
-• Opzione per aggiungere il nome della playlist e il nome video al contenuto di condivisione della playlist
-• Miglioramenti interni e aggiornamenti delle dipendenze
+• Miglior scelta dell'audio per i download video-only
+• Condivisione playlist con più opzioni
 
 Corretto
+• [YouTube] Sistemati i mi piace
+• Talvolta il player non rispondeva o crashava
 • Selezione di lingue errate nel selettore
 • Il focus audio del player non rispettava il muto
-• Aggiungere elementi a playlist non funzionava in casi specifici
+• Talvolta aggiungere elementi a playlist non funzionava

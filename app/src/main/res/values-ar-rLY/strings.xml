@@ -5,13 +5,13 @@
     <string name="settings">الإعدادات</string>
     <string name="search">بحث</string>
     <string name="controls_download_desc">تنزيل ملف البث</string>
-    <string name="download">تحميل</string>
+    <string name="download">تنزيل</string>
     <string name="share">إعادة النشر</string>
     <string name="open_in_popup_mode">فتح في نافدة منبثقة</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="cancel">إلغاء</string>
     <string name="install">تثبيت</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله).</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيلها).</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. يرجى تثبيت VLC؟</string>
     <string name="upload_date_text">تم النشر في %1$s</string>
     <string name="main_bg_subtitle">اضغط على عدسة المكبرة للبدء.</string>

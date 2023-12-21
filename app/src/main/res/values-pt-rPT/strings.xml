@@ -44,8 +44,8 @@
     <string name="enable_watch_history_title">Histórico de visualizações</string>
     <plurals name="views">
         <item quantity="one">%s visualização</item>
-        <item quantity="many">%s subscritores</item>
-        <item quantity="other">%s subscritores</item>
+        <item quantity="many">%s visualizações</item>
+        <item quantity="other">%s visualizações</item>
     </plurals>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
     <string name="settings_category_history_title">Histórico e cache</string>

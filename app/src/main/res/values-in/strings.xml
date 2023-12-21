@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk kaca pembesar untuk segera memulai.</string>
-    <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
+    <string name="main_bg_subtitle">Sentuh kaca pembesar untuk memulai.</string>
+    <string name="upload_date_text">Dipublikasikan pada %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
     <string name="open_in_browser">Buka di browser</string>
@@ -74,7 +74,7 @@
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
-    <string name="no_player_found">Pemutar stream tidak ditemukan. Pasang VLC\?</string>
+    <string name="no_player_found">Pemutar stream tidak ada. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
@@ -237,7 +237,7 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="no_player_found_toast">Pemutar stream tidak ditemukan (Anda bisa memasang VLC untuk memutarnya).</string>
+    <string name="no_player_found_toast">Pemutar stream tidak ada (pasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa mengubah langganan</string>
     <string name="show_info">Tampilkan info</string>

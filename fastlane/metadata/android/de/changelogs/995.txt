@@ -5,10 +5,12 @@ Neu
 
 Verbessert
 • Zugänglichkeit der Player-Oberflächen
-• Option zum Hinzufügen von Wiedergabelisten- und Videonamen beim Teilen von Inhalten
-• Interne Verbesserungen und Aktualisierungen der Abhängigkeiten
+• Bessere Audioauswahl bei reinen Video-Downloads
+• Option zur Aufnahme von Wiedergabelisten-/Videonamen in geteilten Wiedergabelisteninhalten
 
 Behoben
+• [YouTube] Erhalten der Like-Anzahl
+• Nicht reagierende Popups und Abstürze des Players
 • Auswahl der falschen Sprachen in der Sprachauswahl
-• Der Audio-Fokus des Players respektierte die Stummschaltung nicht
-• Das Hinzufügen von Elementen zu Wiedergabelisten in bestimmten Fällen
+• Audio-Fokus des Players respektiert keine Stummschaltung
+…

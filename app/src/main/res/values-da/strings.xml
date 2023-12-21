@@ -718,4 +718,7 @@
     <string name="duplicate_in_playlist">Playlists der er grået ud, indeholder allerede dette objekt.</string>
     <string name="unset_playlist_thumbnail">Inaktiver permanent thumbnail</string>
     <string name="msg_failed_to_copy">Fejlede at kopiere til udklipsholderen</string>
+    <string name="prefer_original_audio_summary">Brug det originale lydspor uanset sprog</string>
+    <string name="prefer_descriptive_audio_title">Foretræk lydbeskrivelser</string>
+    <string name="prefer_original_audio_title">Foretræk original lyd</string>
 </resources>

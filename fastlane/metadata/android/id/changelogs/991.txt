@@ -1,0 +1,13 @@
+Baru
+• Tambahkan tombol "Buka di browser" di panel kesalahan
+• Tambahkan opsi untuk menampilkan grup saluran sebagai daftar
+• [YouTube] Klik-lama pada segmen streaming untuk membagikan URL stempel waktu
+• Tambahkan tombol antrian putar ke pemutar mini
+
+Disempurnakan
+• Tambahkan lokalisasi Islandia dan perbarui banyak terjemahan lainnya
+• Banyak perbaikan internal
+
+Diperbaiki
+• Memperbaiki beberapa kerusakan
+• [YouTube] Memperbaiki pemuatan saluran, feed non-khusus, dan mengatasi masalah pemutaran di beberapa negara

@@ -547,7 +547,7 @@
     <string name="never">Jamais</string>
     <string name="wifi_only">Uniquement en Wi-Fi</string>
     <string name="autoplay_summary">Démarrer la lecture automatiquement — %s</string>
-    <string name="title_activity_play_queue">Liste de lecture</string>
+    <string name="title_activity_play_queue">File de lecture</string>
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
     <string name="auto_queue_toggle">Ajout auto. à la file</string>
     <string name="clear_queue_confirmation_description">La file de lecture du lecteur actif sera remplacée</string>
@@ -814,11 +814,11 @@
     <string name="share_playlist_with_titles">Partager avec les noms</string>
     <string name="metadata_subchannel_avatars">Avatars de sous-chaîne</string>
     <string name="open_play_queue">Ouvrir la file de lecture</string>
-    <string name="forward">En avant</string>
+    <string name="forward">Avancer</string>
     <string name="rewind">Rembobiner</string>
-    <string name="replay">Relancer</string>
-    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le nom de ses vidéos ou simplement la liste des URL des vidéos</string>
-    <string name="metadata_uploader_avatars">Mise en ligne des avatars</string>
-    <string name="image_quality_summary">Sélectionnez la qualités des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vide à la fois le cache des images en mémoire et sur le disque — %s</string>
-    <string name="play">Lancer</string>
+    <string name="replay">Rejouer</string>
+    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le titre de ses vidéos ou simplement la liste des URLs des vidéos</string>
+    <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
+    <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
+    <string name="play">Lire</string>
 </resources>
