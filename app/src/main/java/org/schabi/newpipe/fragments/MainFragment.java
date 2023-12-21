@@ -194,7 +194,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         binding.pager.setAdapter(null);
-        binding.pager.setOffscreenPageLimit(tabsList.size());
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
