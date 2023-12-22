@@ -1014,10 +1014,16 @@ public final class VideoDetailFragment
     }
 
     public void scrollToComment(final CommentsInfoItem comment) {
-        final Fragment fragment = pageAdapter.getItem(
-                pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG));
-        if (fragment instanceof CommentsFragment) {
-            ((CommentsFragment) fragment).scrollToComment(comment);
+        final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
+        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
+        if (!(fragment instanceof CommentsFragment)) {
+            return;
+        }
+
+        // unexpand the app bar only if scrolling to the comment succeeded
+        if (((CommentsFragment) fragment).scrollToComment(comment)) {
+            binding.appBarLayout.setExpanded(false, false);
+            binding.viewPager.setCurrentItem(commentsTabPos, false);
         }
     }
 
