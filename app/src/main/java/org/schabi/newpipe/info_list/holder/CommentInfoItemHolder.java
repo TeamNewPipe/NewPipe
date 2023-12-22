@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -166,12 +167,12 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         });
     }
 
-    private void openCommentAuthor(final CommentsInfoItem item) {
+    private void openCommentAuthor(@NonNull final CommentsInfoItem item) {
         NavigationHelper.openCommentAuthorIfPresent((FragmentActivity) itemBuilder.getContext(),
                 item);
     }
 
-    private void openCommentReplies(final CommentsInfoItem item) {
+    private void openCommentReplies(@NonNull final CommentsInfoItem item) {
         NavigationHelper.openCommentRepliesFragment((FragmentActivity) itemBuilder.getContext(),
                 item);
     }

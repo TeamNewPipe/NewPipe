@@ -85,7 +85,7 @@ public final class Localization {
                 .fromLocale(getPreferredLocale(context));
     }
 
-    public static ContentCountry getPreferredContentCountry(final Context context) {
+    public static ContentCountry getPreferredContentCountry(@NonNull final Context context) {
         final String contentCountry = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.content_country_key),
                         context.getString(R.string.default_localization_key));
@@ -95,41 +95,43 @@ public final class Localization {
         return new ContentCountry(contentCountry);
     }
 
-    public static Locale getPreferredLocale(final Context context) {
+    public static Locale getPreferredLocale(@NonNull final Context context) {
         return getLocaleFromPrefs(context, R.string.content_language_key);
     }
 
-    public static Locale getAppLocale(final Context context) {
+    public static Locale getAppLocale(@NonNull final Context context) {
         return getLocaleFromPrefs(context, R.string.app_language_key);
     }
 
-    public static String localizeNumber(final Context context, final long number) {
+    public static String localizeNumber(@NonNull final Context context, final long number) {
         return localizeNumber(context, (double) number);
     }
 
-    public static String localizeNumber(final Context context, final double number) {
+    public static String localizeNumber(@NonNull final Context context, final double number) {
         final NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
 
-    public static String formatDate(final OffsetDateTime offsetDateTime, final Context context) {
+    public static String formatDate(@NonNull final Context context,
+                                    @NonNull final OffsetDateTime offsetDateTime) {
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
                 .withLocale(getAppLocale(context)).format(offsetDateTime
                         .atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(final Context context,
-                                            final OffsetDateTime offsetDateTime) {
-        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime, context));
+    public static String localizeUploadDate(@NonNull final Context context,
+                                            @NonNull final OffsetDateTime offsetDateTime) {
+        return context.getString(R.string.upload_date_text, formatDate(context, offsetDateTime));
     }
 
-    public static String localizeViewCount(final Context context, final long viewCount) {
+    public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
                 localizeNumber(context, viewCount));
     }
 
-    public static String localizeStreamCount(final Context context, final long streamCount) {
+    public static String localizeStreamCount(@NonNull final Context context,
+                                             final long streamCount) {
         switch ((int) streamCount) {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
@@ -143,7 +145,8 @@ public final class Localization {
         }
     }
 
-    public static String localizeStreamCountMini(final Context context, final long streamCount) {
+    public static String localizeStreamCountMini(@NonNull final Context context,
+                                                 final long streamCount) {
         switch ((int) streamCount) {
             case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
                 return "";
@@ -156,12 +159,13 @@ public final class Localization {
         }
     }
 
-    public static String localizeWatchingCount(final Context context, final long watchingCount) {
+    public static String localizeWatchingCount(@NonNull final Context context,
+                                               final long watchingCount) {
         return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
                 localizeNumber(context, watchingCount));
     }
 
-    public static String shortCount(final Context context, final long count) {
+    public static String shortCount(@NonNull final Context context, final long count) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return CompactDecimalFormat.getInstance(getAppLocale(context),
                     CompactDecimalFormat.CompactStyle.SHORT).format(count);
@@ -182,37 +186,40 @@ public final class Localization {
         }
     }
 
-    public static String listeningCount(final Context context, final long listeningCount) {
+    public static String listeningCount(@NonNull final Context context, final long listeningCount) {
         return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount,
                 shortCount(context, listeningCount));
     }
 
-    public static String shortWatchingCount(final Context context, final long watchingCount) {
+    public static String shortWatchingCount(@NonNull final Context context,
+                                            final long watchingCount) {
         return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
                 shortCount(context, watchingCount));
     }
 
-    public static String shortViewCount(final Context context, final long viewCount) {
+    public static String shortViewCount(@NonNull final Context context, final long viewCount) {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
                 shortCount(context, viewCount));
     }
 
-    public static String shortSubscriberCount(final Context context, final long subscriberCount) {
+    public static String shortSubscriberCount(@NonNull final Context context,
+                                              final long subscriberCount) {
         return getQuantity(context, R.plurals.subscribers, R.string.no_subscribers, subscriberCount,
                 shortCount(context, subscriberCount));
     }
 
-    public static String downloadCount(final Context context, final int downloadCount) {
+    public static String downloadCount(@NonNull final Context context, final int downloadCount) {
         return getQuantity(context, R.plurals.download_finished_notification, 0,
                 downloadCount, shortCount(context, downloadCount));
     }
 
-    public static String deletedDownloadCount(final Context context, final int deletedCount) {
+    public static String deletedDownloadCount(@NonNull final Context context,
+                                              final int deletedCount) {
         return getQuantity(context, R.plurals.deleted_downloads_toast, 0,
                 deletedCount, shortCount(context, deletedCount));
     }
 
-    public static String replyCount(final Context context, final int replyCount) {
+    public static String replyCount(@NonNull final Context context, final int replyCount) {
         return getQuantity(context, R.plurals.replies, 0, replyCount,
                 String.valueOf(replyCount));
     }
@@ -223,7 +230,7 @@ public final class Localization {
      * @return if {@code likeCount} is smaller than {@code 0}, the string {@code "-"}, otherwise
      *         the result of calling {@link #shortCount(Context, long)} on the like count
      */
-    public static String likeCount(final Context context, final int likeCount) {
+    public static String likeCount(@NonNull final Context context, final int likeCount) {
         if (likeCount < 0) {
             return "-";
         } else {
@@ -263,7 +270,8 @@ public final class Localization {
      * @return duration in a human readable string.
      */
     @NonNull
-    public static String localizeDuration(final Context context, final int durationInSecs) {
+    public static String localizeDuration(@NonNull final Context context,
+                                          final int durationInSecs) {
         if (durationInSecs < 0) {
             throw new IllegalArgumentException("duration can not be negative");
         }
@@ -300,7 +308,7 @@ public final class Localization {
      * @param track   an {@link AudioStream} of the track
      * @return the localized name of the audio track
      */
-    public static String audioTrackName(final Context context, final AudioStream track) {
+    public static String audioTrackName(@NonNull final Context context, final AudioStream track) {
         final String name;
         if (track.getAudioLocale() != null) {
             name = track.getAudioLocale().getDisplayLanguage(getAppLocale(context));
@@ -320,7 +328,8 @@ public final class Localization {
     }
 
     @Nullable
-    private static String audioTrackType(final Context context, final AudioTrackType trackType) {
+    private static String audioTrackType(@NonNull final Context context,
+                                         final AudioTrackType trackType) {
         switch (trackType) {
             case ORIGINAL:
                 return context.getString(R.string.audio_track_type_original);
@@ -336,17 +345,17 @@ public final class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void initPrettyTime(final PrettyTime time) {
+    public static void initPrettyTime(@NonNull final PrettyTime time) {
         prettyTime = time;
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
     }
 
-    public static PrettyTime resolvePrettyTime(final Context context) {
+    public static PrettyTime resolvePrettyTime(@NonNull final Context context) {
         return new PrettyTime(getAppLocale(context));
     }
 
-    public static String relativeTime(final OffsetDateTime offsetDateTime) {
+    public static String relativeTime(@NonNull final OffsetDateTime offsetDateTime) {
         return prettyTime.formatUnrounded(offsetDateTime);
     }
 
@@ -383,7 +392,8 @@ public final class Localization {
         res.updateConfiguration(conf, dm);
     }
 
-    private static Locale getLocaleFromPrefs(final Context context, @StringRes final int prefKey) {
+    private static Locale getLocaleFromPrefs(@NonNull final Context context,
+                                             @StringRes final int prefKey) {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String defaultKey = context.getString(R.string.default_localization_key);
         final String languageCode = sp.getString(context.getString(prefKey), defaultKey);
@@ -399,8 +409,10 @@ public final class Localization {
         return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
     }
 
-    private static String getQuantity(final Context context, @PluralsRes final int pluralId,
-                                      @StringRes final int zeroCaseStringId, final long count,
+    private static String getQuantity(@NonNull final Context context,
+                                      @PluralsRes final int pluralId,
+                                      @StringRes final int zeroCaseStringId,
+                                      final long count,
                                       final String formattedCount) {
         if (count == 0) {
             return context.getString(zeroCaseStringId);

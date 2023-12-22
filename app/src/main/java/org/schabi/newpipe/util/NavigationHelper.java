@@ -489,7 +489,7 @@ public final class NavigationHelper {
      * @param comment the comment whose uploader/author will be opened
      */
     public static void openCommentAuthorIfPresent(@NonNull final FragmentActivity activity,
-                                                  final CommentsInfoItem comment) {
+                                                  @NonNull final CommentsInfoItem comment) {
         if (isEmpty(comment.getUploaderUrl())) {
             return;
         }
@@ -502,9 +502,9 @@ public final class NavigationHelper {
     }
 
     public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
-                                                  final CommentsInfoItem commentsInfoItem) {
+                                                  @NonNull final CommentsInfoItem comment) {
         defaultTransaction(activity.getSupportFragmentManager())
-                .replace(R.id.fragment_holder, new CommentRepliesFragment(commentsInfoItem),
+                .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
                         CommentRepliesFragment.TAG)
                 .addToBackStack(CommentRepliesFragment.TAG)
                 .commit();

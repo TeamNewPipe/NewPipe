@@ -51,7 +51,7 @@ public final class CommentRepliesFragment
         super(UserAction.REQUESTED_COMMENT_REPLIES);
     }
 
-    public CommentRepliesFragment(final CommentsInfoItem commentsInfoItem) {
+    public CommentRepliesFragment(@NonNull final CommentsInfoItem commentsInfoItem) {
         this();
         this.commentsInfoItem = commentsInfoItem;
         // setting "" as title since the title will be properly set right after
