@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:listitem="@layout/list_comments_item" />
+        tools:listitem="@layout/list_comment_item" />
 
     <ProgressBar
         android:id="@+id/loading_progress_bar"

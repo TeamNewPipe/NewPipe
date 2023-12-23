@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 import android.annotation.SuppressLint;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -29,8 +31,10 @@ import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
@@ -41,6 +45,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
@@ -474,6 +479,35 @@ public final class NavigationHelper {
         openChannelFragment(
                 fragment.requireActivity().getSupportFragmentManager(),
                 item.getServiceId(), uploaderUrl, item.getUploaderName());
+    }
+
+    /**
+     * Opens the comment author channel fragment, if the {@link CommentsInfoItem#getUploaderUrl()}
+     * of {@code comment} is non-null. Shows a UI-error snackbar if something goes wrong.
+     *
+     * @param activity the activity with the fragment manager and in which to show the snackbar
+     * @param comment the comment whose uploader/author will be opened
+     */
+    public static void openCommentAuthorIfPresent(@NonNull final FragmentActivity activity,
+                                                  @NonNull final CommentsInfoItem comment) {
+        if (isEmpty(comment.getUploaderUrl())) {
+            return;
+        }
+        try {
+            openChannelFragment(activity.getSupportFragmentManager(), comment.getServiceId(),
+                    comment.getUploaderUrl(), comment.getUploaderName());
+        } catch (final Exception e) {
+            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
+        }
+    }
+
+    public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
+                                                  @NonNull final CommentsInfoItem comment) {
+        defaultTransaction(activity.getSupportFragmentManager())
+                .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
+                        CommentRepliesFragment.TAG)
+                .addToBackStack(CommentRepliesFragment.TAG)
+                .commit();
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
