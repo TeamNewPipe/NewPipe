@@ -167,7 +167,7 @@ class PopupPlayerGestureListener(
     }
 
     override fun onFling(
-        e1: MotionEvent,
+        e1: MotionEvent?,
         e2: MotionEvent,
         velocityX: Float,
         velocityY: Float
@@ -218,11 +218,14 @@ class PopupPlayerGestureListener(
     }
 
     override fun onScroll(
-        initialEvent: MotionEvent,
+        initialEvent: MotionEvent?,
         movingEvent: MotionEvent,
         distanceX: Float,
         distanceY: Float
     ): Boolean {
+        if (initialEvent == null) {
+            return false
+        }
 
         if (isResizing) {
             return super.onScroll(initialEvent, movingEvent, distanceX, distanceY)

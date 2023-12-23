@@ -364,7 +364,7 @@ public final class NotificationUtil {
         final Bitmap thumbnail = player.getThumbnail();
         if (thumbnail == null || !showThumbnail) {
             // since the builder is reused, make sure the thumbnail is unset if there is not one
-            builder.setLargeIcon(null);
+            builder.setLargeIcon((Bitmap) null);
             return;
         }
 
