@@ -17,6 +17,7 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.linkhandler.ReadyChannelTabListLinkHandler;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -128,10 +129,13 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                 // once `handleResult` is called, the parsed data was already saved to cache, so
                 // we can discard any raw data in ReadyChannelTabListLinkHandler and create a
                 // link handler with identical properties, but without any raw data
-                tabHandler = result.getService()
-                        .getChannelTabLHFactory()
-                        .fromQuery(tabHandler.getId(), tabHandler.getContentFilters(),
-                                tabHandler.getSortFilter());
+                final ListLinkHandlerFactory channelTabLHFactory = result.getService()
+                        .getChannelTabLHFactory();
+                if (channelTabLHFactory != null) {
+                    // some services do not not have a ChannelTabLHFactory
+                    tabHandler = channelTabLHFactory.fromQuery(tabHandler.getId(),
+                            tabHandler.getContentFilters(), tabHandler.getSortFilter());
+                }
             } catch (final ParsingException e) {
                 // silently ignore the error, as the app can continue to function normally
                 Log.w(TAG, "Could not recreate channel tab handler", e);
