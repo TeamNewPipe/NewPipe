@@ -244,14 +244,8 @@ public final class NotificationUtil {
             return;
         }
 
-        final PendingIntent intent;
-        if (data.action() == null) {
-            intent = null;
-        } else {
-            intent = PendingIntentCompat.getBroadcast(player.getContext(), NOTIFICATION_ID,
-                    new Intent(data.action()), FLAG_UPDATE_CURRENT, false);
-        }
-
+        final PendingIntent intent = PendingIntentCompat.getBroadcast(player.getContext(),
+                NOTIFICATION_ID, new Intent(data.action()), FLAG_UPDATE_CURRENT, false);
         builder.addAction(new NotificationCompat.Action(data.icon(), data.name(), intent));
     }
 

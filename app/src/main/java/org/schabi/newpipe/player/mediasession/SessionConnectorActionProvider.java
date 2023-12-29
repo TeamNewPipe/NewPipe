@@ -40,12 +40,8 @@ public class SessionConnectorActionProvider implements MediaSessionConnector.Cus
     @Nullable
     @Override
     public PlaybackStateCompat.CustomAction getCustomAction(@NonNull final Player player) {
-        if (data.action() == null) {
-            return null;
-        } else {
-            return new PlaybackStateCompat.CustomAction.Builder(
-                    data.action(), data.name(), data.icon()
-            ).build();
-        }
+        return new PlaybackStateCompat.CustomAction.Builder(
+                data.action(), data.name(), data.icon()
+        ).build();
     }
 }

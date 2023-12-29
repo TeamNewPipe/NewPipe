@@ -11,6 +11,7 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
@@ -23,21 +24,23 @@ import org.schabi.newpipe.player.Player;
 import java.util.Objects;
 
 public final class NotificationActionData {
-    @Nullable
+
+    @NonNull
     private final String action;
     @NonNull
     private final String name;
     @DrawableRes
     private final int icon;
 
-    public NotificationActionData(@Nullable final String action, @NonNull final String name,
+
+    public NotificationActionData(@NonNull final String action, @NonNull final String name,
                                   @DrawableRes final int icon) {
         this.action = action;
         this.name = name;
         this.icon = icon;
     }
 
-    @Nullable
+    @NonNull
     public String action() {
         return action;
     }
@@ -52,6 +55,8 @@ public final class NotificationActionData {
         return icon;
     }
 
+
+    @SuppressLint("PrivateResource") // we currently use Exoplayer's internal strings and icons
     @Nullable
     public static NotificationActionData fromNotificationActionEnum(
             @NonNull final Player player,
@@ -105,8 +110,7 @@ public final class NotificationActionData {
                 if (player.getCurrentState() == Player.STATE_PREFLIGHT
                         || player.getCurrentState() == Player.STATE_BLOCKED
                         || player.getCurrentState() == Player.STATE_BUFFERING) {
-                    // null intent action -> show hourglass icon that does nothing when clicked
-                    return new NotificationActionData(null,
+                    return new NotificationActionData(ACTION_PLAY_PAUSE,
                             ctx.getString(R.string.notification_action_buffering),
                             R.drawable.ic_hourglass_top);
                 }
@@ -171,7 +175,7 @@ public final class NotificationActionData {
     @Override
     public boolean equals(@Nullable final Object obj) {
         return (obj instanceof NotificationActionData other)
-                && Objects.equals(this.action, other.action)
+                && this.action.equals(other.action)
                 && this.name.equals(other.name)
                 && this.icon == other.icon;
     }
