@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class NotificationActionsPreference extends Preference {
@@ -55,6 +57,11 @@ public class NotificationActionsPreference extends Preference {
     @Override
     public void onBindViewHolder(@NonNull final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ((TextView) holder.itemView.findViewById(R.id.summary))
+                    .setText(R.string.notification_actions_summary_android13);
+        }
 
         holder.itemView.setClickable(false);
         setupActions(holder.itemView);
@@ -137,11 +144,19 @@ public class NotificationActionsPreference extends Preference {
 
         NotificationSlot(final int actionIndex, final View parentView) {
             this.i = actionIndex;
-
+            selectedAction = Objects.requireNonNull(getSharedPreferences()).getInt(
+                    getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
+                    NotificationConstants.SLOT_DEFAULTS[i]);
             final View view = parentView.findViewById(SLOT_ITEMS[i]);
-            setupSelectedAction(view);
-            setupTitle(view);
-            setupCheckbox(view);
+
+            // only show the last two notification slots on Android 13+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || i >= 3) {
+                setupSelectedAction(view);
+                setupTitle(view);
+                setupCheckbox(view);
+            } else {
+                view.setVisibility(View.GONE);
+            }
         }
 
         void setupTitle(final View view) {
@@ -153,6 +168,14 @@ public class NotificationActionsPreference extends Preference {
 
         void setupCheckbox(final View view) {
             final CheckBox compactSlotCheckBox = view.findViewById(R.id.notificationActionCheckBox);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // there are no compact slots to customize on Android 33+
+                compactSlotCheckBox.setVisibility(View.GONE);
+                view.findViewById(R.id.notificationActionCheckBoxClickableArea)
+                        .setVisibility(View.GONE);
+                return;
+            }
+
             compactSlotCheckBox.setChecked(compactSlots.contains(i));
             view.findViewById(R.id.notificationActionCheckBoxClickableArea).setOnClickListener(
                     v -> {
@@ -174,9 +197,6 @@ public class NotificationActionsPreference extends Preference {
         void setupSelectedAction(final View view) {
             icon = view.findViewById(R.id.notificationActionIcon);
             summary = view.findViewById(R.id.notificationActionSummary);
-            selectedAction = getSharedPreferences().getInt(
-                    getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
-                    NotificationConstants.SLOT_DEFAULTS[i]);
             updateInfo();
         }
 
