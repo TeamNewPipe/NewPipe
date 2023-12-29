@@ -23,6 +23,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -101,21 +103,7 @@ public final class NotificationUtil {
                 new NotificationCompat.Builder(player.getContext(),
                 player.getContext().getString(R.string.notification_channel_id));
 
-        initializeNotificationSlots();
-
-        // count the number of real slots, to make sure compact slots indices are not out of bound
-        int nonNothingSlotCount = 5;
-        if (notificationSlots[3] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
-        }
-        if (notificationSlots[4] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
-        }
-
-        // build the compact slot indices array (need code to convert from Integer... because Java)
-        final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
-                player.getContext(), player.getPrefs(), nonNothingSlotCount);
-        final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
+        final int[] compactSlots = initializeNotificationSlots();
 
         final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
         player.UIs()
@@ -209,12 +197,35 @@ public final class NotificationUtil {
     // ACTIONS
     /////////////////////////////////////////////////////
 
-    private void initializeNotificationSlots() {
+    /**
+     * The compact slots array from settings contains indices from 0 to 4, each referring to one of
+     * the five actions configurable by the user. However, if the user sets an action to "Nothing",
+     * then all of the actions coming after will have a "settings index" different than the index
+     * of the corresponding action when sent to the system.
+     *
+     * @return the indices of compact slots referred to the list of non-nothing actions that will be
+     *         sent to the system
+     */
+    private int[] initializeNotificationSlots() {
+        final Collection<Integer> settingsCompactSlots = NotificationConstants
+                .getCompactSlotsFromPreferences(player.getContext(), player.getPrefs());
+        final List<Integer> adjustedCompactSlots = new ArrayList<>();
+
+        int nonNothingIndex = 0;
         for (int i = 0; i < 5; ++i) {
             notificationSlots[i] = player.getPrefs().getInt(
                     player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
                     NotificationConstants.SLOT_DEFAULTS[i]);
+
+            if (notificationSlots[i] != NotificationConstants.NOTHING) {
+                if (settingsCompactSlots.contains(i)) {
+                    adjustedCompactSlots.add(nonNothingIndex);
+                }
+                nonNothingIndex += 1;
+            }
         }
+
+        return adjustedCompactSlots.stream().mapToInt(Integer::intValue).toArray();
     }
 
     @SuppressLint("RestrictedApi")

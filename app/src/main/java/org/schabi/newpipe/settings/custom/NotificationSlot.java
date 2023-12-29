@@ -130,13 +130,13 @@ class NotificationSlot {
                 .create();
 
         final View.OnClickListener radioButtonsClickListener = v -> {
-            selectedAction = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][v.getId()];
+            selectedAction = NotificationConstants.ALL_ACTIONS[v.getId()];
             updateInfo();
             alertDialog.dismiss();
         };
 
-        for (int id = 0; id < NotificationConstants.SLOT_ALLOWED_ACTIONS[i].length; ++id) {
-            final int action = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][id];
+        for (int id = 0; id < NotificationConstants.ALL_ACTIONS.length; ++id) {
+            final int action = NotificationConstants.ALL_ACTIONS[id];
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater)
                     .getRoot();
 

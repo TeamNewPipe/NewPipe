@@ -20,6 +20,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.notification.NotificationConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -67,8 +68,8 @@ public class NotificationActionsPreference extends Preference {
     ////////////////////////////////////////////////////////////////////////////
 
     private void setupActions(@NonNull final View view) {
-        compactSlots = NotificationConstants.getCompactSlotsFromPreferences(getContext(),
-                getSharedPreferences(), 5);
+        compactSlots = new ArrayList<>(NotificationConstants.getCompactSlotsFromPreferences(
+                getContext(), getSharedPreferences()));
         notificationSlots = IntStream.range(0, 5)
                 .mapToObj(i -> new NotificationSlot(getContext(), getSharedPreferences(), i, view,
                         compactSlots.contains(i), this::onToggleCompactSlot))
