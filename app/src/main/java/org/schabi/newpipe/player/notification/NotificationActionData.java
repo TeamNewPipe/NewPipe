@@ -20,6 +20,8 @@ import androidx.annotation.Nullable;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
 
+import java.util.Objects;
+
 public final class NotificationActionData {
     @Nullable
     private final String action;
@@ -49,7 +51,6 @@ public final class NotificationActionData {
     public int icon() {
         return icon;
     }
-
 
     @Nullable
     public static NotificationActionData fromNotificationActionEnum(
@@ -164,5 +165,19 @@ public final class NotificationActionData {
                 // do nothing
                 return null;
         }
+    }
+
+
+    @Override
+    public boolean equals(@Nullable final Object obj) {
+        return (obj instanceof NotificationActionData other)
+                && Objects.equals(this.action, other.action)
+                && this.name.equals(other.name)
+                && this.icon == other.icon;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(action, name, icon);
     }
 }

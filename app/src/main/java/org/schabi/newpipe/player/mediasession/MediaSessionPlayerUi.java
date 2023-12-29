@@ -28,9 +28,11 @@ import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -41,6 +43,10 @@ public class MediaSessionPlayerUi extends PlayerUi
 
     private final String ignoreHardwareMediaButtonsKey;
     private boolean shouldIgnoreHardwareMediaButtons = false;
+
+    // used to check whether any notification action changed, before sending costly updates
+    private List<NotificationActionData> prevNotificationActions = List.of();
+
 
     public MediaSessionPlayerUi(@NonNull final Player player) {
         super(player);
@@ -71,6 +77,10 @@ public class MediaSessionPlayerUi extends PlayerUi
 
         sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setMediaMetadataProvider(exoPlayer -> buildMediaMetadata());
+
+        // force updating media session actions by resetting the previous ones
+        prevNotificationActions = List.of();
+        updateMediaSessionActions();
     }
 
     @Override
@@ -88,6 +98,7 @@ public class MediaSessionPlayerUi extends PlayerUi
             mediaSession.release();
             mediaSession = null;
         }
+        prevNotificationActions = List.of();
     }
 
     @Override
@@ -187,23 +198,25 @@ public class MediaSessionPlayerUi extends PlayerUi
             return;
         }
 
-        final List<SessionConnectorActionProvider> actions = new ArrayList<>(2);
-        for (int i = 3; i < 5; ++i) {
-            // only use the fourth and fifth actions (the settings page also shows only the last 2)
-            final int action = player.getPrefs().getInt(
-                    player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
-                    NotificationConstants.SLOT_DEFAULTS[i]);
+        // only use the fourth and fifth actions (the settings page also shows only the last 2 on
+        // Android 13+)
+        final List<NotificationActionData> newNotificationActions = IntStream.of(3, 4)
+                .map(i -> player.getPrefs().getInt(
+                        player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
+                        NotificationConstants.SLOT_DEFAULTS[i]))
+                .mapToObj(action -> NotificationActionData
+                        .fromNotificationActionEnum(player, action))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
-            @Nullable final NotificationActionData data =
-                    NotificationActionData.fromNotificationActionEnum(player, action);
-
-            if (data != null) {
-                actions.add(new SessionConnectorActionProvider(data, context));
-            }
+        // avoid costly notification actions update, if nothing changed from last time
+        if (!newNotificationActions.equals(prevNotificationActions)) {
+            prevNotificationActions = newNotificationActions;
+            sessionConnector.setCustomActionProviders(
+                    newNotificationActions.stream()
+                            .map(data -> new SessionConnectorActionProvider(data, context))
+                            .toArray(SessionConnectorActionProvider[]::new));
         }
-
-        sessionConnector.setCustomActionProviders(
-                actions.toArray(new MediaSessionConnector.CustomActionProvider[0]));
     }
 
     @Override
