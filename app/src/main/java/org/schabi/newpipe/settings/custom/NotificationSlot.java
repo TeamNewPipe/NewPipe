@@ -89,7 +89,7 @@ class NotificationSlot {
     void setupCheckbox(final View view, final boolean isCompactSlotChecked) {
         final CheckBox compactSlotCheckBox = view.findViewById(R.id.notificationActionCheckBox);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // there are no compact slots to customize on Android 33+
+            // there are no compact slots to customize on Android 13+
             compactSlotCheckBox.setVisibility(View.GONE);
             view.findViewById(R.id.notificationActionCheckBoxClickableArea)
                     .setVisibility(View.GONE);
