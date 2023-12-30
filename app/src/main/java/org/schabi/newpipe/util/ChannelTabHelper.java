@@ -8,6 +8,7 @@ import androidx.annotation.StringRes;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.search.filter.FilterItem;
 
 import java.util.List;
 import java.util.Set;
@@ -20,16 +21,11 @@ public final class ChannelTabHelper {
      * @param tab the channel tab to check
      * @return whether the tab should contain (playable) streams or not
      */
-    public static boolean isStreamsTab(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-            case ChannelTabs.TRACKS:
-            case ChannelTabs.SHORTS:
-            case ChannelTabs.LIVESTREAMS:
-                return true;
-            default:
-                return false;
-        }
+    public static boolean isStreamsTab(final FilterItem tab) {
+        return tab.equals(ChannelTabs.VIDEOS)
+                || tab.equals(ChannelTabs.TRACKS)
+                || tab.equals(ChannelTabs.SHORTS)
+                || tab.equals(ChannelTabs.LIVESTREAMS);
     }
 
     /**
@@ -37,7 +33,7 @@ public final class ChannelTabHelper {
      * @return whether the tab should contain (playable) streams or not
      */
     public static boolean isStreamsTab(final ListLinkHandler tab) {
-        final List<String> contentFilters = tab.getContentFilters();
+        final List<FilterItem> contentFilters = tab.getContentFilters();
         if (contentFilters.isEmpty()) {
             return false; // this should never happen, but check just to be sure
         } else {
@@ -46,63 +42,57 @@ public final class ChannelTabHelper {
     }
 
     @StringRes
-    private static int getShowTabKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.show_channel_tabs_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.show_channel_tabs_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.show_channel_tabs_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.show_channel_tabs_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.show_channel_tabs_channels;
-            case ChannelTabs.PLAYLISTS:
-                return R.string.show_channel_tabs_playlists;
-            case ChannelTabs.ALBUMS:
-                return R.string.show_channel_tabs_albums;
-            default:
-                return -1;
+    private static int getShowTabKey(final FilterItem tab) {
+        if (tab.equals(ChannelTabs.VIDEOS)) {
+            return R.string.show_channel_tabs_videos;
+        } else if (tab.equals(ChannelTabs.TRACKS)) {
+            return R.string.show_channel_tabs_tracks;
+        } else if (tab.equals(ChannelTabs.SHORTS)) {
+            return R.string.show_channel_tabs_shorts;
+        } else if (tab.equals(ChannelTabs.LIVESTREAMS)) {
+            return R.string.show_channel_tabs_livestreams;
+        } else if (tab.equals(ChannelTabs.CHANNELS)) {
+            return R.string.show_channel_tabs_channels;
+        } else if (tab.equals(ChannelTabs.PLAYLISTS)) {
+            return R.string.show_channel_tabs_playlists;
+        } else if (tab.equals(ChannelTabs.ALBUMS)) {
+            return R.string.show_channel_tabs_albums;
         }
+        return -1;
     }
 
     @StringRes
-    private static int getFetchFeedTabKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.fetch_channel_tabs_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.fetch_channel_tabs_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.fetch_channel_tabs_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.fetch_channel_tabs_livestreams;
-            default:
-                return -1;
+    private static int getFetchFeedTabKey(final FilterItem tab) {
+        if (tab.equals(ChannelTabs.VIDEOS)) {
+            return R.string.fetch_channel_tabs_videos;
+        } else if (tab.equals(ChannelTabs.TRACKS)) {
+            return R.string.fetch_channel_tabs_tracks;
+        } else if (tab.equals(ChannelTabs.SHORTS)) {
+            return R.string.fetch_channel_tabs_shorts;
+        } else if (tab.equals(ChannelTabs.LIVESTREAMS)) {
+            return R.string.fetch_channel_tabs_livestreams;
         }
+        return -1;
     }
 
     @StringRes
-    public static int getTranslationKey(final String tab) {
-        switch (tab) {
-            case ChannelTabs.VIDEOS:
-                return R.string.channel_tab_videos;
-            case ChannelTabs.TRACKS:
-                return R.string.channel_tab_tracks;
-            case ChannelTabs.SHORTS:
-                return R.string.channel_tab_shorts;
-            case ChannelTabs.LIVESTREAMS:
-                return R.string.channel_tab_livestreams;
-            case ChannelTabs.CHANNELS:
-                return R.string.channel_tab_channels;
-            case ChannelTabs.PLAYLISTS:
-                return R.string.channel_tab_playlists;
-            case ChannelTabs.ALBUMS:
-                return R.string.channel_tab_albums;
-            default:
-                return R.string.unknown_content;
+    public static int getTranslationKey(final FilterItem tab) {
+        if (tab.equals(ChannelTabs.VIDEOS)) {
+            return R.string.channel_tab_videos;
+        } else if (tab.equals(ChannelTabs.TRACKS)) {
+            return R.string.channel_tab_tracks;
+        } else if (tab.equals(ChannelTabs.SHORTS)) {
+            return R.string.channel_tab_shorts;
+        } else if (tab.equals(ChannelTabs.LIVESTREAMS)) {
+            return R.string.channel_tab_livestreams;
+        } else if (tab.equals(ChannelTabs.CHANNELS)) {
+            return R.string.channel_tab_channels;
+        } else if (tab.equals(ChannelTabs.PLAYLISTS)) {
+            return R.string.channel_tab_playlists;
+        } else if (tab.equals(ChannelTabs.ALBUMS)) {
+            return R.string.channel_tab_albums;
         }
+        return R.string.unknown_content;
     }
 
     public static boolean showChannelTab(final Context context,
@@ -119,7 +109,7 @@ public final class ChannelTabHelper {
 
     public static boolean showChannelTab(final Context context,
                                          final SharedPreferences sharedPreferences,
-                                         final String tab) {
+                                         final FilterItem tab) {
         final int key = ChannelTabHelper.getShowTabKey(tab);
         if (key == -1) {
             return false;
@@ -130,7 +120,7 @@ public final class ChannelTabHelper {
     public static boolean fetchFeedChannelTab(final Context context,
                                               final SharedPreferences sharedPreferences,
                                               final ListLinkHandler tab) {
-        final List<String> contentFilters = tab.getContentFilters();
+        final List<FilterItem> contentFilters = tab.getContentFilters();
         if (contentFilters.isEmpty()) {
             return false; // this should never happen, but check just to be sure
         }
