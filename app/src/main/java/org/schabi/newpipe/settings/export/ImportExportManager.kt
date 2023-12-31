@@ -8,7 +8,6 @@ import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
 import java.io.IOException
-import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
 
@@ -78,7 +77,9 @@ class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
         try {
             val preferenceEditor = preferences.edit()
 
-            ObjectInputStream(fileLocator.settings.inputStream()).use { input ->
+            PreferencesObjectInputStream(
+                fileLocator.settings.inputStream()
+            ).use { input ->
                 preferenceEditor.clear()
                 @Suppress("UNCHECKED_CAST")
                 val entries = input.readObject() as Map<String, *>
