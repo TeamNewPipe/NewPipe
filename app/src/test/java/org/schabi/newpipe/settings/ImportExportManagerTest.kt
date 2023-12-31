@@ -17,6 +17,7 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
+import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
 import java.io.File
@@ -25,10 +26,10 @@ import java.nio.file.Files
 import java.util.zip.ZipFile
 
 @RunWith(MockitoJUnitRunner::class)
-class ContentSettingsManagerTest {
+class ImportExportManagerTest {
 
     companion object {
-        private val classloader = ContentSettingsManager::class.java.classLoader!!
+        private val classloader = ImportExportManager::class.java.classLoader!!
     }
 
     private lateinit var fileLocator: NewPipeFileLocator
@@ -54,7 +55,7 @@ class ContentSettingsManagerTest {
 
         val output = File.createTempFile("newpipe_", "")
         `when`(storedFileHelper.stream).thenReturn(FileStream(output))
-        ContentSettingsManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
+        ImportExportManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
 
         val zipFile = ZipFile(output)
         val entries = zipFile.entries().toList()
@@ -77,7 +78,7 @@ class ContentSettingsManagerTest {
         val settings = File.createTempFile("newpipe_", "")
         `when`(fileLocator.settings).thenReturn(settings)
 
-        ContentSettingsManager(fileLocator).deleteSettingsFile()
+        ImportExportManager(fileLocator).deleteSettingsFile()
 
         assertFalse(settings.exists())
     }
@@ -87,7 +88,7 @@ class ContentSettingsManagerTest {
         val settings = File("non_existent")
         `when`(fileLocator.settings).thenReturn(settings)
 
-        ContentSettingsManager(fileLocator).deleteSettingsFile()
+        ImportExportManager(fileLocator).deleteSettingsFile()
 
         assertFalse(settings.exists())
     }
@@ -98,7 +99,7 @@ class ContentSettingsManagerTest {
         Assume.assumeTrue(dir.delete())
         `when`(fileLocator.dbDir).thenReturn(dir)
 
-        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        ImportExportManager(fileLocator).ensureDbDirectoryExists()
         assertTrue(dir.exists())
     }
 
@@ -107,7 +108,7 @@ class ContentSettingsManagerTest {
         val dir = Files.createTempDirectory("newpipe_").toFile()
         `when`(fileLocator.dbDir).thenReturn(dir)
 
-        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        ImportExportManager(fileLocator).ensureDbDirectoryExists()
         assertTrue(dir.exists())
     }
 
@@ -124,7 +125,7 @@ class ContentSettingsManagerTest {
 
         val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
-        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
+        val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
         assertTrue(success)
         assertFalse(dbJournal.exists())
@@ -143,7 +144,7 @@ class ContentSettingsManagerTest {
 
         val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
-        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
+        val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
         assertFalse(success)
         assertTrue(dbJournal.exists())
@@ -159,7 +160,7 @@ class ContentSettingsManagerTest {
 
         val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
-        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
+        val contains = ImportExportManager(fileLocator).extractSettings(storedFileHelper)
 
         assertTrue(contains)
     }
@@ -171,7 +172,7 @@ class ContentSettingsManagerTest {
 
         val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
-        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
+        val contains = ImportExportManager(fileLocator).extractSettings(storedFileHelper)
 
         assertFalse(contains)
     }
@@ -185,7 +186,7 @@ class ContentSettingsManagerTest {
         val editor = Mockito.mock(SharedPreferences.Editor::class.java)
         `when`(preferences.edit()).thenReturn(editor)
 
-        ContentSettingsManager(fileLocator).loadSharedPreferences(preferences)
+        ImportExportManager(fileLocator).loadSharedPreferences(preferences)
 
         verify(editor, atLeastOnce()).putBoolean(anyString(), anyBoolean())
         verify(editor, atLeastOnce()).putString(anyString(), anyString())

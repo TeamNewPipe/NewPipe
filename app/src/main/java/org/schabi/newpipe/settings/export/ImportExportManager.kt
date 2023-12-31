@@ -1,8 +1,9 @@
-package org.schabi.newpipe.settings
+package org.schabi.newpipe.settings.export
 
 import android.content.SharedPreferences
 import android.util.Log
 import org.schabi.newpipe.MainActivity.DEBUG
+import org.schabi.newpipe.settings.NewPipeFileLocator
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
@@ -11,7 +12,7 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
 
-class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
+class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
     companion object {
         const val TAG = "ContentSetManager"
     }

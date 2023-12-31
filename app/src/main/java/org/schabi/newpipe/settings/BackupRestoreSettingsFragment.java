@@ -24,6 +24,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -42,7 +43,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
     private final SimpleDateFormat exportDateFormat =
             new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-    private ContentSettingsManager manager;
+    private ImportExportManager manager;
     private String importExportDataPathKey;
     private final ActivityResultLauncher<Intent> requestImportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -57,7 +58,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                                     @Nullable final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
         Objects.requireNonNull(homeDir);
-        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager = new ImportExportManager(new NewPipeFileLocator(homeDir));
         manager.deleteSettingsFile();
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
