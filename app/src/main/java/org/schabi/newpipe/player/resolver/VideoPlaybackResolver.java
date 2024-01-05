@@ -39,8 +39,6 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final Context context;
     @NonNull
     private final PlayerDataSource dataSource;
-    @NonNull
-    private final QualityResolver qualityResolver;
     private SourceType streamSourceType;
 
     @Nullable
@@ -54,17 +52,23 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
     }
 
-    public VideoPlaybackResolver(@NonNull final Context context,
-                                 @NonNull final PlayerDataSource dataSource,
-                                 @NonNull final QualityResolver qualityResolver) {
-        this.context = context;
-        this.dataSource = dataSource;
-        this.qualityResolver = qualityResolver;
+    /**
+     * Depending on the player we select different video streams.
+     */
+    public enum SelectedPlayer {
+        MAIN,
+        POPUP
     }
 
-    @Override
+    public VideoPlaybackResolver(@NonNull final Context context,
+                                 @NonNull final PlayerDataSource dataSource) {
+        this.context = context;
+        this.dataSource = dataSource;
+    }
+
     @Nullable
-    public MediaSource resolve(@NonNull final StreamInfo info) {
+    public MediaSource resolve(@NonNull final StreamInfo info,
+                               @NonNull final SelectedPlayer selectedPlayer) {
         final MediaSource liveSource = PlaybackResolver.maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
             streamSourceType = SourceType.LIVE_STREAM;
@@ -80,14 +84,42 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<AudioStream> audioStreamsList =
                 getFilteredAudioStreams(context, info.getAudioStreams());
 
-        final int videoIndex;
+        int videoIndex = -999;
         if (videoStreamsList.isEmpty()) {
             videoIndex = -1;
         } else if (playbackQuality == null) {
-            videoIndex = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
+            switch (selectedPlayer) {
+                case MAIN -> {
+                    videoIndex = ListHelper.getDefaultResolutionIndex(
+                            context,
+                            videoStreamsList
+                    );
+                }
+                case POPUP -> {
+                    videoIndex = ListHelper.getPopupDefaultResolutionIndex(
+                            context,
+                            videoStreamsList
+                    );
+                }
+            }
+
         } else {
-            videoIndex = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
-                    getPlaybackQuality());
+            switch (selectedPlayer) {
+                case MAIN -> {
+                    videoIndex = ListHelper.getResolutionIndex(
+                            context,
+                            videoStreamsList,
+                            getPlaybackQuality()
+                    );
+                }
+                case POPUP -> {
+                    videoIndex = ListHelper.getPopupResolutionIndex(
+                            context,
+                            videoStreamsList,
+                            getPlaybackQuality()
+                    );
+                }
+            }
         }
 
         final int audioIndex =
@@ -194,11 +226,5 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     public void setAudioTrack(@Nullable final String audioLanguage) {
         this.audioTrack = audioLanguage;
-    }
-
-    public interface QualityResolver {
-        int getDefaultResolutionIndex(List<VideoStream> sortedVideos);
-
-        int getOverrideResolutionIndex(List<VideoStream> sortedVideos, String playbackQuality);
     }
 }

@@ -46,11 +46,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
- * This interface is just a shorthand for {@link Resolver} with {@link StreamInfo} as source and
- * {@link MediaSource} as product. It contains many static methods that can be used by classes
+ * This interface contains many static methods that can be used by classes
  * implementing this interface, and nothing else.
  */
-public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
+public interface PlaybackResolver {
     String TAG = PlaybackResolver.class.getSimpleName();
 
 

@@ -45,7 +45,6 @@ public class AudioPlaybackResolver implements PlaybackResolver {
      * @param info of the stream
      * @return the audio source to use or null if none could be found
      */
-    @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = PlaybackResolver.maybeBuildLiveMediaSource(dataSource, info);

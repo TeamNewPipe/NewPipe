@@ -42,8 +42,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
-import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
-import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -116,7 +114,6 @@ import org.schabi.newpipe.player.ui.PlayerUiList;
 import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
-import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
@@ -292,7 +289,7 @@ public final class Player implements PlaybackListener, Listener {
                         context.getString(
                                 R.string.use_exoplayer_decoder_fallback_key), false));
 
-        videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
+        videoResolver = new VideoPlaybackResolver(context, dataSource);
         audioResolver = new AudioPlaybackResolver(context, dataSource);
 
         currentThumbnailTarget = getCurrentThumbnailTarget();
@@ -305,25 +302,6 @@ public final class Player implements PlaybackListener, Listener {
                 new MediaSessionPlayerUi(this),
                 new NotificationPlayerUi(this)
         );
-    }
-
-    private VideoPlaybackResolver.QualityResolver getQualityResolver() {
-        return new VideoPlaybackResolver.QualityResolver() {
-            @Override
-            public int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-                return videoPlayerSelected()
-                        ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
-                        : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
-            }
-
-            @Override
-            public int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                                  final String playbackQuality) {
-                return videoPlayerSelected()
-                        ? getResolutionIndex(context, sortedVideos, playbackQuality)
-                        : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
-            }
-        };
     }
     //endregion
 
@@ -1908,7 +1886,10 @@ public final class Player implements PlaybackListener, Listener {
         // Note that the video is not fetched when the app is in background because the video
         // renderer is fully disabled (see useVideoSource method), except for HLS streams
         // (see https://github.com/google/ExoPlayer/issues/9282).
-        return videoResolver.resolve(info);
+        return videoResolver.resolve(info, videoPlayerSelected()
+                ? VideoPlaybackResolver.SelectedPlayer.MAIN
+                : VideoPlaybackResolver.SelectedPlayer.POPUP
+        );
     }
 
     public void disablePreloadingOfCurrentTrack() {
