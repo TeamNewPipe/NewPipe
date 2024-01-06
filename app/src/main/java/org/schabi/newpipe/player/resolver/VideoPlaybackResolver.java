@@ -77,8 +77,6 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        final List<MediaSource> mediaSources = new ArrayList<>();
-
         // Create video stream source
         final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
                 getPlayableStreams(info.getVideoStreams(), info.getServiceId()),
@@ -128,6 +126,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         }
         final MediaItemTag tag = new StreamInfoTag(info, video, audio, null);
 
+        final List<MediaSource> mediaSources = new ArrayList<>();
         if (video != null) {
             try {
                 final VideoStream stream = video.getSelectedVideoStream();

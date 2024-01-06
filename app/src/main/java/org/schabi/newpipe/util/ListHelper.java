@@ -284,14 +284,14 @@ public final class ListHelper {
 
         final HashMap<String, AudioStream> collectedStreams = new HashMap<>();
 
-        final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
-
         for (final AudioStream stream : audioStreams) {
 
-            // XXX: Why are these skipped exactly?
-            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
-                    || (stream.getDeliveryMethod() == DeliveryMethod.HLS
-                        && stream.getFormat() == MediaFormat.OPUS)) {
+            if (// we can’t play torrents
+                stream.getDeliveryMethod() == DeliveryMethod.TORRENT
+                // This format is not supported by ExoPlayer when returned as HLS streams,
+                // so we can't play streams using this format and this delivery method.
+                || (stream.getDeliveryMethod() == DeliveryMethod.HLS
+                    && stream.getFormat() == MediaFormat.OPUS)) {
                 continue;
             }
 
@@ -303,7 +303,8 @@ public final class ListHelper {
             }
 
             final AudioStream presentStream = collectedStreams.get(trackId);
-            if (presentStream == null || cmp.compare(stream, presentStream) > 0) {
+            if (presentStream == null
+                    || getAudioFormatComparator(context).compare(stream, presentStream) > 0) {
                 collectedStreams.put(trackId, stream);
             }
         }
@@ -903,8 +904,11 @@ public final class ListHelper {
             @NonNull final Context context) {
         final Locale appLoc = Localization.getAppLocale(context);
 
-        return Comparator.comparing(AudioStream::getAudioLocale, Comparator.nullsLast(
-                        Comparator.comparing(locale -> locale.getDisplayName(appLoc))))
+        return Comparator.comparing(
+                AudioStream::getAudioLocale,
+                Comparator.nullsLast(
+                        Comparator.comparing(locale -> locale.getDisplayName(appLoc))
+                ))
                 .thenComparing(AudioStream::getAudioTrackType);
     }
 }
