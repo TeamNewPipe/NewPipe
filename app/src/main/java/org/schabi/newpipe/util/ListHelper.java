@@ -83,18 +83,6 @@ public final class ListHelper {
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
 
-    /**
-     * @param context           Android app context
-     * @param videoStreams      list of the video streams to check
-     * @param defaultResolution the default resolution to look for
-     * @return index of the video stream with the default index
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
-     */
-    public static int getResolutionIndex(final Context context,
-                                         final List<VideoStream> videoStreams,
-                                         final String defaultResolution) {
-        return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
-    }
 
     /**
      * @param context      Android app context
@@ -106,19 +94,6 @@ public final class ListHelper {
                                                      final List<VideoStream> videoStreams) {
         final String defaultResolution = computeDefaultResolution(context,
                 R.string.default_popup_resolution_key, R.string.default_popup_resolution_value);
-        return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
-    }
-
-    /**
-     * @param context           Android app context
-     * @param videoStreams      list of the video streams to check
-     * @param defaultResolution the default resolution to look for
-     * @return index of the video stream with the default index
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
-     */
-    public static int getPopupResolutionIndex(final Context context,
-                                              final List<VideoStream> videoStreams,
-                                              final String defaultResolution) {
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
 
@@ -634,7 +609,7 @@ public final class ListHelper {
      * @param videoStreams      the list of video streams to check
      * @return the index of the preferred video stream
      */
-    private static int getDefaultResolutionWithDefaultFormat(@NonNull final Context context,
+    public static int getDefaultResolutionWithDefaultFormat(@NonNull final Context context,
                                                              final String defaultResolution,
                                                              final List<VideoStream> videoStreams) {
         final MediaFormat defaultFormat = getDefaultFormat(context,
@@ -680,6 +655,14 @@ public final class ListHelper {
         return format;
     }
 
+    /** #Comparator for two resolution strings.
+     *
+     * See {@link #sortStreamList} for ordering.
+     *
+     * @param r1 first
+     * @param r2 second
+     * @return comparison int
+     */
     private static int compareVideoStreamResolution(@NonNull final String r1,
                                                     @NonNull final String r2) {
         try {
@@ -696,12 +679,17 @@ public final class ListHelper {
         }
     }
 
+    /** Does the application have a maximum resolution set?
+     *
+     * @param context App context
+     * @return whether a max resolution is set
+     */
     static boolean isLimitingDataUsage(@NonNull final Context context) {
         return getResolutionLimit(context) != null;
     }
 
     /**
-     * The maximum resolution allowed.
+     * The maximum resolution allowed by application settings.
      *
      * @param context App context
      * @return maximum resolution allowed or null if there is no maximum
@@ -720,7 +708,7 @@ public final class ListHelper {
     }
 
     /**
-     * The current network is metered (like mobile data)?
+     * Is the current network metered (like mobile data)?
      *
      * @param context App context
      * @return {@code true} if connected to a metered network
