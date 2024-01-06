@@ -31,7 +31,7 @@ public class SecondaryStreamHelper<T extends Stream> {
      * Finds an audio stream compatible with the provided video-only stream, so that the two streams
      * can be combined in a single file by the downloader. If there are multiple available audio
      * streams, chooses either the highest or the lowest quality one based on
-     * {@link ListHelper#isLimitingDataUsage(Context)}.
+     * {@link ListHelper#isCurrentlyLimitingDataUsage(Context)}.
      *
      * @param context      Android context
      * @param audioStreams list of audio streams
@@ -56,7 +56,7 @@ public class SecondaryStreamHelper<T extends Stream> {
         }
 
         final boolean m4v = mediaFormat == MediaFormat.MPEG_4;
-        final boolean isLimitingDataUsage = ListHelper.isLimitingDataUsage(context);
+        final boolean isLimitingDataUsage = ListHelper.isCurrentlyLimitingDataUsage(context);
 
         Comparator<AudioStream> comparator = ListHelper.getAudioFormatComparator(
                 m4v ? MediaFormat.M4A : MediaFormat.WEBMA, isLimitingDataUsage);

@@ -78,7 +78,7 @@ public final class ListHelper {
      */
     public static int getDefaultResolutionIndex(final Context context,
                                                 final List<VideoStream> videoStreams) {
-        final String defaultResolution = computeDefaultResolution(context,
+        final String defaultResolution = getPreferredResolutionOrCurrentLimit(context,
                 R.string.default_resolution_key, R.string.default_resolution_value);
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
@@ -92,7 +92,7 @@ public final class ListHelper {
      */
     public static int getPopupDefaultResolutionIndex(final Context context,
                                                      final List<VideoStream> videoStreams) {
-        final String defaultResolution = computeDefaultResolution(context,
+        final String defaultResolution = getPreferredResolutionOrCurrentLimit(context,
                 R.string.default_popup_resolution_key, R.string.default_popup_resolution_value);
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
@@ -365,22 +365,42 @@ public final class ListHelper {
                 .collect(Collectors.toList());
     }
 
-    private static String computeDefaultResolution(@NonNull final Context context, final int key,
-                                                   final int value) {
+    /** Lookup the preferred resolution and the current resolution limit.
+     *
+     * @param context App context
+     * @param defaultResolutionKey The defaultResolution preference key
+     * @param defaultResolutionDefaultValue Default resolution if key does not exist
+     * @return The smaller resolution of either the preference or the current limit.
+     */
+    private static String getPreferredResolutionOrCurrentLimit(
+            @NonNull final Context context,
+            final int defaultResolutionKey,
+            final int defaultResolutionDefaultValue
+    ) {
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
 
         // Load the preferred resolution otherwise the best available
-        String resolution =
-                 preferences.getString(context.getString(key), context.getString(value));
+        final String preferredResolution = preferences.getString(
+                context.getString(defaultResolutionKey),
+                context.getString(defaultResolutionDefaultValue)
+        );
 
-        final String maxResolution = getResolutionLimit(context);
-        if (maxResolution != null
-                && (resolution.equals(context.getString(R.string.best_resolution_key))
-                || compareVideoStreamResolution(maxResolution, resolution) < 1)) {
-            resolution = maxResolution;
+        // clamp to the currently maximum allowed resolution
+        final String result;
+        final String resolutionLimit = getCurrentResolutionLimit(context);
+        if (resolutionLimit != null
+                && (
+                    // if the preference is best_resolution
+                    preferredResolution.equals(context.getString(R.string.best_resolution_key))
+                    // or the preference is higher than the current max allowed resolution
+                    || compareVideoStreamResolution(resolutionLimit, preferredResolution) < 1
+                )) {
+            result = resolutionLimit;
+        } else {
+            result = preferredResolution;
         }
-        return resolution;
+        return result;
     }
 
     /**
@@ -601,7 +621,7 @@ public final class ListHelper {
 
     /**
      * Fetches the desired resolution or returns the default if it is not found.
-     * The resolution will be reduced if video chocking is active.
+     * The resolution will be reduced if video choking is active.
      *
      * @param context           Android app context
      * @param defaultResolution the default resolution
@@ -683,27 +703,28 @@ public final class ListHelper {
      * @param context App context
      * @return whether a max resolution is set
      */
-    static boolean isLimitingDataUsage(@NonNull final Context context) {
-        return getResolutionLimit(context) != null;
+    static boolean isCurrentlyLimitingDataUsage(@NonNull final Context context) {
+        return getCurrentResolutionLimit(context) != null;
     }
 
     /**
-     * The maximum resolution allowed by application settings.
+     * The maximum current resolution allowed by application settings.
+     * Takes into account whether we are on a metered network.
      *
      * @param context App context
-     * @return maximum resolution allowed or null if there is no maximum
+     * @return current maximum resolution allowed or null if there is no maximum
      */
-    private static String getResolutionLimit(@NonNull final Context context) {
-        String resolutionLimit = null;
+    private static String getCurrentResolutionLimit(@NonNull final Context context) {
+        String currentResolutionLimit = null;
         if (isMeteredNetwork(context)) {
             final SharedPreferences preferences =
                     PreferenceManager.getDefaultSharedPreferences(context);
             final String defValue = context.getString(R.string.limit_data_usage_none_key);
             final String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
-            resolutionLimit = defValue.equals(value) ? null : value;
+            currentResolutionLimit = defValue.equals(value) ? null : value;
         }
-        return resolutionLimit;
+        return currentResolutionLimit;
     }
 
     /**
@@ -734,7 +755,7 @@ public final class ListHelper {
             final @NonNull Context context) {
         final MediaFormat defaultFormat = getDefaultFormat(context,
                 R.string.default_audio_format_key, R.string.default_audio_format_value);
-        return getAudioFormatComparator(defaultFormat, isLimitingDataUsage(context));
+        return getAudioFormatComparator(defaultFormat, isCurrentlyLimitingDataUsage(context));
     }
 
     /**
