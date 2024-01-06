@@ -230,7 +230,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 new StreamInfoWrapper<>(Collections.emptyList(), null);
         private static final int SIZE_UNSET = -2;
 
-        private final List<T> streamsList;
+        @NonNull private final List<T> streamsList;
         private final long[] streamSizes;
         private final MediaFormat[] streamFormats;
         private final String unknownSize;
@@ -432,6 +432,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             return (StreamInfoWrapper<X>) EMPTY;
         }
 
+        @NonNull
         public List<T> getStreamsList() {
             return streamsList;
         }

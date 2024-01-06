@@ -279,7 +279,6 @@ public class ListHelperTest {
     @Test
     public void getHighestQualityAudioNull() {
         final Comparator<AudioStream> cmp = ListHelper.getAudioFormatComparator(null, false);
-        assertEquals(-1, ListHelper.getAudioIndexByHighestRank(null, cmp));
         assertEquals(-1, ListHelper.getAudioIndexByHighestRank(new ArrayList<>(), cmp));
     }
 
@@ -356,7 +355,6 @@ public class ListHelperTest {
     @Test
     public void getLowestQualityAudioNull() {
         final Comparator<AudioStream> cmp = ListHelper.getAudioFormatComparator(null, false);
-        assertEquals(-1, ListHelper.getAudioIndexByHighestRank(null, cmp));
         assertEquals(-1, ListHelper.getAudioIndexByHighestRank(new ArrayList<>(), cmp));
     }
 

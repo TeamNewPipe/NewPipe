@@ -98,7 +98,7 @@ public final class ListHelper {
     }
 
     public static int getDefaultAudioFormat(final Context context,
-                                            final List<AudioStream> audioStreams) {
+                                            @NonNull final List<AudioStream> audioStreams) {
         return getAudioIndexByHighestRank(audioStreams,
                 getAudioTrackComparator(context).thenComparing(getAudioFormatComparator(context)));
     }
@@ -117,7 +117,7 @@ public final class ListHelper {
     }
 
     public static int getAudioFormatIndex(final Context context,
-                                          final List<AudioStream> audioStreams,
+                                          @NonNull final List<AudioStream> audioStreams,
                                           @Nullable final String trackId) {
         if (trackId != null) {
             for (int i = 0; i < audioStreams.size(); i++) {
@@ -263,6 +263,7 @@ public final class ListHelper {
      * @param audioStreams the list of audio streams
      * @return the sorted, filtered list
      */
+    @NonNull
     public static List<AudioStream> getFilteredAudioStreams(
             @NonNull final Context context,
             @Nullable final List<AudioStream> audioStreams) {
@@ -535,16 +536,12 @@ public final class ListHelper {
      * @param comparator   The comparator used for determining the max/best/highest ranked value
      * @return Index of audio stream that produces the highest ranked result or -1 if not found
      */
-    static int getAudioIndexByHighestRank(@Nullable final List<AudioStream> audioStreams,
+    static int getAudioIndexByHighestRank(@NonNull final List<AudioStream> audioStreams,
                                           final Comparator<AudioStream> comparator) {
-        if (audioStreams == null || audioStreams.isEmpty()) {
-            return -1;
-        }
-
-        final AudioStream highestRankedAudioStream = audioStreams.stream()
-                .max(comparator).orElse(null);
-
-        return audioStreams.indexOf(highestRankedAudioStream);
+        return audioStreams.stream()
+                .max(comparator)
+                .map(audioStreams::indexOf)
+                .orElse(-1);
     }
 
     /**
