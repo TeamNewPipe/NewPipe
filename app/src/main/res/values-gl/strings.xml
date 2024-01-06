@@ -185,7 +185,6 @@
     <string name="rename">Renomear</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nome do ficheiro</string>
-    <string name="msg_threads">Fios</string>
     <string name="msg_error">Erro</string>
     <string name="msg_running">Descarga do NewPipe</string>
     <string name="msg_running_detail">Toque para ver detalles</string>

@@ -75,7 +75,6 @@
     <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="no_available_dir">Tem que definir, nas definições, uma pasta para as descargas</string>
     <string name="ok">OK</string>
-    <string name="msg_threads">Processos</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
     <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da aplicação\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nSO Versão:</string>

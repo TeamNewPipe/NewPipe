@@ -227,7 +227,6 @@
     <string name="msg_running_detail">Tafsilotlar uchun bosing</string>
     <string name="msg_running">NePipe yuklab olinmoqda</string>
     <string name="msg_error">Xato</string>
-    <string name="msg_threads">Iplar</string>
     <string name="msg_name">Faylnomi</string>
     <string name="ok">Ok</string>
     <string name="rename">Nomni o\'zgartirish</string>

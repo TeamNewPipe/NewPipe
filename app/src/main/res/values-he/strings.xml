@@ -142,7 +142,6 @@
     <string name="checksum">גיבוב לאימות</string>
     <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
-    <string name="msg_threads">תהליכי משנה</string>
     <string name="msg_error">שגיאה</string>
     <string name="msg_running">NewPipe בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>

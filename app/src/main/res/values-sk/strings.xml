@@ -67,7 +67,6 @@
     <string name="checksum">Kontrolný súčet</string>
     <string name="ok">OK</string>
     <string name="msg_name">Názov súboru</string>
-    <string name="msg_threads">Vlákna</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_running">NewPipe Preberanie</string>
     <string name="msg_running_detail">Dotykom zobraziť detaily</string>

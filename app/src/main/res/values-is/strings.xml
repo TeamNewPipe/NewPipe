@@ -243,7 +243,6 @@
     <string name="no_comments">Engin ummæli</string>
     <string name="comments_are_disabled">Ummæli eru óvirk</string>
     <string name="checksum">Gátsumma</string>
-    <string name="msg_threads">Þræðir</string>
     <string name="msg_error">Villa</string>
     <string name="msg_running_detail">Pikkaðu á til að fá nánari upplýsingar</string>
     <string name="msg_wait">Bíddu aðeins…</string>

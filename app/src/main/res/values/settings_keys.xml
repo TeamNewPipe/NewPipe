@@ -457,8 +457,6 @@
     <string name="downloads_cross_network">cross_network_downloads</string>
     <string name="downloads_queue_limit">downloads_queue_limit</string>
 
-    <string name="default_download_threads">default_download_threads</string>
-
     <!-- Preferred action on open (open from external app) -->
     <string name="preferred_open_action_key">preferred_open_action_key</string>
     <string name="preferred_open_action_default">@string/always_ask_open_action_key</string>

@@ -67,7 +67,6 @@
     <string name="checksum">チェックサム</string>
     <string name="ok">OK</string>
     <string name="msg_name">ファイル名</string>
-    <string name="msg_threads">同時接続数</string>
     <string name="msg_error">エラー</string>
     <string name="msg_running">ダウンロード中 (NewPipe)</string>
     <string name="msg_running_detail">タップして詳細を表示</string>

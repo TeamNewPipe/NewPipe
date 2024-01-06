@@ -173,7 +173,6 @@
     <string name="rename">Прекрсти</string>
     <string name="ok">Готово</string>
     <string name="msg_name">Име на датотека</string>
-    <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
     <string name="msg_running">NewPipe Превземање</string>
     <string name="msg_running_detail">Притисни за детали</string>

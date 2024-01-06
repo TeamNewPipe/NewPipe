@@ -100,7 +100,6 @@
     <string name="delete">తొలగించు</string>
     <string name="ok">అలాగే</string>
     <string name="msg_name">ఫైలుపేరు</string>
-    <string name="msg_threads">థ్రెడ్లు</string>
     <string name="msg_error">లోపం</string>
     <string name="msg_running">న్యూపిప్ డౌన్లోడ్ అవుతంది</string>
     <string name="msg_running_detail">వివరాల కోసం నొక్కండి</string>

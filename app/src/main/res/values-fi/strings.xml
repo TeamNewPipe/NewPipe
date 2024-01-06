@@ -126,7 +126,6 @@
     <string name="checksum">Tarkistussumma</string>
     <string name="ok">OK</string>
     <string name="msg_name">Tiedostonimi</string>
-    <string name="msg_threads">Säikeet</string>
     <string name="msg_error">Virhe</string>
     <string name="msg_running">NewPipe Lataus käynnissä</string>
     <string name="msg_running_detail">Napauta nähdäksesi lisää</string>

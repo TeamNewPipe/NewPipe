@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -65,7 +64,6 @@ import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
-import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
 import org.schabi.newpipe.util.AudioTrackAdapter;
@@ -323,21 +321,6 @@ public class DownloadDialog extends DialogFragment
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
-        final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
-        dialogBinding.threadsCount.setText(String.valueOf(threads));
-        dialogBinding.threads.setProgress(threads - 1);
-        dialogBinding.threads.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(@NonNull final SeekBar seekbar,
-                                          final int progress,
-                                          final boolean fromUser) {
-                final int newProgress = progress + 1;
-                prefs.edit().putInt(getString(R.string.default_download_threads), newProgress)
-                        .apply();
-                dialogBinding.threadsCount.setText(String.valueOf(newProgress));
-            }
-        });
-
         fetchStreamsSize();
     }
 
@@ -590,8 +573,6 @@ public class DownloadDialog extends DialogFragment
                 flag = false;
                 break;
         }
-
-        dialogBinding.threads.setEnabled(flag);
     }
 
     @Override
@@ -1051,7 +1032,7 @@ public class DownloadDialog extends DialogFragment
         final Stream selectedStream;
         Stream secondaryStream = null;
         final char kind;
-        int threads = dialogBinding.threads.getProgress() + 1;
+        int threads = 4;
         final String[] urls;
         final List<MissionRecoveryInfo> recoveryInfo;
         String psName = null;
@@ -1134,8 +1115,18 @@ public class DownloadDialog extends DialogFragment
             );
         }
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                currentInfo.getUrl(), psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
+        DownloadManagerService.startMission(
+                context,
+                urls,
+                storage,
+                kind,
+                threads,
+                currentInfo.getUrl(),
+                psName,
+                psArgs,
+                nearLength,
+                new ArrayList<>(recoveryInfo)
+        );
 
         Toast.makeText(context, getString(R.string.download_has_started),
                 Toast.LENGTH_SHORT).show();

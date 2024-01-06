@@ -136,7 +136,6 @@
     <string name="checksum">Kontrollsumma</string>
     <string name="ok">Okej</string>
     <string name="msg_name">Filnamn</string>
-    <string name="msg_threads">Trådar</string>
     <string name="msg_error">Fel</string>
     <string name="msg_running">NewPipe-hämtning</string>
     <string name="msg_running_detail">Tryck för detaljer</string>

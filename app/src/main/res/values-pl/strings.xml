@@ -70,7 +70,6 @@
     <string name="checksum">Suma kontrolna</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nazwa pliku</string>
-    <string name="msg_threads">Wątki</string>
     <string name="msg_error">Błąd</string>
     <string name="msg_running">Pobieranie NewPipe</string>
     <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>

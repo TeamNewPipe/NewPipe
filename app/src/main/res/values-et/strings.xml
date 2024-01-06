@@ -181,7 +181,6 @@
     <string name="rename">Nimeta ümber</string>
     <string name="ok">OK</string>
     <string name="msg_name">Faili nimi</string>
-    <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
     <string name="msg_running">NewPipe allalaadimine</string>
     <string name="msg_running_detail">Üksikasjade nägemiseks toksa</string>

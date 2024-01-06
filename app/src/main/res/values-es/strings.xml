@@ -70,7 +70,6 @@
     <string name="checksum">Suma de comprobación</string>
     <string name="ok">Aceptar</string>
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Subprocesos</string>
     <string name="msg_error">Error</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toca para ver detalles</string>

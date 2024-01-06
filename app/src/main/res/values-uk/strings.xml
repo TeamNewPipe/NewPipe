@@ -74,7 +74,6 @@
     <string name="checksum">Контрольна сума</string>
     <string name="ok">Гаразд</string>
     <string name="msg_name">Назва файлу</string>
-    <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
     <string name="msg_running">NewPipe завантажує</string>
     <string name="msg_running_detail">Деталі</string>

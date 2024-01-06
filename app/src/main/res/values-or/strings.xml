@@ -297,7 +297,6 @@
     <string name="checksum">ଚେକ୍ସମ୍</string>
     <string name="dismiss">ବରଖାସ୍ତ</string>
     <string name="msg_name">ଦସ୍ତାବିଜ୍ ର ନାମ</string>
-    <string name="msg_threads">ଥ୍ରେଡ୍</string>
     <string name="msg_error">ତ୍ରୁଟି</string>
     <string name="msg_running">ନୂତନ ପାଇପ୍ ଡାଉନଲୋଡ୍ କରୁଛି</string>
     <string name="msg_calculating_hash">ହ୍ୟାସ୍ ଗଣନା</string>

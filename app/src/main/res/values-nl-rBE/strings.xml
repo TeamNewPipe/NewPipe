@@ -174,7 +174,6 @@
     <string name="rename">Hernoemen</string>
     <string name="ok">Oké</string>
     <string name="msg_name">Bestandsnaam</string>
-    <string name="msg_threads">Threads</string>
     <string name="msg_error">Fout</string>
     <string name="msg_running">NewPipe is aan het downloaden</string>
     <string name="msg_running_detail">Tik voor meer informatie</string>

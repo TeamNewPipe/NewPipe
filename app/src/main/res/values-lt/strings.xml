@@ -100,7 +100,6 @@
     <string name="checksum">Kontrolinė suma</string>
     <string name="ok">Gerai</string>
     <string name="msg_name">Failo pavadinimas</string>
-    <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
     <string name="msg_running">NewPipe atsisiunčiama</string>
     <string name="msg_running_detail">Bakstelėkite, kad peržiūrėtumėte išsamią informaciją</string>

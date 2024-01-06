@@ -91,7 +91,6 @@
     <string name="checksum">檢查碼</string>
     <string name="ok">確定</string>
     <string name="msg_name">檔案名稱</string>
-    <string name="msg_threads">執行緒數目</string>
     <string name="msg_error">錯誤</string>
     <string name="msg_running">NewPipe 下載中</string>
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>

@@ -7,7 +7,6 @@
 \nDeseja continuar\?</string>
     <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="enable_playback_resume_title">Continuar reprodução</string>
-    <string name="msg_threads">Processos</string>
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>
     <string name="download">Descarregar</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>

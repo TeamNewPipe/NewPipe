@@ -70,7 +70,6 @@
     <string name="checksum">Ellenőrzőösszeg</string>
     <string name="ok">Rendben</string>
     <string name="msg_name">Fájlnév</string>
-    <string name="msg_threads">Szálak</string>
     <string name="msg_error">Hiba</string>
     <string name="msg_running">NewPipe letöltés folyamatban</string>
     <string name="msg_running_detail">Koppintson a részletekért</string>

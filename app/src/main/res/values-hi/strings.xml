@@ -148,7 +148,6 @@
     <string name="checksum">चेकसम</string>
     <string name="ok">ठीक है</string>
     <string name="msg_name">फाइल का नाम</string>
-    <string name="msg_threads">थ्रेड्स</string>
     <string name="msg_error">त्रुटी</string>
     <string name="msg_running">न्यूपाइप डाउनलोड कर रही है</string>
     <string name="msg_running_detail">विवरण के लिए टैप करें</string>

@@ -70,7 +70,6 @@
     <string name="checksum">Suma de control</string>
     <string name="ok">OK</string>
     <string name="msg_name">Numele fișierului</string>
-    <string name="msg_threads">Fire</string>
     <string name="msg_error">Eroare</string>
     <string name="msg_running">NewPipe descarcă</string>
     <string name="msg_running_detail">Atingeți pentru detalii</string>

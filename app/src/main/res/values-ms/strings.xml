@@ -193,7 +193,6 @@
     <string name="rename">Namakan semula</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nama fail</string>
-    <string name="msg_threads">Thread</string>
     <string name="msg_error">Ralat</string>
     <string name="msg_running">NewPipe sedang memuat turun</string>
     <string name="msg_running_detail">Ketuk untuk butiran</string>

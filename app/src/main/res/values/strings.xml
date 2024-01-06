@@ -332,7 +332,6 @@
     <string name="rename">Rename</string>
     <!-- Msg -->
     <string name="msg_name">Filename</string>
-    <string name="msg_threads">Threads</string>
     <string name="msg_error">Error</string>
     <string name="msg_running">NewPipe Downloading</string>
     <string name="msg_running_detail">Tap for details</string>

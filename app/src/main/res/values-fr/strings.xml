@@ -72,7 +72,6 @@
     <string name="checksum">Somme de contrôle</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Connexions simultanées</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_running">NewPipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>

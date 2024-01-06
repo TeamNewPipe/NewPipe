@@ -584,7 +584,6 @@
     <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində
 \naçmaq üçün lazımdır</string>
     <string name="msg_copied">Buferə kopyalandı</string>
-    <string name="msg_threads">Parçalar</string>
     <string name="rename">Adını dəyişdir</string>
     <string name="create">Yarat</string>
     <plurals name="subscribers">

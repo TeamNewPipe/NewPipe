@@ -69,7 +69,6 @@
     <string name="checksum">Doğrulama</string>
     <string name="ok">Tamam</string>
     <string name="msg_name">Dosya adı</string>
-    <string name="msg_threads">İş parçacığı</string>
     <string name="msg_error">Hata</string>
     <string name="msg_running">NewPipe İndiriliyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>

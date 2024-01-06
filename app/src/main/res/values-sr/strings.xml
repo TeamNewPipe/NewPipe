@@ -67,7 +67,6 @@
     <string name="checksum">Контролна сума</string>
     <string name="ok">У реду</string>
     <string name="msg_name">Назив фајла</string>
-    <string name="msg_threads">Нити</string>
     <string name="msg_error">Грешка</string>
     <string name="msg_running">NewPipe преузима</string>
     <string name="msg_running_detail">Додирните за детаље</string>

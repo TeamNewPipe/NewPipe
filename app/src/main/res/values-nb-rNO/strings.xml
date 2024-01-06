@@ -70,7 +70,6 @@
     <string name="checksum">Sjekksum</string>
     <string name="ok">OK</string>
     <string name="msg_name">Filnavn</string>
-    <string name="msg_threads">Tråder</string>
     <string name="msg_error">Feil</string>
     <string name="msg_running">NewPipe laster ned</string>
     <string name="msg_running_detail">Trykk for detaljer</string>

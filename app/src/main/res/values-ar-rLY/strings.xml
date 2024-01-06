@@ -634,7 +634,6 @@
     <string name="recent">حديثة</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
     <string name="clear_queue_confirmation_description">سيتم استبدال قائمة انتظار للمشغل النشط</string>
-    <string name="msg_threads">التقسيم</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="channel_created_by">أنشأها %s</string>
     <string name="settings_file_replacement_character_title">الحرف الإستبدالي</string>

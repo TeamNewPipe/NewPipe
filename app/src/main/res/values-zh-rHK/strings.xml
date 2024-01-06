@@ -70,7 +70,6 @@
     <string name="checksum">校驗碼</string>
     <string name="ok">好</string>
     <string name="msg_name">檔案名稱</string>
-    <string name="msg_threads">執行緒數量</string>
     <string name="msg_error">錯誤</string>
     <string name="msg_running">NewPipe 下載緊</string>
     <string name="msg_running_detail">撳一下睇詳情</string>

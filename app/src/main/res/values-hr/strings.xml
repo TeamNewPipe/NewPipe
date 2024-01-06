@@ -106,7 +106,6 @@
     <string name="checksum">Kontrolni zbroj</string>
     <string name="ok">U redu</string>
     <string name="msg_name">Naziv datoteke</string>
-    <string name="msg_threads">Komponente procesa</string>
     <string name="msg_error">Greška</string>
     <string name="msg_running">NewPipe preuzimanje</string>
     <string name="msg_running_detail">Dodirni za prikaz detalja</string>

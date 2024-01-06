@@ -93,7 +93,6 @@
     <string name="checksum">Egiaztaketa-batura</string>
     <string name="ok">Ados</string>
     <string name="msg_name">Fitxategi-izena</string>
-    <string name="msg_threads">Hariak</string>
     <string name="msg_error">Errorea</string>
     <string name="msg_running">NewPipe deskargatzen</string>
     <string name="msg_running_detail">Ukitu xehetasunetarako</string>

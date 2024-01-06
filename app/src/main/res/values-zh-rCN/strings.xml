@@ -79,7 +79,6 @@
     <string name="checksum">校验</string>
     <string name="ok">确定</string>
     <string name="msg_name">文件名</string>
-    <string name="msg_threads">线程数</string>
     <string name="msg_error">错误</string>
     <string name="msg_running_detail">点击了解详情</string>
     <string name="msg_wait">请稍候…</string>

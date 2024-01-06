@@ -173,7 +173,6 @@
     <string name="rename">نام تبدیل کریں</string>
     <string name="ok">ٹھيک ہے</string>
     <string name="msg_name">فائل کا نام</string>
-    <string name="msg_threads">موضوعات</string>
     <string name="msg_error">خرابی</string>
     <string name="msg_running">نیو پائپ ڈاؤن لوڈ ہو رہا ہے</string>
     <string name="msg_running_detail">تفصیلات کے لیے ٹیپ کریں</string>

@@ -67,7 +67,6 @@
     <string name="checksum">チェックサム</string>
     <string name="ok">OK</string>
     <string name="msg_name">ファイルめい</string>
-    <string name="msg_threads">どうじらしみーちずくすん</string>
     <string name="msg_error">エラー</string>
     <string name="msg_running">ダウンロードちゅう（NewPipe）</string>
     <string name="msg_running_detail">タップししーょうさいをひょうじ</string>

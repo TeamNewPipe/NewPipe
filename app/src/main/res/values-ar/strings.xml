@@ -136,7 +136,6 @@
     <string name="checksum">التوقيع</string>
     <string name="ok">موافق</string>
     <string name="msg_name">اسم الملف</string>
-    <string name="msg_threads">التقسيم</string>
     <string name="msg_error">الخطأ</string>
     <string name="msg_running">يقوم نيوبايب بالتنزيل</string>
     <string name="msg_running_detail">انقر للحصول على التفاصيل</string>

@@ -278,7 +278,6 @@
     <string name="pause">პაუზა</string>
     <string name="rename">გადარქმევა</string>
     <string name="msg_name">ფაილის სახელი</string>
-    <string name="msg_threads">ძაფები</string>
     <string name="msg_error">შეცდომა</string>
     <string name="msg_running">NewPipe-ის ჩამოტვირთვა</string>
     <string name="msg_running_detail">შეეხეთ დეტალებისთვის</string>

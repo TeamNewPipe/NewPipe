@@ -55,7 +55,6 @@
     <string name="msg_running_detail">Klepněte pro podrobnosti</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_name">Jméno souboru</string>
-    <string name="msg_threads">Vlákna</string>
     <string name="pause">Zastavit</string>
     <string name="delete">Smazat</string>
     <string name="start">Start</string>

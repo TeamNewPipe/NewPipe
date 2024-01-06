@@ -91,7 +91,6 @@
     <string name="checksum">Mã tổng kiểm (checksum)</string>
     <string name="ok">OK</string>
     <string name="msg_name">Tên file</string>
-    <string name="msg_threads">Chủ đề</string>
     <string name="msg_error">Lỗi</string>
     <string name="msg_running">NewPipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>

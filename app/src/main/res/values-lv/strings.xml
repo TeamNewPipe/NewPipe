@@ -91,7 +91,6 @@
     <string name="msg_running_detail">Nospiediet priekš detaļām</string>
     <string name="msg_running">NewPipe lejupielādē</string>
     <string name="msg_error">Kļūda</string>
-    <string name="msg_threads">Procesi</string>
     <string name="msg_name">Faila nosaukums</string>
     <string name="ok">OK</string>
     <string name="rename">Pārsaukt</string>

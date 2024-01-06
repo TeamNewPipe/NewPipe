@@ -129,7 +129,6 @@
     <string name="checksum">Контролна сума</string>
     <string name="ok">ОК</string>
     <string name="msg_name">Име на файла</string>
-    <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
     <string name="msg_running">NewPipe Изтегляне</string>
     <string name="msg_running_detail">Докосни за подробности</string>

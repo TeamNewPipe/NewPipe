@@ -268,7 +268,6 @@
     <string name="msg_running_detail">Shtyp për detajet</string>
     <string name="msg_running">NewPipe duke shkarkuar</string>
     <string name="msg_error">Gabim</string>
-    <string name="msg_threads">Veprimet paralele</string>
     <string name="msg_name">Emri i skedarit</string>
     <string name="ok">OK</string>
     <string name="rename">Riemërto</string>

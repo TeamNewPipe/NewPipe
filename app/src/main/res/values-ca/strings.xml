@@ -182,7 +182,6 @@
     <string name="checksum">Suma de verificació</string>
     <string name="dismiss">Tanca</string>
     <string name="rename">Canvia el nom</string>
-    <string name="msg_threads">Fils</string>
     <string name="msg_running">Baixada del NewPipe activa</string>
     <string name="msg_wait">Un moment…</string>
     <string name="msg_copied">S\'ha copiat al porta-retalls</string>

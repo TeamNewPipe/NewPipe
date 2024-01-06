@@ -130,7 +130,6 @@
     <string name="no_videos">비디오 없음</string>
     <string name="ok">OK</string>
     <string name="msg_name">파일명</string>
-    <string name="msg_threads">스레드</string>
     <string name="msg_error">오류</string>
     <string name="msg_running">NewPipe 다운로드 중</string>
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>

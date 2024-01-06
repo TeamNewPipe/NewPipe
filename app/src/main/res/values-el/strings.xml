@@ -193,7 +193,6 @@
     <string name="rename">Μετονομασία</string>
     <string name="ok">Εντάξει</string>
     <string name="msg_name">Όνομα αρχείου</string>
-    <string name="msg_threads">Νήματα</string>
     <string name="msg_running">Λήψη NewPipe</string>
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
     <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
