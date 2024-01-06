@@ -266,6 +266,13 @@ public final class ListHelper {
      * Filter the list of audio streams and return a list with the preferred stream for
      * each audio track. Streams are sorted with the preferred language in the first position.
      *
+     * The following formats cannot be played and are thus skipped:
+     *
+     * <ul>
+     *  <li>{@literal DeliveryMethod.TORRENT}
+     *  <li>both {@literal DeliveryMethod.HLS} AND {@literal MediaFormat.OPUS}</li>
+     * </ul>
+     *
      * @param context      the context to search for the track to give preference
      * @param audioStreams the list of audio streams
      * @return the sorted, filtered list
@@ -283,13 +290,20 @@ public final class ListHelper {
         final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
         for (final AudioStream stream : audioStreams) {
+
+            // XXX: Why are these skipped exactly?
             if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
                     || (stream.getDeliveryMethod() == DeliveryMethod.HLS
-                    && stream.getFormat() == MediaFormat.OPUS)) {
+                        && stream.getFormat() == MediaFormat.OPUS)) {
                 continue;
             }
 
-            final String trackId = Objects.toString(stream.getAudioTrackId(), "");
+            // TODO: since media.ccc.de does not have a trackId,
+            //  only the first audio is ever returned here …
+            String trackId = stream.getAudioTrackId();
+            if (trackId == null) {
+                trackId = "";
+            }
 
             final AudioStream presentStream = collectedStreams.get(trackId);
             if (presentStream == null || cmp.compare(stream, presentStream) > 0) {
