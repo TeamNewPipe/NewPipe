@@ -116,6 +116,13 @@ public final class ListHelper {
         return groupedAudioStreams.indexOf(highestRanked);
     }
 
+    /** Get the index of the audio format to play in audioStreams.
+     * .
+     * @param context
+     * @param audioStreams
+     * @param trackId ???
+     * @return index to play, or -1 if audioStreams is empty.
+     */
     public static int getAudioFormatIndex(final Context context,
                                           @NonNull final List<AudioStream> audioStreams,
                                           @Nullable final String trackId) {
@@ -658,6 +665,7 @@ public final class ListHelper {
         return defaultMediaFormat;
     }
 
+    @Nullable
     private static MediaFormat getMediaFormatFromKey(@NonNull final Context context,
                                                      @NonNull final String formatKey) {
         MediaFormat format = null;

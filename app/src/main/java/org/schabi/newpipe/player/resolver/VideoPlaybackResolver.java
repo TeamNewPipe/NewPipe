@@ -110,19 +110,23 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         final int audioIndex =
                 ListHelper.getAudioFormatIndex(context, audioStreamsList, audioTrack);
-        final MediaItemTag tag =
-                StreamInfoTag.of(info, videoStreamsList, videoIndex, audioStreamsList, audioIndex);
-        @Nullable final VideoStream video = tag.getMaybeQuality()
-                .map(MediaItemTag.Quality::getSelectedVideoStream)
-                .orElse(null);
-        @Nullable final AudioStream audio = tag.getMaybeAudioTrack()
-                .map(MediaItemTag.AudioTrack::getSelectedAudioStream)
-                .orElse(null);
+
+        @Nullable MediaItemTag.Quality video = null;
+        @Nullable MediaItemTag.AudioTrack audio = null;
+
+        if (videoIndex != -1) {
+            video = new MediaItemTag.Quality(videoStreamsList, videoIndex);
+        }
+        if (audioIndex != -1) {
+            audio = new MediaItemTag.AudioTrack(audioStreamsList, audioIndex);
+        }
+        final MediaItemTag tag = new StreamInfoTag(info, video, audio, null);
 
         if (video != null) {
             try {
+                final VideoStream stream = video.getSelectedVideoStream();
                 final MediaSource streamSource = PlaybackResolver.buildMediaSource(
-                        dataSource, video, info, PlaybackResolver.cacheKeyOf(info, video), tag);
+                        dataSource, stream, info, PlaybackResolver.cacheKeyOf(info, stream), tag);
                 mediaSources.add(streamSource);
             } catch (final ResolverException e) {
                 Log.e(TAG, "Unable to create video source", e);
@@ -132,10 +136,14 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Use the audio stream if there is no video stream, or
         // merge with audio stream in case if video does not contain audio
-        if (audio != null && (video == null || video.isVideoOnly() || audioTrack != null)) {
+        if (audio != null
+                && (video == null
+                    || video.getSelectedVideoStream().isVideoOnly()
+                    || audioTrack != null)) {
             try {
+                final AudioStream stream = audio.getSelectedAudioStream();
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
-                        dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
+                        dataSource, stream, info, PlaybackResolver.cacheKeyOf(info, stream), tag);
                 mediaSources.add(audioSource);
                 streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
             } catch (final ResolverException e) {

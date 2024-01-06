@@ -1054,7 +1054,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     if (player.getCurrentMetadata() != null
                             && player.getCurrentMetadata().getMaybeQuality().isEmpty()
                             || (info.getVideoStreams().isEmpty()
-                            && info.getVideoOnlyStreams().isEmpty())) {
+                               && info.getVideoOnlyStreams().isEmpty())) {
                         break;
                     }
 

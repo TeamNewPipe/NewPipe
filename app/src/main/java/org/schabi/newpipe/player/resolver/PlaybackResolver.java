@@ -199,7 +199,7 @@ public interface PlaybackResolver {
         }
 
         try {
-            final StreamInfoTag tag = StreamInfoTag.of(info);
+            final StreamInfoTag tag = new StreamInfoTag(info, null, null, null);
             if (!info.getHlsUrl().isEmpty()) {
                 return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
             } else if (!info.getDashMpdUrl().isEmpty()) {

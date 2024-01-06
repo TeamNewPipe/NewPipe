@@ -106,17 +106,26 @@ public interface MediaItemTag {
     final class Quality {
         @NonNull
         private final List<VideoStream> sortedVideoStreams;
+
+        /** Invariant: Index exists in sortedVideoStreams. */
         private final int selectedVideoStreamIndex;
 
-        private Quality(@NonNull final List<VideoStream> sortedVideoStreams,
+
+        /** Create a new video Quality. The index must be valid in `sortedVideoStreams`.
+         *
+         * @param sortedVideoStreams
+         * @param selectedVideoStreamIndex
+         * @throws ArrayIndexOutOfBoundsException if index does not exist in `sortedVideoStreams`
+         */
+        public Quality(@NonNull final List<VideoStream> sortedVideoStreams,
                         final int selectedVideoStreamIndex) {
+            if  (selectedVideoStreamIndex < 0
+                    || selectedVideoStreamIndex >= sortedVideoStreams.size()) {
+                throw new ArrayIndexOutOfBoundsException(
+                        "selectedVideoStreamIndex does not exist in sortedVideoStreams");
+            }
             this.sortedVideoStreams = sortedVideoStreams;
             this.selectedVideoStreamIndex = selectedVideoStreamIndex;
-        }
-
-        static Quality of(@NonNull final List<VideoStream> sortedVideoStreams,
-                          final int selectedVideoStreamIndex) {
-            return new Quality(sortedVideoStreams, selectedVideoStreamIndex);
         }
 
         @NonNull
@@ -128,28 +137,33 @@ public interface MediaItemTag {
             return selectedVideoStreamIndex;
         }
 
-        @Nullable
+        @NonNull
         public VideoStream getSelectedVideoStream() {
-            return selectedVideoStreamIndex < 0
-                    || selectedVideoStreamIndex >= sortedVideoStreams.size()
-                    ? null : sortedVideoStreams.get(selectedVideoStreamIndex);
+            return sortedVideoStreams.get(selectedVideoStreamIndex);
         }
     }
 
     final class AudioTrack {
         @NonNull
         private final List<AudioStream> audioStreams;
+        /** Invariant: Index exists in audioStreams. */
         private final int selectedAudioStreamIndex;
 
-        private AudioTrack(@NonNull final List<AudioStream> audioStreams,
+        /** Create a new AudioTrack. The index must be valid in `audioStreams`.
+         *
+         * @param audioStreams
+         * @param selectedAudioStreamIndex
+         * @throws ArrayIndexOutOfBoundsException if index does not exist in audioStreams.
+         */
+        public AudioTrack(@NonNull final List<AudioStream> audioStreams,
                            final int selectedAudioStreamIndex) {
+            if  (selectedAudioStreamIndex < 0
+                    || selectedAudioStreamIndex >= audioStreams.size()) {
+                throw new ArrayIndexOutOfBoundsException(
+                        "selectedAudioStreamIndex does not exist in audioStreams");
+            }
             this.audioStreams = audioStreams;
             this.selectedAudioStreamIndex = selectedAudioStreamIndex;
-        }
-
-        static AudioTrack of(@NonNull final List<AudioStream> audioStreams,
-                             final int selectedAudioStreamIndex) {
-            return new AudioTrack(audioStreams, selectedAudioStreamIndex);
         }
 
         @NonNull
@@ -161,11 +175,9 @@ public interface MediaItemTag {
             return selectedAudioStreamIndex;
         }
 
-        @Nullable
+        @NonNull
         public AudioStream getSelectedAudioStream() {
-            return selectedAudioStreamIndex < 0
-                    || selectedAudioStreamIndex >= audioStreams.size()
-                    ? null : audioStreams.get(selectedAudioStreamIndex);
+            return audioStreams.get(selectedAudioStreamIndex);
         }
     }
 }

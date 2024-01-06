@@ -60,15 +60,22 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         if (!audioStreams.isEmpty()) {
             final int audioIndex =
                     ListHelper.getAudioFormatIndex(context, audioStreams, audioTrack);
-            stream = getStreamForIndex(audioIndex, audioStreams);
-            tag = StreamInfoTag.of(info, audioStreams, audioIndex);
+            assert audioIndex != -1;
+            final MediaItemTag.AudioTrack audio =
+                    new MediaItemTag.AudioTrack(audioStreams, audioIndex);
+            tag = new StreamInfoTag(info, null, audio, null);
+            stream = audio.getSelectedAudioStream();
         } else {
             final List<VideoStream> videoStreams =
                     getPlayableStreams(info.getVideoStreams(), info.getServiceId());
             if (!videoStreams.isEmpty()) {
-                final int index = ListHelper.getDefaultResolutionIndex(context, videoStreams);
-                stream = getStreamForIndex(index, videoStreams);
-                tag = StreamInfoTag.of(info);
+                final int videoIndex = ListHelper.getDefaultResolutionIndex(context, videoStreams);
+                assert videoIndex != -1;
+                final MediaItemTag.Quality video =
+                        new MediaItemTag.Quality(videoStreams, videoIndex);
+                // why are we not passing `video` as quality here?
+                tag = new StreamInfoTag(info, null, null, null);
+                stream = video.getSelectedVideoStream();
             } else {
                 return null;
             }
@@ -81,19 +88,6 @@ public class AudioPlaybackResolver implements PlaybackResolver {
             Log.e(TAG, "Unable to create audio source", e);
             return null;
         }
-    }
-
-    @Nullable
-    Stream getStreamForIndex(final int index, @NonNull final List<? extends Stream> streams) {
-        if (index >= 0 && index < streams.size()) {
-            return streams.get(index);
-        }
-        return null;
-    }
-
-    @Nullable
-    public String getAudioTrack() {
-        return audioTrack;
     }
 
     public void setAudioTrack(@Nullable final String audioLanguage) {
