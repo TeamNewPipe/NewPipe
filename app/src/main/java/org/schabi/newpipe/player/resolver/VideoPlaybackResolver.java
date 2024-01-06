@@ -102,24 +102,12 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                     );
                 }
             }
-
         } else {
-            switch (selectedPlayer) {
-                case MAIN -> {
-                    videoIndex = ListHelper.getDefaultResolutionWithDefaultFormat(
-                            context,
-                            getPlaybackQuality(),
-                            videoStreamsList
-                    );
-                }
-                case POPUP -> {
-                    videoIndex = ListHelper.getDefaultResolutionWithDefaultFormat(
-                            context,
-                            getPlaybackQuality(),
-                            videoStreamsList
-                    );
-                }
-            }
+            videoIndex = ListHelper.getDefaultResolutionWithDefaultFormat(
+                    context,
+                    getPlaybackQuality(),
+                    videoStreamsList
+            );
         }
 
         final int audioIndex =
