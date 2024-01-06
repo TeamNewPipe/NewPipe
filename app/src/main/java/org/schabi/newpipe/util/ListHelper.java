@@ -73,7 +73,7 @@ public final class ListHelper {
     /**
      * @param context      Android app context
      * @param videoStreams list of the video streams to check
-     * @return index of the video stream with the default index
+     * @return index of the video stream with the default index, -1 if `videoStreams` is empty
      * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getDefaultResolutionIndex(final Context context,
@@ -87,7 +87,7 @@ public final class ListHelper {
     /**
      * @param context      Android app context
      * @param videoStreams list of the video streams to check
-     * @return index of the video stream with the default index
+     * @return index of the video stream with the default index, -1 if `videoStreams` is empty
      * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
      */
     public static int getPopupDefaultResolutionIndex(final Context context,
@@ -408,17 +408,19 @@ public final class ListHelper {
      * on the parameters defaultResolution and defaultFormat.
      *
      * @param defaultResolution the default resolution to look for
+     *                          (a resolution string or `bestResolutionKey`).
      * @param bestResolutionKey key of the best resolution
      * @param defaultFormat     the default format to look for
      * @param videoStreams      a mutable list of the video streams to check (it will be sorted in
      *                          place)
-     * @return index of the default resolution&format in the sorted videoStreams
+     * @return index of the default resolution&format in the sorted videoStreams,
+     *         -1 if `videoStreams` is empty
      */
     static int getDefaultResolutionIndex(final String defaultResolution,
                                          final String bestResolutionKey,
                                          final MediaFormat defaultFormat,
-                                         @Nullable final List<VideoStream> videoStreams) {
-        if (videoStreams == null || videoStreams.isEmpty()) {
+                                         @NonNull final List<VideoStream> videoStreams) {
+        if (videoStreams.isEmpty()) {
             return -1;
         }
 
@@ -626,11 +628,13 @@ public final class ListHelper {
      * @param context           Android app context
      * @param defaultResolution the default resolution
      * @param videoStreams      the list of video streams to check
-     * @return the index of the preferred video stream
+     * @return the index of the preferred video stream, -1 if `videoStreams` is empty
      */
-    public static int getDefaultResolutionWithDefaultFormat(@NonNull final Context context,
-                                                             final String defaultResolution,
-                                                             final List<VideoStream> videoStreams) {
+    public static int getDefaultResolutionWithDefaultFormat(
+            @NonNull final Context context,
+            final String defaultResolution,
+            @NonNull final List<VideoStream> videoStreams
+    ) {
         final MediaFormat defaultFormat = getDefaultFormat(context,
                 R.string.default_video_format_key, R.string.default_video_format_value);
         return getDefaultResolutionIndex(defaultResolution,

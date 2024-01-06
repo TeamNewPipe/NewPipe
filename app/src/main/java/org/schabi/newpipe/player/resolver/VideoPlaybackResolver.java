@@ -85,9 +85,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 getFilteredAudioStreams(context, info.getAudioStreams());
 
         int videoIndex = -999;
-        if (videoStreamsList.isEmpty()) {
-            videoIndex = -1;
-        } else if (playbackQuality == null) {
+        if (playbackQuality == null) {
             switch (selectedPlayer) {
                 case MAIN -> {
                     videoIndex = ListHelper.getDefaultResolutionIndex(
