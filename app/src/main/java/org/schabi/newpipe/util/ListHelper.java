@@ -280,10 +280,7 @@ public final class ListHelper {
     @NonNull
     public static List<AudioStream> getFilteredAudioStreams(
             @NonNull final Context context,
-            @Nullable final List<AudioStream> audioStreams) {
-        if (audioStreams == null) {
-            return Collections.emptyList();
-        }
+            @NonNull final List<AudioStream> audioStreams) {
 
         final HashMap<String, AudioStream> collectedStreams = new HashMap<>();
 

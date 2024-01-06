@@ -20,7 +20,9 @@ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
     private static final String TAG = AudioPlaybackResolver.class.getSimpleName();
@@ -53,7 +55,11 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         }
 
         final List<AudioStream> audioStreams =
-                getFilteredAudioStreams(context, info.getAudioStreams());
+                getFilteredAudioStreams(
+                        context,
+                        // TODO: getAudioStreams should be @NonNull
+                        Objects.requireNonNullElse(info.getAudioStreams(), Collections.emptyList())
+                );
         final Stream stream;
         final MediaItemTag tag;
 

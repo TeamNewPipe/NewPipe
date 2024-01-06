@@ -24,7 +24,9 @@ import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
@@ -82,7 +84,11 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 getPlayableStreams(info.getVideoStreams(), info.getServiceId()),
                 getPlayableStreams(info.getVideoOnlyStreams(), info.getServiceId()), false, true);
         final List<AudioStream> audioStreamsList =
-                getFilteredAudioStreams(context, info.getAudioStreams());
+                getFilteredAudioStreams(
+                        context,
+                        // TODO: getAudioStreams should be @NonNull
+                        Objects.requireNonNullElse(info.getAudioStreams(), Collections.emptyList())
+                );
 
         int videoIndex = -999;
         if (playbackQuality == null) {
