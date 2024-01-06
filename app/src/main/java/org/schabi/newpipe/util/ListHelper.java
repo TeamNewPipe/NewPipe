@@ -371,9 +371,8 @@ public final class ListHelper {
                 PreferenceManager.getDefaultSharedPreferences(context);
 
         // Load the preferred resolution otherwise the best available
-        String resolution = preferences != null
-                ? preferences.getString(context.getString(key), context.getString(value))
-                : context.getString(R.string.best_resolution_key);
+        String resolution =
+                 preferences.getString(context.getString(key), context.getString(value));
 
         final String maxResolution = getResolutionLimit(context);
         if (maxResolution != null
