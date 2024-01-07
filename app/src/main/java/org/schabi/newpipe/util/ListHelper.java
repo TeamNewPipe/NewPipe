@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -282,41 +283,40 @@ public final class ListHelper {
             @NonNull final Context context,
             @NonNull final List<AudioStream> audioStreams) {
 
-        final HashMap<String, AudioStream> collectedStreams = new HashMap<>();
-
-        for (final AudioStream stream : audioStreams) {
-
-            if (// we can’t play torrents
-                stream.getDeliveryMethod() == DeliveryMethod.TORRENT
-                // This format is not supported by ExoPlayer when returned as HLS streams,
-                // so we can't play streams using this format and this delivery method.
-                || (stream.getDeliveryMethod() == DeliveryMethod.HLS
-                    && stream.getFormat() == MediaFormat.OPUS)) {
-                continue;
-            }
-
-            // TODO: since media.ccc.de does not have a trackId,
-            //  only the first audio is ever returned here …
-            String trackId = stream.getAudioTrackId();
-            if (trackId == null) {
-                trackId = "";
-            }
-
-            final AudioStream presentStream = collectedStreams.get(trackId);
-            if (presentStream == null
-                    || getAudioFormatComparator(context).compare(stream, presentStream) > 0) {
-                collectedStreams.put(trackId, stream);
-            }
-        }
-
-        // Filter unknown audio tracks if there are multiple tracks
-        if (collectedStreams.size() > 1) {
-            collectedStreams.remove("");
-        }
-
-        // Sort collected streams by name
-        return collectedStreams.values().stream().sorted(getAudioTrackNameComparator(context))
+        final List<AudioStream> result = audioStreams
+                .stream()
+                // remove torrents we can’t play
+                .filter(stream ->
+                    !(
+                    // we can’t play torrents
+                    stream.getDeliveryMethod() == DeliveryMethod.TORRENT
+                    // This format is not supported by ExoPlayer when returned as HLS streams,
+                    // so we can't play streams using this format and this delivery method.
+                    || (stream.getDeliveryMethod() == DeliveryMethod.HLS
+                    && stream.getFormat() == MediaFormat.OPUS))
+                )
+                .collect(Collectors.groupingBy(
+                        stream ->
+                                // Streams grouped by their locale+audiotype
+                                // (e.g. en+original, fr+dubbed)
+                                new Pair<Locale, AudioTrackType>(
+                                        stream.getAudioLocale(),
+                                        stream.getAudioTrackType()
+                                ),
+                        // from each list of grouped streams,
+                        // we select the one that has the most fitting audio type & quality
+                         Collectors.maxBy(getAudioFormatComparator(context))
+                ))
+                .entrySet()
+                .stream()
+                // get streams and remove bins that don’t contain streams
+                .flatMap(e -> e.getValue().stream())
+                // sort the preferred audio stream last
+                .sorted(getAudioTrackComparator(context))
                 .collect(Collectors.toList());
+
+        return result;
+
     }
 
     /**
