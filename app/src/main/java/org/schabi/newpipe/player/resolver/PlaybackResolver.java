@@ -415,6 +415,7 @@ public interface PlaybackResolver {
             // (which is the last segment of the stream)
 
             try {
+                // We know that itagItem has to be set, because it’s youtube-specific
                 final ItagItem itagItem = Objects.requireNonNull(stream.getItagItem());
                 final String manifestString = YoutubePostLiveStreamDvrDashManifestCreator
                         .fromPostLiveStreamDvrStreamingUrl(stream.getContent(),
@@ -448,6 +449,7 @@ public interface PlaybackResolver {
                     try {
                         final String manifestString = YoutubeProgressiveDashManifestCreator
                                 .fromProgressiveStreamingUrl(stream.getContent(),
+                            // We know that itagItem has to be set, because it’s youtube-specific
                                         Objects.requireNonNull(stream.getItagItem()),
                                         streamInfo.getDuration());
                         return buildYoutubeManualDashMediaSource(dataSource,
@@ -475,6 +477,7 @@ public interface PlaybackResolver {
                 try {
                     final String manifestString = YoutubeOtfDashManifestCreator
                             .fromOtfStreamingUrl(stream.getContent(),
+                            // We know that itagItem has to be set, because it’s youtube-specific
                                     Objects.requireNonNull(stream.getItagItem()),
                                     streamInfo.getDuration());
                     return buildYoutubeManualDashMediaSource(dataSource,
