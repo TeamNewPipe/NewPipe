@@ -121,12 +121,13 @@ public final class ListHelper {
      * .
      * @param context
      * @param audioStreams
-     * @param trackId ???
+     * @param trackId Try to find this #AudioStream.getAudioTrackId in the audioStreams & select it
      * @return index to play, or -1 if audioStreams is empty.
      */
     public static int getAudioFormatIndex(final Context context,
                                           @NonNull final List<AudioStream> audioStreams,
                                           @Nullable final String trackId) {
+        // if we were given a trackId, try to select that before going to the defaults.
         if (trackId != null) {
             for (int i = 0; i < audioStreams.size(); i++) {
                 final AudioStream s = audioStreams.get(i);

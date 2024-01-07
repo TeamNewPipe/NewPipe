@@ -218,12 +218,12 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         this.playbackQuality = playbackQuality;
     }
 
-    @Nullable
-    public String getAudioTrack() {
-        return audioTrack;
-    }
-
-    public void setAudioTrack(@Nullable final String audioLanguage) {
-        this.audioTrack = audioLanguage;
+    /** Set audio track to be used the next time {@link #resolve(StreamInfo, SelectedPlayer)}
+     * is called.
+     *
+     * @param audioTrack the {@link AudioStream} audioTrackId that should be selected on resolve
+     */
+    public void setAudioTrack(@Nullable final String audioTrack) {
+        this.audioTrack = audioTrack;
     }
 }

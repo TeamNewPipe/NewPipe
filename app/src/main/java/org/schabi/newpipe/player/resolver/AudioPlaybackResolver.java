@@ -96,7 +96,11 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         }
     }
 
-    public void setAudioTrack(@Nullable final String audioLanguage) {
-        this.audioTrack = audioLanguage;
+    /** Set audio track to be used the next time {@link #resolve(StreamInfo)} is called.
+     *
+     * @param audioTrack the {@link AudioStream} audioTrackId that should be selected on resolve
+     */
+    public void setAudioTrack(@Nullable final String audioTrack) {
+        this.audioTrack = audioTrack;
     }
 }
