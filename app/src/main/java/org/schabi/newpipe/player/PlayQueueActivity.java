@@ -86,7 +86,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceIdOrFallback(this));
 
         queueControlBinding = ActivityPlayerQueueControlBinding.inflate(getLayoutInflater());
         setContentView(queueControlBinding.getRoot());

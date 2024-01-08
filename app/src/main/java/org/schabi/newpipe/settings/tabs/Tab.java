@@ -505,7 +505,7 @@ public abstract class Tab {
         }
 
         private String getDefaultKioskId(final Context context) {
-            final int kioskServiceId = ServiceHelper.getSelectedServiceId(context);
+            final int kioskServiceId = ServiceHelper.getSelectedServiceIdOrFallback(context);
 
             String kioskId = "";
             try {

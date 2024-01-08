@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
 
@@ -115,27 +114,48 @@ public final class ServiceHelper {
         }
     }
 
-    public static int getSelectedServiceId(final Context context) {
-        return Optional.ofNullable(getSelectedService(context))
+    public static int getSelectedServiceIdOrFallback(final Context context) {
+        return getSelectedService(context)
                 .orElse(DEFAULT_FALLBACK_SERVICE)
                 .getServiceId();
     }
 
-    @Nullable
-    public static StreamingService getSelectedService(final Context context) {
+    public static StreamingService getSelectedServiceOrFallback(final Context context) {
+        return getSelectedService(context)
+                .orElse(DEFAULT_FALLBACK_SERVICE);
+    }
+
+    public static Optional<StreamingService> getSelectedService(final Context context) {
         final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.current_service_key),
                         context.getString(R.string.default_service_value));
-
         try {
-            return NewPipe.getService(serviceName);
+            return Optional.of(NewPipe.getService(serviceName));
         } catch (final ExtractionException e) {
-            return null;
+            return Optional.empty();
         }
     }
 
+
+    /** Get the name of the selected service.
+     *
+     * @param context
+     * @return The name of the service or {@literal "<unknown>"}
+     */
     @NonNull
-    public static String getNameOfServiceById(final int serviceId) {
+    public static String getSelectedServiceNameOrUnknown(final Context context) {
+        return getSelectedService(context)
+                .map(s -> s.getServiceInfo().getName())
+                .orElse("<unknown>");
+    }
+
+    /** Get the name of the service if it exists.
+     *
+     * @param serviceId
+     * @return The name of the service or {@literal "<unknown>"}
+     */
+    @NonNull
+    public static String getNameOfServiceByIdOrUnknown(final int serviceId) {
         return ServiceList.all().stream()
                 .filter(s -> s.getServiceId() == serviceId)
                 .findFirst()

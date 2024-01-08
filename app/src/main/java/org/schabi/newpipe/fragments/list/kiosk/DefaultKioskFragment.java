@@ -25,7 +25,7 @@ public class DefaultKioskFragment extends KioskFragment {
     public void onResume() {
         super.onResume();
 
-        if (serviceId != ServiceHelper.getSelectedServiceId(requireContext())) {
+        if (serviceId != ServiceHelper.getSelectedServiceIdOrFallback(requireContext())) {
             if (currentWorker != null) {
                 currentWorker.dispose();
             }
@@ -36,7 +36,7 @@ public class DefaultKioskFragment extends KioskFragment {
 
     private void updateSelectedDefaultKiosk() {
         try {
-            serviceId = ServiceHelper.getSelectedServiceId(requireContext());
+            serviceId = ServiceHelper.getSelectedServiceIdOrFallback(requireContext());
 
             final KioskList kioskList = NewPipe.getService(serviceId).getKioskList();
             kioskId = kioskList.getDefaultKioskId();

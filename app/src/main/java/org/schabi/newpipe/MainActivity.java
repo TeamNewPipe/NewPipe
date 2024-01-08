@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ThemeHelper.setDayNightMode(this);
-        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceIdOrFallback(this));
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(final View drawerView) {
-                lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+                lastService = ServiceHelper.getSelectedServiceIdOrFallback(MainActivity.this);
             }
 
             @Override
@@ -203,7 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 if (servicesShown) {
                     toggleServices();
                 }
-                if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
+                if (lastService
+                        != ServiceHelper.getSelectedServiceIdOrFallback(MainActivity.this)) {
                     ActivityCompat.recreate(MainActivity.this);
                 }
             }
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
-        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final int currentServiceId = ServiceHelper.getSelectedServiceIdOrFallback(this);
         final StreamingService service = NewPipe.getService(currentServiceId);
 
         int kioskMenuItemId = 0;
@@ -284,11 +285,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeService(final MenuItem item) {
         drawerLayoutBinding.navigation.getMenu()
-                .getItem(ServiceHelper.getSelectedServiceId(this))
+                .getItem(ServiceHelper.getSelectedServiceIdOrFallback(this))
                 .setChecked(false);
         ServiceHelper.setSelectedServiceId(this, item.getItemId());
         drawerLayoutBinding.navigation.getMenu()
-                .getItem(ServiceHelper.getSelectedServiceId(this))
+                .getItem(ServiceHelper.getSelectedServiceIdOrFallback(this))
                 .setChecked(true);
     }
 
@@ -310,7 +311,8 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
             default:
-                final StreamingService currentService = ServiceHelper.getSelectedService(this);
+                final StreamingService currentService =
+                        ServiceHelper.getSelectedServiceOrFallback(this);
                 int kioskMenuItemId = 0;
                 for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
                     if (kioskMenuItemId == item.getItemId()) {
@@ -389,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         drawerLayoutBinding.navigation.getMenu()
-                .getItem(ServiceHelper.getSelectedServiceId(this))
+                .getItem(ServiceHelper.getSelectedServiceIdOrFallback(this))
                 .setChecked(true);
     }
 
@@ -460,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
         // so it looks like the drawer isn't open when the user returns to MainActivity
         mainBinding.getRoot().closeDrawer(GravityCompat.START, false);
         try {
-            final int selectedServiceId = ServiceHelper.getSelectedServiceId(this);
+            final int selectedServiceId = ServiceHelper.getSelectedServiceIdOrFallback(this);
             final String selectedServiceName = NewPipe.getService(selectedServiceId)
                     .getServiceInfo().getName();
             drawerHeaderBinding.drawerHeaderServiceView.setText(selectedServiceName);
