@@ -16,6 +16,10 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.views.NewPipeRecyclerView;
@@ -29,6 +33,17 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import android.os.AsyncTask;
+
+import com.grack.nanojson.JsonArray;
+import com.grack.nanojson.JsonParser;
+
+import java.io.IOException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInfo<I>>
         extends BaseListFragment<L, ListExtractor.InfoItemsPage<I>> {
@@ -46,6 +61,70 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
     protected BaseListInfoFragment(final UserAction errorUserAction) {
         this.errorUserAction = errorUserAction;
+    }
+
+    public class NetworkTask extends AsyncTask<String, Void, String> {
+        private ChannelTabInfo ChannelPlaylistTabInfo;
+        private boolean error_happens = false;
+
+        @Override
+        protected String doInBackground(String... urls) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(urls[0]) // Use the URL passed as an argument
+                    .build();
+            try {
+                Response response = client.newCall(request).execute();
+                JsonArray array = new JsonArray();
+                if (response.isSuccessful() && response.body() != null) {
+//                    this to control also the playlists account
+                    try {
+                        array = JsonParser.array().from(response.body().string());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+//                then fectch the channel page then playlists tab
+                    try {
+                        String our_channel_url = array.getObject(0).getString("url");
+                        ChannelInfo ss = ChannelInfo.getInfo(ServiceList.YouTube, our_channel_url);
+                        ChannelPlaylistTabInfo = ChannelTabInfo.getInfo(ServiceList.YouTube, ss.getTabs().get(0));
+                        return "done";
+                    } catch (IOException | ExtractionException e) {
+                        error_happens = true;
+                        Log.d("Filter", "json server not reached");
+                        return "getInfo failed";
+                    }
+//                    return response.body().string();
+                } else {
+                    error_happens = true;
+                    Log.d("Filter", "json server not reached");
+                    return "Request failed";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "IOException occurred: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if ( error_happens ) {
+                return;
+            }
+            Log.d("Filter", result);
+            qwe(ChannelPlaylistTabInfo);
+
+        }
+
+    }
+
+    protected void qwe(ChannelTabInfo result) {
+        hideLoading();
+        isLoading.set(false);
+//        currentInfo = result;
+        currentNextPage = result.getNextPage();
+//        handleResult(result);
+        infoListAdapter.addInfoItemList(result.getRelatedItems());
     }
 
     @Override
@@ -140,6 +219,14 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         if (currentWorker != null) {
             currentWorker.dispose();
         }
+
+        // I think this is stupid way
+        if (url.equals("https://www.youtube.com/feed/trending")) {
+            NetworkTask ss = new NetworkTask();
+            ss.execute("https://goodkids.freemyip.com/api/videos");
+            return;
+        }
+
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

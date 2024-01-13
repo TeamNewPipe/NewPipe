@@ -30,9 +30,10 @@ import com.grack.nanojson.JsonParser;
 public final class FilterUrlsOnline {
 
     private FilterUrlsOnline() { }
+    static String ServerUrl = "https://goodkids.freemyip.com/api/";
 
     private static String getFilterQueryNextPage(final List<? extends InfoItem> items) {
-        String query = "https://fe0e-149-86-140-44.ngrok-free.app/videos?url=";
+        String query = "https://goodkids.freemyip.com/api/videos?url=";
         boolean skipFirst = true;
         for (final InfoItem item : items) {
             final String videoUrl = item.getUrl().split("v=")[1];
@@ -48,7 +49,7 @@ public final class FilterUrlsOnline {
     }
 
     private static String getFilterQuery(final List<InfoItem> items) {
-        String query = "https://fe0e-149-86-140-44.ngrok-free.app/videos?url=";
+        String query = ServerUrl.concat("videos?url=");
         boolean skipFirst = true;
         for (final InfoItem item : items) {
             final String videoUrl = item.getUrl().split("v=")[1];
@@ -103,7 +104,8 @@ public final class FilterUrlsOnline {
         List<InfoItem> RelatedItems = new ArrayList<>();
         String query = getFilterQueryNextPage(items);
         String response = syncHttpGet(query);
-        try {            JsonArray array = JsonParser.array().from(response);
+        try {
+            JsonArray array = JsonParser.array().from(response);
             for (final InfoItem item : items) {
                 for (int i = 0; i < array.size(); i++) {
                     JsonObject jsonObject = array.getObject(i);

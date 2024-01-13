@@ -974,7 +974,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void handleResult(@NonNull final SearchInfo result) {
         final List<Throwable> exceptions = result.getErrors();
-        final List<InfoItem> RelatedItems = FilterUrlsOnline.filterItems(result.getRelatedItems());
+        final List<InfoItem> RelatedItems = result.getRelatedItems();
         loadNextItemsCount = 0;
         if (!exceptions.isEmpty()
                 && !(exceptions.size() == 1

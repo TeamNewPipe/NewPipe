@@ -221,13 +221,13 @@ public class MainActivity extends AppCompatActivity {
 
         int kioskMenuItemId = 0;
 
-//        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-//            drawerLayoutBinding.navigation.getMenu()
-//                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
-//                            .getTranslatedKioskName(ks, this))
-//                    .setIcon(KioskTranslator.getKioskIcon(ks));
-//            kioskMenuItemId++;
-//        }
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerLayoutBinding.navigation.getMenu()
+                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
+                            .getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
+            kioskMenuItemId++;
+        }
 
 //        drawerLayoutBinding.navigation.getMenu()
 //                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
