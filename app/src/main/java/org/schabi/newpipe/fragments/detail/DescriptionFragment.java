@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
@@ -23,10 +24,8 @@ import icepick.State;
 public class DescriptionFragment extends BaseDescriptionFragment {
 
     @State
-    StreamInfo streamInfo = null;
+    StreamInfo streamInfo;
 
-    public DescriptionFragment() {
-    }
 
     public DescriptionFragment(final StreamInfo streamInfo) {
         this.streamInfo = streamInfo;
@@ -35,44 +34,29 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     @Nullable
     @Override
     protected Description getDescription() {
-        if (streamInfo == null) {
-            return null;
-        }
         return streamInfo.getDescription();
     }
 
-    @Nullable
+    @NonNull
     @Override
     protected StreamingService getService() {
-        if (streamInfo == null) {
-            return null;
-        }
         return streamInfo.getService();
     }
 
     @Override
     protected int getServiceId() {
-        if (streamInfo == null) {
-            return -1;
-        }
         return streamInfo.getServiceId();
     }
 
-    @Nullable
+    @NonNull
     @Override
     protected String getStreamUrl() {
-        if (streamInfo == null) {
-            return null;
-        }
         return streamInfo.getUrl();
     }
 
-    @Nullable
+    @NonNull
     @Override
     public List<String> getTags() {
-        if (streamInfo == null) {
-            return null;
-        }
         return streamInfo.getTags();
     }
 
