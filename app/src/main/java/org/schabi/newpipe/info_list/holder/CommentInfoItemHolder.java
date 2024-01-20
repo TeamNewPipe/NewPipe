@@ -1,7 +1,5 @@
 package org.schabi.newpipe.info_list.holder;
 
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
-
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.view.View;
@@ -22,6 +20,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
@@ -122,7 +121,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
 
         // setup comment content and click listeners to expand/ellipsize it
-        textEllipsizer.setStreamingService(getServiceById(item.getServiceId()));
+        textEllipsizer.setStreamingService(ServiceHelper.getServiceFromInfoItem(item));
         textEllipsizer.setStreamUrl(item.getUrl());
         textEllipsizer.setContent(item.getCommentText());
         textEllipsizer.ellipsize();

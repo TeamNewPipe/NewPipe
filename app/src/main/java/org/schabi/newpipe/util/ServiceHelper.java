@@ -15,6 +15,8 @@ import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.Info;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -110,7 +112,6 @@ public final class ServiceHelper {
         }
     }
 
-
     /** Get the name of the selected service.
      *
      * @param context
@@ -138,17 +139,45 @@ public final class ServiceHelper {
                 .orElse("<unknown>");
     }
 
-    /**
-     * @param serviceId the id of the service
-     * @return the service corresponding to the provided id
-     * @throws java.util.NoSuchElementException if there is no service with the provided id
+    /** Return the service for the given InfoItem.
+     * <p>
+     * This should always succeed, except in the (very unlikely) case
+     * that we remove a service from NewPipeExtractor and the `InfoItem` is deserialized
+     * from an old version where the service still existed.
+     * <p>
+     * NB: this function should exist as member on {@link InfoItem}.
+     *
+     * @param infoItem
+     * @param <Item>
+     * @return The service.
      */
-    @NonNull
-    public static StreamingService getServiceById(final int serviceId) {
-        return ServiceList.all().stream()
-                .filter(s -> s.getServiceId() == serviceId)
-                .findFirst()
-                .orElseThrow();
+    public static <Item extends InfoItem> StreamingService getServiceFromInfoItem(
+            final Item infoItem) {
+        try {
+            return NewPipe.getService(infoItem.getServiceId());
+        } catch (final ExtractionException e) {
+            throw new AssertionError("InfoItem should never have a bad service id");
+        }
+    }
+
+    /** Return the service for the given Info.
+     * <p>
+     * This should always succeed, except in the (very unlikely) case
+     * that we remove a service from NewPipeExtractor and the `Info` is deserialized
+     * from an old version where the service still existed.
+     * <p>
+     * NB: this function should exist as member on {@link Info}.
+     *
+     * @param info
+     * @param <Item>
+     * @return The service.
+     */
+    public static <Item extends Info> StreamingService getServiceFromInfo(final Item info) {
+        try {
+            return NewPipe.getService(info.getServiceId());
+        } catch (final ExtractionException e) {
+            throw new AssertionError("InfoItem should never have a bad service id");
+        }
     }
 
     public static void setSelectedServiceId(final Context context, final int serviceId) {

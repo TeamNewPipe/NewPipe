@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.comments;
 
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +22,7 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextLinkifier;
@@ -105,7 +105,7 @@ public final class CommentRepliesFragment
 
             // setup comment content
             TextLinkifier.fromDescription(binding.commentContent, item.getCommentText(),
-                    HtmlCompat.FROM_HTML_MODE_LEGACY, getServiceById(item.getServiceId()),
+                    HtmlCompat.FROM_HTML_MODE_LEGACY, ServiceHelper.getServiceFromInfoItem(item),
                     item.getUrl(), disposables, null);
 
             return binding.getRoot();

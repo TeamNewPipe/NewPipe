@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -52,6 +51,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
@@ -329,7 +329,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         if (description != null && description != Description.EMPTY_DESCRIPTION
                 && !isBlank(description.getContent())) {
             final TextEllipsizer ellipsizer = new TextEllipsizer(
-                    headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
+                    headerBinding.playlistDescription, 5, ServiceHelper.getServiceFromInfo(result));
             ellipsizer.setStateChangeListener(isEllipsized ->
                 headerBinding.playlistDescriptionReadMore.setText(
                         Boolean.TRUE.equals(isEllipsized) ? R.string.show_more : R.string.show_less
