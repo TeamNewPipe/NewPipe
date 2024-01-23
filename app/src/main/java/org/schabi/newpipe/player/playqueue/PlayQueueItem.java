@@ -9,13 +9,12 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.io.Serializable;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class PlayQueueItem implements Serializable {
+public class PlayQueueItem {
     public static final long RECOVERY_UNSET = Long.MIN_VALUE;
     private static final String EMPTY_STRING = "";
 

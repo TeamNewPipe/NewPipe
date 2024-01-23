@@ -21,7 +21,6 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,11 +29,10 @@ import java.nio.file.Paths;
 import us.shandian.giga.io.FileStream;
 import us.shandian.giga.io.FileStreamSAF;
 
-public class StoredFileHelper implements Serializable {
+public class StoredFileHelper {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = StoredFileHelper.class.getSimpleName();
 
-    private static final long serialVersionUID = 0L;
     public static final String DEFAULT_MIME = "application/octet-stream";
 
     private transient DocumentFile docFile;
