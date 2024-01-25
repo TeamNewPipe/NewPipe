@@ -596,7 +596,7 @@
     <string name="detail_pinned_comment_view_description">পিনকৃত মন্তব্য</string>
     <string name="notifications">বিজ্ঞপ্তি</string>
     <string name="checking_updates_toast">হালনাগাদ দেখা হচ্ছে …</string>
-    <string name="manual_update_title">হালনাগাদ আছে কিনা দেখো</string>
+    <string name="check_for_updates">হালনাগাদ আছে কিনা দেখো</string>
     <string name="start_main_player_fullscreen_title">মূল প্লেয়ার ফুল স্ক্রীন এ শুরু করুন</string>
     <string name="feed_new_items">ধারার নতুন ভুক্তি</string>
     <string name="error_report_channel_name">ত্রুটি প্রতিবেদন এর বিজ্ঞপ্তি</string>

@@ -401,7 +401,7 @@
     <string name="default_content_country_title">কনটেন্টের জন্য পূর্বনির্ধারিত দেশ</string>
     <string name="external_player_unsupported_link_type">বাইরের প্লেয়ারসমূহ এ ধরনের লিঙ্কসমূহ সমর্থন করে না</string>
     <string name="msg_calculating_hash">হ্যাশ হিসাব করা হচ্ছে</string>
-    <string name="manual_update_title">আপডেট চেক করো</string>
+    <string name="check_for_updates">আপডেট চেক করো</string>
     <plurals name="watching">
         <item quantity="one">%s জন দেখছে</item>
         <item quantity="other">%s জন দেখছে</item>

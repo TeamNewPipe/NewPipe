@@ -664,7 +664,7 @@
     <string name="enqueue_next_stream">Pridať do zoznamu</string>
     <string name="enqueued_next">Ďaľší v poradí</string>
     <string name="processing_may_take_a_moment">Spracovávanie... môže to chvíľku trvať</string>
-    <string name="manual_update_title">Skontrolovať aktualizácie</string>
+    <string name="check_for_updates">Skontrolovať aktualizácie</string>
     <string name="manual_update_description">Ručne skontrolovať nové verzie</string>
     <string name="checking_updates_toast">Kontrolujú sa aktualizácie…</string>
     <string name="feed_new_items">Nové položky informačného kanála</string>

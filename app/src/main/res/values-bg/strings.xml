@@ -548,7 +548,7 @@
     <string name="recaptcha_cookies_cleared">Бисквитките от reCAPTCHA бяха почистени</string>
     <string name="checking_updates_toast">Проверяване за актуализации…</string>
     <string name="enumeration_comma">,</string>
-    <string name="manual_update_title">Провери за актуализации</string>
+    <string name="check_for_updates">Провери за актуализации</string>
     <string name="percent">Процент</string>
     <string name="unknown_quality">Неизвестно качество</string>
     <string name="unknown_format">Неизвестен формат</string>

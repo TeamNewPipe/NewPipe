@@ -410,7 +410,7 @@
     <string name="caption_auto_generated">ସ୍ଵତଃସୃଷ୍ଟ</string>
     <string name="content">ବିଷୟବସ୍ତୁ</string>
     <string name="enable_queue_limit">ଡାଉନଲୋଡ୍ ଧାଡି ସୀମିତ କରନ୍ତୁ</string>
-    <string name="manual_update_title">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
+    <string name="check_for_updates">ଅଦ୍ୟତନ ପାଇଁ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="manual_update_description">ନୂତନ ସଂସ୍କରଣଗୁଡ଼ିକ ପାଇଁ ମାନୁଆଲ ଯାଞ୍ଚ କରନ୍ତୁ</string>
     <string name="missions_header_pending">ବିଚାରାଧୀନ ଅଛି</string>
     <string name="remove_watched_popup_title">ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ ଅପସାରଣ କରିବେ କି\?</string>

@@ -288,7 +288,7 @@
     <string name="playback_tempo">節奏</string>
     <string name="playback_speed_control">播放速度控掣</string>
     <string name="systems_language">系統預設</string>
-    <string name="manual_update_title">檢查有冇更新</string>
+    <string name="check_for_updates">檢查有冇更新</string>
     <string name="app_language_title">個 App 用咩語言</string>
     <string name="remove_watched">睇咗嗰啲剷咗佢</string>
     <string name="remove_watched_popup_title">係咪要剷走睇咗嘅影片？</string>

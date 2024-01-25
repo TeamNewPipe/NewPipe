@@ -652,7 +652,7 @@
     <string name="enqueued_next">بعدی در صف گذاشته شد</string>
     <string name="enqueue_next_stream">در صف گذاشتن بعدی</string>
     <string name="processing_may_take_a_moment">در حال پردازش… ممکن است کمی طول بکشد</string>
-    <string name="manual_update_title">بررسی به‌روز رسانی‌ها</string>
+    <string name="check_for_updates">بررسی به‌روز رسانی‌ها</string>
     <string name="manual_update_description">بررسی دستی برای نگارش‌های جدید</string>
     <string name="checking_updates_toast">بررسی کردن به‌روز رسانی‌ها…</string>
     <string name="feed_new_items">موارد خوراک جدید</string>

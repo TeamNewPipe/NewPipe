@@ -448,7 +448,7 @@
         <item quantity="one">%s video</item>
         <item quantity="other">%s video</item>
     </plurals>
-    <string name="manual_update_title">Yeniləmələri yoxla</string>
+    <string name="check_for_updates">Yeniləmələri yoxla</string>
     <string name="seekbar_preview_thumbnail_title">Axtarış çubuğunun miniatür önizləməsi</string>
     <string name="permission_denied">Əməliyyat sistem tərəfindən ləğv edildi</string>
     <string name="auto">Avto</string>

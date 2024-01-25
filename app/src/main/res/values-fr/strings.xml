@@ -668,7 +668,7 @@
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
-    <string name="manual_update_title">Vérifier les mises à jour</string>
+    <string name="check_for_updates">Vérifier les mises à jour</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
     <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>

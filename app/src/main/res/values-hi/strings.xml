@@ -579,7 +579,7 @@
     <string name="streams_notifications_network_title">नेटवर्क कनेक्शन आवश्यक</string>
     <string name="enable_streams_notifications_title">नई स्ट्रीम अधिसूचनाएं</string>
     <string name="any_network">कोई भी नेटवर्क</string>
-    <string name="manual_update_title">अपडेट के लिए जाँच करें</string>
+    <string name="check_for_updates">अपडेट के लिए जाँच करें</string>
     <string name="low_quality_smaller">निम्न गुणवत्ता (छोटा)</string>
     <string name="seekbar_preview_thumbnail_title">सीकबार थंमनेल पूर्वावलोकन</string>
     <string name="high_quality_larger">उच्च गुणवत्ता (बड़ा)</string>

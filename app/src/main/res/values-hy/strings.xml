@@ -151,7 +151,7 @@
     <string name="resize_zoom">Մեծացնել</string>
     <string name="caption_auto_generated">Գեներացված</string>
     <string name="import_file_title">Ներմուծել ֆայլ</string>
-    <string name="manual_update_title">Ստուգել թարմացումները</string>
+    <string name="check_for_updates">Ստուգել թարմացումները</string>
     <string name="auto">Ինքնին</string>
     <string name="high_quality_larger">Բարձր որակ (մեծ)</string>
     <string name="low_quality_smaller">Ցածր որակ (փոքր)</string>

@@ -664,7 +664,7 @@
     <string name="remote_search_suggestions">Sugestões de busca remotas</string>
     <string name="local_search_suggestions">Sugestões de busca locais</string>
     <string name="processing_may_take_a_moment">Processando… Pode demorar um pouco</string>
-    <string name="manual_update_title">Procurar por atualizações</string>
+    <string name="check_for_updates">Procurar por atualizações</string>
     <string name="manual_update_description">Procurar manualmente por novas versões</string>
     <string name="checking_updates_toast">Procurando por atualizações…</string>
     <string name="crash_the_player">Travar o reprodutor de vídeo</string>

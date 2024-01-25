@@ -639,7 +639,7 @@
     <string name="processing_may_take_a_moment">処理中… 少し時間がかかるかもしれません</string>
     <string name="manual_update_description">新しいバージョンを手動で確認します</string>
     <string name="checking_updates_toast">アップデートを確認中…</string>
-    <string name="manual_update_title">アップデートを確認</string>
+    <string name="check_for_updates">アップデートを確認</string>
     <string name="enqueue_next_stream">次をキューに追加</string>
     <string name="enqueued_next">次をキューに追加しました</string>
     <string name="detail_heart_img_view_description">クリエイターの心をこめて</string>

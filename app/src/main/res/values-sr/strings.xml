@@ -715,7 +715,7 @@
     <string name="duplicate_in_playlist">Плејлисте које су затамњене већ садрже ову ставку.</string>
     <string name="leak_canary_not_available">LeakCanary није доступан</string>
     <string name="app_update_available_notification_text">Додирните да бисте преузели %s</string>
-    <string name="manual_update_title">Провери ажурирања</string>
+    <string name="check_for_updates">Провери ажурирања</string>
     <string name="seekbar_preview_thumbnail_title">Преглед сличице траке за претрагу</string>
     <string name="feed_hide_streams_title">Прикажи следеће стримове</string>
     <string name="feed_show_hide_streams">Прикажи/сакриј стримове</string>

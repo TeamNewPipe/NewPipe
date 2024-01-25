@@ -438,7 +438,7 @@
     <string name="streams_notifications_network_title">Tegund tengingar</string>
     <string name="any_network">Allar</string>
     <string name="updates_setting_description">Sýna tilkynningu þegar ný útgáfa er fáanleg</string>
-    <string name="manual_update_title">Leita að uppfærslum</string>
+    <string name="check_for_updates">Leita að uppfærslum</string>
     <string name="manual_update_description">Leita handvirkt fyrir uppfærslum</string>
     <string name="minimize_on_exit_title">Fela þegar skipt er um forrit</string>
     <string name="minimize_on_exit_background_description">Nota bakgrunnsspilara</string>

@@ -656,7 +656,7 @@
     <string name="show_crash_the_player_title">‘Speler crashen’ tonen</string>
     <string name="show_crash_the_player_summary">Toont een crash-optie bij gebruik van de speler</string>
     <string name="manual_update_description">Controleer handmatig op nieuwe versies</string>
-    <string name="manual_update_title">Controleren op updates</string>
+    <string name="check_for_updates">Controleren op updates</string>
     <string name="checking_updates_toast">Bezig met controleren op updates…</string>
     <string name="feed_new_items">Nieuwe feeditems</string>
     <string name="error_report_channel_name">Foutrapporten</string>

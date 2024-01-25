@@ -653,7 +653,7 @@
     <string name="enqueue_next_stream">Lisa esitamiseks järgmisena</string>
     <string name="processing_may_take_a_moment">Töötlen andmeid… Võib kuluda mõni hetk</string>
     <string name="checking_updates_toast">Kontrollin uuendusi…</string>
-    <string name="manual_update_title">Kontrolli uuendusi</string>
+    <string name="check_for_updates">Kontrolli uuendusi</string>
     <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
     <string name="feed_new_items">Uued andmevoo kirjed</string>
     <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>

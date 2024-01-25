@@ -700,7 +700,7 @@
     <string name="enqueue_next_stream">وضع التالي على قائمة الانتظار</string>
     <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
     <string name="processing_may_take_a_moment">جاري المعالجة ... قد يستغرق لحظة</string>
-    <string name="manual_update_title">التحقق من وجود تحديثات</string>
+    <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
     <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
     <string name="feed_new_items">عناصر تغذية جديدة</string>
