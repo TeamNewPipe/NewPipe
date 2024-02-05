@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
 
@@ -27,7 +27,7 @@ jobs:
         run: npm i probe-image-size@7.2.3 --ignore-scripts
 
       - name: Minimize simple images
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         timeout-minutes: 3
         with:
           script: |
