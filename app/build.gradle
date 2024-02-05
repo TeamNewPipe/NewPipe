@@ -238,7 +238,7 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     // HTML parser
-    implementation "org.jsoup:jsoup:1.16.2"
+    implementation "org.jsoup:jsoup:1.17.2"
 
     // HTTP client
     implementation "com.squareup.okhttp3:okhttp:4.12.0"
