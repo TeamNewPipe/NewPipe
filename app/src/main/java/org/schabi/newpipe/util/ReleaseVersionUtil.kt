@@ -15,14 +15,13 @@ object ReleaseVersionUtil {
     private const val RELEASE_CERT_PUBLIC_KEY_SHA256 =
         "cb84069bd68116bafae5ee4ee5b08a567aa6d898404e7cb12f9e756df5cf5cab"
 
-    @JvmStatic
-    fun isReleaseApk(): Boolean {
+    val isReleaseApk by lazy {
         @Suppress("NewApi")
         val certificates = mapOf(
             RELEASE_CERT_PUBLIC_KEY_SHA256.toByteArray() to PackageManager.CERT_INPUT_SHA256
         )
         val app = App.getApp()
-        return try {
+        try {
             PackageInfoCompat.hasSignatures(app.packageManager, app.packageName, certificates, false)
         } catch (e: PackageManager.NameNotFoundException) {
             createNotification(
