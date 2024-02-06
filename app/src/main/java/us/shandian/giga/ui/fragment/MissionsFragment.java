@@ -230,11 +230,7 @@ public class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        if (mLinear) {
-            mList.setLayoutManager(mLinearManager);
-        } else {
-            mList.setLayoutManager(mGridManager);
-        }
+        mList.setLayoutManager(mLinear? mLinearManager: mGridManager);
 
         // destroy all created views in the recycler
         mList.setAdapter(null);
