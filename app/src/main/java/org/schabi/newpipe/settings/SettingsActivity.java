@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.jakewharton.rxbinding4.widget.RxTextView;
 
@@ -112,8 +113,14 @@ public class SettingsActivity extends AppCompatActivity implements
                 }
             }
         } else {
+            final boolean shouldDisplaySettingsRedesign = PreferenceManager
+                    .getDefaultSharedPreferences(this)
+                    .getBoolean(getString(R.string.settings_layout_redesign_key), false);
+            final BasePreferenceFragment mainSettingsFragment =
+                    shouldDisplaySettingsRedesign
+                            ? new MainSettingsV2Fragment() : new MainSettingsFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.settings_fragment_holder, new MainSettingsFragment())
+                    .replace(R.id.settings_fragment_holder, mainSettingsFragment)
                     .commit();
         }
 
