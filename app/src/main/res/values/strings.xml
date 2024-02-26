@@ -846,4 +846,6 @@
     </plurals>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
+    <!-- Settings redesign -->
+    <string name="settings_category_resolution_and_format_title">Resolution and format</string>
 </resources>
