@@ -554,7 +554,7 @@
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Você pode selecionar até no máximo três botões para mostrar na notificação compacta!</string>
-    <string name="notification_actions_summary">Edite os botões de ação de notificação abaixo tocando em cada um. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita</string>
+    <string name="notification_actions_summary">Edite os botões de ação de notificação abaixo tocando em cada um. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
     <string name="notification_action_2_title">Terceiro botão de ação</string>
@@ -818,4 +818,13 @@
     <string name="metadata_thumbnails">Miniaturas</string>
     <string name="duration">Duração</string>
     <string name="previous_stream">Transmissão anterior</string>
+    <string name="metadata_banners">Banners</string>
+    <string name="show_more">Mostrar mais</string>
+    <string name="notification_actions_summary_android13">Edite cada ação de notificação abaixo tocando nela. As três primeiras ações (reproduzir/pausar, anterior e seguinte) são definidas pelo sistema e não podem ser personalizadas.</string>
+    <plurals name="replies">
+        <item quantity="one">%s resposta</item>
+        <item quantity="many">%s respostas</item>
+        <item quantity="other">%s respostas</item>
+    </plurals>
+    <string name="show_less">Mostrar menos</string>
 </resources>

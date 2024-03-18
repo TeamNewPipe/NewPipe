@@ -1,0 +1,14 @@
+Nytt:
+• La till en ny tjänst: Bandcamp
+
+Förbättrat:
+• Lägg till en inställning för att appen ska följa enhetstemat
+• Förhindra vissa kraschar genom att visa en förbättrad felpanel
+• Visa mer information om varför innehåll är otillgängligt
+• Hårdvaru mellanslagsknapp ändrar spela/pausa
+• Visa "Nedladdning startad" toast
+
+Fixat:
+• Fixade liten miniatyr i videodetaljer medan du spelar i bakgrunden
+• Fixade tom titel i minimerad spelare
+• Fixade senaste storleksläge som inte återställdes korrekt

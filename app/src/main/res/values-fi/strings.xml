@@ -789,7 +789,14 @@
     <string name="channel_tab_channels">Kanavat</string>
     <string name="you_successfully_subscribed">Olet nyt tilannut tämän kanavan</string>
     <string name="previous_stream">Edellinen stream</string>
-    <string name="channel_tab_livestreams"/>
+    <string name="channel_tab_livestreams">Live</string>
     <string name="remove_duplicates_message">Haluatko poistaa kaikki ylimääräiset identtiset suoratoistot tästä soittolistasta\?</string>
     <string name="streams_not_yet_supported_removed">Suoratoistot, joita lataaja ei vielä tue, ei näytetä</string>
+    <plurals name="replies">
+        <item quantity="one">%s vastaus</item>
+        <item quantity="other">%s vastausta</item>
+    </plurals>
+    <string name="show_more">Näytä lisää</string>
+    <string name="show_less">Näytä vähemmän</string>
+    <string name="show_channel_tabs">Kanavan välilehdet</string>
 </resources>

@@ -176,7 +176,7 @@
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC).</string>
     <string name="controls_download_desc">Descărcați fișierul de flux</string>
     <string name="show_info">Afișare informații</string>
-    <string name="tab_bookmarks">Playlist-uri salvate</string>
+    <string name="tab_bookmarks">Playlisturi salvate</string>
     <string name="controls_add_to_playlist_title">Salvare în</string>
     <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
@@ -363,7 +363,7 @@
     <string name="notification_action_shuffle">Redare aleatorie</string>
     <string name="notification_action_repeat">Repetare</string>
     <string name="notification_actions_at_most_three">Puteți selecta cel mult trei acțiuni pentru afișare în notificarea compactă!</string>
-    <string name="notification_actions_summary">Modificați fiecare acțiune de notificare de mai jos, atingând-o. Selectați până la trei dintre ele pentru a fi afișate în notificarea compactă, utilizând casetele de selectare din dreapta</string>
+    <string name="notification_actions_summary">Modifică fiecare acțiune de notificare de mai jos, atingând-o. Selectează până la trei dintre ele pentru a fi afișate în notificarea compactă, utilizând casetele de selectare din dreapta.</string>
     <string name="notification_action_4_title">Al cincilea buton de acțiune</string>
     <string name="notification_action_3_title">Al patrulea buton de acțiune</string>
     <string name="notification_action_2_title">Al treilea buton de acțiune</string>
@@ -604,7 +604,7 @@
     <string name="soundcloud_go_plus_content">Aceasta este o piesă SoundCloud Go+, cel puțin în țara dvs., deci nu poate fi difuzată sau descărcată de NewPipe.</string>
     <string name="georestricted_content">Acest conținut nu este disponibil în țara dumneavoastră.</string>
     <string name="show_channel_details">Afișați detaliile canalului</string>
-    <string name="night_theme_title">Temă Nocturnă</string>
+    <string name="night_theme_title">Tema de noapte</string>
     <string name="enqueued_next">Următorul pus în coadă</string>
     <string name="enqueue_next_stream">Adăugați în coadă pe următorul</string>
     <string name="mark_as_watched">Marcare ca vizionat</string>
@@ -627,7 +627,7 @@
     <string name="metadata_category">Categorie</string>
     <string name="description_select_disable">Dezactivați selectarea textului în descriere</string>
     <string name="description_select_enable">Activați selectarea textului în descriere</string>
-    <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar link-urile să nu poată fi accesate în modul de selecție.</string>
+    <string name="description_select_note">Acum puteți selecta text în interiorul descrierii. Rețineți că este posibil ca pagina să pâlpâie, iar linkurile să nu poată fi accesate în modul de selecție.</string>
     <string name="service_provides_reason">%s oferă acest motiv:</string>
     <string name="account_terminated">Contul a fost închis</string>
     <string name="feed_load_error_fast_unknown">Modul rapid nu furnizează mai multe informații în acest sens.</string>
@@ -817,4 +817,15 @@
     <string name="previous_stream">Transmisia anterioară</string>
     <string name="left_gesture_control_summary">Alegeți un gest pentru jumătatea stângă din ecranul playerului</string>
     <string name="channel_tab_livestreams">În direct</string>
+    <string name="channel_tab_shorts">Shorturi</string>
+    <string name="metadata_uploader_avatars">Avatarele autorului</string>
+    <string name="notification_actions_summary_android13">Editează fiecare acțiune de notificare de mai jos atingând-o. Primele trei acțiuni (redare/pauză, anterioară și următoare) sunt setate de sistem și nu pot fi personalizate.</string>
+    <plurals name="replies">
+        <item quantity="one">%s răspuns</item>
+        <item quantity="few">%s răspunsuri</item>
+        <item quantity="other">%s răspunsuri</item>
+    </plurals>
+    <string name="show_more">Arată mai multe</string>
+    <string name="show_less">Arată mai puține</string>
+    <string name="channel_tab_tracks">Piste</string>
 </resources>

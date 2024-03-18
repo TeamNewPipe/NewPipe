@@ -564,7 +564,7 @@
     <string name="notification_action_shuffle">ערבוב</string>
     <string name="notification_action_repeat">חזרה</string>
     <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
-    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
     <string name="notification_action_4_title">כפתור פעולה חמישי</string>
     <string name="notification_action_3_title">כפתור פעולה רביעי</string>
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>
@@ -832,4 +832,12 @@
     <string name="share_playlist">שיתוף רשימת נגינה</string>
     <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">להציג עוד</string>
+    <string name="show_less">להציג פחות</string>
+    <plurals name="replies">
+        <item quantity="one">תשובה %s</item>
+        <item quantity="two">%s תשובות</item>
+        <item quantity="other">%s תשובות</item>
+    </plurals>
+    <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
 </resources>

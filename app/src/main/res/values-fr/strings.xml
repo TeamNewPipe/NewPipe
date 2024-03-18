@@ -557,7 +557,7 @@
     <string name="notification_action_shuffle">Lire aléatoirement</string>
     <string name="notification_action_repeat">Répéter</string>
     <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
-    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaître dans la notification compacte en utilisant les cases à cocher à droite.</string>
     <string name="notification_action_4_title">Cinquième bouton d’action</string>
     <string name="notification_action_3_title">Quatrième bouton d’action</string>
     <string name="notification_action_2_title">Troisième bouton d’action</string>
@@ -821,4 +821,12 @@
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>
+    <plurals name="replies">
+        <item quantity="one">%s réponse</item>
+        <item quantity="many">%s réponses</item>
+        <item quantity="other">%s réponses</item>
+    </plurals>
+    <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
+    <string name="show_more">Afficher plus</string>
+    <string name="show_less">Afficher moins</string>
 </resources>

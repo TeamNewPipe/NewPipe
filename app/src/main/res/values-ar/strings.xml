@@ -584,7 +584,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">تكرار</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل إشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
+    <string name="notification_actions_summary">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها ليتم عرضها في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
     <string name="notification_action_2_title">زر الإجراء الثالث</string>
@@ -858,4 +858,15 @@
     <string name="share_playlist">مشاركة قائمة التشغيل</string>
     <string name="share_playlist_with_titles_message">شارك تفاصيل قائمة التشغيل مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين URL للفيديو</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="zero">رد %s</item>
+        <item quantity="one">رد %s</item>
+        <item quantity="two">ردان%s</item>
+        <item quantity="few">ردود%s</item>
+        <item quantity="many">ردود %s</item>
+        <item quantity="other">ردود %s</item>
+    </plurals>
+    <string name="show_more">عرض المزيد</string>
+    <string name="show_less">عرض أقل</string>
+    <string name="notification_actions_summary_android13">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. يتم تعيين الإجراءات الثلاثة الأولى (تشغيل/إيقاف مؤقت، السابق والتالي) بواسطة النظام ولا يمكن تخصيصها.</string>
 </resources>

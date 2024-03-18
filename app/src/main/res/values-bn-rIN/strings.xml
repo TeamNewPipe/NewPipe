@@ -275,7 +275,7 @@
     <string name="website_encouragement">নিউ পাইপ ওয়েব সাইট এ যান বিস্তারিত বিবরণ ও খবর এর জন্য</string>
     <string name="more_than_100_videos">১০০+ ভিডিও</string>
     <plurals name="listening">
-        <item quantity="one">"%s  শ্রোতা"</item>
+        <item quantity="one">%s শ্রোতা</item>
         <item quantity="other">%s শ্রোতা গন</item>
     </plurals>
     <string name="description_tab_description">বিবরণ</string>

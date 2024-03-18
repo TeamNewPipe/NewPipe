@@ -200,7 +200,7 @@
     <string name="export_data_summary">इतिहास, सब्सक्रिप्शन, प्लेलिस्ट और सेटिंग निर्यात करें</string>
     <string name="external_player_unsupported_link_type">बाहरी प्लेयर्स इन प्रकार के लिंक सपोर्ट नहीं करते</string>
     <string name="video_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
-    <string name="audio_streams_empty">कोई ऑडियो स्ट्रीम नहीं मिली</string>
+    <string name="audio_streams_empty">कोई ऑडियो स्ट्रीम नहीं मिला</string>
     <string name="detail_drag_description">फिर से क्रम देने के लिए खींचें</string>
     <string name="create">बनाइये</string>
     <string name="dismiss">ख़ारिज करें</string>
@@ -471,7 +471,7 @@
     <string name="notification_action_shuffle">शफल करें</string>
     <string name="notification_action_repeat">दोहराएं</string>
     <string name="notification_actions_at_most_three">आप कंपैकट नोटीफिकेशन में दिखाए जाने वाले विकल्प में से अधिकतम 3 को चुन सकते है !</string>
-    <string name="notification_actions_summary">नीचे दी गई प्रत्येक नोटीफिकेशन क्रिया को उस पर टैप करके संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके उनमें से अधिकतम तीन का चयन करें जिन्हें कंपैकट नोटीफिकेशन में दिखाया जाना है</string>
+    <string name="notification_actions_summary">नीचे दी गई प्रत्येक नोटीफिकेशन क्रिया को उस पर टैप करके संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके उनमें से अधिकतम तीन का चयन करें जिन्हें कंपैकट नोटीफिकेशन में दिखाया जाना है।</string>
     <string name="notification_action_4_title">पांचवा एक्शन बटन</string>
     <string name="notification_action_3_title">चतुर्थी एक्शन बटन</string>
     <string name="notification_action_2_title">तृतीय एक्शन बटन</string>
@@ -628,7 +628,7 @@
     <string name="semitone">सैमीटोन</string>
     <plurals name="download_finished_notification">
         <item quantity="one">डाउनलोड संपूर्ण</item>
-        <item quantity="other">%s डाउनलोडस संपूर्ण</item>
+        <item quantity="other">%s डाउनलोड संपूर्ण</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d दिन</item>
@@ -806,4 +806,11 @@
     <string name="share_playlist">प्लेलिस्ट साझा करें</string>
     <string name="share_playlist_with_titles_message">प्लेलिस्ट को प्लेलिस्ट नाम और वीडियो शीर्षक जैसे विवरण के साथ या वीडियो यूआरएल की एक सरल सूची के रूप में साझा करें</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s जवाब</item>
+        <item quantity="other">%s जवाब</item>
+    </plurals>
+    <string name="show_more">और दिखाओ</string>
+    <string name="notification_actions_summary_android13">नीचे दी गई प्रत्येक अधिसूचना कार्रवाई पर टैप करके उसे संपादित करें। पहली तीन क्रियाएँ (चलाएँ/रोकें, पिछली और अगली) सिस्टम द्वारा निर्धारित की जाती हैं और इन्हें अनुकूलित नहीं किया जा सकता है।</string>
+    <string name="show_less">कम दिखाएं</string>
 </resources>

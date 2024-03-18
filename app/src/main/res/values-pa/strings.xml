@@ -602,7 +602,7 @@
     <string name="notification_action_buffering">ਬਫ਼ਰਿੰਗ</string>
     <string name="notification_action_shuffle">ਸ਼ਫਲ</string>
     <string name="notification_action_repeat">ਦੁਹਰਾਓ</string>
-    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ</string>
+    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
     <string name="notification_actions_at_most_three">ਤੁਸੀਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ!</string>
     <string name="notification_action_4_title">ਪੰਜਵਾਂ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_3_title">ਚੌਥਾ ਕਾਰਵਾਈ ਬਟਨ</string>
@@ -806,4 +806,11 @@
     <string name="share_playlist">ਪਲੇਲਿਸਟ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="share_playlist_with_titles_message">ਪਲੇਲਿਸਟ ਦੇ ਨਾਮ ਅਤੇ ਵੀਡੀਓ ਸਿਰਲੇਖਾਂ ਜਾਂ ਵੀਡੀਓ URL ਦੀ ਇੱਕ ਸਧਾਰਨ ਸੂਚੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਰਵਿਆਂ ਨਾਲ ਪਲੇਲਿਸਟ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s ਜਵਾਬ</item>
+        <item quantity="other">%s ਜਵਾਬ</item>
+    </plurals>
+    <string name="show_more">ਹੋਰ ਵਿਖਾਓ</string>
+    <string name="notification_actions_summary_android13">ਇਸ \'ਤੇ ਟੈਪ ਕਰਕੇ ਹੇਠਾਂ ਹਰੇਕ ਸੂਚਨਾ ਕਾਰਵਾਈ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ। ਪਹਿਲੀਆਂ ਤਿੰਨ ਕਾਰਵਾਈਆਂ (ਪਲੇ/ਪੌਜ਼, ਪਿਛਲਾ ਅਤੇ ਅਗਲਾ) ਸਿਸਟਮ ਦੁਆਰਾ ਸੈੱਟ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
+    <string name="show_less">ਘੱਟ ਦਿਖਾਓ</string>
 </resources>

@@ -531,7 +531,7 @@
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
     <string name="notification_scale_to_square_image_summary">通知に表示されるサムネイルを 16:9 から正方形にします</string>
     <string name="notification_scale_to_square_image_title">サムネイルを正方形にする</string>
-    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します</string>
+    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを３つまで選択します。</string>
     <string name="notification_actions_at_most_three">コンパクトな通知に表示されるアクションは 3 つまで選ぶことができます！</string>
     <string name="notification_action_4_title">5 番目のアクションボタン</string>
     <string name="notification_action_3_title">4 番目のアクションボタン</string>
@@ -793,4 +793,10 @@
     <string name="share_playlist">プレイリストを共有</string>
     <string name="share_playlist_with_titles_message">プレイリスト名やビデオタイトルなどの詳細を含むプレイリスト、またはビデオURLのみのシンプルなリストとしてプレイリストを共有します</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
+    <plurals name="replies">
+        <item quantity="other">%sの返信</item>
+    </plurals>
+    <string name="show_more">もっと見る</string>
+    <string name="show_less">表示を少なくする</string>
+    <string name="notification_actions_summary_android13">以下の通知アクションをタップして編集します。 最初の３つのアクション （再生/一時停止、前へ、次へ）はシステムによって設定されており、カスタマイズすることはできません。</string>
 </resources>

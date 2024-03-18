@@ -534,7 +534,7 @@
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_repeat">循環播放</string>
     <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
-    <string name="notification_actions_summary">透過輕觸下方的通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示</string>
+    <string name="notification_actions_summary">透過輕觸下方的通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
     <string name="notification_action_3_title">第四動作按鈕</string>
     <string name="notification_action_2_title">第三動作按鈕</string>
@@ -793,4 +793,10 @@
     <string name="share_playlist">分享播放清單</string>
     <string name="share_playlist_with_titles_message">分享包含播放清單名稱與影片標題等詳細資訊的播放清單，或是僅作為簡單的影片 URL 清單</string>
     <string name="video_details_list_item">- %1$s：%2$s</string>
+    <plurals name="replies">
+        <item quantity="other">%s 個回覆</item>
+    </plurals>
+    <string name="show_more">顯示更多</string>
+    <string name="show_less">顯示較少</string>
+    <string name="notification_actions_summary_android13">透過點擊下面的每個通知操作來編輯它。前三個動作（播放/暫停、上一個與下一個）由系統設定，無法自訂。</string>
 </resources>

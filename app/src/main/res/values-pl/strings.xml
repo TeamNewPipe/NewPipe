@@ -827,4 +827,13 @@
     <string name="share_playlist">Udostępnij playlistę</string>
     <string name="share_playlist_with_titles_message">Udostępnij playlistę ze szczegółami, takimi jak nazwa playlisty i tytuły wideo, lub jako prostą listę adresów URL wideo.</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s odpowiedź</item>
+        <item quantity="few">%s odpowiedzi</item>
+        <item quantity="many">%s odpowiedzi</item>
+        <item quantity="other">%s odpowiedzi</item>
+    </plurals>
+    <string name="show_more">Pokaż więcej</string>
+    <string name="show_less">Pokaż mniej</string>
+    <string name="notification_actions_summary_android13">Edytuj każdą poniższą akcję powiadomienia, naciskając ją. Pierwsze trzy akcje (odtwórz/wstrzymaj, poprzedni i następny) są ustawione przez system i nie można ich dostosować</string>
 </resources>

@@ -8,8 +8,6 @@ Neu:
 Verbessert:
 • Player-Code in kleine Komponenten refaktorisiert: weniger RAM-Verbrauch, weniger Bugs
 • Skalierungsmodus für Miniaturansicht
-…
 
 Behoben:
 • Verschiedene Probleme mit Player-Benachrichtigung: veraltete/fehlende Medieninfos, verzerrte Miniaturansicht
-…

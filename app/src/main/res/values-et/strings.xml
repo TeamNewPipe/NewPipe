@@ -411,7 +411,7 @@
     <string name="notification_action_shuffle">Aja segi</string>
     <string name="notification_action_repeat">Korda</string>
     <string name="notification_actions_at_most_three">Sa saad valida kuni kolm tegevust, mida kuvatakse lühiteavituses!</string>
-    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates</string>
+    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates.</string>
     <string name="notification_action_4_title">Viies tegevusnupp</string>
     <string name="notification_action_3_title">Neljas tegevusnupp</string>
     <string name="notification_action_2_title">Kolmas tegevusnupp</string>
@@ -806,4 +806,11 @@
     <string name="share_playlist">Jaga esitusloendit</string>
     <string name="share_playlist_with_titles_message">Jaga esitusloendit kas väga detailse teabega palade kohta või lihtsa url\'ide loendina</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">Näita veel</string>
+    <plurals name="replies">
+        <item quantity="one">%s vastus</item>
+        <item quantity="other">%s vastust</item>
+    </plurals>
+    <string name="show_less">Näita vähem</string>
+    <string name="notification_actions_summary_android13">Muuda iga teavituse tegevust sellel toksates. Kolm esimest tegevust (esita/peata esitus, eelmine video, järgmine video) on süsteemsed ja neid ei saa muuta.</string>
 </resources>

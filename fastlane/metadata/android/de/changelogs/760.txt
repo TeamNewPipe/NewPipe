@@ -1,0 +1,24 @@
+Veränderung in 0,17.1
+
+Neu
+• thailändische Lokalisierung
+
+
+Verbessert
+• Schalter für SAF / Legacy Datei Picker #2521 hinzufügen
+
+Behoben
+• Löschen Sie Löschtasten in Downloads Ansicht beim Umschalten von Apps #2487
+
+Veränderungen in 0,17,0
+
+Neu
+Playback Lebenslauf #2288
+• Resume Streams, wo Sie letztes Mal aufgehört haben
+Downloader Verbesserungen #2149
+
+Verbessert
+• Gemaketten entfernen #2295
+
+Behoben
+• Behoben ausgewählter Subtitle Track Name nicht angezeigt #2394
