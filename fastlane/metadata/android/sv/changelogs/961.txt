@@ -1,0 +1,12 @@
+• [YouTube] Mix stöd
+• [YouTube] Visa information om offentliga programföretag och Covid-19
+• [media.ccc.de] La till nya videor
+• La till somalisk översättning
+
+• Många interna förbättringar
+
+• Fixade delning av videor ifrån spelaren
+• Fixade blank ReCaptcha webview
+• Fixade krasch som inträffade när du tar bort en ström från en lista
+• [PeerTube] Fixade relaterade strömmar
+• [YouTube] Fixade YouTube Musiksökning

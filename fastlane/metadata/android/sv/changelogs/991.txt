@@ -1,0 +1,13 @@
+Nytt
+• Lägg till "Öppna i webbläsare" knappen i felpanel
+• Lägg till inställning för att visa kanalgrupper som lista
+• [YouTube] Långtryck på strömsegment för att dela tidsstämpel URL
+• Lägg till play kö knapp till minispelare
+
+Förbättrat
+• Lägg till isländsk lokalisering och uppdatera många andra översättningar
+• Många interna förbättringar
+
+Fixat
+• Fixade flera kraschar
+• [YouTube] Fixade laddning av kanaler, icke-dedikerade flöden och uppspelningsproblem i vissa länder

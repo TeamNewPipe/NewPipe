@@ -151,7 +151,7 @@
     <string name="invalid_file">El fitxer no existeix o bé no teniu permisos de lectura/escriptura</string>
     <string name="file_name_empty_error">El nom del fitxer no pot estar en blanc</string>
     <string name="error_occurred_detail">S\'ha produït un error: %1$s</string>
-    <string name="error_report_button_text">Informeu de l\'error per correu electrònic</string>
+    <string name="error_report_button_text">Informeu per correu electrònic</string>
     <string name="error_snackbar_message">S\'han produït alguns errors.</string>
     <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Informació:</string>
@@ -561,7 +561,7 @@
     <string name="notification_action_shuffle">Mescla</string>
     <string name="notification_action_repeat">Repeteix</string>
     <string name="notification_actions_at_most_three">El màxim d\'accions que poden aparèixer en una notificació compacta és de tres!</string>
-    <string name="notification_actions_summary">Editeu cada acció de la notificació tocant el botó corresponent. Podeu seleccionar-ne fins a tres, que es mostraran a les notificacions en format compacte</string>
+    <string name="notification_actions_summary">Editeu cada acció de la notificació tocant el botó corresponent. Podeu seleccionar-ne fins a tres, que es mostraran a les notificacions en format compacte.</string>
     <string name="notification_action_4_title">Cinquè botó d\'acció</string>
     <string name="notification_action_3_title">Quart botó d\'acció</string>
     <string name="notification_action_2_title">Tercer botó d\'acció</string>
@@ -692,9 +692,26 @@
     <string name="unknown_quality">Cualitat desconeguda</string>
     <string name="sort">Ordenar</string>
     <string name="settings_category_player_notification_summary">Configura la notificació de reproducció actual.</string>
-    <string name="progressive_load_interval_summary">Canvia la mida de l\'interval de càrrega (actualment %s). Un valor inferior pot accelerar la càrrega inicial del vídeo. Els canvis requereixen un reinici del jugador.</string>
+    <string name="progressive_load_interval_summary">Canvia la mida de l\'interval de càrrega en continguts progressius (actualment %s). Un valor inferior pot accelerar la càrrega inicial del vídeo.</string>
     <string name="ignore_hardware_media_buttons_title">Ignora els esdeveniments dels botons de reproducció físics</string>
     <string name="ignore_hardware_media_buttons_summary">Útil, per exemple, si feu servir uns auriculars amb els botons físicament trencats</string>
     <string name="left_gesture_control_summary">Trieu un gest per la part esquerra de la pantalla</string>
     <string name="progressive_load_interval_title">Mida de l\'interval de càrrega de reproducció</string>
+    <string name="left_gesture_control_title">Acció de gest esquerra</string>
+    <string name="notification_actions_summary_android13">Editeu cada acció de notificació de sota tocant-la. Les tres primeres accions (reproduir/pausa, anterior i següent) són establertes pel sistema i no es poden personalitzar.</string>
+    <string name="right_gesture_control_summary">Tria un gest per a la meitat dreta del reproductor</string>
+    <string name="right_gesture_control_title">Acció del gest dret</string>
+    <string name="brightness">Brillantor</string>
+    <string name="volume">Volum</string>
+    <string name="none">Cap</string>
+    <string name="main_tabs_position_summary">Mou el selector de pestanya principal a la part inferior</string>
+    <string name="main_tabs_position_title">Posició de les pestanyes principals</string>
+    <string name="prefer_descriptive_audio_title">Prefereix àudio descriptiu</string>
+    <string name="prefer_original_audio_summary">Seleccioneu la pista d\'àudio original independentment de l\'idioma</string>
+    <string name="prefer_original_audio_title">Prefereix l\'àudio original</string>
+    <string name="fast_mode">Mode ràpid</string>
+    <string name="loading_metadata_title">Carregant Metadades…</string>
+    <string name="prefer_descriptive_audio_summary">Seleccioneu una pista d\'àudio amb descripcions per a persones amb discapacitat visual si està disponible</string>
+    <string name="streams_notification_channel_name">Nous streams</string>
+    <string name="streams_notification_channel_description">Notificacions sobre nous streams per a subscripcions</string>
 </resources>

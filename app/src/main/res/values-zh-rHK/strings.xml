@@ -44,7 +44,7 @@
     <string name="main_bg_subtitle">撳放大鏡開始。</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示年齡設限嘅內容</string>
-    <string name="duration_live">實況</string>
+    <string name="duration_live">直播</string>
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">載入唔晒全部縮圖</string>
     <string name="parsing_error">解析唔到網站</string>
@@ -155,7 +155,7 @@
     <string name="open_with">開啟方式係</string>
     <string name="search_showing_result_for">搜尋到嘅嘢係：%s</string>
     <string name="notification_action_4_title">第五粒動作掣</string>
-    <string name="notification_actions_summary">撳下面嘅掣去更改對應嘅通知動作。用右手邊嘅格仔剔選最多三個，擺喺精簡通知度</string>
+    <string name="notification_actions_summary">撳下面嘅掣去更改對應嘅通知動作。用右手邊嘅格仔剔選最多三個，擺落去精簡通知度。</string>
     <string name="notification_actions_at_most_three">精簡通知最多淨係擺到三個動作！</string>
     <string name="notification_action_repeat">循環播放</string>
     <string name="show_comments_title">顯示留言</string>
@@ -516,7 +516,7 @@
     <string name="metadata_host">主機</string>
     <string name="show_hold_to_append_summary">喺影片詳情撳一下「幕後播」或「浮面播」個掣嘅時候顯示提示</string>
     <string name="title_activity_history">紀錄</string>
-    <string name="action_history">歷史紀錄</string>
+    <string name="action_history">紀錄</string>
     <string name="enqueue_next_stream">攝咗做下個播</string>
     <string name="enable_leak_canary_summary">記憶體洩露監測喺傾卸堆疊嘢嘅時候，或者會導致個 app 冇反應</string>
     <string name="drawer_close">閂埋選單</string>
@@ -721,7 +721,7 @@
     <string name="right_gesture_control_summary">揀選右手邊播放器螢幕嘅手勢</string>
     <string name="right_gesture_control_title">右手邊手勢動作</string>
     <string name="brightness">調整光暗度</string>
-    <string name="volume">調整大細聲</string>
+    <string name="volume">音量</string>
     <string name="none">乜都唔使做</string>
     <string name="prefer_original_audio_title">優先揀原聲</string>
     <string name="prefer_descriptive_audio_title">優先揀旁述</string>
@@ -793,4 +793,10 @@
     <string name="channel_tab_channels">頻道</string>
     <string name="previous_stream">上一個串流</string>
     <string name="channel_tab_livestreams">直播</string>
+    <plurals name="replies">
+        <item quantity="other">%s 個回覆</item>
+    </plurals>
+    <string name="show_less">摺埋</string>
+    <string name="show_more">拉開</string>
+    <string name="notification_actions_summary_android13">撳下面嘅掣去更改對應嘅通知動作。頭三個動作 (播放/暫停、上一個、下一個) 系統預設咗，冇得揀。</string>
 </resources>

@@ -5,10 +5,12 @@ Novo
 
 Melhorado
 - Acessibilidade das interfaces do leitor
-- Opção para adicionar o nome da lista de reprodução e o nome do vídeo ao conteúdo de partilha da lista de reprodução
-- Melhorias internas e atualizações de dependências
+- Melhor seleção de áudio para transferências apenas de vídeo
+- Opção para incluir nomes de listas de reprodução e de vídeos no conteúdo de listas de reprodução partilhadas
 
 Corrigido
+- YouTube] Correção da contagem de gostos
+- Correção de popups e falhas do leitor que não responde
 - Seleção de idiomas errados no seletor de idiomas
-- O foco do áudio do leitor não estava a respeitar o silêncio
-- A adição de itens a listas de reprodução não funcionava em casos específicos
+- A focagem do áudio do leitor não estava a respeitar o silêncio
+- A adição de itens à lista de reprodução não funcionava ocasionalmente.

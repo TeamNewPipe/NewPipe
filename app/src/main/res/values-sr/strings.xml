@@ -227,7 +227,7 @@
     <string name="enable_queue_limit">Ограничи ред за преузимање</string>
     <string name="close">Затвори</string>
     <string name="pause_downloads_on_mobile_desc">Корисно при преласку на мобилне податке, иако нека преузимања не могу бити обустављена</string>
-    <string name="pause_downloads_on_mobile">Прекид на мереним мрежама</string>
+    <string name="pause_downloads_on_mobile">Прекид на мрежама с ограничењем</string>
     <string name="max_retry_desc">Највећи број покушаја пре отказивања преузимања</string>
     <string name="max_retry_msg">Највише покушаја</string>
     <string name="stop">Заустави</string>
@@ -280,7 +280,7 @@
     <string name="minimize_on_exit_title">Умањи при мењању апликације</string>
     <string name="updates_setting_description">Прикажи обавештење када постоји нова верзија апликације</string>
     <string name="updates_setting_title">Ажурирања</string>
-    <string name="limit_mobile_data_usage_title">Ограничи резолуцију када користиш мобилне податке</string>
+    <string name="limit_mobile_data_usage_title">Ограничење резолуције када се користе мобилни подаци</string>
     <string name="decline">Одбиј</string>
     <string name="limit_data_usage_none_description">Без ограничења</string>
     <string name="accept">Прихвати</string>
@@ -448,7 +448,7 @@
     <string name="clear_views_history_title">Очисти историју гледања</string>
     <string name="clear_cookie_summary">Чисти колачиће које NewPipe чува када решите „reCAPTCHA“</string>
     <string name="export_data_summary">Извоз историје, праћења, плејлисти и подешавања</string>
-    <string name="import_data_summary">Замениће вашу тренутну историју, праћења, плејлисте и (опционо) подешавања</string>
+    <string name="import_data_summary">Замениће вашу тренутну историју, праћења, плејлисте и (опционално) подешавања</string>
     <string name="recaptcha_cookies_cleared">„reCAPTCHA“ колачићи су очишћени</string>
     <string name="clear_cookie_title">Очисти „reCAPTCHA“ колачиће</string>
     <string name="export_data_title">Извоз базе података</string>
@@ -485,7 +485,7 @@
     <string name="peertube_instance_add_fail">Није могуће потврдити инстанцу</string>
     <string name="peertube_instance_add_help">Унесите URL адресу инстанце</string>
     <string name="peertube_instance_add_title">Додајте инстанцу</string>
-    <string name="peertube_instance_url_help">Пронађите инстанце које Вам се свиђају на %s</string>
+    <string name="peertube_instance_url_help">Пронађите инстанце које вам се свиђају на %s</string>
     <string name="peertube_instance_url_title">PeerTube инстанце</string>
     <string name="peertube_instance_url_summary">Изаберите своје омиљене PeerTube инстанце</string>
     <string name="unsupported_url_dialog_message">URL адреса није препозната. Отворити помоћу друге апликације\?</string>
@@ -521,7 +521,7 @@
     <string name="notification_action_2_title">Дугме треће радње</string>
     <string name="notification_action_1_title">Дугме друге радње</string>
     <string name="notification_action_0_title">Дугме прве радње</string>
-    <string name="notification_scale_to_square_image_summary">Исеците сличицу видеа приказану у обавештењу с размере 16:9 на размеру 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Исеците сличицу видео снимка приказану у обавештењу с размере 16:9 на размеру 1:1</string>
     <string name="notification_scale_to_square_image_title">Исеци сличицу на размеру 1:1</string>
     <string name="search_showing_result_for">Приказивање резултата за: %s</string>
     <string name="open_with">Отвори помоћу</string>
@@ -572,9 +572,9 @@
     <string name="feed_group_dialog_delete_message">Желите ли да избришете ову групу\?</string>
     <string name="feed_group_dialog_empty_name">Празан назив групе</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d одабран</item>
-        <item quantity="few">%d одабрана</item>
-        <item quantity="other">%d одабраних</item>
+        <item quantity="one">%d изабран</item>
+        <item quantity="few">%d изабрана</item>
+        <item quantity="other">%d изабраних</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Нема изабраних праћења</string>
     <string name="feed_group_dialog_select_subscriptions">Изабрана праћења</string>
@@ -719,7 +719,7 @@
     <string name="seekbar_preview_thumbnail_title">Преглед сличице траке за претрагу</string>
     <string name="feed_hide_streams_title">Прикажи следеће стримове</string>
     <string name="feed_show_hide_streams">Прикажи/сакриј стримове</string>
-    <string name="use_exoplayer_decoder_fallback_title">Користите резервну функцију декодера ExoPlayer-а</string>
+    <string name="use_exoplayer_decoder_fallback_title">Користи резервну функцију декодера ExoPlayer-а</string>
     <string name="audio_track_type_original">оригинални</string>
     <string name="progressive_load_interval_summary">Промените величину интервала учитавања на прогресивним садржајима (тренутно %s). Нижа вредност може убрзати њихово почетно учитавање</string>
     <string name="ignore_hardware_media_buttons_summary">Корисно, на пример, ако користите слушалице са поквареним физичким дугмадима</string>
@@ -731,7 +731,7 @@
     <string name="settings_category_player_notification_summary">Конфигуришите обавештење о тренутно репродукованом стриму</string>
     <string name="prefer_original_audio_summary">Изаберите оригинални аудио снимак, без обзира на језик</string>
     <string name="prefer_descriptive_audio_summary">Изаберите аудио снимак са описима за особе са оштећеним видом, ако је доступан</string>
-    <string name="prefer_descriptive_audio_title">Дај предност описном аудио снимку</string>
+    <string name="prefer_descriptive_audio_title">Преферирај описни аудио снимак</string>
     <string name="right_gesture_control_title">Радња покретом удесно</string>
     <string name="brightness">Осветљеност</string>
     <string name="volume">Јачина звука</string>
@@ -764,7 +764,7 @@
     <string name="audio_track_type_descriptive">описни</string>
     <string name="audio_track_type_dubbed">синхронизовани</string>
     <string name="settings_category_exoplayer_summary">Управљајте неким подешавањима ExoPlayer-а. Ове промене захтевају рестартовање плејера да би се примениле</string>
-    <string name="prefer_original_audio_title">Дај предност оригиналном аудио снимку</string>
+    <string name="prefer_original_audio_title">Преферирај оригинални аудио снимак</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Ово заобилазно решење ослобађа и поново инстанцира кодеке видео снимка када дође до промене површине, уместо да се површина директно поставља на кодек. ExoPlayer већ користи ово на неким уређајима са овим проблемом, ово подешавање утиче само на Android 6 и новије верзије.
 \n
 \nОмогућавање ове опције може спречити грешке при репродукцији приликом пребацивања тренутног плејера видео снимака или преласка на цео екран</string>
@@ -819,4 +819,12 @@
     <string name="share_playlist">Дели плејлисту</string>
     <string name="share_playlist_with_titles_message">Делите плејлисту са детаљима, као што су назив плејлисте и наслови видео снимака или као једноставна листа URL адреса видео снимака</string>
     <string name="video_details_list_item">-%1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s одговор</item>
+        <item quantity="few">%s одговора</item>
+        <item quantity="other">%s одговора</item>
+    </plurals>
+    <string name="show_more">Прикажи више</string>
+    <string name="show_less">Прикажи мање</string>
+    <string name="notification_actions_summary_android13">Измените сваку радњу обавештења у наставку тако што ћете је додирнути. Прве три радње (пусти/паузирај, претходни и следећи) поставља систем и не могу се прилагодити.</string>
 </resources>

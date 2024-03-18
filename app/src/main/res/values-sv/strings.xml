@@ -567,7 +567,7 @@
     <string name="show_description_summary">Inaktivera för att dölja videobeskrivning och ytterligare information</string>
     <string name="show_meta_info_title">Visa meta-information</string>
     <string name="show_thumbnail_summary">Använd miniatyrbild som bakgrund till både låsskärm och aviseringar</string>
-    <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger</string>
+    <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger.</string>
     <string name="notification_colorize_summary">Låt Android färglägga varje avisering individuellt utifrån miniatyrbildens huvudsakliga färg (notera att detta inte är tillgängligt på alla enheter)</string>
     <string name="notification_colorize_title">Färglägg avisering</string>
     <string name="notification_actions_at_most_three">Du kan som mest välja tre åtgärder att visa i den kompakta aviseringen!</string>
@@ -806,4 +806,11 @@
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_with_titles_message">Dela spellistan med detaljer så som spellistans namn och video-titlarna eller som en enkel lista med URL till videorna</string>
     <string name="image_quality_summary">Välj bildkvalitet och om bilder överhuvudtaget ska laddas för att minska data och minnesanvändningen. Ändringar rensar både i minnet och bildcache på disk – %s</string>
+    <string name="show_more">Visa mer</string>
+    <plurals name="replies">
+        <item quantity="one">%s svar</item>
+        <item quantity="other">%s svar</item>
+    </plurals>
+    <string name="show_less">Visa mindre</string>
+    <string name="notification_actions_summary_android13">Redigera varje aviseringsåtgärd nedan genom att trycka på den. De tre första åtgärderna (spela/pausa, föregående och nästa) är satta av systemet och kan inte ändras.</string>
 </resources>

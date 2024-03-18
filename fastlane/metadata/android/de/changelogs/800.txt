@@ -1,0 +1,11 @@
+Neu
+• PeerTube Unterstützung ohne P2P (#2201) (Beta)
+ Es könnte Probleme mit SSL Handshakes auf Android 4.4 & 7.1 geben, wenn auf bestimmte Instanzen zugegriffen wird.
+
+Verbessert
+• Neue Localization and Downloader von Extractor #2713
+• Schwarze Navigationsleiste für schwarzes Theme #2569
+
+Behoben
+• Fehler wurde behoben, der den Popup-Player nicht verschieben konnte, wenn ein anderer Finger beim Verschieben des Popup-Players #2772 platziert wurde
+• [SoundCloud] Audio-Stream-Extraktion

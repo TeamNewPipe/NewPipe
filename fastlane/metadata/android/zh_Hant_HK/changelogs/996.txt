@@ -1,0 +1,2 @@
+修正開啟 media.ccc.de 嘅頻道/會議時發生 NullPointerException 失卻指標錯誤。
+柳煙輕愜夜，俊緒留江影。謝謝您陪我哋跑完悲歡離合嘅一年。

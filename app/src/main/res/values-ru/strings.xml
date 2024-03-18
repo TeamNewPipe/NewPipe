@@ -78,7 +78,7 @@
     <string name="audio">Аудио</string>
     <string name="retry">Повтор</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="controls_background_title">В фоне</string>
+    <string name="controls_background_title">Фон</string>
     <string name="controls_popup_title">В окне</string>
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
@@ -562,7 +562,7 @@
     <string name="notification_action_shuffle">Перемешать</string>
     <string name="notification_action_repeat">Повтор</string>
     <string name="notification_actions_at_most_three">В компактном уведомлении доступно не более трёх действий!</string>
-    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении</string>
+    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него. Выберите до трёх из них, которые будут отображаться в компактном уведомлении, используя флажки справа.</string>
     <string name="notification_action_4_title">Пятое действие</string>
     <string name="notification_action_3_title">Четвёртое действие</string>
     <string name="notification_action_2_title">Третье действие</string>
@@ -789,7 +789,7 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="show_channel_tabs">Вкладки канала</string>
-    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_shorts">Шорты</string>
     <string name="loading_metadata_title">Загрузка метаданных…</string>
     <string name="toggle_screen_orientation">Изменить ориентацию экрана</string>
     <string name="image_quality_low">Низкое качество</string>
@@ -823,4 +823,13 @@
     <string name="channel_tab_channels">Каналы</string>
     <string name="previous_stream">Предыдущий стрим</string>
     <string name="channel_tab_livestreams">Живая трансляция</string>
+    <string name="show_more">Показать больше</string>
+    <string name="show_less">Показать меньше</string>
+    <plurals name="replies">
+        <item quantity="one">%s ответ</item>
+        <item quantity="few">%s ответа</item>
+        <item quantity="many">%s ответов</item>
+        <item quantity="other">%s ответов</item>
+    </plurals>
+    <string name="notification_actions_summary_android13">Отредактируйте каждое действие уведомления ниже, нажав на него. Первые три действия (воспроизведение/пауза, предыдущее и следующее) задаются системой и не подлежат настройке.</string>
 </resources>

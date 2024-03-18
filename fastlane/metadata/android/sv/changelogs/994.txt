@@ -1,0 +1,15 @@
+Nytt
+• Stöd flera ljudspår/språk
+• Tillåt inställning av volym och ljusstyrks gester på valfri sida av skärmen
+• Stöd för att visa huvudflikar längst ner på skärmen
+
+Förbättrat
+• [Bandcamp] Hantera spår bakom betalvägg
+
+Fixat
+• [YouTube] 403 HTTP-fel för strömmar
+• Svart spelare vid byte till huvudspelare från spellistans vy
+• Spela service minnesläckor
+• [PeerTube] Uppladdare och sub kanal avatarer var utbytta
+
+och mer

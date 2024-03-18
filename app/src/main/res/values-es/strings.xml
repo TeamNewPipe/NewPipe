@@ -47,7 +47,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Pulsa la lupa para empezar.</string>
+    <string name="main_bg_subtitle">Toca la lupa para empezar.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -558,7 +558,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edite cada una de las acciones de notificación que aparecen a continuación pulsando sobre ellas. Seleccione hasta tres de ellas para que se muestren en la notificación compacta utilizando las casillas de verificación de la derecha</string>
+    <string name="notification_actions_summary">Edite cada acción de notificación pulsando sobre ella. Seleccione hasta tres de ellas para que se muestren en la notificación compacta utilizando las casillas de verificación de la derecha.</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -822,4 +822,12 @@
     <string name="share_playlist">Compartir la lista de reproducción</string>
     <string name="share_playlist_with_titles_message">Compartir las listas de reproducción con los detalles como el nombre de la lista y los títulos de los vídeos o como una simple lista de una dirección URL con los vídeos</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s respuesta</item>
+        <item quantity="many">%s respuestas</item>
+        <item quantity="other">%s respuestas</item>
+    </plurals>
+    <string name="show_more">Ver más</string>
+    <string name="show_less">Mostrar menos</string>
+    <string name="notification_actions_summary_android13">Edite cada acción de notificación pulsando sobre ella. Las tres primeras acciones (reproducir/pausa, anterior y siguiente) las establece el sistema y no se pueden personalizar.</string>
 </resources>

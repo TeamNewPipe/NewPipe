@@ -432,4 +432,8 @@
     <string name="dont_show">Jangan tunjuk</string>
     <string name="unmute">Nyahbisu</string>
     <string name="notification_colorize_summary">Minta Android menyesuaikan warna pemberitahuan sesuai dengan warna utama di thumbnail (perhatikan bahawa ini tidak tersedia dalam semua perangkat)</string>
+    <string name="autoplay_title">Auto-main</string>
+    <string name="enable_playback_resume_title">Sambung main</string>
+    <string name="error_unable_to_load_comments">Tidak boleh memuat komentar</string>
+    <string name="close">Tutup</string>
 </resources>

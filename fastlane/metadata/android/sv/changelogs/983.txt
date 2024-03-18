@@ -1,0 +1,9 @@
+La till nytt dubbel tryck för att söka UI och beteende
+Gör inställningar sökbara
+Markera fäst kommentarer som sådana
+Lägg till öppna med app stöd för FSFE PeerTube instans
+Lägg till felmeddelanden
+Fixade repris av första kö objekt vid spelar förändring
+Vänta längre vid buffring under livestreams innan misslyckande
+Fixade ordning av lokala sökresultat
+Fixade tomma objektfält i spelkö
