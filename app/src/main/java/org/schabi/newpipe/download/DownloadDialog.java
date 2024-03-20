@@ -148,11 +148,6 @@ public class DownloadDialog extends DialogFragment
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
-    private final ActivityResultLauncher<Intent> requestStorageSettingsLauncher =
-            registerForActivityResult(
-                    new StartActivityForResult(), this::handleStorageSettingsResult);
-
-
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation
     //////////////////////////////////////////////////////////////////////////*/
@@ -569,11 +564,6 @@ public class DownloadDialog extends DialogFragment
             showFailedDialog(R.string.general_error);
         }
     }
-
-    private void handleStorageSettingsResult(@NonNull final ActivityResult result) {
-        // Handle result if needed. In most cases, no action is needed.
-    }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Listeners
