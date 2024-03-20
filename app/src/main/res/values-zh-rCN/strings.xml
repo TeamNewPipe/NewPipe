@@ -534,7 +534,7 @@
     <string name="notification_action_shuffle">随机播放</string>
     <string name="notification_action_repeat">单曲循环</string>
     <string name="notification_actions_at_most_three">最多可以选择三个操作显示在紧凑通知中！</string>
-    <string name="notification_actions_summary">点击编辑下面的每一个通知操作。使用右方的复选框选择在紧凑通知中显示的动作，最多可以选择三个</string>
+    <string name="notification_actions_summary">轻按下面的每一个通知操作进行编辑。使用右方的复选框选择在紧凑通知中显示的操作，最多可以选择三个。</string>
     <string name="notification_action_4_title">第五操作按钮</string>
     <string name="notification_action_3_title">第四操作按钮</string>
     <string name="notification_action_2_title">第三操作按钮</string>
@@ -793,4 +793,10 @@
     <string name="share_playlist">分享播放列表</string>
     <string name="share_playlist_with_titles_message">分享详细的播放列表（带名称和视频标题等信息）或只分享视频网址列表</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="other">%s 条回复</item>
+    </plurals>
+    <string name="show_more">显示较多</string>
+    <string name="show_less">显示较少</string>
+    <string name="notification_actions_summary_android13">轻按下方的每个通知操作进行编辑。头三个动作（播放/暂停、上一个和下一个）是系统设置的，不能自定义。</string>
 </resources>

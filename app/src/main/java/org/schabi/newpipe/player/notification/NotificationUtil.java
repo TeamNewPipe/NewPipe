@@ -1,16 +1,19 @@
 package org.schabi.newpipe.player.notification;
 
+import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+import static androidx.media.app.NotificationCompat.MediaStyle;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
+
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.PendingIntentCompat;
@@ -23,22 +26,11 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
-import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
-import static androidx.media.app.NotificationCompat.MediaStyle;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_FORWARD;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_REWIND;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_NEXT;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PREVIOUS;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
-import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 
 /**
  * This is a utility class for player notifications.
@@ -100,29 +92,21 @@ public final class NotificationUtil {
         final NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(player.getContext(),
                 player.getContext().getString(R.string.notification_channel_id));
+        final MediaStyle mediaStyle = new MediaStyle();
 
-        initializeNotificationSlots();
-
-        // count the number of real slots, to make sure compact slots indices are not out of bound
-        int nonNothingSlotCount = 5;
-        if (notificationSlots[3] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
+        // setup media style (compact notification slots and media session)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            final int[] compactSlots = initializeNotificationSlots();
+            mediaStyle.setShowActionsInCompactView(compactSlots);
         }
-        if (notificationSlots[4] == NotificationConstants.NOTHING) {
-            --nonNothingSlotCount;
-        }
-
-        // build the compact slot indices array (need code to convert from Integer... because Java)
-        final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
-                player.getContext(), player.getPrefs(), nonNothingSlotCount);
-        final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
-
-        final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
         player.UIs()
                 .get(MediaSessionPlayerUi.class)
                 .flatMap(MediaSessionPlayerUi::getSessionToken)
                 .ifPresent(mediaStyle::setMediaSession);
 
+        // setup notification builder
         builder.setStyle(mediaStyle)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -157,7 +141,11 @@ public final class NotificationUtil {
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
 
-        updateActions(notificationBuilder);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // notification actions are ignored on Android 13+, and are replaced by code in
+            // MediaSessionPlayerUi
+            updateActions(notificationBuilder);
+        }
     }
 
 
@@ -209,12 +197,35 @@ public final class NotificationUtil {
     // ACTIONS
     /////////////////////////////////////////////////////
 
-    private void initializeNotificationSlots() {
+    /**
+     * The compact slots array from settings contains indices from 0 to 4, each referring to one of
+     * the five actions configurable by the user. However, if the user sets an action to "Nothing",
+     * then all of the actions coming after will have a "settings index" different than the index
+     * of the corresponding action when sent to the system.
+     *
+     * @return the indices of compact slots referred to the list of non-nothing actions that will be
+     *         sent to the system
+     */
+    private int[] initializeNotificationSlots() {
+        final Collection<Integer> settingsCompactSlots = NotificationConstants
+                .getCompactSlotsFromPreferences(player.getContext(), player.getPrefs());
+        final List<Integer> adjustedCompactSlots = new ArrayList<>();
+
+        int nonNothingIndex = 0;
         for (int i = 0; i < 5; ++i) {
             notificationSlots[i] = player.getPrefs().getInt(
                     player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
                     NotificationConstants.SLOT_DEFAULTS[i]);
+
+            if (notificationSlots[i] != NotificationConstants.NOTHING) {
+                if (settingsCompactSlots.contains(i)) {
+                    adjustedCompactSlots.add(nonNothingIndex);
+                }
+                nonNothingIndex += 1;
+            }
         }
+
+        return adjustedCompactSlots.stream().mapToInt(Integer::intValue).toArray();
     }
 
     @SuppressLint("RestrictedApi")
@@ -227,115 +238,15 @@ public final class NotificationUtil {
 
     private void addAction(final NotificationCompat.Builder builder,
                            @NotificationConstants.Action final int slot) {
-        final NotificationCompat.Action action = getAction(slot);
-        if (action != null) {
-            builder.addAction(action);
+        @Nullable final NotificationActionData data =
+                NotificationActionData.fromNotificationActionEnum(player, slot);
+        if (data == null) {
+            return;
         }
-    }
 
-    @Nullable
-    private NotificationCompat.Action getAction(
-            @NotificationConstants.Action final int selectedAction) {
-        final int baseActionIcon = NotificationConstants.ACTION_ICONS[selectedAction];
-        switch (selectedAction) {
-            case NotificationConstants.PREVIOUS:
-                return getAction(baseActionIcon,
-                        R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
-
-            case NotificationConstants.NEXT:
-                return getAction(baseActionIcon,
-                        R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
-
-            case NotificationConstants.REWIND:
-                return getAction(baseActionIcon,
-                        R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
-
-            case NotificationConstants.FORWARD:
-                return getAction(baseActionIcon,
-                        R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
-
-            case NotificationConstants.SMART_REWIND_PREVIOUS:
-                if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
-                    return getAction(R.drawable.exo_notification_previous,
-                            R.string.exo_controls_previous_description, ACTION_PLAY_PREVIOUS);
-                } else {
-                    return getAction(R.drawable.exo_controls_rewind,
-                            R.string.exo_controls_rewind_description, ACTION_FAST_REWIND);
-                }
-
-            case NotificationConstants.SMART_FORWARD_NEXT:
-                if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
-                    return getAction(R.drawable.exo_notification_next,
-                            R.string.exo_controls_next_description, ACTION_PLAY_NEXT);
-                } else {
-                    return getAction(R.drawable.exo_controls_fastforward,
-                            R.string.exo_controls_fastforward_description, ACTION_FAST_FORWARD);
-                }
-
-            case NotificationConstants.PLAY_PAUSE_BUFFERING:
-                if (player.getCurrentState() == Player.STATE_PREFLIGHT
-                        || player.getCurrentState() == Player.STATE_BLOCKED
-                        || player.getCurrentState() == Player.STATE_BUFFERING) {
-                    // null intent -> show hourglass icon that does nothing when clicked
-                    return new NotificationCompat.Action(R.drawable.ic_hourglass_top,
-                            player.getContext().getString(R.string.notification_action_buffering),
-                            null);
-                }
-
-                // fallthrough
-            case NotificationConstants.PLAY_PAUSE:
-                if (player.getCurrentState() == Player.STATE_COMPLETED) {
-                    return getAction(R.drawable.ic_replay,
-                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
-                } else if (player.isPlaying()
-                        || player.getCurrentState() == Player.STATE_PREFLIGHT
-                        || player.getCurrentState() == Player.STATE_BLOCKED
-                        || player.getCurrentState() == Player.STATE_BUFFERING) {
-                    return getAction(R.drawable.exo_notification_pause,
-                            R.string.exo_controls_pause_description, ACTION_PLAY_PAUSE);
-                } else {
-                    return getAction(R.drawable.exo_notification_play,
-                            R.string.exo_controls_play_description, ACTION_PLAY_PAUSE);
-                }
-
-            case NotificationConstants.REPEAT:
-                if (player.getRepeatMode() == REPEAT_MODE_ALL) {
-                    return getAction(R.drawable.exo_media_action_repeat_all,
-                            R.string.exo_controls_repeat_all_description, ACTION_REPEAT);
-                } else if (player.getRepeatMode() == REPEAT_MODE_ONE) {
-                    return getAction(R.drawable.exo_media_action_repeat_one,
-                            R.string.exo_controls_repeat_one_description, ACTION_REPEAT);
-                } else /* player.getRepeatMode() == REPEAT_MODE_OFF */ {
-                    return getAction(R.drawable.exo_media_action_repeat_off,
-                            R.string.exo_controls_repeat_off_description, ACTION_REPEAT);
-                }
-
-            case NotificationConstants.SHUFFLE:
-                if (player.getPlayQueue() != null && player.getPlayQueue().isShuffled()) {
-                    return getAction(R.drawable.exo_controls_shuffle_on,
-                            R.string.exo_controls_shuffle_on_description, ACTION_SHUFFLE);
-                } else {
-                    return getAction(R.drawable.exo_controls_shuffle_off,
-                            R.string.exo_controls_shuffle_off_description, ACTION_SHUFFLE);
-                }
-
-            case NotificationConstants.CLOSE:
-                return getAction(R.drawable.ic_close,
-                        R.string.close, ACTION_CLOSE);
-
-            case NotificationConstants.NOTHING:
-            default:
-                // do nothing
-                return null;
-        }
-    }
-
-    private NotificationCompat.Action getAction(@DrawableRes final int drawable,
-                                                @StringRes final int title,
-                                                final String intentAction) {
-        return new NotificationCompat.Action(drawable, player.getContext().getString(title),
-                PendingIntentCompat.getBroadcast(player.getContext(), NOTIFICATION_ID,
-                        new Intent(intentAction), FLAG_UPDATE_CURRENT, false));
+        final PendingIntent intent = PendingIntentCompat.getBroadcast(player.getContext(),
+                NOTIFICATION_ID, new Intent(data.action()), FLAG_UPDATE_CURRENT, false);
+        builder.addAction(new NotificationCompat.Action(data.icon(), data.name(), intent));
     }
 
     private Intent getIntentForNotification() {
@@ -364,7 +275,7 @@ public final class NotificationUtil {
         final Bitmap thumbnail = player.getThumbnail();
         if (thumbnail == null || !showThumbnail) {
             // since the builder is reused, make sure the thumbnail is unset if there is not one
-            builder.setLargeIcon(null);
+            builder.setLargeIcon((Bitmap) null);
             return;
         }
 

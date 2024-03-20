@@ -1,0 +1,2 @@
+Fixade en NullPointerException när du öppnar en kanal / konferens i media.ccc.de.
+Grinchen försökte förstöra vår julklapp till er, men vi fixade den.

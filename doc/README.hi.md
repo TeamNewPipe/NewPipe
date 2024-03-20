@@ -10,7 +10,6 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="बिल्ड की स्थिति"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="अनुवाद की स्थिति"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC चैनल: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource बाउंटी"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#ऐप-कैसी-दिखती-है">ऐप कैसी दिखती है</a> &bull; <a href="#विवरण">विवरण</a> &bull; <a href="#सुविधाएँ">सुविधाएँ</a> &bull; <a href="#स्थापित-करना-और-अपडेट-करना">स्थापित करना और अपडेट करना</a> &bull; <a href="#योगदान-करें">योगदान करें</a> &bull; <a href="#आर्थिक-योगदान-करें">आर्थिक योगदान करें</a> &bull; <a href="#लाइसेंस">लाइसेंस</a></p>
@@ -116,19 +115,9 @@ NewPipe पर कई सेवाएँ उपलब्ध हैं। हम�
 
 <table>
   <tr>
-    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="../assets/bitcoin_qr_code.png" alt="बिटकॉइन पर दान करने के लिए QR कोड" width="100px"></td>
-    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
-  </tr>
-  <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.com पर NewPipe को देखें" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapay के ज़रिए दान करें" height="35px"></a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="bountysource.com पर NewPipe को देखें" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="देखें कि आप कितने बाउंटी कमा सकते हैं।"></a></td>
   </tr>
 </table>
 

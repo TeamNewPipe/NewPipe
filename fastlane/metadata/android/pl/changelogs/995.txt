@@ -1,14 +1,16 @@
 Nowe
 • Obsługa kart kanałów
-• Wybieranie jakości obrazów
+• Wybór jakości obrazów
 • Uzyskiwanie adresów URL do wszystkich obrazów
 
 Ulepszone
-• Dostępność interfejsów odtwarzacza
-• Opcja dodania nazwy playlisty i tytułów wideo do udostępnianej zawartości playlisty
-• Wewnętrzne ulepszenia i aktualizacje zależności
+• Dostępność UI odtwarzacza
+• Lepszy wybór dźwięku dla pobierania tylko wideo
+• Opcja uwzględ. nazw playlist i wideo do udostęp. zawartości playlisty
 
 Naprawione
-• Wybór błędnych języków w selektorze języków
-• Skupienie na dźwięku odtwarzacza nie uwzględniało wyciszenia
-• Dodawanie pozycji do playlist nie działało w określonych przypadkach
+• [YouTube] Liczba polubień
+• Zawieszone wysk. okienka i awarie odtwarzacza
+• Błędne wybory w selektorze języków
+• Skupienie na dźwięku odtwarzacza nie uwzględ. wyciszenia
+• Czasami niedziałające dodawanie pozycji do playlisty

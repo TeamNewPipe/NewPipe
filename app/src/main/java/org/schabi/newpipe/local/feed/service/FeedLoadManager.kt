@@ -277,14 +277,14 @@ class FeedLoadManager(private val context: Context) {
                             notification.value!!.newStreams = filterNewStreams(info.streams)
 
                             feedDatabaseManager.upsertAll(info.uid, info.streams)
-                            subscriptionManager.updateFromInfo(info.uid, info.originalInfo)
+                            subscriptionManager.updateFromInfo(info)
 
                             if (info.errors.isNotEmpty()) {
                                 feedResultsHolder.addErrors(
                                     info.errors.map {
                                         FeedLoadService.RequestException(
                                             info.uid,
-                                            "${info.originalInfo.serviceId}:${info.originalInfo.url}",
+                                            "${info.serviceId}:${info.url}",
                                             it
                                         )
                                     }

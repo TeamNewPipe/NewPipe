@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list.channel;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,10 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
+import org.schabi.newpipe.extractor.linkhandler.ReadyChannelTabListLinkHandler;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
@@ -113,6 +117,30 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     @Override
     public void handleResult(@NonNull final ChannelTabInfo result) {
         super.handleResult(result);
+
+        // FIXME this is a really hacky workaround, to avoid storing useless data in the fragment
+        //  state. The problem is, `ReadyChannelTabListLinkHandler` might contain raw JSON data that
+        //  uses a lot of memory (e.g. ~800KB for YouTube). While 800KB doesn't seem much, if
+        //  you combine just a couple of channel tab fragments you easily go over the 1MB
+        //  save&restore transaction limit, and get `TransactionTooLargeException`s. A proper
+        //  solution would require rethinking about `ReadyChannelTabListLinkHandler`s.
+        if (tabHandler instanceof ReadyChannelTabListLinkHandler) {
+            try {
+                // once `handleResult` is called, the parsed data was already saved to cache, so
+                // we can discard any raw data in ReadyChannelTabListLinkHandler and create a
+                // link handler with identical properties, but without any raw data
+                final ListLinkHandlerFactory channelTabLHFactory = result.getService()
+                        .getChannelTabLHFactory();
+                if (channelTabLHFactory != null) {
+                    // some services do not not have a ChannelTabLHFactory
+                    tabHandler = channelTabLHFactory.fromQuery(tabHandler.getId(),
+                            tabHandler.getContentFilters(), tabHandler.getSortFilter());
+                }
+            } catch (final ParsingException e) {
+                // silently ignore the error, as the app can continue to function normally
+                Log.w(TAG, "Could not recreate channel tab handler", e);
+            }
+        }
 
         if (playlistControlBinding != null) {
             // PlaylistControls should be visible only if there is some item in

@@ -99,12 +99,12 @@
     <string name="show_higher_resolutions_summary">Nur manche Geräte können Videos in 2K/4K abspielen</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
-    <string name="popup_remember_size_pos_title">Pop-up Eigenschaften merken</string>
+    <string name="popup_remember_size_pos_title">Eigenschaften des Pop-ups merken</string>
     <string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Vorschläge auswählen, die bei der Suche angezeigt werden sollen</string>
-    <string name="clear">Löschen</string>
+    <string name="clear">löschen</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="title_activity_about">Über NewPipe</string>
     <string name="tab_licenses">Lizenzen</string>
@@ -178,10 +178,10 @@
     <string name="player_recoverable_failure">Wiederherstellen nach einem Wiedergabefehler</string>
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Knopf „Details:“ im Video gedrückt wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn die Hintergrundwiedergabe- oder Pop-up-Schaltfläche „Details:“ im Video gedrückt wird</string>
     <string name="new_and_hot">Neu und Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
-    <string name="show_hold_to_append_title">„Halten zum Einreihen“ Tipp anzeigen</string>
+    <string name="show_hold_to_append_title">„Halten zum Einreihen“-Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
@@ -425,7 +425,7 @@
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
-        <item quantity="other">%s Zuschauer</item>
+        <item quantity="other">%s Zuschauende</item>
     </plurals>
     <string name="no_one_listening">Niemand hört zu</string>
     <plurals name="listening">
@@ -541,7 +541,7 @@
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du auf sie tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
     <string name="notification_action_3_title">Vierte Aktionstaste</string>
@@ -806,4 +806,11 @@
     <string name="share_playlist">Wiedergabeliste teilen</string>
     <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s Antwort</item>
+        <item quantity="other">%s Antworten</item>
+    </plurals>
+    <string name="show_more">Mehr zeigen</string>
+    <string name="show_less">Weniger zeigen</string>
+    <string name="notification_actions_summary_android13">Bearbeite jede Benachrichtigungsaktion unten, indem du auf sie tippst. Die ersten drei Aktionen (Abspielen/Pause, Zurück und Weiter) sind vom System vorgegeben und können nicht angepasst werden.</string>
 </resources>

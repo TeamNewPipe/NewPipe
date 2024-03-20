@@ -1,0 +1,2 @@
+Perbaiki NullPointerException saat membuka saluran / konferensi di media.ccc.de.
+The Grinch mencoba untuk merusak hadiah Natal kami ke anda, tapi kami memperbaikinya.

@@ -58,7 +58,7 @@
     <string name="play_with_kodi_title">Kodi bilan ijro etish</string>
     <string name="show_higher_resolutions_summary">Faqat ba\'zi qurilmalar 2K / 4K videolarni ijro etishi mumkin</string>
     <string name="show_higher_resolutions_title">Yuqori o\'lchamlarni ko\'rsatish</string>
-    <string name="default_popup_resolution_title">"Standart  pop-up o\'lchamlari"</string>
+    <string name="default_popup_resolution_title">Standart pop-up o\'lchamlari</string>
     <string name="default_resolution_title">Standart o\'lchamlari</string>
     <string name="download_path_audio_dialog_title">Audio fayllar uchun yuklab olish papkasini tanlash</string>
     <string name="download_path_summary">Yuklab olingan videofayllar shu yerda saqlanadi</string>

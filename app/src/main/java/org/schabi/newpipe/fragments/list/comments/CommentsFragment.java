@@ -110,4 +110,14 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     protected ItemViewMode getItemViewMode() {
         return ItemViewMode.LIST;
     }
+
+    public boolean scrollToComment(final CommentsInfoItem comment) {
+        final int position = infoListAdapter.getItemsList().indexOf(comment);
+        if (position < 0) {
+            return false;
+        }
+
+        itemsList.scrollToPosition(position);
+        return true;
+    }
 }

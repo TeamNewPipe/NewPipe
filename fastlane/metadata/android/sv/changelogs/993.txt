@@ -1,0 +1,12 @@
+Nytt
+• La till varning vid tilläggning av dubbletter i spellista och la till knapp för att ta bort dem
+• Tillåt ignorering av hårdvaruknappar
+• Tillåt att dölja delvis tittade videor från flödet
+
+Förbättrat
+• Använd fler rutnät kolumner på stora skärmar
+• Gör framstegsindikatorer konsekventa med inställningar
+
+Fixat
+• Fixade öppning av webbläsar URLs, nedladdningar och externa spelare på Android 11+
+• Fixade interaktion med helskärm som kräver två tryck på MIUI

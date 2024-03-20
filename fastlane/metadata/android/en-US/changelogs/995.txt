@@ -5,10 +5,12 @@ New
 
 Improved
 • Accessibility of player interfaces
-• Option to option to add playlist name and video name to playlist sharing content
-• Internal improvements and dependencies updates
+• Better audio selection for video-only downloads
+• Option to include playlist and video names to shared playlist content
 
 Fixed
+• [YouTube] Fix getting like count
+• Fix player not responding popups and crashes
 • Selection of wrong languages in language picker
 • Player audio focus was not respecting mute
-• Adding items to playlists not working in specific cases
+• Playlist item addition occasionally not working

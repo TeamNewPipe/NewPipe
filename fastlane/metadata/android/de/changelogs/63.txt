@@ -5,4 +5,4 @@
 - Alles über DSGVO hinzugefügt #1420
 
 ### Repariert
-- Downloader: Absturz beim Laden unvollendeter Downloads aus .giga-Dateien behoben #1407
+- Downloader: Absturz beim Laden unvollendeter Downloads von .giga-Dateien behoben #1407

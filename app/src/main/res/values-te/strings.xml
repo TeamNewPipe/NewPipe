@@ -146,7 +146,7 @@
     <string name="start_main_player_fullscreen_title">పూర్తి స్క్రీన్‌లో ప్రధాన ప్లేయర్‌ని ప్రారంభించండి</string>
     <string name="settings_category_debug_title">డీబగ్ చేయండి</string>
     <string name="notification_action_nothing">ఏమిలేదు</string>
-    <string name="notification_scale_to_square_image_summary">నోటిఫికేషన్‌లో చూపబడిన వీడియో థంబ్‌నెయిల్‌ను 16:9 నుండి 1:1 కారక నిష్పత్తికి స్కేల్ చేయండి (వక్రీకరణలను ప్రవేశపెట్టవచ్చు)</string>
+    <string name="notification_scale_to_square_image_summary">నోటిఫికేషన్‌లో చూపబడిన వీడియో థంబ్‌నెయిల్‌ను 16:9 నుండి 1:1 కారక నిష్పత్తికి మార్చుము</string>
     <string name="notification_action_repeat">పునరావృతం చేయండి</string>
     <string name="show_hold_to_append_summary">వీడియో \"వివరాలు:\"లో బ్యాక్‌గ్రౌండ్ లేదా పాప్‌అప్ బటన్‌ను నొక్కినప్పుడు చిట్కాను చూపు</string>
     <string name="unsupported_url_dialog_message">URLని గుర్తించడం సాధ్యపడలేదు. మరొక యాప్‌తో తెరవాలా\?</string>
@@ -177,7 +177,7 @@
     <string name="tab_choose">ట్యాబ్‌ని ఎంచుకోండి</string>
     <string name="unsubscribe">సభ్యత్వాన్ని తొలగించుము</string>
     <string name="show_info">సమాచారాన్ని చూపుము</string>
-    <string name="notification_scale_to_square_image_title">సూక్ష్మచిత్రాన్ని 1:1 కారక నిష్పత్తికి స్కేల్ చేయండి</string>
+    <string name="notification_scale_to_square_image_title">సూక్ష్మచిత్రాన్ని 1:1 కారక నిష్పత్తికి మార్చుము</string>
     <string name="clear_queue_confirmation_summary">ఒక ప్లేయర్ నుండి మరొక ప్లేయర్‌కు మారడం వలన మీ క్యూను భర్తీ చేయవచ్చు</string>
     <string name="auto_queue_summary">సంబంధిత స్ట్రీమ్‌ను జోడించడం ద్వారా (పునరావృతం కాని) ప్లేబ్యాక్ క్యూను ముగించడాన్ని కొనసాగించండి</string>
     <string name="notification_actions_summary">దిగువన ఉన్న ప్రతి నోటిఫికేషన్ చర్యను దానిపై నొక్కడం ద్వారా సవరించండి. కుడివైపు ఉన్న చెక్‌బాక్స్‌లను ఉపయోగించడం ద్వారా కాంపాక్ట్ నోటిఫికేషన్‌లో చూపబడే వాటిలో మూడు వరకు ఎంచుకోండి</string>
@@ -201,7 +201,7 @@
     <string name="notification_action_shuffle">షఫుల్ చేయండి</string>
     <string name="notification_action_buffering">బఫరింగ్</string>
     <string name="default_video_format_title">డిఫాల్ట్ వీడియో ఫార్మాట్</string>
-    <string name="night_theme_title">రాత్రి థీమ్</string>
+    <string name="night_theme_title">చీకటి థీమ్</string>
     <string name="dark_theme_title">చీకటి</string>
     <string name="seek_duration_title">ఫాస్ట్-ఫార్వర్డ్/-రివైండ్ సీక్ వ్యవధి</string>
     <string name="clear_queue_confirmation_title">క్యూను క్లియర్ చేయడానికి ముందు నిర్ధారణ కోసం అడగండి</string>
@@ -462,4 +462,11 @@
     <string name="paused">ఆగిపోయింది</string>
     <string name="sort">క్రమం</string>
     <string name="app_update_available_notification_text">%sని డౌన్‌లోడ్ చేయడానికి నొక్కండి</string>
+    <string name="notification_actions_summary_android13">దిగువన ఉన్న ప్రతి నోటిఫికేషన్ చర్యను దానిపై నొక్కడం ద్వారా సవరించండి. మొదటి మూడు చర్యలు (ప్లే/పాజ్, మునుపటి మరియు తదుపరి) సిస్టమ్ ద్వారా సెట్ చేయబడ్డాయి మరియు అనుకూలీకరించబడవు.</string>
+    <string name="prefer_original_audio_summary">భాషతో సంబంధం లేకుండా అసలు ఆడియో ట్రాక్‌ని ఎంచుకోండి</string>
+    <string name="prefer_descriptive_audio_title">వివరణాత్మక ఆడియోకు ప్రాధాన్యత ఇవ్వండి</string>
+    <string name="ignore_hardware_media_buttons_summary">ఉదాహరణకు, మీరు విరిగిన భౌతిక బటన్‌లతో హెడ్‌సెట్‌ని ఉపయోగిస్తుంటే ఉపయోగకరంగా ఉంటుంది</string>
+    <string name="progressive_load_interval_summary">ప్రగతిశీల విషయాలపై లోడ్ విరామం పరిమాణాన్ని మార్చండి (ప్రస్తుతం %s). తక్కువ విలువ వాటి ప్రారంభ లోడింగ్‌ను వేగవంతం చేయవచ్చు</string>
+    <string name="ignore_hardware_media_buttons_title">హార్డ్‌వేర్ మీడియా బటన్ ఈవెంట్‌లను విస్మరించండి</string>
+    <string name="prefer_original_audio_title">అసలు శ్రావ్యయానికి ప్రాధాన్యత ఇవ్వండి</string>
 </resources>

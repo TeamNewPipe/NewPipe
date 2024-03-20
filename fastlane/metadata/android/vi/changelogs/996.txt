@@ -1,0 +1,2 @@
+Đã sửa lỗi NullPointerException khi mở kênh/hội nghị trong media.ccc.de.
+Grinch đã cố làm vỡ món quà Giáng sinh của chúng tôi dành cho bạn, nhưng chúng tôi đã sửa nó.

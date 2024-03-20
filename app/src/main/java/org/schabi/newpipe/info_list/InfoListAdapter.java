@@ -21,8 +21,7 @@ import org.schabi.newpipe.info_list.holder.ChannelCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
@@ -79,8 +78,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
     private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
     private static final int CARD_PLAYLIST_HOLDER_TYPE = 0x303;
-    private static final int MINI_COMMENT_HOLDER_TYPE = 0x400;
-    private static final int COMMENT_HOLDER_TYPE = 0x401;
+    private static final int COMMENT_HOLDER_TYPE = 0x400;
 
     private final LayoutInflater layoutInflater;
     private final InfoItemBuilder infoItemBuilder;
@@ -271,7 +269,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     return PLAYLIST_HOLDER_TYPE;
                 }
             case COMMENT:
-                return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
+                return COMMENT_HOLDER_TYPE;
             default:
                 return -1;
         }
@@ -320,10 +318,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
             case CARD_PLAYLIST_HOLDER_TYPE:
                 return new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
-            case MINI_COMMENT_HOLDER_TYPE:
-                return new CommentsMiniInfoItemHolder(infoItemBuilder, parent);
             case COMMENT_HOLDER_TYPE:
-                return new CommentsInfoItemHolder(infoItemBuilder, parent);
+                return new CommentInfoItemHolder(infoItemBuilder, parent);
             default:
                 return new FallbackViewHolder(new View(parent.getContext()));
         }

@@ -1,0 +1,12 @@
+<h4>Verbesserungen</h4>
+<ul>
+<li>Make Links in Kommentare klickbar, erhöhen Textgröße</li>
+<li>seek zum Klicken von Zeitstempel-Links in Kommentare</li>
+<li>Beliebte Registerkarte basierend auf kürzlich ausgewähltem Zustand anzeigen</li>
+<li>Add-Unterstützung für Invidious links</li>
+</ul>
+<h4>Fixed</h4>
+<ul>
+<li>fixed scroll w/kommentare und verwandten Streams deaktiviert</li>
+<li>fixiert CheckForNewAppVersionTask wird ausgeführt, wenn es sollten&#39;t</li>
+</ul>

@@ -36,7 +36,7 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: gradle/wrapper-validation-action@v1
 
       - name: create and checkout branch
@@ -47,7 +47,7 @@ jobs:
         run: git checkout -B "$BRANCH"
 
       - name: set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: "temurin"
@@ -57,7 +57,7 @@ jobs:
         run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: app/build/outputs/apk/debug/*.apk
@@ -80,10 +80,10 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: "temurin"
@@ -98,7 +98,7 @@ jobs:
           script: ./gradlew connectedCheck --stacktrace
 
       - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: android-test-report-api${{ matrix.api-level }}
@@ -111,12 +111,12 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: "temurin"

@@ -10,7 +10,6 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Heerka Turjimaada"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#sawir-shaashadeed">Sawir-shaashadeed</a> &bull; <a href="#faahfaahin">Faahfaahin</a> &bull; <a href="#waxqabadka">Waxqabadka</a> &bull; <a href="#kushubida-iyo-cusboonaysiinta">Kushubida iyo cusboonaysiinta</a> &bull; <a href="#kusoo-kordhin">Kusoo Kordhin</a> &bull; <a href="#ugu-deeq">Ugu Deeq</a> &bull; <a href="#laysinka">Laysinka</a></p>
@@ -111,19 +110,9 @@ Hadaad jeceshahay NewPipe waan ku faraxsanaan lahayn deeq. Waxaad soo diri karta
 
 <table>
   <tr>
-    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="../assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
-    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
-  </tr>
-  <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="Visit NewPipe at bountysource.com" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
   </tr>
 </table>
 

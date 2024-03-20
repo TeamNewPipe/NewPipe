@@ -549,7 +549,7 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Chiedi prima di svuotare la coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a tre da mostrare nella notifica compatta, usando le caselle di controllo sulla destra.</string>
     <string name="notification_action_4_title">Azione pulsante 5</string>
     <string name="notification_action_3_title">Azione pulsante 4</string>
     <string name="notification_action_2_title">Azione pulsante 3</string>
@@ -779,7 +779,7 @@
     <string name="metadata_subscribers">Iscritti</string>
     <string name="show_channel_tabs_summary">Quali schede mostrare nelle pagine del canale</string>
     <string name="show_channel_tabs">Schede canale</string>
-    <string name="channel_tab_shorts">Short</string>
+    <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Caricamento metadati…</string>
     <string name="feed_fetch_channel_tabs">Recupera schede del canale</string>
     <string name="channel_tab_about">Informazioni</string>
@@ -819,4 +819,12 @@
     <string name="share_playlist">Condividi playlist</string>
     <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s risposta</item>
+        <item quantity="many">%s risposte</item>
+        <item quantity="other">%s risposte</item>
+    </plurals>
+    <string name="show_more">Mostra altro</string>
+    <string name="notification_actions_summary_android13">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Le prime tre (riproduci/pausa, precedente e successivo) sono impostate dal sistema e non possono essere cambiate.</string>
+    <string name="show_less">Mostra meno</string>
 </resources>

@@ -20,9 +20,7 @@ import com.grack.nanojson.JsonParser
 import com.grack.nanojson.JsonParserException
 import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
-import org.schabi.newpipe.util.ReleaseVersionUtil.coerceUpdateCheckExpiry
-import org.schabi.newpipe.util.ReleaseVersionUtil.isLastUpdateCheckExpired
-import org.schabi.newpipe.util.ReleaseVersionUtil.isReleaseApk
+import org.schabi.newpipe.util.ReleaseVersionUtil
 import java.io.IOException
 
 class NewVersionWorker(
@@ -84,7 +82,7 @@ class NewVersionWorker(
     @Throws(IOException::class, ReCaptchaException::class)
     private fun checkNewVersion() {
         // Check if the current apk is a github one or not.
-        if (!isReleaseApk()) {
+        if (!ReleaseVersionUtil.isReleaseApk) {
             return
         }
 
@@ -93,7 +91,7 @@ class NewVersionWorker(
             // Check if the last request has happened a certain time ago
             // to reduce the number of API requests.
             val expiry = prefs.getLong(applicationContext.getString(R.string.update_expiry_key), 0)
-            if (!isLastUpdateCheckExpired(expiry)) {
+            if (!ReleaseVersionUtil.isLastUpdateCheckExpired(expiry)) {
                 return
             }
         }
@@ -108,7 +106,7 @@ class NewVersionWorker(
         try {
             // Store a timestamp which needs to be exceeded,
             // before a new request to the API is made.
-            val newExpiry = coerceUpdateCheckExpiry(response.getHeader("expires"))
+            val newExpiry = ReleaseVersionUtil.coerceUpdateCheckExpiry(response.getHeader("expires"))
             prefs.edit {
                 putLong(applicationContext.getString(R.string.update_expiry_key), newExpiry)
             }
@@ -120,13 +118,13 @@ class NewVersionWorker(
 
         // Parse the json from the response.
         try {
-            val githubStableObject = JsonParser.`object`()
+            val newpipeVersionInfo = JsonParser.`object`()
                 .from(response.responseBody()).getObject("flavors")
-                .getObject("github").getObject("stable")
+                .getObject("newpipe")
 
-            val versionName = githubStableObject.getString("version")
-            val versionCode = githubStableObject.getInt("version_code")
-            val apkLocationUrl = githubStableObject.getString("apk")
+            val versionName = newpipeVersionInfo.getString("version")
+            val versionCode = newpipeVersionInfo.getInt("version_code")
+            val apkLocationUrl = newpipeVersionInfo.getString("apk")
             compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode)
         } catch (e: JsonParserException) {
             // Most likely something is wrong in data received from NEWPIPE_API_URL.

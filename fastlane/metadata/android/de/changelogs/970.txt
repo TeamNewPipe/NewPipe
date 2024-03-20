@@ -5,7 +5,7 @@ Neu:
 
 Behoben:
 • Rotationsabsturz auf der Videodetailseite
-• „Mit Kodi spielen“-Button im Player fordert immer auf, Kore zu installieren
+• „Mit Kodi spielen“-Schaltfläche im Player fordert immer auf, Kore zu installieren
 • Setzen von Import- und Exportpfaden wurde behoben und verbessert
 • [YouTube] Anzahl Kommentar-Likes korrigiert
 Und vieles mehr

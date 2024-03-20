@@ -1,0 +1,16 @@
+Baru
+• Mendukung tab saluran
+• Pilih kualitas gambar
+• Dapatkan URL ke semua gambar
+
+Ditingkatkan
+• Aksesibilitas antarmuka pemutar
+• Pilihan audio yang lebih baik untuk unduhan video saja
+• Pilihan untuk memasukkan nama playlist dan video ke konten daftar putar bersama
+
+Diperbaiki
+• [YouTube] Perbaiki penghitungan jumlah suka
+• Perbaiki pemutar yang tidak merespons popup dan crash
+• Pemilihan bahasa yang salah di pemilih bahasa
+• Fokus audio pemutar tidak menerapkan mode senyap
+• Penambahan item daftar putar terkadang tidak berfungsi

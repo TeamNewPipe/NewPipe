@@ -24,7 +24,6 @@ import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -75,6 +74,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -1013,6 +1013,20 @@ public final class VideoDetailFragment
         updateTabLayoutVisibility();
     }
 
+    public void scrollToComment(final CommentsInfoItem comment) {
+        final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
+        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
+        if (!(fragment instanceof CommentsFragment)) {
+            return;
+        }
+
+        // unexpand the app bar only if scrolling to the comment succeeded
+        if (((CommentsFragment) fragment).scrollToComment(comment)) {
+            binding.appBarLayout.setExpanded(false, false);
+            binding.viewPager.setCurrentItem(commentsTabPos, false);
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Play Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -1481,11 +1495,6 @@ public final class VideoDetailFragment
         } else {
             displayUploaderAsSubChannel(info);
         }
-
-        final Drawable buddyDrawable =
-                AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
-        binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
-        binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
         if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {

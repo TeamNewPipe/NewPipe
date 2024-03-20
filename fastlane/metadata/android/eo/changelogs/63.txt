@@ -1,0 +1,8 @@
+### Plibonigojn
+- Importi/eksporti konfiguraĵojn #1333
+- Malpliigi superdesegnaĵon (rendimentan plibonigon) #1371
+- Malgrandajn kodajn plibonigojn #1375
+- Aldoni ĉion pri GDPR #1420
+
+### Fiksitaj
+- Elŝutilo: Fiksi kraŝon kiam ŝarĝi malfinitajn elŝutaĵojn el .giga-j dosieroj #1407

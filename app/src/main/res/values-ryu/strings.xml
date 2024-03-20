@@ -318,7 +318,7 @@
     <string name="import_soundcloud_instructions_hint">うんじゅがID, soundcloud.com/うんじゅがid</string>
     <string name="import_network_expensive_warning">くぬあしっさにゆりちうしんりょうきんがかじゅーいるくとぅがあいびーん。ぐちゅういください。
 \n
-\nずっこうさびーが\？</string>
+\nずっこうさびーが？</string>
     <string name="playback_speed_control">とうるくさゃすう</string>
     <string name="unhook_checkbox">すくどぅとぅうんていりんちゃーさじんかいへいるかん（ゆがむんかむしりやびらん）</string>
     <string name="skip_silence_checkbox">むうんぬあいだにはやうくり</string>
@@ -330,7 +330,7 @@
     <string name="app_update_notification_channel_description">みーさるNewPipeバージョンぬちうち</string>
     <string name="download_to_sdcard_error_title">がいぶちうちゅるすうちはりようなやびらん</string>
     <string name="restore_defaults">っちいちんかいむどぅすん</string>
-    <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが\？</string>
+    <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが？</string>
     <string name="subscribers_count_not_available">とうるくさゃすうはりようでぃきましん</string>
     <string name="conferences">がいぎ</string>
     <string name="start_accept_privacy_policy">ヨーロッパぬいちぱんデータふぐきせい（GDPR）にじゅんきょしーんたみに、NewPipeぬくじんじょうほうふぐほうしんにぐちゅういください。ゆーゆでぃくぃみそーれー。
@@ -369,7 +369,7 @@
     <string name="max_retry_desc">ダウンロードちゅうしするまでぃぬさちゃるいさいしこうかいすん</string>
     <string name="file_deleted">ファイルさちゅるじょさびたん</string>
     <string name="app_update_notification_channel_name">アプリぬこうしんちうち</string>
-    <string name="download_to_sdcard_error_message">やしがいぶSDカードんかいダウンロードなやびらん。ダウンロードフォルダーぬばしょリセットさびーが\？</string>
+    <string name="download_to_sdcard_error_message">やしがいぶSDカードんかいダウンロードなやびらん。ダウンロードフォルダーぬばしょリセットさびーが？</string>
     <string name="saved_tabs_invalid_json">ふずんさったるタブゆみくみらんたみ、デフォルトぬタブしーようさびーん</string>
     <string name="main_page_content_summary">メインページんかいひょうじさりーるタブ</string>
     <string name="updates_setting_description">みーさるバージョンがいようかのうなとぅちにアプリぬこうしんかくにんすんちうちひょうじさびーん</string>
@@ -394,7 +394,7 @@
     <string name="error_postprocessing_stopped">ファイルぬさぎょうちゅうにNewPipeぬくーららりやびたん</string>
     <string name="error_insufficient_storage">デバイスんかいにりらりょうぬあいびらん</string>
     <string name="error_progress_lost">ファイルぬさちゅるじょさったるたみ、しんこうじょうちゅーがうしならりやびたん</string>
-    <string name="confirm_prompt">ダウンロードりりき、あらんでぃダウンロードさるファイルしーょうきょさびーが\？</string>
+    <string name="confirm_prompt">ダウンロードりりき、あらんでぃダウンロードさるファイルしーょうきょさびーが？</string>
     <string name="enable_queue_limit">ダウンロードキューぬせいぎん</string>
     <string name="enable_queue_limit_desc">どうじーがてぃーちぬダウンロードぬじっこうさりやびーん</string>
     <string name="start_downloads">ダウンロードぬかいし</string>
@@ -406,7 +406,7 @@
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークー、がいぶSDカードんかいぬダウンロードぬかのうやいびーん</string>
     <string name="clear_playback_states_title">さいせいいちのさくじょ</string>
     <string name="clear_playback_states_summary">まじりぬさいせいいちさちゅるじょさびーん</string>
-    <string name="delete_playback_states_alert">まじりぬさいせいいちさちゅるじょさびーが\？</string>
+    <string name="delete_playback_states_alert">まじりぬさいせいいちさちゅるじょさびーが？</string>
     <string name="drawer_header_description">サービスぬきりけーい、ぎんじぇーぬしんたく：</string>
     <plurals name="videos">
         <item quantity="one">%sふんぬちゃーしが</item>
@@ -541,7 +541,7 @@
     <string name="unsupported_url_dialog_message">URLにいるしちなやびらんたん。ふかぬアプリっしふぃらちゃびーが？</string>
     <string name="notification_scale_to_square_image_summary">ちまーにひょうじさりーるサムネイル16:9からせいほうけいなさびーん</string>
     <string name="notification_scale_to_square_image_title">サムネイルせいほうけいなすん</string>
-    <string name="notification_actions_summary">いかタップしちうちぬアクションへんしゅうさびーん。みぎぬわんかいあんチェックボックスしーようしコンパクトやるちまーにひょうじすし3ちまっししんたくさびーん</string>
+    <string name="notification_actions_summary">いかタップしちうちぬアクションへんしゅうさびーん。みぎぬわんかいあんチェックボックスしーようしコンパクトやるちまーにひょうじすし３ちまっししんたくさびーん。</string>
     <string name="notification_actions_at_most_three">コンパクトやるちまーにひょうじさりーるアクションー3ちまっしいらぶるくとぅがなやびーん！</string>
     <string name="notification_action_4_title">5ばんみぬアクションボタン</string>
     <string name="notification_action_3_title">4ばんみぬアクションボタン</string>
@@ -718,9 +718,9 @@
     <string name="duplicate_in_playlist">はいーらでぃひょうじさっとーるプレイリストんかえー、しでぃにくぬアイテムぬくくまっとーいびーん。</string>
     <string name="playlist_add_stream_success_duplicate">%dかいじゅうふくちいかさりやびたん</string>
     <string name="unset_playlist_thumbnail">くていサムネイルぬしっていこーいじょ</string>
-    <string name="remove_duplicates_title">じゅうふくさくじょさびーが\？</string>
+    <string name="remove_duplicates_title">じゅうふくさくじょさびーが？</string>
     <string name="ignore_hardware_media_buttons_summary">たとぅいねー、ぶちりボタンぬやんでぃたるヘッドセットしーようそーーあいにびんりやいびーん</string>
-    <string name="remove_duplicates_message">くぬさいせいリストねーんぬじゅうふくさるストリームまじりさくじょさびーが\？</string>
+    <string name="remove_duplicates_message">くぬさいせいリストねーんぬじゅうふくさるストリームまじりさくじょさびーが？</string>
     <string name="ignore_hardware_media_buttons_title">ハードウェアメディアボタンイベントむしすん</string>
     <string name="remove_duplicates">じゅうふくさちゅるじょ</string>
     <string name="feed_hide_streams_title">ちぎぬストリームひょうじ</string>
@@ -806,4 +806,11 @@
     <string name="share_playlist">プレイリストちゅーゆーいん</string>
     <string name="share_playlist_with_titles_message">プレイリストめいてぃがろービデオタイトルんでーぬしょうさいくくむるプレイリスト、あらんでぃビデオURLぬみぬシンプルやるリストとぅしてぃプレイリストちゅーゆーいんさびーん</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%sぬへんしん</item>
+        <item quantity="other">%sぬへんしん</item>
+    </plurals>
+    <string name="show_more">なーふぃんんーじゅん</string>
+    <string name="show_less">ひょうじいきらくすん</string>
+    <string name="notification_actions_summary_android13">いかぬちうちアクションタップしへんしゅうさびーん。さいしょぬみーちぬアクション （さいせい/いちじていし、めーんかい、ちぎんかい）ーシステムにゆってぃしっていさりてぃうぅい、カスタマイズすしぇーなやびらん。</string>
 </resources>

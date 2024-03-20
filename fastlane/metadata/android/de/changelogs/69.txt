@@ -1,0 +1,14 @@
+### New
+- Long-tap Löschen & Teilen in Abonnements #1516
+- Tablet UI & Rasterlistenlayout #1617
+
+### Verbesserungen
+- Speichern und Nachladen des zuletzt verwendeten Seitenverhältnisses #1748
+- Separate Einstellungen für Lautstärke & Helligkeitsgesten #1644
+
+### Fixes
+- Anzahl der Abonnements
+- Foreground Service Erlaubnis für API 28+ Geräte #1830 hinzugefügt
+
+### Known Bugs
+- Wiedergabe kann nicht auf Android P gespeichert werden

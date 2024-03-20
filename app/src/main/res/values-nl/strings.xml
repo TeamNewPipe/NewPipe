@@ -216,7 +216,7 @@
     <string name="override_current_data">Dit overschrijft je huidige configuratie.</string>
     <string name="controls_download_desc">Streambestand downloaden</string>
     <string name="show_info">Informatie tonen</string>
-    <string name="tab_bookmarks">Bijgehouden afspeellijsten</string>
+    <string name="tab_bookmarks">Bĳgehouden afspeellĳsten</string>
     <string name="controls_add_to_playlist_title">Toevoegen aan</string>
     <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
     <string name="create">Aanmaken</string>
@@ -374,7 +374,7 @@
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
-    <string name="pause_downloads_on_mobile">Pauzeren bij mobiele data verbinding</string>
+    <string name="pause_downloads_on_mobile">Pauzeren bij mobiele gegevens­verbinding</string>
     <string name="pause_downloads_on_mobile_desc">Handig voor wanneer u naar mobiel internet overschakelt, hoewel sommige downloads niet gepauzeerd kunnen worden</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
@@ -386,7 +386,7 @@
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
     <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' staat downloads naar een externe SD kaart toe</string>
-    <string name="settings_category_clear_data_title">Wis data</string>
+    <string name="settings_category_clear_data_title">Gegevens wissen</string>
     <string name="enable_playback_resume_title">Afspelen hervatten</string>
     <string name="enable_playback_resume_summary">Verder afspelen vanaf laatste positie</string>
     <string name="enable_playback_state_lists_title">Posities in lijst</string>
@@ -543,7 +543,7 @@
     <string name="notification_action_shuffle">Willekeurig afspelen</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant</string>
+    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
     <string name="notification_action_2_title">Derde actieknop</string>
@@ -806,4 +806,11 @@
     <string name="share_playlist">Afspeellijst delen</string>
     <string name="share_playlist_with_titles_message">Deel afspeellijst met details zoals afspeellijstnaam en videotitels of als een eenvoudige lijst met video-URL\'s</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s antwoord</item>
+        <item quantity="other">%s antwoorden</item>
+    </plurals>
+    <string name="show_more">Meer tonen</string>
+    <string name="show_less">Minder tonen</string>
+    <string name="notification_actions_summary_android13">Bewerk elke meldings­actie hieronder door erop te tikken. De eerste drie acties (afspelen/pauzeren, vorige en volgende) zijn ingesteld door het systeem en kunnen niet worden aangepast.</string>
 </resources>

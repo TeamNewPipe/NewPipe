@@ -145,8 +145,8 @@
         <item quantity="other">%s பார்வைகள்</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">காணொளிகள்</item>
-        <item quantity="other">காணொளிகள்</item>
+        <item quantity="one">%sகாணொளிகள்</item>
+        <item quantity="other">%sகாணொளிகள்</item>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="video_streams_empty">எந்த காணொலியும் இல்லை</string>

@@ -605,7 +605,7 @@
     <string name="notification_colorize_summary">Кольорувати повідомлення основним кольором мініатюри. Підтримується не всіма пристроями</string>
     <string name="notification_colorize_title">Кольорове сповіщення</string>
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
-    <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Позначте не більше трьох для показу в компактному сповіщенні</string>
+    <string name="notification_actions_summary">Відредагуйте кожну дію сповіщення, натиснувши на неї. Виберіть до трьох з них, які будуть показані в компактному сповіщенні, за допомогою прапорців праворуч.</string>
     <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
     <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео.</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
@@ -657,7 +657,7 @@
         <item quantity="other">Видалено %1$s завантажень</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="one">Завантаження завершено</item>
+        <item quantity="one">%s завантаження завершено</item>
         <item quantity="few">%s завантаження завершено</item>
         <item quantity="many">%s завантажень завершено</item>
         <item quantity="other">%s завантажень завершено</item>
@@ -823,4 +823,13 @@
     <string name="share_playlist">Поділитися добіркою</string>
     <string name="share_playlist_with_titles_message">Поділитися добіркою з подробицями, такими як назва добірки та назви відео, або просто списком URL-адрес відео</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">Показати більше</string>
+    <string name="notification_actions_summary_android13">Відредагуйте кожну дію сповіщення, натиснувши на неї. Перші три дії (відтворення/пауза, попередній і наступний) встановлюються системою і не можуть бути змінені.</string>
+    <plurals name="replies">
+        <item quantity="one">%s відповідь</item>
+        <item quantity="few">%s відповіді</item>
+        <item quantity="many">%s відповідей</item>
+        <item quantity="other">%s відповідей</item>
+    </plurals>
+    <string name="show_less">Показати менше</string>
 </resources>

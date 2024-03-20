@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/authorAvatar"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:src="@drawable/placeholder_person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/CircularImageView"
+        tools:ignore="RtlHardcoded" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/authorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/uploadDate"
+        app:layout_constraintEnd_toStartOf="@+id/thumbsUpImage"
+        app:layout_constraintStart_toEndOf="@+id/authorAvatar"
+        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        tools:text="@tools:sample/lorem/random" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/uploadDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintEnd_toStartOf="@+id/thumbsUpImage"
+        app:layout_constraintStart_toEndOf="@+id/authorAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/authorName"
+        tools:text="5 months ago" />
+
+    <ImageView
+        android:id="@+id/thumbsUpImage"
+        android:layout_width="21sp"
+        android:layout_height="21sp"
+        android:layout_marginEnd="@dimen/video_item_detail_like_margin"
+        android:contentDescription="@string/detail_likes_img_view_description"
+        android:src="@drawable/ic_thumb_up"
+        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintEnd_toStartOf="@+id/thumbsUpCount"
+        app:layout_constraintTop_toTopOf="@+id/authorAvatar" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/thumbsUpCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintEnd_toStartOf="@+id/heartImage"
+        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        tools:text="12M" />
+
+    <ImageView
+        android:id="@+id/heartImage"
+        android:layout_width="21sp"
+        android:layout_height="21sp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/detail_heart_img_view_description"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintEnd_toStartOf="@+id/pinnedImage"
+        app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+        app:layout_goneMarginEnd="16dp" />
+
+    <View
+        android:id="@+id/authorTouchArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@+id/commentContent"
+        app:layout_constraintEnd_toStartOf="@+id/thumbsUpImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pinnedImage"
+        android:layout_width="21sp"
+        android:layout_height="21sp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/detail_pinned_comment_view_description"
+        android:src="@drawable/ic_pin"
+        app:layout_constraintBottom_toBottomOf="@+id/authorAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/authorAvatar" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/commentContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorAvatar"
+        tools:text="@tools:sample/lorem/random[10]" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

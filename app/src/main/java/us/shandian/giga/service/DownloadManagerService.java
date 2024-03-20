@@ -23,7 +23,6 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,6 +35,7 @@ import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.PendingIntentCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
@@ -49,6 +49,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
@@ -359,29 +360,29 @@ public class DownloadManagerService extends Service {
      */
     public static void startMission(Context context, String[] urls, StoredFileHelper storage,
                                     char kind, int threads, String source, String psName,
-                                    String[] psArgs, long nearLength, MissionRecoveryInfo[] recoveryInfo) {
-        Intent intent = new Intent(context, DownloadManagerService.class);
-        intent.setAction(Intent.ACTION_RUN);
-        intent.putExtra(EXTRA_URLS, urls);
-        intent.putExtra(EXTRA_KIND, kind);
-        intent.putExtra(EXTRA_THREADS, threads);
-        intent.putExtra(EXTRA_SOURCE, source);
-        intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
-        intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
-        intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
-        intent.putExtra(EXTRA_RECOVERY_INFO, recoveryInfo);
-
-        intent.putExtra(EXTRA_PARENT_PATH, storage.getParentUri());
-        intent.putExtra(EXTRA_PATH, storage.getUri());
-        intent.putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+                                    String[] psArgs, long nearLength,
+                                    ArrayList<MissionRecoveryInfo> recoveryInfo) {
+        final Intent intent = new Intent(context, DownloadManagerService.class)
+                .setAction(Intent.ACTION_RUN)
+                .putExtra(EXTRA_URLS, urls)
+                .putExtra(EXTRA_KIND, kind)
+                .putExtra(EXTRA_THREADS, threads)
+                .putExtra(EXTRA_SOURCE, source)
+                .putExtra(EXTRA_POSTPROCESSING_NAME, psName)
+                .putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs)
+                .putExtra(EXTRA_NEAR_LENGTH, nearLength)
+                .putExtra(EXTRA_RECOVERY_INFO, recoveryInfo)
+                .putExtra(EXTRA_PARENT_PATH, storage.getParentUri())
+                .putExtra(EXTRA_PATH, storage.getUri())
+                .putExtra(EXTRA_STORAGE_TAG, storage.getTag());
 
         context.startService(intent);
     }
 
     private void startMission(Intent intent) {
         String[] urls = intent.getStringArrayExtra(EXTRA_URLS);
-        Uri path = intent.getParcelableExtra(EXTRA_PATH);
-        Uri parentPath = intent.getParcelableExtra(EXTRA_PARENT_PATH);
+        Uri path = IntentCompat.getParcelableExtra(intent, EXTRA_PATH, Uri.class);
+        Uri parentPath = IntentCompat.getParcelableExtra(intent, EXTRA_PARENT_PATH, Uri.class);
         int threads = intent.getIntExtra(EXTRA_THREADS, 1);
         char kind = intent.getCharExtra(EXTRA_KIND, '?');
         String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
@@ -389,7 +390,9 @@ public class DownloadManagerService extends Service {
         String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
-        Parcelable[] parcelRecovery = intent.getParcelableArrayExtra(EXTRA_RECOVERY_INFO);
+        final var recovery = IntentCompat.getParcelableArrayListExtra(intent, EXTRA_RECOVERY_INFO,
+                MissionRecoveryInfo.class);
+        Objects.requireNonNull(recovery);
 
         StoredFileHelper storage;
         try {
@@ -404,15 +407,11 @@ public class DownloadManagerService extends Service {
         else
             ps = Postprocessing.getAlgorithm(psName, psArgs);
 
-        MissionRecoveryInfo[] recovery = new MissionRecoveryInfo[parcelRecovery.length];
-        for (int i = 0; i < parcelRecovery.length; i++)
-            recovery[i] = (MissionRecoveryInfo) parcelRecovery[i];
-
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;
-        mission.recoveryInfo = recovery;
+        mission.recoveryInfo = recovery.toArray(MissionRecoveryInfo[]::new);
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));

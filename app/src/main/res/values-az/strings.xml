@@ -694,7 +694,7 @@
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və linklər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
-    <string name="notification_actions_summary">Aşağıdakı hər bir bildiriş fəaliyyətini üzərinə toxunaraq redaktə et. Sağdakı təsdiq qutularından istifadə edərək yığcam bildirişdə göstərmək üçün onların üçünü seç</string>
+    <string name="notification_actions_summary">Aşağıdakı hər bir bildiriş fəaliyyətini üzərinə toxunaraq düzəliş edin. Sağdakı təsdiq qutularından istifadə edərək yığcam bildirişdə göstərmək üçün onların üçünü seçin.</string>
     <string name="invalid_source">Belə fayl/məzmun mənbəyi yoxdur</string>
     <string name="selected_stream_external_player_not_supported">Seçilən yayım xarici oynadıcılar tərəfindən dəstəklənmir</string>
     <string name="streams_not_yet_supported_removed">Yükləyici tərəfindən hələ dəstəklənməyən yayımlar göstərilmir</string>
@@ -769,4 +769,5 @@
     <string name="feed_fetch_channel_tabs_summary">Axın yenilənərkən əldə edilən səhifələr.Kanal sürətli rejim istifadə edərək yenilənirsə, bu seçimin heç bir təsiri yoxdur.</string>
     <string name="metadata_uploader_avatars">Yükləyici avatarları</string>
     <string name="metadata_thumbnails">Miniatürlər</string>
+    <string name="notification_actions_summary_android13">Aşağıdakı hər bildirişə vuraraq ona düzəliş edin. İlk üç əməl (oynatma/fasilə, əvvəlki və sonrakı) sistem tərəfindən təyin olunub və dəyişdirilə bilməz.</string>
 </resources>

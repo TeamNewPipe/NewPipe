@@ -18,6 +18,7 @@ import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FragmentLicensesBinding
 import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding
+import org.schabi.newpipe.ktx.parcelableArrayList
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
@@ -25,16 +26,15 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
  * Fragment containing the software licenses.
  */
 class LicenseFragment : Fragment() {
-    private lateinit var softwareComponents: Array<SoftwareComponent>
+    private lateinit var softwareComponents: List<SoftwareComponent>
     private var activeSoftwareComponent: SoftwareComponent? = null
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        softwareComponents = arguments?.getParcelableArray(ARG_COMPONENTS) as Array<SoftwareComponent>
+        softwareComponents = arguments?.parcelableArrayList<SoftwareComponent>(ARG_COMPONENTS)!!
+            .sortedBy { it.name } // Sort components by name
         activeSoftwareComponent = savedInstanceState?.getSerializable(SOFTWARE_COMPONENT_KEY) as? SoftwareComponent
-        // Sort components by name
-        softwareComponents.sortBy { it.name }
     }
 
     override fun onDestroy() {
@@ -130,7 +130,8 @@ class LicenseFragment : Fragment() {
             StandardLicenses.GPL3,
             BuildConfig.VERSION_NAME
         )
-        fun newInstance(softwareComponents: Array<SoftwareComponent>): LicenseFragment {
+
+        fun newInstance(softwareComponents: ArrayList<SoftwareComponent>): LicenseFragment {
             val fragment = LicenseFragment()
             fragment.arguments = bundleOf(ARG_COMPONENTS to softwareComponents)
             return fragment
