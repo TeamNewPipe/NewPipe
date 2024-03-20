@@ -889,7 +889,7 @@ public class DownloadDialog extends DialogFragment
             freeSpace = mainStorage.getFreeMemory();
             if (freeSpace <= size) {
                 Toast.makeText(context, getString(R.
-                        string.error_insufficient_storage), Toast.LENGTH_SHORT).show();
+                        string.error_insufficient_storage), Toast.LENGTH_LONG).show();
                 // move the user to storage setting tab
                 final Intent storageSettingsIntent = new Intent(Settings.
                         ACTION_INTERNAL_STORAGE_SETTINGS);
