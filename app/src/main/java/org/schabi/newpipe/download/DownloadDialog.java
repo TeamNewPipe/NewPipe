@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,7 +147,6 @@ public class DownloadDialog extends DialogFragment
     private final ActivityResultLauncher<Intent> requestDownloadPickVideoFolderLauncher =
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation
@@ -565,7 +565,6 @@ public class DownloadDialog extends DialogFragment
         }
     }
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Listeners
     //////////////////////////////////////////////////////////////////////////*/
@@ -784,6 +783,7 @@ public class DownloadDialog extends DialogFragment
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
         final String selectedMediaType;
+        final long size;
 
         // first, build the filename and get the output folder (if possible)
         // later, run a very very very large file checking logic
@@ -795,6 +795,7 @@ public class DownloadDialog extends DialogFragment
                 selectedMediaType = getString(R.string.last_download_type_audio_key);
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
+                size = getWrappedAudioStreams().getSizeInBytes(selectedAudioIndex);
                 if (format == MediaFormat.WEBMA_OPUS) {
                     mimeTmp = "audio/ogg";
                     filenameTmp += "opus";
@@ -807,6 +808,7 @@ public class DownloadDialog extends DialogFragment
                 selectedMediaType = getString(R.string.last_download_type_video_key);
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
+                size = wrappedVideoStreams.getSizeInBytes(selectedVideoIndex);
                 if (format != null) {
                     mimeTmp = format.mimeType;
                     filenameTmp += format.getSuffix();
@@ -816,6 +818,7 @@ public class DownloadDialog extends DialogFragment
                 selectedMediaType = getString(R.string.last_download_type_subtitle_key);
                 mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
+                size = wrappedSubtitleStreams.getSizeInBytes(selectedSubtitleIndex);
                 if (format != null) {
                     mimeTmp = format.mimeType;
                 }
@@ -869,6 +872,22 @@ public class DownloadDialog extends DialogFragment
                     context);
 
             return;
+        }
+
+        // Check for free memory space (for api 24 and up)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            final long freeSpace = mainStorage.getFreeMemory();
+            if (freeSpace <= size) {
+                Toast.makeText(context, getString(R.
+                        string.error_insufficient_storage), Toast.LENGTH_LONG).show();
+                // move the user to storage setting tab
+                final Intent storageSettingsIntent = new Intent(Settings.
+                        ACTION_INTERNAL_STORAGE_SETTINGS);
+                if (storageSettingsIntent.resolveActivity(context.getPackageManager()) != null) {
+                    startActivity(storageSettingsIntent);
+                }
+                return;
+            }
         }
 
         // check for existing file with the same name
