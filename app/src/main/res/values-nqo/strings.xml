@@ -517,7 +517,7 @@
     <string name="error_http_not_found">ߊ߬ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="error_postprocessing_failed">ߞߐߝߍ߫-ߦߙߍߞߍߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫</string>
     <string name="error_postprocessing_stopped">ߣߌߎߔߌߔ ߘߊߕߎ߲߯ ߘߊ߫ ߟߋ߬ ߞߵߊ߬ ߕߘߍ߬ ߊ߬ ߦߋ߫ ߓߊ߯ߙߊ߫ ߟߊ߫ ߞߐߕߐ߮ ߞߊ߲߬</string>
-    <string name="error_insufficient_storage">ߜߍߞߣߍ߫ ߛߌ߫ ߕߍ߫ ߕߙߏߞߏ ߞߊ߲߬</string>
+    <string name="error_insufficient_storage_left">ߜߍߞߣߍ߫ ߛߌ߫ ߕߍ߫ ߕߙߏߞߏ ߞߊ߲߬</string>
     <string name="error_progress_lost">ߢߍߕߊ߮ ߓߘߊ߫ ߝߏ߫߸ ߓߊߏ߬ ߞߐߕߐ߮ ߓߘߊ߫ ߖߏ߬ߛߌ߫</string>
     <string name="error_download_resource_gone">ߟߊ߬ߖߌ߰ߟߌ ߣߌ߲߬ ߕߍ߫ ߛߋ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫</string>
     <string name="delete_downloaded_files">ߞߊ߬ ߞߐߕߐ߯ ߟߊߖߌ߰ߣߍ߲ ߠߎ߬ ߖߏ߬ߛߌ߫</string>

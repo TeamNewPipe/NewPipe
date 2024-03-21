@@ -237,7 +237,7 @@
     <string name="error_download_resource_gone">Није могуће опоравити ово преузимање</string>
     <string name="error_timeout">Веза је истекла</string>
     <string name="error_progress_lost">Напредак је изгубљен, јер је фајл избрисан</string>
-    <string name="error_insufficient_storage">Недовољно меморије на уређају</string>
+    <string name="error_insufficient_storage_left">Недовољно меморије на уређају</string>
     <string name="error_postprocessing_stopped">NewPipe је затворен док је радио на фајлу</string>
     <string name="error_postprocessing_failed">Накнадна обрада није успела</string>
     <string name="error_http_not_found">Није пронађено</string>

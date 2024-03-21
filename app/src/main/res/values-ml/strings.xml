@@ -494,7 +494,7 @@
     <string name="error_download_resource_gone">ഈ ഡൗൺലോഡ് വീണ്ടെടുക്കാനാവില്ല</string>
     <string name="error_timeout">കണക്ഷൻ കാലഹരണപ്പെട്ടു</string>
     <string name="error_progress_lost">ഫയൽ ഇല്ലാതാക്കിയതിനാൽ പുരോഗതി നഷ്‌ടപ്പെട്ടു</string>
-    <string name="error_insufficient_storage">ഉപകരണത്തിൽ ഇനിയൊരു സ്ഥലവും ബാക്കിയില്ല</string>
+    <string name="error_insufficient_storage_left">ഉപകരണത്തിൽ ഇനിയൊരു സ്ഥലവും ബാക്കിയില്ല</string>
     <string name="error_postprocessing_stopped">ഫയലിൽ പ്രവർത്തിക്കുമ്പോൾ ന്യൂപൈപ്പ് അടച്ചു</string>
     <string name="error_postprocessing_failed">പോസ്റ്റ്-പ്രോസസ്സിംഗ് പരാജയപ്പെട്ടു</string>
     <string name="error_http_not_found">കണ്ടെത്താനായില്ല</string>

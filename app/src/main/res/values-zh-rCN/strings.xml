@@ -393,7 +393,7 @@
     <string name="overwrite_failed">无法覆盖文件</string>
     <string name="download_already_pending">已暂停下载包含此名称的任务</string>
     <string name="error_postprocessing_stopped">NewPipe 在处理文件时被关闭</string>
-    <string name="error_insufficient_storage">设备上没有剩余储存空间</string>
+    <string name="error_insufficient_storage_left">设备上没有剩余储存空间</string>
     <string name="error_progress_lost">进度丢失，文件已被删除</string>
     <string name="error_timeout">连接超时</string>
     <string name="confirm_prompt">是否清空下载记录或删除所有下载的文件？</string>

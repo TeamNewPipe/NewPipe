@@ -348,7 +348,7 @@
     <string name="error_download_resource_gone">A letöltést nem lehet helyrehozni</string>
     <string name="error_timeout">Kapcsolati időtúllépés</string>
     <string name="error_progress_lost">Az előrehaladás elveszett, mert a fájlt törölték</string>
-    <string name="error_insufficient_storage">Nincs hely az eszközön</string>
+    <string name="error_insufficient_storage_left">Nincs hely az eszközön</string>
     <string name="error_postprocessing_stopped">A NewPipe leállt a fájl feldolgozása közben</string>
     <string name="error_postprocessing_failed">Utófeldolgozás sikertelen</string>
     <string name="error_http_not_found">Nincs talalat</string>

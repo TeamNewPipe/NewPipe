@@ -401,7 +401,7 @@
     <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
-    <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
+    <string name="error_insufficient_storage_left">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
     <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>

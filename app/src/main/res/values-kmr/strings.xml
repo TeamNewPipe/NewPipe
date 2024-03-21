@@ -388,7 +388,7 @@
     <string name="error_download_resource_gone">Vê dakêşanê nikare paşde bibe</string>
     <string name="error_timeout">Dema girêdanê</string>
     <string name="error_progress_lost">Pêşkeftin winda bû, ji ber ku pel hate jêbirin</string>
-    <string name="error_insufficient_storage">Cih li cîhazê namîne</string>
+    <string name="error_insufficient_storage_left">Cih li cîhazê namîne</string>
     <string name="error_postprocessing_stopped">Dema ku pel dixebitî NewPipe hate girtin</string>
     <string name="error_postprocessing_failed">Pêvajoya şûnda têk çû</string>
     <string name="error_http_not_found">Peyda nebû</string>

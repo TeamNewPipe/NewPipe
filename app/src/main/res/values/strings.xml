@@ -616,7 +616,8 @@
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
     <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
-    <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_insufficient_storage">Not enough free space on device</string>
+    <string name="error_insufficient_storage_left">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>

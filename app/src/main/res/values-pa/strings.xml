@@ -395,7 +395,7 @@
     <string name="overwrite_failed">ਫਾਈਲ ਓਵਰਰਾਈਟ ਨਹੀਂ ਹੋ ਸਕਦੀ</string>
     <string name="download_already_pending">ਇਸ ਨਾਮ ਦਾ ਇੱਕ ਡਾਊਨਲੋਡ ਬਕਾਇਆ ਹੈ</string>
     <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ ਨਿਊਪਾਈਪ ਬੰਦ ਕੀਤੀ ਗਈ</string>
-    <string name="error_insufficient_storage">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
+    <string name="error_insufficient_storage_left">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
     <string name="error_progress_lost">ਪ੍ਰਗਤੀ ਖਤਮ ਹੋ ਗਈ, ਕਿਉਂਕਿ ਫਾਈਲ ਮਿਟਾਈ ਗਈ</string>
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਸਮਾਪਤ</string>
     <string name="confirm_prompt">ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਜਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>

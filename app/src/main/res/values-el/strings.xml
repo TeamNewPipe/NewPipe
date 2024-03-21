@@ -395,7 +395,7 @@
     <string name="overwrite_failed">δεν είναι δυνατή η αντικατάσταση του αρχείου</string>
     <string name="download_already_pending">Υπάρχει μια εκκρεμής λήψη με αυτό το όνομα</string>
     <string name="error_postprocessing_stopped">Το NewPipe τερματίστηκε ενώ επεξεργάζονταν το αρχείο</string>
-    <string name="error_insufficient_storage">Δεν υπάρχει αρκετός χώρος στη συσκευή</string>
+    <string name="error_insufficient_storage_left">Δεν υπάρχει αρκετός χώρος στη συσκευή</string>
     <string name="error_progress_lost">Η πρόοδος χάθηκε, επειδή το αρχείο διαγράφηκε</string>
     <string name="error_timeout">Λήξη χρονικού ορίου σύνδεσης</string>
     <string name="confirm_prompt">Θέλετε να διαγράψετε το ιστορικό λήψεων σας ή να διαγράψετε όλα τα αρχεία που έχετε λάβει;</string>

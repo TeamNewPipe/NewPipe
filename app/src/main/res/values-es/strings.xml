@@ -376,7 +376,7 @@
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Falló el posprocesamiento</string>
     <string name="error_postprocessing_stopped">NewPipe se cerró mientras se trabajaba en el archivo</string>
-    <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
+    <string name="error_insufficient_storage_left">No hay suficiente espacio disponible en el dispositivo</string>
     <string name="error_progress_lost">Progreso perdido, porque el archivo fue borrado</string>
     <string name="error_timeout">El tiempo de conexión expiro</string>
     <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>

@@ -708,7 +708,7 @@
     <string name="app_description">ᱟᱱᱰᱨᱚᱭᱮᱰ ᱨᱮ ᱞᱤᱵᱨᱮ ᱞᱟᱭᱤᱴᱣᱮᱴ ᱥᱴᱨᱤᱢᱤᱝ</string>
     <string name="metadata_tags">ᱴᱮᱜᱥ</string>
     <string name="metadata_privacy_public">ᱥᱚᱨᱠᱟᱨᱤ</string>
-    <string name="error_insufficient_storage">ᱚᱱᱚᱞ ᱨᱮ ᱡᱟᱭᱜᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="error_insufficient_storage_left">ᱚᱱᱚᱞ ᱨᱮ ᱡᱟᱭᱜᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="detail_sub_channel_thumbnail_view_description">ᱪᱮᱱᱮᱞ ᱨᱮᱱᱟᱜ ᱟᱵᱟᱛᱟᱨ ᱛᱷᱩᱱᱤᱠᱟ</string>
     <string name="playlist_page_summary">ᱥᱮᱨᱮᱧ ᱞᱤᱥᱴᱤ ᱥᱟᱦᱴᱟ</string>
     <string name="never">ᱵᱟᱝ</string>

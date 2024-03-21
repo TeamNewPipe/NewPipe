@@ -316,7 +316,7 @@
     <string name="error_download_resource_gone">Impossìbile recuperare custu iscarrigamentu</string>
     <string name="error_timeout">Connessione iscadida</string>
     <string name="error_progress_lost">Su progressu s\'est pèrdidu, ca su documentu est istadu iscantzelladu</string>
-    <string name="error_insufficient_storage">Perunu ispàtziu abarradu in su dispositivu</string>
+    <string name="error_insufficient_storage_left">Perunu ispàtziu abarradu in su dispositivu</string>
     <string name="error_postprocessing_stopped">NewPipe est istadu serradu in su mentres chi fiat traballende a su documentu</string>
     <string name="error_postprocessing_failed">Post-protzessamentu fallidu</string>
     <string name="error_http_not_found">No agatadu</string>

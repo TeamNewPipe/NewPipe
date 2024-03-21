@@ -378,7 +378,7 @@
     <string name="error_progress_lost">ପ୍ରଗତି ହଜିଗଲା, କାରଣ ଫାଇଲ୍ ଡିଲିଟ୍ ହେଲା</string>
     <string name="error_postprocessing_failed">ପରବର୍ତ୍ତୀ ପ୍ରକ୍ରିୟାକରଣ ବିଫଳ ହେଲା</string>
     <string name="error_postprocessing_stopped">ଫାଇଲରେ କାମ କରିବାବେଳେ ନ୍ୟୁ ପାଇପ୍ ବନ୍ଦ ହୋଇଯାଇଥିଲା</string>
-    <string name="error_insufficient_storage">ଡିଭାଇସରେ କୌଣସି ସ୍ଥାନ ବାକି ନାହିଁ</string>
+    <string name="error_insufficient_storage_left">ଡିଭାଇସରେ କୌଣସି ସ୍ଥାନ ବାକି ନାହିଁ</string>
     <string name="delete_downloaded_files_confirm">ଡିସ୍କରୁ ସମସ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକୁ ଲିଭାନ୍ତୁ\?</string>
     <string name="stop">ବନ୍ଦ କର</string>
     <string name="max_retry_msg">ସର୍ବାଧିକ ପୁନଃଚେଷ୍ଟା</string>

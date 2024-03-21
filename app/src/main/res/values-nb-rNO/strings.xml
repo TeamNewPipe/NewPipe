@@ -395,7 +395,7 @@
     <string name="overwrite_failed">Kan ikke overskrive filen</string>
     <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
     <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
-    <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
+    <string name="error_insufficient_storage_left">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
     <string name="confirm_prompt">Ønsker du å slette din nedlastingshistorikk eller slette alle nedlastede filer\?</string>

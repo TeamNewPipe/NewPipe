@@ -82,7 +82,7 @@
     <string name="error_download_resource_gone">Nuk mund të rikuperohet ky shkarkim</string>
     <string name="error_timeout">Koha e lidhjes skadoi</string>
     <string name="error_progress_lost">Progresi humbi, pasi skedari është fshirë</string>
-    <string name="error_insufficient_storage">Nuk ka vend bosh në pajisje</string>
+    <string name="error_insufficient_storage_left">Nuk ka vend bosh në pajisje</string>
     <string name="error_postprocessing_stopped">NewPipe u mbyll ndërkohë që po punohej mbi skedarin</string>
     <string name="error_postprocessing_failed">Procesimi dështoi</string>
     <string name="error_http_not_found">Nuk u gjet</string>

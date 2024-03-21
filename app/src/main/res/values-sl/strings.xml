@@ -211,7 +211,7 @@
     <string name="clear_download_history">Počisti zgodovino prenosa</string>
     <string name="error_download_resource_gone">Ni mogoče povrniti prenos</string>
     <string name="error_progress_lost">Napredek je izgubljen, ker je bila datoteka izbrisana</string>
-    <string name="error_insufficient_storage">Ni več prostora v vaši napravi</string>
+    <string name="error_insufficient_storage_left">Ni več prostora v vaši napravi</string>
     <string name="error_postprocessing_stopped">NewPipe se je zaprl medtem ko je delal z datoteko</string>
     <string name="error_http_not_found">Ni najden</string>
     <string name="error_http_no_content">Strežnik ne pošilja informacij</string>

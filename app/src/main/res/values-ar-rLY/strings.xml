@@ -271,7 +271,7 @@
     <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
     <string name="rename">إعادة التسمية</string>
-    <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
+    <string name="error_insufficient_storage_left">لم يتبقى مساحة في الجهاز</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
     <string name="notifications_disabled">تم تعطيل الإشعارات</string>

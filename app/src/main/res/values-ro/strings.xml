@@ -475,7 +475,7 @@
     <string name="error_download_resource_gone">Nu se poate recupera această descărcare</string>
     <string name="error_timeout">Conexiunea a expirat</string>
     <string name="error_progress_lost">Progres pierdut, deoarece fișierul a fost șters</string>
-    <string name="error_insufficient_storage">Nu a mai rămas spațiu pe dispozitiv</string>
+    <string name="error_insufficient_storage_left">Nu a mai rămas spațiu pe dispozitiv</string>
     <string name="error_postprocessing_stopped">NewPipe a fost închis în timp ce lucra la fișier</string>
     <string name="error_postprocessing_failed">Post-procesarea a eșuat</string>
     <string name="error_http_not_found">Nu a fost găsit</string>

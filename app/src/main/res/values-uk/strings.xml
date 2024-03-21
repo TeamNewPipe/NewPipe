@@ -398,7 +398,7 @@
     <string name="overwrite_failed">не можу перезаписати файл</string>
     <string name="download_already_pending">Завантаження з такою назвою вже додано в чергу</string>
     <string name="error_postprocessing_stopped">NewPipe був закритий під час роботи над файлом</string>
-    <string name="error_insufficient_storage">На пристрої не залишилося вільного місця</string>
+    <string name="error_insufficient_storage_left">На пристрої не залишилося вільного місця</string>
     <string name="error_progress_lost">Прогрес втрачено через видалення файлу</string>
     <string name="error_timeout">Час очікування з\'єднання вичерпано</string>
     <string name="confirm_prompt">Очистити історію завантажень чи завантажені файли\?</string>

@@ -548,7 +548,7 @@
     <string name="remove_watched">İzləniləni sil</string>
     <string name="downloads_storage_use_saf_title">Sistem qovluğu seçicisini (SAF) istifadə et</string>
     <string name="error_timeout">Bağlantı fasiləsi</string>
-    <string name="error_insufficient_storage">Cihazda yer qalmayıb</string>
+    <string name="error_insufficient_storage_left">Cihazda yer qalmayıb</string>
     <string name="error_postprocessing_stopped">Fayl üzərində işləyərkən NewPipe bağlandı</string>
     <string name="error_postprocessing_failed">Emaldan sonra uğursuz oldu</string>
     <string name="error_connect_host">Serverə qoşulmaq mümkün deyil</string>

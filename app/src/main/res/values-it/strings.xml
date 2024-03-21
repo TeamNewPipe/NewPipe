@@ -399,7 +399,7 @@
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
     <string name="download_already_pending">C\'è un download in corso con questo nome</string>
     <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
-    <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
+    <string name="error_insufficient_storage_left">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Vuoi cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo download per volta</string>
