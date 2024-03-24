@@ -28,6 +28,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -338,18 +339,9 @@ public final class ListHelper {
             return Collections.emptyList();
         }
 
-        final HashMap<String, List<AudioStream>> collectedStreams = new HashMap<>();
-
-        for (final AudioStream stream : audioStreams) {
-            final String trackId = Objects.toString(stream.getAudioTrackId(), "");
-            if (collectedStreams.containsKey(trackId)) {
-                collectedStreams.get(trackId).add(stream);
-            } else {
-                final List<AudioStream> list = new ArrayList<>();
-                list.add(stream);
-                collectedStreams.put(trackId, list);
-            }
-        }
+        final Map<String, List<AudioStream>> collectedStreams = audioStreams.stream()
+                .collect(Collectors.groupingBy(stream ->
+                        Objects.requireNonNullElse(stream.getAudioTrackId(), "")));
 
         // Filter unknown audio tracks if there are multiple tracks
         if (collectedStreams.size() > 1) {
