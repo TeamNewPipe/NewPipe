@@ -643,6 +643,7 @@ public final class ListHelper {
                 context.getString(R.string.best_resolution_key), defaultFormat, videoStreams);
     }
 
+    @Nullable
     private static MediaFormat getDefaultFormat(@NonNull final Context context,
                                                 @StringRes final int defaultFormatKey,
                                                 @StringRes final int defaultFormatValueKey) {
@@ -651,18 +652,14 @@ public final class ListHelper {
 
         final String defaultFormat = context.getString(defaultFormatValueKey);
         final String defaultFormatString = preferences.getString(
-                context.getString(defaultFormatKey), defaultFormat);
+                context.getString(defaultFormatKey),
+                defaultFormat
+        );
 
-        MediaFormat defaultMediaFormat = getMediaFormatFromKey(context, defaultFormatString);
-        if (defaultMediaFormat == null) {
-            preferences.edit().putString(context.getString(defaultFormatKey), defaultFormat)
-                    .apply();
-            defaultMediaFormat = getMediaFormatFromKey(context, defaultFormat);
-        }
-
-        return defaultMediaFormat;
+        return getMediaFormatFromKey(context, defaultFormatString);
     }
 
+    @Nullable
     private static MediaFormat getMediaFormatFromKey(@NonNull final Context context,
                                                      @NonNull final String formatKey) {
         MediaFormat format = null;
