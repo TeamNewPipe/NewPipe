@@ -379,7 +379,7 @@
     <string name="overwrite_failed">फाइल को ओवरराइट नहीं कर सकते</string>
     <string name="download_already_pending">इस नाम का एक डाउनलोड बाकी है</string>
     <string name="error_postprocessing_stopped">फ़ाइल पर कार्य करते समय न्यूपाइप बंद किया गया</string>
-    <string name="error_insufficient_storage">डिवाइस पर जगह समाप्त</string>
+    <string name="error_insufficient_storage_left">डिवाइस पर जगह समाप्त</string>
     <string name="error_progress_lost">प्रगति खो गई, क्योंकि फ़ाइल मिटा दी गई थी</string>
     <string name="error_timeout">कनेक्शन का समय समाप्त</string>
     <string name="confirm_prompt">क्या आप अपना डाउनलोड इतिहास मिटाना चाहते हैं या सभी डाउनलोड की गई फ़ाइलों को हटाना चाहते हैं\?</string>

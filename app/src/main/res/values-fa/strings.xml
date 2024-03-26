@@ -384,7 +384,7 @@
     <string name="overwrite_failed">ناتوانی در بازنویسی پرونده</string>
     <string name="download_already_pending">یک بارگیری دیگر با همین نام در صف قرار دارد</string>
     <string name="error_postprocessing_stopped">نیوپایپ در خلال کار روی پرونده، بسته شد</string>
-    <string name="error_insufficient_storage">فضایی روی دستگاه باقی نمانده است</string>
+    <string name="error_insufficient_storage_left">فضایی روی دستگاه باقی نمانده است</string>
     <string name="error_progress_lost">پیشرفت کار متوفق شد زیرا پرونده پاک شده است</string>
     <string name="error_timeout">پایان زمان اتصال</string>
     <string name="confirm_prompt">می‌خواهید تاریخچه بارگیری را پاک کنید یا همه پرونده‌هایی که بارگیری شده‌اند؟</string>

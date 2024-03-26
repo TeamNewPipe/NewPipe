@@ -503,7 +503,7 @@
     <string name="error_download_resource_gone">Kan inte återställa den här hämtningen</string>
     <string name="error_timeout">Anslutnings avbrott</string>
     <string name="error_progress_lost">Framsteg förlorat, för att filen blev borttagen</string>
-    <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
+    <string name="error_insufficient_storage_left">Inget utrymme kvar på enhet</string>
     <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
     <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
     <string name="error_report_open_issue_button_text">Rapportera på GitHub</string>

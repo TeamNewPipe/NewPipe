@@ -481,7 +481,7 @@
     <string name="error_download_resource_gone">Tätä latausta ei voi palauttaa</string>
     <string name="error_timeout">Yhteys aikakatkaistiin</string>
     <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>
-    <string name="error_insufficient_storage">Laitteella ei ole tilaa</string>
+    <string name="error_insufficient_storage_left">Laitteella ei ole tilaa</string>
     <string name="error_postprocessing_stopped">NewPipe suljettiin, kun se käsitteli tiedostoa</string>
     <string name="error_postprocessing_failed">Jälkikäsittely epäonnistui</string>
     <string name="error_http_not_found">Ei löytynyt</string>

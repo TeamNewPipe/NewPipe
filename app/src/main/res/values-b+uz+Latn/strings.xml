@@ -416,7 +416,7 @@
     <string name="error_download_resource_gone">Ushbu yuklab olishni tiklab bo\'lmaydi</string>
     <string name="error_timeout">Ulanish vaqti tugadi</string>
     <string name="error_progress_lost">Siljish yo\'qoldi, chunki fayl o\'chirildi</string>
-    <string name="error_insufficient_storage">Qurilmada bo\'sh joy qolmadi</string>
+    <string name="error_insufficient_storage_left">Qurilmada bo\'sh joy qolmadi</string>
     <string name="error_postprocessing_stopped">NewPipe fayl ustida ishlash paytida yopilgan</string>
     <string name="error_postprocessing_failed">Keyingi ishlov berilmadi</string>
     <string name="error_http_not_found">Topilmadi</string>

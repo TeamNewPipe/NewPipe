@@ -419,7 +419,7 @@
     <string name="error_download_resource_gone">Non se pode recuperar esta descarga</string>
     <string name="error_timeout">O tempo de espera da conexión</string>
     <string name="error_progress_lost">Perdeuse o progreso porque se eliminou o ficheiro</string>
-    <string name="error_insufficient_storage">Non queda espazo no dispositivo</string>
+    <string name="error_insufficient_storage_left">Non queda espazo no dispositivo</string>
     <string name="error_postprocessing_stopped">NewPipe pechouse mentres se traballaba no ficheiro</string>
     <string name="error_postprocessing_failed">Fallou o post-procesamento</string>
     <string name="error_http_not_found">Non se atopou</string>

@@ -389,7 +389,7 @@
     <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
     <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
     <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
-    <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
+    <string name="error_insufficient_storage_left">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
     <string name="confirm_prompt">Apakah Anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
     <string name="enable_queue_limit">Batasi antrean unduhan</string>

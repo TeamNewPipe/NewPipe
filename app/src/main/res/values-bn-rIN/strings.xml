@@ -141,7 +141,7 @@
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
     <string name="stop">বন্ধ করুন</string>
     <string name="clear_download_history">ডাওন লোড ইতিহাস মুছুন</string>
-    <string name="error_insufficient_storage">ডিভাইস এ স্পেস নেই</string>
+    <string name="error_insufficient_storage_left">ডিভাইস এ স্পেস নেই</string>
     <string name="error_http_not_found">পাওয়া যায় নি</string>
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="download_failed">ডাউন লোড হয় নি</string>

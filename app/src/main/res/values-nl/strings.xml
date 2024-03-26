@@ -396,7 +396,7 @@
     <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
     <string name="overwrite_failed">Kan bestand niet overschrijven</string>
     <string name="download_already_pending">Er is al een download met deze naam bezig</string>
-    <string name="error_insufficient_storage">Geen vrije ruimte meer op het apparaat</string>
+    <string name="error_insufficient_storage_left">Geen vrije ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
     <string name="confirm_prompt">Wilt u de downloadgeschiedenis of alle gedownloade bestanden verwijderen\?</string>
     <string name="enable_queue_limit">Download­wachtrij limiteren</string>

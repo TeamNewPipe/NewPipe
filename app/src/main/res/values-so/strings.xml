@@ -520,7 +520,7 @@
     <string name="error_download_resource_gone">Dajintan lama hagaajin karo</string>
     <string name="error_timeout">Ku xidhidii ayaa wakhtigii ka dhacay</string>
     <string name="error_progress_lost">Hawshii socotay way kala kacday, sababtoo ah shayga waa lala saaray</string>
-    <string name="error_insufficient_storage">Meel banaan oo wax lagu kaydiyo aalaada kuma hadhin</string>
+    <string name="error_insufficient_storage_left">Meel banaan oo wax lagu kaydiyo aalaada kuma hadhin</string>
     <string name="error_postprocessing_stopped">NewPipe waxaa la xidhay asagoo fayl ka shaqaynaya</string>
     <string name="error_postprocessing_failed">Habayntii way guuldareystay</string>
     <string name="error_http_not_found">Lama helin</string>

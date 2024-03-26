@@ -398,7 +398,7 @@
     <string name="overwrite_failed">O arquivo não pode ser sobrescrito</string>
     <string name="download_already_pending">Já existe um download pendente com este nome</string>
     <string name="error_postprocessing_stopped">O NewPipe foi fechado enquanto manipulava o arquivo</string>
-    <string name="error_insufficient_storage">Sem espaço disponível</string>
+    <string name="error_insufficient_storage_left">Sem espaço disponível</string>
     <string name="error_progress_lost">O progresso foi perdido pois o arquivo foi excluído</string>
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Excluir todo o histórico de downloads ou excluir todos os arquivos baixados\?</string>

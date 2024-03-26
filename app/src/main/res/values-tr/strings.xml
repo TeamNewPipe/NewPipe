@@ -390,7 +390,7 @@
     <string name="overwrite_failed">dosyanın üzerine yazılamaz</string>
     <string name="download_already_pending">Bu isim ile bekleyen bir indirme var</string>
     <string name="error_postprocessing_stopped">NewPipe bu dosya üzerinde çalışırken kapandı</string>
-    <string name="error_insufficient_storage">Aygıt üzerinde yer yok</string>
+    <string name="error_insufficient_storage_left">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
     <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz\?</string>

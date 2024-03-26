@@ -385,7 +385,7 @@
     <string name="enable_playback_resume_title">Reprèn la reproducció</string>
     <string name="overwrite_failed">No es pot sobreescriure el fitxer</string>
     <string name="download_already_pending">Hi ha una baixada pendent amb aquest nom</string>
-    <string name="error_insufficient_storage">No hi ha espai disponible al dispositiu</string>
+    <string name="error_insufficient_storage_left">No hi ha espai disponible al dispositiu</string>
     <string name="error_progress_lost">S\'ha perdut el progrés perquè s\'ha eliminat el fitxer</string>
     <string name="error_timeout">S\'ha excedit el temps d\'espera de la connexió</string>
     <string name="confirm_prompt">Esteu segurs que voleu esborrar el vostre historial de baixades o esborrar-ne tots els fitxers\?</string>

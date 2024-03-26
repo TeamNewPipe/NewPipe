@@ -389,7 +389,7 @@
     <string name="overwrite_failed">파일을 덮어쓰기할 수 없습니다</string>
     <string name="download_already_pending">해당 이름으로 대기된 다운로드가 있습니다</string>
     <string name="error_postprocessing_stopped">파일 작업 중에 Newpipe가 종료되었습니다</string>
-    <string name="error_insufficient_storage">남은 저장공간이 없습니다</string>
+    <string name="error_insufficient_storage_left">남은 저장공간이 없습니다</string>
     <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
     <string name="error_timeout">연결시간 초과</string>
     <string name="confirm_prompt">모든 다운로드 기록과 파일을 삭제합니다.확실합니까\?</string>

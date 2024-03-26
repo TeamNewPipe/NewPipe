@@ -505,7 +505,7 @@
     <string name="clear_download_history">Kustuta allalaadimiste ajalugu</string>
     <string name="error_download_resource_gone">Seda allalaadimist ei saa uuesti alustada</string>
     <string name="error_timeout">Ühendus aegus</string>
-    <string name="error_insufficient_storage">Seadmes pole enam ruumi</string>
+    <string name="error_insufficient_storage_left">Seadmes pole enam ruumi</string>
     <string name="download_already_pending">Sellise nimega allalaadimine on juba pooleli</string>
     <string name="overwrite_failed">faili asendamine ei õnnestu</string>
     <string name="feed_create_new_group_button_title">Uus</string>

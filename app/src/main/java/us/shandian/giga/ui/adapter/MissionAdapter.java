@@ -490,7 +490,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 showError(mission, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
                 return;
             case ERROR_INSUFFICIENT_STORAGE:
-                msg = R.string.error_insufficient_storage;
+                msg = R.string.error_insufficient_storage_left;
                 break;
             case ERROR_UNKNOWN_EXCEPTION:
                 if (mission.errObject != null) {

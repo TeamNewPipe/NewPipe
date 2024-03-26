@@ -390,7 +390,7 @@
     <string name="overwrite_failed">ファイルを上書きできません</string>
     <string name="download_already_pending">同じファイル名のダウンロードが既に進行中です</string>
     <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
-    <string name="error_insufficient_storage">デバイスに空き容量がありません</string>
+    <string name="error_insufficient_storage_left">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
     <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか\?</string>
     <string name="enable_queue_limit">ダウンロード キューの制限</string>

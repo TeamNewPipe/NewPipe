@@ -407,7 +407,7 @@
     <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
     <string name="download_already_pending">هناك تنزيل معلق بهذا الاسم</string>
     <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
-    <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
+    <string name="error_insufficient_storage_left">لم يتبقى مساحة في الجهاز</string>
     <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="confirm_prompt">هل تريد محو سجل التنزيل، أم تريد حذف جميع الملفات التي تم تنزيلها؟</string>

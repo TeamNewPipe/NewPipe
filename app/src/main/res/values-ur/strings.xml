@@ -390,7 +390,7 @@
     <string name="overwrite_failed">فائل برتحریر نہیں کر سکتا</string>
     <string name="download_already_pending">اس نام کے ساتھ ڈاؤن لوڈ زیر التوا ہے</string>
     <string name="error_postprocessing_stopped">فائل پر کام کرنے کے دوران نیو پائپ بند کردی گئی تھی</string>
-    <string name="error_insufficient_storage">آلہ میں کوئی جگہ نہیں بچی</string>
+    <string name="error_insufficient_storage_left">آلہ میں کوئی جگہ نہیں بچی</string>
     <string name="error_progress_lost">پیشرفت ختم ہوگئی، کیونکہ فائل کو حذف کردیا گیا تھا</string>
     <string name="error_timeout">رابطے کا وقت ختم</string>
     <string name="confirm_prompt">کیا آپ اپنی ڈاؤن لوڈ کی سرگزشت کو صاف کرنا چاہتے ہیں یا ڈاؤن لوڈ کی گئی تمام فائلوں کو حذف کرنا چاہتے ہیں؟</string>

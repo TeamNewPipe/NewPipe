@@ -465,7 +465,7 @@
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="error_download_resource_gone">Kan deze download niet herstellen</string>
     <string name="error_timeout">Verbinding time-out</string>
-    <string name="error_insufficient_storage">Geen vrije ruimte meer op het apparaat</string>
+    <string name="error_insufficient_storage_left">Geen vrije ruimte meer op het apparaat</string>
     <string name="error_postprocessing_stopped">NewPipe werd gesloten terwijl het bezig was met het bestand</string>
     <string name="download_already_pending">Er staat al een download met deze naam in wacht</string>
     <string name="overwrite_failed">Kan bestand niet overschrijven</string>

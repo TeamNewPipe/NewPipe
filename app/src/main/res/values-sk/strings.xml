@@ -398,7 +398,7 @@
     <string name="overwrite_failed">súbor nemožno prepísať</string>
     <string name="download_already_pending">Súbor s rovnakým názvom už čaká na stiahnutie</string>
     <string name="error_postprocessing_stopped">NewPipe bol ukončený počas spracovávania súboru</string>
-    <string name="error_insufficient_storage">Máš plnú pamäť</string>
+    <string name="error_insufficient_storage_left">Máš plnú pamäť</string>
     <string name="error_progress_lost">Nemožno pokračovať, súbor bol vymazaný</string>
     <string name="error_timeout">Spojenie vypršalo</string>
     <string name="confirm_prompt">Chcete vymazať históriu sťahovania alebo odstrániť všetky stiahnuté súbory\?</string>

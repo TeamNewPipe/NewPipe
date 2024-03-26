@@ -171,7 +171,7 @@
     <string name="overwrite_finished_warning">Yá esiste un ficheru baxáu con esti nome</string>
     <string name="overwrite_failed">nun pue sobrecribise\'l ficheru</string>
     <string name="download_already_pending">Hai una descarga pendiente con esti nome</string>
-    <string name="error_insufficient_storage">Nun queda espaciu nel preséu</string>
+    <string name="error_insufficient_storage_left">Nun queda espaciu nel preséu</string>
     <string name="error_timeout">Escosó\'l tiempu d\'espera de la conexón</string>
     <string name="subscriptions_import_unsuccessful">Nun pudieron importase les soscripciones</string>
     <string name="caption_setting_title">Sotítulos</string>

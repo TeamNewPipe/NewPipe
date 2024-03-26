@@ -392,7 +392,7 @@
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
     <string name="download_already_pending">Có một bản tải xuống đang chờ xử lí với tên này</string>
     <string name="error_postprocessing_stopped">Newpipe đã bị đóng khi đang xử lí tệp</string>
-    <string name="error_insufficient_storage">Không đủ dung lượng trên máy</string>
+    <string name="error_insufficient_storage_left">Không đủ dung lượng trên máy</string>
     <string name="error_progress_lost">Quá trình tải bị hủy, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>
     <string name="confirm_prompt">Bạn muốn xóa lịch sử tải về hay xóa tất cả những file đã tải về\?</string>
