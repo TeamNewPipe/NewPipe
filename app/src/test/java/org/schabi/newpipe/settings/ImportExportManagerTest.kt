@@ -3,6 +3,7 @@ package org.schabi.newpipe.settings
 import android.content.SharedPreferences
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Assume
 import org.junit.Before
@@ -191,5 +192,23 @@ class ImportExportManagerTest {
         verify(editor, atLeastOnce()).putBoolean(anyString(), anyBoolean())
         verify(editor, atLeastOnce()).putString(anyString(), anyString())
         verify(editor, atLeastOnce()).putInt(anyString(), anyInt())
+    }
+
+    @Test
+    fun `Importing preferences with a serialization injected class should fail`() {
+        val settings = File.createTempFile("newpipe_", "")
+        `when`(fileLocator.settings).thenReturn(settings)
+
+        val emptyZip = File(classloader.getResource("settings/vulnerable_serialization.zip")?.file!!)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
+        Assume.assumeTrue(ImportExportManager(fileLocator).extractSettings(storedFileHelper))
+
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val editor = Mockito.mock(SharedPreferences.Editor::class.java)
+        `when`(preferences.edit()).thenReturn(editor)
+
+        assertThrows(ClassNotFoundException::class.java) {
+            ImportExportManager(fileLocator).loadSharedPreferences(preferences)
+        }
     }
 }
