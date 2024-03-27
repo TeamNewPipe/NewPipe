@@ -18,9 +18,10 @@
 
 *Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-<b>UWAGA: TO JEST WERSJA BETA, WIĘC MOŻESZ NAPOTKAĆ BŁĘDY. JEŚLI TAK SIĘ STANIE, OTWÓRZ NOWY "ISSUE" NA GITHUBIE.</b>
-
-<b>PUBLIKOWANIE NEWPIPE LUB JAKIEGOKOLWIEK JEGO FORKU W SKLEPIE PLAY NARUSZA ICH WARUNKI UŻYTKOWANIA.</b>
+> [!warning]
+> <b>TO JEST WERSJA BETA, WIĘC MOŻESZ NAPOTKAĆ BŁĘDY. JEŚLI TAK SIĘ STANIE, OTWÓRZ NOWY "ISSUE" NA GITHUBIE.</b>
+>
+> <b>PUBLIKOWANIE NEWPIPE LUB JAKIEGOKOLWIEK JEGO FORKU W SKLEPIE PLAY NARUSZA ICH WARUNKI UŻYTKOWANIA.</b>
 
 ## Screenshoty
 
