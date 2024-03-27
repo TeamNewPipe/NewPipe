@@ -18,9 +18,10 @@
 
 *ふかぬぎんぐっしゆむん： [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-<b>ちゅうい：くれーベータばんぬたみ、バグぬはっせいすがのうゆいがあいびーん。むしバグぬはっせいさーあい、GitHubぬリポジトリっしIssueふぃらちくぃみそーれー。</b>
-
-<b>NewPipeうゆびいじりぬフォークGoogle Playストアんかいかんかいしーねー、Googleぬとぅいふぃちじょうきんぬいはんになります。</b>
+> [!warning]
+> <b>くれーベータばんぬたみ、バグぬはっせいすがのうゆいがあいびーん。むしバグぬはっせいさーあい、GitHubぬリポジトリっしIssueふぃらちくぃみそーれー。</b>
+>
+> <b>NewPipeうゆびいじりぬフォークGoogle Playストアんかいかんかいしーねー、Googleぬとぅいふぃちじょうきんぬいはんになります。</b>
 
 <span id="screenshots"></span>
 ## スクリーンショット

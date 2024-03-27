@@ -19,9 +19,10 @@
 
 *Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-<b>AVISO: ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDES ENCONTRAR BUGS. SI ENCUENTRAS UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>
-
-<b>COLOCAR NEWPIPE O CUALQUIER FORK DE NEWPIPE EN LA GOOGLE PLAY STORE VIOLARÁ SUS TÉRMINOS Y CONDICIONES.</b>
+> [!warning]
+> <b>ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDES ENCONTRAR BUGS. SI ENCUENTRAS UNO ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO DE GITHUB.</b>
+>
+> <b>COLOCAR NEWPIPE O CUALQUIER FORK DE NEWPIPE EN LA GOOGLE PLAY STORE VIOLARÁ SUS TÉRMINOS Y CONDICIONES.</b>
 
 ## Capturas de Pantalla
 
