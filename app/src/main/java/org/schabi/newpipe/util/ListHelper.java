@@ -874,6 +874,7 @@ public final class ListHelper {
 
         return Comparator.comparing(AudioStream::getAudioLocale, Comparator.nullsLast(
                         Comparator.comparing(locale -> locale.getDisplayName(appLoc))))
-                .thenComparing(AudioStream::getAudioTrackType);
+                .thenComparing(AudioStream::getAudioTrackType, Comparator.nullsLast(
+                        Comparator.naturalOrder()));
     }
 }
