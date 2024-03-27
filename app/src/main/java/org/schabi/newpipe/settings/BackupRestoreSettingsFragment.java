@@ -23,7 +23,9 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -166,7 +168,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             Toast.makeText(requireContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
                     .show();
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(this, "Exporting database", e);
+            showErrorSnackbar(e, "Exporting database and settings");
         }
     }
 
@@ -202,7 +204,12 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                             final Context context = requireContext();
                             final SharedPreferences prefs = PreferenceManager
                                     .getDefaultSharedPreferences(context);
-                            manager.loadSharedPreferences(prefs);
+                            try {
+                                manager.loadSharedPreferences(prefs);
+                            } catch (IOException | ClassNotFoundException e) {
+                                showErrorSnackbar(e, "Importing preferences");
+                                return;
+                            }
                             cleanImport(context, prefs);
                             finishImport(importDataUri);
                         })
@@ -211,7 +218,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                 finishImport(importDataUri);
             }
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(this, "Importing database", e);
+            showErrorSnackbar(e, "Importing database and settings");
         }
     }
 
@@ -268,5 +275,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         final SharedPreferences.Editor editor = defaultPreferences.edit()
                 .putString(importExportDataPathKey, importExportDataUri.toString());
         editor.apply();
+    }
+
+    private void showErrorSnackbar(final Throwable e, final String request) {
+        ErrorUtil.showSnackbar(this, new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request));
     }
 }

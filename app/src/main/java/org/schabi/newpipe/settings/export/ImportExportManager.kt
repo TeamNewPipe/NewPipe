@@ -73,50 +73,41 @@ class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
     /**
      * Remove all shared preferences from the app and load the preferences supplied to the manager.
      */
+    @Throws(IOException::class, ClassNotFoundException::class)
     fun loadSharedPreferences(preferences: SharedPreferences) {
-        try {
-            val preferenceEditor = preferences.edit()
+        val preferenceEditor = preferences.edit()
 
-            PreferencesObjectInputStream(
-                fileLocator.settings.inputStream()
-            ).use { input ->
-                preferenceEditor.clear()
-                @Suppress("UNCHECKED_CAST")
-                val entries = input.readObject() as Map<String, *>
-                for ((key, value) in entries) {
-                    when (value) {
-                        is Boolean -> {
-                            preferenceEditor.putBoolean(key, value)
-                        }
-                        is Float -> {
-                            preferenceEditor.putFloat(key, value)
-                        }
-                        is Int -> {
-                            preferenceEditor.putInt(key, value)
-                        }
-                        is Long -> {
-                            preferenceEditor.putLong(key, value)
-                        }
-                        is String -> {
-                            preferenceEditor.putString(key, value)
-                        }
-                        is Set<*> -> {
-                            // There are currently only Sets with type String possible
-                            @Suppress("UNCHECKED_CAST")
-                            preferenceEditor.putStringSet(key, value as Set<String>?)
-                        }
+        PreferencesObjectInputStream(
+            fileLocator.settings.inputStream()
+        ).use { input ->
+            preferenceEditor.clear()
+            @Suppress("UNCHECKED_CAST")
+            val entries = input.readObject() as Map<String, *>
+            for ((key, value) in entries) {
+                when (value) {
+                    is Boolean -> {
+                        preferenceEditor.putBoolean(key, value)
+                    }
+                    is Float -> {
+                        preferenceEditor.putFloat(key, value)
+                    }
+                    is Int -> {
+                        preferenceEditor.putInt(key, value)
+                    }
+                    is Long -> {
+                        preferenceEditor.putLong(key, value)
+                    }
+                    is String -> {
+                        preferenceEditor.putString(key, value)
+                    }
+                    is Set<*> -> {
+                        // There are currently only Sets with type String possible
+                        @Suppress("UNCHECKED_CAST")
+                        preferenceEditor.putStringSet(key, value as Set<String>?)
                     }
                 }
-                preferenceEditor.commit()
             }
-        } catch (e: IOException) {
-            if (DEBUG) {
-                Log.e(TAG, "Unable to loadSharedPreferences", e)
-            }
-        } catch (e: ClassNotFoundException) {
-            if (DEBUG) {
-                Log.e(TAG, "Unable to loadSharedPreferences", e)
-            }
+            preferenceEditor.commit()
         }
     }
 }
