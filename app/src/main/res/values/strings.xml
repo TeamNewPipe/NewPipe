@@ -7,6 +7,8 @@
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -557,8 +559,10 @@
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
     <string name="check_for_updates">Check for updates</string>
+    <string name="auto_update_check_description">NewPipe can automatically check for new versions from time to time and notify you once they are available.\nDo you want to enable this?</string>
     <string name="manual_update_title" translatable="false">@string/check_for_updates</string>
     <string name="manual_update_description">Manually check for new versions</string>
+
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
