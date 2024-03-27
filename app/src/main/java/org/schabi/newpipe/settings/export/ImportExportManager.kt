@@ -2,8 +2,10 @@ package org.schabi.newpipe.settings.export
 
 import android.content.SharedPreferences
 import android.util.Log
-import org.schabi.newpipe.MainActivity.DEBUG
-import org.schabi.newpipe.settings.NewPipeFileLocator
+import com.grack.nanojson.JsonArray
+import com.grack.nanojson.JsonParser
+import com.grack.nanojson.JsonParserException
+import com.grack.nanojson.JsonWriter
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
@@ -11,9 +13,9 @@ import java.io.IOException
 import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
 
-class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
+class ImportExportManager(private val fileLocator: BackupFileLocator) {
     companion object {
-        const val TAG = "ContentSetManager"
+        const val TAG = "ImportExportManager"
     }
 
     /**
@@ -23,27 +25,41 @@ class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
         file.create()
-        ZipOutputStream(SharpOutputStream(file.stream).buffered())
-            .use { outZip ->
-                ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
+        ZipOutputStream(SharpOutputStream(file.stream).buffered()).use { outZip ->
+            try {
+                // add the database
+                ZipHelper.addFileToZip(
+                    outZip,
+                    BackupFileLocator.FILE_NAME_DB,
+                    fileLocator.db.path,
+                )
 
-                try {
-                    ObjectOutputStream(fileLocator.settings.outputStream()).use { output ->
+                // add the legacy vulnerable serialized preferences (will be removed in the future)
+                ZipHelper.addFileToZip(
+                    outZip,
+                    BackupFileLocator.FILE_NAME_SERIALIZED_PREFS
+                ) { byteOutput ->
+                    ObjectOutputStream(byteOutput).use { output ->
                         output.writeObject(preferences.all)
                         output.flush()
                     }
-                } catch (e: IOException) {
-                    if (DEBUG) {
-                        Log.e(TAG, "Unable to exportDatabase", e)
-                    }
                 }
 
-                ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
+                // add the JSON preferences
+                ZipHelper.addFileToZip(
+                    outZip,
+                    BackupFileLocator.FILE_NAME_JSON_PREFS
+                ) { byteOutput ->
+                    JsonWriter
+                        .indent("")
+                        .on(byteOutput)
+                        .`object`(preferences.all)
+                        .done()
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Unable to export serialized settings", e)
             }
-    }
-
-    fun deleteSettingsFile() {
-        fileLocator.settings.delete()
+        }
     }
 
     /**
@@ -56,7 +72,12 @@ class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
     }
 
     fun extractDb(file: StoredFileHelper): Boolean {
-        val success = ZipHelper.extractFileFromZip(file, fileLocator.db.path, "newpipe.db")
+        val success = ZipHelper.extractFileFromZip(
+            file,
+            BackupFileLocator.FILE_NAME_DB,
+            fileLocator.db.path,
+        )
+
         if (success) {
             fileLocator.dbJournal.delete()
             fileLocator.dbWal.delete()
@@ -66,48 +87,81 @@ class ImportExportManager(private val fileLocator: NewPipeFileLocator) {
         return success
     }
 
-    fun extractSettings(file: StoredFileHelper): Boolean {
-        return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, "newpipe.settings")
+    @Deprecated(
+        "Serializing preferences with Java's ObjectOutputStream is vulnerable to injections",
+        replaceWith = ReplaceWith("exportHasJsonPrefs")
+    )
+    fun exportHasSerializedPrefs(zipFile: StoredFileHelper): Boolean {
+        return ZipHelper.zipContainsFile(zipFile, BackupFileLocator.FILE_NAME_SERIALIZED_PREFS)
+    }
+
+    fun exportHasJsonPrefs(zipFile: StoredFileHelper): Boolean {
+        return ZipHelper.zipContainsFile(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS)
     }
 
     /**
      * Remove all shared preferences from the app and load the preferences supplied to the manager.
      */
+    @Deprecated(
+        "Serializing preferences with Java's ObjectOutputStream is vulnerable to injections",
+        replaceWith = ReplaceWith("loadJsonPrefs")
+    )
     @Throws(IOException::class, ClassNotFoundException::class)
-    fun loadSharedPreferences(preferences: SharedPreferences) {
-        val preferenceEditor = preferences.edit()
+    fun loadSerializedPrefs(zipFile: StoredFileHelper, preferences: SharedPreferences) {
+        ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_SERIALIZED_PREFS) {
+            PreferencesObjectInputStream(it).use { input ->
+                val editor = preferences.edit()
+                editor.clear()
+                @Suppress("UNCHECKED_CAST")
+                val entries = input.readObject() as Map<String, *>
+                for ((key, value) in entries) {
+                    when (value) {
+                        is Boolean -> editor.putBoolean(key, value)
+                        is Float -> editor.putFloat(key, value)
+                        is Int -> editor.putInt(key, value)
+                        is Long -> editor.putLong(key, value)
+                        is String -> editor.putString(key, value)
+                        is Set<*> -> {
+                            // There are currently only Sets with type String possible
+                            @Suppress("UNCHECKED_CAST")
+                            editor.putStringSet(key, value as Set<String>?)
+                        }
+                    }
+                }
 
-        PreferencesObjectInputStream(
-            fileLocator.settings.inputStream()
-        ).use { input ->
-            preferenceEditor.clear()
-            @Suppress("UNCHECKED_CAST")
-            val entries = input.readObject() as Map<String, *>
-            for ((key, value) in entries) {
+                if (!editor.commit()) {
+                    Log.e(TAG, "Unable to loadSerializedPrefs")
+                }
+            }
+        }
+    }
+
+    /**
+     * Remove all shared preferences from the app and load the preferences supplied to the manager.
+     */
+    @Throws(JsonParserException::class)
+    fun loadJsonPrefs(zipFile: StoredFileHelper, preferences: SharedPreferences) {
+        ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS) {
+            val editor = preferences.edit()
+            editor.clear()
+
+            val jsonObject = JsonParser.`object`().from(it)
+            for ((key, value) in jsonObject) {
                 when (value) {
-                    is Boolean -> {
-                        preferenceEditor.putBoolean(key, value)
-                    }
-                    is Float -> {
-                        preferenceEditor.putFloat(key, value)
-                    }
-                    is Int -> {
-                        preferenceEditor.putInt(key, value)
-                    }
-                    is Long -> {
-                        preferenceEditor.putLong(key, value)
-                    }
-                    is String -> {
-                        preferenceEditor.putString(key, value)
-                    }
-                    is Set<*> -> {
-                        // There are currently only Sets with type String possible
-                        @Suppress("UNCHECKED_CAST")
-                        preferenceEditor.putStringSet(key, value as Set<String>?)
+                    is Boolean -> editor.putBoolean(key, value)
+                    is Float -> editor.putFloat(key, value)
+                    is Int -> editor.putInt(key, value)
+                    is Long -> editor.putLong(key, value)
+                    is String -> editor.putString(key, value)
+                    is JsonArray -> {
+                        editor.putStringSet(key, value.mapNotNull { e -> e as? String }.toSet())
                     }
                 }
             }
-            preferenceEditor.commit()
+
+            if (!editor.commit()) {
+                Log.e(TAG, "Unable to loadJsonPrefs")
+            }
         }
     }
 }

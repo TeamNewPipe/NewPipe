@@ -21,11 +21,14 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
+import com.grack.nanojson.JsonParserException;
+
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.settings.export.BackupFileLocator;
 import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -60,8 +63,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                                     @Nullable final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
         Objects.requireNonNull(homeDir);
-        manager = new ImportExportManager(new NewPipeFileLocator(homeDir));
-        manager.deleteSettingsFile();
+        manager = new ImportExportManager(new BackupFileLocator(homeDir));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
 
@@ -192,9 +194,13 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             }
 
             // if settings file exist, ask if it should be imported.
-            if (manager.extractSettings(file)) {
+            final boolean hasJsonPrefs = manager.exportHasJsonPrefs(file);
+            if (hasJsonPrefs || manager.exportHasSerializedPrefs(file)) {
                 new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                         .setTitle(R.string.import_settings)
+                        .setMessage(hasJsonPrefs ? null : requireContext()
+                                .getString(R.string.import_settings_vulnerable_format))
+                        .setOnDismissListener(dialog -> finishImport(importDataUri))
                         .setNegativeButton(R.string.cancel, (dialog, which) -> {
                             dialog.dismiss();
                             finishImport(importDataUri);
@@ -205,8 +211,12 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                             final SharedPreferences prefs = PreferenceManager
                                     .getDefaultSharedPreferences(context);
                             try {
-                                manager.loadSharedPreferences(prefs);
-                            } catch (IOException | ClassNotFoundException e) {
+                                if (hasJsonPrefs) {
+                                    manager.loadJsonPrefs(file, prefs);
+                                } else {
+                                    manager.loadSerializedPrefs(file, prefs);
+                                }
+                            } catch (IOException | ClassNotFoundException | JsonParserException e) {
                                 showErrorSnackbar(e, "Importing preferences");
                                 return;
                             }
