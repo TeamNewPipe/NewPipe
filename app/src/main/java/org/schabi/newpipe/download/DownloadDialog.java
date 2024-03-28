@@ -7,8 +7,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -113,14 +111,11 @@ public class DownloadDialog extends DialogFragment
     @State
     int selectedSubtitleIndex = 0; // default to the first item
 
-    @Nullable
-    private OnDismissListener onDismissListener = null;
-
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
     private ActionMenuItemView okButton = null;
-    private Context context;
+    private Context context = null;
     private boolean askForSavePath;
 
     private AudioTrackAdapter audioTrackAdapter;
@@ -195,13 +190,6 @@ public class DownloadDialog extends DialogFragment
         this.selectedVideoIndex = ListHelper.getDefaultResolutionIndex(context, videoStreams);
     }
 
-    /**
-     * @param onDismissListener the listener to call in {@link #onDismiss(DialogInterface)}
-     */
-    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Android lifecycle
@@ -221,6 +209,8 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
+        // context will remain null if dismiss() was called above, allowing to check whether the
+        // dialog is being dismissed in onViewCreated()
         context = getContext();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
@@ -305,6 +295,9 @@ public class DownloadDialog extends DialogFragment
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dialogBinding = DownloadDialogBinding.bind(view);
+        if (context == null) {
+            return; // the dialog is being dismissed, see the call to dismiss() in onCreate()
+        }
 
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
                 currentInfo.getName()));
@@ -362,14 +355,6 @@ public class DownloadDialog extends DialogFragment
             }
             return false;
         });
-    }
-
-    @Override
-    public void onDismiss(@NonNull final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
     }
 
     @Override

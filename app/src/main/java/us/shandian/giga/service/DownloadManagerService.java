@@ -411,7 +411,7 @@ public class DownloadManagerService extends Service {
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;
-        mission.recoveryInfo = recovery.toArray(MissionRecoveryInfo[]::new);
+        mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));

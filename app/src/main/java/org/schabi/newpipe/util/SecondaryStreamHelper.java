@@ -11,7 +11,6 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class SecondaryStreamHelper<T extends Stream> {
@@ -43,42 +42,27 @@ public class SecondaryStreamHelper<T extends Stream> {
                                                 @NonNull final List<AudioStream> audioStreams,
                                                 @NonNull final VideoStream videoStream) {
         final MediaFormat mediaFormat = videoStream.getFormat();
-        if (mediaFormat == null) {
+
+        if (mediaFormat == MediaFormat.WEBM) {
+            return audioStreams
+                    .stream()
+                    .filter(audioStream -> audioStream.getFormat() == MediaFormat.WEBMA
+                            || audioStream.getFormat() == MediaFormat.WEBMA_OPUS)
+                    .max(ListHelper.getAudioFormatComparator(MediaFormat.WEBMA,
+                            ListHelper.isLimitingDataUsage(context)))
+                    .orElse(null);
+
+        } else if (mediaFormat == MediaFormat.MPEG_4) {
+            return audioStreams
+                    .stream()
+                    .filter(audioStream -> audioStream.getFormat() == MediaFormat.M4A)
+                    .max(ListHelper.getAudioFormatComparator(MediaFormat.M4A,
+                            ListHelper.isLimitingDataUsage(context)))
+                    .orElse(null);
+
+        } else {
             return null;
         }
-
-        switch (mediaFormat) {
-            case WEBM:
-            case MPEG_4: // Is MPEG-4 DASH?
-                break;
-            default:
-                return null;
-        }
-
-        final boolean m4v = mediaFormat == MediaFormat.MPEG_4;
-        final boolean isLimitingDataUsage = ListHelper.isLimitingDataUsage(context);
-
-        Comparator<AudioStream> comparator = ListHelper.getAudioFormatComparator(
-                m4v ? MediaFormat.M4A : MediaFormat.WEBMA, isLimitingDataUsage);
-        int preferredAudioStreamIndex = ListHelper.getAudioIndexByHighestRank(
-                audioStreams, comparator);
-
-        if (preferredAudioStreamIndex == -1) {
-            if (m4v) {
-                return null;
-            }
-
-            comparator = ListHelper.getAudioFormatComparator(
-                    MediaFormat.WEBMA_OPUS, isLimitingDataUsage);
-            preferredAudioStreamIndex = ListHelper.getAudioIndexByHighestRank(
-                    audioStreams, comparator);
-
-            if (preferredAudioStreamIndex == -1) {
-                return null;
-            }
-        }
-
-        return audioStreams.get(preferredAudioStreamIndex);
     }
 
     public T getStream() {
