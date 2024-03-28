@@ -50,11 +50,11 @@ public class SubscriptionsImportFragment extends BaseFragment {
     @State
     int currentServiceId = Constants.NO_SERVICE_ID;
 
-    private List<SubscriptionExtractor.ContentSource> supportedSources;
-    private String relatedUrl;
+    private List<SubscriptionExtractor.ContentSource> supportedSources = Collections.emptyList();
+    private String relatedUrl = null;
 
     @StringRes
-    private int instructionsString;
+    private int instructionsString = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -85,7 +85,17 @@ public class SubscriptionsImportFragment extends BaseFragment {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setupServiceVariables();
+        if (currentServiceId != Constants.NO_SERVICE_ID) {
+            try {
+                final SubscriptionExtractor extractor = NewPipe.getService(currentServiceId)
+                        .getSubscriptionExtractor();
+                supportedSources = extractor.getSupportedSources();
+                relatedUrl = extractor.getRelatedUrl();
+                instructionsString = ServiceHelper.getImportInstructions(currentServiceId);
+            } catch (final ExtractionException ignored) {
+            }
+        }
+
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
             ErrorUtil.showSnackbar(activity,
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
@@ -203,23 +213,6 @@ public class SubscriptionsImportFragment extends BaseFragment {
     // Subscriptions
     ///////////////////////////////////////////////////////////////////////////
 
-    private void setupServiceVariables() {
-        if (currentServiceId != Constants.NO_SERVICE_ID) {
-            try {
-                final SubscriptionExtractor extractor = NewPipe.getService(currentServiceId)
-                        .getSubscriptionExtractor();
-                supportedSources = extractor.getSupportedSources();
-                relatedUrl = extractor.getRelatedUrl();
-                instructionsString = ServiceHelper.getImportInstructions(currentServiceId);
-                return;
-            } catch (final ExtractionException ignored) {
-            }
-        }
-
-        supportedSources = Collections.emptyList();
-        relatedUrl = null;
-        instructionsString = 0;
-    }
 
     private void setInfoText(final String infoString) {
         infoTextView.setText(infoString);
