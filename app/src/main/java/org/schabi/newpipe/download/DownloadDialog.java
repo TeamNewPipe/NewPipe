@@ -115,7 +115,7 @@ public class DownloadDialog extends DialogFragment
     private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
     private ActionMenuItemView okButton = null;
-    private Context context;
+    private Context context = null;
     private boolean askForSavePath;
 
     private AudioTrackAdapter audioTrackAdapter;
@@ -209,6 +209,8 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
+        // context will remain null if dismiss() was called above, allowing to check whether the
+        // dialog is being dismissed in onViewCreated()
         context = getContext();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
@@ -293,6 +295,9 @@ public class DownloadDialog extends DialogFragment
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dialogBinding = DownloadDialogBinding.bind(view);
+        if (context == null) {
+            return; // the dialog is being dismissed, see the call to dismiss() in onCreate()
+        }
 
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
                 currentInfo.getName()));
