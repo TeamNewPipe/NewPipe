@@ -26,10 +26,10 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     @State
     StreamInfo streamInfo;
 
-
     public DescriptionFragment(final StreamInfo streamInfo) {
         this.streamInfo = streamInfo;
     }
+
 
     @Nullable
     @Override

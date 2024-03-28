@@ -474,7 +474,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             if (ChannelTabHelper.showChannelTab(
                     context, preferences, R.string.show_channel_tabs_about)) {
                 tabAdapter.addFragment(
-                        ChannelAboutFragment.getInstance(currentInfo),
+                        new ChannelAboutFragment(currentInfo),
                         context.getString(R.string.channel_tab_about));
             }
         }

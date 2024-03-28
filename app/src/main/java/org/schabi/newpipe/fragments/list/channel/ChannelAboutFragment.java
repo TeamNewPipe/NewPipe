@@ -26,10 +26,8 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @State
     protected ChannelInfo channelInfo;
 
-    public static ChannelAboutFragment getInstance(final @NonNull ChannelInfo channelInfo) {
-        final ChannelAboutFragment fragment = new ChannelAboutFragment();
-        fragment.channelInfo = channelInfo;
-        return fragment;
+    ChannelAboutFragment(@NonNull final ChannelInfo channelInfo) {
+        this.channelInfo = channelInfo;
     }
 
 
@@ -42,10 +40,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @Nullable
     @Override
     protected Description getDescription() {
-        return new Description(
-                channelInfo.getDescription(),
-                Description.PLAIN_TEXT
-        );
+        return new Description(channelInfo.getDescription(), Description.PLAIN_TEXT);
     }
 
     @NonNull
