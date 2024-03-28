@@ -171,7 +171,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         if (item.getItemId() == R.id.action_search) {
             try {
                 NavigationHelper.openSearchFragment(getFM(),
-                        ServiceHelper.getSelectedServiceId(activity), "");
+                        ServiceHelper.getSelectedServiceIdOrFallback(activity), "");
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
             }

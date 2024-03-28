@@ -62,7 +62,7 @@ class ErrorInfo(
     constructor(throwable: Throwable, userAction: UserAction, request: String) :
         this(throwable, userAction, SERVICE_NONE, request)
     constructor(throwable: Throwable, userAction: UserAction, request: String, serviceId: Int) :
-        this(throwable, userAction, ServiceHelper.getNameOfServiceById(serviceId), request)
+        this(throwable, userAction, ServiceHelper.getNameOfServiceByIdOrUnknown(serviceId), request)
     constructor(throwable: Throwable, userAction: UserAction, request: String, info: Info?) :
         this(throwable, userAction, getInfoServiceName(info), request)
 
@@ -70,7 +70,7 @@ class ErrorInfo(
     constructor(throwable: List<Throwable>, userAction: UserAction, request: String) :
         this(throwable, userAction, SERVICE_NONE, request)
     constructor(throwable: List<Throwable>, userAction: UserAction, request: String, serviceId: Int) :
-        this(throwable, userAction, ServiceHelper.getNameOfServiceById(serviceId), request)
+        this(throwable, userAction, ServiceHelper.getNameOfServiceByIdOrUnknown(serviceId), request)
     constructor(throwable: List<Throwable>, userAction: UserAction, request: String, info: Info?) :
         this(throwable, userAction, getInfoServiceName(info), request)
 
@@ -83,7 +83,7 @@ class ErrorInfo(
             throwableList.map { it.stackTraceToString() }.toTypedArray()
 
         private fun getInfoServiceName(info: Info?) =
-            if (info == null) SERVICE_NONE else ServiceHelper.getNameOfServiceById(info.serviceId)
+            if (info == null) SERVICE_NONE else ServiceHelper.getNameOfServiceByIdOrUnknown(info.serviceId)
 
         @StringRes
         private fun getMessageStringId(

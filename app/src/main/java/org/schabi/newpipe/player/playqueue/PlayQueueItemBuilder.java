@@ -25,7 +25,7 @@ public class PlayQueueItemBuilder {
             holder.itemVideoTitleView.setText(item.getTitle());
         }
         holder.itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getUploader(),
-                ServiceHelper.getNameOfServiceById(item.getServiceId())));
+                ServiceHelper.getNameOfServiceByIdOrUnknown(item.getServiceId())));
 
         if (item.getDuration() > 0) {
             holder.itemDurationView.setText(Localization.getDurationString(item.getDuration()));
