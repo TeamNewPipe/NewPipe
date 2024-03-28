@@ -661,7 +661,7 @@
     <string name="show_crash_the_player_title">A „lejátszó összeomlasztása” lehetőség megjelenítése</string>
     <string name="show_crash_the_player_summary">Megjeleníti az összeomlasztási lehetőséget a lejátszó használatakor</string>
     <string name="unhook_checkbox">Hangmagasság megtartása (torzítást okozhat)</string>
-    <string name="manual_update_title">Frissítések keresése</string>
+    <string name="check_for_updates">Frissítések keresése</string>
     <string name="dont_show">Ne jelenítse meg</string>
     <string name="remove_watched">Megnézettek eltávolítása</string>
     <string name="remove_watched_popup_title">Eltávolítja a megnézett videókat\?</string>

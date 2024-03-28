@@ -648,7 +648,7 @@
     <string name="show_crash_the_player_summary">Hiện tùy chọn dừng đột ngột khi sử dụng trình phát</string>
     <string name="show_error_snackbar">Hiện thanh báo lỗi</string>
     <string name="create_error_notification">Tạo thông báo lỗi</string>
-    <string name="manual_update_title">Kiểm tra cập nhật</string>
+    <string name="check_for_updates">Kiểm tra cập nhật</string>
     <string name="manual_update_description">Kiểm tra phiên bản mới theo cách thủ công</string>
     <string name="checking_updates_toast">Đang kiểm tra cập nhật…</string>
     <string name="feed_new_items">Mục nguồn cấp dữ liệu mới</string>

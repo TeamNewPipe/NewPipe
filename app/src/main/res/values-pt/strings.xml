@@ -664,7 +664,7 @@
     <string name="enqueued_next">Seguinte colocado na fila</string>
     <string name="enqueue_next_stream">Colocar seguinte na fila</string>
     <string name="processing_may_take_a_moment">A processar… Pode levar algum tempo</string>
-    <string name="manual_update_title">Procurar atualizações</string>
+    <string name="check_for_updates">Procurar atualizações</string>
     <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>

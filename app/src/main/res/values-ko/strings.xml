@@ -557,7 +557,7 @@
     <string name="streams_notifications_interval_title">확인 빈도</string>
     <string name="streams_notifications_network_title">필요한 네트워크 연결</string>
     <string name="any_network">모든 네트워크</string>
-    <string name="manual_update_title">업데이트 확인</string>
+    <string name="check_for_updates">업데이트 확인</string>
     <string name="manual_update_description">새로운 버전을 수동으로 확인</string>
     <string name="autoplay_summary">자동으로 재생 시작 — %s</string>
     <string name="wifi_only">Wi-Fi에서만</string>

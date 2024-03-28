@@ -642,7 +642,7 @@
     <string name="processing_may_take_a_moment">处理中…可能需要一些时间</string>
     <string name="manual_update_description">手动检查新版本</string>
     <string name="checking_updates_toast">检查更新中…</string>
-    <string name="manual_update_title">检查更新</string>
+    <string name="check_for_updates">检查更新</string>
     <string name="feed_new_items">新订阅源条目</string>
     <string name="show_crash_the_player_title">显示\"使播放器崩溃\"</string>
     <string name="show_crash_the_player_summary">在使用播放器时显示一个崩溃选项</string>

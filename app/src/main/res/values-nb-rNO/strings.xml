@@ -651,7 +651,7 @@
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
     <string name="enqueue_next_stream">Still i kø neste</string>
     <string name="enqueued_next">I kø neste</string>
-    <string name="manual_update_title">Se etter oppdateringer</string>
+    <string name="check_for_updates">Se etter oppdateringer</string>
     <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
     <string name="crash_the_player">Krasj avspilleren</string>
     <string name="show_crash_the_player_title">Vis \"Krasj spilleren\"</string>

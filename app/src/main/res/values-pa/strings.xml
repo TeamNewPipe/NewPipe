@@ -669,7 +669,7 @@
     <string name="enable_streams_notifications_summary">ਸਬਸਕ੍ਰਾਈਬ ਕੀਤੇ ਚੈਨਲ ਉੱਪਰ ਨਵੀਂ ਸਟ੍ਰੀਮ ਉੱਪਲਬਧ ਹੋਣ ਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਰਾਹੀਂ ਸੂਚਿਤ ਕਰੋ</string>
     <string name="streams_notifications_interval_title">ਜਾਂਚ ਅਵਧੀ</string>
     <string name="any_network">ਕੋਈ ਵੀ ਨੈੱਟਵਰਕ</string>
-    <string name="manual_update_title">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
+    <string name="check_for_updates">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
     <string name="low_quality_smaller">ਘੱਟ ਗੁਣਵੱਤਾ (ਛੋਟਾ ਆਕਾਰ)</string>
     <string name="delete_downloaded_files_confirm">ਡਿਸਕ ਤੋਂ ਸਾਰੀਆਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫਾਈਲਾਂ ਹਟਾਓ\?</string>
     <plurals name="deleted_downloads_toast">

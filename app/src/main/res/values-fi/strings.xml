@@ -652,7 +652,7 @@
         <item quantity="other">Poistettu %1$s latausta</item>
     </plurals>
     <string name="processing_may_take_a_moment">Käsitellään… Voi kestää hetken</string>
-    <string name="manual_update_title">Tarkista päivitykset</string>
+    <string name="check_for_updates">Tarkista päivitykset</string>
     <string name="manual_update_description">Tarkista manuaalisesti onko uusia versioita saatavilla</string>
     <string name="checking_updates_toast">Tarkistetaan päivityksiä…</string>
     <string name="error_report_channel_description">Ilmoitukset, joilla raportoidaan virheistä</string>

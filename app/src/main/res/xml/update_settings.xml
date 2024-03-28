@@ -4,7 +4,7 @@
     android:title="@string/settings_category_updates_title">
 
     <SwitchPreferenceCompat
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="@string/update_app_key"
         android:summary="@string/updates_setting_description"
         android:title="@string/updates_setting_title"

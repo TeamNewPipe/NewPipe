@@ -79,6 +79,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -86,6 +87,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ReleaseVersionUtil;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -166,6 +168,11 @@ public class MainActivity extends AppCompatActivity {
             // Schedule worker for checking for new streams and creating corresponding notifications
             // if this is enabled by the user.
             NotificationWorker.initialize(this);
+        }
+        if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
+                && ReleaseVersionUtil.INSTANCE.isReleaseApk()
+                && !App.getApp().isFirstRun()) {
+            UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
     }
 

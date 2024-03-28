@@ -673,7 +673,7 @@
     <string name="processing_may_take_a_moment">Przetwarzanie… Może to chwilę potrwać</string>
     <string name="checking_updates_toast">Sprawdzanie aktualizacji…</string>
     <string name="manual_update_description">Ręcznie sprawdź dostępność nowych wersji</string>
-    <string name="manual_update_title">Sprawdź dostępność aktualizacji</string>
+    <string name="check_for_updates">Sprawdź dostępność aktualizacji</string>
     <string name="feed_new_items">Nowe pozycje kanału</string>
     <string name="show_crash_the_player_summary">Pokazuje opcję psucia podczas korzystania z odtwarzacza</string>
     <string name="crash_the_player">Zepsuj odtwarzacz</string>

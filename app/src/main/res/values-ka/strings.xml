@@ -426,7 +426,7 @@
     <string name="any_network">ნებისმიერი ქსელი</string>
     <string name="updates_setting_title">განახლებები</string>
     <string name="updates_setting_description">მაჩვენე შეტყობინება აპის განახლების მოთხოვნით, როდესაც ხელმისაწვდომი იქნება ახალი ვერსია</string>
-    <string name="manual_update_title">Შეამოწმოთ განახლებები</string>
+    <string name="check_for_updates">Შეამოწმოთ განახლებები</string>
     <string name="manual_update_description">ხელით შეამოწმეთ ახალი ვერსიები</string>
     <string name="minimize_on_exit_title">მინიმიზაცია აპის გადამრთველზე</string>
     <string name="minimize_on_exit_summary">მოქმედება სხვა აპზე გადასვლისას მთავარი ვიდეო დამკვრელიდან — %s</string>

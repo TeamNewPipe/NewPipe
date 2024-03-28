@@ -665,7 +665,7 @@
     <string name="manual_update_description">Ručno traži nove verzije</string>
     <string name="checking_updates_toast">Traženje novih verzija …</string>
     <string name="local_search_suggestions">Prijedlozi lokalne pretrage</string>
-    <string name="manual_update_title">Traži nove verzije</string>
+    <string name="check_for_updates">Traži nove verzije</string>
     <string name="start_main_player_fullscreen_summary">Nemoj pokretati videa u mini playeru, već izravno pokreni cjeloekranski prikaz, ako je automatsko okretanje zaključano. Mini playeru i dalje možeš pristupiti napuštanjem cjeloekranskog prikaza</string>
     <string name="feed_new_items">Nove stavke feeda</string>
     <string name="error_report_channel_name">Obavijest o prijavi greške</string>

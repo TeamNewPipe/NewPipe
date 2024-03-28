@@ -665,7 +665,7 @@
     <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
     <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
     <string name="manual_update_description">Ručně zkontrolovat zda je k dispozici nová verze</string>
-    <string name="manual_update_title">Kontrola aktualizací</string>
+    <string name="check_for_updates">Kontrola aktualizací</string>
     <string name="error_report_notification_title">NewPipe narazil na problém, klikněte pro nahlášení</string>
     <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>

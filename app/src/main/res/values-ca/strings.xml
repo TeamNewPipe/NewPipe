@@ -640,7 +640,7 @@
     <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
     <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
     <string name="crash_the_player">Tancar abruptament el reproductor</string>
-    <string name="manual_update_title">Comprovar si hi ha actualitzacions</string>
+    <string name="check_for_updates">Comprovar si hi ha actualitzacions</string>
     <string name="manual_update_description">Comprovar manualment si hi ha noves versions</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Baixada finalitzada</item>

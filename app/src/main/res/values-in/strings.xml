@@ -640,7 +640,7 @@
     <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
     <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
-    <string name="manual_update_title">Periksa Pembaruan</string>
+    <string name="check_for_updates">Periksa Pembaruan</string>
     <string name="manual_update_description">Periksa manual untuk versi baru</string>
     <string name="checking_updates_toast">Memeriksa pembaruan…</string>
     <string name="feed_new_items">Item feed baru</string>

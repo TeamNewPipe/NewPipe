@@ -657,7 +657,7 @@
     <string name="error_report_channel_description">Jakinarazpenak erroreen berri emateko</string>
     <string name="error_report_notification_title">NewPipe-k errore bat aurkitu du, sakatu berri emateko</string>
     <string name="error_report_notification_toast">Errore bat gertatu da, ikusi jakinarazpena</string>
-    <string name="manual_update_title">Bilatu eguneraketak</string>
+    <string name="check_for_updates">Bilatu eguneraketak</string>
     <string name="manual_update_description">Bilatu bertsio berriak eskuz</string>
     <string name="feed_new_items">Elementu berriak jarioan</string>
     <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.

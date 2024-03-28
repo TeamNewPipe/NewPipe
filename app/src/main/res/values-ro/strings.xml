@@ -664,7 +664,7 @@
     <string name="show_image_indicators_title">Afișați indicatorii de imagine</string>
     <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video.</string>
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
-    <string name="manual_update_title">Verifică dacă există actualizări</string>
+    <string name="check_for_updates">Verifică dacă există actualizări</string>
     <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
     <string name="detail_pinned_comment_view_description">Comentariu lipit</string>
     <string name="error_report_channel_name">Notificare cu raport de eroare</string>

@@ -676,7 +676,7 @@
     <string name="enqueued_next">נוסף כהבא בתור</string>
     <string name="enqueue_next_stream">הוספה כהבא בתור</string>
     <string name="processing_may_take_a_moment">מתבצע עיבוד… נא להמתין רגע קט</string>
-    <string name="manual_update_title">איתור עדכונים</string>
+    <string name="check_for_updates">איתור עדכונים</string>
     <string name="checking_updates_toast">מתבצע איתור עדכונים…</string>
     <string name="manual_update_description">לנסות לאתר גרסאות חדשות ידנית</string>
     <string name="feed_new_items">פריטים חדשים בהזנה</string>

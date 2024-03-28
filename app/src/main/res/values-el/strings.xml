@@ -654,7 +654,7 @@
     <string name="processing_may_take_a_moment">Επεξεργασία... Μπορεί να πάρει λίγο χρόνο</string>
     <string name="checking_updates_toast">Έλεγχος αναβάθμισης…</string>
     <string name="manual_update_description">Χειροκίνητος έλεγχος για νέα έκδοση</string>
-    <string name="manual_update_title">Έλεγχος αναβάθμισης</string>
+    <string name="check_for_updates">Έλεγχος αναβάθμισης</string>
     <string name="feed_new_items">Νέα αντικείμενα τροφοδοσίας</string>
     <string name="show_crash_the_player_title">Εμφάνιση «Κατάρρευσης αναπαραγωγέα»</string>
     <string name="show_crash_the_player_summary">Εμφανίζει μια επιλογή κατάρρευσης κατά τη χρήση του αναπαραγωγέα</string>

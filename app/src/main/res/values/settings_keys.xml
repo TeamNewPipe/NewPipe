@@ -494,6 +494,7 @@
     </string-array>
 
     <!-- Updates -->
+    <string name="update_check_consent_key">update_check_consent_key</string>
     <string name="update_app_key">update_app_key</string>
     <string name="manual_update_key">manual_update_key</string>
     <string name="update_pref_screen_key">update_pref_screen_key</string>

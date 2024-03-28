@@ -482,7 +482,7 @@
     <string name="enable_streams_notifications_summary">ߞߊ߬ ߡߊ߬ߝߘߎ߬ߟߌ ߟߎ߬ ߟߊ߫ ߥߦߏ߬ ߞߎߘߊ ߟߎ߫ ߛߏߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬ ߟߊߣߊ߬</string>
     <string name="any_network">ߞߙߏ߬ߝߏ߫ ߛߎ߮ ߓߍ߯</string>
     <string name="updates_setting_title">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬</string>
-    <string name="manual_update_title">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬ ߡߊߝߍߣߍ߲߫</string>
+    <string name="check_for_updates">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬ ߡߊߝߍߣߍ߲߫</string>
     <string name="manual_update_description">ߞߊ߬ ߓߐߞߏ߫ ߞߎߘߊ ߟߎ߫ ߕߎ߬ߢߊ߬ߟߐ߲߫ ߓߟߏ ߟߊ߫</string>
     <string name="minimize_on_exit_title">ߞߵߊ߬ ߡߊߖߌ߰ ߟߥߊߟߌߟߊ߲ ߘߐߦߟߍߡߊ߲߫ ߕߎߡߊ</string>
     <string name="minimize_on_exit_none_description">ߝߏߛߌ߬</string>

@@ -632,7 +632,7 @@
     <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
     <string name="show_image_indicators_title">Rādīt attēlu indikatorus</string>
     <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>
-    <string name="manual_update_title">Pārbaudīt atjauninājumus</string>
+    <string name="check_for_updates">Pārbaudīt atjauninājumus</string>
     <string name="manual_update_description">Manuāli pārbaudīt, vai ir atjauninājumi</string>
     <string name="seekbar_preview_thumbnail_title">Video atskaņošanas joslas sīktēla priekšskatījums</string>
     <string name="checking_updates_toast">Pārbauda, vai ir atjauninājumi…</string>

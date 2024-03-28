@@ -664,7 +664,7 @@
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
     <string name="enqueue_next_stream">Accoda come prossimo</string>
     <string name="processing_may_take_a_moment">Elaborazione… Potrebbe volerci un attimo</string>
-    <string name="manual_update_title">Controlla aggiornamenti</string>
+    <string name="check_for_updates">Controlla aggiornamenti</string>
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
     <string name="feed_new_items">Nuovi elementi feed</string>

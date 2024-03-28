@@ -651,7 +651,7 @@
     <string name="processing_may_take_a_moment">しーょりちゅう… くーてーんじがんがかかいんかむしりやびらん</string>
     <string name="manual_update_description">みーさるバージョンしーゅどうでぃかくにんさびーん</string>
     <string name="checking_updates_toast">アップデートかくにんちゅう…</string>
-    <string name="manual_update_title">アップデートかくにん</string>
+    <string name="check_for_updates">アップデートかくにん</string>
     <string name="enqueue_next_stream">ちぎキューんかいちちが</string>
     <string name="enqueued_next">ちぎキューんかいちいからさびたん</string>
     <string name="detail_heart_img_view_description">クリエイターぬちむくみてぃ</string>

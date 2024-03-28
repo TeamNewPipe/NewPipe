@@ -651,7 +651,7 @@
     <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
     <string name="enqueued_next">Sonraki sıraya eklendi</string>
     <string name="processing_may_take_a_moment">İşleniyor… Biraz zaman alabilir</string>
-    <string name="manual_update_title">Güncellemeleri denetle</string>
+    <string name="check_for_updates">Güncellemeleri denetle</string>
     <string name="manual_update_description">Yeni sürümleri el ile denetleyin</string>
     <string name="checking_updates_toast">Güncellemeler denetleniyor…</string>
     <string name="feed_new_items">Yeni akış ögeleri</string>

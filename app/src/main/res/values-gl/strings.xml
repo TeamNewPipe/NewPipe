@@ -658,7 +658,7 @@
     <string name="error_report_notification_title">NewPipe atopou un erro, presione para reportar</string>
     <string name="detail_pinned_comment_view_description">Comentario fixado</string>
     <string name="enqueued_next">Enfileirado</string>
-    <string name="manual_update_title">Procurar actualizacións</string>
+    <string name="check_for_updates">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>

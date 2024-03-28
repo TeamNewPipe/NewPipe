@@ -655,7 +655,7 @@
     <string name="enqueued_next">Als Nächstes eingereiht</string>
     <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
     <string name="processing_may_take_a_moment">Verarbeite … Kann einen Moment dauern</string>
-    <string name="manual_update_title">Nach Aktualisierungen suchen</string>
+    <string name="check_for_updates">Nach Aktualisierungen suchen</string>
     <string name="checking_updates_toast">Suche nach Aktualisierungen …</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
     <string name="feed_new_items">Neue Feed-Elemente</string>

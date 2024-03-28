@@ -640,7 +640,7 @@
     <string name="enqueued_next">已將下一個加入佇列</string>
     <string name="enqueue_next_stream">將下一個加入佇列</string>
     <string name="processing_may_take_a_moment">正在處理……可能需要一點時間</string>
-    <string name="manual_update_title">檢查更新</string>
+    <string name="check_for_updates">檢查更新</string>
     <string name="manual_update_description">手動檢查新版本</string>
     <string name="checking_updates_toast">正在檢查更新……</string>
     <string name="feed_new_items">新 feed 項目</string>
