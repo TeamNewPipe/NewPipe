@@ -29,6 +29,10 @@ public final class SettingsResourceRegistry {
     private final Set<SettingRegistryEntry> registeredEntries = new HashSet<>();
 
     private SettingsResourceRegistry() {
+        add(MainSettingsV2Fragment.class, R.xml.main_settings_v2).setSearchable(false);
+
+        // Before redesign settings arrangement. These should be cleared once the
+        // settings_layout_redesign_key is approved and enabled by default.
         add(MainSettingsFragment.class, R.xml.main_settings).setSearchable(false);
 
         add(AppearanceSettingsFragment.class, R.xml.appearance_settings);

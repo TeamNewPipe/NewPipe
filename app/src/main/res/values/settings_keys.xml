@@ -247,6 +247,7 @@
     <string name="crash_the_app_key">crash_the_app_key</string>
     <string name="show_error_snackbar_key">show_error_snackbar_key</string>
     <string name="create_error_notification_key">create_error_notification_key</string>
+    <string name="settings_layout_redesign_key">settings_layout_redesign_key</string>
 
     <!-- THEMES -->
     <string name="theme_key">theme</string>
