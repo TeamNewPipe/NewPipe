@@ -7,8 +7,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -113,9 +111,6 @@ public class DownloadDialog extends DialogFragment
     @State
     int selectedSubtitleIndex = 0; // default to the first item
 
-    @Nullable
-    private OnDismissListener onDismissListener = null;
-
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
     private DownloadManager downloadManager = null;
@@ -193,13 +188,6 @@ public class DownloadDialog extends DialogFragment
                 getStreamsOfSpecifiedDelivery(info.getSubtitles(), PROGRESSIVE_HTTP), context);
 
         this.selectedVideoIndex = ListHelper.getDefaultResolutionIndex(context, videoStreams);
-    }
-
-    /**
-     * @param onDismissListener the listener to call in {@link #onDismiss(DialogInterface)}
-     */
-    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
     }
 
 
@@ -362,14 +350,6 @@ public class DownloadDialog extends DialogFragment
             }
             return false;
         });
-    }
-
-    @Override
-    public void onDismiss(@NonNull final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
     }
 
     @Override
