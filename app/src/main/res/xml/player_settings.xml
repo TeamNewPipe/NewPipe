@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_category_player_title">
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_resolution_and_format_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false">
+
+        <ListPreference
+            android:defaultValue="@string/default_resolution_value"
+            android:entries="@array/resolution_list_description"
+            android:entryValues="@array/resolution_list_values"
+            android:key="@string/default_resolution_key"
+            android:title="@string/default_resolution_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="@string/default_popup_resolution_value"
+            android:entries="@array/resolution_list_description"
+            android:entryValues="@array/resolution_list_values"
+            android:key="@string/default_popup_resolution_key"
+            android:title="@string/default_popup_resolution_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="@string/limit_mobile_data_usage_value"
+            android:entries="@array/limit_data_usage_description_list"
+            android:entryValues="@array/limit_data_usage_values_list"
+            android:key="@string/limit_mobile_data_usage_key"
+            android:title="@string/limit_mobile_data_usage_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/show_higher_resolutions_key"
+            android:summary="@string/show_higher_resolutions_summary"
+            android:title="@string/show_higher_resolutions_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <ListPreference
+            android:defaultValue="@string/default_video_format_value"
+            android:entries="@array/video_format_description_list"
+            android:entryValues="@array/video_format_values_list"
+            android:key="@string/default_video_format_key"
+            android:title="@string/default_video_format_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="@string/default_audio_format_value"
+            android:entries="@array/audio_format_description_list"
+            android:entryValues="@array/audio_format_values_list"
+            android:key="@string/default_audio_format_key"
+            android:title="@string/default_audio_format_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/prefer_original_audio_key"
+            android:summary="@string/prefer_original_audio_summary"
+            android:title="@string/prefer_original_audio_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/prefer_descriptive_audio_key"
+            android:summary="@string/prefer_descriptive_audio_summary"
+            android:title="@string/prefer_descriptive_audio_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <PreferenceScreen
+            android:fragment="org.schabi.newpipe.settings.ExoPlayerSettingsFragment"
+            android:key="@string/exoplayer_settings_key"
+            android:summary="@string/settings_category_exoplayer_summary"
+            android:title="@string/settings_category_exoplayer_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_player_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/use_external_video_player_key"
+            android:summary="@string/use_external_video_player_summary"
+            android:title="@string/use_external_video_player_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/use_external_audio_player_key"
+            android:title="@string/use_external_audio_player_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/show_play_with_kodi_key"
+            android:summary="@string/show_play_with_kodi_summary"
+            android:title="@string/show_play_with_kodi_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="seekbar_preview_thumbnail_high_quality"
+            android:entries="@array/seekbar_preview_thumbnail_type_description"
+            android:entryValues="@array/seekbar_preview_thumbnail_type_key"
+            android:key="@string/seekbar_preview_thumbnail_key"
+            android:title="@string/seekbar_preview_thumbnail_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            android:key="@string/caption_settings_key"
+            android:summary="@string/caption_setting_description"
+            android:title="@string/caption_setting_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <PreferenceScreen
+            android:key="@string/player_notification_screen_key"
+            android:summary="@string/settings_category_player_notification_summary"
+            android:title="@string/settings_category_player_notification_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
