@@ -2,12 +2,12 @@ package org.schabi.newpipe.fragments.list.channel;
 
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.UNKNOWN_SUBSCRIBER_COUNT;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
@@ -26,15 +26,12 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @State
     protected ChannelInfo channelInfo;
 
-    public static ChannelAboutFragment getInstance(final ChannelInfo channelInfo) {
+    public static ChannelAboutFragment getInstance(final @NonNull ChannelInfo channelInfo) {
         final ChannelAboutFragment fragment = new ChannelAboutFragment();
         fragment.channelInfo = channelInfo;
         return fragment;
     }
 
-    public ChannelAboutFragment() {
-        super();
-    }
 
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
@@ -45,26 +42,20 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     @Nullable
     @Override
     protected Description getDescription() {
-        if (channelInfo == null) {
-            return null;
-        }
-        return new Description(channelInfo.getDescription(), Description.PLAIN_TEXT);
+        return new Description(
+                channelInfo.getDescription(),
+                Description.PLAIN_TEXT
+        );
     }
 
-    @Nullable
+    @NonNull
     @Override
     protected StreamingService getService() {
-        if (channelInfo == null) {
-            return null;
-        }
         return channelInfo.getService();
     }
 
     @Override
     protected int getServiceId() {
-        if (channelInfo == null) {
-            return -1;
-        }
         return channelInfo.getServiceId();
     }
 
@@ -74,12 +65,9 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         return null;
     }
 
-    @Nullable
+    @NonNull
     @Override
     public List<String> getTags() {
-        if (channelInfo == null) {
-            return null;
-        }
         return channelInfo.getTags();
     }
 
@@ -93,10 +81,11 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
             return;
         }
 
-        final Context context = getContext();
         if (channelInfo.getSubscriberCount() != UNKNOWN_SUBSCRIBER_COUNT) {
             addMetadataItem(inflater, layout, false, R.string.metadata_subscribers,
-                    Localization.localizeNumber(context, channelInfo.getSubscriberCount()));
+                    Localization.localizeNumber(
+                            requireContext(),
+                            channelInfo.getSubscriberCount()));
         }
 
         addImagesMetadataItem(inflater, layout, R.string.metadata_avatars,

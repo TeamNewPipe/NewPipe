@@ -64,7 +64,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
 
     /**
      * Get the description to display.
-     * @return description object
+     * @return description object, if available
      */
     @Nullable
     protected abstract Description getDescription();
@@ -73,7 +73,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
      * Get the streaming service. Used for generating description links.
      * @return streaming service
      */
-    @Nullable
+    @NonNull
     protected abstract StreamingService getService();
 
     /**
@@ -93,7 +93,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
      * Get the list of tags to display below the description.
      * @return tag list
      */
-    @Nullable
+    @NonNull
     public abstract List<String> getTags();
 
     /**
@@ -158,7 +158,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
                                    final LinearLayout layout,
                                    final boolean linkifyContent,
                                    @StringRes final int type,
-                                   @Nullable final String content) {
+                                   @NonNull final String content) {
         if (isBlank(content)) {
             return;
         }
@@ -221,16 +221,12 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
                 urls.append(imageSizeToText(image.getWidth()));
             } else {
                 switch (image.getEstimatedResolutionLevel()) {
-                    case LOW:
-                        urls.append(getString(R.string.image_quality_low));
-                        break;
-                    default: // unreachable, Image.ResolutionLevel.UNKNOWN is already filtered out
-                    case MEDIUM:
-                        urls.append(getString(R.string.image_quality_medium));
-                        break;
-                    case HIGH:
-                        urls.append(getString(R.string.image_quality_high));
-                        break;
+                    case LOW -> urls.append(getString(R.string.image_quality_low));
+                    case MEDIUM -> urls.append(getString(R.string.image_quality_medium));
+                    case HIGH -> urls.append(getString(R.string.image_quality_high));
+                    default -> {
+                        // unreachable, Image.ResolutionLevel.UNKNOWN is already filtered out
+                    }
                 }
             }
 
@@ -255,7 +251,7 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
     private void addTagsMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
         final List<String> tags = getTags();
 
-        if (tags != null && !tags.isEmpty()) {
+        if (!tags.isEmpty()) {
             final var itemBinding = ItemMetadataTagsBinding.inflate(inflater, layout, false);
 
             tags.stream().sorted(String.CASE_INSENSITIVE_ORDER).forEach(tag -> {
