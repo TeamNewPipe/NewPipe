@@ -71,4 +71,11 @@
         android:title="@string/create_error_notification"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/settings_layout_redesign_key"
+        android:title="@string/settings_layout_redesign"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
 </PreferenceScreen>

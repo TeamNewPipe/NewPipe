@@ -92,6 +92,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
     }
 
     packagingOptions {
@@ -102,6 +103,10 @@ android {
                          // 'COPYRIGHT' belongs to RxJava...
                          'META-INF/COPYRIGHT']
         }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 }
 
@@ -284,6 +289,12 @@ dependencies {
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.7.Final"
 
+    // Jetpack Compose
+    implementation(platform('androidx.compose:compose-bom:2024.02.01'))
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.activity:activity-compose'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+
 /** Debugging **/
     // Memory leak detection
     debugImplementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
@@ -292,6 +303,9 @@ dependencies {
     // Debug bridge for Android
     debugImplementation "com.facebook.stetho:stetho:${stethoVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+
+    // Jetpack Compose
+    debugImplementation 'androidx.compose.ui:ui-tooling'
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'

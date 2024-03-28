@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
@@ -64,6 +65,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.settings.SettingsV2Activity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
@@ -649,7 +651,13 @@ public final class NavigationHelper {
     }
 
     public static void openSettings(final Context context) {
-        final Intent intent = new Intent(context, SettingsActivity.class);
+        final Class<?> settingsClass = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(
+                        ContextCompat.getString(context, R.string.settings_layout_redesign_key),
+                        false
+                ) ? SettingsV2Activity.class : SettingsActivity.class;
+
+        final Intent intent = new Intent(context, settingsClass);
         context.startActivity(intent);
     }
 
