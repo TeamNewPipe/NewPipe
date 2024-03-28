@@ -58,7 +58,6 @@
     <string name="use_inexact_seek_title">Utilzar la recèrca rapida inexacta</string>
     <string name="use_inexact_seek_summary">La recèrca inexacta permet a l\'utilizaire de recercar mai rapidament una posicion amb mens de precision</string>
     <string name="seek_duration_title">Durada d\'avançada/reculada rapida</string>
-    <string name="download_thumbnail_title">Cargar las miniaturas</string>
     <string name="show_comments_title">Afichar los comentaris</string>
     <string name="show_comments_summary">Desactivar per afichar pas mai los comentaris</string>
     <string name="auto_queue_title">Apondre la vidèo seguenta dins la coa de lectura</string>

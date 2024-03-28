@@ -1,0 +1,10 @@
+### İyileştirmeler
+* GitHub derlemesi için uygulama güncelleme bildirimi ekleyin (#1608 yazan @krtkush)
+* İndiricide çeşitli iyileştirmeler (@kapodamy tarafından #1944):
+* eksik beyaz simgeleri ekleyin ve simge renklerini değiştirmek için sert çizgili yol kullanın
+* yineleyicinin başlatılıp başlatılmadığını kontrol edin (#2031'i düzeltir)
+* Yeni muxer'da " işlem-sonrası başarısız" hatası ile yeniden indirme denemelerine izin verin
+* Senkronize olmayan video ve ses akışlarını düzelten yeni MPEG-4 muxer (#2039)
+
+### Sabit
+* YouTube canlı yayınları kısa bir süre sonra oynatılmayı durduruyor (#1996 by @yausername)

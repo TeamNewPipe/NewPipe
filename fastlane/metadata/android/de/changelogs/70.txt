@@ -1,0 +1,10 @@
+ACHTUNG: Diese Version ist wahrscheinlich ein Bugfest.
+
+### Verbesserungen
+* heruntergeladene Dateien können mit einem Klick #1879 geöffnet werden
+* Drop-Unterstützung für Android 4.1 - 4.3 #1884
+* Streams aus der aktuellen Warteschlange entfernt, indem sie nach rechts swipen #1915
+
+### Fixed
+* Crash mit Standard-Auflösung eingestellt auf beste und begrenzte mobile Datenauflösung #1835
+* Pop-up-Spieler-Absturz behoben #1874

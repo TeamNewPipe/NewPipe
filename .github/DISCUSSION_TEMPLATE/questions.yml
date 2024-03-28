@@ -1,6 +1,3 @@
-name: Question
-description: Ask about anything NewPipe-related
-labels: [question]
 body:
   - type: markdown
     attributes:

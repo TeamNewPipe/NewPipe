@@ -116,7 +116,7 @@ class AboutActivity : AppCompatActivity() {
         /**
          * List of all software components.
          */
-        private val SOFTWARE_COMPONENTS = arrayOf(
+        private val SOFTWARE_COMPONENTS = arrayListOf(
             SoftwareComponent(
                 "ACRA", "2013", "Kevin Gaudin",
                 "https://github.com/ACRA/acra", StandardLicenses.APACHE2

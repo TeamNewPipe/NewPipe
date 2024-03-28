@@ -55,10 +55,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private var groupSortOrder: Long = -1
 
     sealed class ScreenState : Serializable {
-        object InitialScreen : ScreenState()
-        object IconPickerScreen : ScreenState()
-        object SubscriptionsPickerScreen : ScreenState()
-        object DeleteScreen : ScreenState()
+        data object InitialScreen : ScreenState()
+        data object IconPickerScreen : ScreenState()
+        data object SubscriptionsPickerScreen : ScreenState()
+        data object DeleteScreen : ScreenState()
     }
 
     @State @JvmField var selectedIcon: FeedGroupIcon? = null
@@ -370,7 +370,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     private fun setupIconPicker() {
         val groupAdapter = GroupieAdapter()
-        groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(it) })
+        groupAdapter.addAll(FeedGroupIcon.entries.map { PickerIconItem(it) })
 
         feedGroupCreateBinding.iconSelector.apply {
             layoutManager = GridLayoutManager(requireContext(), 7, RecyclerView.VERTICAL, false)

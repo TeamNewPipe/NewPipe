@@ -124,6 +124,16 @@
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
 
+    <string-array name="high_resolution_list_values">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
+    <string-array name="high_resolution_list_descriptions">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
     <string-array name="resolution_list_values">
         <item>@string/best_resolution_key</item>
         <item>1080p60</item>
@@ -397,8 +407,6 @@
     <string name="export_data">export_data</string>
 
     <string name="clear_cookie_key">clear_cookie</string>
-
-    <string name="download_thumbnail_key">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key">cache_wipe_key</string>
     <string name="clear_views_history_key">clear_play_history</string>
@@ -1350,6 +1358,11 @@
         <item>144p</item>
     </string-array>
 
+    <string-array name="high_resolution_limit_data_usage_values_list">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
+
     <string name="list_view_mode_key">list_view_mode</string>
     <string name="list_view_mode_value">@string/list_view_mode_auto_key</string>
 
@@ -1435,4 +1448,24 @@
     <string name="media_tunneling_device_blacklist_version">media_tunneling_device_blacklist_version</string>
     <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_key">always_use_exoplayer_set_output_surface_workaround_key</string>
+
+    <!-- Image quality -->
+    <string name="image_quality_key">image_quality_key</string>
+    <string name="image_quality_none_key">image_quality_none</string>
+    <string name="image_quality_low_key">image_quality_low</string>
+    <string name="image_quality_medium_key">image_quality_medium</string>
+    <string name="image_quality_high_key">image_quality_high</string>
+    <string name="image_quality_default">@string/image_quality_medium_key</string>
+    <string-array name="image_quality_description">
+        <item>@string/image_quality_none</item>
+        <item>@string/image_quality_low</item>
+        <item>@string/image_quality_medium</item>
+        <item>@string/image_quality_high</item>
+    </string-array>
+    <string-array name="image_quality_values">
+        <item>@string/image_quality_none_key</item>
+        <item>@string/image_quality_low_key</item>
+        <item>@string/image_quality_medium_key</item>
+        <item>@string/image_quality_high_key</item>
+    </string-array>
 </resources>

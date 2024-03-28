@@ -99,9 +99,9 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
                     Localization.localizeNumber(context, channelInfo.getSubscriberCount()));
         }
 
-        addMetadataItem(inflater, layout, true, R.string.metadata_avatar_url,
-                channelInfo.getAvatarUrl());
-        addMetadataItem(inflater, layout, true, R.string.metadata_banner_url,
-                channelInfo.getBannerUrl());
+        addImagesMetadataItem(inflater, layout, R.string.metadata_avatars,
+                channelInfo.getAvatars());
+        addImagesMetadataItem(inflater, layout, R.string.metadata_banners,
+                channelInfo.getBanners());
     }
 }

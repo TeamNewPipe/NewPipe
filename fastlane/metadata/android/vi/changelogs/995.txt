@@ -1,0 +1,14 @@
+Mới
+• Hỗ trợ tab kênh
+• Chọn chất lượng hình ảnh
+• Nhận URL cho tất cả hình ảnh
+
+Cải thiện
+• Khả năng truy cập của giao diện trình phát
+• Tùy chọn thêm tên danh sách phát và tên video vào nội dung chia sẻ danh sách phát
+• Cải tiến nội bộ và cập nhật phụ thuộc
+
+Đã sửa
+• Lựa chọn ngôn ngữ sai trong bộ chọn ngôn ngữ
+• Tiêu điểm âm thanh của trình phát không bị tắt tiếng
+• Thêm mục vào danh sách phát không hoạt động trong các trường hợp cụ thể

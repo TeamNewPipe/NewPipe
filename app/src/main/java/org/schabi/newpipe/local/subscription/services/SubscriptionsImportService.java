@@ -30,6 +30,7 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.IntentCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
@@ -108,7 +109,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
         if (currentMode == CHANNEL_URL_MODE) {
             channelUrl = intent.getStringExtra(KEY_VALUE);
         } else {
-            final Uri uri = intent.getParcelableExtra(KEY_VALUE);
+            final Uri uri = IntentCompat.getParcelableExtra(intent, KEY_VALUE, Uri.class);
             if (uri == null) {
                 stopAndReportError(new IllegalStateException(
                         "Importing from input stream, but file path is null"),

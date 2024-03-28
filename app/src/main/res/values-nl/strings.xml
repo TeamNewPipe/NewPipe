@@ -44,7 +44,6 @@
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kan niet alle miniatuurvoorbeelden laden</string>
-    <string name="youtube_signature_deobfuscation_error">Kan video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kan website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>
@@ -217,7 +216,7 @@
     <string name="override_current_data">Dit overschrijft je huidige configuratie.</string>
     <string name="controls_download_desc">Streambestand downloaden</string>
     <string name="show_info">Informatie tonen</string>
-    <string name="tab_bookmarks">Bijgehouden afspeellijsten</string>
+    <string name="tab_bookmarks">Bĳgehouden afspeellĳsten</string>
     <string name="controls_add_to_playlist_title">Toevoegen aan</string>
     <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
     <string name="create">Aanmaken</string>
@@ -284,8 +283,6 @@
     <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je mobiele netwerk gebruiken. 
 \n 
 \nWil je doorgaan?</string>
-    <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -377,7 +374,7 @@
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
-    <string name="pause_downloads_on_mobile">Pauzeren bij mobiele data verbinding</string>
+    <string name="pause_downloads_on_mobile">Pauzeren bij mobiele gegevens­verbinding</string>
     <string name="pause_downloads_on_mobile_desc">Handig voor wanneer u naar mobiel internet overschakelt, hoewel sommige downloads niet gepauzeerd kunnen worden</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
@@ -389,7 +386,7 @@
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
     <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' staat downloads naar een externe SD kaart toe</string>
-    <string name="settings_category_clear_data_title">Wis data</string>
+    <string name="settings_category_clear_data_title">Gegevens wissen</string>
     <string name="enable_playback_resume_title">Afspelen hervatten</string>
     <string name="enable_playback_resume_summary">Verder afspelen vanaf laatste positie</string>
     <string name="enable_playback_state_lists_title">Posities in lijst</string>
@@ -399,7 +396,7 @@
     <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
     <string name="overwrite_failed">Kan bestand niet overschrijven</string>
     <string name="download_already_pending">Er is al een download met deze naam bezig</string>
-    <string name="error_insufficient_storage">Geen vrije ruimte meer op het apparaat</string>
+    <string name="error_insufficient_storage_left">Geen vrije ruimte meer op het apparaat</string>
     <string name="error_progress_lost">Voortgang verloren, omdat bestand was verwijderd</string>
     <string name="confirm_prompt">Wilt u de downloadgeschiedenis of alle gedownloade bestanden verwijderen\?</string>
     <string name="enable_queue_limit">Download­wachtrij limiteren</string>
@@ -446,7 +443,7 @@
     <string name="app_language_title">App-taal</string>
     <string name="systems_language">Systeemtaal gebruiken</string>
     <string name="subtitle_activity_recaptcha">Druk op ‘Klaar’ als u dit heeft opgelost</string>
-    <string name="recaptcha_done_button">Klaar</string>
+    <string name="done">Klaar</string>
     <string name="videos_string">Video\'s</string>
     <string name="new_seek_duration_toast">Door beperkingen van ExoPlayer is de zoekduur ingesteld op %d seconden</string>
     <string name="mute">Geluid dempen</string>
@@ -546,7 +543,7 @@
     <string name="notification_action_shuffle">Willekeurig afspelen</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant</string>
+    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
     <string name="notification_action_2_title">Derde actieknop</string>
@@ -602,7 +599,6 @@
     <string name="metadata_privacy_private">Privé</string>
     <string name="metadata_privacy_unlisted">Niet vermeld</string>
     <string name="metadata_privacy_public">Openbaar</string>
-    <string name="metadata_thumbnail_url">Miniatuur-URL</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Ondersteuning</string>
     <string name="metadata_language">Taal</string>
@@ -714,7 +710,7 @@
     <string name="sort">Sorteer</string>
     <string name="fast_mode">Snelle modus</string>
     <string name="import_subscriptions_hint">Importeer of exporteer abonnementen vanuit het 3-punten menu</string>
-    <string name="app_update_unavailable_toast">U heeft de laatste versie van NewPipe</string>
+    <string name="app_update_unavailable_toast">U heeft de nieuwste versie van NewPipe</string>
     <string name="app_update_available_notification_text">Druk om %s te downloaden</string>
     <string name="msg_failed_to_copy">Kon niet naar klembord kopiëren</string>
     <string name="night_theme_available">Deze instelling is alleen beschikbaar als %s als thema ingesteld is</string>
@@ -761,9 +757,60 @@
     <string name="audio_track_type_original">origineel</string>
     <string name="audio_track_type_dubbed">nagesynchroniseerd</string>
     <string name="audio_track_type_descriptive">beschrijvend</string>
-    <string name="main_tabs_position_summary">Secties onderaan weergeven</string>
+    <string name="main_tabs_position_summary">Verplaats de tabselector naar beneden</string>
     <string name="main_tabs_position_title">Positie van sectie-tabbladen</string>
     <string name="no_streams">Geen streams</string>
     <string name="no_live_streams">Geen live-streams</string>
     <string name="disable_media_tunneling_automatic_info">Media-tunneling is standaard uitgeschakeld op uw apparaat omdat uw apparaatmodel dit niet ondersteunt.</string>
+    <string name="image_quality_title">Afbeeldings­kwaliteit</string>
+    <string name="channel_tab_videos">Video\'s</string>
+    <string name="question_mark">\?</string>
+    <string name="metadata_subscribers">Abonnees</string>
+    <string name="show_channel_tabs_summary">Welke tabbladen worden getoond op kanaal­pagina\'s</string>
+    <string name="show_channel_tabs">Kanaal­tabbladen</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Metagegevens laden…</string>
+    <string name="toggle_screen_orientation">Scherm­oriëntatie omschakelen</string>
+    <string name="image_quality_low">Lage kwaliteit</string>
+    <string name="toggle_fullscreen">Volledig scherm omschakelen</string>
+    <string name="feed_fetch_channel_tabs">Kanaal­tabbladen ophalen</string>
+    <string name="metadata_avatars">Profielfoto\'s</string>
+    <string name="next_stream">Volgende stream</string>
+    <string name="metadata_subchannel_avatars">Subkanaal-profielfoto\'s</string>
+    <string name="open_play_queue">Wachtrij openen</string>
+    <string name="image_quality_none">Afbeeldingen niet laden</string>
+    <string name="image_quality_high">Hoge kwaliteit</string>
+    <string name="channel_tab_about">Over</string>
+    <string name="forward">Vooruitspoelen</string>
+    <string name="channel_tab_albums">Albums</string>
+    <string name="rewind">Terugspoelen</string>
+    <string name="replay">Opnieuw afspelen</string>
+    <string name="feed_fetch_channel_tabs_summary">Tabbladen om op te halen bij het bijwerken van de feed. Deze optie heeft geen effect als een kanaal wordt bingewerkt via de snelle modus.</string>
+    <string name="image_quality_medium">Gemiddelde kwaliteit</string>
+    <string name="metadata_uploader_avatars">Uploader-profielfoto\'s</string>
+    <string name="metadata_banners">Banieren</string>
+    <string name="channel_tab_playlists">Afspeellijsten</string>
+    <string name="image_quality_summary">Kies de kwaliteit van afbeeldingen en of deze überhaupt geladen moeten worden, om gegevens- en geheugengebruik te verminderen. Wijzigingen wissen de afbeeldings­cache — %s</string>
+    <string name="play">Afspelen</string>
+    <string name="more_options">Meer opties</string>
+    <string name="metadata_thumbnails">Miniaturen</string>
+    <string name="channel_tab_tracks">Nummers</string>
+    <string name="duration">Duur</string>
+    <string name="channel_tab_channels">Kanalen</string>
+    <string name="previous_stream">Vorige stream</string>
+    <string name="channel_tab_livestreams">Live</string>
+    <string name="share_playlist_with_list">URL-lijst delen</string>
+    <string name="share_playlist_with_titles">Delen met titels</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Afspeellijst delen</string>
+    <string name="share_playlist_with_titles_message">Deel afspeellijst met details zoals afspeellijstnaam en videotitels of als een eenvoudige lijst met video-URL\'s</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s antwoord</item>
+        <item quantity="other">%s antwoorden</item>
+    </plurals>
+    <string name="show_more">Meer tonen</string>
+    <string name="show_less">Minder tonen</string>
+    <string name="notification_actions_summary_android13">Bewerk elke meldings­actie hieronder door erop te tikken. De eerste drie acties (afspelen/pauzeren, vorige en volgende) zijn ingesteld door het systeem en kunnen niet worden aangepast.</string>
 </resources>

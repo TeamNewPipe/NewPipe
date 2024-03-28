@@ -1,0 +1,13 @@
+Baru
+• Menambahkan opsi "Tambahkan ke playlist" untuk berbagi menu
+• Menambahkan dukungan untuk tautan pendek y2u.be dan PeerTube
+
+Ditingkatkan
+• Membuat Kontrol Kecepatan Pemutaran menjadi lebih ringkas
+• Feed menyoroti item baru sekarang
+• Opsi "Tampilkan item yang ditonton" di feed kini disimpan
+
+Tetap
+• Memperbaiki ekstraksi suka dan tidak suka YouTube
+• Memperbaiki pemutaran ulang otomatis setelah kembali dari latar belakang
+Dan banyak lagi

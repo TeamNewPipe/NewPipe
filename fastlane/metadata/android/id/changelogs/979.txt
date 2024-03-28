@@ -1,0 +1,2 @@
+- Memperbaiki melanjutkan pemutaran
+- Perbaikan untuk memastikan bahwa layanan yang menentukan apakah NewPipe harus memeriksa pemeriksaan versi baru tidak dimulai di latar belakang

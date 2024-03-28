@@ -1,0 +1,14 @@
+Neu
+• Unterstützung von Kanaltabs
+• Bildqualität auswählbar
+• URLs zu allen Bildern erhalten
+
+Verbessert
+• Zugänglichkeit der Player-Oberflächen
+• Bessere Audioauswahl bei reinen Video-Downloads
+• Option zur Aufnahme von Wiedergabelisten-/Videonamen in geteilten Wiedergabelisteninhalten
+
+Behoben
+• [YouTube] Erhalten der Like-Anzahl
+• Nicht reagierende Popups und Abstürze des Players
+• Hinzufügen von Wiedergabelistenelementen funktionierte gelegentlich nicht

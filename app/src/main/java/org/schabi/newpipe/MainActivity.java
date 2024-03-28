@@ -44,6 +44,7 @@ import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +52,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
@@ -64,11 +66,13 @@ import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.player.Player;
@@ -546,14 +550,21 @@ public class MainActivity extends AppCompatActivity {
         // interacts with a fragment inside fragment_holder so all back presses should be
         // handled by it
         if (bottomSheetHiddenOrCollapsed()) {
-            final Fragment fragment = getSupportFragmentManager()
-                    .findFragmentById(R.id.fragment_holder);
+            final FragmentManager fm = getSupportFragmentManager();
+            final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)
             // delegate the back press to it
             if (fragment instanceof BackPressable) {
                 if (((BackPressable) fragment).onBackPressed()) {
                     return;
                 }
+            } else if (fragment instanceof CommentRepliesFragment) {
+                // expand DetailsFragment if CommentRepliesFragment was opened
+                // to show the top level comments again
+                // Expand DetailsFragment if CommentRepliesFragment was opened
+                // and no other CommentRepliesFragments are on top of the back stack
+                // to show the top level comments again.
+                openDetailFragmentFromCommentReplies(fm, false);
             }
 
         } else {
@@ -629,10 +640,17 @@ public class MainActivity extends AppCompatActivity {
      * </pre>
      */
     private void onHomeButtonPressed() {
-        // If search fragment wasn't found in the backstack...
-        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
-            // ...go to the main fragment
-            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        final FragmentManager fm = getSupportFragmentManager();
+        final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
+
+        if (fragment instanceof CommentRepliesFragment) {
+            // Expand DetailsFragment if CommentRepliesFragment was opened
+            // and no other CommentRepliesFragments are on top of the back stack
+            // to show the top level comments again.
+            openDetailFragmentFromCommentReplies(fm, true);
+        } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
+            // If search fragment wasn't found in the backstack go to the main fragment
+            NavigationHelper.gotoMainFragment(fm);
         }
     }
 
@@ -826,6 +844,68 @@ public class MainActivity extends AppCompatActivity {
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
             registerReceiver(broadcastReceiver, intentFilter);
         }
+    }
+
+    private void openDetailFragmentFromCommentReplies(
+            @NonNull final FragmentManager fm,
+            final boolean popBackStack
+    ) {
+        // obtain the name of the fragment under the replies fragment that's going to be popped
+        @Nullable final String fragmentUnderEntryName;
+        if (fm.getBackStackEntryCount() < 2) {
+            fragmentUnderEntryName = null;
+        } else {
+            fragmentUnderEntryName = fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 2)
+                    .getName();
+        }
+
+        // the root comment is the comment for which the user opened the replies page
+        @Nullable final CommentRepliesFragment repliesFragment =
+                (CommentRepliesFragment) fm.findFragmentByTag(CommentRepliesFragment.TAG);
+        @Nullable final CommentsInfoItem rootComment =
+                repliesFragment == null ? null : repliesFragment.getCommentsInfoItem();
+
+        // sometimes this function pops the backstack, other times it's handled by the system
+        if (popBackStack) {
+            fm.popBackStackImmediate();
+        }
+
+        // only expand the bottom sheet back if there are no more nested comment replies fragments
+        // stacked under the one that is currently being popped
+        if (CommentRepliesFragment.TAG.equals(fragmentUnderEntryName)) {
+            return;
+        }
+
+        final BottomSheetBehavior<FragmentContainerView> behavior = BottomSheetBehavior
+                .from(mainBinding.fragmentPlayerHolder);
+        // do not return to the comment if the details fragment was closed
+        if (behavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+            return;
+        }
+
+        // scroll to the root comment once the bottom sheet expansion animation is finished
+        behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull final View bottomSheet,
+                                       final int newState) {
+                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                    final Fragment detailFragment = fm.findFragmentById(
+                            R.id.fragment_player_holder);
+                    if (detailFragment instanceof VideoDetailFragment && rootComment != null) {
+                        // should always be the case
+                        ((VideoDetailFragment) detailFragment).scrollToComment(rootComment);
+                    }
+                    behavior.removeBottomSheetCallback(this);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
+                // not needed, listener is removed once the sheet is expanded
+            }
+        });
+
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private boolean bottomSheetHiddenOrCollapsed() {

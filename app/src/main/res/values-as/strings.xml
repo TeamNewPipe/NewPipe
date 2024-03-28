@@ -62,7 +62,6 @@
     <string name="progressive_load_interval_summary">লোড ব্যৱধানৰ আকাৰ সলনি কৰক (বৰ্তমানে %s) । এটা কম মানে প্ৰাৰম্ভিক ভিডিঅ\' লোডিং দ্ৰুত কৰিব পাৰে। পৰিৱৰ্তনৰ বাবে এটা খেলুৱৈ পুনৰাৰম্ভৰ প্ৰয়োজন</string>
     <string name="notification_colorize_summary">থাম্বনেইলত থকা মূল ৰং অনুসৰি এণ্ড্ৰইডক জাননীৰ ৰং কাষ্টমাইজ কৰিবলৈ কওক (মন কৰিব যে এইটো সকলো ডিভাইচতে উপলব্ধ নহয়)</string>
     <string name="clear_queue_confirmation_description">সক্ৰিয় প্লেয়াৰৰ queue সলনি কৰা হ’ব</string>
-    <string name="download_thumbnail_title">থাম্বনেইল লোড কৰক</string>
     <string name="show_comments_title">মন্তব্য দেখুৱাওক</string>
     <string name="show_description_title">বিৱৰণ দেখুৱাওক</string>
     <string name="show_meta_info_title">মেটা তথ্য দেখুৱাওক</string>
@@ -96,6 +95,5 @@
     <string name="show_description_summary">ভিডিঅ\'ৰ বিৱৰণ আৰু অতিৰিক্ত তথ্য লুকুৱাবলৈ বন্ধ কৰক</string>
     <string name="show_comments_summary">মন্তব্য লুকুৱাবলৈ বন্ধ কৰক</string>
     <string name="show_next_and_similar_title">\'পৰৱৰ্তী\' আৰু \'সাদৃশ্য থকা\' ভিডিঅ\' দেখুৱাওক</string>
-    <string name="download_thumbnail_summary">থাম্বনেইলসমূহ লোড কৰা, তথ্য আৰু মেমৰি ব্যৱহাৰ সংৰক্ষণ কৰা ৰোধ কৰিবলে বন্ধ কৰক। পৰিবৰ্তনসমূহে ইন-মেমৰি আৰু অন-ডিস্ক কেশ্ব দুয়োটা পৰিষ্কাৰ কৰে</string>
     <string name="show_meta_info_summary">ষ্ট্ৰিমৰ সৃষ্টিকৰ্তা, ষ্ট্ৰিমৰ বিষয়বস্তু বা এটা সন্ধান অনুৰোধৰ বিষয়ে অতিৰিক্ত তথ্যৰ সৈতে মেটা তথ্যৰ বাকচসমূহ লুকুৱাবলৈ বন্ধ কৰক</string>
 </resources>

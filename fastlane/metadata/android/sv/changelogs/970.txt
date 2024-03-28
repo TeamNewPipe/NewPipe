@@ -1,0 +1,11 @@
+Nytt
+• Visa innehåll metadata (taggar, kategorier, licens, ...) under beskrivningen
+• Lägg till alternativet "Visa kanalinformation" i distans (icke-lokala) spellistor
+• Lägg till "Öppna i webbläsare" -alternativ för långtrycksmeny
+
+Fixat
+• Fixade rotations krasch på video detalj sida
+• Fixade "Spela med Kodi" knappen i spelaren som alltid uppmanade till att installera Kore
+• Fixade och förbättrad inställning av import och exportvägar
+• [YouTube] Fixade kommentarers gilla antal
+Och mycket mer

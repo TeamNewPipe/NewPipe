@@ -1,0 +1,18 @@
+# Versionsänderung von v0.13.7
+
+### Behebungen
+- Probleme der Filterung von v.0.13.6 behoben
+
+# Versionsänderung von v0.13.6
+
+### Verbesserungen
+
+- Animation der Burgermenü-Icon entfernt #1486
+- Löschen von Downloads rückgängig machen #1472
+- Im "Teilen"-Tab die Download option hinzugefügt #1498
+- Option "Teilen" zum Long-Tap-Menü hinzugefügt #1454
+
+### Behebungen
+
+- Probleme mit dem kaputten Video Info layout behoben. #1440 / #1491
+- Probleme mit dem Verlauf wurden behoben. #1497.

@@ -61,7 +61,6 @@
     <string name="general_error">ত্রুটি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
     <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
-    <string name="youtube_signature_deobfuscation_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি</string>
     <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি</string>
     <string name="content_not_available">কন্টেন্ট উপলব্ধ নয়</string>
     <string name="could_not_setup_download_menu">ডাউনলোড মেনু সেটআপ করা যায়নি</string>
@@ -140,8 +139,6 @@
     <string name="seek_duration_title">দ্রুত-ফরওয়ার্ড/-পুনরায় সন্ধান সময়কাল</string>
     <string name="show_comments_summary">মন্তব্যসমূহ লুকাতে বন্ধ করুন</string>
     <string name="show_comments_title">মন্তব্যসমূহ দেখাও</string>
-    <string name="download_thumbnail_title">থাম্বনেইল লোড করো</string>
-    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে।</string>
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মোছা হয়েছে</string>
     <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
     <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মোছ</string>
@@ -168,7 +165,7 @@
     <string name="stop">বন্ধ করুন</string>
     <string name="delete_downloaded_files">ডাউনলোড করা ফাইলগুলো ডিলিট করুন</string>
     <string name="clear_download_history">ডাওন লোড ইতিহাস মুছুন</string>
-    <string name="error_insufficient_storage">ডিভাইস এ স্পেস নেই</string>
+    <string name="error_insufficient_storage_left">ডিভাইস এ স্পেস নেই</string>
     <string name="error_http_not_found">পাওয়া যায় নি</string>
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="show_error">এরর দেখান</string>
@@ -260,7 +257,7 @@
     <string name="peertube_instance_url_title">পিয়ার টিউব এর ইন্সটান্স সমূহ</string>
     <string name="grid">ছক</string>
     <string name="local">স্থানীয়</string>
-    <string name="recaptcha_done_button">হয়েছে</string>
+    <string name="done">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
     <string name="minimize_on_exit_none_description">কোনোটি না</string>
@@ -300,7 +297,7 @@
     <string name="notification_scale_to_square_image_title">থাম্বনেল ১:১ অনুপাতে সেট করো</string>
     <string name="systems_language">সিস্টেম ডিফল্ট</string>
     <string name="bookmark_playlist">প্লেলিস্ট বুকমার্ক করুন</string>
-    <string name="feed_use_dedicated_fetch_method_title">"যখন পর্যাপ্ত  নিবেদিত ফিড থেকে ডাটা সংগ্রহ করুন"</string>
+    <string name="feed_use_dedicated_fetch_method_title">যখন পর্যাপ্ত নিবেদিত ফিড থেকে ডাটা সংগ্রহ করুন</string>
     <string name="feed_update_threshold_option_always_update">সবসময় হালনগাদ করুন</string>
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
     <string name="feed_update_threshold_title">ফিড হালনাগাদ প্রবেশস্থল</string>
@@ -320,11 +317,11 @@
     <string name="feed_groups_header_title">চ্যানেল গ্রুপ</string>
     <plurals name="days">
         <item quantity="one">%d দিন</item>
-        <item quantity="other">"%d   দিন"</item>
+        <item quantity="other">%d দিন</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d ঘন্টা</item>
-        <item quantity="other">"%d  ঘন্টা"</item>
+        <item quantity="other">%d ঘন্টা</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d মিনিট</item>

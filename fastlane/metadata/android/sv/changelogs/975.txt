@@ -1,0 +1,15 @@
+Nytt
+• Visa en miniatyr förhandsvisning medan du söker
+• Upptäck avstängda kommentarer
+• Tillåt markering av ett flödesobjekt som visat
+• Visa kommentar hjärtan
+
+Förbättrat
+• Förbättrade metadata och tagg layout
+• Applicera service färg till UI komponenter
+
+Fixat
+• Fixade miniatyrbild i minispelare
+• Fixade oändlig buffring på dubbla köartiklar
+• Vissa spelare fixar som rotation och snabbare stängning
+• Fixade ReCAPTCHA som var kvar i bakgrunden

@@ -1,0 +1,14 @@
+Novidades
+• Suporta abas de canal
+• Seleção da qualidade da imagem
+• Obtém os URL para todas as imagens
+
+Melhorias
+• Acessibilidade das interfaces do reprodutor
+• Pode adicionar nome da lista de reprodução e de vídeo para compartilhamento do conteúdo
+• Melhorias internas (?) e atualizações de dependências
+
+Corrigido
+• Seleção de idiomas errados ao selecionar
+• O foco do áudio do reprodutor não respeitava o mudo
+• Adicionar itens para listas de reprodução não funcionava em casos específicos

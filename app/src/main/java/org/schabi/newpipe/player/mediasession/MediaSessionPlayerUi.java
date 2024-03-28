@@ -1,10 +1,12 @@
 package org.schabi.newpipe.player.mediasession;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
@@ -14,15 +16,23 @@ import androidx.annotation.Nullable;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.google.android.exoplayer2.ForwardingPlayer;
+import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.notification.NotificationActionData;
+import org.schabi.newpipe.player.notification.NotificationConstants;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -33,6 +43,10 @@ public class MediaSessionPlayerUi extends PlayerUi
 
     private final String ignoreHardwareMediaButtonsKey;
     private boolean shouldIgnoreHardwareMediaButtons = false;
+
+    // used to check whether any notification action changed, before sending costly updates
+    private List<NotificationActionData> prevNotificationActions = List.of();
+
 
     public MediaSessionPlayerUi(@NonNull final Player player) {
         super(player);
@@ -63,6 +77,10 @@ public class MediaSessionPlayerUi extends PlayerUi
 
         sessionConnector.setMetadataDeduplicationEnabled(true);
         sessionConnector.setMediaMetadataProvider(exoPlayer -> buildMediaMetadata());
+
+        // force updating media session actions by resetting the previous ones
+        prevNotificationActions = List.of();
+        updateMediaSessionActions();
     }
 
     @Override
@@ -80,6 +98,7 @@ public class MediaSessionPlayerUi extends PlayerUi
             mediaSession.release();
             mediaSession = null;
         }
+        prevNotificationActions = List.of();
     }
 
     @Override
@@ -162,5 +181,110 @@ public class MediaSessionPlayerUi extends PlayerUi
                 });
 
         return builder.build();
+    }
+
+
+    private void updateMediaSessionActions() {
+        // On Android 13+ (or Android T or API 33+) the actions in the player notification can't be
+        // controlled directly anymore, but are instead derived from custom media session actions.
+        // However the system allows customizing only two of these actions, since the other three
+        // are fixed to play-pause-buffering, previous, next.
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            // Although setting media session actions on older android versions doesn't seem to
+            // cause any trouble, it also doesn't seem to do anything, so we don't do anything to
+            // save battery. Check out NotificationUtil.updateActions() to see what happens on
+            // older android versions.
+            return;
+        }
+
+        // only use the fourth and fifth actions (the settings page also shows only the last 2 on
+        // Android 13+)
+        final List<NotificationActionData> newNotificationActions = IntStream.of(3, 4)
+                .map(i -> player.getPrefs().getInt(
+                        player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
+                        NotificationConstants.SLOT_DEFAULTS[i]))
+                .mapToObj(action -> NotificationActionData
+                        .fromNotificationActionEnum(player, action))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        // avoid costly notification actions update, if nothing changed from last time
+        if (!newNotificationActions.equals(prevNotificationActions)) {
+            prevNotificationActions = newNotificationActions;
+            sessionConnector.setCustomActionProviders(
+                    newNotificationActions.stream()
+                            .map(data -> new SessionConnectorActionProvider(data, context))
+                            .toArray(SessionConnectorActionProvider[]::new));
+        }
+    }
+
+    @Override
+    public void onBlocked() {
+        super.onBlocked();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onPlaying() {
+        super.onPlaying();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onBuffering() {
+        super.onBuffering();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onPaused() {
+        super.onPaused();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onPausedSeek() {
+        super.onPausedSeek();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onCompleted() {
+        super.onCompleted();
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
+        super.onRepeatModeChanged(repeatMode);
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onShuffleModeEnabledChanged(final boolean shuffleModeEnabled) {
+        super.onShuffleModeEnabledChanged(shuffleModeEnabled);
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onBroadcastReceived(final Intent intent) {
+        super.onBroadcastReceived(intent);
+        if (ACTION_RECREATE_NOTIFICATION.equals(intent.getAction())) {
+            // the notification actions changed
+            updateMediaSessionActions();
+        }
+    }
+
+    @Override
+    public void onMetadataChanged(@NonNull final StreamInfo info) {
+        super.onMetadataChanged(info);
+        updateMediaSessionActions();
+    }
+
+    @Override
+    public void onPlayQueueEdited() {
+        super.onPlayQueueEdited();
+        updateMediaSessionActions();
     }
 }

@@ -6,6 +6,7 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.util.Collections;
 import java.util.List;
@@ -95,7 +96,7 @@ public final class StreamInfoTag implements MediaItemTag {
 
     @Override
     public String getThumbnailUrl() {
-        return streamInfo.getThumbnailUrl();
+        return ImageStrategy.choosePreferredImage(streamInfo.getThumbnails());
     }
 
     @Override

@@ -14,7 +14,7 @@ import androidx.collection.SparseArrayCompat;
 import com.google.common.base.Stopwatch;
 
 import org.schabi.newpipe.extractor.stream.Frameset;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.Comparator;
 import java.util.List;

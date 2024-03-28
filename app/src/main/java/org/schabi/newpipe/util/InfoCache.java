@@ -27,7 +27,6 @@ import androidx.collection.LruCache;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.Info;
-import org.schabi.newpipe.extractor.InfoItem;
 
 import java.util.Map;
 
@@ -48,14 +47,27 @@ public final class InfoCache {
         // no instance
     }
 
+    /**
+     * Identifies the type of {@link Info} to put into the cache.
+     */
+    public enum Type {
+        STREAM,
+        CHANNEL,
+        CHANNEL_TAB,
+        COMMENTS,
+        PLAYLIST,
+        KIOSK,
+    }
+
     public static InfoCache getInstance() {
         return INSTANCE;
     }
 
     @NonNull
-    private static String keyOf(final int serviceId, @NonNull final String url,
-                                @NonNull final InfoItem.InfoType infoType) {
-        return serviceId + url + infoType.toString();
+    private static String keyOf(final int serviceId,
+                                @NonNull final String url,
+                                @NonNull final Type cacheType) {
+        return serviceId + ":" + cacheType.ordinal() + ":" + url;
     }
 
     private static void removeStaleCache() {
@@ -83,19 +95,22 @@ public final class InfoCache {
     }
 
     @Nullable
-    public Info getFromKey(final int serviceId, @NonNull final String url,
-                           @NonNull final InfoItem.InfoType infoType) {
+    public Info getFromKey(final int serviceId,
+                           @NonNull final String url,
+                           @NonNull final Type cacheType) {
         if (DEBUG) {
             Log.d(TAG, "getFromKey() called with: "
                     + "serviceId = [" + serviceId + "], url = [" + url + "]");
         }
         synchronized (LRU_CACHE) {
-            return getInfo(keyOf(serviceId, url, infoType));
+            return getInfo(keyOf(serviceId, url, cacheType));
         }
     }
 
-    public void putInfo(final int serviceId, @NonNull final String url, @NonNull final Info info,
-                        @NonNull final InfoItem.InfoType infoType) {
+    public void putInfo(final int serviceId,
+                        @NonNull final String url,
+                        @NonNull final Info info,
+                        @NonNull final Type cacheType) {
         if (DEBUG) {
             Log.d(TAG, "putInfo() called with: info = [" + info + "]");
         }
@@ -103,18 +118,19 @@ public final class InfoCache {
         final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         synchronized (LRU_CACHE) {
             final CacheData data = new CacheData(info, expirationMillis);
-            LRU_CACHE.put(keyOf(serviceId, url, infoType), data);
+            LRU_CACHE.put(keyOf(serviceId, url, cacheType), data);
         }
     }
 
-    public void removeInfo(final int serviceId, @NonNull final String url,
-                           @NonNull final InfoItem.InfoType infoType) {
+    public void removeInfo(final int serviceId,
+                           @NonNull final String url,
+                           @NonNull final Type cacheType) {
         if (DEBUG) {
             Log.d(TAG, "removeInfo() called with: "
                     + "serviceId = [" + serviceId + "], url = [" + url + "]");
         }
         synchronized (LRU_CACHE) {
-            LRU_CACHE.remove(keyOf(serviceId, url, infoType));
+            LRU_CACHE.remove(keyOf(serviceId, url, cacheType));
         }
     }
 

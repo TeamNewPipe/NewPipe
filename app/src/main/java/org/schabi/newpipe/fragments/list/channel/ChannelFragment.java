@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.channel;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
@@ -49,8 +48,9 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -148,7 +148,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
         setTitle(name);
         binding.channelTitleView.setText(name);
-        if (!PicassoHelper.getShouldLoadImages()) {
+        if (!ImageStrategy.shouldLoadImages()) {
             // do not waste space for the banner if it is not going to be loaded
             binding.channelBannerImage.setImageDrawable(null);
         }
@@ -234,7 +234,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             case R.id.menu_item_share:
                 if (currentInfo != null) {
                     ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl(),
-                            currentInfo.getAvatarUrl());
+                            currentInfo.getAvatars());
                 }
                 break;
             default:
@@ -355,7 +355,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 channel.setServiceId(info.getServiceId());
                 channel.setUrl(info.getUrl());
                 channel.setData(info.getName(),
-                        info.getAvatarUrl(),
+                        ImageStrategy.imageListToDbUrl(info.getAvatars()),
                         info.getDescription(),
                         info.getSubscriberCount());
                 channelSubscription = null;
@@ -579,17 +579,17 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         currentInfo = result;
         setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
-        if (PicassoHelper.getShouldLoadImages() && !isBlank(result.getBannerUrl())) {
-            PicassoHelper.loadBanner(result.getBannerUrl()).tag(PICASSO_CHANNEL_TAG)
+        if (ImageStrategy.shouldLoadImages() && !result.getBanners().isEmpty()) {
+            PicassoHelper.loadBanner(result.getBanners()).tag(PICASSO_CHANNEL_TAG)
                     .into(binding.channelBannerImage);
         } else {
             // do not waste space for the banner, if the user disabled images or there is not one
             binding.channelBannerImage.setImageDrawable(null);
         }
 
-        PicassoHelper.loadAvatar(result.getAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
+        PicassoHelper.loadAvatar(result.getAvatars()).tag(PICASSO_CHANNEL_TAG)
                 .into(binding.channelAvatarView);
-        PicassoHelper.loadAvatar(result.getParentChannelAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
+        PicassoHelper.loadAvatar(result.getParentChannelAvatars()).tag(PICASSO_CHANNEL_TAG)
                 .into(binding.subChannelAvatarView);
 
         binding.channelTitleView.setText(result.getName());

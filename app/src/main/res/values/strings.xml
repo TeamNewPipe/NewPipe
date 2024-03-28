@@ -57,7 +57,8 @@
     <string name="notification_action_2_title">Third action button</string>
     <string name="notification_action_3_title">Fourth action button</string>
     <string name="notification_action_4_title">Fifth action button</string>
-    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_summary_android13">Edit each notification action below by tapping on it. The first three actions (play/pause, previous and next) are set by the system and cannot be customized.</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
@@ -85,8 +86,6 @@
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
     <string name="ignore_hardware_media_buttons_title">Ignore hardware media button events</string>
     <string name="ignore_hardware_media_buttons_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
-    <string name="download_thumbnail_title">Load thumbnails</string>
-    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
@@ -232,7 +231,6 @@
     <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
-    <string name="youtube_signature_deobfuscation_error">Could not deobfuscate video URL signature</string>
     <string name="parsing_error">Could not parse website</string>
     <string name="content_not_available">Content unavailable</string>
     <string name="could_not_setup_download_menu">Could not set up download menu</string>
@@ -352,7 +350,7 @@
     <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
     <string name="recaptcha_solve">Solve</string>
-    <string name="recaptcha_done_button">Done</string>
+    <string name="done">Done</string>
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
@@ -545,6 +543,10 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+    <string-array name="high_resolution_limit_data_usage_description_list">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
     <!-- Notifications settings -->
     <string name="enable_streams_notifications_title">New streams notifications</string>
     <string name="enable_streams_notifications_summary">Notify about new streams from subscriptions</string>
@@ -619,7 +621,8 @@
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
     <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
-    <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_insufficient_storage">Not enough free space on device</string>
+    <string name="error_insufficient_storage_left">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
@@ -760,9 +763,11 @@
     <string name="metadata_language">Language</string>
     <string name="metadata_support">Support</string>
     <string name="metadata_host">Host</string>
-    <string name="metadata_thumbnail_url">Thumbnail URL</string>
-    <string name="metadata_avatar_url">Avatar URL</string>
-    <string name="metadata_banner_url">Banner URL</string>
+    <string name="metadata_thumbnails">Thumbnails</string>
+    <string name="metadata_uploader_avatars">Uploader avatars</string>
+    <string name="metadata_subchannel_avatars">Sub-channel avatars</string>
+    <string name="metadata_avatars">Avatars</string>
+    <string name="metadata_banners">Banners</string>
     <string name="metadata_privacy_public">Public</string>
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
@@ -827,4 +832,23 @@
     <string name="duration">Duration</string>
     <string name="rewind">Rewind</string>
     <string name="forward">Forward</string>
+    <string name="image_quality_title">Image quality</string>
+    <string name="image_quality_summary">Choose the quality of images and whether to load images at all, to reduce data and memory usage. Changes clear both in-memory and on-disk image cache — %s</string>
+    <string name="image_quality_none">Do not load images</string>
+    <string name="image_quality_low">Low quality</string>
+    <string name="image_quality_medium">Medium quality</string>
+    <string name="image_quality_high">High quality</string>
+    <string name="question_mark">\?</string>
+    <string name="share_playlist">Share Playlist</string>
+    <string name="share_playlist_with_titles_message">Share playlist with details such as playlist name and video titles or as a simple list of video URLs</string>
+    <string name="share_playlist_with_titles">Share with Titles</string>
+    <string name="share_playlist_with_list">Share URL list</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="share_playlist_content_details">%1$s\n%2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s reply</item>
+        <item quantity="other">%s replies</item>
+    </plurals>
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
 </resources>

@@ -18,7 +18,6 @@
     <string name="play_with_kodi_title">Luaj me Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="black_theme_title">E zezë</string>
-    <string name="download_thumbnail_title">Ngarko pamjet miniaturë</string>
     <string name="show_search_suggestions_title">Sugjerimet e kërkimit</string>
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
@@ -83,7 +82,7 @@
     <string name="error_download_resource_gone">Nuk mund të rikuperohet ky shkarkim</string>
     <string name="error_timeout">Koha e lidhjes skadoi</string>
     <string name="error_progress_lost">Progresi humbi, pasi skedari është fshirë</string>
-    <string name="error_insufficient_storage">Nuk ka vend bosh në pajisje</string>
+    <string name="error_insufficient_storage_left">Nuk ka vend bosh në pajisje</string>
     <string name="error_postprocessing_stopped">NewPipe u mbyll ndërkohë që po punohej mbi skedarin</string>
     <string name="error_postprocessing_failed">Procesimi dështoi</string>
     <string name="error_http_not_found">Nuk u gjet</string>
@@ -256,7 +255,7 @@
     <string name="settings_file_replacement_character_summary">Karakteret e palejuara zëvendësohen me këtë vlerë</string>
     <string name="settings_file_charset_title">Karakteret e lejuara në emrat e skedarëve</string>
     <string name="settings_category_downloads_title">Shkarko</string>
-    <string name="recaptcha_done_button">U bë</string>
+    <string name="done">U bë</string>
     <string name="recaptcha_request_toast">sfida reCAPTCHA u kërkua</string>
     <string name="subtitle_activity_recaptcha">Shtyp \"U bë\" kur ta zgjidhni</string>
     <string name="title_activity_recaptcha">sfida reCAPTCHA</string>
@@ -402,7 +401,6 @@
     <string name="could_not_setup_download_menu">Nuk u arrit të vendosej menuja e shkarkimeve</string>
     <string name="content_not_available">Përmbajtja e padisponueshme</string>
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
-    <string name="youtube_signature_deobfuscation_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
     <string name="network_error">Problem rrjeti</string>
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
@@ -487,7 +485,6 @@
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>
     <string name="metadata_cache_wipe_summary">Boshatis depon e të gjitha të dhënave të faqeve të internetit</string>
     <string name="metadata_cache_wipe_title">Boshatis depon e të dhënave meta</string>
-    <string name="download_thumbnail_summary">Fikeni për të ndaluar shfaqjen e pamjeve statike, duke kursyer internet dhe memorje. Ndryshimet boshatisin depon e imazheve në memorje dhe në disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Depoja e imazheve u boshatis</string>
     <string name="show_comments_summary">Fikeni për të fshehur komentet</string>
     <string name="show_comments_title">Shfaq komentet</string>
@@ -589,7 +586,6 @@
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_unlisted">E palistuar</string>
     <string name="metadata_privacy_public">Publike</string>
-    <string name="metadata_thumbnail_url">URL e pamjes statike</string>
     <string name="metadata_host">Mundësuesi</string>
     <string name="metadata_support">Mbështetje</string>
     <string name="metadata_language">Gjuha</string>

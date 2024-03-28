@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
     <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
     <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے۔ 5 ، 15 یا 25 سیکنڈ کی تلاش اس کے ساتھ کام نہیں کرتی ہے:</string>
-    <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
-    <string name="download_thumbnail_summary">ڈیٹا کی بچت اور میموری کے استعمال کو روکنے کیلئے تھمب نیل کو بند کریں۔ تبدیلیاں میموری اور آن ڈسک ایمیج کیشے کو صاف کریں گی</string>
     <string name="thumbnail_cache_wipe_complete_notice">تصویری کیشے کی صفائی ہوئی</string>
     <string name="metadata_cache_wipe_title">کیشے میٹا ڈیٹا کو صاف کریں</string>
     <string name="metadata_cache_wipe_summary">ویب پیج کے سبھی کیشے ڈیٹا کو ہٹا دیں</string>
@@ -113,7 +111,6 @@
     <string name="general_error">خرابی</string>
     <string name="network_error">نیٹ ورک کی خرابی</string>
     <string name="could_not_load_thumbnails">تمام نظرِ انگشتی لوڈ نہیں کر سکے</string>
-    <string name="youtube_signature_deobfuscation_error">ویڈیو یو آر ایل کے دستخط ڈکرپٹ نہیں ہو سکے</string>
     <string name="parsing_error">ویب سائٹ کو تجزیہ نہیں کیا جاسکا</string>
     <string name="content_not_available">مواد دستیاب نہیں ہے</string>
     <string name="could_not_setup_download_menu">ڈاؤن لوڈ مینو ترتیب نہیں دے سکتے</string>
@@ -393,7 +390,7 @@
     <string name="overwrite_failed">فائل برتحریر نہیں کر سکتا</string>
     <string name="download_already_pending">اس نام کے ساتھ ڈاؤن لوڈ زیر التوا ہے</string>
     <string name="error_postprocessing_stopped">فائل پر کام کرنے کے دوران نیو پائپ بند کردی گئی تھی</string>
-    <string name="error_insufficient_storage">آلہ میں کوئی جگہ نہیں بچی</string>
+    <string name="error_insufficient_storage_left">آلہ میں کوئی جگہ نہیں بچی</string>
     <string name="error_progress_lost">پیشرفت ختم ہوگئی، کیونکہ فائل کو حذف کردیا گیا تھا</string>
     <string name="error_timeout">رابطے کا وقت ختم</string>
     <string name="confirm_prompt">کیا آپ اپنی ڈاؤن لوڈ کی سرگزشت کو صاف کرنا چاہتے ہیں یا ڈاؤن لوڈ کی گئی تمام فائلوں کو حذف کرنا چاہتے ہیں؟</string>
@@ -516,7 +513,7 @@
         <item quantity="other">%s نئی اسٹریمز</item>
     </plurals>
     <string name="no_dir_yet">ابھی تک کوئی ڈاؤن لوڈ فولڈر سیٹ نہیں ہے، ابھی ڈیفالٹ ڈاؤن لوڈ فولڈر کا انتخاب کریں</string>
-    <string name="recaptcha_done_button">Done</string>
+    <string name="done">Done</string>
     <string name="title_activity_play_queue">قطار چلائیں</string>
     <string name="play_queue_audio_track">آڈیو: %s</string>
     <string name="audio_track">آڈیو ٹریک</string>

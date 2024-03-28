@@ -1,0 +1,15 @@
+Novo
+• Suporte a múltiplas faixas de áudio e idiomas
+• Definição de gestos para volume e brilho em qualquer lado da tela
+• Suporte para exibir abas principais na parte inferior da tela
+
+Melhorias
+• [Bandcamp] Lida com faixas sob acesso pago
+
+Corrigido
+• [YouTube] erros HTTP 403 para transmissões
+• Tela preta ao alternar ao reprodutor a partir da visualização da lista de reprodução
+• Vazamento de memória no reprodutor
+• [PeerTube] Avatares do carregador e do subcanal foram trocados
+
+e mais

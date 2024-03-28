@@ -1,0 +1,12 @@
+0.17.3'teki Değişiklikler
+
+Geliştirilmiş
+- Oynatma durumlarını temizleme seçeneği eklendi #2550
+- Dosya seçicide gizli dizinleri gösterme #2591
+- NewPipe ile açılacak `invidio.us` örneklerinden URL'leri destekleyin #2488 
+- music.youtube.com` URL`leri için destek ekleyin TeamNewPipe/NewPipeExtractor#194
+
+Sabit
+- [YouTube] 'java.lang.IllegalArgumentException #192 düzeltildi
+- [YouTube] Canlı yayınların çalışmaması düzeltildi TeamNewPipe/NewPipeExtractor#195
+- Android pie'da akış indirirken yaşanan performans sorunu düzeltildi #2592

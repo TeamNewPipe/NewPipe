@@ -1,0 +1,25 @@
+DİKKAT: Bu sürüm muhtemelen bir öncekinde olduğu gibi bir hata festivalidir. Ancak 17. sürümden bu yana tam kapanma nedeniyle bozuk bir sürüm, hiç sürüm olmamasından daha iyidir. Değil mi? ¯\_(ツ)_/¯
+
+### İyileştirmeler
+* indirilen dosyalar artık tek bir tıklama ile açılabilir #1879
+* Android 4.1 - 4.3 için desteği bırakın #1884
+* eski oynatıcıyı kaldır #1884
+* akışları sağa kaydırarak mevcut oynatma kuyruğundan kaldırın #1915
+* Yeni bir akış manuel olarak sıralandığında otomatik sıralanan akışı kaldır #1878
+* İndirmeler için postprocessing ve eksik özellikleri uygulama #1759 by @kapodamy
+* İşlem sonrası altyapı
+* Uygun hata işleme "altyapısı" (indirici için)
+* Çoklu indirme yerine kuyruk
+* Serileştirilmiş bekleyen indirmeleri (`.giga` dosyaları) uygulama verilerine taşı
+* Maksimum indirme yeniden denemesini uygulayın
+* Uygun çok iş parçacıklı indirme duraklatması
+* Mobil ağa geçildiğinde indirmeleri durdur (asla çalışmaz, bkz. 2. nokta)
+* İplik sayısını sonraki indirmeler için saklayın
+* Bir çok tutarsızlık düzeltildi
+
+### Sabit
+* Varsayılan çözünürlük en iyi ve sınırlı mobil veri çözünürlüğü olarak ayarlandığında oluşan çökme düzeltildi #1835
+* pop-up oynatıcı çökmesi düzeltildi #1874
+* Arka plan oynatıcısını açmaya çalışırken NPE #1901
+* Otomatik kuyruklama etkinleştirildiğinde yeni akışların eklenmesi için düzeltme #1878
+* deşifre sorunu düzeltildi

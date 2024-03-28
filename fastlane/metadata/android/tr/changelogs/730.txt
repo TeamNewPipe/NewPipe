@@ -1,0 +1,2 @@
+# Sabit
+- Şifre çözme işlevi hatasını tekrar düzeltin.

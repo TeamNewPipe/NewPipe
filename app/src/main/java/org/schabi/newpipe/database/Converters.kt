@@ -7,7 +7,7 @@ import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
-object Converters {
+class Converters {
     /**
      * Convert a long value to a [OffsetDateTime].
      *
@@ -47,6 +47,6 @@ object Converters {
 
     @TypeConverter
     fun feedGroupIconOf(id: Int): FeedGroupIcon {
-        return FeedGroupIcon.values().first { it.id == id }
+        return FeedGroupIcon.entries.first { it.id == id }
     }
 }

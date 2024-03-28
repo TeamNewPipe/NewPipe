@@ -1,0 +1,1 @@
+NewPipe uzas nek frambildotekojn de *Google*, nek la aplikprograman interfacon de YouTube. Ĝi nur sintakse analizas la retejon por akiri la necesaj datumoj. Tial ĉi tio aplikaĵo estas uzebla per disponaĵoj sen instalita *Google Services*. Oni ne bezonas konton de YouTube por uzi NewPipe, kaj ĝi estas libera programaro.

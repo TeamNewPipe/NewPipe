@@ -11,4 +11,4 @@ Memperbarui instance Invidious dan mendukung tautan Piped.
 
 Diperbaiki
 [YouTube] Konten yang dibatasi usia
-Cegah jendela bocor Pengecualian saat membuka dialog pilihan
+Cegah Pengecualian jendela bocor saat membuka dialog pilihan

@@ -1,0 +1,15 @@
+Nytt
+• Avisering för nya strömningar
+• Sömlös övergång mellan bakgrund och videospelare
+• Ändra pitch av semitoner
+• Lägg till huvudspelarens kö i en spellista
+
+Förbättrat
+• Kom ihåg hastighet/pitch steg storlek
+• Mildra initial lång buffring i videospelaren
+• Förbättra spelarens UI för Android TV
+• Bekräfta innan borttagning av alla nedladdade filer
+
+Fixat
+• Fixade media knapp som inte gömde spelarkontroller
+• Fixade uppspelningsåterställning vid spelar förändring

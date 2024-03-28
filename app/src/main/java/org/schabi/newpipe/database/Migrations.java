@@ -25,6 +25,7 @@ public final class Migrations {
     public static final int DB_VER_5 = 5;
     public static final int DB_VER_6 = 6;
     public static final int DB_VER_7 = 7;
+    public static final int DB_VER_8 = 8;
 
     private static final String TAG = Migrations.class.getName();
     public static final boolean DEBUG = MainActivity.DEBUG;
@@ -232,6 +233,15 @@ public final class Migrations {
             database.execSQL("ALTER TABLE playlists_new RENAME TO playlists");
             database.execSQL("CREATE INDEX IF NOT EXISTS "
                     + "`index_playlists_name` ON `playlists` (`name`)");
+        }
+    };
+
+    public static final Migration MIGRATION_7_8 = new Migration(DB_VER_7, DB_VER_8) {
+        @Override
+        public void migrate(@NonNull final SupportSQLiteDatabase database) {
+            database.execSQL("DELETE FROM search_history WHERE id NOT IN (SELECT id FROM (SELECT "
+                    + "MIN(id) as id FROM search_history GROUP BY trim(search), service_id ) tmp)");
+            database.execSQL("UPDATE search_history SET search = trim(search)");
         }
     };
 

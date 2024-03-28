@@ -93,7 +93,7 @@
         <item quantity="one">%d secundus</item>
         <item quantity="other">%d secundi</item>
     </plurals>
-    <string name="recaptcha_done_button">Factum</string>
+    <string name="done">Factum</string>
     <string name="always_ask_open_action">Quaere semper</string>
     <string name="list">Index</string>
     <string name="limit_data_usage_none_description">Nullus limus</string>

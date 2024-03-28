@@ -8,7 +8,7 @@ import com.xwray.groupie.Item
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamSegment
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 
 class StreamSegmentItem(
     private val item: StreamSegment,

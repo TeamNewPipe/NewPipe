@@ -1,0 +1,7 @@
+Muat item awal secukupnya dalam daftar untuk memenuhi seluruh layar dan untuk memperbaiki pengguliran di tablet dan TV
+Perbaiki kerusakan acak saat menelusuri daftar
+Minta pemain untuk mencari overlay dengan cepat di bawah UI sistem
+Mengembalikan perubahan pada potongan saat memutar di multi jendela, menyebabkan regresi pemutar salah tempat di beberapa ponsel
+Tingkatkan kompilasiSdk dari 30 menjadi 31
+Perbarui pustaka pelaporan kesalahan
+Refactor beberapa kode di pemutar

@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 public class PlayQueueItemBuilder {
@@ -33,7 +33,7 @@ public class PlayQueueItemBuilder {
             holder.itemDurationView.setVisibility(View.GONE);
         }
 
-        PicassoHelper.loadThumbnail(item.getThumbnailUrl()).into(holder.itemThumbnailView);
+        PicassoHelper.loadThumbnail(item.getThumbnails()).into(holder.itemThumbnailView);
 
         holder.itemRoot.setOnClickListener(view -> {
             if (onItemClickListener != null) {

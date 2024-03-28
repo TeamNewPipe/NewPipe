@@ -22,7 +22,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
@@ -58,7 +58,7 @@ class NotificationHelper(val context: Context) {
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
             .setGroupSummary(true)
-            .setGroup(data.originalInfo.url)
+            .setGroup(data.url)
             .setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY)
 
         // Build a summary notification for Android versions < 7.0
@@ -73,7 +73,7 @@ class NotificationHelper(val context: Context) {
                 context,
                 data.pseudoId,
                 NavigationHelper
-                    .getChannelIntent(context, data.originalInfo.serviceId, data.originalInfo.url)
+                    .getChannelIntent(context, data.serviceId, data.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 0,
                 false
@@ -88,7 +88,7 @@ class NotificationHelper(val context: Context) {
 
                 // Show individual stream notifications, set channel icon only if there is actually
                 // one
-                showStreamNotifications(newStreams, data.originalInfo.serviceId, bitmap)
+                showStreamNotifications(newStreams, data.serviceId, bitmap)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
 
@@ -97,7 +97,7 @@ class NotificationHelper(val context: Context) {
 
             override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
                 // Show individual stream notifications
-                showStreamNotifications(newStreams, data.originalInfo.serviceId, null)
+                showStreamNotifications(newStreams, data.serviceId, null)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
