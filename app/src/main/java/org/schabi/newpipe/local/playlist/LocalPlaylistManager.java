@@ -19,7 +19,6 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
@@ -108,10 +107,6 @@ public class LocalPlaylistManager {
         })).subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
-        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
-    }
-
     public Flowable<List<PlaylistStreamEntry>> getDistinctPlaylistStreams(final long playlistId) {
         return playlistStreamTable
                 .getStreamsWithoutDuplicates(playlistId).subscribeOn(Schedulers.io());
@@ -129,18 +124,12 @@ public class LocalPlaylistManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<PlaylistMetadataEntry>> getDisplayIndexOrderedPlaylists() {
-        return playlistStreamTable.getDisplayIndexOrderedPlaylistMetadata()
-                .subscribeOn(Schedulers.io());
+    public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
+        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
-    }
-
-    public Single<Integer> deletePlaylist(final long playlistId) {
-        return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
-                .subscribeOn(Schedulers.io());
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {

@@ -109,28 +109,8 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
             + " GROUP BY " + PLAYLIST_ID
-            + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
-    Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
-
-    @Transaction
-    @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", "
-            + PLAYLIST_THUMBNAIL_PERMANENT + ", " + PLAYLIST_THUMBNAIL_STREAM_ID + ", "
-            + PLAYLIST_DISPLAY_INDEX + ", "
-
-            + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = "
-            + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
-            + " ELSE (SELECT " + STREAM_THUMBNAIL_URL
-            + " FROM " + STREAM_TABLE
-            + " WHERE " + STREAM_TABLE + "." + STREAM_ID + " = " + PLAYLIST_THUMBNAIL_STREAM_ID
-            + " ) END AS " + PLAYLIST_THUMBNAIL_URL + ", "
-
-            + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT
-            + " FROM " + PLAYLIST_TABLE
-            + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
-            + " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
-            + " GROUP BY " + PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_DISPLAY_INDEX)
-    Flowable<List<PlaylistMetadataEntry>> getDisplayIndexOrderedPlaylistMetadata();
+    Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 
     @RewriteQueriesToDropUnusedColumns
     @Transaction

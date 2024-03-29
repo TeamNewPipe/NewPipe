@@ -13,6 +13,7 @@ public class PlaylistDuplicatesEntry extends PlaylistMetadataEntry {
     @ColumnInfo(name = PLAYLIST_TIMES_STREAM_IS_CONTAINED)
     public final long timesStreamIsContained;
 
+    @SuppressWarnings("checkstyle:ParameterNumber")
     public PlaylistDuplicatesEntry(final long uid,
                                    final String name,
                                    final String thumbnailUrl,

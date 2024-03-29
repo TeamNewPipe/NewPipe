@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.bookmark;
 
+import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.DialogInterface;
@@ -47,7 +48,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -184,9 +184,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         isLoadingComplete.set(false);
 
-        Flowable.combineLatest(localPlaylistManager.getDisplayIndexOrderedPlaylists(),
-                        remotePlaylistManager.getDisplayIndexOrderedPlaylists(),
-                        PlaylistLocalItem::merge)
+        getMergedOrderedPlaylists(localPlaylistManager, remotePlaylistManager)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
@@ -400,16 +398,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         for (int i = 0; i < items.size(); i++) {
             final LocalItem item = items.get(i);
 
-            if (item instanceof PlaylistMetadataEntry) {
-                if (((PlaylistMetadataEntry) item).getDisplayIndex() != i) {
-                    ((PlaylistMetadataEntry) item).setDisplayIndex(i);
-                    localItemsUpdate.add((PlaylistMetadataEntry) item);
-                }
-            } else if (item instanceof PlaylistRemoteEntity) {
-                if (((PlaylistRemoteEntity) item).getDisplayIndex() != i) {
-                    ((PlaylistRemoteEntity) item).setDisplayIndex(i);
-                    remoteItemsUpdate.add((PlaylistRemoteEntity) item);
-                }
+            if (item instanceof PlaylistMetadataEntry
+                    && ((PlaylistMetadataEntry) item).getDisplayIndex() != i) {
+                ((PlaylistMetadataEntry) item).setDisplayIndex(i);
+                localItemsUpdate.add((PlaylistMetadataEntry) item);
+            } else if (item instanceof PlaylistRemoteEntity
+                    && ((PlaylistRemoteEntity) item).getDisplayIndex() != i) {
+                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+                remoteItemsUpdate.add((PlaylistRemoteEntity) item);
             }
         }
 

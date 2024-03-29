@@ -258,18 +258,18 @@ public final class Migrations {
                         + "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                         + "`name` TEXT, `is_thumbnail_permanent` INTEGER NOT NULL, "
                         + "`thumbnail_stream_id` INTEGER NOT NULL, "
-                        + "`display_index` INTEGER NOT NULL DEFAULT 0)");
+                        + "`display_index` INTEGER NOT NULL)");
                 database.execSQL("INSERT INTO `playlists_tmp` "
-                        + "(`uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`) "
-                        + "SELECT `uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id` "
+                        + "(`uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, "
+                        + "`display_index`) "
+                        + "SELECT `uid`, `name`, `is_thumbnail_permanent`, `thumbnail_stream_id`, "
+                        + "-1 "
                         + "FROM `playlists`");
 
-                // Replace the old table.
+                // Replace the old table, note that this also removes the index on the name which
+                // we don't need anymore.
                 database.execSQL("DROP TABLE `playlists`");
                 database.execSQL("ALTER TABLE `playlists_tmp` RENAME TO `playlists`");
-
-                // Create index on the new table.
-                database.execSQL("CREATE INDEX `index_playlists_name` ON `playlists` (`name`)");
 
 
                 // Update remote_playlists.
@@ -285,13 +285,12 @@ public final class Migrations {
                         + "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, "
                         + "`stream_count` FROM `remote_playlists`");
 
-                // Replace the old table.
+                // Replace the old table, note that this also removes the index on the name which
+                // we don't need anymore.
                 database.execSQL("DROP TABLE `remote_playlists`");
                 database.execSQL("ALTER TABLE `remote_playlists_tmp` RENAME TO `remote_playlists`");
 
                 // Create index on the new table.
-                database.execSQL("CREATE INDEX `index_remote_playlists_name` "
-                        + "ON `remote_playlists` (`name`)");
                 database.execSQL("CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` "
                         + "ON `remote_playlists` (`service_id`, `url`)");
 
