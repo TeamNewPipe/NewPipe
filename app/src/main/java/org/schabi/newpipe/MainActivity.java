@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         final App app = App.getApp();
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
-        if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
+        if (prefs.getBoolean(app.getString(R.string.update_app_key), false)) {
             // Start the worker which is checking all conditions
             // and eventually searching for a new version.
             NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
