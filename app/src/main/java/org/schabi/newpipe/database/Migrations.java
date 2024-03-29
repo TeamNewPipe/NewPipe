@@ -278,12 +278,13 @@ public final class Migrations {
                         + "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                         + "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, "
                         + "`thumbnail_url` TEXT, `uploader` TEXT, "
-                        + "`display_index` INTEGER NOT NULL DEFAULT 0,"
+                        + "`display_index` INTEGER NOT NULL,"
                         + "`stream_count` INTEGER)");
                 database.execSQL("INSERT INTO `remote_playlists_tmp` (`uid`, `service_id`, "
-                        + "`name`, `url`, `thumbnail_url`, `uploader`, `stream_count`)"
+                        + "`name`, `url`, `thumbnail_url`, `uploader`, `display_index`, "
+                        + "`stream_count`)"
                         + "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, "
-                        + "`stream_count` FROM `remote_playlists`");
+                        + "-1, `stream_count` FROM `remote_playlists`");
 
                 // Replace the old table, note that this also removes the index on the name which
                 // we don't need anymore.

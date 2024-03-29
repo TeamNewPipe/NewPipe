@@ -3,17 +3,14 @@ package org.schabi.newpipe.database.playlist.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_TABLE;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 
-@Entity(tableName = PLAYLIST_TABLE,
-        indices = {@Index(value = {PLAYLIST_NAME})})
+@Entity(tableName = PLAYLIST_TABLE)
 public class PlaylistEntity {
 
     public static final String DEFAULT_THUMBNAIL = "drawable://"

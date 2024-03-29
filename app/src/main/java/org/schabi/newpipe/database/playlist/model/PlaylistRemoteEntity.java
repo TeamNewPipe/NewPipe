@@ -21,7 +21,6 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
 
 @Entity(tableName = REMOTE_PLAYLIST_TABLE,
         indices = {
-                @Index(value = {REMOTE_PLAYLIST_NAME}),
                 @Index(value = {REMOTE_PLAYLIST_SERVICE_ID, REMOTE_PLAYLIST_URL}, unique = true)
         })
 public class PlaylistRemoteEntity implements PlaylistLocalItem {

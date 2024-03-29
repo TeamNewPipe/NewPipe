@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 9,
-    "identityHash": "94596ea2227c63dd78b472ea4a83f1c4",
+    "identityHash": "7591e8039faa74d8c0517dc867af9d3e",
     "entities": [
       {
         "tableName": "subscriptions",
@@ -362,17 +362,7 @@
             "uid"
           ]
         },
-        "indices": [
-          {
-            "name": "index_playlists_name",
-            "unique": false,
-            "columnNames": [
-              "name"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlists_name` ON `${TABLE_NAME}` (`name`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": []
       },
       {
@@ -511,15 +501,6 @@
           ]
         },
         "indices": [
-          {
-            "name": "index_remote_playlists_name",
-            "unique": false,
-            "columnNames": [
-              "name"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_remote_playlists_name` ON `${TABLE_NAME}` (`name`)"
-          },
           {
             "name": "index_remote_playlists_service_id_url",
             "unique": true,
@@ -743,7 +724,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94596ea2227c63dd78b472ea4a83f1c4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7591e8039faa74d8c0517dc867af9d3e')"
     ]
   }
 }
