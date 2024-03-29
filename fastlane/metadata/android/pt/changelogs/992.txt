@@ -1,0 +1,17 @@
+Novo
+- Contagem de subscritores em detalhes de vídeo
+- Descarregar da fila
+- Uma miniatura permanente de listas de reprodução
+- Hashtags e ligações de imprensa longa
+- Modo de visualização de cartões
+
+Melhorado
+- Botão de fecho de mini-reprodutor maior
+- Redução mais suave das miniaturas
+- Alvo Android 13 (API 33)
+- Procurar não pausa o reprodutor
+
+Fixa
+- Corrigido sobreposições no DeX/rato
+- Permitir um leitor de fundo sem fluxo de áudio separados
+- Várias correções do YouTube…

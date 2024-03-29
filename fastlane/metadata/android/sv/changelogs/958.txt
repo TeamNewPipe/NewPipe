@@ -1,0 +1,10 @@
+Nytt och förbättrat:
+• La till inställning för att dölja miniatyr på låsskärmen
+• Dra för att uppdatera flöde
+• Förbättrad prestanda vid hämtning av lokala listor
+
+Fixat:
+• Fixade krasch när du startar NewPipe efter att den togs bort från RAM
+• Fixade krasch vid start när det inte finns någon internetanslutning
+• Fixade respekt för ljusstyrka- och volymgestinställningar
+• [YouTube] Fixade långa spellistor

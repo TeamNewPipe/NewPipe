@@ -1,0 +1,11 @@
+Nouveautés
+• Affichage métadonnées du contenu sous la description
+• Ajout option "Afficher les détails de la chaîne" dans les playlists distantes
+• Ajout option "Ouvrir dans le navigateur" dans le menu de la touche longue
+
+Corrections
+• Correction d'un crash de rotation sur la page de détails de la vidéo
+• Correction du bouton "Jouer avec Kodi" qui demande toujours d'installer Kore
+• Correction chemins d'import/export des paramètres
+• Correction nombre de commentaires aimés
+Et bien plus encore

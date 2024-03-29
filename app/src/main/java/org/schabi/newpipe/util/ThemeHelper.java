@@ -23,14 +23,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -38,6 +41,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.info_list.ItemViewMode;
 
 public final class ThemeHelper {
     private ThemeHelper() {
@@ -227,6 +231,36 @@ public final class ThemeHelper {
         return value.data;
     }
 
+    /**
+     * Resolves a {@link Drawable} by it's id.
+     *
+     * @param context   Context
+     * @param attrResId Resource id
+     * @return the {@link Drawable}
+     */
+    public static Drawable resolveDrawable(@NonNull final Context context,
+                                           @AttrRes final int attrResId) {
+        final TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(attrResId, typedValue, true);
+        return AppCompatResources.getDrawable(context, typedValue.resourceId);
+    }
+
+    /**
+     * Gets a runtime dimen from the {@code android} package. Should be used for dimens for which
+     * normal accessing with {@code R.dimen.} is not available.
+     *
+     * @param context context
+     * @param name    dimen resource name (e.g. navigation_bar_height)
+     * @return the obtained dimension, in pixels, or 0 if the resource could not be resolved
+     */
+    public static int getAndroidDimenPx(@NonNull final Context context, final String name) {
+        final int resId = context.getResources().getIdentifier(name, "dimen", "android");
+        if (resId <= 0) {
+            return 0;
+        }
+        return context.getResources().getDimensionPixelSize(resId);
+    }
+
     private static String getSelectedThemeKey(final Context context) {
         final String themeKey = context.getString(R.string.theme_key);
         final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
@@ -299,7 +333,6 @@ public final class ThemeHelper {
         }
     }
 
-
     /**
      * Returns whether the grid layout or the list layout should be used. If the user set "auto"
      * mode in settings, decides based on screen orientation (landscape) and size.
@@ -308,19 +341,8 @@ public final class ThemeHelper {
      * @return true:use grid layout, false:use list layout
      */
     public static boolean shouldUseGridLayout(final Context context) {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.list_view_mode_key),
-                        context.getString(R.string.list_view_mode_value));
-
-        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
-            return false;
-        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
-            return true;
-        } else {
-            final Configuration configuration = context.getResources().getConfiguration();
-            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-        }
+        final ItemViewMode mode = getItemViewMode(context);
+        return mode == ItemViewMode.GRID;
     }
 
     /**
@@ -332,6 +354,36 @@ public final class ThemeHelper {
     public static int getGridSpanCountChannels(final Context context) {
         return getGridSpanCount(context,
                 context.getResources().getDimensionPixelSize(R.dimen.channel_item_grid_min_width));
+    }
+
+    /**
+     * Returns item view mode.
+     * @param context to read preference and parse string
+     * @return Returns one of ItemViewMode
+     */
+    public static ItemViewMode getItemViewMode(final Context context) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.list_view_mode_key),
+                        context.getString(R.string.list_view_mode_value));
+        final ItemViewMode result;
+        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
+            result = ItemViewMode.LIST;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
+            result = ItemViewMode.GRID;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_card_key))) {
+            result = ItemViewMode.CARD;
+        } else {
+            // Auto mode - evaluate whether to use Grid based on screen real estate.
+            final Configuration configuration = context.getResources().getConfiguration();
+            final boolean useGrid = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+            if (useGrid) {
+                result = ItemViewMode.GRID;
+            } else {
+                result = ItemViewMode.LIST;
+            }
+        }
+        return result;
     }
 
     /**

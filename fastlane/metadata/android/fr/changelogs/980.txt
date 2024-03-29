@@ -1,0 +1,13 @@
+Nouveautés
+• Ajout option "Ajouter à la liste de lecture" au menu de partage
+• Ajout prise en charge des liens courts y2u.be et PeerTube
+
+Améliorations
+• Commandes de vitesse de lecture plus compactes
+• Le flux met désormais en évidence les nouveaux éléments
+• L'option "Afficher les éléments surveillés" dans le flux est maintenant enregistrée
+
+Corrections
+• Correction extraction des likes/dislikes de YouTube
+• Correction relecture automatique après le retour de l'arrière-plan
+Et bien d'autres

@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -57,13 +58,9 @@ class AboutActivity : AppCompatActivity() {
      * A placeholder fragment containing a simple view.
      */
     class AboutFragment : Fragment() {
-        private fun Button.openLink(url: Int) {
+        private fun Button.openLink(@StringRes url: Int) {
             setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context,
-                    requireContext().getString(url),
-                    false
-                )
+                ShareUtils.openUrlInApp(context, requireContext().getString(url))
             }
         }
 
@@ -78,6 +75,7 @@ class AboutActivity : AppCompatActivity() {
                 aboutDonationLink.openLink(R.string.donation_url)
                 aboutWebsiteLink.openLink(R.string.website_url)
                 aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
+                faqLink.openLink(R.string.faq_url)
                 return root
             }
         }
@@ -118,7 +116,7 @@ class AboutActivity : AppCompatActivity() {
         /**
          * List of all software components.
          */
-        private val SOFTWARE_COMPONENTS = arrayOf(
+        private val SOFTWARE_COMPONENTS = arrayListOf(
             SoftwareComponent(
                 "ACRA", "2013", "Kevin Gaudin",
                 "https://github.com/ACRA/acra", StandardLicenses.APACHE2

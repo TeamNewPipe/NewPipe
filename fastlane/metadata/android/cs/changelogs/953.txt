@@ -1,0 +1,1 @@
+Oprava extrakce dešifrovací funkce YouTube.

@@ -36,14 +36,6 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
-        android:key="@string/disable_media_tunneling_key"
-        android:summary="@string/disable_media_tunneling_summary"
-        android:title="@string/disable_media_tunneling_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
-
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
         android:key="@string/show_image_indicators_key"
         android:summary="@string/show_image_indicators_summary"
         android:title="@string/show_image_indicators_title"

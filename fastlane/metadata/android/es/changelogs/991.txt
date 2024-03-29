@@ -1,0 +1,13 @@
+Nuevo
+* Se añadió el botón "Abrir en el navegador" en el panel de error.
+* Se añadió la opción de mostrar grupos de canales como lista.
+* [YouTube] Haga click prolongado en un segmento del stream para compartir la URL del tiempo exacto.
+* Se añadió el botón "Abrir en el navegador" en el panel de error.
+
+Mejorado
+* Se añadió localización de Islandés y se actualizaron muchas otras traducciones.
+* Muchas mejoras internas
+
+Arreglado
+* Se arreglaron múltiples crasheos.
+* [YouTube] Se arreglaron las cargas de canales, feeds no dedicados y problemas de contenido en algunos países

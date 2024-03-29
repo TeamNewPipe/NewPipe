@@ -48,6 +48,12 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.BackupRestoreSettingsFragment"
+        android:icon="@drawable/ic_settings_backup_restore"
+        android:title="@string/settings_category_backup_restore_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
         android:icon="@drawable/ic_bug_report"
         android:key="@string/debug_pref_screen_key"

@@ -1,0 +1,6 @@
+Nový
+- Přidání vyhledávání pro výběr odběru v dialogovém okně skupiny kanálů
+- Přidání filtru do dialogového okna skupiny kanálů pro zobrazení pouze neseskupených odběrů
+- Přidání karty seznamu skladeb na hlavní stránku
+- Rychlé převíjení vpřed/vzad ve frontě přehrávačů na pozadí/vyskočení.
+- Zobrazení návrhu vyhledávání: mysleli jste a zobrazení výsledku pro

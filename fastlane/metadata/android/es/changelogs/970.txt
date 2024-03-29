@@ -1,0 +1,11 @@
+Nuevos
+- Mostrar metadatos de contenido (etiquetas, categorías, licencia, ...) bajo descripción
+- Opción añadida "Mostrar detalles de canal" en listas de reproducción remotas (no locales)
+- Opción añadida "Abrir en navegador" en menú de pulsación larga
+
+Corregidos
+- Fallo corregido de rotación en la página de detalles de vídeo
+- Botón corregido "Reproducir con Kodi" en reproductor que siempre pide instalar Kore
+- Corregido y mejorado ajuste de rutas de importación y exportación
+- [YouTube] Corregido el recuento de comentarios preferidos
+Y mucho más

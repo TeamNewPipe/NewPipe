@@ -18,7 +18,6 @@
     <string name="play_with_kodi_title">Luaj me Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="black_theme_title">E zezë</string>
-    <string name="download_thumbnail_title">Ngarko pamjet miniaturë</string>
     <string name="show_search_suggestions_title">Sugjerimet e kërkimit</string>
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
@@ -83,7 +82,7 @@
     <string name="error_download_resource_gone">Nuk mund të rikuperohet ky shkarkim</string>
     <string name="error_timeout">Koha e lidhjes skadoi</string>
     <string name="error_progress_lost">Progresi humbi, pasi skedari është fshirë</string>
-    <string name="error_insufficient_storage">Nuk ka vend bosh në pajisje</string>
+    <string name="error_insufficient_storage_left">Nuk ka vend bosh në pajisje</string>
     <string name="error_postprocessing_stopped">NewPipe u mbyll ndërkohë që po punohej mbi skedarin</string>
     <string name="error_postprocessing_failed">Procesimi dështoi</string>
     <string name="error_http_not_found">Nuk u gjet</string>
@@ -110,8 +109,7 @@
     <string name="queued">e shtuar në radhë</string>
     <string name="paused">ndalur</string>
     <string name="missions_header_finished">Përfunduar</string>
-    <string name="app_update_notification_content_text">Shtyp për të shkarkuar</string>
-    <string name="app_update_notification_content_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
+    <string name="app_update_available_notification_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
     <string name="list_view_mode">Pamja e listës</string>
@@ -251,14 +249,13 @@
     <string name="copyright" formatted="true">© %1$s nga %2$s nën %3$s</string>
     <string name="title_licenses">Licensat e palëve të treta</string>
     <string name="title_activity_about">Rreth NewPipe</string>
-    <string name="toast_no_player">Nuk ka aplikacion të instaluar që mund ta luajë këtë skedar</string>
     <string name="charset_most_special_characters">Shumica e karaktereve speciale</string>
     <string name="charset_letters_and_digits">Shkronjat dhe numrat</string>
     <string name="settings_file_replacement_character_title">Karakteri zëvendësues</string>
     <string name="settings_file_replacement_character_summary">Karakteret e palejuara zëvendësohen me këtë vlerë</string>
     <string name="settings_file_charset_title">Karakteret e lejuara në emrat e skedarëve</string>
     <string name="settings_category_downloads_title">Shkarko</string>
-    <string name="recaptcha_done_button">U bë</string>
+    <string name="done">U bë</string>
     <string name="recaptcha_request_toast">sfida reCAPTCHA u kërkua</string>
     <string name="subtitle_activity_recaptcha">Shtyp \"U bë\" kur ta zgjidhni</string>
     <string name="title_activity_recaptcha">sfida reCAPTCHA</string>
@@ -306,7 +303,7 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="detail_drag_description">Tërhiqe për të ri-radhitur</string>
-    <string name="empty_subscription_feed_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
+    <string name="empty_list_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
     <string name="search_no_results">Nuk ka rezultate</string>
     <string name="detail_dislikes_img_view_description">Mospëlqimet</string>
     <string name="detail_likes_img_view_description">Pëlqimet</string>
@@ -404,13 +401,11 @@
     <string name="could_not_setup_download_menu">Nuk u arrit të vendosej menuja e shkarkimeve</string>
     <string name="content_not_available">Përmbajtja e padisponueshme</string>
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
-    <string name="youtube_signature_deobfuscation_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
     <string name="network_error">Problem rrjeti</string>
     <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
     <string name="download_to_sdcard_error_title">Magazina e jashtme u padisponueshme</string>
     <string name="general_error">Gabim</string>
-    <string name="help">Ndihmë</string>
     <string name="search_history_deleted">Historiku i kërkimeve u fshi</string>
     <string name="delete_search_history_alert">Doni të fshini të gjithë historikun e kërkimeve\?</string>
     <string name="clear_search_history_summary">Fshin historikun e fjalëve kyçe të kërkuara</string>
@@ -485,16 +480,11 @@
     <string name="enable_search_history_summary">Ruani frazat e kërkuara lokalisht</string>
     <string name="enable_search_history_title">Historia e kërkimit</string>
     <string name="show_search_suggestions_summary">Shfaq sugjerime kur jeni duke kërkuar</string>
-    <string name="brightness_gesture_control_summary">Përdorni gjestet për të kontrolluar ndriçimin e luajtësit</string>
-    <string name="brightness_gesture_control_title">Kontrolli i gjesteve të ndriçimit</string>
-    <string name="volume_gesture_control_summary">Përdorni gjeste për të kontrolluar volumin e luajtësit</string>
-    <string name="volume_gesture_control_title">Kontrolli i gjesteve të volumit</string>
     <string name="auto_queue_summary">Vazhdoje radhën e luajtjes së mbarueshme (e papërsëritur) duke shtuar një stream të ngjashëm</string>
     <string name="auto_queue_title">Auto-radhit stream-in e radhës</string>
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>
     <string name="metadata_cache_wipe_summary">Boshatis depon e të gjitha të dhënave të faqeve të internetit</string>
     <string name="metadata_cache_wipe_title">Boshatis depon e të dhënave meta</string>
-    <string name="download_thumbnail_summary">Fikeni për të ndaluar shfaqjen e pamjeve statike, duke kursyer internet dhe memorje. Ndryshimet boshatisin depon e imazheve në memorje dhe në disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Depoja e imazheve u boshatis</string>
     <string name="show_comments_summary">Fikeni për të fshehur komentet</string>
     <string name="show_comments_title">Shfaq komentet</string>
@@ -559,7 +549,7 @@
     <string name="notification_action_2_title">Butoni i tretë i veprimit</string>
     <string name="notification_action_1_title">Butoni i dytë i veprimit</string>
     <string name="notification_action_0_title">Butoni i parë i veprimit</string>
-    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1 (mund të shfaqë deformime)</string>
+    <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1</string>
     <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
     <string name="show_memory_leaks">Shfaq rrjedhjet e memories</string>
     <string name="recaptcha_cookies_cleared">Biskotat reCAPTCHA janë pastruar</string>
@@ -596,7 +586,6 @@
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_unlisted">E palistuar</string>
     <string name="metadata_privacy_public">Publike</string>
-    <string name="metadata_thumbnail_url">URL e pamjes statike</string>
     <string name="metadata_host">Mundësuesi</string>
     <string name="metadata_support">Mbështetje</string>
     <string name="metadata_language">Gjuha</string>
@@ -618,7 +607,6 @@
     <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
     <string name="show_thumbnail_summary">Përdor pamje statike për sfondin e ekranit të kyçur si dhe për njoftimet</string>
-    <string name="feed_toggle_show_played_items">Shfaq objektet e para</string>
     <string name="feed_load_error_fast_unknown">Modaliteti i feed-it të shpejtë nuk mundëson më tepër informacion mbi këtë.</string>
     <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar.
 \nNewPipe nuk do mund ta ngarkojë këtë feed në të ardhmen.
@@ -626,7 +614,6 @@
     <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
     <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
     <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nuk është e mbështetur në Android KitKat dhe më poshtë</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ju do të pyeteni se ku doni të ruani çdo shkarkim</string>
     <string name="crash_the_app">Rrëzoje aplikacionin manualisht</string>
     <string name="disable_media_tunneling_summary">Ç\'aktivizo tunelin e medias nëse po hasni një ekran të zi apo ngecje gjatë luajtjes së një videoje</string>
@@ -646,4 +633,22 @@
     <string name="seekbar_preview_thumbnail_title">Parapamje e pamjes miniaturë të lëvizësit të kohës</string>
     <string name="comments_are_disabled">Komentet janë të ç\'aktivizuara</string>
     <string name="mark_as_watched">Shëno si të parë</string>
+    <string name="brightness">Drita</string>
+    <string name="volume">Volumi</string>
+    <string name="get_notified">Njoftohu</string>
+    <string name="unknown_quality">Qualitet i panjohur</string>
+    <string name="any_network">Cilidi rrjet</string>
+    <string name="card">Kartë</string>
+    <string name="unknown_audio_track">Panjohur</string>
+    <string name="unknown_format">Format i panjohur</string>
+    <string name="remove_duplicates_title">Hiq duplikatet\?</string>
+    <string name="feed_show_upcoming">Së shpejti</string>
+    <string name="feed_show_watched">Te shikuara në plotësi</string>
+    <string name="feed_show_partially_watched">Gjysmë të shikuar</string>
+    <string name="audio_track_type_original">origjinal</string>
+    <string name="audio_track_type_dubbed">dubluar</string>
+    <string name="audio_track_type_descriptive">përshkruese</string>
+    <string name="remove_duplicates">Hiq duplikatet</string>
+    <string name="fast_mode">Modi i shpejtë</string>
+    <string name="sort">Rradhit</string>
 </resources>

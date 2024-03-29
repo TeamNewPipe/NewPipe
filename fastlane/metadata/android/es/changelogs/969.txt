@@ -1,0 +1,8 @@
+- Permitir instalación en almacenamiento externo
+- Bandcamp] Soporte añadido para mostrar 3 primeros comentarios en una secuencia
+- Sólo mostrar brindis de "descarga iniciada" cuando la descarga inicia
+- No establecer la cookie reCaptcha si no hay cookies almacenadas
+- [Reproductor] Mejorar el rendimiento de la caché
+- [Reproductor] Arreglado reproductor sin reproducción automática
+- Descartar Snackbars anteriores al borrar descargas
+- Corregido intento de eliminar objetos fuera de lista

@@ -1,0 +1,7 @@
+UPOZORNĚNÍ: Tato verze je pravděpodobně plná chyb, stejně jako ta předchozí. Nicméně vzhledem k úplnému vypnutí od 17. je lepší rozbitá verze než žádná. Nebo ne? ¯\_(ツ)_/¯
+
+### Vylepšení
+* stažené soubory lze nyní otevřít jedním kliknutím #1879 
+* podpora upuštění pro Android 4.1 - 4.3 #1884 
+* odstranění starého přehrávače #1884 
+* odstranění streamů z aktuální fronty přehrávání přejetím doprava #1915

@@ -1,0 +1,6 @@
+Risolto crash che si verificava durante il riordino dei gruppi di canali.
+Risolto il problema con la ricezione di più video di YouTube da canali e playlist.
+Risolto il problema con la ricezione di commenti su YouTube.
+Aggiunto supporto per i sottopercorsi /watch/, /v/ e /w/ negli URL di YouTube.
+Risolto il problema con l'estrazione dell'ID client SoundCloud e del contenuto con restrizioni geografiche.
+Aggiunta la localizzazione del curdo settentrionale.

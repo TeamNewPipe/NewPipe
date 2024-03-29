@@ -1,0 +1,17 @@
+Nové
+- Počet odberateľov v detailoch videa
+- Stiahnutie z frontu
+- Trvalé nastavenie miniatúry zoznamu skladieb
+- Dlhé stlačenie hashtagov a odkazov
+- Režim zobrazenia kariet
+
+Vylepšená stránka
+- Väčšie tlačidlo na zatvorenie miniprehrávača
+- Hladšie zmenšovanie miniatúr
+- Cieľový systém Android 13 (API 33)
+- Vyhľadávanie už nepozastavuje prehrávač
+
+Opravená stránka
+- Oprava prekrytia na DeX/myši
+- Povolenie prehrávača na pozadí bez samostatných zvukových tokov
+- Rôzne opravy YouTube a ďalšie…

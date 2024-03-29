@@ -1,0 +1,14 @@
+Nuovo
+Riconosci timestamp e hashtag nella descrizione
+Aggiunta l'impostazione manuale della modalità tablet
+Aggiunta la possibilità di nascondere gli elementi riprodotti in un feed
+
+Migliorato
+Supporta correttamente lo Storage Access Framework
+Migliore gestione degli errori dei canali non disponibili e terminati
+Il foglio di condivisione Android per gli utenti Android 10+ ora mostra il titolo del contenuto.
+Aggiornate le istanze Invidious e supportano i collegamenti Piped.
+
+Fisso
+[YouTube] Contenuti soggetti a limiti di età
+Prevenire la finestra trapelata Eccezione all'apertura della finestra di dialogo di scelta

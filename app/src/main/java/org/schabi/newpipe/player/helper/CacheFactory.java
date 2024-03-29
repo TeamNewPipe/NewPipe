@@ -1,96 +1,46 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
+import androidx.annotation.NonNull;
+
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
-import java.io.File;
+final class CacheFactory implements DataSource.Factory {
+    private static final int CACHE_FLAGS = CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;
 
-import androidx.annotation.NonNull;
+    private final Context context;
+    private final TransferListener transferListener;
+    private final DataSource.Factory upstreamDataSourceFactory;
+    private final SimpleCache cache;
 
-/* package-private */ class CacheFactory implements DataSource.Factory {
-    private static final String TAG = "CacheFactory";
-
-    private static final String CACHE_FOLDER_NAME = "exoplayer";
-    private static final int CACHE_FLAGS = CacheDataSource.FLAG_BLOCK_ON_CACHE
-            | CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;
-
-    private final DataSource.Factory dataSourceFactory;
-    private final File cacheDir;
-    private final long maxFileSize;
-
-    // Creating cache on every instance may cause problems with multiple players when
-    // sources are not ExtractorMediaSource
-    // see: https://stackoverflow.com/questions/28700391/using-cache-in-exoplayer
-    // todo: make this a singleton?
-    private static SimpleCache cache;
-
-    CacheFactory(@NonNull final Context context,
-                 @NonNull final String userAgent,
-                 @NonNull final TransferListener transferListener) {
-        this(context, userAgent, transferListener, PlayerHelper.getPreferredCacheSize(),
-                PlayerHelper.getPreferredFileSize());
-    }
-
-    private CacheFactory(@NonNull final Context context,
-                         @NonNull final String userAgent,
-                         @NonNull final TransferListener transferListener,
-                         final long maxCacheSize,
-                         final long maxFileSize) {
-        this.maxFileSize = maxFileSize;
-
-        dataSourceFactory = new DefaultDataSource
-                .Factory(context, new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
-                .setTransferListener(transferListener);
-        cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-        if (!cacheDir.exists()) {
-            //noinspection ResultOfMethodCallIgnored
-            cacheDir.mkdir();
-        }
-
-        if (cache == null) {
-            final LeastRecentlyUsedCacheEvictor evictor
-                    = new LeastRecentlyUsedCacheEvictor(maxCacheSize);
-            cache = new SimpleCache(cacheDir, evictor, new StandaloneDatabaseProvider(context));
-        }
+    CacheFactory(final Context context,
+                 final TransferListener transferListener,
+                 final SimpleCache cache,
+                 final DataSource.Factory upstreamDataSourceFactory) {
+        this.context = context;
+        this.transferListener = transferListener;
+        this.cache = cache;
+        this.upstreamDataSourceFactory = upstreamDataSourceFactory;
     }
 
     @NonNull
     @Override
     public DataSource createDataSource() {
-        Log.d(TAG, "initExoPlayerCache: cacheDir = " + cacheDir.getAbsolutePath());
+        final DefaultDataSource dataSource = new DefaultDataSource.Factory(context,
+                upstreamDataSourceFactory)
+                .setTransferListener(transferListener)
+                .createDataSource();
 
-        final DataSource dataSource = dataSourceFactory.createDataSource();
         final FileDataSource fileSource = new FileDataSource();
-        final CacheDataSink dataSink = new CacheDataSink(cache, maxFileSize);
-
+        final CacheDataSink dataSink =
+                new CacheDataSink(cache, PlayerHelper.getPreferredFileSize());
         return new CacheDataSource(cache, dataSource, fileSource, dataSink, CACHE_FLAGS, null);
-    }
-
-    public void tryDeleteCacheFiles() {
-        if (!cacheDir.exists() || !cacheDir.isDirectory()) {
-            return;
-        }
-
-        try {
-            for (final File file : cacheDir.listFiles()) {
-                final String filePath = file.getAbsolutePath();
-                final boolean deleteSuccessful = file.delete();
-
-                Log.d(TAG, "tryDeleteCacheFiles: " + filePath + " deleted = " + deleteSuccessful);
-            }
-        } catch (final Exception e) {
-            Log.e(TAG, "Failed to delete file.", e);
-        }
     }
 }

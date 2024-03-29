@@ -1,6 +1,16 @@
 package org.schabi.newpipe.fragments;
 
+import static android.widget.RelativeLayout.ABOVE;
+import static android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM;
+import static android.widget.RelativeLayout.ALIGN_PARENT_TOP;
+import static android.widget.RelativeLayout.BELOW;
+import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_BOTTOM;
+import static com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_TOP;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +19,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -17,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapterMenuWorkaround;
 import androidx.preference.PreferenceManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,10 +38,13 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +58,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private boolean hasTabsChanged = false;
 
-    private boolean previousYoutubeRestrictedModeEnabled;
+    private SharedPreferences prefs;
+    private boolean youtubeRestrictedModeEnabled;
     private String youtubeRestrictedModeEnabledKey;
+    private boolean mainTabsPositionBottom;
+    private String mainTabsPositionKey;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -66,10 +85,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
         });
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
-        previousYoutubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
+        youtubeRestrictedModeEnabled = prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
+        mainTabsPositionKey = getString(R.string.main_tabs_position_key);
+        mainTabsPositionBottom = prefs.getBoolean(mainTabsPositionKey, false);
     }
 
     @Override
@@ -87,24 +107,26 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
-        binding.mainTabLayout.setTabRippleColor(binding.mainTabLayout.getTabRippleColor()
-                .withAlpha(32));
 
         setupTabs();
+        updateTabLayoutPosition();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        final boolean youtubeRestrictedModeEnabled =
-                PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        .getBoolean(youtubeRestrictedModeEnabledKey, false);
-        if (previousYoutubeRestrictedModeEnabled != youtubeRestrictedModeEnabled) {
-            previousYoutubeRestrictedModeEnabled = youtubeRestrictedModeEnabled;
+        final boolean newYoutubeRestrictedModeEnabled =
+                prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
+        if (youtubeRestrictedModeEnabled != newYoutubeRestrictedModeEnabled || hasTabsChanged) {
+            youtubeRestrictedModeEnabled = newYoutubeRestrictedModeEnabled;
             setupTabs();
-        } else if (hasTabsChanged) {
-            setupTabs();
+        }
+
+        final boolean newMainTabsPosition = prefs.getBoolean(mainTabsPositionKey, false);
+        if (mainTabsPositionBottom != newMainTabsPosition) {
+            mainTabsPositionBottom = newMainTabsPosition;
+            updateTabLayoutPosition();
         }
     }
 
@@ -116,6 +138,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             binding.pager.setAdapter(null);
             binding = null;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -166,7 +194,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         binding.pager.setAdapter(null);
-        binding.pager.setOffscreenPageLimit(tabsList.size());
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
@@ -190,6 +217,44 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
     }
 
+    public void commitPlaylistTabs() {
+        pagerAdapter.getLocalPlaylistFragments()
+                .stream()
+                .forEach(LocalPlaylistFragment::saveImmediate);
+    }
+
+    private void updateTabLayoutPosition() {
+        final ScrollableTabLayout tabLayout = binding.mainTabLayout;
+        final ViewPager viewPager = binding.pager;
+        final boolean bottom = mainTabsPositionBottom;
+
+        // change layout params to make the tab layout appear either at the top or at the bottom
+        final var tabParams = (RelativeLayout.LayoutParams) tabLayout.getLayoutParams();
+        final var pagerParams = (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
+
+        tabParams.removeRule(bottom ? ALIGN_PARENT_TOP : ALIGN_PARENT_BOTTOM);
+        tabParams.addRule(bottom ? ALIGN_PARENT_BOTTOM : ALIGN_PARENT_TOP);
+        pagerParams.removeRule(bottom ? BELOW : ABOVE);
+        pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
+        tabLayout.setSelectedTabIndicatorGravity(
+                bottom ? INDICATOR_GRAVITY_TOP : INDICATOR_GRAVITY_BOTTOM);
+
+        tabLayout.setLayoutParams(tabParams);
+        viewPager.setLayoutParams(pagerParams);
+
+        // change the background and icon color of the tab layout:
+        // service-colored at the top, app-background-colored at the bottom
+        tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
+                bottom ? R.attr.colorSecondary : R.attr.colorPrimary));
+
+        @ColorInt final int iconColor = bottom
+                ? ThemeHelper.resolveColorFromAttr(requireContext(), R.attr.colorAccent)
+                : Color.WHITE;
+        tabLayout.setTabRippleColor(ColorStateList.valueOf(iconColor).withAlpha(32));
+        tabLayout.setTabIconTint(ColorStateList.valueOf(iconColor));
+        tabLayout.setSelectedTabIndicatorColor(iconColor);
+    }
+
     @Override
     public void onTabSelected(final TabLayout.Tab selectedTab) {
         if (DEBUG) {
@@ -209,10 +274,18 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         updateTitleForTab(tab.getPosition());
     }
 
-    private static final class SelectedTabsPagerAdapter
+    public static final class SelectedTabsPagerAdapter
             extends FragmentStatePagerAdapterMenuWorkaround {
         private final Context context;
         private final List<Tab> internalTabsList;
+        /**
+         * Keep reference to LocalPlaylistFragments, because their data can be modified by the user
+         * during runtime and changes are not committed immediately. However, in some cases,
+         * the changes need to be committed immediately by calling
+         * {@link LocalPlaylistFragment#saveImmediate()}.
+         * The fragments are removed when {@link LocalPlaylistFragment#onDestroy()} is called.
+         */
+        private final List<LocalPlaylistFragment> localPlaylistFragments = new ArrayList<>();
 
         private SelectedTabsPagerAdapter(final Context context,
                                          final FragmentManager fragmentManager,
@@ -239,7 +312,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 ((BaseFragment) fragment).useAsFrontPage(true);
             }
 
+            if (fragment instanceof LocalPlaylistFragment) {
+                localPlaylistFragments.add((LocalPlaylistFragment) fragment);
+            }
+
             return fragment;
+        }
+
+        public List<LocalPlaylistFragment> getLocalPlaylistFragments() {
+            return localPlaylistFragments;
         }
 
         @Override

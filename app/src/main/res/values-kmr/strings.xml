@@ -56,7 +56,7 @@
     <string name="audio">Deng</string>
     <string name="video">Vîdyo</string>
     <string name="detail_drag_description">Drag bikin da ku ji nû ve sererast bikin</string>
-    <string name="empty_subscription_feed_subtitle">Li vir ji xeynî krikan pê ve tiştek tune</string>
+    <string name="empty_list_subtitle">Li vir ji xeynî krikan pê ve tiştek tune</string>
     <string name="search_no_results">Encam tune</string>
     <string name="description_tab_description">Terîf</string>
     <string name="related_items_tab_description">Çemên pêwendîdar</string>
@@ -98,13 +98,11 @@
     <string name="could_not_setup_download_menu">Menuya dakêşanê nehat saz kirin</string>
     <string name="content_not_available">Naverok tune</string>
     <string name="parsing_error">Malperê nekare parsek bike</string>
-    <string name="youtube_signature_deobfuscation_error">Nekarî îmzeya URL-ya vîdyoyê deobfuscate bike</string>
     <string name="could_not_load_thumbnails">Nekarî hemî wêneyan barkir</string>
     <string name="network_error">Çewtiya torê</string>
     <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>
     <string name="download_to_sdcard_error_title">Depoya derveyî tune</string>
     <string name="general_error">Şaşî</string>
-    <string name="help">Alîkarî</string>
     <string name="search_history_deleted">Dîroka lêgerînê hate jêbirin.</string>
     <string name="delete_search_history_alert">Dîroka tevahî lêgerînê jê bibe\?</string>
     <string name="clear_search_history_summary">Dîroka peyvên sereke yên lêgerînê jê dike</string>
@@ -229,10 +227,6 @@
     <string name="enable_search_history_title">Dîroka lêgerînê</string>
     <string name="show_search_suggestions_summary">Dema ku lêgerînê pêşniyaran nîşan bidin</string>
     <string name="show_search_suggestions_title">Pêşniyarên lêgerînê</string>
-    <string name="brightness_gesture_control_summary">Tevgerên bikar bînin ku ronahiya lîstikvan kontrol bikin</string>
-    <string name="brightness_gesture_control_title">Kontrola tevgera ronahiyê</string>
-    <string name="volume_gesture_control_summary">Tevgerên bikar bînin da ku hêjmara lîstikvan kontrol bikin</string>
-    <string name="volume_gesture_control_title">Kontrola tevgera deng</string>
     <string name="auto_queue_toggle">Rêzeya-otomatîkî</string>
     <string name="auto_queue_summary">Bi pêvekirina kanalek pêwendîdar rêza lîstikê ya bidawîkirina (ne-dubare) bidomînin</string>
     <string name="auto_queue_title">Çemê din ê dixwe-dorê bike</string>
@@ -247,8 +241,6 @@
     <string name="show_next_and_similar_title">Vîdyoyên \'Pêş\' û \'Bi vî rengî\' nîşan bidin</string>
     <string name="show_comments_summary">Zivirandin da ku şîroveyan veşêrin</string>
     <string name="show_comments_title">Şîroveyan nîşan bide</string>
-    <string name="download_thumbnail_summary">Ji bo pêşîgirtina li barkirina nîgarkêşan, daneya daneyê û karanîna bîranînê xilas bibe vemirînin. Guherandinên kaşeya wêneyê hem di bîra û hem jî li ser dîskê paqij dikin.</string>
-    <string name="download_thumbnail_title">Nîgarên barkêş</string>
     <string name="clear_queue_confirmation_description">Dê rêza lîstikvanê çalak were guhertin</string>
     <string name="clear_queue_confirmation_summary">Guhertina ji lîstikvanek bi yeke din dibe ku dewsa dorê we bigire</string>
     <string name="clear_queue_confirmation_title">Berî paqijkirina dorê ji pejirandinê bipirsin</string>
@@ -396,7 +388,7 @@
     <string name="error_download_resource_gone">Vê dakêşanê nikare paşde bibe</string>
     <string name="error_timeout">Dema girêdanê</string>
     <string name="error_progress_lost">Pêşkeftin winda bû, ji ber ku pel hate jêbirin</string>
-    <string name="error_insufficient_storage">Cih li cîhazê namîne</string>
+    <string name="error_insufficient_storage_left">Cih li cîhazê namîne</string>
     <string name="error_postprocessing_stopped">Dema ku pel dixebitî NewPipe hate girtin</string>
     <string name="error_postprocessing_failed">Pêvajoya şûnda têk çû</string>
     <string name="error_http_not_found">Peyda nebû</string>
@@ -424,8 +416,7 @@
     <string name="paused">sekinî</string>
     <string name="missions_header_pending">Nexelas</string>
     <string name="missions_header_finished">Qediya</string>
-    <string name="app_update_notification_content_text">Tap bikin dakêşin</string>
-    <string name="app_update_notification_content_title">Nûvekirina NewPipe heye!</string>
+    <string name="app_update_available_notification_title">Nûvekirina NewPipe heye!</string>
     <string name="auto">Jixweber</string>
     <string name="grid">Qefes</string>
     <string name="list">Rêzok</string>
@@ -540,14 +531,13 @@
     <string name="contribution_title">Paraxwe dayin</string>
     <string name="app_description">Li Android-ê veguhastina ronahiya sivik.</string>
     <string name="title_activity_about">Derbarê NewPipe</string>
-    <string name="toast_no_player">Ji bo lîstina vê pelê tu bername nehat saz kirin</string>
     <string name="charset_most_special_characters">Pir karakterên taybetî</string>
     <string name="charset_letters_and_digits">Name û reqem</string>
     <string name="settings_file_replacement_character_title">Karaktera guheztinê</string>
     <string name="settings_file_replacement_character_summary">Karakteyên nederbasdar bi vê nirxê têne veguheztin</string>
     <string name="settings_file_charset_title">Di navên pelan de tîpan destûr dan</string>
     <string name="settings_category_downloads_title">Dakêşînin</string>
-    <string name="recaptcha_done_button">Kirî</string>
+    <string name="done">Kirî</string>
     <string name="recaptcha_request_toast">reCAPTCHA dijwarî xwestin</string>
     <string name="subtitle_activity_recaptcha">Dema ku çareser bibe \"Kirî\" çap bikin</string>
     <string name="import_youtube_instructions">Tevlêbûnên YouTube-ê ji barkirina Google-ê bikişînin:

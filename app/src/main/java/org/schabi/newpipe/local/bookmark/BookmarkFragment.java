@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.bookmark;
 
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -130,7 +131,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
                 final FragmentManager fragmentManager = getFM();
@@ -518,24 +519,53 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        final DialogEditTextBinding dialogBinding
-                = DialogEditTextBinding.inflate(getLayoutInflater());
+        final String rename = getString(R.string.rename);
+        final String delete = getString(R.string.delete);
+        final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
+        final boolean isThumbnailPermanent = localPlaylistManager
+                .getIsPlaylistThumbnailPermanent(selectedItem.getUid());
+
+        final ArrayList<String> items = new ArrayList<>();
+        items.add(rename);
+        items.add(delete);
+        if (isThumbnailPermanent) {
+            items.add(unsetThumbnail);
+        }
+
+        final DialogInterface.OnClickListener action = (d, index) -> {
+            if (items.get(index).equals(rename)) {
+                showRenameDialog(selectedItem);
+            } else if (items.get(index).equals(delete)) {
+                showDeleteDialog(selectedItem.name, selectedItem);
+            } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
+                final long thumbnailStreamId = localPlaylistManager
+                        .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
+                localPlaylistManager
+                        .changePlaylistThumbnail(selectedItem.getUid(), thumbnailStreamId, false)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe();
+            }
+        };
+
+        new AlertDialog.Builder(activity)
+                .setItems(items.toArray(new String[0]), action)
+                .show();
+    }
+
+    private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
+        final DialogEditTextBinding dialogBinding =
+                DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         dialogBinding.dialogEditText.setText(selectedItem.name);
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setView(dialogBinding.getRoot())
+        new AlertDialog.Builder(activity)
+                .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
                         changeLocalPlaylistName(
                                 selectedItem.getUid(),
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
-                .setNeutralButton(R.string.delete, (dialog, which) -> {
-                    showDeleteDialog(selectedItem.name, selectedItem);
-                    dialog.dismiss();
-                })
-                .create()
                 .show();
     }
 

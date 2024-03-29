@@ -1,0 +1,18 @@
+Yeni 
+• Arxa fonda ifa edərkən kilid ekranında video miniatürünü göstər 
+
+Təkmilləşdirilmiş 
+• Arxa fonda / popup düyməsini uzun müddət basdıqda növbəyə yerli pleylist əlavə edin
+ • Yalnız bir tab olduqda əsas səhifə nişanlarını sürüşdürün və gizlədin 
+• Bildiriş miniatürünün miqdarını məhdudlaşdırın fon pleyerində yeniləmələr
+ • Boş yerli çalğı siyahıları üçün dummy miniatür əlavə edin 
+• *.webm əvəzinə *.opus fayl uzantısından istifadə edin və endirmə açılan menyusunda "WebM Opus" əvəzinə format etiketində "opus"u göstərin • Yüklənmiş faylları silmək üçün düyməni əlavə edin və ya "Yükləmələr"də endirmə tarixçəsi
+ • [YouTube] /c/shortened_url kanal linklərinə dəstək əlavə edin 
+
+Düzəltildi 
+• Videonu NewPipe-da paylaşarkən və onun axınlarını birbaşa endirərkən bir çox problem həll edildi 
+• Yaradılan mövzudan oyunçu girişi düzəldildi
+ • Sabit axtarış nəticəsi səhifələnməsi 
+• [YouTube] NPE-yə səbəb olan null-un işə salınması düzəldildi 
+• [YouTube] invidio.us url-i açarkən şərhlərə baxılması düzəldildi 
+• [SoundCloud] Yenilənmiş müştəri_id

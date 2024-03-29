@@ -43,7 +43,6 @@
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di connessione</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le copertine</string>
-    <string name="youtube_signature_deobfuscation_error">Impossibile decriptare la firma dell\'URL del video</string>
     <string name="content_not_available">Contenuto non disponibile</string>
     <string name="parsing_error">Impossibile analizzare il sito web</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
@@ -52,7 +51,7 @@
     <string name="main_bg_subtitle">Tocca la lente d\'ingrandimento per iniziare.</string>
     <string name="duration_live">In diretta</string>
     <string name="sorry_string">Spiacenti, non sarebbe dovuto succedere.</string>
-    <string name="error_report_button_text">Segnala l\'errore via e-mail</string>
+    <string name="error_report_button_text">Segnala via e-mail</string>
     <string name="error_snackbar_message">Spiacente, qualcosa è andato storto.</string>
     <string name="error_snackbar_action">Segnala</string>
     <string name="what_device_headline">Info:</string>
@@ -94,7 +93,7 @@
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
     <string name="default_popup_resolution_title">Risoluzione predefinita lettore popup</string>
-    <string name="show_higher_resolutions_title">Mostra altre risoluzioni</string>
+    <string name="show_higher_resolutions_title">Mostra risoluzioni più elevate</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda proprietà lettore popup</string>
@@ -107,7 +106,7 @@
 \nper utilizzare il lettore popup</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="copyright" formatted="true">© %1$s di %2$s protetto da licenza %3$s</string>
-    <string name="tab_about">Informazioni</string>
+    <string name="tab_about">Info e domande frequenti</string>
     <string name="tab_licenses">Licenze</string>
     <string name="app_description">Streaming libero e leggero su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
@@ -147,19 +146,22 @@
     <string name="no_subscribers">Nessun iscritto</string>
     <plurals name="subscribers">
         <item quantity="one">%s iscritto</item>
+        <item quantity="many">%s iscritti</item>
         <item quantity="other">%s iscritti</item>
     </plurals>
     <string name="no_views">Nessuna visualizzazione</string>
     <plurals name="views">
         <item quantity="one">%s visualizzazione</item>
+        <item quantity="many">%s visualizzazioni</item>
         <item quantity="other">%s visualizzazioni</item>
     </plurals>
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
+        <item quantity="many">%s video</item>
         <item quantity="other">%s video</item>
     </plurals>
-    <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
+    <string name="empty_list_subtitle">Nulla da mostrare</string>
     <string name="delete_item_search_history">Eliminare questo elemento dalla cronologia delle ricerche\?</string>
     <string name="main_page_content">Contenuto della pagina principale</string>
     <string name="blank_page_summary">Pagina vuota</string>
@@ -284,14 +286,12 @@
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
 \nVuoi continuare?</string>
-    <string name="download_thumbnail_title">Carica copertine</string>
-    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle copertine, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache immagini svuotata</string>
     <string name="metadata_cache_wipe_title">Svuota la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadati svuotata</string>
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Velocità</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -299,7 +299,6 @@
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
     <string name="caption_setting_title">Sottotitoli</string>
     <string name="caption_setting_description">Modifica dimensione e stile dei sottotitoli. Riavviare per applicare le modifiche</string>
-    <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Elimina la cronologia delle visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e le posizioni di riproduzione</string>
     <string name="delete_view_history_alert">Eliminare la cronologia delle visualizzazioni\?</string>
@@ -315,8 +314,8 @@
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
-    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
-\nDevi accettarla per inviarci il bug report.</string>
+    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), richiamiamo la vostra attenzione sull\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
+\nDeve essere accettata per poter inviare la segnalazione.</string>
     <string name="accept">Accetto</string>
     <string name="decline">Rifiuto</string>
     <string name="limit_data_usage_none_description">Nessun limite</string>
@@ -335,10 +334,6 @@
     <string name="users">Utenti</string>
     <string name="unsubscribe">Disiscriviti</string>
     <string name="tab_choose">Scegli scheda</string>
-    <string name="volume_gesture_control_title">Gesti controllo volume</string>
-    <string name="volume_gesture_control_summary">Utilizza i gesti per controllare il volume del lettore multimediale</string>
-    <string name="brightness_gesture_control_title">Gesti controllo luminosità</string>
-    <string name="brightness_gesture_control_summary">Utilizza i gesti per controllare la luminosità del lettore multimediale</string>
     <string name="settings_category_updates_title">Aggiornamenti</string>
     <string name="file_deleted">File eliminato</string>
     <string name="app_update_notification_channel_name">Notifiche per aggiornamenti dell\'app</string>
@@ -356,8 +351,7 @@
     <string name="list">Lista</string>
     <string name="grid">Griglia</string>
     <string name="auto">Automatica</string>
-    <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
-    <string name="app_update_notification_content_text">Premi per scaricare</string>
+    <string name="app_update_available_notification_title">Aggiornamento di NewPipe disponibile!</string>
     <string name="missions_header_finished">Completati</string>
     <string name="missions_header_pending">In corso</string>
     <string name="paused">in pausa</string>
@@ -405,7 +399,7 @@
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
     <string name="download_already_pending">C\'è un download in corso con questo nome</string>
     <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
-    <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
+    <string name="error_insufficient_storage_left">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Vuoi cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo download per volta</string>
@@ -424,11 +418,13 @@
     <string name="no_one_watching">Nessuno sta guardando</string>
     <plurals name="watching">
         <item quantity="one">%s sta guardando</item>
+        <item quantity="many">%s stanno guardando</item>
         <item quantity="other">%s stanno guardando</item>
     </plurals>
     <string name="no_one_listening">Nessuno sta ascoltando</string>
     <plurals name="listening">
         <item quantity="one">%s ascoltatore</item>
+        <item quantity="many">%s ascoltatori</item>
         <item quantity="other">%s ascoltatori</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione</string>
@@ -455,26 +451,29 @@
     <string name="app_language_title">Lingua dell\'applicazione</string>
     <string name="systems_language">Predefinita di sistema</string>
     <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
-    <string name="recaptcha_done_button">Fatto</string>
+    <string name="done">Fatto</string>
     <string name="videos_string">Video</string>
     <plurals name="seconds">
         <item quantity="one">%d secondo</item>
+        <item quantity="many">%d secondi</item>
         <item quantity="other">%d secondi</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa delle limitazioni di ExoPlayer la durata dello spostamento rapido è stata impostata a %d secondi</string>
     <string name="mute">Silenzia</string>
     <string name="unmute">Riattiva audio</string>
-    <string name="help">Aiuto</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minuti</item>
         <item quantity="other">%d minuti</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d ora</item>
+        <item quantity="many">%d ore</item>
         <item quantity="other">%d ore</item>
     </plurals>
     <plurals name="days">
         <item quantity="one">%d giorno</item>
+        <item quantity="many">%d giorni</item>
         <item quantity="other">%d giorni</item>
     </plurals>
     <string name="feed_groups_header_title">Gruppi di canali</string>
@@ -486,6 +485,7 @@
     <string name="feed_group_dialog_empty_selection">Nessuna iscrizione selezionata</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d selezionato</item>
+        <item quantity="many">%d selezionati</item>
         <item quantity="other">%d selezionati</item>
     </plurals>
     <string name="feed_group_dialog_delete_message">Eliminare questo gruppo\?</string>
@@ -537,7 +537,7 @@
     <string name="select_a_playlist">Seleziona una playlist</string>
     <string name="search_showing_result_for">Risultati per: %s</string>
     <string name="playlist_page_summary">Pagina delle playlist</string>
-    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
+    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket, potrebbe invece essere impiegato per correggere il problema stesso.</string>
     <string name="error_report_open_issue_button_text">Segnala su GitHub</string>
     <string name="copy_for_github">Copia segnalazione formattata</string>
     <string name="never">Mai</string>
@@ -549,7 +549,7 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Chiedi prima di svuotare la coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a tre da mostrare nella notifica compatta, usando le caselle di controllo sulla destra.</string>
     <string name="notification_action_4_title">Azione pulsante 5</string>
     <string name="notification_action_3_title">Azione pulsante 4</string>
     <string name="notification_action_2_title">Azione pulsante 3</string>
@@ -560,8 +560,8 @@
     <string name="notification_action_shuffle">Casuale</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
-    <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
-    <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="notification_scale_to_square_image_title">Ritaglia copertina con proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Ritaglia la copertina del video mostrata nella notifica, cambiando la proporzione da 16:9 a 1:1</string>
     <string name="show_memory_leaks">Mostra memory leak</string>
     <string name="enqueued">Aggiunto alla coda</string>
     <string name="enqueue_stream">Accoda</string>
@@ -605,13 +605,12 @@
     <string name="auto_device_theme_title">Automatico (tema del dispositivo)</string>
     <string name="night_theme_title">Tema notturno</string>
     <string name="show_channel_details">Mostra dettagli canale</string>
-    <string name="disable_media_tunneling_summary">Disattiva il tunneling multimediale se durante la riproduzione dei video si verificano schermate nere o irregolarità nell\'audio</string>
+    <string name="disable_media_tunneling_summary">Disattiva il tunneling multimediale se durante la riproduzione dei video si verificano schermate nere o irregolarità nell\'audio.</string>
     <string name="disable_media_tunneling_title">Disattiva tunneling multimediale</string>
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privato</string>
     <string name="metadata_privacy_unlisted">Non in elenco</string>
     <string name="metadata_privacy_public">Pubblico</string>
-    <string name="metadata_thumbnail_url">URL copertina</string>
     <string name="metadata_host">Host</string>
     <string name="metadata_support">Supporto</string>
     <string name="metadata_language">Lingua</string>
@@ -633,13 +632,11 @@
     <string name="feed_load_error_account_info">Impossibile caricare feed per \"%s\".</string>
     <string name="feed_load_error">Errore caricamento feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo il Framework di accesso all\'archiviazione</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Il Framework di accesso all\'archiviazione non è supportato su Android KitKat e versioni precedenti</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">È necessario specificare la destinazione di ogni dowload</string>
     <string name="no_dir_yet">Non è impostata alcuna cartella per i file scaricati, scegliere quella predefinita</string>
     <string name="off">Disattivata</string>
     <string name="on">Attiva</string>
     <string name="tablet_mode_title">Modalità tablet</string>
-    <string name="feed_toggle_show_played_items">Mostra elementi visti</string>
     <string name="dont_show">Non mostrare</string>
     <string name="low_quality_smaller">Qualità bassa (più piccola)</string>
     <string name="high_quality_larger">Qualità alta (più grande)</string>
@@ -653,10 +650,12 @@
     <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download eliminato</item>
+        <item quantity="many">%1$s download eliminati</item>
         <item quantity="other">%1$s download eliminati</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Download completato</item>
+        <item quantity="many">%s download completati</item>
         <item quantity="other">%s download completati</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Scorri gli elementi per rimuoverli</string>
@@ -664,8 +663,8 @@
     <string name="start_main_player_fullscreen_title">Avvia il lettore principale a schermo intero</string>
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
     <string name="enqueue_next_stream">Accoda come prossimo</string>
-    <string name="processing_may_take_a_moment">Elaborazione... Potrebbe volerci un attimo</string>
-    <string name="manual_update_title">Controlla aggiornamenti</string>
+    <string name="processing_may_take_a_moment">Elaborazione… Potrebbe volerci un attimo</string>
+    <string name="check_for_updates">Controlla aggiornamenti</string>
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
     <string name="feed_new_items">Nuovi elementi feed</string>
@@ -675,14 +674,157 @@
     <string name="error_report_notification_title">NewPipe ha riscontrato un errore, tocca per segnalarlo</string>
     <string name="show_error_snackbar">Mostra un messaggio di errore</string>
     <string name="no_appropriate_file_manager_message">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download.</string>
+\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download</string>
     <string name="error_report_channel_name">Notifica per segnalazione errori</string>
     <string name="error_report_channel_description">Notifiche per segnalare errori</string>
     <string name="error_report_notification_toast">Si è verificato un errore, vedi la notifica</string>
     <string name="create_error_notification">Crea una notifica di errore</string>
     <string name="no_appropriate_file_manager_message_android_10">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno compatibile con Storage Access Framework.</string>
+\nInstallane uno compatibile con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
-    <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
+    <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
+    <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
+    <string name="streams_notifications_interval_title">Frequenza controllo</string>
+    <string name="streams_notifications_network_title">Connessione di rete richiesta</string>
+    <string name="get_notified">Ricevi le notifiche</string>
+    <string name="you_successfully_subscribed">Ti sei iscritto a questo canale</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Attiva/disattiva tutti</string>
+    <string name="enable_streams_notifications_title">Notifiche per nuovi contenuti</string>
+    <string name="settings_category_player_notification_title">Notifica del lettore multimediale</string>
+    <string name="settings_category_player_notification_summary">Configura la notifica dell\'elemento attualmente in riproduzione</string>
+    <string name="notifications">Notifiche</string>
+    <string name="streams_notification_channel_name">Nuovi contenuti</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuovo contenuto</item>
+        <item quantity="many">%s nuovi contenuti</item>
+        <item quantity="other">%s nuovi contenuti</item>
+    </plurals>
+    <string name="loading_stream_details">Caricamento dei dettagli dei contenuti…</string>
+    <string name="delete_downloaded_files_confirm">Cancellare dal dispositivo i file scaricati\?</string>
+    <string name="check_new_streams">Controlla la presenza di nuovi contenuti</string>
+    <string name="any_network">Qualsiasi rete</string>
+    <string name="notifications_disabled">Le notifiche sono disabilitate</string>
+    <string name="enable_streams_notifications_summary">Notifica la presenza di nuovi contenuti dalle iscrizioni</string>
+    <string name="semitone">Semitono</string>
+    <string name="percent">Percentuale</string>
+    <string name="selected_stream_external_player_not_supported">Il flusso selezionato non è supportato dai lettori esterni</string>
+    <string name="no_video_streams_available_for_external_players">Non sono disponibili flussi video per i lettori esterni</string>
+    <string name="streams_not_yet_supported_removed">I flussi che non sono ancora supportati dal downloader non vengono visualizzati</string>
+    <string name="no_audio_streams_available_for_external_players">Non sono disponibili flussi audio per i lettori esterni</string>
+    <string name="select_quality_external_players">Seleziona qualità per lettori esterni</string>
+    <string name="unknown_quality">Qualità sconosciuta</string>
+    <string name="unknown_format">Formato sconosciuto</string>
+    <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
+    <string name="faq_title">Domande frequenti</string>
+    <string name="faq_description">Se riscontri problemi nell\'utilizzo dell\'app, dai un\'occhiata alle risposte delle domande più comuni!</string>
+    <string name="sort">Ordina</string>
+    <string name="faq">Visualizza sul sito</string>
+    <string name="fast_mode">Recupero veloce</string>
+    <string name="app_update_available_notification_text">Premi per scaricare %s</string>
+    <string name="app_update_unavailable_toast">Stai già usando l\'ultima versione di NewPipe</string>
+    <string name="import_subscriptions_hint">Importa o esporta iscrizioni dal menu a 3 punti</string>
+    <string name="night_theme_available">Questa opzione è disponibile solo se %s è selezionato come Tema</string>
+    <string name="msg_failed_to_copy">Copia negli appunti non riuscita</string>
+    <string name="card">Schede</string>
+    <string name="unset_playlist_thumbnail">Disattiva copertina permanente</string>
+    <string name="duplicate_in_playlist">Le playlist in grigio contengono già questo elemento.</string>
+    <string name="playlist_add_stream_success_duplicate">Doppione aggiunto %d volta/e</string>
+    <string name="ignore_hardware_media_buttons_title">Ignora eventi dei pulsanti multimediali hardware</string>
+    <string name="ignore_hardware_media_buttons_summary">Utile usando cuffie con tasti fisici rotti</string>
+    <string name="remove_duplicates">Rimuovi elementi doppi</string>
+    <string name="remove_duplicates_title">Rimuovere gli elementi doppi\?</string>
+    <string name="remove_duplicates_message">Rimuovere tutti gli elementi doppi di questa playlist\?</string>
+    <string name="feed_hide_streams_title">Mostra gli elementi seguenti</string>
+    <string name="feed_show_hide_streams">Mostra/Nascondi elementi</string>
+    <string name="feed_show_partially_watched">Visti parzialmente</string>
+    <string name="feed_show_watched">Visti completamente</string>
+    <string name="feed_show_upcoming">Elementi futuri</string>
+    <string name="left_gesture_control_title">Azione gesto sinistro</string>
+    <string name="right_gesture_control_title">Azione gesto destro</string>
+    <string name="brightness">Luminosità</string>
+    <string name="volume">Volume</string>
+    <string name="left_gesture_control_summary">Scegli il gesto per la metà sinistra del riproduttore</string>
+    <string name="none">Nessuno</string>
+    <string name="right_gesture_control_summary">Scegli il gesto per la metà destra del riproduttore</string>
+    <string name="progressive_load_interval_summary">Modifica la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video</string>
+    <string name="prefer_original_audio_title">Preferisci audio originale</string>
+    <string name="prefer_original_audio_summary">Seleziona la traccia audio originale indipendentemente dalla lingua</string>
+    <string name="prefer_descriptive_audio_title">Preferisci audio descrittivo</string>
+    <string name="prefer_descriptive_audio_summary">Se disponibile, seleziona una traccia audio con descrizioni per ipovedenti</string>
+    <string name="play_queue_audio_track">Audio: %s</string>
+    <string name="audio_track">Traccia audio</string>
+    <string name="select_audio_track_external_players">Seleziona traccia audio per lettori esterni</string>
+    <string name="settings_category_exoplayer_summary">Gestisci alcune impostazioni di ExoPlayer. È necessario riavviare il riproduttore per applicarle</string>
+    <string name="unknown_audio_track">Sconosciuta</string>
+    <string name="settings_category_exoplayer_title">Impostazioni ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_title">Usa la funzione di fallback del decoder di ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Usa sempre la soluzione alternativa per impostare la superficie di uscita video di ExoPlayer</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="audio_track_type_original">originale</string>
+    <string name="audio_track_type_dubbed">doppiato</string>
+    <string name="audio_track_type_descriptive">descrittivo</string>
+    <string name="audio_track_present_in_video">Per questo elemento dovrebbe già essere presente una traccia audio</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Attivare questa opzione in caso di problemi di inizializzazione del decodificatore. Verranno usati decodificatori di priorità inferiore se l\'inizializzazione di quelli primari fallisce. Le prestazioni di riproduzione potrebbero essere inferiori rispetto all\'uso di quelli primari</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Questa soluzione alternativa rilascia e re-istanzia i codec video quando si verifica una modifica della superficie, invece di impostare direttamente la superficie sul codec. Già usata da ExoPlayer su alcuni dispositivi con questo problema, questa impostazione ha effetto solo su Android 6 e versioni successive
+\n
+\nL\'attivazione di questa opzione potrebbe impedire errori di riproduzione passando al lettore video attuale o passando a schermo intero</string>
+    <string name="main_tabs_position_title">Posizione delle schede principali</string>
+    <string name="main_tabs_position_summary">Sposta in fondo il selettore della scheda principale</string>
+    <string name="disable_media_tunneling_automatic_info">Il tunneling multimediale è stato disabilitato per impostazione predefinita sul dispositivo in uso, poiché è noto che il modello del dispositivo non lo supporta.</string>
+    <string name="no_streams">Nessuna trasmissione</string>
+    <string name="no_live_streams">Nessuna trasmissione in diretta</string>
+    <string name="channel_tab_videos">Video</string>
+    <string name="metadata_subscribers">Iscritti</string>
+    <string name="show_channel_tabs_summary">Quali schede mostrare nelle pagine del canale</string>
+    <string name="show_channel_tabs">Schede canale</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Caricamento metadati…</string>
+    <string name="feed_fetch_channel_tabs">Recupera schede del canale</string>
+    <string name="channel_tab_about">Informazioni</string>
+    <string name="channel_tab_albums">Album</string>
+    <string name="feed_fetch_channel_tabs_summary">Schede da recuperare quando si aggiorna il feed. Questa opzione non ha effetto se un canale viene aggiornato usando la modalità veloce.</string>
+    <string name="channel_tab_playlists">Playlist</string>
+    <string name="channel_tab_tracks">Tracce</string>
+    <string name="channel_tab_channels">Canali</string>
+    <string name="channel_tab_livestreams">Dirette</string>
+    <string name="image_quality_title">Qualità immagine</string>
+    <string name="question_mark">\?</string>
+    <string name="toggle_screen_orientation">Cambia orientamento schermo</string>
+    <string name="image_quality_low">Qualità bassa</string>
+    <string name="toggle_fullscreen">Attiva/disattiva schermo intero</string>
+    <string name="metadata_avatars">Avatar</string>
+    <string name="next_stream">Video successivo</string>
+    <string name="metadata_subchannel_avatars">Avatar del sotto-canale</string>
+    <string name="open_play_queue">Apri coda di riproduzione</string>
+    <string name="image_quality_none">Non caricare immagini</string>
+    <string name="image_quality_high">Qualità alta</string>
+    <string name="forward">Avanti</string>
+    <string name="rewind">Riavvolgi</string>
+    <string name="replay">Ricomincia</string>
+    <string name="image_quality_medium">Qualità media</string>
+    <string name="metadata_uploader_avatars">Avatar dell\'autore</string>
+    <string name="metadata_banners">Banner</string>
+    <string name="image_quality_summary">Scegli la qualità delle immagini e se caricarle o meno, per ridurre l\'utilizzo di dati e memoria. Le modifiche svuotano la cache immagini sia in memoria che su disco — %s</string>
+    <string name="play">Riproduci</string>
+    <string name="more_options">Altre opzioni</string>
+    <string name="metadata_thumbnails">Miniature</string>
+    <string name="duration">Durata</string>
+    <string name="previous_stream">Video precedente</string>
+    <string name="share_playlist_with_list">Condividi elenco URL</string>
+    <string name="share_playlist_with_titles">Condividi con i titoli</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Condividi playlist</string>
+    <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s risposta</item>
+        <item quantity="many">%s risposte</item>
+        <item quantity="other">%s risposte</item>
+    </plurals>
+    <string name="show_more">Mostra altro</string>
+    <string name="notification_actions_summary_android13">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Le prime tre (riproduci/pausa, precedente e successivo) sono impostate dal sistema e non possono essere cambiate.</string>
+    <string name="show_less">Mostra meno</string>
 </resources>

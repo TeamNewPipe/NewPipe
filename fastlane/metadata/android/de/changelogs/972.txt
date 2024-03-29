@@ -1,0 +1,11 @@
+Neu
+Erkennung von Zeitstempeln und Hashtags in der Beschreibung
+Manuelle Einstellung des Tablet-Modus hinzugefügt
+Abgespielte Elemente können nun in einem Feed ausgeblendet werden
+
+Verbessert
+Korrekte Unterstützung des Storage Access Framework
+Bessere Fehlerbehandlung von nicht verfügbaren und beendeten Kanälen
+Das Android Share Sheet für Android >=10 Nutzer zeigt nun den Titel des Inhalts an.
+Aktualisierte Invidious Instanzen und Unterstützung von Piped Links.
+...

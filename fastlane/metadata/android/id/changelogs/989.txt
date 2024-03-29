@@ -1,0 +1,3 @@
+• [YouTube] Perbaiki pemuatan tanpa batas saat mencoba memutar video apa pun
+• [YouTube] Memperbaiki pembatasan pada beberapa video
+• Tingkatkan perpustakaan jsoup ke 1.15.3, yang mencakup perbaikan keamanan

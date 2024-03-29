@@ -55,8 +55,6 @@
     <string name="popup_remember_size_pos_summary">Запамти ја последната големина и место на прозорчето</string>
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување се пребарува побрзо, но со намалена презицност.</string>
-    <string name="download_thumbnail_title">Прочитај мали видео-сликички</string>
-    <string name="download_thumbnail_summary">Оневозможете, за да не се читаат малите видео-сликички за штедење на меморија и интернет. Промената на оваа опцијата ќе ја избрише кеш-меморијата.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кешираните слики се избришани</string>
     <string name="metadata_cache_wipe_title">Избришете ги кешираните мета-податоци</string>
     <string name="metadata_cache_wipe_summary">Избришете ги сите кеш-податоци од веб-страни</string>
@@ -114,7 +112,6 @@
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
-    <string name="youtube_signature_deobfuscation_error">Невозможно децифрирање на URL потписот</string>
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>
     <string name="could_not_setup_download_menu">Неуспешно поставување на менито за превземања</string>
@@ -144,7 +141,7 @@
     <string name="detail_likes_img_view_description">Допаѓања</string>
     <string name="detail_dislikes_img_view_description">Недопаѓања</string>
     <string name="search_no_results">Нема резултати</string>
-    <string name="empty_subscription_feed_subtitle">Тука Е Празно :(</string>
+    <string name="empty_list_subtitle">Тука Е Празно :(</string>
     <string name="detail_drag_description">Влечи за да разместиш</string>
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
@@ -300,7 +297,6 @@
     <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
     <string name="one_item_deleted">1 ставка избришана.</string>
-    <string name="toast_no_player">Нема апликација за пуштање на овој фајл</string>
     <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
     <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
     <string name="preferred_open_action_settings_title">Претпочитана акција за „отворање“</string>
@@ -331,10 +327,6 @@
     <string name="minimize_on_exit_popup_description">Смали го во прозорче</string>
     <string name="unsubscribe">Откажете претплата</string>
     <string name="tab_choose">Одбери јазиче</string>
-    <string name="volume_gesture_control_title">Гест за контрола на гласност</string>
-    <string name="volume_gesture_control_summary">Користете гестови за подесување на гласноста</string>
-    <string name="brightness_gesture_control_title">Гестови за контрола на осветленост</string>
-    <string name="brightness_gesture_control_summary">Користете гест за контрола на осветленоста</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="file_deleted">Дадотеката е избришана</string>
     <string name="app_update_notification_channel_name">Известување за ажурирање на апликација</string>
@@ -349,8 +341,7 @@
     <string name="list">Список</string>
     <string name="grid">Решетка</string>
     <string name="auto">Автоматски</string>
-    <string name="app_update_notification_content_title">NewPipe ажурирање е достапно!</string>
-    <string name="app_update_notification_content_text">Допри за преземање</string>
+    <string name="app_update_available_notification_title">NewPipe ажурирање е достапно!</string>
     <string name="missions_header_finished">Завршено</string>
     <string name="missions_header_pending">Во очекување</string>
     <string name="paused">Паузирано</string>
@@ -388,7 +379,7 @@
     <string name="overwrite_unrelated_warning">Ддотека со ова име веќе постои</string>
     <string name="overwrite_finished_warning">Преземената дадотека со ова име веќе постои</string>
     <string name="error_postprocessing_stopped">NewPipe беше затворен додека работеше на датотеката</string>
-    <string name="error_insufficient_storage">Не останува простор на уредот</string>
+    <string name="error_insufficient_storage_left">Не останува простор на уредот</string>
     <string name="error_timeout">Истечено време за поврзување</string>
     <string name="confirm_prompt">Дали си сигурен\?</string>
     <string name="enable_queue_limit">Ограничи ја редицата за преземање</string>

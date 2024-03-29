@@ -16,12 +16,12 @@
     <string name="download_path_title">Тека для завантаження відео</string>
     <string name="download_path_dialog_title">Виберіть теку для завантаження відеофайлів</string>
     <string name="download_path_audio_dialog_title">Виберіть теку для завантаження аудіофайлів</string>
-    <string name="download_path_summary">Шлях до теки зі завантаженими відео</string>
+    <string name="download_path_summary">Шлях до теки із завантаженими відео</string>
     <string name="download_path_audio_title">Тека для завантаження аудіо</string>
     <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
     <string name="default_resolution_title">Типова роздільність</string>
     <string name="play_with_kodi_title">Програти в Kodi</string>
-    <string name="kore_not_found">Встановити відсутній застосунок Kore\?</string>
+    <string name="kore_not_found">Установити відсутній застосунок Kore\?</string>
     <string name="show_play_with_kodi_title">Показати опцію «Відтворити у Kodi»</string>
     <string name="show_play_with_kodi_summary">Показати опцію відтворення відео в Kodi</string>
     <string name="play_audio">Аудіо</string>
@@ -42,17 +42,16 @@
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
-    <string name="youtube_signature_deobfuscation_error">Не вдалося розшифрувати URL-підпис відео</string>
     <string name="parsing_error">Не вдалося проаналізувати вебсайт</string>
     <string name="content_not_available">Вміст недоступний</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
     <string name="sorry_string">Перепрошуємо, цього не мало статися.</string>
-    <string name="error_report_button_text">Надіслати звіт про помилки е-поштою</string>
+    <string name="error_report_button_text">Надіслати звіт е-поштою</string>
     <string name="error_snackbar_message">Вибачте, щось пішло не так.</string>
     <string name="error_snackbar_action">Звіт</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="main_bg_subtitle">Натисніть на «лупу», щоб почати.</string>
+    <string name="main_bg_subtitle">Торкніться лупи, щоб розпочати.</string>
     <string name="black_theme_title">Чорна</string>
     <string name="downloads">Завантаження</string>
     <string name="downloads_title">Завантаження</string>
@@ -92,7 +91,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_subscriptions">Підписки</string>
     <string name="fragment_feed_title">Новинки</string>
-    <string name="controls_background_title">У фоновому режимі</string>
+    <string name="controls_background_title">Фоново</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої можуть відтворювати 2K/4K-відео</string>
@@ -194,11 +193,11 @@
     <string name="dismiss">Відхилити</string>
     <string name="rename">Перейменувати</string>
     <string name="title_licenses">Ліцензії третіх сторін</string>
-    <string name="tab_about">Про застосунок</string>
+    <string name="tab_about">Про застосунок і ЧаП</string>
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
-    <string name="settings_category_debug_title">Зневадження</string>
-    <string name="empty_subscription_feed_subtitle">Нічого немає… чути лише цвіркунів</string>
+    <string name="settings_category_debug_title">Налагодження</string>
+    <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
     <plurals name="views">
         <item quantity="one">%s перегляд</item>
@@ -292,8 +291,6 @@
     <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
 \n
 \nБажаєте продовжити\?</string>
-    <string name="download_thumbnail_title">Завантажувати ескізи</string>
-    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік та внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">Видалити всі кешовані дані вебсторінок</string>
@@ -307,7 +304,6 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
     <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку</string>
-    <string name="toast_no_player">Не встановлено застосунків для відтворення цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень і позицій відтворення</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
@@ -321,7 +317,7 @@
     <string name="import_settings">Імпортувати разом з налаштуваннями\?</string>
     <string name="privacy_policy_title">Політика приватності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
-\nПолітика приватності докладно NewPipe пояснює, які дані надсилаються і зберігаються у звіті про збій програми.</string>
+\nПолітика приватності докладно NewPipe пояснює, які дані надсилаються і зберігаються у звіті про збій.</string>
     <string name="read_privacy_policy">Читати політику приватності</string>
     <string name="start_accept_privacy_policy">З метою дотримання Загального регламенту про захист даних ЄС (General Data Protection Regulation, GDPR) ми звертаємо вашу увагу на політику приватності NewPipe. Будь ласка, прочитайте уважно.
 \nВи маєте прийняти її, аби надіслати нам звіт про помилку.</string>
@@ -335,7 +331,7 @@
     <string name="minimize_on_exit_title">Зменшити при перемиканні застосунку</string>
     <string name="minimize_on_exit_summary">Дія при перемиканні до інших застосунків з основного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Нічого</string>
-    <string name="minimize_on_exit_background_description">Зменшити до програвача у фоновому режимі</string>
+    <string name="minimize_on_exit_background_description">Згорнути у фоновий програвач</string>
     <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
     <string name="playlists">Добірки</string>
@@ -346,10 +342,6 @@
     <string name="grid">Сiтка</string>
     <string name="unsubscribe">Відписатися</string>
     <string name="tab_choose">Обрати вкладку</string>
-    <string name="volume_gesture_control_title">Жест керування гучністю</string>
-    <string name="volume_gesture_control_summary">Змінювати гучність звуку жестами</string>
-    <string name="brightness_gesture_control_title">Жест керування яскравістю</string>
-    <string name="brightness_gesture_control_summary">Змінювати яскравість програвача жестами</string>
     <string name="settings_category_updates_title">Оновлення</string>
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
@@ -362,8 +354,7 @@
     <string name="conferences">Конференції</string>
     <string name="updates_setting_title">Оновлення</string>
     <string name="auto">Автоматично</string>
-    <string name="app_update_notification_content_title">Доступне оновлення NewPipe!</string>
-    <string name="app_update_notification_content_text">Натисніть для завантаження</string>
+    <string name="app_update_available_notification_title">Доступне оновлення NewPipe!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="missions_header_pending">Очікує</string>
     <string name="paused">призупинено</string>
@@ -405,9 +396,9 @@
     <string name="watch_history_states_deleted">Позиції відтворення видалено</string>
     <string name="missing_file">Файл переміщено або видалено</string>
     <string name="overwrite_failed">не можу перезаписати файл</string>
-    <string name="download_already_pending">Завантаження з такою назвою вже є в черзі</string>
+    <string name="download_already_pending">Завантаження з такою назвою вже додано в чергу</string>
     <string name="error_postprocessing_stopped">NewPipe був закритий під час роботи над файлом</string>
-    <string name="error_insufficient_storage">На пристрої не залишилося вільного місця</string>
+    <string name="error_insufficient_storage_left">На пристрої не залишилося вільного місця</string>
     <string name="error_progress_lost">Прогрес втрачено через видалення файлу</string>
     <string name="error_timeout">Час очікування з\'єднання вичерпано</string>
     <string name="confirm_prompt">Очистити історію завантажень чи завантажені файли\?</string>
@@ -457,7 +448,7 @@
     <string name="app_language_title">Мова</string>
     <string name="systems_language">Мова телефону</string>
     <string name="subtitle_activity_recaptcha">Розв\'язавши натисніть «Готово»</string>
-    <string name="recaptcha_done_button">Готово</string>
+    <string name="done">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Бажаєте видалити цю групу\?</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
@@ -485,7 +476,6 @@
     <string name="mute">Вимкнути звук</string>
     <string name="unmute">Увімкнути звук</string>
     <string name="local">Локальне</string>
-    <string name="help">Допомога</string>
     <string name="videos_string">Відео</string>
     <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
     <string name="content_not_supported">NewPipe ще не підтримує цей вміст.
@@ -558,7 +548,7 @@
     <string name="notification_action_2_title">Кнопка третьої дії</string>
     <string name="notification_action_1_title">Кнопка другої дії</string>
     <string name="notification_action_0_title">Кнопка першої дії</string>
-    <string name="notification_scale_to_square_image_title">Збільшити ескіз до масштабу 1:1</string>
+    <string name="notification_scale_to_square_image_title">Обрізати ескіз до пропорцій 1:1</string>
     <string name="open_with">Відкрити через</string>
     <string name="download_has_started">Завантаження почалося</string>
     <string name="night_theme_summary">Виберіть нічну тему — %s</string>
@@ -580,7 +570,7 @@
     <string name="related_items_tab_description">Повʼязані елементи</string>
     <string name="comments_tab_description">Коментарі</string>
     <string name="settings_category_player_notification_summary">Налаштувати повідомлення про відтворюваний наразі потік</string>
-    <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через іншу програму\?</string>
+    <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через інший застосунок\?</string>
     <string name="auto_queue_toggle">Автоматична черга</string>
     <string name="show_meta_info_title">Показувати метадані</string>
     <string name="show_description_title">Показувати описи</string>
@@ -598,7 +588,7 @@
     <string name="enqueued">Додано у чергу</string>
     <string name="enqueue_stream">Додати у чергу</string>
     <string name="recaptcha_solve">Розв\'язати</string>
-    <string name="msg_calculating_hash">Обчислення гешу</string>
+    <string name="msg_calculating_hash">Обчислення хешу</string>
     <string name="clear_cookie_summary">Очистити збережені під час вирішення reCAPTCHA реп\'яшки (cookies)</string>
     <string name="recaptcha_cookies_cleared">Реп\'яшки (cookies) reCAPTCHA видалено</string>
     <string name="clear_cookie_title">Очистити реп\'яшки (cookies) reCAPTCHA</string>
@@ -615,12 +605,11 @@
     <string name="notification_colorize_summary">Кольорувати повідомлення основним кольором мініатюри. Підтримується не всіма пристроями</string>
     <string name="notification_colorize_title">Кольорове сповіщення</string>
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
-    <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Позначте не більше трьох для показу в компактному сповіщенні</string>
-    <string name="notification_scale_to_square_image_summary">Масштабувати мініатюру відео 16: 9 до 1:1 (можливі спотворення)</string>
-    <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
+    <string name="notification_actions_summary">Відредагуйте кожну дію сповіщення, натиснувши на неї. Виберіть до трьох з них, які будуть показані в компактному сповіщенні, за допомогою прапорців праворуч.</string>
+    <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
+    <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео.</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
     <string name="downloads_storage_use_saf_summary_api_29">«Фреймворк доступу до сховища» (SAF) підтримується лише починаючи з Android 10</string>
-    <string name="downloads_storage_use_saf_summary_api_19">«Фреймворк доступу до сховища» (SAF) не підтримується в KitKat і нижче</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Вас питатиме, куди зберігати кожне завантаження</string>
     <string name="no_dir_yet">Не вказано теки завантаження, оберіть типову теку завантаження зараз</string>
     <string name="open_website_license">Відкрити вебсайт</string>
@@ -628,7 +617,6 @@
     <string name="metadata_privacy_public">Публічне</string>
     <string name="metadata_privacy_private">Приватне</string>
     <string name="metadata_privacy_unlisted">Поза списком</string>
-    <string name="metadata_thumbnail_url">URL мініатюри</string>
     <string name="metadata_host">Власник</string>
     <string name="metadata_support">Підтримка</string>
     <string name="metadata_language">Мова</string>
@@ -650,7 +638,6 @@
     <string name="on">Увімкнути</string>
     <string name="tablet_mode_title">Режим планшета</string>
     <string name="account_terminated">Обліковий запис припинено</string>
-    <string name="feed_toggle_show_played_items">Показувати переглянуті обʼєкти</string>
     <string name="feed_load_error_fast_unknown">Режим швидкої підписки не надає багато інформації щодо цього.</string>
     <string name="comments_are_disabled">Коментарі вимкнено</string>
     <string name="dont_show">Не показувати</string>
@@ -670,7 +657,7 @@
         <item quantity="other">Видалено %1$s завантажень</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="one">Завантаження завершено</item>
+        <item quantity="one">%s завантаження завершено</item>
         <item quantity="few">%s завантаження завершено</item>
         <item quantity="many">%s завантажень завершено</item>
         <item quantity="other">%s завантажень завершено</item>
@@ -681,7 +668,7 @@
     <string name="enqueued_next">Заплановано наступним</string>
     <string name="enqueue_next_stream">Запланувати наступним</string>
     <string name="processing_may_take_a_moment">Обробка… Трохи заждіть</string>
-    <string name="manual_update_title">Перевірити наявність оновлень</string>
+    <string name="check_for_updates">Перевірити наявність оновлень</string>
     <string name="manual_update_description">Перевірка нових версій вручну</string>
     <string name="checking_updates_toast">Перевірка оновлень…</string>
     <string name="feed_new_items">Нові записи стрічки</string>
@@ -693,12 +680,156 @@
     <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>
     <string name="error_report_notification_toast">Сталася помилка. Перегляньте сповіщення</string>
     <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень.</string>
+\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень</string>
     <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
+\nУстановіть файловий менеджер, сумісний зі Storage Access Framework</string>
     <string name="show_error_snackbar">Показати панель помилок</string>
     <string name="create_error_notification">Створити сповіщення про помилку</string>
-    <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
+    <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
+    <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s нова трансляція</item>
+        <item quantity="few">%s нові трансляції</item>
+        <item quantity="many">%s нових трансляцій</item>
+        <item quantity="other">%s нових трансляцій</item>
+    </plurals>
+    <string name="loading_stream_details">Завантаження відомостей про трансляцію…</string>
+    <string name="check_new_streams">Запустити виявлення нових трансляцій</string>
+    <string name="enable_streams_notifications_summary">Сповіщати про нові трансляції з підписок</string>
+    <string name="notifications_disabled">Сповіщення вимкнено</string>
+    <string name="any_network">Будь-яка мережа</string>
+    <string name="delete_downloaded_files_confirm">Видалити всі завантажені файли з диска\?</string>
+    <string name="toggle_all">Перемкнути всі</string>
+    <string name="get_notified">Сповіщати</string>
+    <string name="settings_category_player_notification_title">Сповіщення програвача</string>
+    <string name="notifications">Сповіщення</string>
+    <string name="streams_notification_channel_name">Нові трансляції</string>
+    <string name="enable_streams_notifications_title">Сповіщення про нові трансляції</string>
+    <string name="streams_notifications_interval_title">Частота перевірки</string>
+    <string name="streams_notifications_network_title">Необхідний тип з\'єднання</string>
+    <string name="percent">Відсоток</string>
+    <string name="semitone">Напівтон</string>
+    <string name="no_audio_streams_available_for_external_players">Немає аудіотрансляцій доступних для зовнішніх програвачів</string>
+    <string name="no_video_streams_available_for_external_players">Немає доступних відеотрансляцій для зовнішніх програвачів</string>
+    <string name="unknown_format">Невідомий формат</string>
+    <string name="streams_not_yet_supported_removed">Трансляції, які ще не підтримуються завантажувачем, не показані</string>
+    <string name="selected_stream_external_player_not_supported">Вибрана трансляція не підтримується зовнішніми програвачами</string>
+    <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
+    <string name="unknown_quality">Невідома якість</string>
+    <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
+    <string name="faq">Переглянути на сайті</string>
+    <string name="faq_title">Поширені запитання</string>
+    <string name="faq_description">Якщо у вас виникли проблеми з використанням застосунку, обов\'язково ознайомтеся з відповідями на поширені запитання!</string>
+    <string name="sort">Сортувати</string>
+    <string name="app_update_unavailable_toast">Ви використовуєте найновішу версію NewPipe</string>
+    <string name="app_update_available_notification_text">Торкніться, щоб завантажити %s</string>
+    <string name="import_subscriptions_hint">Імпорт або експорт підписок з 3-крапкового меню</string>
+    <string name="fast_mode">Швидкий режим</string>
+    <string name="night_theme_available">Ця опція доступна, лише якщо темою обрано %s</string>
+    <string name="unset_playlist_thumbnail">Прибрати постійну мініатюру</string>
+    <string name="card">Картки</string>
+    <string name="msg_failed_to_copy">Не вдалося скопіювати до буфера обміну</string>
+    <string name="playlist_add_stream_success_duplicate">Дублікат додано %d раз(ів)</string>
+    <string name="duplicate_in_playlist">У виділених сірим кольором добірках цей елемент уже є.</string>
+    <string name="ignore_hardware_media_buttons_title">Ігнорувати події апаратних медіакнопок</string>
+    <string name="ignore_hardware_media_buttons_summary">Корисно, наприклад, якщо ви використовуєте гарнітуру зі зламаними фізичними кнопками</string>
+    <string name="remove_duplicates">Вилучити дублікати</string>
+    <string name="remove_duplicates_title">Вилучити дублікати\?</string>
+    <string name="remove_duplicates_message">Бажаєте вилучити всі повторювані трансляції в цій добірці\?</string>
+    <string name="feed_show_hide_streams">Показати/сховати трансляції</string>
+    <string name="feed_show_upcoming">Незабаром</string>
+    <string name="feed_hide_streams_title">Показати такі трансляції</string>
+    <string name="feed_show_watched">Повністю переглянуто</string>
+    <string name="feed_show_partially_watched">Частково переглянуто</string>
+    <string name="brightness">Яскравість</string>
+    <string name="none">Нічого</string>
+    <string name="left_gesture_control_title">Дія жестом ліворуч</string>
+    <string name="left_gesture_control_summary">Виберіть жест для лівої половини екрана програвача</string>
+    <string name="right_gesture_control_summary">Виберіть жест для правої половини екрана програвача</string>
+    <string name="right_gesture_control_title">Дія жесту праворуч</string>
+    <string name="volume">Гучність</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження прогресивного вмісту (наразі %s). Нижче значення може прискорити його початкове завантаження</string>
+    <string name="prefer_original_audio_title">Надавати перевагу оригінальному аудіо</string>
+    <string name="prefer_original_audio_summary">Вибирати оригінальну звукову доріжку незалежно від мови</string>
+    <string name="prefer_descriptive_audio_title">Надавати перевагу описовому аудіо</string>
+    <string name="prefer_descriptive_audio_summary">Вибирати звукову доріжку з описом для людей із вадами зору, якщо вона є</string>
+    <string name="play_queue_audio_track">Аудіо: %s</string>
+    <string name="audio_track">Звукова доріжка</string>
+    <string name="select_audio_track_external_players">Вибір звукової доріжки для зовнішніх програвачів</string>
+    <string name="unknown_audio_track">Невідомо</string>
+    <string name="settings_category_exoplayer_title">Налаштування ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Керування деякими налаштуваннями ExoPlayer. Щоб ці зміни набули чинності, потрібно перезапустити програвач</string>
+    <string name="use_exoplayer_decoder_fallback_title">Використовувати запасну функцію декодера ExoPlayer</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Завжди використовувати обхідний шлях налаштування поверхні відеовиходу ExoPlayer</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="audio_track_type_original">оригінальна</string>
+    <string name="audio_track_type_dubbed">дубльована</string>
+    <string name="audio_track_type_descriptive">описова</string>
+    <string name="audio_track_present_in_video">У цій трансляції вже має бути звукова доріжка</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Увімкніть цю опцію, якщо у вас є проблеми з ініціалізацією декодерів, які повертаються до декодерів нижчого пріоритету, якщо не вдається ініціалізувати первинні декодери. Це може призвести до погіршення якості відтворення порівняно з використанням первинних декодерів</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Цей обхідний шлях вивільняє і повторно встановлює відеокодеки, коли відбувається зміна поверхні, замість того, щоб налаштовувати поверхню на кодек безпосередньо. Це налаштування вже використовується ExoPlayer на деяких пристроях з цією проблемою, але воно працює лише на Android 6 і новіших версіях
+\n
+\nУвімкнення цієї опції може запобігти помилкам відтворення під час перемикання поточного відеопрогравача або переходу до повноекранного режиму</string>
+    <string name="main_tabs_position_summary">Перемістити селектор головної вкладки вниз</string>
+    <string name="main_tabs_position_title">Розташування основних вкладок</string>
+    <string name="disable_media_tunneling_automatic_info">Тунелювання медіа типово було вимкнено на вашому пристрої, оскільки ваша модель його не підтримує.</string>
+    <string name="no_streams">Немає трансляцій</string>
+    <string name="no_live_streams">Немає трансляцій наживо</string>
+    <string name="channel_tab_videos">Відео</string>
+    <string name="metadata_subscribers">Підписники</string>
+    <string name="show_channel_tabs_summary">Які вкладки показуються на сторінках каналів</string>
+    <string name="show_channel_tabs">Вкладки каналу</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="loading_metadata_title">Завантаження метаданих…</string>
+    <string name="feed_fetch_channel_tabs">Отримання вкладок каналу</string>
+    <string name="channel_tab_about">Про канал</string>
+    <string name="channel_tab_albums">Альбоми</string>
+    <string name="feed_fetch_channel_tabs_summary">Отримувані вкладки під час оновлення стрічки. Ця опція не застосовується, якщо канал оновлюється за допомогою швидкого режиму.</string>
+    <string name="channel_tab_playlists">Добірки</string>
+    <string name="channel_tab_tracks">Доріжки</string>
+    <string name="channel_tab_channels">Канали</string>
+    <string name="channel_tab_livestreams">Наживо</string>
+    <string name="toggle_screen_orientation">Змінити орієнтацію екрана</string>
+    <string name="toggle_fullscreen">Перемкнути повноекранний режим</string>
+    <string name="next_stream">Наступний стрим</string>
+    <string name="open_play_queue">Відкрити чергу відтворення</string>
+    <string name="forward">Перемотати вперед</string>
+    <string name="rewind">Відмотати назад</string>
+    <string name="replay">Повторити</string>
+    <string name="play">Відтворити</string>
+    <string name="more_options">Інші опції</string>
+    <string name="duration">Тривалість</string>
+    <string name="previous_stream">Попередній стрим</string>
+    <string name="image_quality_title">Якість зображення</string>
+    <string name="question_mark">\?</string>
+    <string name="image_quality_low">Низька якість</string>
+    <string name="metadata_avatars">Аватари</string>
+    <string name="metadata_subchannel_avatars">Аватари підканалів</string>
+    <string name="image_quality_none">Не завантажувати зображення</string>
+    <string name="image_quality_high">Висока якість</string>
+    <string name="image_quality_medium">Середня якість</string>
+    <string name="metadata_uploader_avatars">Вивантажувач аватарів</string>
+    <string name="metadata_banners">Банери</string>
+    <string name="image_quality_summary">Виберіть якість зображень і чи завантажувати зображення взагалі, щоб знизити використання даних і пам\'яті. Зміни очищують кеш зображень як у пам\'яті, так і на диску — %s</string>
+    <string name="metadata_thumbnails">Мініатюри</string>
+    <string name="share_playlist_with_list">Поділитися списком URL-адрес</string>
+    <string name="share_playlist_with_titles">Поділитися з назвами</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="share_playlist">Поділитися добіркою</string>
+    <string name="share_playlist_with_titles_message">Поділитися добіркою з подробицями, такими як назва добірки та назви відео, або просто списком URL-адрес відео</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">Показати більше</string>
+    <string name="notification_actions_summary_android13">Відредагуйте кожну дію сповіщення, натиснувши на неї. Перші три дії (відтворення/пауза, попередній і наступний) встановлюються системою і не можуть бути змінені.</string>
+    <plurals name="replies">
+        <item quantity="one">%s відповідь</item>
+        <item quantity="few">%s відповіді</item>
+        <item quantity="many">%s відповідей</item>
+        <item quantity="other">%s відповідей</item>
+    </plurals>
+    <string name="show_less">Показати менше</string>
 </resources>

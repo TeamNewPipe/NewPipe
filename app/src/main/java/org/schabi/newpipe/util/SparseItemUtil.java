@@ -1,7 +1,5 @@
 package org.schabi.newpipe.util;
 
-import static org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM;
-import static org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.content.Context;
@@ -49,8 +47,8 @@ public final class SparseItemUtil {
     public static void fetchItemInfoIfSparse(@NonNull final Context context,
                                              @NonNull final StreamInfoItem item,
                                              @NonNull final Consumer<SinglePlayQueue> callback) {
-        if (((item.getStreamType() == LIVE_STREAM || item.getStreamType() == AUDIO_LIVE_STREAM)
-                || item.getDuration() >= 0) && !isNullOrEmpty(item.getUploaderUrl())) {
+        if ((StreamTypeUtil.isLiveStream(item.getStreamType()) || item.getDuration() >= 0)
+                && !isNullOrEmpty(item.getUploaderUrl())) {
             // if the duration is >= 0 (provided that the item is not a livestream) and there is an
             // uploader url, probably all info is already there, so there is no need to fetch it
             callback.accept(new SinglePlayQueue(item));
@@ -99,10 +97,10 @@ public final class SparseItemUtil {
      * @param url       url of the stream to load
      * @param callback  callback to be called with the result
      */
-    private static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
-                                                         final int serviceId,
-                                                         @NonNull final String url,
-                                                         final Consumer<StreamInfo> callback) {
+    public static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
+                                                        final int serviceId,
+                                                        @NonNull final String url,
+                                                        final Consumer<StreamInfo> callback) {
         Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show();
         ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .subscribeOn(Schedulers.io())

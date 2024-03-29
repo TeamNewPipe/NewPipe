@@ -1,0 +1,9 @@
+Förbättrat
+
+• Lagt till uppladdningsdatum och visningsantal på strömrutnätobjekt
+• Förbättringar för lådhuvudets layout
+
+Fixat
+
+• Fixat mute-knapp som orsakar kraschar på API 19
+• Fixat nedladdning av långa 1080p 60fps videor

@@ -1,0 +1,7 @@
+Carga suficientes elementos iniciales en listas para llenar pantalla entera y arreglo desplazamiento en tabletas y televisores
+Arreglar fallos aleatorios al desplazarse por las listas
+Hacer que arco de superposición de búsqueda rápida de reproductor vaya bajo la IU de sistema
+Revertir cambios en cortes al reproducir en multiventana, que causan regresión de reproductor desubicado en teléfonos
+Aumentar compileSdk de 30 a 31
+Actualizar la biblioteca de informes de errores
+Refactorizar algunos códigos en reproductor

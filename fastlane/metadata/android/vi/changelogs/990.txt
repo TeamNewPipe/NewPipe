@@ -1,0 +1,15 @@
+Hiện tại hỗ trợ phiên bản tối thiểu là Android 5 Lollipop!
+
+Mới
+• Tải xuống từ menu nhấn và giữ
+• Ẩn các video trong tương lai trong nguồn cấp dữ liệu
+• Chia sẻ danh sách phát địa phương
+
+Cải thiện
+• Tái cấu trúc mã trình phát..
+• Cải thiện chế độ chia tỷ lệ của hình thu nhỏ
+• Trình giữ chỗ hình ảnh theo kiểu vector hóa
+
+Khắc phục
+• Khắc phục nhiều vấn đề khác nhau với thông báo trình phát: thông tin phương tiện lỗi thời/bị thiếu, hình thu nhỏ bị méo
+• Sửa toàn màn hình bằng 1/4 màn hình

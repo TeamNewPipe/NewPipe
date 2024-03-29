@@ -23,6 +23,7 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
+        android:dependency="@string/enable_watch_history_key"
         android:key="@string/enable_playback_state_lists_key"
         android:summary="@string/enable_playback_state_lists_summary"
         android:title="@string/enable_playback_state_lists_title"

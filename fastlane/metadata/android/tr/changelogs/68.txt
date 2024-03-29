@@ -1,0 +1,31 @@
+# v0.14.1 değişiklikleri
+
+### Düzeltmeler
+- Video url'sinin şifresinin çözülememesi düzeltildi #1659 
+- Sabit açıklama bağlantısı iyi açılamıyor #1657
+
+# v0.14.0 değişiklikleri
+
+### Yenilikler
+- Yeni Çekmece tasarımı #1461
+- Yeni özelleştirilebilir ön sayfa #1461
+
+### İyileştirmeler
+- Yenilenmiş Hareket kontrolleri #1604 
+- Açılır oynatıcıyı kapatmanın yeni yolu #1597
+
+### Düzeltmeler
+- Abonelik sayısı mevcut olmadığında hatayı düzeldi. Kapatılır #1649.
+  - Bu durumlarda "Abone sayısı mevcut değil" ifadesini göster
+- Bir YouTube oynatma listesi boş olduğunda NPE düzeltme
+- SoundCloud'daki kiosklar için hızlı düzeltme
+- Yeniden düzenleme ve hata düzeltme #1623
+  - Döngüsel arama sonucunu düzeltildi#1562
+  - Arama çubuğu statik olarak düzenlenmemiş düzeltildi
+  -YT Premium videoları doğru şekilde engellenmiyor düzeltildi
+  - Videoların bazen yüklenmemesi düzeltildi (DASH ayrıştırma nedeniyle)
+  - Video açıklamasındaki bağlantıları düzeltildi
+  - Birisi harici sd karta indirmeye çalıştığında uyarı göster
+  - Gösterilen hiçbir istisna tetikleyici bildirmesi düzeltildi
+  -   android 8.1 için arka plan oynatıcıda küçük resim gösterilmiyor [buradan ulaşabilirsiniz](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Yayın alıcısının kaydı düzeltildi. Kapatılır #1641.

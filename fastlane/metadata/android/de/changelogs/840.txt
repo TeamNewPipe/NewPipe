@@ -1,0 +1,10 @@
+Neu
+• Sprachauswahl hinzugefügt, um die App-Sprache zu ändern
+• Hinzugefügt senden zu Kodi Taste zu Spieler zusammenklappbare Menü
+
+Verbessert
+• Entfernen von dot-menu für Schublade und verstecken Geschichte Taste, wenn die Uhr Geschichte nicht in den Einstellungen aktiviert ist
+
+Behoben
+• Fix initialer Helligkeitswert für die Geste
+• [YouTube] Timestamps in der Beschreibung sind wieder anklickbar

@@ -1,0 +1,18 @@
+# v0.13.17 - seznam změn
+
+### Opraveno
+- Řazení filtrů
+
+# v0.13.6 - seznam změn
+
+### Vylepšeno
+
+- Zakázání animace tlačítka menu
+- Zrušení odstranění stahování
+- Možnost stažení v menu sdílení
+- Sdílení v menu při dlouhém podržení
+- Minimalizace hlavního přehrávače při opuštění
+-Aktualizace ExoPlayer 2.8.2
+  - Přepracován dialog ovládání rychlosti přehrávání
+  - Přidán přepínač pro rychlé přetočení v tichých částech
+Další změny/opravy viz GitHub.

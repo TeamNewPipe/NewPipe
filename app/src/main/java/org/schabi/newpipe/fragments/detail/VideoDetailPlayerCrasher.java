@@ -1,7 +1,12 @@
 package org.schabi.newpipe.fragments.detail;
 
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
+
 import android.content.Context;
 import android.util.Log;
+import android.util.Pair;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -24,14 +29,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.function.Supplier;
-
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
 
 /**
  * Outsourced logic for crashing the player in the {@link VideoDetailFragment}.
@@ -43,48 +42,32 @@ public final class VideoDetailPlayerCrasher {
     // https://stackoverflow.com/a/54744028
     private static final String TAG = "VideoDetPlayerCrasher";
 
-    private static final Map<String, Supplier<ExoPlaybackException>> AVAILABLE_EXCEPTION_TYPES =
-            getExceptionTypes();
+    private static final String DEFAULT_MSG = "Dummy";
+
+    private static final List<Pair<String, Supplier<ExoPlaybackException>>>
+            AVAILABLE_EXCEPTION_TYPES = List.of(
+                    new Pair<>("Source", () -> ExoPlaybackException.createForSource(
+                            new IOException(DEFAULT_MSG),
+                            ERROR_CODE_BEHIND_LIVE_WINDOW
+                    )),
+                    new Pair<>("Renderer", () -> ExoPlaybackException.createForRenderer(
+                            new Exception(DEFAULT_MSG),
+                            "Dummy renderer",
+                            0,
+                            null,
+                            C.FORMAT_HANDLED,
+                            /*isRecoverable=*/false,
+                            ERROR_CODE_DECODING_FAILED
+                    )),
+                    new Pair<>("Unexpected", () -> ExoPlaybackException.createForUnexpected(
+                            new RuntimeException(DEFAULT_MSG),
+                            ERROR_CODE_UNSPECIFIED
+                    )),
+                    new Pair<>("Remote", () -> ExoPlaybackException.createForRemote(DEFAULT_MSG))
+            );
 
     private VideoDetailPlayerCrasher() {
         // No impls
-    }
-
-    private static Map<String, Supplier<ExoPlaybackException>> getExceptionTypes() {
-        final String defaultMsg = "Dummy";
-        final Map<String, Supplier<ExoPlaybackException>> exceptionTypes = new LinkedHashMap<>();
-        exceptionTypes.put(
-                "Source",
-                () -> ExoPlaybackException.createForSource(
-                        new IOException(defaultMsg),
-                        ERROR_CODE_BEHIND_LIVE_WINDOW
-                )
-        );
-        exceptionTypes.put(
-                "Renderer",
-                () -> ExoPlaybackException.createForRenderer(
-                        new Exception(defaultMsg),
-                        "Dummy renderer",
-                        0,
-                        null,
-                        C.FORMAT_HANDLED,
-                        /*isRecoverable=*/false,
-                        ERROR_CODE_DECODING_FAILED
-                )
-        );
-        exceptionTypes.put(
-                "Unexpected",
-                () -> ExoPlaybackException.createForUnexpected(
-                        new RuntimeException(defaultMsg),
-                        ERROR_CODE_UNSPECIFIED
-                )
-        );
-        exceptionTypes.put(
-                "Remote",
-                () -> ExoPlaybackException.createForRemote(defaultMsg)
-        );
-
-        return Collections.unmodifiableMap(exceptionTypes);
     }
 
     private static Context getThemeWrapperContext(final Context context) {
@@ -97,8 +80,7 @@ public final class VideoDetailPlayerCrasher {
 
     public static void onCrashThePlayer(
             @NonNull final Context context,
-            @Nullable final Player player,
-            @NonNull final LayoutInflater layoutInflater
+            @Nullable final Player player
     ) {
         if (player == null) {
             Log.d(TAG, "Player is not available");
@@ -109,24 +91,22 @@ public final class VideoDetailPlayerCrasher {
         }
 
         // -- Build the dialog/UI --
-
         final Context themeWrapperContext = getThemeWrapperContext(context);
-
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(layoutInflater)
-                .list;
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getThemeWrapperContext(context))
+        final SingleChoiceDialogViewBinding binding =
+                SingleChoiceDialogViewBinding.inflate(inflater);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle("Choose an exception")
-                .setView(radioGroup)
+                .setView(binding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .create();
 
-        for (final Map.Entry<String, Supplier<ExoPlaybackException>> entry
-                : AVAILABLE_EXCEPTION_TYPES.entrySet()) {
+        for (final Pair<String, Supplier<ExoPlaybackException>> entry : AVAILABLE_EXCEPTION_TYPES) {
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
-            radioButton.setText(entry.getKey());
+            radioButton.setText(entry.first);
             radioButton.setChecked(false);
             radioButton.setLayoutParams(
                     new RadioGroup.LayoutParams(
@@ -135,12 +115,10 @@ public final class VideoDetailPlayerCrasher {
                     )
             );
             radioButton.setOnClickListener(v -> {
-                tryCrashPlayerWith(player, entry.getValue().get());
-                if (alertDialog != null) {
-                    alertDialog.cancel();
-                }
+                tryCrashPlayerWith(player, entry.second.get());
+                alertDialog.cancel();
             });
-            radioGroup.addView(radioButton);
+            binding.list.addView(radioButton);
         }
 
         alertDialog.show();

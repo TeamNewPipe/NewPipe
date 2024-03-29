@@ -1,0 +1,16 @@
+Novo
+- Notificações para novas correntes
+- Transição sem falhas entre o fundo e os leitores de vídeo
+- Alterar o passo por semitons
+- Anexar a fila principal de jogadores a uma lista de reprodução
+
+Melhorado
+- Lembre-se da velocidade/tamanho do passo
+- Mitigar o longo amortecimento inicial no leitor de vídeo
+- Melhorar a interface do leitor para a TV Android
+- Confirmar antes de apagar todos os ficheiros descarregados
+
+Fixa
+- Botão de fixação do media não esconde os controlos do leitor
+- Reposição da reprodução corrigida na mudança de tipo de leitor
+- Fixar a rotação do diálogo da lista de reprodução

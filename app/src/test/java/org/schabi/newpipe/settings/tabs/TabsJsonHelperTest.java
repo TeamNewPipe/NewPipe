@@ -1,5 +1,10 @@
 package org.schabi.newpipe.settings.tabs;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static java.util.Objects.requireNonNull;
+
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -10,11 +15,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class TabsJsonHelperTest {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
@@ -59,8 +59,8 @@ public class TabsJsonHelperTest {
 
                 fail("didn't throw exception");
             } catch (final Exception e) {
-                final boolean isExpectedException
-                        = e instanceof TabsJsonHelper.InvalidJsonException;
+                final boolean isExpectedException =
+                        e instanceof TabsJsonHelper.InvalidJsonException;
                 assertTrue("\"" + e.getClass().getSimpleName()
                         + "\" is not the expected exception", isExpectedException);
             }

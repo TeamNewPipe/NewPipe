@@ -1,6 +1,6 @@
 name: Feature request
 description: Suggest an idea for this project
-labels: [enhancement]
+labels: [feature request, needs triage]
 body:
   - type: markdown
     attributes:
@@ -8,13 +8,14 @@ body:
         Thank you for helping to make NewPipe better by suggesting a feature. :hugs:
 
         Your ideas are highly welcome! The app is made for you, the users, after all.
-        
   - type: checkboxes
     id: checklist
     attributes:
       label: "Checklist"
       options:
         - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+          required: true
+        - label: "I have read the [FAQ](https://newpipe.net/FAQ/) and my problem isn't listed."
           required: true
         - label: "I'm aware that this is a request for NewPipe itself and that requests for adding a new service need to be made at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
           required: true
@@ -43,7 +44,7 @@ body:
         Describe any problem or limitation you come across while using the app which would be solved by this feature.
     validations:
       required: true
-      
+
   - type: textarea
     id: additional-information
     attributes:

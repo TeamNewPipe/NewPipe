@@ -1,0 +1,15 @@
+Denna version avslutar stödet för Android 4.4 KitKat, nu är den minsta versionen Android 5 Lollipop!
+
+Nytt
+• Ladda ner från lång-tryck menyn
+• Dölj framtida videor i flödet
+• Dela lokala spellistor
+
+Förbättrat
+• Refaktorera spelarkoden i små komponenter: mindre RAM används, mindre buggar
+• Förbättra miniatyrernas skalläge
+• Vectorisera bildplatshållare
+
+Fixat
+• Fixade problem med spelarens meddelande: föråldrad/saknad media info, förvrängd miniatyr
+• Fixade fullskärm som använde 1/4 av skärmen

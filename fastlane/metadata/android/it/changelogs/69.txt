@@ -1,0 +1,19 @@
+### Nuovo
+- Tocca a lungo elimina e condividi gli abbonamenti #1516
+- Interfaccia utente tablet e layout elenco griglia #1617
+
+### Miglioramenti
+- memorizza e ricarica l'ultima proporzione utilizzata #1748
+- Abilita il layout lineare nell'attività Download con i nomi video completi #1771
+- Elimina e condividi gli abbonamenti direttamente dalla scheda abbonamenti n. 1516
+- L'accodamento ora attiva la riproduzione del video se la coda di riproduzione è già terminata #1783
+- Impostazioni separate per i gesti di volume e luminosità #1644
+- Aggiungi il supporto per la localizzazione #1792
+
+### Correzioni
+- Risolto il problema con l'analisi del tempo per . formato, quindi NewPipe può essere utilizzato in Finlandia
+- Risolto il conteggio degli abbonamenti
+- Aggiungi l'autorizzazione al servizio in primo piano per i dispositivi API 28+ #1830
+
+### Bug noti
+- Lo stato di riproduzione non può essere salvato su Android P

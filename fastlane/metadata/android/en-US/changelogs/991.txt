@@ -1,0 +1,13 @@
+New
+• Add "Open in browser" button in error panel
+• Add option to display channel groups as list
+• [YouTube] Long-click on stream segments to share timestamp URL
+• Add play queue button to mini player
+
+Improved
+• Add Icelandic localization and updated many other translations
+• Many internal improvements
+
+Fixed
+• Fix multiple crashes
+• [YouTube] Fix loading channels, non-dedicated feed and workaround playback issues in some countries

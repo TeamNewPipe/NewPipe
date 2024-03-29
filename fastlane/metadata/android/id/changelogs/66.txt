@@ -1,3 +1,33 @@
-old version not being translated. (F-Droid only show updated verson description)
-versi lama tidak diterjemahkan. (FDroid hanya menampilkan deskripsi untuk versi terbaru)
-(weblate notification : Translation text too long! (terjemahan terlalu panjang).
+# Catatan perubahan v0.13.7
+
+### Diperbaiki
+- Perbaiki masalah filter pengurutan v0.13.6
+
+# Changelog v0.13.6
+
+### Perbaikan
+
+- Nonaktifkan animasi ikon menu burger #1486
+- batalkan penghapusan unduhan #1472
+- Opsi unduh di menu berbagi #1498
+- Menambahkan opsi berbagi ke menu ketuk panjang #1454
+- Minimalkan pemutar utama saat keluar #1354
+- Pembaruan versi library dan perbaikan cadangan basis data #1510
+- Pembaruan ExoPlayer 2.8.2 #1392
+  - Mengolah ulang dialog kontrol kecepatan pemutaran untuk mendukung ukuran langkah yang berbeda untuk perubahan kecepatan yang lebih cepat.
+  - Menambahkan tombol untuk maju cepat selama hening di kontrol kecepatan pemutaran. Ini akan berguna untuk buku audio dan genre musik tertentu, dan dapat menghadirkan pengalaman yang benar-benar mulus (dan dapat memecah lagu dengan banyak keheningan =\\).
+  - Refaktor ulang resolusi sumber media untuk memungkinkan penyampaian metadata bersama media secara internal di pemutar, daripada melakukannya secara manual. Sekarang kami memiliki satu sumber metadata dan langsung tersedia saat pemutaran dimulai.
+  - Memperbaiki metadata daftar putar jarak jauh yang tidak diperbarui ketika metadata baru tersedia ketika fragmen daftar putar dibuka.
+  - Berbagai perbaikan UI: #1383, kontrol notifikasi pemutar latar belakang kini selalu berwarna putih, lebih mudah untuk mematikan pemutar popup melalui lemparan
+- Gunakan ekstraktor baru dengan arsitektur yang difaktorkan ulang untuk multilayanan
+
+### Perbaikan
+
+- Perbaiki #1440 Tata Letak Info Video Rusak #1491
+- Lihat perbaikan riwayat #1497
+  - #1495, dengan memperbarui metadata (thumbnail, judul, dan jumlah video) segera setelah pengguna mengakses daftar putar.
+  - #1475, dengan mendaftarkan tampilan di database saat pengguna memulai video di pemutar eksternal pada fragmen detail.
+- Perbaiki batas waktu layar jika ada mode popup. #1463 (Diperbaiki #640)
+- Perbaikan pemutar video utama #1509
+  - [#1412] Memperbaiki mode pengulangan yang menyebabkan pemutar NPE ketika intent baru diterima saat aktivitas pemutar berada di latar belakang.
+  - Perbaiki meminimalkan pemutar ke popup tidak menghancurkan pemutar ketika izin popup tidak diberikan.

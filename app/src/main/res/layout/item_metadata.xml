@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingVertical="6dp">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/metadata_type_view"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Licence" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/metadata_content_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

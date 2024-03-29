@@ -1,0 +1,2 @@
+[YouTube] Sửa lỗi “Không thể nhận bất kỳ luồng nào” khi cố gắng phát bất kỳ video nào
+[YouTube] Khắc phục thông báo hiển thị “Nội dung sau không có sẵn trên ứng dụng này.” thay vì video được yêu cầu

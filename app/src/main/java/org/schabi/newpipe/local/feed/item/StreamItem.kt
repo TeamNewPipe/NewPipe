@@ -14,10 +14,12 @@ import org.schabi.newpipe.databinding.ListStreamItemBinding
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_AUDIO_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.PicassoHelper
 import org.schabi.newpipe.util.StreamTypeUtil
+import org.schabi.newpipe.util.image.PicassoHelper
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 
@@ -40,12 +42,13 @@ data class StreamItem(
 
     override fun getId(): Long = stream.uid
 
-    enum class ItemVersion { NORMAL, MINI, GRID }
+    enum class ItemVersion { NORMAL, MINI, GRID, CARD }
 
     override fun getLayout(): Int = when (itemVersion) {
         ItemVersion.NORMAL -> R.layout.list_stream_item
         ItemVersion.MINI -> R.layout.list_stream_mini_item
         ItemVersion.GRID -> R.layout.list_stream_grid_item
+        ItemVersion.CARD -> R.layout.list_stream_card_item
     }
 
     override fun initializeViewBinding(view: View) = ListStreamItemBinding.bind(view)
@@ -109,7 +112,7 @@ data class StreamItem(
     }
 
     override fun isLongClickable() = when (stream.streamType) {
-        AUDIO_STREAM, VIDEO_STREAM, LIVE_STREAM, AUDIO_LIVE_STREAM -> true
+        AUDIO_STREAM, VIDEO_STREAM, LIVE_STREAM, AUDIO_LIVE_STREAM, POST_LIVE_STREAM, POST_LIVE_AUDIO_STREAM -> true
         else -> false
     }
 

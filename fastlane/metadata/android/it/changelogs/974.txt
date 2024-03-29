@@ -1,0 +1,5 @@
+Correzione rapida
+• Risolvi i problemi di buffering causati dalla limitazione di YouTube
+• Risolto il problema con l'estrazione dei commenti di YouTube e gli arresti anomali con i commenti disabilitati
+• Correggi la ricerca di musica su YouTube
+• Correggi i live streaming di PeerTube

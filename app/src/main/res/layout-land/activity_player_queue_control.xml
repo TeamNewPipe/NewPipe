@@ -123,7 +123,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/exo_controls_rewind"
                 android:tint="?attr/colorAccent"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/rewind" />
 
             <ImageButton
                 android:id="@+id/control_play_pause"
@@ -138,9 +138,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_pause"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_pause"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/pause" />
 
             <ProgressBar
                 android:id="@+id/control_progress_bar"
@@ -173,7 +173,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/exo_controls_fastforward"
                 android:tint="?attr/colorAccent"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/forward" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -199,9 +199,9 @@
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_previous"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_previous"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/previous_stream" />
 
             <ImageButton
                 android:id="@+id/control_repeat"
@@ -214,9 +214,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:src="@drawable/ic_repeat"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_repeat"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/notification_action_repeat" />
 
             <View
                 android:id="@+id/anchor"
@@ -235,9 +235,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:src="@drawable/ic_shuffle"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_shuffle"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/notification_action_shuffle" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/control_forward"
@@ -253,9 +253,9 @@
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_next"
                 android:tint="?attr/colorAccent"
-                app:srcCompat="@drawable/ic_next"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/next_stream" />
         </RelativeLayout>
     </RelativeLayout>
 

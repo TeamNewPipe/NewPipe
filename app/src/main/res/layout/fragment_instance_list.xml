@@ -44,8 +44,8 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:src="@drawable/ic_add"
         app:backgroundTint="?attr/colorPrimary"
-        app:fabSize="auto"
-        app:srcCompat="@drawable/ic_add" />
+        app:fabSize="auto" />
 
 </RelativeLayout>

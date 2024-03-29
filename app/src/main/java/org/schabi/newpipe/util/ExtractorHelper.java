@@ -20,12 +20,14 @@
 package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
@@ -35,23 +37,21 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
-import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
-import org.schabi.newpipe.extractor.feed.FeedExtractor;
-import org.schabi.newpipe.extractor.feed.FeedInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
-import org.schabi.newpipe.util.external_communication.TextLinkifier;
+import org.schabi.newpipe.util.text.TextLinkifier;
 
 import java.util.Collections;
 import java.util.List;
@@ -114,46 +114,43 @@ public final class ExtractorHelper {
     public static Single<StreamInfo> getStreamInfo(final int serviceId, final String url,
                                                    final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.STREAM,
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.STREAM,
                 Single.fromCallable(() -> StreamInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
     public static Single<ChannelInfo> getChannelInfo(final int serviceId, final String url,
                                                      final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.CHANNEL,
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.CHANNEL,
                 Single.fromCallable(() ->
                         ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage<StreamInfoItem>> getMoreChannelItems(final int serviceId,
-                                                                            final String url,
-                                                                            final Page nextPage) {
-        checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
-    }
-
-    public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(
-            final int serviceId, final String url) {
-        final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
-            final StreamingService service = NewPipe.getService(serviceId);
-            final FeedExtractor feedExtractor = service.getFeedExtractor(url);
-
-            if (feedExtractor == null) {
-                return null;
-            }
-
-            return FeedInfo.getInfo(feedExtractor);
-        });
-
-        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
-    }
-
-    public static Single<CommentsInfo> getCommentsInfo(final int serviceId, final String url,
+    public static Single<ChannelTabInfo> getChannelTab(final int serviceId,
+                                                       final ListLinkHandler listLinkHandler,
                                                        final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.COMMENT,
+        return checkCache(forceLoad, serviceId,
+                listLinkHandler.getUrl(), InfoCache.Type.CHANNEL_TAB,
+                Single.fromCallable(() ->
+                        ChannelTabInfo.getInfo(NewPipe.getService(serviceId), listLinkHandler)));
+    }
+
+    public static Single<InfoItemsPage<InfoItem>> getMoreChannelTabItems(
+            final int serviceId,
+            final ListLinkHandler listLinkHandler,
+            final Page nextPage) {
+        checkServiceId(serviceId);
+        return Single.fromCallable(() ->
+                ChannelTabInfo.getMoreItems(NewPipe.getService(serviceId),
+                        listLinkHandler, nextPage));
+    }
+
+    public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
+                                                       final String url,
+                                                       final boolean forceLoad) {
+        checkServiceId(serviceId);
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.COMMENTS,
                 Single.fromCallable(() ->
                         CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
@@ -167,11 +164,20 @@ public final class ExtractorHelper {
                 CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage));
     }
 
+    public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
+            final int serviceId,
+            final String url,
+            final Page nextPage) {
+        checkServiceId(serviceId);
+        return Single.fromCallable(() ->
+                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
+    }
+
     public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId,
                                                        final String url,
                                                        final boolean forceLoad) {
         checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.PLAYLIST,
                 Single.fromCallable(() ->
                         PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
@@ -184,9 +190,10 @@ public final class ExtractorHelper {
                 PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
     }
 
-    public static Single<KioskInfo> getKioskInfo(final int serviceId, final String url,
+    public static Single<KioskInfo> getKioskInfo(final int serviceId,
+                                                 final String url,
                                                  final boolean forceLoad) {
-        return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
+        return checkCache(forceLoad, serviceId, url, InfoCache.Type.KIOSK,
                 Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
@@ -198,7 +205,7 @@ public final class ExtractorHelper {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
+    // Cache
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
@@ -210,25 +217,26 @@ public final class ExtractorHelper {
      * @param forceLoad       whether to force loading from the network instead of from the cache
      * @param serviceId       the service to load from
      * @param url             the URL to load
-     * @param infoType        the {@link InfoItem.InfoType} of the item
+     * @param cacheType       the {@link InfoCache.Type} of the item
      * @param loadFromNetwork the {@link Single} to load the item from the network
      * @return a {@link Single} that loads the item
      */
     private static <I extends Info> Single<I> checkCache(final boolean forceLoad,
-                                                         final int serviceId, final String url,
-                                                         final InfoItem.InfoType infoType,
-                                                         final Single<I> loadFromNetwork) {
+                                                         final int serviceId,
+                                                         @NonNull final String url,
+                                                         @NonNull final InfoCache.Type cacheType,
+                                                         @NonNull final Single<I> loadFromNetwork) {
         checkServiceId(serviceId);
         final Single<I> actualLoadFromNetwork = loadFromNetwork
-                .doOnSuccess(info -> CACHE.putInfo(serviceId, url, info, infoType));
+                .doOnSuccess(info -> CACHE.putInfo(serviceId, url, info, cacheType));
 
         final Single<I> load;
         if (forceLoad) {
-            CACHE.removeInfo(serviceId, url, infoType);
+            CACHE.removeInfo(serviceId, url, cacheType);
             load = actualLoadFromNetwork;
         } else {
-            load = Maybe.concat(ExtractorHelper.loadFromCache(serviceId, url, infoType),
-                    actualLoadFromNetwork.toMaybe())
+            load = Maybe.concat(ExtractorHelper.loadFromCache(serviceId, url, cacheType),
+                            actualLoadFromNetwork.toMaybe())
                     .firstElement() // Take the first valid
                     .toSingle();
         }
@@ -239,18 +247,20 @@ public final class ExtractorHelper {
     /**
      * Default implementation uses the {@link InfoCache} to get cached results.
      *
-     * @param <I>             the item type's class that extends {@link Info}
-     * @param serviceId       the service to load from
-     * @param url             the URL to load
-     * @param infoType        the {@link InfoItem.InfoType} of the item
+     * @param <I>       the item type's class that extends {@link Info}
+     * @param serviceId the service to load from
+     * @param url       the URL to load
+     * @param cacheType the {@link InfoCache.Type} of the item
      * @return a {@link Single} that loads the item
      */
-    private static <I extends Info> Maybe<I> loadFromCache(final int serviceId, final String url,
-                                                           final InfoItem.InfoType infoType) {
+    private static <I extends Info> Maybe<I> loadFromCache(
+            final int serviceId,
+            @NonNull final String url,
+            @NonNull final InfoCache.Type cacheType) {
         checkServiceId(serviceId);
         return Maybe.defer(() -> {
             //noinspection unchecked
-            final I info = (I) CACHE.getFromKey(serviceId, url, infoType);
+            final I info = (I) CACHE.getFromKey(serviceId, url, cacheType);
             if (MainActivity.DEBUG) {
                 Log.d(TAG, "loadFromCache() called, info > " + info);
             }
@@ -264,20 +274,27 @@ public final class ExtractorHelper {
         });
     }
 
-    public static boolean isCached(final int serviceId, final String url,
-                                   final InfoItem.InfoType infoType) {
-        return null != loadFromCache(serviceId, url, infoType).blockingGet();
+    public static boolean isCached(final int serviceId,
+                                   @NonNull final String url,
+                                   @NonNull final InfoCache.Type cacheType) {
+        return null != loadFromCache(serviceId, url, cacheType).blockingGet();
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     /**
      * Formats the text contained in the meta info list as HTML and puts it into the text view,
      * while also making the separator visible. If the list is null or empty, or the user chose not
      * to see meta information, both the text view and the separator are hidden
-     * @param metaInfos a list of meta information, can be null or empty
-     * @param metaInfoTextView the text view in which to show the formatted HTML
+     *
+     * @param metaInfos         a list of meta information, can be null or empty
+     * @param metaInfoTextView  the text view in which to show the formatted HTML
      * @param metaInfoSeparator another view to be shown or hidden accordingly to the text view
-     * @param disposables disposables created by the method are added here and their lifecycle
-     *                    should be handled by the calling class
+     * @param disposables       disposables created by the method are added here and their lifecycle
+     *                          should be handled by the calling class
      */
     public static void showMetaInfoInTextView(@Nullable final List<MetaInfo> metaInfos,
                                               final TextView metaInfoTextView,
@@ -286,7 +303,7 @@ public final class ExtractorHelper {
         final Context context = metaInfoTextView.getContext();
         if (metaInfos == null || metaInfos.isEmpty()
                 || !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                        context.getString(R.string.show_meta_info_key), true)) {
+                context.getString(R.string.show_meta_info_key), true)) {
             metaInfoTextView.setVisibility(View.GONE);
             metaInfoSeparator.setVisibility(View.GONE);
 
@@ -319,8 +336,9 @@ public final class ExtractorHelper {
             }
 
             metaInfoSeparator.setVisibility(View.VISIBLE);
-            TextLinkifier.createLinksFromHtmlBlock(metaInfoTextView, stringBuilder.toString(),
-                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING, null, disposables);
+            TextLinkifier.fromHtml(metaInfoTextView, stringBuilder.toString(),
+                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING, null, null, disposables,
+                    SET_LINK_MOVEMENT_METHOD);
         }
     }
 

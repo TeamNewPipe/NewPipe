@@ -1,0 +1,23 @@
+<h4>Améliorations</h4>
+<ul>
+<li>Rendre les liens dans les commentaires cliquables, augmenter la taille du texte</li>
+<li>Rechercher en cliquant sur les liens d'horodatage dans les commentaires</li>
+<li>Afficher l'onglet préféré en fonction de l'état récemment sélectionné</li>
+<li>Ajouter la liste de lecture à la file d'attente lors d'un clic long sur &#39;Arrière-plan&#39; dans la fenêtre de la liste de lecture</li>
+<li>Rechercher le texte partagé lorsqu'il ne s'agit pas d'une URL</li>
+<li>Ajouter &quot;partager à l'heure actuelle&quot; bouton au lecteur vidéo principal lecteur vidéo principal</li>
+<li>Ajouter un bouton de fermeture du lecteur principal lorsque la file d'attente vidéo est terminée</li>
+<li>Ajouter &quot;jouer directement en arrière-plan&quot; au menu longpress pour les éléments de la liste vidéo</li>
+<li>Améliorer les traductions en anglais des commandes Play/Enqueue</li>
+<li>Petites améliorations des performances</li>
+<li>Supprimer les fichiers inutilisés</li>
+<li>Mise à jour ExoPlayer à 2.9.6</li>
+<li>Ajouter le support pour les liens Invidious</li>
+</ul>
+<h4>Corrections</h4>
+<ul>
+<li>Défilement avec les commentaires et les flux associés désactivés</li>
+<li>CheckForNewAppVersionTask qui est exécuté alors qu'il ne devrait pas l'être&#39;</li>
+<li> Importation des abonnements YouTube : ignorer ceux dont l’URL est invalide et conserver ceux dont le titre est vide</li>
+<li>URL YouTube invalide : le nom de la balise signature n'est pas toujours "signature", ce qui empêche le chargement des flux.</li>
+</ul>

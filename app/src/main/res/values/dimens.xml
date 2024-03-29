@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Common dimensions -->
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="spacing_mid">12dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_nano">2dp</dimen>
+
     <!-- Menu Drawer Dimensions -->
     <dimen name="drawer_header_content_min_height">120dp</dimen>
     <dimen name="drawer_header_padding_top">16dp</dimen>
@@ -30,7 +37,8 @@
     <dimen name="video_item_grid_thumbnail_image_width">164dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
 
-    <dimen name="channel_item_grid_thumbnail_image_size">42dp</dimen>
+    <dimen name="channel_item_card_thumbnail_image_size">100dp</dimen>
+    <dimen name="channel_item_grid_thumbnail_image_size">92dp</dimen>
     <dimen name="channel_item_grid_min_width">128dp</dimen>
     <!-- Calculated: 2*video_item_search_padding + video_item_search_thumbnail_image_height -->
     <dimen name="video_item_search_height">96dp</dimen>
@@ -58,11 +66,6 @@
     <dimen name="popup_minimum_width">150dp</dimen>
     <dimen name="comment_item_avatar_right_margin">9dp</dimen>
 
-    <dimen name="subscription_import_export_title_height">32dp</dimen>
-    <dimen name="subscription_import_export_item_height">42dp</dimen>
-    <dimen name="subscription_import_export_item_icon_size">24dp</dimen>
-    <!-- (item_height - item_icon_size) / 2-->
-    <dimen name="subscription_import_export_item_icon_margin">9dp</dimen>
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
     <dimen name="video_item_detail_title_text_size">15sp</dimen>
@@ -72,7 +75,6 @@
     <dimen name="video_item_detail_sub_channel_text_size">14sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">13sp</dimen>
     <dimen name="video_item_detail_description_text_size">13sp</dimen>
-    <dimen name="channel_subscribers_text_size">12sp</dimen>
     <dimen name="channel_rss_title_size">12sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_uploader_image_size">32dp</dimen>
@@ -129,9 +131,6 @@
     <dimen name="comment_item_content_text_size">12sp</dimen>
 
     <!-- Feed Groups dimensions-->
-    <dimen name="feed_group_carousel_start_end_margin">12dp</dimen>
-    <dimen name="feed_group_carousel_top_bottom_margin">2dp</dimen>
-    <dimen name="feed_group_carousel_between_items_margin">4dp</dimen>
 
     <dimen name="search_suggestion_text_size">16sp</dimen>
 </resources>

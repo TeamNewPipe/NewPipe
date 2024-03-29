@@ -1,0 +1,33 @@
+# Cambios de v0.13.7
+
+### Fijado
+- Arreglar problemas de lod filtros de ordenación de la v0.13.6
+
+# Cambios de la v0.13.6
+
+### Mejoras
+
+- Desactivar la animación drl icono de burgermenu #1486 
+- deshacer borrar las descargas #1472 
+- Descargar opción en el menú compartido #1498 
+- Añadida opción de compartir al menú #1454 
+- Minimizar el jugador principal en la salida #1354 
+- Actualización de la versión de biblioteca y copia de seguridad de la base de datos #1510 
+- ExoPlayer 2.8.2 Actualización #1392
+  - Reelaborado el diálogo de control de velocidad de reproducción para admitir diferentes tamaños de pasos para un cambio de velocidad más rápido.
+  - Añadido un conmutador para avanzar rápido durante los silencios en el control de velocidad de reproducción. Esto debería ser útil para audiolibros y ciertos géneros musicales, y puede traer una verdadera experiencia perfecta (y puede romper una canción con muchos silencios =\\).  
+  - Resolución de fuente de medios refactorizada para permitir la transmisión de metadatos junto con los medios internamente en el reproductor, en lugar de hacerlo manualmente. Ahora tenemos una única fuente de metadatos y está directamente disponible cuando comienza la reproducción.
+  - Se ha corregido que los metadatos de la lista de reproducción remota no se actualizan cuando los nuevos metadatos están disponibles cuando se abre el fragmento de la lista de reproducción.
+  - Varias correcciones de interfaz de usuario: #1383, controles de notificación del reproductor de fondo ahora siempre blanco, más fácil de apagar el reproductor emergente a través de flinging
+- Utilice un nuevo extractor con arquitectura refactorizada para multiservicio
+
+### Fijaciones
+
+- Arreglar #1440 Broken Video Info Layout #1491 
+- Ver el historial correctivo #1497
+  - #1495, actualizando los metadatos (miniatura, título y recuento de vídeos) en cuanto el usuario acceda a la lista de reproducción. 
+  - #1475, registrando una vista en la base de datos cuando el usuario inicia un vídeo en reproductor externo sobre fragmentos de detalle.
+- Arreglar tiempo de espera en caso de modo emergente. #1463 (Arreglar #640) 
+- Corrección principal del reproductor de video #1509 
+  - [#1412] Se corrige el modo de repetición que provoca NPE del reproductor cuando se recibe una nueva intent mientras la actividad del reproductor está en segundo plano.
+  - Corregido minimizar el reproductor a popup no destruye el reproductor cuando no se concede el permiso de popup.

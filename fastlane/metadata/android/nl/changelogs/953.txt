@@ -1,1 +1,1 @@
-Hersteld: extractie van de decoderingsfunctie van YouTube.
+Herstel de extractie van de decoderingsfunctie van YouTube.

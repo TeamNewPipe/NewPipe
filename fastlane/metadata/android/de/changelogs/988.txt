@@ -1,0 +1,2 @@
+[YouTube] Fehler „Konnte keinen Stream abrufen“ behoben beim Versuch, ein Video abzuspielen
+[YouTube] "Der folgende Inhalt ist in dieser App nicht verfügbar." anstelle des angeforderten Videos behoben

@@ -1,0 +1,10 @@
+- Do nabídky dlouhého stisku bylo přidáno tlačítko "přehrát další".
+- Do filtru záměrů byla přidána předpona cesty ke krátkým filmům YouTube
+- Opraven import nastavení
+- Výměna pozice panelu vyhledávání s tlačítky přehrávače na obrazovce Fronta
+- Různé opravy související se správcem MediasessionManager
+- Opraveno nedokončení panelu vyhledávání po skončení videa
+- Zakázáno tunelování médií na RealtekATV
+- Rozšířena klikatelná oblast minimalizovaných tlačítek přehrávače
+
+-.

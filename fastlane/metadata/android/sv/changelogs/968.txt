@@ -1,0 +1,7 @@
+La till kanalinformationsalternativ i långtrycksmenyn.
+La till funktionalitet för att byta namn från spellistans gränssnitt.
+Låt användaren pausa medan en video buffrar.
+Polerade det ljusa temat.
+Fixade överlappande teckensnitt när du använder en större teckenstorlek.
+Fixade ingen video på Formuler och Zephier enheter.
+Fixade olika kraschar.

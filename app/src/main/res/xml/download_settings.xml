@@ -12,6 +12,7 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="true"
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
         android:title="@string/downloads_storage_use_saf_title"
@@ -39,10 +40,10 @@
         android:entries="@array/settings_filename_charset_name"
         android:entryValues="@array/settings_filename_charset"
         android:key="@string/settings_file_charset_key"
-        android:summary="%s"
         android:title="@string/settings_file_charset_title"
         app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
 
     <EditTextPreference
         android:defaultValue="@string/settings_file_replacement_character_default_value"

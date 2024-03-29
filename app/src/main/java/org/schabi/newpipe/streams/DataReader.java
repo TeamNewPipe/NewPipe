@@ -82,8 +82,8 @@ public class DataReader {
 
     public long readLong() throws IOException {
         primitiveRead(LONG_SIZE);
-        final long high
-                = primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
+        final long high =
+                primitive[0] << 24 | primitive[1] << 16 | primitive[2] << 8 | primitive[3];
         final long low = primitive[4] << 24 | primitive[5] << 16 | primitive[6] << 8 | primitive[7];
         return high << 32 | low;
     }

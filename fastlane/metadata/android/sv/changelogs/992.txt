@@ -1,0 +1,17 @@
+Nytt
+• Prenumerant antal i videodetaljer
+• Ladda ner från kön
+• Ställ in en permanent miniatyr fr spellista
+• Långtryckt hashtags och länkar
+• Kortvys läge
+
+Förbättrat
+• Större minispelar stäng knapp
+• Mjukare miniatyrs nedskalning
+• Sikta på Android 13 (API 33)
+• Sökning pausar inte längre spelaren
+
+Fixat
+• Fixade overlay på DeX/Mouse
+• Tillåt bakgrundsspelare utan separata ljudströmmar
+• Olika YouTube-fixar och mer…

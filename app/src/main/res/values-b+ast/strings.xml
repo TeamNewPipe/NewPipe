@@ -25,7 +25,6 @@
     <string name="duration_live">En direuto</string>
     <string name="general_error">Fallu</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
-    <string name="youtube_signature_deobfuscation_error">Nun pudo sabese la robla de la URL del videu</string>
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
@@ -73,7 +72,7 @@
     <string name="best_resolution">La meyor resolución</string>
     <string name="notification_channel_name">Avisu permanente de NewPipe</string>
     <string name="search_no_results">Nun hai resultaos</string>
-    <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
+    <string name="empty_list_subtitle">Equí nun hai más que grillos</string>
     <plurals name="subscribers">
         <item quantity="one">%s soscriptor</item>
         <item quantity="other">%s soscriptores</item>
@@ -150,8 +149,6 @@
     <string name="playlists">Llistes de reproducción</string>
     <string name="tracks">Pistes</string>
     <string name="users">Usuarios</string>
-    <string name="volume_gesture_control_summary">Usa xestos pa controlar el volume del reproductor</string>
-    <string name="brightness_gesture_control_summary">Usa xestos pa controlar el brillu del reproductor</string>
     <string name="restore_defaults">Reafitamientu de valores</string>
     <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="updates_setting_title">Anovamientos</string>
@@ -174,7 +171,7 @@
     <string name="overwrite_finished_warning">Yá esiste un ficheru baxáu con esti nome</string>
     <string name="overwrite_failed">nun pue sobrecribise\'l ficheru</string>
     <string name="download_already_pending">Hai una descarga pendiente con esti nome</string>
-    <string name="error_insufficient_storage">Nun queda espaciu nel preséu</string>
+    <string name="error_insufficient_storage_left">Nun queda espaciu nel preséu</string>
     <string name="error_timeout">Escosó\'l tiempu d\'espera de la conexón</string>
     <string name="subscriptions_import_unsuccessful">Nun pudieron importase les soscripciones</string>
     <string name="caption_setting_title">Sotítulos</string>
@@ -208,8 +205,6 @@
 \n3. Anicia sesión cuando se te pida
 \n4. Copia la URL del perfil al que te redirixeron.</string>
     <string name="import_soundcloud_instructions_hint">soundcloud.com/LaToID</string>
-    <string name="download_thumbnail_title">Cargar les miniatures</string>
-    <string name="download_thumbnail_summary">Desactiva esta opción pa eviar la carga de miniatures y aforrar datos y usu de memoria. Los cambeos llimpien la caché d\'imáxenes temporal y permanente.</string>
     <string name="minimize_on_exit_title">Minimizar al cambiar d\'aplicación</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>
@@ -226,8 +221,6 @@
     </plurals>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
-    <string name="volume_gesture_control_title">Control per xestos del volume</string>
-    <string name="brightness_gesture_control_title">Control per xestos del brillu</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>
     <string name="localization_changes_requires_app_restart">La llingua va camudar namás que se reanicie l\'aplicación.</string>
@@ -236,8 +229,7 @@
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="no_videos">Nun hai vídeos</string>
     <string name="delete_search_history_alert">¿Desaniciar tol historial de busques\?</string>
-    <string name="app_update_notification_content_title">¡Hai un anovamientu pa NewPipe!</string>
-    <string name="app_update_notification_content_text">Toca pa baxalu</string>
+    <string name="app_update_available_notification_title">¡Hai un anovamientu pa NewPipe!</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
     <string name="peertube_instance_add_exists">La instancia yá esiste</string>
@@ -278,7 +270,7 @@
     <string name="metadata_cache_wipe_summary">Desanicia tolos datos na caché de les páxines web</string>
     <string name="metadata_cache_wipe_title">Llimpiar los metadatos de la caché</string>
     <string name="thumbnail_cache_wipe_complete_notice">Llimpióse la caché d\'imáxenes</string>
-    <string name="kore_not_found">¿Instalar Kore\?</string>
+    <string name="kore_not_found">¿Instalar Kode\?</string>
     <string name="info_labels">Qué asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nPaís del conteníu:\\nLlingua de l\'aplicación:\\nServiciu:\\nHora en GMT:\\nPaquete:\\nVersión de l\'aplicación:\\nVersión del SO:</string>
     <string name="no_player_found_toast">Nun s\'atopó nengún reproductor de fluxos (pues instalar VLC pa reproducilos).</string>
     <string name="show_thumbnail_summary">Amuesa una miniatura nel fondu de la pantalla de bloquéu y dientro de los avisos</string>
@@ -426,10 +418,9 @@
     <string name="privacy_policy_encouragement">El proyeutu de NewPipe toma mui en serio la privacidá. Poro, l\'aplicación nun recueye nengún datu ensin el to consentimientu.
 \nLa política de privacidá de NewPipe desplica en detalle los datos que s\'unvien y atroxen cuando unvies un informe de casque.</string>
     <string name="app_description">Un aplicación llibre pa ver/sentir plataformes de tresmisión n\'Android.</string>
-    <string name="toast_no_player">Nun hai nenguna aplicación pa reproducir esti ficheru</string>
     <string name="settings_file_replacement_character_title">Caráuteres de troquéu</string>
     <string name="settings_file_replacement_character_summary">Los caráuteres que nun son válidos van trocase por esti valor</string>
-    <string name="recaptcha_done_button">Fecho</string>
+    <string name="done">Fecho</string>
     <string name="subtitle_activity_recaptcha">Primi «Fecho» al resolvelu</string>
     <string name="one_item_deleted">Desanicióse 1 elementu.</string>
     <string name="no_available_dir">Defini una capeta de descargues dempués, nos axustes de l\'aplicación</string>
@@ -479,7 +470,6 @@
     <string name="network_error">Fallu de la rede</string>
     <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
     <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
-    <string name="help">Ayuda</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>

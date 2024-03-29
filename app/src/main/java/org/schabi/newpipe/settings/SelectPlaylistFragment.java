@@ -25,7 +25,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Vector;

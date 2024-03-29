@@ -1,0 +1,17 @@
+Nuevo
+• Número de suscriptores en los detalles del video
+• Descarga desde la cola
+• Establecer permanentemente una miniatura de lista de reproducción
+• Hashtags y enlaces con pulsación de larga duración
+• Modo de vista de tarjeta
+
+Mejorado
+• Botón de cierre del minirreproductor más grande
+• Reducción de escala de miniaturas más suave
+• Objetivo Android 13 (API 33)
+• Buscar ya no detiene el reproductor
+
+Arreglos
+• Solucionar superposición en DeX/ratón
+• Permitir reproductor de fondo sin transmisiones de audio separadas
+• Varias correcciones de YouTube y más…

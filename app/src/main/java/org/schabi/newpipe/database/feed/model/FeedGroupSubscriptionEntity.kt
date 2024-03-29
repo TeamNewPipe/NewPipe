@@ -3,7 +3,6 @@ package org.schabi.newpipe.database.feed.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.ForeignKey.CASCADE
 import androidx.room.Index
 import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity.Companion.FEED_GROUP_SUBSCRIPTION_TABLE
 import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity.Companion.GROUP_ID
@@ -19,14 +18,14 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
             entity = FeedGroupEntity::class,
             parentColumns = [FeedGroupEntity.ID],
             childColumns = [GROUP_ID],
-            onDelete = CASCADE, onUpdate = CASCADE, deferred = true
+            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
         ),
 
         ForeignKey(
             entity = SubscriptionEntity::class,
             parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
             childColumns = [SUBSCRIPTION_ID],
-            onDelete = CASCADE, onUpdate = CASCADE, deferred = true
+            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
         )
     ]
 )

@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 import android.content.Context;
@@ -10,13 +11,14 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SparseItemUtil;
 
-import java.util.Collections;
+import java.util.List;
 
 public final class QueueItemMenuUtil {
     private QueueItemMenuUtil() {
@@ -53,7 +55,7 @@ public final class QueueItemMenuUtil {
                 case R.id.menu_item_append_playlist:
                     PlaylistDialog.createCorrespondingDialog(
                             context,
-                            Collections.singletonList(new StreamEntity(item)),
+                            List.of(new StreamEntity(item)),
                             dialog -> dialog.show(
                                     fragmentManager,
                                     "QueueItemMenuUtil@append_playlist"
@@ -73,7 +75,15 @@ public final class QueueItemMenuUtil {
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),
-                            item.getThumbnailUrl());
+                            item.getThumbnails());
+                    return true;
+                case R.id.menu_item_download:
+                    fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
+                            info -> {
+                                final DownloadDialog downloadDialog = new DownloadDialog(context,
+                                        info);
+                                downloadDialog.show(fragmentManager, "downloadDialog");
+                            });
                     return true;
             }
             return false;

@@ -43,7 +43,7 @@
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
-    <string name="kore_not_found">Pasangkan aplikasi Kore yang tidak dijumpai\?</string>
+    <string name="kore_not_found">Pasangkan aplikasi Kode yang tidak dijumpai\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Paparkan opsyen untuk memain video dengan Kodi</string>
     <string name="play_audio">Audio</string>
@@ -57,18 +57,12 @@
     <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
     <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan. Mencari 5, 15 atau 25 saat tidak berfungsi dengan ini</string>
-    <string name="download_thumbnail_title">Muatkan thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan ingatan. Perubahan akan menghapus cache imej dari ingatan dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapuskan</string>
     <string name="auto_queue_title">Automatik beratur strim seterusnya</string>
     <string name="auto_queue_summary">Tambahkan secara automatik strim berkaitan apabila memain strim terakhir dalam giliran tidak berulang.</string>
-    <string name="volume_gesture_control_title">Kontrol gestur volume</string>
-    <string name="volume_gesture_control_summary">Gunakan gestur untuk melaraskan volume pemain</string>
-    <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
-    <string name="brightness_gesture_control_summary">Gunakan gestur untuk melaraskan kecerahan pemain</string>
     <string name="show_search_suggestions_title">Cadangan carian</string>
     <string name="show_search_suggestions_summary">Tunjukkan cadangan semasa mencari</string>
     <string name="enable_search_history_title">Sejarah carian</string>
@@ -139,7 +133,6 @@
     <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
-    <string name="youtube_signature_deobfuscation_error">Tidak dapat menyahsulit tanda tangan URL video</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
     <string name="could_not_setup_download_menu">Tidak dapat menyediakan menu muat turun</string>
@@ -173,7 +166,7 @@
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
     <string name="search_no_results">Tiada keputusan</string>
-    <string name="empty_subscription_feed_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
+    <string name="empty_list_subtitle">Tiada apa-apa di sini tetapi jangkrik</string>
     <string name="detail_drag_description">Seret untuk menyusun semula</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -218,7 +211,6 @@
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter yang paling istimewa</string>
-    <string name="toast_no_player">Tiada app dipasang untuk memainkan fail ini</string>
     <string name="title_activity_about">Tentang NewPipe</string>
     <string name="title_licenses">Lesen Pihak Ketiga</string>
     <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
@@ -348,8 +340,7 @@
     <string name="list">Senarai</string>
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Kemas kini NewPipe Tersedia!</string>
-    <string name="app_update_notification_content_text">Ketik untuk muat turun</string>
+    <string name="app_update_available_notification_title">Kemas kini NewPipe Tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>
@@ -381,13 +372,12 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="help">Bantuan</string>
     <string name="open_with">Buka dengan</string>
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>
     </plurals>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
-    <string name="recaptcha_done_button">Selesai</string>
+    <string name="done">Selesai</string>
     <string name="recaptcha_solve">Selesaikan</string>
     <string name="no_comments">Tidak ada ulasan</string>
     <plurals name="videos">
@@ -442,4 +432,8 @@
     <string name="dont_show">Jangan tunjuk</string>
     <string name="unmute">Nyahbisu</string>
     <string name="notification_colorize_summary">Minta Android menyesuaikan warna pemberitahuan sesuai dengan warna utama di thumbnail (perhatikan bahawa ini tidak tersedia dalam semua perangkat)</string>
+    <string name="autoplay_title">Auto-main</string>
+    <string name="enable_playback_resume_title">Sambung main</string>
+    <string name="error_unable_to_load_comments">Tidak boleh memuat komentar</string>
+    <string name="close">Tutup</string>
 </resources>

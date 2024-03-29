@@ -1,0 +1,16 @@
+Nytt
+• Merknader for nye strømmer
+• Sømløs overgang i bakgrunn og videospillere
+• Endre toneart med halvtoner
+• Legg til hovedspillerkøen på slutten av en spilleliste
+
+Forbedret
+• Husk hastighet/toneart-stegstørrelse
+• Unngå lang mellomlagring i videospilleren
+• Forbedret spillergrensesnitt for Android TV
+• Bekreft sletting av alle nedlastede filer
+
+Fikset
+• Mediaknapper som ikke skjuler avspillerkontroller
+• Avspillingstilbakestilling ved endring av spillertype
+• Rotering av spillelistedialog

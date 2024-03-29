@@ -1,0 +1,17 @@
+Yeni
+ • Axtararkən miniatür önizləməsini göstərin 
+• Əlil şərhləri aşkar edin 
+• Lent elementini baxılmış kimi qeyd etməyə icazə verin
+ • Şərh ürəklərini göstərin 
+
+Təkmilləşdirilmiş
+ • Metadata və teqlərin tərtibatını təkmilləşdirin 
+• UI komponentlərinə xidmət rəngini tətbiq edin 
+
+Sabit 
+• Mini pleyerdə miniatürü düzəldin
+ • Dublikat növbə elementlərində sonsuz buferləşdirməni düzəldin 
+• Fırlanma və daha sürətli bağlanma kimi bəzi oyunçu düzəlişləri 
+• Fonda yüklənmiş qalan ReCAPTCHA-nı düzəldin 
+• Lenti təzələyərkən klikləri söndürün
+ • Bəzi yükləyici qəzalarını düzəldin

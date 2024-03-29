@@ -1,0 +1,8 @@
+### Mga Pagpapabuti
+- Mag-import/export ng mga setting #1333
+- Bawasan ang pag-overdraw (nakabubuti sa pagtakbo ng app) #1371
+- Ilan pang mga pagpapahusay #1375
+- Mga bagay tungkol sa GDPR #1420
+
+### Mga Pagsasaayos
+- Pang-download: Iwasan ang pag-crash kapag pinoproseso ang mga hindi pa natatapos na download mula sa mga .giga file #1407

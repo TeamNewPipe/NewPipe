@@ -16,7 +16,6 @@
     <string name="file">Afaylu</string>
     <string name="resize_zoom">Semɣeṛ</string>
     <string name="tracks">Iberdan</string>
-    <string name="help">Tallalt</string>
     <string name="mute">Susem</string>
     <string name="always">Yal tikelt</string>
     <string name="settings_category_appearance_title">Timeẓri</string>
@@ -70,7 +69,7 @@
     <string name="grid">Iẓiki</string>
     <string name="missions_header_finished">Immed</string>
     <string name="local">Adigan</string>
-    <string name="recaptcha_done_button">Immed</string>
+    <string name="done">Immed</string>
     <string name="playback_reset">Wennez</string>
     <string name="create">Snulfu-d</string>
     <string name="accept">Qbel</string>
@@ -127,7 +126,6 @@
     <string name="playback_pitch">Pas</string>
     <string name="systems_language">Amezwer n unagraw</string>
     <string name="rename">Snifel isem</string>
-    <string name="app_update_notification_content_text">Nnal akken ad tessidreḍ</string>
     <string name="download_failed">Asider ur yeddi ara</string>
     <string name="video">Tamwalit</string>
     <string name="short_billion">o</string>

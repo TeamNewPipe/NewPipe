@@ -2,11 +2,12 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -31,9 +32,9 @@ public final class SettingMigrations {
     private static final String TAG = SettingMigrations.class.toString();
     private static SharedPreferences sp;
 
-    public static final Migration MIGRATION_0_1 = new Migration(0, 1) {
+    private static final Migration MIGRATION_0_1 = new Migration(0, 1) {
         @Override
-        public void migrate(final Context context) {
+        public void migrate(@NonNull final Context context) {
             // We changed the content of the dialog which opens when sharing a link to NewPipe
             // by removing the "open detail page" option.
             // Therefore, show the dialog once again to ensure users need to choose again and are
@@ -45,9 +46,9 @@ public final class SettingMigrations {
         }
     };
 
-    public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
-        protected void migrate(final Context context) {
+        protected void migrate(@NonNull final Context context) {
             // The new application workflow introduced in #2907 allows minimizing videos
             // while playing to do other stuff within the app.
             // For an even better workflow, we minimize a stream when switching the app to play in
@@ -64,25 +65,25 @@ public final class SettingMigrations {
         }
     };
 
-    public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
-        protected void migrate(final Context context) {
+        protected void migrate(@NonNull final Context context) {
             // Storage Access Framework implementation was improved in #5415, allowing the modern
             // and standard way to access folders and files to be used consistently everywhere.
             // We reset the setting to its default value, i.e. "use SAF", since now there are no
             // more issues with SAF and users should use that one instead of the old
-            // NoNonsenseFilePicker. SAF does not work on KitKat and below, though, so the setting
-            // is set to false in that case. Also, there's a bug on FireOS in which SAF open/close
+            // NoNonsenseFilePicker. Also, there's a bug on FireOS in which SAF open/close
             // dialogs cannot be confirmed with a remote (see #6455).
-            sp.edit().putBoolean(context.getString(R.string.storage_use_saf),
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                            && !DeviceUtils.isFireTv()).apply();
+            sp.edit().putBoolean(
+                    context.getString(R.string.storage_use_saf),
+                    !DeviceUtils.isFireTv()
+            ).apply();
         }
     };
 
-    public static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+    private static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
-        protected void migrate(final Context context) {
+        protected void migrate(@NonNull final Context context) {
             // Pull request #3546 added support for choosing the type of search suggestions to
             // show, replacing the on-off switch used before, so migrate the previous user choice
 
@@ -109,6 +110,39 @@ public final class SettingMigrations {
         }
     };
 
+    private static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            final boolean brightness = sp.getBoolean("brightness_gesture_control", true);
+            final boolean volume = sp.getBoolean("volume_gesture_control", true);
+
+            final SharedPreferences.Editor editor = sp.edit();
+
+            editor.putString(context.getString(R.string.right_gesture_control_key),
+                    context.getString(volume
+                            ? R.string.volume_control_key : R.string.none_control_key));
+            editor.putString(context.getString(R.string.left_gesture_control_key),
+                    context.getString(brightness
+                            ? R.string.brightness_control_key : R.string.none_control_key));
+
+            editor.apply();
+        }
+    };
+
+    public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            final boolean loadImages = sp.getBoolean("download_thumbnail_key", true);
+
+            sp.edit()
+                    .putString(context.getString(R.string.image_quality_key),
+                            context.getString(loadImages
+                                    ? R.string.image_quality_default
+                                    : R.string.image_quality_none_key))
+                    .apply();
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -120,22 +154,24 @@ public final class SettingMigrations {
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
+            MIGRATION_4_5,
+            MIGRATION_5_6,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 4;
+    private static final int VERSION = 6;
 
 
-    public static void initMigrations(final Context context, final boolean isFirstRun) {
+    public static void runMigrationsIfNeeded(@NonNull final Context context) {
         // setup migrations and check if there is something to do
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String lastPrefVersionKey = context.getString(R.string.last_used_preferences_version);
         final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
 
         // no migration to run, already up to date
-        if (isFirstRun) {
+        if (App.getApp().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
         } else if (lastPrefVersion == VERSION) {
@@ -193,7 +229,7 @@ public final class SettingMigrations {
             return oldVersion >= currentVersion;
         }
 
-        protected abstract void migrate(Context context);
+        protected abstract void migrate(@NonNull Context context);
 
     }
 

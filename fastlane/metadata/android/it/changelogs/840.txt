@@ -1,0 +1,22 @@
+Nuovo
+• Aggiunto selettore della lingua per cambiare la lingua dell'app
+• Aggiunto il pulsante Invia a Kodi al menu pieghevole del giocatore
+• Aggiunta la possibilità di copiare i commenti premendo a lungo
+
+Migliorato
+• Correggi l'attività di ReCaptcha e salva correttamente i cookie ottenuti
+• Rimosso il menu a punti a favore del cassetto e nascondi il pulsante della cronologia quando la cronologia delle visualizzazioni non è abilitata nelle impostazioni
+• Richiedi l'autorizzazione per la visualizzazione su altre app nelle impostazioni correttamente su Android 6 e versioni successive
+• Rinominare la playlist locale facendo clic a lungo in BookmarkFragment
+• Vari miglioramenti a PeerTube
+• Migliorate diverse stringhe di origine in inglese
+
+Fisso
+• Risolto il problema con il riavvio del lettore anche se è stato messo in pausa quando l'opzione "riduci a icona al passaggio dell'app" è abilitata e NewPipe è ridotto a icona
+• Correzione del valore di luminosità iniziale per i gesti
+• Risolti i download di sottotitoli .srt contenenti non tutte le interruzioni di riga
+• Risolto il problema con il download su scheda SD non riuscito perché alcuni dispositivi Android 5 non sono compatibili con CTF
+• Risolto il problema con il download su Android KitKat
+• Risolto il problema con il file video .mp4 danneggiato riconosciuto come file audio
+• Risolti più problemi di localizzazione, inclusi codici di lingua cinese errati
+• [YouTube] I timestamp nella descrizione sono nuovamente selezionabili

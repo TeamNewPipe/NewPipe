@@ -1,0 +1,14 @@
+Nový
+Rozpoznání časových razítek a hashtagů v popisu
+Přidáno ruční nastavení režimu tabletu
+Přidána možnost skrýt přehrávané položky ve zdroji
+
+Vylepšený
+Správná podpora rozhraní Storage Access Framework
+Lepší zpracování chyb nedostupných a ukončených kanálů
+List sdílení Android pro uživatele Androidu 10+ nyní zobrazuje název obsahu.
+Aktualizované instance Invidious a podpora předávaných odkazů.
+
+Stabilní
+[YouTube] Obsah s věkovým omezením
+-

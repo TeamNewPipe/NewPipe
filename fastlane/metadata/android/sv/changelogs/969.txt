@@ -1,0 +1,8 @@
+• Tillåt installation på extern lagringsenhet
+• [Bandcamp] Stöd för att visa de tre första kommentarerna i en stream har lagts till.
+• Visa endast "nedladdning har börjat" när nedladdningen har påbörjats.
+• Ställ inte in reCaptcha-cookie när det inte finns någon cookie lagrad.
+• [Player] Förbättra prestanda för cache
+• [Player] Åtgärdat ej automatisk uppspelning
+• Avskaffa tidigare Snackbars när nedladdningar raderas
+• Åtgärdat försök att radera objekt som inte finns i listan

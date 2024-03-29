@@ -28,7 +28,6 @@ public interface PlaylistLocalItem extends LocalItem {
     static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
-
         Collections.sort(localPlaylists,
                 Comparator.comparingLong(PlaylistMetadataEntry::getDisplayIndex));
         Collections.sort(remotePlaylists,

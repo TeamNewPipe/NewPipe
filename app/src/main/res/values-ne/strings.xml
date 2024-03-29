@@ -56,20 +56,14 @@
     <string name="popup_remember_size_pos_summary">पछिल्लो आकार र पपअप को स्थिति सम्झना</string>
     <string name="use_inexact_seek_title">तेज \'inexact\' खोज्न प्रयोग गर्नुहोस</string>
     <string name="use_inexact_seek_summary">\'Inexact\' प्लेयर कम सटीक छिटो स्थितिहरू गर्न खोज्न अनुमति दिन्छ खोज्छन्। 5, 15 वा 25 सेकेन्ड को लागि खोजी यो काम गर्दैन।</string>
-    <string name="download_thumbnail_title">थम्बनेल लोड</string>
     <string name="show_comments_title">टिप्पणीहरू देखाऊ</string>
     <string name="show_comments_summary">टिप्पणीहरू लुकाउन, बन्द गर्नुहोस</string>
-    <string name="download_thumbnail_summary">डाटा र स्मृति उपयोग सुरक्षित गर्न, थम्बनेलहरू लोड रोक्न, बन्द गर्नुहोस। परिवर्तनहरू दुवै मा-स्मृति र-डिस्क छवि क्यास खाली गर्छ।</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि क्यास सखाप</string>
     <string name="metadata_cache_wipe_title">क्यास मेटाडाटा हटाउ</string>
     <string name="metadata_cache_wipe_summary">सबै क्यास वेबपेज डाटा हटाउ</string>
     <string name="metadata_cache_wipe_complete_notice">मेटाडाटा क्यास सखाप</string>
     <string name="auto_queue_title">स्वतः लाम अर्को स्ट्रिम</string>
     <string name="auto_queue_summary">अन्त्य (गैर-दोहरो) प्लेब्याक लाम सम्बन्धित धारा स्थिति थप्दै जारी राख्न</string>
-    <string name="volume_gesture_control_title">आवाज मात्रा नियन्त्रण गर्न इशाराको प्रयोग</string>
-    <string name="volume_gesture_control_summary">प्लेयरको आवाज मात्रा नियन्त्रण गर्न इशाराहरू प्रयोग</string>
-    <string name="brightness_gesture_control_title">चमक इशारा नियन्त्रण</string>
-    <string name="brightness_gesture_control_summary">प्लेयरको चमक नियन्त्रण गर्न इशाराहरू प्रयोग</string>
     <string name="show_search_suggestions_title">खोज सुझावहरू</string>
     <string name="show_search_suggestions_summary">खोजी गर्दा सुझावहरू देखाउन</string>
     <string name="enable_search_history_title">खोज इतिहास</string>
@@ -144,7 +138,6 @@
     <string name="download_to_sdcard_error_message">बाह्य एस डी कार्ड (SD card) छैन। डाउनलोड फोल्डर स्थान रिसेट गर्ने\?</string>
     <string name="network_error">नेटवर्क त्रुटि</string>
     <string name="could_not_load_thumbnails">सबै थम्बनेल लोड गर्न सकेन</string>
-    <string name="youtube_signature_deobfuscation_error">भिडियो URL हस्ताक्षर डिक्रिप्टगर्न सकेन</string>
     <string name="parsing_error">वेबसाइट पार्स गर्न सकिँएन</string>
     <string name="content_not_available">सामग्री अनउपलब्ध</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनु स्थापित गर्न सकिएन</string>
@@ -178,7 +171,7 @@
     <string name="detail_likes_img_view_description">मनपर्दो</string>
     <string name="detail_dislikes_img_view_description">मन नपर्ने</string>
     <string name="search_no_results">कुनै परिणामहरु छैनन्</string>
-    <string name="empty_subscription_feed_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
+    <string name="empty_list_subtitle">यहाँ झ्याउँकिरी बाहेक केहि पनि छैन</string>
     <string name="detail_drag_description">पुन: क्रमबद्ध गर्न तान्नुहोस्</string>
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
@@ -225,7 +218,6 @@
     <string name="settings_file_replacement_character_title">प्रतिस्थापन वर्ण</string>
     <string name="charset_letters_and_digits">अक्षर र अंक</string>
     <string name="charset_most_special_characters">सबै विशेष वर्णहरु</string>
-    <string name="toast_no_player">कुनै अनुप्रयोग यो फाइल खेल्न स्थापित</string>
     <string name="title_activity_about">न्यू पाइपको बारेमा</string>
     <string name="title_licenses">तेस्रो-पक्ष इजाजत पत्र</string>
     <string name="copyright" formatted="true">©%1$s को %2$s द्वारा %3$s अन्तर्गत</string>
@@ -356,8 +348,7 @@
     <string name="list">सूची</string>
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
-    <string name="app_update_notification_content_title">NewPipe अपडेट उपलब्ध छ!</string>
-    <string name="app_update_notification_content_text">डाउनलोड गर्न ट्याप गर्नुहोस्</string>
+    <string name="app_update_available_notification_title">NewPipe अपडेट उपलब्ध छ!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
     <string name="paused">पज</string>
@@ -398,7 +389,7 @@
     <string name="overwrite_failed">फाइल अधिलेखन गर्न सकिएन</string>
     <string name="download_already_pending">यसै नाम सितको एक फाइल डाउनलोड हुने प्रक्रियामा छ</string>
     <string name="error_postprocessing_stopped">फाइल मा काम गर्दा NewPipe बन्द भएको थियो</string>
-    <string name="error_insufficient_storage">उपकरणमा कुनै ठाउँ बाकी छैन</string>
+    <string name="error_insufficient_storage_left">उपकरणमा कुनै ठाउँ बाकी छैन</string>
     <string name="error_progress_lost">प्रगति हरायो, किनभने फाइल मेटिएको थियो</string>
     <string name="error_timeout">जडान समय सकियो</string>
     <string name="confirm_prompt">तपाईं आफ्नो डाउनलोड इतिहास वा डाउनलोड फाइल मेटाउन चाहनुहुन्छ\?</string>
@@ -450,7 +441,7 @@
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>
     <string name="title_activity_recaptcha">reCAPTCHA चुनौती</string>
     <string name="subtitle_activity_recaptcha">प्रेस हल गर्दा \"डन\"</string>
-    <string name="recaptcha_done_button">सकियो</string>
+    <string name="done">सकियो</string>
     <string name="videos_string">भिडियोहरु</string>
     <plurals name="seconds">
         <item quantity="one">%d सेकेन्ड</item>
@@ -459,7 +450,6 @@
     <string name="new_seek_duration_toast">ExoPlayer अवरोधका कारण खोजी अवधि %d सेकेन्डमा सेट गरियो</string>
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
-    <string name="help">मद्दत</string>
     <string name="feed_use_dedicated_fetch_method_help_text">के तपाईलाई लाग्छ फिड लोडि एकदम ढिलो छ\? यदि हो भने, छिटो लोडिङ् सक्षम गर्न प्रयास गर्नुहोस् (तपाईं यसलाई सेटिंङ्हरूमा वा तलको बटन थिचेर बदल्न सक्नुहुन्छ)।
 \n
 \nनयाँ पाइपले दुई फिड लोड गर्ने रणनीति प्रदान गर्दछ:

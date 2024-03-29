@@ -1,0 +1,9 @@
+### New
+- Odstranění a sdílení v odběrech dlouhým klepnutím #1516 
+- Uživatelské rozhraní tabletu a rozvržení seznamu mřížky #1617 
+
+### Vylepšení
+- ukládání a opětovné načítání naposledy použitého poměru stran #1748 
+- Povolení lineárního rozložení v aktivitě Stahování s úplnými názvy videí #1771 
+- Odstraňování a sdílení odběrů přímo z karty odběrů #1516 
+- Enqueuing nyní spustí přehrávání videa, pokud fronta přehrávání již skončila #1783

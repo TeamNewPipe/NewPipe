@@ -27,6 +27,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BundleCompat;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -46,8 +47,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class StateSaver {
     public static final String KEY_SAVED_STATE = "key_saved_state";
-    private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER
-            = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER =
+            new ConcurrentHashMap<>();
     private static final String TAG = "StateSaver";
     private static final String CACHE_DIR_NAME = "state_cache";
     private static String cacheDirPath;
@@ -82,7 +83,8 @@ public final class StateSaver {
             return null;
         }
 
-        final SavedState savedState = outState.getParcelable(KEY_SAVED_STATE);
+        final SavedState savedState = BundleCompat.getParcelable(
+                outState, KEY_SAVED_STATE, SavedState.class);
         if (savedState == null) {
             return null;
         }
@@ -107,8 +109,8 @@ public final class StateSaver {
         }
 
         try {
-            Queue<Object> savedObjects
-                    = STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
+            Queue<Object> savedObjects =
+                    STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
             if (savedObjects != null) {
                 writeRead.readFrom(savedObjects);
                 if (MainActivity.DEBUG) {
@@ -309,7 +311,7 @@ public final class StateSaver {
     }
 
     /**
-     * Used for describe how to save/read the objects.
+     * Used for describing how to save/read the objects.
      * <p>
      * Queue was chosen by its FIFO property.
      */

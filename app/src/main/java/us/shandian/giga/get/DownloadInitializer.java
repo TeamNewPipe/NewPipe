@@ -18,10 +18,10 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 public class DownloadInitializer extends Thread {
-    private final static String TAG = "DownloadInitializer";
-    final static int mId = 0;
-    private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
-    private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
+    private static final String TAG = "DownloadInitializer";
+    static final int mId = 0;
+    private static final int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
+    private static final int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
     private final DownloadMission mMission;
     private HttpURLConnection mConn;
@@ -54,12 +54,12 @@ public class DownloadInitializer extends Thread {
                     long lowestSize = Long.MAX_VALUE;
 
                     for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
-                        mConn = mMission.openConnection(mMission.urls[i], true, -1, -1);
+                        mConn = mMission.openConnection(mMission.urls[i], true, 0, 0);
                         mMission.establishConnection(mId, mConn);
                         dispose();
 
                         if (Thread.interrupted()) return;
-                        long length = Utility.getContentLength(mConn);
+                        long length = Utility.getTotalContentLength(mConn);
 
                         if (i == 0) {
                             httpCode = mConn.getResponseCode();
@@ -84,14 +84,14 @@ public class DownloadInitializer extends Thread {
                     }
                 } else {
                     // ask for the current resource length
-                    mConn = mMission.openConnection(true, -1, -1);
+                    mConn = mMission.openConnection(true, 0, 0);
                     mMission.establishConnection(mId, mConn);
                     dispose();
 
                     if (!mMission.running || Thread.interrupted()) return;
 
                     httpCode = mConn.getResponseCode();
-                    mMission.length = Utility.getContentLength(mConn);
+                    mMission.length = Utility.getTotalContentLength(mConn);
                 }
 
                 if (mMission.length == 0 || httpCode == 204) {

@@ -2,12 +2,10 @@ package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
 import android.util.Log
+import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
-import java.io.BufferedOutputStream
-import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -25,17 +23,19 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
         file.create()
-        ZipOutputStream(BufferedOutputStream(SharpOutputStream(file.stream)))
+        ZipOutputStream(SharpOutputStream(file.stream).buffered())
             .use { outZip ->
                 ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
 
                 try {
-                    ObjectOutputStream(FileOutputStream(fileLocator.settings)).use { output ->
+                    ObjectOutputStream(fileLocator.settings.outputStream()).use { output ->
                         output.writeObject(preferences.all)
                         output.flush()
                     }
                 } catch (e: IOException) {
-                    Log.e(TAG, "Unable to exportDatabase", e)
+                    if (DEBUG) {
+                        Log.e(TAG, "Unable to exportDatabase", e)
+                    }
                 }
 
                 ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
@@ -70,11 +70,14 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, "newpipe.settings")
     }
 
+    /**
+     * Remove all shared preferences from the app and load the preferences supplied to the manager.
+     */
     fun loadSharedPreferences(preferences: SharedPreferences) {
         try {
             val preferenceEditor = preferences.edit()
 
-            ObjectInputStream(FileInputStream(fileLocator.settings)).use { input ->
+            ObjectInputStream(fileLocator.settings.inputStream()).use { input ->
                 preferenceEditor.clear()
                 @Suppress("UNCHECKED_CAST")
                 val entries = input.readObject() as Map<String, *>
@@ -105,9 +108,13 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
                 preferenceEditor.commit()
             }
         } catch (e: IOException) {
-            Log.e(TAG, "Unable to loadSharedPreferences", e)
+            if (DEBUG) {
+                Log.e(TAG, "Unable to loadSharedPreferences", e)
+            }
         } catch (e: ClassNotFoundException) {
-            Log.e(TAG, "Unable to loadSharedPreferences", e)
+            if (DEBUG) {
+                Log.e(TAG, "Unable to loadSharedPreferences", e)
+            }
         }
     }
 }

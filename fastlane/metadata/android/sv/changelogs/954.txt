@@ -1,0 +1,9 @@
+• nytt arbetsflöde för applikationen: spela upp videor på detalj-sidan, dra nedåt för att minimera spelaren
+• MediaStyle-aviseringar: anpassningsbara åtgärder i aviseringar, prestanda-förbättringar
+• grundläggande storleksändring när NewPipe används som en skrivbordsapp
+
+• visa ett dialogfönster med öppna alternativ i händelse av en URL-toast som inte stöds
+• Förbättra sökförslagsupplevelsen när avlägsna sökningar inte kan hämtas
+• Ökad standardvideokvalitet till 720p60 (spelare i appen) och 480p (popup-spelare)
+
+• tonvis med buggfixar och mer

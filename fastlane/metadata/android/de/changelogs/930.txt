@@ -1,0 +1,12 @@
+Neu
+• Suche auf YouTube Musik
+• Basic Android TV-Unterstützung
+
+Verbessert
+• Hinzugefügt die Fähigkeit, alle beobachteten Videos von einer lokalen Wiedergabeliste zu entfernen
+• Nachricht anzeigen, wenn der Inhalt noch nicht unterstützt wird, anstatt zu stürzen
+
+Behoben
+• Feste altersbeschränkte Inhaltseinstellung nicht funktionieren
+• Behoben bestimmte Arten von reCAPTCHAs
+• Feste Sichtbarkeit der Gruppen-Sort-Taste im Abonnement-Bereich

@@ -1,0 +1,9 @@
+• La till alternativ för att direkt öppna spelare i fullskärm
+• Tillåt användaren att välja vilka typer av sökförslag som ska visas
+• Mörkt tema är nu mörkare + mörk startskärm tillagd
+• Förbättrade fil väljare att gråa ut oönskade filer
+• Fixade import av YouTube prenumerationer
+• Att spela en ström kräver tryck på spela knappen igen
+• [Android TV] Fixa långa sökbar hopp vid användning av en DPad
+
+För att se ytterligare ändringar, se ändringsloggen (och blogginlägg) från Länkfliken nedan.

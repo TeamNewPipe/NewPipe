@@ -1,0 +1,19 @@
+Nuovo
+• Mostra la miniatura del video sulla schermata di blocco durante la riproduzione in background
+
+Migliorato
+• Aggiungi playlist locale alla coda premendo a lungo sul pulsante in background/popup
+• Rendere scorrevoli le schede della pagina principale e nasconderle quando è presente una sola scheda
+• Limita la quantità di aggiornamenti delle miniature delle notifiche nel lettore in background
+• Aggiungi miniature fittizie per playlist locali vuote
+• Usa l'estensione del file *.opus invece di *.webm e mostra "opus" nell'etichetta del formato invece di "WebM Opus" nel menu a discesa del download
+• Pulsante Aggiungi per eliminare i file scaricati o la cronologia dei download in "Download"
+• [YouTube] Aggiungi supporto ai link del canale /c/shortened_url
+
+Fisso
+• Risolti diversi problemi durante la condivisione di un video su NewPipe e il download diretto dei suoi flussi
+• Risolto il problema con l'accesso del giocatore dal suo thread di creazione
+• Corretto il paging dei risultati di ricerca
+• [YouTube] Risolto il problema con l'attivazione di NPE che causava NPE
+• [YouTube] Risolto il problema con la visualizzazione dei commenti all'apertura di un URL invidio.us
+• [SoundCloud] Client_id aggiornato

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.event;
 
-
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -12,5 +11,6 @@ public interface PlayerEventListener {
                           PlaybackParameters parameters);
     void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
     void onMetadataUpdate(StreamInfo info, PlayQueue queue);
+    default void onAudioTrackUpdate() { }
     void onServiceStopped();
 }

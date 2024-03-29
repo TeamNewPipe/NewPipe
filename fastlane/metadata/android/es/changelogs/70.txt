@@ -1,0 +1,25 @@
+ATENCIÓN: Esta versión quizá sea un festival de errores, como la anterior. Sin embargo, debido al cierre total desde la 17. una versión rota es mejor que ninguna versión. ¿Cierto? ¯\_(ツ)_/¯
+
+### Mejorías
+* los archivos descargados ahora pueden ser abiertos con un solo clic #1879 
+* descenso de soporte para android 4.1 - 4.3 #1884 
+* eliminar el reproductor antiguo #1884 
+* eliminar los flujos de la cola de reproducción actual deslizándolos hacia la derecha #1915 
+* eliminar cola de reproducción automática cuando se pone en cola una nueva secuencia manualmente #1878 
+* Posprocesamiento para descargas e implementación de características faltantes #1759 por @kapodamy
+  * Infraestructura de posprocesamiento
+  * Infraestructura de manejo de errores adecuada (para el descargador)
+  * Cola en lugar de descargas múltiples
+* Mover las descargas pendientes serializadas (archivos `.giga`) hacia datos de aplicación
+  * Implementar el reintento máximo de descarga
+  * Pausa adecuada de descargas multihilo
+* Detener las descargas cuando se cambia hacia red móvil (nunca funciona, ver 2º punto)
+* Guardar el conteo de hilos para las próximas descargas
+  * Un montón de incoherencias corregidas
+
+### Corregidos
+* Arreglado el fallo con la resolución por defecto ajustada a la mejor y resolución de datos móviles limitada #1835
+* Arreglado el fallo del reproductor emergente #1874 
+* NPE al intentar abrir el reproductor en segundo plano #1901
+* Corrección de la inserción de nuevos flujos cuando la cola automática está activada #1878
+* Corregido el problema de descifrado de shuttown

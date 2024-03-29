@@ -15,7 +15,7 @@
     <string name="settings">ตั้งค่า</string>
     <string name="did_you_mean">หรือคุณหมายถึง \"%1$s\"\?</string>
     <string name="share_dialog_title">แชร์ด้วย</string>
-    <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_video_player_title">ใช้เครื่องเล่นวีดิโอภายนอก</string>
     <string name="use_external_audio_player_title">ใช้แอปเล่นเสียงภายนอก</string>
     <string name="subscribe_button_title">ติดตาม</string>
     <string name="subscribed_button_title">ติดตามแล้ว</string>
@@ -33,10 +33,10 @@
     <string name="controls_add_to_playlist_title">เพิ่มไปยัง</string>
     <string name="download_path_title">เส้นทางการดาวน์โหลดวิดีโอ</string>
     <string name="download_path_summary">เส้นทางในการจัดเก็บวิดีโอที่ดาวน์โหลดมา</string>
-    <string name="download_path_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับวิดีโอ</string>
+    <string name="download_path_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์วิดีโอ</string>
     <string name="download_path_audio_title">โฟลเดอร์ที่ดาวน์โหลดเสียง</string>
-    <string name="download_path_audio_summary">เสียงที่ดาวน์โหลดจะถูกเก็บไว้ที่นี่</string>
-    <string name="download_path_audio_dialog_title">ป้อนเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
+    <string name="download_path_audio_summary">ไฟล์เสียงที่ดาวน์โหลดไว้จะถูกเก็บไว้ที่นี่</string>
+    <string name="download_path_audio_dialog_title">เลือกเส้นทางการดาวน์โหลดสำหรับไฟล์เสียง</string>
     <string name="default_resolution_title">ความละเอียดเริ่มต้น</string>
     <string name="default_popup_resolution_title">ความละเอียดเริ่มต้นในโหมดป๊อปอัพ</string>
     <string name="show_higher_resolutions_title">แสดงความละเอียดที่สูงขึ้น</string>
@@ -56,18 +56,12 @@
     <string name="popup_remember_size_pos_summary">จำขนาดและตำแหน่งสุดท้ายของป๊อปอัพ</string>
     <string name="use_inexact_seek_title">ใช้การข้ามที่ไม่แม่นยำ</string>
     <string name="use_inexact_seek_summary">การข้ามช่วงที่ไม่แม่นยำจะทำให้เลื่อนไปยังตำแหน่งเวลาที่ต้องการได้เร็วขึ้น แต่จะลดความแม่นยำในการลากตำแหน่งลง</string>
-    <string name="download_thumbnail_title">โหลดภาพขนาดย่อ</string>
     <string name="show_comments_title">แสดงความคิดเห็น</string>
     <string name="show_comments_summary">ปิดใช้งานเพื่อซ่อนความคิดเห็น</string>
-    <string name="download_thumbnail_summary">ปิดเพื่อป้องกันการโหลดรูปขนาดย่อ ลดการใช้ข้อมูลและหน่วยความจำ การเปลี่ยนแปลงล้างแคชภาพในหน่วยความจำและบนดิสก์</string>
     <string name="thumbnail_cache_wipe_complete_notice">ล้างแคชของรูปภาพแล้ว</string>
     <string name="metadata_cache_wipe_summary">ลบข้อมูลเว็บเพจที่แคชไว้ทั้งหมด</string>
     <string name="auto_queue_title">คิววีดีโอถัดไปโดยอัตโนมัติ</string>
     <string name="auto_queue_summary">ต่อท้ายวีดีโอที่เกี่ยวข้องโดยอัตโนมัติเมื่อเล่นถึงรายการสุดท้ายในกรณีที่ไม่ได้ตั้งให้เล่นซ้ำ</string>
-    <string name="volume_gesture_control_title">การควบคุมระดับเสียงด้วยท่าทาง</string>
-    <string name="volume_gesture_control_summary">ใช้ท่าทางสัมผัสเพื่อควบคุมระดับเสียงของเครื่องเล่น</string>
-    <string name="brightness_gesture_control_title">การควบคุมความสว่างด้วยท่าทาง</string>
-    <string name="brightness_gesture_control_summary">ใช้ท่าทางสัมผัสเพื่อควบคุมความสว่างของเครื่องเล่น</string>
     <string name="show_search_suggestions_title">คำแนะนำการค้นหา</string>
     <string name="show_search_suggestions_summary">แสดงคำแนะนำเมื่อทำการค้นหา</string>
     <string name="enable_search_history_title">ประวัติการค้นหา</string>
@@ -137,7 +131,6 @@
     <string name="download_to_sdcard_error_message">การดาวน์โหลดไปยังการ์ดความจำภายนอกยังไม่สามารถทำได้ รีเซ็ตตำแหน่งโฟลเดอร์ดาวน์โหลดหรือไม่\?</string>
     <string name="network_error">ข้อผิดพลาดของเครือข่าย</string>
     <string name="could_not_load_thumbnails">ไม่สามารถโหลดรูปขนาดย่อทั้งหมด</string>
-    <string name="youtube_signature_deobfuscation_error">ไม่สามารถถอดรหัสลายเซ็น URL ของวิดีโอ</string>
     <string name="parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์</string>
     <string name="content_not_available">เนื้อหาไม่พร้อมใช้งาน</string>
     <string name="could_not_setup_download_menu">ไม่สามารถตั้งค่าเมนูดาวน์โหลด</string>
@@ -167,7 +160,7 @@
     <string name="detail_likes_img_view_description">ชอบ</string>
     <string name="detail_dislikes_img_view_description">ไม่ชอบ</string>
     <string name="search_no_results">ไม่มีผลลัพธ์</string>
-    <string name="empty_subscription_feed_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
+    <string name="empty_list_subtitle">ไม่มีอะไรที่นี่นอกจากจิ้งหรีด</string>
     <string name="detail_drag_description">ลากเพื่อจัดลำดับใหม่</string>
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>
@@ -207,7 +200,6 @@
     <string name="settings_file_replacement_character_title">อักขระทดแทน</string>
     <string name="charset_letters_and_digits">ตัวอักษรและตัวเลข</string>
     <string name="charset_most_special_characters">อักขระพิเศษส่วนใหญ่</string>
-    <string name="toast_no_player">ไม่มีแอพที่ติดตั้งเพื่อให้เล่นไฟล์นี้ได้</string>
     <string name="title_activity_about">เกี่ยวกับ NewPipe</string>
     <string name="title_licenses">สัญญาอนุญาตของบุคคลที่สาม</string>
     <string name="copyright" formatted="true">© %1$s โดย %2$s ภายใต้ %3$s</string>
@@ -331,8 +323,7 @@
     <string name="list">รายการ</string>
     <string name="grid">ตาราง</string>
     <string name="auto">อัตโนมัติ</string>
-    <string name="app_update_notification_content_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
-    <string name="app_update_notification_content_text">แตะเพื่อดาวน์โหลด</string>
+    <string name="app_update_available_notification_title">NewPipe พร้อมให้อัพเดทแล้ว!</string>
     <string name="missions_header_finished">เสร็จแล้ว</string>
     <string name="missions_header_pending">อยู่ในคิว</string>
     <string name="paused">หยุดชั่วคราว</string>
@@ -358,7 +349,7 @@
     <string name="pause_downloads_on_mobile">หยุดชั่วคราวเมื่อเปลี่ยนเป็นข้อมูลมือถือ</string>
     <string name="pause_downloads_on_mobile_desc">การดาวน์โหลดที่ไม่สามารถหยุดพักได้จะเริ่มต้นใหม่</string>
     <string name="close">ปิด</string>
-    <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
+    <string name="use_external_video_player_summary">บางความละเอียดอาจไม่มีเสียง</string>
     <string name="metadata_cache_wipe_complete_notice">แคช metadate ถูกลบแล้ว</string>
     <string name="resume_on_audio_focus_gain_title">เล่นต่อหลังจากการขัดจังหวะ</string>
     <string name="enable_playback_resume_title">เล่นต่อ</string>
@@ -367,4 +358,16 @@
     <string name="enable_playback_state_lists_summary">แสดงตำแหน่งวีดิโอที่เล่นในรายการ</string>
     <string name="settings_category_clear_data_title">ล้างข้อมูล</string>
     <string name="search_showing_result_for">กำลังแสดงผลลัพธ์สำหรับ: %s</string>
+    <string name="open_with">เปิดด้วย</string>
+    <string name="mark_as_watched">ทำเครื่องหมายว่าดูแล้ว</string>
+    <string name="ok">ตกลง</string>
+    <string name="notification_action_3_title">ปุ่มการกระทำที่สี่</string>
+    <string name="notification_action_0_title">ปุ่มการกระทำแรก</string>
+    <string name="notification_action_2_title">ปุ่มการกระทำที่สาม</string>
+    <string name="notification_action_4_title">ปุ่มการกระทำที่ห้า</string>
+    <string name="notification_actions_summary">แก้ไขการกระทำของการแต่การแจ้งเตือนด้วยการแตะไปที่มัน เลือกสามรายการที่จะแสดงในการแจ้งเตือนในการแจ้งเตือนแบบกระทัดรัดโดยใช้ปุ่มกาเครื่องหมายทางขวา</string>
+    <string name="notification_scale_to_square_image_title">ครอบตัดตัวอย่างภาพเป็นอัตราส่วน 1:1</string>
+    <string name="notification_scale_to_square_image_summary">ครอบตัดตัวอย่างภาพที่แสดงในการแจ้งเตือนจากอัตราส่วน 16:9 เป็น 1:1</string>
+    <string name="crash_the_player">ทำเครื่องเล่นพัง</string>
+    <string name="notification_action_1_title">ปุ่มการกระทำรอง</string>
 </resources>

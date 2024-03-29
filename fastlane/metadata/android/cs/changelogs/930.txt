@@ -1,0 +1,10 @@
+Nový
+- Vyhledávání na YouTube Music
+- Základní podpora Android TV
+
+Vylepšené stránky
+- Přidána možnost odstranit všechna sledovaná videa z místního seznamu skladeb
+- Zobrazení zprávy, když obsah ještě není podporován, místo pádu.
+- Vylepšena změna velikosti vyskakovacího přehrávače pomocí gest štípnutí
+- Enqueue streamy při dlouhém stisknutí tlačítek na pozadí a vyskakovacích tlačítek v kanálu
+- Vylepšené zpracování velikosti záhlaví zásuvky

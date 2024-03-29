@@ -1,0 +1,17 @@
+Neu:
+• Vorschaubild-Anzeige während der Suche
+• Deaktivierte Kommentare erkennen
+• Feed-Element als beobachtet markieren
+• Kommentarherzen anzeigen
+
+Verbessert:
+• Layout von Metadaten und Tags
+• Dienstfarbe für UI-Komponenten
+
+Behoben:
+• Vorschaubild im Mini-Player
+• Endlose Pufferung bei doppelten Warteschlangenelementen
+• Einige Player-Fixes wie Rotation und schnelleres Schließen
+• ReCAPTCHA lädt im Hintergrund
+• Klicks bei Feed-Aktualisierung deaktivieren
+• Einige Downloader-Abstürze

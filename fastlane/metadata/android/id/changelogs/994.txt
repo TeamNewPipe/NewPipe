@@ -1,0 +1,15 @@
+Baru
+• Mendukung beberapa track audio/bahasa
+• Izinkan mengatur gestur volume dan kecerahan di sisi mana pun pada layar
+• Dukungan untuk menampilkan tab utama di bagian bawah layar
+
+Disempurnakan
+• [Bandcamp] Menangani track berbayar
+
+Diperbaiki
+• [YouTube] Kesalahan HTTP 403 untuk streaming
+• Pemutar berwarna hitam saat beralih ke pemutar utama dari tampilan daftar putar
+• Kebocoran memori layanan pemutar
+• [PeerTube] Avatar pengunggah dan subsaluran ditukar
+
+dan banyak lagi

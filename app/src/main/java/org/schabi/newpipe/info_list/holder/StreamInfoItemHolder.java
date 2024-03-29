@@ -12,10 +12,6 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
-import androidx.preference.PreferenceManager;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
-
 /*
  * Created by Christian Schabesberger on 01.08.16.
  * <p>
@@ -81,7 +77,9 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             }
         }
 
-        final String uploadDate = getFormattedRelativeUploadDate(infoItem);
+        final String uploadDate = Localization.relativeTimeOrTextual(itemBuilder.getContext(),
+                infoItem.getUploadDate(),
+                infoItem.getTextualUploadDate());
         if (!TextUtils.isEmpty(uploadDate)) {
             if (viewsAndDate.isEmpty()) {
                 return uploadDate;
@@ -91,21 +89,5 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         }
 
         return viewsAndDate;
-    }
-
-    private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
-        if (infoItem.getUploadDate() != null) {
-            String formattedRelativeTime = Localization
-                    .relativeTime(infoItem.getUploadDate().offsetDateTime());
-
-            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext())
-                    .getBoolean(itemBuilder.getContext()
-                            .getString(R.string.show_original_time_ago_key), false)) {
-                formattedRelativeTime += " (" + infoItem.getTextualUploadDate() + ")";
-            }
-            return formattedRelativeTime;
-        } else {
-            return infoItem.getTextualUploadDate();
-        }
     }
 }

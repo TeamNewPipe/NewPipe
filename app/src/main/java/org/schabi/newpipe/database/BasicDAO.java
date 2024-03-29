@@ -3,7 +3,6 @@ package org.schabi.newpipe.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Update;
 
 import java.util.Collection;
@@ -14,13 +13,10 @@ import io.reactivex.rxjava3.core.Flowable;
 @Dao
 public interface BasicDAO<Entity> {
     /* Inserts */
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert
     long insert(Entity entity);
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    List<Long> insertAll(Entity... entities);
-
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert
     List<Long> insertAll(Collection<Entity> entities);
 
     /* Searches */
@@ -31,9 +27,6 @@ public interface BasicDAO<Entity> {
     /* Deletes */
     @Delete
     void delete(Entity entity);
-
-    @Delete
-    int delete(Collection<Entity> entities);
 
     int deleteAll();
 

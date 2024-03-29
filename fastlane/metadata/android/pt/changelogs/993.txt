@@ -1,0 +1,12 @@
+Novo
+- Adicionar aviso ao adicionar duplicados da lista de reprodução e adicionar botão para os remover
+- Permitir ignorar os botões de hardware
+- Permitir a ocultação de vídeos parcialmente vistos na alimentação
+
+Melhorado
+- Utilizar mais colunas de grelha em ecrãs grandes
+- Tornar os indicadores de progresso consistentes com as definições
+
+Fixa
+- Corrigir URLs de abertura do navegador, downloads e leitores externos no Android 11+
+- Fixação interagindo com tela cheia requer duas torneiras no MIUI

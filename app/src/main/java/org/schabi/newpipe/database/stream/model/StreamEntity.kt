@@ -13,6 +13,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.io.Serializable
 import java.time.OffsetDateTime
 
@@ -67,7 +68,8 @@ data class StreamEntity(
     constructor(item: StreamInfoItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.name,
         streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
-        uploaderUrl = item.uploaderUrl, thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
+        uploaderUrl = item.uploaderUrl,
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails), viewCount = item.viewCount,
         textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = item.uploadDate?.isApproximation
     )
@@ -76,7 +78,8 @@ data class StreamEntity(
     constructor(info: StreamInfo) : this(
         serviceId = info.serviceId, url = info.url, title = info.name,
         streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
-        uploaderUrl = info.uploaderUrl, thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
+        uploaderUrl = info.uploaderUrl,
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(info.thumbnails), viewCount = info.viewCount,
         textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = info.uploadDate?.isApproximation
     )
@@ -85,7 +88,8 @@ data class StreamEntity(
     constructor(item: PlayQueueItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.title,
         streamType = item.streamType, duration = item.duration, uploader = item.uploader,
-        uploaderUrl = item.uploaderUrl, thumbnailUrl = item.thumbnailUrl
+        uploaderUrl = item.uploaderUrl,
+        thumbnailUrl = ImageStrategy.imageListToDbUrl(item.thumbnails)
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
@@ -93,7 +97,7 @@ data class StreamEntity(
         item.duration = duration
         item.uploaderName = uploader
         item.uploaderUrl = uploaderUrl
-        item.thumbnailUrl = thumbnailUrl
+        item.thumbnails = ImageStrategy.dbUrlToImageList(thumbnailUrl)
 
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate

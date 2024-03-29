@@ -2,6 +2,7 @@ package org.schabi.newpipe.info_list.dialog;
 
 import static org.schabi.newpipe.util.NavigationHelper.openChannelFragment;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
+import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
 import android.net.Uri;
@@ -11,6 +12,7 @@ import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -18,7 +20,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
@@ -87,7 +89,7 @@ public enum StreamDialogDefaultEntry {
     APPEND_PLAYLIST(R.string.add_to_playlist, (fragment, item) ->
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
-                Collections.singletonList(new StreamEntity(item)),
+                List.of(new StreamEntity(item)),
                 dialog -> dialog.show(
                         fragment.getParentFragmentManager(),
                         "StreamDialogEntry@"
@@ -97,18 +99,28 @@ public enum StreamDialogDefaultEntry {
         )
     ),
 
-    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) -> {
-        final Uri videoUrl = Uri.parse(item.getUrl());
-        try {
-            NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
-        } catch (final Exception e) {
-            KoreUtils.showInstallKoreDialog(fragment.requireActivity());
-        }
-    }),
+    PLAY_WITH_KODI(R.string.play_with_kodi_title, (fragment, item) ->
+            KoreUtils.playWithKore(fragment.requireContext(), Uri.parse(item.getUrl()))),
 
     SHARE(R.string.share, (fragment, item) ->
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
-                    item.getThumbnailUrl())),
+                    item.getThumbnails())),
+
+    /**
+     * Opens a {@link DownloadDialog} after fetching some stream info.
+     * If the user quits the current fragment, it will not open a DownloadDialog.
+     */
+    DOWNLOAD(R.string.download, (fragment, item) ->
+            fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
+                    item.getUrl(), info -> {
+                        if (fragment.getContext() != null) {
+                            final DownloadDialog downloadDialog =
+                                    new DownloadDialog(fragment.requireContext(), info);
+                            downloadDialog.show(fragment.getChildFragmentManager(),
+                                    "downloadDialog");
+                        }
+                    })
+    ),
 
     OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),

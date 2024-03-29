@@ -1,0 +1,31 @@
+# v0.13.7 değişiklik günlüğü
+### Düzeltildi
+- v0.13.6'nın sıralama filtresi sorunlarını düzeltin
+
+# v0.13.6'nın değişiklik günlüğü
+
+### İyileştirmeler
+
+- Burgermenu simge animasyonunu devre dışı bırak #1486
+- İndirilenlerin silinmesini geri al #1472
+- Paylaşım menüsünde indirme seçeneği # 1498
+- Uzun dokunma menüsüne paylaşım seçeneği eklendi #1454
+- Çıkışta ana oynatıcıyı simge durumuna küçült #1354
+- Kitaplık sürümü güncellemesi ve veritabanı yedekleme düzeltmesi #1510
+- ExoPlayer 2.8.2 Güncelleme #1392
+- Oynatma hızı kontrol iletişim kutusu, farklı adım boyutlarını desteklemek için yeniden çalışıldı daha hızlı hız değişimi.
+- Oynatma hızı kontrolünde sessizlikler sırasında hızlı ileri sarmak için bir geçiş eklendi. Bu, sesli kitaplar ve belirli müzik türleri için faydalı olmalı ve gerçek bir kusursuz deneyim sunabilir (ve bir şarkıyı çok sayıda sessizlikle bozabilir =\\).
+- El ile yapmak yerine oynatıcıda dahili olarak medyanın yanında meta verilerin iletilmesine izin vermek için yeniden düzenlenmiş medya kaynağı çözünürlüğü. Artık tek bir meta veri kaynağımız var ve oynatma başladığında doğrudan kullanılabilir.
+- Oynatma listesi parçası açıldığında yeni meta veriler mevcut olduğunda güncellenmeyen uzak oynatma listesi meta verileri düzeltildi.
+- Çeşitli UI düzeltmeleri: #1383, arka plan oynatıcı bildirim kontrolleri artık her zaman beyaz, fırlatma yoluyla açılır pencere oynatıcısını kapatması daha kolay
+- Çoklu hizmet için yeniden düzenlenmiş mimariye sahip yeni çıkarıcı kullanın
+
+### Düzeltmeler
+- Düzeltme #1440 Kırık Video Bilgi Düzeni #1491
+- Geçmiş düzeltmesini görüntüle #1497
+- #1495, kullanıcı oynatma listesine erişir erişmez meta verileri (küçük resim, başlık ve video sayısı) güncelleyerek.
+- #1475, kullanıcı detay parçası üzerinde harici oynatıcıda bir video başlattığında veritabanına bir görünüm kaydederek.
+- Açılır pencere modunda ekran zaman aşımını düzeltin. #1463 (Sabit #640)
+- Ana video oynatıcı düzeltmesi #1509
+- [#1412] Oyuncu etkinliği arka plandayken yeni amaç alındığında oyuncunun NPE'sine neden olan sabit tekrar modu.
+- Oyuncunun açılır pencereye küçültülmesinin, açılır pencere izni verilmediğinde oyuncuyu yok etmemesi düzeltildi.

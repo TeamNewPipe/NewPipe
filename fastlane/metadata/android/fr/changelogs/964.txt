@@ -1,0 +1,8 @@
+• Ajout des chapitres dans lecteur
+• [PeerTube] Ajout recherche en sépia
+• Ajout bouton de partage en vue détaillée de la vidéo, déplacement description du flux dans l'onglet
+• Désactivation restauration de luminosité si le geste est désactivé
+• Ajout élément de liste pour lire vidéos sur Kodi
+• Correction crash si aucun navigateur par défaut défini, amélioration dialogues de partage
+• Basculer lecture/pause avec bouton d'espace matériel en lecteur plein écran
+• [media.ccc.de] Corrections

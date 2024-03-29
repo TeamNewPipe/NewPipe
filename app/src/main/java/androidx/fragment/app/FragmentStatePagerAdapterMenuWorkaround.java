@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BundleCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -282,11 +283,9 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     @Nullable
     public Parcelable saveState() {
         Bundle state = null;
-        if (mSavedState.size() > 0) {
+        if (!mSavedState.isEmpty()) {
             state = new Bundle();
-            final Fragment.SavedState[] fss = new Fragment.SavedState[mSavedState.size()];
-            mSavedState.toArray(fss);
-            state.putParcelableArray("states", fss);
+            state.putParcelableArrayList("states", mSavedState);
         }
         for (int i = 0; i < mFragments.size(); i++) {
             final Fragment f = mFragments.get(i);
@@ -313,13 +312,12 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
         if (state != null) {
             final Bundle bundle = (Bundle) state;
             bundle.setClassLoader(loader);
-            final Parcelable[] fss = bundle.getParcelableArray("states");
+            final var states = BundleCompat.getParcelableArrayList(bundle, "states",
+                    Fragment.SavedState.class);
             mSavedState.clear();
             mFragments.clear();
-            if (fss != null) {
-                for (final Parcelable parcelable : fss) {
-                    mSavedState.add((Fragment.SavedState) parcelable);
-                }
+            if (states != null) {
+                mSavedState.addAll(states);
             }
             final Iterable<String> keys = bundle.keySet();
             for (final String key : keys) {

@@ -16,7 +16,6 @@ import org.schabi.newpipe.player.playqueue.events.SelectEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -258,13 +257,10 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Appends the given {@link PlayQueueItem}s to the current play queue.
-     *
-     * @see #append(List items)
-     * @param items {@link PlayQueueItem}s to append
+     * Notifies that a change has occurred.
      */
-    public synchronized void append(@NonNull final PlayQueueItem... items) {
-        append(Arrays.asList(items));
+    public synchronized void notifyChange() {
+        broadcast(new AppendEvent(0));
     }
 
     /**
@@ -522,12 +518,10 @@ public abstract class PlayQueue implements Serializable {
      * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
      */
-    @Override
-    public boolean equals(@Nullable final Object obj) {
-        if (!(obj instanceof PlayQueue)) {
+    public boolean equalStreams(@Nullable final PlayQueue other) {
+        if (other == null) {
             return false;
         }
-        final PlayQueue other = (PlayQueue) obj;
         if (size() != other.size()) {
             return false;
         }
@@ -543,9 +537,12 @@ public abstract class PlayQueue implements Serializable {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        return streams.hashCode();
+    public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
+        if (equalStreams(other)) {
+            //noinspection ConstantConditions
+            return other.getIndex() == getIndex(); //NOSONAR: other is not null
+        }
+        return false;
     }
 
     public boolean isDisposed() {

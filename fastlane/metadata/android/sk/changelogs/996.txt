@@ -1,0 +1,2 @@
+Opravená výnimka NullPointerException pri otvorení kanála/konferencie v media.ccc.de.
+Grinch sa pokúsil prekaziť náš vianočný darček pre vás, ale opravili sme to.

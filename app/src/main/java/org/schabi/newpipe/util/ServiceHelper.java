@@ -1,9 +1,13 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
 
@@ -18,9 +22,8 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
-import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 public final class ServiceHelper {
     private static final StreamingService DEFAULT_FALLBACK_SERVICE = ServiceList.YouTube;
@@ -31,17 +34,17 @@ public final class ServiceHelper {
     public static int getIcon(final int serviceId) {
         switch (serviceId) {
             case 0:
-                return R.drawable.place_holder_youtube;
+                return R.drawable.ic_smart_display;
             case 1:
-                return R.drawable.place_holder_cloud;
+                return R.drawable.ic_cloud;
             case 2:
-                return R.drawable.place_holder_gadse;
+                return R.drawable.ic_placeholder_media_ccc;
             case 3:
-                return R.drawable.place_holder_peertube;
+                return R.drawable.ic_placeholder_peertube;
             case 4:
-                return R.drawable.place_holder_bandcamp;
+                return R.drawable.ic_placeholder_bandcamp;
             default:
-                return R.drawable.place_holder_circle;
+                return R.drawable.ic_circle;
         }
     }
 
@@ -113,18 +116,45 @@ public final class ServiceHelper {
     }
 
     public static int getSelectedServiceId(final Context context) {
+        return Optional.ofNullable(getSelectedService(context))
+                .orElse(DEFAULT_FALLBACK_SERVICE)
+                .getServiceId();
+    }
+
+    @Nullable
+    public static StreamingService getSelectedService(final Context context) {
         final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.current_service_key),
                         context.getString(R.string.default_service_value));
 
-        int serviceId;
         try {
-            serviceId = NewPipe.getService(serviceName).getServiceId();
+            return NewPipe.getService(serviceName);
         } catch (final ExtractionException e) {
-            serviceId = DEFAULT_FALLBACK_SERVICE.getServiceId();
+            return null;
         }
+    }
 
-        return serviceId;
+    @NonNull
+    public static String getNameOfServiceById(final int serviceId) {
+        return ServiceList.all().stream()
+                .filter(s -> s.getServiceId() == serviceId)
+                .findFirst()
+                .map(StreamingService::getServiceInfo)
+                .map(StreamingService.ServiceInfo::getName)
+                .orElse("<unknown>");
+    }
+
+    /**
+     * @param serviceId the id of the service
+     * @return the service corresponding to the provided id
+     * @throws java.util.NoSuchElementException if there is no service with the provided id
+     */
+    @NonNull
+    public static StreamingService getServiceById(final int serviceId) {
+        return ServiceList.all().stream()
+                .filter(s -> s.getServiceId() == serviceId)
+                .findFirst()
+                .orElseThrow();
     }
 
     public static void setSelectedServiceId(final Context context, final int serviceId) {
@@ -138,16 +168,6 @@ public final class ServiceHelper {
         setSelectedServicePreferences(context, serviceName);
     }
 
-    public static void setSelectedServiceId(final Context context, final String serviceName) {
-        final int serviceId = NewPipe.getIdOfService(serviceName);
-        if (serviceId == -1) {
-            setSelectedServicePreferences(context,
-                    DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName());
-        } else {
-            setSelectedServicePreferences(context, serviceName);
-        }
-    }
-
     private static void setSelectedServicePreferences(final Context context,
                                                       final String serviceName) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().
@@ -159,15 +179,6 @@ public final class ServiceHelper {
             return TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES);
         } else {
             return TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS);
-        }
-    }
-
-    public static boolean isBeta(final StreamingService s) {
-        switch (s.getServiceInfo().getName()) {
-            case "YouTube":
-                return false;
-            default:
-                return true;
         }
     }
 

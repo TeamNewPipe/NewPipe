@@ -1,0 +1,10 @@
+Verbesserungen
+
+-Menüanimation deaktiviert #1486
+-Löschen von Downloads rückgängig machen #1472
+-Option zum Downloaden im Teilen-Menü #1498
+-hinzufügen der Teilen-Funktion im Menü #1454
+-Minimieren der Wiedergabe beim Beenden #1354
+-Datenbank Versions Aktualisierung und Datenbestand Wiederherstellung #1510
+-ExoPlayer 2.8.2 aktualisiert #1392
+-Überarbeitung der Wiedergabegeschwindigkeitskontrolle um Änderungen besser zu unterstützen.

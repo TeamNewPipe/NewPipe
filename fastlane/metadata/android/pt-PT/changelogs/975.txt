@@ -8,8 +8,8 @@ Melhorias
 • Layout de metadados e etiquetas
 
 Fixo
-• Corrigida miniatura no miniplayer
-• Corrigido buffer sem fim em itens de fila duplicados
-• Corrigido ReCAPTCHA que permanece carregado em segundo plano
+• Corrigir miniatura no miniplayer
+• Corrigir buffer sem fim em itens de fila duplicados
+• Corrigir ReCAPTCHA que permanece carregado em segundo plano
 • Desativados os cliques enquanto atualiza o feed
-• Corrigidas algumas falhas do descarregador
+• Corrigir algumas falhas do descarregador

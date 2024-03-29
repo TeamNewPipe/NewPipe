@@ -19,6 +19,7 @@ public enum UserAction {
     REQUESTED_PLAYLIST("requested playlist"),
     REQUESTED_KIOSK("requested kiosk"),
     REQUESTED_COMMENTS("requested comments"),
+    REQUESTED_COMMENT_REPLIES("requested comment replies"),
     REQUESTED_FEED("requested feed"),
     REQUESTED_BOOKMARK("bookmark"),
     DELETE_FROM_HISTORY("delete from history"),

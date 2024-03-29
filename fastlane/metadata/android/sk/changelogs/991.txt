@@ -1,0 +1,13 @@
+Novinky
+• Pridané tlačidlo „Otvoriť v prehliadači“ na paneli chýb
+• Pridaná možnosť na zobrazenia skupiny odberov ako jeden zoznam
+• [YouTube] Pre zdieľanie konkrétneho času videa ako URL podržte prst na segmente streamu
+• Pridané tlačidlo play queue do mini prehrávača
+
+Vylepšenia
+• Bola pridaná islandská lokalizácia a boli doplené preklady ostatných jazykov
+• Veľa drobných vylepšení
+
+Opravy
+• Boli opravené viaceré problémy spôsobujúce zlyhanie aplikácie
+• [YouTube] Boli opravené problémy s načítavaním kanálov, nevyhradených informačných kanálov a prehrávaním v niektorých krajinách

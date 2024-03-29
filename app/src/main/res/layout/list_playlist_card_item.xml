@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/spacing_micro"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/itemThumbnailView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/placeholder_thumbnail_playlist"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
+
+    <View
+        android:id="@+id/videoCountOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/playlist_stream_count_background_color"
+        app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"
+        app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
+        app:layout_constraintTop_toTopOf="@id/itemThumbnailView"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemStreamCountView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/duration_text_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/playIcon"
+        app:layout_constraintEnd_toEndOf="@id/videoCountOverlay"
+        app:layout_constraintStart_toStartOf="@id/videoCountOverlay"
+        app:layout_constraintTop_toTopOf="@id/videoCountOverlay"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="314159" />
+
+    <!--    playIcon includes 8dp start margin to give center aligned look
+            when placed next to the video count -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/playIcon"
+        android:layout_width="@dimen/player_main_buttons_min_width"
+        android:layout_height="@dimen/player_main_buttons_min_width"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_playlist_play"
+        android:tint="@color/duration_text_color"
+        app:layout_constraintBottom_toBottomOf="@id/videoCountOverlay"
+        app:layout_constraintEnd_toEndOf="@id/videoCountOverlay"
+        app:layout_constraintStart_toStartOf="@id/videoCountOverlay"
+        app:layout_constraintTop_toBottomOf="@id/itemStreamCountView" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemTitleView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/spacing_nano"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="?android:textAppearanceListItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
+        tools:ignore="RtlHardcoded"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemUploaderView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textAppearance="?android:textAppearanceSmall"
+        app:layout_constraintEnd_toEndOf="@id/itemTitleView"
+        app:layout_constraintStart_toStartOf="@id/itemTitleView"
+        app:layout_constraintTop_toBottomOf="@id/itemTitleView"
+        tools:ignore="RtlHardcoded"
+        tools:text="Uploader" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

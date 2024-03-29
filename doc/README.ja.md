@@ -10,39 +10,39 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ビルド状態"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="翻訳状態"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource 寄付"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">スクリーンショット</a> &bull; <a href="#description">説明</a> &bull; <a href="#features">機能</a> &bull; <a href="#installation-and-updates">インストールと更新</a> &bull; <a href="#contribution">貢献</a> &bull; <a href="#donate">寄付</a> &bull; <a href="#license">ライセンス</a></p>
 <p align="center"><a href="https://newpipe.net">ウェブサイト</a> &bull; <a href="https://newpipe.net/blog/">ブログ</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">ニュース</a></p>
 <hr>
 
-*他の言語で読む: [English](../README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)。*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-<b>注意: これはベータ版のため、バグが発生する可能性があります。もしバグが発生した場合、GitHub のリポジトリで Issue を開いてください。</b>
-
-<b>NewPipe 及びいずれのフォークを Google Play ストアに公開すると、Google の取引条件の違反になります。</b>
+> [!warning]
+> <b>これはベータ版のため、バグが発生する可能性があります。もしバグが発生した場合、GitHub のリポジトリで Issue を開いてください。</b>
+>
+> <b>NewPipe 及びいずれのフォークを Google Play ストアに公開すると、Google の取引条件の違反になります。</b>
 
 <span id="screenshots"></span>
 ## スクリーンショット
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
+<br/><br/>
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
 
 <span id="description"></span>
 ## 説明
 
-自由なコピーレフトソフトウェアの NewPipe は一切の Google フレームワークライブラリ及び、YouTube API を使用しません。ウェブサイトは必要な情報のためだけに読み込まれるため、このアプリは Google のサービスがインストールされていない端末で使用ができます。また、NewPipe の使用に YouTube アカウントは必要となりません。
+自由なコピーレフトソフトウェアの NewPipe は一切のGoogleフレームワークライブラリ及び、YouTube API を使用しません。ウェブサイトは必要な情報のためだけに読み込まれるため、このアプリはGoogleのサービスがインストールされていない端末でも使用できます。また、NewPipeの使用にYouTubeアカウントは必要ありません。
 
 <span id="features"></span>
 ### 機能
@@ -55,7 +55,7 @@
 * 動画を視聴するストリーミングプレイヤーの選択
 * 動画のダウンロード
 * 音声のみのダウンロード
-* Kodi での動画再生
+* Kodiでの動画再生
 * 次の動画/関連動画の表示
 * 特定の言語の YouTube の検索
 * 年齢制限のあるコンテンツの視聴/ブロック
@@ -91,7 +91,7 @@ NewPipe は複数のサービスに対応しています。[ドキュメント](
 <span id="installation-and-updates"></span>
 ## インストールと更新
 以下の方法のいずれかに従うことによって NewPipe をインストールできます。
-1. カスタムリポジトリを F-Droid に追加してリリースが公開され次第インストールする。この方法の説明はこちら: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
+1. カスタムリポジトリを F-Droid に追加してリリースが公開され次第インストールする。この方法の説明はこちら： https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
 2. リリースが公開され次第[GitHub のリリース](https://github.com/TeamNewPipe/NewPipe/releases)から APK をダウンロードしてインストールする。
 3. F-Droid から更新する。これは更新を手にする上で最も遅い方法です。F-Droid が変更を検知して、APK をビルドし、署名、そしてユーザーに更新を届ける必要があるためです。
 4. 自分でデバッグ APK をビルドする。これは新しい機能を使用する上で最も早い方法ですが、他と比べてとても複雑なので、他の方法の使用を推奨します。
@@ -121,19 +121,9 @@ NewPipe は複数のサービスに対応しています。[ドキュメント](
 
 <table>
   <tr>
-    <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="../assets/bitcoin_qr_code.png" alt="Bitcoin QR コード" width="100px"></td>
-    <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
-  </tr>
-  <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="liberapay.com で NewPipe を訪れる" width="100px"></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Liberapay で寄付" height="35px"></a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="bountysource.com で NewPipe を訪れる" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="あなたがどれほどの寄付を得られるのか確認しましょう。"></a></td>
   </tr>
 </table>
 

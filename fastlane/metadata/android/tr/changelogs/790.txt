@@ -1,0 +1,14 @@
+Geliştirilmiş
+- Görme engelli kişilerin erişilebilirliğini iyileştirmek için daha fazla başlık ekleyin #2655
+- İndirme klasörü ayarının dilini daha tutarlı ve daha az belirsiz hale getirin #2637
+
+Sabit
+- Bloktaki son baytın indirilip indirilmediğini kontrol edin #2646
+- Video ayrıntı parçasındaki kaydırma düzeltildi #2672
+- Çift arama temizleme kutusu animasyonlarını teke indir #2695
+- [SoundCloud] Client_id çıkarma işlemini düzeltin #2745
+
+Geliştirme
+- NewPipeExtractor'dan miras alınan eksik bağımlılıkları NewPipe'a ekleyin #2535
+- AndroidX'e geçiş #2685
+- ExoPlayer 2.10.6 #2697, #2736 için güncelleme

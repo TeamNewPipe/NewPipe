@@ -1,0 +1,12 @@
+Baru
+• Mendukung metode pengiriman selain HTTP progresif: waktu pemuatan pemutaran lebih cepat, perbaikan untuk PeerTube dan SoundCloud, pemutaran streaming langsung YouTube yang baru saja berakhir
+• Tombol Tambah untuk menambahkan playlist jarak jauh ke playlist lokal
+• Pratinjau gambar di lembar berbagi Android 10+
+
+Ditingkatkan
+• Meningkatkan dialog parameter pemutaran
+• Pindahkan tombol ekspor-impor langganan ke menu tiga titik
+
+Tetap
+• Perbaiki penghapusan video yang ditonton sepenuhnya dari daftar putar
+• Perbaiki tema menu berbagi dan entri "tambahkan ke daftar putar".
