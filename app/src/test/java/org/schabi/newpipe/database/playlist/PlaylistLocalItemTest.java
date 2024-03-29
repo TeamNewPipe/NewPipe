@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.local.bookmark.MergedPlaylistManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class PlaylistLocalItemTest {
         final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
         final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
         final List<PlaylistLocalItem> mergedPlaylists =
-                PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
+                MergedPlaylistManager.merge(localPlaylists, remotePlaylists);
 
         assertEquals(0, mergedPlaylists.size());
     }
@@ -24,11 +25,11 @@ public class PlaylistLocalItemTest {
     public void onlyLocalPlaylists() {
         final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
         final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
-        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", 0, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", 1, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(3, "name3", "", 3, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", false, -1, 0, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", false, -1, 1, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(3, "name3", "", false, -1, 3, 1));
         final List<PlaylistLocalItem> mergedPlaylists =
-                PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
+                MergedPlaylistManager.merge(localPlaylists, remotePlaylists);
 
         assertEquals(3, mergedPlaylists.size());
         assertEquals(0, mergedPlaylists.get(0).getDisplayIndex());
@@ -47,7 +48,7 @@ public class PlaylistLocalItemTest {
         remotePlaylists.add(new PlaylistRemoteEntity(
                 3, "name3", "url3", "", "", 4, 1L));
         final List<PlaylistLocalItem> mergedPlaylists =
-                PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
+                MergedPlaylistManager.merge(localPlaylists, remotePlaylists);
 
         assertEquals(3, mergedPlaylists.size());
         assertEquals(1, mergedPlaylists.get(0).getDisplayIndex());
@@ -59,14 +60,14 @@ public class PlaylistLocalItemTest {
     public void sameIndexWithDifferentName() {
         final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
         final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
-        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", 0, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", 1, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", false, -1, 0, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", false, -1, 1, 1));
         remotePlaylists.add(new PlaylistRemoteEntity(
                 1, "name3", "url1", "", "", 0, 1L));
         remotePlaylists.add(new PlaylistRemoteEntity(
                 2, "name4", "url2", "", "", 1, 1L));
         final List<PlaylistLocalItem> mergedPlaylists =
-                PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
+                MergedPlaylistManager.merge(localPlaylists, remotePlaylists);
 
         assertEquals(4, mergedPlaylists.size());
         assertTrue(mergedPlaylists.get(0) instanceof PlaylistMetadataEntry);
@@ -83,14 +84,14 @@ public class PlaylistLocalItemTest {
     public void sameNameWithDifferentIndex() {
         final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
         final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
-        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", 1, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", 3, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", false, -1, 1, 1));
+        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", false, -1, 3, 1));
         remotePlaylists.add(new PlaylistRemoteEntity(
                 1, "name1", "url1", "", "", 0, 1L));
         remotePlaylists.add(new PlaylistRemoteEntity(
                 2, "name2", "url2", "", "", 2, 1L));
         final List<PlaylistLocalItem> mergedPlaylists =
-                PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
+                MergedPlaylistManager.merge(localPlaylists, remotePlaylists);
 
         assertEquals(4, mergedPlaylists.size());
         assertTrue(mergedPlaylists.get(0) instanceof PlaylistRemoteEntity);

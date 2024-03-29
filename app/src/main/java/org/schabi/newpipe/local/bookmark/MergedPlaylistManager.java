@@ -39,7 +39,7 @@ public final class MergedPlaylistManager {
      * @param remotePlaylists remote playlists, already sorted by display index
      * @return merged playlists
      */
-    private static List<PlaylistLocalItem> merge(
+    public static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
 
