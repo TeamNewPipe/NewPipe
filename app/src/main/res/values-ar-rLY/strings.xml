@@ -78,7 +78,7 @@
     <string name="short_billion">بليون</string>
     <string name="feed_load_error_account_info">تعذر تحميل موجز \'%s\'.</string>
     <string name="question_mark">؟</string>
-    <string name="manual_update_title">التحقق من وجود تحديثات</string>
+    <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="more_than_100_videos">+100 فيديو</string>
     <string name="short_thousand">ألف</string>

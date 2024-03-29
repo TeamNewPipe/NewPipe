@@ -667,7 +667,7 @@
     <string name="enqueued_next">Añadido el siguiente vídeo a la cola</string>
     <string name="enqueue_next_stream">Añadir el siguiente vídeo a la cola</string>
     <string name="processing_may_take_a_moment">Procesando… Podría tomar un momento</string>
-    <string name="manual_update_title">Buscar actualizaciones</string>
+    <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="manual_update_description">Buscar nuevas versiones manualmente</string>
     <string name="checking_updates_toast">Buscando actualizaciones…</string>
     <string name="feed_new_items">Nuevos elementos en el muro</string>

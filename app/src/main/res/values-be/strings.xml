@@ -670,7 +670,7 @@
     <string name="enable_streams_notifications_summary">Апавяшчаць аб новых стрымах з падпісак</string>
     <string name="streams_notifications_interval_title">Частата праверкі</string>
     <string name="streams_notifications_network_title">Патрабуецца падключэнне да сеткі</string>
-    <string name="manual_update_title">Праверце наяўнасць абнаўленняў</string>
+    <string name="check_for_updates">Праверце наяўнасць абнаўленняў</string>
     <string name="manual_update_description">Праверце новыя версіі ўручную</string>
     <string name="autoplay_summary">Аўтаматычны запуск прайгравання — %s</string>
     <string name="card">Картка</string>

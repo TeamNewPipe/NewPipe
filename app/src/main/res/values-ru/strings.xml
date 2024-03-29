@@ -675,7 +675,7 @@
     <string name="enqueue_next_stream">Добавить следующим</string>
     <string name="processing_may_take_a_moment">Обработка… Подождите немного</string>
     <string name="manual_update_description">Проверить обновления вручную</string>
-    <string name="manual_update_title">Проверить обновления</string>
+    <string name="check_for_updates">Проверить обновления</string>
     <string name="checking_updates_toast">Проверка обновлений…</string>
     <string name="feed_new_items">Новое на канале</string>
     <string name="notifications">Уведомления</string>

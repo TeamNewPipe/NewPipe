@@ -668,7 +668,7 @@
     <string name="enqueued_next">Заплановано наступним</string>
     <string name="enqueue_next_stream">Запланувати наступним</string>
     <string name="processing_may_take_a_moment">Обробка… Трохи заждіть</string>
-    <string name="manual_update_title">Перевірити наявність оновлень</string>
+    <string name="check_for_updates">Перевірити наявність оновлень</string>
     <string name="manual_update_description">Перевірка нових версій вручну</string>
     <string name="checking_updates_toast">Перевірка оновлень…</string>
     <string name="feed_new_items">Нові записи стрічки</string>

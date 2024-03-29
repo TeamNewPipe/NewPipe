@@ -652,7 +652,7 @@
     <string name="enqueued_next">Postu in lista comente imbeniente</string>
     <string name="enqueue_next_stream">Pone in lista comente imbeniente</string>
     <string name="processing_may_take_a_moment">Protzessende… Bi diat pòdere chèrrere unu pagu de tempus</string>
-    <string name="manual_update_title">Chirca agiornamentos</string>
+    <string name="check_for_updates">Chirca agiornamentos</string>
     <string name="manual_update_description">Verìfica in manera manuale pro versiones noas</string>
     <string name="checking_updates_toast">Controllende sos agiornamentos…</string>
     <string name="error_report_notification_title">NewPipe at rilevadu un\'errore, toca pro lu sinnalare</string>
