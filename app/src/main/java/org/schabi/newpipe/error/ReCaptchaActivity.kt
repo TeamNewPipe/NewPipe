@@ -41,7 +41,7 @@ import java.io.UnsupportedEncodingException
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 class ReCaptchaActivity : AppCompatActivity() {
-    private var recaptchaBinding: ActivityRecaptchaBinding? = null
+    private lateinit var recaptchaBinding: ActivityRecaptchaBinding
     private var foundCookies = ""
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,17 +50,17 @@ class ReCaptchaActivity : AppCompatActivity() {
         recaptchaBinding = ActivityRecaptchaBinding.inflate(
             layoutInflater
         )
-        setContentView(recaptchaBinding!!.root)
-        setSupportActionBar(recaptchaBinding!!.toolbar)
+        setContentView(recaptchaBinding.root)
+        setSupportActionBar(recaptchaBinding.toolbar)
         val url = sanitizeRecaptchaUrl(intent.getStringExtra(RECAPTCHA_URL_EXTRA))
         // set return to Cancel by default
         setResult(RESULT_CANCELED)
 
         // enable Javascript
-        val webSettings = recaptchaBinding!!.reCaptchaWebView.settings
+        val webSettings = recaptchaBinding.reCaptchaWebView.settings
         webSettings.javaScriptEnabled = true
         webSettings.userAgentString = DownloaderImpl.USER_AGENT
-        recaptchaBinding!!.reCaptchaWebView.webViewClient = object : WebViewClient() {
+        recaptchaBinding.reCaptchaWebView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(
                 view: WebView,
                 request: WebResourceRequest
@@ -79,10 +79,10 @@ class ReCaptchaActivity : AppCompatActivity() {
         }
 
         // cleaning cache, history and cookies from webView
-        recaptchaBinding!!.reCaptchaWebView.clearCache(true)
-        recaptchaBinding!!.reCaptchaWebView.clearHistory()
+        recaptchaBinding.reCaptchaWebView.clearCache(true)
+        recaptchaBinding.reCaptchaWebView.clearHistory()
         CookieManager.getInstance().removeAllCookies(null)
-        recaptchaBinding!!.reCaptchaWebView.loadUrl(url)
+        recaptchaBinding.reCaptchaWebView.loadUrl(url)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,7 +111,7 @@ class ReCaptchaActivity : AppCompatActivity() {
 
     private fun saveCookiesAndFinish() {
         // try to get cookies of unclosed page
-        handleCookiesFromUrl(recaptchaBinding!!.reCaptchaWebView.url)
+        handleCookiesFromUrl(recaptchaBinding.reCaptchaWebView.url)
         if (MainActivity.DEBUG) {
             Log.d(TAG, "saveCookiesAndFinish: foundCookies=$foundCookies")
         }
@@ -129,7 +129,7 @@ class ReCaptchaActivity : AppCompatActivity() {
         }
 
         // Navigate to blank page (unloads youtube to prevent background playback)
-        recaptchaBinding!!.reCaptchaWebView.loadUrl("about:blank")
+        recaptchaBinding.reCaptchaWebView.loadUrl("about:blank")
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         NavUtils.navigateUpTo(this, intent)

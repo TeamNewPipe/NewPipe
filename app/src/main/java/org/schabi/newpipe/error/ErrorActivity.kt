@@ -50,9 +50,9 @@ import java.util.stream.Collectors
  * This activity is used to show error details and allow reporting them in various ways. Use [ ][ErrorUtil.openActivity] to correctly open this activity.
  */
 class ErrorActivity : AppCompatActivity() {
-    private var errorInfo: ErrorInfo? = null
-    private var currentTimeStamp: String? = null
-    private var activityErrorBinding: ActivityErrorBinding? = null
+    private lateinit var errorInfo: ErrorInfo
+    private lateinit var currentTimeStamp: String
+    private lateinit var activityErrorBinding: ActivityErrorBinding
 
     // //////////////////////////////////////////////////////////////////////
     // Activity lifecycle
@@ -65,33 +65,33 @@ class ErrorActivity : AppCompatActivity() {
         activityErrorBinding = ActivityErrorBinding.inflate(
             layoutInflater
         )
-        setContentView(activityErrorBinding!!.root)
+        setContentView(activityErrorBinding.root)
         val intent = intent
-        setSupportActionBar(activityErrorBinding!!.toolbarLayout.toolbar)
+        setSupportActionBar(activityErrorBinding.toolbarLayout.toolbar)
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setTitle(R.string.error_report_title)
             actionBar.setDisplayShowTitleEnabled(true)
         }
-        errorInfo = IntentCompat.getParcelableExtra(intent, ERROR_INFO, ErrorInfo::class.java)
+        errorInfo = IntentCompat.getParcelableExtra(intent, ERROR_INFO, ErrorInfo::class.java)!!
 
         // important add guru meditation
         addGuruMeditation()
         currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now())
-        activityErrorBinding!!.errorReportEmailButton.setOnClickListener { _: View? ->
+        activityErrorBinding.errorReportEmailButton.setOnClickListener { _: View? ->
             openPrivacyPolicyDialog(
                 this,
                 "EMAIL"
             )
         }
-        activityErrorBinding!!.errorReportCopyButton.setOnClickListener { _: View? ->
+        activityErrorBinding.errorReportCopyButton.setOnClickListener { _: View? ->
             ShareUtils.copyToClipboard(
                 this,
                 buildMarkdown()
             )
         }
-        activityErrorBinding!!.errorReportGitHubButton.setOnClickListener { _: View? ->
+        activityErrorBinding.errorReportGitHubButton.setOnClickListener { _: View? ->
             openPrivacyPolicyDialog(
                 this,
                 "GITHUB"
@@ -100,11 +100,11 @@ class ErrorActivity : AppCompatActivity() {
 
         // normal bugreport
         buildInfo(errorInfo)
-        activityErrorBinding!!.errorMessageView.setText(errorInfo!!.messageStringId)
-        activityErrorBinding!!.errorView.text = formErrorText(errorInfo!!.stackTraces)
+        activityErrorBinding.errorMessageView.setText(errorInfo.messageStringId)
+        activityErrorBinding.errorView.text = formErrorText(errorInfo.stackTraces)
 
         // print stack trace once again for debugging:
-        for (e in errorInfo!!.stackTraces) {
+        for (e in errorInfo.stackTraces) {
             Log.e(TAG, e)
         }
     }
@@ -185,12 +185,12 @@ class ErrorActivity : AppCompatActivity() {
             )
     }
 
-    private fun buildInfo(info: ErrorInfo?) {
+    private fun buildInfo(info: ErrorInfo) {
         var text = ""
-        activityErrorBinding!!.errorInfoLabelsView.text = getString(R.string.info_labels)
+        activityErrorBinding.errorInfoLabelsView.text = getString(R.string.info_labels)
             .replace("\\n", "\n")
         text += """
-            ${getUserActionString(info!!.userAction)}
+            ${getUserActionString(info.userAction)}
             ${info.request}
             $contentLanguageString
             $contentCountryString
@@ -201,27 +201,27 @@ class ErrorActivity : AppCompatActivity() {
             ${BuildConfig.VERSION_NAME}
             $osString
         """.trimIndent()
-        activityErrorBinding!!.errorInfosView.text = text
+        activityErrorBinding.errorInfosView.text = text
     }
 
     private fun buildJson(): String {
         try {
             return JsonWriter.string()
                 .`object`()
-                .value("user_action", getUserActionString(errorInfo!!.userAction))
-                .value("request", errorInfo!!.request)
+                .value("user_action", getUserActionString(errorInfo.userAction))
+                .value("request", errorInfo.request)
                 .value("content_language", contentLanguageString)
                 .value("content_country", contentCountryString)
                 .value("app_language", appLanguage)
-                .value("service", errorInfo!!.serviceName)
+                .value("service", errorInfo.serviceName)
                 .value("package", packageName)
                 .value("version", BuildConfig.VERSION_NAME)
                 .value("os", osString)
                 .value("time", currentTimeStamp)
-                .array("exceptions", listOf(*errorInfo!!.stackTraces))
+                .array("exceptions", listOf(*errorInfo.stackTraces))
                 .value(
                     "user_comment",
-                    activityErrorBinding!!.errorCommentBox.text
+                    activityErrorBinding.errorCommentBox.text
                         .toString()
                 )
                 .end()
@@ -236,7 +236,7 @@ class ErrorActivity : AppCompatActivity() {
     private fun buildMarkdown(): String {
         return try {
             val htmlErrorReport = StringBuilder()
-            val userComment = activityErrorBinding!!.errorCommentBox.text.toString()
+            val userComment = activityErrorBinding.errorCommentBox.text.toString()
             if (userComment.isNotEmpty()) {
                 htmlErrorReport.append(userComment).append("\n")
             }
@@ -245,38 +245,38 @@ class ErrorActivity : AppCompatActivity() {
             htmlErrorReport
                 .append("## Exception")
                 .append("\n* __User Action:__ ")
-                .append(getUserActionString(errorInfo!!.userAction))
-                .append("\n* __Request:__ ").append(errorInfo!!.request)
+                .append(getUserActionString(errorInfo.userAction))
+                .append("\n* __Request:__ ").append(errorInfo.request)
                 .append("\n* __Content Country:__ ").append(contentCountryString)
                 .append("\n* __Content Language:__ ").append(contentLanguageString)
                 .append("\n* __App Language:__ ").append(appLanguage)
-                .append("\n* __Service:__ ").append(errorInfo!!.serviceName)
+                .append("\n* __Service:__ ").append(errorInfo.serviceName)
                 .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
                 .append("\n* __OS:__ ").append(osString).append("\n")
 
             // Collapse all logs to a single paragraph when there are more than one
             // to keep the GitHub issue clean.
-            if (errorInfo!!.stackTraces.size > 1) {
+            if (errorInfo.stackTraces.size > 1) {
                 htmlErrorReport
                     .append("<details><summary><b>Exceptions (")
-                    .append(errorInfo!!.stackTraces.size)
+                    .append(errorInfo.stackTraces.size)
                     .append(")</b></summary><p>\n")
             }
 
             // add the logs
-            for (i in errorInfo!!.stackTraces.indices) {
+            for (i in errorInfo.stackTraces.indices) {
                 htmlErrorReport.append("<details><summary><b>Crash log ")
-                if (errorInfo!!.stackTraces.size > 1) {
+                if (errorInfo.stackTraces.size > 1) {
                     htmlErrorReport.append(i + 1)
                 }
                 htmlErrorReport.append("</b>")
                     .append("</summary><p>\n")
-                    .append("\n```\n").append(errorInfo!!.stackTraces[i]).append("\n```\n")
+                    .append("\n```\n").append(errorInfo.stackTraces[i]).append("\n```\n")
                     .append("</details>\n")
             }
 
             // make sure to close everything
-            if (errorInfo!!.stackTraces.size > 1) {
+            if (errorInfo.stackTraces.size > 1) {
                 htmlErrorReport.append("</p></details>\n")
             }
             htmlErrorReport.append("<hr>\n")
@@ -312,12 +312,12 @@ class ErrorActivity : AppCompatActivity() {
 
     private fun addGuruMeditation() {
         // just an easter egg
-        var text = activityErrorBinding!!.errorSorryView.text.toString()
+        var text = activityErrorBinding.errorSorryView.text.toString()
         text += """
             
             ${getString(R.string.guru_meditation)}
         """.trimIndent()
-        activityErrorBinding!!.errorSorryView.text = text
+        activityErrorBinding.errorSorryView.text = text
     }
 
     companion object {
