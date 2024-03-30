@@ -27,38 +27,34 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
         file.create()
         ZipOutputStream(SharpOutputStream(file.stream).buffered()).use { outZip ->
-            try {
-                // add the database
-                ZipHelper.addFileToZip(
-                    outZip,
-                    BackupFileLocator.FILE_NAME_DB,
-                    fileLocator.db.path,
-                )
+            // add the database
+            ZipHelper.addFileToZip(
+                outZip,
+                BackupFileLocator.FILE_NAME_DB,
+                fileLocator.db.path,
+            )
 
-                // add the legacy vulnerable serialized preferences (will be removed in the future)
-                ZipHelper.addFileToZip(
-                    outZip,
-                    BackupFileLocator.FILE_NAME_SERIALIZED_PREFS
-                ) { byteOutput ->
-                    ObjectOutputStream(byteOutput).use { output ->
-                        output.writeObject(preferences.all)
-                        output.flush()
-                    }
+            // add the legacy vulnerable serialized preferences (will be removed in the future)
+            ZipHelper.addFileToZip(
+                outZip,
+                BackupFileLocator.FILE_NAME_SERIALIZED_PREFS
+            ) { byteOutput ->
+                ObjectOutputStream(byteOutput).use { output ->
+                    output.writeObject(preferences.all)
+                    output.flush()
                 }
+            }
 
-                // add the JSON preferences
-                ZipHelper.addFileToZip(
-                    outZip,
-                    BackupFileLocator.FILE_NAME_JSON_PREFS
-                ) { byteOutput ->
-                    JsonWriter
-                        .indent("")
-                        .on(byteOutput)
-                        .`object`(preferences.all)
-                        .done()
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Unable to export serialized settings", e)
+            // add the JSON preferences
+            ZipHelper.addFileToZip(
+                outZip,
+                BackupFileLocator.FILE_NAME_JSON_PREFS
+            ) { byteOutput ->
+                JsonWriter
+                    .indent("")
+                    .on(byteOutput)
+                    .`object`(preferences.all)
+                    .done()
             }
         }
     }
@@ -133,7 +129,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                 }
 
                 if (!editor.commit()) {
-                    Log.e(TAG, "Unable to loadSerializedPrefs")
+                    throw IOException("Unable to commit loadSerializedPrefs")
                 }
             }
         }.let { fileExists ->
@@ -168,7 +164,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
             }
 
             if (!editor.commit()) {
-                Log.e(TAG, "Unable to loadJsonPrefs")
+                throw IOException("Unable to commit loadJsonPrefs")
             }
         }.let { fileExists ->
             if (!fileExists) {
