@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.bookmark;
 
 import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
-import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -244,7 +243,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<PlaylistLocalItem>> getPlaylistsSubscriber() {
-        return new Subscriber<List<PlaylistLocalItem>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
@@ -276,7 +275,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             @Override
             public void onComplete() {
-                // Do nothing.
             }
         };
     }
@@ -418,11 +416,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        int directions = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        if (shouldUseGridLayout(requireContext())) {
-            directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
-        }
-        return new ItemTouchHelper.SimpleCallback(directions,
+        // if adding grid layout, also include ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+        // with an `if (shouldUseGridLayout()) ...`
+        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.ACTION_STATE_IDLE) {
             @Override
             public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
