@@ -30,6 +30,8 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         this.channelInfo = channelInfo;
     }
 
+    public ChannelAboutFragment() {
+    }
 
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {

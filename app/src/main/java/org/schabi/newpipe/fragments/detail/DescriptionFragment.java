@@ -30,6 +30,9 @@ public class DescriptionFragment extends BaseDescriptionFragment {
         this.streamInfo = streamInfo;
     }
 
+    public DescriptionFragment() {
+    }
+
 
     @Nullable
     @Override
