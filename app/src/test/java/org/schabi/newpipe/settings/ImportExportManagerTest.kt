@@ -109,7 +109,7 @@ class ImportExportManagerTest {
         `when`(fileLocator.dbShm).thenReturn(dbShm)
         `when`(fileLocator.dbWal).thenReturn(dbWal)
 
-        val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
         val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
@@ -128,7 +128,7 @@ class ImportExportManagerTest {
         val dbShm = File.createTempFile("newpipe_", "")
         `when`(fileLocator.db).thenReturn(db)
 
-        val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
+        val emptyZip = File(classloader.getResource("settings/nodb_noser_nojson.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
         val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
@@ -141,21 +141,21 @@ class ImportExportManagerTest {
 
     @Test
     fun `Contains setting must return true if a settings file exists in the zip`() {
-        val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
         assertTrue(ImportExportManager(fileLocator).exportHasSerializedPrefs(storedFileHelper))
     }
 
     @Test
-    fun `Contains setting must return false if a no settings file exists in the zip`() {
-        val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
+    fun `Contains setting must return false if no settings file exists in the zip`() {
+        val emptyZip = File(classloader.getResource("settings/nodb_noser_nojson.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
         assertFalse(ImportExportManager(fileLocator).exportHasSerializedPrefs(storedFileHelper))
     }
 
     @Test
     fun `Preferences must be set from the settings file`() {
-        val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
 
         val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
@@ -172,12 +172,10 @@ class ImportExportManagerTest {
 
     @Test
     fun `Importing preferences with a serialization injected class should fail`() {
-        val emptyZip = File(classloader.getResource("settings/vulnerable_serialization.zip")?.file!!)
+        val emptyZip = File(classloader.getResource("settings/db_vulnser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
 
         val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
-        val editor = Mockito.mock(SharedPreferences.Editor::class.java)
-        `when`(preferences.edit()).thenReturn(editor)
 
         assertThrows(ClassNotFoundException::class.java) {
             ImportExportManager(fileLocator).loadSerializedPrefs(storedFileHelper, preferences)

@@ -9,6 +9,7 @@ import com.grack.nanojson.JsonWriter
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
+import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
@@ -110,10 +111,12 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     fun loadSerializedPrefs(zipFile: StoredFileHelper, preferences: SharedPreferences) {
         ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_SERIALIZED_PREFS) {
             PreferencesObjectInputStream(it).use { input ->
-                val editor = preferences.edit()
-                editor.clear()
                 @Suppress("UNCHECKED_CAST")
                 val entries = input.readObject() as Map<String, *>
+
+                val editor = preferences.edit()
+                editor.clear()
+
                 for ((key, value) in entries) {
                     when (value) {
                         is Boolean -> editor.putBoolean(key, value)
@@ -133,19 +136,24 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                     Log.e(TAG, "Unable to loadSerializedPrefs")
                 }
             }
+        }.let { fileExists ->
+            if (!fileExists) {
+                throw FileNotFoundException(BackupFileLocator.FILE_NAME_SERIALIZED_PREFS)
+            }
         }
     }
 
     /**
      * Remove all shared preferences from the app and load the preferences supplied to the manager.
      */
-    @Throws(JsonParserException::class)
+    @Throws(IOException::class, JsonParserException::class)
     fun loadJsonPrefs(zipFile: StoredFileHelper, preferences: SharedPreferences) {
         ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS) {
+            val jsonObject = JsonParser.`object`().from(it)
+
             val editor = preferences.edit()
             editor.clear()
 
-            val jsonObject = JsonParser.`object`().from(it)
             for ((key, value) in jsonObject) {
                 when (value) {
                     is Boolean -> editor.putBoolean(key, value)
@@ -161,6 +169,10 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
 
             if (!editor.commit()) {
                 Log.e(TAG, "Unable to loadJsonPrefs")
+            }
+        }.let { fileExists ->
+            if (!fileExists) {
+                throw FileNotFoundException(BackupFileLocator.FILE_NAME_JSON_PREFS)
             }
         }
     }
