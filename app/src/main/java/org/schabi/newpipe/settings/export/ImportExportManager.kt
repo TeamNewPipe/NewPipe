@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings.export
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.grack.nanojson.JsonArray
 import com.grack.nanojson.JsonParser
 import com.grack.nanojson.JsonParserException

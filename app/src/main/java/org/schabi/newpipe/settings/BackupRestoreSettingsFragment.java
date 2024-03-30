@@ -217,7 +217,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                                     manager.loadSerializedPrefs(file, prefs);
                                 }
                             } catch (IOException | ClassNotFoundException | JsonParserException e) {
-                                showErrorSnackbar(e, "Importing preferences");
+                                createErrorNotification(e, "Importing preferences");
                                 return;
                             }
                             cleanImport(context, prefs);
@@ -289,5 +289,11 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
     private void showErrorSnackbar(final Throwable e, final String request) {
         ErrorUtil.showSnackbar(this, new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request));
+    }
+    private void createErrorNotification(final Throwable e, final String request) {
+        ErrorUtil.createNotification(
+                requireContext(),
+                new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request)
+        );
     }
 }
