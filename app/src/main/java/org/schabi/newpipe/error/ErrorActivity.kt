@@ -79,19 +79,19 @@ class ErrorActivity : AppCompatActivity() {
         // important add guru meditation
         addGuruMeditation()
         currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now())
-        activityErrorBinding!!.errorReportEmailButton.setOnClickListener { v: View? ->
+        activityErrorBinding!!.errorReportEmailButton.setOnClickListener { _: View? ->
             openPrivacyPolicyDialog(
                 this,
                 "EMAIL"
             )
         }
-        activityErrorBinding!!.errorReportCopyButton.setOnClickListener { v: View? ->
+        activityErrorBinding!!.errorReportCopyButton.setOnClickListener { _: View? ->
             ShareUtils.copyToClipboard(
                 this,
                 buildMarkdown()
             )
         }
-        activityErrorBinding!!.errorReportGitHubButton.setOnClickListener { v: View? ->
+        activityErrorBinding!!.errorReportGitHubButton.setOnClickListener { _: View? ->
             openPrivacyPolicyDialog(
                 this,
                 "GITHUB"
@@ -140,13 +140,13 @@ class ErrorActivity : AppCompatActivity() {
             .setTitle(R.string.privacy_policy_title)
             .setMessage(R.string.start_accept_privacy_policy)
             .setCancelable(false)
-            .setNeutralButton(R.string.read_privacy_policy) { dialog: DialogInterface?, which: Int ->
+            .setNeutralButton(R.string.read_privacy_policy) { _: DialogInterface?, _: Int ->
                 ShareUtils.openUrlInApp(
                     context,
                     context.getString(R.string.privacy_policy_url)
                 )
             }
-            .setPositiveButton(R.string.accept) { dialog: DialogInterface?, which: Int ->
+            .setPositiveButton(R.string.accept) { _: DialogInterface?, _: Int ->
                 if (action == "EMAIL") { // send on email
                     val i = Intent(Intent.ACTION_SENDTO)
                         .setData(Uri.parse("mailto:")) // only email apps should handle this
@@ -218,7 +218,7 @@ class ErrorActivity : AppCompatActivity() {
                 .value("version", BuildConfig.VERSION_NAME)
                 .value("os", osString)
                 .value("time", currentTimeStamp)
-                .array("exceptions", Arrays.asList(*errorInfo!!.stackTraces))
+                .array("exceptions", listOf(*errorInfo!!.stackTraces))
                 .value(
                     "user_comment",
                     activityErrorBinding!!.errorCommentBox.text
@@ -237,7 +237,7 @@ class ErrorActivity : AppCompatActivity() {
         return try {
             val htmlErrorReport = StringBuilder()
             val userComment = activityErrorBinding!!.errorCommentBox.text.toString()
-            if (!userComment.isEmpty()) {
+            if (userComment.isNotEmpty()) {
                 htmlErrorReport.append(userComment).append("\n")
             }
 
@@ -288,27 +288,23 @@ class ErrorActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUserActionString(userAction: UserAction?): String? {
-        return if (userAction == null) {
-            "Your description is in another castle."
-        } else {
-            userAction.message
-        }
+    private fun getUserActionString(userAction: UserAction?): String {
+        return userAction?.message ?: "Your description is in another castle."
     }
 
     private val contentCountryString: String
-        private get() = Localization.getPreferredContentCountry(this).countryCode
+        get() = Localization.getPreferredContentCountry(this).countryCode
     private val contentLanguageString: String
-        private get() = Localization.getPreferredLocalization(this).localizationCode
+        get() = Localization.getPreferredLocalization(this).localizationCode
     private val appLanguage: String
-        private get() = Localization.getAppLocale(applicationContext).toString()
+        get() = Localization.getAppLocale(applicationContext).toString()
     private val osString: String
-        private get() {
+        get() {
             val osBase =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) Build.VERSION.BASE_OS else "Android"
             return (
-                System.getProperty("os.name") +
-                    " " + (if (osBase.isEmpty()) "Android" else osBase) +
+                (System.getProperty("os.name") ?: "unknown operating system (os.name not set)") +
+                    " " + (osBase.ifEmpty { "Android" }) +
                     " " + Build.VERSION.RELEASE +
                     " - " + Build.VERSION.SDK_INT
                 )
@@ -333,7 +329,7 @@ class ErrorActivity : AppCompatActivity() {
         const val ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org"
         const val ERROR_EMAIL_SUBJECT = "Exception in "
         const val ERROR_GITHUB_ISSUE_URL = "https://github.com/TeamNewPipe/NewPipe/issues"
-        val CURRENT_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        val CURRENT_TIMESTAMP_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
         /**
          * Get the checked activity.

@@ -150,7 +150,7 @@ class ErrorPanelHelper(
         errorActionButton.setOnClickListener(listener)
     }
 
-    fun showAndSetOpenInBrowserButtonAction(
+    private fun showAndSetOpenInBrowserButtonAction(
         errorInfo: ErrorInfo
     ) {
         errorOpenInBrowserButton.isVisible = true

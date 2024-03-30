@@ -96,6 +96,7 @@ class ReCaptchaActivity : AppCompatActivity() {
         return true
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         saveCookiesAndFinish()
     }
@@ -114,7 +115,7 @@ class ReCaptchaActivity : AppCompatActivity() {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "saveCookiesAndFinish: foundCookies=$foundCookies")
         }
-        if (!foundCookies.isEmpty()) {
+        if (foundCookies.isNotEmpty()) {
             // save cookies to preferences
             val prefs = PreferenceManager.getDefaultSharedPreferences(
                 applicationContext

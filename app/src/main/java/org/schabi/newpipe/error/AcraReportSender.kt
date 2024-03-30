@@ -40,6 +40,5 @@ class AcraReportSender : ReportSender {
                 R.string.app_ui_crash
             )
         )
-
     }
 }
