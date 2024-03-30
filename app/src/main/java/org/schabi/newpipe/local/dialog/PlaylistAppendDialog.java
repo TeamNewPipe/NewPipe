@@ -155,14 +155,14 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
         final Toast successToast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
 
-        playlistDisposables.add(manager.appendToPlaylist(playlist.uid, streams)
+        playlistDisposables.add(manager.appendToPlaylist(playlist.getUid(), streams)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> {
                     successToast.show();
 
                     if (playlist.thumbnailUrl.equals(PlaylistEntity.DEFAULT_THUMBNAIL)) {
                         playlistDisposables.add(manager
-                                .changePlaylistThumbnail(playlist.uid, streams.get(0).getUid(),
+                                .changePlaylistThumbnail(playlist.getUid(), streams.get(0).getUid(),
                                         false)
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(ignore -> successToast.show()));

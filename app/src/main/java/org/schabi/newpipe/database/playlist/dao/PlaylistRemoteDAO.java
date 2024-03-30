@@ -11,6 +11,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
 
+import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_DISPLAY_INDEX;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_SERVICE_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_TABLE;
@@ -32,8 +33,16 @@ public interface PlaylistRemoteDAO extends BasicDAO<PlaylistRemoteEntity> {
     Flowable<List<PlaylistRemoteEntity>> listByService(int serviceId);
 
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
+            + REMOTE_PLAYLIST_ID + " = :playlistId")
+    Flowable<List<PlaylistRemoteEntity>> getPlaylist(long playlistId);
+
+    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
             + REMOTE_PLAYLIST_URL + " = :url AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
     Flowable<List<PlaylistRemoteEntity>> getPlaylist(long serviceId, String url);
+
+    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE
+     + " ORDER BY " + REMOTE_PLAYLIST_DISPLAY_INDEX)
+    Flowable<List<PlaylistRemoteEntity>> getPlaylists();
 
     @Query("SELECT " + REMOTE_PLAYLIST_ID + " FROM " + REMOTE_PLAYLIST_TABLE
             + " WHERE " + REMOTE_PLAYLIST_URL + " = :url "

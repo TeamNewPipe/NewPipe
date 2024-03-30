@@ -482,7 +482,7 @@ public final class VideoDetailFragment
 
                 // commit previous pending changes to database
                 if (fragment instanceof LocalPlaylistFragment) {
-                    ((LocalPlaylistFragment) fragment).commitChanges();
+                    ((LocalPlaylistFragment) fragment).saveImmediate();
                 } else if (fragment instanceof MainFragment) {
                     ((MainFragment) fragment).commitPlaylistTabs();
                 }

@@ -18,10 +18,12 @@ import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.playlist.PlaylistDuplicatesEntry.PLAYLIST_TIMES_STREAM_IS_CONTAINED;
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_DISPLAY_INDEX;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.DEFAULT_THUMBNAIL;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_TABLE;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_PERMANENT;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_STREAM_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_URL;
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_INDEX;
@@ -91,7 +93,9 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
 
     @Transaction
-    @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ","
+    @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", "
+            + PLAYLIST_THUMBNAIL_PERMANENT + ", " + PLAYLIST_THUMBNAIL_STREAM_ID + ", "
+            + PLAYLIST_DISPLAY_INDEX + ", "
 
             + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = "
             + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
@@ -105,7 +109,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
             + " GROUP BY " + PLAYLIST_ID
-            + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
+            + " ORDER BY " + PLAYLIST_DISPLAY_INDEX)
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 
     @RewriteQueriesToDropUnusedColumns
@@ -126,8 +130,9 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
     Flowable<List<PlaylistStreamEntry>> getStreamsWithoutDuplicates(long playlistId);
 
     @Transaction
-    @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", "
-            + PLAYLIST_NAME + ", "
+    @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", "
+            + PLAYLIST_THUMBNAIL_PERMANENT + ", " + PLAYLIST_THUMBNAIL_STREAM_ID + ", "
+            + PLAYLIST_DISPLAY_INDEX + ", "
 
             + " CASE WHEN " + PLAYLIST_THUMBNAIL_STREAM_ID + " = "
             + PlaylistEntity.DEFAULT_THUMBNAIL_ID + " THEN " + "'" + DEFAULT_THUMBNAIL + "'"
@@ -149,6 +154,6 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " AND :streamUrl = :streamUrl"
 
             + " GROUP BY " + JOIN_PLAYLIST_ID
-            + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
+            + " ORDER BY " + PLAYLIST_DISPLAY_INDEX)
     Flowable<List<PlaylistDuplicatesEntry>> getPlaylistDuplicatesMetadata(String streamUrl);
 }
