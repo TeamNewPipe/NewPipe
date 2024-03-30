@@ -133,18 +133,13 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, THUMBNAIL_ID_LEAVE_UNCHANGED, false, -1);
+        return modifyPlaylist(playlistId, name, THUMBNAIL_ID_LEAVE_UNCHANGED, false);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
                                                   final long thumbnailStreamId,
                                                   final boolean isPermanent) {
-        return modifyPlaylist(playlistId, null, thumbnailStreamId, isPermanent, -1);
-    }
-
-    public Maybe<Integer> updatePlaylistDisplayIndex(final long playlistId,
-                                                     final long displayIndex) {
-        return modifyPlaylist(playlistId, null, THUMBNAIL_ID_LEAVE_UNCHANGED, false, displayIndex);
+        return modifyPlaylist(playlistId, null, thumbnailStreamId, isPermanent);
     }
 
     public long getPlaylistThumbnailStreamId(final long playlistId) {
@@ -168,8 +163,7 @@ public class LocalPlaylistManager {
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
                                           final long thumbnailStreamId,
-                                          final boolean isPermanent,
-                                          final long displayIndex) {
+                                          final boolean isPermanent) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
@@ -181,9 +175,6 @@ public class LocalPlaylistManager {
                     if (thumbnailStreamId != THUMBNAIL_ID_LEAVE_UNCHANGED) {
                         playlist.setThumbnailStreamId(thumbnailStreamId);
                         playlist.setIsThumbnailPermanent(isPermanent);
-                    }
-                    if (displayIndex != -1) {
-                        playlist.setDisplayIndex(displayIndex);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());
