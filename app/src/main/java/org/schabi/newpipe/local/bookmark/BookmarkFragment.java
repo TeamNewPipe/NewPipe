@@ -56,7 +56,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
-    protected Parcelable itemsListState;
+    Parcelable itemsListState;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -68,6 +68,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private AtomicBoolean isLoadingComplete;
 
     /* Gives enough time to avoid interrupting user sorting operations */
+    @Nullable
     private DebounceSaver debounceSaver;
 
     private List<Pair<Long, LocalItem.LocalItemType>> deletedItems;
@@ -259,7 +260,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             @Override
             public void onNext(final List<PlaylistLocalItem> subscriptions) {
                 if (debounceSaver == null || !debounceSaver.getIsModified()) {
-                    checkDisplayIndexModified(subscriptions);
                     handleResult(subscriptions);
                     isLoadingComplete.set(true);
                 }
@@ -349,30 +349,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM));
         }
 
-        debounceSaver.setHasChangesToSave();
-    }
-
-    private void checkDisplayIndexModified(@NonNull final List<PlaylistLocalItem> result) {
-        if (debounceSaver != null && debounceSaver.getIsModified()) {
-            return;
-        }
-
-        // Check if the display index does not match the actual index in the list.
-        // This may happen when a new list is created
-        // or on the first run after database migration
-        // or display index is not continuous for some reason
-        // or the user changes the display index.
-        boolean isDisplayIndexModified = false;
-        for (int i = 0; i < result.size(); i++) {
-            final PlaylistLocalItem item = result.get(i);
-            if (item.getDisplayIndex() != i) {
-                isDisplayIndexModified = true;
-                break;
-            }
-        }
-
-        if (debounceSaver != null && isDisplayIndexModified) {
+        if (debounceSaver != null) {
             debounceSaver.setHasChangesToSave();
+            saveImmediate();
         }
     }
 
@@ -482,7 +461,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final int sourceIndex = source.getBindingAdapterPosition();
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
-                if (isSwapped) {
+                if (isSwapped && debounceSaver != null) {
                     debounceSaver.setHasChangesToSave();
                 }
                 return isSwapped;
