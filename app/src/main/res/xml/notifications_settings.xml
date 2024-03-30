@@ -4,6 +4,14 @@
 	android:key="general_preferences"
 	android:title="@string/notifications">
 
+	<PreferenceScreen
+		android:key="@string/player_notification_screen_key"
+		android:fragment="org.schabi.newpipe.settings.PlayerNotificationSettingsFragment"
+		android:summary="@string/settings_category_player_notification_summary"
+		android:title="@string/settings_category_player_notification_title"
+		app:singleLineTitle="false"
+		app:iconSpaceReserved="false" />
+
 	<SwitchPreference
 		android:defaultValue="false"
 		android:key="@string/enable_streams_notifications"
