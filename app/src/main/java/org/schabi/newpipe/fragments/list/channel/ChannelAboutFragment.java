@@ -31,6 +31,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     }
 
     public ChannelAboutFragment() {
+        // keep empty constructor for IcePick when resuming fragment from memory
     }
 
     @Override

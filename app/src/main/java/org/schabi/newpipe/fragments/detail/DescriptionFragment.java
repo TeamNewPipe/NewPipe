@@ -31,6 +31,7 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     }
 
     public DescriptionFragment() {
+        // keep empty constructor for IcePick when resuming fragment from memory
     }
 
 
