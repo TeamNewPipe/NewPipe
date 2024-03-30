@@ -77,22 +77,22 @@ public class PlayQueueTest {
 
         @Test
         public void outOfBoundIsComplete() {
-            doReturn(true).when(nonEmptyQueue).isComplete();
+            doReturn(true).when(nonEmptyQueue).isComplete;
             nonEmptyQueue.setIndex(7);
             assertEquals(2, nonEmptyQueue.getIndex());
 
-            doReturn(true).when(emptyQueue).isComplete();
+            doReturn(true).when(emptyQueue).isComplete;
             emptyQueue.setIndex(2);
             assertEquals(0, emptyQueue.getIndex());
         }
 
         @Test
         public void outOfBoundsNotComplete() {
-            doReturn(false).when(nonEmptyQueue).isComplete();
+            doReturn(false).when(nonEmptyQueue).isComplete;
             nonEmptyQueue.setIndex(7);
             assertEquals(SIZE - 1, nonEmptyQueue.getIndex());
 
-            doReturn(false).when(emptyQueue).isComplete();
+            doReturn(false).when(emptyQueue).isComplete;
             emptyQueue.setIndex(2);
             assertEquals(0, emptyQueue.getIndex());
         }
@@ -102,11 +102,11 @@ public class PlayQueueTest {
             nonEmptyQueue.setIndex(0);
             assertEquals(0, nonEmptyQueue.getIndex());
 
-            doReturn(true).when(emptyQueue).isComplete();
+            doReturn(true).when(emptyQueue).isComplete;
             emptyQueue.setIndex(0);
             assertEquals(0, emptyQueue.getIndex());
 
-            doReturn(false).when(emptyQueue).isComplete();
+            doReturn(false).when(emptyQueue).isComplete;
             emptyQueue.setIndex(0);
             assertEquals(0, emptyQueue.getIndex());
         }
@@ -118,7 +118,7 @@ public class PlayQueueTest {
 
             nonEmptyQueue.setIndex(3);
             assertTrue(nonEmptyQueue.previous());
-            assertEquals("URL_0", Objects.requireNonNull(nonEmptyQueue.getItem()).getUrl());
+            assertEquals("URL_0", Objects.requireNonNull(nonEmptyQueue.getItem()).url);
         }
     }
 
@@ -139,8 +139,8 @@ public class PlayQueueTest {
 
         @Test
         public void inBounds() {
-            assertEquals("TARGET_URL", Objects.requireNonNull(queue.getItem(3)).getUrl());
-            assertEquals("OTHER_URL", Objects.requireNonNull(queue.getItem(1)).getUrl());
+            assertEquals("TARGET_URL", Objects.requireNonNull(queue.getItem(3)).url);
+            assertEquals("OTHER_URL", Objects.requireNonNull(queue.getItem(1)).url);
         }
 
         @Test
