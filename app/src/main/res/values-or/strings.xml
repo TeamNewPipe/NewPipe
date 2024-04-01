@@ -813,4 +813,15 @@
         <item quantity="other">%s ଉତ୍ତରଗୁଡ଼ିକ</item>
     </plurals>
     <string name="show_less">କମ୍ ଦର୍ଶାନ୍ତୁ</string>
+    <string name="error_insufficient_storage">ଉପକରଣରେ ପର୍ଯ୍ୟାପ୍ତ ଖାଲି ସ୍ଥାନ ନାହିଁ</string>
+    <string name="settings_category_backup_restore_title">ବ୍ୟାକଅପ୍ ଏବଂ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
+    <string name="yes">ହଁ</string>
+    <string name="no">ନା</string>
+    <string name="auto_update_check_description">NewPipe ସ୍ୱୟଂଚାଳିତ ଭାବରେ ସମୟ ସମୟରେ ନୂତନ ସଂସ୍କରଣଗୁଡିକ ଯାଞ୍ଚ କରିପାରିବ ଏବଂ ଥରେ ଉପଲବ୍ଧ ହେବା ପରେ ଆପଣଙ୍କୁ ସୂଚିତ କରିପାରିବ ।
+\nଆପଣ ଏହାକୁ ସକ୍ଷମ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+    <string name="reset_settings_title">ସେଟିଂସମୂହ ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
+    <string name="reset_settings_summary">ସମସ୍ତ ସେଟିଂସମୂହକୁ ସେମାନଙ୍କର ଡିଫଲ୍ଟ ମୂଲ୍ୟରେ ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
+    <string name="reset_all_settings">ସମସ୍ତ ସେଟିଂସମୂହକୁ ପୁନଃ ସେଟ୍ କରିବା ଦ୍ବାରା ଆପଣଙ୍କର ସମସ୍ତ ପସନ୍ଦିତ ସେଟିଂସମୂହ ପରିତ୍ୟାଗ ହେବ ଏବଂ ଆପ୍ ପୁନଃ ସେଟ୍ଆରମ୍ଭ ହେବ ।
+\n
+\nଆପଣ ଆଗକୁ ବଢିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
 </resources>

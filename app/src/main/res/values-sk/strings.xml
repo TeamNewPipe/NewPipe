@@ -398,7 +398,7 @@
     <string name="overwrite_failed">súbor nemožno prepísať</string>
     <string name="download_already_pending">Súbor s rovnakým názvom už čaká na stiahnutie</string>
     <string name="error_postprocessing_stopped">NewPipe bol ukončený počas spracovávania súboru</string>
-    <string name="error_insufficient_storage_left">Máš plnú pamäť</string>
+    <string name="error_insufficient_storage_left">V zariadení už nie je voľné miesto</string>
     <string name="error_progress_lost">Nemožno pokračovať, súbor bol vymazaný</string>
     <string name="error_timeout">Spojenie vypršalo</string>
     <string name="confirm_prompt">Chcete vymazať históriu sťahovania alebo odstrániť všetky stiahnuté súbory\?</string>
@@ -827,4 +827,15 @@
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
+    <string name="error_insufficient_storage">Nedostatok voľného miesta v zariadení</string>
+    <string name="reset_settings_summary">Obnoví všetky nastavenia na pôvodné hodnoty</string>
+    <string name="reset_settings_title">Obnoviť nastavenia</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovenie</string>
+    <string name="reset_all_settings">Obnovením nastavení sa zrušia všetky preferované nastavenia a aplikácia sa reštartuje.
+\n
+\nSte si istí, že chcete pokračovať?</string>
+    <string name="no">Nie</string>
+    <string name="yes">Áno</string>
+    <string name="auto_update_check_description">NewPipe môže z času na čas automaticky kontrolovať nové verzie a upozorniť vás, keď budú k dispozícii.
+\nChcete to povoliť?</string>
 </resources>

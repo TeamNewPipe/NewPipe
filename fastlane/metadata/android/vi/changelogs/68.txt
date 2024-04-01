@@ -1,0 +1,31 @@
+# thay đổi của v0.14.1
+
+### Đã sửa
+- Đã sửa lỗi không giải mã được url video #1659
+- Sửa lỗi link mô tả không giải nén tốt #1657
+
+# thay đổi của v0.14.0
+
+### Mới
+- Thiết kế ngăn kéo mới #1461
+- Trang trước có thể tùy chỉnh mới #1461
+
+### Cải tiến
+- Điều khiển cử chỉ được làm lại #1604
+- Cách mới để đóng trình phát cửa sổ bật lên #1597
+
+### Đã sửa
+- Sửa lỗi khi không có số lượng đăng ký. Đóng #1649.
+- Hiển thị "Không có số lượng người đăng ký" trong những trường hợp đó
+- Khắc phục NPE khi danh sách phát YouTube trống
+- Sửa nhanh các ki-ốt trong SoundCloud
+- Tái cấu trúc và sửa lỗi #1623
+- Sửa kết quả tìm kiếm theo chu kỳ #1562
+- Sửa lỗi thanh Tìm kiếm không được bố trí tĩnh
+- Sửa lỗi video YT Premium không bị chặn đúng cách
+- Khắc phục Video đôi khi không tải (do phân tích cú pháp DASH)
+- Sửa các liên kết trong phần mô tả video
+- Hiển thị cảnh báo khi ai đó cố gắng tải xuống thẻ sdcard bên ngoài
+- sửa lỗi không hiển thị báo cáo kích hoạt ngoại lệ
+- hình thu nhỏ không hiển thị trong trình phát nền dành cho android 8.1 [xem tại đây](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Sửa lỗi đăng ký máy thu phát sóng. Đóng #1641.

@@ -832,4 +832,5 @@
         <item quantity="other">%s ответов</item>
     </plurals>
     <string name="notification_actions_summary_android13">Отредактируйте каждое действие уведомления ниже, нажав на него. Первые три действия (воспроизведение/пауза, предыдущее и следующее) задаются системой и не подлежат настройке.</string>
+    <string name="error_insufficient_storage">Недостаточно свободного места на устройстве</string>
 </resources>

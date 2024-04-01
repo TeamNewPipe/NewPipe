@@ -830,4 +830,15 @@
     <string name="show_more">Ver más</string>
     <string name="show_less">Mostrar menos</string>
     <string name="notification_actions_summary_android13">Edite cada acción de notificación pulsando sobre ella. Las tres primeras acciones (reproducir/pausa, anterior y siguiente) las establece el sistema y no se pueden personalizar.</string>
+    <string name="error_insufficient_storage">No hay suficiente espacio libre en el dispositivo</string>
+    <string name="settings_category_backup_restore_title">Copia de seguridad y restaurar</string>
+    <string name="reset_settings_title">Reiniciar ajustes</string>
+    <string name="reset_settings_summary">Restablecer todos los ajustes a sus valores predeterminados</string>
+    <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación.
+\n
+\n¿Estas seguro que deseas continuar?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles.
+\n¿Quieres habilitar esto?</string>
 </resources>

@@ -813,4 +813,15 @@
     <string name="channel_tab_tracks">Dalok</string>
     <string name="channel_tab_shorts">Rövidek</string>
     <string name="channel_tab_livestreams">Élő</string>
+    <string name="error_insufficient_storage">Nincs elég szabad hely az eszközön</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
+    <string name="auto_update_check_description">A NewPipe időről időre automatikusan ellenőrzi az új verziókat, és értesít, amint azok elérhetővé válnak.
+\nSzeretné engedélyezni ezt?</string>
+    <string name="reset_settings_title">Beállítások alaphelyzetbe állítása</string>
+    <string name="reset_settings_summary">Minden beállítás visszaállítása alapértelmezett értékre</string>
+    <string name="reset_all_settings">Az összes beállítás visszaállítása elveti az összes preferált beállítást, és újraindítja az alkalmazást.
+\n
+\nBiztosan folytatja?</string>
 </resources>

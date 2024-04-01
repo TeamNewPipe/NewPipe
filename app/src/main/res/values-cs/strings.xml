@@ -827,4 +827,15 @@
     <string name="show_more">Zobrazit více</string>
     <string name="notification_actions_summary_android13">Upravte každou akci oznámení níže poklepáním. První tři akce (přehrání/pozastavení, předchozí a další) jsou nastaveny systémem a nemohou být přizpůsobeny.</string>
     <string name="show_less">Zobrazit méně</string>
+    <string name="error_insufficient_storage">Nedostatek volného místa v zařízení</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovení</string>
+    <string name="reset_settings_title">Obnovit nastavení</string>
+    <string name="reset_settings_summary">Obnovení všech nastavení na výchozí hodnoty</string>
+    <string name="reset_all_settings">Obnovením nastavení se zruší všechna preferovaná nastavení a aplikace se restartuje.
+\n
+\nJste si jisti, že chcete pokračovat?</string>
+    <string name="yes">Ano</string>
+    <string name="no">Ne</string>
+    <string name="auto_update_check_description">NewPipe může čas od času automaticky kontrolovat nové verze a upozornit vás na jejich dostupnost.
+\nChcete tuto funkci povolit?</string>
 </resources>

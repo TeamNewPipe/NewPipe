@@ -839,4 +839,5 @@
     <string name="show_more">Паказаць больш</string>
     <string name="show_less">Паказаць менш</string>
     <string name="notification_actions_summary_android13">Адрэдагуйце кожнае дзеянне апавяшчэння, націснуўшы на яго. Першыя тры дзеянні (прайграванне/паўза, папярэдняе і наступнае) задаюцца сістэмай і не могуць быць зменены.</string>
+    <string name="error_insufficient_storage">Недастаткова вольнага месца на прыладзе</string>
 </resources>

@@ -869,4 +869,15 @@
     <string name="show_more">عرض المزيد</string>
     <string name="show_less">عرض أقل</string>
     <string name="notification_actions_summary_android13">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. يتم تعيين الإجراءات الثلاثة الأولى (تشغيل/إيقاف مؤقت، السابق والتالي) بواسطة النظام ولا يمكن تخصيصها.</string>
+    <string name="error_insufficient_storage">لا توجد مساحة خالية كافية على الجهاز</string>
+    <string name="reset_settings_title">اعادة ضبط الإعداداتِ</string>
+    <string name="settings_category_backup_restore_title">النسخ الاحتياطيُّ والاستعادة</string>
+    <string name="reset_settings_summary">أعيدوا جميع الإعدادات إلى قيمهم الافتراضية</string>
+    <string name="reset_all_settings">ستؤدي إعادة ضبط جميع الإعدادات إلى تجاهل جميع إعداداتك المفضلة وإعادة تشغيل التطبيق.
+\n
+\nهل انت متأكد انك تريد المتابعة؟</string>
+    <string name="yes">نعم</string>
+    <string name="auto_update_check_description">يمكن لـ NewPipe البحث تلقائيًا عن الإصدارات الجديدة من وقت لآخر وإعلامك بمجرد توفرها.
+\nهل تريد تمكين هذا؟</string>
+    <string name="no">لا</string>
 </resources>

@@ -799,4 +799,15 @@
     <plurals name="replies">
         <item quantity="other">%s balasan</item>
     </plurals>
+    <string name="error_insufficient_storage">Tidak ada ruang yang cukup pada perangkat</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="reset_settings_title">Atur ulang pengaturan</string>
+    <string name="reset_settings_summary">Atur ulang pengaturan ke nilai bawaan</string>
+    <string name="reset_all_settings">Mengatur ulang semua pengaturan akan mengabaikan pengaturan Anda yang disukai dan memulai ulang aplikasi.
+\n
+\nApakah Anda yakin ingin melanjutkan?</string>
+    <string name="auto_update_check_description">NewPipe dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru.
+\nApakah Anda ingin mengaktifkan ini?</string>
+    <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
 </resources>

@@ -827,4 +827,11 @@
     <string name="show_more">Mostra altro</string>
     <string name="notification_actions_summary_android13">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Le prime tre (riproduci/pausa, precedente e successivo) sono impostate dal sistema e non possono essere cambiate.</string>
     <string name="show_less">Mostra meno</string>
+    <string name="error_insufficient_storage">Non abbastanza spazio libero sul dispositivo</string>
+    <string name="settings_category_backup_restore_title">Backup e ripristino</string>
+    <string name="reset_settings_title">Azzera le impostazioni</string>
+    <string name="reset_all_settings">L\'azzeramento di tutte le impostazioni eliminerà tutte le proprie impostazioni e riavvierà l\'app.
+\n
+\nSei sicuro di voler procedere?</string>
+    <string name="reset_settings_summary">Azzera tutte le impostazioni ai loro valori predefiniti</string>
 </resources>

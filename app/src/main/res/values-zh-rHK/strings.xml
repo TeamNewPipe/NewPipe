@@ -799,4 +799,5 @@
     <string name="show_less">摺埋</string>
     <string name="show_more">拉開</string>
     <string name="notification_actions_summary_android13">撳下面嘅掣去更改對應嘅通知動作。頭三個動作 (播放/暫停、上一個、下一個) 系統預設咗，冇得揀。</string>
+    <string name="error_insufficient_storage">部機冇晒位</string>
 </resources>

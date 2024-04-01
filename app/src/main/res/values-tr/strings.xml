@@ -474,8 +474,8 @@
     <string name="feed_group_dialog_select_subscriptions">Abonelikleri seç</string>
     <string name="feed_group_dialog_empty_selection">Abonelik seçilmedi</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d öğe seçildi</item>
-        <item quantity="other">%d öğe seçildi</item>
+        <item quantity="one">%d öge seçildi</item>
+        <item quantity="other">%d öge seçildi</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Boş grup adı</string>
     <string name="feed_group_dialog_delete_message">Bu grubu silmek istiyor musunuz\?</string>
@@ -813,4 +813,15 @@
         <item quantity="one">%s yanıt</item>
         <item quantity="other">%s yanıt</item>
     </plurals>
+    <string name="error_insufficient_storage">Aygıtta yeterli boş alan yok</string>
+    <string name="settings_category_backup_restore_title">Yedekle ve geri yükle</string>
+    <string name="reset_settings_title">Ayarları sıfırla</string>
+    <string name="reset_settings_summary">Tüm ayarları öntanımlı değerlerine sıfırlayın</string>
+    <string name="reset_all_settings">Tüm ayarları sıfırlamak, tercih edilen tüm ayarlarınızı kaldırır ve uygulamayı yeniden başlatır.
+\n
+\nDevam etmek istediğinizden emin misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir.
+\nBunu etkinleştirmek istiyor musunuz?</string>
 </resources>

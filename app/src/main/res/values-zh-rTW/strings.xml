@@ -799,4 +799,15 @@
     <string name="show_more">顯示更多</string>
     <string name="show_less">顯示較少</string>
     <string name="notification_actions_summary_android13">透過點擊下面的每個通知操作來編輯它。前三個動作（播放/暫停、上一個與下一個）由系統設定，無法自訂。</string>
+    <string name="error_insufficient_storage">裝置上沒有足夠的空間</string>
+    <string name="settings_category_backup_restore_title">備份與還原</string>
+    <string name="reset_settings_title">重設設定</string>
+    <string name="reset_settings_summary">將所有設定重設為預設值</string>
+    <string name="reset_all_settings">重設所有設定將會放棄您的所有偏好設定並重新啟動應用程式。
+\n
+\n您確定您想要繼續嗎？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。
+\n您想要啟用此功能嗎？</string>
 </resources>

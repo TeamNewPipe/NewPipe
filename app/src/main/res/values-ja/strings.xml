@@ -799,4 +799,5 @@
     <string name="show_more">もっと見る</string>
     <string name="show_less">表示を少なくする</string>
     <string name="notification_actions_summary_android13">以下の通知アクションをタップして編集します。 最初の３つのアクション （再生/一時停止、前へ、次へ）はシステムによって設定されており、カスタマイズすることはできません。</string>
+    <string name="error_insufficient_storage">デバイスの空き容量が不足しています</string>
 </resources>

@@ -813,4 +813,15 @@
     </plurals>
     <string name="show_less">Näita vähem</string>
     <string name="notification_actions_summary_android13">Muuda iga teavituse tegevust sellel toksates. Kolm esimest tegevust (esita/peata esitus, eelmine video, järgmine video) on süsteemsed ja neid ei saa muuta.</string>
+    <string name="settings_category_backup_restore_title">Varundus ja taastamine</string>
+    <string name="auto_update_check_description">NewPipe võib aeg-ajalt automaatselt kontrollida uute versioonide olemasolu ning sind vastavalt teavitada.
+\nKas sa soovid sellist võimalust kasuutada?</string>
+    <string name="reset_settings_title">Lähtesta seadistused</string>
+    <string name="reset_settings_summary">Lähtesta kõik seadistused nende vaikimisi väärtusteks</string>
+    <string name="error_insufficient_storage">Seadmes pole enam piisavalt vaba ruumi</string>
+    <string name="reset_all_settings">Kui lähtestad kõik seadistused, siis kõik sinu muudetud seadistused asendatakse vaikimisi väärtustega ja rakendus käivitub uuesti.
+\n
+\nKas sa soovid jätkata?</string>
+    <string name="yes">Jah</string>
+    <string name="no">Ei</string>
 </resources>

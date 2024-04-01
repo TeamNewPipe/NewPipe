@@ -827,4 +827,11 @@
     <string name="show_more">Прикажи више</string>
     <string name="show_less">Прикажи мање</string>
     <string name="notification_actions_summary_android13">Измените сваку радњу обавештења у наставку тако што ћете је додирнути. Прве три радње (пусти/паузирај, претходни и следећи) поставља систем и не могу се прилагодити.</string>
+    <string name="error_insufficient_storage">Нема довољно слободног меморијског простора на уређају</string>
+    <string name="settings_category_backup_restore_title">Прављење резервне копије и враћање</string>
+    <string name="reset_settings_title">Ресетуј подешавања</string>
+    <string name="reset_settings_summary">Ресетујте сва подешавања на подразумеване вредности</string>
+    <string name="reset_all_settings">Ресетовање свих подешавања ће одбацити сва жељена подешавања и поново покренути апликацију.
+\n
+\nЖелите ли заиста да наставите?</string>
 </resources>

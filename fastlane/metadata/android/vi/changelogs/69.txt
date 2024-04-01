@@ -1,0 +1,19 @@
+### Mới
+- Nhấn và giữ để xóa và chia sẻ trong đăng ký #1516
+- Giao diện người dùng máy tính bảng và bố cục danh sách lưới #1617
+
+### Cải tiến
+- lưu trữ và tải lại tỷ lệ khung hình được sử dụng lần cuối # 1748
+- Bật bố cục tuyến tính trong hoạt động Tải xuống với tên video đầy đủ #1771
+- Xóa và chia sẻ đăng ký trực tiếp từ trong tab đăng ký #1516
+- Việc xếp hàng hiện sẽ kích hoạt phát video nếu hàng đợi phát đã kết thúc #1783
+- Riêng cài đặt cho cử chỉ âm lượng và độ sáng #1644
+- Thêm hỗ trợ Bản địa hóa #1792
+
+### Sửa lỗi
+- Sửa lỗi phân tích thời gian cho . định dạng, vì vậy NewPipe có thể được sử dụng ở Phần Lan
+- Sửa số lượng đăng ký
+- Thêm quyền dịch vụ nền trước cho các thiết bị API 28+ #1830
+
+### Lỗi đã biết
+- Không thể lưu trạng thái phát lại trên Android P

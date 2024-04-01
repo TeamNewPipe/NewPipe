@@ -813,4 +813,15 @@
     <string name="show_more">Meer tonen</string>
     <string name="show_less">Minder tonen</string>
     <string name="notification_actions_summary_android13">Bewerk elke meldings­actie hieronder door erop te tikken. De eerste drie acties (afspelen/pauzeren, vorige en volgende) zijn ingesteld door het systeem en kunnen niet worden aangepast.</string>
+    <string name="error_insufficient_storage">Onvoldoende vrĳe ruimte op het apparaat</string>
+    <string name="yes">Ja</string>
+    <string name="reset_settings_summary">Herstelt alle instellingen naar hun standaard­waarde</string>
+    <string name="reset_all_settings">Als u alle instellingen reset worden al uw voorkeurs­instellingen verwijderd en wordt de app opnieuw gestart.
+\n
+\nWeet u zeker dat u verder wilt gaan?</string>
+    <string name="no">Nee</string>
+    <string name="settings_category_backup_restore_title">Back-up en herstel</string>
+    <string name="auto_update_check_description">NewPipe kan van tĳd tot tĳd auto­matisch controleren op nieuwe versies en u op de hoogte stellen zodra deze beschik­baar zijn.
+\nWilt u dit inschakelen?</string>
+    <string name="reset_settings_title">Instellingen resetten</string>
 </resources>
