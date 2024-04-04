@@ -67,11 +67,17 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
         return fileLocator.dbDir.exists() || fileLocator.dbDir.mkdir()
     }
 
+    /**
+     * Extracts the database from the given file to the app's database directory.
+     * The current app's database will be overwritten.
+     * @param file the .zip file to extract the database from
+     * @return true if the database was successfully extracted, false otherwise
+     */
     fun extractDb(file: StoredFileHelper): Boolean {
         val success = ZipHelper.extractFileFromZip(
-            file,
-            BackupFileLocator.FILE_NAME_DB,
-            fileLocator.db.path,
+                file,
+                BackupFileLocator.FILE_NAME_DB,
+                fileLocator.db.path,
         )
 
         if (success) {

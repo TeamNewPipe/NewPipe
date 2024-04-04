@@ -187,6 +187,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                 throw new IOException("Could not create databases dir");
             }
 
+            // replace the current database
             if (!manager.extractDb(file)) {
                 Toast.makeText(requireContext(), R.string.could_not_import_all_files,
                                 Toast.LENGTH_LONG)
@@ -265,7 +266,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     /**
-     * Save import path and restart system.
+     * Save import path and restart app.
      *
      * @param importDataUri The import path to save
      */
@@ -290,6 +291,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private void showErrorSnackbar(final Throwable e, final String request) {
         ErrorUtil.showSnackbar(this, new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request));
     }
+
     private void createErrorNotification(final Throwable e, final String request) {
         ErrorUtil.createNotification(
                 requireContext(),
