@@ -837,7 +837,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             headerBinding.playlistStreamCount.setText(
                     Localization.concatenateStrings(
                             Localization.localizeStreamCount(activity, streamCount),
-                            Localization.getDurationString(playlistOverallDurationSeconds))
+                            Localization.getDurationString(playlistOverallDurationSeconds,
+                                                            true, true))
             );
         }
     }

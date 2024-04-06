@@ -506,7 +506,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 Localization.concatenateStrings(
                     Localization.localizeStreamCount(activity, streamCount),
                     Localization.getDurationString(playlistOverallDurationSeconds,
-                            isDurationComplete))
+                            isDurationComplete, true))
             );
         }
     }
