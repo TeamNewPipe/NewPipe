@@ -1,6 +1,7 @@
 package org.schabi.newpipe.database.subscription;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -95,11 +96,12 @@ public class SubscriptionEntity {
         this.name = name;
     }
 
+    @Nullable
     public String getAvatarUrl() {
         return avatarUrl;
     }
 
-    public void setAvatarUrl(final String avatarUrl) {
+    public void setAvatarUrl(@Nullable final String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
 
