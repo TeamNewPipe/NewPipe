@@ -6,6 +6,7 @@ package org.schabi.newpipe.error;
 public enum UserAction {
     USER_REPORT("user report"),
     UI_ERROR("ui error"),
+    DATABASE_IMPORT_EXPORT("database import or export"),
     SUBSCRIPTION_CHANGE("subscription change"),
     SUBSCRIPTION_UPDATE("subscription update"),
     SUBSCRIPTION_GET("get subscription"),
