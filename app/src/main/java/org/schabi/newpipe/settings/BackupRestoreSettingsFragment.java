@@ -21,9 +21,15 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
+import com.grack.nanojson.JsonParserException;
+
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.settings.export.BackupFileLocator;
+import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -42,7 +48,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
     private final SimpleDateFormat exportDateFormat =
             new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-    private ContentSettingsManager manager;
+    private ImportExportManager manager;
     private String importExportDataPathKey;
     private final ActivityResultLauncher<Intent> requestImportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -57,8 +63,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                                     @Nullable final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
         Objects.requireNonNull(homeDir);
-        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
-        manager.deleteSettingsFile();
+        manager = new ImportExportManager(new BackupFileLocator(homeDir));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
 
@@ -165,7 +170,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             Toast.makeText(requireContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
                     .show();
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(this, "Exporting database", e);
+            showErrorSnackbar(e, "Exporting database and settings");
         }
     }
 
@@ -182,6 +187,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                 throw new IOException("Could not create databases dir");
             }
 
+            // replace the current database
             if (!manager.extractDb(file)) {
                 Toast.makeText(requireContext(), R.string.could_not_import_all_files,
                                 Toast.LENGTH_LONG)
@@ -189,9 +195,13 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             }
 
             // if settings file exist, ask if it should be imported.
-            if (manager.extractSettings(file)) {
+            final boolean hasJsonPrefs = manager.exportHasJsonPrefs(file);
+            if (hasJsonPrefs || manager.exportHasSerializedPrefs(file)) {
                 new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                         .setTitle(R.string.import_settings)
+                        .setMessage(hasJsonPrefs ? null : requireContext()
+                                .getString(R.string.import_settings_vulnerable_format))
+                        .setOnDismissListener(dialog -> finishImport(importDataUri))
                         .setNegativeButton(R.string.cancel, (dialog, which) -> {
                             dialog.dismiss();
                             finishImport(importDataUri);
@@ -201,7 +211,16 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                             final Context context = requireContext();
                             final SharedPreferences prefs = PreferenceManager
                                     .getDefaultSharedPreferences(context);
-                            manager.loadSharedPreferences(prefs);
+                            try {
+                                if (hasJsonPrefs) {
+                                    manager.loadJsonPrefs(file, prefs);
+                                } else {
+                                    manager.loadSerializedPrefs(file, prefs);
+                                }
+                            } catch (IOException | ClassNotFoundException | JsonParserException e) {
+                                createErrorNotification(e, "Importing preferences");
+                                return;
+                            }
                             cleanImport(context, prefs);
                             finishImport(importDataUri);
                         })
@@ -210,7 +229,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                 finishImport(importDataUri);
             }
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(this, "Importing database", e);
+            showErrorSnackbar(e, "Importing database and settings");
         }
     }
 
@@ -247,7 +266,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     /**
-     * Save import path and restart system.
+     * Save import path and restart app.
      *
      * @param importDataUri The import path to save
      */
@@ -267,5 +286,16 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         final SharedPreferences.Editor editor = defaultPreferences.edit()
                 .putString(importExportDataPathKey, importExportDataUri.toString());
         editor.apply();
+    }
+
+    private void showErrorSnackbar(final Throwable e, final String request) {
+        ErrorUtil.showSnackbar(this, new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request));
+    }
+
+    private void createErrorNotification(final Throwable e, final String request) {
+        ErrorUtil.createNotification(
+                requireContext(),
+                new ErrorInfo(e, UserAction.DATABASE_IMPORT_EXPORT, request)
+        );
     }
 }

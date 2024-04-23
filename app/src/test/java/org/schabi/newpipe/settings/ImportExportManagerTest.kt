@@ -1,8 +1,10 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import com.grack.nanojson.JsonParser
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Assume
 import org.junit.Before
@@ -17,6 +19,8 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
+import org.schabi.newpipe.settings.export.BackupFileLocator
+import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import us.shandian.giga.io.FileStream
 import java.io.File
@@ -25,27 +29,25 @@ import java.nio.file.Files
 import java.util.zip.ZipFile
 
 @RunWith(MockitoJUnitRunner::class)
-class ContentSettingsManagerTest {
+class ImportExportManagerTest {
 
     companion object {
-        private val classloader = ContentSettingsManager::class.java.classLoader!!
+        private val classloader = ImportExportManager::class.java.classLoader!!
     }
 
-    private lateinit var fileLocator: NewPipeFileLocator
+    private lateinit var fileLocator: BackupFileLocator
     private lateinit var storedFileHelper: StoredFileHelper
 
     @Before
     fun setupFileLocator() {
-        fileLocator = Mockito.mock(NewPipeFileLocator::class.java, withSettings().stubOnly())
+        fileLocator = Mockito.mock(BackupFileLocator::class.java, withSettings().stubOnly())
         storedFileHelper = Mockito.mock(StoredFileHelper::class.java, withSettings().stubOnly())
     }
 
     @Test
     fun `The settings must be exported successfully in the correct format`() {
         val db = File(classloader.getResource("settings/newpipe.db")!!.file)
-        val newpipeSettings = File.createTempFile("newpipe_", "")
         `when`(fileLocator.db).thenReturn(db)
-        `when`(fileLocator.settings).thenReturn(newpipeSettings)
 
         val expectedPreferences = mapOf("such pref" to "much wow")
         val sharedPreferences =
@@ -54,11 +56,11 @@ class ContentSettingsManagerTest {
 
         val output = File.createTempFile("newpipe_", "")
         `when`(storedFileHelper.stream).thenReturn(FileStream(output))
-        ContentSettingsManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
+        ImportExportManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
 
         val zipFile = ZipFile(output)
         val entries = zipFile.entries().toList()
-        assertEquals(2, entries.size)
+        assertEquals(3, entries.size)
 
         zipFile.getInputStream(entries.first { it.name == "newpipe.db" }).use { actual ->
             db.inputStream().use { expected ->
@@ -70,26 +72,11 @@ class ContentSettingsManagerTest {
             val actualPreferences = ObjectInputStream(actual).readObject()
             assertEquals(expectedPreferences, actualPreferences)
         }
-    }
 
-    @Test
-    fun `Settings file must be deleted`() {
-        val settings = File.createTempFile("newpipe_", "")
-        `when`(fileLocator.settings).thenReturn(settings)
-
-        ContentSettingsManager(fileLocator).deleteSettingsFile()
-
-        assertFalse(settings.exists())
-    }
-
-    @Test
-    fun `Deleting settings file must do nothing if none exist`() {
-        val settings = File("non_existent")
-        `when`(fileLocator.settings).thenReturn(settings)
-
-        ContentSettingsManager(fileLocator).deleteSettingsFile()
-
-        assertFalse(settings.exists())
+        zipFile.getInputStream(entries.first { it.name == "preferences.json" }).use { actual ->
+            val actualPreferences = JsonParser.`object`().from(actual)
+            assertEquals(expectedPreferences, actualPreferences)
+        }
     }
 
     @Test
@@ -98,7 +85,7 @@ class ContentSettingsManagerTest {
         Assume.assumeTrue(dir.delete())
         `when`(fileLocator.dbDir).thenReturn(dir)
 
-        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        ImportExportManager(fileLocator).ensureDbDirectoryExists()
         assertTrue(dir.exists())
     }
 
@@ -107,7 +94,7 @@ class ContentSettingsManagerTest {
         val dir = Files.createTempDirectory("newpipe_").toFile()
         `when`(fileLocator.dbDir).thenReturn(dir)
 
-        ContentSettingsManager(fileLocator).ensureDbDirectoryExists()
+        ImportExportManager(fileLocator).ensureDbDirectoryExists()
         assertTrue(dir.exists())
     }
 
@@ -122,9 +109,9 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.dbShm).thenReturn(dbShm)
         `when`(fileLocator.dbWal).thenReturn(dbWal)
 
-        val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
-        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
+        val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
         assertTrue(success)
         assertFalse(dbJournal.exists())
@@ -141,9 +128,9 @@ class ContentSettingsManagerTest {
         val dbShm = File.createTempFile("newpipe_", "")
         `when`(fileLocator.db).thenReturn(db)
 
-        val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
+        val emptyZip = File(classloader.getResource("settings/nodb_noser_nojson.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
-        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
+        val success = ImportExportManager(fileLocator).extractDb(storedFileHelper)
 
         assertFalse(success)
         assertTrue(dbJournal.exists())
@@ -154,41 +141,44 @@ class ContentSettingsManagerTest {
 
     @Test
     fun `Contains setting must return true if a settings file exists in the zip`() {
-        val settings = File.createTempFile("newpipe_", "")
-        `when`(fileLocator.settings).thenReturn(settings)
-
-        val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
-        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
-
-        assertTrue(contains)
+        assertTrue(ImportExportManager(fileLocator).exportHasSerializedPrefs(storedFileHelper))
     }
 
     @Test
-    fun `Contains setting must return false if a no settings file exists in the zip`() {
-        val settings = File.createTempFile("newpipe_", "")
-        `when`(fileLocator.settings).thenReturn(settings)
-
-        val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
+    fun `Contains setting must return false if no settings file exists in the zip`() {
+        val emptyZip = File(classloader.getResource("settings/nodb_noser_nojson.zip")?.file!!)
         `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
-        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
-
-        assertFalse(contains)
+        assertFalse(ImportExportManager(fileLocator).exportHasSerializedPrefs(storedFileHelper))
     }
 
     @Test
     fun `Preferences must be set from the settings file`() {
-        val settings = File(classloader.getResource("settings/newpipe.settings")!!.path)
-        `when`(fileLocator.settings).thenReturn(settings)
+        val zip = File(classloader.getResource("settings/db_ser_json.zip")?.file!!)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
 
         val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
         val editor = Mockito.mock(SharedPreferences.Editor::class.java)
         `when`(preferences.edit()).thenReturn(editor)
+        `when`(editor.commit()).thenReturn(true)
 
-        ContentSettingsManager(fileLocator).loadSharedPreferences(preferences)
+        ImportExportManager(fileLocator).loadSerializedPrefs(storedFileHelper, preferences)
 
         verify(editor, atLeastOnce()).putBoolean(anyString(), anyBoolean())
         verify(editor, atLeastOnce()).putString(anyString(), anyString())
         verify(editor, atLeastOnce()).putInt(anyString(), anyInt())
+    }
+
+    @Test
+    fun `Importing preferences with a serialization injected class should fail`() {
+        val emptyZip = File(classloader.getResource("settings/db_vulnser_json.zip")?.file!!)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
+
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+
+        assertThrows(ClassNotFoundException::class.java) {
+            ImportExportManager(fileLocator).loadSerializedPrefs(storedFileHelper, preferences)
+        }
     }
 }
