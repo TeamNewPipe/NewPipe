@@ -78,7 +78,7 @@
     <string name="short_billion">بليون</string>
     <string name="feed_load_error_account_info">تعذر تحميل موجز \'%s\'.</string>
     <string name="question_mark">؟</string>
-    <string name="manual_update_title">التحقق من وجود تحديثات</string>
+    <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="more_than_100_videos">+100 فيديو</string>
     <string name="short_thousand">ألف</string>
@@ -271,7 +271,7 @@
     <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
     <string name="rename">إعادة التسمية</string>
-    <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
+    <string name="error_insufficient_storage_left">لم يتبقى مساحة في الجهاز</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
     <string name="notifications_disabled">تم تعطيل الإشعارات</string>

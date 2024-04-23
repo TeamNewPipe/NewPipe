@@ -1,0 +1,33 @@
+# Nhật ký thay đổi của v0.13.7
+
+### Đã sửa
+- Khắc phục sự cố bộ lọc sắp xếp của v0.13.6
+
+# Nhật ký thay đổi của v0.13.6
+
+### Cải tiến
+
+- Tắt hoạt ảnh biểu tượng burgermenu #1486
+- hoàn tác xóa tải xuống #1472
+- Tùy chọn tải xuống trong menu chia sẻ #1498
+- Đã thêm tùy chọn chia sẻ vào menu nhấn dài #1454
+- Thu nhỏ trình phát chính ở lối ra #1354
+- Phiên bản thư viện cập nhật và bản sửa lỗi sao lưu cơ sở dữ liệu #1510
+- ExoPlayer 2.8.2 Cập nhật #1392
+- Làm lại hộp thoại kiểm soát tốc độ phát lại để hỗ trợ các kích cỡ bước khác nhau nhằm thay đổi tốc độ nhanh hơn.
+- Đã thêm nút chuyển đổi để tua đi nhanh trong khi im lặng trong điều khiển tốc độ phát lại. Điều này sẽ hữu ích cho sách nói và một số thể loại âm nhạc nhất định, đồng thời có thể mang lại trải nghiệm liền mạch thực sự (và có thể ngắt một bài hát có nhiều khoảng lặng =\\).
+- Độ phân giải nguồn phương tiện được tái cấu trúc để cho phép truyền siêu dữ liệu cùng với phương tiện nội bộ trong trình phát thay vì thực hiện thủ công. Bây giờ chúng tôi có một nguồn siêu dữ liệu duy nhất và có sẵn trực tiếp khi quá trình phát lại bắt đầu.
+- Đã sửa lỗi siêu dữ liệu danh sách phát từ xa không cập nhật khi có siêu dữ liệu mới khi mở đoạn danh sách phát.
+- Nhiều bản sửa lỗi giao diện người dùng khác nhau: #1383, các điều khiển thông báo trình phát nền giờ đây luôn có màu trắng, dễ dàng tắt trình phát cửa sổ bật lên thông qua thao tác ném
+- Sử dụng trình trích xuất mới với kiến trúc được tái cấu trúc cho nhiều dịch vụ
+
+### Sửa lỗi
+
+- Sửa lỗi #1440 Bố cục thông tin video bị hỏng #1491
+- Xem lịch sử sửa lỗi #1497
+- #1495, bằng cách cập nhật siêu dữ liệu (hình thu nhỏ, tiêu đề và số lượng video) ngay khi người dùng truy cập vào danh sách phát.
+- #1475, bằng cách đăng ký chế độ xem trong cơ sở dữ liệu khi người dùng bắt đầu video trên trình phát bên ngoài trên đoạn chi tiết.
+- Sửa lỗi màn hình hết thời gian chờ trong chế độ bật lên. #1463 (Đã sửa #640)
+- Sửa lỗi trình phát video chính #1509
+- [#1412] Đã sửa lỗi chế độ lặp lại khiến người chơi NPE khi nhận được ý định mới trong khi hoạt động của người chơi ở trong nền.
+- Đã sửa lỗi thu nhỏ trình phát thành cửa sổ bật lên không hủy trình phát khi không được cấp quyền cửa sổ bật lên.

@@ -390,7 +390,7 @@
     <string name="overwrite_failed">無法覆寫檔案</string>
     <string name="download_already_pending">已有擱置中的下載與此同名</string>
     <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
-    <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
+    <string name="error_insufficient_storage_left">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
     <string name="confirm_prompt">您想要清除您的下載歷史記錄，還是刪除所有已下載的檔案？</string>
     <string name="enable_queue_limit">限制下載佇列</string>
@@ -534,7 +534,7 @@
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_repeat">循環播放</string>
     <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
-    <string name="notification_actions_summary">透過輕觸下方的通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示</string>
+    <string name="notification_actions_summary">透過輕觸下方的通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
     <string name="notification_action_3_title">第四動作按鈕</string>
     <string name="notification_action_2_title">第三動作按鈕</string>
@@ -640,7 +640,7 @@
     <string name="enqueued_next">已將下一個加入佇列</string>
     <string name="enqueue_next_stream">將下一個加入佇列</string>
     <string name="processing_may_take_a_moment">正在處理……可能需要一點時間</string>
-    <string name="manual_update_title">檢查更新</string>
+    <string name="check_for_updates">檢查更新</string>
     <string name="manual_update_description">手動檢查新版本</string>
     <string name="checking_updates_toast">正在檢查更新……</string>
     <string name="feed_new_items">新 feed 項目</string>
@@ -793,4 +793,21 @@
     <string name="share_playlist">分享播放清單</string>
     <string name="share_playlist_with_titles_message">分享包含播放清單名稱與影片標題等詳細資訊的播放清單，或是僅作為簡單的影片 URL 清單</string>
     <string name="video_details_list_item">- %1$s：%2$s</string>
+    <plurals name="replies">
+        <item quantity="other">%s 個回覆</item>
+    </plurals>
+    <string name="show_more">顯示更多</string>
+    <string name="show_less">顯示較少</string>
+    <string name="notification_actions_summary_android13">透過點擊下面的每個通知操作來編輯它。前三個動作（播放/暫停、上一個與下一個）由系統設定，無法自訂。</string>
+    <string name="error_insufficient_storage">裝置上沒有足夠的空間</string>
+    <string name="settings_category_backup_restore_title">備份與還原</string>
+    <string name="reset_settings_title">重設設定</string>
+    <string name="reset_settings_summary">將所有設定重設為預設值</string>
+    <string name="reset_all_settings">重設所有設定將會放棄您的所有偏好設定並重新啟動應用程式。
+\n
+\n您確定您想要繼續嗎？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。
+\n您想要啟用此功能嗎？</string>
 </resources>

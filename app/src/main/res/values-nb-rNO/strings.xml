@@ -30,7 +30,7 @@
     <string name="dark_theme_title">Mørk</string>
     <string name="light_theme_title">Lys</string>
     <string name="download_dialog_title">Last ned</string>
-    <string name="show_next_and_similar_title">Vis \"Neste\" og \"Lignende\" -videoer</string>
+    <string name="show_next_and_similar_title">Vis «Neste» og «Lignende» -videoer</string>
     <string name="unsupported_url">Nettadressen støttes ikke</string>
     <string name="content_language_title">Forvalgt innholdsspråk</string>
     <string name="settings_category_video_audio_title">Video og lyd</string>
@@ -395,7 +395,7 @@
     <string name="overwrite_failed">Kan ikke overskrive filen</string>
     <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
     <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
-    <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
+    <string name="error_insufficient_storage_left">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
     <string name="confirm_prompt">Ønsker du å slette din nedlastingshistorikk eller slette alle nedlastede filer\?</string>
@@ -558,7 +558,7 @@
     <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
     <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr en \"Begrenset modus\" som skjuler potensielt modent innhold</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr «Begrenset modus» som skjuler innhold antatt å være for voksne</string>
     <string name="show_age_restricted_content_summary">Vis innhold som muligens er uegnet for barn fordi det har en aldersgrense (som 18+)</string>
     <string name="notification_colorize_summary">La Android tilpasse varselets farge i henhold til hovedfargen i miniatyrbildet (merk at dette ikke er tilgjengelig på alle enheter)</string>
     <string name="notification_colorize_title">Fargelegg merknad</string>
@@ -651,7 +651,7 @@
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
     <string name="enqueue_next_stream">Still i kø neste</string>
     <string name="enqueued_next">I kø neste</string>
-    <string name="manual_update_title">Se etter oppdateringer</string>
+    <string name="check_for_updates">Se etter oppdateringer</string>
     <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
     <string name="crash_the_player">Krasj avspilleren</string>
     <string name="show_crash_the_player_title">Vis \"Krasj spilleren\"</string>
@@ -772,4 +772,30 @@
     <string name="no_streams">Ingen strømmer</string>
     <string name="channel_tab_channels">Kanaler</string>
     <string name="previous_stream">Forrige strøm</string>
+    <string name="show_more">Vis mer</string>
+    <plurals name="replies">
+        <item quantity="one">%s svar</item>
+        <item quantity="other">%s svar</item>
+    </plurals>
+    <string name="main_tabs_position_summary">Flytt hovedfanevelgeren til bunnen</string>
+    <string name="main_tabs_position_title">Hovedfaneposisjon</string>
+    <string name="channel_tab_videos">Videoer</string>
+    <string name="unknown_audio_track">Ukjent</string>
+    <string name="channel_tab_livestreams">Direkte</string>
+    <string name="rewind">Spol tilbake</string>
+    <string name="forward">Spol forover</string>
+    <string name="image_quality_title">Bildekvalitet</string>
+    <string name="show_less">Vis mindre</string>
+    <string name="share_playlist_with_titles">Del med titler</string>
+    <string name="share_playlist_with_list">Del nettadresse først</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer-innstillinger</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="audio_track_type_descriptive">beskrivende</string>
+    <string name="toggle_fullscreen">Veksle fullskjermsvising</string>
+    <string name="toggle_screen_orientation">Bytt skjermretning</string>
+    <string name="notification_actions_summary_android13">Rediger hver merknadshandling nedenfor ved å trykke på den. De første tre (spill av/pause, forrige, og neste) kan ikke tilpasses.</string>
+    <string name="use_exoplayer_decoder_fallback_title">Bruk ExoPlayers dekodings-tilbakefall</string>
+    <string name="settings_category_exoplayer_summary">Håndter noen ExoPlayer-innstillinger. Disse endringeren krever omstart av avspilleren.</string>
+    <string name="show_channel_tabs_summary">Hvilke faner som vises på kanalsidene</string>
 </resources>

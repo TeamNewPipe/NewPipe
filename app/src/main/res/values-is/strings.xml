@@ -438,7 +438,7 @@
     <string name="streams_notifications_network_title">Tegund tengingar</string>
     <string name="any_network">Allar</string>
     <string name="updates_setting_description">Sýna tilkynningu þegar ný útgáfa er fáanleg</string>
-    <string name="manual_update_title">Leita að uppfærslum</string>
+    <string name="check_for_updates">Leita að uppfærslum</string>
     <string name="manual_update_description">Leita handvirkt fyrir uppfærslum</string>
     <string name="minimize_on_exit_title">Fela þegar skipt er um forrit</string>
     <string name="minimize_on_exit_background_description">Nota bakgrunnsspilara</string>
@@ -680,7 +680,7 @@
     <string name="error_http_no_content">Netþjónninn sendir ekki gögn</string>
     <string name="error_http_unsupported_range">Netþjónninn styður ekki fjölþráðuð niðurhöl, reyndu aftur með @string/msg_threads = 1</string>
     <string name="error_postprocessing_stopped">NewPipe var lokað á meðan unnið var að skrá</string>
-    <string name="error_insufficient_storage">Ekkert pláss eftir á tæki</string>
+    <string name="error_insufficient_storage_left">Ekkert pláss eftir á tæki</string>
     <string name="error_progress_lost">Framvinda tapaðist vegna þess að skránni var eytt</string>
     <string name="error_download_resource_gone">Get ekki endurheimt þetta niðurhal</string>
     <string name="clear_download_history">Hreinsa niðurhalsferil</string>

@@ -7,6 +7,8 @@
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -57,7 +59,8 @@
     <string name="notification_action_2_title">Third action button</string>
     <string name="notification_action_3_title">Fourth action button</string>
     <string name="notification_action_4_title">Fifth action button</string>
-    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_summary_android13">Edit each notification action below by tapping on it. The first three actions (play/pause, previous and next) are set by the system and cannot be customized.</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
@@ -152,6 +155,7 @@
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
+    <string name="settings_category_backup_restore_title">Backup and restore</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -554,8 +558,11 @@
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
-    <string name="manual_update_title">Check for updates</string>
+    <string name="check_for_updates">Check for updates</string>
+    <string name="auto_update_check_description">NewPipe can automatically check for new versions from time to time and notify you once they are available.\nDo you want to enable this?</string>
+    <string name="manual_update_title" translatable="false">@string/check_for_updates</string>
     <string name="manual_update_description">Manually check for new versions</string>
+
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -595,6 +602,10 @@
         <item quantity="one">Download finished</item>
         <item quantity="other">%s downloads finished</item>
     </plurals>
+    <string name="reset_settings_title">Reset settings</string>
+    <string name="reset_settings_summary">Reset all settings to their default values</string>
+    <!-- dialog about resetting settings -->
+    <string name="reset_all_settings">Resetting all settings will discard all of your preferred settings and restarts the app.\n\nAre you sure you want to proceed?</string>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
@@ -615,7 +626,8 @@
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
     <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
-    <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_insufficient_storage">Not enough free space on device</string>
+    <string name="error_insufficient_storage_left">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
@@ -838,4 +850,10 @@
     <string name="share_playlist_with_list">Share URL list</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s\n%2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s reply</item>
+        <item quantity="other">%s replies</item>
+    </plurals>
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
 </resources>

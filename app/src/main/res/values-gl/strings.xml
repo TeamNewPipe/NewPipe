@@ -419,7 +419,7 @@
     <string name="error_download_resource_gone">Non se pode recuperar esta descarga</string>
     <string name="error_timeout">O tempo de espera da conexión</string>
     <string name="error_progress_lost">Perdeuse o progreso porque se eliminou o ficheiro</string>
-    <string name="error_insufficient_storage">Non queda espazo no dispositivo</string>
+    <string name="error_insufficient_storage_left">Non queda espazo no dispositivo</string>
     <string name="error_postprocessing_stopped">NewPipe pechouse mentres se traballaba no ficheiro</string>
     <string name="error_postprocessing_failed">Fallou o post-procesamento</string>
     <string name="error_http_not_found">Non se atopou</string>
@@ -658,7 +658,7 @@
     <string name="error_report_notification_title">NewPipe atopou un erro, presione para reportar</string>
     <string name="detail_pinned_comment_view_description">Comentario fixado</string>
     <string name="enqueued_next">Enfileirado</string>
-    <string name="manual_update_title">Procurar actualizacións</string>
+    <string name="check_for_updates">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>

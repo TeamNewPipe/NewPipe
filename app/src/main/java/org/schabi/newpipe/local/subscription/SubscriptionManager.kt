@@ -100,7 +100,9 @@ class SubscriptionManager(context: Context) {
         val subscriptionEntity = subscriptionTable.getSubscription(info.uid)
 
         subscriptionEntity.name = info.name
-        subscriptionEntity.avatarUrl = info.avatarUrl
+
+        // some services do not provide an avatar URL
+        info.avatarUrl?.let { subscriptionEntity.avatarUrl = it }
 
         // these two fields are null if the feed info was fetched using the fast feed method
         info.description?.let { subscriptionEntity.description = it }

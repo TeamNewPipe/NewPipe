@@ -18,9 +18,10 @@
 
 *Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-<b>警告：這是測試版本，可能會發生錯誤。如果遇到錯誤，請在我們的 GITHUB REPO 開 ISSUE 回報。</b>
-
-<b>將 NEWPIPE 或其任何分支上傳至 GOOGLE PLAY 商店違反了他們的使用者合約。</b>
+> [!warning]
+> <b>這是測試版本，可能會發生錯誤。如果遇到錯誤，請在我們的 GITHUB REPO 開 ISSUE 回報。</b>
+>
+> <b>將 NEWPIPE 或其任何分支上傳至 GOOGLE PLAY 商店違反了他們的使用者合約。</b>
 
 <span id="screenshots"></span>
 ## 截圖

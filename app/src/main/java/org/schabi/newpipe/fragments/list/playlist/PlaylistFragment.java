@@ -1,7 +1,9 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
+import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
@@ -48,9 +51,10 @@ import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.text.TextEllipsizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +88,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem playlistBookmarkButton;
+
+    private long streamCount;
+    private long playlistOverallDurationSeconds;
 
     public static PlaylistFragment getInstance(final int serviceId, final String url,
                                                final String name) {
@@ -274,6 +281,12 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     }
 
     @Override
+    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
+        super.handleNextItems(result);
+        setStreamCountAndOverallDuration(result.getItems(), !result.hasNextPage());
+    }
+
+    @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
 
@@ -318,8 +331,31 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .into(headerBinding.uploaderAvatarView);
         }
 
-        headerBinding.playlistStreamCount.setText(Localization
-                .localizeStreamCount(getContext(), result.getStreamCount()));
+        streamCount = result.getStreamCount();
+        setStreamCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
+
+        final Description description = result.getDescription();
+        if (description != null && description != Description.EMPTY_DESCRIPTION
+                && !isBlank(description.getContent())) {
+            final TextEllipsizer ellipsizer = new TextEllipsizer(
+                    headerBinding.playlistDescription, 5, getServiceById(result.getServiceId()));
+            ellipsizer.setStateChangeListener(isEllipsized ->
+                headerBinding.playlistDescriptionReadMore.setText(
+                        Boolean.TRUE.equals(isEllipsized) ? R.string.show_more : R.string.show_less
+                ));
+            ellipsizer.setOnContentChanged(canBeEllipsized -> {
+                headerBinding.playlistDescriptionReadMore.setVisibility(
+                        Boolean.TRUE.equals(canBeEllipsized) ? View.VISIBLE : View.GONE);
+                if (Boolean.TRUE.equals(canBeEllipsized)) {
+                    ellipsizer.ellipsize();
+                }
+            });
+            ellipsizer.setContent(description);
+            headerBinding.playlistDescriptionReadMore.setOnClickListener(v -> ellipsizer.toggle());
+        } else {
+            headerBinding.playlistDescription.setVisibility(View.GONE);
+            headerBinding.playlistDescriptionReadMore.setVisibility(View.GONE);
+        }
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
@@ -459,4 +495,20 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         playlistBookmarkButton.setIcon(drawable);
         playlistBookmarkButton.setTitle(titleRes);
     }
+
+    private void setStreamCountAndOverallDuration(final List<StreamInfoItem> list,
+                                                  final boolean isDurationComplete) {
+        if (activity != null && headerBinding != null) {
+            playlistOverallDurationSeconds += list.stream()
+                    .mapToLong(x -> x.getDuration())
+                    .sum();
+            headerBinding.playlistStreamCount.setText(
+                Localization.concatenateStrings(
+                    Localization.localizeStreamCount(activity, streamCount),
+                    Localization.getDurationString(playlistOverallDurationSeconds,
+                            isDurationComplete, true))
+            );
+        }
+    }
+
 }

@@ -553,7 +553,7 @@
     <string name="show_original_time_ago_title">Elementams rodyti orginalų \"prieš\" laiką</string>
     <string name="error_connect_host">Nepavyksta prisijungti prie serverio</string>
     <string name="error_file_creation">Failo sukurti nepavyko</string>
-    <string name="error_insufficient_storage">Įrenginyje nebėra vietos</string>
+    <string name="error_insufficient_storage_left">Įrenginyje nebėra vietos</string>
     <string name="error_unknown_host">Nepavyko rasti serverio</string>
     <string name="permission_denied">Sistema uždraudė veiksmą</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Rodyti tik negrupuotas prenumeratas</string>
@@ -664,7 +664,7 @@
     <string name="enqueued_next">Sekantis pridėtas į eilę</string>
     <string name="enqueue_next_stream">Įtraukti į eilę sekantį</string>
     <string name="processing_may_take_a_moment">Apdorojama… tai gali užtrukti</string>
-    <string name="manual_update_title">Tikrinti ar yra atnaujinimų</string>
+    <string name="check_for_updates">Tikrinti ar yra atnaujinimų</string>
     <string name="manual_update_description">Tikrinti ar yra atnaujinimų rankiniu būdu</string>
     <string name="checking_updates_toast">Tikrinti ar yra atnaujinimų…</string>
     <string name="feed_new_items">Nauji sklaidos kanalo elementai</string>

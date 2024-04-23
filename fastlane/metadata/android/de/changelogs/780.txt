@@ -1,0 +1,11 @@
+Veränderungen in 0,17,3
+
+Verbessert
+• Hinzugefügte Option, um die Wiedergabezustände #2550 zu löschen
+• Versteckte Verzeichnisse in der Datei Picker #2591 anzeigen
+• Unterstützung von URLs von `invidio.us` Instanzen, die mit NewPipe #2488 geöffnet werden sollen
+• Unterstützung für `music.youtube.com` URLs TeamNewPipe/NewPipeExtractor#194
+
+Behoben
+• [YouTube] Behoben 'java.lang.IllegalArgumentException #192
+• [YouTube] Feste Live-Streams nicht arbeiten TeamNewPipe/NewPipeExtractor#195

@@ -1,7 +1,7 @@
 ### Förbättringar
-- Import/export inställningar #1333
+- Import/exportinställningar #1333
 - Minskade överdragningen (prestandaförbättring) #1371
-- Små kod förbättringar #1375
+- Små kodförbättringar #1375
 - La till allt om GDPR #1420
 
 ### Fixade

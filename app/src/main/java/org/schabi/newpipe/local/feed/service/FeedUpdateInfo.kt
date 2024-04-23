@@ -18,7 +18,7 @@ data class FeedUpdateInfo(
     @NotificationMode
     val notificationMode: Int,
     val name: String,
-    val avatarUrl: String,
+    val avatarUrl: String?,
     val url: String,
     val serviceId: Int,
     // description and subscriberCount are null if the constructor info is from the fast feed method

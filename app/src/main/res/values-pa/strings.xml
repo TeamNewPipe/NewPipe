@@ -395,7 +395,7 @@
     <string name="overwrite_failed">ਫਾਈਲ ਓਵਰਰਾਈਟ ਨਹੀਂ ਹੋ ਸਕਦੀ</string>
     <string name="download_already_pending">ਇਸ ਨਾਮ ਦਾ ਇੱਕ ਡਾਊਨਲੋਡ ਬਕਾਇਆ ਹੈ</string>
     <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ ਨਿਊਪਾਈਪ ਬੰਦ ਕੀਤੀ ਗਈ</string>
-    <string name="error_insufficient_storage">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
+    <string name="error_insufficient_storage_left">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
     <string name="error_progress_lost">ਪ੍ਰਗਤੀ ਖਤਮ ਹੋ ਗਈ, ਕਿਉਂਕਿ ਫਾਈਲ ਮਿਟਾਈ ਗਈ</string>
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਸਮਾਪਤ</string>
     <string name="confirm_prompt">ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਜਾਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
@@ -602,7 +602,7 @@
     <string name="notification_action_buffering">ਬਫ਼ਰਿੰਗ</string>
     <string name="notification_action_shuffle">ਸ਼ਫਲ</string>
     <string name="notification_action_repeat">ਦੁਹਰਾਓ</string>
-    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ</string>
+    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
     <string name="notification_actions_at_most_three">ਤੁਸੀਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ!</string>
     <string name="notification_action_4_title">ਪੰਜਵਾਂ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_3_title">ਚੌਥਾ ਕਾਰਵਾਈ ਬਟਨ</string>
@@ -669,7 +669,7 @@
     <string name="enable_streams_notifications_summary">ਸਬਸਕ੍ਰਾਈਬ ਕੀਤੇ ਚੈਨਲ ਉੱਪਰ ਨਵੀਂ ਸਟ੍ਰੀਮ ਉੱਪਲਬਧ ਹੋਣ ਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਰਾਹੀਂ ਸੂਚਿਤ ਕਰੋ</string>
     <string name="streams_notifications_interval_title">ਜਾਂਚ ਅਵਧੀ</string>
     <string name="any_network">ਕੋਈ ਵੀ ਨੈੱਟਵਰਕ</string>
-    <string name="manual_update_title">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
+    <string name="check_for_updates">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
     <string name="low_quality_smaller">ਘੱਟ ਗੁਣਵੱਤਾ (ਛੋਟਾ ਆਕਾਰ)</string>
     <string name="delete_downloaded_files_confirm">ਡਿਸਕ ਤੋਂ ਸਾਰੀਆਂ ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫਾਈਲਾਂ ਹਟਾਓ\?</string>
     <plurals name="deleted_downloads_toast">
@@ -806,4 +806,11 @@
     <string name="share_playlist">ਪਲੇਲਿਸਟ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="share_playlist_with_titles_message">ਪਲੇਲਿਸਟ ਦੇ ਨਾਮ ਅਤੇ ਵੀਡੀਓ ਸਿਰਲੇਖਾਂ ਜਾਂ ਵੀਡੀਓ URL ਦੀ ਇੱਕ ਸਧਾਰਨ ਸੂਚੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਰਵਿਆਂ ਨਾਲ ਪਲੇਲਿਸਟ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s ਜਵਾਬ</item>
+        <item quantity="other">%s ਜਵਾਬ</item>
+    </plurals>
+    <string name="show_more">ਹੋਰ ਵਿਖਾਓ</string>
+    <string name="notification_actions_summary_android13">ਇਸ \'ਤੇ ਟੈਪ ਕਰਕੇ ਹੇਠਾਂ ਹਰੇਕ ਸੂਚਨਾ ਕਾਰਵਾਈ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ। ਪਹਿਲੀਆਂ ਤਿੰਨ ਕਾਰਵਾਈਆਂ (ਪਲੇ/ਪੌਜ਼, ਪਿਛਲਾ ਅਤੇ ਅਗਲਾ) ਸਿਸਟਮ ਦੁਆਰਾ ਸੈੱਟ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
+    <string name="show_less">ਘੱਟ ਦਿਖਾਓ</string>
 </resources>

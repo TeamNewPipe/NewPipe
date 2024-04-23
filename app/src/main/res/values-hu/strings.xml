@@ -348,7 +348,7 @@
     <string name="error_download_resource_gone">A letöltést nem lehet helyrehozni</string>
     <string name="error_timeout">Kapcsolati időtúllépés</string>
     <string name="error_progress_lost">Az előrehaladás elveszett, mert a fájlt törölték</string>
-    <string name="error_insufficient_storage">Nincs hely az eszközön</string>
+    <string name="error_insufficient_storage_left">Nincs hely az eszközön</string>
     <string name="error_postprocessing_stopped">A NewPipe leállt a fájl feldolgozása közben</string>
     <string name="error_postprocessing_failed">Utófeldolgozás sikertelen</string>
     <string name="error_http_not_found">Nincs talalat</string>
@@ -569,7 +569,7 @@
     <string name="processing_may_take_a_moment">Feldolgozás… Ez eltarthat egy ideig</string>
     <string name="enable_disposed_exceptions_summary">Az eltávolítás utáni, fragment vagy activity életcikluson kívüli, nem kézbesíthető Rx kivételek jelentésének kényszerítése</string>
     <string name="show_original_time_ago_title">Eredeti „ennyi ideje” megjelenítése az elemeken</string>
-    <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor</string>
+    <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor.</string>
     <string name="show_image_indicators_summary">Picasso színes szalagok megjelenítése a képek fölött, megjelölve a forrásukat: piros a hálózathoz, kék a lemezhez, zöld a memóriához</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Minden letöltésnél meg fogja kérdezni, hogy hova mentse el</string>
     <string name="choose_instance_prompt">Válasszon egy példányt</string>
@@ -661,7 +661,7 @@
     <string name="show_crash_the_player_title">A „lejátszó összeomlasztása” lehetőség megjelenítése</string>
     <string name="show_crash_the_player_summary">Megjeleníti az összeomlasztási lehetőséget a lejátszó használatakor</string>
     <string name="unhook_checkbox">Hangmagasság megtartása (torzítást okozhat)</string>
-    <string name="manual_update_title">Frissítések keresése</string>
+    <string name="check_for_updates">Frissítések keresése</string>
     <string name="dont_show">Ne jelenítse meg</string>
     <string name="remove_watched">Megnézettek eltávolítása</string>
     <string name="remove_watched_popup_title">Eltávolítja a megnézett videókat\?</string>
@@ -762,4 +762,66 @@
     <string name="main_tabs_position_summary">Kezdőlap választó alulra helyezése</string>
     <string name="no_live_streams">Nincs élő adatfolyam</string>
     <string name="no_streams">Nincs adatfolyam</string>
+    <string name="notification_actions_summary_android13">Az alábbi értesítési műveletek szerkesztéséhez koppintson rá. Az első három műveletet (lejátszás/szünet, előző és következő) a rendszer állítja be, és nem szabhatók testre.</string>
+    <string name="feed_fetch_channel_tabs">Csatornalapok lekérése</string>
+    <string name="feed_fetch_channel_tabs_summary">A hírcsatorna frissítésekor lekérendő lapok. Ennek az opciónak nincs hatása, ha egy csatorna frissítése gyors módban történik.</string>
+    <string name="metadata_thumbnails">Miniatűrök</string>
+    <string name="metadata_uploader_avatars">Feltöltő avatarjai</string>
+    <string name="metadata_subchannel_avatars">Alcsatorna avatarok</string>
+    <string name="metadata_avatars">Avatarok</string>
+    <string name="metadata_banners">Bannerek</string>
+    <string name="metadata_subscribers">Feliratkozók</string>
+    <string name="channel_tab_channels">Csatornák</string>
+    <string name="channel_tab_playlists">Lejátszási listák</string>
+    <string name="channel_tab_albums">Albumok</string>
+    <string name="channel_tab_about">Névjegy</string>
+    <string name="show_channel_tabs">Csatorna fülek</string>
+    <string name="show_channel_tabs_summary">Milyen lapok jelennek meg a csatornaoldalakon</string>
+    <string name="open_play_queue">Lejátszási sor megnyitása</string>
+    <string name="toggle_screen_orientation">Képernyő tájolásának váltása</string>
+    <string name="toggle_fullscreen">Teljes képernyőre váltás</string>
+    <string name="next_stream">Következő közvetítés</string>
+    <string name="previous_stream">Előző közvetítés</string>
+    <string name="play">Lejátszás</string>
+    <string name="replay">Visszajátszás</string>
+    <string name="more_options">További opciók</string>
+    <string name="duration">Időtartam</string>
+    <string name="rewind">Visszatekerés</string>
+    <string name="forward">Előre</string>
+    <string name="image_quality_title">Képminőség</string>
+    <string name="image_quality_summary">Az adat- és memóriahasználat csökkentése érdekében válassza ki a képek minőségét valamint azt, hogy a képek egyáltalán betöltésre kerüljenek. A változtatások törlik a memóriában és a lemezen lévő képgyorsítótárat – %s</string>
+    <string name="image_quality_none">Ne töltsön be képeket</string>
+    <string name="image_quality_low">Alacsony minőség</string>
+    <string name="image_quality_medium">Közepes minőség</string>
+    <string name="image_quality_high">Magas minőségű</string>
+    <string name="question_mark">\?</string>
+    <string name="share_playlist">Lejátszási lista megosztása</string>
+    <string name="share_playlist_with_titles_message">Lejátszási lista megosztása olyan részletekkel, mint például a lejátszási lista neve és a videó címe, vagy a videó URL-jei egyszerű listájaként</string>
+    <string name="share_playlist_with_titles">Megosztás címekkel</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s válasz</item>
+        <item quantity="other">%s válaszok</item>
+    </plurals>
+    <string name="show_more">Továbbiak</string>
+    <string name="show_less">Mutass kevesebbet</string>
+    <string name="loading_metadata_title">Metaadatok betöltése…</string>
+    <string name="share_playlist_with_list">URL-lista megosztása</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="channel_tab_videos">Videók</string>
+    <string name="channel_tab_tracks">Dalok</string>
+    <string name="channel_tab_shorts">Rövidek</string>
+    <string name="channel_tab_livestreams">Élő</string>
+    <string name="error_insufficient_storage">Nincs elég szabad hely az eszközön</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
+    <string name="auto_update_check_description">A NewPipe időről időre automatikusan ellenőrzi az új verziókat, és értesít, amint azok elérhetővé válnak.
+\nSzeretné engedélyezni ezt?</string>
+    <string name="reset_settings_title">Beállítások alaphelyzetbe állítása</string>
+    <string name="reset_settings_summary">Minden beállítás visszaállítása alapértelmezett értékre</string>
+    <string name="reset_all_settings">Az összes beállítás visszaállítása elveti az összes preferált beállítást, és újraindítja az alkalmazást.
+\n
+\nBiztosan folytatja?</string>
 </resources>

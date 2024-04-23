@@ -426,7 +426,7 @@
     <string name="any_network">ნებისმიერი ქსელი</string>
     <string name="updates_setting_title">განახლებები</string>
     <string name="updates_setting_description">მაჩვენე შეტყობინება აპის განახლების მოთხოვნით, როდესაც ხელმისაწვდომი იქნება ახალი ვერსია</string>
-    <string name="manual_update_title">Შეამოწმოთ განახლებები</string>
+    <string name="check_for_updates">Შეამოწმოთ განახლებები</string>
     <string name="manual_update_description">ხელით შეამოწმეთ ახალი ვერსიები</string>
     <string name="minimize_on_exit_title">მინიმიზაცია აპის გადამრთველზე</string>
     <string name="minimize_on_exit_summary">მოქმედება სხვა აპზე გადასვლისას მთავარი ვიდეო დამკვრელიდან — %s</string>
@@ -461,7 +461,7 @@
     <string name="error_http_unsupported_range">სერვერი არ იღებს მრავალ ნაკადის ჩამოტვირთვებს, ხელახლა სცადეთ @string/msg_threads = 1</string>
     <string name="error_http_not_found">არ მოიძებნა</string>
     <string name="error_postprocessing_failed">შემდგომი დამუშავება ვერ მოხერხდა</string>
-    <string name="error_insufficient_storage">მოწყობილობაზე არ არის დარჩენილი თავისუფალი ადგილი</string>
+    <string name="error_insufficient_storage_left">მოწყობილობაზე არ არის დარჩენილი თავისუფალი ადგილი</string>
     <string name="error_timeout">Კავშირის დრო ამოიწურა</string>
     <string name="error_download_resource_gone">ამ ჩამოტვირთვის აღდგენა შეუძლებელია</string>
     <string name="delete_downloaded_files">გადმოწერილი ფაილების წაშლა</string>

@@ -49,6 +49,8 @@ import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -58,7 +60,6 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
@@ -68,12 +69,10 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void>
-        implements PlaylistControlViewHolder {
-    /** Save the list 10 seconds after the last change occurred. */
-    private static final long SAVE_DEBOUNCE_MILLIS = 10000;
+        implements PlaylistControlViewHolder, DebounceSavable {
+
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
     protected Long playlistId;
@@ -90,13 +89,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private LocalPlaylistManager playlistManager;
     private Subscription databaseSubscription;
 
-    private PublishSubject<Long> debouncedSaveSignal;
     private CompositeDisposable disposables;
 
     /** Whether the playlist has been fully loaded from db. */
     private AtomicBoolean isLoadingComplete;
-    /** Whether the playlist has been modified (e.g. items reordered or deleted) */
-    private AtomicBoolean isModified;
+    /** Used to debounce saving playlist edits to disk. */
+    private DebounceSaver debounceSaver;
     /** Flag to prevent simultaneous rewrites of the playlist. */
     private boolean isRewritingPlaylist = false;
 
@@ -121,12 +119,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
-        debouncedSaveSignal = PublishSubject.create();
 
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
-        isModified = new AtomicBoolean();
+        debounceSaver = new DebounceSaver(this);
     }
 
     @Override
@@ -164,17 +161,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         headerBinding.playlistTitleView.setSelected(true);
 
         return headerBinding;
-    }
-
-    /**
-     * <p>Commit changes immediately if the playlist has been modified.</p>
-     *  Delete operations and other modifications will be committed to ensure that the database
-     *  is up to date, e.g. when the user adds the just deleted stream from another fragment.
-     */
-    public void commitChanges() {
-        if (isModified != null && isModified.get()) {
-            saveImmediate();
-        }
     }
 
     @Override
@@ -243,10 +229,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (disposables != null) {
             disposables.clear();
         }
-        disposables.add(getDebouncedSaver());
+
+        if (debounceSaver != null) {
+            disposables.add(debounceSaver.getDebouncedSaver());
+            debounceSaver.setNoChangesToSave();
+        }
 
         isLoadingComplete.set(false);
-        isModified.set(false);
 
         playlistManager.getPlaylistStreams(playlistId)
                 .onBackpressureLatest()
@@ -304,8 +293,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (debouncedSaveSignal != null) {
-            debouncedSaveSignal.onComplete();
+        if (debounceSaver != null) {
+            debounceSaver.getDebouncedSaveSignal().onComplete();
         }
         if (disposables != null) {
             disposables.dispose();
@@ -314,12 +303,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             tabsPagerAdapter.getLocalPlaylistFragments().remove(this);
         }
 
-        debouncedSaveSignal = null;
+        debounceSaver = null;
         playlistManager = null;
         disposables = null;
 
         isLoadingComplete = null;
-        isModified = null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -343,7 +331,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void onNext(final List<PlaylistStreamEntry> streams) {
                 // Skip handling the result after it has been modified
-                if (isModified == null || !isModified.get()) {
+                if (debounceSaver == null || !debounceSaver.getIsModified()) {
                     handleResult(streams);
                     isLoadingComplete.set(true);
                 }
@@ -495,14 +483,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(itemsToKeep);
-                    saveChanges();
+                    debounceSaver.setHasChangesToSave();
 
                     if (thumbnailVideoRemoved) {
                         updateThumbnailUrl();
                     }
 
                     final long videoCount = itemListAdapter.getItemsList().size();
-                    setVideoCount(videoCount);
+                    setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
                     if (videoCount == 0) {
                         showEmptyState();
                     }
@@ -532,7 +520,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
         }
-        setVideoCount(itemListAdapter.getItemsList().size());
+        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
@@ -665,8 +653,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .subscribe(itemsToKeep -> {
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(itemsToKeep);
-                    setVideoCount(itemListAdapter.getItemsList().size());
-                    saveChanges();
+                    setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
+                    debounceSaver.setHasChangesToSave();
 
                     hideLoading();
                     isRewritingPlaylist = false;
@@ -684,42 +672,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             updateThumbnailUrl();
         }
 
-        setVideoCount(itemListAdapter.getItemsList().size());
-        saveChanges();
+        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
+        debounceSaver.setHasChangesToSave();
     }
 
-    private void saveChanges() {
-        if (isModified == null || debouncedSaveSignal == null) {
-            return;
-        }
-
-        isModified.set(true);
-        debouncedSaveSignal.onNext(System.currentTimeMillis());
-    }
-
-    private Disposable getDebouncedSaver() {
-        if (debouncedSaveSignal == null) {
-            return Disposable.empty();
-        }
-
-        return debouncedSaveSignal
-                .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> saveImmediate(), throwable ->
-                        showError(new ErrorInfo(throwable, UserAction.SOMETHING_ELSE,
-                                "Debounced saver")));
-    }
-
-    private void saveImmediate() {
+    /**
+     * <p>Commit changes immediately if the playlist has been modified.</p>
+     *  Delete operations and other modifications will be committed to ensure that the database
+     *  is up to date, e.g. when the user adds the just deleted stream from another fragment.
+     */
+    @Override
+    public void saveImmediate() {
         if (playlistManager == null || itemListAdapter == null) {
             return;
         }
 
         // List must be loaded and modified in order to save
-        if (isLoadingComplete == null || isModified == null
-                || !isLoadingComplete.get() || !isModified.get()) {
-            Log.w(TAG, "Attempting to save playlist when local playlist "
-                    + "is not loaded or not modified: playlist id=[" + playlistId + "]");
+        if (isLoadingComplete == null || debounceSaver == null
+                || !isLoadingComplete.get() || !debounceSaver.getIsModified()) {
             return;
         }
 
@@ -740,8 +710,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {
-                            if (isModified != null) {
-                                isModified.set(false);
+                            if (debounceSaver != null) {
+                                debounceSaver.setNoChangesToSave();
                             }
                         },
                         throwable -> showError(new ErrorInfo(throwable,
@@ -784,7 +754,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
-                    saveChanges();
+                    debounceSaver.setHasChangesToSave();
                 }
                 return isSwapped;
             }
@@ -855,10 +825,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         this.name = !TextUtils.isEmpty(title) ? title : "";
     }
 
-    private void setVideoCount(final long count) {
+    private void setStreamCountAndOverallDuration(final ArrayList<LocalItem> itemsList) {
         if (activity != null && headerBinding != null) {
-            headerBinding.playlistStreamCount.setText(Localization
-                    .localizeStreamCount(activity, count));
+            final long streamCount = itemsList.size();
+            final long playlistOverallDurationSeconds = itemsList.stream()
+                    .filter(PlaylistStreamEntry.class::isInstance)
+                    .map(PlaylistStreamEntry.class::cast)
+                    .map(PlaylistStreamEntry::getStreamEntity)
+                    .mapToLong(StreamEntity::getDuration)
+                    .sum();
+            headerBinding.playlistStreamCount.setText(
+                    Localization.concatenateStrings(
+                            Localization.localizeStreamCount(activity, streamCount),
+                            Localization.getDurationString(playlistOverallDurationSeconds,
+                                                            true, true))
+            );
         }
     }
 

@@ -1,11 +1,18 @@
 package org.schabi.newpipe.streams.io;
 
+import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
+import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
+import android.system.Os;
+import android.system.StructStatVfs;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -15,6 +22,7 @@ import androidx.documentfile.provider.DocumentFile;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -26,10 +34,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
-import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-
 public class StoredDirectoryHelper {
     private static final String TAG = StoredDirectoryHelper.class.getSimpleName();
     public static final int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -38,6 +42,10 @@ public class StoredDirectoryHelper {
     private Path ioTree;
     private DocumentFile docTree;
 
+    /**
+     * Context is `null` for non-SAF files, i.e. files that use `ioTree`.
+     */
+    @Nullable
     private Context context;
 
     private final String tag;
@@ -166,6 +174,46 @@ public class StoredDirectoryHelper {
      */
     public boolean isDirect() {
         return docTree == null;
+    }
+
+    /**
+     * Get free memory of the storage partition this file belongs to (root of the directory).
+     * See <a href="https://stackoverflow.com/q/31171838">StackOverflow</a> and
+     * <a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/fstatvfs.html">
+     *     {@code statvfs()} and {@code fstatvfs()} docs</a>
+     *
+     * @return amount of free memory in the volume of current directory (bytes), or {@link
+     * Long#MAX_VALUE} if an error occurred
+     */
+    public long getFreeStorageSpace() {
+        try {
+            final StructStatVfs stat;
+
+            if (ioTree != null) {
+                // non-SAF file, use statvfs with the path directly (also, `context` would be null
+                // for non-SAF files, so we wouldn't be able to call `getContentResolver` anyway)
+                stat = Os.statvfs(ioTree.toString());
+
+            } else {
+                // SAF file, we can't get a path directly, so obtain a file descriptor first
+                // and then use fstatvfs with the file descriptor
+                try (ParcelFileDescriptor parcelFileDescriptor =
+                             context.getContentResolver().openFileDescriptor(getUri(), "r")) {
+                    if (parcelFileDescriptor == null) {
+                        return Long.MAX_VALUE;
+                    }
+                    final FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+                    stat = Os.fstatvfs(fileDescriptor);
+                }
+            }
+
+            // this is the same formula used inside the FsStat class
+            return stat.f_bavail * stat.f_frsize;
+        } catch (final Throwable e) {
+            // ignore any error
+            Log.e(TAG, "Could not get free storage space", e);
+            return Long.MAX_VALUE;
+        }
     }
 
     /**

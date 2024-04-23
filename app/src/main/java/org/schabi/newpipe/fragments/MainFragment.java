@@ -220,7 +220,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void commitPlaylistTabs() {
         pagerAdapter.getLocalPlaylistFragments()
                 .stream()
-                .forEach(LocalPlaylistFragment::commitChanges);
+                .forEach(LocalPlaylistFragment::saveImmediate);
     }
 
     private void updateTabLayoutPosition() {
@@ -282,7 +282,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
          * Keep reference to LocalPlaylistFragments, because their data can be modified by the user
          * during runtime and changes are not committed immediately. However, in some cases,
          * the changes need to be committed immediately by calling
-         * {@link LocalPlaylistFragment#commitChanges()}.
+         * {@link LocalPlaylistFragment#saveImmediate()}.
          * The fragments are removed when {@link LocalPlaylistFragment#onDestroy()} is called.
          */
         private final List<LocalPlaylistFragment> localPlaylistFragments = new ArrayList<>();

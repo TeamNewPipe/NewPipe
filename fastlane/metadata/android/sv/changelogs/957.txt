@@ -1,0 +1,10 @@
+• Förenade specifika kö åtgärder
+• Två finger gest att stänga spelare
+• Tillåt rensning av reCAPTCHA-cookies
+• Inställning för att inte färglägga meddelande
+• Förbättra hur videoinformation öppnas för att fixa oändlig buffring, buggigt beteende när du delar till NewPipe och andra inkonsekvenser
+• Snabba upp YouTube-videor och fixa åldersbegränsning
+• Fixa krasch vid snabb fram/bak spolning
+• Ordna inte listor genom att dra miniatyrer
+• Kom alltid ihåg popup egenskaper
+• Lägga till Santali språk

@@ -47,7 +47,7 @@
     <string name="controls_popup_title">ፖፕኣፕ</string>
     <string name="default_resolution_title">ትሑዝ ድንቀት</string>
     <string name="download_path_summary">ዝወረዱ ናይ ተንቃሳቀሴ-ምስሌ ፋይላት ኣብዚ ይኽዘኑ</string>
-    <string name="default_video_format_title"></string>
+    <string name="default_video_format_title"/>
     <string name="notification_scale_to_square_image_title">ናይ እኽሊ ምስሊ ምስ ናይ 1:1 ርክባት</string>
     <string name="notification_action_0_title">ቀዳማይ ወሰን ተጠዋቃ</string>
     <string name="notification_action_repeat">ደገመ</string>
@@ -62,4 +62,9 @@
     <string name="download_path_title">ተንቃሳቀሴ-ምስሌ ፋይል ኣራግፍ</string>
     <string name="tab_choose">ታብ ምረጽ</string>
     <string name="controls_background_title">ድሕረ ባይታ</string>
+    <string name="light_theme_title">ብርሃን</string>
+    <string name="dark_theme_title">ጸልማት</string>
+    <string name="notification_action_1_title">ካልኣይ ስጉምቲ መጠወቒ</string>
+    <string name="notification_action_2_title">ሳልሳይ ስጉምቲ መጠወቒ</string>
+    <string name="notification_action_4_title">ሓሙሻይ ስጉምቲ መጠወቒ</string>
 </resources>

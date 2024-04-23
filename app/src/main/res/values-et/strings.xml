@@ -411,7 +411,7 @@
     <string name="notification_action_shuffle">Aja segi</string>
     <string name="notification_action_repeat">Korda</string>
     <string name="notification_actions_at_most_three">Sa saad valida kuni kolm tegevust, mida kuvatakse lühiteavituses!</string>
-    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates</string>
+    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates.</string>
     <string name="notification_action_4_title">Viies tegevusnupp</string>
     <string name="notification_action_3_title">Neljas tegevusnupp</string>
     <string name="notification_action_2_title">Kolmas tegevusnupp</string>
@@ -505,7 +505,7 @@
     <string name="clear_download_history">Kustuta allalaadimiste ajalugu</string>
     <string name="error_download_resource_gone">Seda allalaadimist ei saa uuesti alustada</string>
     <string name="error_timeout">Ühendus aegus</string>
-    <string name="error_insufficient_storage">Seadmes pole enam ruumi</string>
+    <string name="error_insufficient_storage_left">Seadmes pole enam ruumi</string>
     <string name="download_already_pending">Sellise nimega allalaadimine on juba pooleli</string>
     <string name="overwrite_failed">faili asendamine ei õnnestu</string>
     <string name="feed_create_new_group_button_title">Uus</string>
@@ -653,7 +653,7 @@
     <string name="enqueue_next_stream">Lisa esitamiseks järgmisena</string>
     <string name="processing_may_take_a_moment">Töötlen andmeid… Võib kuluda mõni hetk</string>
     <string name="checking_updates_toast">Kontrollin uuendusi…</string>
-    <string name="manual_update_title">Kontrolli uuendusi</string>
+    <string name="check_for_updates">Kontrolli uuendusi</string>
     <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
     <string name="feed_new_items">Uued andmevoo kirjed</string>
     <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
@@ -806,4 +806,22 @@
     <string name="share_playlist">Jaga esitusloendit</string>
     <string name="share_playlist_with_titles_message">Jaga esitusloendit kas väga detailse teabega palade kohta või lihtsa url\'ide loendina</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">Näita veel</string>
+    <plurals name="replies">
+        <item quantity="one">%s vastus</item>
+        <item quantity="other">%s vastust</item>
+    </plurals>
+    <string name="show_less">Näita vähem</string>
+    <string name="notification_actions_summary_android13">Muuda iga teavituse tegevust sellel toksates. Kolm esimest tegevust (esita/peata esitus, eelmine video, järgmine video) on süsteemsed ja neid ei saa muuta.</string>
+    <string name="settings_category_backup_restore_title">Varundus ja taastamine</string>
+    <string name="auto_update_check_description">NewPipe võib aeg-ajalt automaatselt kontrollida uute versioonide olemasolu ning sind vastavalt teavitada.
+\nKas sa soovid sellist võimalust kasuutada?</string>
+    <string name="reset_settings_title">Lähtesta seadistused</string>
+    <string name="reset_settings_summary">Lähtesta kõik seadistused nende vaikimisi väärtusteks</string>
+    <string name="error_insufficient_storage">Seadmes pole enam piisavalt vaba ruumi</string>
+    <string name="reset_all_settings">Kui lähtestad kõik seadistused, siis kõik sinu muudetud seadistused asendatakse vaikimisi väärtustega ja rakendus käivitub uuesti.
+\n
+\nKas sa soovid jätkata?</string>
+    <string name="yes">Jah</string>
+    <string name="no">Ei</string>
 </resources>

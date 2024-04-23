@@ -407,7 +407,7 @@
     <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
     <string name="download_already_pending">هناك تنزيل معلق بهذا الاسم</string>
     <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
-    <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
+    <string name="error_insufficient_storage_left">لم يتبقى مساحة في الجهاز</string>
     <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
     <string name="confirm_prompt">هل تريد محو سجل التنزيل، أم تريد حذف جميع الملفات التي تم تنزيلها؟</string>
@@ -584,7 +584,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">تكرار</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل إشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
+    <string name="notification_actions_summary">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها ليتم عرضها في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
     <string name="notification_action_2_title">زر الإجراء الثالث</string>
@@ -700,7 +700,7 @@
     <string name="enqueue_next_stream">وضع التالي على قائمة الانتظار</string>
     <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
     <string name="processing_may_take_a_moment">جاري المعالجة ... قد يستغرق لحظة</string>
-    <string name="manual_update_title">التحقق من وجود تحديثات</string>
+    <string name="check_for_updates">التحقق من وجود تحديثات</string>
     <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
     <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
     <string name="feed_new_items">عناصر تغذية جديدة</string>
@@ -858,4 +858,26 @@
     <string name="share_playlist">مشاركة قائمة التشغيل</string>
     <string name="share_playlist_with_titles_message">شارك تفاصيل قائمة التشغيل مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين URL للفيديو</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="zero">رد %s</item>
+        <item quantity="one">رد %s</item>
+        <item quantity="two">ردان%s</item>
+        <item quantity="few">ردود%s</item>
+        <item quantity="many">ردود %s</item>
+        <item quantity="other">ردود %s</item>
+    </plurals>
+    <string name="show_more">عرض المزيد</string>
+    <string name="show_less">عرض أقل</string>
+    <string name="notification_actions_summary_android13">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. يتم تعيين الإجراءات الثلاثة الأولى (تشغيل/إيقاف مؤقت، السابق والتالي) بواسطة النظام ولا يمكن تخصيصها.</string>
+    <string name="error_insufficient_storage">لا توجد مساحة خالية كافية على الجهاز</string>
+    <string name="reset_settings_title">اعادة ضبط الإعداداتِ</string>
+    <string name="settings_category_backup_restore_title">النسخ الاحتياطيُّ والاستعادة</string>
+    <string name="reset_settings_summary">أعيدوا جميع الإعدادات إلى قيمهم الافتراضية</string>
+    <string name="reset_all_settings">ستؤدي إعادة ضبط جميع الإعدادات إلى تجاهل جميع إعداداتك المفضلة وإعادة تشغيل التطبيق.
+\n
+\nهل انت متأكد انك تريد المتابعة؟</string>
+    <string name="yes">نعم</string>
+    <string name="auto_update_check_description">يمكن لـ NewPipe البحث تلقائيًا عن الإصدارات الجديدة من وقت لآخر وإعلامك بمجرد توفرها.
+\nهل تريد تمكين هذا؟</string>
+    <string name="no">لا</string>
 </resources>

@@ -389,7 +389,7 @@
     <string name="overwrite_failed">फाइल अधिलेखन गर्न सकिएन</string>
     <string name="download_already_pending">यसै नाम सितको एक फाइल डाउनलोड हुने प्रक्रियामा छ</string>
     <string name="error_postprocessing_stopped">फाइल मा काम गर्दा NewPipe बन्द भएको थियो</string>
-    <string name="error_insufficient_storage">उपकरणमा कुनै ठाउँ बाकी छैन</string>
+    <string name="error_insufficient_storage_left">उपकरणमा कुनै ठाउँ बाकी छैन</string>
     <string name="error_progress_lost">प्रगति हरायो, किनभने फाइल मेटिएको थियो</string>
     <string name="error_timeout">जडान समय सकियो</string>
     <string name="confirm_prompt">तपाईं आफ्नो डाउनलोड इतिहास वा डाउनलोड फाइल मेटाउन चाहनुहुन्छ\?</string>

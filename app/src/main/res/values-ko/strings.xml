@@ -389,7 +389,7 @@
     <string name="overwrite_failed">파일을 덮어쓰기할 수 없습니다</string>
     <string name="download_already_pending">해당 이름으로 대기된 다운로드가 있습니다</string>
     <string name="error_postprocessing_stopped">파일 작업 중에 Newpipe가 종료되었습니다</string>
-    <string name="error_insufficient_storage">남은 저장공간이 없습니다</string>
+    <string name="error_insufficient_storage_left">남은 저장공간이 없습니다</string>
     <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
     <string name="error_timeout">연결시간 초과</string>
     <string name="confirm_prompt">모든 다운로드 기록과 파일을 삭제합니다.확실합니까\?</string>
@@ -505,8 +505,8 @@
     <string name="show_description_title">설명 표시하기</string>
     <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다</string>
     <string name="night_theme_title">어두운 테마</string>
-    <string name="notification_actions_at_most_three">최대 3개까지 축소 알림에 표시될 항목을 고를 수 있습니다!</string>
-    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하세요. 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택</string>
+    <string name="notification_actions_at_most_three">축소된 알림에서 최대 3개까지 표시될 항목을 고를 수 있습니다!</string>
+    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하세요 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
     <string name="hash_channel_description">비디오 해싱 진행 알림</string>
     <string name="streams_notification_channel_name">새로운 스트림</string>
@@ -557,7 +557,7 @@
     <string name="streams_notifications_interval_title">확인 빈도</string>
     <string name="streams_notifications_network_title">필요한 네트워크 연결</string>
     <string name="any_network">모든 네트워크</string>
-    <string name="manual_update_title">업데이트 확인</string>
+    <string name="check_for_updates">업데이트 확인</string>
     <string name="manual_update_description">새로운 버전을 수동으로 확인</string>
     <string name="autoplay_summary">자동으로 재생 시작 — %s</string>
     <string name="wifi_only">Wi-Fi에서만</string>
@@ -793,4 +793,5 @@
     <string name="channel_tab_channels">채널</string>
     <string name="previous_stream">이전 스트림</string>
     <string name="channel_tab_livestreams">실시간</string>
+    <string name="notification_actions_summary_android13">아래의 각 알림 작업을 탭하여 편집하세요. 처음 세 가지 작업(재생/일시 중지, 이전 및 다음)은 시스템에 의해 설정되며 사용자 정의할 수 없습니다.</string>
 </resources>

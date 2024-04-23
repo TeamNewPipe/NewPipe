@@ -396,7 +396,7 @@
     <string name="overwrite_failed">Ezin da fitxategia gainidatzi</string>
     <string name="download_already_pending">Badago izen bereko deskarga bat burutzeke</string>
     <string name="error_postprocessing_stopped">NewPipe itxi egin da fitxategian lanean zegoela</string>
-    <string name="error_insufficient_storage">Ez dago lekurik gailuan</string>
+    <string name="error_insufficient_storage_left">Ez dago lekurik gailuan</string>
     <string name="error_progress_lost">Progresioa galdu da, fitxategia ezabatu delako</string>
     <string name="confirm_prompt">Zure deskargen historiala garbitu nahi duzu ala deskargatutako fitxategi guztiak ezabatu\?</string>
     <string name="enable_queue_limit">Mugatu deskargen ilara</string>
@@ -657,7 +657,7 @@
     <string name="error_report_channel_description">Jakinarazpenak erroreen berri emateko</string>
     <string name="error_report_notification_title">NewPipe-k errore bat aurkitu du, sakatu berri emateko</string>
     <string name="error_report_notification_toast">Errore bat gertatu da, ikusi jakinarazpena</string>
-    <string name="manual_update_title">Bilatu eguneraketak</string>
+    <string name="check_for_updates">Bilatu eguneraketak</string>
     <string name="manual_update_description">Bilatu bertsio berriak eskuz</string>
     <string name="feed_new_items">Elementu berriak jarioan</string>
     <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.

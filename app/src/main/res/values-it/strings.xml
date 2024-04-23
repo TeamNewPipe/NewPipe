@@ -399,7 +399,7 @@
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
     <string name="download_already_pending">C\'è un download in corso con questo nome</string>
     <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
-    <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
+    <string name="error_insufficient_storage_left">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Vuoi cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
     <string name="enable_queue_limit_desc">Sarà avviato un solo download per volta</string>
@@ -549,7 +549,7 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Chiedi prima di svuotare la coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a tre da mostrare nella notifica compatta, usando le caselle di controllo sulla destra.</string>
     <string name="notification_action_4_title">Azione pulsante 5</string>
     <string name="notification_action_3_title">Azione pulsante 4</string>
     <string name="notification_action_2_title">Azione pulsante 3</string>
@@ -664,7 +664,7 @@
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
     <string name="enqueue_next_stream">Accoda come prossimo</string>
     <string name="processing_may_take_a_moment">Elaborazione… Potrebbe volerci un attimo</string>
-    <string name="manual_update_title">Controlla aggiornamenti</string>
+    <string name="check_for_updates">Controlla aggiornamenti</string>
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
     <string name="feed_new_items">Nuovi elementi feed</string>
@@ -779,7 +779,7 @@
     <string name="metadata_subscribers">Iscritti</string>
     <string name="show_channel_tabs_summary">Quali schede mostrare nelle pagine del canale</string>
     <string name="show_channel_tabs">Schede canale</string>
-    <string name="channel_tab_shorts">Short</string>
+    <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Caricamento metadati…</string>
     <string name="feed_fetch_channel_tabs">Recupera schede del canale</string>
     <string name="channel_tab_about">Informazioni</string>
@@ -819,4 +819,19 @@
     <string name="share_playlist">Condividi playlist</string>
     <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s risposta</item>
+        <item quantity="many">%s risposte</item>
+        <item quantity="other">%s risposte</item>
+    </plurals>
+    <string name="show_more">Mostra altro</string>
+    <string name="notification_actions_summary_android13">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Le prime tre (riproduci/pausa, precedente e successivo) sono impostate dal sistema e non possono essere cambiate.</string>
+    <string name="show_less">Mostra meno</string>
+    <string name="error_insufficient_storage">Non abbastanza spazio libero sul dispositivo</string>
+    <string name="settings_category_backup_restore_title">Backup e ripristino</string>
+    <string name="reset_settings_title">Azzera le impostazioni</string>
+    <string name="reset_all_settings">L\'azzeramento di tutte le impostazioni eliminerà tutte le proprie impostazioni e riavvierà l\'app.
+\n
+\nSei sicuro di voler procedere?</string>
+    <string name="reset_settings_summary">Azzera tutte le impostazioni ai loro valori predefiniti</string>
 </resources>

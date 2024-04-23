@@ -144,6 +144,19 @@ public final class ServiceHelper {
                 .orElse("<unknown>");
     }
 
+    /**
+     * @param serviceId the id of the service
+     * @return the service corresponding to the provided id
+     * @throws java.util.NoSuchElementException if there is no service with the provided id
+     */
+    @NonNull
+    public static StreamingService getServiceById(final int serviceId) {
+        return ServiceList.all().stream()
+                .filter(s -> s.getServiceId() == serviceId)
+                .findFirst()
+                .orElseThrow();
+    }
+
     public static void setSelectedServiceId(final Context context, final int serviceId) {
         String serviceName;
         try {

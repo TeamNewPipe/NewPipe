@@ -13,7 +13,7 @@ import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -65,9 +65,15 @@ public final class NotificationConstants {
     public static final int CLOSE = 11;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({NOTHING, PREVIOUS, NEXT, REWIND, FORWARD, SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT,
-            PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT, SHUFFLE, CLOSE})
+    @IntDef({NOTHING, PREVIOUS, NEXT, REWIND, FORWARD,
+            SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT,
+            SHUFFLE, CLOSE})
     public @interface Action { }
+
+    @Action
+    public static final int[] ALL_ACTIONS = {NOTHING, PREVIOUS, NEXT, REWIND, FORWARD,
+            SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT,
+            SHUFFLE, CLOSE};
 
     @DrawableRes
     public static final int[] ACTION_ICONS = {
@@ -93,16 +99,6 @@ public final class NotificationConstants {
             SMART_FORWARD_NEXT,
             REPEAT,
             CLOSE,
-    };
-
-    @Action
-    public static final int[][] SLOT_ALLOWED_ACTIONS = {
-            new int[] {PREVIOUS, REWIND, SMART_REWIND_PREVIOUS},
-            new int[] {REWIND, PLAY_PAUSE, PLAY_PAUSE_BUFFERING},
-            new int[] {NEXT, FORWARD, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING},
-            new int[] {NOTHING, PREVIOUS, NEXT, REWIND, FORWARD, SMART_REWIND_PREVIOUS,
-                    SMART_FORWARD_NEXT, REPEAT, SHUFFLE, CLOSE},
-            new int[] {NOTHING, NEXT, FORWARD, SMART_FORWARD_NEXT, REPEAT, SHUFFLE, CLOSE},
     };
 
     public static final int[] SLOT_PREF_KEYS = {
@@ -165,14 +161,11 @@ public final class NotificationConstants {
     /**
      * @param context the context to use
      * @param sharedPreferences the shared preferences to query values from
-     * @param slotCount remove indices >= than this value (set to {@code 5} to do nothing, or make
-     *                  it lower if there are slots with empty actions)
      * @return a sorted list of the indices of the slots to use as compact slots
      */
-    public static List<Integer> getCompactSlotsFromPreferences(
+    public static Collection<Integer> getCompactSlotsFromPreferences(
             @NonNull final Context context,
-            final SharedPreferences sharedPreferences,
-            final int slotCount) {
+            final SharedPreferences sharedPreferences) {
         final SortedSet<Integer> compactSlots = new TreeSet<>();
         for (int i = 0; i < 3; i++) {
             final int compactSlot = sharedPreferences.getInt(
@@ -180,14 +173,14 @@ public final class NotificationConstants {
 
             if (compactSlot == Integer.MAX_VALUE) {
                 // settings not yet populated, return default values
-                return new ArrayList<>(SLOT_COMPACT_DEFAULTS);
+                return SLOT_COMPACT_DEFAULTS;
             }
 
-            // a negative value (-1) is set when the user does not want a particular compact slot
-            if (compactSlot >= 0 && compactSlot < slotCount) {
+            if (compactSlot >= 0) {
+                // compact slot is < 0 if there are less than 3 checked checkboxes
                 compactSlots.add(compactSlot);
             }
         }
-        return new ArrayList<>(compactSlots);
+        return compactSlots;
     }
 }

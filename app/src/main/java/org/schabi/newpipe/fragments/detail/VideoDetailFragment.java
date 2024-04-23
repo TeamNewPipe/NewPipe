@@ -72,8 +72,8 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -106,16 +106,17 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -481,7 +482,7 @@ public final class VideoDetailFragment
 
                 // commit previous pending changes to database
                 if (fragment instanceof LocalPlaylistFragment) {
-                    ((LocalPlaylistFragment) fragment).commitChanges();
+                    ((LocalPlaylistFragment) fragment).saveImmediate();
                 } else if (fragment instanceof MainFragment) {
                     ((MainFragment) fragment).commitPlaylistTabs();
                 }
@@ -1012,6 +1013,20 @@ public final class VideoDetailFragment
         updateTabLayoutVisibility();
     }
 
+    public void scrollToComment(final CommentsInfoItem comment) {
+        final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
+        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
+        if (!(fragment instanceof CommentsFragment)) {
+            return;
+        }
+
+        // unexpand the app bar only if scrolling to the comment succeeded
+        if (((CommentsFragment) fragment).scrollToComment(comment)) {
+            binding.appBarLayout.setExpanded(false, false);
+            binding.viewPager.setCurrentItem(commentsTabPos, false);
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Play Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -1430,7 +1445,7 @@ public final class VideoDetailFragment
         super.showLoading();
 
         //if data is already cached, transition from VISIBLE -> INVISIBLE -> VISIBLE is not required
-        if (!ExtractorHelper.isCached(serviceId, url, InfoItem.InfoType.STREAM)) {
+        if (!ExtractorHelper.isCached(serviceId, url, InfoCache.Type.STREAM)) {
             binding.detailContentRootHiding.setVisibility(View.INVISIBLE);
         }
 

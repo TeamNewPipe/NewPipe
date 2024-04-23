@@ -4,23 +4,23 @@
     <string name="upload_date_text">Dipublikasikan pada %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
-    <string name="open_in_browser">Buka di browser</string>
+    <string name="open_in_browser">Buka di peramban</string>
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
-    <string name="search">Telusuri</string>
+    <string name="search">Telusur</string>
     <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagikan dengan</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
-    <string name="download_path_title">Folder unduhan Video</string>
+    <string name="download_path_title">Folder unduhan video</string>
     <string name="download_path_summary">Berkas video yang diunduh akan disimpan di sini</string>
     <string name="download_path_dialog_title">Pilih folder unduhan untuk berkas video</string>
-    <string name="download_path_audio_title">Folder unduhan Audio</string>
+    <string name="download_path_audio_title">Folder unduhan audio</string>
     <string name="download_path_audio_summary">Berkas audio yang diunduh akan disimpan di sini</string>
     <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="default_resolution_title">Pilih kualitas</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
-    <string name="kore_not_found">Instal aplikasi Kode yang hilang\?</string>
+    <string name="kore_not_found">Pasang aplikasi Kore yang hilang?</string>
     <string name="show_play_with_kodi_title">Tampilkan opsi \"Putar dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via Kodi</string>
     <string name="play_audio">Audio</string>
@@ -66,7 +66,7 @@
     <string name="start">Mulai</string>
     <string name="pause">Jeda</string>
     <string name="checksum">Ceksum</string>
-    <string name="ok">OK</string>
+    <string name="ok">Oke</string>
     <string name="msg_name">Nama berkas</string>
     <string name="msg_error">Galat</string>
     <string name="msg_running">NewPipe Sedang Mengunduh</string>
@@ -74,7 +74,7 @@
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
-    <string name="no_player_found">Pemutar stream tidak ada. Pasang VLC?</string>
+    <string name="no_player_found">Pemutar stream tidak ditemukan. Pasang VLC?</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nNegara Konten:\\nBahasa Apl:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="msg_threads">Thread</string>
@@ -85,19 +85,19 @@
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
-    <string name="open_in_popup_mode">Buka dalam mode popup</string>
+    <string name="open_in_popup_mode">Buka di mode tampilan kecil</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>
     <string name="popup_playing_toast">Memutar dalam mode sembul</string>
     <string name="disabled">Dinonaktifkan</string>
     <string name="default_video_format_title">Format video</string>
-    <string name="default_popup_resolution_title">Pilih kualitas mode popup</string>
+    <string name="default_popup_resolution_title">Kualitas popup bawaan</string>
     <string name="show_higher_resolutions_title">Tampilkan kualitas yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya perangkat tertentu saja yang bisa memutar video 2K/4K</string>
     <string name="controls_background_title">Latar Belakang</string>
-    <string name="controls_popup_title">Munculan</string>
+    <string name="controls_popup_title">Sembulan</string>
     <string name="clear">Bersihkan</string>
-    <string name="use_external_video_player_summary">Menghapus audio pada beberapa resolusi</string>
+    <string name="use_external_video_player_summary">Menghapus audio di beberapa resolusi</string>
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
@@ -237,11 +237,11 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="no_player_found_toast">Pemutar stream tidak ada (pasang VLC untuk memutarnya).</string>
+    <string name="no_player_found_toast">Pemutar stream ditemukan (kamu bisa pasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa mengubah langganan</string>
     <string name="show_info">Tampilkan info</string>
-    <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
+    <string name="controls_add_to_playlist_title">Tambah Ke</string>
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
     <string name="clear_views_history_summary">Hapus riwayat video yang diputar dan posisi pemutaran</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
@@ -254,7 +254,7 @@
     <string name="one_item_deleted">1 item dihapus.</string>
     <string name="tab_bookmarks">Daftar Putar</string>
     <string name="auto_queue_title">Putar otomatis video berikutnya</string>
-    <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
+    <string name="channel_unsubscribed">Berhenti berlangganan saluran</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
     <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
@@ -322,7 +322,7 @@
     <string name="minimize_on_exit_none_description">Nihil</string>
     <string name="minimize_on_exit_background_description">Minimalkan ke pemutar latar belakang</string>
     <string name="minimize_on_exit_popup_description">Minimalkan ke pemutar popup</string>
-    <string name="unsubscribe">Berhenti Berlanggan</string>
+    <string name="unsubscribe">Berhenti Berlangganan</string>
     <string name="tab_choose">Pilih Tab</string>
     <string name="theme_title">Tema</string>
     <string name="settings_category_updates_title">Pembaruan</string>
@@ -389,7 +389,7 @@
     <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
     <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
     <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
-    <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
+    <string name="error_insufficient_storage_left">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
     <string name="confirm_prompt">Apakah Anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
     <string name="enable_queue_limit">Batasi antrean unduhan</string>
@@ -534,7 +534,7 @@
     <string name="notification_action_shuffle">Aduk</string>
     <string name="notification_action_repeat">Ulangi</string>
     <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
-    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan</string>
+    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
     <string name="notification_action_4_title">Tombol tindakan kelima</string>
     <string name="notification_action_3_title">Tombol tindakan keempat</string>
     <string name="notification_action_2_title">Tombol tindakan ketiga</string>
@@ -585,7 +585,7 @@
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
     <string name="show_channel_details">Tampilkan detail channel</string>
-    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video.</string>
+    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jika anda mengalami sebuah layar hitam atau kerusakan dalam memutar video.</string>
     <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
     <string name="metadata_privacy_internal">Internal</string>
     <string name="metadata_privacy_private">Privasi</string>
@@ -640,13 +640,13 @@
     <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
     <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
-    <string name="manual_update_title">Periksa Pembaruan</string>
+    <string name="check_for_updates">Periksa Pembaruan</string>
     <string name="manual_update_description">Periksa manual untuk versi baru</string>
     <string name="checking_updates_toast">Memeriksa pembaruan…</string>
     <string name="feed_new_items">Item feed baru</string>
     <string name="show_crash_the_player_title">Tampilkan \"Mogokkan pemutar\"</string>
     <string name="show_crash_the_player_summary">Menampilkan opsi penghentian ketika menggunakan pemain video</string>
-    <string name="crash_the_player">Hentikan pemain video</string>
+    <string name="crash_the_player">Hentikan pemutar video</string>
     <string name="error_report_channel_description">Notifikasi untuk melaporkan kegalatan</string>
     <string name="error_report_channel_name">Notifikasi laporan kegalatan</string>
     <string name="error_report_notification_toast">Sebuah kegalatan terjadi, lihat notifikasinya</string>
@@ -793,4 +793,21 @@
     <string name="share_playlist_with_titles_message">Bagikan daftar putar dengan detail seperti nama daftar putar dan judul video atau sebagai daftar video URL yang sederhana</string>
     <string name="metadata_banners">Banner</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="notification_actions_summary_android13">Sentuh untuk menyunting tindakan notifikasi di bawah. Tiga tindakan pertama (mainkan/jeda, sebelumnya dan selanjutnya) disetel oleh sistem dan tidak bisa dikustomisasi.</string>
+    <string name="show_less">Tampilkan lebih sedikit</string>
+    <string name="show_more">Tampilkan lebih banyak</string>
+    <plurals name="replies">
+        <item quantity="other">%s balasan</item>
+    </plurals>
+    <string name="error_insufficient_storage">Tidak ada ruang yang cukup pada perangkat</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="reset_settings_title">Atur ulang pengaturan</string>
+    <string name="reset_settings_summary">Atur ulang pengaturan ke nilai bawaan</string>
+    <string name="reset_all_settings">Mengatur ulang semua pengaturan akan mengabaikan pengaturan Anda yang disukai dan memulai ulang aplikasi.
+\n
+\nApakah Anda yakin ingin melanjutkan?</string>
+    <string name="auto_update_check_description">NewPipe dapat memeriksa versi baru secara berkala dan memberi tahu Anda ketika ada yang baru.
+\nApakah Anda ingin mengaktifkan ini?</string>
+    <string name="settings_category_backup_restore_title">Cadangkan dan pulihkan</string>
 </resources>

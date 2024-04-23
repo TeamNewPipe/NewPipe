@@ -503,7 +503,7 @@
     <string name="error_download_resource_gone">Kan inte återställa den här hämtningen</string>
     <string name="error_timeout">Anslutnings avbrott</string>
     <string name="error_progress_lost">Framsteg förlorat, för att filen blev borttagen</string>
-    <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
+    <string name="error_insufficient_storage_left">Inget utrymme kvar på enhet</string>
     <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
     <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
     <string name="error_report_open_issue_button_text">Rapportera på GitHub</string>
@@ -567,7 +567,7 @@
     <string name="show_description_summary">Inaktivera för att dölja videobeskrivning och ytterligare information</string>
     <string name="show_meta_info_title">Visa meta-information</string>
     <string name="show_thumbnail_summary">Använd miniatyrbild som bakgrund till både låsskärm och aviseringar</string>
-    <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger</string>
+    <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger.</string>
     <string name="notification_colorize_summary">Låt Android färglägga varje avisering individuellt utifrån miniatyrbildens huvudsakliga färg (notera att detta inte är tillgängligt på alla enheter)</string>
     <string name="notification_colorize_title">Färglägg avisering</string>
     <string name="notification_actions_at_most_three">Du kan som mest välja tre åtgärder att visa i den kompakta aviseringen!</string>
@@ -652,7 +652,7 @@
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
     <string name="start_main_player_fullscreen_summary">Starta inte videor i minispelaren, utan byt till helskärmsläge direkt, om automatisk rotation är låst. Du kan fortfarande komma åt minispelaren genom att gå ut ur helskärmsläge</string>
     <string name="show_image_indicators_summary">Visa Picasso färgade band ovanpå bilderna som anger deras källa: rött för nätverk, blått för disk och grönt för minne</string>
-    <string name="manual_update_title">Sök efter uppdateringar</string>
+    <string name="check_for_updates">Sök efter uppdateringar</string>
     <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödes objekt</string>
@@ -806,4 +806,12 @@
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_with_titles_message">Dela spellistan med detaljer så som spellistans namn och video-titlarna eller som en enkel lista med URL till videorna</string>
     <string name="image_quality_summary">Välj bildkvalitet och om bilder överhuvudtaget ska laddas för att minska data och minnesanvändningen. Ändringar rensar både i minnet och bildcache på disk – %s</string>
+    <string name="show_more">Visa mer</string>
+    <plurals name="replies">
+        <item quantity="one">%s svar</item>
+        <item quantity="other">%s svar</item>
+    </plurals>
+    <string name="show_less">Visa mindre</string>
+    <string name="notification_actions_summary_android13">Redigera varje aviseringsåtgärd nedan genom att trycka på den. De tre första åtgärderna (spela/pausa, föregående och nästa) är satta av systemet och kan inte ändras.</string>
+    <string name="error_insufficient_storage">Inte tillräckligt med ledigt utrymme på enheten</string>
 </resources>

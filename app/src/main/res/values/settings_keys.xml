@@ -233,6 +233,8 @@
     <string name="prefer_descriptive_audio_key">prefer_descriptive_audio</string>
     <string name="last_resize_mode">last_resize_mode</string>
 
+    <string name="reset_settings">reset_settings</string>
+
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key">allow_heap_dumping_key</string>
@@ -492,6 +494,7 @@
     </string-array>
 
     <!-- Updates -->
+    <string name="update_check_consent_key">update_check_consent_key</string>
     <string name="update_app_key">update_app_key</string>
     <string name="manual_update_key">manual_update_key</string>
     <string name="update_pref_screen_key">update_pref_screen_key</string>

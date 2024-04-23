@@ -1,0 +1,2 @@
+[YouTube] Fixade "Kan inte få någon ström" fel vid spelning av någon video
+[YouTube] Fixade "Det följande innehållet är inte tillgängligt på den här appen." meddelandet visas istället för videon som begärs

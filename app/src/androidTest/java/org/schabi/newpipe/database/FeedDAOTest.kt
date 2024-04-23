@@ -85,7 +85,13 @@ class FeedDAOTest {
 
     private fun assertEqual(streams: List<StreamWithState>?, allowedStreams: List<StreamEntity>) {
         assertNotNull(streams)
-        assertEquals(allowedStreams, streams!!.stream().map { it.stream }.toList().sortedBy { it.uid })
+        assertEquals(
+            allowedStreams,
+            streams!!
+                .map { it.stream }
+                .sortedBy { it.uid }
+                .toList()
+        )
     }
 
     private fun setupUnlinkDelete(time: String) {

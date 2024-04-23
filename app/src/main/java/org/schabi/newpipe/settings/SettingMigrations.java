@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -163,15 +164,14 @@ public final class SettingMigrations {
     private static final int VERSION = 6;
 
 
-    public static void runMigrationsIfNeeded(@NonNull final Context context,
-                                             final boolean isFirstRun) {
+    public static void runMigrationsIfNeeded(@NonNull final Context context) {
         // setup migrations and check if there is something to do
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String lastPrefVersionKey = context.getString(R.string.last_used_preferences_version);
         final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
 
         // no migration to run, already up to date
-        if (isFirstRun) {
+        if (App.getApp().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
         } else if (lastPrefVersion == VERSION) {

@@ -467,7 +467,7 @@
     <string name="choose_instance_prompt">Изберете инстанция</string>
     <string name="comments_are_disabled">Коментарите са изключени</string>
     <string name="main_page_content_summary">Кои раздели се показват на началната страница</string>
-    <string name="error_insufficient_storage">Няма свободно място на устройството</string>
+    <string name="error_insufficient_storage_left">Няма свободно място на устройството</string>
     <plurals name="seconds">
         <item quantity="one">%d секунда</item>
         <item quantity="other">%d секунди</item>
@@ -548,7 +548,7 @@
     <string name="recaptcha_cookies_cleared">Бисквитките от reCAPTCHA бяха почистени</string>
     <string name="checking_updates_toast">Проверяване за актуализации…</string>
     <string name="enumeration_comma">,</string>
-    <string name="manual_update_title">Провери за актуализации</string>
+    <string name="check_for_updates">Провери за актуализации</string>
     <string name="percent">Процент</string>
     <string name="unknown_quality">Неизвестно качество</string>
     <string name="unknown_format">Неизвестен формат</string>

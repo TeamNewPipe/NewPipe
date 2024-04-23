@@ -21,9 +21,10 @@
 
 *Прочитајте овај документ на другим језицима: [Deutsch](README.de.md), [English](README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [Српски](README.sr.md)*
 
-<b>УПОЗОРЕЊЕ: ОВА АПЛИКАЦИЈА ЈЕ У БЕТА ВЕРЗИЈИ, ТАКО ДА МОЖЕТЕ НАИЋИ НА ГРЕШКЕ. АКО НАИЂЕТЕ, НАПИШИТЕ ИЗВЕШТАЈ У НАШЕМ GITHUB РЕПОЗИТОРИЈУМУ ПОПУЊАВАЊЕМ ШАБЛОНА ИЗВЕШТАЈА.</b>
-
-<b>ПОСТАВЉАЊЕ АПЛИКАЦИЈЕ NEWPIPE ИЛИ БИЛО КОГ ЊЕНОГ ФОРКА, У GOOGLE PLAY ПРОДАВНИЦУ КРШИ ЊИХОВЕ УСЛОВЕ И ОДРЕДБЕ.</b>
+> [!warning]
+> <b>ОВА АПЛИКАЦИЈА ЈЕ У БЕТА ВЕРЗИЈИ, ТАКО ДА МОЖЕТЕ НАИЋИ НА ГРЕШКЕ. АКО НАИЂЕТЕ, НАПИШИТЕ ИЗВЕШТАЈ У НАШЕМ GITHUB РЕПОЗИТОРИЈУМУ ПОПУЊАВАЊЕМ ШАБЛОНА ИЗВЕШТАЈА.</b>
+>
+> <b>ПОСТАВЉАЊЕ АПЛИКАЦИЈЕ NEWPIPE ИЛИ БИЛО КОГ ЊЕНОГ ФОРКА, У GOOGLE PLAY ПРОДАВНИЦУ КРШИ ЊИХОВЕ УСЛОВЕ И ОДРЕДБЕ.</b>
 
 ## Снимци екрана
 

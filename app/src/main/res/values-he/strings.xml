@@ -401,7 +401,7 @@
     <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
     <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
     <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
-    <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
+    <string name="error_insufficient_storage_left">לא נשאר מקום במכשיר</string>
     <string name="error_progress_lost">התהליך אבד כיוון שהקובץ נמחק</string>
     <string name="error_timeout">החיבור המתין זמן רב מדי</string>
     <string name="confirm_prompt">למחוק את היסטוריית ההורדות שלך או למחוק את כל הקבצים שהורדת\?</string>
@@ -564,7 +564,7 @@
     <string name="notification_action_shuffle">ערבוב</string>
     <string name="notification_action_repeat">חזרה</string>
     <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
-    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
     <string name="notification_action_4_title">כפתור פעולה חמישי</string>
     <string name="notification_action_3_title">כפתור פעולה רביעי</string>
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>
@@ -676,7 +676,7 @@
     <string name="enqueued_next">נוסף כהבא בתור</string>
     <string name="enqueue_next_stream">הוספה כהבא בתור</string>
     <string name="processing_may_take_a_moment">מתבצע עיבוד… נא להמתין רגע קט</string>
-    <string name="manual_update_title">איתור עדכונים</string>
+    <string name="check_for_updates">איתור עדכונים</string>
     <string name="checking_updates_toast">מתבצע איתור עדכונים…</string>
     <string name="manual_update_description">לנסות לאתר גרסאות חדשות ידנית</string>
     <string name="feed_new_items">פריטים חדשים בהזנה</string>
@@ -832,4 +832,12 @@
     <string name="share_playlist">שיתוף רשימת נגינה</string>
     <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">להציג עוד</string>
+    <string name="show_less">להציג פחות</string>
+    <plurals name="replies">
+        <item quantity="one">תשובה %s</item>
+        <item quantity="two">%s תשובות</item>
+        <item quantity="other">%s תשובות</item>
+    </plurals>
+    <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
 </resources>

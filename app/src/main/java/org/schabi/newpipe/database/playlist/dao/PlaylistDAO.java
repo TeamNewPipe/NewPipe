@@ -2,6 +2,7 @@ package org.schabi.newpipe.database.playlist.dao;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
@@ -36,4 +37,17 @@ public interface PlaylistDAO extends BasicDAO<PlaylistEntity> {
 
     @Query("SELECT COUNT(*) FROM " + PLAYLIST_TABLE)
     Flowable<Long> getCount();
+
+    @Transaction
+    default long upsertPlaylist(final PlaylistEntity playlist) {
+        final long playlistId = playlist.getUid();
+
+        if (playlistId == -1) {
+            // This situation is probably impossible.
+            return insert(playlist);
+        } else {
+            update(playlist);
+            return playlistId;
+        }
+    }
 }

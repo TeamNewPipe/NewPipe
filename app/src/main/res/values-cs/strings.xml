@@ -396,7 +396,7 @@
     <string name="overwrite_failed">soubor nelze přepsat</string>
     <string name="download_already_pending">Soubor s tímto názvem již čeká na stažení</string>
     <string name="error_postprocessing_stopped">NewPipe byl ukončen v průběhu zpracovávání souboru</string>
-    <string name="error_insufficient_storage">V zařízení nezbývá žádné místo</string>
+    <string name="error_insufficient_storage_left">V zařízení nezbývá žádné místo</string>
     <string name="error_progress_lost">Postup ztracen, protože soubor byl smazán</string>
     <string name="confirm_prompt">Jste si jisti smazáním své historie stahování nebo smazáním všech stažených souborů\?</string>
     <string name="enable_queue_limit">Omezit frontu stahování</string>
@@ -554,7 +554,7 @@
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
     <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení</string>
+    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
     <string name="notification_action_2_title">Třetí akční tlačítko</string>
@@ -665,7 +665,7 @@
     <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
     <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
     <string name="manual_update_description">Ručně zkontrolovat zda je k dispozici nová verze</string>
-    <string name="manual_update_title">Kontrola aktualizací</string>
+    <string name="check_for_updates">Kontrola aktualizací</string>
     <string name="error_report_notification_title">NewPipe narazil na problém, klikněte pro nahlášení</string>
     <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
@@ -819,4 +819,23 @@
     <string name="channel_tab_channels">Kanály</string>
     <string name="previous_stream">Předchozí stream</string>
     <string name="channel_tab_livestreams">Živě</string>
+    <plurals name="replies">
+        <item quantity="one">%s odpověď</item>
+        <item quantity="few">%s odpovědi</item>
+        <item quantity="other">%s odpovědí</item>
+    </plurals>
+    <string name="show_more">Zobrazit více</string>
+    <string name="notification_actions_summary_android13">Upravte každou akci oznámení níže poklepáním. První tři akce (přehrání/pozastavení, předchozí a další) jsou nastaveny systémem a nemohou být přizpůsobeny.</string>
+    <string name="show_less">Zobrazit méně</string>
+    <string name="error_insufficient_storage">Nedostatek volného místa v zařízení</string>
+    <string name="settings_category_backup_restore_title">Záloha a obnovení</string>
+    <string name="reset_settings_title">Obnovit nastavení</string>
+    <string name="reset_settings_summary">Obnovení všech nastavení na výchozí hodnoty</string>
+    <string name="reset_all_settings">Obnovením nastavení se zruší všechna preferovaná nastavení a aplikace se restartuje.
+\n
+\nJste si jisti, že chcete pokračovat?</string>
+    <string name="yes">Ano</string>
+    <string name="no">Ne</string>
+    <string name="auto_update_check_description">NewPipe může čas od času automaticky kontrolovat nové verze a upozornit vás na jejich dostupnost.
+\nChcete tuto funkci povolit?</string>
 </resources>

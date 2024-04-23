@@ -104,7 +104,7 @@
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Vorschläge auswählen, die bei der Suche angezeigt werden sollen</string>
-    <string name="clear">Löschen</string>
+    <string name="clear">löschen</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="title_activity_about">Über NewPipe</string>
     <string name="tab_licenses">Lizenzen</string>
@@ -405,7 +405,7 @@
     <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
     <string name="download_already_pending">Es ist ein ausstehender Download mit diesem Namen vorhanden</string>
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
-    <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
+    <string name="error_insufficient_storage_left">Kein Speicherplatz mehr auf dem Gerät</string>
     <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
     <string name="confirm_prompt">Möchtest du deinen Downloadverlauf oder alle heruntergeladenen Dateien löschen\?</string>
     <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
@@ -425,7 +425,7 @@
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
-        <item quantity="other">%s Zuschauer</item>
+        <item quantity="other">%s Zuschauende</item>
     </plurals>
     <string name="no_one_listening">Niemand hört zu</string>
     <plurals name="listening">
@@ -541,7 +541,7 @@
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du auf sie tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
     <string name="notification_action_3_title">Vierte Aktionstaste</string>
@@ -655,7 +655,7 @@
     <string name="enqueued_next">Als Nächstes eingereiht</string>
     <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
     <string name="processing_may_take_a_moment">Verarbeite … Kann einen Moment dauern</string>
-    <string name="manual_update_title">Nach Aktualisierungen suchen</string>
+    <string name="check_for_updates">Nach Aktualisierungen suchen</string>
     <string name="checking_updates_toast">Suche nach Aktualisierungen …</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
     <string name="feed_new_items">Neue Feed-Elemente</string>
@@ -806,4 +806,17 @@
     <string name="share_playlist">Wiedergabeliste teilen</string>
     <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s Antwort</item>
+        <item quantity="other">%s Antworten</item>
+    </plurals>
+    <string name="show_more">Mehr zeigen</string>
+    <string name="show_less">Weniger zeigen</string>
+    <string name="notification_actions_summary_android13">Bearbeite jede Benachrichtigungsaktion unten, indem du auf sie tippst. Die ersten drei Aktionen (Abspielen/Pause, Zurück und Weiter) sind vom System vorgegeben und können nicht angepasst werden.</string>
+    <string name="error_insufficient_storage">Nicht genug freier Speicher auf dem Gerät</string>
+    <string name="reset_settings_title">Einstellungen zurücksetzen</string>
+    <string name="reset_settings_summary">Setzt alle Einstellungen auf ihre Standardwerte zurück</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="settings_category_backup_restore_title">Sichern und Wiederherstellen</string>
 </resources>

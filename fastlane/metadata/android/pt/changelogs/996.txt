@@ -1,0 +1,2 @@
+Foi corrigida uma NullPointerException ao abrir um canal/conferência em media.ccc.de.
+O Grinch tentou estragar a nossa prenda de Natal, mas nós resolvemos o problema.

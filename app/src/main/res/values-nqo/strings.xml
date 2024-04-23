@@ -482,7 +482,7 @@
     <string name="enable_streams_notifications_summary">ߞߊ߬ ߡߊ߬ߝߘߎ߬ߟߌ ߟߎ߬ ߟߊ߫ ߥߦߏ߬ ߞߎߘߊ ߟߎ߫ ߛߏߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬ ߟߊߣߊ߬</string>
     <string name="any_network">ߞߙߏ߬ߝߏ߫ ߛߎ߮ ߓߍ߯</string>
     <string name="updates_setting_title">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬</string>
-    <string name="manual_update_title">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬ ߡߊߝߍߣߍ߲߫</string>
+    <string name="check_for_updates">ߟߏ߲ߘߐߦߊߟߌ ߟߎ߬ ߡߊߝߍߣߍ߲߫</string>
     <string name="manual_update_description">ߞߊ߬ ߓߐߞߏ߫ ߞߎߘߊ ߟߎ߫ ߕߎ߬ߢߊ߬ߟߐ߲߫ ߓߟߏ ߟߊ߫</string>
     <string name="minimize_on_exit_title">ߞߵߊ߬ ߡߊߖߌ߰ ߟߥߊߟߌߟߊ߲ ߘߐߦߟߍߡߊ߲߫ ߕߎߡߊ</string>
     <string name="minimize_on_exit_none_description">ߝߏߛߌ߬</string>
@@ -517,7 +517,7 @@
     <string name="error_http_not_found">ߊ߬ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="error_postprocessing_failed">ߞߐߝߍ߫-ߦߙߍߞߍߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫</string>
     <string name="error_postprocessing_stopped">ߣߌߎߔߌߔ ߘߊߕߎ߲߯ ߘߊ߫ ߟߋ߬ ߞߵߊ߬ ߕߘߍ߬ ߊ߬ ߦߋ߫ ߓߊ߯ߙߊ߫ ߟߊ߫ ߞߐߕߐ߮ ߞߊ߲߬</string>
-    <string name="error_insufficient_storage">ߜߍߞߣߍ߫ ߛߌ߫ ߕߍ߫ ߕߙߏߞߏ ߞߊ߲߬</string>
+    <string name="error_insufficient_storage_left">ߜߍߞߣߍ߫ ߛߌ߫ ߕߍ߫ ߕߙߏߞߏ ߞߊ߲߬</string>
     <string name="error_progress_lost">ߢߍߕߊ߮ ߓߘߊ߫ ߝߏ߫߸ ߓߊߏ߬ ߞߐߕߐ߮ ߓߘߊ߫ ߖߏ߬ߛߌ߫</string>
     <string name="error_download_resource_gone">ߟߊ߬ߖߌ߰ߟߌ ߣߌ߲߬ ߕߍ߫ ߛߋ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫</string>
     <string name="delete_downloaded_files">ߞߊ߬ ߞߐߕߐ߯ ߟߊߖߌ߰ߣߍ߲ ߠߎ߬ ߖߏ߬ߛߌ߫</string>

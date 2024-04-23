@@ -406,7 +406,7 @@
     <string name="overwrite_finished_warning">Elŝutita dosieron kun ĉi tiu nomo jam ekzistas</string>
     <string name="download_already_pending">Estas pritraktata elŝuto kun ĉi tiu nomo</string>
     <string name="error_postprocessing_stopped">NewPipe estis fermita dum laborante sur la dosiero</string>
-    <string name="error_insufficient_storage">Neniu spaco havebla sur la aparato</string>
+    <string name="error_insufficient_storage_left">Neniu spaco havebla sur la aparato</string>
     <string name="error_progress_lost">Progreso perdita, ĉar la dosiero estis forviŝita</string>
     <string name="error_timeout">Eltempiĝo de Konekto</string>
     <string name="drawer_header_description">Ŝangi la servon, nuntempe elektita:</string>
@@ -610,4 +610,5 @@
     <string name="related_items_tab_description">Rilatajn erojn</string>
     <string name="recaptcha_solve">Solvi</string>
     <string name="msg_failed_to_copy">Malsukcesis kopii al la tondujo</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Oni petos al vi kien salvi ĉiujn elŝutojn</string>
 </resources>

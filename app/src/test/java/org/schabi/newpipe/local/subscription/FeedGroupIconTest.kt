@@ -9,7 +9,7 @@ class FeedGroupIconTest {
     fun `No gaps and repeated ids`() {
         val usedIds = HashSet<Int>()
 
-        for ((shouldBeId, currentIcon) in FeedGroupIcon.values().withIndex()) {
+        for ((shouldBeId, currentIcon) in FeedGroupIcon.entries.withIndex()) {
             val added = usedIds.add(currentIcon.id)
             assertTrue("Repeated ids (current item: ${currentIcon.name} - ${currentIcon.id})", added)
 
@@ -24,7 +24,7 @@ class FeedGroupIconTest {
     fun `No icons pointing to the same attr`() {
         val usedIcons = HashSet<Int>()
 
-        for (groupIcon in FeedGroupIcon.values()) {
+        for (groupIcon in FeedGroupIcon.entries) {
             val added = usedIcons.add(groupIcon.drawableResource)
             assertTrue("Repeated icon (current item: ${groupIcon.name} - ${groupIcon.id})", added)
         }

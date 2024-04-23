@@ -80,10 +80,10 @@ class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, 
         updatePathShape()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas?.clipPath(shapePath)
-        canvas?.drawPath(shapePath, backgroundPaint)
+        canvas.clipPath(shapePath)
+        canvas.drawPath(shapePath, backgroundPaint)
     }
 }

@@ -1,0 +1,12 @@
+0.17.3의 변경 사항
+
+향상
+• 재생 상태를 지우는 옵션 추가 #2550
+• 파일 선택기에 숨겨진 디렉터리 표시 #2591
+• `invidio.us` 인스턴스의 URL이 NewPipe #2488로 열리도록 지원합니다.
+• 'music.youtube.com' URL에 대한 지원 추가 TeamNewPipe/NewPipeExtractor#194
+
+결정된
+• [YouTube] 'java.lang.IllegalArgumentException #192 수정
+• [YouTube] 실시간 스트림이 작동하지 않는 문제 수정 TeamNewPipe/NewPipeExtractor#195
+• 스트림을 다운로드할 때 Android Pie의 성능 문제 수정 #2592

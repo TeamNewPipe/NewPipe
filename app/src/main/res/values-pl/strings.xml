@@ -401,7 +401,7 @@
     <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
-    <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
+    <string name="error_insufficient_storage_left">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
     <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
@@ -673,7 +673,7 @@
     <string name="processing_may_take_a_moment">Przetwarzanie… Może to chwilę potrwać</string>
     <string name="checking_updates_toast">Sprawdzanie aktualizacji…</string>
     <string name="manual_update_description">Ręcznie sprawdź dostępność nowych wersji</string>
-    <string name="manual_update_title">Sprawdź dostępność aktualizacji</string>
+    <string name="check_for_updates">Sprawdź dostępność aktualizacji</string>
     <string name="feed_new_items">Nowe pozycje kanału</string>
     <string name="show_crash_the_player_summary">Pokazuje opcję psucia podczas korzystania z odtwarzacza</string>
     <string name="crash_the_player">Zepsuj odtwarzacz</string>
@@ -827,4 +827,24 @@
     <string name="share_playlist">Udostępnij playlistę</string>
     <string name="share_playlist_with_titles_message">Udostępnij playlistę ze szczegółami, takimi jak nazwa playlisty i tytuły wideo, lub jako prostą listę adresów URL wideo.</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>
+    <plurals name="replies">
+        <item quantity="one">%s odpowiedź</item>
+        <item quantity="few">%s odpowiedzi</item>
+        <item quantity="many">%s odpowiedzi</item>
+        <item quantity="other">%s odpowiedzi</item>
+    </plurals>
+    <string name="show_more">Pokaż więcej</string>
+    <string name="show_less">Pokaż mniej</string>
+    <string name="notification_actions_summary_android13">Edytuj każdą poniższą akcję powiadomienia, naciskając ją. Pierwsze trzy akcje (odtwórz/wstrzymaj, poprzedni i następny) są ustawione przez system i nie można ich dostosować</string>
+    <string name="error_insufficient_storage">Za mało wolnego miejsca na urządzeniu</string>
+    <string name="settings_category_backup_restore_title">Kopia zapasowa i przywracanie</string>
+    <string name="reset_settings_summary">Resetuje wszystkie ustawienia do ich domyślnych wartości</string>
+    <string name="reset_settings_title">Resetuj ustawienia</string>
+    <string name="reset_all_settings">Zresetowanie wszystkich ustawień odrzuci wszystkie Twoje preferowane ustawienia i ponownie uruchomi aplikację.
+\n
+\nCzy na pewno chcesz kontynuować?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="auto_update_check_description">NewPipe może od czasu do czasu automatycznie sprawdzać dostępność nowych wersji i powiadamiać Cię, gdy tylko będą dostępne.
+\nCzy chcesz to włączyć?</string>
 </resources>

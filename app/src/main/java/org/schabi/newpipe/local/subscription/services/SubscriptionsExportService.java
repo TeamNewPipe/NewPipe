@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import androidx.core.content.IntentCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
@@ -65,7 +66,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
             return START_NOT_STICKY;
         }
 
-        final Uri path = intent.getParcelableExtra(KEY_FILE_PATH);
+        final Uri path = IntentCompat.getParcelableExtra(intent, KEY_FILE_PATH, Uri.class);
         if (path == null) {
             stopAndReportError(new IllegalStateException(
                     "Exporting to a file, but the path is null"),

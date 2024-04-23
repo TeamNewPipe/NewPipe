@@ -379,7 +379,7 @@
     <string name="overwrite_unrelated_warning">Ддотека со ова име веќе постои</string>
     <string name="overwrite_finished_warning">Преземената дадотека со ова име веќе постои</string>
     <string name="error_postprocessing_stopped">NewPipe беше затворен додека работеше на датотеката</string>
-    <string name="error_insufficient_storage">Не останува простор на уредот</string>
+    <string name="error_insufficient_storage_left">Не останува простор на уредот</string>
     <string name="error_timeout">Истечено време за поврзување</string>
     <string name="confirm_prompt">Дали си сигурен\?</string>
     <string name="enable_queue_limit">Ограничи ја редицата за преземање</string>
