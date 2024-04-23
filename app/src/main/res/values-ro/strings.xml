@@ -765,15 +765,14 @@
     <string name="toggle_fullscreen">Schimbați pe ecran complet</string>
     <string name="feed_fetch_channel_tabs">Preluați filele canalului</string>
     <string name="metadata_avatars">Avatare</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Activați această opțiune dacă aveți probleme cu inițializarea decodorului care trece înapoi la decodoare cu prioritate mai scăzută dacă inițializarea decodoarelor principale eșuează. Asta poate duce la performanță de redare mai slabă decât atunci când se utilizează decodoarele principale.</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Activați această opțiune dacă aveți probleme cu inițializarea decodorului care trece înapoi la decodoare cu prioritate mai scăzută dacă inițializarea decodoarelor principale eșuează. Asta poate duce la performanță de redare mai slabă decât atunci când se utilizează decodoarele principale</string>
     <string name="right_gesture_control_title">Acțiunea gestului din dreapta</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Utilizați întotdeauna configurarația suprafeței de ieșire video din ExoPlayer ca soluție alternativă</string>
     <string name="next_stream">Transmisia viitoare</string>
     <string name="disable_media_tunneling_automatic_info">Tunelizarea media a fost dezactivată în mod implicit pe dispozitivul dumneavoastră deoarece se cunoaște despre acest model de dispozitiv că nu o suportă.</string>
     <string name="metadata_subchannel_avatars">Avatarele subcanalelor</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Această soluție alternativă eliberează și reinstanțează codecurile video când se întamplă o schimbare a suprafeței, în loc de a seta suprafața pentru codec direct. Deja 
-\n folosită de ExoPlayer pe unele dispozitive cu această problemă, această setare are efect doar pe Android 6 sau mai mare
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Această soluție alternativă eliberează și reinstanțează codecurile video când se întamplă o schimbare a suprafeței, în loc de a seta suprafața pentru codec direct. Deja folosită de ExoPlayer pe unele dispozitive cu această problemă, această setare are efect doar pe Android 6 sau mai mare
 \n
 \nActivarea acestei opțiuni poate preveni erorile de redare când se schimbă playerul video curent sau se trece pe ecran complet</string>
     <string name="audio_track_present_in_video">O coloană sonoră ar trebui să fie deja prezentă în această transmisie</string>
@@ -829,4 +828,14 @@
     <string name="show_less">Arată mai puține</string>
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
+    <string name="settings_category_backup_restore_title">Backup și restabilire</string>
+    <string name="auto_update_check_description">NewPipe poate verifica automat pentru versiuni noi din când în când și te poate notifica când acestea sunt disponibile.
+\nDoriți să activați acest lucru?</string>
+    <string name="reset_settings_summary">Resetează toate setările la valorile inițiale</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="reset_settings_title">Resetează setări</string>
+    <string name="reset_all_settings">Resetarea tuturor setărilor va elimina toate setările tale preferate și va reporni aplicația.
+\n
+\nSigur doriți să continuați?</string>
 </resources>

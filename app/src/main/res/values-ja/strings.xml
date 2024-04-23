@@ -800,4 +800,14 @@
     <string name="show_less">表示を少なくする</string>
     <string name="notification_actions_summary_android13">以下の通知アクションをタップして編集します。 最初の３つのアクション （再生/一時停止、前へ、次へ）はシステムによって設定されており、カスタマイズすることはできません。</string>
     <string name="error_insufficient_storage">デバイスの空き容量が不足しています</string>
+    <string name="settings_category_backup_restore_title">バックアップと復元</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="auto_update_check_description">NewPipe は定期的に新しいバージョンを自動的にチェックし、更新可能になると通知します。
+\n有効にしますか？</string>
+    <string name="reset_settings_title">設定をリセット</string>
+    <string name="reset_settings_summary">全ての設定をデフォルト状態にリセットします</string>
+    <string name="reset_all_settings">全ての設定をリセットすると、優先設定が全て破棄され、アプリが再起動します。
+\n
+\n続行しますか？</string>
 </resources>

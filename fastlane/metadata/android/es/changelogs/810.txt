@@ -8,12 +8,12 @@ Mejorado
 - Añadir una miniatura ficticia para listas de reproducción locales vacías
 - Usar la extensión de archivos *.opus en lugar de *.webm y mostrar "opus" en etiqueta de formato en lugar de "WebM Opus" en menú desplegable de descargas
 - Añadir un botón para eliminar archivos descargados o el historial de descargas en "Descargas"
-- YouTube] Añadir soporte a los enlaces de canal /c/shortened_url
+- [YouTube] Añadir soporte a los enlaces de canal /c/shortened_url
 
 Corregidos
 - Corregidos múltiples problemas al compartir un video a NewPipe y al descargar sus secuencias directamente
 - Corregido el acceso al reproductor fuera de su hilo de creación
 - Corregida la paginación de resultados de búsqueda
-- YouTube] Corregido el cambio a nulo que causaba NPE
-- YouTube] Corregida la visualización de comentarios al abrir una url de invidio.us
-- SoundCloud] Actualizado client_id
+- [YouTube] Corregido el cambio a nulo que causaba NPE
+- [YouTube] Corregida la visualización de comentarios al abrir una url de invidio.us
+- [SoundCloud] Actualizado client_id

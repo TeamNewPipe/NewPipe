@@ -834,4 +834,8 @@
     <string name="reset_all_settings">Ресетовање свих подешавања ће одбацити сва жељена подешавања и поново покренути апликацију.
 \n
 \nЖелите ли заиста да наставите?</string>
+    <string name="no">Не</string>
+    <string name="yes">Да</string>
+    <string name="auto_update_check_description">NewPipe може аутоматски да проверава да ли постоје нове верзије с времена на време и да вас обавести када буду доступне.
+\nЖелите ли да омогућите ово?</string>
 </resources>

@@ -813,4 +813,15 @@
     <string name="show_more">ਹੋਰ ਵਿਖਾਓ</string>
     <string name="notification_actions_summary_android13">ਇਸ \'ਤੇ ਟੈਪ ਕਰਕੇ ਹੇਠਾਂ ਹਰੇਕ ਸੂਚਨਾ ਕਾਰਵਾਈ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ। ਪਹਿਲੀਆਂ ਤਿੰਨ ਕਾਰਵਾਈਆਂ (ਪਲੇ/ਪੌਜ਼, ਪਿਛਲਾ ਅਤੇ ਅਗਲਾ) ਸਿਸਟਮ ਦੁਆਰਾ ਸੈੱਟ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
     <string name="show_less">ਘੱਟ ਦਿਖਾਓ</string>
+    <string name="yes">ਹਾਂ</string>
+    <string name="auto_update_check_description">ਨਿਊਪਾਈਪ ਸਮੇਂ-ਸਮੇਂ \'ਤੇ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਦੀ ਸਵੈਚਲਿਤ ਤੌਰ \'ਤੇ ਜਾਂਚ ਕਰ ਸਕਦੀ ਹੈ ਅਤੇ ਇੱਕ ਵਾਰ ਉਪਲਬਧ ਹੋਣ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਸਕਦੀ ਹੈ।
+\nਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਇਨੇਬਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="settings_category_backup_restore_title">ਬੈਕਅੱਪ ਅਤੇ ਰੀਸਟੋਰ</string>
+    <string name="reset_settings_title">ਸੈਟਿੰਗਾਂ ਨੂੰ ਰੀਸੈਟ ਕਰੋ</string>
+    <string name="reset_settings_summary">ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਉਹਨਾਂ ਦੇ ਡਿਫ਼ਾਲਟ ਮੁੱਲਾਂ \'ਤੇ ਰੀਸੈਟ ਕਰੋ</string>
+    <string name="reset_all_settings">ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨ ਨਾਲ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਤਰਜੀਹੀ ਸੈਟਿੰਗਾਂ ਰੱਦ ਹੋ ਜਾਣਗੀਆਂ ਅਤੇ ਐਪ ਰੀਸਟਾਰਟ ਹੋ ਜਾਵੇਗਾ।
+\n
+\nਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ \'ਤੇ ਅੱਗੇ ਵਧਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="error_insufficient_storage">ਡਿਵਾਈਸ \'ਤੇ ਲੋੜੀਂਦੀ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਹੈ</string>
+    <string name="no">ਨਹੀਂ</string>
 </resources>

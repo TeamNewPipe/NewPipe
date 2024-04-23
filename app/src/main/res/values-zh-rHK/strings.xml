@@ -800,4 +800,14 @@
     <string name="show_more">拉開</string>
     <string name="notification_actions_summary_android13">撳下面嘅掣去更改對應嘅通知動作。頭三個動作 (播放/暫停、上一個、下一個) 系統預設咗，冇得揀。</string>
     <string name="error_insufficient_storage">部機冇晒位</string>
+    <string name="yes">要</string>
+    <string name="auto_update_check_description">NewPipe 可以周不時自動睇過有冇新版本，一出咗就通知您。
+\n您想唔想啟用呢個功能？</string>
+    <string name="reset_settings_title">推翻所有設定</string>
+    <string name="reset_all_settings">推翻所有設定就會全盤抹走晒您喜好過嘅設定，然後重新開過個 app 個囉噃。
+\n
+\n您確定要不惜一切推倒重來？</string>
+    <string name="settings_category_backup_restore_title">備份與還原</string>
+    <string name="no">唔使喇</string>
+    <string name="reset_settings_summary">顛覆所有設定，光復成預設值重新開始</string>
 </resources>

@@ -1,0 +1,25 @@
+LƯU Ý: Phiên bản này có thể là một lỗi nghiêm trọng, giống như phiên bản trước. Tuy nhiên do đã tắt hoàn toàn kể từ ngày 17. một phiên bản bị hỏng còn tốt hơn là không có phiên bản nào. Phải không? ¯\_(ツ)_/¯
+
+### Cải tiến
+* bây giờ có thể mở các tệp đã tải xuống bằng một cú nhấp chuột #1879
+* bỏ hỗ trợ cho android 4.1 - 4.3 #1884
+* xóa trình phát cũ #1884
+* xóa luồng khỏi hàng phát hiện tại bằng cách vuốt chúng sang phải #1915
+* xóa luồng được xếp hàng tự động khi luồng mới được xếp hàng thủ công #1878
+* Xử lý hậu kỳ để tải xuống và triển khai các tính năng còn thiếu #1759 của @kapodamy
+* Cơ sở hạ tầng hậu xử lý
+* Xử lý lỗi thích hợp "cơ sở hạ tầng" (dành cho người tải xuống)
+* Xếp hàng thay vì tải xuống nhiều lần
+* Di chuyển các lượt tải xuống đang chờ xử lý nối tiếp (tệp `.giga`) sang dữ liệu ứng dụng
+* Triển khai thử tải xuống tối đa
+* Tạm dừng tải xuống đa luồng thích hợp
+* Dừng tải xuống khi chuyển sang mạng di động (không bao giờ hoạt động, xem điểm thứ 2)
+* Lưu số lượng chủ đề cho lần tải tiếp theo
+* Đã sửa rất nhiều lỗi không mạch lạc
+
+### Đã sửa
+* Khắc phục sự cố với độ phân giải mặc định được đặt thành độ phân giải dữ liệu di động tốt nhất và hạn chế #1835
+* Đã sửa lỗi trình phát bật lên #1874
+* NPE khi cố mở trình phát nền #1901
+* Sửa lỗi chèn luồng mới khi bật xếp hàng tự động #1878
+* Đã khắc phục sự cố tắt máy giải mã

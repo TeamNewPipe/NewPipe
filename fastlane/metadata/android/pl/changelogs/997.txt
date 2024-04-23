@@ -1,0 +1,17 @@
+Nowe
+• Odpowiadanie na komentarze
+• Zmiana kolejności playlist
+• Pokazyw. opisu i czasu trwania playlist
+• Reset ustawień
+
+Ulepszone
+• [Android 13+] Przywrócono niestand. akcje powiadomień
+• Prośba o zgodę na sprawdzanie aktualizacji
+• Odtw./wstrzym. powiadomień podczas bufor.
+• Zmiana kolejność niektórych ustawień
+
+Naprawione
+• [YouTube] Nieładujące się komentarze i inne poprawki i ulepszenia
+• Luka w imporcie ustawień i przełączaniu na JSON
+• Różne poprawki pobierania
+• Przycięto wyszuk. tekst

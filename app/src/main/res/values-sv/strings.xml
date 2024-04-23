@@ -814,4 +814,14 @@
     <string name="show_less">Visa mindre</string>
     <string name="notification_actions_summary_android13">Redigera varje aviseringsåtgärd nedan genom att trycka på den. De tre första åtgärderna (spela/pausa, föregående och nästa) är satta av systemet och kan inte ändras.</string>
     <string name="error_insufficient_storage">Inte tillräckligt med ledigt utrymme på enheten</string>
+    <string name="no">Nej</string>
+    <string name="settings_category_backup_restore_title">Säkerhetskopiering och återställning</string>
+    <string name="yes">Ja</string>
+    <string name="auto_update_check_description">NewPipe kan automatiskt söka efter nya versioner då och då och meddela dig när de är tillgängliga.
+\nVill du aktivera detta?</string>
+    <string name="reset_settings_title">Återställ inställningar</string>
+    <string name="reset_settings_summary">Återställ alla inställningar till deras standardvärden</string>
+    <string name="reset_all_settings">Om du återställer alla inställningar försvinner alla dina föredragna inställningar och appen startas om.
+\n
+\nÄr du säker på att du vill fortsätta?</string>
 </resources>

@@ -813,4 +813,15 @@
     <string name="show_more">Εμφάνιση περισσοτέρων</string>
     <string name="show_less">Εμφάνιση λιγότερων</string>
     <string name="notification_actions_summary_android13">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας σε αυτήν. Οι τρεις πρώτες ενέργειες (αναπαραγωγή/παύση, προηγούμενηο και επόμενο) ορίζονται από το σύστημα και δεν μπορούν να τροποποιηθούν.</string>
+    <string name="error_insufficient_storage">Δεν υπάρχει αρκετός ελεύθερος χώρος στη συσκευή</string>
+    <string name="no">Όχι</string>
+    <string name="yes">Ναι</string>
+    <string name="settings_category_backup_restore_title">Αντίγραφο ασφαλείας και επαναφορά</string>
+    <string name="auto_update_check_description">Το NewPipe μπορεί να ελέγχει αυτόματα για νέες εκδόσεις και να σας ειδοποιεί μόλις είναι διαθέσιμες.
+\nΘέλετε να το ενεργοποιήσετε;</string>
+    <string name="reset_settings_title">Επαναφορά ρυθμίσεων</string>
+    <string name="reset_settings_summary">Επαναφορά όλων των ρυθμίσεων στις αρχικές τιμές τους</string>
+    <string name="reset_all_settings">Η επαναφορά όλων των ρυθμίσεων θα απορρίψει όλες τις τροποποιημένες ρυθμίσεις σας και θα επανεκκινήσει την εφαρμογή.
+\n
+\nΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;</string>
 </resources>

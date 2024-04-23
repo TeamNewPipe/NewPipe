@@ -574,7 +574,7 @@
 \nYouTube je primjer usluge koja nudi ovaj brzi način sa svojim RSS feedom.
 \n
 \nDakle, izbor se svodi na ono što više voliš: brzinu ili precizne informacije.</string>
-    <string name="msg_calculating_hash">Izračunavanje šifriranja</string>
+    <string name="msg_calculating_hash">Izračunavanje šifre</string>
     <string name="hash_channel_name">Obavijest šifriranja videa</string>
     <string name="hash_channel_description">Obavijesti o napretku šifriranja videa</string>
     <string name="recent">Nedavni</string>
@@ -733,7 +733,7 @@
     <string name="feed_show_upcoming">Najava</string>
     <string name="sort">Razvrstaj</string>
     <string name="use_exoplayer_decoder_fallback_title">Koristi razervnu funkciju ExoPlayer dekodera</string>
-    <string name="ignore_hardware_media_buttons_title">Ignoriranje hardverskih medijskih gumba</string>
+    <string name="ignore_hardware_media_buttons_title">Ignoriraj događaje hardverskih medijskih gumba</string>
     <string name="ignore_hardware_media_buttons_summary">Korisno, na primjer, ako koristite slušalice s pokvarenim fizičkim gumbima</string>
     <string name="prefer_descriptive_audio_summary">Odaberite zvučni zapis s opisima za slabovidne osobe ako je dostupan</string>
     <string name="prefer_original_audio_title">Preferiraj originalni zvuk</string>
@@ -821,4 +821,16 @@
         <item quantity="other">%s odgovora</item>
     </plurals>
     <string name="disable_media_tunneling_automatic_info">Tuneliranje medija je standardno deaktivirano na tvom uređaju jer je poznato da model tvog uređaja to ne podržava.</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Aktiviraj ovu opciju ako imaš problema s inicijaliziranjem dekodera, što vraća dekodere nižeg prioriteta ako inicijaliziranje primarnih dekodera ne uspije. To može rezultirati lošijim performansama reprodukcije u odnosu na korištenje primarnih dekodera</string>
+    <string name="error_insufficient_storage">Nedovoljno memorije na uređaju</string>
+    <string name="settings_category_backup_restore_title">Spremanje sigurnosne kopije i obnavljanje</string>
+    <string name="auto_update_check_description">NewPipe može automatski tražiti nove verzije i obavijestiti te.
+\nŽeliš li aktivirati tu mogućnost?</string>
+    <string name="reset_settings_title">Obnovi postavke</string>
+    <string name="reset_settings_summary">Obnovi sve postavke na zadane vrijednosti</string>
+    <string name="reset_all_settings">Obnavljanje svih postavki odbacit će sve tvoje postavljene postavke i aplikacija će se ponovo pokrenuti.
+\n
+\nStvarno želiš nastaviti?</string>
 </resources>

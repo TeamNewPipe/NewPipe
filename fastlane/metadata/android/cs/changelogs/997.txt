@@ -1,0 +1,17 @@
+Nové
+• Odpovědi na komentáře
+• Změna pořadí playlistů
+• Zobrazení popisu a trvání playlistu
+• Možnost resetu nastavení
+
+Vylepšeno
+• [Android 13+] Obnovení vlastních akcí oznámení
+• Žádost o souhlas pro kontrolu aktualizací
+• Povolení přehrání/pozastavení oznámení při načítání
+• Změna pořadí některých nastavení
+
+Opraveno
+• [YouTube] Opraveno nenačítání komentářů a další opravy a vylepšení
+• Oprava závislosti v importu nastavení a přechod na JSON
+• Různé opravy stahování
+• Trim vyhledávaného textu

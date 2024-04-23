@@ -1,0 +1,17 @@
+Nové
+• Pridané odpovede na komentáre
+• Umožnená zmena poradia zoznamov skladieb
+• Zobrazenie popisu a trvania playlistu
+• Umožnené resetovanie nastavení
+
+Vylepšené
+• [Android 13+] Obnovenie vlastných akcií upozornenia
+• Vyžiadanie súhlasu na kontrolu aktualizácie
+• Povolenie oznámenia prehrávania/pozastavenia počas načítania
+• Zmena poradia niektorých nastavení
+
+Opravené
+• [YouTube] Oprava nenačítania komentárov, ďalšie opravy a vylepšenia
+• Vyriešenie zraniteľnosti pri importe nastavení a prepnutie na JSON
+• Rôzne opravy sťahovania
+• Orezanie textu vyhľadávania

@@ -1,0 +1,17 @@
+Mới
+ • Thêm câu trả lời nhận xét
+ • Cho phép sắp xếp lại danh sách phát
+ • Hiển thị mô tả và thời lượng danh sách phát
+ • Cho phép đặt lại cài đặt
+
+ Cải thiện
+ • [Android 13+] Khôi phục các tác vụ thông báo tùy chỉnh
+ • Yêu cầu sự đồng ý để kiểm tra cập nhật
+ • Cho phép phát/tạm dừng thông báo trong khi lưu vào bộ đệm
+ • Sắp xếp lại một số cài đặt
+
+ Đã sửa
+ • [YouTube] Khắc phục lỗi không tải được bình luận, cùng với các bản sửa lỗi và cải tiến khác
+ • Giải quyết lỗ hổng trong cài đặt nhập và chuyển sang JSON
+ • Nhiều bản sửa lỗi tải xuống khác nhau
+ • Cắt bớt văn bản tìm kiếm

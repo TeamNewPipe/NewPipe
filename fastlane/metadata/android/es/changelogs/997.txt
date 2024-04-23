@@ -1,0 +1,17 @@
+Nuevo
+• Añadir respuestas a comentarios
+• Reordenar listas de reproducción
+• Mostrar descripción y duración de listas de reproducción
+• Restaurar ajustes
+
+Mejorado
+• [Android 13+] acciones de notificación personalizadas
+• Permiso para comprobar actualizaciones
+• Reproducir/pausar notificaciones al almacenar en búfer
+• Algunos ajustes
+
+Corregido
+• [YouTube] Corregir comentarios que no se cargan y mejoras
+• Fallo al importar de ajustes y JSON
+• Corrección de varias descargas
+• texto de búsqueda

@@ -827,4 +827,15 @@
     </plurals>
     <string name="show_less">Mostrar menos</string>
     <string name="notification_actions_summary_android13">Edite cada ação de notificação abaixo a tocar nela. As três primeiras ações (reproduzir/pausa, anterior e seguinte) são definidas pelo sistema e não podem ser personalizadas.</string>
+    <string name="error_insufficient_storage">Não há espaço suficiente no dispositivo</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="reset_settings_summary">Repor valores originais de todas as definições</string>
+    <string name="settings_category_backup_restore_title">Backup e restauro</string>
+    <string name="reset_settings_title">Repor definições</string>
+    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a app.
+\n
+\nTem certeza que deseja continuar?</string>
+    <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
+\nDeseja ativar essa opção?</string>
 </resources>

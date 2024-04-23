@@ -833,4 +833,14 @@
     </plurals>
     <string name="show_less">Показати менше</string>
     <string name="error_insufficient_storage">Недостатньо вільного простору на пристрої</string>
+    <string name="reset_settings_title">Скинути налаштування</string>
+    <string name="settings_category_backup_restore_title">Резервне копіювання і відновлення</string>
+    <string name="auto_update_check_description">NewPipe може час від часу автоматично перевіряти наявність нових версій і сповіщати вас про їх появу.
+\nХочете увімкнути цю функцію?</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="reset_settings_summary">Скинути всі налаштування до усталених значень</string>
+    <string name="reset_all_settings">Скидання всіх налаштувань призведе до скидання всіх вибраних вами налаштувань і перезапуску застосунку.
+\n
+\nВи впевнені, що хочете продовжити?</string>
 </resources>
