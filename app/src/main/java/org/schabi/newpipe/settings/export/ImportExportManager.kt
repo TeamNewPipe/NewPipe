@@ -75,9 +75,9 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
      */
     fun extractDb(file: StoredFileHelper): Boolean {
         val success = ZipHelper.extractFileFromZip(
-                file,
-                BackupFileLocator.FILE_NAME_DB,
-                fileLocator.db.path,
+            file,
+            BackupFileLocator.FILE_NAME_DB,
+            fileLocator.db.path,
         )
 
         if (success) {
