@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_player_found">aucun streamer trouvé . Installez VLC?</string>
+    <string name="no">non</string>
+    <string name="open_in_browser">ouvrir dans le browser</string>
+    <string name="open_in_popup_mode">ouvrir dans le popup mode</string>
+    <string name="open_with">ouvrir avec</string>
+    <string name="share">partagez</string>
+    <string name="controls_download_desc">installer le fichier stream</string>
+    <string name="search">chercher</string>
+    <string name="settings">parameters</string>
+    <string name="download">installer</string>
+    <string name="install">Installer</string>
+    <string name="mark_as_watched">marquer comme vu</string>
+    <string name="upload_date_text">"publié le  %1$s"</string>
+    <string name="no_player_found_toast">aucun joueur de stream n\'est trouvé ( vous pouvez installez VLC pour jouer)</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
+    <string name="yes">Oui</string>
+</resources>

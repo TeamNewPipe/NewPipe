@@ -1,0 +1,17 @@
+Neu
+• Antwort auf Kommentar
+• Wiedergabelisten umordnen
+• Wiedergabelisten-Beschreibung und -Dauer
+• Rücksetzen der Einstellungen
+
+Verbessert
+• [Android 13+] Wiederherstellen benutzerdef. Benachrichtigungsaktionen
+• Zustimmung zur Update-Prüfung
+• Während Pufferung Abspielen/Pause über Benachrichtigung
+• Neuordnung einiger Einstellungen
+
+Behoben
+• [YouTube] Kommentare wurden nicht geladen, weitere Korrekturen und Verbesserungen
+• Sicherheitslücke beim Einstellungsimport und Umstellung auf JSON
+• Verschiedene Download-Korrekturen
+• Suchtext gekürzt

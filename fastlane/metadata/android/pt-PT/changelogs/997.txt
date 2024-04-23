@@ -1,0 +1,16 @@
+Novo
+• Adicionar respostas de comentários
+• Permitir reordenar listas de reprodução
+...
+
+Melhorado
+• [Android 13+] Restaurar ações de notificação personalizadas
+• Solicitar consentimento para verificação de atualização
+• Permitir reprodução/pausa de notificação durante o buffer
+...
+
+Fixado
+• [Tube] Corrigir comentários que não carregam, além de outras correções e melhorias
+• Resolver vulnerabilidade nas configurações importação e mudar para JSON
+• Várias correções de descargas
+...

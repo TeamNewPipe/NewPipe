@@ -833,4 +833,11 @@
     </plurals>
     <string name="notification_actions_summary_android13">Отредактируйте каждое действие уведомления ниже, нажав на него. Первые три действия (воспроизведение/пауза, предыдущее и следующее) задаются системой и не подлежат настройке.</string>
     <string name="error_insufficient_storage">Недостаточно свободного места на устройстве</string>
+    <string name="reset_settings_summary">Сбросить все настройки на их значения по умолчанию</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="settings_category_backup_restore_title">Резервное копирование и восстановление</string>
+    <string name="reset_settings_title">Сбросить настройки</string>
+    <string name="auto_update_check_description">NewPipe может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны.
+\nЖелаете включить эту функцию?</string>
 </resources>

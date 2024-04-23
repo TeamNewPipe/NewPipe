@@ -1,0 +1,17 @@
+Novità
+• Risposte ai commenti
+• Riordinamento playlist
+• Mostra descrizione e durata playlist
+• Consenti ripristino impostazioni
+
+Migliorie
+• [Android 13+] Ripristina azioni di notifica personalizzate
+• Richiedi consenso per ricerca aggiornamenti
+• Notifiche avvio/pausa durante il buffer
+• Riordinate alcune impostazioni
+
+Correzioni
+• [YouTube] I commenti non si caricavano, altre correzioni
+• Vulnerabilità in importa impostazioni e passaggio a JSON
+• Correzioni sui download
+• Trim delle ricerche

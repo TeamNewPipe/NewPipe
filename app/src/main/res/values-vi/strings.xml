@@ -8,7 +8,7 @@
     <string name="open_in_browser">Mở trong trình duyệt</string>
     <string name="open_in_popup_mode">Mở trong chế độ bật lên</string>
     <string name="share">Chia sẻ</string>
-    <string name="download">Tải về</string>
+    <string name="download">Tải xuống</string>
     <string name="search">Tìm kiếm</string>
     <string name="settings">Cài đặt</string>
     <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
@@ -16,7 +16,7 @@
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
     <string name="use_external_video_player_summary">Loại bỏ âm thanh ở một số độ phân giải</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát âm thanh bên ngoài</string>
-    <string name="controls_popup_title">Trình phát nổi</string>
+    <string name="controls_popup_title">Bật lên</string>
     <string name="download_path_title">Thư mục video tải về</string>
     <string name="download_path_summary">Video đã tải về được lưu ở đây</string>
     <string name="download_path_dialog_title">Chọn thư mục tải xuống cho các tệp video</string>
@@ -43,7 +43,7 @@
     <string name="popup_remember_size_pos_summary">Ghi nhớ kích thước và vị trí cuối cùng của cửa sổ bật lên</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
     <string name="show_search_suggestions_summary">Chọn các đề xuất để hiển thị khi tìm kiếm</string>
-    <string name="download_dialog_title">Tải về</string>
+    <string name="download_dialog_title">Tải xuống</string>
     <string name="show_next_and_similar_title">Hiện các video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không hỗ trợ</string>
     <string name="settings_category_appearance_title">Vẻ ngoài</string>
@@ -105,12 +105,12 @@
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
-    <string name="tab_about">Thông tin &amp; FAQ</string>
+    <string name="tab_about">Giới thiệu &amp; Câu hỏi thường gặp</string>
     <string name="tab_licenses">Giấy phép</string>
     <string name="app_description">Phát trực tuyến nhẹ tự do trên Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
     <string name="app_license_title">Giấy phép của NewPipe</string>
-    <string name="contribution_encouragement">Sự đóng góp của bạn luôn được hoan nghênh – kể cả khi bạn dịch, thay đổi giao diện, dọn code, thêm tính năng hay thay đổi những thứ khác, sự giúp đỡ của bạn vẫn đáng được trân trọng. Bạn càng làm nhiều, ứng dụng này sẽ càng tốt hơn bao giờ hết !</string>
+    <string name="contribution_encouragement">Cho dù bạn có ý tưởng về: dịch thuật, thay đổi thiết kế, dọn mã hoặc thay đổi mã thực sự nhiều— sự trợ giúp luôn được hoan nghênh. Làm càng nhiều thì càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
@@ -134,7 +134,7 @@
     <string name="use_inexact_seek_summary">Tua ít chính xác cho phép trình phát giảm độ chính xác để tua tới vị trí nhanh hơn. Tua khoảng 5, 15 hoặc 25 giây không hoạt động với điều này</string>
     <string name="thumbnail_cache_wipe_complete_notice">Đã xóa bộ nhớ cache hình ảnh</string>
     <string name="metadata_cache_wipe_title">Xóa sạch siêu dữ liệu đã lưu đệm</string>
-    <string name="metadata_cache_wipe_summary">Xóa bỏ mọi dữ liệu trang web đã lưu đệm</string>
+    <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>
     <string name="metadata_cache_wipe_complete_notice">Đã xóa bộ nhớ cache siêu dữ liệu</string>
     <string name="auto_queue_title">Tự động xếp hàng luồng phát tiếp theo</string>
     <string name="auto_queue_summary">Tiếp tục hàng đợi (không lặp lại) bằng cách thêm một luồng phát liên quan</string>
@@ -212,9 +212,9 @@
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
-    <string name="donation_title">Đóng góp</string>
-    <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian và tâm huyết của mình để mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một chút xiền để giúp chúng tôi làm NewPipe tốt hơn nữa (Nếu bạn muốn).</string>
-    <string name="give_back">Đôn Nét</string>
+    <string name="donation_title">Quyên tặng</string>
+    <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian rảnh rỗi để mang lại cho bạn trải nghiệm người dùng tốt nhất. Hãy đền đáp để giúp các nhà phát triển làm cho NewPipe thậm chí còn tốt hơn nữa trong khi họ thưởng thức một tách cà phê.</string>
+    <string name="give_back">Đền đáp</string>
     <string name="website_title">Trang web</string>
     <string name="website_encouragement">Truy cập website chính thức của NewPipe để biết thêm thông tin và tin tức.</string>
     <string name="privacy_policy_title">Chính sách bảo mật của NewPipe</string>
@@ -283,7 +283,7 @@
     <string name="import_from">Nhập từ</string>
     <string name="export_to">Xuất sang</string>
     <string name="import_ongoing">Đang nhập…</string>
-    <string name="export_ongoing">Đang xuất …</string>
+    <string name="export_ongoing">Đang xuất…</string>
     <string name="import_file_title">Nhập tệp</string>
     <string name="previous_export">Xuất trước</string>
     <string name="subscriptions_import_unsuccessful">Không thể nhập đăng ký</string>
@@ -310,7 +310,7 @@
     <string name="playback_tempo">Tốc độ</string>
     <string name="playback_pitch">Độ cao</string>
     <string name="unhook_checkbox">Bỏ gắn (có thể gây méo)</string>
-    <string name="skip_silence_checkbox">Tua nhanh trong im lặng</string>
+    <string name="skip_silence_checkbox">Chuyển nhanh qua khoảng lặng</string>
     <string name="playback_step">Bước</string>
     <string name="playback_reset">Đặt lại</string>
     <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của NewPipe. Vui lòng đọc kỹ.
@@ -318,7 +318,7 @@
     <string name="accept">Chấp nhận</string>
     <string name="decline">Từ chối</string>
     <string name="limit_data_usage_none_description">Không giới hạn</string>
-    <string name="limit_mobile_data_usage_title">Giới hạn độ phân giải khi sử dụng 3G, 4G</string>
+    <string name="limit_mobile_data_usage_title">Giới hạn độ phân giải khi sử dụng dữ liệu di động</string>
     <string name="minimize_on_exit_title">Thu nhỏ khi chuyển qua ứng dụng khác</string>
     <string name="minimize_on_exit_summary">Hành động khi chuyển sang ứng dụng khác từ trình phát video chính — %s</string>
     <string name="minimize_on_exit_none_description">Không</string>
@@ -353,7 +353,7 @@
     <string name="post_processing">đang xử lý</string>
     <string name="enqueue">Xếp hàng</string>
     <string name="permission_denied">Thao tác bị từ chối bởi hệ thống</string>
-    <string name="download_failed">Tải về không thành công</string>
+    <string name="download_failed">Tải xuống thất bại</string>
     <string name="generate_unique_name">Tạo tên riêng biệt</string>
     <string name="overwrite">Ghi đè</string>
     <string name="overwrite_finished_warning">Có một tệp đã tải về trùng tên</string>
@@ -426,10 +426,10 @@
         <item quantity="other">%d giây</item>
     </plurals>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Có, và video đã xem một phần</string>
-    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị xóa.
+    <string name="remove_watched_popup_warning">Những video đã xem trước và sau khi thêm vào danh sách phát sẽ bị loại bỏ.
 \nBạn có chắc không? Điều này không thể được hoàn tác!</string>
-    <string name="remove_watched_popup_title">Xóa video đã xem?</string>
-    <string name="remove_watched">Xóa đã xem</string>
+    <string name="remove_watched_popup_title">Xóa các video đã xem?</string>
+    <string name="remove_watched">Loại bỏ đã xem</string>
     <string name="systems_language">Mặc định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
     <string name="downloads_storage_use_saf_summary">\'Khung truy cập lưu trữ\' cho phép tải xuống một thẻ SD bên ngoài</string>
@@ -563,7 +563,7 @@
     <string name="comments_tab_description">Bình luận</string>
     <string name="hash_channel_description">Thông báo cho quá trình băm video</string>
     <string name="hash_channel_name">Thông báo băm video</string>
-    <string name="show_meta_info_summary">Tắt để ẩn các hộp thông tin meta có thông tin bổ sung về người tạo luồng, nội dung luồng hoặc yêu cầu tìm kiếm</string>
+    <string name="show_meta_info_summary">Tắt để ẩn các hộp siêu dữ liệu có thông tin bổ sung về người tạo luồng, nội dung luồng hoặc yêu cầu tìm kiếm</string>
     <string name="show_meta_info_title">Hiển thị thông tin meta</string>
     <string name="show_description_summary">Tắt để ẩn mô tả video và các thông tin bổ sung</string>
     <string name="show_description_title">Hiện mô tả</string>
@@ -624,7 +624,7 @@
     <string name="comments_are_disabled">Bình luận đã bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được chủ kênh thả \"thính\"</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
-    <string name="show_image_indicators_summary">Hiện ruy băng được tô màu Picasso ở trên cùng các hình ảnh và chỉ ra nguồn của chúng: đỏ đối với mạng, xanh lam đối với ổ đĩa và xanh lá đối với bộ nhớ</string>
+    <string name="show_image_indicators_summary">Hiển thị các dải băng màu Picasso trên đầu các hình ảnh cho biết nguồn của chúng: màu đỏ cho mạng, màu lam cho đĩa và màu lục cho bộ nhớ</string>
     <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
     <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
     <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
@@ -634,7 +634,7 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s lượt tải xuống đã hoàn tất</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Vuốt các mục để xóa chúng</string>
+    <string name="main_page_content_swipe_remove">Vuốt các mục để loại bỏ chúng</string>
     <string name="start_main_player_fullscreen_summary">Không bắt đầu các video ở trình phát mini, mà chuyển trực tiếp thành chế độ toàn màn hình, nếu tự động xoay bị khóa. Bạn vẫn có thể truy cập trình phát mini bằng cách thoát khỏi toàn màn hình</string>
     <string name="start_main_player_fullscreen_title">Khởi động trình phát chính ở toàn màn hình</string>
     <string name="enqueued_next">Đã xếp kế tiếp vào hàng</string>
@@ -683,7 +683,7 @@
     <string name="percent">Phần trăm</string>
     <string name="enumeration_comma">,</string>
     <string name="semitone">Nửa cung</string>
-    <string name="streams_not_yet_supported_removed">Luồng băng hình mà không được trình tải xuống hỗ trợ sẽ không hiển thị</string>
+    <string name="streams_not_yet_supported_removed">Các luồng chưa được trình tải xuống hỗ trợ sẽ không được hiển thị</string>
     <string name="no_video_streams_available_for_external_players">Không có luồng video nào khả dụng cho trình phát bên ngoài</string>
     <string name="selected_stream_external_player_not_supported">Luồng phát đã chọn không được trình phát ngoài hỗ trợ</string>
     <string name="no_audio_streams_available_for_external_players">Không có luồng âm thanh nào khả dụng cho máy phát bên ngoài</string>
@@ -705,9 +705,9 @@
     <string name="fast_mode">Chế độ tăng tốc</string>
     <string name="duplicate_in_playlist">Danh sách phát màu xám thì đã chứa mục này.</string>
     <string name="ignore_hardware_media_buttons_summary">Hữu ích trong trường hợp phím bấm âm lượng trên tai nghe hoặc thiết bị của bạn bị hỏng</string>
-    <string name="ignore_hardware_media_buttons_title">Không nhận phím điều khiển âm lượng vật lý</string>
-    <string name="remove_duplicates">Loại bỏ mục trùng lặp</string>
-    <string name="remove_duplicates_title">Loại bỏ mục trùng lặp\?</string>
+    <string name="ignore_hardware_media_buttons_title">Bỏ qua nhận nút phương tiện vật lý</string>
+    <string name="remove_duplicates">Loại bỏ các bản trùng lặp</string>
+    <string name="remove_duplicates_title">Loại bỏ các bản trùng lặp?</string>
     <string name="remove_duplicates_message">Bạn có muốn loại bỏ mọi luồng trùng lặp trong danh sách phát này\?</string>
     <string name="feed_show_hide_streams">Hiện/Ẩn luồng phát</string>
     <string name="feed_hide_streams_title">Hiển thị các luồng phát sau</string>

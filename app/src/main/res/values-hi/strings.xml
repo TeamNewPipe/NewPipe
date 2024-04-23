@@ -813,4 +813,15 @@
     <string name="show_more">और दिखाओ</string>
     <string name="notification_actions_summary_android13">नीचे दी गई प्रत्येक अधिसूचना कार्रवाई पर टैप करके उसे संपादित करें। पहली तीन क्रियाएँ (चलाएँ/रोकें, पिछली और अगली) सिस्टम द्वारा निर्धारित की जाती हैं और इन्हें अनुकूलित नहीं किया जा सकता है।</string>
     <string name="show_less">कम दिखाएं</string>
+    <string name="auto_update_check_description">न्यूपाइप समय-समय पर स्वचालित रूप से नए संस्करणों की जांच कर सकती है और उपलब्ध होने पर आपको सूचित कर सकती है।
+\nक्या आप इसे सक्षम करना चाहते हैं?</string>
+    <string name="reset_settings_title">सेटिंग्स रीसेट करें</string>
+    <string name="reset_settings_summary">सभी सेटिंग्स को उनके डिफ़ॉल्ट मानों पर रीसेट करें</string>
+    <string name="reset_all_settings">सभी सेटिंग्स को रीसेट करने से आपकी सभी पसंदीदा सेटिंग्स खारिज हो जाएंगी और ऐप पुनः प्रारंभ हो जाएगा।
+\n
+\nक्या आप सुनिश्चित रूप से आगे बढ़ना चाहते हैं?</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="error_insufficient_storage">डिवाइस पर पर्याप्त खाली स्थान नहीं है</string>
+    <string name="settings_category_backup_restore_title">बैकअप और रिस्टोर</string>
 </resources>

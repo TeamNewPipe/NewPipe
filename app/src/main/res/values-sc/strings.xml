@@ -539,7 +539,7 @@
     <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
-    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
+    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
     <string name="notification_scale_to_square_image_summary">Sega sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>
@@ -806,4 +806,22 @@
     <string name="channel_tab_channels">Canales</string>
     <string name="previous_stream">Flussu antepostu</string>
     <string name="channel_tab_livestreams">Diretas</string>
+    <string name="notification_actions_summary_android13">Modìfica cada atzione de notìfica inoghe in suta tochende·la. Sas primas tres atziones (riprodutzione/pàusa, antepostu e imbeniente) sunt impostadas dae su sistema e non si podent personalizare.</string>
+    <string name="error_insufficient_storage">Non b\'at ispàtziu lìberu bastante in su dispositivu</string>
+    <string name="show_less">Mustra de mancu</string>
+    <string name="auto_update_check_description">NewPipe podet chircare in automàticu versiones noas cada tantu e notificare·ti cando sunt a disponimentu.
+\nLu boles abilitare?</string>
+    <string name="no">Nono</string>
+    <string name="settings_category_backup_restore_title">Còpia de seguresa e riprìstinu</string>
+    <plurals name="replies">
+        <item quantity="one">%s risposta</item>
+        <item quantity="other">%s rispostas</item>
+    </plurals>
+    <string name="show_more">Mustra de prus</string>
+    <string name="yes">Eja</string>
+    <string name="reset_settings_title">Reseta sas impostatziones</string>
+    <string name="reset_settings_summary">Reseta totu sas impostatziones a sos valores predefinidos issoro</string>
+    <string name="reset_all_settings">Resetende totu sas impostatziones as a iscartare totu sas impostatziones preferidas tuas e a torrare a allùghere s\'aplicatzione.
+\n
+\nSes seguru de bòlere sighire?</string>
 </resources>

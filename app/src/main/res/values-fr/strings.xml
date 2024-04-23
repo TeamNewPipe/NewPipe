@@ -829,4 +829,15 @@
     <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
     <string name="show_more">Afficher plus</string>
     <string name="show_less">Afficher moins</string>
+    <string name="reset_settings_summary">Réinitialiser tous les paramètres à leurs valeurs par défaut</string>
+    <string name="no">Non</string>
+    <string name="reset_all_settings">La réinitialisation de tous les paramètres va supprimer toutes vos préférences de paramètres et redémarrer l\'application.
+\n
+\nÊtes-vous sûr de vouloir poursuivre ?</string>
+    <string name="settings_category_backup_restore_title">Sauvegarde et restauration</string>
+    <string name="yes">Oui</string>
+    <string name="auto_update_check_description">NewPipe peut automatiquement vérifier la disponibilité de nouvelles versions de temps en temps et vous notifier lorsqu\'elles sont disponibles.
+\nVoulez-vous activer cette vérification ?</string>
+    <string name="reset_settings_title">Réinitialiser les paramètres</string>
+    <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
 </resources>

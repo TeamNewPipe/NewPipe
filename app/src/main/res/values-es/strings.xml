@@ -782,7 +782,7 @@
     <string name="metadata_subscribers">Suscriptores</string>
     <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas de los canales</string>
     <string name="show_channel_tabs">Pestañas del canal</string>
-    <string name="channel_tab_shorts">Cortos</string>
+    <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Cargando los metadatos…</string>
     <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
     <string name="channel_tab_about">Acerca de</string>

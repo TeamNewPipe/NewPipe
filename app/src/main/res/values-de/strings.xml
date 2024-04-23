@@ -819,4 +819,9 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="settings_category_backup_restore_title">Sichern und Wiederherstellen</string>
+    <string name="auto_update_check_description">NewPipe kann von Zeit zu Zeit automatisch nach neuen Versionen suchen und dich benachrichtigen, sobald sie verfügbar sind.
+\nMöchtest du dies aktivieren?</string>
+    <string name="reset_all_settings">Wenn du alle Einstellungen zurücksetzt, werden alle deine bevorzugten Einstellungen verworfen und die App wird neu gestartet.
+\n
+\nMöchtest du wirklich fortfahren?</string>
 </resources>

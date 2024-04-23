@@ -1,5 +1,5 @@
 • Añade botón de "reproducir siguiente" al menú presionado
-• Añadido prefijo de ruta de Youtube shorts
+• Añadido prefijo de ruta de YouTube Shorts
 • Corregida importación de ajustes
 • Intercambio entre barra y botones en pantalla de cola
 • Correcciones relacionadas con MediasessionManager

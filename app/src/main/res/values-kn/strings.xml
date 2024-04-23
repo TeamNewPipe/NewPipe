@@ -40,4 +40,6 @@
     <string name="tab_choose">ಟ್ಯಾಬ್ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="controls_background_title">ಹಿನ್ನೆಲೆ</string>
     <string name="unsubscribe">ಅನ್‌ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಿ</string>
+    <string name="yes">ಹೌದು</string>
+    <string name="no">ಇಲ್ಲ</string>
 </resources>

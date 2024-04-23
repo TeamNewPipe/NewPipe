@@ -8,5 +8,5 @@
 - Se ha corregido la posibilidad de compartir vídeos desde el reproductor
 - Corregida la vista web de ReCaptcha en blanco
 - Corregido el fallo que se producía al eliminar un stream de una lista
-- PeerTube] Corregidos los flujos relacionados
-- YouTube] Corregida la búsqueda de música en YouTube
+- [PeerTube] Corregidos los flujos relacionados
+- [YouTube] Corregida la búsqueda de música en YouTube

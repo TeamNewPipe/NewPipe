@@ -205,8 +205,8 @@
     <string name="popup_player">Pop-upspeler</string>
     <string name="preferred_player_fetcher_notification_title">Bezig met ophalen van informatie…</string>
     <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
-    <string name="import_data_title">Databank importeren</string>
-    <string name="export_data_title">Databank exporteren</string>
+    <string name="import_data_title">Data­base importeren</string>
+    <string name="export_data_title">Data­base exporteren</string>
     <string name="import_data_summary">Dit overschrijft je huidige geschiedenis, abonnementen, afspeellijsten en instellingen</string>
     <string name="export_data_summary">Exporteer geschiedenis, abonnementen, afspeellijsten en instellingen</string>
     <string name="export_complete_toast">Geëxporteerd</string>
@@ -637,7 +637,7 @@
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
     <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>
-    <string name="mark_as_watched">Markeer als bekeken</string>
+    <string name="mark_as_watched">Markeren als bekeken</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download verwijderd</item>
         <item quantity="other">%1$s downloads verwijderd</item>

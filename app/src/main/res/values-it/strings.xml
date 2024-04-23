@@ -834,4 +834,8 @@
 \n
 \nSei sicuro di voler procedere?</string>
     <string name="reset_settings_summary">Azzera tutte le impostazioni ai loro valori predefiniti</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="auto_update_check_description">NewPipe può cercare automaticamente nuove versioni di tanto in tanto e avvisarti quando sono disponibili.
+\nVuoi attivarlo?</string>
 </resources>

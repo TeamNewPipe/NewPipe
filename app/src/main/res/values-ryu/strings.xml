@@ -813,4 +813,15 @@
     <string name="show_more">なーふぃんんーじゅん</string>
     <string name="show_less">ひょうじいきらくすん</string>
     <string name="notification_actions_summary_android13">いかぬちうちアクションタップしへんしゅうさびーん。さいしょぬみーちぬアクション （さいせい/いちじていし、めーんかい、ちぎんかい）ーシステムにゆってぃしっていさりてぃうぅい、カスタマイズすしぇーなやびらん。</string>
+    <string name="yes">はい</string>
+    <string name="auto_update_check_description">NewPipeーてぃんじちーがみーさるバージョンじちゃーてぃきんかいチェックしー、こうしんがのうないるとぅちうちさびーん。
+\nゆうこうなさびーが？</string>
+    <string name="error_insufficient_storage">デバイスぬあきゆういょうがふすくそーいびーん</string>
+    <string name="no">うぅーうぅー</string>
+    <string name="settings_category_backup_restore_title">バックアップとぅふくぎん</string>
+    <string name="reset_settings_title">しっていリセット</string>
+    <string name="reset_settings_summary">まじりぬしっていデフォルトじょうたいんかいリセットさびーん</string>
+    <string name="reset_all_settings">まじりぬしっていリセットしーねー、ゆーいるしんしっていぬまじりはちされい、アプリぬさいきちゃーさびーん。
+\n
+\nずっこうさびーが？</string>
 </resources>

@@ -1,0 +1,15 @@
+Baru
+• Tambah balasan komentar
+• Izinkan susunan ulg playlist
+• Tampilkan deskripsi & durasi daftar putar
+• Izinkan setelan ulg
+• [Android 13+] Pulihkan tindakan notifikasi khusus
+• Minta persetujuan utk pemeriksaan update
+• Izinkan pemutaran notifikasi sementara buffering
+• Susun ulg bbrp setelan
+
+Perbaikan
+• [YouTube] Perbaiki komentar yg tdk dapat dimuat, ditambah perbaikan & peningkatan
+• Atasi kerentanan pengimporan pengaturan & ubah ke JSON
+• Perbaikan unduhan
+• Pangkas teks pencarian
