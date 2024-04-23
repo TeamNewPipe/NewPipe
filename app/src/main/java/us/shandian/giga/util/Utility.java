@@ -40,20 +40,6 @@ public class Utility {
         UNKNOWN
     }
 
-    /**
-     * Get amount of free system's memory.
-     * @return free memory (bytes)
-     */
-    public static long getSystemFreeMemory() {
-        try {
-            final StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
-            return statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
-        } catch (final Exception e) {
-            // do nothing
-        }
-        return -1;
-    }
-
     public static String formatBytes(long bytes) {
         Locale locale = Locale.getDefault();
         if (bytes < 1024) {

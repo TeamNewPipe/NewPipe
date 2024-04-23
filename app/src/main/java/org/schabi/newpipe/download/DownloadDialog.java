@@ -859,20 +859,19 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
-        // Check for free memory space (for api 24 and up)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            final long freeSpace = mainStorage.getFreeMemory();
-            if (freeSpace <= size) {
-                Toast.makeText(context, getString(R.
-                        string.error_insufficient_storage), Toast.LENGTH_LONG).show();
-                // move the user to storage setting tab
-                final Intent storageSettingsIntent = new Intent(Settings.
-                        ACTION_INTERNAL_STORAGE_SETTINGS);
-                if (storageSettingsIntent.resolveActivity(context.getPackageManager()) != null) {
-                    startActivity(storageSettingsIntent);
-                }
-                return;
+        // Check for free storage space
+        final long freeSpace = mainStorage.getFreeStorageSpace();
+        if (freeSpace <= size) {
+            Toast.makeText(context, getString(R.
+                    string.error_insufficient_storage), Toast.LENGTH_LONG).show();
+            // move the user to storage setting tab
+            final Intent storageSettingsIntent = new Intent(Settings.
+                    ACTION_INTERNAL_STORAGE_SETTINGS);
+            if (storageSettingsIntent.resolveActivity(context.getPackageManager())
+                    != null) {
+                startActivity(storageSettingsIntent);
             }
+            return;
         }
 
         // check for existing file with the same name
