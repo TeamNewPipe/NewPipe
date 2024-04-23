@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
-import android.system.ErrnoException;
 import android.system.Os;
 import android.system.StructStatVfs;
 import android.util.Log;
@@ -207,7 +206,9 @@ public class StoredDirectoryHelper {
 
             // this is the same formula used inside the FsStat class
             return stat.f_bavail * stat.f_frsize;
-        } catch (final IOException | ErrnoException e) {
+        } catch (final Throwable e) {
+            // ignore any error
+            Log.e(TAG, "Could not get free storage space", e);
             return Long.MAX_VALUE;
         }
     }
