@@ -42,7 +42,10 @@ public class StoredDirectoryHelper {
     private Path ioTree;
     private DocumentFile docTree;
 
-    // will be `null` for non-SAF files, i.e. files that use `ioTree`
+    /**
+     * Context is `null` for non-SAF files, i.e. files that use `ioTree`.
+     */
+    @Nullable
     private Context context;
 
     private final String tag;
