@@ -176,6 +176,10 @@ public final class Player implements PlaybackListener, Listener {
     public static final int RENDERER_UNAVAILABLE = -1;
     private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
+    public static final int DEFAULT_PREV_NEXT_MODE = 0;
+    public static final int SMART_PREV_NEXT_MODE = 1;
+    public static final int SEEK_PREV_NEXT_MODE = 2;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
@@ -221,6 +225,8 @@ public final class Player implements PlaybackListener, Listener {
 
     private PlayerType playerType = PlayerType.MAIN;
     private int currentState = STATE_PREFLIGHT;
+
+    private int queueActionsArePrevNext = DEFAULT_PREV_NEXT_MODE;
 
     // audio only mode does not mean that player type is background, but that the player was
     // minimized to background but will resume automatically to the original player type
@@ -1719,6 +1725,40 @@ public final class Player implements PlaybackListener, Listener {
         seekBy(-retrieveSeekDurationFromPreferences(this));
         triggerProgressUpdate();
     }
+
+    public void playerActionNext() {
+        switch (queueActionsArePrevNext) {
+            case SMART_PREV_NEXT_MODE:
+                if (playQueue != null && playQueue.size() > 1) {
+                    playNext();
+                } else {
+                    fastForward();
+                }
+                break;
+            case SEEK_PREV_NEXT_MODE:
+                fastForward();
+                break;
+            default:
+                playNext();
+        }
+    }
+
+    public void playerActionPrevious() {
+        switch (queueActionsArePrevNext) {
+            case SMART_PREV_NEXT_MODE:
+                if (playQueue != null && playQueue.size() > 1) {
+                    playPrevious();
+                } else {
+                    fastRewind();
+                }
+                break;
+            case SEEK_PREV_NEXT_MODE:
+                fastRewind();
+                break;
+            default:
+                playPrevious();
+        }
+    }
     //endregion
 
 
@@ -2237,6 +2277,9 @@ public final class Player implements PlaybackListener, Listener {
         reloadPlayQueueManager();
     }
 
+    public void setQueueActionsPrevNext(final int state) {
+        queueActionsArePrevNext = state;
+    }
 
     @NonNull
     public Context getContext() {
