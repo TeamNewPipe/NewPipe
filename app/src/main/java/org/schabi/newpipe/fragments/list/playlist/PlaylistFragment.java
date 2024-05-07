@@ -500,7 +500,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                                                   final boolean isDurationComplete) {
         if (activity != null && headerBinding != null) {
             playlistOverallDurationSeconds += list.stream()
-                    .mapToLong(x -> x.getDuration())
+                    .mapToLong(StreamInfoItem::getDuration)
                     .sum();
             headerBinding.playlistStreamCount.setText(
                 Localization.concatenateStrings(

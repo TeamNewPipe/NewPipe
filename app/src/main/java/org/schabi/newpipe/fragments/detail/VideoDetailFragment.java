@@ -1685,10 +1685,8 @@ public final class VideoDetailFragment
                 .subscribeOn(Schedulers.io())
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(state -> {
-                    updatePlaybackProgress(
-                            state.getProgressMillis(), info.getDuration() * 1000);
-                }, e -> {
+                .subscribe(state -> updatePlaybackProgress(
+                        state.getProgressMillis(), info.getDuration() * 1000), e -> {
                     // impossible since the onErrorComplete()
                 }, () -> {
                     binding.positionView.setVisibility(View.GONE);
