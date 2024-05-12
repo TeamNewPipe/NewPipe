@@ -3,15 +3,18 @@ package org.schabi.newpipe.fragments.list.comments
 import android.widget.TextView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -39,16 +42,20 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, disposables: CompositeDispos
     val context = LocalContext.current
 
     Column(modifier = Modifier.padding(all = 8.dp)) {
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Row(
                 modifier = Modifier
-                    .padding(all = 8.dp)
+                    .padding(top = 8.dp, bottom = 8.dp, end = 8.dp)
                     .clickable {
                         NavigationHelper.openCommentAuthorIfPresent(
                             context as FragmentActivity,
                             comment
                         )
-                    }
+                    },
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 if (ImageStrategy.shouldLoadImages()) {
                     AsyncImage(
@@ -75,18 +82,31 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, disposables: CompositeDispos
                 }
             }
 
-            if (comment.isHeartedByUploader) {
-                Image(
-                    painter = painterResource(R.drawable.ic_heart),
-                    contentDescription = stringResource(R.string.detail_heart_img_view_description)
-                )
-            }
+            Spacer(modifier = Modifier.weight(1f))
 
-            if (comment.isPinned) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Image(
-                    painter = painterResource(R.drawable.ic_pin),
-                    contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                    painter = painterResource(R.drawable.ic_thumb_up),
+                    contentDescription = stringResource(R.string.detail_likes_img_view_description)
                 )
+                Text(text = comment.likeCount.toString())
+
+                if (comment.isHeartedByUploader) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_heart),
+                        contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                    )
+                }
+
+                if (comment.isPinned) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_pin),
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                    )
+                }
             }
         }
 
@@ -116,6 +136,9 @@ fun CommentRepliesHeaderPreview() {
     comment.commentText = Description("Hello world!", Description.PLAIN_TEXT)
     comment.uploaderName = "Test"
     comment.textualUploadDate = "5 months ago"
+    comment.likeCount = 100
+    comment.isPinned = true
+    comment.isHeartedByUploader = true
 
     CommentRepliesHeader(comment, disposables)
 }
