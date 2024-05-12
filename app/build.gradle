@@ -106,7 +106,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
 }
 
@@ -267,7 +267,7 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
     // Image loading
-    implementation 'io.coil-kt:coil:2.7.0'
+    implementation 'io.coil-kt:coil-compose:2.7.0'
 
     // Markdown library for Android
     implementation "io.noties.markwon:core:${markwonVersion}"
@@ -289,7 +289,7 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
     // Jetpack Compose
-    implementation(platform('androidx.compose:compose-bom:2024.02.01'))
+    implementation(platform('androidx.compose:compose-bom:2024.05.00'))
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
