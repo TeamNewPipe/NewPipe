@@ -98,8 +98,8 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, disposables: CompositeDispos
             },
             update = { view ->
                 // setup comment content
-                TextLinkifier.fromDescription(view, comment.commentText,
-                    HtmlCompat.FROM_HTML_MODE_LEGACY,
+                TextLinkifier.fromDescription(
+                    view, comment.commentText, HtmlCompat.FROM_HTML_MODE_LEGACY,
                     ServiceHelper.getServiceById(comment.serviceId), comment.url, disposables,
                     null
                 )
