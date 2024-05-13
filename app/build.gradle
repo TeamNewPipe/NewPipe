@@ -9,6 +9,7 @@ plugins {
     id "kotlin-parcelize"
     id "checkstyle"
     id "org.sonarqube" version "4.0.0.2929"
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -193,6 +194,10 @@ sonar {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
 dependencies {
 /** Desugaring **/
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
@@ -294,6 +299,11 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation "androidx.navigation:navigation-compose:2.7.7"
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
 
 /** Debugging **/
     // Memory leak detection
