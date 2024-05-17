@@ -871,7 +871,7 @@ public class MainActivity extends AppCompatActivity {
         @Nullable final CommentRepliesFragment repliesFragment =
                 (CommentRepliesFragment) fm.findFragmentByTag(CommentRepliesFragment.TAG);
         @Nullable final CommentsInfoItem rootComment =
-                repliesFragment == null ? null : repliesFragment.commentsInfoItem;
+                repliesFragment == null ? null : repliesFragment.getCommentsInfoItem();
 
         // sometimes this function pops the backstack, other times it's handled by the system
         if (popBackStack) {
