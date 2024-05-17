@@ -14,6 +14,7 @@ import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment
 import org.schabi.newpipe.info_list.ItemViewMode
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.Localization
 import java.util.Queue
@@ -50,7 +51,9 @@ class CommentRepliesFragment() : BaseListInfoFragment<CommentsInfoItem, CommentR
         return Supplier {
             ComposeView(requireContext()).apply {
                 setContent {
-                    CommentRepliesHeader(commentsInfoItem, disposables)
+                    AppTheme {
+                        CommentRepliesHeader(commentsInfoItem, disposables)
+                    }
                 }
             }
         }
