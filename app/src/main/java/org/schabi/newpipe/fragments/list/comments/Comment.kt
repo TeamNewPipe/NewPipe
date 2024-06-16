@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
@@ -77,6 +78,7 @@ fun Comment(comment: CommentsInfoItem) {
                     // If the comment is expanded, we display all its content
                     // otherwise we only display the first two lines
                     maxLines = if (isExpanded) Int.MAX_VALUE else 2,
+                    overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodyMedium
                 )
 
@@ -108,18 +110,12 @@ fun Comment(comment: CommentsInfoItem) {
     }
 }
 
-@Preview(
-    name = "Light mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Preview(
-    name = "Dark mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun CommentPreview() {
     val comment = CommentsInfoItem(1, "", "")
-    comment.commentText = Description("Hello world!", Description.PLAIN_TEXT)
+    comment.commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT)
     comment.uploaderName = "Test"
     comment.likeCount = 100
     comment.isHeartedByUploader = true
