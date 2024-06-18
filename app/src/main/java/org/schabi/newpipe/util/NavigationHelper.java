@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -503,8 +504,11 @@ public final class NavigationHelper {
 
     public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
                                                   @NonNull final CommentsInfoItem comment) {
+        final var bundle = new Bundle();
+        bundle.putSerializable(CommentRepliesFragment.COMMENT_KEY, comment);
+
         defaultTransaction(activity.getSupportFragmentManager())
-                .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
+                .replace(R.id.fragment_holder, CommentRepliesFragment.class, bundle,
                         CommentRepliesFragment.TAG)
                 .addToBackStack(CommentRepliesFragment.TAG)
                 .commit();

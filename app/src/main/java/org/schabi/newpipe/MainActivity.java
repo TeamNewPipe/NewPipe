@@ -66,7 +66,6 @@ import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -868,10 +867,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // the root comment is the comment for which the user opened the replies page
-        @Nullable final CommentRepliesFragment repliesFragment =
-                (CommentRepliesFragment) fm.findFragmentByTag(CommentRepliesFragment.TAG);
-        @Nullable final CommentsInfoItem rootComment =
-                repliesFragment == null ? null : repliesFragment.getCommentsInfoItem();
+        final var repliesFragment = (CommentRepliesFragment)
+                fm.findFragmentByTag(CommentRepliesFragment.TAG);
+        final var rootComment = repliesFragment == null ? null : repliesFragment.getComment();
 
         // sometimes this function pops the backstack, other times it's handled by the system
         if (popBackStack) {
