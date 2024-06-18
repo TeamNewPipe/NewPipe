@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -40,9 +41,15 @@ import org.schabi.newpipe.util.image.ImageStrategy
 @Composable
 fun Comment(comment: CommentsInfoItem) {
     val context = LocalContext.current
+    var isExpanded by rememberSaveable { mutableStateOf(false) }
 
     Surface(color = MaterialTheme.colorScheme.background) {
-        Row(modifier = Modifier.padding(all = 8.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { isExpanded = !isExpanded }
+                .padding(all = 8.dp)
+        ) {
             if (ImageStrategy.shouldLoadImages()) {
                 AsyncImage(
                     model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
@@ -63,19 +70,23 @@ fun Comment(comment: CommentsInfoItem) {
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            var isExpanded by rememberSaveable { mutableStateOf(false) }
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    if (comment.isPinned) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_pin),
+                            contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                        )
+                    }
 
-            Column(
-                modifier = Modifier.clickable { isExpanded = !isExpanded },
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                val date = Localization.relativeTimeOrTextual(
-                    context, comment.uploadDate, comment.textualUploadDate
-                )
-                Text(
-                    text = Localization.concatenateStrings(comment.uploaderName, date),
-                    color = MaterialTheme.colorScheme.secondary
-                )
+                    val date = Localization.relativeTimeOrTextual(
+                        context, comment.uploadDate, comment.textualUploadDate
+                    )
+                    Text(
+                        text = Localization.concatenateStrings(comment.uploaderName, date),
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                }
 
                 // TODO: Handle HTML and Markdown formats.
                 Text(
@@ -98,13 +109,6 @@ fun Comment(comment: CommentsInfoItem) {
                         Image(
                             painter = painterResource(R.drawable.ic_heart),
                             contentDescription = stringResource(R.string.detail_heart_img_view_description)
-                        )
-                    }
-
-                    if (comment.isPinned) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_pin),
-                            contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
                         )
                     }
                 }
