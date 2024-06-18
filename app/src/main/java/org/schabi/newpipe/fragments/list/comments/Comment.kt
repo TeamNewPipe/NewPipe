@@ -73,6 +73,7 @@ fun Comment(comment: CommentsInfoItem) {
                     color = MaterialTheme.colorScheme.secondary
                 )
 
+                // TODO: Handle HTML and Markdown formats.
                 Text(
                     text = comment.commentText.content,
                     // If the comment is expanded, we display all its content
@@ -110,16 +111,33 @@ fun Comment(comment: CommentsInfoItem) {
     }
 }
 
+fun CommentsInfoItem(
+    serviceId: Int = 1,
+    url: String = "",
+    name: String = "",
+    commentText: Description,
+    uploaderName: String,
+    textualUploadDate: String = "5 months ago",
+    likeCount: Int = 100,
+    isHeartedByUploader: Boolean = true,
+    isPinned: Boolean = true,
+) = CommentsInfoItem(serviceId, url, name).apply {
+    this.commentText = commentText
+    this.uploaderName = uploaderName
+    this.textualUploadDate = textualUploadDate
+    this.likeCount = likeCount
+    this.isHeartedByUploader = isHeartedByUploader
+    this.isPinned = isPinned
+}
+
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CommentPreview() {
-    val comment = CommentsInfoItem(1, "", "")
-    comment.commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT)
-    comment.uploaderName = "Test"
-    comment.likeCount = 100
-    comment.isHeartedByUploader = true
-    comment.isPinned = true
+private fun CommentPreview() {
+    val comment = CommentsInfoItem(
+        commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+        uploaderName = "Test",
+    )
 
     AppTheme {
         Comment(comment)
