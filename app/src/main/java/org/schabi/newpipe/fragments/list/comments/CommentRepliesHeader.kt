@@ -136,14 +136,8 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, disposables: CompositeDispos
     }
 }
 
-@Preview(
-    name = "Light mode",
-    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Preview(
-    name = "Dark mode",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun CommentRepliesHeaderPreview() {
     val disposables = CompositeDisposable()
