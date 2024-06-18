@@ -140,16 +140,15 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, disposables: CompositeDispos
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun CommentRepliesHeaderPreview() {
-    val disposables = CompositeDisposable()
-    val comment = CommentsInfoItem(1, "", "")
-    comment.commentText = Description("Hello world!", Description.PLAIN_TEXT)
-    comment.uploaderName = "Test"
-    comment.textualUploadDate = "5 months ago"
-    comment.likeCount = 100
-    comment.isPinned = true
-    comment.isHeartedByUploader = true
+    val comment = CommentsInfoItem(
+        commentText = Description("Hello world!", Description.PLAIN_TEXT),
+        uploaderName = "Test",
+        likeCount = 100,
+        isPinned = true,
+        isHeartedByUploader = true
+    )
 
     AppTheme {
-        CommentRepliesHeader(comment, disposables)
+        CommentRepliesHeader(comment, CompositeDisposable())
     }
 }
