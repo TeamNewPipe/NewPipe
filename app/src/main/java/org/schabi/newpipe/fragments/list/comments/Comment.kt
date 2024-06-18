@@ -33,6 +33,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
@@ -68,8 +69,11 @@ fun Comment(comment: CommentsInfoItem) {
                 modifier = Modifier.clickable { isExpanded = !isExpanded },
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
+                val date = Localization.relativeTimeOrTextual(
+                    context, comment.uploadDate, comment.textualUploadDate
+                )
                 Text(
-                    text = comment.uploaderName,
+                    text = Localization.concatenateStrings(comment.uploaderName, date),
                     color = MaterialTheme.colorScheme.secondary
                 )
 
@@ -118,9 +122,9 @@ fun CommentsInfoItem(
     commentText: Description,
     uploaderName: String,
     textualUploadDate: String = "5 months ago",
-    likeCount: Int = 100,
-    isHeartedByUploader: Boolean = true,
-    isPinned: Boolean = true,
+    likeCount: Int = 0,
+    isHeartedByUploader: Boolean = false,
+    isPinned: Boolean = false,
 ) = CommentsInfoItem(serviceId, url, name).apply {
     this.commentText = commentText
     this.uploaderName = uploaderName
@@ -137,6 +141,9 @@ private fun CommentPreview() {
     val comment = CommentsInfoItem(
         commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
         uploaderName = "Test",
+        likeCount = 100,
+        isPinned = true,
+        isHeartedByUploader = true
     )
 
     AppTheme {

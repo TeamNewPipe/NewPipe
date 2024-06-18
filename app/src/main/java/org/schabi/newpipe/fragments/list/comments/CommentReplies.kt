@@ -42,6 +42,9 @@ private fun CommentRepliesPreview() {
     val comment = CommentsInfoItem(
         commentText = Description("Hello world!", Description.PLAIN_TEXT),
         uploaderName = "Test",
+        likeCount = 100,
+        isPinned = true,
+        isHeartedByUploader = true
     )
 
     val reply1 = CommentsInfoItem(
