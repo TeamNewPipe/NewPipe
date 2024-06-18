@@ -1,7 +1,6 @@
 package org.schabi.newpipe.fragments.list.comments
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
@@ -24,13 +23,14 @@ fun CommentReplies(
 ) {
     val replies = flow.collectAsLazyPagingItems()
 
-    Column {
-        CommentRepliesHeader(comment = comment, disposables = disposables)
-        HorizontalDivider(thickness = 1.dp)
-        LazyColumn {
-            items(replies.itemCount) {
-                Comment(comment = replies[it]!!)
-            }
+    LazyColumn {
+        item {
+            CommentRepliesHeader(comment = comment, disposables = disposables)
+            HorizontalDivider(thickness = 1.dp)
+        }
+
+        items(replies.itemCount) {
+            Comment(comment = replies[it]!!)
         }
     }
 }
