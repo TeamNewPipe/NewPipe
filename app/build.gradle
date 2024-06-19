@@ -293,6 +293,7 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.ui:ui-text:1.7.0-beta03' // Needed for parsing HTML to AnnotatedString
 
     // Paging
     implementation 'androidx.paging:paging-rxjava3:3.3.0'
