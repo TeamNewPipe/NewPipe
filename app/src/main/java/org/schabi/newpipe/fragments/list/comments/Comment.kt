@@ -15,16 +15,19 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ParagraphStyle
@@ -37,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -115,24 +119,38 @@ fun Comment(comment: CommentsInfoItem) {
                     style = MaterialTheme.typography.bodyMedium,
                 )
 
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_thumb_up),
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
-                    )
-                    Text(text = comment.likeCount.toString())
-
-                    if (comment.isHeartedByUploader) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Image(
-                            painter = painterResource(R.drawable.ic_heart),
-                            contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                            painter = painterResource(R.drawable.ic_thumb_up),
+                            contentDescription = stringResource(R.string.detail_likes_img_view_description)
                         )
+                        Text(text = comment.likeCount.toString())
+
+                        if (comment.isHeartedByUploader) {
+                            Image(
+                                painter = painterResource(R.drawable.ic_heart),
+                                contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                            )
+                        }
+                    }
+
+                    if (comment.replies != null) {
+                        TextButton(onClick = { /*TODO*/ }) {
+                            Text(
+                                text = pluralStringResource(
+                                    R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                                )
+                            )
+                        }
                     }
                 }
             }
         }
-
-        // TODO: Add support for comment replies
     }
 }
 
@@ -146,6 +164,8 @@ fun CommentsInfoItem(
     likeCount: Int = 0,
     isHeartedByUploader: Boolean = false,
     isPinned: Boolean = false,
+    replies: Page? = null,
+    replyCount: Int = 0,
 ) = CommentsInfoItem(serviceId, url, name).apply {
     this.commentText = commentText
     this.uploaderName = uploaderName
@@ -153,6 +173,8 @@ fun CommentsInfoItem(
     this.likeCount = likeCount
     this.isHeartedByUploader = isHeartedByUploader
     this.isPinned = isPinned
+    this.replies = replies
+    this.replyCount = replyCount
 }
 
 class DescriptionPreviewProvider : PreviewParameterProvider<Description> {
@@ -173,7 +195,9 @@ private fun CommentPreview(
         uploaderName = "Test",
         likeCount = 100,
         isPinned = true,
-        isHeartedByUploader = true
+        isHeartedByUploader = true,
+        replies = Page(""),
+        replyCount = 10
     )
 
     AppTheme {
