@@ -8,7 +8,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
@@ -18,14 +17,13 @@ import org.schabi.newpipe.ui.theme.AppTheme
 @Composable
 fun CommentReplies(
     comment: CommentsInfoItem,
-    flow: Flow<PagingData<CommentsInfoItem>>,
-    disposables: CompositeDisposable
+    flow: Flow<PagingData<CommentsInfoItem>>
 ) {
     val replies = flow.collectAsLazyPagingItems()
 
     LazyColumn {
         item {
-            CommentRepliesHeader(comment = comment, disposables = disposables)
+            CommentRepliesHeader(comment = comment)
             HorizontalDivider(thickness = 1.dp)
         }
 
@@ -58,6 +56,6 @@ private fun CommentRepliesPreview() {
     val flow = flowOf(PagingData.from(listOf(reply1, reply2)))
 
     AppTheme {
-        CommentReplies(comment = comment, flow = flow, disposables = CompositeDisposable())
+        CommentReplies(comment = comment, flow = flow)
     }
 }

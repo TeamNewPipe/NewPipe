@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -25,8 +26,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
@@ -37,6 +43,18 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
+
+@Composable
+fun rememberParsedText(commentText: Description): AnnotatedString {
+    // TODO: Handle links and hashtags, Markdown.
+    return remember(commentText) {
+        if (commentText.type == Description.HTML) {
+            AnnotatedString.fromHtml(commentText.content)
+        } else {
+            AnnotatedString(commentText.content, ParagraphStyle())
+        }
+    }
+}
 
 @Composable
 fun Comment(comment: CommentsInfoItem) {
@@ -79,23 +97,22 @@ fun Comment(comment: CommentsInfoItem) {
                         )
                     }
 
-                    val date = Localization.relativeTimeOrTextual(
-                        context, comment.uploadDate, comment.textualUploadDate
-                    )
-                    Text(
-                        text = Localization.concatenateStrings(comment.uploaderName, date),
-                        color = MaterialTheme.colorScheme.secondary
-                    )
+                    val nameAndDate = remember(comment) {
+                        val date = Localization.relativeTimeOrTextual(
+                            context, comment.uploadDate, comment.textualUploadDate
+                        )
+                        Localization.concatenateStrings(comment.uploaderName, date)
+                    }
+                    Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
                 }
 
-                // TODO: Handle HTML and Markdown formats.
                 Text(
-                    text = comment.commentText.content,
+                    text = rememberParsedText(comment.commentText),
                     // If the comment is expanded, we display all its content
                     // otherwise we only display the first two lines
                     maxLines = if (isExpanded) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
                 )
 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -138,12 +155,21 @@ fun CommentsInfoItem(
     this.isPinned = isPinned
 }
 
+class DescriptionPreviewProvider : PreviewParameterProvider<Description> {
+    override val values = sequenceOf(
+        Description("Hello world!<br><br>This line should be hidden by default.", Description.HTML),
+        Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+    )
+}
+
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun CommentPreview() {
+private fun CommentPreview(
+    @PreviewParameter(DescriptionPreviewProvider::class) description: Description
+) {
     val comment = CommentsInfoItem(
-        commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+        commentText = description,
         uploaderName = "Test",
         likeCount = 100,
         isPinned = true,
