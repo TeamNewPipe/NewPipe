@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -15,21 +14,22 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.preference.PreferenceManager
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
+import coil.executeBlocking
+import coil.imageLoader
+import coil.request.ImageRequest
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.image.PicassoHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
  */
 class NotificationHelper(val context: Context) {
     private val manager = NotificationManagerCompat.from(context)
-    private val iconLoadingTargets = ArrayList<Target>()
 
     /**
      * Show notifications for new streams from a single channel. The individual notifications are
@@ -80,39 +80,20 @@ class NotificationHelper(val context: Context) {
             )
         )
 
-        // a Target is like a listener for image loading events
-        val target = object : Target {
-            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-                // set channel icon only if there is actually one (for Android versions < 7.0)
-                summaryBuilder.setLargeIcon(bitmap)
+        val request = ImageRequest.Builder(context)
+            .data(data.avatarUrl?.takeIf { ImageStrategy.shouldLoadImages() })
+            .placeholder(R.drawable.ic_newpipe_triangle_white)
+            .error(R.drawable.ic_newpipe_triangle_white)
+            .build()
+        val avatarIcon = context.imageLoader.executeBlocking(request).drawable?.toBitmapOrNull()
 
-                // Show individual stream notifications, set channel icon only if there is actually
-                // one
-                showStreamNotifications(newStreams, data.serviceId, bitmap)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
+        summaryBuilder.setLargeIcon(avatarIcon)
 
-                iconLoadingTargets.remove(this) // allow it to be garbage-collected
-            }
-
-            override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
-                // Show individual stream notifications
-                showStreamNotifications(newStreams, data.serviceId, null)
-                // Show summary notification
-                manager.notify(data.pseudoId, summaryBuilder.build())
-                iconLoadingTargets.remove(this) // allow it to be garbage-collected
-            }
-
-            override fun onPrepareLoad(placeHolderDrawable: Drawable) {
-                // Nothing to do
-            }
-        }
-
-        // add the target to the list to hold a strong reference and prevent it from being garbage
-        // collected, since Picasso only holds weak references to targets
-        iconLoadingTargets.add(target)
-
-        PicassoHelper.loadNotificationIcon(data.avatarUrl).into(target)
+        // Show individual stream notifications, set channel icon only if there is actually
+        // one
+        showStreamNotifications(newStreams, data.serviceId, avatarIcon)
+        // Show summary notification
+        manager.notify(data.pseudoId, summaryBuilder.build())
     }
 
     private fun showStreamNotifications(
