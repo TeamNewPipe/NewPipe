@@ -9,13 +9,11 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.ktx.serializable
 import org.schabi.newpipe.ui.theme.AppTheme
 
 class CommentRepliesFragment : Fragment() {
-    private val disposables = CompositeDisposable()
     lateinit var comment: CommentsInfoItem
 
     override fun onCreateView(
@@ -33,15 +31,10 @@ class CommentRepliesFragment : Fragment() {
                 }
 
                 AppTheme {
-                    CommentReplies(comment = comment, flow = flow, disposables = disposables)
+                    CommentReplies(comment = comment, flow = flow)
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        disposables.clear()
     }
 
     companion object {
