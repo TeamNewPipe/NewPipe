@@ -129,7 +129,7 @@ fun Comment(comment: CommentsInfoItem) {
                             painter = painterResource(R.drawable.ic_thumb_up),
                             contentDescription = stringResource(R.string.detail_likes_img_view_description)
                         )
-                        Text(text = comment.likeCount.toString())
+                        Text(text = Localization.likeCount(context, comment.likeCount))
 
                         if (comment.isHeartedByUploader) {
                             Image(
