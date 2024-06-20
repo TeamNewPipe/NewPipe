@@ -92,7 +92,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                         painter = painterResource(R.drawable.ic_thumb_up),
                         contentDescription = stringResource(R.string.detail_likes_img_view_description)
                     )
-                    Text(text = comment.likeCount.toString())
+                    Text(text = Localization.likeCount(context, comment.likeCount))
 
                     if (comment.isHeartedByUploader) {
                         Image(
@@ -125,7 +125,7 @@ fun CommentRepliesHeaderPreview() {
     val comment = CommentsInfoItem(
         commentText = Description("Hello world!", Description.PLAIN_TEXT),
         uploaderName = "Test",
-        likeCount = 100,
+        likeCount = 1000,
         isPinned = true,
         isHeartedByUploader = true
     )
