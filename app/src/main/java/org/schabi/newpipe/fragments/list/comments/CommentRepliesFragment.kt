@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -23,6 +24,7 @@ class CommentRepliesFragment : Fragment() {
     ): View {
         comment = requireArguments().serializable<CommentsInfoItem>(COMMENT_KEY)!!
         return ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val flow = remember(comment) {
                     Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
