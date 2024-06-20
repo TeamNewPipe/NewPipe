@@ -108,17 +108,17 @@ android {
 ext {
     checkstyleVersion = '10.12.1'
 
-    androidxLifecycleVersion = '2.6.2'
+    androidxLifecycleVersion = '2.8.2'
     androidxRoomVersion = '2.6.1'
-    androidxWorkVersion = '2.8.1'
+    androidxWorkVersion = '2.9.0'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.7'
+    exoPlayerVersion = '2.19.1'
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.12'
+    leakCanaryVersion = '2.14'
     stethoVersion = '1.6.0'
 }
 
@@ -209,12 +209,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 
 /** AndroidX **/
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+    implementation 'androidx.fragment:fragment-ktx:1.8.0'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
@@ -227,10 +227,10 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     // Newer version specified to prevent accessibility regressions with RecyclerView, see:
     // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0'
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
