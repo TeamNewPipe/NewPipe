@@ -31,17 +31,17 @@ class CommentRepliesFragment : Fragment() {
         bar.setDisplayShowTitleEnabled(true)
         bar.title = Localization.replyCount(activity, comment.replyCount)
 
-        return ComposeView(requireContext()).apply {
+        return ComposeView(activity).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val flow = remember(comment) {
                     Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-                        CommentRepliesSource(comment)
+                        CommentsSource(comment.serviceId, comment.url, comment.replies)
                     }.flow
                 }
 
                 AppTheme {
-                    CommentReplies(comment = comment, flow = flow)
+                    CommentSection(parentComment = comment, flow = flow)
                 }
             }
         }
