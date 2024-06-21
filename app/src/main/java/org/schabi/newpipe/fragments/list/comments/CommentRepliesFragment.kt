@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -13,6 +14,7 @@ import androidx.paging.PagingConfig
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.ktx.serializable
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.Localization
 
 class CommentRepliesFragment : Fragment() {
     lateinit var comment: CommentsInfoItem
@@ -23,6 +25,12 @@ class CommentRepliesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         comment = requireArguments().serializable<CommentsInfoItem>(COMMENT_KEY)!!
+
+        val activity = requireActivity() as AppCompatActivity
+        val bar = activity.supportActionBar!!
+        bar.setDisplayShowTitleEnabled(true)
+        bar.title = Localization.replyCount(activity, comment.replyCount)
+
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
