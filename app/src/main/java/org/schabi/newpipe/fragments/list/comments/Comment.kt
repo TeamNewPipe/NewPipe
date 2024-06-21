@@ -83,8 +83,7 @@ fun Comment(comment: CommentsInfoItem) {
                         .clip(CircleShape)
                         .clickable {
                             NavigationHelper.openCommentAuthorIfPresent(
-                                context as FragmentActivity,
-                                comment
+                                context as FragmentActivity, comment
                             )
                         }
                 )
@@ -140,7 +139,11 @@ fun Comment(comment: CommentsInfoItem) {
                     }
 
                     if (comment.replies != null) {
-                        TextButton(onClick = { /*TODO*/ }) {
+                        TextButton(onClick = {
+                            NavigationHelper.openCommentRepliesFragment(
+                                context as FragmentActivity, comment
+                            )
+                        }) {
                             Text(
                                 text = pluralStringResource(
                                     R.plurals.replies, comment.replyCount, comment.replyCount.toString()

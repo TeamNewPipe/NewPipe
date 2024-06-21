@@ -157,15 +157,6 @@ public final class ExtractorHelper {
 
     public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
             final int serviceId,
-            final CommentsInfo info,
-            final Page nextPage) {
-        checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage));
-    }
-
-    public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
-            final int serviceId,
             final String url,
             final Page nextPage) {
         checkServiceId(serviceId);

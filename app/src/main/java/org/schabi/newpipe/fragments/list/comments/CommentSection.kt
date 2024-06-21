@@ -15,21 +15,42 @@ import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
-fun CommentReplies(
-    comment: CommentsInfoItem,
-    flow: Flow<PagingData<CommentsInfoItem>>
+fun CommentSection(
+    flow: Flow<PagingData<CommentsInfoItem>>,
+    parentComment: CommentsInfoItem? = null,
 ) {
     val replies = flow.collectAsLazyPagingItems()
 
     LazyColumn {
-        item {
-            CommentRepliesHeader(comment = comment)
-            HorizontalDivider(thickness = 1.dp)
+        if (parentComment != null) {
+            item {
+                CommentRepliesHeader(comment = parentComment)
+                HorizontalDivider(thickness = 1.dp)
+            }
         }
 
         items(replies.itemCount) {
             Comment(comment = replies[it]!!)
         }
+    }
+}
+
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun CommentSectionPreview() {
+    val comment1 = CommentsInfoItem(
+        commentText = Description("This is a comment", Description.PLAIN_TEXT),
+        uploaderName = "Test",
+    )
+    val comment2 = CommentsInfoItem(
+        commentText = Description("This is another comment.<br>This is another line.", Description.HTML),
+        uploaderName = "Test 2",
+    )
+    val flow = flowOf(PagingData.from(listOf(comment1, comment2)))
+
+    AppTheme {
+        CommentSection(flow = flow)
     }
 }
 
@@ -56,6 +77,6 @@ private fun CommentRepliesPreview() {
     val flow = flowOf(PagingData.from(listOf(reply1, reply2)))
 
     AppTheme {
-        CommentReplies(comment = comment, flow = flow)
+        CommentSection(parentComment = comment, flow = flow)
     }
 }
