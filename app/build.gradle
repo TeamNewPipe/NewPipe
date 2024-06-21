@@ -294,6 +294,7 @@ dependencies {
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.ui:ui-text:1.7.0-beta03' // Needed for parsing HTML to AnnotatedString
+    implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.1.0'
 
     // Paging
     implementation 'androidx.paging:paging-rxjava3:3.3.0'
