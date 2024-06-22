@@ -86,8 +86,8 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -118,9 +118,9 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -816,7 +816,7 @@ public final class Player implements PlaybackListener, Listener {
         cancelLoadingCurrentThumbnail();
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
-        // session metadata while the new thumbnail is being loaded by Picasso.
+        // session metadata while the new thumbnail is being loaded by Coil.
         onThumbnailLoaded(null);
         if (thumbnails.isEmpty()) {
             return;

@@ -25,7 +25,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -63,26 +62,6 @@ public final class PicassoHelper {
                 .build();
     }
 
-    public static void terminate() {
-        picassoCache = null;
-        picassoDownloaderClient = null;
-
-        if (picassoInstance != null) {
-            picassoInstance.shutdown();
-            picassoInstance = null;
-        }
-    }
-
-    public static void clearCache(final Context context) throws IOException {
-        picassoInstance.shutdown();
-        picassoCache.clear(); // clear memory cache
-        final okhttp3.Cache diskCache = picassoDownloaderClient.cache();
-        if (diskCache != null) {
-            diskCache.delete(); // clear disk cache
-        }
-        init(context);
-    }
-
     public static void cancelTag(final Object tag) {
         picassoInstance.cancelTag(tag);
     }
@@ -91,53 +70,14 @@ public final class PicassoHelper {
         picassoInstance.setIndicatorsEnabled(enabled); // useful for debugging
     }
 
-
-    public static RequestCreator loadAvatar(@NonNull final List<Image> images) {
-        return loadImageDefault(images, R.drawable.placeholder_person);
-    }
-
-    public static RequestCreator loadAvatar(@Nullable final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_person);
-    }
-
     public static RequestCreator loadThumbnail(@NonNull final List<Image> images) {
         return loadImageDefault(images, R.drawable.placeholder_thumbnail_video);
     }
 
-    public static RequestCreator loadThumbnail(@Nullable final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video);
-    }
-
-    public static RequestCreator loadDetailsThumbnail(@NonNull final List<Image> images) {
-        return loadImageDefault(choosePreferredImage(images),
-                R.drawable.placeholder_thumbnail_video, false);
-    }
-
-    public static RequestCreator loadBanner(@NonNull final List<Image> images) {
-        return loadImageDefault(images, R.drawable.placeholder_channel_banner);
-    }
-
-    public static RequestCreator loadPlaylistThumbnail(@NonNull final List<Image> images) {
-        return loadImageDefault(images, R.drawable.placeholder_thumbnail_playlist);
-    }
-
-    public static RequestCreator loadPlaylistThumbnail(@Nullable final String url) {
-        return loadImageDefault(url, R.drawable.placeholder_thumbnail_playlist);
-    }
-
-    public static RequestCreator loadSeekbarThumbnailPreview(@Nullable final String url) {
-        return picassoInstance.load(url);
-    }
-
-    public static RequestCreator loadNotificationIcon(@Nullable final String url) {
-        return loadImageDefault(url, R.drawable.ic_newpipe_triangle_white);
-    }
-
-
     public static RequestCreator loadScaledDownThumbnail(final Context context,
                                                          @NonNull final List<Image> images) {
         // scale down the notification thumbnail for performance
-        return PicassoHelper.loadThumbnail(images)
+        return loadThumbnail(images)
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(final Bitmap source) {
