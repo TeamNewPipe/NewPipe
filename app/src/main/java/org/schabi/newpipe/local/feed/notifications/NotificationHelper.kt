@@ -14,16 +14,12 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.preference.PreferenceManager
-import coil.executeBlocking
-import coil.imageLoader
-import coil.request.ImageRequest
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.image.ImageStrategy
+import org.schabi.newpipe.util.image.CoilHelper
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
@@ -68,24 +64,15 @@ class NotificationHelper(val context: Context) {
         summaryBuilder.setStyle(style)
 
         // open the channel page when clicking on the summary notification
+        val intent = NavigationHelper
+            .getChannelIntent(context, data.serviceId, data.url)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         summaryBuilder.setContentIntent(
-            PendingIntentCompat.getActivity(
-                context,
-                data.pseudoId,
-                NavigationHelper
-                    .getChannelIntent(context, data.serviceId, data.url)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                0,
-                false
-            )
+            PendingIntentCompat.getActivity(context, data.pseudoId, intent, 0, false)
         )
 
-        val request = ImageRequest.Builder(context)
-            .data(data.avatarUrl?.takeIf { ImageStrategy.shouldLoadImages() })
-            .placeholder(R.drawable.ic_newpipe_triangle_white)
-            .error(R.drawable.ic_newpipe_triangle_white)
-            .build()
-        val avatarIcon = context.imageLoader.executeBlocking(request).drawable?.toBitmapOrNull()
+        val avatarIcon =
+            CoilHelper.loadBitmapBlocking(context, data.avatarUrl, R.drawable.ic_newpipe_triangle_white)
 
         summaryBuilder.setLargeIcon(avatarIcon)
 

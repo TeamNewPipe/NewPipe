@@ -19,12 +19,15 @@ import org.schabi.newpipe.ktx.scale
 import kotlin.math.min
 
 object CoilHelper {
-    private const val TAG = "CoilHelper"
+    private val TAG = CoilHelper::class.java.simpleName
 
-    fun loadBitmap(context: Context, url: String): Bitmap? {
-        val request = ImageRequest.Builder(context)
-            .data(url)
-            .build()
+    @JvmOverloads
+    fun loadBitmapBlocking(
+        context: Context,
+        url: String?,
+        placeholderResId: Int = 0
+    ): Bitmap? {
+        val request = getImageRequest(context, url, placeholderResId).build()
         return context.imageLoader.executeBlocking(request).drawable?.toBitmapOrNull()
     }
 

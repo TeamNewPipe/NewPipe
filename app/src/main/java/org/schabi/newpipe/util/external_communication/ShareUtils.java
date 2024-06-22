@@ -369,7 +369,7 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            final var bitmap = CoilHelper.INSTANCE.loadBitmap(context, thumbnailUrl);
+            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(context, thumbnailUrl);
             if (bitmap == null) {
                 return null;
             }
