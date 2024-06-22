@@ -50,10 +50,11 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Queue;
@@ -587,17 +588,15 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         setInitialData(result.getServiceId(), result.getOriginalUrl(), result.getName());
 
         if (ImageStrategy.shouldLoadImages() && !result.getBanners().isEmpty()) {
-            PicassoHelper.loadBanner(result.getBanners()).tag(PICASSO_CHANNEL_TAG)
-                    .into(binding.channelBannerImage);
+            CoilHelper.INSTANCE.loadBanner(binding.channelBannerImage, result.getBanners());
         } else {
             // do not waste space for the banner, if the user disabled images or there is not one
             binding.channelBannerImage.setImageDrawable(null);
         }
 
-        PicassoHelper.loadAvatar(result.getAvatars()).tag(PICASSO_CHANNEL_TAG)
-                .into(binding.channelAvatarView);
-        PicassoHelper.loadAvatar(result.getParentChannelAvatars()).tag(PICASSO_CHANNEL_TAG)
-                .into(binding.subChannelAvatarView);
+        CoilHelper.INSTANCE.loadAvatar(binding.channelAvatarView, result.getAvatars());
+        CoilHelper.INSTANCE.loadAvatar(binding.subChannelAvatarView,
+                result.getParentChannelAvatars());
 
         binding.channelTitleView.setText(result.getName());
         binding.channelSubscriberView.setVisibility(View.VISIBLE);

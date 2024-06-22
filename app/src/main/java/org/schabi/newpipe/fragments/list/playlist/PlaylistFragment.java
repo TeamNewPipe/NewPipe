@@ -53,6 +53,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
 
@@ -327,8 +328,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     R.drawable.ic_radio)
             );
         } else {
-            PicassoHelper.loadAvatar(result.getUploaderAvatars()).tag(PICASSO_PLAYLIST_TAG)
-                    .into(headerBinding.uploaderAvatarView);
+            CoilHelper.INSTANCE.loadAvatar(headerBinding.uploaderAvatarView,
+                    result.getUploaderAvatars());
         }
 
         streamCount = result.getStreamCount();

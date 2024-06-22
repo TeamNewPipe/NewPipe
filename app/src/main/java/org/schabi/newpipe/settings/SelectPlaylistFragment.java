@@ -27,7 +27,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -154,20 +154,15 @@ public class SelectPlaylistFragment extends DialogFragment {
                                      final int position) {
             final PlaylistLocalItem selectedItem = playlists.get(position);
 
-            if (selectedItem instanceof PlaylistMetadataEntry) {
-                final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-
+            if (selectedItem instanceof PlaylistMetadataEntry entry) {
                 holder.titleView.setText(entry.name);
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.thumbnailUrl).into(holder.thumbnailView);
-
-            } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView, entry.thumbnailUrl);
+            } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
                 holder.titleView.setText(entry.getName());
                 holder.view.setOnClickListener(view -> clickedItem(position));
-                PicassoHelper.loadPlaylistThumbnail(entry.getThumbnailUrl())
-                        .into(holder.thumbnailView);
+                CoilHelper.INSTANCE.loadPlaylistThumbnail(holder.thumbnailView,
+                        entry.getThumbnailUrl());
             }
         }
 

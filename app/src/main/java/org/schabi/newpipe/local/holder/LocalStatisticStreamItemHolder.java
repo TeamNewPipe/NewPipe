@@ -16,8 +16,8 @@ import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.time.format.DateTimeFormatter;
@@ -117,8 +117,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        PicassoHelper.loadThumbnail(item.getStreamEntity().getThumbnailUrl())
-                .into(itemThumbnailView);
+        CoilHelper.INSTANCE.loadThumbnail(itemThumbnailView,
+                item.getStreamEntity().getThumbnailUrl());
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {

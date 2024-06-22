@@ -20,10 +20,10 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.IOException;
@@ -32,6 +32,11 @@ import java.net.SocketException;
 import java.util.List;
 import java.util.Objects;
 
+import coil.ImageLoader;
+import coil.ImageLoaderFactory;
+import coil.disk.DiskCache;
+import coil.memory.MemoryCache;
+import coil.util.DebugLogger;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
@@ -57,7 +62,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class App extends Application {
+public class App extends Application implements ImageLoaderFactory {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String TAG = App.class.toString();
 
@@ -118,10 +123,25 @@ public class App extends Application {
         configureRxJavaErrorHandler();
     }
 
+    @NonNull
     @Override
-    public void onTerminate() {
-        super.onTerminate();
-        PicassoHelper.terminate();
+    public ImageLoader newImageLoader() {
+        final var builder = new ImageLoader.Builder(this)
+                .memoryCache(() -> new MemoryCache.Builder(this)
+                        .maxSizeBytes(10 * 1024 * 1024)
+                        .build())
+                .diskCache(() -> new DiskCache.Builder()
+                        .maxSizeBytes(50 * 1024 * 1024)
+                        .build())
+                .allowRgb565(true);
+
+        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (MainActivity.DEBUG
+                && prefs.getBoolean(getString(R.string.show_image_indicators_key), false)) {
+            builder.logger(new DebugLogger());
+        }
+
+        return builder.build();
     }
 
     protected Downloader getDownloader() {
