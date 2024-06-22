@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -123,6 +125,8 @@ public class App extends Application implements ImageLoaderFactory {
     @NonNull
     @Override
     public ImageLoader newImageLoader() {
+        final var isLowRamDevice = ContextCompat.getSystemService(this, ActivityManager.class)
+                .isLowRamDevice();
         final var builder = new ImageLoader.Builder(this)
                 .memoryCache(() -> new MemoryCache.Builder(this)
                         .maxSizeBytes(10 * 1024 * 1024)
@@ -131,7 +135,7 @@ public class App extends Application implements ImageLoaderFactory {
                         .directory(new File(getExternalCacheDir(), "coil"))
                         .maxSizeBytes(50 * 1024 * 1024)
                         .build())
-                .allowRgb565(true);
+                .allowRgb565(isLowRamDevice);
 
         if (MainActivity.DEBUG) {
             builder.logger(new DebugLogger());
