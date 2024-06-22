@@ -505,8 +505,6 @@
     <string name="preferred_player_fetcher_notification_title">Məlumat əldə edilir…</string>
     <string name="show_original_time_ago_title">Elementlərdə orijinal əvvəlki vaxtı göstər</string>
     <string name="enable_disposed_exceptions_title">Yaşam dövrəsi xaricindəki xətaları bildir</string>
-    <string name="show_image_indicators_title">Şəkil göstəricilərini göstər</string>
-    <string name="show_image_indicators_summary">Şəkillərin üzərində mənbəsini göstərən Picasso rəngli lentləri göstər: şəbəkə üçün qırmızı, disk üçün mavi və yaddaş üçün yaşıl</string>
     <string name="pause_downloads_on_mobile_desc">Bəzi endirmələri dayandırmaq mümkün olmasa da, mobil dataya keçərkən faydalıdır</string>
     <string name="close">Bağla</string>
     <string name="error_progress_lost">Fayl silindiyi üçün irəliləyiş itirildi</string>

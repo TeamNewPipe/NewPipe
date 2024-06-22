@@ -2,16 +2,25 @@ package org.schabi.newpipe.util.image
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmapOrNull
 import coil.executeBlocking
 import coil.imageLoader
 import coil.request.ImageRequest
+import coil.size.Size
+import coil.target.Target
+import coil.transform.Transformation
+import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.ktx.scale
+import kotlin.math.min
 
 object CoilHelper {
+    private const val TAG = "CoilHelper"
+
     fun loadBitmap(context: Context, url: String): Bitmap? {
         val request = ImageRequest.Builder(context)
             .data(url)
@@ -33,6 +42,44 @@ object CoilHelper {
 
     fun loadThumbnail(target: ImageView, url: String?) {
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_video)
+    }
+
+    fun loadScaledDownThumbnail(context: Context, images: List<Image>, target: Target) {
+        val url = ImageStrategy.choosePreferredImage(images)
+        val request = getImageRequest(context, url, R.drawable.placeholder_thumbnail_video)
+            .target(target)
+            .transformations(object : Transformation {
+                override val cacheKey = "COIL_PLAYER_THUMBNAIL_TRANSFORMATION_KEY"
+
+                override suspend fun transform(input: Bitmap, size: Size): Bitmap {
+                    if (MainActivity.DEBUG) {
+                        Log.d(TAG, "Thumbnail - transform() called")
+                    }
+
+                    val notificationThumbnailWidth = min(
+                        context.resources.getDimension(R.dimen.player_notification_thumbnail_width),
+                        input.width.toFloat()
+                    ).toInt()
+
+                    var newHeight = input.height / (input.width / notificationThumbnailWidth)
+                    val result = input.scale(notificationThumbnailWidth, newHeight)
+
+                    if (result == input || !result.isMutable) {
+                        // create a new mutable bitmap to prevent strange crashes on some
+                        // devices (see #4638)
+                        newHeight = input.height / (input.width / (notificationThumbnailWidth - 1))
+                        val copied = input.scale(notificationThumbnailWidth, newHeight)
+                        input.recycle()
+                        return copied
+                    } else {
+                        input.recycle()
+                        return result
+                    }
+                }
+            })
+            .build()
+
+        context.imageLoader.enqueue(request)
     }
 
     fun loadDetailsThumbnail(target: ImageView, images: List<Image>) {
@@ -67,6 +114,7 @@ object CoilHelper {
         showPlaceholder: Boolean = true
     ) {
         val request = getImageRequest(target.context, url, placeholderResId, showPlaceholder)
+            .target(target)
             .build()
         target.context.imageLoader.enqueue(request)
     }

@@ -36,13 +36,6 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
-        android:key="@string/show_image_indicators_key"
-        android:summary="@string/show_image_indicators_summary"
-        android:title="@string/show_image_indicators_title"
-        app:iconSpaceReserved="false" />
-
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
         android:key="@string/show_crash_the_player_key"
         android:summary="@string/show_crash_the_player_summary"
         android:title="@string/show_crash_the_player_title"

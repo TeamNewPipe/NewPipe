@@ -632,8 +632,6 @@
     <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
     <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
     <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurafbeelding voorbeeld</string>
-    <string name="show_image_indicators_summary">Toon Picasso-gekleurde linten bovenop afbeeldingen die hun bron aangeven: rood voor netwerk, blauw voor schijf en groen voor geheugen</string>
-    <string name="show_image_indicators_title">Afbeeldings­indicatoren tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
     <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>

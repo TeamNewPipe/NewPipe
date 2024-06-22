@@ -657,8 +657,6 @@
     <string name="show_original_time_ago_summary">Upprunalegir textar frá þjónustu verða sýnilegir í atriðum</string>
     <string name="disable_media_tunneling_title">Slökkva á fjölmiðlagöngum</string>
     <string name="disable_media_tunneling_summary">Slökktu á fjölmiðlagöngum ef þú finnur fyrir svörtum skjá eða stami við spilun myndbandar</string>
-    <string name="show_image_indicators_title">Sýna myndvísa</string>
-    <string name="show_image_indicators_summary">Sýna Picasso litaða borða ofan á myndum sem gefa til kynna uppruna þeirra: rauðan fyrir netið, bláan fyrir disk og grænan fyrir minni</string>
     <string name="show_crash_the_player_title">Sýna „Hrynja spilara“</string>
     <string name="show_crash_the_player_summary">Sýna valkost til að hrynja spilara</string>
     <string name="crash_the_app">Hrynja forrit</string>

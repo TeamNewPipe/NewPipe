@@ -654,8 +654,6 @@
     <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
     <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
     <string name="mark_as_watched">סימון כנצפה</string>
-    <string name="show_image_indicators_summary">הצגת סרטים בסגנון פיקאסו בראש התמונות לציון המקור שלהם: אדום זה מהרשת, כחול מהכונן וירוק מהזיכרון</string>
-    <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
     <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>
     <string name="local_search_suggestions">הצעות חיפוש מקומיות</string>
     <plurals name="deleted_downloads_toast">

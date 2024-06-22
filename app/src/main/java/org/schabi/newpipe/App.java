@@ -23,9 +23,9 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
@@ -113,12 +113,9 @@ public class App extends Application implements ImageLoaderFactory {
 
         // Initialize image loader
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        PicassoHelper.init(this);
         ImageStrategy.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
                 prefs.getString(getString(R.string.image_quality_key),
                         getString(R.string.image_quality_default))));
-        PicassoHelper.setIndicatorsEnabled(MainActivity.DEBUG
-                && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 
         configureRxJavaErrorHandler();
     }
@@ -131,13 +128,12 @@ public class App extends Application implements ImageLoaderFactory {
                         .maxSizeBytes(10 * 1024 * 1024)
                         .build())
                 .diskCache(() -> new DiskCache.Builder()
+                        .directory(new File(getExternalCacheDir(), "coil"))
                         .maxSizeBytes(50 * 1024 * 1024)
                         .build())
                 .allowRgb565(true);
 
-        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (MainActivity.DEBUG
-                && prefs.getBoolean(getString(R.string.show_image_indicators_key), false)) {
+        if (MainActivity.DEBUG) {
             builder.logger(new DebugLogger());
         }
 

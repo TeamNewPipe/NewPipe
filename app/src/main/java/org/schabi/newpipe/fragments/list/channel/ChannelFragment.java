@@ -53,12 +53,12 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
+import coil.util.CoilUtils;
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -73,7 +73,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         implements StateSaver.WriteRead {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
-    private static final String PICASSO_CHANNEL_TAG = "PICASSO_CHANNEL_TAG";
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -570,7 +569,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     @Override
     public void showLoading() {
         super.showLoading();
-        PicassoHelper.cancelTag(PICASSO_CHANNEL_TAG);
+        CoilUtils.dispose(binding.channelAvatarView);
+        CoilUtils.dispose(binding.channelBannerImage);
+        CoilUtils.dispose(binding.subChannelAvatarView);
         animate(binding.channelSubscribeButton, false, 100);
     }
 

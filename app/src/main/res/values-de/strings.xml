@@ -637,8 +637,6 @@
     <string name="off">Aus</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
-    <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
-    <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
     <string name="local_search_suggestions">Lokale Suchvorschläge</string>
     <plurals name="deleted_downloads_toast">

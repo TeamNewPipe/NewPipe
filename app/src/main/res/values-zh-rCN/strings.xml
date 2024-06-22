@@ -624,8 +624,6 @@
     <string name="high_quality_larger">高品质（较大）</string>
     <string name="detail_heart_img_view_description">被创作者喜爱</string>
     <string name="mark_as_watched">标记为已观看</string>
-    <string name="show_image_indicators_summary">在图像顶部显示毕加索彩带，指示其来源：红色代表网络，蓝色代表磁盘，绿色代表内存</string>
-    <string name="show_image_indicators_title">显示图像指示器</string>
     <string name="remote_search_suggestions">远程搜索建议</string>
     <string name="local_search_suggestions">本地搜索建议</string>
     <plurals name="deleted_downloads_toast">

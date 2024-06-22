@@ -633,8 +633,6 @@
     <string name="comments_are_disabled">Yorumlar devre dışı</string>
     <string name="detail_heart_img_view_description">Yaratıcısınca kalplendi</string>
     <string name="mark_as_watched">İzlendi olarak işaretle</string>
-    <string name="show_image_indicators_summary">Resimlerin üzerinde kaynaklarını gösteren Picasso renkli şeritler göster: ağ için kırmızı, disk için mavi ve bellek için yeşil</string>
-    <string name="show_image_indicators_title">Resim göstergelerini göster</string>
     <string name="remote_search_suggestions">Uzak arama önerileri</string>
     <string name="local_search_suggestions">Yerel arama önerileri</string>
     <plurals name="deleted_downloads_toast">
