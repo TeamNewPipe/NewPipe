@@ -634,8 +634,6 @@
     <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
     <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
     <string name="mark_as_watched">Merkitse katsotuksi</string>
-    <string name="show_image_indicators_summary">Näytä Picasso-värjätyt nauhat kuvien päällä osoittaakseen lähteen: punainen tarkoittaa verkkoa, sininen tarkoittaa levytilaa ja vihreä tarkoittaa muistia</string>
-    <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
     <string name="remote_search_suggestions">Etähakuehdotukset</string>
     <string name="local_search_suggestions">Paikalliset hakuehdotukset</string>
     <string name="enqueue_next_stream">Lisää seuraavaksi</string>

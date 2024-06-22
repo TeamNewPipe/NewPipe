@@ -270,7 +270,6 @@
     <string name="leak_canary_not_available">LeakCanary ᱵᱟᱭ ᱧᱟᱢᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="enable_leak_canary_summary">ᱢᱮᱢᱚᱨᱤ ᱞᱤᱠᱟᱞ ᱢᱚᱱᱤᱴᱚᱨᱤᱝ ᱦᱤᱯ ᱰᱟᱢᱯᱤᱝ ᱚᱠᱛᱚ ᱨᱮ ᱮᱯᱞᱤᱠᱮᱥᱚᱱ ᱨᱟᱥᱴᱨᱤᱭ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ</string>
     <string name="enable_disposed_exceptions_title">ᱡᱤᱭᱚᱱ ᱪᱤᱠᱤ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮ ᱨᱮ ᱵᱷᱮᱜᱟᱨ ᱠᱚ ᱚᱱᱚᱞ ᱢᱮ</string>
-    <string name="show_image_indicators_summary">ᱱᱮᱴᱣᱟᱨᱠ ᱞᱟᱹᱜᱤᱫ red, ᱰᱤᱥᱠ ᱞᱟᱹᱜᱤᱫ blue ᱟᱨ ᱢᱮᱢᱚᱨᱤ ᱞᱟᱹᱜᱤᱫ green</string>
     <string name="show_crash_the_player_summary">ᱯᱞᱮᱭᱟᱨ ᱵᱮᱵᱷᱟᱨ ᱚᱠᱛᱮ ᱨᱮ ᱠᱨᱟᱥ ᱚᱯᱥᱚᱱ ᱧᱮᱞᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="import_title">ᱤᱢᱯᱳᱨᱴ</string>
     <string name="import_from">ᱤᱢᱯᱚᱨᱴ</string>
@@ -540,7 +539,6 @@
     <string name="show_original_time_ago_title">ᱡᱤᱱᱤᱥ ᱠᱚᱨᱮᱱᱟᱜ ᱢᱩᱞ ᱚᱠᱛᱚ ᱧᱮᱞ ᱢᱮ</string>
     <string name="show_original_time_ago_summary">ᱥᱮᱵᱟ ᱠᱷᱚᱱ ᱚᱨᱡᱤᱱᱤᱭᱟᱞ ᱴᱮᱠᱥᱴ ᱠᱚ ᱥᱴᱨᱤᱢ ᱤᱴᱮᱢ ᱨᱮ ᱧᱮᱞᱚᱜᱼᱟ</string>
     <string name="disable_media_tunneling_summary">ᱡᱩᱫᱤ ᱟᱢ ᱵᱷᱤᱰᱤᱭᱳ ᱯᱞᱮᱭᱚᱯ ᱨᱮ ᱵᱞᱮᱠ ᱥᱠᱨᱤᱱ ᱟᱨᱵᱟᱝ ᱠᱷᱟᱹᱞᱤ ᱥᱴᱮᱴᱞᱤᱝ ᱮᱢ ᱧᱟᱢᱟ ᱮᱱᱠᱷᱟᱱ ᱢᱤᱰᱤᱭᱟ ᱴᱩᱱᱮᱞᱤᱝ ᱵᱚᱫᱚᱞ ᱢᱮ ᱾</string>
-    <string name="show_image_indicators_title">ᱪᱤᱛᱟᱹᱨ ᱪᱤᱱᱦᱟᱹ ᱠᱚ ᱧᱮᱞ ᱢᱮ</string>
     <string name="check_new_streams">ᱱᱟᱣᱟ ᱥᱴᱨᱤᱢ ᱞᱟᱹᱜᱤᱫ ᱪᱟᱪᱞᱟᱣ ᱢᱮ</string>
     <string name="create_error_notification">ᱢᱤᱫ error notification ᱛᱮᱭᱟᱨ ᱢᱮ</string>
     <string name="subscriptions_export_unsuccessful">ᱥᱮᱞᱮᱫ ᱮᱠᱥᱯᱳᱨᱴ ᱵᱟᱝ ᱦᱩᱭ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ</string>

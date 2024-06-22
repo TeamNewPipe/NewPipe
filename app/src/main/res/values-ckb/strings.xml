@@ -631,8 +631,6 @@
     <string name="dont_show">پیشان نەدرێت</string>
     <string name="low_quality_smaller">کواڵێتی نزم (بچووکتر)</string>
     <string name="high_quality_larger">کواڵێتی بەرز (گەورەتر)</string>
-    <string name="show_image_indicators_summary">پیشاندانی شریتە ڕەنگکراوەکانی پیکاسۆ لەسەرووی وێنەکانەوە بۆ بەدیار خستنی سەرچاوەکانیان : سوور بۆ تۆڕ ، شین بۆ دیسک و سەوز بۆ بیرگە</string>
-    <string name="show_image_indicators_title">پیشاندانی دیارخەرەکانی وێنە</string>
     <string name="remote_search_suggestions">پێشنیازکراوەکانی گەڕانی ڕیمۆت</string>
     <string name="local_search_suggestions">پێشنیازکراوەکانی گەڕانی نێوخۆیی</string>
     <string name="mark_as_watched">دیارکردن وەک بینراو</string>

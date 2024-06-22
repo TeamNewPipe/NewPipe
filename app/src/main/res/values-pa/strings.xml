@@ -626,8 +626,6 @@
     <string name="error_report_notification_title">ਨਿਊਪਾਈਪ ਖਾਮੀ ਤੋਂ ਪ੍ਰਭਾਵਤ ਹੋਈ ਹੈ, ਇੱਥੇ ਨੱਪ ਕੇ ਰਿਪੋਰਟ ਕਰੋ</string>
     <string name="error_report_notification_toast">ਇੱਕ ਖਾਮੀ ਪ੍ਰਭਾਵੀ ਹੋਈ ਹੈ, ਨੋਟੀਫੀਕੇਸ਼ਨ ਵੇਖੋ</string>
     <string name="main_page_content_swipe_remove">ਆਈਟਮਾਂ ਨੂੰ ਇੱਕ ਪਾਸੇ ਖਿੱਚ ਕੇ ਹਟਾਓ</string>
-    <string name="show_image_indicators_title">ਦ੍ਰਿਸ਼ ਸੂਚਕ ਵਿਖਾਓ</string>
-    <string name="show_image_indicators_summary">ਦ੍ਰਿਸ਼ਾਂ ਦੇ ਉੱਪਰ ਉਹਨਾਂ ਦੀ ਸਰੋਤ-ਪਛਾਣ ਲਈ ਪਿਕਾਸੋ ਦੇ ਰੰਗਦਾਰ ਰਿਬਨ ਵਿਖਾਓ : ਨੈੱਟਵਰਕ ਲਈ ਲਾਲ, ਡਿਸਕ ਲਈ ਨੀਲੇ ਤੇ ਮੈਮਰੀ ਲਈ ਹਰੇ</string>
     <string name="enable_streams_notifications_title">ਨਵੀਂ ਸਟ੍ਰੀਮ ਦੇ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="detail_pinned_comment_view_description">ਪਿੰਨ ਕੀਤੀ ਟਿੱਪਣੀ</string>
     <string name="checking_updates_toast">ਅੱਪਡੇਟ ਦੀ ਉਪਲੱਬਧਤਾ ਪਰਖੀ ਜਾ ਰਹੀ…</string>

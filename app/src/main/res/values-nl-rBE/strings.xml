@@ -611,7 +611,6 @@
     <string name="no_dir_yet">Geen download map ingesteld, kies nu de standaard download map</string>
     <string name="dont_show">Niet tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
-    <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
     <string name="settings_category_player_notification_title">Speler melding</string>
     <string name="settings_category_player_notification_summary">Configureer actieve stream melding</string>
     <string name="notifications">Meldingen</string>

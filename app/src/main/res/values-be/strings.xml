@@ -630,8 +630,6 @@
     <string name="faq">Перайсці на вэбсайт</string>
     <string name="main_page_content_swipe_remove">Правядзіце пальцам па элементах, каб выдаліць іх</string>
     <string name="unset_playlist_thumbnail">Адмяніць пастаянную мініяцюру</string>
-    <string name="show_image_indicators_title">Паказаць індыкатары выявы</string>
-    <string name="show_image_indicators_summary">Паказваць каляровыя стужкі Пікаса на выявах, якія пазначаюць іх крыніцу: чырвоная для сеткі, сіняя для дыска і зялёная для памяці</string>
     <string name="feed_processing_message">Апрацоўка стужкі…</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Вам будзе прапанавана, дзе захоўваць кожную спампоўку</string>
     <string name="feed_notification_loading">Загрузка стужкі…</string>

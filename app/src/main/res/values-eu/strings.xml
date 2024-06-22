@@ -641,8 +641,6 @@
         <item quantity="one">Deskarga amaituta</item>
         <item quantity="other">%s Deskarga amaituta</item>
     </plurals>
-    <string name="show_image_indicators_summary">Irudien gainean Picasso koloretako zintak erakutsi, jatorria adieraziz: gorria sarerako, urdina diskorako eta berdea memoriarako</string>
-    <string name="show_image_indicators_title">Erakutsi irudi-adierazleak</string>
     <string name="remote_search_suggestions">Urruneko bilaketaren iradokizunak</string>
     <string name="local_search_suggestions">Tokiko bilaketa-iradokizunak</string>
     <string name="mark_as_watched">Ikusi gisa markatu</string>

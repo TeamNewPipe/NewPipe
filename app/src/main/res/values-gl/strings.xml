@@ -627,7 +627,6 @@
         <item quantity="other">%s descargas finalizadas</item>
     </plurals>
     <string name="seekbar_preview_thumbnail_title">Miniatura na barra de busca</string>
-    <string name="show_image_indicators_title">Mostrar indicadores de imaxe</string>
     <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentar unha pantalla en negro ou interrupcións na reprodución.</string>
     <string name="disable_media_tunneling_title">Desactivar túnel multimedia</string>
     <string name="enqueued">Engadido á cola</string>
@@ -664,7 +663,6 @@
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
-    <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
     <string name="feed_new_items">Novos elementos</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="show_crash_the_player_title">Amosar \"Travar o reprodutor\"</string>

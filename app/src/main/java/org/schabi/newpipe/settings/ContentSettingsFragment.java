@@ -49,7 +49,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         loader.getDiskCache().clear();
                     }
                     Toast.makeText(preference.getContext(),
-                                    R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
+                            R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
                             .show();
 
                     return true;

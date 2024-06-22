@@ -649,8 +649,6 @@
     <string name="dont_show">Nie pokazuj</string>
     <string name="detail_heart_img_view_description">Serduszko od twórcy</string>
     <string name="mark_as_watched">Oznacz jako obejrzane</string>
-    <string name="show_image_indicators_summary">Pokazuj kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
-    <string name="show_image_indicators_title">Pokazuj wskaźniki obrazu</string>
     <string name="remote_search_suggestions">Zdalne podpowiedzi wyszukiwania</string>
     <string name="local_search_suggestions">Lokalne podpowiedzi wyszukiwania</string>
     <plurals name="deleted_downloads_toast">

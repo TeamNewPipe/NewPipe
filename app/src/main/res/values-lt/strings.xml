@@ -644,8 +644,6 @@
     <string name="dont_show">Nerodyti</string>
     <string name="detail_heart_img_view_description">Širdelė nuo kurėjo</string>
     <string name="mark_as_watched">Pažymėti kaip peržiūrėtą</string>
-    <string name="show_image_indicators_summary">Rodyti „Picasso“ spalvotas juosteles ant vaizdų, nurodančių jų šaltinį: raudona tinklui, mėlyna diskui ir žalia atmintis</string>
-    <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
     <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>
     <string name="local_search_suggestions">Vietinės paieškos pasiūlymai</string>
     <plurals name="deleted_downloads_toast">

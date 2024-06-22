@@ -646,10 +646,8 @@
     <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
     <string name="mark_as_watched">Marquer comme visionné</string>
     <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
-    <string name="show_image_indicators_title">Afficher les indicateurs d’image</string>
     <string name="remote_search_suggestions">Suggestions de recherche distante</string>
     <string name="local_search_suggestions">Suggestions de recherche locale</string>
-    <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s téléchargement supprimé</item>
         <item quantity="many">%1$s téléchargements supprimés</item>

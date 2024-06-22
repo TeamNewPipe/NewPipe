@@ -384,7 +384,6 @@
     <string name="show_original_time_ago_summary">ორიგინალური ტექსტები სერვისებიდან ხილული იქნება ნაკადის ერთეულებში</string>
     <string name="disable_media_tunneling_title">მედია გვირაბის გათიშვა</string>
     <string name="disable_media_tunneling_summary">გამორთეთ მედია გვირაბი, თუ ვიდეოს დაკვრისას შავი ეკრანი ან ჭუჭყი გაქვთ</string>
-    <string name="show_image_indicators_title">გამოსახულების ინდიკატორების ჩვენება</string>
     <string name="show_crash_the_player_title">აჩვენე \"დამკვრელის დამსხვრევა\"</string>
     <string name="show_crash_the_player_summary">აჩვენებს ავარიის ვარიანტს დამკვრელის გამოყენებისას</string>
     <string name="check_new_streams">გაუშვით შემოწმება ახალი ნაკადებისთვის</string>
@@ -683,7 +682,6 @@
     <string name="subscriptions_import_unsuccessful">გამოწერების იმპორტი ვერ მოხერხდა</string>
     <string name="enable_disposed_exceptions_title">შეატყობინეთ სასიცოცხლო ციკლის შეცდომებს</string>
     <string name="enable_disposed_exceptions_summary">იძულებითი მოხსენება შეუსაბამო Rx გამონაკლისების შესახებ ფრაგმენტის ან აქტივობის სასიცოცხლო ციკლის გარეთ განკარგვის შემდეგ</string>
-    <string name="show_image_indicators_summary">აჩვენეთ პიკასოს ფერადი ლენტები სურათების თავზე, სადაც მითითებულია მათი წყარო: წითელი ქსელისთვის, ლურჯი დისკისთვის და მწვანე მეხსიერებისთვის</string>
     <string name="feed_load_error_fast_unknown">სწრაფი კვების რეჟიმი ამაზე მეტ ინფორმაციას არ იძლევა.</string>
     <string name="feed_load_error_account_info">„%s“-ის არხის ჩატვირთვა ვერ მოხერხდა.</string>
     <string name="feed_use_dedicated_fetch_method_summary">ხელმისაწვდომია ზოგიერთ სერვისში, როგორც წესი, ბევრად უფრო სწრაფია, მაგრამ შეიძლება დააბრუნოს შეზღუდული რაოდენობის ელემენტი და ხშირად არასრული ინფორმაცია (მაგ. ხანგრძლივობის გარეშე, ელემენტის ტიპი, არ არის ლაივის სტატუსი)</string>

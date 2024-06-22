@@ -167,8 +167,8 @@ class AboutActivity : AppCompatActivity() {
                 "https://square.github.io/okhttp/", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "Picasso", "2013", "Square, Inc.",
-                "https://square.github.io/picasso/", StandardLicenses.APACHE2
+                "Coil", "2023", "Coil Contributors",
+                "https://coil-kt.github.io/coil/", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
                 "PrettyTime", "2012 - 2020", "Lincoln Baxter, III",

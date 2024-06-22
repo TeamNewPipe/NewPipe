@@ -654,8 +654,6 @@
         <item quantity="few">%s stahování dokončena</item>
         <item quantity="other">%s stahováních dokončeno</item>
     </plurals>
-    <string name="show_image_indicators_summary">Zobrazit barevné pásky Picasso na obrázcích označujících jejich zdroj: červená pro síť, modrá pro disk a zelená pro paměť</string>
-    <string name="show_image_indicators_title">Zobrazit indikátory obrázků</string>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
     <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštět video v mini přehrávači, ale přepnout se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
