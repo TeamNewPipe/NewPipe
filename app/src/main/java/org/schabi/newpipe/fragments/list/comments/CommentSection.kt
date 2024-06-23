@@ -45,7 +45,7 @@ fun CommentSection(
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CommentSectionPreview() {
-    val comments = (0..100).map {
+    val comments = (1..100).map {
         CommentsInfoItem(
             commentText = Description("Comment $it", Description.PLAIN_TEXT),
             uploaderName = "Test"
@@ -69,7 +69,7 @@ private fun CommentRepliesPreview() {
         isPinned = true,
         isHeartedByUploader = true
     )
-    val replies = (0..100).map {
+    val replies = (1..100).map {
         CommentsInfoItem(
             commentText = Description("Reply $it", Description.PLAIN_TEXT),
             uploaderName = "Test"
