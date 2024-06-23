@@ -25,7 +25,7 @@ class CommentsSource(
             .subscribeOn(Schedulers.io())
             .map {
                 if (it.isCommentsDisabled) {
-                    LoadResult.Invalid()
+                    LoadResult.Error(CommentsDisabledException())
                 } else {
                     LoadResult.Page(it.relatedItems, null, it.nextPage)
                 }
@@ -34,3 +34,5 @@ class CommentsSource(
 
     override fun getRefreshKey(state: PagingState<Page, CommentsInfoItem>) = null
 }
+
+class CommentsDisabledException : RuntimeException()

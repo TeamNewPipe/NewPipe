@@ -69,85 +69,83 @@ fun Comment(comment: CommentsInfoItem) {
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var showReplies by rememberSaveable { mutableStateOf(false) }
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { isExpanded = !isExpanded }
-                .padding(all = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            if (ImageStrategy.shouldLoadImages()) {
-                AsyncImage(
-                    model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
-                    contentDescription = null,
-                    placeholder = painterResource(R.drawable.placeholder_person),
-                    error = painterResource(R.drawable.placeholder_person),
-                    modifier = Modifier
-                        .size(42.dp)
-                        .clip(CircleShape)
-                        .clickable {
-                            NavigationHelper.openCommentAuthorIfPresent(
-                                context as FragmentActivity, comment
-                            )
-                        }
-                )
-            }
-
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    if (comment.isPinned) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_pin),
-                            contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { isExpanded = !isExpanded }
+            .padding(all = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        if (ImageStrategy.shouldLoadImages()) {
+            AsyncImage(
+                model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
+                contentDescription = null,
+                placeholder = painterResource(R.drawable.placeholder_person),
+                error = painterResource(R.drawable.placeholder_person),
+                modifier = Modifier
+                    .size(42.dp)
+                    .clip(CircleShape)
+                    .clickable {
+                        NavigationHelper.openCommentAuthorIfPresent(
+                            context as FragmentActivity, comment
                         )
                     }
+            )
+        }
 
-                    val nameAndDate = remember(comment) {
-                        val date = Localization.relativeTimeOrTextual(
-                            context, comment.uploadDate, comment.textualUploadDate
-                        )
-                        Localization.concatenateStrings(comment.uploaderName, date)
-                    }
-                    Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (comment.isPinned) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_pin),
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                    )
                 }
 
-                Text(
-                    text = rememberParsedText(comment.commentText),
-                    // If the comment is expanded, we display all its content
-                    // otherwise we only display the first two lines
-                    maxLines = if (isExpanded) Int.MAX_VALUE else 2,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
+                val nameAndDate = remember(comment) {
+                    val date = Localization.relativeTimeOrTextual(
+                        context, comment.uploadDate, comment.textualUploadDate
+                    )
+                    Localization.concatenateStrings(comment.uploaderName, date)
+                }
+                Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
+            }
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(
+                text = rememberParsedText(comment.commentText),
+                // If the comment is expanded, we display all its content
+                // otherwise we only display the first two lines
+                maxLines = if (isExpanded) Int.MAX_VALUE else 2,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_thumb_up),
+                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                    )
+                    Text(text = Localization.likeCount(context, comment.likeCount))
+
+                    if (comment.isHeartedByUploader) {
                         Image(
-                            painter = painterResource(R.drawable.ic_thumb_up),
-                            contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                            painter = painterResource(R.drawable.ic_heart),
+                            contentDescription = stringResource(R.string.detail_heart_img_view_description)
                         )
-                        Text(text = Localization.likeCount(context, comment.likeCount))
-
-                        if (comment.isHeartedByUploader) {
-                            Image(
-                                painter = painterResource(R.drawable.ic_heart),
-                                contentDescription = stringResource(R.string.detail_heart_img_view_description)
-                            )
-                        }
                     }
+                }
 
-                    if (comment.replies != null) {
-                        TextButton(onClick = { showReplies = true }) {
-                            val text = pluralStringResource(
-                                R.plurals.replies, comment.replyCount, comment.replyCount.toString()
-                            )
-                            Text(text = text)
-                        }
+                if (comment.replies != null) {
+                    TextButton(onClick = { showReplies = true }) {
+                        val text = pluralStringResource(
+                            R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                        )
+                        Text(text = text)
                     }
                 }
             }
@@ -190,7 +188,7 @@ fun CommentsInfoItem(
     this.replyCount = replyCount
 }
 
-class DescriptionPreviewProvider : PreviewParameterProvider<Description> {
+private class DescriptionPreviewProvider : PreviewParameterProvider<Description> {
     override val values = sequenceOf(
         Description("Hello world!<br><br>This line should be hidden by default.", Description.HTML),
         Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
@@ -214,6 +212,8 @@ private fun CommentPreview(
     )
 
     AppTheme {
-        Comment(comment)
+        Surface(color = MaterialTheme.colorScheme.background) {
+            Comment(comment)
+        }
     }
 }
