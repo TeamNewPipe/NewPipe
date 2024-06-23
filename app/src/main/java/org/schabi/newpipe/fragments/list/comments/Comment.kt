@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -38,6 +40,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Page
@@ -60,10 +64,12 @@ fun rememberParsedText(commentText: Description): AnnotatedString {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Comment(comment: CommentsInfoItem) {
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
+    var showReplies by rememberSaveable { mutableStateOf(false) }
 
     Surface(color = MaterialTheme.colorScheme.background) {
         Row(
@@ -139,20 +145,27 @@ fun Comment(comment: CommentsInfoItem) {
                     }
 
                     if (comment.replies != null) {
-                        TextButton(onClick = {
-                            NavigationHelper.openCommentRepliesFragment(
-                                context as FragmentActivity, comment
+                        TextButton(onClick = { showReplies = true }) {
+                            val text = pluralStringResource(
+                                R.plurals.replies, comment.replyCount, comment.replyCount.toString()
                             )
-                        }) {
-                            Text(
-                                text = pluralStringResource(
-                                    R.plurals.replies, comment.replyCount, comment.replyCount.toString()
-                                )
-                            )
+                            Text(text = text)
                         }
                     }
                 }
             }
+        }
+    }
+
+    if (showReplies) {
+        ModalBottomSheet(onDismissRequest = { showReplies = false }) {
+            val flow = remember(comment) {
+                Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
+                    CommentsSource(comment.serviceId, comment.url, comment.replies)
+                }.flow
+            }
+
+            CommentSection(parentComment = comment, flow = flow)
         }
     }
 }
