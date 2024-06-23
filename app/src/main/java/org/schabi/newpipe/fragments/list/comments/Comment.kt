@@ -6,11 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -76,7 +74,8 @@ fun Comment(comment: CommentsInfoItem) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { isExpanded = !isExpanded }
-                .padding(all = 8.dp)
+                .padding(all = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             if (ImageStrategy.shouldLoadImages()) {
                 AsyncImage(
@@ -94,8 +93,6 @@ fun Comment(comment: CommentsInfoItem) {
                         }
                 )
             }
-
-            Spacer(modifier = Modifier.width(8.dp))
 
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {

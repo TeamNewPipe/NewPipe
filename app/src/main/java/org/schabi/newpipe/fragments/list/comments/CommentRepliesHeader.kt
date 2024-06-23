@@ -6,11 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -42,6 +40,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
         Column(modifier = Modifier.padding(all = 8.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
@@ -53,6 +52,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                                 comment
                             )
                         },
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     if (ImageStrategy.shouldLoadImages()) {
@@ -67,8 +67,6 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                         )
                     }
 
-                    Spacer(modifier = Modifier.width(8.dp))
-
                     Column {
                         Text(text = comment.uploaderName)
 
@@ -81,8 +79,6 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                         )
                     }
                 }
-
-                Spacer(modifier = Modifier.weight(1f))
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
