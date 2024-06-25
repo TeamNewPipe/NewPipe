@@ -73,7 +73,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     @Override
     public void onSkipToPrevious(@NonNull final com.google.android.exoplayer2.Player exoPlayer) {
-        player.playPrevious();
+        player.playerActionPrevious();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     @Override
     public void onSkipToNext(@NonNull final com.google.android.exoplayer2.Player exoPlayer) {
-        player.playNext();
+        player.playerActionNext();
     }
 
     private void publishFloatingQueueWindow() {
