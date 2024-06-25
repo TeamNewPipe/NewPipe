@@ -396,17 +396,11 @@ public class DownloadMission extends Mission {
     }
 
     private void notifyPostProcessing(int state) {
-        String action;
-        switch (state) {
-            case 1:
-                action = "Running";
-                break;
-            case 2:
-                action = "Completed";
-                break;
-            default:
-                action = "Failed";
-        }
+        String action = switch (state) {
+            case 1 -> "Running";
+            case 2 -> "Completed";
+            default -> "Failed";
+        };
 
         Log.d(TAG, action + " postprocessing on " + storage.getName());
 
@@ -590,13 +584,11 @@ public class DownloadMission extends Mission {
      * @return {@code true} if this mission is unrecoverable
      */
     public boolean isPsFailed() {
-        switch (errCode) {
-            case ERROR_POSTPROCESSING:
-            case ERROR_POSTPROCESSING_STOPPED:
-                return psAlgorithm.worksOnSameFile;
-        }
+        return switch (errCode) {
+            case ERROR_POSTPROCESSING, ERROR_POSTPROCESSING_STOPPED -> psAlgorithm.worksOnSameFile;
+            default -> false;
+        };
 
-        return false;
     }
 
     /**

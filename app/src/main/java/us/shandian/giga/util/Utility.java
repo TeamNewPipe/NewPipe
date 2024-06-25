@@ -139,56 +139,35 @@ public class Utility {
 
     @ColorInt
     public static int getBackgroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-        switch (type) {
-            case MUSIC:
-                colorRes = R.color.audio_left_to_load_color;
-                break;
-            case VIDEO:
-                colorRes = R.color.video_left_to_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_left_to_load_color;
-                break;
-            default:
-                colorRes = R.color.gray;
-        }
+        int colorRes = switch (type) {
+            case MUSIC -> R.color.audio_left_to_load_color;
+            case VIDEO -> R.color.video_left_to_load_color;
+            case SUBTITLE -> R.color.subtitle_left_to_load_color;
+            default -> R.color.gray;
+        };
 
         return ContextCompat.getColor(ctx, colorRes);
     }
 
     @ColorInt
     public static int getForegroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-        switch (type) {
-            case MUSIC:
-                colorRes = R.color.audio_already_load_color;
-                break;
-            case VIDEO:
-                colorRes = R.color.video_already_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_already_load_color;
-                break;
-            default:
-                colorRes = R.color.gray;
-                break;
-        }
+        int colorRes = switch (type) {
+            case MUSIC -> R.color.audio_already_load_color;
+            case VIDEO -> R.color.video_already_load_color;
+            case SUBTITLE -> R.color.subtitle_already_load_color;
+            default -> R.color.gray;
+        };
 
         return ContextCompat.getColor(ctx, colorRes);
     }
 
     @DrawableRes
     public static int getIconForFileType(FileType type) {
-        switch (type) {
-            case MUSIC:
-                return R.drawable.ic_headset;
-            default:
-            case VIDEO:
-                return R.drawable.ic_movie;
-            case SUBTITLE:
-                return R.drawable.ic_subtitles;
-        }
+        return switch (type) {
+            case MUSIC -> R.drawable.ic_headset;
+            case SUBTITLE -> R.drawable.ic_subtitles;
+            default -> R.drawable.ic_movie;
+        };
     }
 
     public static String checksum(final StoredFileHelper source, final int algorithmId)
