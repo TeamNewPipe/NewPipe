@@ -302,7 +302,7 @@ public final class Player implements PlaybackListener, Listener {
         // notification ui in the UIs list, since the notification depends on the media session in
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
-                new MediaSessionPlayerUi(this),
+                new MediaSessionPlayerUi(this, service.getSessionConnector()),
                 new NotificationPlayerUi(this)
         );
     }
@@ -414,6 +414,10 @@ public final class Player implements PlaybackListener, Listener {
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
+            }
+            if (playQueue.getIndex() != newQueue.getIndex()) {
+                simpleExoPlayer.seekTo(newQueue.getIndex(),
+                        newQueue.getItem().getRecoveryPosition());
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
