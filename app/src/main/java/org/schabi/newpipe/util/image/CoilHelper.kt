@@ -25,7 +25,7 @@ object CoilHelper {
     fun loadBitmapBlocking(
         context: Context,
         url: String?,
-        placeholderResId: Int = 0
+        @DrawableRes placeholderResId: Int = 0
     ): Bitmap? {
         val request = getImageRequest(context, url, placeholderResId).build()
         return context.imageLoader.executeBlocking(request).drawable?.toBitmapOrNull()
