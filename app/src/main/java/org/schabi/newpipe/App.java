@@ -125,9 +125,7 @@ public class App extends Application implements ImageLoaderFactory {
     @NonNull
     @Override
     public ImageLoader newImageLoader() {
-        final var isLowRamDevice = ContextCompat.getSystemService(this, ActivityManager.class)
-                .isLowRamDevice();
-        final var builder = new ImageLoader.Builder(this)
+        return new ImageLoader.Builder(this)
                 .memoryCache(() -> new MemoryCache.Builder(this)
                         .maxSizeBytes(10 * 1024 * 1024)
                         .build())
@@ -135,13 +133,10 @@ public class App extends Application implements ImageLoaderFactory {
                         .directory(new File(getExternalCacheDir(), "coil"))
                         .maxSizeBytes(50 * 1024 * 1024)
                         .build())
-                .allowRgb565(isLowRamDevice);
-
-        if (MainActivity.DEBUG) {
-            builder.logger(new DebugLogger());
-        }
-
-        return builder.build();
+                .allowRgb565(ContextCompat.getSystemService(this, ActivityManager.class)
+                        .isLowRamDevice())
+                .logger(BuildConfig.DEBUG ? new DebugLogger() : null)
+                .build();
     }
 
     protected Downloader getDownloader() {
