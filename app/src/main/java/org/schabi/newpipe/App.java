@@ -27,7 +27,6 @@ import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
@@ -36,8 +35,6 @@ import java.util.Objects;
 
 import coil.ImageLoader;
 import coil.ImageLoaderFactory;
-import coil.disk.DiskCache;
-import coil.memory.MemoryCache;
 import coil.util.DebugLogger;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
@@ -126,13 +123,6 @@ public class App extends Application implements ImageLoaderFactory {
     @Override
     public ImageLoader newImageLoader() {
         return new ImageLoader.Builder(this)
-                .memoryCache(() -> new MemoryCache.Builder(this)
-                        .maxSizeBytes(10 * 1024 * 1024)
-                        .build())
-                .diskCache(() -> new DiskCache.Builder()
-                        .directory(new File(getExternalCacheDir(), "coil"))
-                        .maxSizeBytes(50 * 1024 * 1024)
-                        .build())
                 .allowRgb565(ContextCompat.getSystemService(this, ActivityManager.class)
                         .isLowRamDevice())
                 .logger(BuildConfig.DEBUG ? new DebugLogger() : null)
