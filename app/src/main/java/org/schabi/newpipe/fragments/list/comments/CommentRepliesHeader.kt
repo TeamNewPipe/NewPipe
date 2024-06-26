@@ -36,81 +36,79 @@ import org.schabi.newpipe.util.image.ImageStrategy
 fun CommentRepliesHeader(comment: CommentsInfoItem) {
     val context = LocalContext.current
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        Column(modifier = Modifier.padding(all = 8.dp)) {
+    Column(modifier = Modifier.padding(all = 8.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .padding(top = 8.dp, bottom = 8.dp, end = 8.dp)
+                    .clickable {
+                        NavigationHelper.openCommentAuthorIfPresent(
+                            context as FragmentActivity,
+                            comment
+                        )
+                    },
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    modifier = Modifier
-                        .padding(top = 8.dp, bottom = 8.dp, end = 8.dp)
-                        .clickable {
-                            NavigationHelper.openCommentAuthorIfPresent(
-                                context as FragmentActivity,
-                                comment
-                            )
-                        },
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    if (ImageStrategy.shouldLoadImages()) {
-                        AsyncImage(
-                            model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
-                            contentDescription = null,
-                            placeholder = painterResource(R.drawable.placeholder_person),
-                            error = painterResource(R.drawable.placeholder_person),
-                            modifier = Modifier
-                                .size(42.dp)
-                                .clip(CircleShape)
-                        )
-                    }
-
-                    Column {
-                        Text(text = comment.uploaderName)
-
-                        Text(
-                            color = MaterialTheme.colorScheme.secondary,
-                            style = MaterialTheme.typography.bodySmall,
-                            text = Localization.relativeTimeOrTextual(
-                                context, comment.uploadDate, comment.textualUploadDate
-                            )
-                        )
-                    }
+                if (ImageStrategy.shouldLoadImages()) {
+                    AsyncImage(
+                        model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
+                        contentDescription = null,
+                        placeholder = painterResource(R.drawable.placeholder_person),
+                        error = painterResource(R.drawable.placeholder_person),
+                        modifier = Modifier
+                            .size(42.dp)
+                            .clip(CircleShape)
+                    )
                 }
 
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_thumb_up),
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                Column {
+                    Text(text = comment.uploaderName)
+
+                    Text(
+                        color = MaterialTheme.colorScheme.secondary,
+                        style = MaterialTheme.typography.bodySmall,
+                        text = Localization.relativeTimeOrTextual(
+                            context, comment.uploadDate, comment.textualUploadDate
+                        )
                     )
-                    Text(text = Localization.likeCount(context, comment.likeCount))
-
-                    if (comment.isHeartedByUploader) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_heart),
-                            contentDescription = stringResource(R.string.detail_heart_img_view_description)
-                        )
-                    }
-
-                    if (comment.isPinned) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_pin),
-                            contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
-                        )
-                    }
                 }
             }
 
-            Text(
-                text = rememberParsedText(comment.commentText),
-                style = MaterialTheme.typography.bodyMedium
-            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.ic_thumb_up),
+                    contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                )
+                Text(text = Localization.likeCount(context, comment.likeCount))
+
+                if (comment.isHeartedByUploader) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_heart),
+                        contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                    )
+                }
+
+                if (comment.isPinned) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_pin),
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                    )
+                }
+            }
         }
+
+        Text(
+            text = rememberParsedText(comment.commentText),
+            style = MaterialTheme.typography.bodyMedium
+        )
     }
 }
 
@@ -127,6 +125,8 @@ fun CommentRepliesHeaderPreview() {
     )
 
     AppTheme {
-        CommentRepliesHeader(comment)
+        Surface(color = MaterialTheme.colorScheme.background) {
+            CommentRepliesHeader(comment)
+        }
     }
 }
