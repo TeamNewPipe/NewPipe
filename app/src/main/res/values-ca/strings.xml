@@ -625,7 +625,6 @@
     <string name="dont_show">No mostris</string>
     <string name="low_quality_smaller">Baixa qualitat (més petit)</string>
     <string name="high_quality_larger">Alta qualitat (més gran)</string>
-    <string name="show_image_indicators_title">Mostra indicadors de la imatge</string>
     <string name="disable_media_tunneling_summary">Desactiva l\'entunelament del contingut si en els videos hi ha una pantalla negre o tartamudegen</string>
     <string name="show_channel_details">Mostra detalls del canal</string>
     <string name="no_dir_yet">No s\'ha establert una carpeta de descàrregues, selecciona la carpeta per defecte ara</string>
@@ -669,7 +668,6 @@
     <string name="detail_pinned_comment_view_description">Comentari fixat</string>
     <string name="show_crash_the_player_title">Mostra \"Força el tancament del reproductor\"</string>
     <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
-    <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
     <string name="leak_canary_not_available">El LeakCanary no està disponible</string>
     <string name="streams_notifications_interval_title">Comprovant freqüència</string>
     <string name="streams_notifications_network_title">Es necesita una conexió a Internet</string>

@@ -516,7 +516,6 @@
     <string name="processing_may_take_a_moment">Behandler… Det kan tage et øjeblik</string>
     <string name="show_memory_leaks">Vis hukommelseslækager</string>
     <string name="disable_media_tunneling_title">Deaktivér medietunneling</string>
-    <string name="show_image_indicators_title">Vis billedindikatorer</string>
     <string name="streams_notifications_network_title">Netværkskrav</string>
     <string name="any_network">Alle netværk</string>
     <string name="streams_notifications_interval_title">Kontrolfrekvens</string>
@@ -695,7 +694,6 @@
     <string name="faq_title">Ofte stillede spørgsmål</string>
     <string name="faq_description">Hvis du har problemer med at bruge appen, bør du tjekke disse svar på almindelige spørgsmål!</string>
     <string name="faq">Se på webside</string>
-    <string name="show_image_indicators_summary">Vis Picasso-farvede bånd oven på billeder, der angiver deres kilde: rød for netværk, blå for disk og grøn for hukommelse</string>
     <string name="app_update_unavailable_toast">Du kører den nyeste version af NewPipe</string>
     <string name="new_seek_duration_toast">Pga. ExoPlayer-begrænsninger blev søgevarigheden sat til %d sekunder</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Vis kun ikke-grupperede abonnementer</string>

@@ -342,7 +342,6 @@
     <string name="show_original_time_ago_summary">ସେବାଗୁଡିକରୁ ମୂଳ ଲେଖା ଷ୍ଟ୍ରିମ୍ ଆଇଟମ୍ ଗୁଡିକରେ ଦୃଶ୍ୟମାନ ହେବ</string>
     <string name="disable_media_tunneling_title">ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ</string>
     <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ ।</string>
-    <string name="show_image_indicators_summary">ଚିତ୍ରଗୁଡ଼ିକର ଉପରେ ପିକାସୋ ରଙ୍ଗୀନ ଫିତା ଦେଖାନ୍ତୁ: ସେମାନଙ୍କର ଉତ୍ସକୁ ସୂଚାଇଥାଏ: ନେଟୱାର୍କ ପାଇଁ ନାଲି, ଡିସ୍କ ପାଇଁ ନୀଳ ଏବଂ ସ୍ମୃତି ପାଇଁ ସବୁଜ</string>
     <string name="import_title">ଆମଦାନି କରନ୍ତୁ</string>
     <string name="import_from">ଠାରୁ ଆମଦାନୀ କରନ୍ତୁ</string>
     <string name="import_ongoing">ଆମଦାନି…</string>
@@ -657,7 +656,6 @@
     <string name="playlist_no_uploader">ଅଟୋ-ଜେନେରେଟ୍ (କୌଣସି ଅପଲୋଡର୍ ମିଳିଲା ନାହିଁ)</string>
     <string name="resize_fill">ପୁରଣ କରନ୍ତୁ</string>
     <string name="caption_setting_title">କ୍ୟାପସନ୍</string>
-    <string name="show_image_indicators_title">ପ୍ରତିଛବି ସୂଚକ ଦେଖାନ୍ତୁ</string>
     <string name="show_crash_the_player_summary">ପ୍ଲେୟାର ବ୍ୟବହାର କରିବା ସମୟରେ ଏକ କ୍ରାସ୍ ବିକଳ୍ପ ଦେଖାଏ</string>
     <string name="check_new_streams">ନୂତନ ଷ୍ଟ୍ରିମ୍ ପାଇଁ ଯାଞ୍ଚ ଚଲାନ୍ତୁ</string>
     <string name="crash_the_app">ଆପ୍ କ୍ରାସ୍ କରନ୍ତୁ</string>

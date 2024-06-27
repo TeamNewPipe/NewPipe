@@ -644,7 +644,6 @@
     <string name="comments_are_disabled">Os comentários estão desabilitados</string>
     <string name="mark_as_watched">Marcar como assistido</string>
     <string name="detail_heart_img_view_description">Curtido pelo criador</string>
-    <string name="show_image_indicators_summary">Exibir fitas coloridas no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download excluído</item>
         <item quantity="many">%1$s downloads excluídos</item>
@@ -655,7 +654,6 @@
         <item quantity="many">%s downloads concluídos</item>
         <item quantity="other">%s downloads concluídos</item>
     </plurals>
-    <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="enqueued_next">Adicionado na próxima posição da fila</string>
     <string name="enqueue_next_stream">Enfileira a próxima</string>
     <string name="main_page_content_swipe_remove">Deslize os itens para remove-los</string>

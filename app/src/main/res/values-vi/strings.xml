@@ -624,8 +624,6 @@
     <string name="comments_are_disabled">Bình luận đã bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được chủ kênh thả \"thính\"</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
-    <string name="show_image_indicators_summary">Hiển thị các dải băng màu Picasso trên đầu các hình ảnh cho biết nguồn của chúng: màu đỏ cho mạng, màu lam cho đĩa và màu lục cho bộ nhớ</string>
-    <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
     <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
     <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
     <plurals name="deleted_downloads_toast">

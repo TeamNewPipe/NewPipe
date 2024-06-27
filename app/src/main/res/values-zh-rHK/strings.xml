@@ -668,9 +668,7 @@
     <string name="feed_create_new_group_button_title">新</string>
     <string name="feed_group_dialog_delete_message">你係咪要刪除呢個谷？</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">淨係顯示未成谷嘅訂閱</string>
-    <string name="show_image_indicators_summary">啲圖都要騷 Picasso 三色碼顯示源頭：紅碼係網絡上高落嚟，藍碼係儲存喺磁碟本地，綠碼係潛伏喺記憶體中</string>
     <string name="show_original_time_ago_summary">服務原本嘅字會騷返喺串流項目上面</string>
-    <string name="show_image_indicators_title">影像要推三色碼</string>
     <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦。</string>
     <string name="import_youtube_instructions">點樣用 Google 匯出嚟匯入 YouTube 訂閱：
 \n
