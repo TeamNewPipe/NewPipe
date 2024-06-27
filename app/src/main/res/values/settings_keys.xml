@@ -120,6 +120,7 @@
     <string name="default_resolution_key">default_resolution</string>
     <string name="default_resolution_value">720p60</string>
     <string name="show_higher_resolutions_key">show_higher_resolutions</string>
+    <string name="treat_all_networks_as_mobile_key">treat_all_networks_as_mobile</string>
     <string name="default_popup_resolution_key">default_popup_resolution</string>
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>

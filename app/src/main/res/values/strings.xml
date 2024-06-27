@@ -45,6 +45,7 @@
     <string name="download_path_audio_dialog_title">Choose download folder for audio files</string>
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
+    <string name="treat_all_networks_as_mobile_title">Treat all networks as mobile</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
     <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>

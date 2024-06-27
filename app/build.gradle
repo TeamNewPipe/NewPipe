@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        resValue "string", "app_name", "NewPipeAutoDL"
         minSdk 21
         targetSdk 33
         versionCode 997
@@ -42,19 +42,19 @@ android {
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
-                resValue "string", "app_name", "NewPipe Debug"
+                resValue "string", "app_name", "NewPipeAutoDLNewPipe Debug"
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "NewPipe " + workingBranch
-                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
+                resValue "string", "app_name", "NewPipeAutoDL " + workingBranch
+                archivesBaseName = 'NewPipeAutoDL_' + normalizedWorkingBranch
             }
         }
 
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
-                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
-                archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
+                resValue "string", "app_name", "NewPipeAutoDL " + System.getProperty('packageSuffix')
+                archivesBaseName = 'NewPipeAutoDL_' + System.getProperty('packageSuffix')
             }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build

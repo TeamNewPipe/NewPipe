@@ -705,9 +705,12 @@ public final class ListHelper {
      */
     private static String getResolutionLimit(@NonNull final Context context) {
         String resolutionLimit = null;
-        if (isMeteredNetwork(context)) {
-            final SharedPreferences preferences =
-                    PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean treatAllNetworksAsMobileData =
+                preferences.getBoolean(context.getString(R.string.treat_all_networks_as_mobile_key),
+                        false);
+        if (isMeteredNetwork(context) || treatAllNetworksAsMobileData) {
             final String defValue = context.getString(R.string.limit_data_usage_none_key);
             final String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
