@@ -126,6 +126,7 @@ public class App extends Application implements ImageLoaderFactory {
                 .allowRgb565(ContextCompat.getSystemService(this, ActivityManager.class)
                         .isLowRamDevice())
                 .logger(BuildConfig.DEBUG ? new DebugLogger() : null)
+                .crossfade(true)
                 .build();
     }
 
