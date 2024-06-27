@@ -1,3 +1,5 @@
+<b>Mod for automated downloads based on criteria, instead of clicking through the download popup (name, audio/video, format, bitrate, etc.).</b>
+
 <h3 align="center">We are planning to <i>rewrite</i> large chunks of the codebase, to bring about <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">a new, modern and stable NewPipe</a>!</h3>
 <h4 align="center">Please do <b>not</b> open pull requests for <i>new features</i> now, only bugfix PRs will be accepted.</h4>
 
