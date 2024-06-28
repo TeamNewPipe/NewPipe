@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.comments
+package org.schabi.newpipe.paging
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource

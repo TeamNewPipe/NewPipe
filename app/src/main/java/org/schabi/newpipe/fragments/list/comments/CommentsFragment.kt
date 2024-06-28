@@ -11,7 +11,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.compose.comment.CommentSection
+import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.paging.CommentsSource
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
 class CommentsFragment : Fragment() {

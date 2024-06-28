@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.comments
+package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -29,9 +29,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.ParagraphStyle
-import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -42,25 +39,15 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.compose.util.rememberParsedDescription
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.paging.CommentsSource
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
-
-@Composable
-fun rememberParsedText(commentText: Description): AnnotatedString {
-    // TODO: Handle links and hashtags, Markdown.
-    return remember(commentText) {
-        if (commentText.type == Description.HTML) {
-            AnnotatedString.fromHtml(commentText.content)
-        } else {
-            AnnotatedString(commentText.content, ParagraphStyle())
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -112,7 +99,7 @@ fun Comment(comment: CommentsInfoItem) {
             }
 
             Text(
-                text = rememberParsedText(comment.commentText),
+                text = rememberParsedDescription(comment.commentText),
                 // If the comment is expanded, we display all its content
                 // otherwise we only display the first two lines
                 maxLines = if (isExpanded) Int.MAX_VALUE else 2,
