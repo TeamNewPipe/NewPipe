@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.comments
+package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
@@ -28,14 +28,15 @@ import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.paging.CommentsDisabledException
 
 @Composable
 fun CommentSection(
-    flow: Flow<PagingData<CommentsInfoItem>>,
     parentComment: CommentsInfoItem? = null,
+    flow: Flow<PagingData<CommentsInfoItem>>
 ) {
     val replies = flow.collectAsLazyPagingItems()
     val itemCount by remember { derivedStateOf { replies.itemCount } }
