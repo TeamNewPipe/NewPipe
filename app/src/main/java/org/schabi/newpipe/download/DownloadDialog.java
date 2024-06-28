@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
@@ -28,6 +29,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.IdRes;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -110,6 +112,8 @@ public class DownloadDialog extends DialogFragment
     int selectedAudioIndex = 0; // default to the first item
     @State
     int selectedSubtitleIndex = 0; // default to the first item
+    @State
+    boolean okClicked = false; // guard
 
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
@@ -350,11 +354,33 @@ public class DownloadDialog extends DialogFragment
 
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
-                prepareSelectedDownload();
+                if (!this.okClicked) {
+                    this.okClicked = true;
+                    prepareSelectedDownload();
+                }
                 return true;
             }
             return false;
         });
+    }
+
+    @MainThread
+    @Override
+    public void onStart() {
+        super.onStart();
+        final boolean autoOkDownloadDialog =
+                PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(
+                        context.getString(R.string.auto_ok_download_dialog_key), false);
+        if (autoOkDownloadDialog) {
+            final Handler timerHandler = new Handler();
+            final Runnable timerRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    okButton.performClick();
+                }
+            };
+            timerHandler.postDelayed(timerRunnable, 500);
+        }
     }
 
     @Override
