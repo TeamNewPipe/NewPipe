@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.comments
+package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -25,9 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.compose.util.rememberParsedDescription
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
@@ -106,7 +107,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
         }
 
         Text(
-            text = rememberParsedText(comment.commentText),
+            text = rememberParsedDescription(comment.commentText),
             style = MaterialTheme.typography.bodyMedium
         )
     }
