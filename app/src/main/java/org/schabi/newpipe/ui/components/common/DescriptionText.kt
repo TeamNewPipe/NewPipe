@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.fromHtml
@@ -21,6 +22,7 @@ fun DescriptionText(
     modifier: Modifier = Modifier,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     style: TextStyle = LocalTextStyle.current
 ) {
     // TODO: Handle links and hashtags, Markdown.
@@ -38,6 +40,7 @@ fun DescriptionText(
         text = parsedDescription,
         maxLines = maxLines,
         style = style,
-        overflow = overflow
+        overflow = overflow,
+        onTextLayout = onTextLayout
     )
 }

@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,10 +35,10 @@ import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.debounce.DebounceSavable;
-import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,20 +133,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
-                final FragmentManager fragmentManager = getFM();
+                final var fragmentManager = getFM();
 
-                if (selectedItem instanceof PlaylistMetadataEntry) {
-                    final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
+                if (selectedItem instanceof PlaylistMetadataEntry entry) {
                     NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.getUid(),
                             entry.name);
-
-                } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                    final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                    NavigationHelper.openPlaylistFragment(
-                            fragmentManager,
-                            entry.getServiceId(),
-                            entry.getUrl(),
-                            entry.getName());
+                } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
+                    NavigationHelper.openPlaylistFragment(fragmentManager, entry.getServiceId(),
+                            entry.getUrl(), entry.getName());
                 }
             }
 
