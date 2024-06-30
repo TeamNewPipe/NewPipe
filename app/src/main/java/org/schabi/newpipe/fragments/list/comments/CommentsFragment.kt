@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import org.schabi.newpipe.compose.comment.CommentSection
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.paging.CommentsSource
@@ -29,14 +31,16 @@ class CommentsFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                val flow = remember(serviceId, url) {
+                val coroutineScope = rememberCoroutineScope()
+                val flow = remember(coroutineScope) {
                     Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
                         CommentsSource(serviceId, url, null)
                     }.flow
+                        .cachedIn(coroutineScope)
                 }
 
                 AppTheme {
-                    CommentSection(flow = flow)
+                    CommentSection(commentsData = flow)
                 }
             }
         }
