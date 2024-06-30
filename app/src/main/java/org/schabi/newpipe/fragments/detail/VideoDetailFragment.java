@@ -2466,4 +2466,10 @@ public final class VideoDetailFragment
             lastStableBottomSheetState = newState;
         }
     }
+
+    public void removeLastStackItem() {
+        if (!stack.isEmpty()) {
+            stack.removeLast();
+        }
+    }
 }
