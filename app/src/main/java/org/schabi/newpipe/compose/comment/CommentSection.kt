@@ -36,13 +36,13 @@ import org.schabi.newpipe.paging.CommentsDisabledException
 @Composable
 fun CommentSection(
     parentComment: CommentsInfoItem? = null,
-    flow: Flow<PagingData<CommentsInfoItem>>
+    commentsData: Flow<PagingData<CommentsInfoItem>>
 ) {
-    val replies = flow.collectAsLazyPagingItems()
-    val itemCount by remember { derivedStateOf { replies.itemCount } }
+    val comments = commentsData.collectAsLazyPagingItems()
+    val itemCount by remember { derivedStateOf { comments.itemCount } }
 
     Surface(color = MaterialTheme.colorScheme.background) {
-        val refresh = replies.loadState.refresh
+        val refresh = comments.loadState.refresh
         if (itemCount == 0 && refresh !is LoadState.Loading) {
             NoCommentsMessage((refresh as? LoadState.Error)?.error)
         } else {
@@ -58,7 +58,7 @@ fun CommentSection(
                     }
 
                     items(itemCount) {
-                        Comment(comment = replies[it]!!)
+                        Comment(comment = comments[it]!!)
                     }
                 }
             }
@@ -113,7 +113,7 @@ private fun CommentSectionPreview(
     @PreviewParameter(CommentDataProvider::class) pagingData: PagingData<CommentsInfoItem>
 ) {
     AppTheme {
-        CommentSection(flow = flowOf(pagingData))
+        CommentSection(commentsData = flowOf(pagingData))
     }
 }
 
@@ -137,6 +137,6 @@ private fun CommentRepliesPreview() {
     val flow = flowOf(PagingData.from(replies))
 
     AppTheme {
-        CommentSection(parentComment = comment, flow = flow)
+        CommentSection(parentComment = comment, commentsData = flow)
     }
 }
