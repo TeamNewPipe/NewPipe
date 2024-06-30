@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.compose.theme.AppTheme
@@ -141,13 +143,15 @@ fun Comment(comment: CommentsInfoItem) {
 
     if (showReplies) {
         ModalBottomSheet(onDismissRequest = { showReplies = false }) {
-            val flow = remember(comment) {
+            val coroutineScope = rememberCoroutineScope()
+            val flow = remember(coroutineScope) {
                 Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
                     CommentsSource(comment.serviceId, comment.url, comment.replies)
                 }.flow
+                    .cachedIn(coroutineScope)
             }
 
-            CommentSection(parentComment = comment, flow = flow)
+            CommentSection(parentComment = comment, commentsData = flow)
         }
     }
 }
