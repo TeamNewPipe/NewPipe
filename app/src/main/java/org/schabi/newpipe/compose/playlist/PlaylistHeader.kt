@@ -35,16 +35,12 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.compose.common.DescriptionText
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.error.ErrorUtil
-import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 import java.util.concurrent.TimeUnit
@@ -54,7 +50,7 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(
@@ -146,22 +142,6 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
             }
         }
     }
-}
-
-fun StreamInfoItem(
-    serviceId: Int = NO_SERVICE_ID,
-    url: String,
-    name: String,
-    streamType: StreamType = StreamType.NONE,
-    uploaderName: String? = null,
-    uploaderUrl: String? = null,
-    uploaderAvatars: List<Image> = emptyList(),
-    duration: Long,
-) = StreamInfoItem(serviceId, url, name, streamType).apply {
-    this.uploaderName = uploaderName
-    this.uploaderUrl = uploaderUrl
-    this.uploaderAvatars = uploaderAvatars
-    this.duration = duration
 }
 
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)

@@ -1,11 +1,12 @@
 package org.schabi.newpipe.compose.playlist
 
 import android.content.res.Configuration
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,7 +15,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.DownloaderImpl
+import org.schabi.newpipe.compose.stream.StreamGridItem
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.ServiceList
@@ -30,14 +33,17 @@ fun Playlist(playlistViewModel: PlaylistViewModel = viewModel()) {
 
     playlistInfo?.let {
         Surface(color = MaterialTheme.colorScheme.background) {
-            LazyColumn {
-                item {
-                    PlaylistHeader(playlistInfo = it, totalDuration = totalDuration)
-                    HorizontalDivider(thickness = 1.dp)
-                }
+            val gridState = rememberLazyGridState()
 
-                items(streams.itemCount) {
-                    Text(text = streams[it]!!.name)
+            LazyVerticalGridScrollbar(state = gridState) {
+                LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(164.dp)) {
+                    item(span = { GridItemSpan(maxLineSpan) }) {
+                        PlaylistHeader(playlistInfo = it, totalDuration = totalDuration)
+                    }
+
+                    items(streams.itemCount) {
+                        StreamGridItem(streams[it]!!)
+                    }
                 }
             }
         }
