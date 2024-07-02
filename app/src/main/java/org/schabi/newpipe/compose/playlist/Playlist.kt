@@ -11,7 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,7 +42,11 @@ import org.schabi.newpipe.viewmodels.PlaylistViewModel
 fun Playlist(playlistViewModel: PlaylistViewModel = viewModel()) {
     val playlistInfo by playlistViewModel.playlistInfo.collectAsState()
     val streams = playlistViewModel.streamItems.collectAsLazyPagingItems()
-    val totalDuration = streams.itemSnapshotList.sumOf { it!!.duration }
+    val totalDuration by remember {
+        derivedStateOf {
+            streams.itemSnapshotList.sumOf { it!!.duration }
+        }
+    }
 
     val context = LocalContext.current
     val onClick = { stream: StreamInfoItem ->
