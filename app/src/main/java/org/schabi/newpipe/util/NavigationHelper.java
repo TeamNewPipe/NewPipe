@@ -45,7 +45,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
@@ -499,15 +498,6 @@ public final class NavigationHelper {
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
         }
-    }
-
-    public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
-                                                  @NonNull final CommentsInfoItem comment) {
-        defaultTransaction(activity.getSupportFragmentManager())
-                .replace(R.id.fragment_holder, new CommentRepliesFragment(comment),
-                        CommentRepliesFragment.TAG)
-                .addToBackStack(CommentRepliesFragment.TAG)
-                .commit();
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
