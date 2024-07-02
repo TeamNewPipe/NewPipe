@@ -1,7 +1,9 @@
 package org.schabi.newpipe.compose.playlist
 
 import android.content.res.Configuration
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -65,9 +68,9 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier.apply {
+                modifier = Modifier.let {
                     if (playlistInfo.uploaderName != null && playlistInfo.uploaderUrl != null) {
-                        clickable {
+                        it.clickable {
                             try {
                                 NavigationHelper.openChannelFragment(
                                     (context as FragmentActivity).supportFragmentManager,
@@ -78,11 +81,13 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
                                 ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e)
                             }
                         }
-                    }
+                    } else it
                 }
             ) {
                 val imageModifier = Modifier
                     .size(24.dp)
+                    .border(BorderStroke(1.dp, Color.White), CircleShape)
+                    .padding(1.dp)
                     .clip(CircleShape)
                 val isMix = YoutubeParsingHelper.isYoutubeMixId(playlistInfo.id) ||
                     YoutubeParsingHelper.isYoutubeMusicMixId(playlistInfo.id)

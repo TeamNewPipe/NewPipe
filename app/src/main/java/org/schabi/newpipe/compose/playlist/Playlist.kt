@@ -1,28 +1,39 @@
 package org.schabi.newpipe.compose.playlist
 
 import android.content.res.Configuration
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.DownloaderImpl
+import org.schabi.newpipe.compose.stream.StreamCardItem
 import org.schabi.newpipe.compose.stream.StreamGridItem
+import org.schabi.newpipe.compose.stream.StreamListItem
 import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.compose.util.determineItemViewMode
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
+import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
 
 @Composable
@@ -31,18 +42,50 @@ fun Playlist(playlistViewModel: PlaylistViewModel = viewModel()) {
     val streams = playlistViewModel.streamItems.collectAsLazyPagingItems()
     val totalDuration = streams.itemSnapshotList.sumOf { it!!.duration }
 
+    val context = LocalContext.current
+    val onClick = { stream: StreamInfoItem ->
+        NavigationHelper.openVideoDetailFragment(
+            context, (context as FragmentActivity).supportFragmentManager,
+            stream.serviceId, stream.url, stream.name, null, false
+        )
+    }
+
     playlistInfo?.let {
         Surface(color = MaterialTheme.colorScheme.background) {
-            val gridState = rememberLazyGridState()
+            val mode = determineItemViewMode()
 
-            LazyVerticalGridScrollbar(state = gridState) {
-                LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(164.dp)) {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        PlaylistHeader(playlistInfo = it, totalDuration = totalDuration)
+            if (mode == ItemViewMode.GRID) {
+                val gridState = rememberLazyGridState()
+
+                LazyVerticalGridScrollbar(state = gridState) {
+                    LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(250.dp)) {
+                        item(span = { GridItemSpan(maxLineSpan) }) {
+                            PlaylistHeader(playlistInfo = it, totalDuration = totalDuration)
+                        }
+
+                        items(streams.itemCount) {
+                            StreamGridItem(streams[it]!!, onClick)
+                        }
                     }
+                }
+            } else {
+                // Card or list views
+                val listState = rememberLazyListState()
 
-                    items(streams.itemCount) {
-                        StreamGridItem(streams[it]!!)
+                LazyColumnScrollbar(state = listState) {
+                    LazyColumn(state = listState) {
+                        item {
+                            PlaylistHeader(playlistInfo = it, totalDuration = totalDuration)
+                        }
+
+                        items(streams.itemCount) {
+                            val stream = streams[it]!!
+                            if (mode == ItemViewMode.CARD) {
+                                StreamCardItem(stream, onClick)
+                            } else {
+                                StreamListItem(stream, onClick)
+                            }
+                        }
                     }
                 }
             }
