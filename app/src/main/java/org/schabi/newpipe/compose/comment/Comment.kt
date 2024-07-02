@@ -144,14 +144,14 @@ fun Comment(comment: CommentsInfoItem) {
     if (showReplies) {
         ModalBottomSheet(onDismissRequest = { showReplies = false }) {
             val coroutineScope = rememberCoroutineScope()
-            val flow = remember(coroutineScope) {
+            val flow = remember {
                 Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
                     CommentsSource(comment.serviceId, comment.url, comment.replies)
                 }.flow
                     .cachedIn(coroutineScope)
             }
 
-            CommentSection(parentComment = comment, commentsData = flow)
+            CommentSection(parentComment = comment, commentsFlow = flow)
         }
     }
 }
