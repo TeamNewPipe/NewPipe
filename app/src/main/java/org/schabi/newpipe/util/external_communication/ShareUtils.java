@@ -351,7 +351,7 @@ public final class ShareUtils {
      * </p>
      *
      * <p>
-     * This method will call {@link CoilHelper#loadBitmap(Context, String)} to get the
+     * This method will call {@link CoilHelper#loadBitmapBlocking(Context, String)} to get the
      * thumbnail of the content.
      * </p>
      *
