@@ -287,7 +287,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     // Date and time formatting
-    implementation "org.ocpsoft.prettytime:prettytime:5.0.7.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
     // Jetpack Compose
     implementation(platform('androidx.compose:compose-bom:2024.02.01'))
