@@ -67,16 +67,13 @@ object CoilHelper {
                     var newHeight = input.height / (input.width / notificationThumbnailWidth)
                     val result = input.scale(notificationThumbnailWidth, newHeight)
 
-                    if (result == input || !result.isMutable) {
+                    return if (result == input || !result.isMutable) {
                         // create a new mutable bitmap to prevent strange crashes on some
                         // devices (see #4638)
                         newHeight = input.height / (input.width / (notificationThumbnailWidth - 1))
-                        val copied = input.scale(notificationThumbnailWidth, newHeight)
-                        input.recycle()
-                        return copied
+                        input.scale(notificationThumbnailWidth, newHeight)
                     } else {
-                        input.recycle()
-                        return result
+                        result
                     }
                 }
             })
