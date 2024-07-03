@@ -352,6 +352,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
             });
             ellipsizer.setContent(description);
             headerBinding.playlistDescriptionReadMore.setOnClickListener(v -> ellipsizer.toggle());
+            headerBinding.playlistDescription.setOnClickListener(v -> ellipsizer.toggle());
         } else {
             headerBinding.playlistDescription.setVisibility(View.GONE);
             headerBinding.playlistDescriptionReadMore.setVisibility(View.GONE);

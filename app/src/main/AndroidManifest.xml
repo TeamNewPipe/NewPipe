@@ -367,6 +367,7 @@
                 <data android:host="tilvids.com" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="video.ploud.fr" />
+                <data android:host="subscribeto.me" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/w/" /> <!-- short video URLs -->
