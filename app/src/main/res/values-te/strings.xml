@@ -442,7 +442,6 @@
     <string name="playback_speed_control">ప్లేబ్యాక్ స్పీడ్ నియంత్రణలు</string>
     <string name="minimize_on_exit_none_description">ఏమిలేదు</string>
     <string name="disable_media_tunneling_summary">మీరు బ్లాక్ స్క్రీన్ లేదా చలనచిత్రం ప్లేబ్యాక్‌లో అంతరాయాన్ని అనుభవిస్తే మీడియా టన్నెలింగ్‌ను నిలిపివేయండి</string>
-    <string name="show_image_indicators_summary">చిత్రాల మూలాన్ని సూచించే విధంగా వాటి పైభాగంలో పికాసో రంగు రిబ్బన్‌లను చూపండి: నెట్‌వర్క్ కోసం ఎరుపు, డిస్క్ కోసం నీలం మరియు మెమరీ కోసం ఆకుపచ్చ</string>
     <string name="show_error_snackbar">లోపం స్నాక్‌బార్‌ని చూపండి</string>
     <string name="app_update_unavailable_toast">మీరు NewPipe యొక్క తాజా సంస్కరణను అమలు చేస్తున్నారు</string>
     <string name="app_update_available_notification_title">NewPipe నవీకరణ అందుబాటులో ఉంది!</string>
@@ -455,7 +454,6 @@
     <string name="low_quality_smaller">తక్కువ నాణ్యత (చిన్నది)</string>
     <string name="dont_show">చూపించవద్దు</string>
     <string name="disable_media_tunneling_title">మీడియా టన్నెలింగ్‌ని నిలిపివేయండి</string>
-    <string name="show_image_indicators_title">చిత్ర సూచికలను చూపు</string>
     <string name="check_new_streams">కొత్త స్ట్రీమ్‌ల కోసం తనిఖీని అమలు చేయండి</string>
     <string name="create_error_notification">ఎర్రర్ నోటిఫికేషన్‌ను సృష్టించండి</string>
     <string name="import_title">దిగుమతి</string>

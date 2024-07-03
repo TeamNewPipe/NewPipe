@@ -646,8 +646,6 @@
     <string name="seekbar_preview_thumbnail_title">Мініатюра з попереднім переглядом на повзунку поступу</string>
     <string name="detail_heart_img_view_description">Вподобано автором</string>
     <string name="mark_as_watched">Позначити переглянутим</string>
-    <string name="show_image_indicators_summary">Показувати кольорові стрічки Пікассо поверх зображень із зазначенням їх джерела: червоний для мережі, синій для диска та зелений для пам’яті</string>
-    <string name="show_image_indicators_title">Показати індикатори зображень</string>
     <string name="remote_search_suggestions">Віддалені пропозиції пошуку</string>
     <string name="local_search_suggestions">Локальні пошукові пропозиції</string>
     <plurals name="deleted_downloads_toast">

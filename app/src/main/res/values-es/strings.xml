@@ -647,8 +647,6 @@
     <string name="comments_are_disabled">Los comentarios están deshabilitados</string>
     <string name="detail_heart_img_view_description">De corazón por el creador</string>
     <string name="mark_as_watched">Marcar como visto</string>
-    <string name="show_image_indicators_summary">Mostrar cintas de colores Picasso encima de las imágenes indicando su origen: rojo para la red, azul para el disco y verde para la memoria</string>
-    <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
     <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
     <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
     <plurals name="deleted_downloads_toast">

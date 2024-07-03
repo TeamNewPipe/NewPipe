@@ -24,8 +24,8 @@ import androidx.core.content.FileProvider;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -278,7 +278,7 @@ public final class ShareUtils {
      * @param content the content to share
      * @param images  a set of possible {@link Image}s of the subject, among which to choose with
      *                {@link ImageStrategy#choosePreferredImage(List)} since that's likely to
-     *                provide an image that is in Picasso's cache
+     *                provide an image that is in Coil's cache
      */
     public static void shareText(@NonNull final Context context,
                                  @NonNull final String title,
@@ -335,15 +335,7 @@ public final class ShareUtils {
     }
 
     /**
-     * Generate a {@link ClipData} with the image of the content shared, if it's in the app cache.
-     *
-     * <p>
-     * In order not to worry about network issues (timeouts, DNS issues, low connection speed, ...)
-     * when sharing a content, only images in the {@link com.squareup.picasso.LruCache LruCache}
-     * used by the Picasso library inside {@link PicassoHelper} are used as preview images. If the
-     * thumbnail image is not in the cache, no {@link ClipData} will be generated and {@code null}
-     * will be returned.
-     * </p>
+     * Generate a {@link ClipData} with the image of the content shared.
      *
      * <p>
      * In order to display the image in the content preview of the Android share sheet, an URI of
@@ -359,9 +351,8 @@ public final class ShareUtils {
      * </p>
      *
      * <p>
-     * This method will call {@link PicassoHelper#getImageFromCacheIfPresent(String)} to get the
-     * thumbnail of the content in the {@link com.squareup.picasso.LruCache LruCache} used by
-     * the Picasso library inside {@link PicassoHelper}.
+     * This method will call {@link CoilHelper#loadBitmapBlocking(Context, String)} to get the
+     * thumbnail of the content.
      * </p>
      *
      * <p>
@@ -378,7 +369,7 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            final Bitmap bitmap = PicassoHelper.getImageFromCacheIfPresent(thumbnailUrl);
+            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(context, thumbnailUrl);
             if (bitmap == null) {
                 return null;
             }

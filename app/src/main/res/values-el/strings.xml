@@ -634,8 +634,6 @@
     <string name="seekbar_preview_thumbnail_title">Προεπισκόπηση στην μπάρα αναζήτησης</string>
     <string name="mark_as_watched">Σήμανση ως αναπαραχθέν</string>
     <string name="detail_heart_img_view_description">Επισημάνθηκε από τον δημιουργό</string>
-    <string name="show_image_indicators_summary">Εμφάνιση χρωματιστής κορδέλας πάνω στις εικόνες, που δείχνει την πηγή τους: κόκκινη για δίκτυο, μπλε για δίσκο και πράσινο για μνήμη</string>
-    <string name="show_image_indicators_title">Εμφάνιση δεικτών εικόνων</string>
     <string name="remote_search_suggestions">Προτάσεις απομακρυσμένης αναζήτησης</string>
     <string name="local_search_suggestions">Προτάσεις τοπικής αναζήτησης</string>
     <plurals name="deleted_downloads_toast">

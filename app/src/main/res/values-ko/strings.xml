@@ -545,8 +545,6 @@
     <string name="disable_media_tunneling_title">미디어 터널링 비활성화</string>
     <string name="show_original_time_ago_summary">서비스의 원본 텍스트가 스트림 항목에 표시됩니다</string>
     <string name="disable_media_tunneling_summary">동영상 재생 시 검은 화면이 나타나거나 끊김 현상이 발생하면 미디어 터널링을 비활성화하세요.</string>
-    <string name="show_image_indicators_title">이미지 표시기 표시</string>
-    <string name="show_image_indicators_summary">원본을 나타내는 이미지 위에 피카소 컬러 리본 표시: 네트워크는 빨간색, 디스크는 파란색, 메모리는 녹색</string>
     <string name="show_crash_the_player_title">\"플레이어 충돌\" 표시</string>
     <string name="show_crash_the_player_summary">플레이어를 사용할 때 충돌 옵션을 표시합니다</string>
     <string name="check_new_streams">새로운 스트림 확인 실행</string>

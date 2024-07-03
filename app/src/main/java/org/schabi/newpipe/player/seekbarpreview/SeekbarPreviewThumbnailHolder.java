@@ -13,8 +13,9 @@ import androidx.collection.SparseArrayCompat;
 
 import com.google.common.base.Stopwatch;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.extractor.stream.Frameset;
-import org.schabi.newpipe.util.image.PicassoHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.Comparator;
 import java.util.List;
@@ -177,8 +178,8 @@ public class SeekbarPreviewThumbnailHolder {
             Log.d(TAG, "Downloading bitmap for seekbarPreview from '" + url + "'");
 
             // Gets the bitmap within the timeout of 15 seconds imposed by default by OkHttpClient
-            // Ensure that your are not running on the main-Thread this will otherwise hang
-            final Bitmap bitmap = PicassoHelper.loadSeekbarThumbnailPreview(url).get();
+            // Ensure that you are not running on the main thread, otherwise this will hang
+            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(App.getApp(), url);
 
             if (sw != null) {
                 Log.d(TAG, "Download of bitmap for seekbarPreview from '" + url + "' took "

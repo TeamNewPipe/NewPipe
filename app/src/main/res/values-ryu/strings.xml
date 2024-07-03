@@ -646,8 +646,6 @@
         <item quantity="one">%sちぬダウンロードぬかんりょうさびたん</item>
         <item quantity="other">%sちぬダウンロードぬかんりょうさびたん</item>
     </plurals>
-    <string name="show_image_indicators_summary">ピカソー、がぞうぬういに、がぞうくとぅどぅくるしーきびちするしきさいきしーょうひょうじさびーん： あかーネットワーク、あおーディスク、みどぅれーメモリ</string>
-    <string name="show_image_indicators_title">やしがぞうんかいふぃいょうしきひょうじ</string>
     <string name="processing_may_take_a_moment">しーょりちゅう… くーてーんじがんがかかいんかむしりやびらん</string>
     <string name="manual_update_description">みーさるバージョンしーゅどうでぃかくにんさびーん</string>
     <string name="checking_updates_toast">アップデートかくにんちゅう…</string>
