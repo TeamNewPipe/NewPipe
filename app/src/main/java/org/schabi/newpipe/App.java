@@ -1,6 +1,5 @@
 package org.schabi.newpipe;
 
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -22,9 +20,10 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.IOException;
@@ -33,9 +32,6 @@ import java.net.SocketException;
 import java.util.List;
 import java.util.Objects;
 
-import coil.ImageLoader;
-import coil.ImageLoaderFactory;
-import coil.util.DebugLogger;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
@@ -61,7 +57,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class App extends Application implements ImageLoaderFactory {
+public class App extends Application {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String TAG = App.class.toString();
 
@@ -112,22 +108,20 @@ public class App extends Application implements ImageLoaderFactory {
 
         // Initialize image loader
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        PicassoHelper.init(this);
         ImageStrategy.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
                 prefs.getString(getString(R.string.image_quality_key),
                         getString(R.string.image_quality_default))));
+        PicassoHelper.setIndicatorsEnabled(MainActivity.DEBUG
+                && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 
         configureRxJavaErrorHandler();
     }
 
-    @NonNull
     @Override
-    public ImageLoader newImageLoader() {
-        return new ImageLoader.Builder(this)
-                .allowRgb565(ContextCompat.getSystemService(this, ActivityManager.class)
-                        .isLowRamDevice())
-                .logger(BuildConfig.DEBUG ? new DebugLogger() : null)
-                .crossfade(true)
-                .build();
+    public void onTerminate() {
+        super.onTerminate();
+        PicassoHelper.terminate();
     }
 
     protected Downloader getDownloader() {

@@ -8,8 +8,8 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.time.format.DateTimeFormatter;
 
@@ -29,9 +29,10 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
                                final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistRemoteEntity item)) {
+        if (!(localItem instanceof PlaylistRemoteEntity)) {
             return;
         }
+        final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
 
         itemTitleView.setText(item.getName());
         itemStreamCountView.setText(Localization.localizeStreamCountMini(
@@ -44,7 +45,7 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
             itemUploaderView.setText(ServiceHelper.getNameOfServiceById(item.getServiceId()));
         }
 
-        CoilHelper.INSTANCE.loadPlaylistThumbnail(itemThumbnailView, item.getThumbnailUrl());
+        PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
 
         super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
     }
