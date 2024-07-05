@@ -27,8 +27,8 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
 
 public class CommentInfoItemHolder extends InfoItemHolder {
@@ -82,12 +82,14 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
-        if (!(infoItem instanceof CommentsInfoItem item)) {
+        if (!(infoItem instanceof CommentsInfoItem)) {
             return;
         }
+        final CommentsInfoItem item = (CommentsInfoItem) infoItem;
+
 
         // load the author avatar
-        CoilHelper.INSTANCE.loadAvatar(itemThumbnailView, item.getUploaderAvatars());
+        PicassoHelper.loadAvatar(item.getUploaderAvatars()).into(itemThumbnailView);
         if (ImageStrategy.shouldLoadImages()) {
             itemThumbnailView.setVisibility(View.VISIBLE);
             itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,

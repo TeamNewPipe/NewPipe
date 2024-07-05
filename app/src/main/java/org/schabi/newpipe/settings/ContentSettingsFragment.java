@@ -13,9 +13,10 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
-import coil.Coil;
+import java.io.IOException;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
@@ -41,17 +42,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 (preference, newValue) -> {
                     ImageStrategy.setPreferredImageQuality(PreferredImageQuality
                             .fromPreferenceKey(requireContext(), (String) newValue));
-                    final var loader = Coil.imageLoader(preference.getContext());
-                    if (loader.getMemoryCache() != null) {
-                        loader.getMemoryCache().clear();
+                    try {
+                        PicassoHelper.clearCache(preference.getContext());
+                        Toast.makeText(preference.getContext(),
+                                R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
+                                .show();
+                    } catch (final IOException e) {
+                        Log.e(TAG, "Unable to clear Picasso cache", e);
                     }
-                    if (loader.getDiskCache() != null) {
-                        loader.getDiskCache().clear();
-                    }
-                    Toast.makeText(preference.getContext(),
-                            R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
-                            .show();
-
                     return true;
                 });
     }

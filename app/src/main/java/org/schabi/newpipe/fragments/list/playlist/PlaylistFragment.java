@@ -53,7 +53,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.image.CoilHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
 
 import java.util.ArrayList;
@@ -62,7 +62,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import coil.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -71,6 +70,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
+
+    private static final String PICASSO_PLAYLIST_TAG = "PICASSO_PLAYLIST_TAG";
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -275,7 +276,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         animate(headerBinding.getRoot(), false, 200);
         animateHideRecyclerViewAllowingScrolling(itemsList);
 
-        CoilUtils.dispose(headerBinding.uploaderAvatarView);
+        PicassoHelper.cancelTag(PICASSO_PLAYLIST_TAG);
         animate(headerBinding.uploaderLayout, false, 200);
     }
 
@@ -326,8 +327,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     R.drawable.ic_radio)
             );
         } else {
-            CoilHelper.INSTANCE.loadAvatar(headerBinding.uploaderAvatarView,
-                    result.getUploaderAvatars());
+            PicassoHelper.loadAvatar(result.getUploaderAvatars()).tag(PICASSO_PLAYLIST_TAG)
+                    .into(headerBinding.uploaderAvatarView);
         }
 
         streamCount = result.getStreamCount();
