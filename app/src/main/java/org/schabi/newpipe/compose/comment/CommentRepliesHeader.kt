@@ -37,21 +37,17 @@ import org.schabi.newpipe.util.image.ImageStrategy
 fun CommentRepliesHeader(comment: CommentsInfoItem) {
     val context = LocalContext.current
 
-    Column(modifier = Modifier.padding(all = 8.dp)) {
+    Column(modifier = Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
-                modifier = Modifier
-                    .padding(bottom = 8.dp, end = 8.dp)
-                    .clickable {
-                        NavigationHelper.openCommentAuthorIfPresent(
-                            context as FragmentActivity,
-                            comment
-                        )
-                    },
+                modifier = Modifier.clickable {
+                    val activity = context as FragmentActivity
+                    NavigationHelper.openCommentAuthorIfPresent(activity, comment)
+                },
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
