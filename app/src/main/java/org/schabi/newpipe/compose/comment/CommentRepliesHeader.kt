@@ -45,7 +45,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
         ) {
             Row(
                 modifier = Modifier
-                    .padding(top = 8.dp, bottom = 8.dp, end = 8.dp)
+                    .padding(bottom = 8.dp, end = 8.dp)
                     .clickable {
                         NavigationHelper.openCommentAuthorIfPresent(
                             context as FragmentActivity,
