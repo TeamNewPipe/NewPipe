@@ -10,7 +10,7 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="बिल्ड की स्थिति"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="अनुवाद की स्थिति"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC चैनल: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
-<a href="https://matrix.to/#/#newpipe:matrix.org" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
 <p align="center"><a href="#ऐप-कैसी-दिखती-है">ऐप कैसी दिखती है</a> &bull; <a href="#समर्थित-सेवाएँ">समर्थित सेवाएँ</a> &bull; <a href="#विवरण">विवरण</a> &bull; <a href="#सुविधाएँ">सुविधाएँ</a> &bull; <a href="#स्थापित-करना-और-अपडेट-करना">स्थापित करना और अपडेट करना</a> &bull; <a href="#योगदान-करें">योगदान करें</a> &bull; <a href="#आर्थिक-योगदान-करें">आर्थिक योगदान करें</a> &bull; <a href="#लाइसेंस">लाइसेंस</a></p>
