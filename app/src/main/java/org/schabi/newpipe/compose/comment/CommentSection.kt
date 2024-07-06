@@ -2,6 +2,7 @@ package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
@@ -9,10 +10,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -26,8 +25,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
-import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.status.LoadingIndicator
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
@@ -38,26 +37,30 @@ fun CommentSection(
     parentComment: CommentsInfoItem? = null,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>
 ) {
-    val comments = commentsFlow.collectAsLazyPagingItems()
-    val itemCount by remember { derivedStateOf { comments.itemCount } }
-
     Surface(color = MaterialTheme.colorScheme.background) {
+        val comments = commentsFlow.collectAsLazyPagingItems()
         val refresh = comments.loadState.refresh
-        if (itemCount == 0 && refresh !is LoadState.Loading) {
-            NoCommentsMessage((refresh as? LoadState.Error)?.error)
-        } else {
-            val listState = rememberLazyListState()
+        val listState = rememberLazyListState()
 
-            LazyColumnScrollbar(state = listState, settings = ScrollbarSettings.Default) {
-                LazyColumn(state = listState) {
-                    if (parentComment != null) {
-                        item {
-                            CommentRepliesHeader(comment = parentComment)
-                            HorizontalDivider(thickness = 1.dp)
+        LazyColumnScrollbar(state = listState) {
+            LazyColumn(state = listState) {
+                if (parentComment != null) {
+                    item {
+                        CommentRepliesHeader(comment = parentComment)
+                        HorizontalDivider(thickness = 1.dp)
+                    }
+                }
+
+                if (comments.itemCount == 0) {
+                    item {
+                        if (refresh is LoadState.Loading) {
+                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                        } else {
+                            NoCommentsMessage((refresh as? LoadState.Error)?.error)
                         }
                     }
-
-                    items(itemCount) {
+                } else {
+                    items(comments.itemCount) {
                         Comment(comment = comments[it]!!)
                     }
                 }
