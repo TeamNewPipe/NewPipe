@@ -8,12 +8,12 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub ਰਿਲੀਜ਼"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="ਲਾਈਸੈਂਸ: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ਬਿਲਡ ਦੀ ਸਥਿਤੀ"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/" alt="ਅਨੁਵਾਦ ਸਥਿਤੀ"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/" alt="ਅਨੁਵਾਦ ਦੀ ਸਥਿਤੀ"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC ਚੈਨਲ: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://matrix.to/#/#newpipe:matrix.org" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
-<p align="center"><a href="#ਸਕਰੀਨਸ਼ਾਟ">ਸਕਰੀਨਸ਼ਾਟ</a> &bull; <a href="#ਸੇਵਾਵਾਂ">ਸੇਵਾਵਾਂ</a> &bull; <a href="#ਵਰਣਨ">ਵਰਣਨ</a> &bull; <a href="#ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</a> &bull; <a href="#ਇੰਸਟਾਲੇਸ਼ਨ-ਅਤੇ-ਅੱਪਡੇਟ">ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ</a> &bull; <a href="#ਯੋਗਦਾਨ">ਯੋਗਦਾਨ</a> &bull; <a href="#ਦਾਨ">ਦਾਨ</a> &bull; <a href="#ਲਾਈਸੈਂਸ">ਲਾਈਸੈਂਸ</a></p>
+<p align="center"><a href="#ਸਕਰੀਨਸ਼ਾਟ">ਸਕਰੀਨਸ਼ਾਟ</a> &bull; <a href="#ਸਮਰਥਿਤ-ਸੇਵਾਵਾਂ">ਸਮਰਥਿਤ ਸੇਵਾਵਾਂ</a> &bull; <a href="#ਵਰਣਨ">ਵਰਣਨ</a> &bull; <a href="#ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</a> &bull; <a href="#ਇੰਸਟਾਲੇਸ਼ਨ-ਅਤੇ-ਅੱਪਡੇਟ">ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ</a> &bull; <a href="#ਯੋਗਦਾਨ">ਯੋਗਦਾਨ</a> &bull; <a href="#ਦਾਨ">ਦਾਨ</a> &bull; <a href="#ਲਾਈਸੈਂਸ">ਲਾਈਸੈਂਸ</a></p>
 <p align="center"><a href="https://newpipe.net">ਵੈੱਬਸਾਈਟ</a> &bull; <a href="https://newpipe.net/blog/">ਬਲੌਗ</a> &bull; <a href="https://newpipe.net/FAQ/">ਆਮ ਸਵਾਲ ਜਵਾਬ</a> &bull; <a href="https://newpipe.net/press/">ਪ੍ਰੈਸ</a></p>
 <hr>
 
@@ -39,7 +39,7 @@
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
 
-## ਸੇਵਾਵਾਂ
+## ਸਮਰਥਿਤ ਸੇਵਾਵਾਂ
 
 NewPipe ਵਰਤਮਾਨ ਵਿੱਚ ਇਹਨਾਂ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ::
 
