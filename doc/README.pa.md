@@ -10,6 +10,7 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ਬਿਲਡ ਦੀ ਸਥਿਤੀ"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="ਅਨੁਵਾਦ ਸਥਿਤੀ"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC ਚੈਨਲ: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.org" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
 <p align="center"><a href="#ਸਕਰੀਨਸ਼ਾਟ">ਸਕਰੀਨਸ਼ਾਟ</a> &bull; <a href="#ਸੇਵਾਵਾਂ">ਸੇਵਾਵਾਂ</a> &bull; <a href="#ਵਰਣਨ">ਵਰਣਨ</a> &bull; <a href="#ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</a> &bull; <a href="#ਇੰਸਟਾਲੇਸ਼ਨ-ਅਤੇ-ਅੱਪਡੇਟ">ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਅੱਪਡੇਟ</a> &bull; <a href="#ਯੋਗਦਾਨ">ਯੋਗਦਾਨ</a> &bull; <a href="#ਦਾਨ">ਦਾਨ</a> &bull; <a href="#ਲਾਈਸੈਂਸ">ਲਾਈਸੈਂਸ</a></p>
@@ -18,7 +19,7 @@
 
 *Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
-> [!warning]
+> [!ਚੇਤਾਵਨੀ]
 > <b>ਇਹ ਐਪ ਬੀਟਾ ਵਿੱਚ ਹੈ, ਇਸ ਲਈ ਤੁਸੀਂ ਬੱਗ ਦਾ ਸਾਹਮਣਾ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਅਜਿਹਾ ਕਰਦੇ ਹੋ, ਤਾਂ ਟੈਮਪਲੇਟ ਨੂੰ ਭਰ ਕੇ ਸਾਡੀ ਗਿਟਹੱਬ ਰਿਪੋਜ਼ਟਰੀ ਵਿੱਚ ਇੱਕ ਮੁੱਦਾ ਖੋਲ੍ਹੋ</b>
 >
 > <b>ਗੂਗਲ ਪਲੇ ਸਟੋਰ ਵਿੱਚ ਨਿਊਪਾਈਪ ਜਾਂ ਇਸ ਦਾ ਕੋਈ ਵੀ ਫੋਰਕ ਲਗਾਉਣਾ ਉਹਨਾਂ ਦੇ ਨਿਯਮਾਂ ਅਤੇ ਸ਼ਰਤਾਂ ਦੀ ਉਲੰਘਣਾ ਕਰਦਾ ਹੈ।</b>
