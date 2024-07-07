@@ -1,5 +1,5 @@
 <p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>ਨਿਊਪਾਈਪ</b></h2>
+<h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">ਐਂਡਰੌਇਡ ਲਈ ਇੱਕ ਮੁਫ਼ਤ ਹਲਕਾ-ਫੁਲਕਾ ਸਟ੍ਰੀਮਿੰਗ ਯੂਟਿਊਬ ਫਰੰਟ-ਐਂਡ।</h4>
 
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-pa.svg" alt="Get it on F-Droid" height=80/></a></p>

@@ -1,5 +1,5 @@
 <p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
-<h2 align="center"><b>न्यूपाइप</b></h2>
+<h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Android के लिए एक ओपन सोर्स, हल्का YouTube ऐप।</h4>
 
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-hi.svg" alt="इसे F-Droid पर पाएँ" height=80/></a></p>
