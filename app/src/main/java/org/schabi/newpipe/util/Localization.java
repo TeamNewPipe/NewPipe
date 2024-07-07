@@ -241,7 +241,7 @@ public final class Localization {
 
     /**
      * Get a readable text for a duration in the format {@code hours:minutes:seconds}.
-     * Prepended zeros are removed.
+     *
      * @param duration the duration in seconds
      * @return a formatted duration String or {@code 00:00} if the duration is zero.
      */
@@ -250,9 +250,9 @@ public final class Localization {
     }
 
     /**
-     * Get a readable text for a duration in the format {@code hours:minutes:seconds+}.
-     * Prepended zeros are removed. If the given duration is incomplete, a plus is appended to the
-     * duration string.
+     * Get a readable text for a duration in the format {@code hours:minutes:seconds+}. If the given
+     * duration is incomplete, a plus is appended to the duration string.
+     *
      * @param duration the duration in seconds
      * @param isDurationComplete whether the given duration is complete or whether info is missing
      * @param showDurationPrefix whether the duration-prefix shall be shown
