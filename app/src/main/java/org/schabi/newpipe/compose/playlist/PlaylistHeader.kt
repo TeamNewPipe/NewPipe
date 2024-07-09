@@ -1,6 +1,7 @@
 package org.schabi.newpipe.compose.playlist
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -52,19 +53,10 @@ import java.util.concurrent.TimeUnit
 fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
     val context = LocalContext.current
 
-    Column(
-        modifier = Modifier.padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        Text(
-            text = playlistInfo.name,
-            style = MaterialTheme.typography.titleMedium
-        )
+    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Text(text = playlistInfo.name, style = MaterialTheme.typography.titleMedium)
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -124,6 +116,7 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
             var isExpandable by rememberSaveable { mutableStateOf(false) }
 
             DescriptionText(
+                modifier = Modifier.animateContentSize(),
                 description = description,
                 maxLines = if (isExpanded) Int.MAX_VALUE else 5,
                 style = MaterialTheme.typography.bodyMedium,
