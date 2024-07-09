@@ -1,8 +1,10 @@
 package org.schabi.newpipe.compose.stream
 
 import android.content.res.Configuration
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,32 +23,51 @@ import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StreamListItem(stream: StreamInfoItem, onClick: (StreamInfoItem) -> Unit) {
-    Row(
-        modifier = Modifier
-            .clickable(onClick = { onClick(stream) })
-            .fillMaxWidth()
-            .padding(12.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        StreamThumbnail(stream = stream, modifier = Modifier.size(width = 98.dp, height = 55.dp))
-
-        Column {
-            Text(
-                text = stream.name,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.titleSmall,
-                maxLines = 1
+fun StreamListItem(
+    stream: StreamInfoItem,
+    isSelected: Boolean = false,
+    onClick: (StreamInfoItem) -> Unit = {},
+    onLongClick: (StreamInfoItem) -> Unit = {},
+    onDismissPopup: () -> Unit = {}
+) {
+    Box {
+        Row(
+            modifier = Modifier
+                .combinedClickable(
+                    onLongClick = { onLongClick(stream) },
+                    onClick = { onClick(stream) }
+                )
+                .fillMaxWidth()
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            StreamThumbnail(
+                modifier = Modifier.size(width = 98.dp, height = 55.dp),
+                stream = stream
             )
 
-            Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+            Column {
+                Text(
+                    text = stream.name,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1
+                )
 
-            Text(
-                text = getStreamInfoDetail(stream),
-                style = MaterialTheme.typography.bodySmall
-            )
+                Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+
+                Text(
+                    text = getStreamInfoDetail(stream),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+        }
+
+        if (isSelected) {
+            StreamMenu(onDismissPopup)
         }
     }
 }
@@ -59,7 +80,7 @@ private fun StreamListItemPreview(
 ) {
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            StreamListItem(stream, onClick = {})
+            StreamListItem(stream)
         }
     }
 }

@@ -20,9 +20,9 @@ import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
 fun StreamThumbnail(
-    stream: StreamInfoItem,
     modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Fit,
+    stream: StreamInfoItem,
+    contentScale: ContentScale = ContentScale.Fit
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.BottomEnd) {
         AsyncImage(

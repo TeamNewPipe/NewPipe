@@ -1,7 +1,9 @@
 package org.schabi.newpipe.compose.stream
 
 import android.content.res.Configuration
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,28 +19,47 @@ import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StreamGridItem(stream: StreamInfoItem, onClick: (StreamInfoItem) -> Unit) {
-    Column(
-        modifier = Modifier
-            .clickable(onClick = { onClick(stream) })
-            .padding(12.dp)
-    ) {
-        StreamThumbnail(stream = stream, modifier = Modifier.size(width = 246.dp, height = 138.dp))
+fun StreamGridItem(
+    stream: StreamInfoItem,
+    isSelected: Boolean = false,
+    onClick: (StreamInfoItem) -> Unit = {},
+    onLongClick: (StreamInfoItem) -> Unit = {},
+    onDismissPopup: () -> Unit = {}
+) {
+    Box {
+        Column(
+            modifier = Modifier
+                .combinedClickable(
+                    onLongClick = { onLongClick(stream) },
+                    onClick = { onClick(stream) }
+                )
+                .padding(12.dp)
+        ) {
+            StreamThumbnail(
+                modifier = Modifier.size(width = 246.dp, height = 138.dp),
+                stream = stream
+            )
 
-        Text(
-            text = stream.name,
-            overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.titleSmall,
-            maxLines = 2
-        )
+            Text(
+                text = stream.name,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.titleSmall,
+                maxLines = 2
+            )
 
-        Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+            Text(text = stream.uploaderName.orEmpty(), style = MaterialTheme.typography.bodySmall)
 
-        Text(
-            text = getStreamInfoDetail(stream),
-            style = MaterialTheme.typography.bodySmall
-        )
+            Text(
+                text = getStreamInfoDetail(stream),
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+
+        if (isSelected) {
+            StreamMenu(onDismissPopup)
+        }
     }
 }
 
@@ -50,7 +71,7 @@ private fun StreamGridItemPreview(
 ) {
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            StreamGridItem(stream, onClick = {})
+            StreamGridItem(stream)
         }
     }
 }

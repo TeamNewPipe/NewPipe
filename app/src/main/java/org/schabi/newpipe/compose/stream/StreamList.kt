@@ -8,7 +8,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
@@ -36,7 +39,20 @@ fun StreamList(
             )
         }
     }
-    // TODO: Handle long-click by showing a dropdown menu instead of a dialog.
+
+    // Handle long clicks
+    // TODO: Adjust the menu display depending on where it was triggered
+    var selectedStream by remember { mutableStateOf<StreamInfoItem?>(null) }
+    val onLongClick = remember {
+        { stream: StreamInfoItem ->
+            selectedStream = stream
+        }
+    }
+    val onDismissPopup = remember {
+        {
+            selectedStream = null
+        }
+    }
 
     if (mode == ItemViewMode.GRID) {
         val gridState = rememberLazyGridState()
@@ -46,7 +62,11 @@ fun StreamList(
                 gridHeader()
 
                 items(streams.itemCount) {
-                    StreamGridItem(streams[it]!!, onClick)
+                    val stream = streams[it]!!
+                    StreamGridItem(
+                        stream, selectedStream == stream, onClick, onLongClick,
+                        onDismissPopup
+                    )
                 }
             }
         }
@@ -60,10 +80,12 @@ fun StreamList(
 
                 items(streams.itemCount) {
                     val stream = streams[it]!!
+                    val isSelected = selectedStream == stream
+
                     if (mode == ItemViewMode.CARD) {
-                        StreamCardItem(stream, onClick)
+                        StreamCardItem(stream, isSelected, onClick, onLongClick, onDismissPopup)
                     } else {
-                        StreamListItem(stream, onClick)
+                        StreamListItem(stream, isSelected, onClick, onLongClick, onDismissPopup)
                     }
                 }
             }
