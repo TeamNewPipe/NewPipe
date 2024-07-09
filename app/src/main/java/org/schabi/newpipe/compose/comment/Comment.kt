@@ -1,6 +1,7 @@
 package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -101,6 +102,7 @@ fun Comment(comment: CommentsInfoItem) {
             }
 
             Text(
+                modifier = Modifier.animateContentSize(),
                 text = rememberParsedDescription(comment.commentText),
                 // If the comment is expanded, we display all its content
                 // otherwise we only display the first two lines
