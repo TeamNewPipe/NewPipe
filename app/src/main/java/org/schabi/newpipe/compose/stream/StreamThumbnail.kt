@@ -36,6 +36,7 @@ fun StreamThumbnail(
 
         Text(
             text = Localization.getDurationString(stream.duration),
+            color = Color.White,
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.padding(2.dp)
                 .background(Color.Black.copy(alpha = 0.5f))
