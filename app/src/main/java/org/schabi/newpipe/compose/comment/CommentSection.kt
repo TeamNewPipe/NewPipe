@@ -2,7 +2,9 @@ package org.schabi.newpipe.compose.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
@@ -81,7 +83,10 @@ private fun NoCommentsMessage(error: Throwable?) {
         R.string.no_comments
     }
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(text = "(╯°-°)╯", fontSize = 35.sp)
         Text(text = stringResource(id = message), fontSize = 24.sp)
     }
