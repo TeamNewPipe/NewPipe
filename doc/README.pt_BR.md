@@ -1,5 +1,5 @@
 <h3 align="center">Nós estamos planejando <i>reescrever</i> grandes pedaços do código base, para gerar <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118"> um novo, moderno e estável NewPipe</a>!</h3>
-<h4 align="center">Por favor, <b>não</b> abra solicitações de pull para <i>novas funções</i> por enquanto, apenas correções de bugs serão aceitas.</h4>
+<h4 align="center">Por favor, <b>não</b> abra solicitações de pull para <i>novos recursos</i> por enquanto, apenas correções de bugs serão aceitas.</h4>
 
 <p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 
@@ -16,8 +16,8 @@
 <a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#supported-services">Serviços Suportados</a> &bull; <a href="#description">Descrição</a> &bull; <a href="#features">Características</a> &bull; <a href="#installation-and-updates">Instalação e atualizações</a> &bull; <a href="#contribution">Contribuições</a> &bull; <a href="#donate">Doação</a> &bull; <a href="#license">Licença</a></p>
-<p align="center"><a href="https://newpipe.net">site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
+<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#serviços-suportados">Serviços Suportados</a> &bull; <a href="#descrição">Descrição</a> &bull; <a href="#recursos">Recursos</a> &bull; <a href="#instalação-e-atualizações">Instalação e atualizações</a> &bull; <a href="#contribuições">Contribuições</a> &bull; <a href="#doar">Doar</a> &bull; <a href="#licença">Licença</a></p>
+<p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
 *Leia esse documento em outras línguas: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
@@ -64,13 +64,13 @@ NewPipe funciona buscando os dados necessários da API oficial (ex. PeerTube) ou
 
 Também, desde que somos um software livre e de código aberto, nem o aplicativo e nem o Extractor usa qualquer biblioteca ou framework proprietário, como o Google Play Services. Isso significa que você pode usar o NewPipe em dispositivos ou ROMs customizadas em que não tem os aplicativos do Google instalados.
 
-### Características
+### Recursos
 
 * Assistir vídeos em resoluções de até 4K
 * Escutar o áudio em segundo plano, carregando apenas o fluxo de áudio para salvar dados
 * Modo popup (player flutuante, aka Picture-in-Picture)
 * Assista a transmissões ao vivo
-* Mostrar/esconder subtítulos/closed captions
+* Mostrar/esconder legendas/closed captions
 * Buscar vídeos e áudios (no YouTube, você pode especificar o conteúdo da linguagem também)
 * Enfileirar vídeos (e opcionalmente salvar eles como playlists locais)
 * Mostrar/esconder informações gerais sobre os vídeos (como descrições e tags)
@@ -85,12 +85,12 @@ Também, desde que somos um software livre e de código aberto, nem o aplicativo
 * Veja e pesquise seu histórico de vídeos
 * Pesquise e assista playlists (Eles são playlists remotas, o que significa que eles serão obtidos do serviço que você está navegando)
 * Crie e edite playlists locais (Eles são criados e salvos no aplicativo, e não são relacionados com nenhum serviço)
-* Baixe vídeos/áudios/subtítulos (closed captions)
+* Baixe vídeos/áudios/legendas (closed captions)
 * Abra no Kodi
 * Assista/Bloqueie material com restrição de idade
 
-## Atualizações
-Quando uma alteração no código NewPipe (devido à adição de recursos ou fixação de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
+## Instalação e atualizações
+Quando uma alteração no código NewPipe (devido à adição de recursos ou correções de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
  1. Construa um APK de depuração você mesmo. Esta é a maneira mais rápida de obter novos recursos em seu dispositivo, mas é muito mais complicado, por isso recomendamos usar um dos outros métodos.
  2. Adicione nosso repo personalizado ao F-Droid e instale-o a partir daí assim que publicarmos um lançamento. As instruções estão aqui.: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  3. Baixe o APK do [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalá-lo assim que publicarmos um lançamento.
@@ -104,7 +104,7 @@ Enquanto isso, se você quiser trocar de fontes por algum motivo (por exemplo, a
 3. Baixe o APK da nova fonte e instale-o
 4. Importe os dados da etapa 1 via Configurações > Conteúdo > Inportar Banco de Dados
 
-## Contribuição
+## Contribuições
 Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda.
 Quanto mais for feito, melhor fica!
 
