@@ -106,7 +106,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
@@ -230,9 +230,6 @@ dependencies {
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
-    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
     implementation 'com.google.android.material:material:1.11.0'
@@ -289,10 +286,12 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
     // Jetpack Compose
-    implementation(platform('androidx.compose:compose-bom:2024.02.01'))
-    implementation 'androidx.compose.material3:material3'
+    implementation(platform('androidx.compose:compose-bom:2024.06.00'))
+    implementation 'androidx.compose.material3:material3:1.3.0-beta04'
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.ui:ui-text:1.7.0-beta05' // Needed for parsing HTML to AnnotatedString
+    implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
 
 /** Debugging **/
     // Memory leak detection
