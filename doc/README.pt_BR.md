@@ -113,7 +113,7 @@ Se você tem ideias, traduções, alterações de design, limpeza de códigos ou
 </a>
 
 ## Doar
-Se você gosta do NewPipe, pode enivar uma doação. Nós preferimos Liberapay, pois é de código aberto e sem fins lucrativos. Para mais informações de como doar para o NewPipe, visite nosso [site](https://newpipe.net/donate).
+Se você gosta do NewPipe, pode enivar uma doação. Nós preferimos Liberapay, pois é de código aberto e sem fins lucrativos. Para mais informações sobre como doar para o NewPipe, visite nosso [site](https://newpipe.net/donate).
 
 <table>
   <tr>
