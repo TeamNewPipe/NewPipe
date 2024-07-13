@@ -23,9 +23,9 @@
 *Leia esse documento em outras línguas: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
 
 > [!warning]
-> <b>ESTA É UMA VERSÃO BETA, PORTANTO, VOCÊ PODE ENCONTRAR BUGS. ENCONTROU ALGUM, ABRA UM ISSUE ATRAVÉS DO NOSSO REPOSITÓRIO GITHUB.</b>
+> <b>ESTA É UMA VERSÃO BETA, PORTANTO, VOCÊ PODE ENCONTRAR BUGS. ENCONTROU ALGUM, ABRA UM ISSUE ATRAVÉS DO NOSSO REPOSITÓRIO GITHUB PREENCHENDO O MODELO.</b>
 >
-> <b>COLOCAR NEWPIPE OU QUALQUER FORK DELE NA GOOGLE PLAY STORE VIOLA SEUS TERMOS E CONDIÇÕES.</b>
+> <b>COLOCAR NEWPIPE, OU QUALQUER FORK DELE, NA GOOGLE PLAY STORE VIOLA SEUS TERMOS E CONDIÇÕES.</b>
 
 ## Screenshots
 
@@ -87,41 +87,39 @@ Também, desde que somos um software livre e de código aberto, nem o aplicativo
 * Crie e edite playlists locais (Eles são criados e salvos no aplicativo, e não são relacionados com nenhum serviço)
 * Baixe vídeos/áudios/legendas (closed captions)
 * Abra no Kodi
-* Assista/Bloqueie material com restrição de idade
+* Assista/Bloqueie material restrito
 
 ## Instalação e atualizações
-Quando uma alteração no código NewPipe (devido à adição de recursos ou correções de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
- 1. Construa um APK de depuração você mesmo. Esta é a maneira mais rápida de obter novos recursos em seu dispositivo, mas é muito mais complicado, por isso recomendamos usar um dos outros métodos.
- 2. Adicione nosso repo personalizado ao F-Droid e instale-o a partir daí assim que publicarmos um lançamento. As instruções estão aqui.: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 3. Baixe o APK do [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalá-lo assim que publicarmos um lançamento.
- 4. Atualização via F-droid. Este é o método mais lento para obter atualizações, pois o F-Droid deve reconhecer alterações, construir o próprio APK, assiná-lo e, em seguida, enviar a atualização para os usuários.
+Você pode instalar NewPipe com um dos seguintes métodos: 
+ 1. Adicione nosso repo personalizado ao F-Droid e instale-o a partir daí. As instruções estão aqui: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
+ 2. Baixe o APK aqui no [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalá-lo assim que publicarmos um lançamento.
+ 3. Atualização via F-droid. Este é o método mais lento para obter atualizações, pois o F-Droid deve reconhecer alterações, construir o próprio APK, assiná-lo e, em seguida, enviar a atualização para os usuários.
+ 4. Construa um APK de depuração você mesmo. Esta é a maneira mais rápida de obter novos recursos em seu dispositivo, mas é muito mais complicado, por isso recomendamos usar um dos outros métodos.
+ 5. Se você estiver interessado em um recurso específico ou uma correção de bug fornecido em uma solicitação de Pull nesse repositório, pode instalar o APK a partir de lá. Leia a descrição da solicitação para instruções. A grande vantagem dos APKs específicos de S.P é que eles são instalados lado a lado com o aplicativo oficial, então você não precisa se preocupar em perder seus dados ou estragar alguma coisa.
 
-Recomendamos o método 2 para a maioria dos usuários. Os APKs instalados usando o método 2 ou 3 são compatíveis entre si, mas não com aqueles instalados usando o método 4. Isso se deve à mesma chave de assinatura (nossa) sendo usada para 2 e 3, mas uma chave de assinatura diferente (F-Droid's) está sendo usada para 4. Construir um APK depuração usando o método 1 exclui totalmente uma chave. Assinar chaves ajudam a garantir que um usuário não seja enganado para instalar uma atualização maliciosa em um aplicativo.
+Recomendamos o método 1 para a maioria dos usuários. Os APKs instalados usando o método 1 ou 2 são compatíveis entre si (o que significa que se você instalou o NewPipe usando o método 1 ou 2, você também pode atualizar o NewPipe usando o outro), mas não com aqueles instalados usando o método 3. Isso se deve à mesma chave de assinatura (nossa) sendo usada para 1 e 2, mas uma chave de assinatura diferente (F-Droid's) está sendo usada para 3. Construir um APK depuração usando o método 4 exclui totalmente uma chave. Assinar chaves ajudam a garantir que um usuário não seja enganado para instalar uma atualização maliciosa em um aplicativo. Ao usar o método 5, cada APK é assinado com uma chave aleatória diferente fornecida pelo GitHub Actions, portanto você não pode nem mesmo atualizá-lo. Você terá que fazer backup e restaurar os dados do aplicativo sempre que desejar usar um novo APK.
 
 Enquanto isso, se você quiser trocar de fontes por algum motivo (por exemplo, a funcionalidade principal do NewPipe foi quebrada e o F-Droid ainda não tem a atualização), recomendamos seguir este procedimento:
-1. Faça backup de seus dados através de Configurações > Conteúdo > Exportar Base de Dados para que você mantenha seu histórico, inscrições e playlists
+1. Faça backup de seus dados através de Configurações > Backup e Restauração > Exportar Base de Dados para que você mantenha seu histórico, inscrições e playlists
 2. Desinstale o NewPipe
 3. Baixe o APK da nova fonte e instale-o
-4. Importe os dados da etapa 1 via Configurações > Conteúdo > Inportar Banco de Dados
+4. Importe os dados da etapa 1 via Configurações > Backup e Restauração > Importar Base de Dados
 
 ## Contribuições
-Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda.
-Quanto mais for feito, melhor fica!
-
-Se você quiser se envolver, verifique nossa [notas de contribuição](../.github/CONTRIBUTING.md).
+Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda. O aplicativo fica cada vez melhor a cada contribuição, não importa quão grande ou pequena! Se você quiser se envolver, verifique nossas [notas de contribuição](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
+<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Estado da tradução" />
 </a>
 
 ## Doar
-Se você gosta de NewPipe, ficaríamos felizes com uma doação. Você pode enviar bitcoin ou doar via Bountysource ou Liberapay. Para obter mais informações sobre como doar para a NewPipe, visite nosso [site](https://newpipe.net/donate).
+Se você gosta do NewPipe, pode enivar uma doação. Nós preferimos Liberapay, pois é de código aberto e sem fins lucrativos. Para mais informações de como doar para o NewPipe, visite nosso [site](https://newpipe.net/donate).
 
 <table>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visite NewPipe em liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Doar via Liberapay" height="35px"></a></td>
   </tr>
 </table>
 
