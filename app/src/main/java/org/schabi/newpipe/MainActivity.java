@@ -768,7 +768,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case PLAYLIST:
                         NavigationHelper.openPlaylistFragment(getSupportFragmentManager(),
-                                serviceId, url, title);
+                                serviceId, url);
                         break;
                 }
             } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {

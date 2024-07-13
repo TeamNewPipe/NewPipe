@@ -47,7 +47,7 @@ import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
-import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment2;
+import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
@@ -502,14 +502,13 @@ public final class NavigationHelper {
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
-                                            final int serviceId, final String url,
-                                            @NonNull final String name) {
+                                            final int serviceId, final String url) {
         final var args = new Bundle();
         args.putInt(Constants.KEY_SERVICE_ID, serviceId);
         args.putString(Constants.KEY_URL, url);
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, PlaylistFragment2.class, args)
+                .replace(R.id.fragment_holder, PlaylistFragment.class, args)
                 .addToBackStack(null)
                 .commit();
     }
