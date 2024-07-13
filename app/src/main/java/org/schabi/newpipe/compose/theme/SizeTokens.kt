@@ -1,4 +1,4 @@
-package org.schabi.newpipe.ui.theme
+package org.schabi.newpipe.compose.theme
 
 import androidx.compose.ui.unit.dp
 
