@@ -1,12 +1,10 @@
 package org.schabi.newpipe.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -14,8 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -53,11 +49,8 @@ fun AboutTab() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(R.mipmap.ic_launcher_foreground),
-            contentDescription = stringResource(R.string.app_name),
-            modifier = Modifier
-                .clip(CircleShape)
-                .background(Color.Red)
+            painter = painterResource(R.drawable.icon),
+            contentDescription = stringResource(R.string.app_name)
         )
         Text(
             style = MaterialTheme.typography.titleLarge,
