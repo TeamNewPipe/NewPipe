@@ -8,6 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
+import org.schabi.newpipe.util.external_communication.ShareUtils
 
 private val SOFTWARE_COMPONENTS = listOf(
     SoftwareComponent(
@@ -148,8 +150,19 @@ fun LicenseTab() {
 
         AlertDialog(
             onDismissRequest = { selectedLicense = null },
-            confirmButton = {},
-            title = { Text(text = it.name) },
+            confirmButton = {
+                TextButton(onClick = { ShareUtils.openUrlInApp(context, it.link) }) {
+                    Text(text = stringResource(R.string.open_website_license))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { selectedLicense = null }) {
+                    Text(text = stringResource(R.string.done))
+                }
+            },
+            title = {
+                Text(text = it.name, color = MaterialTheme.colorScheme.onBackground)
+            },
             text = {
                 val styles = TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline))
                 Text(
