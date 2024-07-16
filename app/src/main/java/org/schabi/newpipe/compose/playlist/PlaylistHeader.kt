@@ -57,23 +57,21 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
         Text(text = playlistInfo.name, style = MaterialTheme.typography.titleMedium)
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            val clickable = playlistInfo.uploaderName != null && playlistInfo.uploaderUrl != null
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier.let {
-                    if (playlistInfo.uploaderName != null && playlistInfo.uploaderUrl != null) {
-                        it.clickable {
-                            try {
-                                NavigationHelper.openChannelFragment(
-                                    (context as FragmentActivity).supportFragmentManager,
-                                    playlistInfo.serviceId, playlistInfo.uploaderUrl,
-                                    playlistInfo.uploaderName
-                                )
-                            } catch (e: Exception) {
-                                ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e)
-                            }
-                        }
-                    } else it
+                modifier = Modifier.clickable(clickable) {
+                    try {
+                        NavigationHelper.openChannelFragment(
+                            (context as FragmentActivity).supportFragmentManager,
+                            playlistInfo.serviceId, playlistInfo.uploaderUrl,
+                            playlistInfo.uploaderName
+                        )
+                    } catch (e: Exception) {
+                        ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e)
+                    }
                 }
             ) {
                 val imageModifier = Modifier
