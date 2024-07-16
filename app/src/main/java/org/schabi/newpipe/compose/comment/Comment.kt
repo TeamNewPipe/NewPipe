@@ -61,9 +61,9 @@ fun Comment(comment: CommentsInfoItem) {
 
     Row(
         modifier = Modifier
-            .fillMaxWidth()
+            .animateContentSize()
             .clickable { isExpanded = !isExpanded }
-            .padding(all = 8.dp),
+            .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         if (ImageStrategy.shouldLoadImages()) {
@@ -102,7 +102,6 @@ fun Comment(comment: CommentsInfoItem) {
             }
 
             Text(
-                modifier = Modifier.animateContentSize(),
                 text = rememberParsedDescription(comment.commentText),
                 // If the comment is expanded, we display all its content
                 // otherwise we only display the first two lines

@@ -84,7 +84,9 @@ private fun NoCommentsMessage(error: Throwable?) {
     }
 
     Column(
-        modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center),
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentSize(Alignment.Center),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "(╯°-°)╯", fontSize = 35.sp)
