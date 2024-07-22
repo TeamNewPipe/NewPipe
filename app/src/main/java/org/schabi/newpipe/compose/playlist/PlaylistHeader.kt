@@ -34,14 +34,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
-import org.schabi.newpipe.DownloaderImpl
 import org.schabi.newpipe.R
 import org.schabi.newpipe.compose.common.DescriptionText
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.error.ErrorUtil
-import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.ServiceList
-import org.schabi.newpipe.extractor.playlist.PlaylistInfo
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.util.Localization
@@ -67,7 +64,7 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
                         NavigationHelper.openChannelFragment(
                             (context as FragmentActivity).supportFragmentManager,
                             playlistInfo.serviceId, playlistInfo.uploaderUrl,
-                            playlistInfo.uploaderName
+                            playlistInfo.uploaderName!!
                         )
                     } catch (e: Exception) {
                         ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e)
@@ -108,14 +105,13 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
             Text(text = "$count • $formattedDuration", style = MaterialTheme.typography.bodySmall)
         }
 
-        val description = playlistInfo.description ?: Description.EMPTY_DESCRIPTION
-        if (description != Description.EMPTY_DESCRIPTION) {
+        if (playlistInfo.description != Description.EMPTY_DESCRIPTION) {
             var isExpanded by rememberSaveable { mutableStateOf(false) }
             var isExpandable by rememberSaveable { mutableStateOf(false) }
 
             DescriptionText(
                 modifier = Modifier.animateContentSize(),
-                description = description,
+                description = playlistInfo.description,
                 maxLines = if (isExpanded) Int.MAX_VALUE else 5,
                 style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis,
@@ -144,10 +140,10 @@ fun PlaylistHeader(playlistInfo: PlaylistInfo, totalDuration: Long) {
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PlaylistHeaderPreview() {
-    NewPipe.init(DownloaderImpl.init(null))
-    val playlistInfo = PlaylistInfo.getInfo(
-        ServiceList.YouTube,
-        "https://www.youtube.com/playlist?list=PLAIcZs9N4171hRrG_4v32Ca2hLvSuQ6QI"
+    val description = Description("Example description", Description.PLAIN_TEXT)
+    val playlistInfo = PlaylistInfo(
+        "", 1, "", "Example playlist", description, listOf(), 1L,
+        null, "Uploader", listOf(), null
     )
 
     AppTheme {

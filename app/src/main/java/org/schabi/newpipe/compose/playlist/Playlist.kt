@@ -10,62 +10,72 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import org.schabi.newpipe.DownloaderImpl
-import org.schabi.newpipe.compose.status.LoadingIndicator
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import org.schabi.newpipe.compose.common.LoadingIndicator
+import org.schabi.newpipe.compose.stream.StreamInfoItem
 import org.schabi.newpipe.compose.stream.StreamList
 import org.schabi.newpipe.compose.theme.AppTheme
-import org.schabi.newpipe.extractor.NewPipe
-import org.schabi.newpipe.extractor.ServiceList
-import org.schabi.newpipe.util.KEY_SERVICE_ID
-import org.schabi.newpipe.util.KEY_URL
+import org.schabi.newpipe.extractor.stream.Description
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
 
 @Composable
 fun Playlist(playlistViewModel: PlaylistViewModel = viewModel()) {
     Surface(color = MaterialTheme.colorScheme.background) {
         val playlistInfo by playlistViewModel.playlistInfo.collectAsState()
+        Playlist(playlistInfo, playlistViewModel.streamItems)
+    }
+}
 
-        playlistInfo?.let {
-            val streams = playlistViewModel.streamItems.collectAsLazyPagingItems()
-            val totalDuration by remember {
-                derivedStateOf {
-                    streams.itemSnapshotList.sumOf { it!!.duration }
+@Composable
+private fun Playlist(
+    playlistInfo: PlaylistInfo?,
+    streamFlow: Flow<PagingData<StreamInfoItem>>
+) {
+    playlistInfo?.let {
+        val streams = streamFlow.collectAsLazyPagingItems()
+        val totalDuration by remember {
+            derivedStateOf {
+                streams.itemSnapshotList.sumOf { it!!.duration }
+            }
+        }
+
+        StreamList(
+            streams = streams,
+            gridHeader = {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    PlaylistHeader(it, totalDuration)
+                }
+            },
+            listHeader = {
+                item {
+                    PlaylistHeader(it, totalDuration)
                 }
             }
-
-            StreamList(
-                streams = streams,
-                gridHeader = {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        PlaylistHeader(it, totalDuration)
-                    }
-                },
-                listHeader = {
-                    item {
-                        PlaylistHeader(it, totalDuration)
-                    }
-                }
-            )
-        } ?: LoadingIndicator()
-    }
+        )
+    } ?: LoadingIndicator()
 }
 
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PlaylistPreview() {
-    NewPipe.init(DownloaderImpl.init(null))
-
-    val params = mapOf(
-        KEY_SERVICE_ID to ServiceList.YouTube.serviceId,
-        KEY_URL to "https://www.youtube.com/playlist?list=PLAIcZs9N4171hRrG_4v32Ca2hLvSuQ6QI"
+    val description = Description("Example description", Description.PLAIN_TEXT)
+    val playlistInfo = PlaylistInfo(
+        "", 1, "", "Example playlist", description, listOf(), 1L,
+        null, "Uploader", listOf(), null
     )
+    val stream = StreamInfoItem(streamType = StreamType.VIDEO_STREAM)
+    val streamFlow = flowOf(PagingData.from(listOf(stream)))
+
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Playlist(PlaylistViewModel(SavedStateHandle(params)))
+            Playlist(playlistInfo, streamFlow)
         }
     }
 }

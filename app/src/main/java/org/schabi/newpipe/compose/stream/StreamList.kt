@@ -26,10 +26,10 @@ import org.schabi.newpipe.util.NavigationHelper
 @Composable
 fun StreamList(
     streams: LazyPagingItems<StreamInfoItem>,
+    itemViewMode: ItemViewMode = determineItemViewMode(),
     gridHeader: LazyGridScope.() -> Unit = {},
     listHeader: LazyListScope.() -> Unit = {}
 ) {
-    val mode = determineItemViewMode()
     val context = LocalContext.current
     val onClick = remember {
         { stream: StreamInfoItem ->
@@ -54,7 +54,7 @@ fun StreamList(
         }
     }
 
-    if (mode == ItemViewMode.GRID) {
+    if (itemViewMode == ItemViewMode.GRID) {
         val gridState = rememberLazyGridState()
 
         LazyVerticalGridScrollbar(state = gridState) {
@@ -82,7 +82,7 @@ fun StreamList(
                     val stream = streams[it]!!
                     val isSelected = selectedStream == stream
 
-                    if (mode == ItemViewMode.CARD) {
+                    if (itemViewMode == ItemViewMode.CARD) {
                         StreamCardItem(stream, isSelected, onClick, onLongClick, onDismissPopup)
                     } else {
                         StreamListItem(stream, isSelected, onClick, onLongClick, onDismissPopup)
