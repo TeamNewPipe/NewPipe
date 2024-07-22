@@ -42,12 +42,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     ImageStrategy.setPreferredImageQuality(PreferredImageQuality
                             .fromPreferenceKey(requireContext(), (String) newValue));
                     final var loader = Coil.imageLoader(preference.getContext());
-                    if (loader.getMemoryCache() != null) {
-                        loader.getMemoryCache().clear();
-                    }
-                    if (loader.getDiskCache() != null) {
-                        loader.getDiskCache().clear();
-                    }
+                    loader.getMemoryCache().clear();
+                    loader.getDiskCache().clear();
                     Toast.makeText(preference.getContext(),
                             R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
                             .show();

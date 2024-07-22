@@ -76,8 +76,7 @@ class NotificationHelper(val context: Context) {
 
         summaryBuilder.setLargeIcon(avatarIcon)
 
-        // Show individual stream notifications, set channel icon only if there is actually
-        // one
+        // Show individual stream notifications, set channel icon only if there is actually one
         showStreamNotifications(newStreams, data.serviceId, avatarIcon)
         // Show summary notification
         manager.notify(data.pseudoId, summaryBuilder.build())

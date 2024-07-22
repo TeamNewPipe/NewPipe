@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
@@ -24,12 +25,15 @@ import androidx.core.content.FileProvider;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.util.Collections;
 import java.util.List;
+
+import coil.Coil;
+import coil.disk.DiskCache;
+import coil.memory.MemoryCache;
 
 public final class ShareUtils {
     private static final String TAG = ShareUtils.class.getSimpleName();
@@ -335,7 +339,13 @@ public final class ShareUtils {
     }
 
     /**
-     * Generate a {@link ClipData} with the image of the content shared.
+     * Generate a {@link ClipData} with the image of the content shared, if it's in the app cache.
+     *
+     * <p>
+     * In order not to worry about network issues (timeouts, DNS issues, low connection speed, ...)
+     * when sharing a content, only images in the {@link MemoryCache} or {@link DiskCache}
+     * used by the Coil library are used as preview images. If the thumbnail image is not in the
+     * cache, no {@link ClipData} will be generated and {@code null} will be returned.
      *
      * <p>
      * In order to display the image in the content preview of the Android share sheet, an URI of
@@ -348,11 +358,6 @@ public final class ShareUtils {
      * <p>
      * Note that if an exception occurs when generating the {@link ClipData}, {@code null} is
      * returned.
-     * </p>
-     *
-     * <p>
-     * This method will call {@link CoilHelper#loadBitmapBlocking(Context, String)} to get the
-     * thumbnail of the content.
      * </p>
      *
      * <p>
@@ -369,33 +374,46 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            final var bitmap = CoilHelper.INSTANCE.loadBitmapBlocking(context, thumbnailUrl);
-            if (bitmap == null) {
-                return null;
-            }
-
             // Save the image in memory to the application's cache because we need a URI to the
             // image to generate a ClipData which will show the share sheet, and so an image file
             final Context applicationContext = context.getApplicationContext();
-            final String appFolder = applicationContext.getCacheDir().getAbsolutePath();
-            final File thumbnailPreviewFile = new File(appFolder
-                    + "/android_share_sheet_image_preview.jpg");
+            final var loader = Coil.imageLoader(context);
+            final var value = loader.getMemoryCache()
+                    .get(new MemoryCache.Key(thumbnailUrl, Collections.emptyMap()));
 
-            // Any existing file will be overwritten with FileOutputStream
-            final FileOutputStream fileOutputStream = new FileOutputStream(thumbnailPreviewFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-            fileOutputStream.close();
+            final Bitmap cachedBitmap;
+            if (value != null) {
+                cachedBitmap = value.getBitmap();
+            } else {
+                try (var snapshot = loader.getDiskCache().openSnapshot(thumbnailUrl)) {
+                    if (snapshot != null) {
+                        cachedBitmap = BitmapFactory.decodeFile(snapshot.getData().toString());
+                    } else {
+                        cachedBitmap = null;
+                    }
+                }
+            }
+
+            if (cachedBitmap == null) {
+                return null;
+            }
+
+            final var path = applicationContext.getCacheDir().toPath()
+                    .resolve("android_share_sheet_image_preview.jpg");
+            // Any existing file will be overwritten
+            try (var outputStream = Files.newOutputStream(path)) {
+                cachedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+            }
 
             final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(), "",
                         FileProvider.getUriForFile(applicationContext,
                                 BuildConfig.APPLICATION_ID + ".provider",
-                                thumbnailPreviewFile));
+                                path.toFile()));
 
             if (DEBUG) {
                 Log.d(TAG, "ClipData successfully generated for Android share sheet: " + clipData);
             }
             return clipData;
-
         } catch (final Exception e) {
             Log.w(TAG, "Error when setting preview image for share sheet", e);
             return null;

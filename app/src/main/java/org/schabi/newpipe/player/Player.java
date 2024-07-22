@@ -192,6 +192,8 @@ public final class Player implements PlaybackListener, Listener {
     private MediaItemTag currentMetadata;
     @Nullable
     private Bitmap currentThumbnail;
+    @Nullable
+    private coil.request.Disposable thumbnailDisposable;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -772,6 +774,11 @@ public final class Player implements PlaybackListener, Listener {
                     + thumbnails.size() + "]");
         }
 
+        // Cancel any ongoing image loading
+        if (thumbnailDisposable != null) {
+            thumbnailDisposable.dispose();
+        }
+
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
         // session metadata while the new thumbnail is being loaded by Coil.
         onThumbnailLoaded(null);
@@ -780,7 +787,7 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         // scale down the notification thumbnail for performance
-        final var target = new Target() {
+        final var thumbnailTarget = new Target() {
             @Override
             public void onError(@Nullable final Drawable error) {
                 Log.e(TAG, "Thumbnail - onError() called");
@@ -805,7 +812,8 @@ public final class Player implements PlaybackListener, Listener {
                         result.getIntrinsicHeight(), null));
             }
         };
-        CoilHelper.INSTANCE.loadScaledDownThumbnail(context, thumbnails, target);
+        thumbnailDisposable = CoilHelper.INSTANCE
+                .loadScaledDownThumbnail(context, thumbnails, thumbnailTarget);
     }
 
     private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {

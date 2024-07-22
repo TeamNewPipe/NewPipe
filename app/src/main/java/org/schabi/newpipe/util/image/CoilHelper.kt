@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmapOrNull
 import coil.executeBlocking
 import coil.imageLoader
+import coil.request.Disposable
 import coil.request.ImageRequest
 import coil.size.Size
 import coil.target.Target
@@ -47,7 +48,7 @@ object CoilHelper {
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_video)
     }
 
-    fun loadScaledDownThumbnail(context: Context, images: List<Image>, target: Target) {
+    fun loadScaledDownThumbnail(context: Context, images: List<Image>, target: Target): Disposable {
         val url = ImageStrategy.choosePreferredImage(images)
         val request = getImageRequest(context, url, R.drawable.placeholder_thumbnail_video)
             .target(target)
@@ -79,7 +80,7 @@ object CoilHelper {
             })
             .build()
 
-        context.imageLoader.enqueue(request)
+        return context.imageLoader.enqueue(request)
     }
 
     fun loadDetailsThumbnail(target: ImageView, images: List<Image>) {
@@ -133,6 +134,8 @@ object CoilHelper {
         return ImageRequest.Builder(context)
             .data(takenUrl)
             .error(placeholderResId)
+            .memoryCacheKey(takenUrl)
+            .diskCacheKey(takenUrl)
             .apply {
                 if (takenUrl != null || showPlaceholderWhileLoading) {
                     placeholder(placeholderResId)
