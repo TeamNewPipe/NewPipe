@@ -203,7 +203,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.0'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.1'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -267,7 +267,7 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
     // Image loading
-    implementation 'io.coil-kt:coil:2.6.0'
+    implementation 'io.coil-kt:coil:2.7.0'
 
     // Markdown library for Android
     implementation "io.noties.markwon:core:${markwonVersion}"
