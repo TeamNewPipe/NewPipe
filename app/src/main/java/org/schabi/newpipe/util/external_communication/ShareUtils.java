@@ -174,12 +174,11 @@ public final class ShareUtils {
     /**
      * Open the system chooser to launch an intent.
      * <p>
-     * This method opens an {@link android.content.Intent#ACTION_CHOOSER} of the intent putted
-     * as the intent param. If the setTitleChooser boolean is true, the string "Open with" will be
-     * set as the title of the system chooser.
+     * This method creates a chooser intent using
+     * {@link Intent#createChooser(Intent, CharSequence)}. If the setTitleChooser boolean is true,
+     * the string "Open with" will be set as the title of the system chooser.
      * For Android P and higher, title for {@link android.content.Intent#ACTION_SEND} system
-     * choosers must be set on this intent, not on the
-     * {@link android.content.Intent#ACTION_CHOOSER} intent.
+     * choosers must be set on this intent, not on the {@link Intent#ACTION_CHOOSER} intent.
      *
      * @param context         the context to use
      * @param intent          the intent to open
@@ -188,35 +187,8 @@ public final class ShareUtils {
     private static void openAppChooser(@NonNull final Context context,
                                        @NonNull final Intent intent,
                                        final boolean setTitleChooser) {
-        final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
-        chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
-        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (setTitleChooser) {
-            chooserIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
-        }
-
-        // Migrate any clip data and flags from the original intent.
-        final int permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-        if (permFlags != 0) {
-            ClipData targetClipData = intent.getClipData();
-            if (targetClipData == null && intent.getData() != null) {
-                final ClipData.Item item = new ClipData.Item(intent.getData());
-                final String[] mimeTypes;
-                if (intent.getType() != null) {
-                    mimeTypes = new String[] {intent.getType()};
-                } else {
-                    mimeTypes = new String[] {};
-                }
-                targetClipData = new ClipData(null, mimeTypes, item);
-            }
-            if (targetClipData != null) {
-                chooserIntent.setClipData(targetClipData);
-                chooserIntent.addFlags(permFlags);
-            }
-        }
+        final String title = setTitleChooser ? context.getString(R.string.open_with) : null;
+        final Intent chooserIntent = Intent.createChooser(intent, title);
 
         try {
             context.startActivity(chooserIntent);
