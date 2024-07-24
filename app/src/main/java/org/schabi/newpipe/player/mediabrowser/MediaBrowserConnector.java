@@ -175,12 +175,12 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         if (parentId.equals(ID_ROOT)) {
             mediaItems.add(
                     createRootMediaItem(ID_BOOKMARKS,
-                            playerService.getResources().getString(R.string.tab_bookmarks),
-                            R.drawable.ic_bookmark));
+                            playerService.getResources().getString(R.string.tab_bookmarks_short),
+                            R.drawable.ic_bookmark_white));
             mediaItems.add(
                     createRootMediaItem(ID_HISTORY,
                             playerService.getResources().getString(R.string.action_history),
-                            R.drawable.ic_history));
+                            R.drawable.ic_history_white));
         } else if (parentId.startsWith(ID_BOOKMARKS)) {
             final Uri parentIdUri = Uri.parse(parentId);
             final List<String> path = parentIdUri.getPathSegments();
