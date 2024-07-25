@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.status
+package org.schabi.newpipe.compose.common
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize

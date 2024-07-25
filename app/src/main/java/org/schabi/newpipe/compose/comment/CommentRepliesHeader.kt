@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.common.DescriptionText
 import org.schabi.newpipe.compose.theme.AppTheme
-import org.schabi.newpipe.compose.util.rememberParsedDescription
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.util.Localization
@@ -102,8 +102,8 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
             }
         }
 
-        Text(
-            text = rememberParsedDescription(comment.commentText),
+        DescriptionText(
+            description = comment.commentText,
             style = MaterialTheme.typography.bodyMedium
         )
     }

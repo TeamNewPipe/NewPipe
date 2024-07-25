@@ -31,7 +31,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.compose.status.LoadingIndicator
+import org.schabi.newpipe.compose.common.LoadingIndicator
 import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
