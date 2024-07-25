@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -24,6 +26,7 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.services.media_ccc.extractors.MediaCCCLiveStreamKiosk;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -172,5 +175,14 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
                 && ServiceList.MediaCCC.getServiceId() == currentInfo.getServiceId()) {
             setEmptyStateMessage(R.string.no_live_streams);
         }
+    }
+
+    @Override
+    protected void onItemSelected(final InfoItem selectedItem) {
+        final Fragment fragment = getFM().findFragmentById(R.id.fragment_player_holder);
+        if (fragment instanceof VideoDetailFragment videoDetailFragment && fragment.isVisible()) {
+            videoDetailFragment.removeLastStackItem();
+        }
+        super.onItemSelected(selectedItem);
     }
 }
