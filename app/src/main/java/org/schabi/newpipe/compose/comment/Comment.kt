@@ -42,8 +42,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.compose.common.DescriptionText
 import org.schabi.newpipe.compose.theme.AppTheme
-import org.schabi.newpipe.compose.util.rememberParsedDescription
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
@@ -101,8 +101,8 @@ fun Comment(comment: CommentsInfoItem) {
                 Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
             }
 
-            Text(
-                text = rememberParsedDescription(comment.commentText),
+            DescriptionText(
+                description = comment.commentText,
                 // If the comment is expanded, we display all its content
                 // otherwise we only display the first two lines
                 maxLines = if (isExpanded) Int.MAX_VALUE else 2,
