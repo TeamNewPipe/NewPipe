@@ -56,9 +56,6 @@ android {
                 resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
                 archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
             }
-            applicationIdSuffix ".whatever"
-            resValue "string", "app_name", "NewPipe whatever"
-            archivesBaseName = 'NewPipe_whatever'
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
