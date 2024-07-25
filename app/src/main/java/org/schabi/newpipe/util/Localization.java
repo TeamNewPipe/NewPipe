@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
@@ -239,43 +240,27 @@ public final class Localization {
     }
 
     /**
-     * Get a readable text for a duration in the format {@code days:hours:minutes:seconds}.
-     * Prepended zeros are removed.
+     * Get a readable text for a duration in the format {@code hours:minutes:seconds}.
+     *
      * @param duration the duration in seconds
-     * @return a formatted duration String or {@code 0:00} if the duration is zero.
+     * @return a formatted duration String or {@code 00:00} if the duration is zero.
      */
     public static String getDurationString(final long duration) {
-        return getDurationString(duration, true, false);
+        return DateUtils.formatElapsedTime(Math.max(duration, 0));
     }
 
     /**
-     * Get a readable text for a duration in the format {@code days:hours:minutes:seconds+}.
-     * Prepended zeros are removed. If the given duration is incomplete, a plus is appended to the
-     * duration string.
+     * Get a readable text for a duration in the format {@code hours:minutes:seconds+}. If the given
+     * duration is incomplete, a plus is appended to the duration string.
+     *
      * @param duration the duration in seconds
      * @param isDurationComplete whether the given duration is complete or whether info is missing
      * @param showDurationPrefix whether the duration-prefix shall be shown
-     * @return a formatted duration String or {@code 0:00} if the duration is zero.
+     * @return a formatted duration String or {@code 00:00} if the duration is zero.
      */
     public static String getDurationString(final long duration, final boolean isDurationComplete,
                                            final boolean showDurationPrefix) {
-        final String output;
-
-        final long days = duration / (24 * 60 * 60L); /* greater than a day */
-        final long hours = duration % (24 * 60 * 60L) / (60 * 60L); /* greater than an hour */
-        final long minutes = duration % (24 * 60 * 60L) % (60 * 60L) / 60L;
-        final long seconds = duration % 60L;
-
-        if (duration < 0) {
-            output = "0:00";
-        } else if (days > 0) {
-            //handle days
-            output = String.format(Locale.US, "%d:%02d:%02d:%02d", days, hours, minutes, seconds);
-        } else if (hours > 0) {
-            output = String.format(Locale.US, "%d:%02d:%02d", hours, minutes, seconds);
-        } else {
-            output = String.format(Locale.US, "%d:%02d", minutes, seconds);
-        }
+        final String output = getDurationString(duration);
         final String durationPrefix = showDurationPrefix ? "⏱ " : "";
         final String durationPostfix = isDurationComplete ? "" : "+";
         return durationPrefix + output + durationPostfix;
