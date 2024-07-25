@@ -80,5 +80,5 @@ The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as ch
 ## Communication
 
 * The #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) has the core team and other developers in it. [Click here for webchat](https://web.libera.chat/#newpipe)!
-* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat). Some convenient clients, available both for phone and desktop, are listed at that link.
+* You can also use a Matrix account to join the NewPipe channel at [#newpipe:matrix.newpipe-ev.de](https://matrix.to/#/#newpipe:matrix.newpipe-ev.de). Some convenient clients, available both for phone and desktop, are listed at that link.
 * You can post your suggestions, changes, ideas etc. on either GitHub or IRC.
