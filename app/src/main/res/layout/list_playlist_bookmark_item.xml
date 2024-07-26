@@ -13,11 +13,12 @@
     <ImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="90dp"
-        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+        android:layout_alignTop="@id/itemTitleView"
+        android:layout_alignBottom="@id/itemUploaderView"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
@@ -45,9 +46,10 @@
     <ImageView
         android:id="@+id/itemHandle"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
         android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
+        android:layout_alignTop="@id/itemTitleView"
+        android:layout_alignBottom="@id/itemUploaderView"
         android:contentDescription="@string/detail_drag_description"
         android:paddingLeft="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
@@ -74,6 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitleView"
+        android:layout_toLeftOf="@id/itemHandle"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
