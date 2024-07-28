@@ -1,4 +1,4 @@
-package org.schabi.newpipe.about
+package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
 import androidx.collection.intListOf
@@ -30,7 +30,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.ui.components.about.AboutTab
+import org.schabi.newpipe.ui.components.about.LicenseTab
+import org.schabi.newpipe.ui.theme.AppTheme
 
 private val TITLES = intListOf(R.string.tab_about, R.string.tab_licenses)
 
