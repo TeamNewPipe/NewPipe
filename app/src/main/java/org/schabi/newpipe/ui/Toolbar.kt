@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose
+package org.schabi.newpipe.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,8 +27,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.schabi.newpipe.R
-import org.schabi.newpipe.compose.theme.AppTheme
-import org.schabi.newpipe.compose.theme.SizeTokens
+import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.ui.theme.SizeTokens
 
 @Composable
 fun TextAction(text: String, modifier: Modifier = Modifier) {

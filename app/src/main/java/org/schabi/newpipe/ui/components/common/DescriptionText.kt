@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.common
+package org.schabi.newpipe.ui.components.common
 
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
