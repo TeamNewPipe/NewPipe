@@ -8,8 +8,8 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.schabi.newpipe.compose.comment.CommentSection
-import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.ui.components.comment.CommentSection
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
 import org.schabi.newpipe.viewmodels.CommentsViewModel
