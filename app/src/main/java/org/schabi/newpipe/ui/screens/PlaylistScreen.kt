@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.playlist
+package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -15,25 +15,27 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import org.schabi.newpipe.compose.common.LoadingIndicator
-import org.schabi.newpipe.compose.stream.StreamInfoItem
-import org.schabi.newpipe.compose.stream.StreamList
-import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.ui.components.common.LoadingIndicator
+import org.schabi.newpipe.ui.components.playlist.PlaylistHeader
+import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
+import org.schabi.newpipe.ui.components.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.stream.StreamList
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
 
 @Composable
-fun Playlist(playlistViewModel: PlaylistViewModel = viewModel()) {
+fun PlaylistScreen(playlistViewModel: PlaylistViewModel = viewModel()) {
     Surface(color = MaterialTheme.colorScheme.background) {
         val playlistInfo by playlistViewModel.playlistInfo.collectAsState()
-        Playlist(playlistInfo, playlistViewModel.streamItems)
+        PlaylistScreen(playlistInfo, playlistViewModel.streamItems)
     }
 }
 
 @Composable
-private fun Playlist(
+private fun PlaylistScreen(
     playlistInfo: PlaylistInfo?,
     streamFlow: Flow<PagingData<StreamInfoItem>>
 ) {
@@ -75,7 +77,7 @@ private fun PlaylistPreview() {
 
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Playlist(playlistInfo, streamFlow)
+            PlaylistScreen(playlistInfo, streamFlow)
         }
     }
 }

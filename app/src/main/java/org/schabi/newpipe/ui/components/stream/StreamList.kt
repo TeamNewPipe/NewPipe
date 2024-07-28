@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.stream
+package org.schabi.newpipe.ui.components.stream
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
@@ -18,9 +18,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.paging.compose.LazyPagingItems
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
-import org.schabi.newpipe.compose.util.determineItemViewMode
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
+import org.schabi.newpipe.ui.components.common.determineItemViewMode
 import org.schabi.newpipe.util.NavigationHelper
 
 @Composable

@@ -4,10 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.schabi.newpipe.compose.playlist.PlaylistInfo
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo as ExtractorPlaylistInfo
 
 class PlaylistItemsSource(

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.stream
+package org.schabi.newpipe.ui.components.stream
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

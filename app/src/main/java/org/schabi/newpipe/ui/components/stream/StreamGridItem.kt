@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.stream
+package org.schabi.newpipe.ui.components.stream
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -16,8 +16,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ui.theme.AppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

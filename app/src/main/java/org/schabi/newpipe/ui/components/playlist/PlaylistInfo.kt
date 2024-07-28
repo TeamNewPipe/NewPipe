@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.playlist
+package org.schabi.newpipe.ui.components.playlist
 
 import androidx.compose.runtime.Immutable
 import org.schabi.newpipe.extractor.Image

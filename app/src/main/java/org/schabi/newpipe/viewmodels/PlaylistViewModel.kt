@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
-import org.schabi.newpipe.compose.playlist.PlaylistInfo
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.PlaylistItemsSource
+import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
 import org.schabi.newpipe.util.NO_SERVICE_ID
