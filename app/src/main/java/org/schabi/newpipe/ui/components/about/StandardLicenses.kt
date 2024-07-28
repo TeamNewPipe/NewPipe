@@ -1,4 +1,4 @@
-package org.schabi.newpipe.about
+package org.schabi.newpipe.ui.components.about
 
 /**
  * Class containing information about standard software licenses.
