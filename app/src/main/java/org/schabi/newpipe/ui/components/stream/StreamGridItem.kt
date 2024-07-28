@@ -76,3 +76,16 @@ private fun StreamGridItemPreview(
         }
     }
 }
+
+@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun StreamMiniGridItemPreview(
+    @PreviewParameter(StreamItemPreviewProvider::class) stream: StreamInfoItem
+) {
+    AppTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            StreamGridItem(stream, isMini = true)
+        }
+    }
+}
