@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.comment
+package org.schabi.newpipe.ui.components.comment
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
@@ -31,11 +31,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.compose.common.LoadingIndicator
-import org.schabi.newpipe.compose.theme.AppTheme
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.CommentsDisabledException
+import org.schabi.newpipe.ui.components.common.LoadingIndicator
+import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
 fun CommentSection(
