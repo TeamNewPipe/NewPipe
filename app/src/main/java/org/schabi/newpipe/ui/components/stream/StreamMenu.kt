@@ -34,6 +34,7 @@ fun StreamMenu(
         DropdownMenuItem(
             text = { Text(text = stringResource(R.string.download)) },
             onClick = {
+                onDismissRequest()
                 SparseItemUtil.fetchStreamInfoAndSaveToDatabase(
                     context, stream.serviceId, stream.url
                 ) { info: StreamInfo ->
@@ -49,11 +50,17 @@ fun StreamMenu(
         )
         DropdownMenuItem(
             text = { Text(text = stringResource(R.string.share)) },
-            onClick = { ShareUtils.shareText(context, stream.name, stream.url, stream.thumbnails) }
+            onClick = {
+                onDismissRequest()
+                ShareUtils.shareText(context, stream.name, stream.url, stream.thumbnails)
+            }
         )
         DropdownMenuItem(
             text = { Text(text = stringResource(R.string.open_in_browser)) },
-            onClick = { ShareUtils.openUrlInBrowser(context, stream.url) }
+            onClick = {
+                onDismissRequest()
+                ShareUtils.openUrlInBrowser(context, stream.url)
+            }
         )
         DropdownMenuItem(
             text = { Text(text = stringResource(R.string.mark_as_watched)) },
