@@ -94,6 +94,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(requireActivity(), theme) {
+            @Deprecated("Deprecated in Java")
             override fun onBackPressed() {
                 if (!this@FeedGroupDialog.onBackPressed()) {
                     super.onBackPressed()
