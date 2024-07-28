@@ -1,4 +1,4 @@
-package org.schabi.newpipe.about
+package org.schabi.newpipe.ui.components.about
 
 import android.content.Context
 import androidx.annotation.StringRes

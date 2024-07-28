@@ -5,8 +5,9 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.res.stringResource
 import org.schabi.newpipe.R
-import org.schabi.newpipe.compose.screen.ScaffoldWithToolbar
-import org.schabi.newpipe.compose.theme.AppTheme
+import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
+import org.schabi.newpipe.ui.screens.AboutScreen
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 
 class AboutActivity : AppCompatActivity() {

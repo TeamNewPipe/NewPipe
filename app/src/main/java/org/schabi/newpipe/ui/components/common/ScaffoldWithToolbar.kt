@@ -1,4 +1,4 @@
-package org.schabi.newpipe.compose.screen
+package org.schabi.newpipe.ui.components.common
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
