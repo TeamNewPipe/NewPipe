@@ -69,7 +69,7 @@ fun StreamCardItem(
         }
 
         if (isSelected) {
-            StreamMenu(onDismissPopup)
+            StreamMenu(stream, onDismissPopup)
         }
     }
 }

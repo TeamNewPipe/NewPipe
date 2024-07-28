@@ -11,11 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.StreamTypeUtil
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
@@ -34,12 +36,19 @@ fun StreamThumbnail(
             modifier = modifier
         )
 
+        val isLive = StreamTypeUtil.isLiveStream(stream.streamType)
+        val background = if (isLive) Color.Red else Color.Black
         Text(
-            text = Localization.getDurationString(stream.duration),
+            text = if (isLive) {
+                stringResource(R.string.duration_live)
+            } else {
+                Localization.getDurationString(stream.duration)
+            },
             color = Color.White,
             style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.padding(2.dp)
-                .background(Color.Black.copy(alpha = 0.5f))
+            modifier = Modifier
+                .padding(2.dp)
+                .background(background.copy(alpha = 0.5f))
         )
     }
 }

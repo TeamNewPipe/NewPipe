@@ -67,7 +67,7 @@ fun StreamListItem(
         }
 
         if (isSelected) {
-            StreamMenu(onDismissPopup)
+            StreamMenu(stream, onDismissPopup)
         }
     }
 }

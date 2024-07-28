@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import androidx.paging.compose.LazyPagingItems
+import androidx.window.core.layout.WindowWidthSizeClass
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -58,13 +60,17 @@ fun StreamList(
         val gridState = rememberLazyGridState()
 
         LazyVerticalGridScrollbar(state = gridState) {
-            LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(250.dp)) {
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            val isCompact = windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+            val minSize = if (isCompact) 150.dp else 250.dp
+
+            LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(minSize)) {
                 gridHeader()
 
                 items(streams.itemCount) {
                     val stream = streams[it]!!
                     StreamGridItem(
-                        stream, selectedStream == stream, onClick, onLongClick,
+                        stream, selectedStream == stream, isCompact, onClick, onLongClick,
                         onDismissPopup
                     )
                 }

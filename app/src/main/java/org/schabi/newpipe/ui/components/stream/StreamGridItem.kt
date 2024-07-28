@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -24,6 +25,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 fun StreamGridItem(
     stream: StreamInfoItem,
     isSelected: Boolean = false,
+    isMini: Boolean = false,
     onClick: (StreamInfoItem) -> Unit = {},
     onLongClick: (StreamInfoItem) -> Unit = {},
     onDismissPopup: () -> Unit = {}
@@ -37,10 +39,9 @@ fun StreamGridItem(
                 )
                 .padding(12.dp)
         ) {
-            StreamThumbnail(
-                modifier = Modifier.size(width = 246.dp, height = 138.dp),
-                stream = stream
-            )
+            val size = if (isMini) DpSize(150.dp, 85.dp) else DpSize(246.dp, 138.dp)
+
+            StreamThumbnail(modifier = Modifier.size(size), stream = stream)
 
             Text(
                 text = stream.name,
@@ -58,7 +59,7 @@ fun StreamGridItem(
         }
 
         if (isSelected) {
-            StreamMenu(onDismissPopup)
+            StreamMenu(stream, onDismissPopup)
         }
     }
 }
