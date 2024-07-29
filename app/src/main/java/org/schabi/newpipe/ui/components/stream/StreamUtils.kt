@@ -50,7 +50,7 @@ internal fun getStreamInfoDetail(stream: StreamInfoItem): String {
             Localization.relativeTimeOrTextual(context, stream.uploadDate, stream.textualUploadDate)
 
         if (views.isEmpty()) {
-            date
+            date.orEmpty()
         } else if (date.isNullOrEmpty()) {
             views
         } else {
