@@ -41,8 +41,8 @@ fun StreamCardItem(
                 .padding(top = 12.dp, start = 2.dp, end = 2.dp)
         ) {
             StreamThumbnail(
-                modifier = Modifier.fillMaxWidth(),
                 stream = stream,
+                modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.FillWidth
             )
 

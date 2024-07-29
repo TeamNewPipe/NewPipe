@@ -22,8 +22,8 @@ import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
 fun StreamThumbnail(
-    modifier: Modifier = Modifier,
     stream: StreamInfoItem,
+    modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.BottomEnd) {
@@ -49,6 +49,7 @@ fun StreamThumbnail(
             modifier = Modifier
                 .padding(2.dp)
                 .background(background.copy(alpha = 0.5f))
+                .padding(2.dp)
         )
     }
 }

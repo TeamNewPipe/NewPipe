@@ -45,8 +45,8 @@ fun StreamListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             StreamThumbnail(
-                modifier = Modifier.size(width = 98.dp, height = 55.dp),
-                stream = stream
+                stream = stream,
+                modifier = Modifier.size(width = 98.dp, height = 55.dp)
             )
 
             Column {

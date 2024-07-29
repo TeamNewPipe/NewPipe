@@ -41,7 +41,7 @@ fun StreamGridItem(
         ) {
             val size = if (isMini) DpSize(150.dp, 85.dp) else DpSize(246.dp, 138.dp)
 
-            StreamThumbnail(modifier = Modifier.size(size), stream = stream)
+            StreamThumbnail(stream = stream, modifier = Modifier.size(size))
 
             Text(
                 text = stream.name,
