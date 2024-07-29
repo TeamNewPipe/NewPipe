@@ -41,6 +41,10 @@ private fun PlaylistScreen(
 ) {
     playlistInfo?.let {
         val streams = streamFlow.collectAsLazyPagingItems()
+
+        // Paging's load states only indicate when loading is currently happening, not if it can/will
+        // happen. As such, the duration initially displayed will be the incomplete duration if more
+        // items can be loaded.
         val totalDuration by remember {
             derivedStateOf {
                 streams.itemSnapshotList.sumOf { it!!.duration }
