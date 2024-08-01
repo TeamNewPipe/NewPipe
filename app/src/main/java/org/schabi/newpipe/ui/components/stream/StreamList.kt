@@ -14,15 +14,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
 import androidx.paging.compose.LazyPagingItems
+import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
+import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
-import org.schabi.newpipe.ui.components.common.determineItemViewMode
 import org.schabi.newpipe.util.NavigationHelper
 
 @Composable
@@ -94,6 +96,30 @@ fun StreamList(
                         StreamListItem(stream, isSelected, onClick, onLongClick, onDismissPopup)
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun determineItemViewMode(): ItemViewMode {
+    val listMode = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+        .getString(
+            stringResource(R.string.list_view_mode_key),
+            stringResource(R.string.list_view_mode_value)
+        )
+
+    return when (listMode) {
+        stringResource(R.string.list_view_mode_list_key) -> ItemViewMode.LIST
+        stringResource(R.string.list_view_mode_grid_key) -> ItemViewMode.GRID
+        stringResource(R.string.list_view_mode_card_key) -> ItemViewMode.CARD
+        else -> {
+            // Auto mode - evaluate whether to use Grid based on screen real estate.
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED) {
+                ItemViewMode.GRID
+            } else {
+                ItemViewMode.LIST
             }
         }
     }
