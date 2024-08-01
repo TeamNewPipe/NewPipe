@@ -25,6 +25,7 @@ import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -41,6 +42,7 @@ fun RelatedItems(info: StreamInfo) {
 
     ItemList(
         items = info.relatedItems,
+        mode = ItemViewMode.LIST,
         listHeader = {
             item {
                 Row(
