@@ -202,6 +202,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     // Menu
     // /////////////////////////////////////////////////////////////////////////
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -212,6 +213,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         inflater.inflate(R.menu.menu_feed_fragment, menu)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_feed_help) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -253,7 +255,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             viewModel.getShowFutureItemsFromPreferences()
         )
 
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(requireContext())
             .setTitle(R.string.feed_hide_streams_title)
             .setMultiChoiceItems(dialogItems, checkedDialogItems) { _, which, isChecked ->
                 checkedDialogItems[which] = isChecked
@@ -267,6 +269,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             .show()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu()
         activity?.supportActionBar?.subtitle = null
