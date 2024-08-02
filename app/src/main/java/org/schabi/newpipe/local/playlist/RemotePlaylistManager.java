@@ -26,6 +26,10 @@ public class RemotePlaylistManager {
         return playlistRemoteTable.getPlaylists().subscribeOn(Schedulers.io());
     }
 
+    public Flowable<List<PlaylistRemoteEntity>> getPlaylist(final long playlistId) {
+        return playlistRemoteTable.getPlaylist(playlistId).subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<PlaylistRemoteEntity>> getPlaylist(final PlaylistInfo info) {
         return playlistRemoteTable.getPlaylist(info.getServiceId(), info.getUrl())
                 .subscribeOn(Schedulers.io());
