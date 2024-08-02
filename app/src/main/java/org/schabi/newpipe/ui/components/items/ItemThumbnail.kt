@@ -33,7 +33,7 @@ fun ItemThumbnail(
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
 ) {
-    Box(modifier = modifier, contentAlignment = Alignment.BottomEnd) {
+    Box(contentAlignment = Alignment.BottomEnd) {
         AsyncImage(
             model = ImageStrategy.choosePreferredImage(item.thumbnails),
             contentDescription = null,

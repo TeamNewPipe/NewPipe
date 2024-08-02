@@ -38,7 +38,7 @@ fun PlaylistListItem(
     ) {
         ItemThumbnail(
             item = playlist,
-            modifier = Modifier.size(width = 98.dp, height = 55.dp)
+            modifier = Modifier.size(width = 140.dp, height = 78.dp)
         )
 
         Column {
@@ -46,7 +46,7 @@ fun PlaylistListItem(
                 text = playlist.name,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleSmall,
-                maxLines = 1
+                maxLines = 2
             )
 
             Text(
