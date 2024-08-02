@@ -296,6 +296,9 @@ dependencies {
     implementation 'androidx.paging:paging-compose:3.3.1'
     implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
 
+    // Coroutines interop
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'
+
 /** Debugging **/
     // Memory leak detection
     debugImplementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
