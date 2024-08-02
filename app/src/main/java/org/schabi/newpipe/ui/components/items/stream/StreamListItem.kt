@@ -21,14 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.ui.components.items.ItemThumbnail
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StreamListItem(
     stream: StreamInfoItem,
-    isSelected: Boolean = false,
+    showProgress: Boolean,
+    isSelected: Boolean,
     onClick: (StreamInfoItem) -> Unit = {},
     onLongClick: (StreamInfoItem) -> Unit = {},
     onDismissPopup: () -> Unit = {}
@@ -45,8 +45,9 @@ fun StreamListItem(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            ItemThumbnail(
-                item = stream,
+            StreamThumbnail(
+                stream = stream,
+                showProgress = showProgress,
                 modifier = Modifier.size(width = 140.dp, height = 78.dp)
             )
 
@@ -81,7 +82,7 @@ private fun StreamListItemPreview(
 ) {
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            StreamListItem(stream)
+            StreamListItem(stream, showProgress = false, isSelected = false)
         }
     }
 }

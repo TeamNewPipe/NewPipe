@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
-import org.schabi.newpipe.ui.components.items.ItemThumbnail
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
@@ -36,8 +35,8 @@ fun PlaylistListItem(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ItemThumbnail(
-            item = playlist,
+        PlaylistThumbnail(
+            playlist = playlist,
             modifier = Modifier.size(width = 140.dp, height = 78.dp)
         )
 

@@ -221,7 +221,7 @@ public class HistoryRecordManager {
     public Flowable<List<String>> getRelatedSearches(final String query,
                                                      final int similarQueryLimit,
                                                      final int uniqueQueryLimit) {
-        return query.length() > 0
+        return !query.isEmpty()
                 ? searchHistoryTable.getSimilarEntries(query, similarQueryLimit)
                 : searchHistoryTable.getUniqueEntries(uniqueQueryLimit);
     }
@@ -236,47 +236,31 @@ public class HistoryRecordManager {
 
     public Maybe<StreamStateEntity> loadStreamState(final PlayQueueItem queueItem) {
         return queueItem.getStream()
-                .map(info -> streamTable.upsert(new StreamEntity(info)))
-                .flatMapPublisher(streamStateTable::getState)
-                .firstElement()
-                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
+                .flatMapMaybe(this::loadStreamState)
                 .filter(state -> state.isValid(queueItem.getDuration()))
                 .subscribeOn(Schedulers.io());
     }
 
     public Maybe<StreamStateEntity> loadStreamState(final StreamInfo info) {
         return Single.fromCallable(() -> streamTable.upsert(new StreamEntity(info)))
-                .flatMapPublisher(streamStateTable::getState)
-                .firstElement()
-                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
-                .filter(state -> state.isValid(info.getDuration()))
+                .flatMapMaybe(streamStateTable::getState)
                 .subscribeOn(Schedulers.io());
     }
 
     public Completable saveStreamState(@NonNull final StreamInfo info, final long progressMillis) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            final StreamStateEntity state = new StreamStateEntity(streamId, progressMillis);
+            final var state = new StreamStateEntity(streamId, progressMillis);
             if (state.isValid(info.getDuration())) {
                 streamStateTable.upsert(state);
             }
         })).subscribeOn(Schedulers.io());
     }
 
-    public Single<StreamStateEntity[]> loadStreamState(final InfoItem info) {
-        return Single.fromCallable(() -> {
-            final List<StreamEntity> entities = streamTable
-                    .getStream(info.getServiceId(), info.getUrl()).blockingFirst();
-            if (entities.isEmpty()) {
-                return new StreamStateEntity[]{null};
-            }
-            final List<StreamStateEntity> states = streamStateTable
-                    .getState(entities.get(0).getUid()).blockingFirst();
-            if (states.isEmpty()) {
-                return new StreamStateEntity[]{null};
-            }
-            return new StreamStateEntity[]{states.get(0)};
-        }).subscribeOn(Schedulers.io());
+    public Maybe<StreamStateEntity> loadStreamState(final InfoItem info) {
+        return streamTable.getStream(info.getServiceId(), info.getUrl())
+                .flatMap(entity -> streamStateTable.getState(entity.getUid()))
+                .subscribeOn(Schedulers.io());
     }
 
     public Single<List<StreamStateEntity>> loadLocalStreamStateBatch(
@@ -295,13 +279,7 @@ public class HistoryRecordManager {
                     result.add(null);
                     continue;
                 }
-                final List<StreamStateEntity> states = streamStateTable.getState(streamId)
-                        .blockingFirst();
-                if (states.isEmpty()) {
-                    result.add(null);
-                } else {
-                    result.add(states.get(0));
-                }
+                result.add(streamStateTable.getState(streamId).blockingGet());
             }
             return result;
         }).subscribeOn(Schedulers.io());

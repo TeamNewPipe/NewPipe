@@ -22,6 +22,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
+import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
 @Composable
@@ -60,6 +61,8 @@ fun ItemList(
         }
     }
 
+    val showProgress = DependentPreferenceHelper.getPositionsInListsEnabled(context)
+
     if (mode == ItemViewMode.GRID) {
         // TODO: Implement grid layout using LazyVerticalGrid and LazyVerticalGridScrollbar.
     } else {
@@ -76,7 +79,9 @@ fun ItemList(
                     // TODO: Implement card layouts.
                     if (item is StreamInfoItem) {
                         val isSelected = selectedStream == item
-                        StreamListItem(item, isSelected, onClick, onLongClick, onDismissPopup)
+                        StreamListItem(
+                            item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
+                        )
                     } else if (item is PlaylistInfoItem) {
                         PlaylistListItem(item, onClick)
                     }
