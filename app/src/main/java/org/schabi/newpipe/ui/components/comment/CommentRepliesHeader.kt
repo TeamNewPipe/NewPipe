@@ -51,17 +51,15 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (ImageStrategy.shouldLoadImages()) {
-                    AsyncImage(
-                        model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
-                        contentDescription = null,
-                        placeholder = painterResource(R.drawable.placeholder_person),
-                        error = painterResource(R.drawable.placeholder_person),
-                        modifier = Modifier
-                            .size(42.dp)
-                            .clip(CircleShape)
-                    )
-                }
+                AsyncImage(
+                    model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
+                    contentDescription = null,
+                    placeholder = painterResource(R.drawable.placeholder_person),
+                    error = painterResource(R.drawable.placeholder_person),
+                    modifier = Modifier
+                        .size(42.dp)
+                        .clip(CircleShape)
+                )
 
                 Column {
                     Text(text = comment.uploaderName)
