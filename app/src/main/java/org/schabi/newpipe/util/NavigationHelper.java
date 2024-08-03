@@ -472,13 +472,12 @@ public final class NavigationHelper {
                 .commit();
     }
 
-    public static void openChannelFragment(@NonNull final Fragment fragment,
+    public static void openChannelFragment(@NonNull final FragmentActivity activity,
                                            @NonNull final StreamInfoItem item,
                                            final String uploaderUrl) {
         // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), uploaderUrl, item.getUploaderName());
+        openChannelFragment(activity.getSupportFragmentManager(), item.getServiceId(), uploaderUrl,
+                item.getUploaderName());
     }
 
     /**

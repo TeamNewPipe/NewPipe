@@ -41,10 +41,11 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  * </p>
  */
 public enum StreamDialogDefaultEntry {
-    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
-            fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
-                    item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
-    ),
+    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) -> {
+        final var activity = fragment.requireActivity();
+        fetchUploaderUrlIfSparse(activity, item.getServiceId(), item.getUrl(),
+                item.getUploaderUrl(), url -> openChannelFragment(activity, item, url));
+    }),
 
     /**
      * Enqueues the stream automatically to the current PlayerType.
