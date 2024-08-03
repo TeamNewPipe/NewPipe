@@ -27,6 +27,7 @@ import org.schabi.newpipe.viewmodels.StreamViewModel
 @Composable
 fun StreamMenu(
     stream: StreamInfoItem,
+    expanded: Boolean,
     onDismissRequest: () -> Unit
 ) {
     val context = LocalContext.current
@@ -34,7 +35,7 @@ fun StreamMenu(
     val streamViewModel = viewModel<StreamViewModel>()
     val playerHolder = PlayerHolder.getInstance()
 
-    DropdownMenu(expanded = true, onDismissRequest = onDismissRequest) {
+    DropdownMenu(expanded = expanded, onDismissRequest = onDismissRequest) {
         if (playerHolder.isPlayQueueReady) {
             StreamMenuItem(
                 text = R.string.enqueue_stream,
