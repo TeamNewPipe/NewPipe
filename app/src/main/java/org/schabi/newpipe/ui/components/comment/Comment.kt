@@ -66,22 +66,20 @@ fun Comment(comment: CommentsInfoItem) {
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        if (ImageStrategy.shouldLoadImages()) {
-            AsyncImage(
-                model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
-                contentDescription = null,
-                placeholder = painterResource(R.drawable.placeholder_person),
-                error = painterResource(R.drawable.placeholder_person),
-                modifier = Modifier
-                    .size(42.dp)
-                    .clip(CircleShape)
-                    .clickable {
-                        NavigationHelper.openCommentAuthorIfPresent(
-                            context as FragmentActivity, comment
-                        )
-                    }
-            )
-        }
+        AsyncImage(
+            model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
+            contentDescription = null,
+            placeholder = painterResource(R.drawable.placeholder_person),
+            error = painterResource(R.drawable.placeholder_person),
+            modifier = Modifier
+                .size(42.dp)
+                .clip(CircleShape)
+                .clickable {
+                    NavigationHelper.openCommentAuthorIfPresent(
+                        context as FragmentActivity, comment
+                    )
+                }
+        )
 
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
