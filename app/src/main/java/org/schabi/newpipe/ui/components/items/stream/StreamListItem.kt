@@ -33,15 +33,14 @@ fun StreamListItem(
     onLongClick: (StreamInfoItem) -> Unit = {},
     onDismissPopup: () -> Unit = {}
 ) {
-    Box {
+    // Box serves as an anchor for the dropdown menu
+    Box(
+        modifier = Modifier
+            .combinedClickable(onLongClick = { onLongClick(stream) }, onClick = { onClick(stream) })
+            .fillMaxWidth()
+            .padding(12.dp)
+    ) {
         Row(
-            modifier = Modifier
-                .combinedClickable(
-                    onLongClick = { onLongClick(stream) },
-                    onClick = { onClick(stream) }
-                )
-                .fillMaxWidth()
-                .padding(12.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -68,9 +67,7 @@ fun StreamListItem(
             }
         }
 
-        if (isSelected) {
-            StreamMenu(stream, onDismissPopup)
-        }
+        StreamMenu(stream, isSelected, onDismissPopup)
     }
 }
 
