@@ -229,6 +229,13 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         compositeDisposableLoadChildren.add(disposable);
     }
 
+    @Override
+    public void onSearch(@NonNull final String query,
+                         final Bundle extras,
+                         @NonNull final Result<List<MediaItem>> result) {
+        mediaBrowserConnector.onSearch(query, result);
+    }
+
     public static final class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 

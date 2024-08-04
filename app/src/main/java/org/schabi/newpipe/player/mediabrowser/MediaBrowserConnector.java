@@ -24,6 +24,7 @@ import androidx.media.utils.MediaConstants;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
@@ -34,20 +35,32 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.bookmark.MergedPlaylistManager;
+import org.schabi.newpipe.extractor.search.SearchExtractor;
+import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.PlayerService;
+import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -55,6 +68,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
+
+import io.reactivex.rxjava3.core.SingleSource;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPreparer {
 
@@ -71,6 +87,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
     private Disposable prepareOrPlayDisposable;
+    private Disposable searchDisposable;
 
     public MediaBrowserConnector(@NonNull final PlayerService playerService) {
         this.playerService = playerService;
@@ -95,18 +112,28 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     }
 
     @NonNull
-    private static final String ID_ROOT = "//${BuildConfig.APPLICATION_ID}/r";
+    private static final String ID_AUTHORITY = BuildConfig.APPLICATION_ID;
     @NonNull
-    private static final String ID_BOOKMARKS = ID_ROOT + "/playlists";
+    private static final String ID_ROOT = "//" + ID_AUTHORITY;
     @NonNull
-    private static final String ID_HISTORY = ID_ROOT + "/history";
+    private static final String ID_BOOKMARKS = "playlists";
     @NonNull
-    private static final String ID_STREAM = ID_ROOT + "/stream";
+    private static final String ID_HISTORY = "history";
+    @NonNull
+    private static final String ID_INFO_ITEM = "item";
 
     @NonNull
     private static final String ID_LOCAL = "local";
     @NonNull
     private static final String ID_REMOTE = "remote";
+    @NonNull
+    private static final String ID_URL = "url";
+    @NonNull
+    private static final String ID_STREAM = "stream";
+    @NonNull
+    private static final String ID_PLAYLIST = "playlist";
+    @NonNull
+    private static final String ID_CHANNEL = "channel";
 
     @NonNull
     private MediaItem createRootMediaItem(@Nullable final String mediaId,
@@ -134,7 +161,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     private MediaItem createPlaylistMediaItem(@NonNull final PlaylistLocalItem playlist) {
         final var builder = new MediaDescriptionCompat.Builder();
         final boolean remote = playlist instanceof PlaylistRemoteEntity;
-        builder.setMediaId(createMediaIdForPlaylist(remote, playlist.getUid()))
+        builder.setMediaId(createMediaIdForInfoItem(remote, playlist.getUid()))
                 .setTitle(playlist.getOrderingName())
                 .setIconUri(Uri.parse(playlist.getThumbnailUrl()));
 
@@ -145,9 +172,82 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         return new MediaItem(builder.build(), MediaItem.FLAG_BROWSABLE);
     }
 
+    private MediaItem createInfoItemMediaItem(@NonNull final InfoItem item) {
+        final var builder = new MediaDescriptionCompat.Builder();
+        builder.setMediaId(createMediaIdForInfoItem(item))
+                .setTitle(item.getName());
+
+        switch (item.getInfoType()) {
+            case STREAM:
+                builder.setSubtitle(((StreamInfoItem) item).getUploaderName());
+                break;
+            case PLAYLIST:
+                builder.setSubtitle(((PlaylistInfoItem) item).getUploaderName());
+                break;
+            case CHANNEL:
+                builder.setSubtitle(((ChannelInfoItem) item).getDescription());
+                break;
+            default:
+                break;
+        }
+        final var thumbnails = item.getThumbnails();
+        if (!thumbnails.isEmpty()) {
+            builder.setIconUri(Uri.parse(thumbnails.get(0).getUrl()));
+        }
+        return new MediaItem(builder.build(), MediaItem.FLAG_PLAYABLE);
+    }
+
     @NonNull
-    private String createMediaIdForPlaylist(final boolean remote, final long playlistId) {
-        return ID_BOOKMARKS + '/' + (remote ? ID_REMOTE : ID_LOCAL) + '/' + playlistId;
+    private Uri.Builder buildMediaId() {
+        return new Uri.Builder().authority(ID_AUTHORITY);
+    }
+
+    @NonNull
+    private Uri.Builder buildPlaylistMediaId(final String playlistType) {
+        return buildMediaId()
+                .appendPath(ID_BOOKMARKS)
+                .appendPath(playlistType);
+    }
+
+    @NonNull
+    private Uri.Builder buildLocalPlaylistItemMediaId(final boolean remote, final long playlistId) {
+        return buildPlaylistMediaId(remote ? ID_REMOTE : ID_LOCAL)
+                .appendPath(Long.toString(playlistId));
+    }
+
+    private static String infoItemTypeToString(final InfoItem.InfoType type) {
+        return switch (type) {
+            case STREAM -> ID_STREAM;
+            case PLAYLIST -> ID_PLAYLIST;
+            case CHANNEL -> ID_CHANNEL;
+            default ->
+                throw new IllegalStateException("Unexpected value: " + type);
+        };
+    }
+
+    private static InfoItem.InfoType infoItemTypeFromString(final String type) {
+        return switch (type) {
+            case ID_STREAM -> InfoItem.InfoType.STREAM;
+            case ID_PLAYLIST -> InfoItem.InfoType.PLAYLIST;
+            case ID_CHANNEL -> InfoItem.InfoType.CHANNEL;
+            default ->
+                    throw new IllegalStateException("Unexpected value: " + type);
+        };
+    }
+
+    @NonNull
+    private Uri.Builder buildInfoItemMediaId(@NonNull final InfoItem item) {
+        return buildMediaId()
+                .appendPath(ID_INFO_ITEM)
+                .appendPath(infoItemTypeToString(item.getInfoType()))
+                .appendPath(Integer.toString(item.getServiceId()))
+                .appendQueryParameter(ID_URL, item.getUrl());
+    }
+
+    @NonNull
+    private String createMediaIdForInfoItem(final boolean remote, final long playlistId) {
+        return buildLocalPlaylistItemMediaId(remote, playlistId)
+                .build().toString();
     }
 
     @NonNull
@@ -182,7 +282,14 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     @NonNull
     private String createMediaIdForPlaylistIndex(final boolean remote, final long playlistId,
                                                  final int index) {
-        return createMediaIdForPlaylist(remote, playlistId) + '/' + index;
+        return buildLocalPlaylistItemMediaId(remote, playlistId)
+                .appendPath(Integer.toString(index))
+                .build().toString();
+    }
+
+    @NonNull
+    private String createMediaIdForInfoItem(@NonNull final InfoItem item) {
+        return buildInfoItemMediaId(item).build().toString();
     }
 
     @Nullable
@@ -194,7 +301,10 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
                   clientPackageName, clientUid, rootHints));
         }
 
-        return new MediaBrowserServiceCompat.BrowserRoot(ID_ROOT, null);
+        final Bundle extras = new Bundle();
+        extras.putBoolean(
+                MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED, true);
+        return new MediaBrowserServiceCompat.BrowserRoot(ID_ROOT, extras);
     }
 
     public Single<List<MediaItem>> onLoadChildren(@NonNull final String parentId) {
@@ -202,36 +312,56 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
             Log.d(TAG, String.format("MediaBrowserService.onLoadChildren(%s)", parentId));
         }
 
-        final List<MediaItem> mediaItems = new ArrayList<>();
 
-        if (parentId.equals(ID_ROOT)) {
-            mediaItems.add(
-                    createRootMediaItem(ID_BOOKMARKS,
-                            playerService.getResources().getString(R.string.tab_bookmarks_short),
-                            R.drawable.ic_bookmark_white));
-            mediaItems.add(
-                    createRootMediaItem(ID_HISTORY,
-                            playerService.getResources().getString(R.string.action_history),
-                            R.drawable.ic_history_white));
-        } else if (parentId.startsWith(ID_BOOKMARKS)) {
+        try {
             final Uri parentIdUri = Uri.parse(parentId);
-            final List<String> path = parentIdUri.getPathSegments();
-            if (path.size() == 2) {
-                return populateBookmarks();
-            } else if (path.size() == 4) {
-                final String localOrRemote = path.get(2);
-                final long playlistId = Long.parseLong(path.get(3));
-                if (localOrRemote.equals(ID_LOCAL)) {
-                    return populateLocalPlaylist(playlistId);
-                } else if (localOrRemote.equals(ID_REMOTE)) {
-                    return populateRemotePlaylist(playlistId);
-                }
+            if (parentIdUri == null) {
+                throw parseError();
             }
-            Log.w(TAG, "Unknown playlist URI: " + parentId);
-        } else if (parentId.equals(ID_HISTORY)) {
-            return populateHistory();
+
+            final List<String> path = new ArrayList<>(parentIdUri.getPathSegments());
+
+            if (path.isEmpty()) {
+                final List<MediaItem> mediaItems = new ArrayList<>();
+                mediaItems.add(
+                        createRootMediaItem(ID_BOOKMARKS,
+                                playerService.getResources().getString(
+                                        R.string.tab_bookmarks_short),
+                                R.drawable.ic_bookmark_white));
+                mediaItems.add(
+                        createRootMediaItem(ID_HISTORY,
+                                playerService.getResources().getString(R.string.action_history),
+                                R.drawable.ic_history_white));
+                return Single.just(mediaItems);
+            }
+
+            final String uriType = path.get(0);
+            path.remove(0);
+
+            switch (uriType) {
+                case ID_BOOKMARKS:
+                    if (path.isEmpty()) {
+                        return populateBookmarks();
+                    }
+                    if (path.size() == 2) {
+                        final String localOrRemote = path.get(0);
+                        final long playlistId = Long.parseLong(path.get(1));
+                        if (localOrRemote.equals(ID_LOCAL)) {
+                            return populateLocalPlaylist(playlistId);
+                        } else if (localOrRemote.equals(ID_REMOTE)) {
+                            return populateRemotePlaylist(playlistId);
+                        }
+                    }
+                    Log.w(TAG, "Unknown playlist URI: " + parentId);
+                    throw parseError();
+                case ID_HISTORY:
+                    return populateHistory();
+                default:
+                    throw parseError();
+            }
+        } catch (final ContentNotAvailableException e) {
+            return Single.error(e);
         }
-        return Single.just(mediaItems);
     }
 
     private Single<List<MediaItem>> populateHistory() {
@@ -245,7 +375,11 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     @NonNull
     private MediaItem createHistoryMediaItem(@NonNull final StreamHistoryEntry streamHistoryEntry) {
         final var builder = new MediaDescriptionCompat.Builder();
-        builder.setMediaId(ID_STREAM + '/' + streamHistoryEntry.getStreamId())
+        final var mediaId = buildMediaId()
+                .appendPath(ID_HISTORY)
+                .appendPath(Long.toString(streamHistoryEntry.getStreamId()))
+                .build().toString();
+        builder.setMediaId(mediaId)
                 .setTitle(streamHistoryEntry.getStreamEntity().getTitle())
                 .setSubtitle(streamHistoryEntry.getStreamEntity().getUploader())
                 .setIconUri(Uri.parse(streamHistoryEntry.getStreamEntity().getThumbnailUrl()));
@@ -369,38 +503,119 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
         });
     }
 
+    private static ContentNotAvailableException parseError() {
+        return new ContentNotAvailableException("Failed to parse media ID");
+    }
+
     private Single<PlayQueue> extractPlayQueueFromMediaId(final String mediaId) {
-        final Uri mediaIdUri = Uri.parse(mediaId);
-        if (mediaIdUri == null) {
-            return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
-        }
-
-        final List<String> path = mediaIdUri.getPathSegments();
-
-        if (mediaId.startsWith(ID_BOOKMARKS) && path.size() == 5) {
-            final String localOrRemote = path.get(2);
-            final long playlistId = Long.parseLong(path.get(3));
-            final int index = Integer.parseInt(path.get(4));
-
-            if (localOrRemote.equals(ID_LOCAL)) {
-                return extractLocalPlayQueue(playlistId, index);
-            } else {
-                return extractRemotePlayQueue(playlistId, index);
+        try {
+            final Uri mediaIdUri = Uri.parse(mediaId);
+            if (mediaIdUri == null) {
+                throw parseError();
             }
-        } else if (mediaId.startsWith(ID_STREAM) && path.size() == 3) {
-            final long streamId = Long.parseLong(path.get(2));
-            return getDatabase().streamHistoryDAO().getHistory()
-                    .firstOrError()
-                    .map(items -> {
-                        final List<StreamInfoItem> infoItems = items.stream()
-                                .filter(it -> it.getStreamId() == streamId)
-                                .map(StreamHistoryEntry::toStreamInfoItem)
-                                .collect(Collectors.toList());
-                        return new SinglePlayQueue(infoItems, 0);
-                    });
+
+            final List<String> path = new ArrayList<>(mediaIdUri.getPathSegments());
+
+            if (path.isEmpty()) {
+                throw parseError();
+            }
+
+            final String uriType = path.get(0);
+            path.remove(0);
+
+            return switch (uriType) {
+                case ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(path,
+                        mediaIdUri.getQueryParameter(ID_URL));
+                case ID_HISTORY -> extractPlayQueueFromHistoryMediaId(path);
+                case ID_INFO_ITEM -> extractPlayQueueFromInfoItemMediaId(path,
+                        mediaIdUri.getQueryParameter(ID_URL));
+                default -> throw parseError();
+            };
+        } catch (final ContentNotAvailableException e) {
+            return Single.error(e);
+        }
+    }
+
+    private Single<PlayQueue>
+    extractPlayQueueFromPlaylistMediaId(
+            @NonNull final List<String> path,
+            @Nullable final String url) throws ContentNotAvailableException {
+        if (path.isEmpty()) {
+            throw parseError();
         }
 
-        return Single.error(new ContentNotAvailableException("Media ID cannot be parsed"));
+        final String playlistType = path.get(0);
+        path.remove(0);
+
+        switch (playlistType) {
+            case ID_LOCAL, ID_REMOTE:
+                if (path.size() != 2) {
+                    throw parseError();
+                }
+                final long playlistId = Long.parseLong(path.get(0));
+                final int index = Integer.parseInt(path.get(1));
+                return playlistType.equals(ID_LOCAL)
+                        ? extractLocalPlayQueue(playlistId, index)
+                        : extractRemotePlayQueue(playlistId, index);
+            case ID_URL:
+                if (path.size() != 1) {
+                    throw parseError();
+                }
+
+                final int serviceId = Integer.parseInt(path.get(0));
+                return ExtractorHelper.getPlaylistInfo(serviceId, url, false)
+                        .map(PlaylistPlayQueue::new);
+            default:
+                throw parseError();
+        }
+    }
+
+    private Single<PlayQueue> extractPlayQueueFromHistoryMediaId(
+            final List<String> path) throws ContentNotAvailableException {
+        if (path.size() != 1) {
+            throw parseError();
+        }
+
+        final long streamId = Long.parseLong(path.get(0));
+        return getDatabase().streamHistoryDAO().getHistory()
+                .firstOrError()
+                .map(items -> {
+                    final List<StreamInfoItem> infoItems = items.stream()
+                            .filter(it -> it.getStreamId() == streamId)
+                            .map(StreamHistoryEntry::toStreamInfoItem)
+                            .collect(Collectors.toList());
+                    return new SinglePlayQueue(infoItems, 0);
+                });
+    }
+
+    private static Single<PlayQueue> extractPlayQueueFromInfoItemMediaId(
+            final List<String> path, final String url) throws ContentNotAvailableException {
+        if (path.size() != 2) {
+            throw parseError();
+        }
+        final var infoItemType = infoItemTypeFromString(path.get(0));
+        final int serviceId = Integer.parseInt(path.get(1));
+        return switch (infoItemType) {
+            case STREAM -> ExtractorHelper.getStreamInfo(serviceId, url, false)
+                    .map(SinglePlayQueue::new);
+            case PLAYLIST -> ExtractorHelper.getPlaylistInfo(serviceId, url, false)
+                    .map(PlaylistPlayQueue::new);
+            case CHANNEL -> ExtractorHelper.getChannelInfo(serviceId, url, false)
+                    .map(info -> {
+                        final Optional<ListLinkHandler> playableTab = info.getTabs()
+                                .stream()
+                                .filter(ChannelTabHelper::isStreamsTab)
+                                .findFirst();
+
+                        if (playableTab.isPresent()) {
+                            return new ChannelTabPlayQueue(serviceId,
+                                    new ListLinkHandler(playableTab.get()));
+                        } else {
+                            throw new ContentNotAvailableException("No streams tab found");
+                        }
+                    });
+            default -> throw parseError();
+        };
     }
 
     @Override
@@ -432,6 +647,7 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
 
         disposePrepareOrPlayCommands();
         prepareOrPlayDisposable = extractPlayQueueFromMediaId(mediaId)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     playQueue -> {
@@ -448,6 +664,45 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     public void onPrepareFromSearch(@NonNull final String query,
                                     final boolean playWhenReady,
                                     @Nullable final Bundle extras) {
+         disposePrepareOrPlayCommands();
+         playbackError(R.string.content_not_supported,
+                       PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED);
+    }
+
+    private @NonNull Single<SearchInfo> searchMusicBySongTitle(final String query) {
+        final var serviceId = ServiceHelper.getSelectedServiceId(playerService);
+        return ExtractorHelper.searchFor(serviceId, query,
+                new ArrayList<>(), "");
+    }
+
+    private @NonNull SingleSource<List<MediaItem>>
+    mediaItemsFromInfoItemList(final ListInfo<InfoItem> result) {
+        final List<Throwable> exceptions = result.getErrors();
+        if (!exceptions.isEmpty()
+                && !(exceptions.size() == 1
+                && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)) {
+            return Single.error(exceptions.get(0));
+        }
+
+        final List<InfoItem> items = result.getRelatedItems();
+        if (items.isEmpty()) {
+            return Single.error(new NullPointerException("Got no search results."));
+        }
+        try {
+            final List<MediaItem> results = items.stream()
+                    .filter(item ->
+                            item.getInfoType() == InfoItem.InfoType.STREAM
+                                    || item.getInfoType() == InfoItem.InfoType.PLAYLIST
+                                    || item.getInfoType() == InfoItem.InfoType.CHANNEL)
+                    .map(this::createInfoItemMediaItem).toList();
+            return Single.just(results);
+        } catch (final Exception e) {
+            return Single.error(e);
+        }
+    }
+
+    private void handleSearchError(final Throwable throwable) {
+        Log.e(TAG, "Search error: " + throwable);
         disposePrepareOrPlayCommands();
         playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED);
     }
@@ -466,5 +721,18 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
                              @Nullable final Bundle extras,
                              @Nullable final ResultReceiver cb) {
         return false;
+    }
+
+    public void onSearch(@NonNull final String query,
+                         @NonNull final MediaBrowserServiceCompat.Result<List<MediaItem>> result) {
+        result.detach();
+        if (searchDisposable != null) {
+            searchDisposable.dispose();
+        }
+        searchDisposable = searchMusicBySongTitle(query)
+                .flatMap(this::mediaItemsFromInfoItemList)
+                .subscribeOn(Schedulers.io())
+                .subscribe(result::sendResult,
+                        this::handleSearchError);
     }
 }
