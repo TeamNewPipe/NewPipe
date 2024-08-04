@@ -6,12 +6,10 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
@@ -31,7 +29,6 @@ fun StreamMenu(
     onDismissRequest: () -> Unit
 ) {
     val context = LocalContext.current
-    val coroutineScope = rememberCoroutineScope()
     val streamViewModel = viewModel<StreamViewModel>()
     val playerHolder = PlayerHolder.getInstance()
 
@@ -124,9 +121,7 @@ fun StreamMenu(
             text = R.string.mark_as_watched,
             onClick = {
                 onDismissRequest()
-                coroutineScope.launch {
-                    streamViewModel.markAsWatched(stream)
-                }
+                streamViewModel.markAsWatched(stream)
             }
         )
         StreamMenuItem(

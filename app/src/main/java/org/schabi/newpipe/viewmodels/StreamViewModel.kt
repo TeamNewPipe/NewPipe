@@ -2,6 +2,8 @@ package org.schabi.newpipe.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingleOrNull
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
@@ -16,7 +18,9 @@ class StreamViewModel(application: Application) : AndroidViewModel(application) 
         return historyRecordManager.loadStreamState(infoItem).awaitSingleOrNull()
     }
 
-    suspend fun markAsWatched(stream: StreamInfoItem) {
-        historyRecordManager.markAsWatched(stream).await()
+    fun markAsWatched(stream: StreamInfoItem) {
+        viewModelScope.launch {
+            historyRecordManager.markAsWatched(stream).await()
+        }
     }
 }
