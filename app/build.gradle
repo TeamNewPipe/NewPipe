@@ -9,6 +9,7 @@ plugins {
     id "kotlin-parcelize"
     id "checkstyle"
     id "org.sonarqube" version "4.0.0.2929"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -122,6 +123,8 @@ ext {
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
+    hiltVersion = '1.2.0'
+    daggerVersion = '2.51.1'
 
     leakCanaryVersion = '2.12'
     stethoVersion = '1.6.0'
@@ -203,7 +206,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.0'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.2'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -295,6 +298,14 @@ dependencies {
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
 
+    // hilt
+    implementation("androidx.hilt:hilt-navigation-compose:${hiltVersion}")
+    kapt("androidx.hilt:hilt-compiler:${hiltVersion}")
+
+    // dagger
+    implementation("com.google.dagger:hilt-android:${daggerVersion}")
+    kapt("com.google.dagger:hilt-android-compiler:${daggerVersion}")
+
 /** Debugging **/
     // Memory leak detection
     debugImplementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"
@@ -315,6 +326,10 @@ dependencies {
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
     androidTestImplementation "org.assertj:assertj-core:3.24.2"
+
+    // dagger
+    testImplementation("com.google.dagger:hilt-android-testing${daggerVersion}")
+    androidTestImplementation("com.google.dagger:hilt-android-testing${daggerVersion}")
 }
 
 static String getGitWorkingBranch() {
