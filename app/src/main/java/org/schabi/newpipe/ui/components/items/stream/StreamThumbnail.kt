@@ -54,7 +54,7 @@ fun StreamThumbnail(
             Text(
                 modifier = Modifier
                     .padding(2.dp)
-                    .background((if (isLive) Color.Red else Color.Black).copy(alpha = 0.5f))
+                    .background(if (isLive) Color.Red else Color.Black.copy(alpha = 0.5f))
                     .padding(2.dp),
                 text = if (isLive) {
                     stringResource(R.string.duration_live)
