@@ -3,9 +3,9 @@ contact_links:
   - name: ❓ Question
     url: https://github.com/TeamNewPipe/NewPipe/discussions/new?category=questions
     about: Ask about anything NewPipe-related
+  - name: 💬 Matrix
+    url: https://matrix.to/#/#newpipe:matrix.newpipe-ev.de
+    about: Chat with us via Matrix for quick Q/A
   - name: 💬 IRC
     url: https://web.libera.chat/#newpipe
     about: Chat with us via IRC for quick Q/A
-  - name: 💬 Matrix
-    url: https://matrix.to/#/#newpipe:libera.chat
-    about: Chat with us via Matrix for quick Q/A
