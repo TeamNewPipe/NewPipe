@@ -21,30 +21,48 @@ package org.schabi.newpipe.player;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.media.MediaBrowserCompat.MediaItem;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.MediaBrowserServiceCompat;
+
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
+
+import org.schabi.newpipe.player.mediabrowser.MediaBrowserConnector;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
 
+import java.util.List;
+import java.util.Objects;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * One service for all players.
  */
-public final class PlayerService extends Service {
+public final class PlayerService extends MediaBrowserServiceCompat {
     private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
 
+    @Nullable
     private Player player;
 
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
+
+
+    private MediaBrowserConnector mediaBrowserConnector;
+    private final CompositeDisposable compositeDisposableLoadChildren = new CompositeDisposable();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -53,23 +71,34 @@ public final class PlayerService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
+
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
-        player = new Player(this);
-        /*
-        Create the player notification and start immediately the service in foreground,
-        otherwise if nothing is played or initializing the player and its components (especially
-        loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
-        service would never be put in the foreground while we said to the system we would do so
-         */
-        player.UIs().get(NotificationPlayerUi.class)
-                .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        mediaBrowserConnector = new MediaBrowserConnector(this);
     }
 
+    private void initializePlayerIfNeeded() {
+        if (player == null) {
+            player = new Player(this);
+            /*
+            Create the player notification and start immediately the service in foreground,
+            otherwise if nothing is played or initializing the player and its components (especially
+            loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
+            service would never be put in the foreground while we said to the system we would do so
+             */
+            player.UIs().get(NotificationPlayerUi.class)
+                    .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        }
+    }
+
+    // Suppress Sonar warning to not always return the same value, as we need to do some actions
+    // before returning
+    @SuppressWarnings("squid:S3516")
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if (DEBUG) {
@@ -104,11 +133,10 @@ public final class PlayerService extends Service {
             return START_NOT_STICKY;
         }
 
-        if (player != null) {
-            player.handleIntent(intent);
-            player.UIs().get(MediaSessionPlayerUi.class)
-                    .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
-        }
+        initializePlayerIfNeeded();
+        Objects.requireNonNull(player).handleIntent(intent);
+        player.UIs().get(MediaSessionPlayerUi.class)
+                .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
 
         return START_NOT_STICKY;
     }
@@ -142,7 +170,15 @@ public final class PlayerService extends Service {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
+
         cleanup();
+
+        if (mediaBrowserConnector != null) {
+            mediaBrowserConnector.release();
+            mediaBrowserConnector = null;
+        }
+
+        compositeDisposableLoadChildren.clear();
     }
 
     private void cleanup() {
@@ -163,21 +199,56 @@ public final class PlayerService extends Service {
     }
 
     @Override
-    public IBinder onBind(final Intent intent) {
+    public IBinder onBind(@NonNull final Intent intent) {
+        if (SERVICE_INTERFACE.equals(intent.getAction())) {
+            return super.onBind(intent);
+        }
         return mBinder;
     }
 
-    public static class LocalBinder extends Binder {
+    @NonNull
+    public MediaSessionConnector getSessionConnector() {
+        return mediaBrowserConnector.getSessionConnector();
+    }
+
+    // MediaBrowserServiceCompat methods
+    @Nullable
+    @Override
+    public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
+                                 final int clientUid,
+                                 @Nullable final Bundle rootHints) {
+        return mediaBrowserConnector.onGetRoot(clientPackageName, clientUid, rootHints);
+    }
+
+    @Override
+    public void onLoadChildren(@NonNull final String parentId,
+                               @NonNull final Result<List<MediaItem>> result) {
+        result.detach();
+        final Disposable disposable = mediaBrowserConnector.onLoadChildren(parentId)
+                .subscribe(result::sendResult);
+        compositeDisposableLoadChildren.add(disposable);
+    }
+
+    @Override
+    public void onSearch(@NonNull final String query,
+                         final Bundle extras,
+                         @NonNull final Result<List<MediaItem>> result) {
+        mediaBrowserConnector.onSearch(query, result);
+    }
+
+    public static final class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 
         LocalBinder(final PlayerService playerService) {
             this.playerService = new WeakReference<>(playerService);
         }
 
+        @Nullable
         public PlayerService getService() {
             return playerService.get();
         }
 
+        @Nullable
         public Player getPlayer() {
             return playerService.get().player;
         }

@@ -10,4 +10,6 @@ public interface PlaylistLocalItem extends LocalItem {
     long getUid();
 
     void setDisplayIndex(long displayIndex);
+
+    String getThumbnailUrl();
 }
