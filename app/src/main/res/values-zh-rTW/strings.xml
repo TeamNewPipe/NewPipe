@@ -624,8 +624,6 @@
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
     <string name="mark_as_watched">標記為已觀看</string>
-    <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
-    <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="local_search_suggestions">本機搜尋建議</string>
     <plurals name="deleted_downloads_toast">

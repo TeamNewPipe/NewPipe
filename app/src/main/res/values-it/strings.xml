@@ -644,8 +644,6 @@
     <string name="comments_are_disabled">Commenti disattivati</string>
     <string name="detail_heart_img_view_description">Apprezzato dall\'autore</string>
     <string name="mark_as_watched">Segna come visto</string>
-    <string name="show_image_indicators_summary">Mostra gli indicatori colorati Picasso sopra le immagini, per indicare la loro fonte: rosso per la rete, blu per il disco e verde per la memoria</string>
-    <string name="show_image_indicators_title">Mostra indicatori immagine</string>
     <string name="remote_search_suggestions">Suggerimenti di ricerca remoti</string>
     <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
     <plurals name="deleted_downloads_toast">

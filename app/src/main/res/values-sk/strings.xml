@@ -653,8 +653,6 @@
     <string name="low_quality_smaller">Nízka kvalita (menšie)</string>
     <string name="high_quality_larger">Vysoká kvalita (väčšie)</string>
     <string name="seekbar_preview_thumbnail_title">Náhľad miniatúry pri vyhľadávaní</string>
-    <string name="show_image_indicators_summary">Zobrazí farebné pásiky Picasso na obrázkoch podľa ich zdroja: červený pre sieť, modrý pre disk a zelený pre pamäť</string>
-    <string name="show_image_indicators_title">Zobraziť indikátory obrázka</string>
     <string name="main_page_content_swipe_remove">Potiahnutím vymazať</string>
     <string name="comments_are_disabled">Komentáre sú zakázané</string>
     <string name="start_main_player_fullscreen_summary">Ak je automatické otáčanie zablokované, nespustí videá v miniprehrávači, ale prepne sa do celoobrazovkového režimu. Do miniprehrávača sa dostanete po ukončení režimu celej obrazovky</string>

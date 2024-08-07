@@ -589,7 +589,6 @@
     <string name="streams_notification_channel_name">নতুন ধারা</string>
     <string name="streams_notifications_interval_title">কম্পাঙ্ক দেখো</string>
     <string name="seekbar_preview_thumbnail_title">পূর্বদর্শন রেখার মাধ্যমে প্রাকদর্শন</string>
-    <string name="show_image_indicators_title">ছবিরূপ সূচক দেখাও</string>
     <string name="dont_show">দেখিও না</string>
     <string name="any_network">যেকোনো নেটওয়ার্ক</string>
     <string name="enqueued_next">পরেরটা ক্রমে রাখা হয়েছে</string>

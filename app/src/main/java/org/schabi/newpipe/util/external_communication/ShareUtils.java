@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
@@ -25,11 +26,14 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.util.Collections;
 import java.util.List;
+
+import coil.Coil;
+import coil.disk.DiskCache;
+import coil.memory.MemoryCache;
 
 public final class ShareUtils {
     private static final String TAG = ShareUtils.class.getSimpleName();
@@ -278,7 +282,7 @@ public final class ShareUtils {
      * @param content the content to share
      * @param images  a set of possible {@link Image}s of the subject, among which to choose with
      *                {@link ImageStrategy#choosePreferredImage(List)} since that's likely to
-     *                provide an image that is in Picasso's cache
+     *                provide an image that is in Coil's cache
      */
     public static void shareText(@NonNull final Context context,
                                  @NonNull final String title,
@@ -339,11 +343,9 @@ public final class ShareUtils {
      *
      * <p>
      * In order not to worry about network issues (timeouts, DNS issues, low connection speed, ...)
-     * when sharing a content, only images in the {@link com.squareup.picasso.LruCache LruCache}
-     * used by the Picasso library inside {@link PicassoHelper} are used as preview images. If the
-     * thumbnail image is not in the cache, no {@link ClipData} will be generated and {@code null}
-     * will be returned.
-     * </p>
+     * when sharing a content, only images in the {@link MemoryCache} or {@link DiskCache}
+     * used by the Coil library are used as preview images. If the thumbnail image is not in the
+     * cache, no {@link ClipData} will be generated and {@code null} will be returned.
      *
      * <p>
      * In order to display the image in the content preview of the Android share sheet, an URI of
@@ -356,12 +358,6 @@ public final class ShareUtils {
      * <p>
      * Note that if an exception occurs when generating the {@link ClipData}, {@code null} is
      * returned.
-     * </p>
-     *
-     * <p>
-     * This method will call {@link PicassoHelper#getImageFromCacheIfPresent(String)} to get the
-     * thumbnail of the content in the {@link com.squareup.picasso.LruCache LruCache} used by
-     * the Picasso library inside {@link PicassoHelper}.
      * </p>
      *
      * <p>
@@ -378,33 +374,46 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            final Bitmap bitmap = PicassoHelper.getImageFromCacheIfPresent(thumbnailUrl);
-            if (bitmap == null) {
-                return null;
-            }
-
             // Save the image in memory to the application's cache because we need a URI to the
             // image to generate a ClipData which will show the share sheet, and so an image file
             final Context applicationContext = context.getApplicationContext();
-            final String appFolder = applicationContext.getCacheDir().getAbsolutePath();
-            final File thumbnailPreviewFile = new File(appFolder
-                    + "/android_share_sheet_image_preview.jpg");
+            final var loader = Coil.imageLoader(context);
+            final var value = loader.getMemoryCache()
+                    .get(new MemoryCache.Key(thumbnailUrl, Collections.emptyMap()));
 
-            // Any existing file will be overwritten with FileOutputStream
-            final FileOutputStream fileOutputStream = new FileOutputStream(thumbnailPreviewFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-            fileOutputStream.close();
+            final Bitmap cachedBitmap;
+            if (value != null) {
+                cachedBitmap = value.getBitmap();
+            } else {
+                try (var snapshot = loader.getDiskCache().openSnapshot(thumbnailUrl)) {
+                    if (snapshot != null) {
+                        cachedBitmap = BitmapFactory.decodeFile(snapshot.getData().toString());
+                    } else {
+                        cachedBitmap = null;
+                    }
+                }
+            }
+
+            if (cachedBitmap == null) {
+                return null;
+            }
+
+            final var path = applicationContext.getCacheDir().toPath()
+                    .resolve("android_share_sheet_image_preview.jpg");
+            // Any existing file will be overwritten
+            try (var outputStream = Files.newOutputStream(path)) {
+                cachedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+            }
 
             final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(), "",
                         FileProvider.getUriForFile(applicationContext,
                                 BuildConfig.APPLICATION_ID + ".provider",
-                                thumbnailPreviewFile));
+                                path.toFile()));
 
             if (DEBUG) {
                 Log.d(TAG, "ClipData successfully generated for Android share sheet: " + clipData);
             }
             return clipData;
-
         } catch (final Exception e) {
             Log.w(TAG, "Error when setting preview image for share sheet", e);
             return null;

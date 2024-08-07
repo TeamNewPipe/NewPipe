@@ -570,7 +570,6 @@
     <string name="enqueued">कतारबद्ध हुआ</string>
     <string name="loading_stream_details">स्ट्रीम विवरण लोड हो रहे हैं…</string>
     <string name="processing_may_take_a_moment">प्रोसेस हो रहा है… कुछ समय लग सकता है</string>
-    <string name="show_image_indicators_title">छवि संकेतक दिखाएं</string>
     <string name="show_crash_the_player_summary">प्लेयर का उपयोग करते समय क्रैश विकल्प दिखाता है</string>
     <string name="check_new_streams">नई स्ट्रीमों के लिए जांच चलाएं</string>
     <string name="show_error_snackbar">एक त्रुटि स्नैकबार दिखाएं</string>
@@ -668,7 +667,6 @@
     <string name="leak_canary_not_available">लीक-कैनरी उपलब्ध नहीं है</string>
     <string name="error_report_notification_toast">एक त्रुटी हुई है, नोटीफिकेशन देखें</string>
     <string name="disable_media_tunneling_summary">यदि वीडियो प्लेबैक पर आप काली स्क्रीन या रुक-रुक कर वीडियो चलने का अनुभव करते हैं तो मीडिया टनलिंग को अक्षम करें।</string>
-    <string name="show_image_indicators_summary">छवियों के शीर्ष पर पिकासो रंगीन रिबन दिखाएँ जो उनके स्रोत को दर्शाता है: नेटवर्क के लिए लाल, डिस्क के लिए नीला और मेमोरी के लिए हरा</string>
     <string name="create_error_notification">त्रुटी की नोटीफिकेशन बनाएं</string>
     <string name="error_download_resource_gone">इस डाउनलोड को पुनर्प्राप्त नहीं किया जा सकता</string>
     <string name="no_dir_yet">अभी तक कोई डाउनलोड फ़ोल्डर सेट नहीं किया गया है, अब डिफ़ॉल्ट डाउनलोड फ़ोल्डर चुनें</string>

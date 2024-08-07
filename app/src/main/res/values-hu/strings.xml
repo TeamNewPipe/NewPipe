@@ -570,7 +570,6 @@
     <string name="enable_disposed_exceptions_summary">Az eltávolítás utáni, fragment vagy activity életcikluson kívüli, nem kézbesíthető Rx kivételek jelentésének kényszerítése</string>
     <string name="show_original_time_ago_title">Eredeti „ennyi ideje” megjelenítése az elemeken</string>
     <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor.</string>
-    <string name="show_image_indicators_summary">Picasso színes szalagok megjelenítése a képek fölött, megjelölve a forrásukat: piros a hálózathoz, kék a lemezhez, zöld a memóriához</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Minden letöltésnél meg fogja kérdezni, hogy hova mentse el</string>
     <string name="choose_instance_prompt">Válasszon egy példányt</string>
     <string name="feed_oldest_subscription_update">Lista legutóbbi frissítése: %s</string>
@@ -657,7 +656,6 @@
 \nBiztos benne\? Ez nem vonható vissza!</string>
     <string name="show_original_time_ago_summary">A szolgáltatásokból származó eredeti szövegek láthatók lesznek a közvetítési elemeken</string>
     <string name="crash_the_player">Lejátszó összeomlasztása</string>
-    <string name="show_image_indicators_title">Képjelölők megjelenítése</string>
     <string name="show_crash_the_player_title">A „lejátszó összeomlasztása” lehetőség megjelenítése</string>
     <string name="show_crash_the_player_summary">Megjeleníti az összeomlasztási lehetőséget a lejátszó használatakor</string>
     <string name="unhook_checkbox">Hangmagasság megtartása (torzítást okozhat)</string>

@@ -60,6 +60,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.DrawableKt;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -77,8 +78,6 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.video.VideoSize;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -86,8 +85,8 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -118,14 +117,15 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
+import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import coil.target.Target;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -174,7 +174,6 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int RENDERER_UNAVAILABLE = -1;
-    private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -193,6 +192,8 @@ public final class Player implements PlaybackListener, Listener {
     private MediaItemTag currentMetadata;
     @Nullable
     private Bitmap currentThumbnail;
+    @Nullable
+    private coil.request.Disposable thumbnailDisposable;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -246,12 +247,6 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
 
-    // This is the only listener we need for thumbnail loading, since there is always at most only
-    // one thumbnail being loaded at a time. This field is also here to maintain a strong reference,
-    // which would otherwise be garbage collected since Picasso holds weak references to targets.
-    @NonNull
-    private final Target currentThumbnailTarget;
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -294,8 +289,6 @@ public final class Player implements PlaybackListener, Listener {
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
-
-        currentThumbnailTarget = getCurrentThumbnailTarget();
 
         // The UIs added here should always be present. They will be initialized when the player
         // reaches the initialization step. Make sure the media session ui is before the
@@ -602,7 +595,6 @@ public final class Player implements PlaybackListener, Listener {
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
-        cancelLoadingCurrentThumbnail();
 
         UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
@@ -776,67 +768,58 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private Target getCurrentThumbnailTarget() {
-        // a Picasso target is just a listener for thumbnail loading events
-        return new Target() {
-            @Override
-            public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: bitmap = [" + bitmap
-                            + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
-                            + from + "]");
-                }
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(bitmap);
-            }
-
-            @Override
-            public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(null);
-            }
-
-            @Override
-            public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onPrepareLoad() called");
-                }
-            }
-        };
-    }
-
     private void loadCurrentThumbnail(final List<Image> thumbnails) {
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with thumbnails = ["
                     + thumbnails.size() + "]");
         }
 
-        // first cancel any previous loading
-        cancelLoadingCurrentThumbnail();
+        // Cancel any ongoing image loading
+        if (thumbnailDisposable != null) {
+            thumbnailDisposable.dispose();
+        }
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
-        // session metadata while the new thumbnail is being loaded by Picasso.
+        // session metadata while the new thumbnail is being loaded by Coil.
         onThumbnailLoaded(null);
         if (thumbnails.isEmpty()) {
             return;
         }
 
         // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, thumbnails)
-                .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
-                .into(currentThumbnailTarget);
-    }
+        final var thumbnailTarget = new Target() {
+            @Override
+            public void onError(@Nullable final Drawable error) {
+                Log.e(TAG, "Thumbnail - onError() called");
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(null);
+            }
 
-    private void cancelLoadingCurrentThumbnail() {
-        // cancel the Picasso job associated with the player thumbnail, if any
-        PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
+            @Override
+            public void onStart(@Nullable final Drawable placeholder) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onStart() called");
+                }
+            }
+
+            @Override
+            public void onSuccess(@NonNull final Drawable result) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onSuccess() called with: drawable = [" + result + "]");
+                }
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(DrawableKt.toBitmapOrNull(result, result.getIntrinsicWidth(),
+                        result.getIntrinsicHeight(), null));
+            }
+        };
+        thumbnailDisposable = CoilHelper.INSTANCE
+                .loadScaledDownThumbnail(context, thumbnails, thumbnailTarget);
     }
 
     private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
         // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
-        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Picasso's target.
+        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
         if (currentThumbnail != bitmap) {
             currentThumbnail = bitmap;
             UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
