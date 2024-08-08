@@ -881,8 +881,7 @@ public final class VideoDetailFragment
         tabContentDescriptions.clear();
 
         if (shouldShowComments()) {
-            pageAdapter.addFragment(
-                    CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
+            pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url), COMMENTS_TAB_TAG);
             tabIcons.add(R.drawable.ic_comment);
             tabContentDescriptions.add(R.string.comments_tab_description);
         }
@@ -1014,16 +1013,15 @@ public final class VideoDetailFragment
 
     public void scrollToComment(final CommentsInfoItem comment) {
         final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
-        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
-        if (!(fragment instanceof CommentsFragment)) {
-            return;
-        }
+        final var fragment = pageAdapter.getItem(commentsTabPos);
 
+        // TODO: Implement the scrolling with Compose.
         // unexpand the app bar only if scrolling to the comment succeeded
-        if (((CommentsFragment) fragment).scrollToComment(comment)) {
-            binding.appBarLayout.setExpanded(false, false);
-            binding.viewPager.setCurrentItem(commentsTabPos, false);
-        }
+//        if (fragment instanceof CommentsFragment commentsFragment &&
+//                commentsFragment.scrollToComment(comment)) {
+//            binding.appBarLayout.setExpanded(false, false);
+//            binding.viewPager.setCurrentItem(commentsTabPos, false);
+//        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

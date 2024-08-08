@@ -219,11 +219,6 @@ public final class Localization {
                 deletedCount, shortCount(context, deletedCount));
     }
 
-    public static String replyCount(@NonNull final Context context, final int replyCount) {
-        return getQuantity(context, R.plurals.replies, 0, replyCount,
-                String.valueOf(replyCount));
-    }
-
     /**
      * @param context the Android context
      * @param likeCount the like count, possibly negative if unknown

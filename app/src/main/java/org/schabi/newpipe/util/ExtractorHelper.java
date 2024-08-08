@@ -42,8 +42,6 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
-import org.schabi.newpipe.extractor.comments.CommentsInfo;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
@@ -144,33 +142,6 @@ public final class ExtractorHelper {
         return Single.fromCallable(() ->
                 ChannelTabInfo.getMoreItems(NewPipe.getService(serviceId),
                         listLinkHandler, nextPage));
-    }
-
-    public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
-                                                       final String url,
-                                                       final boolean forceLoad) {
-        checkServiceId(serviceId);
-        return checkCache(forceLoad, serviceId, url, InfoCache.Type.COMMENTS,
-                Single.fromCallable(() ->
-                        CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
-    }
-
-    public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
-            final int serviceId,
-            final CommentsInfo info,
-            final Page nextPage) {
-        checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage));
-    }
-
-    public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
-            final int serviceId,
-            final String url,
-            final Page nextPage) {
-        checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
     }
 
     public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId,
