@@ -95,18 +95,13 @@ fun ItemList(
 
 @Composable
 private fun determineItemViewMode(): ItemViewMode {
-    val listMode = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
-        .getString(
-            stringResource(R.string.list_view_mode_key),
-            stringResource(R.string.list_view_mode_value)
-        )
+    val prefValue = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+        .getString(stringResource(R.string.list_view_mode_key), null)
+    val viewMode = prefValue?.let { ItemViewMode.valueOf(it.uppercase()) } ?: ItemViewMode.AUTO
 
-    return when (listMode) {
-        stringResource(R.string.list_view_mode_list_key) -> ItemViewMode.LIST
-        stringResource(R.string.list_view_mode_grid_key) -> ItemViewMode.GRID
-        stringResource(R.string.list_view_mode_card_key) -> ItemViewMode.CARD
-        else -> {
-            // Auto mode - evaluate whether to use Grid based on screen real estate.
+    return when (viewMode) {
+        ItemViewMode.AUTO -> {
+            // Evaluate whether to use Grid based on screen real estate.
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED) {
                 ItemViewMode.GRID
@@ -114,5 +109,6 @@ private fun determineItemViewMode(): ItemViewMode {
                 ItemViewMode.LIST
             }
         }
+        else -> viewMode
     }
 }
