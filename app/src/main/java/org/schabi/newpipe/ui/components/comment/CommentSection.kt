@@ -17,6 +17,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -45,10 +47,11 @@ fun CommentSection(
     Surface(color = MaterialTheme.colorScheme.background) {
         val comments = commentsFlow.collectAsLazyPagingItems()
         val itemCount by remember { derivedStateOf { comments.itemCount } }
-        val listState = rememberLazyListState()
+        val nestedScrollInterop = rememberNestedScrollInteropConnection()
+        val state = rememberLazyListState()
 
-        LazyColumnScrollbar(state = listState) {
-            LazyColumn(state = listState) {
+        LazyColumnScrollbar(state = state) {
+            LazyColumn(modifier = Modifier.nestedScroll(nestedScrollInterop), state = state) {
                 if (parentComment != null) {
                     item {
                         CommentRepliesHeader(comment = parentComment)
