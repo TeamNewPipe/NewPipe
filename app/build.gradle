@@ -291,9 +291,9 @@ dependencies {
     implementation 'androidx.compose.material3.adaptive:adaptive:1.0.0-beta04'
     implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation 'androidx.compose.ui:ui-text:1.7.0-beta06' // Needed for parsing HTML to AnnotatedString
+    implementation 'androidx.compose.ui:ui-text:1.7.0-beta07' // Needed for parsing HTML to AnnotatedString
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
-    implementation 'androidx.paging:paging-compose:3.3.1'
+    implementation 'androidx.paging:paging-compose:3.3.2'
     implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
 
     // Coroutines interop
