@@ -7,45 +7,75 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.launch
+import org.schabi.newpipe.R
 import org.schabi.newpipe.settings.presentation.history_cache.components.CachePreferencesComponent
 import org.schabi.newpipe.settings.presentation.history_cache.components.HistoryPreferencesComponent
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheEvent
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowClearWatchHistorySnackbar
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowDeletePlaybackSnackbar
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowDeleteSearchHistorySnackbar
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowReCaptchaCookiesSnackbar
+import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowWipeCachedMetadataSnackbar
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
-fun HistoryCacheScreen(
+fun HistoryCacheSettingsScreen(
     modifier: Modifier = Modifier,
     viewModel: HistoryCacheSettingsViewModel = hiltViewModel(),
 ) {
+    val snackBarHostState = remember { SnackbarHostState() }
+    val playBackPositionsDeleted = stringResource(R.string.watch_history_states_deleted)
+    val watchHistoryDeleted = stringResource(R.string.watch_history_deleted)
+    val wipeCachedMetadataSnackbar = stringResource(R.string.metadata_cache_wipe_complete_notice)
+    val deleteSearchHistory = stringResource(R.string.search_history_deleted)
+    val clearReCaptchaCookiesSnackbar = stringResource(R.string.recaptcha_cookies_cleared)
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collect { event ->
+            val message = when (event) {
+                is ShowDeletePlaybackSnackbar -> playBackPositionsDeleted
+                is ShowClearWatchHistorySnackbar -> watchHistoryDeleted
+                is ShowWipeCachedMetadataSnackbar -> wipeCachedMetadataSnackbar
+                is ShowDeleteSearchHistorySnackbar -> deleteSearchHistory
+                is ShowReCaptchaCookiesSnackbar -> clearReCaptchaCookiesSnackbar
+            }
+
+            snackBarHostState.showSnackbar(message)
+        }
+    }
+
     val state by viewModel.state.collectAsState()
     HistoryCacheComponent(
         state = state,
         onEvent = viewModel::onEvent,
+        snackBarHostState = snackBarHostState,
         modifier = modifier
     )
 }
 
 @Composable
 fun HistoryCacheComponent(
-    state: HistoryCacheUiState,
+    state: SwitchPreferencesUiState,
     onEvent: (HistoryCacheEvent) -> Unit,
+    snackBarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
 ) {
-    val snackBarHostState = remember { SnackbarHostState() }
     Scaffold(
         modifier = modifier,
         snackbarHost = {
@@ -61,18 +91,15 @@ fun HistoryCacheComponent(
             verticalArrangement = Arrangement.Center,
         ) {
             HistoryPreferencesComponent(
-                state = state.switchPreferencesUiState,
-                onEvent = onEvent,
-                modifier = Modifier.fillMaxWidth()
-            )
-            val coroutineScope = rememberCoroutineScope()
-            CachePreferencesComponent(
-                onEvent = onEvent,
-                onShowSnackbar = {
-                    coroutineScope.launch {
-                        snackBarHostState.showSnackbar(it)
-                    }
+                state = state,
+                onEvent = { key, value ->
+                    onEvent(HistoryCacheEvent.OnUpdateBooleanPreference(key, value))
                 },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            HorizontalDivider(Modifier.fillMaxWidth())
+            CachePreferencesComponent(
+                onEvent = { onEvent(it) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -84,7 +111,7 @@ fun HistoryCacheComponent(
 private fun HistoryCacheComponentPreview() {
     val state by remember {
         mutableStateOf(
-            HistoryCacheUiState()
+            SwitchPreferencesUiState()
         )
     }
     AppTheme(
@@ -95,6 +122,7 @@ private fun HistoryCacheComponentPreview() {
                 state = state,
                 onEvent = {
                 },
+                snackBarHostState = SnackbarHostState(),
                 modifier = Modifier.fillMaxSize()
             )
         }

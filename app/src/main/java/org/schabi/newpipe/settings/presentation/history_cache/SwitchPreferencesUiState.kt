@@ -1,9 +1,7 @@
 package org.schabi.newpipe.settings.presentation.history_cache
 
-data class HistoryCacheUiState(
-    val switchPreferencesUiState: SwitchPreferencesUiState = SwitchPreferencesUiState()
-)
-
+import androidx.compose.runtime.Stable
+@Stable
 data class SwitchPreferencesUiState(
     val watchHistoryEnabled: Boolean = false,
     val resumePlaybackEnabled: Boolean = false,

@@ -31,7 +31,6 @@ fun SwitchPreferenceComponent(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         Column(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Center,
