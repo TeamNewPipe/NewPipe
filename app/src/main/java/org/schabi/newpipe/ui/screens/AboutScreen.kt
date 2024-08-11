@@ -1,7 +1,6 @@
 package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
-import androidx.collection.intListOf
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,7 +33,7 @@ import org.schabi.newpipe.ui.components.about.AboutTab
 import org.schabi.newpipe.ui.components.about.LicenseTab
 import org.schabi.newpipe.ui.theme.AppTheme
 
-private val TITLES = intListOf(R.string.tab_about, R.string.tab_licenses)
+private val TITLES = intArrayOf(R.string.tab_about, R.string.tab_licenses)
 
 @Composable
 @NonRestartableComposable
