@@ -38,7 +38,9 @@ public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MediaSessUi";
 
+    @Nullable
     private MediaSessionCompat mediaSession;
+    @Nullable
     private MediaSessionConnector sessionConnector;
 
     private final String ignoreHardwareMediaButtonsKey;
@@ -195,6 +197,11 @@ public class MediaSessionPlayerUi extends PlayerUi
             // cause any trouble, it also doesn't seem to do anything, so we don't do anything to
             // save battery. Check out NotificationUtil.updateActions() to see what happens on
             // older android versions.
+            return;
+        }
+
+        if (sessionConnector == null) {
+            // sessionConnector will be null after destroyPlayer is called
             return;
         }
 
