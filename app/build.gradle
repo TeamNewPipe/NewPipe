@@ -328,8 +328,8 @@ dependencies {
     androidTestImplementation "org.assertj:assertj-core:3.24.2"
 
     // dagger
-    testImplementation("com.google.dagger:hilt-android-testing${daggerVersion}")
-    androidTestImplementation("com.google.dagger:hilt-android-testing${daggerVersion}")
+    testImplementation("com.google.dagger:hilt-android-testing:${daggerVersion}")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:${daggerVersion}")
 }
 
 static String getGitWorkingBranch() {
