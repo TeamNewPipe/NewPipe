@@ -315,10 +315,6 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
 
         try {
             final Uri parentIdUri = Uri.parse(parentId);
-            if (parentIdUri == null) {
-                throw parseError();
-            }
-
             final List<String> path = new ArrayList<>(parentIdUri.getPathSegments());
 
             if (path.isEmpty()) {
@@ -510,10 +506,6 @@ public class MediaBrowserConnector implements MediaSessionConnector.PlaybackPrep
     private Single<PlayQueue> extractPlayQueueFromMediaId(final String mediaId) {
         try {
             final Uri mediaIdUri = Uri.parse(mediaId);
-            if (mediaIdUri == null) {
-                throw parseError();
-            }
-
             final List<String> path = new ArrayList<>(mediaIdUri.getPathSegments());
 
             if (path.isEmpty()) {
