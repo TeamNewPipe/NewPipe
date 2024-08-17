@@ -39,8 +39,6 @@ import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.extractor.ListInfo
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import java.util.concurrent.TimeUnit
@@ -126,17 +124,7 @@ class FeedLoadService : Service() {
     // Loading & Handling
     // /////////////////////////////////////////////////////////////////////////
 
-    class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
-        companion object {
-            fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
-                val toReturn = ArrayList<Throwable>(info.errors.size)
-                info.errors.mapTo(toReturn) {
-                    RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, it)
-                }
-                return toReturn
-            }
-        }
-    }
+    class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause)
 
     // /////////////////////////////////////////////////////////////////////////
     // Notification

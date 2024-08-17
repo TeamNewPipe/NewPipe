@@ -10,11 +10,9 @@
     <string name="auto_queue_title">Antri otomatis stream bare</string>
     <string name="metadata_cache_wipe_complete_notice">Sampah metadata wes dibusak</string>
     <string name="metadata_cache_wipe_summary">Busak kabeh sampah ora kanggo</string>
-    <string name="download_thumbnail_summary">Pateni ben gambar cilik ora ketok, ora boros data lan memori. Iku bakal ngresiki sampah gambar.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Sampah gambar wes resik</string>
     <string name="show_comments_summary">Pateni gawe ngumpetke komentar</string>
     <string name="show_comments_title">Duduhke komentar</string>
-    <string name="download_thumbnail_title">Duduhke gambar cilik</string>
     <string name="seek_duration_title">Durasi cepet maju/mundure</string>
     <string name="popup_remember_size_pos_summary">Eling-eling ukuran lan posisi ngambang terakhir</string>
     <string name="popup_remember_size_pos_title">Eling-eling ukuran lan posisi ngambang</string>

@@ -81,8 +81,9 @@ public interface MediaItemTag {
 
     @NonNull
     default MediaItem asMediaItem() {
+        final String thumbnailUrl = getThumbnailUrl();
         final MediaMetadata mediaMetadata = new MediaMetadata.Builder()
-                .setArtworkUri(Uri.parse(getThumbnailUrl()))
+                .setArtworkUri(thumbnailUrl == null ? null : Uri.parse(thumbnailUrl))
                 .setArtist(getUploaderName())
                 .setDescription(getTitle())
                 .setDisplayTitle(getTitle())

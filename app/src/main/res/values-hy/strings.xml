@@ -151,7 +151,7 @@
     <string name="resize_zoom">Մեծացնել</string>
     <string name="caption_auto_generated">Գեներացված</string>
     <string name="import_file_title">Ներմուծել ֆայլ</string>
-    <string name="manual_update_title">Ստուգել թարմացումները</string>
+    <string name="check_for_updates">Ստուգել թարմացումները</string>
     <string name="auto">Ինքնին</string>
     <string name="high_quality_larger">Բարձր որակ (մեծ)</string>
     <string name="low_quality_smaller">Ցածր որակ (փոքր)</string>
@@ -192,7 +192,7 @@
     <string name="select_a_playlist">Նշել նվագացանկ</string>
     <string name="charset_letters_and_digits">Տառեր և թվեր</string>
     <string name="settings_category_downloads_title">Բեռնումներ</string>
-    <string name="recaptcha_done_button">Եղավ</string>
+    <string name="done">Եղավ</string>
     <string name="play_all">Նվագել ամենը</string>
     <string name="duration_live">Ուղիղ</string>
     <string name="enable_playback_resume_title">Շարունակել նվագարկումը</string>

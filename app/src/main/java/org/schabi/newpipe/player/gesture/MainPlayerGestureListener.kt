@@ -7,7 +7,6 @@ import android.view.View.OnTouchListener
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.math.MathUtils
 import androidx.core.view.isVisible
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
@@ -113,7 +112,7 @@ class MainPlayerGestureListener(
 
         // Update progress bar
         val oldBrightness = layoutParams.screenBrightness
-        bar.progress = (bar.max * MathUtils.clamp(oldBrightness, 0f, 1f)).toInt()
+        bar.progress = (bar.max * oldBrightness.coerceIn(0f, 1f)).toInt()
         bar.incrementProgressBy(distanceY.toInt())
 
         // Update brightness
@@ -161,13 +160,12 @@ class MainPlayerGestureListener(
     }
 
     override fun onScroll(
-        initialEvent: MotionEvent,
+        initialEvent: MotionEvent?,
         movingEvent: MotionEvent,
         distanceX: Float,
         distanceY: Float
     ): Boolean {
-
-        if (!playerUi.isFullscreen) {
+        if (initialEvent == null || !playerUi.isFullscreen) {
             return false
         }
 

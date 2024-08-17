@@ -1,0 +1,15 @@
+Neu
+• Unterstützung mehrerer Audiospuren/Sprachen
+• Lautstärke- und Helligkeitsgesten auf jeder Bildschirmseite ermöglicht
+• Unterstützung für die Anzeige von Haupttabs am unteren Bildschirmrand
+
+Verbessert
+• [Bandcamp] Handhabung von Titeln hinter der Bezahlschranke
+
+Behoben
+• [YouTube] 403-HTTP-Fehler bei Streams
+• Schwarzer Player beim Wechsel von der Wiedergabeliste zum Hauptplayer
+• Speicherleck im Playerdienst
+• [PeerTube] Benutzer- und Unterkanal-Profilbilder getauscht
+
+und mehr

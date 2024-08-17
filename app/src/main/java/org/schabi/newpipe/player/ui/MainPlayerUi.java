@@ -434,7 +434,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             return;
         }
 
-        final boolean showQueue = playQueue.getStreams().size() > 1;
+        final boolean showQueue = !playQueue.getStreams().isEmpty();
         final boolean showSegment = !player.getCurrentStreamInfo()
                 .map(StreamInfo::getStreamSegments)
                 .map(List::isEmpty)
@@ -740,7 +740,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                     String videoUrl = player.getVideoUrl();
                     videoUrl += ("&t=" + seconds);
                     ShareUtils.shareText(context, currentItem.getTitle(),
-                            videoUrl, currentItem.getThumbnailUrl());
+                            videoUrl, currentItem.getThumbnails());
                 }
             }
         };

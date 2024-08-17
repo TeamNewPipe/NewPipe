@@ -13,7 +13,7 @@ import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -65,23 +65,29 @@ public final class NotificationConstants {
     public static final int CLOSE = 11;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({NOTHING, PREVIOUS, NEXT, REWIND, FORWARD, SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT,
-            PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT, SHUFFLE, CLOSE})
+    @IntDef({NOTHING, PREVIOUS, NEXT, REWIND, FORWARD,
+            SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT,
+            SHUFFLE, CLOSE})
     public @interface Action { }
+
+    @Action
+    public static final int[] ALL_ACTIONS = {NOTHING, PREVIOUS, NEXT, REWIND, FORWARD,
+            SMART_REWIND_PREVIOUS, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING, REPEAT,
+            SHUFFLE, CLOSE};
 
     @DrawableRes
     public static final int[] ACTION_ICONS = {
             0,
-            R.drawable.exo_icon_previous,
-            R.drawable.exo_icon_next,
-            R.drawable.exo_icon_rewind,
-            R.drawable.exo_icon_fastforward,
-            R.drawable.exo_icon_previous,
-            R.drawable.exo_icon_next,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_previous,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_next,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_rewind,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_fastforward,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_previous,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_next,
             R.drawable.ic_pause,
             R.drawable.ic_hourglass_top,
-            R.drawable.exo_icon_repeat_all,
-            R.drawable.exo_icon_shuffle_on,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_repeat_all,
+            com.google.android.exoplayer2.ui.R.drawable.exo_icon_shuffle_on,
             R.drawable.ic_close,
     };
 
@@ -93,16 +99,6 @@ public final class NotificationConstants {
             SMART_FORWARD_NEXT,
             REPEAT,
             CLOSE,
-    };
-
-    @Action
-    public static final int[][] SLOT_ALLOWED_ACTIONS = {
-            new int[] {PREVIOUS, REWIND, SMART_REWIND_PREVIOUS},
-            new int[] {REWIND, PLAY_PAUSE, PLAY_PAUSE_BUFFERING},
-            new int[] {NEXT, FORWARD, SMART_FORWARD_NEXT, PLAY_PAUSE, PLAY_PAUSE_BUFFERING},
-            new int[] {NOTHING, PREVIOUS, NEXT, REWIND, FORWARD, SMART_REWIND_PREVIOUS,
-                    SMART_FORWARD_NEXT, REPEAT, SHUFFLE, CLOSE},
-            new int[] {NOTHING, NEXT, FORWARD, SMART_FORWARD_NEXT, REPEAT, SHUFFLE, CLOSE},
     };
 
     public static final int[] SLOT_PREF_KEYS = {
@@ -126,29 +122,41 @@ public final class NotificationConstants {
     public static String getActionName(@NonNull final Context context, @Action final int action) {
         switch (action) {
             case PREVIOUS:
-                return context.getString(R.string.exo_controls_previous_description);
+                return context.getString(com.google.android.exoplayer2.ui.R.string
+                        .exo_controls_previous_description);
             case NEXT:
-                return context.getString(R.string.exo_controls_next_description);
+                return context.getString(com.google.android.exoplayer2.ui.R.string
+                        .exo_controls_next_description);
             case REWIND:
-                return context.getString(R.string.exo_controls_rewind_description);
+                return context.getString(com.google.android.exoplayer2.ui.R.string
+                        .exo_controls_rewind_description);
             case FORWARD:
-                return context.getString(R.string.exo_controls_fastforward_description);
+                return context.getString(com.google.android.exoplayer2.ui.R.string
+                        .exo_controls_fastforward_description);
             case SMART_REWIND_PREVIOUS:
                 return Localization.concatenateStrings(
-                        context.getString(R.string.exo_controls_rewind_description),
-                        context.getString(R.string.exo_controls_previous_description));
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_rewind_description),
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_previous_description));
             case SMART_FORWARD_NEXT:
                 return Localization.concatenateStrings(
-                        context.getString(R.string.exo_controls_fastforward_description),
-                        context.getString(R.string.exo_controls_next_description));
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_fastforward_description),
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_next_description));
             case PLAY_PAUSE:
                 return Localization.concatenateStrings(
-                        context.getString(R.string.exo_controls_play_description),
-                        context.getString(R.string.exo_controls_pause_description));
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_play_description),
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_pause_description));
             case PLAY_PAUSE_BUFFERING:
                 return Localization.concatenateStrings(
-                        context.getString(R.string.exo_controls_play_description),
-                        context.getString(R.string.exo_controls_pause_description),
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_play_description),
+                        context.getString(com.google.android.exoplayer2.ui.R.string
+                                .exo_controls_pause_description),
                         context.getString(R.string.notification_action_buffering));
             case REPEAT:
                 return context.getString(R.string.notification_action_repeat);
@@ -165,14 +173,11 @@ public final class NotificationConstants {
     /**
      * @param context the context to use
      * @param sharedPreferences the shared preferences to query values from
-     * @param slotCount remove indices >= than this value (set to {@code 5} to do nothing, or make
-     *                  it lower if there are slots with empty actions)
      * @return a sorted list of the indices of the slots to use as compact slots
      */
-    public static List<Integer> getCompactSlotsFromPreferences(
+    public static Collection<Integer> getCompactSlotsFromPreferences(
             @NonNull final Context context,
-            final SharedPreferences sharedPreferences,
-            final int slotCount) {
+            final SharedPreferences sharedPreferences) {
         final SortedSet<Integer> compactSlots = new TreeSet<>();
         for (int i = 0; i < 3; i++) {
             final int compactSlot = sharedPreferences.getInt(
@@ -180,14 +185,14 @@ public final class NotificationConstants {
 
             if (compactSlot == Integer.MAX_VALUE) {
                 // settings not yet populated, return default values
-                return new ArrayList<>(SLOT_COMPACT_DEFAULTS);
+                return SLOT_COMPACT_DEFAULTS;
             }
 
-            // a negative value (-1) is set when the user does not want a particular compact slot
-            if (compactSlot >= 0 && compactSlot < slotCount) {
+            if (compactSlot >= 0) {
+                // compact slot is < 0 if there are less than 3 checked checkboxes
                 compactSlots.add(compactSlot);
             }
         }
-        return new ArrayList<>(compactSlots);
+        return compactSlots;
     }
 }

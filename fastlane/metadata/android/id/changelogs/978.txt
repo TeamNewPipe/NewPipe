@@ -1,0 +1,1 @@
+Memperbaiki pelaksanaan pemeriksaan untuk versi NewPipe baru. Pemeriksaan ini terkadang dilakukan terlalu dini sehingga menyebabkan aplikasi mogok. Itu harus diperbaiki sekarang.

@@ -1,0 +1,15 @@
+Neu
+Playback Lebenslauf #2288
+• Resume Streams, wo Sie letztes Mal aufgehört haben
+Downloader Verbesserungen #2149
+
+
+Verbessert
+• Gemaketten entfernen #2295
+• Handle (auto)Rotationsänderungen während des Aktivitätszyklus #2444
+
+Behoben
+• Fixed Downloads bei 99,9% #2440
+• Aktualisieren der Spielwarteschlange Metadaten #2453
+• [SoundCloud] Fester Absturz beim Laden von Wiedergabelisten TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Feste Dauer kann nicht paresd TeamNewPipe/NewPipeExtractor#177

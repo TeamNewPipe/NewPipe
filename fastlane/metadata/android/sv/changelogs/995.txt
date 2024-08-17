@@ -1,0 +1,16 @@
+Nytt
+• Stöd kanalflikar
+• Välj bildkvalitet
+• Få webbadresser till alla bilder
+
+Förbättrat
+• Tillgänglighet för spelargränssnitt
+• Bättre ljudval för endast video nedladdningar
+• Alternativ att inkludera spellista och videonamn till delat spellistinnehåll
+
+Fixat
+• [YouTube] Fixade hämtning av gillaantal
+• Fixade spelare som inte svarar popup och kraschar
+• Val av fel språk i språkväljare
+• Spelarens ljudfokus respekterade inte mute
+• Spellist-objekt addition som ibland inte fungerade

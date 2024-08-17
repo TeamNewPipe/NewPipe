@@ -75,7 +75,7 @@ public final class QueueItemMenuUtil {
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),
-                            item.getThumbnailUrl());
+                            item.getThumbnails());
                     return true;
                 case R.id.menu_item_download:
                     fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),

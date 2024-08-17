@@ -1,11 +1,19 @@
 package org.schabi.newpipe.streams.io;
 
+import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
+import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
+import android.system.Os;
+import android.system.StructStatVfs;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,23 +22,30 @@ import androidx.documentfile.provider.DocumentFile;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
-import java.io.File;
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
-import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StoredDirectoryHelper {
+    private static final String TAG = StoredDirectoryHelper.class.getSimpleName();
     public static final int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION
             | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
-    private File ioTree;
+    private Path ioTree;
     private DocumentFile docTree;
 
+    /**
+     * Context is `null` for non-SAF files, i.e. files that use `ioTree`.
+     */
+    @Nullable
     private Context context;
 
     private final String tag;
@@ -40,7 +55,7 @@ public class StoredDirectoryHelper {
         this.tag = tag;
 
         if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(path.getScheme())) {
-            this.ioTree = new File(URI.create(path.toString()));
+            ioTree = Paths.get(URI.create(path.toString()));
             return;
         }
 
@@ -64,13 +79,17 @@ public class StoredDirectoryHelper {
     }
 
     public StoredFileHelper createUniqueFile(final String name, final String mime) {
-        final ArrayList<String> matches = new ArrayList<>();
+        final List<String> matches = new ArrayList<>();
         final String[] filename = splitFilename(name);
-        final String lcFilename = filename[0].toLowerCase();
+        final String lcFileName = filename[0].toLowerCase();
 
         if (docTree == null) {
-            for (final File file : ioTree.listFiles()) {
-                addIfStartWith(matches, lcFilename, file.getName());
+            try (Stream<Path> stream = Files.list(ioTree)) {
+                matches.addAll(stream.map(path -> path.getFileName().toString().toLowerCase())
+                        .filter(fileName -> fileName.startsWith(lcFileName))
+                        .collect(Collectors.toList()));
+            } catch (final IOException e) {
+                Log.e(TAG, "Exception while traversing " + ioTree, e);
             }
         } else {
             // warning: SAF file listing is very slow
@@ -82,37 +101,37 @@ public class StoredDirectoryHelper {
             final ContentResolver cr = context.getContentResolver();
 
             try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
-                    new String[]{lcFilename}, null)) {
+                    new String[]{lcFileName}, null)) {
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
-                        addIfStartWith(matches, lcFilename, cursor.getString(0));
+                        addIfStartWith(matches, lcFileName, cursor.getString(0));
                     }
                 }
             }
         }
 
-        if (matches.size() < 1) {
+        if (matches.isEmpty()) {
             return createFile(name, mime, true);
-        } else {
-            // check if the filename is in use
-            String lcName = name.toLowerCase();
-            for (final String testName : matches) {
-                if (testName.equals(lcName)) {
-                    lcName = null;
-                    break;
-                }
-            }
+        }
 
-            // check if not in use
-            if (lcName != null) {
-                return createFile(name, mime, true);
+        // check if the filename is in use
+        String lcName = name.toLowerCase();
+        for (final String testName : matches) {
+            if (testName.equals(lcName)) {
+                lcName = null;
+                break;
             }
+        }
+
+        // create file if filename not in use
+        if (lcName != null) {
+            return createFile(name, mime, true);
         }
 
         Collections.sort(matches, String::compareTo);
 
         for (int i = 1; i < 1000; i++) {
-            if (Collections.binarySearch(matches, makeFileName(lcFilename, i, filename[1])) < 0) {
+            if (Collections.binarySearch(matches, makeFileName(lcFileName, i, filename[1])) < 0) {
                 return createFile(makeFileName(filename[0], i, filename[1]), mime, true);
             }
         }
@@ -141,11 +160,11 @@ public class StoredDirectoryHelper {
     }
 
     public Uri getUri() {
-        return docTree == null ? Uri.fromFile(ioTree) : docTree.getUri();
+        return docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri();
     }
 
     public boolean exists() {
-        return docTree == null ? ioTree.exists() : docTree.exists();
+        return docTree == null ? Files.exists(ioTree) : docTree.exists();
     }
 
     /**
@@ -158,9 +177,49 @@ public class StoredDirectoryHelper {
     }
 
     /**
+     * Get free memory of the storage partition this file belongs to (root of the directory).
+     * See <a href="https://stackoverflow.com/q/31171838">StackOverflow</a> and
+     * <a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/fstatvfs.html">
+     *     {@code statvfs()} and {@code fstatvfs()} docs</a>
+     *
+     * @return amount of free memory in the volume of current directory (bytes), or {@link
+     * Long#MAX_VALUE} if an error occurred
+     */
+    public long getFreeStorageSpace() {
+        try {
+            final StructStatVfs stat;
+
+            if (ioTree != null) {
+                // non-SAF file, use statvfs with the path directly (also, `context` would be null
+                // for non-SAF files, so we wouldn't be able to call `getContentResolver` anyway)
+                stat = Os.statvfs(ioTree.toString());
+
+            } else {
+                // SAF file, we can't get a path directly, so obtain a file descriptor first
+                // and then use fstatvfs with the file descriptor
+                try (ParcelFileDescriptor parcelFileDescriptor =
+                             context.getContentResolver().openFileDescriptor(getUri(), "r")) {
+                    if (parcelFileDescriptor == null) {
+                        return Long.MAX_VALUE;
+                    }
+                    final FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+                    stat = Os.fstatvfs(fileDescriptor);
+                }
+            }
+
+            // this is the same formula used inside the FsStat class
+            return stat.f_bavail * stat.f_frsize;
+        } catch (final Throwable e) {
+            // ignore any error
+            Log.e(TAG, "Could not get free storage space", e);
+            return Long.MAX_VALUE;
+        }
+    }
+
+    /**
      * Only using Java I/O. Creates the directory named by this abstract pathname, including any
-     * necessary but nonexistent parent directories.  Note that if this
-     * operation fails it may have succeeded in creating some of the necessary
+     * necessary but nonexistent parent directories.
+     * Note that if this operation fails it may have succeeded in creating some of the necessary
      * parent directories.
      *
      * @return <code>true</code> if and only if the directory was created,
@@ -169,7 +228,12 @@ public class StoredDirectoryHelper {
      */
     public boolean mkdirs() {
         if (docTree == null) {
-            return ioTree.exists() || ioTree.mkdirs();
+            try {
+                Files.createDirectories(ioTree);
+            } catch (final IOException e) {
+                Log.e(TAG, "Error while creating directories at " + ioTree, e);
+            }
+            return Files.exists(ioTree);
         }
 
         if (docTree.exists()) {
@@ -206,8 +270,8 @@ public class StoredDirectoryHelper {
 
     public Uri findFile(final String filename) {
         if (docTree == null) {
-            final File res = new File(ioTree, filename);
-            return res.exists() ? Uri.fromFile(res) : null;
+            final Path res = ioTree.resolve(filename);
+            return Files.exists(res) ? Uri.fromFile(res.toFile()) : null;
         }
 
         final DocumentFile res = findFileSAFHelper(context, docTree, filename);
@@ -215,7 +279,7 @@ public class StoredDirectoryHelper {
     }
 
     public boolean canWrite() {
-        return docTree == null ? ioTree.canWrite() : docTree.canWrite();
+        return docTree == null ? Files.isWritable(ioTree) : docTree.canWrite();
     }
 
     /**
@@ -230,14 +294,14 @@ public class StoredDirectoryHelper {
     @NonNull
     @Override
     public String toString() {
-        return (docTree == null ? Uri.fromFile(ioTree) : docTree.getUri()).toString();
+        return (docTree == null ? Uri.fromFile(ioTree.toFile()) : docTree.getUri()).toString();
     }
 
     ////////////////////
     //      Utils
     ///////////////////
 
-    private static void addIfStartWith(final ArrayList<String> list, @NonNull final String base,
+    private static void addIfStartWith(final List<String> list, @NonNull final String base,
                                        final String str) {
         if (isNullOrEmpty(str)) {
             return;
@@ -248,6 +312,12 @@ public class StoredDirectoryHelper {
         }
     }
 
+    /**
+     * Splits the filename into the name and extension.
+     *
+     * @param filename The filename to split
+     * @return A String array with the name at index 0 and extension at index 1
+     */
     private static String[] splitFilename(@NonNull final String filename) {
         final int dotIndex = filename.lastIndexOf('.');
 
@@ -259,7 +329,7 @@ public class StoredDirectoryHelper {
     }
 
     private static String makeFileName(final String name, final int idx, final String ext) {
-        return name.concat(" (").concat(String.valueOf(idx)).concat(")").concat(ext);
+        return name + "(" + idx + ")" + ext;
     }
 
     /**

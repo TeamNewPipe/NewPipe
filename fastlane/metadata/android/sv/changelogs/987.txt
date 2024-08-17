@@ -1,0 +1,12 @@
+Nytt
+• Stöd andra leveransmetoder än progressiv HTTP: snabbare uppspelningstid, fixar för PeerTube och SoundCloud, uppspelning av nyligen avslutade YouTube strömmar
+• La till knapp för att lägga till en fjärrspellista till en lokal
+• Bildförhandsvisning i Android 10+ dela blad
+
+Förbättrat
+• Förbättrade uppspelningsparametrar dialog
+• Flytta abonnemang import/exportknappar till trepunktsmenyn
+
+Fixat
+• Fixade ta bort tittade videor från spellista
+• Fixade dela meny tema och "lägg till i spellista"

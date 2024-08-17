@@ -23,10 +23,13 @@ import androidx.core.content.FileProvider;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 public final class ShareUtils {
     private static final String TAG = ShareUtils.class.getSimpleName();
@@ -249,7 +252,7 @@ public final class ShareUtils {
         // If loading of images has been disabled, don't try to generate a content preview
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 && !TextUtils.isEmpty(imagePreviewUrl)
-                && PicassoHelper.getShouldLoadImages()) {
+                && ImageStrategy.shouldLoadImages()) {
 
             final ClipData clipData = generateClipDataForImagePreview(context, imagePreviewUrl);
             if (clipData != null) {
@@ -259,6 +262,29 @@ public final class ShareUtils {
         }
 
         openAppChooser(context, shareIntent, false);
+    }
+
+    /**
+     * Open the android share sheet to share a content.
+     *
+     * <p>
+     * For Android 10+ users, a content preview is shown, which includes the title of the shared
+     * content and an image preview the content, if the preferred image chosen by {@link
+     * ImageStrategy#choosePreferredImage(List)} is in the image cache.
+     * </p>
+     *
+     * @param context the context to use
+     * @param title   the title of the content
+     * @param content the content to share
+     * @param images  a set of possible {@link Image}s of the subject, among which to choose with
+     *                {@link ImageStrategy#choosePreferredImage(List)} since that's likely to
+     *                provide an image that is in Picasso's cache
+     */
+    public static void shareText(@NonNull final Context context,
+                                 @NonNull final String title,
+                                 final String content,
+                                 final List<Image> images) {
+        shareText(context, title, content, ImageStrategy.choosePreferredImage(images));
     }
 
     /**

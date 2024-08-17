@@ -1,0 +1,15 @@
+Mới
+• Hỗ trợ nhiều bản âm thanh/ngôn ngữ
+• Cho phép cài đặt cử chỉ âm lượng và độ sáng ở bất kỳ phía nào của màn hình
+• Hỗ trợ hiển thị các tab chính ở cuối màn hình
+
+Cải thiện
+• [Bandcamp] Xử lý các dấu vết đằng sau bức tường phí
+
+Đã sửa
+• [YouTube] Lỗi HTTP 403 cho luồng
+• Trình phát màu đen khi chuyển sang trình phát chính từ chế độ xem danh sách phát
+• Rò rỉ bộ nhớ dịch vụ trình phát
+• [PeerTube] Hình đại diện của người tải lên và kênh con đã bị hoán đổi
+
+và hơn thế nữa

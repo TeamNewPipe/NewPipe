@@ -1,31 +1,31 @@
 # v0.14.1 değişiklikleri
 
-### Sabit
-- Sabit video url # 1659 şifresini çözmek için başarısız oldu
-- Sabit açıklama bağlantısı iyi ayıklanmıyor # 1657
+### Düzeltmeler
+- Video url'sinin şifresinin çözülememesi düzeltildi #1659 
+- Sabit açıklama bağlantısı iyi açılamıyor #1657
 
 # v0.14.0 değişiklikleri
 
-### Yeni
-- Yeni Çekmece tasarımı # 1461
-- Yeni özelleştirilebilir ön sayfa # 1461
+### Yenilikler
+- Yeni Çekmece tasarımı #1461
+- Yeni özelleştirilebilir ön sayfa #1461
 
-### Geliştirmeler
-- Yeniden işlenmiş Hareket kontrolleri # 1604
-- Pop-up oynatıcıyı kapatmanın yeni yolu # 1597
+### İyileştirmeler
+- Yenilenmiş Hareket kontrolleri #1604 
+- Açılır oynatıcıyı kapatmanın yeni yolu #1597
 
-### Sabit
-- Abonelik sayısı mevcut olmadığında bir hata düzeltildi. # 1649'u kapatır.
-- Bu durumlarda "Abone sayısı mevcut değil" i göster
-- Bir YouTube çalma listesi boş olduğunda npe'yi düzeltin
-- Soundcloud'daki kiosklar için hızlı düzeltme
-- Refactor ve hata düzeltme # 1623
-- Döngüsel arama sonucunu düzelt # 1562
-- Statik olarak yerleştirilmemiş Arama çubuğunu düzeltin
-- Fix YT Premium video doğru engellenmiyor
-- Bazen yüklenmeyen videoları düzeltin (ÇİZGİ ayrıştırma nedeniyle)
-- Video açıklamasındaki bağlantıları düzeltin
-- Birisi harici sd karta indirmeye çalıştığında uyarıyı göster
-- gösterilen hiçbir şey düzeltilmedi istisna tetikleyicileri raporu
-- android 8.1 için arka plan oynatıcısında gösterilmeyen küçük resim [buraya bakın] (https://github.com/TeamNewPipe/NewPipe/issues/943 )
-- Yayın alıcısının kaydını düzeltin. # 1641'i kapatır.
+### Düzeltmeler
+- Abonelik sayısı mevcut olmadığında hatayı düzeldi. Kapatılır #1649.
+  - Bu durumlarda "Abone sayısı mevcut değil" ifadesini göster
+- Bir YouTube oynatma listesi boş olduğunda NPE düzeltme
+- SoundCloud'daki kiosklar için hızlı düzeltme
+- Yeniden düzenleme ve hata düzeltme #1623
+  - Döngüsel arama sonucunu düzeltildi#1562
+  - Arama çubuğu statik olarak düzenlenmemiş düzeltildi
+  -YT Premium videoları doğru şekilde engellenmiyor düzeltildi
+  - Videoların bazen yüklenmemesi düzeltildi (DASH ayrıştırma nedeniyle)
+  - Video açıklamasındaki bağlantıları düzeltildi
+  - Birisi harici sd karta indirmeye çalıştığında uyarı göster
+  - Gösterilen hiçbir istisna tetikleyici bildirmesi düzeltildi
+  -   android 8.1 için arka plan oynatıcıda küçük resim gösterilmiyor [buradan ulaşabilirsiniz](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Yayın alıcısının kaydı düzeltildi. Kapatılır #1641.

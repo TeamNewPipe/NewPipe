@@ -1,0 +1,15 @@
+Rilis ini menghilangkan dukungan untuk Android 4.4 KitKat, sekarang versi minimumnya adalah Android 5 Lollipop!
+
+Baru
+• Download dari menu tekan lama
+• Sembunyikan video mendatang di feed
+• Bagikan playlist lokal
+
+Ditingkatkan
+• Memfaktorkan ulang kode pemutar menjadi komponen-komponen kecil: lebih sedikit RAM yang digunakan, lebih sedikit bug
+• Meningkatkan mode skala thumbnail
+• Placeholder gambar berukuran vektor
+
+Tetap
+• Memperbaiki berbagai masalah dengan notifikasi pemutar: info media yang ketinggalan jaman, gambar mini yang terdistorsi
+• Perbaiki layar penuh menggunakan 1/4 layar

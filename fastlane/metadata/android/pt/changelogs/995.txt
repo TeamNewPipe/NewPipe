@@ -1,0 +1,16 @@
+Novo
+- Separadores de canais de suporte
+- Selecionar a qualidade da imagem
+- Obter URLs para todas as imagens
+
+Melhorado
+- Acessibilidade das interfaces do leitor
+- Melhor seleção de áudio para transferências apenas de vídeo
+- Opção para incluir nomes de listas de reprodução e de vídeos no conteúdo de listas de reprodução partilhadas
+
+Corrigido
+- YouTube] Correção da contagem de gostos
+- Correção de popups e falhas do leitor que não responde
+- Seleção de idiomas errados no seletor de idiomas
+- A focagem do áudio do leitor não estava a respeitar o silêncio
+- A adição de itens à lista de reprodução não funcionava ocasionalmente.

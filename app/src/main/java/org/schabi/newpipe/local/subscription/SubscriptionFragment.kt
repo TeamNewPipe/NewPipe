@@ -115,6 +115,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         feedGroupsCarouselState = feedGroupsCarousel.onSaveInstanceState()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         disposables.dispose()
@@ -336,8 +341,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
                 0 -> ShareUtils.shareText(
-                    requireContext(), selectedItem.name, selectedItem.url,
-                    selectedItem.thumbnailUrl
+                    requireContext(), selectedItem.name, selectedItem.url, selectedItem.thumbnails
                 )
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
                 2 -> deleteChannel(selectedItem)

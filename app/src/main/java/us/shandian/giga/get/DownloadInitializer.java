@@ -18,10 +18,10 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 public class DownloadInitializer extends Thread {
-    private final static String TAG = "DownloadInitializer";
-    final static int mId = 0;
-    private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
-    private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
+    private static final String TAG = "DownloadInitializer";
+    static final int mId = 0;
+    private static final int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
+    private static final int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
     private final DownloadMission mMission;
     private HttpURLConnection mConn;

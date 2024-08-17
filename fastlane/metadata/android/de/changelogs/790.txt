@@ -1,0 +1,13 @@
+Verbessert
+• Weitere Titel hinzufügen, um die Zugänglichkeit für Blinde zu verbessern #2655
+• Sprache des Download-Ordners konsistenter und weniger eindeutig #2637
+
+Behoben
+• Fixed Scrolling in Video Detail Fragment #2672
+• Entfernen Sie doppelte Suche klare Box-Animationen zu einem #2695
+• [SoundCloud] Client_id Extraktion fix #2745
+
+Entwicklung
+• Hinzufügen fehlender Abhängigkeiten von NewPipeExtractor in NewPipe #2535
+• Migration auf AndroidX #2685
+• Update auf ExoPlayer 2.10.6 #2697, #2736

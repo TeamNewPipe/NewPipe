@@ -92,7 +92,7 @@ public final class TextLinkifier {
      * {@link HtmlCompat#fromHtml(String, int)}.
      * </p>
      *
-     * @param textView           the {@link TextView} to set the the HTML string block linked
+     * @param textView           the {@link TextView} to set the HTML string block linked
      * @param htmlBlock          the HTML string block to be linked
      * @param htmlCompatFlag     the int flag to be set when {@link HtmlCompat#fromHtml(String,
      *                           int)} will be called

@@ -1,0 +1,6 @@
+Fixade krasch som inträffade vid förflyttning av kanalgrupper.
+Fixade hämtning av fler YouTube videor från kanaler och spellistor.
+Fixade hämtning av YouTube kommentarer.
+La till stöd för /watch /, /v / och /w / subpaths i YouTube adresser.
+Fixade extraktion av SoundCloud klient id och geobegränsat innehåll.
+La till nordkurdisk lokalisering.

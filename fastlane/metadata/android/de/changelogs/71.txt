@@ -1,0 +1,8 @@
+### Verbesserungen
+* App-Update-Benachrichtigung für GitHub build hinzufügen (#1608 von @krtkush)
+* Verschiedene Verbesserungen des Downloaders (#1944 von @kapodamy):
+* Fügen Sie fehlende weiße Icons hinzu und verwenden Sie hardcored Weg, um die Icon Farben zu ändern
+* neue MPEG-4 muxer fixieren nicht-synchrone Video- und Audiostreams (#2039)
+
+### Fixed
+* YouTube Live-Streams spielen nach kurzer Zeit (#1996 von @yausername)

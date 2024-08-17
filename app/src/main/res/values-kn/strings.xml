@@ -1,2 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="controls_add_to_playlist_title">ಗೆ ಸೇರಿಸಿ</string>
+    <string name="show_info">ಮಾಹಿತಿಯನ್ನು ತೋರಿಸಿ</string>
+    <string name="channel_unsubscribed">ಚಾನಲ್ ಅನ್‌ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲಾಗಿದೆ</string>
+    <string name="open_in_popup_mode">ಪಾಪ್‌ಅಪ್ ಮೋಡ್‌ನಲ್ಲಿ ತೆರೆಯಿರಿ</string>
+    <string name="did_you_mean">ನೀವು \"%1$s\" ಎಂದು ಅರ್ಥೈಸಿದ್ದೀರಾ?</string>
+    <string name="share_dialog_title">ಬಳಸಿ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="download_path_dialog_title">ವೀಡಿಯೊ ಫೈಲ್‌ಗಳಿಗಾಗಿ ಡೌನ್‌ಲೋಡ್ ಫೋಲ್ಡರ್ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="subscribed_button_title">ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲಾಗಿದೆ</string>
+    <string name="download_path_audio_summary">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಆಡಿಯೊ ಫೈಲ್‌ಗಳನ್ನು ಇಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
+    <string name="use_external_audio_player_title">ಬಾಹ್ಯ ಆಡಿಯೊ ಪ್ಲೇಯರ್ ಬಳಸಿ</string>
+    <string name="subscription_change_failed">ಚಂದಾದಾರಿಕೆಯನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <string name="main_bg_subtitle">ಪ್ರಾರಂಭಿಸಲು ಭೂತಗನ್ನಡಿಯನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="use_external_video_player_summary">ಕೆಲವು ರೆಸಲ್ಯೂಶನ್‌ಗಳಲ್ಲಿ ಆಡಿಯೊವನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ</string>
+    <string name="upload_date_text">%1$s ರಂದು ಪ್ರಕಟಿಸಲಾಗಿದೆ</string>
+    <string name="mark_as_watched">ವೀಕ್ಷಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ</string>
+    <string name="no_player_found_toast">ಯಾವುದೇ ಸ್ಟ್ರೀಮ್ ಪ್ಲೇಯರ್ ಕಂಡುಬಂದಿಲ್ಲ (ಅದನ್ನು ಪ್ಲೇ ಮಾಡಲು ನೀವು VLC ಅನ್ನು ಸ್ಥಾಪಿಸಬಹುದು).</string>
+    <string name="ok">ಸರಿ</string>
+    <string name="open_in_browser">ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಿರಿ</string>
+    <string name="controls_popup_title">ಪಾಪ್ಅಪ್</string>
+    <string name="download">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="search_showing_result_for">ಇದಕ್ಕೆ ಫಲಿತಾಂಶಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ: %s</string>
+    <string name="open_with">ಇದರೊಂದಿಗೆ ತೆರೆಯಿರಿ</string>
+    <string name="download_path_summary">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ವೀಡಿಯೊ ಫೈಲ್‌ಗಳನ್ನು ಇಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
+    <string name="controls_download_desc">ಸ್ಟ್ರೀಮ್ ಫೈಲ್ ಅನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="cancel">ರದ್ದುಗೊಳಿಸಿ</string>
+    <string name="download_path_audio_title">ಆಡಿಯೋ ಡೌನ್‌ಲೋಡ್ ಫೋಲ್ಡರ್</string>
+    <string name="tab_bookmarks">ಬುಕ್ಮಾರ್ಕ್ ಮಾಡಲಾದ ಪ್ಲೇಪಟ್ಟಿಗಳು</string>
+    <string name="subscription_update_failed">ಚಂದಾದಾರಿಕೆಯನ್ನು ನವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <string name="subscribe_button_title">ಸಬ್‌ಸ್ಕ್ರೈಬ್</string>
+    <string name="search">ಹುಡುಕಿ</string>
+    <string name="tab_subscriptions">ಚಂದಾದಾರಿಕೆಗಳು</string>
+    <string name="settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="use_external_video_player_title">ಬಾಹ್ಯ ವೀಡಿಯೊ ಪ್ಲೇಯರ್ ಬಳಸಿ</string>
+    <string name="install">ಸ್ಥಾಪಿಸಿ</string>
+    <string name="no_player_found">ಯಾವುದೇ ಸ್ಟ್ರೀಮ್ ಪ್ಲೇಯರ್ ಕಂಡುಬಂದಿಲ್ಲ. VLC ಸ್ಥಾಪಿಸುವುದೇ?</string>
+    <string name="share">ಶೇರ್ ಮಾಡಿ</string>
+    <string name="download_path_title">ವೀಡಿಯೊ ಡೌನ್‌ಲೋಡ್ ಫೋಲ್ಡರ್</string>
+    <string name="tab_choose">ಟ್ಯಾಬ್ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="controls_background_title">ಹಿನ್ನೆಲೆ</string>
+    <string name="unsubscribe">ಅನ್‌ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಿ</string>
+    <string name="yes">ಹೌದು</string>
+    <string name="no">ಇಲ್ಲ</string>
+</resources>

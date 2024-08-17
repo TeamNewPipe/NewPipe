@@ -26,10 +26,10 @@
     <string name="subscription_update_failed">Hindi ma-update ang pagsubaybay</string>
     <string name="show_info">Ipakita ang impormasyon</string>
     <string name="tab_subscriptions">Mga Pagsubaybay</string>
-    <string name="tab_bookmarks">Mga naka-bookmark na playlist</string>
+    <string name="tab_bookmarks">Nakabookmark na Playlists</string>
     <string name="tab_choose">Pumili ng Tab</string>
     <string name="fragment_feed_title">Anong Bago</string>
-    <string name="controls_background_title">Background</string>
+    <string name="controls_background_title">Likuran</string>
     <string name="controls_popup_title">Palutangin</string>
     <string name="controls_add_to_playlist_title">Idagdag Sa</string>
     <string name="download_path_title">Folder ng mga na-download na video</string>
@@ -47,8 +47,7 @@
     <string name="show_play_with_kodi_title">Ipakita ang \"I-play gamit Kodi\"</string>
     <string name="notification_action_1_title">Pangalawang action button</string>
     <string name="notification_action_2_title">Pangatlong action button</string>
-    <string name="use_inexact_seek_summary">Pinapayagan ng di-saktong seek ang player na mag-seek sa mga posisyon nang mabilis ngunit na may pinababang kasaktuhan. Di ito gagana sa pag-seek nang 5, 15, o 25 segundo.</string>
-    <string name="download_thumbnail_summary">Patayin para mapigilan ang pag-load sa mga thumbnail, para makatipid ng data at paggamit sa memory. Lilinisin ang parehong image cache na nasa memory at nasa disk</string>
+    <string name="use_inexact_seek_summary">Pinapayagan ng di-saktong seek ang player na mag-seek sa mga posisyon nang mabilis ngunit na may pinababang kasaktuhan. Di ito gagana sa pag-seek nang 5, 15, o 25 segundo</string>
     <string name="show_search_suggestions_summary">Piliin ang mga mungkahing ipapakita habang naghahanap</string>
     <string name="show_description_summary">Patayin para itago ang paglalarawan ng video at karagdagang impormasyon</string>
     <string name="notification_actions_summary">I-edit ang bawat action sa abiso sa baba sa pamamagitan ng pagpindot sa mga ito. Pumili ng hanggang tatlong ipapakita sa siksik na abiso gamit ang mga checkbox sa kanan</string>
@@ -70,7 +69,6 @@
     <string name="clear_queue_confirmation_title">Kumpirmahin muna bago linisin ang pila</string>
     <string name="clear_queue_confirmation_summary">Maaaring mapalitan ang pila mo kung magpapalit ka ng player</string>
     <string name="clear_queue_confirmation_description">Papalitan ang aktibong pila sa player</string>
-    <string name="download_thumbnail_title">I-load ang mga thumbnail</string>
     <string name="show_description_title">Ipakita ang paglalarawan</string>
     <string name="show_meta_info_title">Ipakita ang meta info</string>
     <string name="show_meta_info_summary">Patayin para itago ang mga meta infobox na may karagdagang impormasyon tungkol sa creator ng stream, laman nito o ng hinanap</string>
@@ -159,7 +157,6 @@
     <string name="metadata_licence">Lisensya</string>
     <string name="metadata_language">Wika</string>
     <string name="metadata_privacy_private">Pribado</string>
-    <string name="metadata_thumbnail_url">URL ng Thumbnail</string>
     <string name="metadata_privacy_unlisted">Hindi nakalista</string>
     <string name="off">Nakapatay</string>
     <string name="new_and_hot">Bago at patok</string>
@@ -254,4 +251,15 @@
     <string name="metadata_age_limit">Hangganan ng Edad</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oo, pati na rin ang mga napanood nang video</string>
     <string name="auto_device_theme_title">Kusa (tema ng device)</string>
+    <string name="delete_view_history_alert">Tanggalin ang kabuuan ng watch history?</string>
+    <string name="no_streams_available_download">Walang mga stream na maaaring i-download</string>
+    <string name="import_subscriptions_hint">I-import o i-export ang mga subskripsyon galing sa 3-dot menu</string>
+    <string name="what_device_headline">Impormasyon:</string>
+    <string name="sorry_string">Paumanhin, hindi dapat iyon nangyari.</string>
+    <string name="error_snackbar_message">Paumanhin, mayroon nagkamali.</string>
+    <string name="could_not_setup_download_menu">Hindi maisaayos ang download menu</string>
+    <string name="search_history_deleted">Ang search history ay tinanggal</string>
+    <string name="no_one_watching">Walang nanonood</string>
+    <string name="empty_list_subtitle">Wala dito</string>
+    <string name="invalid_directory">Walang folder na ganoon</string>
 </resources>

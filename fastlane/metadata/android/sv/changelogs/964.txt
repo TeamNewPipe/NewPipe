@@ -1,0 +1,7 @@
+• La till stöd för kapitel i spelarkontroller
+• [PeerTube] La till Sepia-sökning
+• La till dela knappen i videodetaljvy och flyttad strömbeskrivning till flik layouten
+• Inaktivera återställande av ljusstyrka om ljusstyrks gest är inaktiverad
+• Lägg till listobjekt för att spela video på kodi
+• Fixade krasch när ingen standardwebbläsare är inställd på vissa enheter och förbättrade dela dialog
+• Växla spela/pausa med hårdvaru mellanslags knapp i fullskärm

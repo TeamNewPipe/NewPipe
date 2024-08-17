@@ -10,7 +10,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.PickerSubscriptionItemBinding
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.image.PicassoHelper
 
 data class PickerSubscriptionItem(
     val subscriptionEntity: SubscriptionEntity,

@@ -1,0 +1,13 @@
+Mới
+• Thêm nút "Mở trong trình duyệt" trong bảng lỗi
+• Thêm tùy chọn hiển thị nhóm kênh dạng danh sách
+• [YouTube] Nhấp và giữ vào các phân đoạn phát trực tuyến để chia sẻ URL dấu thời gian
+• Thêm nút xếp hàng phát vào trình phát mini
+
+Cải thiện
+• Thêm bản địa hóa tiếng Iceland và cập nhật nhiều bản dịch khác
+• Nhiều cải tiến nội bộ
+
+Sửa chữa
+• Khắc phục nhiều sự cố
+• [YouTube] Khắc phục sự cố tải kênh, nguồn cấp dữ liệu không chuyên dụng và giải pháp khắc phục sự cố phát lại ở một số quốc gia

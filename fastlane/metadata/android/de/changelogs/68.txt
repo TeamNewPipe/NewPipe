@@ -1,0 +1,19 @@
+# Änderungen von v0.14.1
+
+### Fixed
+- nicht entschlüsselt Video url #1659
+- Beschreibungs Link nicht extrahierbar #1657
+
+# Änderungen von v0.14.0
+
+### New
+- Neues Schubladendesign #1461
+- Neue anpassbare Titelseite #1461
+
+### Verbesserungen
+- Reworked Gesture Controls #1604
+- Neue Möglichkeit, den Popup-Player #1597 zu schließen
+
+### Fixed
+- Fehler beheben, wenn die Anzahl der Abonnements nicht verfügbar ist. Schließt #1649.
+- Zeigen Sie "Abonnentenzählung nicht verfügbar" in diesen Fällen.

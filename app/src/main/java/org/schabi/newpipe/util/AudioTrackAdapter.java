@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
 
 import java.io.Serializable;
 import java.util.List;
@@ -75,15 +75,15 @@ public class AudioTrackAdapter extends BaseAdapter {
     }
 
     public static class AudioTracksWrapper implements Serializable {
-        private final List<StreamSizeWrapper<AudioStream>> tracksList;
+        private final List<StreamInfoWrapper<AudioStream>> tracksList;
 
         public AudioTracksWrapper(@NonNull final List<List<AudioStream>> groupedAudioStreams,
                                   @Nullable final Context context) {
             this.tracksList = groupedAudioStreams.stream().map(streams ->
-                    new StreamSizeWrapper<>(streams, context)).collect(Collectors.toList());
+                    new StreamInfoWrapper<>(streams, context)).collect(Collectors.toList());
         }
 
-        public List<StreamSizeWrapper<AudioStream>> getTracksList() {
+        public List<StreamInfoWrapper<AudioStream>> getTracksList() {
             return tracksList;
         }
 

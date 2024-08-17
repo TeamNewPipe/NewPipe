@@ -27,6 +27,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BundleCompat;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -82,7 +83,8 @@ public final class StateSaver {
             return null;
         }
 
-        final SavedState savedState = outState.getParcelable(KEY_SAVED_STATE);
+        final SavedState savedState = BundleCompat.getParcelable(
+                outState, KEY_SAVED_STATE, SavedState.class);
         if (savedState == null) {
             return null;
         }
@@ -309,7 +311,7 @@ public final class StateSaver {
     }
 
     /**
-     * Used for describe how to save/read the objects.
+     * Used for describing how to save/read the objects.
      * <p>
      * Queue was chosen by its FIFO property.
      */

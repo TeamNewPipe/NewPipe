@@ -1,0 +1,21 @@
+Yeni
+Oynatma devam ediyor #2288
+- Akışlara en son kaldığınız yerden devam edin
+İndirici Geliştirmeleri #2149
+- İndirmeleri harici SD kartlarda depolamak için Depolama Erişim Çerçevesini kullanın
+- Yeni mp4 muxer
+- İsteğe bağlı olarak indirme işlemine başlamadan önce indirme dizinini değiştirme
+- Ölçülü ağlara saygı gösterin
+
+Geliştirilmiş
+- Gema dizeleri kaldırıldı #2295
+- Etkinlik yaşam döngüsü sırasında (otomatik) rotasyon değişikliklerini işleme #2444
+- Uzun basma menülerini tutarlı hale getirin #2368
+
+Sabit
+- Seçili altyazı parça adının gösterilmemesi düzeltildi #2394
+- Uygulama güncellemesi kontrolü başarısız olduğunda çökme (GitHub sürümü) #2423
+- İndirmelerin %99,9'da takılması düzeltildi #2440
+- Oynatma kuyruğu meta verilerini güncelleme #2453
+- [SoundCloud] Çalma listeleri yüklenirken oluşan çökme düzeltildi TeamNewPipe/NewPipeExtractor#170
+- [YouTube] Sabit süre ayrıştırılamıyor TeamNewPipe/NewPipeExtractor#177

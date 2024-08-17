@@ -11,6 +11,7 @@ import androidx.room.PrimaryKey;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import static org.schabi.newpipe.database.LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_NAME;
@@ -20,7 +21,6 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
 
 @Entity(tableName = REMOTE_PLAYLIST_TABLE,
         indices = {
-                @Index(value = {REMOTE_PLAYLIST_NAME}),
                 @Index(value = {REMOTE_PLAYLIST_SERVICE_ID, REMOTE_PLAYLIST_URL}, unique = true)
         })
 public class PlaylistRemoteEntity implements PlaylistLocalItem {
@@ -31,6 +31,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     public static final String REMOTE_PLAYLIST_URL = "url";
     public static final String REMOTE_PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
     public static final String REMOTE_PLAYLIST_UPLOADER_NAME = "uploader";
+    public static final String REMOTE_PLAYLIST_DISPLAY_INDEX = "display_index";
     public static final String REMOTE_PLAYLIST_STREAM_COUNT = "stream_count";
 
     @PrimaryKey(autoGenerate = true)
@@ -52,6 +53,9 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @ColumnInfo(name = REMOTE_PLAYLIST_UPLOADER_NAME)
     private String uploader;
 
+    @ColumnInfo(name = REMOTE_PLAYLIST_DISPLAY_INDEX)
+    private long displayIndex = -1; // Make sure the new item is on the top
+
     @ColumnInfo(name = REMOTE_PLAYLIST_STREAM_COUNT)
     private Long streamCount;
 
@@ -67,10 +71,24 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     }
 
     @Ignore
+    public PlaylistRemoteEntity(final int serviceId, final String name, final String url,
+                                final String thumbnailUrl, final String uploader,
+                                final long displayIndex, final Long streamCount) {
+        this.serviceId = serviceId;
+        this.name = name;
+        this.url = url;
+        this.thumbnailUrl = thumbnailUrl;
+        this.uploader = uploader;
+        this.displayIndex = displayIndex;
+        this.streamCount = streamCount;
+    }
+
+    @Ignore
     public PlaylistRemoteEntity(final PlaylistInfo info) {
         this(info.getServiceId(), info.getName(), info.getUrl(),
-                info.getThumbnailUrl() == null
-                        ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
+                // use uploader avatar when no thumbnail is available
+                ImageStrategy.imageListToDbUrl(info.getThumbnails().isEmpty()
+                        ? info.getUploaderAvatars() : info.getThumbnails()),
                 info.getUploaderName(), info.getStreamCount());
     }
 
@@ -84,10 +102,14 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
                 && getStreamCount() == info.getStreamCount()
                 && TextUtils.equals(getName(), info.getName())
                 && TextUtils.equals(getUrl(), info.getUrl())
-                && TextUtils.equals(getThumbnailUrl(), info.getThumbnailUrl())
+                // we want to update the local playlist data even when either the remote thumbnail
+                // URL changes, or the preferred image quality setting is changed by the user
+                && TextUtils.equals(getThumbnailUrl(),
+                ImageStrategy.imageListToDbUrl(info.getThumbnails()))
                 && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
+    @Override
     public long getUid() {
         return uid;
     }
@@ -134,6 +156,16 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     public void setUploader(final String uploader) {
         this.uploader = uploader;
+    }
+
+    @Override
+    public long getDisplayIndex() {
+        return displayIndex;
+    }
+
+    @Override
+    public void setDisplayIndex(final long displayIndex) {
+        this.displayIndex = displayIndex;
     }
 
     public Long getStreamCount() {

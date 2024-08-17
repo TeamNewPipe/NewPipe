@@ -2,6 +2,8 @@ package us.shandian.giga.util;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 
 import androidx.annotation.ColorInt;
@@ -26,10 +28,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.Locale;
-import java.util.Random;
 
 import okio.ByteString;
-import us.shandian.giga.get.DownloadMission;
 
 public class Utility {
 

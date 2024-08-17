@@ -1,0 +1,15 @@
+Novo
+- Suporte para várias faixas de áudio/idiomas
+- Permitir definir gestos de volume e brilho em qualquer lado do ecrã
+- Suporte para a apresentação dos separadores principais na parte inferior do ecrã
+
+Melhorado
+- Bandcamp] Lidar com faixas atrás do muro de pagamento
+
+Corrigido
+- YouTube] Erros HTTP 403 para streams
+- Leitor preto ao mudar para o leitor principal a partir da vista de lista de reprodução
+- Fuga de memória do serviço do leitor
+- PeerTube] Os avatares do carregador e do sub-canal foram trocados
+
+e mais

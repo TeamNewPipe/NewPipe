@@ -12,16 +12,16 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
-        applicationId "org.lapuente.newpipe3"
-        resValue "string", "app_name", "NewPipe3"
+        applicationId "org.schabi.newpipe"
+        resValue "string", "app_name", "NewPipe"
         minSdk 21
         targetSdk 33
         versionCode 994
-        versionName "0.25.3"
+        versionName "0.27.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

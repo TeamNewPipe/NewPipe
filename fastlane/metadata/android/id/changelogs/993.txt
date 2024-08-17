@@ -1,0 +1,12 @@
+Baru
+• Tambahkan peringatan saat menambahkan duplikat daftar putar dan tombol tambahkan untuk menghapusnya
+• Izinkan pengabaian tombol perangkat keras
+• Izinkan menyembunyikan video yang ditonton sebagian di feed
+
+Ditingkatkan
+• Gunakan lebih banyak kolom grid di layar besar
+• Membuat indikator kemajuan konsisten dengan pengaturan
+
+Tetap
+• Memperbaiki URL pembuka browser, unduhan, dan pemutar eksternal di Android 11+
+• Memperbaiki interaksi dengan layar penuh yang memerlukan dua ketukan pada MIUI

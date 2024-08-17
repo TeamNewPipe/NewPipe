@@ -1,0 +1,17 @@
+Nytt
+• La till kommentars svar
+• Tillåt omordnande av spellistor
+• Visa spellistors beskrivning och varaktighet
+• Tillåt återställning av inställningar
+
+Förbättrat
+• [Android 13+] Återställ anpassade aviserings åtgärder
+• Begär samtycke för uppdateringskontroll
+• Tillåt spela/pausa från avisering under buffring
+• Omordnade några inställningar
+
+Fixat
+• [YouTube] Fixade kommentarer som inte laddas
+• Lös sårbarhet i inställnings import och byt till JSON
+• Olika hämtnings fixar
+• Trimma sök text

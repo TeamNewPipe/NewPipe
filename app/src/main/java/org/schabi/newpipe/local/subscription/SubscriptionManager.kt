@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription
 
 import android.content.Context
+import android.util.Pair
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -11,12 +12,13 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfo
-import org.schabi.newpipe.extractor.feed.FeedInfo
+import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
+import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 
 class SubscriptionManager(context: Context) {
     private val database = NewPipeDatabase.getInstance(context)
@@ -46,28 +48,38 @@ class SubscriptionManager(context: Context) {
         }
     }
 
-    fun upsertAll(infoList: List<ChannelInfo>): List<SubscriptionEntity> {
+    fun upsertAll(infoList: List<Pair<ChannelInfo, List<ChannelTabInfo>>>): List<SubscriptionEntity> {
         val listEntities = subscriptionTable.upsertAll(
-            infoList.map { SubscriptionEntity.from(it) }
+            infoList.map { SubscriptionEntity.from(it.first) }
         )
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                feedDatabaseManager.upsertAll(listEntities[index].uid, info.relatedItems)
+                info.second.forEach {
+                    feedDatabaseManager.upsertAll(
+                        listEntities[index].uid,
+                        it.relatedItems.filterIsInstance<StreamInfoItem>()
+                    )
+                }
             }
         }
 
         return listEntities
     }
 
-    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
-        .flatMapCompletable {
-            Completable.fromRunnable {
-                it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
-                subscriptionTable.update(it)
-                feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
+    fun updateChannelInfo(info: ChannelInfo): Completable =
+        subscriptionTable.getSubscription(info.serviceId, info.url)
+            .flatMapCompletable {
+                Completable.fromRunnable {
+                    it.setData(
+                        info.name,
+                        ImageStrategy.imageListToDbUrl(info.avatars),
+                        info.description,
+                        info.subscriberCount
+                    )
+                    subscriptionTable.update(it)
+                }
             }
-        }
 
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)
@@ -84,19 +96,17 @@ class SubscriptionManager(context: Context) {
             }
     }
 
-    fun updateFromInfo(subscriptionId: Long, info: ListInfo<StreamInfoItem>) {
-        val subscriptionEntity = subscriptionTable.getSubscription(subscriptionId)
+    fun updateFromInfo(info: FeedUpdateInfo) {
+        val subscriptionEntity = subscriptionTable.getSubscription(info.uid)
 
-        if (info is FeedInfo) {
-            subscriptionEntity.name = info.name
-        } else if (info is ChannelInfo) {
-            subscriptionEntity.setData(
-                info.name,
-                info.avatarUrl,
-                info.description,
-                info.subscriberCount
-            )
-        }
+        subscriptionEntity.name = info.name
+
+        // some services do not provide an avatar URL
+        info.avatarUrl?.let { subscriptionEntity.avatarUrl = it }
+
+        // these two fields are null if the feed info was fetched using the fast feed method
+        info.description?.let { subscriptionEntity.description = it }
+        info.subscriberCount?.let { subscriptionEntity.subscriberCount = it }
 
         subscriptionTable.update(subscriptionEntity)
     }
@@ -107,11 +117,8 @@ class SubscriptionManager(context: Context) {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun insertSubscription(subscriptionEntity: SubscriptionEntity, info: ChannelInfo) {
-        database.runInTransaction {
-            val subscriptionId = subscriptionTable.insert(subscriptionEntity)
-            feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
-        }
+    fun insertSubscription(subscriptionEntity: SubscriptionEntity) {
+        subscriptionTable.insert(subscriptionEntity)
     }
 
     fun deleteSubscription(subscriptionEntity: SubscriptionEntity) {
@@ -125,7 +132,10 @@ class SubscriptionManager(context: Context) {
      */
     private fun rememberAllStreams(subscription: SubscriptionEntity): Completable {
         return ExtractorHelper.getChannelInfo(subscription.serviceId, subscription.url, false)
-            .map { channel -> channel.relatedItems.map { stream -> StreamEntity(stream) } }
+            .flatMap { info ->
+                ExtractorHelper.getChannelTab(subscription.serviceId, info.tabs.first(), false)
+            }
+            .map { channel -> channel.relatedItems.filterIsInstance<StreamInfoItem>().map { stream -> StreamEntity(stream) } }
             .flatMapCompletable { entities ->
                 Completable.fromAction {
                     database.streamDAO().upsertAll(entities)

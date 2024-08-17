@@ -1,0 +1,2 @@
+Eine NullPointerException beim Öffnen eines Kanals / einer Konferenz in media.ccc.de behoben.
+Der Grinch hat versucht, unser Weihnachtsgeschenk für Sie zu zerstören, aber wir haben es behoben.

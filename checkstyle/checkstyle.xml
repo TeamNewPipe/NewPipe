@@ -39,11 +39,13 @@
     <module name="Translation"/>
 
     <!-- Checks for Size Violations.                    -->
-    <!-- See https://checkstyle.org/config_sizes.html -->
+    <!-- See https://checkstyle.sourceforge.io/checks/sizes/index.html -->
     <module name="FileLength"/>
     <module name="LineLength">
       <property name="max" value="100"/>
       <property name="fileExtensions" value="java"/>
+      <!-- Also allow links in javadocs to be longer (the default would just cover imports) -->
+      <property name="ignorePattern" value="^((package|import) .*)|( *\* &lt;a href ?\= ?&quot;.*&quot;&gt;)$"/>
     </module>
 
     <!-- Checks for whitespace                               -->
@@ -69,6 +71,8 @@
     <module name="SuppressWarningsFilter" />
 
     <module name="TreeWalker">
+        <module name="SuppressionCommentFilter"/>
+
         <!-- Checks for Javadoc comments.                     -->
         <!-- See https://checkstyle.org/config_javadoc.html -->
         <module name="InvalidJavadocPosition"/>

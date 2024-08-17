@@ -8,12 +8,13 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.time.format.DateTimeFormatter;
 
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
+
     public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
                                     final ViewGroup parent) {
         super(infoItemBuilder, parent);

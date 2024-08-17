@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.playqueue;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
@@ -20,11 +22,11 @@ public final class SinglePlayQueue extends PlayQueue {
         getItem().setRecoveryPosition(startPosition);
     }
 
-    public SinglePlayQueue(final List<StreamInfoItem> items, final int index) {
+    public SinglePlayQueue(@NonNull final List<StreamInfoItem> items, final int index) {
         super(index, playQueueItemsOf(items));
     }
 
-    private static List<PlayQueueItem> playQueueItemsOf(final List<StreamInfoItem> items) {
+    private static List<PlayQueueItem> playQueueItemsOf(@NonNull final List<StreamInfoItem> items) {
         final List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
         for (final StreamInfoItem item : items) {
             playQueueItems.add(new PlayQueueItem(item));
@@ -39,5 +41,7 @@ public final class SinglePlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
+        // Item was already passed in constructor.
+        // No further items need to be fetched as this is a PlayQueue with only one item
     }
 }

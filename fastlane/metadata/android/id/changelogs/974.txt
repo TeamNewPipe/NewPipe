@@ -1,0 +1,5 @@
+Perbaikan terbaru
+• Memperbaiki masalah buffering yang disebabkan oleh pembatasan YouTube
+• Memperbaiki ekstraksi komentar YouTube dan kerusakan pada komentar yang dinonaktifkan
+• Perbaiki pencarian musik YouTube
+• Perbaiki streaming langsung PeerTube

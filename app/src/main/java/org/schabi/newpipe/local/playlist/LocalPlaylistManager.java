@@ -19,7 +19,6 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
@@ -43,10 +42,13 @@ public class LocalPlaylistManager {
             return Maybe.empty();
         }
 
+        // Save to the database directly.
+        // Make sure the new playlist is always on the top of bookmark.
+        // The index will be reassigned to non-negative number in BookmarkFragment.
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
                     final List<Long> streamIds = streamTable.upsertAll(streams);
                     final PlaylistEntity newPlaylist = new PlaylistEntity(name, false,
-                            streamIds.get(0));
+                            streamIds.get(0), -1);
 
                     return insertJoinEntities(playlistTable.insert(newPlaylist),
                             streamIds, 0);
@@ -89,8 +91,20 @@ public class LocalPlaylistManager {
         })).subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
-        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
+    public Completable updatePlaylists(final List<PlaylistMetadataEntry> updateItems,
+                                       final List<Long> deletedItems) {
+        final List<PlaylistEntity> items = new ArrayList<>(updateItems.size());
+        for (final PlaylistMetadataEntry item : updateItems) {
+            items.add(new PlaylistEntity(item));
+        }
+        return Completable.fromRunnable(() -> database.runInTransaction(() -> {
+            for (final Long uid : deletedItems) {
+                playlistTable.deletePlaylist(uid);
+            }
+            for (final PlaylistEntity item : items) {
+                playlistTable.upsertPlaylist(item);
+            }
+        })).subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistStreamEntry>> getDistinctPlaylistStreams(final long playlistId) {
@@ -110,13 +124,12 @@ public class LocalPlaylistManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
-        return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
+    public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
+        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deletePlaylist(final long playlistId) {
-        return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
-                .subscribeOn(Schedulers.io());
+    public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
+        return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {

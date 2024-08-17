@@ -13,8 +13,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
@@ -87,8 +86,7 @@ public class InfoItemBuilder {
                 return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent)
                         : new PlaylistInfoItemHolder(this, parent);
             case COMMENT:
-                return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent)
-                        : new CommentsInfoItemHolder(this, parent);
+                return new CommentInfoItemHolder(this, parent);
             default:
                 throw new RuntimeException("InfoType not expected = " + infoType.name());
         }
