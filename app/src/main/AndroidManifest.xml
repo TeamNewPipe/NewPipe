@@ -10,9 +10,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.car.permission.CAR_UX_RESTRICTIONS_CONFIGURATION" />
-    <uses-permission android:name="android.car.permission.CAR_DRIVING_STATE"/>
-
+    <uses-permission android:name="android.permission.CAR_UX_RESTRICTIONS_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.CAR_DRIVING_STATE"/>
     <!-- We need to be able to open links in the browser on API 30+ -->
     <queries>
         <intent>
@@ -49,10 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+            <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <receiver
@@ -62,6 +58,8 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
+	
+
 
         <service
             android:name=".player.PlayerService"
@@ -77,28 +75,22 @@
             android:exported="false"
             android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
             android:label="@string/settings">
-                <meta-data
-                 android:name="distractionOptimized"
-                     android:value="true" />
-        </activity>
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
+</activity>
 
         <activity
             android:name=".about.AboutActivity"
             android:exported="false"
-            android:label="@string/title_activity_about" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
-        </activity>
+            android:label="@string/title_activity_about">
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
+</activity>
 
         <service android:name=".local.subscription.services.SubscriptionsImportService" />
         <service android:name=".local.subscription.services.SubscriptionsExportService" />
@@ -115,27 +107,21 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+	    	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <activity
             android:name=".ExitActivity"
             android:exported="false"
             android:label="@string/general_error"
-            android:theme="@android:style/Theme.NoDisplay" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+            android:theme="@android:style/Theme.NoDisplay">
+	    	    	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <activity
             android:name=".error.ErrorActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+            android:exported="false">
+	    	    	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <!-- giga get related -->
@@ -143,10 +129,8 @@
             android:name=".download.DownloadActivity"
             android:exported="false"
             android:label="@string/app_name"
-            android:launchMode="singleTask" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+            android:launchMode="singleTask">	    	    
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <service android:name="us.shandian.giga.service.DownloadManagerService" />
@@ -160,19 +144,14 @@
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <activity
             android:name=".error.ReCaptchaActivity"
             android:exported="false"
-            android:label="@string/recaptcha" >
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+            android:label="@string/recaptcha">	    	    
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
         </activity>
 
         <provider
@@ -192,10 +171,8 @@
             android:label="@string/preferred_open_action_share_menu_title"
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
-
-            <meta-data
-                android:name="distractionOptimized"
-                android:value="true" />
+	    
+	    <meta-data android:name="distractionOptimized" android:value="true"/>
 
             <!-- Youtube filter -->
             <intent-filter>

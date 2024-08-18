@@ -16,11 +16,11 @@ android {
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
-        applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        applicationId "org.lapuente.newpipe3"
+        resValue "string", "app_name", "NewPipe3"
         minSdk 21
         targetSdk 33
-        versionCode 994
+        versionCode 999
         versionName "0.27.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -50,9 +50,6 @@ android {
             }
         }
 
-        // Keep the release build type at the end of the list to override 'archivesBaseName' of
-        // debug build. This seems to be a Gradle bug, therefore
-        // TODO: update Gradle version
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
@@ -101,7 +98,9 @@ android {
         resources {
             // remove two files which belong to jsoup
             // no idea how they ended up in the META-INF dir...
-            excludes += ['META-INF/README.md', 'META-INF/CHANGES']
+            excludes += ['META-INF/README.md', 'META-INF/CHANGES',
+                         // 'COPYRIGHT' belongs to RxJava...
+                         'META-INF/COPYRIGHT']
         }
     }
 }
@@ -109,19 +108,18 @@ android {
 ext {
     checkstyleVersion = '10.12.1'
 
-    androidxLifecycleVersion = '2.5.1'
-    androidxRoomVersion = '2.5.2'
-    androidxWorkVersion = '2.7.1'
+    androidxLifecycleVersion = '2.6.2'
+    androidxRoomVersion = '2.6.1'
+    androidxWorkVersion = '2.8.1'
 
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.18.7'
-    googleAutoServiceVersion = '1.0.1'
+    googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.12'
     stethoVersion = '1.6.0'
-    mockitoVersion = '4.0.0'
 }
 
 configurations {
@@ -136,7 +134,7 @@ checkstyle {
     toolVersion = checkstyleVersion
 }
 
-task runCheckstyle(type: Checkstyle) {
+tasks.register('runCheckstyle', Checkstyle) {
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
@@ -157,7 +155,7 @@ task runCheckstyle(type: Checkstyle) {
 def outputDir = "${project.buildDir}/reports/ktlint/"
 def inputFiles = project.fileTree(dir: "src", include: "**/*.kt")
 
-task runKtlint(type: JavaExec) {
+tasks.register('runKtlint', JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     getMainClass().set("com.pinterest.ktlint.Main")
@@ -166,7 +164,7 @@ task runKtlint(type: JavaExec) {
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
-task formatKtlint(type: JavaExec) {
+tasks.register('formatKtlint', JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     getMainClass().set("com.pinterest.ktlint.Main")
@@ -192,7 +190,7 @@ sonar {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
@@ -200,7 +198,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:340095515d45ecbee576872c7198992ebd8e4f08'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.2'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -208,31 +206,31 @@ dependencies {
     ktlint 'com.pinterest:ktlint:0.45.2'
 
 /** Kotlin **/
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 
 /** AndroidX **/
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.6.2'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
-    implementation 'androidx.media:media:1.6.0'
-    implementation 'androidx.preference:preference:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.media:media:1.7.0'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     // Newer version specified to prevent accessibility regressions with RecyclerView, see:
     // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
@@ -240,13 +238,10 @@ dependencies {
     kapt "frankiesardo:icepick-processor:${icepickVersion}"
 
     // HTML parser
-    implementation "org.jsoup:jsoup:1.16.1"
+    implementation "org.jsoup:jsoup:1.17.2"
 
     // HTTP client
-    implementation "com.squareup.okhttp3:okhttp:4.11.0"
-    // okhttp3:4.11.0 introduces a vulnerability from com.squareup.okio:okio@3.3.0,
-    // remove com.squareup.okio:okio when updating okhttp
-    implementation "com.squareup.okio:okio:3.4.0"
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"
 
     // Media player
     implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
@@ -275,19 +270,19 @@ dependencies {
     implementation "io.noties.markwon:linkify:${markwonVersion}"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.10.1"
+    implementation "ch.acra:acra-core:5.11.3"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
-    implementation "io.reactivex.rxjava3:rxjava:3.1.6"
+    implementation "io.reactivex.rxjava3:rxjava:3.1.8"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     // Date and time formatting
-    implementation "org.ocpsoft.prettytime:prettytime:5.0.6.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
 /** Debugging **/
     // Memory leak detection
@@ -300,13 +295,12 @@ dependencies {
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+    testImplementation 'org.mockito:mockito-core:5.6.0'
 
     androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
-    androidTestImplementation "org.assertj:assertj-core:3.23.1"
+    androidTestImplementation "org.assertj:assertj-core:3.24.2"
 }
 
 static String getGitWorkingBranch() {
