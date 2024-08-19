@@ -56,6 +56,7 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
@@ -255,6 +256,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
         binding.itemsList.adapter = groupAdapter
         binding.itemsList.itemAnimator = null
+
+        binding.emptyStateView.setEmptyStateComposable()
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(this::handleResult) }
