@@ -1,10 +1,15 @@
 package org.schabi.newpipe.ui.components.about
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -15,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -39,30 +46,49 @@ private val ABOUT_ITEMS = listOf(
     )
 )
 
+private class AboutData(
+    @StringRes val title: Int,
+    @StringRes val description: Int,
+    @StringRes val buttonText: Int,
+    @StringRes val url: Int
+)
+
 @Composable
 @NonRestartableComposable
 fun AboutTab() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(R.drawable.icon),
-            contentDescription = stringResource(R.string.app_name)
-        )
-        Text(
-            style = MaterialTheme.typography.titleLarge,
-            text = stringResource(R.string.app_name)
-        )
-        Text(text = BuildConfig.VERSION_NAME)
-    }
+    val scrollState = rememberScrollState()
 
-    Text(text = stringResource(R.string.app_description))
+    ColumnScrollbar(state = scrollState) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 10.dp)
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentSize(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.icon),
+                    contentDescription = stringResource(R.string.app_name)
+                )
+                Text(
+                    style = MaterialTheme.typography.titleLarge,
+                    text = stringResource(R.string.app_name)
+                )
+                Text(text = BuildConfig.VERSION_NAME)
+            }
 
-    for (item in ABOUT_ITEMS) {
-        AboutItem(item)
+            Text(text = stringResource(R.string.app_description))
+
+            for (item in ABOUT_ITEMS) {
+                AboutItem(item)
+            }
+        }
     }
 }
 

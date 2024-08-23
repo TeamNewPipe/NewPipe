@@ -9,6 +9,8 @@ plugins {
     id "kotlin-parcelize"
     id "checkstyle"
     id "org.sonarqube" version "4.0.0.2929"
+    id "org.jetbrains.kotlin.plugin.compose" version "${kotlin_version}"
+    id 'com.mikepenz.aboutlibraries.plugin'
 }
 
 android {
@@ -103,10 +105,6 @@ android {
                          // 'COPYRIGHT' belongs to RxJava...
                          'META-INF/COPYRIGHT']
         }
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
@@ -292,6 +290,9 @@ dependencies {
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.ui:ui-text:1.7.0-beta05' // Needed for parsing HTML to AnnotatedString
     implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
+
+    // Library loading for About screen
+    implementation "com.mikepenz:aboutlibraries-compose-m3:$about_libs"
 
 /** Debugging **/
     // Memory leak detection

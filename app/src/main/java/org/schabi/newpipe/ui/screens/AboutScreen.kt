@@ -1,15 +1,12 @@
 package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
@@ -27,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.about.AboutTab
 import org.schabi.newpipe.ui.components.about.LicenseTab
@@ -65,22 +61,10 @@ fun AboutScreen(padding: PaddingValues) {
                 .fillMaxWidth()
                 .weight(1f)
         ) { page ->
-            val scrollState = rememberScrollState()
-
-            ColumnScrollbar(state = scrollState) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 10.dp)
-                        .verticalScroll(scrollState),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    if (page == 0) {
-                        AboutTab()
-                    } else {
-                        LicenseTab()
-                    }
-                }
+            if (page == 0) {
+                AboutTab()
+            } else {
+                LicenseTab()
             }
         }
     }
