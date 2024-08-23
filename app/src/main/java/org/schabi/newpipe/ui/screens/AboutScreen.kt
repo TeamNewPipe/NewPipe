@@ -1,6 +1,7 @@
 package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,6 +32,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 
 private val TITLES = intArrayOf(R.string.tab_about, R.string.tab_licenses)
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 @NonRestartableComposable
 fun AboutScreen(padding: PaddingValues) {
