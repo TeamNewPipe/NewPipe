@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
@@ -27,7 +28,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     abstract override fun listByService(serviceId: Int): Flowable<List<StreamEntity>>
 
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
-    abstract fun getStream(serviceId: Long, url: String): Flowable<List<StreamEntity>>
+    abstract fun getStream(serviceId: Long, url: String): Maybe<StreamEntity>
 
     @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
     abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable

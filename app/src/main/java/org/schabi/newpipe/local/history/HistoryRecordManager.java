@@ -18,10 +18,13 @@ package org.schabi.newpipe.local.history;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import static org.schabi.newpipe.util.ExtractorHelper.getStreamInfo;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.collection.LongLongPair;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
@@ -45,7 +48,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.feed.FeedViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -91,47 +93,39 @@ public class HistoryRecordManager {
      * @param info the item to mark as watched
      * @return a Maybe containing the ID of the item if successful
      */
-    public Maybe<Long> markAsWatched(final StreamInfoItem info) {
+    public Completable markAsWatched(final StreamInfoItem info) {
         if (!isStreamHistoryEnabled()) {
-            return Maybe.empty();
+            return Completable.complete();
         }
 
-        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
-        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-            final long streamId;
-            final long duration;
-            // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
-            if (info.getDuration() < 0) {
-                final StreamInfo completeInfo = ExtractorHelper.getStreamInfo(
-                        info.getServiceId(),
-                        info.getUrl(),
-                        false
+        final var remoteInfo = getStreamInfo(info.getServiceId(), info.getUrl(), false)
+            .map(item ->
+                new LongLongPair(item.getDuration(), streamTable.upsert(new StreamEntity(item))));
+
+        return Single.just(info)
+                .filter(item -> item.getDuration() >= 0)
+                .map(item ->
+                    new LongLongPair(item.getDuration(), streamTable.upsert(new StreamEntity(item)))
                 )
-                        .subscribeOn(Schedulers.io())
-                        .blockingGet();
-                duration = completeInfo.getDuration();
-                streamId = streamTable.upsert(new StreamEntity(completeInfo));
-            } else {
-                duration = info.getDuration();
-                streamId = streamTable.upsert(new StreamEntity(info));
-            }
+                .switchIfEmpty(remoteInfo)
+                .flatMapCompletable(pair -> Completable.fromRunnable(() -> {
+                    final long duration = pair.getFirst();
+                    final long streamId = pair.getSecond();
 
-            // Update the stream progress to the full duration of the video
-            final StreamStateEntity entity = new StreamStateEntity(
-                    streamId,
-                    duration * 1000
-            );
-            streamStateTable.upsert(entity);
+                    // Update the stream progress to the full duration of the video
+                    final var entity = new StreamStateEntity(streamId, duration * 1000);
+                    streamStateTable.upsert(entity);
 
-            // Add a history entry
-            final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
-            if (latestEntry == null) {
-                // never actually viewed: add history entry but with 0 views
-                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime, 0));
-            } else {
-                return 0L;
-            }
-        })).subscribeOn(Schedulers.io());
+                    // Add a history entry
+                    final var latestEntry = streamHistoryTable.getLatestEntry(streamId);
+                    if (latestEntry == null) {
+                        final var currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+                        // never actually viewed: add history entry but with 0 views
+                        final var entry = new StreamHistoryEntity(streamId, currentTime, 0);
+                        streamHistoryTable.insert(entry);
+                    }
+                }))
+                .subscribeOn(Schedulers.io());
     }
 
     public Maybe<Long> onViewed(final StreamInfo info) {
@@ -221,7 +215,7 @@ public class HistoryRecordManager {
     public Flowable<List<String>> getRelatedSearches(final String query,
                                                      final int similarQueryLimit,
                                                      final int uniqueQueryLimit) {
-        return query.length() > 0
+        return !query.isEmpty()
                 ? searchHistoryTable.getSimilarEntries(query, similarQueryLimit)
                 : searchHistoryTable.getUniqueEntries(uniqueQueryLimit);
     }
@@ -236,47 +230,31 @@ public class HistoryRecordManager {
 
     public Maybe<StreamStateEntity> loadStreamState(final PlayQueueItem queueItem) {
         return queueItem.getStream()
-                .map(info -> streamTable.upsert(new StreamEntity(info)))
-                .flatMapPublisher(streamStateTable::getState)
-                .firstElement()
-                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
+                .flatMapMaybe(this::loadStreamState)
                 .filter(state -> state.isValid(queueItem.getDuration()))
                 .subscribeOn(Schedulers.io());
     }
 
     public Maybe<StreamStateEntity> loadStreamState(final StreamInfo info) {
         return Single.fromCallable(() -> streamTable.upsert(new StreamEntity(info)))
-                .flatMapPublisher(streamStateTable::getState)
-                .firstElement()
-                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
-                .filter(state -> state.isValid(info.getDuration()))
+                .flatMapMaybe(streamStateTable::getState)
                 .subscribeOn(Schedulers.io());
     }
 
     public Completable saveStreamState(@NonNull final StreamInfo info, final long progressMillis) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            final StreamStateEntity state = new StreamStateEntity(streamId, progressMillis);
+            final var state = new StreamStateEntity(streamId, progressMillis);
             if (state.isValid(info.getDuration())) {
                 streamStateTable.upsert(state);
             }
         })).subscribeOn(Schedulers.io());
     }
 
-    public Single<StreamStateEntity[]> loadStreamState(final InfoItem info) {
-        return Single.fromCallable(() -> {
-            final List<StreamEntity> entities = streamTable
-                    .getStream(info.getServiceId(), info.getUrl()).blockingFirst();
-            if (entities.isEmpty()) {
-                return new StreamStateEntity[]{null};
-            }
-            final List<StreamStateEntity> states = streamStateTable
-                    .getState(entities.get(0).getUid()).blockingFirst();
-            if (states.isEmpty()) {
-                return new StreamStateEntity[]{null};
-            }
-            return new StreamStateEntity[]{states.get(0)};
-        }).subscribeOn(Schedulers.io());
+    public Maybe<StreamStateEntity> loadStreamState(final InfoItem info) {
+        return streamTable.getStream(info.getServiceId(), info.getUrl())
+                .flatMap(entity -> streamStateTable.getState(entity.getUid()))
+                .subscribeOn(Schedulers.io());
     }
 
     public Single<List<StreamStateEntity>> loadLocalStreamStateBatch(
@@ -295,13 +273,7 @@ public class HistoryRecordManager {
                     result.add(null);
                     continue;
                 }
-                final List<StreamStateEntity> states = streamStateTable.getState(streamId)
-                        .blockingFirst();
-                if (states.isEmpty()) {
-                    result.add(null);
-                } else {
-                    result.add(states.get(0));
-                }
+                result.add(streamStateTable.getState(streamId).blockingGet());
             }
             return result;
         }).subscribeOn(Schedulers.io());
