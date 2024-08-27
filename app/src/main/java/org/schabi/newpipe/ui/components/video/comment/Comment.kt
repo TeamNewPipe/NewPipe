@@ -1,4 +1,4 @@
-package org.schabi.newpipe.ui.components.comment
+package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize

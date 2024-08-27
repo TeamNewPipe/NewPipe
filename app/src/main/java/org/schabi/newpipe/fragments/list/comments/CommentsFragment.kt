@@ -8,7 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
-import org.schabi.newpipe.ui.components.comment.CommentSection
+import org.schabi.newpipe.ui.components.video.comment.CommentSection
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
