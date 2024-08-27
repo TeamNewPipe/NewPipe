@@ -946,7 +946,7 @@ public final class VideoDetailFragment
         }
 
         if (showDescription) {
-            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, new DescriptionFragment(info));
+            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, DescriptionFragment.getInstance(info));
         }
 
         binding.viewPager.setVisibility(View.VISIBLE);
