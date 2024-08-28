@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.CommentsDisabledException
@@ -91,7 +92,17 @@ private class CommentDataProvider : PreviewParameterProvider<PagingData<Comments
     override val values = sequenceOf(
         // Normal view
         PagingData.from(
-            (1..100).map {
+            listOf(
+                CommentsInfoItem(
+                    commentText = Description(
+                        "Comment 1\n\nThis line should be hidden by default.",
+                        Description.PLAIN_TEXT
+                    ),
+                    uploaderName = "Test",
+                    replies = Page(""),
+                    replyCount = 10
+                )
+            ) + (2..10).map {
                 CommentsInfoItem(
                     commentText = Description("Comment $it", Description.PLAIN_TEXT),
                     uploaderName = "Test"
