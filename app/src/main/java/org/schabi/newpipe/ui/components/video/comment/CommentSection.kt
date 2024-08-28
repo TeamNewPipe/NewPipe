@@ -50,33 +50,35 @@ fun CommentSection(
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
 
-    LazyColumnScrollbar(state = state) {
-        LazyColumn(modifier = Modifier.nestedScroll(nestedScrollInterop), state = state) {
-            if (parentComment != null) {
-                item {
-                    CommentRepliesHeader(comment = parentComment)
-                    HorizontalDivider(thickness = 1.dp)
-                }
-            }
-
-            if (itemCount == 0) {
-                item {
-                    val refresh = comments.loadState.refresh
-                    if (refresh is LoadState.Loading) {
-                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                    } else {
-                        val error = (refresh as? LoadState.Error)?.error
-                        val message = if (error is CommentsDisabledException) {
-                            R.string.comments_are_disabled
-                        } else {
-                            R.string.no_comments
-                        }
-                        NoItemsMessage(message)
+    Surface(color = MaterialTheme.colorScheme.background) {
+        LazyColumnScrollbar(state = state) {
+            LazyColumn(modifier = Modifier.nestedScroll(nestedScrollInterop), state = state) {
+                if (parentComment != null) {
+                    item {
+                        CommentRepliesHeader(comment = parentComment)
+                        HorizontalDivider(thickness = 1.dp)
                     }
                 }
-            } else {
-                items(itemCount) {
-                    Comment(comment = comments[it]!!)
+
+                if (itemCount == 0) {
+                    item {
+                        val refresh = comments.loadState.refresh
+                        if (refresh is LoadState.Loading) {
+                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                        } else {
+                            val error = (refresh as? LoadState.Error)?.error
+                            val message = if (error is CommentsDisabledException) {
+                                R.string.comments_are_disabled
+                            } else {
+                                R.string.no_comments
+                            }
+                            NoItemsMessage(message)
+                        }
+                    }
+                } else {
+                    items(itemCount) {
+                        Comment(comment = comments[it]!!)
+                    }
                 }
             }
         }
@@ -116,9 +118,7 @@ private fun CommentSectionPreview(
     @PreviewParameter(CommentDataProvider::class) pagingData: PagingData<CommentsInfoItem>
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            CommentSection(commentsFlow = flowOf(pagingData))
-        }
+        CommentSection(commentsFlow = flowOf(pagingData))
     }
 }
 
@@ -142,8 +142,6 @@ private fun CommentRepliesPreview() {
     val flow = flowOf(PagingData.from(replies))
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            CommentSection(parentComment = comment, commentsFlow = flow)
-        }
+        CommentSection(parentComment = comment, commentsFlow = flow)
     }
 }
