@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
@@ -23,21 +22,24 @@ fun DescriptionText(
     maxLines: Int = Int.MAX_VALUE,
     style: TextStyle = LocalTextStyle.current
 ) {
-    // TODO: Handle links and hashtags, Markdown.
-    val parsedDescription = remember(description) {
-        if (description.type == Description.HTML) {
-            val styles = TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline))
-            AnnotatedString.fromHtml(description.content, styles)
-        } else {
-            AnnotatedString(description.content, ParagraphStyle())
-        }
-    }
-
     Text(
         modifier = modifier,
-        text = parsedDescription,
+        text = rememberParsedDescription(description),
         maxLines = maxLines,
         style = style,
         overflow = overflow
     )
+}
+
+@Composable
+fun rememberParsedDescription(description: Description): AnnotatedString {
+    // TODO: Handle links and hashtags, Markdown.
+    return remember(description) {
+        if (description.type == Description.HTML) {
+            val styles = TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline))
+            AnnotatedString.fromHtml(description.content, styles)
+        } else {
+            AnnotatedString(description.content)
+        }
+    }
 }

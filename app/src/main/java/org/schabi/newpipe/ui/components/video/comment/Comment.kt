@@ -1,9 +1,13 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
+import android.os.Build
+import android.widget.Toast
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -46,23 +51,34 @@ import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.CommentsSource
-import org.schabi.newpipe.ui.components.common.DescriptionText
+import org.schabi.newpipe.ui.components.common.rememberParsedDescription
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun Comment(comment: CommentsInfoItem) {
+    val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var showReplies by rememberSaveable { mutableStateOf(false) }
+    val parsedDescription = rememberParsedDescription(comment.commentText)
 
     Row(
         modifier = Modifier
             .animateContentSize()
-            .clickable { isExpanded = !isExpanded }
+            .combinedClickable(
+                onLongClick = {
+                    clipboardManager.setText(parsedDescription)
+                    if (Build.VERSION.SDK_INT < 33) {
+                        // Android 13 has its own "copied to clipboard" dialog
+                        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show()
+                    }
+                },
+                onClick = { isExpanded = !isExpanded }
+            )
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -99,13 +115,13 @@ fun Comment(comment: CommentsInfoItem) {
                 Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
             }
 
-            DescriptionText(
-                description = comment.commentText,
+            Text(
+                text = parsedDescription,
                 // If the comment is expanded, we display all its content
                 // otherwise we only display the first two lines
                 maxLines = if (isExpanded) Int.MAX_VALUE else 2,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyMedium
             )
 
             Row(
