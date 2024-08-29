@@ -144,7 +144,7 @@ private fun CommentRepliesPreview() {
         isPinned = true,
         isHeartedByUploader = true
     )
-    val replies = (1..100).map {
+    val replies = (1..10).map {
         CommentsInfoItem(
             commentText = Description("Reply $it", Description.PLAIN_TEXT),
             uploaderName = "Test"
