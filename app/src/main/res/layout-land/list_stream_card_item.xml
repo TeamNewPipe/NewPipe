@@ -5,23 +5,18 @@
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/channel_item_grid_padding"
-    android:paddingBottom="@dimen/channel_item_grid_padding"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:padding="@dimen/video_item_search_padding">
 
     <ImageView
         android:id="@+id/itemThumbnailView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/video_item_search_thumbnail_image_width"
+        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+        android:scaleType="fitCenter"
         android:src="@drawable/placeholder_thumbnail_video"
         app:layout_constraintBottom_toTopOf="@+id/itemProgressView"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,44 +41,43 @@
         android:id="@+id/itemVideoTitleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginStart="@dimen/video_item_search_image_right_margin"
         android:ellipsize="end"
         android:maxLines="2"
-        android:layout_marginTop="@dimen/margin_small"
-        android:textAppearance="?textAppearanceListItem"
-        app:layout_constraintEnd_toEndOf="@id/itemThumbnailView"
-        app:layout_constraintStart_toStartOf="@id/itemThumbnailView"
-        app:layout_constraintTop_toBottomOf="@id/itemThumbnailView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/video_item_search_title_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/itemUploaderView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemThumbnailView"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemUploaderView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_micro"
-        android:layout_marginEnd="@dimen/margin_small"
         android:ellipsize="end"
         android:lines="1"
-        android:includeFontPadding="false"
-        android:textAppearance="?android:textAppearanceSmall"
-        app:layout_constraintEnd_toStartOf="@id/itemAdditionalDetails"
-        app:layout_constraintStart_toStartOf="@id/itemVideoTitleView"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_uploader_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/itemAdditionalDetails"
+        app:layout_constraintEnd_toEndOf="@+id/itemVideoTitleView"
+        app:layout_constraintStart_toStartOf="@+id/itemVideoTitleView"
         app:layout_constraintTop_toBottomOf="@+id/itemVideoTitleView"
         tools:text="Uploader" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemAdditionalDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:lines="1"
-        android:includeFontPadding="false"
-        android:textAppearance="?android:textAppearanceSmall"
-        app:layout_constraintBottom_toBottomOf="@id/itemUploaderView"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/itemVideoTitleView"
-        app:layout_constraintStart_toEndOf="@id/itemUploaderView"
-        app:layout_constraintTop_toTopOf="@id/itemUploaderView"
+        app:layout_constraintStart_toStartOf="@+id/itemVideoTitleView"
+        app:layout_constraintTop_toBottomOf="@+id/itemUploaderView"
         tools:text="2 years ago • 10M views" />
 
     <org.schabi.newpipe.views.AnimatedProgressBar
@@ -92,8 +86,9 @@
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:progressDrawable="?progress_horizontal_drawable"
-        app:layout_constraintBottom_toBottomOf="@id/itemThumbnailView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
-        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView" />
+        app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
+        app:layout_constraintTop_toBottomOf="@+id/itemThumbnailView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
