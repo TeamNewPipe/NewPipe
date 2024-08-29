@@ -5,6 +5,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.preference.PreferenceManager
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -70,10 +73,22 @@ private val DarkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+private val BlackColors = DarkColors.copy(background = Color.Black)
+
 @Composable
 fun AppTheme(useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+    val theme = sharedPreferences.getString("theme", "auto_device_theme")
+    val nightTheme = sharedPreferences.getString("night_theme", "dark_theme")
+
     MaterialTheme(
-        colorScheme = if (useDarkTheme) DarkColors else LightColors,
+        colorScheme = if (!useDarkTheme) {
+            LightColors
+        } else if (theme == "black_theme" || nightTheme == "black_theme") {
+            BlackColors
+        } else {
+            DarkColors
+        },
         content = content
     )
 }
