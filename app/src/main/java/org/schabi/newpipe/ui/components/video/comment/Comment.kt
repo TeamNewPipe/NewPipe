@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -25,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -42,22 +39,18 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.paging.CommentsSource
 import org.schabi.newpipe.ui.components.common.rememberParsedDescription
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Comment(comment: CommentsInfoItem) {
     val clipboardManager = LocalClipboardManager.current
@@ -157,23 +150,7 @@ fun Comment(comment: CommentsInfoItem) {
     }
 
     if (showReplies) {
-        ModalBottomSheet(onDismissRequest = { showReplies = false }) {
-            val coroutineScope = rememberCoroutineScope()
-            val flow = remember {
-                Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-                    CommentsSource(comment.serviceId, comment.url, comment.replies)
-                }.flow
-                    .cachedIn(coroutineScope)
-            }
-
-            Surface(color = MaterialTheme.colorScheme.background) {
-                CommentSection(
-                    commentsFlow = flow,
-                    commentCount = comment.replyCount,
-                    parentComment = comment
-                )
-            }
-        }
+        CommentRepliesDialog(comment, onDismissRequest = { showReplies = false })
     }
 }
 

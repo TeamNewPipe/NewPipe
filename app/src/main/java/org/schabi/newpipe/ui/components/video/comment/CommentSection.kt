@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,10 +39,8 @@ import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
 fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
-    Surface(color = MaterialTheme.colorScheme.background) {
-        val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
-        CommentSection(state, commentsViewModel.comments)
-    }
+    val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
+    CommentSection(state, commentsViewModel.comments)
 }
 
 @Composable
@@ -51,83 +48,77 @@ private fun CommentSection(
     uiState: Resource<CommentInfo>,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>
 ) {
-    when (uiState) {
-        is Resource.Loading -> LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-
-        is Resource.Success -> {
-            val commentsInfo = uiState.data
-            CommentSection(
-                commentsFlow = commentsFlow,
-                commentCount = commentsInfo.commentCount,
-                isCommentsDisabled = commentsInfo.isCommentsDisabled
-            )
-        }
-
-        is Resource.Error -> {
-            // This is not rendered as VideoDetailFragment handles errors
-        }
-    }
-}
-
-@Composable
-fun CommentSection(
-    commentsFlow: Flow<PagingData<CommentsInfoItem>>,
-    commentCount: Int,
-    parentComment: CommentsInfoItem? = null,
-    isCommentsDisabled: Boolean = false,
-) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
 
-    LazyColumnScrollbar(
-        state = state,
-        settings = ScrollbarSettings.Default.copy(
-            thumbSelectedColor = md_theme_dark_primary,
-            thumbUnselectedColor = Color.Red
-        )
-    ) {
-        LazyColumn(
-            modifier = Modifier.nestedScroll(nestedScrollInterop),
-            state = state
+    Surface(color = MaterialTheme.colorScheme.background) {
+        LazyColumnScrollbar(
+            state = state,
+            settings = ScrollbarSettings.Default.copy(
+                thumbSelectedColor = md_theme_dark_primary,
+                thumbUnselectedColor = Color.Red
+            )
         ) {
-            if (parentComment != null) {
-                item {
-                    CommentRepliesHeader(comment = parentComment)
-                    HorizontalDivider(thickness = 1.dp)
-                }
-            }
-
-            if (comments.itemCount == 0) {
-                item {
-                    val refresh = comments.loadState.refresh
-                    if (refresh is LoadState.Loading) {
-                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                    } else {
-                        val message = if (refresh is LoadState.Error) {
-                            R.string.error_unable_to_load_comments
-                        } else if (isCommentsDisabled) {
-                            R.string.comments_are_disabled
-                        } else {
-                            R.string.no_comments
+            LazyColumn(
+                modifier = Modifier.nestedScroll(nestedScrollInterop),
+                state = state
+            ) {
+                when (uiState) {
+                    is Resource.Loading -> {
+                        item {
+                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                         }
-                        NoItemsMessage(message)
                     }
-                }
-            } else {
-                // The number of replies is already shown in the main comment section
-                if (parentComment == null) {
-                    item {
-                        Text(
-                            modifier = Modifier.padding(start = 8.dp),
-                            text = pluralStringResource(R.plurals.comments, commentCount, commentCount),
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
 
-                items(comments.itemCount) {
-                    Comment(comment = comments[it]!!)
+                    is Resource.Success -> {
+                        val commentInfo = uiState.data
+                        val count = commentInfo.commentCount
+
+                        if (commentInfo.isCommentsDisabled) {
+                            item {
+                                NoItemsMessage(R.string.comments_are_disabled)
+                            }
+                        } else if (count == 0) {
+                            item {
+                                NoItemsMessage(R.string.no_comments)
+                            }
+                        } else {
+                            item {
+                                Text(
+                                    modifier = Modifier.padding(start = 8.dp),
+                                    text = pluralStringResource(R.plurals.comments, count, count),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
+                            when (comments.loadState.refresh) {
+                                is LoadState.Loading -> {
+                                    item {
+                                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                                    }
+                                }
+
+                                is LoadState.Error -> {
+                                    item {
+                                        NoItemsMessage(R.string.error_unable_to_load_comments)
+                                    }
+                                }
+
+                                else -> {
+                                    items(comments.itemCount) {
+                                        Comment(comment = comments[it]!!)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        item {
+                            NoItemsMessage(R.string.error_unable_to_load_comments)
+                        }
+                    }
                 }
             }
         }
@@ -188,32 +179,6 @@ private fun CommentSectionErrorPreview() {
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
-        }
-    }
-}
-
-@Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun CommentRepliesPreview() {
-    val comment = CommentsInfoItem(
-        commentText = Description("Hello world!", Description.PLAIN_TEXT),
-        uploaderName = "Test",
-        likeCount = 100,
-        isPinned = true,
-        isHeartedByUploader = true
-    )
-    val replies = (1..10).map {
-        CommentsInfoItem(
-            commentText = Description("Reply $it", Description.PLAIN_TEXT),
-            uploaderName = "Test"
-        )
-    }
-    val flow = flowOf(PagingData.from(replies))
-
-    AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            CommentSection(parentComment = comment, commentsFlow = flow, commentCount = 10)
         }
     }
 }
