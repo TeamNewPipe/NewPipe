@@ -166,7 +166,13 @@ fun Comment(comment: CommentsInfoItem) {
                     .cachedIn(coroutineScope)
             }
 
-            CommentSection(parentComment = comment, commentsFlow = flow)
+            Surface(color = MaterialTheme.colorScheme.background) {
+                CommentSection(
+                    commentsFlow = flow,
+                    commentCount = comment.replyCount,
+                    parentComment = comment
+                )
+            }
         }
     }
 }
