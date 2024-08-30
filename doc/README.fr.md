@@ -109,7 +109,7 @@ Entre temps, si vous voulez changer de source pour une raison quelconque (par ex
 
 ## Contribuer
 
-Que vous ayez des idées, des traductions, des changements de design, du nettoyage de code, ou encore un changement de code majeur, toute aide est la bienvenue. L'app s'améliore un peu plus à chaque contribution, peu importe qu'elle soit grosse ou petite ! Si vous aimeriez être impliqué, jetez un coup d'oeil à nos [notes pour contribuer](.github/CONTRIBUTING.md).
+Que vous ayez des idées, des traductions, des changements de design, du nettoyage de code, ou encore un changement de code majeur, toute aide est la bienvenue. L'app s'améliore un peu plus à chaque contribution, peu importe qu'elle soit grosse ou petite ! Si vous aimeriez être impliqué, jetez un coup d'oeil à nos [notes pour contribuer](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
