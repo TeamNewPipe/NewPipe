@@ -19,6 +19,7 @@ import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ChannelTabHelper
@@ -69,12 +70,10 @@ class FeedLoadManager(private val context: Context) {
         val outdatedThreshold = if (ignoreOutdatedThreshold) {
             OffsetDateTime.now(ZoneOffset.UTC)
         } else {
-            val thresholdOutdatedSeconds = (
-                defaultSharedPreferences.getString(
-                    context.getString(R.string.feed_update_threshold_key),
-                    context.getString(R.string.feed_update_threshold_default_value)
-                ) ?: context.getString(R.string.feed_update_threshold_default_value)
-                ).toInt()
+            val thresholdOutdatedSeconds = defaultSharedPreferences.getStringSafe(
+                context.getString(R.string.feed_update_threshold_key),
+                context.getString(R.string.feed_update_threshold_default_value)
+            ).toInt()
             OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
         }
 
