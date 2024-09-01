@@ -58,7 +58,6 @@ import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
-import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -161,12 +160,10 @@ fun VideoDescriptionSection(streamInfo: StreamInfo) {
                 }
             }
 
-            if (streamInfo.ageLimit != StreamExtractor.NO_AGE_LIMIT) {
+            val ageLimit = streamInfo.ageLimit
+            if (ageLimit != StreamExtractor.NO_AGE_LIMIT) {
                 item {
-                    MetadataItem(
-                        title = R.string.metadata_age_limit,
-                        value = streamInfo.ageLimit.toString()
-                    )
+                    MetadataItem(title = R.string.metadata_age_limit, value = ageLimit.toString())
                 }
             }
 
@@ -214,9 +211,9 @@ private fun LazyListScope.metadataItem(@StringRes title: Int, value: String) {
 }
 
 private fun LazyListScope.imageMetadataItem(@StringRes title: Int, images: List<Image>) {
-    ImageStrategy.choosePreferredImage(images)?.let {
+    if (images.isNotEmpty()) {
         item {
-            ImageMetadataItem(title, images, it)
+            ImageMetadataItem(title, images)
         }
     }
 }

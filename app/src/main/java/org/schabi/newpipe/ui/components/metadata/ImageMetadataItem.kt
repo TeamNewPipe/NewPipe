@@ -26,22 +26,16 @@ import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.util.image.PreferredImageQuality
 
 @Composable
-fun ImageMetadataItem(
-    @StringRes title: Int,
-    images: List<Image>,
-    preferredUrl: String? = ImageStrategy.choosePreferredImage(images)
-) {
+fun ImageMetadataItem(@StringRes title: Int, images: List<Image>) {
     val context = LocalContext.current
-    val imageLinks = remember { convertImagesToLinks(context, images, preferredUrl) }
+    val imageLinks = remember(images) { convertImagesToLinks(context, images) }
 
     MetadataItem(title = title, value = imageLinks)
 }
 
-private fun convertImagesToLinks(
-    context: Context,
-    images: List<Image>,
-    preferredUrl: String?
-): AnnotatedString {
+private fun convertImagesToLinks(context: Context, images: List<Image>): AnnotatedString {
+    val preferredUrl = ImageStrategy.choosePreferredImage(images)
+
     fun imageSizeToText(size: Int): String {
         return if (size == Image.HEIGHT_UNKNOWN) context.getString(R.string.question_mark)
         else size.toString()

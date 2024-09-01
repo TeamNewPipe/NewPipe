@@ -16,10 +16,10 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfo
 import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
+import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
-import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
 fun AboutChannelSection(channelInfo: ChannelInfo) {
@@ -41,12 +41,12 @@ fun AboutChannelSection(channelInfo: ChannelInfo) {
             )
         }
 
-        ImageStrategy.choosePreferredImage(channelInfo.avatars)?.let {
-            ImageMetadataItem(R.string.metadata_avatars, channelInfo.avatars, it)
+        if (channelInfo.avatars.isNotEmpty()) {
+            ImageMetadataItem(R.string.metadata_avatars, channelInfo.avatars)
         }
 
-        ImageStrategy.choosePreferredImage(channelInfo.banners)?.let {
-            ImageMetadataItem(R.string.metadata_banners, channelInfo.banners, it)
+        if (channelInfo.banners.isNotEmpty()) {
+            ImageMetadataItem(R.string.metadata_banners, channelInfo.banners)
         }
 
         if (channelInfo.tags.isNotEmpty()) {
