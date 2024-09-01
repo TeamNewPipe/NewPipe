@@ -3,9 +3,7 @@ package org.schabi.newpipe.settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.XmlRes;
 import androidx.fragment.app.Fragment;
-
 import org.schabi.newpipe.R;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -35,7 +33,6 @@ public final class SettingsResourceRegistry {
         add(ContentSettingsFragment.class, R.xml.content_settings);
         add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
         add(DownloadSettingsFragment.class, R.xml.download_settings);
-        add(HistorySettingsFragment.class, R.xml.history_settings);
         add(NotificationSettingsFragment.class, R.xml.notifications_settings);
         add(PlayerNotificationSettingsFragment.class, R.xml.player_notification_settings);
         add(UpdateSettingsFragment.class, R.xml.update_settings);

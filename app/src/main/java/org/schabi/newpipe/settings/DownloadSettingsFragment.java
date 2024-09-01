@@ -30,7 +30,6 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
@@ -123,11 +122,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        try {
-            rawUri = decodeUrlUtf8(rawUri);
-        } catch (final UnsupportedEncodingException e) {
-            // nothing to do
-        }
+        rawUri = decodeUrlUtf8(rawUri);
 
         target.setSummary(rawUri);
     }
