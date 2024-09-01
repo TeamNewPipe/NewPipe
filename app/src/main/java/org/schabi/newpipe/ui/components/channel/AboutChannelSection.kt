@@ -13,7 +13,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.channel.ChannelInfo
+import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.extractor.Image.ResolutionLevel
 import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
@@ -22,18 +23,18 @@ import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
 @Composable
-fun AboutChannelSection(channelInfo: ChannelInfo) {
+fun AboutChannelSection(channelInfo: ParcelableChannelInfo) {
     // This tab currently holds little information, so a lazy column isn't needed here.
     Column(
         modifier = Modifier.padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        val description = channelInfo.description
-        if (!description.isNullOrEmpty()) {
+        val (serviceId, description, count, avatars, banners, tags) = channelInfo
+
+        if (description.isNotEmpty()) {
             Text(text = description)
         }
 
-        val count = channelInfo.subscriberCount
         if (count != -1L) {
             MetadataItem(
                 title = R.string.metadata_subscribers,
@@ -41,16 +42,16 @@ fun AboutChannelSection(channelInfo: ChannelInfo) {
             )
         }
 
-        if (channelInfo.avatars.isNotEmpty()) {
-            ImageMetadataItem(R.string.metadata_avatars, channelInfo.avatars)
+        if (avatars.isNotEmpty()) {
+            ImageMetadataItem(R.string.metadata_avatars, avatars)
         }
 
-        if (channelInfo.banners.isNotEmpty()) {
-            ImageMetadataItem(R.string.metadata_banners, channelInfo.banners)
+        if (banners.isNotEmpty()) {
+            ImageMetadataItem(R.string.metadata_banners, banners)
         }
 
-        if (channelInfo.tags.isNotEmpty()) {
-            TagsSection(channelInfo.serviceId, channelInfo.tags)
+        if (tags.isNotEmpty()) {
+            TagsSection(serviceId, tags)
         }
     }
 }
@@ -59,9 +60,18 @@ fun AboutChannelSection(channelInfo: ChannelInfo) {
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AboutChannelSectionPreview() {
-    val info = ChannelInfo(NO_SERVICE_ID, "", "", "", "")
-    info.description = "This is an example description"
-    info.subscriberCount = 10
+    val images = listOf(
+        Image("https://example.com/image_low.png", 16, 16, ResolutionLevel.LOW),
+        Image("https://example.com/image_mid.png", 32, 32, ResolutionLevel.MEDIUM)
+    )
+    val info = ParcelableChannelInfo(
+        serviceId = NO_SERVICE_ID,
+        description = "This is an example description",
+        subscriberCount = 10,
+        avatars = images,
+        banners = images,
+        tags = listOf("Tag 1", "Tag 2")
+    )
 
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {

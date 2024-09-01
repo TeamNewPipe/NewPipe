@@ -9,8 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
 import org.schabi.newpipe.extractor.channel.ChannelInfo
-import org.schabi.newpipe.ktx.serializable
+import org.schabi.newpipe.ktx.parcelable
 import org.schabi.newpipe.ui.components.channel.AboutChannelSection
+import org.schabi.newpipe.ui.components.channel.ParcelableChannelInfo
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_INFO
 
@@ -22,7 +23,7 @@ class AboutChannelFragment : Fragment() {
     ) = content {
         AppTheme {
             Surface(color = MaterialTheme.colorScheme.background) {
-                AboutChannelSection(requireArguments().serializable(KEY_INFO)!!)
+                AboutChannelSection(requireArguments().parcelable(KEY_INFO)!!)
             }
         }
     }
@@ -30,7 +31,7 @@ class AboutChannelFragment : Fragment() {
     companion object {
         @JvmStatic
         fun getInstance(channelInfo: ChannelInfo) = AboutChannelFragment().apply {
-            arguments = bundleOf(KEY_INFO to channelInfo)
+            arguments = bundleOf(KEY_INFO to ParcelableChannelInfo(channelInfo))
         }
     }
 }

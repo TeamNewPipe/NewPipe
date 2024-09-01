@@ -23,7 +23,6 @@ import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.Image.ResolutionLevel
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.image.ImageStrategy
-import org.schabi.newpipe.util.image.PreferredImageQuality
 
 @Composable
 fun ImageMetadataItem(@StringRes title: Int, images: List<Image>) {
@@ -74,7 +73,6 @@ private fun convertImagesToLinks(context: Context, images: List<Image>): Annotat
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ImageMetadataItemPreview() {
-    ImageStrategy.setPreferredImageQuality(PreferredImageQuality.MEDIUM)
     val images = listOf(
         Image("https://example.com/image_low.png", 16, 16, ResolutionLevel.LOW),
         Image("https://example.com/image_mid.png", 32, 32, ResolutionLevel.MEDIUM)
