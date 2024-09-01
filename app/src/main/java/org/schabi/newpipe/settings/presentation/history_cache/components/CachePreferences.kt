@@ -24,6 +24,7 @@ import org.schabi.newpipe.ui.theme.SizeTokens.SpacingMedium
 
 @Composable
 fun CachePreferencesComponent(
+    recaptchaCookiesEnabled: Boolean,
     onEvent: (HistoryCacheEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -55,7 +56,9 @@ fun CachePreferencesComponent(
         IrreversiblePreferenceComponent(
             title = stringResource(id = R.string.metadata_cache_wipe_title),
             summary = stringResource(id = R.string.metadata_cache_wipe_summary),
-            onClick = { onEvent(HistoryCacheEvent.OnClickWipeCachedMetadata(R.string.metadata_cache_wipe_key)) },
+            onClick = {
+                onEvent(HistoryCacheEvent.OnClickWipeCachedMetadata(R.string.metadata_cache_wipe_key))
+            },
             modifier = Modifier.fillMaxWidth()
         )
         IrreversiblePreferenceComponent(
@@ -94,7 +97,10 @@ fun CachePreferencesComponent(
         IrreversiblePreferenceComponent(
             title = stringResource(id = R.string.clear_cookie_title),
             summary = stringResource(id = R.string.clear_cookie_summary),
-            onClick = { onEvent(HistoryCacheEvent.OnClickReCaptchaCookies(R.string.recaptcha_cookies_key)) },
+            onClick = {
+                onEvent(HistoryCacheEvent.OnClickReCaptchaCookies(R.string.recaptcha_cookies_key))
+            },
+            enabled = recaptchaCookiesEnabled,
             modifier = Modifier.fillMaxWidth()
         )
         if (isDialogVisible) {
@@ -113,6 +119,7 @@ private fun CachePreferencesComponentPreview() {
     AppTheme {
         Scaffold { padding ->
             CachePreferencesComponent(
+                recaptchaCookiesEnabled = false,
                 onEvent = {},
                 modifier = Modifier
                     .fillMaxWidth()

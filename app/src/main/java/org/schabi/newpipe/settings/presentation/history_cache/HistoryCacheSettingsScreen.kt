@@ -32,6 +32,7 @@ import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCach
 import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowDeleteSearchHistorySnackbar
 import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowReCaptchaCookiesSnackbar
 import org.schabi.newpipe.settings.presentation.history_cache.events.HistoryCacheUiEvent.ShowWipeCachedMetadataSnackbar
+import org.schabi.newpipe.settings.presentation.history_cache.state.SwitchPreferencesUiState
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
@@ -47,6 +48,7 @@ fun HistoryCacheSettingsScreen(
     val clearReCaptchaCookiesSnackbar = stringResource(R.string.recaptcha_cookies_cleared)
 
     LaunchedEffect(key1 = true) {
+        viewModel.onInit()
         viewModel.eventFlow.collect { event ->
             val message = when (event) {
                 is ShowDeletePlaybackSnackbar -> playBackPositionsDeleted
@@ -60,10 +62,12 @@ fun HistoryCacheSettingsScreen(
         }
     }
 
-    val state by viewModel.state.collectAsState()
+    val switchPreferencesUiState by viewModel.switchState.collectAsState()
+    val recaptchaCookiesEnabled by viewModel.captchaCookies.collectAsState()
     HistoryCacheComponent(
-        state = state,
-        onEvent = viewModel::onEvent,
+        switchPreferences = switchPreferencesUiState,
+        recaptchaCookiesEnabled = recaptchaCookiesEnabled,
+        onEvent = { viewModel.onEvent(it) },
         snackBarHostState = snackBarHostState,
         modifier = modifier
     )
@@ -71,7 +75,8 @@ fun HistoryCacheSettingsScreen(
 
 @Composable
 fun HistoryCacheComponent(
-    state: SwitchPreferencesUiState,
+    switchPreferences: SwitchPreferencesUiState,
+    recaptchaCookiesEnabled: Boolean,
     onEvent: (HistoryCacheEvent) -> Unit,
     snackBarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
@@ -91,7 +96,7 @@ fun HistoryCacheComponent(
             verticalArrangement = Arrangement.Center,
         ) {
             HistoryPreferencesComponent(
-                state = state,
+                state = switchPreferences,
                 onEvent = { key, value ->
                     onEvent(HistoryCacheEvent.OnUpdateBooleanPreference(key, value))
                 },
@@ -99,6 +104,7 @@ fun HistoryCacheComponent(
             )
             HorizontalDivider(Modifier.fillMaxWidth())
             CachePreferencesComponent(
+                recaptchaCookiesEnabled = recaptchaCookiesEnabled,
                 onEvent = { onEvent(it) },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -119,7 +125,8 @@ private fun HistoryCacheComponentPreview() {
     ) {
         Surface {
             HistoryCacheComponent(
-                state = state,
+                switchPreferences = state,
+                recaptchaCookiesEnabled = false,
                 onEvent = {
                 },
                 snackBarHostState = SnackbarHostState(),

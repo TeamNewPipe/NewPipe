@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.schabi.newpipe.R
 import org.schabi.newpipe.settings.components.switch_preference.SwitchPreferenceComponent
-import org.schabi.newpipe.settings.presentation.history_cache.SwitchPreferencesUiState
+import org.schabi.newpipe.settings.presentation.history_cache.state.SwitchPreferencesUiState
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable

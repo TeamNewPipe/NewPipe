@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.presentation.history_cache
+package org.schabi.newpipe.settings.presentation.history_cache.state
 
 import androidx.compose.runtime.Stable
 @Stable

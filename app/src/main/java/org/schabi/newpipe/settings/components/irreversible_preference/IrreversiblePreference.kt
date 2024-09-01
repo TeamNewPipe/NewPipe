@@ -28,14 +28,13 @@ fun IrreversiblePreferenceComponent(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
+    val clickModifier = if (enabled) {
+        Modifier.clickable { onClick() }
+    } else {
+        Modifier
+    }
     Row(
-        modifier = Modifier
-            .clickable {
-                if (enabled) {
-                    onClick()
-                }
-            }
-            .then(modifier),
+        modifier = clickModifier.then(modifier),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         val alpha by remember {
