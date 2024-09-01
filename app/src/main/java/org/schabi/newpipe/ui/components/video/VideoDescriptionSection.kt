@@ -1,6 +1,7 @@
 package org.schabi.newpipe.ui.components.video
 
 import android.content.res.Configuration
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,19 +45,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ui.components.common.DescriptionText
+import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
-import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
-import org.schabi.newpipe.ui.components.metadata.metadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -198,6 +201,22 @@ fun VideoDescriptionSection(streamInfo: StreamInfo) {
                     TagsSection(serviceId = streamInfo.serviceId, tags = streamInfo.tags)
                 }
             }
+        }
+    }
+}
+
+private fun LazyListScope.metadataItem(@StringRes title: Int, value: String) {
+    if (value.isNotEmpty()) {
+        item {
+            MetadataItem(title, value)
+        }
+    }
+}
+
+private fun LazyListScope.imageMetadataItem(@StringRes title: Int, images: List<Image>) {
+    ImageStrategy.choosePreferredImage(images)?.let {
+        item {
+            ImageMetadataItem(title, images, it)
         }
     }
 }

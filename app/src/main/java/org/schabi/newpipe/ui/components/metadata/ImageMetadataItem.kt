@@ -3,7 +3,6 @@ package org.schabi.newpipe.ui.components.metadata
 import android.content.Context
 import android.content.res.Configuration
 import androidx.annotation.StringRes
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -36,14 +35,6 @@ fun ImageMetadataItem(
     val imageLinks = remember { convertImagesToLinks(context, images, preferredUrl) }
 
     MetadataItem(title = title, value = imageLinks)
-}
-
-fun LazyListScope.imageMetadataItem(@StringRes title: Int, images: List<Image>) {
-    ImageStrategy.choosePreferredImage(images)?.let {
-        item {
-            ImageMetadataItem(title, images, it)
-        }
-    }
 }
 
 private fun convertImagesToLinks(

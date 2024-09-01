@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,24 +35,13 @@ fun MetadataItem(@StringRes title: Int, value: AnnotatedString) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier.weight(0.3f),
+            modifier = Modifier.width(96.dp),
             textAlign = TextAlign.End,
-            text = stringResource(title).uppercase(),
+            text = stringResource(title),
             fontWeight = FontWeight.Bold
         )
 
-        Text(
-            modifier = Modifier.weight(0.7f),
-            text = value
-        )
-    }
-}
-
-fun LazyListScope.metadataItem(@StringRes title: Int, value: String) {
-    if (value.isNotEmpty()) {
-        item {
-            MetadataItem(title, value)
-        }
+        Text(text = value)
     }
 }
 
