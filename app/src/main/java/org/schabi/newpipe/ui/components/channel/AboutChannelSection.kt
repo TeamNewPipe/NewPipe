@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.Image.ResolutionLevel
+import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
@@ -35,7 +36,7 @@ fun AboutChannelSection(channelInfo: ParcelableChannelInfo) {
             Text(text = description)
         }
 
-        if (count != -1L) {
+        if (count != StreamExtractor.UNKNOWN_SUBSCRIBER_COUNT) {
             MetadataItem(
                 title = R.string.metadata_subscribers,
                 value = Localization.shortCount(LocalContext.current, count)
