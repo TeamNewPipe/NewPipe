@@ -121,8 +121,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             target.setSummary(new File(URI.create(rawUri)).getPath());
             return;
         }
-
         rawUri = decodeUrlUtf8(rawUri);
+
 
         target.setSummary(rawUri);
     }
