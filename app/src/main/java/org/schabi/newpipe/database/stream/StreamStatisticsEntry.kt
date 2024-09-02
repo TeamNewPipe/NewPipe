@@ -26,19 +26,21 @@ class StreamStatisticsEntry(
     @ColumnInfo(name = STREAM_WATCH_COUNT)
     val watchCount: Long
 ) : LocalItem {
-    fun toStreamInfoItem(): StreamInfoItem {
-        val item = StreamInfoItem(streamEntity.serviceId, streamEntity.url, streamEntity.title, streamEntity.streamType)
-        item.duration = streamEntity.duration
-        item.uploaderName = streamEntity.uploader
-        item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+    fun toStreamInfoItem() =
+        StreamInfoItem(
+            streamEntity.serviceId,
+            streamEntity.url,
+            streamEntity.title,
+            streamEntity.streamType,
+        ).apply {
+            duration = streamEntity.duration
+            uploaderName = streamEntity.uploader
+            uploaderUrl = streamEntity.uploaderUrl
+            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+        }
 
-        return item
-    }
-
-    override fun getLocalItemType(): LocalItem.LocalItemType {
-        return LocalItem.LocalItemType.STATISTIC_STREAM_ITEM
-    }
+    override val localItemType: LocalItem.LocalItemType
+        get() = LocalItem.LocalItemType.STATISTIC_STREAM_ITEM
 
     companion object {
         const val STREAM_LATEST_DATE = "latestAccess"

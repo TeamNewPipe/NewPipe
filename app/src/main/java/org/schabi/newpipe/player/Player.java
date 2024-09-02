@@ -45,6 +45,7 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import android.content.BroadcastReceiver;
@@ -417,7 +418,7 @@ public final class Player implements PlaybackListener, Listener {
             }
             if (playQueue.getIndex() != newQueue.getIndex()) {
                 simpleExoPlayer.seekTo(newQueue.getIndex(),
-                        newQueue.getItem().getRecoveryPosition());
+                        requireNonNull(newQueue.getItem()).getRecoveryPosition());
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 

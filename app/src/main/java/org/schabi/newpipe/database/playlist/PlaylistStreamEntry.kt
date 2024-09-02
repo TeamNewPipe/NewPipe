@@ -22,19 +22,20 @@ data class PlaylistStreamEntry(
     @ColumnInfo(name = PlaylistStreamEntity.JOIN_INDEX)
     val joinIndex: Int
 ) : LocalItem {
-
     @Throws(IllegalArgumentException::class)
-    fun toStreamInfoItem(): StreamInfoItem {
-        val item = StreamInfoItem(streamEntity.serviceId, streamEntity.url, streamEntity.title, streamEntity.streamType)
-        item.duration = streamEntity.duration
-        item.uploaderName = streamEntity.uploader
-        item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+    fun toStreamInfoItem() =
+        StreamInfoItem(
+            streamEntity.serviceId,
+            streamEntity.url,
+            streamEntity.title,
+            streamEntity.streamType,
+        ).apply {
+            duration = streamEntity.duration
+            uploaderName = streamEntity.uploader
+            uploaderUrl = streamEntity.uploaderUrl
+            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+        }
 
-        return item
-    }
-
-    override fun getLocalItemType(): LocalItem.LocalItemType {
-        return LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
-    }
+    override val localItemType: LocalItem.LocalItemType
+        get() = LocalItem.LocalItemType.PLAYLIST_STREAM_ITEM
 }
