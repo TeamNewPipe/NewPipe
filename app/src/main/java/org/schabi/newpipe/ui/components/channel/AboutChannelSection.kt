@@ -2,57 +2,68 @@ package org.schabi.newpipe.ui.components.channel
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.Image.ResolutionLevel
 import org.schabi.newpipe.extractor.stream.StreamExtractor
-import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
+import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
 @Composable
 fun AboutChannelSection(channelInfo: ParcelableChannelInfo) {
-    // This tab currently holds little information, so a lazy column isn't needed here.
-    Column(
-        modifier = Modifier.padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        val (serviceId, description, count, avatars, banners, tags) = channelInfo
+    val (serviceId, description, count, avatars, banners, tags) = channelInfo
+    val lazyListState = rememberLazyListState()
 
-        if (description.isNotEmpty()) {
-            Text(text = description)
-        }
+    LazyColumnScrollbar(state = lazyListState) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(12.dp)
+                .nestedScroll(rememberNestedScrollInteropConnection()),
+            state = lazyListState,
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            if (description.isNotEmpty()) {
+                item {
+                    Text(text = description)
+                }
+            }
 
-        if (count != StreamExtractor.UNKNOWN_SUBSCRIBER_COUNT) {
-            MetadataItem(
-                title = R.string.metadata_subscribers,
-                value = Localization.shortCount(LocalContext.current, count)
-            )
-        }
+            if (count != StreamExtractor.UNKNOWN_SUBSCRIBER_COUNT) {
+                item {
+                    MetadataItem(
+                        title = R.string.metadata_subscribers,
+                        value = Localization.shortCount(LocalContext.current, count)
+                    )
+                }
+            }
 
-        if (avatars.isNotEmpty()) {
-            ImageMetadataItem(R.string.metadata_avatars, avatars)
-        }
+            imageMetadataItem(R.string.metadata_avatars, avatars)
 
-        if (banners.isNotEmpty()) {
-            ImageMetadataItem(R.string.metadata_banners, banners)
-        }
+            imageMetadataItem(R.string.metadata_banners, banners)
 
-        if (tags.isNotEmpty()) {
-            TagsSection(serviceId, tags)
+            if (tags.isNotEmpty()) {
+                item {
+                    TagsSection(serviceId, tags)
+                }
+            }
         }
     }
 }

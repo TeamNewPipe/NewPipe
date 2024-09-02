@@ -45,16 +45,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ui.components.common.DescriptionText
-import org.schabi.newpipe.ui.components.metadata.ImageMetadataItem
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
+import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
@@ -206,14 +205,6 @@ private fun LazyListScope.metadataItem(@StringRes title: Int, value: String) {
     if (value.isNotEmpty()) {
         item {
             MetadataItem(title, value)
-        }
-    }
-}
-
-private fun LazyListScope.imageMetadataItem(@StringRes title: Int, images: List<Image>) {
-    if (images.isNotEmpty()) {
-        item {
-            ImageMetadataItem(title, images)
         }
     }
 }
