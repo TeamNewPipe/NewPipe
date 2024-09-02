@@ -30,18 +30,16 @@ data class StreamHistoryEntry(
             accessDate.isEqual(other.accessDate)
     }
 
-    fun toStreamInfoItem(): StreamInfoItem {
-        val item = StreamInfoItem(
+    fun toStreamInfoItem(): StreamInfoItem =
+        StreamInfoItem(
             streamEntity.serviceId,
             streamEntity.url,
             streamEntity.title,
-            streamEntity.streamType
-        )
-        item.duration = streamEntity.duration
-        item.uploaderName = streamEntity.uploader
-        item.uploaderUrl = streamEntity.uploaderUrl
-        item.thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
-
-        return item
-    }
+            streamEntity.streamType,
+        ).apply {
+            duration = streamEntity.duration
+            uploaderName = streamEntity.uploader
+            uploaderUrl = streamEntity.uploaderUrl
+            thumbnails = ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)
+        }
 }
