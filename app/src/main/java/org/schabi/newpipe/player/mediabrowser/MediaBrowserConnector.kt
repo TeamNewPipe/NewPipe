@@ -263,7 +263,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
 
         try {
             val parentIdUri = Uri.parse(parentId)
-            val path = parentIdUri.pathSegments
+            val path = ArrayList(parentIdUri.pathSegments)
 
             if (path.isEmpty()) {
                 val mediaItems: MutableList<MediaBrowserCompat.MediaItem> = ArrayList()
@@ -431,7 +431,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     private fun extractPlayQueueFromMediaId(mediaId: String): Single<PlayQueue> {
         try {
             val mediaIdUri = Uri.parse(mediaId)
-            val path = mediaIdUri.pathSegments
+            val path = ArrayList(mediaIdUri.pathSegments)
 
             if (path.isEmpty()) {
                 throw parseError()
@@ -461,14 +461,17 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
 
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromPlaylistMediaId(
-        mediaIdSegments: List<String>,
+        mediaIdSegments: ArrayList<String>,
         url: String?,
     ): Single<PlayQueue> {
         if (mediaIdSegments.isEmpty()) {
             throw parseError()
         }
 
-        when (val playlistType = mediaIdSegments.first()) {
+        val playlistType = mediaIdSegments.first()
+        mediaIdSegments.removeAt(0)
+
+        when (playlistType) {
             ID_LOCAL, ID_REMOTE -> {
                 if (mediaIdSegments.size != 2) {
                     throw parseError()

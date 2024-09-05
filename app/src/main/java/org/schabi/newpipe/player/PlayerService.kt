@@ -57,7 +57,7 @@ class PlayerService : MediaBrowserServiceCompat() {
     private var mediaBrowserConnector: MediaBrowserConnector? = null
         get() {
             if (field == null) {
-                return MediaBrowserConnector(this)
+                field = MediaBrowserConnector(this)
             }
             return field
         }
