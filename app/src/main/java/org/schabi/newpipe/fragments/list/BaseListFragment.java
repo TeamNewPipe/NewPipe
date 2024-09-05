@@ -19,6 +19,8 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kt.apps.video.data.OpenVideoDetailData;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -28,6 +30,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.util.ITubeUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -375,9 +378,17 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     private void onStreamSelected(final StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
-                null, false);
+        NavigationHelper.openVideoDetailFragment(
+                requireContext(),
+                getFM(),
+                new OpenVideoDetailData(
+                        selectedItem.getServiceId(),
+                        selectedItem.getUrl(),
+                        selectedItem.getName(),
+                        null,
+                        false,
+                        ITubeUtils.getExternalSource(this)
+                ));
     }
 
     protected void onScrollToBottom() {

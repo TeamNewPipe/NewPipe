@@ -11,12 +11,14 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.kt.apps.video.ITubeIntegration
+import com.kt.apps.video.data.OpenVideoDetailData
 import com.kt.apps.video.utils.isPipSettingAllowed
 import com.kt.apps.video.viewmodel.data.Event
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.YoutubePage
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.getSearchQuery
@@ -27,12 +29,16 @@ import kotlinx.coroutines.launch
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.databinding.LayoutWebPlayerBinding
 import org.schabi.newpipe.player.helper.PlayerHelper
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment
+import org.schabi.newpipe.util.logOnOpenVideoDetail
+import org.schabi.newpipe.util.reportStreamError
 import timber.log.Timber
 
 class WebPlayerActivity : AppCompatActivity() {
     private var onUserLeaveHintCallback: (() -> Unit)? = null
     private var onNewIntentCallback: (() -> Unit)? = null
     private lateinit var binding: LayoutWebPlayerBinding
+    private var currentPlayingListener: YouTubePlayerListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,13 +68,40 @@ class WebPlayerActivity : AppCompatActivity() {
             when {
                 isYouTubePlay() -> {
                     val vid = getVideoId() ?: return false
-                    youtubePlayerView.getYouTubePlayerWhenReady(object :
-                            YouTubePlayerCallback {
-                            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                                Timber.d("loadVideo: $vid")
-                                youTubePlayer.loadVideo(vid, 0f)
+                    var lastId = vid
+                    youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            Timber.d("loadVideo: $vid")
+                            youTubePlayer.loadVideo(vid, 0f)
+                            currentPlayingListener?.also { youTubePlayer.removeListener(it) }
+                            val currentPlayingListener = object : AbstractYouTubePlayerListener() {
+                                override fun onVideoId(youTubePlayer: YouTubePlayer, videoId: String) {
+                                    super.onVideoId(youTubePlayer, videoId)
+                                    if (videoId != lastId) {
+                                        lastId = videoId
+                                        logOnOpenVideoDetail(
+                                            OpenVideoDetailData(
+                                                0,
+                                                "https://www.youtube.com/watch?v=$videoId",
+                                                "",
+                                                null,
+                                                false,
+                                                VideoDetailFragment.EXTERNAL_SOURCE_RECOMMEND
+                                            ),
+                                            false
+                                        )
+                                    }
+                                }
+
+                                override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) {
+                                    super.onError(youTubePlayer, error)
+                                    reportStreamError("https://www.youtube.com/watch?v=$lastId")
+                                }
                             }
-                        })
+                            this@WebPlayerActivity.currentPlayingListener = currentPlayingListener
+                            youTubePlayer.addListener(currentPlayingListener)
+                        }
+                    })
                     return true
                 }
 

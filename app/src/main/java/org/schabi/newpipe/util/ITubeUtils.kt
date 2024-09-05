@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.PaintDrawable
+import android.net.Uri
 import android.os.Build
 import android.util.TypedValue
 import android.view.View
@@ -20,6 +21,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.kt.apps.video.data.LogEvent
+import com.kt.apps.video.data.OpenVideoDetailData
+import com.kt.apps.video.data.StreamSourceArea
+import com.kt.apps.video.data.logger
 import com.kt.apps.video.domain.CheckNewVersion
 import com.kt.apps.video.ui.popup.showDialogUpdateRequired
 import com.kt.apps.video.viewmodel.ITubeAppViewModel
@@ -29,7 +36,15 @@ import kotlinx.coroutines.launch
 import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment
+import org.schabi.newpipe.fragments.list.BaseListFragment
+import org.schabi.newpipe.fragments.list.kiosk.KioskFragment
+import org.schabi.newpipe.fragments.list.search.SearchFragment
+import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment
+import org.schabi.newpipe.player.mediaitem.MediaItemTag
 import org.schabi.newpipe.views.NewPipeTextView
+import timber.log.Timber
 
 fun Int.dpToPx(): Int {
     return toFloat().dpToPx()
@@ -182,6 +197,108 @@ fun Activity.fixWebViewResettingNightMode() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
         runCatching {
             WebView(this)
+        }
+    }
+}
+
+var currentStreamUrl: String? = null
+var currentStreamErrorCount = 0
+var currentExternalSource: Int = VideoDetailFragment.EXTERNAL_SOURCE_MAIN
+var currentIsOriginPlayer = true
+fun logOnOpenVideoDetail(data: OpenVideoDetailData, isOriginPlayer: Boolean) {
+    Timber.tag("logEvent").d("logOnOpenVideoDetail: url=${data.url}")
+    currentStreamUrl = data.url
+    currentStreamErrorCount = 0
+    currentExternalSource = data.externalSource
+    currentIsOriginPlayer = isOriginPlayer
+    logger.logEvent(LogEvent.PLAY_VIDEO)
+    logger.logEvent(if (isOriginPlayer) LogEvent.PLAY_VIDEO_ORIGIN else LogEvent.PLAY_VIDEO_BACKUP)
+    when (data.externalSource) {
+        VideoDetailFragment.EXTERNAL_SOURCE_MAIN -> {
+            logger.logEvent(LogEvent.PLAY_VIDEO_MANUAL_HOME)
+        }
+        VideoDetailFragment.EXTERNAL_SOURCE_SEARCH -> {
+            logger.logEvent(LogEvent.PLAY_VIDEO_MANUAL_SEARCH)
+        }
+        VideoDetailFragment.EXTERNAL_SOURCE_ROUTER -> {
+            logger.logEvent(LogEvent.PLAY_VIDEO_ROUTER)
+        }
+        VideoDetailFragment.EXTERNAL_SOURCE_RECOMMEND -> {
+            logger.logEvent(LogEvent.PLAY_VIDEO_RECOMMEND)
+        }
+    }
+}
+
+fun logOnCloseVideoDetail() {
+    Timber.tag("logEvent").d("logOnCloseVideoDetail")
+    // currentStreamUrl = null
+    // currentStreamErrorCount = 0
+}
+
+val <I, N> BaseListFragment<I, N>.streamSourceArea: StreamSourceArea
+    get() {
+        return when (this) {
+            is KioskFragment -> StreamSourceArea.Kiosk
+            is SearchFragment -> StreamSourceArea.Search
+            is RelatedItemsFragment -> StreamSourceArea.Related
+            else -> StreamSourceArea.Unknown
+        }
+    }
+
+val <I, N> BaseListFragment<I, N>.externalSource: Int
+    get() {
+        return when (streamSourceArea) {
+            StreamSourceArea.Kiosk -> VideoDetailFragment.EXTERNAL_SOURCE_MAIN
+            StreamSourceArea.Search -> VideoDetailFragment.EXTERNAL_SOURCE_SEARCH
+            StreamSourceArea.Related -> VideoDetailFragment.EXTERNAL_SOURCE_RECOMMEND
+            StreamSourceArea.Unknown -> VideoDetailFragment.EXTERNAL_SOURCE_OTHER
+        }
+    }
+
+fun reportStreamError(errorInfo: ErrorInfo, metadata: MediaItemTag?) {
+    Timber.d("Stream error: url=${metadata?.streamUrl}, current=$currentStreamUrl")
+    if (metadata != null) {
+        reportStreamError(metadata.streamUrl)
+    }
+}
+
+fun reportStreamError(url: String) {
+    val isCurrentUrl = run {
+        url == currentStreamUrl
+    }.takeIf { it } ?: runCatching {
+        val id = Uri.parse(url).getQueryParameter("v")
+        val currentId = Uri.parse(currentStreamUrl).getQueryParameter("v")
+        !id.isNullOrEmpty() && id == currentId
+    }.getOrNull() ?: false
+    if (isCurrentUrl) {
+        Timber.d("Stream error: url=$url, current=$currentStreamUrl")
+        if (currentStreamErrorCount++ == 0) {
+            logger.logEvent(LogEvent.PLAY_VIDEO_FAILED)
+            logger.logEvent(if (currentIsOriginPlayer) LogEvent.PLAY_VIDEO_FAILED_ORIGIN else LogEvent.PLAY_VIDEO_FAILED_BACKUP)
+        } else {
+            Timber.d("Stream error count: $currentStreamErrorCount")
+        }
+    }
+}
+
+fun org.schabi.newpipe.player.Player.playerOnMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+    if (reason == Player.MEDIA_ITEM_TRANSITION_REASON_REPEAT ||
+        reason == Player.MEDIA_ITEM_TRANSITION_REASON_AUTO ||
+        reason == Player.MEDIA_ITEM_TRANSITION_REASON_SEEK
+    ) {
+        val current = playQueue?.getItem(exoPlayer.currentMediaItemIndex)
+        if (current != null) {
+            logOnOpenVideoDetail(
+                OpenVideoDetailData(
+                    current.serviceId,
+                    current.url,
+                    current.title,
+                    playQueue,
+                    true,
+                    VideoDetailFragment.EXTERNAL_SOURCE_RECOMMEND
+                ),
+                true
+            )
         }
     }
 }

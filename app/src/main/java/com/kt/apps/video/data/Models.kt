@@ -16,3 +16,10 @@ data class OpenVideoDetailData(
     val switchingPlayers: Boolean = false,
     val externalSource: Int = 0
 )
+
+sealed interface StreamSourceArea {
+    data object Kiosk : StreamSourceArea
+    data object Search : StreamSourceArea
+    data object Related : StreamSourceArea
+    data object Unknown : StreamSourceArea
+}

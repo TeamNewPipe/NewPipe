@@ -144,8 +144,26 @@ public final class VideoDetailFragment
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
     public static final String KEY_EXTERNAL_SOURCE = "external_source";
+    /**
+     * Tap video on home screen.
+     */
     public static final int EXTERNAL_SOURCE_MAIN = 0;
-    public static final int EXTERNAL_SOURCE_ROUTE = 1;
+    /**
+     * Tap video on search screen.
+     */
+    public static final int EXTERNAL_SOURCE_SEARCH = 1;
+    /**
+     * Tap video on recommend panel.
+     */
+    public static final int EXTERNAL_SOURCE_RECOMMEND = 2;
+    /**
+     * Play video by router.
+     */
+    public static final int EXTERNAL_SOURCE_ROUTER = 3;
+    /**
+     * Tap video on other areas.
+     */
+    public static final int EXTERNAL_SOURCE_OTHER = 4;
 
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;

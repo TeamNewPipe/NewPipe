@@ -16,9 +16,6 @@ class DataContainer {
     private val firebaseApi: FirebaseApiImpl by lazy {
         FirebaseApiImpl(dataStore)
     }
-    private val logger: Logger by lazy {
-        LoggerImpl()
-    }
 
     private lateinit var context: Context
 
@@ -36,3 +33,5 @@ class DataContainer {
         logger.init()
     }
 }
+
+val logger: Logger = LoggerImpl()
