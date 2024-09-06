@@ -298,9 +298,6 @@ dependencies {
     // Coroutines interop
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'
 
-    // Custom browser tab
-    implementation 'androidx.browser:browser:1.8.0'
-
 /** Debugging **/
     // Memory leak detection
     debugImplementation "com.squareup.leakcanary:leakcanary-object-watcher-android:${leakCanaryVersion}"

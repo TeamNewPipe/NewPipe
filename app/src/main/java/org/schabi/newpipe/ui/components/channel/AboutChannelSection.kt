@@ -24,6 +24,7 @@ import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
@@ -32,7 +33,7 @@ fun AboutChannelSection(channelInfo: ParcelableChannelInfo) {
     val (serviceId, description, count, avatars, banners, tags) = channelInfo
     val lazyListState = rememberLazyListState()
 
-    LazyColumnScrollbar(state = lazyListState) {
+    LazyColumnScrollbar(state = lazyListState, settings = NewPipeScrollbarSettings) {
         LazyColumn(
             modifier = Modifier
                 .padding(12.dp)

@@ -55,6 +55,7 @@ import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import java.time.OffsetDateTime
@@ -66,7 +67,7 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
     val hasDescription = streamInfo.description != Description.EMPTY_DESCRIPTION
     val lazyListState = rememberLazyListState()
 
-    LazyColumnScrollbar(state = lazyListState) {
+    LazyColumnScrollbar(state = lazyListState, settings = NewPipeScrollbarSettings) {
         LazyColumn(
             modifier = Modifier
                 .padding(start = 12.dp, end = 12.dp)

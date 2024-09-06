@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import my.nanihadesuka.compose.ScrollbarSettings
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -68,6 +70,11 @@ private val DarkColors = darkColorScheme(
     surfaceTint = md_theme_dark_surfaceTint,
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
+)
+
+val NewPipeScrollbarSettings = ScrollbarSettings(
+    thumbSelectedColor = md_theme_dark_primary,
+    thumbUnselectedColor = Color.Red
 )
 
 @Composable
