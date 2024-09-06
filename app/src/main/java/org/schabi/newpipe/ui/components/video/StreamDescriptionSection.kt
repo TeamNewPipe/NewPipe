@@ -50,7 +50,7 @@ import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.ui.components.common.DescriptionText
+import org.schabi.newpipe.ui.components.common.parseDescription
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
@@ -61,7 +61,7 @@ import java.time.OffsetDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun VideoDescriptionSection(streamInfo: StreamInfo) {
+fun StreamDescriptionSection(streamInfo: StreamInfo) {
     var isSelectable by rememberSaveable { mutableStateOf(false) }
     val hasDescription = streamInfo.description != Description.EMPTY_DESCRIPTION
     val lazyListState = rememberLazyListState()
@@ -131,12 +131,14 @@ fun VideoDescriptionSection(streamInfo: StreamInfo) {
 
             if (hasDescription) {
                 item {
+                    val description = parseDescription(streamInfo.description, streamInfo.serviceId)
+
                     if (isSelectable) {
                         SelectionContainer {
-                            DescriptionText(description = streamInfo.description)
+                            Text(text = description)
                         }
                     } else {
-                        DescriptionText(description = streamInfo.description)
+                        Text(text = description)
                     }
                 }
             }
@@ -212,14 +214,14 @@ private fun LazyListScope.metadataItem(@StringRes title: Int, value: String) {
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun VideoDescriptionSectionPreview() {
+private fun StreamDescriptionSectionPreview() {
     val info = StreamInfo(NO_SERVICE_ID, "", "", StreamType.VIDEO_STREAM, "", "", 0)
     info.uploadDate = DateWrapper(OffsetDateTime.now())
     info.description = Description("This is an <b>example</b> description", Description.HTML)
 
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            VideoDescriptionSection(info)
+            StreamDescriptionSection(info)
         }
     }
 }

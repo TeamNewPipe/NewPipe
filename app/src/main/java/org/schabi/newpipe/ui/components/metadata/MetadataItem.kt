@@ -37,7 +37,7 @@ fun MetadataItem(@StringRes title: Int, value: AnnotatedString) {
         Text(
             modifier = Modifier.width(96.dp),
             textAlign = TextAlign.End,
-            text = stringResource(title),
+            text = stringResource(title).uppercase(),
             fontWeight = FontWeight.Bold
         )
 

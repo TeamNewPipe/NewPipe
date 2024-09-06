@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.ktx.serializable
-import org.schabi.newpipe.ui.components.video.VideoDescriptionSection
+import org.schabi.newpipe.ui.components.video.StreamDescriptionSection
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.KEY_INFO
 
@@ -22,7 +22,7 @@ class DescriptionFragment : Fragment() {
     ) = content {
         AppTheme {
             Surface(color = MaterialTheme.colorScheme.background) {
-                VideoDescriptionSection(requireArguments().serializable(KEY_INFO)!!)
+                StreamDescriptionSection(requireArguments().serializable(KEY_INFO)!!)
             }
         }
     }

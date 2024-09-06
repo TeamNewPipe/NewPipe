@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ElevatedSuggestionChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,14 +34,14 @@ fun TagsSection(serviceId: Int, tags: List<String>) {
     Column(modifier = Modifier.padding(4.dp)) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.metadata_tags),
+            text = stringResource(R.string.metadata_tags).uppercase(),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
 
         FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             for (tag in sortedTags) {
-                SuggestionChip(
+                ElevatedSuggestionChip(
                     onClick = {
                         NavigationHelper.openSearchFragment(
                             (context as FragmentActivity).supportFragmentManager, serviceId, tag
