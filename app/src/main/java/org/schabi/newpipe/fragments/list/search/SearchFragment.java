@@ -769,7 +769,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                                 getRemoteSuggestionsObservable(query),
                                 (local, remote) -> {
                                     remote.removeIf(remoteItem -> local.stream().anyMatch(
-                                         localItem -> localItem.equals(remoteItem)));
+                                            localItem -> localItem.equals(remoteItem)));
                                     local.addAll(remote);
                                     return local;
                                 })
