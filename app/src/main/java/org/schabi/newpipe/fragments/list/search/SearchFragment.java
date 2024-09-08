@@ -903,9 +903,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.searchFor(serviceId,
-                 getExactSearchAdjustedString(),
-                 Arrays.asList(contentFilter),
-                 sortFilter)
+                getExactSearchAdjustedString(),
+                Arrays.asList(contentFilter),
+                sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -923,11 +923,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.getMoreSearchItems(
-                        serviceId,
-                        getExactSearchAdjustedString(),
-                        asList(contentFilter),
-                        sortFilter,
-                        nextPage)
+                serviceId,
+                getExactSearchAdjustedString(),
+                asList(contentFilter),
+                sortFilter,
+                nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
