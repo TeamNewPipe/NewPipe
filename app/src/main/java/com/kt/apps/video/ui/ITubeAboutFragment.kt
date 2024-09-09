@@ -32,9 +32,8 @@ class ITubeAboutFragment : Fragment(R.layout.fragment_about_itube), DialogPrefer
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentAboutItubeBinding.bind(view)
         this.binding = binding
-        binding.textView.text = String.format(
+        binding.appInfoSectionSubTextView.text = String.format(
             getString(R.string.version),
-            getString(R.string.app_name),
             BuildConfig.VERSION_NAME
         )
         updateNewPreference()

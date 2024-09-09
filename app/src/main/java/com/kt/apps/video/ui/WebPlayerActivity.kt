@@ -26,6 +26,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.isYouTu
 import kotlinx.coroutines.launch
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.databinding.LayoutWebPlayerBinding
+import org.schabi.newpipe.player.helper.PlayerHelper
 import timber.log.Timber
 
 class WebPlayerActivity : AppCompatActivity() {
@@ -189,7 +190,7 @@ class WebPlayerActivity : AppCompatActivity() {
         // Check leave hint
         // ////////////////////
         onUserLeaveHintCallback = {
-            if (isPipSettingAllowed(this) && onBackPressCallback.isEnabled) {
+            if (isPipSettingAllowed() && onBackPressCallback.isEnabled) {
                 requestEnterPictureInPictureMode()
             }
         }
@@ -200,7 +201,7 @@ class WebPlayerActivity : AppCompatActivity() {
     private fun requestEnterPictureInPictureMode(): Boolean {
         Timber.tag("YouTubePlayer").d("requestEnterPictureInPictureMode")
         return when {
-            isPipSettingAllowed(this) -> {
+            isPipSettingAllowed() -> {
                 enterPictureInPictureMode()
                 true
             }
@@ -209,6 +210,10 @@ class WebPlayerActivity : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    private fun isPipSettingAllowed(): Boolean {
+        return isPipSettingAllowed(this) && PlayerHelper.getMinimizeOnExitAction(this) != PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE
     }
 
     override fun onDestroy() {

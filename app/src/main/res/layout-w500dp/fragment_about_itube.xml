@@ -70,7 +70,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/qrCodeZalo"
-            android:layout_width="0dp"
+            android:layout_width="168dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/qrCodeFb"
@@ -82,10 +82,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/qrCodeFb"
-            android:layout_width="0dp"
+            android:layout_width="168dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/qrCodeZalo"
             app:layout_constraintTop_toTopOf="@id/qrCodeZalo"
             android:layout_marginStart="48dp"

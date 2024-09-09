@@ -17,7 +17,7 @@
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
     <string name="use_external_video_player_summary">Loại bỏ âm thanh ở một số độ phân giải</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát âm thanh bên ngoài</string>
-    <string name="controls_popup_title">Bật lên</string>
+    <string name="controls_popup_title">Thu nhỏ</string>
     <string name="download_path_title">Thư mục video tải về</string>
     <string name="download_path_summary">Video đã tải về được lưu ở đây</string>
     <string name="download_path_dialog_title">Chọn thư mục tải xuống cho các tệp video</string>
@@ -35,7 +35,7 @@
     <string name="play_audio">Âm thanh</string>
     <string name="default_audio_format_title">Định dạng âm thanh mặc định</string>
     <string name="default_video_format_title">Định dạng video mặc định</string>
-    <string name="controls_background_title">Nền</string>
+    <string name="controls_background_title">Phát trong nền</string>
     <string name="theme_title">Chủ đề</string>
     <string name="light_theme_title">Sáng</string>
     <string name="dark_theme_title">Tối</string>
@@ -49,7 +49,7 @@
     <string name="unsupported_url">URL không hỗ trợ</string>
     <string name="settings_category_appearance_title">Vẻ ngoài</string>
     <string name="background_player_playing_toast">Đang phát trong nền</string>
-    <string name="popup_playing_toast">Đang phát trong chế độ bật lên</string>
+    <string name="popup_playing_toast">Đang phát trong chế độ thu nhỏ</string>
     <string name="content">Nội dung</string>
     <string name="show_age_restricted_content_title">Hiển thị nội dung bị giới hạn độ tuổi</string>
     <string name="duration_live">Trực tiếp</string>
@@ -320,11 +320,11 @@
     <string name="decline">Từ chối</string>
     <string name="limit_data_usage_none_description">Không giới hạn</string>
     <string name="limit_mobile_data_usage_title">Giới hạn độ phân giải khi sử dụng dữ liệu di động</string>
-    <string name="minimize_on_exit_title">Thu nhỏ khi chuyển qua ứng dụng khác</string>
-    <string name="minimize_on_exit_summary">Hành động khi chuyển sang ứng dụng khác từ trình phát video chính — %s</string>
-    <string name="minimize_on_exit_none_description">Không</string>
-    <string name="minimize_on_exit_background_description">Thu nhỏ xuống trình phát nền</string>
-    <string name="minimize_on_exit_popup_description">Thu nhỏ xuống trình phát bật lên</string>
+    <string name="minimize_on_exit_title">Chế độ phát khi chuyển ứng dụng</string>
+    <string name="minimize_on_exit_summary">%s</string>
+    <string name="minimize_on_exit_none_description">Dừng video</string>
+    <string name="minimize_on_exit_background_description">Chuyển sang phát trong nền</string>
+    <string name="minimize_on_exit_popup_description">Thu nhỏ màn hình</string>
     <string name="unsubscribe">Hủy đăng ký</string>
     <string name="tab_choose">Chọn tab</string>
     <string name="settings_category_updates_title">Cập nhật</string>
@@ -811,5 +811,8 @@
     <string name="auto_update_check_description">iTube có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
 \nBạn có muốn kích hoạt tính năng này không?</string>
     <string name="yes">Có</string>
-    <string name="version">%s phiên bản %s</string>
+    <string name="version">Phiên bản %s</string>
+    <string name="itube_video_mode">Chế độ xem</string>
+    <string name="itube_app_info">Thông tin ứng dụng</string>
+    <string name="itube_contact_support">Liên hệ hỗ trợ</string>
 </resources>
