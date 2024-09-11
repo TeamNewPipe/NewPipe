@@ -8,12 +8,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.player.helper.PlayerHolder
@@ -84,7 +84,7 @@ fun StreamMenu(
                 ) { info ->
                     // TODO: Use an AlertDialog composable instead.
                     val downloadDialog = DownloadDialog(context, info)
-                    val fragmentManager = (context as FragmentActivity).supportFragmentManager
+                    val fragmentManager = context.findFragmentActivity().supportFragmentManager
                     downloadDialog.show(fragmentManager, "downloadDialog")
                 }
             }
@@ -96,10 +96,8 @@ fun StreamMenu(
                 val list = listOf(StreamEntity(stream))
                 PlaylistDialog.createCorrespondingDialog(context, list) { dialog ->
                     val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
-                    dialog.show(
-                        (context as FragmentActivity).supportFragmentManager,
-                        "StreamDialogEntry@${tag}_playlist"
-                    )
+                    val fragmentManager = context.findFragmentActivity().supportFragmentManager
+                    dialog.show(fragmentManager, "StreamDialogEntry@${tag}_playlist")
                 }
             }
         )
@@ -131,7 +129,7 @@ fun StreamMenu(
                 SparseItemUtil.fetchUploaderUrlIfSparse(
                     context, stream.serviceId, stream.url, stream.uploaderUrl
                 ) { url ->
-                    NavigationHelper.openChannelFragment(context as FragmentActivity, stream, url)
+                    NavigationHelper.openChannelFragment(context.findFragmentActivity(), stream, url)
                 }
             }
         )

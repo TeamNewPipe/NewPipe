@@ -20,8 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.FragmentActivity
 import org.schabi.newpipe.R
+import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NavigationHelper
 
@@ -44,7 +44,7 @@ fun TagsSection(serviceId: Int, tags: List<String>) {
                 ElevatedSuggestionChip(
                     onClick = {
                         NavigationHelper.openSearchFragment(
-                            (context as FragmentActivity).supportFragmentManager, serviceId, tag
+                            context.findFragmentActivity().supportFragmentManager, serviceId, tag
                         )
                     },
                     label = { Text(text = tag) }
