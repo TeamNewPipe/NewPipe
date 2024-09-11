@@ -16,12 +16,12 @@ android {
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
-        applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        applicationId "com.kt.apps.video"
+        resValue "string", "app_name", "iTube"
         minSdk 21
         targetSdk 33
-        versionCode 999
-        versionName "0.27.2"
+        versionCode 24080101
+        versionName "24.08.01.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,19 +42,19 @@ android {
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
-                resValue "string", "app_name", "NewPipe Debug"
+                resValue "string", "app_name", "iTube Debug"
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "NewPipe " + workingBranch
-                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
+                resValue "string", "app_name", "iTube " + workingBranch
+                archivesBaseName = 'iTube_' + normalizedWorkingBranch
             }
         }
 
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
-                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
-                archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
+                resValue "string", "app_name", "iTube " + System.getProperty('packageSuffix')
+                archivesBaseName = 'iTube_' + System.getProperty('packageSuffix')
             }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build
@@ -178,14 +178,6 @@ afterEvaluate {
         preDebugBuild.dependsOn formatKtlint
     }
     preDebugBuild.dependsOn runCheckstyle, runKtlint
-}
-
-sonar {
-    properties {
-        property "sonar.projectKey", "TeamNewPipe_NewPipe"
-        property "sonar.organization", "teamnewpipe"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
 }
 
 dependencies {
