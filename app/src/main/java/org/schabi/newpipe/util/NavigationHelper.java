@@ -48,6 +48,7 @@ import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.ktx.ContextKt;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
@@ -483,19 +484,20 @@ public final class NavigationHelper {
      * Opens the comment author channel fragment, if the {@link CommentsInfoItem#getUploaderUrl()}
      * of {@code comment} is non-null. Shows a UI-error snackbar if something goes wrong.
      *
-     * @param activity the activity with the fragment manager and in which to show the snackbar
+     * @param context the context to use for opening the fragment
      * @param comment the comment whose uploader/author will be opened
      */
-    public static void openCommentAuthorIfPresent(@NonNull final FragmentActivity activity,
+    public static void openCommentAuthorIfPresent(@NonNull final Context context,
                                                   @NonNull final CommentsInfoItem comment) {
         if (isEmpty(comment.getUploaderUrl())) {
             return;
         }
         try {
+            final var activity = ContextKt.findFragmentActivity(context);
             openChannelFragment(activity.getSupportFragmentManager(), comment.getServiceId(),
                     comment.getUploaderUrl(), comment.getUploaderName());
         } catch (final Exception e) {
-            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
+            ErrorUtil.showUiErrorSnackbar(context, "Opening channel fragment", e);
         }
     }
 

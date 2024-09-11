@@ -38,7 +38,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Page
@@ -84,9 +83,7 @@ fun Comment(comment: CommentsInfoItem) {
                 .size(42.dp)
                 .clip(CircleShape)
                 .clickable {
-                    NavigationHelper.openCommentAuthorIfPresent(
-                        context as FragmentActivity, comment
-                    )
+                    NavigationHelper.openCommentAuthorIfPresent(context, comment)
                 }
         )
 

@@ -22,7 +22,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.FragmentActivity
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
@@ -45,8 +44,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
         ) {
             Row(
                 modifier = Modifier.clickable {
-                    val activity = context as FragmentActivity
-                    NavigationHelper.openCommentAuthorIfPresent(activity, comment)
+                    NavigationHelper.openCommentAuthorIfPresent(context, comment)
                 },
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
