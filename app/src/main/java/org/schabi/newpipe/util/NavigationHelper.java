@@ -477,12 +477,9 @@ public final class NavigationHelper {
         } else if (data.getSwitchingPlayers()) {
             // switching player to main player
             autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
-        } else if (playerType == PlayerType.MAIN) {
-            // opening new stream while already playing in main player
-            autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else {
-            // opening new stream while already playing in another player
-            autoPlay = false;
+            // opening new stream in main player
+            autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         }
 
         final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
