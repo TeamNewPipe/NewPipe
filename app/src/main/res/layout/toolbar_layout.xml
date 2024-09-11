@@ -9,17 +9,59 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="@dimen/toolbarSize"
+        android:background="@android:color/transparent"
         android:gravity="center_vertical"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="@dimen/toolbarSize"
         android:theme="@style/ToolbarTheme">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/logo_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:constraint_referenced_ids="logoImageView, logoTextView"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_logo_itube"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginVertical="8dp"
+                android:theme="@style/Widget.MaterialComponents.TextView"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/logoTextView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/toolbarSize"
+                android:text="@string/app_name"
+                app:autoSizeTextType="uniform"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginStart="16dp"
+                android:layout_marginVertical="8dp"
+                app:layout_constraintStart_toEndOf="@id/logoImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <include
-            android:id="@+id/toolbar_search_container"
-            layout="@layout/toolbar_search_layout"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            <include
+                android:id="@+id/toolbar_search_container"
+                layout="@layout/toolbar_search_layout"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="invisible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
 

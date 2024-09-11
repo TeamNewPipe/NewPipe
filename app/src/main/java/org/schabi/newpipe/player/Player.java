@@ -349,6 +349,9 @@ public final class Player implements PlaybackListener, Listener {
         final PlayerType oldPlayerType = playerType;
         playerType = PlayerType.retrieveFromIntent(intent);
         initUIsForCurrentPlayerType();
+        UIs.get(MainPlayerUi.class).ifPresent(
+                ui -> ui.forceDirectlyOpenFullscreenAfterIntent =
+                        intent.getBooleanExtra("forceDirectlyOpenFullscreenAfterIntent", false));
         // We need to setup audioOnly before super(), see "sourceOf"
         isAudioOnly = audioPlayerSelected();
 

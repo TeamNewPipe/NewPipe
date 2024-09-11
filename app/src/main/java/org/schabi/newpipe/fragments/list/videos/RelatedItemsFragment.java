@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
+import org.schabi.newpipe.util.ITubeUtils;
 
 import java.io.Serializable;
 import java.util.function.Supplier;
@@ -61,6 +62,12 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     }
 
     @Override
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+        ITubeUtils.addSafeAreaPadding(itemsList);
+    }
+
+    @Override
     public void onDestroyView() {
         headerBinding = null;
         super.onDestroyView();
@@ -77,7 +84,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
         final SharedPreferences pref = PreferenceManager
                 .getDefaultSharedPreferences(requireContext());
-        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), true);
         headerBinding.autoplaySwitch.setChecked(autoplay);
         headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
                 PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()

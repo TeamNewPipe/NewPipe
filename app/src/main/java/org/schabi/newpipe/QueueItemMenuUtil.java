@@ -50,7 +50,7 @@ public final class QueueItemMenuUtil {
                     // playQueue is null since we don't want any queue change
                     NavigationHelper.openVideoDetail(context, item.getServiceId(),
                             item.getUrl(), item.getTitle(), null,
-                            false);
+                            false, 0);
                     return true;
                 case R.id.menu_item_append_playlist:
                     PlaylistDialog.createCorrespondingDialog(

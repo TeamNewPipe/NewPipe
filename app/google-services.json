@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "789853096588",
+    "project_id": "imedia-team",
+    "storage_bucket": "imedia-team.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789853096588:android:90c61753a4ddc9fb3d09a9",
+        "android_client_info": {
+          "package_name": "com.kt.apps.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdlm4J5uehoOB9jqD_Uafgb7YisZQK14g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

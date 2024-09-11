@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Opening Theme -->
-    <style name="Base.V21.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.V21.OpeningTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>
@@ -155,4 +155,47 @@
 
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
+    <style name="WebPlayer" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <style name="NavigationItemView" parent="">
+        <item name="colorPrimary">@color/red_btn_bg_color</item>
+        <item name="colorOnPrimary">@color/blue_btn_bg_color</item>
+    </style>
+
+    <style name="NavigationView" parent="Widget.MaterialComponents.NavigationRailView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
+    </style>
+    <style name="NavigationActiveIndicator" parent="Widget.Material3.NavigationRailView.ActiveIndicator">
+        <item name="android:color">#343434</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="itemIconTint">@color/white</item>
+    </style>
+    <style name="BottomNavigationActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#343434</item>
+    </style>
+        <style name="TextAppearance.Default" parent="">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TextAppearance.Label" parent="TextAppearance.Default" >
+        <item name="android:textSize">@dimen/font_size_label</item>
+    </style>
+    <style name="TextAppearance.Label.Medium" parent="TextAppearance.Default" >
+        <item name="android:textSize">@dimen/font_size_label_medium</item>
+    </style>
+    <style name="TextAppearance.Title" parent="TextAppearance.Default" >
+        <item name="android:textSize">@dimen/font_size_label_title</item>
+    </style>
+    <style name="TextAppearance.Body" parent="TextAppearance.Default" >
+        <item name="android:textSize">@dimen/font_size_body</item>
+    </style>
 </resources>

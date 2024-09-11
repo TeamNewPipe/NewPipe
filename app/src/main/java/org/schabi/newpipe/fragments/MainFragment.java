@@ -34,6 +34,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.BaseFragment;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -158,11 +159,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
-        inflater.inflate(R.menu.menu_main_fragment, menu);
 
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
+        }
+        if (activity instanceof MainActivity) {
+            ((MainActivity) activity).onCreateHomeOptions();
         }
     }
 
@@ -197,7 +200,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         binding.pager.setAdapter(pagerAdapter);
 
         updateTabsIconAndDescription();
-        updateTitleForTab(binding.pager.getCurrentItem());
+        updateTitleForTab();
 
         hasTabsChanged = false;
     }
@@ -213,8 +216,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
     }
 
-    private void updateTitleForTab(final int tabPosition) {
-        setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
+    private void updateTitleForTab() {
+        setTitle("");
     }
 
     public void commitPlaylistTabs() {
@@ -244,8 +247,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         // change the background and icon color of the tab layout:
         // service-colored at the top, app-background-colored at the bottom
-        tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
-                bottom ? android.R.attr.windowBackground : R.attr.colorPrimary));
+//        tabLayout.setBackgroundColor(ThemeHelper.resolveColorFromAttr(requireContext(),
+//                bottom ? android.R.attr.windowBackground : R.attr.colorPrimary));
 
         @ColorInt final int iconColor = bottom
                 ? ThemeHelper.resolveColorFromAttr(requireContext(), android.R.attr.colorAccent)
@@ -260,7 +263,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         if (DEBUG) {
             Log.d(TAG, "onTabSelected() called with: selectedTab = [" + selectedTab + "]");
         }
-        updateTitleForTab(selectedTab.getPosition());
+        updateTitleForTab();
     }
 
     @Override
@@ -271,7 +274,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         if (DEBUG) {
             Log.d(TAG, "onTabReselected() called with: tab = [" + tab + "]");
         }
-        updateTitleForTab(tab.getPosition());
+        updateTitleForTab();
     }
 
     public static final class SelectedTabsPagerAdapter

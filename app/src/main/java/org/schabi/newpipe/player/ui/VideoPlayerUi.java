@@ -236,7 +236,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.fullScreenButton.setOnClickListener(makeOnClickListener(() -> {
             player.setRecovery();
             NavigationHelper.playOnMainPlayer(context,
-                    Objects.requireNonNull(player.getPlayQueue()), true);
+                    Objects.requireNonNull(player.getPlayQueue()), true, 0);
         }));
         binding.playWithKodi.setOnClickListener(makeOnClickListener(this::onPlayWithKodiClicked));
         binding.openInBrowser.setOnClickListener(makeOnClickListener(this::onOpenInBrowserClicked));

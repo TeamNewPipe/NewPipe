@@ -43,20 +43,32 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
+import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.navigation.NavigationBarView;
+import com.kt.apps.video.ITubeIntegration;
+import com.kt.apps.video.data.OpenVideoDetailData;
+import com.kt.apps.video.viewmodel.ITubeAppViewModel;
 
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
@@ -82,6 +94,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.ITubeUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -98,6 +111,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import kotlin.Unit;
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")
@@ -108,11 +124,10 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayoutBinding drawerLayoutBinding;
     private ToolbarLayoutBinding toolbarLayoutBinding;
 
-    private ActionBarDrawerToggle toggle;
-
     private boolean servicesShown = false;
 
     private BroadcastReceiver broadcastReceiver;
+    public ITubeAppViewModel iTubeAppViewModel;
 
     private static final int ITEM_ID_SUBSCRIPTIONS = -1;
     private static final int ITEM_ID_FEED = -2;
@@ -134,9 +149,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
-
+        ITubeUtils.fixWebViewResettingNightMode(this);
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+        // Need transparent status bar to background image to work
+        EdgeToEdge.enable(this, SystemBarStyle.dark(0), SystemBarStyle.dark(0xAA000000));
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
@@ -146,6 +163,42 @@ public class MainActivity extends AppCompatActivity {
         drawerHeaderBinding = DrawerHeaderBinding.bind(drawerLayoutBinding.navigation
                 .getHeaderView(0));
         toolbarLayoutBinding = mainBinding.toolbarLayout;
+        ViewCompat.setOnApplyWindowInsetsListener(toolbarLayoutBinding.toolbar,
+                new OnApplyWindowInsetsListener() {
+            @NonNull
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(
+                    @NonNull final View v,
+                    @NonNull final WindowInsetsCompat insets) {
+                ViewKt.updateLayoutParams(v, layoutParams -> {
+                    final ViewGroup.MarginLayoutParams params =
+                            (ViewGroup.MarginLayoutParams) layoutParams;
+                    params.topMargin = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+                    return Unit.INSTANCE;
+                });
+                return ViewCompat.onApplyWindowInsets(v, insets);
+            }
+        });
+        final ViewGroup.MarginLayoutParams params =
+                (ViewGroup.MarginLayoutParams) mainBinding.fragmentHolder.getLayoutParams();
+        final int fragmentHolderInitialTopMargin = params.topMargin;
+        ViewCompat.setOnApplyWindowInsetsListener(mainBinding.fragmentHolder,
+                new OnApplyWindowInsetsListener() {
+            @NonNull
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(
+                    @NonNull final View v,
+                    @NonNull final WindowInsetsCompat insets) {
+                ViewKt.updateLayoutParams(v, layoutParams -> {
+                    final ViewGroup.MarginLayoutParams params =
+                            (ViewGroup.MarginLayoutParams) layoutParams;
+                    params.topMargin = fragmentHolderInitialTopMargin
+                            + insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+                    return Unit.INSTANCE;
+                });
+                return ViewCompat.onApplyWindowInsets(v, insets);
+            }
+        });
         setContentView(mainBinding.getRoot());
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
@@ -169,35 +222,63 @@ public class MainActivity extends AppCompatActivity {
             // if this is enabled by the user.
             NotificationWorker.initialize(this);
         }
-        if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getApp().isFirstRun()
-                && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
-            UpdateSettingsFragment.askForConsentToUpdateChecks(this);
+
+        iTubeAppViewModel = new ViewModelProvider(
+            this,
+            ITubeAppViewModel.Companion.getFactory()
+        ).get(ITubeAppViewModel.class);
+
+        ITubeUtils.observe(this, iTubeAppViewModel);
+        ITubeUtils.collect(this,
+                iTubeAppViewModel.getVideoDetailOverlaySlideOffset(),
+                offset -> {
+                    if (mainBinding.navigationView instanceof BottomNavigationView) {
+                        final float value = mainBinding.navigationView.getHeight() * offset;
+                        mainBinding.navigationView.setTranslationY(value);
+                    }
+                    return null;
+                });
+        if (mainBinding.navigationView instanceof BottomNavigationView) {
+            mainBinding.navigationView.addOnLayoutChangeListener(
+                    (v, left, top, right, bottom,
+                     oldLeft, oldTop, oldRight, oldBottom) -> {
+                if (iTubeAppViewModel != null) {
+                    iTubeAppViewModel.onUpdateBottomNavigationViewHeight(v.getHeight());
+                }
+            });
         }
+
+        if (ITubeIntegration.ENABLE_NEW_PIPE_AUTO_CHECK_UPDATE) {
+            if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
+                    && !App.getApp().isFirstRun()
+                    && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
+                UpdateSettingsFragment.askForConsentToUpdateChecks(this);
+            }
+        }
+
+        iTubeAppViewModel.checkNewVersion();
     }
 
     @Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final App app = App.getApp();
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
+        if (ITubeIntegration.ENABLE_NEW_PIPE_AUTO_CHECK_UPDATE) {
+            final App app = App.getApp();
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
-        if (prefs.getBoolean(app.getString(R.string.update_app_key), false)
-                && prefs.getBoolean(app.getString(R.string.update_check_consent_key), false)) {
-            // Start the worker which is checking all conditions
-            // and eventually searching for a new version.
-            NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
+            if (prefs.getBoolean(app.getString(R.string.update_app_key), false)
+                    && prefs.getBoolean(app.getString(R.string.update_check_consent_key), false)) {
+                // Start the worker which is checking all conditions
+                // and eventually searching for a new version.
+                NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
+            }
         }
     }
 
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 
-        toggle = new ActionBarDrawerToggle(this, mainBinding.getRoot(),
-                toolbarLayoutBinding.toolbar, R.string.drawer_open, R.string.drawer_close);
-        toggle.syncState();
-        mainBinding.getRoot().addDrawerListener(toggle);
         mainBinding.getRoot().addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             private int lastService;
 
@@ -459,6 +540,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Timber.d("tint=" + getResources().getColor(R.color.defaultIconTint)
+                + ", modeNight = " + AppCompatDelegate.getDefaultNightMode());
         assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
         Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
@@ -738,17 +821,32 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.fragment_holder);
         if (fragment instanceof MainFragment) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            if (toggle != null) {
-                toggle.syncState();
-                toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> mainBinding.getRoot()
-                        .open());
-                mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
-            }
         } else {
             mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
         }
+        final NavigationBarView navigationBarView = (NavigationBarView) mainBinding.navigationView;
+        navigationBarView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    onHomeButtonPressed();
+                    break;
+                case R.id.search:
+                    NavigationHelper.openSearchFragment(
+                            getSupportFragmentManager(),
+                            ServiceHelper.getSelectedServiceId(MainActivity.this),
+                            "");
+                    break;
+                case R.id.setting:
+                    NavigationHelper.openITubeAboutFragment(this);
+                    break;
+            }
+            return true;
+        });
+        navigationBarView.setOnItemReselectedListener(item -> {
+            // do nothing
+        });
     }
 
     private void handleIntent(final Intent intent) {
@@ -779,9 +877,14 @@ public class MainActivity extends AppCompatActivity {
 
                         final boolean switchingPlayers = intent.getBooleanExtra(
                                 VideoDetailFragment.KEY_SWITCHING_PLAYERS, false);
+                        final int externalSource = intent.getIntExtra(
+                                VideoDetailFragment.KEY_EXTERNAL_SOURCE,
+                                VideoDetailFragment.EXTERNAL_SOURCE_MAIN);
                         NavigationHelper.openVideoDetailFragment(
                                 getApplicationContext(), getSupportFragmentManager(),
-                                serviceId, url, title, playQueue, switchingPlayers);
+                                new OpenVideoDetailData(
+                                        serviceId, url, title, playQueue,
+                                        switchingPlayers, externalSource));
                         break;
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
@@ -923,5 +1026,12 @@ public class MainActivity extends AppCompatActivity {
         final int sheetState = bottomSheetBehavior.getState();
         return sheetState == BottomSheetBehavior.STATE_HIDDEN
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
+    }
+
+    public void onCreateHomeOptions() {
+        final NavigationBarView navigationBarView = (NavigationBarView) mainBinding.navigationView;
+        if (navigationBarView.getSelectedItemId() != R.id.home) {
+            navigationBarView.setSelectedItemId(R.id.home);
+        }
     }
 }

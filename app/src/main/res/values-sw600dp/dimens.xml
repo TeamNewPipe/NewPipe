@@ -22,4 +22,11 @@
     <dimen name="video_item_detail_like_margin">10dp</dimen>
 
     <dimen name="search_suggestion_text_size">14sp</dimen>
+    <dimen name="font_size_label">14sp</dimen>
+    <dimen name="font_size_label_medium">12sp</dimen>
+    <dimen name="font_size_label_title">22sp</dimen>
+    <dimen name="font_size_body">16sp</dimen>
+    <dimen name="toolbarSize">80dp</dimen>
+    <dimen name="toolbarTextSize">44sp</dimen>
+    <dimen name="toolbarContentMarginSize">16dp</dimen>
 </resources>

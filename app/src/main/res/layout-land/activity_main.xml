@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.schabi.newpipe.views.FocusAwareDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tv_bg">
+
+    <org.schabi.newpipe.views.FocusAwareCoordinator
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/toolbarSize"
+            android:layout_marginStart="96dp"/>
+
+        <include
+            layout="@layout/toolbar_layout"
+            android:id="@+id/toolbar_layout"
+            android:layout_marginStart="96dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ScrollView
+            android:id="@+id/navigation_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layout_marginTop="@dimen/toolbarSize"
+            >
+            <com.google.android.material.navigationrail.NavigationRailView
+                android:id="@+id/navigation_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="96dp"
+                app:menu="@menu/bottom_navigation"
+                android:background="@android:color/transparent"
+                style="@style/NavigationView"
+                app:itemActiveIndicatorStyle="@style/NavigationActiveIndicator"
+                app:itemTextColor="@color/white"
+                app:itemIconTint="@color/white"
+                app:itemTextAppearanceActive="@style/TextAppearance.Label"
+                app:itemTextAppearanceInactive="@style/TextAppearance.Label"
+                app:itemMinHeight="104dp"
+                app:itemPaddingTop="24dp"
+                app:itemPaddingBottom="24dp"
+                />
+        </ScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_player_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior" />
+
+    </org.schabi.newpipe.views.FocusAwareCoordinator>
+
+    <include
+        layout="@layout/drawer_layout"
+        android:id="@+id/drawer_layout" />
+
+</org.schabi.newpipe.views.FocusAwareDrawerLayout>

@@ -3,33 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    tools:background="?attr/colorPrimary">
+    android:layout_height="match_parent"
+    tools:layout_height="@dimen/toolbarSize"
+    android:background="@drawable/background_toolbar_search"
+    android:layout_marginVertical="@dimen/toolbarContentMarginSize">
+    
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:srcCompat="@drawable/ic_search"
+        app:tint="?attr/toolbarSearchColor"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="24dp"/>
 
     <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/toolbar_search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:layout_marginStart="74dp"
         android:layout_marginTop="4dp"
-        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="4dp"
         android:background="@null"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="@string/search"
+        android:hint="@string/search_hint"
         android:textColor="?attr/toolbarSearchColor"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
         android:nextFocusDown="@+id/suggestions_list"
         android:theme="@style/ToolbarSearchInputTheme"
+        tools:visibility="invisible"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
         android:id="@+id/toolbar_search_clear"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
         android:layout_gravity="right|center_vertical"
         android:contentDescription="@string/clear"
         android:focusable="true"
@@ -43,8 +56,8 @@
 
         <ImageView
             android:id="@+id/toolbar_search_clear_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"

@@ -23,6 +23,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
+import com.kt.apps.video.ITubeIntegration;
+import com.kt.apps.video.data.OpenVideoDetailData;
+import com.kt.apps.video.ui.ITubeAboutFragment;
+import com.kt.apps.video.ui.WebPlayerActivity;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -71,6 +75,7 @@ import java.util.List;
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
+    public static final String ABOUT_FRAGMENT_TAG = "about_fragment_tag";
 
     private static final String TAG = NavigationHelper.class.getSimpleName();
 
@@ -147,12 +152,14 @@ public final class NavigationHelper {
 
     public static void playOnMainPlayer(final Context context,
                                         @NonNull final PlayQueue playQueue,
-                                        final boolean switchingPlayers) {
+                                        final boolean switchingPlayers,
+                                        final int externalSource
+    ) {
         final PlayQueueItem item = playQueue.getItem();
         if (item != null) {
             openVideoDetail(context,
                     item.getServiceId(), item.getUrl(), item.getTitle(), playQueue,
-                    switchingPlayers);
+                    switchingPlayers, externalSource);
         }
     }
 
@@ -409,6 +416,13 @@ public final class NavigationHelper {
         void run(VideoDetailFragment detailFragment);
     }
 
+    public static void openITubeAboutFragment(final MainActivity mainActivity) {
+        defaultTransaction(mainActivity.getSupportFragmentManager())
+                .replace(R.id.fragment_holder, new ITubeAboutFragment())
+                .addToBackStack(ABOUT_FRAGMENT_TAG)
+                .commit();
+    }
+
     public static void openVideoDetailFragment(@NonNull final Context context,
                                                @NonNull final FragmentManager fragmentManager,
                                                final int serviceId,
@@ -416,13 +430,47 @@ public final class NavigationHelper {
                                                @NonNull final String title,
                                                @Nullable final PlayQueue playQueue,
                                                final boolean switchingPlayers) {
+        openVideoDetailFragment(context, fragmentManager,
+                new OpenVideoDetailData(serviceId,
+                        url, title, playQueue,
+                        switchingPlayers, 0));
+    }
+
+    public static void openVideoDetailFragment(@NonNull final Context context,
+                                               @NonNull final FragmentManager fragmentManager,
+                                               @NonNull final OpenVideoDetailData data) {
+        if (ITubeIntegration.getInstance().getCommonRepository()
+                .selectVideoDetailPlayer()) {
+            openVideoDetailOnOriginPlayer(context, fragmentManager,
+                    data);
+        } else if (data.getUrl() != null) {
+            openVideoDetailOnWebPlayer(context, data.getUrl());
+        } else {
+            Toast.makeText(context, "No url found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void openVideoDetailOnWebPlayer(
+            @NonNull final Context context,
+            @NonNull final String url
+            ) {
+        final Intent intent = new Intent(context, WebPlayerActivity.class);
+        intent.setData(Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    public static void openVideoDetailOnOriginPlayer(@NonNull final Context context,
+                                                     @NonNull final FragmentManager fragmentManager,
+                                                     @NonNull final OpenVideoDetailData data
+    ) {
 
         final boolean autoPlay;
         @Nullable final PlayerType playerType = PlayerHolder.getInstance().getType();
         if (playerType == null) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
-        } else if (switchingPlayers) {
+        } else if (data.getSwitchingPlayers()) {
             // switching player to main player
             autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
         } else if (playerType == PlayerType.MAIN) {
@@ -436,14 +484,19 @@ public final class NavigationHelper {
         final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
-            if (switchingPlayers) {
+            if (data.getSwitchingPlayers()) {
                 // Situation when user switches from players to main player. All needed data is
                 // here, we can start watching (assuming newQueue equals playQueue).
                 // Starting directly in fullscreen if the previous player type was popup.
                 detailFragment.openVideoPlayer(playerType == PlayerType.POPUP
                         || PlayerHelper.isStartMainPlayerFullscreenEnabled(context));
             } else {
-                detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
+                detailFragment.selectAndLoadVideo(
+                        data.getServiceId(),
+                        data.getUrl(),
+                        data.getTitle(),
+                        data.getPlayQueue(),
+                        data.getExternalSource() == VideoDetailFragment.EXTERNAL_SOURCE_ROUTE);
             }
             detailFragment.scrollToTop();
         };
@@ -453,7 +506,8 @@ public final class NavigationHelper {
             onVideoDetailFragmentReady.run((VideoDetailFragment) fragment);
         } else {
             final VideoDetailFragment instance = VideoDetailFragment
-                    .getInstance(serviceId, url, title, playQueue);
+                    .getInstance(data.getServiceId(), data.getUrl(),
+                            data.getTitle(), data.getPlayQueue());
             instance.setAutoPlay(autoPlay);
 
             defaultTransaction(fragmentManager)
@@ -595,10 +649,12 @@ public final class NavigationHelper {
                                        final String url,
                                        @NonNull final String title,
                                        @Nullable final PlayQueue playQueue,
-                                       final boolean switchingPlayers) {
+                                       final boolean switchingPlayers,
+                                       final int externalSource) {
 
         final Intent intent = getStreamIntent(context, serviceId, url, title)
                 .putExtra(VideoDetailFragment.KEY_SWITCHING_PLAYERS, switchingPlayers);
+        intent.putExtra(VideoDetailFragment.KEY_EXTERNAL_SOURCE, externalSource);
 
         if (playQueue != null) {
             final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);

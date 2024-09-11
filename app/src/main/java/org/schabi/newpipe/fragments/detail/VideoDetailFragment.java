@@ -22,7 +22,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -53,7 +52,10 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.PlaybackException;
@@ -61,6 +63,8 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
+import com.kt.apps.video.viewmodel.ITubeAppViewModel;
+import com.kt.apps.video.viewmodel.data.Event;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
@@ -106,6 +110,7 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ITubeUtils;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -113,7 +118,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.PicassoHelper;
@@ -139,6 +143,9 @@ public final class VideoDetailFragment
         PlayerServiceExtendedEventListener,
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
+    public static final String KEY_EXTERNAL_SOURCE = "external_source";
+    public static final int EXTERNAL_SOURCE_MAIN = 0;
+    public static final int EXTERNAL_SOURCE_ROUTE = 1;
 
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
     private static final float MAX_PLAYER_HEIGHT = 0.7f;
@@ -174,6 +181,8 @@ public final class VideoDetailFragment
     final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
+    @Nullable
+    private ITubeAppViewModel iTubeAppViewModel = null;
 
     private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener =
             (sharedPreferences, key) -> {
@@ -334,6 +343,25 @@ public final class VideoDetailFragment
                              final Bundle savedInstanceState) {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        iTubeAppViewModel = new ViewModelProvider(requireActivity(),
+                ITubeAppViewModel.Companion.getFactory()).get(ITubeAppViewModel.class);
+        ITubeUtils.collect(this, iTubeAppViewModel.getEvent(), event -> {
+            if (event instanceof Event.HideVideoDetail.Origin) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+            return null;
+        });
+        if (iTubeAppViewModel != null) {
+            ITubeUtils.collect(this, iTubeAppViewModel.getMiniPlayerPeekHeight(), integer -> {
+                peekHeight = integer;
+                return null;
+            });
+        }
     }
 
     @Override
@@ -761,17 +789,20 @@ public final class VideoDetailFragment
         }
     }
 
+    private boolean forceFullscreen = false;
     public void selectAndLoadVideo(final int newServiceId,
                                    @Nullable final String newUrl,
                                    @NonNull final String newTitle,
-                                   @Nullable final PlayQueue newQueue) {
+                                   @Nullable final PlayQueue newQueue,
+                                   final boolean newForceFullscreen) {
+
         if (isPlayerAvailable() && newQueue != null && playQueue != null
                 && playQueue.getItem() != null && !playQueue.getItem().getUrl().equals(newUrl)) {
             // Preloading can be disabled since playback is surely being replaced.
             player.disablePreloadingOfCurrentTrack();
         }
 
-        setInitialData(newServiceId, newUrl, newTitle, newQueue);
+        setInitialData(newServiceId, newUrl, newTitle, newQueue, newForceFullscreen);
         startLoading(false, true);
     }
 
@@ -1158,6 +1189,7 @@ public final class VideoDetailFragment
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
                 PlayerService.class, queue, true, autoPlayEnabled);
+        playerIntent.putExtra("forceDirectlyOpenFullscreenAfterIntent", forceFullscreen);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
@@ -1348,10 +1380,19 @@ public final class VideoDetailFragment
                                   @Nullable final String newUrl,
                                   @NonNull final String newTitle,
                                   @Nullable final PlayQueue newPlayQueue) {
+        setInitialData(newServiceId, newUrl, newTitle, newPlayQueue, false);
+    }
+
+    protected void setInitialData(final int newServiceId,
+                                  @Nullable final String newUrl,
+                                  @NonNull final String newTitle,
+                                  @Nullable final PlayQueue newPlayQueue,
+                                  final boolean newForceFullscreen) {
         this.serviceId = newServiceId;
         this.url = newUrl;
         this.title = newTitle;
         this.playQueue = newPlayQueue;
+        this.forceFullscreen = newForceFullscreen;
     }
 
     private void setErrorImage(final int imageResource) {
@@ -1481,7 +1522,8 @@ public final class VideoDetailFragment
         super.handleResult(info);
 
         currentInfo = info;
-        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
+        setInitialData(info.getServiceId(), info.getOriginalUrl(),
+                info.getName(), playQueue, forceFullscreen);
 
         updateTabs(info);
 
@@ -1829,7 +1871,7 @@ public final class VideoDetailFragment
         }
 
         currentInfo = info;
-        setInitialData(info.getServiceId(), info.getUrl(), info.getName(), queue);
+        setInitialData(info.getServiceId(), info.getUrl(), info.getName(), queue, forceFullscreen);
         setAutoPlay(false);
         // Delay execution just because it freezes the main thread, and while playing
         // next/previous video you see visual glitches
@@ -1939,10 +1981,10 @@ public final class VideoDetailFragment
             activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
                     WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
         }
-        activity.getWindow().getDecorView().setSystemUiVisibility(0);
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        activity.getWindow().setStatusBarColor(ThemeHelper.resolveColorFromAttr(
-                requireContext(), android.R.attr.colorPrimary));
+//        activity.getWindow().getDecorView().setSystemUiVisibility(0);
+//        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        WindowCompat.getInsetsController(activity.getWindow(),
+                activity.getWindow().getDecorView()).show(WindowInsetsCompat.Type.systemBars());
     }
 
     private void hideSystemUi() {
@@ -1973,10 +2015,6 @@ public final class VideoDetailFragment
         }
         activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
 
-        if (isInMultiWindow || isFullscreen()) {
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
-        }
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
@@ -2265,7 +2303,6 @@ public final class VideoDetailFragment
      * @param showMore whether main fragment should be expanded or not
      */
     private void manageSpaceAtTheBottom(final boolean showMore) {
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         final ViewGroup holder = requireActivity().findViewById(R.id.fragment_holder);
         final int newBottomPadding;
         if (showMore) {
@@ -2282,7 +2319,9 @@ public final class VideoDetailFragment
                 newBottomPadding);
     }
 
+    int peekHeight = 0;
     private void setupBottomPlayer() {
+        peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) binding.appBarLayout.getLayoutParams();
         final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
@@ -2292,7 +2331,6 @@ public final class VideoDetailFragment
         bottomSheetBehavior.setState(lastStableBottomSheetState);
         updateBottomSheetState(lastStableBottomSheetState);
 
-        final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false);
             bottomSheetBehavior.setPeekHeight(peekHeight);
@@ -2426,6 +2464,9 @@ public final class VideoDetailFragment
         // These numbers are not special. They just do a cool transition
         behavior.setTopAndBottomOffset(
                 (int) (-binding.detailThumbnailImageView.getHeight() * 2 * (1 - slideOffset) / 3));
+        if (iTubeAppViewModel != null) {
+            iTubeAppViewModel.onVideoDetailOverlaySlide(slideOffset);
+        }
         appBar.requestLayout();
     }
 

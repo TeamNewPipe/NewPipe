@@ -87,7 +87,7 @@
     <string name="start_main_player_fullscreen_key">start_main_player_fullscreen_key</string>
 
     <string name="autoplay_key">autoplay_key</string>
-    <string name="autoplay_value">@string/autoplay_wifi_key</string>
+    <string name="autoplay_value">@string/autoplay_always_key</string>
     <string name="autoplay_always_key">autoplay_always_key</string>
     <string name="autoplay_wifi_key">autoplay_wifi_key</string>
     <string name="autoplay_never_key">autoplay_never_key</string>
@@ -463,7 +463,7 @@
 
     <!-- Preferred action on open (open from external app) -->
     <string name="preferred_open_action_key">preferred_open_action_key</string>
-    <string name="preferred_open_action_default">@string/always_ask_open_action_key</string>
+    <string name="preferred_open_action_default">@string/video_player_key</string>
     <string name="preferred_open_action_last_selected_key">preferred_open_action_last_selected</string>
 
     <string name="show_info_key">show_info</string>
@@ -502,6 +502,8 @@
 
     <!-- Localizations   -->
     <string name="default_localization_key">system</string>
+    <string name="default_language_key">vi</string>
+    <string name="default_content_country_key">VN</string>
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes">
         <item>@string/default_localization_key</item>

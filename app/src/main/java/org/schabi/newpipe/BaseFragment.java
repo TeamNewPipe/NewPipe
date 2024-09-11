@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -115,8 +116,14 @@ public abstract class BaseFragment extends Fragment {
             Log.d(TAG, "setTitle() called with: title = [" + title + "]");
         }
         if (!useAsFrontPage && activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
-            activity.getSupportActionBar().setTitle(title);
+            if (!TextUtils.isEmpty(title)) {
+                activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+                activity.getSupportActionBar().setTitle(title);
+                activity.findViewById(R.id.logo_group).setVisibility(View.GONE);
+            } else {
+                activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+                activity.findViewById(R.id.logo_group).setVisibility(View.VISIBLE);
+            }
         }
     }
 

@@ -15,4 +15,7 @@
     <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
     <!-- Miscellaneous -->
     <dimen name="comment_item_avatar_right_margin">9dp</dimen>
+    <dimen name="font_size_label">14sp</dimen>
+    <dimen name="font_size_label_medium">12sp</dimen>
+    <dimen name="font_size_label_title">22sp</dimen>
 </resources>

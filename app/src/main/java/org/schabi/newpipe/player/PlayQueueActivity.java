@@ -150,7 +150,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();
-                NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+                NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true, 0);
                 return true;
             case R.id.action_switch_popup:
                 if (PermissionHelper.isPopupEnabledElseAsk(this)) {

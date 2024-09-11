@@ -72,8 +72,6 @@
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <item name="android:textColorPrimary">?attr/actionColor</item>
         <item name="android:textColorSecondary">?attr/actionColor</item>
-        <item name="tint">?attr/actionColor</item>
-        <item name="iconTint">?attr/actionColor</item>
     </style>
     <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
         <item name="tint">@color/contrastColor</item>

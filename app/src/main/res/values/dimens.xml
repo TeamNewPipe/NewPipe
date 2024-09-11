@@ -34,8 +34,8 @@
     <dimen name="video_item_search_avatar_image_height">70dp</dimen>
     <dimen name="video_item_search_avatar_left_margin">27dp</dimen>
     <dimen name="video_item_search_avatar_right_margin">33dp</dimen>
-    <dimen name="video_item_grid_thumbnail_image_width">164dp</dimen>
-    <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
+    <dimen name="video_item_grid_thumbnail_image_width">273dp</dimen>
+    <dimen name="video_item_grid_thumbnail_image_height">153dp</dimen>
 
     <dimen name="channel_item_card_thumbnail_image_size">100dp</dimen>
     <dimen name="channel_item_grid_thumbnail_image_size">92dp</dimen>
@@ -133,4 +133,14 @@
     <!-- Feed Groups dimensions-->
 
     <dimen name="search_suggestion_text_size">16sp</dimen>
+
+    <!-- iTube -->
+    <!-- text size-->
+    <dimen name="font_size_label">12sp</dimen>
+    <dimen name="font_size_label_medium">8sp</dimen>
+    <dimen name="font_size_label_title">14sp</dimen>
+    <dimen name="font_size_body">14sp</dimen>
+    <dimen name="toolbarSize">56dp</dimen>
+    <dimen name="toolbarTextSize">32sp</dimen>
+    <dimen name="toolbarContentMarginSize">8dp</dimen>
 </resources>

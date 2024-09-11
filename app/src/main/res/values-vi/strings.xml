@@ -10,6 +10,7 @@
     <string name="share">Chia sẻ</string>
     <string name="download">Tải xuống</string>
     <string name="search">Tìm kiếm</string>
+    <string name="search_hint">Nhập nội dung tìm kiếm</string>
     <string name="settings">Cài đặt</string>
     <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
@@ -66,7 +67,7 @@
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng/Giao diện người dùng bị lỗi</string>
-    <string name="sorry_string">Có vẻ NewPipe đã xảy ra lỗi, lướt xuống kiểm tra xem.</string>
+    <string name="sorry_string">Có vẻ iTube đã xảy ra lỗi, lướt xuống kiểm tra xem.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
     <string name="error_snackbar_message">Rất tiếc, đã xảy ra lỗi rồi.</string>
     <string name="error_snackbar_action">Báo cáo</string>
@@ -93,7 +94,7 @@
     <string name="msg_name">Tên file</string>
     <string name="msg_threads">Chủ đề</string>
     <string name="msg_error">Lỗi</string>
-    <string name="msg_running">NewPipe đang tải xuống</string>
+    <string name="msg_running">iTube đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Vui lòng chờ…</string>
     <string name="msg_copied">Đã sao chép vào khay nhớ tạm</string>
@@ -102,14 +103,14 @@
 \nmở trong chế độ bật lên</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
-    <string name="title_activity_about">Giới thiệu về NewPipe</string>
+    <string name="title_activity_about">Giới thiệu về iTube</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
     <string name="tab_about">Giới thiệu &amp; Câu hỏi thường gặp</string>
     <string name="tab_licenses">Giấy phép</string>
     <string name="app_description">Phát trực tuyến nhẹ tự do trên Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
-    <string name="app_license_title">Giấy phép của NewPipe</string>
+    <string name="app_license_title">Giấy phép của iTube</string>
     <string name="contribution_encouragement">Cho dù bạn có ý tưởng về: dịch thuật, thay đổi thiết kế, dọn mã hoặc thay đổi mã thực sự nhiều— sự trợ giúp luôn được hoan nghênh. Làm càng nhiều thì càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
@@ -158,8 +159,8 @@
     <string name="always">Luôn luôn</string>
     <string name="just_once">Chỉ một lần</string>
     <string name="file">Tập tin</string>
-    <string name="notification_channel_name">Thông báo NewPipe</string>
-    <string name="notification_channel_description">Thông báo cho trình phát của NewPipe</string>
+    <string name="notification_channel_name">Thông báo iTube</string>
+    <string name="notification_channel_description">Thông báo cho trình phát của iTube</string>
     <string name="unknown_content">[Không xác định]</string>
     <string name="switch_to_background">Chuyển sang nền</string>
     <string name="switch_to_popup">Chuyển sang Cửa sổ bật lên</string>
@@ -213,15 +214,15 @@
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
     <string name="donation_title">Quyên tặng</string>
-    <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian rảnh rỗi để mang lại cho bạn trải nghiệm người dùng tốt nhất. Hãy đền đáp để giúp các nhà phát triển làm cho NewPipe thậm chí còn tốt hơn nữa trong khi họ thưởng thức một tách cà phê.</string>
+    <string name="donation_encouragement">iTube được phát triển bởi các tình nguyện viên dành thời gian rảnh rỗi để mang lại cho bạn trải nghiệm người dùng tốt nhất. Hãy đền đáp để giúp các nhà phát triển làm cho iTube thậm chí còn tốt hơn nữa trong khi họ thưởng thức một tách cà phê.</string>
     <string name="give_back">Đền đáp</string>
     <string name="website_title">Trang web</string>
-    <string name="website_encouragement">Truy cập website chính thức của NewPipe để biết thêm thông tin và tin tức.</string>
-    <string name="privacy_policy_title">Chính sách bảo mật của NewPipe</string>
-    <string name="privacy_policy_encouragement">NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
-\nChính sách bảo mật của NewPipe giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
+    <string name="website_encouragement">Truy cập website chính thức của iTube để biết thêm thông tin và tin tức.</string>
+    <string name="privacy_policy_title">Chính sách bảo mật của iTube</string>
+    <string name="privacy_policy_encouragement">iTube rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
+\nChính sách bảo mật của iTube giải thích chi tiết dữ liệu nào được gửi và lưu trữ khi bạn gửi báo cáo sự cố.</string>
     <string name="read_privacy_policy">Đọc chính sách bảo mật</string>
-    <string name="app_license">NewPipe là phần mềm tự do bản quyền bên trái: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải tiến nó theo ý muốn. Cụ thể là bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản của Giấy phép Công cộng GNU do Tổ chức Phần mềm Tự do xuất bản, phiên bản 3 của Giấy phép hoặc (tùy theo lựa chọn của bạn) bất kỳ phiên bản nào mới hơn.</string>
+    <string name="app_license">iTube là phần mềm tự do bản quyền bên trái: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải tiến nó theo ý muốn. Cụ thể là bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản của Giấy phép Công cộng GNU do Tổ chức Phần mềm Tự do xuất bản, phiên bản 3 của Giấy phép hoặc (tùy theo lựa chọn của bạn) bất kỳ phiên bản nào mới hơn.</string>
     <string name="title_activity_history">Lịch sử</string>
     <string name="action_history">Lịch sử</string>
     <string name="delete_item_search_history">Bạn có muốn xóa mục này khỏi lịch sử tìm kiếm không?</string>
@@ -313,7 +314,7 @@
     <string name="skip_silence_checkbox">Chuyển nhanh qua khoảng lặng</string>
     <string name="playback_step">Bước</string>
     <string name="playback_reset">Đặt lại</string>
-    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của NewPipe. Vui lòng đọc kỹ.
+    <string name="start_accept_privacy_policy">Để tuân thủ Quy định bảo vệ dữ liệu chung của châu Âu (GDPR), chúng tôi sẽ thu hút sự chú ý của bạn đến chính sách bảo mật của iTube. Vui lòng đọc kỹ.
 \nBạn phải chấp nhận nó để gửi cho chúng tôi báo cáo lỗi.</string>
     <string name="accept">Chấp nhận</string>
     <string name="decline">Từ chối</string>
@@ -330,7 +331,7 @@
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
     <string name="app_update_notification_channel_name">Thông báo cập nhật ứng dụng</string>
-    <string name="app_update_notification_channel_description">Thông báo phiên bản NewPipe mới</string>
+    <string name="app_update_notification_channel_description">Thông báo phiên bản iTube mới</string>
     <string name="download_to_sdcard_error_title">Bộ nhớ ngoài không khả dụng</string>
     <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về\?</string>
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
@@ -391,7 +392,7 @@
     <string name="overwrite_unrelated_warning">Tên file này đã tồn tại</string>
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
     <string name="download_already_pending">Có một bản tải xuống đang chờ xử lý với tên này</string>
-    <string name="error_postprocessing_stopped">NewPipe đã bị đóng khi đang xử lý tệp</string>
+    <string name="error_postprocessing_stopped">iTube đã bị đóng khi đang xử lý tệp</string>
     <string name="error_insufficient_storage_left">Không đủ dung lượng trên máy</string>
     <string name="error_progress_lost">Quá trình tải bị hủy, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>
@@ -473,12 +474,12 @@
     <string name="video_detail_by">Bởi %s</string>
     <string name="channel_created_by">Được tạo bởi %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ảnh đại diện của kênh</string>
-    <string name="content_not_supported">NewPipe chưa hỗ trợ loại nội dung này.
+    <string name="content_not_supported">iTube chưa hỗ trợ loại nội dung này.
 \n
 \nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Bạn có nghĩ rằng tải nguồn cấp dữ liệu quá chậm? Nếu vậy, hãy thử bật tải nhanh (bạn có thể thay đổi nó này trong cài đặt hoặc bằng cách nhấn nút bên dưới).
 \n
-\nNewPipe cung cấp hai chiến lược tải nguồn cấp dữ liệu:
+\niTube cung cấp hai chiến lược tải nguồn cấp dữ liệu:
 \n• Tìm nạp toàn bộ kênh đăng ký, tuy chậm nhưng đầy đủ.
 \n• Sử dụng điểm cuối dịch vụ chuyên dụng, nhanh nhưng thường không hoàn thiện.
 \n
@@ -548,7 +549,7 @@
     <string name="show_thumbnail_title">Xem hình thu nhỏ</string>
     <string name="show_memory_leaks">Kiểm tra bộ nhớ</string>
     <string name="enqueued">Đã xếp hàng</string>
-    <string name="clear_cookie_summary">Xoá Cookie mà NewPipe lưu trữ sau khi bạn hoàn thành nó</string>
+    <string name="clear_cookie_summary">Xoá Cookie mà iTube lưu trữ sau khi bạn hoàn thành nó</string>
     <string name="recaptcha_cookies_cleared">Cookie reCAPTCHA đã được xóa</string>
     <string name="clear_cookie_title">Xóa Cookie của reCAPCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube cung cấp \"Chế độ hạn chế\" để ẩn nội dung có khả năng dành cho người trưởng thành</string>
@@ -573,14 +574,14 @@
     <string name="night_theme_summary">Chọn giao diện ban đêm của bạn — %s</string>
     <string name="auto_device_theme_title">Tự động (giao diện hệ thống)</string>
     <string name="radio">Radio</string>
-    <string name="paid_content">Nội dung này chỉ dành cho người dùng trả phí, nên NewPipe không thể phát hay tải xuống.</string>
-    <string name="youtube_music_premium_content">Video này chỉ được dành cho thành viên YouTube Music Premium, nên NewPipe không thể phát hay tải xuống.</string>
-    <string name="private_content">Nội dung này được để ở chế độ riêng tư, nên NewPipe không thể phát hay tải xuống.</string>
-    <string name="soundcloud_go_plus_content">Đây là bản nhạc SoundCloud Go+, ít nhất là ở quốc gia của bạn, vì vậy NewPipe không thể phát trực tuyến hoặc tải xuống bản nhạc này.</string>
+    <string name="paid_content">Nội dung này chỉ dành cho người dùng trả phí, nên iTube không thể phát hay tải xuống.</string>
+    <string name="youtube_music_premium_content">Video này chỉ được dành cho thành viên YouTube Music Premium, nên iTube không thể phát hay tải xuống.</string>
+    <string name="private_content">Nội dung này được để ở chế độ riêng tư, nên iTube không thể phát hay tải xuống.</string>
+    <string name="soundcloud_go_plus_content">Đây là bản nhạc SoundCloud Go+, ít nhất là ở quốc gia của bạn, vì vậy iTube không thể phát trực tuyến hoặc tải xuống bản nhạc này.</string>
     <string name="georestricted_content">Nội dung này không có sẵn ở quốc gia của bạn.</string>
     <string name="crash_the_app">Làm văng ứng dụng</string>
     <string name="restricted_video_no_stream">Video này bị giới hạn độ tuổi.
-\nDo chính sách mới của YouTube với các video bị giới hạn độ tuổi, NewPipe không thể truy cập bất kỳ luồng video nào của nó và do đó không thể phát nó.</string>
+\nDo chính sách mới của YouTube với các video bị giới hạn độ tuổi, iTube không thể truy cập bất kỳ luồng video nào của nó và do đó không thể phát nó.</string>
     <string name="night_theme_title">Chủ đề đêm</string>
     <string name="featured">Nổi bật</string>
     <string name="show_channel_details">Hiện chi tiết kênh</string>
@@ -610,7 +611,7 @@
     <string name="account_terminated">Tài khoản đã bị chấm dứt</string>
     <string name="feed_load_error_fast_unknown">Chế độ nạp nhanh không cung cấp thêm thông tin về điều này.</string>
     <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt.
-\nNewPipe sẽ không thể tải nguồn cấp dữ liệu này trong tương lai.
+\iTube sẽ không thể tải nguồn cấp dữ liệu này trong tương lai.
 \nBạn có muốn hủy đăng ký khỏi kênh này không\?</string>
     <string name="feed_load_error_account_info">Không thể tải nguồn cấp dữ liệu cho \'%s\'.</string>
     <string name="feed_load_error">Lỗi tải nguồn cấp dữ liệu</string>
@@ -642,7 +643,7 @@
     <string name="processing_may_take_a_moment">Đang xử lý... Có thể mất chút thời gian</string>
     <string name="error_report_channel_name">Thông báo lỗi</string>
     <string name="error_report_channel_description">Thông báo để báo cáo lỗi</string>
-    <string name="error_report_notification_title">NewPipe đã gặp sự cố, nhấn để xem và báo cáo</string>
+    <string name="error_report_notification_title">iTube đã gặp sự cố, nhấn để xem và báo cáo</string>
     <string name="error_report_notification_toast">Có lỗi xảy ra, hãy xem thông báo</string>
     <string name="show_crash_the_player_title">Hiện \"làm trình phát dừng\"</string>
     <string name="show_crash_the_player_summary">Hiện tùy chọn dừng đột ngột khi sử dụng trình phát</string>
@@ -807,7 +808,8 @@
 \n
 \nBạn có chắc muốn tiếp tục?</string>
     <string name="no">Không</string>
-    <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
+    <string name="auto_update_check_description">iTube có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
 \nBạn có muốn kích hoạt tính năng này không?</string>
     <string name="yes">Có</string>
+    <string name="version">%s phiên bản %s</string>
 </resources>

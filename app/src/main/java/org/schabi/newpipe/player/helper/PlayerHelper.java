@@ -247,7 +247,7 @@ public final class PlayerHelper {
 
     public static boolean isAutoQueueEnabled(@NonNull final Context context) {
         return getPreferences(context)
-                .getBoolean(context.getString(R.string.auto_queue_key), false);
+                .getBoolean(context.getString(R.string.auto_queue_key), true);
     }
 
     public static boolean isClearingQueueConfirmationRequired(@NonNull final Context context) {

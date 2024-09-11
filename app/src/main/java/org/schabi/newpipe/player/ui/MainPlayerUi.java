@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
@@ -100,6 +99,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     // fullscreen player
     private ItemTouchHelper itemTouchHelper;
+    public boolean forceDirectlyOpenFullscreenAfterIntent = false;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
      * enough for phones, but not for tablets since the mini player can be also shown in landscape.
      */
     private void directlyOpenFullscreenIfNeeded() {
-        if (PlayerHelper.isStartMainPlayerFullscreenEnabled(player.getService())
+        if (forceDirectlyOpenFullscreenAfterIntent) {
+            if (!player.exoPlayerIsNull()) {
+                forceDirectlyOpenFullscreenAfterIntent = false;
+                if (!isFullscreen) {
+                    toggleFullscreen();
+                }
+            }
+        } else if (PlayerHelper.isStartMainPlayerFullscreenEnabled(player.getService())
                 && DeviceUtils.isTablet(player.getService())
                 && PlayerHelper.globalScreenOrientationLocked(player.getService())) {
             player.getFragmentListener().ifPresent(
@@ -408,7 +415,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     @Override
     public void onPlaying() {
         super.onPlaying();
-        checkLandscape();
+        if (forceDirectlyOpenFullscreenAfterIntent && !isFullscreen) {
+            forceDirectlyOpenFullscreenAfterIntent = false;
+            toggleFullscreen();
+        } else {
+            checkLandscape();
+        }
     }
 
     @Override
@@ -450,8 +462,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public void showSystemUIPartially() {
         if (isFullscreen) {
             getParentActivity().map(Activity::getWindow).ifPresent(window -> {
-                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
+//                window.setStatusBarColor(Color.TRANSPARENT);
+//                window.setNavigationBarColor(Color.TRANSPARENT);
                 final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
@@ -955,6 +967,19 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (videoInLandscapeButNotInFullscreen
                 && notPaused
                 && !DeviceUtils.isTablet(context)) {
+            toggleFullscreen();
+        }
+    }
+
+    public void forceLandscape() {
+        // check if landscape is correct
+        final boolean videoInLandscapeButNotInFullscreen = !isFullscreen
+                && !player.isAudioOnly();
+        final boolean notPaused = player.getCurrentState() != STATE_COMPLETED
+                && player.getCurrentState() != STATE_PAUSED;
+
+        if (videoInLandscapeButNotInFullscreen
+                && notPaused) {
             toggleFullscreen();
         }
     }

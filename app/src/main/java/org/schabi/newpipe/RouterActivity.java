@@ -68,6 +68,7 @@ import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentExcepti
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.PlayerType;
@@ -659,7 +660,10 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedChoiceKey.equals(getString(R.string.show_info_key))
                 || canHandleChoiceLikeShowInfo(selectedChoiceKey)) {
             disposables.add(Observable
-                    .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl))
+                    .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl)
+                            .putExtra(
+                                    VideoDetailFragment.KEY_EXTERNAL_SOURCE,
+                                    VideoDetailFragment.EXTERNAL_SOURCE_ROUTE))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(intent -> {
@@ -1041,9 +1045,11 @@ public class RouterActivity extends AppCompatActivity {
                 }
 
                 if (choice.playerChoice.equals(videoPlayerKey)) {
-                    NavigationHelper.playOnMainPlayer(this, playQueue, false);
+                    NavigationHelper.playOnMainPlayer(this, playQueue,
+                            false, VideoDetailFragment.EXTERNAL_SOURCE_ROUTE);
                 } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
-                    NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
+                    NavigationHelper.playOnBackgroundPlayer(this, playQueue,
+                            true);
                 } else if (choice.playerChoice.equals(popupPlayerKey)) {
                     NavigationHelper.playOnPopupPlayer(this, playQueue, true);
                 }

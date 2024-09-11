@@ -4,7 +4,7 @@
     android:title="@string/content">
 
     <ListPreference
-        android:defaultValue="@string/default_localization_key"
+        android:defaultValue="@string/default_language_key"
         android:entries="@array/app_language_name"
         android:entryValues="@array/app_language_code"
         android:key="@string/app_language_key"
@@ -14,7 +14,7 @@
         app:useSimpleSummaryProvider="true" />
 
     <ListPreference
-        android:defaultValue="@string/default_localization_key"
+        android:defaultValue="@string/default_language_key"
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes"
         android:key="@string/content_language_key"
@@ -24,7 +24,7 @@
         app:useSimpleSummaryProvider="true" />
 
     <ListPreference
-        android:defaultValue="@string/default_localization_key"
+        android:defaultValue="VN"
         android:entries="@array/country_names"
         android:entryValues="@array/country_codes"
         android:key="@string/content_country_key"

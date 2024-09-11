@@ -88,7 +88,7 @@ public final class Localization {
     public static ContentCountry getPreferredContentCountry(@NonNull final Context context) {
         final String contentCountry = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.content_country_key),
-                        context.getString(R.string.default_localization_key));
+                        context.getString(R.string.default_content_country_key));
         if (contentCountry.equals(context.getString(R.string.default_localization_key))) {
             return new ContentCountry(Locale.getDefault().getCountry());
         }
@@ -417,10 +417,10 @@ public final class Localization {
     private static Locale getLocaleFromPrefs(@NonNull final Context context,
                                              @StringRes final int prefKey) {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        final String defaultKey = context.getString(R.string.default_localization_key);
+        final String defaultKey = context.getString(R.string.default_language_key);
         final String languageCode = sp.getString(context.getString(prefKey), defaultKey);
 
-        if (languageCode.equals(defaultKey)) {
+        if (languageCode.equals(context.getString(R.string.default_localization_key))) {
             return Locale.getDefault();
         } else {
             return Locale.forLanguageTag(languageCode);

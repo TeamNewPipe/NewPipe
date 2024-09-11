@@ -41,7 +41,7 @@ public final class SettingMigrations {
             // aware of the changed dialog.
             final SharedPreferences.Editor editor = sp.edit();
             editor.putString(context.getString(R.string.preferred_open_action_key),
-                    context.getString(R.string.always_ask_open_action_key));
+                    context.getString(R.string.preferred_open_action_default));
             editor.apply();
         }
     };

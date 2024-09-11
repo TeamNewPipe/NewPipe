@@ -173,7 +173,7 @@
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="@string/auto_queue_key"
             android:summary="@string/auto_queue_summary"
             android:title="@string/auto_queue_title"
@@ -181,7 +181,7 @@
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="@string/resume_on_audio_focus_gain_key"
             android:summary="@string/resume_on_audio_focus_gain_summary"
             android:title="@string/resume_on_audio_focus_gain_title"
