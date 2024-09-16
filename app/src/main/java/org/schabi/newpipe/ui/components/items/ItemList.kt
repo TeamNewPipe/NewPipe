@@ -25,6 +25,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
+import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
@@ -72,7 +73,7 @@ fun ItemList(
     } else {
         val state = rememberLazyListState()
 
-        LazyColumnScrollbar(state = state) {
+        LazyColumnScrollbar(state = state, settings = NewPipeScrollbarSettings) {
             LazyColumn(modifier = nestedScrollModifier, state = state) {
                 listHeader()
 
