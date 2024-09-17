@@ -350,8 +350,6 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         bookmarksNotificationsDisposable?.dispose()
     }
 
-    // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
-    // available in Android API 34 and not currently available with desugaring
     private fun populateBookmarks() =
         playlists.firstOrError().map { playlist ->
             playlist.filterNotNull().map { createPlaylistMediaItem(it) }

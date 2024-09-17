@@ -78,8 +78,6 @@ class PlayerService : MediaBrowserServiceCompat() {
         ThemeHelper.setTheme(this)
     }
 
-    // Suppress Sonar warning to not always return the same value, as we need to do some actions
-    // before returning
     override fun onStartCommand(
         intent: Intent,
         flags: Int,
