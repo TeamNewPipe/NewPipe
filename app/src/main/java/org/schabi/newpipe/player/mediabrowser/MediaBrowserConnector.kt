@@ -123,8 +123,8 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
 
     private fun createPlaylistMediaItem(playlist: PlaylistLocalItem): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
-        val remote = playlist is PlaylistRemoteEntity
-        builder.setMediaId(createMediaIdForInfoItem(remote, playlist.uid))
+        val isRemote = playlist is PlaylistRemoteEntity
+        builder.setMediaId(createMediaIdForInfoItem(isRemote, playlist.uid))
             .setTitle(playlist.orderingName)
             .setIconUri(Uri.parse(playlist.thumbnailUrl))
 
@@ -168,9 +168,9 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
             .appendPath(playlistType)
 
     private fun buildLocalPlaylistItemMediaId(
-        remote: Boolean,
+        isRemote: Boolean,
         playlistId: Long,
-    ) = buildPlaylistMediaId(if (remote) ID_REMOTE else ID_LOCAL)
+    ) = buildPlaylistMediaId(if (isRemote) ID_REMOTE else ID_LOCAL)
         .appendPath(playlistId.toString())
 
     private fun buildInfoItemMediaId(item: InfoItem) =
@@ -181,9 +181,9 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
             .appendQueryParameter(ID_URL, item.url)
 
     private fun createMediaIdForInfoItem(
-        remote: Boolean,
+        isRemote: Boolean,
         playlistId: Long,
-    ) = buildLocalPlaylistItemMediaId(remote, playlistId)
+    ) = buildLocalPlaylistItemMediaId(isRemote, playlistId)
         .build()
         .toString()
 
@@ -224,10 +224,10 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun createMediaIdForPlaylistIndex(
-        remote: Boolean,
+        isRemote: Boolean,
         playlistId: Long,
         index: Int,
-    ) = buildLocalPlaylistItemMediaId(remote, playlistId)
+    ) = buildLocalPlaylistItemMediaId(isRemote, playlistId)
         .appendPath(index.toString())
         .build()
         .toString()
