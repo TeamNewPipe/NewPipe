@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.mediabrowser
 
-import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.net.Uri
 import android.os.Bundle
@@ -67,7 +66,6 @@ import java.lang.IllegalStateException
 import java.lang.NullPointerException
 import java.util.ArrayList
 import java.util.stream.Collectors
-import java.util.stream.IntStream
 
 class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     private val playerService: PlayerService
@@ -404,8 +402,6 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         }
     }
 
-    // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
-    // available in Android API 34 and not currently available with desugaring
     private fun populateBookmarks(): Single<List<MediaBrowserCompat.MediaItem>> {
         val playlists = getPlaylists().firstOrError()
         return playlists.map<List<MediaBrowserCompat.MediaItem>>(
@@ -437,19 +433,16 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
-    // available in Android API 34 and not currently available with desugaring
-    @SuppressLint("NewApi")
-    private fun getRemotePlaylist(playlistId: Long): Single<MutableList<Pair<StreamInfoItem, Int>>> {
+    private fun getRemotePlaylist(playlistId: Long): Single<List<Pair<StreamInfoItem, Int>>> {
         val playlistFlow = remotePlaylistManager!!.getPlaylist(playlistId).firstOrError()
-        return playlistFlow.flatMap<MutableList<Pair<StreamInfoItem, Int>>>(
-            { item: MutableList<PlaylistRemoteEntity> ->
+        return playlistFlow.flatMap<List<Pair<StreamInfoItem, Int>>>(
+            { item: List<PlaylistRemoteEntity> ->
                 val playlist = item.get(0)
                 val playlistInfo = ExtractorHelper.getPlaylistInfo(
                     playlist.serviceId,
                     playlist.url, false
                 )
-                playlistInfo.flatMap<MutableList<Pair<StreamInfoItem, Int>>>(
+                playlistInfo.flatMap<List<Pair<StreamInfoItem, Int>>>(
                     { info: PlaylistInfo ->
                         val infoItemsPage = info.relatedItems
                         if (!info.errors.isEmpty()) {
@@ -467,17 +460,10 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                                 )
                             }
                         }
-                        Single.just<MutableList<Pair<StreamInfoItem, Int>>>(
-                            IntStream.range(0, infoItemsPage.size)
-                                .mapToObj<Pair<StreamInfoItem, Int>>(
-                                    java.util.function.IntFunction { i: Int ->
-                                        Pair.create<StreamInfoItem?, Int?>(
-                                            infoItemsPage.get(i),
-                                            i
-                                        )
-                                    }
-                                )
-                                .toList()!!
+                        Single.just<List<Pair<StreamInfoItem, Int>>>(
+                            infoItemsPage.withIndex().map {
+                                Pair(it.value, it.index)
+                            }
                         )
                     }
                 )
