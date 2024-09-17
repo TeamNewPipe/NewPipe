@@ -308,11 +308,11 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                         }
                     }
                     Log.w(TAG, "Unknown playlist URI: " + parentId)
-                    throw parseError()
+                    throw parseError(parentId)
                 }
 
                 ID_HISTORY -> return populateHistory()
-                else -> throw parseError()
+                else -> throw parseError(parentId)
             }
         } catch (e: ContentNotAvailableException) {
             return Single.error(e)
@@ -518,13 +518,13 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun extractPlayQueueFromMediaId(mediaId: String?): Single<PlayQueue> {
+    private fun extractPlayQueueFromMediaId(mediaId: String): Single<PlayQueue> {
         try {
             val mediaIdUri = Uri.parse(mediaId)
             val path: MutableList<String> = ArrayList<String>(mediaIdUri.pathSegments)
 
             if (path.isEmpty()) {
-                throw parseError()
+                throw parseError(mediaId)
             }
 
             val uriType: String? = path.get(0)
@@ -532,17 +532,19 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
             return when (uriType) {
                 ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(
+                    mediaId,
                     path,
                     mediaIdUri.getQueryParameter(ID_URL)
                 )
 
-                ID_HISTORY -> extractPlayQueueFromHistoryMediaId(path)
+                ID_HISTORY -> extractPlayQueueFromHistoryMediaId(mediaId, path)
                 ID_INFO_ITEM -> extractPlayQueueFromInfoItemMediaId(
+                    mediaId,
                     path,
                     mediaIdUri.getQueryParameter(ID_URL)
                 )
 
-                else -> throw parseError()
+                else -> throw parseError(mediaId)
             }
         } catch (e: ContentNotAvailableException) {
             return Single.error(e)
@@ -551,11 +553,12 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromPlaylistMediaId(
+        mediaId: String,
         path: MutableList<String>,
         url: String?
     ): Single<PlayQueue> {
         if (path.isEmpty()) {
-            throw parseError()
+            throw parseError(mediaId)
         }
 
         val playlistType = path.get(0)
@@ -564,7 +567,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         when (playlistType) {
             ID_LOCAL, ID_REMOTE -> {
                 if (path.size != 2) {
-                    throw parseError()
+                    throw parseError(mediaId)
                 }
                 val playlistId = path.get(0).toLong()
                 val index = path.get(1).toInt()
@@ -576,7 +579,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
             ID_URL -> {
                 if (path.size != 1) {
-                    throw parseError()
+                    throw parseError(mediaId)
                 }
 
                 val serviceId = path.get(0).toInt()
@@ -584,16 +587,17 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                     .map<PlayQueue>({ info: PlaylistInfo? -> PlaylistPlayQueue(info) })
             }
 
-            else -> throw parseError()
+            else -> throw parseError(mediaId)
         }
     }
 
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromHistoryMediaId(
+        mediaId: String,
         path: List<String>
     ): Single<PlayQueue> {
         if (path.size != 1) {
-            throw parseError()
+            throw parseError(mediaId)
         }
 
         val streamId = path.get(0).toLong()
@@ -793,17 +797,18 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             }
         }
 
-        private fun parseError(): ContentNotAvailableException {
-            return ContentNotAvailableException("Failed to parse media ID")
+        private fun parseError(mediaId: String): ContentNotAvailableException {
+            return ContentNotAvailableException("Failed to parse media ID $mediaId")
         }
 
         @Throws(ContentNotAvailableException::class)
         private fun extractPlayQueueFromInfoItemMediaId(
+            mediaId: String,
             path: List<String>,
             url: String?
         ): Single<PlayQueue> {
             if (path.size != 2) {
-                throw parseError()
+                throw parseError(mediaId)
             }
             val infoItemType = infoItemTypeFromString(path.get(0))
             val serviceId = path.get(1).toInt()
@@ -832,7 +837,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                         }
                 }
 
-                else -> throw parseError()
+                else -> throw parseError(mediaId)
             }
         }
     }
