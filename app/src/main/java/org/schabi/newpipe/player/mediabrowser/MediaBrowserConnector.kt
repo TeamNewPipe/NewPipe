@@ -120,8 +120,8 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     private fun createPlaylistMediaItem(playlist: PlaylistLocalItem): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
-        val remote = playlist is PlaylistRemoteEntity
-        builder.setMediaId(createMediaIdForInfoItem(remote, playlist.uid))
+        val isRemote = playlist is PlaylistRemoteEntity
+        builder.setMediaId(createMediaIdForInfoItem(isRemote, playlist.uid))
             .setTitle(playlist.orderingName)
             .setIconUri(Uri.parse(playlist.thumbnailUrl))
 
@@ -168,8 +168,8 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             .appendPath(playlistType)
     }
 
-    private fun buildLocalPlaylistItemMediaId(remote: Boolean, playlistId: Long): Uri.Builder {
-        return buildPlaylistMediaId(if (remote) ID_REMOTE else ID_LOCAL)
+    private fun buildLocalPlaylistItemMediaId(isRemote: Boolean, playlistId: Long): Uri.Builder {
+        return buildPlaylistMediaId(if (isRemote) ID_REMOTE else ID_LOCAL)
             .appendPath(playlistId.toString())
     }
 
@@ -181,8 +181,8 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             .appendQueryParameter(ID_URL, item.url)
     }
 
-    private fun createMediaIdForInfoItem(remote: Boolean, playlistId: Long): String {
-        return buildLocalPlaylistItemMediaId(remote, playlistId)
+    private fun createMediaIdForInfoItem(isRemote: Boolean, playlistId: Long): String {
+        return buildLocalPlaylistItemMediaId(isRemote, playlistId)
             .build().toString()
     }
 
@@ -224,11 +224,11 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     }
 
     private fun createMediaIdForPlaylistIndex(
-        remote: Boolean,
+        isRemote: Boolean,
         playlistId: Long,
         index: Int
     ): String {
-        return buildLocalPlaylistItemMediaId(remote, playlistId)
+        return buildLocalPlaylistItemMediaId(isRemote, playlistId)
             .appendPath(index.toString())
             .build().toString()
     }
