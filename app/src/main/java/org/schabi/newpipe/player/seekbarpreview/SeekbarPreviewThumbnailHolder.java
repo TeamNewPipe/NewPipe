@@ -109,7 +109,6 @@ public class SeekbarPreviewThumbnailHolder {
         final Stopwatch sw = Log.isLoggable(TAG, Log.DEBUG) ? Stopwatch.createStarted() : null;
 
         int currentPosMs = 0;
-        int pos = 1;
 
         final int urlFrameCount = frameset.getFramesPerPageX() * frameset.getFramesPerPageY();
 
@@ -117,6 +116,14 @@ public class SeekbarPreviewThumbnailHolder {
         for (final String url : frameset.getUrls()) {
             // get the bitmap
             final Bitmap srcBitMap = getBitMapFrom(url);
+
+            // It can happen, that the original bitmap could not be downloaded
+            // In such a case - we don't want a NullPointer - simply return null
+            // Recycled bitmaps can also not be created, so we also need to check for that
+            if (srcBitMap == null || srcBitMap.isRecycled()) {
+                Log.e(TAG, "Failed to retrieve or use bitmap from url: " + url);
+                continue;
+            }
 
             // The data is not added directly to "seekbarPreviewData" due to
             // concurrency and checks for "updateRequestIdentifier"
@@ -126,26 +133,19 @@ public class SeekbarPreviewThumbnailHolder {
             // foreach frame in the returned bitmap
             for (int i = 0; i < urlFrameCount; i++) {
                 // Frames outside the video length are skipped
-                if (pos > frameset.getTotalCount()) {
+                if (i >= frameset.getTotalCount()) {
                     break;
                 }
 
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
                 generatedDataForUrl.put(currentPosMs, () -> {
-                    // It can happen, that the original bitmap could not be downloaded
-                    // In such a case - we don't want a NullPointer - simply return null
-                    if (srcBitMap == null) {
-                        return null;
-                    }
-
                     // Cut out the corresponding bitmap form the "srcBitMap"
                     return Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
                             frameset.getFrameWidth(), frameset.getFrameHeight());
                 });
 
                 currentPosMs += frameset.getDurationPerFrame();
-                pos++;
             }
 
             // Check if we are still the latest request
