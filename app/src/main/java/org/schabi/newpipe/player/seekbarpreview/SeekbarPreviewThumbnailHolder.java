@@ -172,12 +172,14 @@ public class SeekbarPreviewThumbnailHolder {
             final Bitmap cutOutBitmap = Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
                     frameset.getFrameWidth(), frameset.getFrameHeight());
 
-            // We need to copy the bitmap to create a new instance since createBitmap
-            // allows itself to return the original object that is was created with
+            // If the cut out bitmap is identical to its source,
+            // we need to copy the bitmap to create a new instance.
+            // createBitmap allows itself to return the original object that is was created with
             // this leads to recycled bitmaps being returned (if they are identical)
             // Reference: https://stackoverflow.com/a/23683075 + first comment
             // Fixes: https://github.com/TeamNewPipe/NewPipe/issues/11461
-            return cutOutBitmap.copy(cutOutBitmap.getConfig(), true);
+            return cutOutBitmap == srcBitMap
+                    ? cutOutBitmap.copy(cutOutBitmap.getConfig(), true) : cutOutBitmap;
         };
     }
 
