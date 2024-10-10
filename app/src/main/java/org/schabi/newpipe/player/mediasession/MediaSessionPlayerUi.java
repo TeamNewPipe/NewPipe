@@ -44,6 +44,13 @@ public class MediaSessionPlayerUi extends PlayerUi
     private MediaSessionConnector sessionConnector;
 
     private final String ignoreHardwareMediaButtonsKey;
+
+    private final String prevNextButtonModeKey;
+
+    private final String smartModeKey;
+
+    private final String fwRwModeKey;
+
     private boolean shouldIgnoreHardwareMediaButtons = false;
 
     // used to check whether any notification action changed, before sending costly updates
@@ -54,6 +61,9 @@ public class MediaSessionPlayerUi extends PlayerUi
         super(player);
         ignoreHardwareMediaButtonsKey =
                 context.getString(R.string.ignore_hardware_media_buttons_key);
+        prevNextButtonModeKey = context.getString(R.string.prev_next_button_mode_key);
+        smartModeKey = context.getString(R.string.prev_next_mode_smart_key);
+        fwRwModeKey = context.getString(R.string.prev_next_mode_seek_key);
     }
 
     @Override
@@ -75,6 +85,7 @@ public class MediaSessionPlayerUi extends PlayerUi
 
         // listen to changes to ignore_hardware_media_buttons_key
         updateShouldIgnoreHardwareMediaButtons(player.getPrefs());
+        updatePrevNextMode(player.getPrefs());
         player.getPrefs().registerOnSharedPreferenceChangeListener(this);
 
         sessionConnector.setMetadataDeduplicationEnabled(true);
@@ -116,14 +127,32 @@ public class MediaSessionPlayerUi extends PlayerUi
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String key) {
-        if (key == null || key.equals(ignoreHardwareMediaButtonsKey)) {
+        if (key == null) {
             updateShouldIgnoreHardwareMediaButtons(sharedPreferences);
+            updatePrevNextMode(sharedPreferences);
+        } else if (key.equals(ignoreHardwareMediaButtonsKey)) {
+            updateShouldIgnoreHardwareMediaButtons(sharedPreferences);
+
+        } else if (key.equals(prevNextButtonModeKey)) {
+            updatePrevNextMode(sharedPreferences);
         }
     }
 
     public void updateShouldIgnoreHardwareMediaButtons(final SharedPreferences sharedPreferences) {
         shouldIgnoreHardwareMediaButtons =
                 sharedPreferences.getBoolean(ignoreHardwareMediaButtonsKey, false);
+    }
+
+    public void updatePrevNextMode(final SharedPreferences sharedPreferences) {
+
+        final var modeString = sharedPreferences.getString(prevNextButtonModeKey, "");
+        int prevNextButtonMode = Player.DEFAULT_PREV_NEXT_MODE;
+        if (modeString.equals(smartModeKey)) {
+            prevNextButtonMode = Player.SMART_PREV_NEXT_MODE;
+        } else if (modeString.equals(fwRwModeKey)) {
+            prevNextButtonMode = Player.SEEK_PREV_NEXT_MODE;
+        }
+        player.setQueueActionsPrevNext(prevNextButtonMode);
     }
 
 

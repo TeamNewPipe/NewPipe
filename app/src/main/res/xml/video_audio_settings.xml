@@ -145,6 +145,16 @@
             app:iconSpaceReserved="false" />
 
         <ListPreference
+            android:defaultValue="@string/default_default_prev_next_button_mode_default_value"
+            android:entries="@array/prev_next_button_mode_description"
+            android:entryValues="@array/default_prev_next_button_mode_default_values"
+            android:key="@string/prev_next_button_mode_key"
+            android:summary="@string/prev_next_button_mode_settings_summary"
+            android:title="@string/prev_next_button_mode_settings_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
             android:defaultValue="@string/minimize_on_exit_value"
             android:entries="@array/minimize_on_exit_action_description"
             android:entryValues="@array/minimize_on_exit_action_key"

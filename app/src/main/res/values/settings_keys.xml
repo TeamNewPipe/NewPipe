@@ -24,6 +24,7 @@
     <string name="screen_brightness_timestamp_key">screen_brightness_timestamp_key</string>
     <string name="clear_queue_confirmation_key">clear_queue_confirmation_key</string>
     <string name="ignore_hardware_media_buttons_key">ignore_hardware_media_buttons_key</string>
+    <string name="_key">prev_next_button_mode_key</string>
 
     <string name="popup_saved_width_key">popup_saved_width</string>
     <string name="popup_saved_x_key">popup_saved_x</string>
@@ -227,6 +228,22 @@
         <item>@string/volume_control_key</item>
         <item>@string/brightness_control_key</item>
         <item>@string/none_control_key</item>
+    </string-array>
+
+    <string name="prev_next_button_mode_key">prev_next_button_mode</string>
+    <string name="default_default_prev_next_button_mode_default_value">@string/prev_next_mode_default_key</string>
+    <string name="prev_next_mode_default_key">default_mode</string>
+    <string name="prev_next_mode_seek_key">seek_mode</string>
+    <string name="prev_next_mode_smart_key">smart_mode</string>
+    <string-array name="prev_next_button_mode_description">
+        <item>@string/prev_next_mode_default</item>
+        <item>@string/prev_next_mode_seek</item>
+        <item>@string/prev_next_mode_smart</item>
+    </string-array>
+    <string-array name="default_prev_next_button_mode_default_values">
+        <item>@string/prev_next_mode_default_key</item>
+        <item>@string/prev_next_mode_seek_key</item>
+        <item>@string/prev_next_mode_smart_key</item>
     </string-array>
 
     <string name="prefer_original_audio_key">prefer_original_audio</string>
