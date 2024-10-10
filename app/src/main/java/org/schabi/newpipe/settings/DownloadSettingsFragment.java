@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.extractor.utils.Utils.decodeUrlUtf8;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
@@ -30,7 +29,6 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
@@ -107,28 +105,15 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     private void showPathInSummary(final String prefKey, @StringRes final int defaultString,
                                    final Preference target) {
-        String rawUri = defaultPreferences.getString(prefKey, null);
-        if (rawUri == null || rawUri.isEmpty()) {
+        final Uri uri = Uri.parse(defaultPreferences.getString(prefKey, ""));
+        if (uri.equals(Uri.EMPTY)) {
             target.setSummary(getString(defaultString));
             return;
         }
 
-        if (rawUri.charAt(0) == File.separatorChar) {
-            target.setSummary(rawUri);
-            return;
-        }
-        if (rawUri.startsWith(ContentResolver.SCHEME_FILE)) {
-            target.setSummary(new File(URI.create(rawUri)).getPath());
-            return;
-        }
-
-        try {
-            rawUri = decodeUrlUtf8(rawUri);
-        } catch (final IllegalArgumentException e) {
-            // nothing to do
-        }
-
-        target.setSummary(rawUri);
+        final String summary = ContentResolver.SCHEME_FILE.equals(uri.getScheme())
+                ? uri.getPath() : uri.toString();
+        target.setSummary(summary);
     }
 
     private boolean isFileUri(final String path) {
