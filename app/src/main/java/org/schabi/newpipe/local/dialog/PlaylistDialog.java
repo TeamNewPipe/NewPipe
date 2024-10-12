@@ -163,7 +163,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
      * @return the disposable that was created
      */
     public static Disposable showForPlayQueue(
-            final Player player,
+            @NonNull final Player player,
             @NonNull final FragmentManager fragmentManager) {
 
         final List<StreamEntity> streamEntities = Stream.of(player.getPlayQueue())

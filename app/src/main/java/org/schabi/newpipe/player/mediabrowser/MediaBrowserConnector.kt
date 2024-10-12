@@ -59,7 +59,9 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ServiceHelper
 import java.util.stream.Collectors
 
-class MediaBrowserConnector(private val playerService: PlayerService) : PlaybackPreparer {
+class MediaBrowserConnector(
+    private val playerService: PlayerService,
+) : PlaybackPreparer {
     private val mediaSession = MediaSessionCompat(playerService, TAG)
     val sessionConnector = MediaSessionConnector(mediaSession).apply {
         setMetadataDeduplicationEnabled(true)
@@ -627,7 +629,10 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     private fun handleSearchError(throwable: Throwable) {
         Log.e(TAG, "Search error: $throwable")
         disposePrepareOrPlayCommands()
-        playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED)
+        sessionConnector.setCustomErrorMessage(
+            playerService.getString(R.string.search_no_results),
+            PlaybackStateCompat.ERROR_CODE_APP_ERROR,
+        )
     }
 
     override fun onPrepareFromUri(

@@ -198,10 +198,7 @@ class PlayerService : MediaBrowserServiceCompat() {
     ) : Binder() {
         private val playerService = WeakReference(playerService)
 
-        val service: PlayerService?
-            get() = playerService.get()
-
-        fun getPlayer(): Player = service?.player ?: throw Error("Player service is null")
+        fun getPlayer(): Player? = playerService.get()?.player
     }
 
     companion object {
