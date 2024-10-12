@@ -720,7 +720,10 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     private fun handleSearchError(throwable: Throwable) {
         Log.e(TAG, "Search error: " + throwable)
         disposePrepareOrPlayCommands()
-        playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED)
+        sessionConnector.setCustomErrorMessage(
+            playerService.getString(R.string.search_no_results),
+            PlaybackStateCompat.ERROR_CODE_APP_ERROR,
+        )
     }
 
     override fun onPrepareFromUri(

@@ -166,7 +166,7 @@ public final class PlayerHolder {
             }
             final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
-            playerService = localBinder.getService();
+            playerService = localBinder.getPlayer().getService();
             player = localBinder.getPlayer();
             if (listener != null) {
                 listener.onServiceConnected(player, playerService, playAfterConnect);

@@ -61,6 +61,7 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private static final int MENU_ID_AUDIO_TRACK = 71;
 
+    @Nullable
     private Player player;
 
     private boolean serviceBound;
@@ -137,30 +138,38 @@ public final class PlayQueueActivity extends AppCompatActivity
                 NavigationHelper.openSettings(this);
                 return true;
             case R.id.action_append_playlist:
-                PlaylistDialog.showForPlayQueue(player, getSupportFragmentManager());
+                if (player != null) {
+                    PlaylistDialog.showForPlayQueue(player, getSupportFragmentManager());
+                }
                 return true;
             case R.id.action_playback_speed:
                 openPlaybackParameterDialog();
                 return true;
             case R.id.action_mute:
-                player.toggleMute();
+                if (player != null) {
+                    player.toggleMute();
+                }
                 return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
             case R.id.action_switch_main:
-                this.player.setRecovery();
-                NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+                if (player != null) {
+                    this.player.setRecovery();
+                    NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+                }
                 return true;
             case R.id.action_switch_popup:
-                if (PermissionHelper.isPopupEnabledElseAsk(this)) {
+                if (PermissionHelper.isPopupEnabledElseAsk(this) && player != null) {
                     this.player.setRecovery();
                     NavigationHelper.playOnPopupPlayer(this, player.getPlayQueue(), true);
                 }
                 return true;
             case R.id.action_switch_background:
-                this.player.setRecovery();
-                NavigationHelper.playOnBackgroundPlayer(this, player.getPlayQueue(), true);
+                if (player != null) {
+                    this.player.setRecovery();
+                    NavigationHelper.playOnBackgroundPlayer(this, player.getPlayQueue(), true);
+                }
                 return true;
         }
 
@@ -309,7 +318,7 @@ public final class PlayQueueActivity extends AppCompatActivity
 
             @Override
             public void onSwiped(final int index) {
-                if (index != -1) {
+                if (index != -1 && player != null) {
                     player.getPlayQueue().remove(index);
                 }
             }
@@ -659,7 +668,7 @@ public final class PlayQueueActivity extends AppCompatActivity
      * @param itemId index of the selected item
      */
     private void onAudioTrackClick(final int itemId) {
-        if (player.getCurrentMetadata() == null) {
+        if (player == null || player.getCurrentMetadata() == null) {
             return;
         }
         player.getCurrentMetadata().getMaybeAudioTrack().ifPresent(audioTrack -> {

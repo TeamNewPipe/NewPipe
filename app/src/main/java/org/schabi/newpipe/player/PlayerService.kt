@@ -234,9 +234,7 @@ class PlayerService : MediaBrowserServiceCompat() {
             return playerService.get()
         }
 
-        fun getPlayer(): Player? {
-            return playerService.get()!!.player
-        }
+        fun getPlayer(): Player? = playerService.get()?.player
     }
 
     companion object {

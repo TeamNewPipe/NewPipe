@@ -229,6 +229,7 @@ public final class VideoDetailFragment
     private ContentObserver settingsContentObserver;
     @Nullable
     private PlayerService playerService;
+    @Nullable
     private Player player;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
@@ -236,7 +237,7 @@ public final class VideoDetailFragment
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
     @Override
-    public void onServiceConnected(final Player connectedPlayer,
+    public void onServiceConnected(@Nullable final Player connectedPlayer,
                                    final PlayerService connectedPlayerService,
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
