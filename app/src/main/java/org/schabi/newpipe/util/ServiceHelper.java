@@ -121,6 +121,16 @@ public final class ServiceHelper {
                 .getServiceId();
     }
 
+    public static int getServiceIdByName(final String serviceName) throws IllegalArgumentException {
+        for (final StreamingService s : NewPipe.getServices()) {
+            if (s.getServiceInfo().getName().equalsIgnoreCase(serviceName)) {
+                return s.getServiceId();
+            }
+        }
+        throw new IllegalArgumentException("Invalid service name");
+    }
+
+
     @Nullable
     public static StreamingService getSelectedService(final Context context) {
         final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)

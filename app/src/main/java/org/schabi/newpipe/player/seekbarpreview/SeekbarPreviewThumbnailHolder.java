@@ -132,8 +132,17 @@ public class SeekbarPreviewThumbnailHolder {
 
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
-                generatedDataForUrl.put(currentPosMs,
-                                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                generatedDataForUrl.put(currentPosMs, () -> {
+                    // It can happen, that the original bitmap could not be downloaded
+                    // In such a case - we don't want a NullPointer - simply return null
+                    if (srcBitMap == null) {
+                        return null;
+                    }
+
+                    // Cut out the corresponding bitmap form the "srcBitMap"
+                    return Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
+                            frameset.getFrameWidth(), frameset.getFrameHeight());
+                });
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
