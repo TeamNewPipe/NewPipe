@@ -132,8 +132,17 @@ public class SeekbarPreviewThumbnailHolder {
 
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
-                generatedDataForUrl.put(currentPosMs,
-                                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                generatedDataForUrl.put(currentPosMs, () -> {
+                    // It can happen, that the original bitmap could not be downloaded
+                    // In such a case - we don't want a NullPointer - simply return null
+                    if (srcBitMap == null) {
+                        return null;
+                    }
+
+                    // Cut out the corresponding bitmap form the "srcBitMap"
+                    return Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
+                            frameset.getFrameWidth(), frameset.getFrameHeight());
+                });
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
@@ -154,33 +163,6 @@ public class SeekbarPreviewThumbnailHolder {
         if (sw != null) {
             Log.d(TAG, "Generation of seekbarPreviewData took " + sw.stop());
         }
-    }
-
-    private Supplier<Bitmap> createBitmapSupplier(final Bitmap srcBitMap,
-                                                  final int[] bounds,
-                                                  final Frameset frameset) {
-        return () -> {
-            // It can happen, that the original bitmap could not be downloaded
-            // (or it was recycled though that should not happen)
-            // In such a case - we don't want a NullPointer/
-            // "cannot use a recycled source in createBitmap" Exception -> simply return null
-            if (srcBitMap == null || srcBitMap.isRecycled()) {
-                return null;
-            }
-
-            // Cut out the corresponding bitmap form the "srcBitMap"
-            final Bitmap cutOutBitmap = Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
-                    frameset.getFrameWidth(), frameset.getFrameHeight());
-
-            // If the cut out bitmap is identical to its source,
-            // we need to copy the bitmap to create a new instance.
-            // createBitmap allows itself to return the original object that is was created with
-            // this leads to recycled bitmaps being returned (if they are identical)
-            // Reference: https://stackoverflow.com/a/23683075 + first comment
-            // Fixes: https://github.com/TeamNewPipe/NewPipe/issues/11461
-            return cutOutBitmap == srcBitMap
-                    ? cutOutBitmap.copy(cutOutBitmap.getConfig(), true) : cutOutBitmap;
-        };
     }
 
     @Nullable
