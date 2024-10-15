@@ -406,6 +406,14 @@
                 <data android:sspPattern="bandcamp.com/?show=*" />
             </intent-filter>
 
+            <!-- customized search URL filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="newpipe" android:host="search" />
+            </intent-filter>
+
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
