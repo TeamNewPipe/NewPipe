@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -84,6 +85,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
@@ -153,6 +155,28 @@ public class RouterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
+
+        final Intent intent = getIntent();
+        final Uri data = intent.getData();
+        if (data != null) {
+            final String scheme = data.getScheme();
+            final String host = data.getHost();
+            if ("newpipe".equals(scheme) && "search".equals(host)) {
+                final String query = data.getQueryParameter("q");
+                if (query != null) {
+                    // Enable the search function
+                    final Intent searchIntent = new Intent(this, MainActivity.class);
+                    searchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    searchIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
+                    searchIntent.putExtra(Constants.KEY_SERVICE_ID,
+                            ServiceHelper.getSelectedServiceId(this));
+                    searchIntent.putExtra(Constants.KEY_SEARCH_STRING, query);
+                    startActivity(searchIntent);
+                    finish();
+                    return;
+                }
+            }
+        }
 
         // FragmentManager will take care to recreate (Playlist|Download)Dialog when screen rotates
         // We used to .setOnDismissListener(dialog -> finish()); when creating these DialogFragments
