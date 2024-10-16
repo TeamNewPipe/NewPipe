@@ -348,6 +348,8 @@ public final class Player implements PlaybackListener, Listener {
 
         final PlayerType oldPlayerType = playerType;
         playerType = PlayerType.retrieveFromIntent(intent);
+        Log.d("Jumbay", "handleIntent: playerType changed from "
+                + oldPlayerType + " to " + playerType);
         initUIsForCurrentPlayerType();
         // We need to setup audioOnly before super(), see "sourceOf"
         isAudioOnly = audioPlayerSelected();
@@ -462,6 +464,8 @@ public final class Player implements PlaybackListener, Listener {
         if (oldPlayerType != playerType && playQueue != null) {
             // If playerType changes from one to another we should reload the player
             // (to disable/enable video stream or to set quality)
+            Log.d("Jumbay", "handleIntent: PlayerType changed from "
+                    + oldPlayerType + " to " + playerType + ", reloading player");
             setRecovery();
             reloadPlayQueueManager();
         }
@@ -471,9 +475,13 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
+        Log.d("Jumbay", "initUIsForCurrentPlayerType: Initializing UI for playerType = "
+                + playerType);
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
                 || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
             // correct UI already in place
+            Log.d("Jumbay", "initUIsForCurrentPlayerType: UI already in place for playerType = "
+                    + playerType);
             return;
         }
 
@@ -489,14 +497,17 @@ public final class Player implements PlaybackListener, Listener {
 
         switch (playerType) {
             case MAIN:
+                Log.d("Jumbay", "initUIsForCurrentPlayerType: Switching to MAIN player UI");
                 UIs.destroyAll(PopupPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
+                Log.d("Jumbay", "initUIsForCurrentPlayerType: Switching to POPUP player UI");
                 UIs.destroyAll(MainPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
+                Log.d("Jumbay", "initUIsForCurrentPlayerType: Switching to AUDIO player UI");
                 UIs.destroyAll(VideoPlayerUi.class);
                 break;
         }
