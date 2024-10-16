@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.gesture;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,6 +23,9 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     public CustomBottomSheetBehavior(@NonNull final Context context,
                                      @Nullable final AttributeSet attrs) {
         super(context, attrs);
+        final DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        screenHeight = displayMetrics.heightPixels; //record the screen height
+        dragThreshold = (float) (0.2 * screenHeight); // Adjust this value as needed
     }
 
     Rect globalRect = new Rect();
@@ -30,6 +34,11 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
             R.id.detail_content_root_layout, R.id.relatedItemsLayout,
             R.id.itemsListPanel, R.id.view_pager, R.id.tab_layout, R.id.bottomControls,
             R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
+    private float startY = 0f;
+    private float totalDrag = 0f;
+    private float dragThreshold;
+    private int screenHeight;
+
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
@@ -39,6 +48,9 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         if (event.getAction() == MotionEvent.ACTION_CANCEL
                 || event.getAction() == MotionEvent.ACTION_UP) {
             skippingInterception = false;
+            //reset the variables
+            totalDrag = 0f;
+            startY = 0f;
         }
 
         // Found that user still swiping, continue following
@@ -76,6 +88,27 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                     }
                 }
             }
+        }
+        // Implement the distance threshold logic
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                startY = event.getY();
+                totalDrag = 0f;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                final float currentY = event.getY();
+                totalDrag += Math.abs(currentY - startY);
+                startY = currentY;
+                if (totalDrag < dragThreshold) {
+                    return false; // Do not intercept touch events yet
+                } else {
+                    return super.onInterceptTouchEvent(parent, child, event);
+                }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                totalDrag = 0f;
+                startY = 0f;
+                break;
         }
 
         return super.onInterceptTouchEvent(parent, child, event);
