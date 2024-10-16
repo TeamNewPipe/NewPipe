@@ -128,6 +128,12 @@ public class RouterActivity extends AppCompatActivity {
     private AlertDialog alertDialogChoice = null;
     private FragmentManager.FragmentLifecycleCallbacks dismissListener = null;
 
+    /**
+     * Initializes the activity based on the incoming intent. This activity acts as a router
+     * to direct the user to different parts of the app based on the URL or action specified
+     * in the intent. It handles special URLs like 'newpipe://search?q=query' to trigger
+     * search directly or standard URLs to open specific videos, playlists, or channels.
+     */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setDayNightMode(this);
@@ -154,10 +160,11 @@ public class RouterActivity extends AppCompatActivity {
         getWindow().setAttributes(params);
 
         super.onCreate(savedInstanceState);
+        // Restoring state with Icepick for handling screen rotations more efficiently
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        final Intent intent = getIntent();
-        final Uri data = intent.getData();
+        final Intent actionIntent = getIntent();
+        final Uri data = actionIntent.getData();
         if (data != null) {
             final String scheme = data.getScheme();
             final String host = data.getHost();
