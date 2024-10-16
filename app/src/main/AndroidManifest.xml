@@ -34,7 +34,7 @@
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
         android:resizeableActivity="true"
-        android:theme="@style/OpeningTheme"
+        android:theme="@style/Base.SplashTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"

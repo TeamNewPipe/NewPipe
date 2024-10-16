@@ -1,17 +1,10 @@
 <resources>
 
-    <!-- Opening Theme -->
-    <style name="Base.V21.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@android:color/transparent</item>
-        <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="colorAccent">@android:color/transparent</item>
-
-        <item name="android:windowBackground">@drawable/splash_background</item>
+    <style name="Base.SplashTheme" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenIconBackgroundColor">@color/light_youtube_primary_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_foreground</item>
+        <item name="postSplashScreenTheme">@style/Base.LightTheme</item>
     </style>
-    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
-    </style>
-    <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
     <!-- Base Theme -->
     <style name="Base.V21" parent="Theme.AppCompat.DayNight.NoActionBar">

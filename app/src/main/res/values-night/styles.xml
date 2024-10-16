@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Opening Theme -->
-    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/dark_youtube_primary_color</item>
+    <style name="Base.SplashTheme" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenIconBackgroundColor">@color/dark_youtube_primary_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_foreground</item>
+        <item name="postSplashScreenTheme">@style/Base.DarkTheme</item>
     </style>
 
 </resources>
