@@ -181,6 +181,9 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
     protected void showInfoItemDialog(final StreamInfoItem item) {
         try {
             final Fragment parentFragment = getParentFragment();
+
+            // Try and attach the InfoItemDialog to the parent fragment of the RelatedItemsFragment
+            // so that its context is not lost when the RelatedItemsFragment is reinitialized.
             if (parentFragment != null) {
                 new InfoItemDialog.Builder(
                         parentFragment.getActivity(),
