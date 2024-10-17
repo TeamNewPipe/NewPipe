@@ -1859,7 +1859,6 @@ public final class VideoDetailFragment
 
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
-        Log.d("Jumbay", "onFullscreenStateChanged: fullscreen = " + fullscreen);
         setupBrightness();
         if (!isPlayerAndPlayerServiceAvailable()
                 || player.UIs().get(MainPlayerUi.class).isEmpty()
@@ -2309,11 +2308,8 @@ public final class VideoDetailFragment
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 updateBottomSheetState(newState);
-                Log.d("Jumbay", "BottomSheetBehavior onStateChanged: newState = "
-                        + getStateName(newState));
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
-                        Log.d("Jumbay", "Bottom sheet state changed to HIDDEN");
                         moveFocusToMainFragment(true);
                         manageSpaceAtTheBottom(true);
 
@@ -2321,7 +2317,6 @@ public final class VideoDetailFragment
                         cleanUp();
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED:
-                        Log.d("Jumbay", "Bottom sheet state changed to EXPANDED");
                         moveFocusToMainFragment(false);
                         manageSpaceAtTheBottom(false);
 
@@ -2342,7 +2337,6 @@ public final class VideoDetailFragment
                         setOverlayLook(binding.appBarLayout, behavior, 1);
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
-                        Log.d("Jumbay", "Bottom sheet state changed to COLLAPSED");
                         moveFocusToMainFragment(true);
                         manageSpaceAtTheBottom(false);
 
@@ -2357,9 +2351,7 @@ public final class VideoDetailFragment
                         setOverlayLook(binding.appBarLayout, behavior, 0);
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
-                        Log.d("Jumbay", "Bottom sheet state changed to DRAGGING");
                     case BottomSheetBehavior.STATE_SETTLING:
-                        Log.d("Jumbay", "Bottom sheet state changed to SETTLING");
                         if (isFullscreen()) {
                             showSystemUi();
                         }
@@ -2372,7 +2364,6 @@ public final class VideoDetailFragment
                         }
                         break;
                     case BottomSheetBehavior.STATE_HALF_EXPANDED:
-                        Log.d("Jumbay", "Bottom sheet state changed to HALF_EXPANDED");
                         break;
                 }
             }
