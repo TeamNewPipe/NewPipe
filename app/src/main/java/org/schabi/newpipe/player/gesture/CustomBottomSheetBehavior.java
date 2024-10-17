@@ -24,8 +24,8 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                                      @Nullable final AttributeSet attrs) {
         super(context, attrs);
         final DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        screenHeight = displayMetrics.heightPixels; //record the screen height
-        dragThreshold = (float) (0.2 * screenHeight); // Adjust this value as needed
+        final int screenHeight = displayMetrics.heightPixels; //record the screen height
+        dragThreshold = (float) (0.05 * screenHeight); // Adjust this value as needed
     }
 
     Rect globalRect = new Rect();
@@ -36,8 +36,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
             R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
     private float startY = 0f;
     private float totalDrag = 0f;
-    private float dragThreshold;
-    private int screenHeight;
+    private final float dragThreshold;
 
 
     @Override
