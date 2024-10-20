@@ -1,9 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.ViewGroup;
@@ -82,16 +80,6 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             StreamStateEntity state = null;
             if (DependentPreferenceHelper.getPositionsInListsEnabled(itemView.getContext())) {
                 state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
-            }
-
-            final Context context = itemView.getContext();
-            final int nightModeFlags = context.getResources().getConfiguration().uiMode
-                    & Configuration.UI_MODE_NIGHT_MASK;
-
-            if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
-                itemView.setBackgroundColor(Color.BLACK);  // Dark theme
-            } else {
-                itemView.setBackgroundColor(Color.WHITE);   // Light theme
             }
 
             if (state != null && item.getDuration() > 0) {
