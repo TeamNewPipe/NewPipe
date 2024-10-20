@@ -142,11 +142,25 @@
             android:progress="3" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_chngeDir"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/threads_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="39dp"
+        android:text="Browse for Alternate Download Folder" />
+
     <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/threads_layout"
         android:layout_marginLeft="24dp"
+        android:layout_marginTop="114dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
