@@ -106,6 +106,7 @@
     <string name="seekbar_preview_thumbnail_high_quality">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality">seekbar_preview_thumbnail_low_quality</string>
     <string name="seekbar_preview_thumbnail_none">seekbar_preview_thumbnail_none</string>
+    <string name="grey_out_watched_key">grey_out_watched_key</string>
     <string-array name="seekbar_preview_thumbnail_type_key">
         <item>@string/seekbar_preview_thumbnail_high_quality</item>
         <item>@string/seekbar_preview_thumbnail_low_quality</item>

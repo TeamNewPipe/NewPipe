@@ -126,6 +126,14 @@
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
 
+        <SwitchPreferenceCompat
+            android:key="@string/grey_out_watched_key"
+            android:title="Grey out watched videos"
+            android:summary="Enable or disable greying out watched videos"
+            android:defaultValue="false"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
