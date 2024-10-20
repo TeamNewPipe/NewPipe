@@ -493,8 +493,6 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void requestDownloadPickVideoFolderResult(final ActivityResult result) {
-        final String testing = String.valueOf(result.getData());
-
         requestDownloadPickFolderResult(
                 result, getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
     }
