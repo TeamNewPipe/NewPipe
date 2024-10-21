@@ -45,6 +45,7 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import android.content.BroadcastReceiver;
@@ -302,7 +303,7 @@ public final class Player implements PlaybackListener, Listener {
         // notification ui in the UIs list, since the notification depends on the media session in
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
-                new MediaSessionPlayerUi(this),
+                new MediaSessionPlayerUi(this, service.getSessionConnector()),
                 new NotificationPlayerUi(this)
         );
     }
@@ -414,6 +415,10 @@ public final class Player implements PlaybackListener, Listener {
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
+            }
+            if (playQueue.getIndex() != newQueue.getIndex()) {
+                simpleExoPlayer.seekTo(newQueue.getIndex(),
+                        requireNonNull(newQueue.getItem()).getRecoveryPosition());
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
