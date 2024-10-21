@@ -91,7 +91,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         mainTabsPositionKey = getString(R.string.main_tabs_position_key);
         mainTabsPositionBottom = prefs.getBoolean(mainTabsPositionKey, false);
     }
-
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,

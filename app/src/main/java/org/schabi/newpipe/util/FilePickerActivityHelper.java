@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.Loader;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 
+import com.marcinorlowski.fonty.Fonty;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerFragment;
 
@@ -36,12 +39,17 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        final String preferredFont = getPreferredFont(this);
         if (ThemeHelper.isLightThemeSelected(this)) {
             this.setTheme(R.style.FilePickerThemeLight);
         } else {
             this.setTheme(R.style.FilePickerThemeDark);
         }
         super.onCreate(savedInstanceState);
+
+        if (preferredFont != "default_font_name") {
+            Fonty.setFonts(this);
+        }
     }
 
     @Override
@@ -54,6 +62,13 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
             currentFragment.goUp();
         }
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
+
+
 
     @Override
     protected AbstractFilePickerFragment<File> getFragment(@Nullable final String startPath,

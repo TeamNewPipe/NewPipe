@@ -411,6 +411,7 @@
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
     <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
+    <string name="font_changes_requires_app_restart">The font will change once the app is restarted</string>
     <!-- Kiosk Names -->
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
@@ -658,6 +659,9 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
+    <string name="systems_font">System default</string>
+    <string name="app_font_title">App font</string>
+
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
     <string name="remove_duplicates">Remove duplicates</string>

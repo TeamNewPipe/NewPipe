@@ -41,6 +41,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
 
+import com.marcinorlowski.fonty.Fonty;
+
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
@@ -128,6 +130,7 @@ public class RouterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        final String preferredFont = getPreferredFont(this);
         ThemeHelper.setDayNightMode(this);
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
@@ -183,7 +186,17 @@ public class RouterActivity extends AppCompatActivity {
                 finish();
             }
         }
+
+        if (preferredFont != "default_font_name") {
+            Fonty.setFonts(this);
+        }
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
+
 
     @Override
     protected void onStop() {

@@ -124,7 +124,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         PreferenceManager.getDefaultSharedPreferences(activity)
             .registerOnSharedPreferenceChangeListener(onSettingsChangeListener)
     }
-
+//    fun getPreferredFont(context: Context?): String? {
+//        val preferences = PreferenceManager
+//            .getDefaultSharedPreferences(context!!)
+//        return preferences.getString("preferred_font", "default_font_name")
+//    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_feed, container, false)
     }

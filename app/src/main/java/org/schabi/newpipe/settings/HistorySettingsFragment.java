@@ -1,12 +1,14 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -55,7 +57,11 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
             clearCookiePref.setEnabled(false);
         }
     }
-
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
         if (preference.getKey().equals(cacheWipeKey)) {

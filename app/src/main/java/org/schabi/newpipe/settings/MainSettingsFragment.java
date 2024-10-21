@@ -1,11 +1,14 @@
 package org.schabi.newpipe.settings;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -58,7 +61,11 @@ public class MainSettingsFragment extends BasePreferenceFragment {
             return true;
         });
     }
-
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
     @Override
     public void onDestroy() {
         // Unlink activity so that we don't get memory problems

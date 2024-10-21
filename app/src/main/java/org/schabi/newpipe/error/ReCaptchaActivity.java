@@ -1,6 +1,7 @@
 package org.schabi.newpipe.error;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
@@ -68,6 +71,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        final String preferredFont = getPreferredFont(this);
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
 
@@ -109,6 +113,10 @@ public class ReCaptchaActivity extends AppCompatActivity {
         CookieManager.getInstance().removeAllCookies(null);
 
         recaptchaBinding.reCaptchaWebView.loadUrl(url);
+
+        if (preferredFont != "default_font_name") {
+            Fonty.setFonts(this);
+        }
     }
 
     @Override
@@ -129,6 +137,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public void onBackPressed() {
         saveCookiesAndFinish();
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

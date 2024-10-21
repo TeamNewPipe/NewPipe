@@ -1,6 +1,8 @@
 package org.schabi.newpipe.download;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +12,7 @@ import android.view.ViewTreeObserver;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityDownloaderBinding;
@@ -21,6 +24,8 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
+import com.marcinorlowski.fonty.Fonty;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -63,6 +68,10 @@ public class DownloadActivity extends AppCompatActivity {
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
+        final String preferredFont = getPreferredFont(this);
+        if (preferredFont != "default_font_name") {
+            Fonty.setFonts(this);
+        }
     }
 
     private void updateFragments() {
@@ -73,6 +82,12 @@ public class DownloadActivity extends AppCompatActivity {
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {

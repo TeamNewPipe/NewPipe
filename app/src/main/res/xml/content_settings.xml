@@ -33,6 +33,16 @@
         app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
 
+    <ListPreference
+        android:defaultValue="@string/default_localization_key"
+        android:entries="@array/app_font_name"
+        android:entryValues="@array/app_font_code"
+        android:key="@string/app_font_key"
+        android:title="@string/app_font_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
         android:key="@string/main_page_content_key"

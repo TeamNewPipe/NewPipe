@@ -1,11 +1,13 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
@@ -22,6 +24,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
 
     private Localization initialSelectedLocalization;
+    private String initialSelectedFont;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
 
@@ -36,7 +39,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
-
+        initialSelectedFont = defaultPreferences
+                .getString(getString(R.string.app_font_key), "Default");
         final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
         imageQualityPreference.setOnPreferenceChangeListener(
                 (preference, newValue) -> {
@@ -78,7 +82,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredContentCountry(requireContext());
         final String selectedLanguage =
                 defaultPreferences.getString(getString(R.string.app_language_key), "en");
-
+        final String selectedFont =
+                defaultPreferences.getString(getString(R.string.app_font_key), "Arial");
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
                 || !selectedLanguage.equals(initialLanguage)) {
@@ -86,6 +91,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_LONG).show();
 
             NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
+        } else if ((!selectedFont.equals(initialSelectedFont))) {
+            Toast.makeText(requireContext(), R.string.font_changes_requires_app_restart,
+                    Toast.LENGTH_LONG).show();
+            NewPipe.setupFont(selectedFont);
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(requireContext());
+            final SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("preferred_font", selectedFont);
+            editor.apply();
         }
     }
 }

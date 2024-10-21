@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list.kiosk;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -100,7 +103,11 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
         name = kioskTranslatedName;
         contentCountry = Localization.getPreferredContentCountry(requireContext());
     }
-
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
     @Override
     public void onResume() {
         super.onResume();

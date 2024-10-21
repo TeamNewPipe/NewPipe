@@ -354,6 +354,8 @@
 
     <string name="app_language_key">app_language_key</string>
 
+    <string name="app_font_key">app_font_key</string>
+
     <string name="feed_update_threshold_key">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value">300</string>
     <string name="feed_show_watched_items_key">feed_show_played_items</string>
@@ -1342,6 +1344,29 @@
         <item>繁體中文（廣東話）</item>
         <item>正體中文</item>
     </string-array>
+
+
+
+    <!--The next two arrays are set to change the app font-->
+    <string-array name="app_font_code">
+        <item>@string/default_localization_key</item>
+        <item>Calibri</item>
+        <item>Algerian</item>
+        <item>Broadway</item>
+        <item>Arial</item>
+        <item>Bell MT</item>
+        <item>Time New Roman</item>
+    </string-array>
+    <string-array name="app_font_name">
+        <item>@string/systems_font</item>
+        <item>Calibri</item>
+        <item>Algerian</item>
+        <item>Broadway</item>
+        <item>Arial</item>
+        <item>Bell MT</item>
+        <item>Time New Roman</item>
+    </string-array>
+
 
     <!-- Limit mobile data usage  -->
     <string name="limit_mobile_data_usage_key">limit_mobile_data_usage</string>

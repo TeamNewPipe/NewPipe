@@ -4,6 +4,7 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.IntentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonWriter;
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -83,6 +86,8 @@ public class ErrorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        final String preferredFont = getPreferredFont(this);
+
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
 
@@ -127,6 +132,9 @@ public class ErrorActivity extends AppCompatActivity {
         for (final String e : errorInfo.getStackTraces()) {
             Log.e(TAG, e);
         }
+        if (preferredFont != "default_font_name") {
+            Fonty.setFonts(this);
+        }
     }
 
     @Override
@@ -150,6 +158,13 @@ public class ErrorActivity extends AppCompatActivity {
                 return false;
         }
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "default_font_name");
+    }
+
+
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
         new AlertDialog.Builder(context)
