@@ -11,6 +11,7 @@ plugins {
     id "org.sonarqube" version "4.0.0.2929"
     id "org.jetbrains.kotlin.plugin.compose" version "${kotlin_version}"
     id 'com.google.dagger.hilt.android'
+    id 'com.mikepenz.aboutlibraries.plugin'
 }
 
 android {
@@ -232,9 +233,6 @@ dependencies {
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
-    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
     implementation 'com.google.android.material:material:1.11.0'
@@ -305,6 +303,9 @@ dependencies {
 
     // Coroutines interop
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'
+
+    // Library loading for About screen
+    implementation "com.mikepenz:aboutlibraries-compose-m3:$about_libs"
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
