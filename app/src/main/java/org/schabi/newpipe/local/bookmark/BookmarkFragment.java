@@ -36,10 +36,11 @@ import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.debounce.DebounceSavable;
-import org.schabi.newpipe.util.debounce.DebounceSaver;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.initViews(rootView, savedInstanceState);
 
         itemListAdapter.setUseItemHandle(true);
+        EmptyStateUtil.setEmptyStateComposable(rootView.findViewById(R.id.empty_state_view));
     }
 
     @Override

@@ -6,10 +6,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.compose.runtime.MutableState;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
@@ -19,6 +20,9 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpecBuilder;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import io.reactivex.rxjava3.core.Single;
@@ -27,7 +31,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, CommentsInfo> {
     private final CompositeDisposable disposables = new CompositeDisposable();
 
-    private TextView emptyStateDesc;
+    private MutableState<EmptyStateSpec> emptyStateSpec;
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name) {
@@ -44,7 +48,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        emptyStateDesc = rootView.findViewById(R.id.empty_state_desc);
+        emptyStateSpec = EmptyStateUtil.mutableStateOf(EmptyStateSpec.Companion.getNoComment());
+        EmptyStateUtil.setEmptyStateComposable(
+                rootView.findViewById(R.id.empty_state_view),
+                emptyStateSpec);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -86,13 +93,21 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     public void handleResult(@NonNull final CommentsInfo result) {
         super.handleResult(result);
 
-        emptyStateDesc.setText(
-                result.isCommentsDisabled()
-                        ? R.string.comments_are_disabled
-                        : R.string.no_comments);
+        if (result.isCommentsDisabled()) {
+            updateEmptyState(R.string.comments_are_disabled);
+        } else {
+            updateEmptyState(R.string.no_comments);
+        }
 
         ViewUtils.slideUp(requireView(), 120, 150, 0.06f);
         disposables.clear();
+    }
+
+    private void updateEmptyState(final @StringRes int descriptionRes) {
+        final EmptyStateSpec style = new EmptyStateSpecBuilder(emptyStateSpec.getValue())
+                .descriptionText(descriptionRes)
+                .build();
+        emptyStateSpec.setValue(style);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

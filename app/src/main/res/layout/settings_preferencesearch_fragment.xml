@@ -12,33 +12,14 @@
         android:layout_height="4dp"
         android:background="?attr/toolbar_shadow" />
 
-    <LinearLayout
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/empty_state_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="gone">
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="monospace"
-            android:text="╰(°●°╰)"
-            android:textSize="35sp"
-            tools:ignore="HardcodedText,UnusedAttribute" />
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/search_no_results"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+        tools:visibility="gone"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchResults"

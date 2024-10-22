@@ -24,15 +24,15 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <include
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/empty_state_view"
-        layout="@layout/list_empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        />
 
     <View
         android:layout_width="match_parent"

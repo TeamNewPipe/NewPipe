@@ -62,6 +62,8 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -342,6 +344,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+
+        EmptyStateUtil.setEmptyStateComposable(
+                searchBinding.emptyStateView,
+                EmptyStateSpec.Companion.getNoSearchResult());
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         // animations are just strange and useless, since the suggestions keep changing too much
