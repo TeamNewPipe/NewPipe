@@ -10,6 +10,7 @@ plugins {
     id "checkstyle"
     id "org.sonarqube" version "4.0.0.2929"
     id "org.jetbrains.kotlin.plugin.compose" version "${kotlin_version}"
+    id 'com.google.dagger.hilt.android'
     id 'com.mikepenz.aboutlibraries.plugin'
 }
 
@@ -191,6 +192,10 @@ sonar {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
 dependencies {
 /** Desugaring **/
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
@@ -201,7 +206,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.2'
+    implementation 'com.github.teamnewpipe:newpipeextractor:v0.24.2'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -283,21 +288,31 @@ dependencies {
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
-    // Jetpack Compose
-    implementation(platform('androidx.compose:compose-bom:2024.09.01'))
+    // Jetpack Compose BOM group
+    implementation(platform('androidx.compose:compose-bom:2024.09.03'))
     implementation 'androidx.compose.material3:material3'
-    implementation 'androidx.compose.material3.adaptive:adaptive'
-    implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
+    implementation 'androidx.compose.ui:ui-text' // Needed for parsing HTML to AnnotatedString
+
+    // Jetpack Compose related dependencies
+    implementation 'androidx.compose.material3.adaptive:adaptive:1.0.0'
+    implementation 'androidx.activity:activity-compose:1.9.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6'
     implementation 'androidx.paging:paging-compose:3.3.2'
-    implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
+    implementation "androidx.navigation:navigation-compose:2.8.2"
 
     // Coroutines interop
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'
 
     // Library loading for About screen
     implementation "com.mikepenz:aboutlibraries-compose-m3:$about_libs"
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
+
+    // Scroll
+    implementation 'com.github.nanihadesuka:LazyColumnScrollbar:2.2.0'
 
 /** Debugging **/
     // Memory leak detection

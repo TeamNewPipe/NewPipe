@@ -36,6 +36,7 @@ import java.util.Objects;
 import coil.ImageLoader;
 import coil.ImageLoaderFactory;
 import coil.util.DebugLogger;
+import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
@@ -61,6 +62,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@HiltAndroidApp
 public class App extends Application implements ImageLoaderFactory {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String TAG = App.class.toString();
