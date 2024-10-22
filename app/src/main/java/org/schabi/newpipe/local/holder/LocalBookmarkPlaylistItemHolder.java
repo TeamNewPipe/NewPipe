@@ -1,8 +1,14 @@
 package org.schabi.newpipe.local.holder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.preference.PreferenceManager;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -24,7 +30,18 @@ public class LocalBookmarkPlaylistItemHolder extends LocalPlaylistItemHolder {
                                     final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
         itemHandleView = itemView.findViewById(R.id.itemHandle);
+
+        final String preferredFont = getPreferredFont(itemHandleView.getContext());
+        if (!preferredFont.equals("system")) {
+            Fonty.setFonts((ViewGroup) itemHandleView);
+        }
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "system");
+    }
+
 
     @Override
     public void updateFromItem(final LocalItem localItem,

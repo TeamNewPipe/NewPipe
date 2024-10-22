@@ -40,7 +40,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
         initialSelectedFont = defaultPreferences
-                .getString(getString(R.string.app_font_key), "Default");
+                .getString(getString(R.string.app_font_key), getString(R.string.default_font_key));
         final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
         imageQualityPreference.setOnPreferenceChangeListener(
                 (preference, newValue) -> {

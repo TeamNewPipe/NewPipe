@@ -114,7 +114,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
         recaptchaBinding.reCaptchaWebView.loadUrl(url);
 
-        if (preferredFont != "default_font_name") {
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
             Fonty.setFonts(this);
         }
     }
@@ -140,7 +140,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public String getPreferredFont(final Context context) {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        return preferences.getString("preferred_font", "default_font_name");
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
     }
 
 

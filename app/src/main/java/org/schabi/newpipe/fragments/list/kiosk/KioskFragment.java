@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.preference.PreferenceManager;
 
+import com.marcinorlowski.fonty.Fonty;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -106,7 +108,7 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
     public String getPreferredFont(final Context context) {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        return preferences.getString("preferred_font", "default_font_name");
+        return preferences.getString("preferred_font", (getString(R.string.default_font_key)));
     }
     @Override
     public void onResume() {
@@ -127,7 +129,12 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_kiosk, container, false);
+        final View view = inflater.inflate(R.layout.fragment_kiosk, container, false);
+        final String preferredFont = getPreferredFont(view.getContext());
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) view);
+        }
+        return view;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

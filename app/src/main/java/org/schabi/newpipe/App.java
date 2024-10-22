@@ -118,6 +118,7 @@ public class App extends Application {
         configureRxJavaErrorHandler();
     }
 
+
     @Override
     public void onTerminate() {
         super.onTerminate();

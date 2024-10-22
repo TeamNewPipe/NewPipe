@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +10,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
@@ -75,8 +80,19 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_channel_tab, container, false);
+        final View view = inflater.inflate(R.layout.fragment_channel_tab, container, false);
+        final String preferredFont = getPreferredFont(view.getContext());
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) view);
+        }
+        return view;
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
+    }
+
 
     @Override
     public void onDestroyView() {

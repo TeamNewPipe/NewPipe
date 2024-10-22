@@ -39,6 +39,7 @@ import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
+import com.marcinorlowski.fonty.Fonty;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
@@ -117,7 +118,6 @@ public class DownloadDialog extends DialogFragment
     private ActionMenuItemView okButton = null;
     private Context context = null;
     private boolean askForSavePath;
-
     private AudioTrackAdapter audioTrackAdapter;
     private StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter;
@@ -152,7 +152,6 @@ public class DownloadDialog extends DialogFragment
         // otherwise InstantiationException will be thrown when fragment is recreated
         // TODO: Maybe use a custom FragmentFactory instead?
     }
-
     /**
      * Create a new download dialog with the video, audio and subtitle streams from the provided
      * stream info. Video streams and video-only streams will be put into a single list menu,
@@ -245,6 +244,7 @@ public class DownloadDialog extends DialogFragment
         }, Context.BIND_AUTO_CREATE);
     }
 
+
     /**
      * Update the displayed video streams based on the selected audio track.
      */
@@ -287,10 +287,22 @@ public class DownloadDialog extends DialogFragment
                     + "inflater = [" + inflater + "], container = [" + container + "], "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
-        return inflater.inflate(R.layout.download_dialog, container);
+        final View view = inflater.inflate(R.layout.download_dialog, container);
+        final String preferredFont = getPreferredFont(view.getContext());
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) view);
+        }
+        return view;
     }
 
-    @Override
+    public String getPreferredFont(final Context cont) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(cont);
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
+    }
+
+
+@Override
     public void onViewCreated(@NonNull final View view,
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

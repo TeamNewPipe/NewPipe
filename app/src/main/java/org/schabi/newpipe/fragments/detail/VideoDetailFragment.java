@@ -61,6 +61,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
@@ -333,8 +334,18 @@ public final class VideoDetailFragment
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false);
+        final String preferredFont = getPreferredFont(binding.getRoot().getContext());
+        if (preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) binding.getRoot());
+        }
         return binding.getRoot();
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
+    }
+
 
     @Override
     public void onPause() {

@@ -44,6 +44,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.marcinorlowski.fonty.Fonty
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
@@ -124,13 +125,16 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         PreferenceManager.getDefaultSharedPreferences(activity)
             .registerOnSharedPreferenceChangeListener(onSettingsChangeListener)
     }
-//    fun getPreferredFont(context: Context?): String? {
-//        val preferences = PreferenceManager
-//            .getDefaultSharedPreferences(context!!)
-//        return preferences.getString("preferred_font", "default_font_name")
-//    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_feed, container, false)
+        val curView = inflater.inflate(R.layout.fragment_feed, container, false) as ViewGroup
+
+        // Apply the preferred font globally
+        val preferredFont = getPreferredFont(curView.context)
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts(curView)
+        }
+        return curView
     }
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
@@ -182,6 +186,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 handleResult(viewModel.stateLiveData.value!!)
             }
         }
+    }
+    fun getPreferredFont(context: Context?): String? {
+        val preferences = PreferenceManager
+            .getDefaultSharedPreferences(context!!)
+        return preferences.getString("preferred_font", (getString(R.string.default_font_key)))
     }
 
     private fun setupListViewMode() {

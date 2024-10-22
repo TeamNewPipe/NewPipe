@@ -1,12 +1,17 @@
 package org.schabi.newpipe.fragments.list.search;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ItemSearchSuggestionBinding;
@@ -27,8 +32,19 @@ public class SuggestionListAdapter
     @Override
     public SuggestionItemHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                    final int viewType) {
-        return new SuggestionItemHolder(ItemSearchSuggestionBinding
+        final SuggestionItemHolder item = new SuggestionItemHolder(ItemSearchSuggestionBinding
                 .inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        final String preferredFont = getPreferredFont(item.itemView.getContext());
+        if (!preferredFont.equals("system")) {
+            Fonty.setFonts((ViewGroup) item.itemView);
+        }
+        return item;
+    }
+
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "system");
     }
 
     @Override

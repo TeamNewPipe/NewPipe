@@ -504,6 +504,10 @@
 
     <!-- Localizations   -->
     <string name="default_localization_key">system</string>
+    <!--    Font-->
+    <string name="default_font_key">system</string>
+    <string name="preferred_font_key">preferred_font</string>
+
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes">
         <item>@string/default_localization_key</item>

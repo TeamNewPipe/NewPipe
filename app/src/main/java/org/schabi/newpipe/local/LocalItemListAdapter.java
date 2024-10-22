@@ -1,14 +1,18 @@
 package org.schabi.newpipe.local;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
@@ -27,7 +31,6 @@ import org.schabi.newpipe.local.holder.LocalStatisticStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistCardItemHolder;
-import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.Localization;
@@ -312,47 +315,94 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                       final int type) {
+        final RecyclerView.ViewHolder holder;
         if (DEBUG) {
             Log.d(TAG, "onCreateViewHolder() called with: "
                     + "parent = [" + parent + "], type = [" + type + "]");
         }
         switch (type) {
             case HEADER_TYPE:
+                holder = new HeaderFooterHolder(header);
+                setUpFont(holder);
                 return new HeaderFooterHolder(header);
             case FOOTER_TYPE:
-                return new HeaderFooterHolder(footer);
+                holder = new HeaderFooterHolder(footer);
+                setUpFont(holder);
+                return holder;
             case LOCAL_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistGridItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistGridItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case LOCAL_PLAYLIST_CARD_HOLDER_TYPE:
-                return new LocalPlaylistCardItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistCardItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE:
-                return new LocalBookmarkPlaylistItemHolder(localItemBuilder, parent);
+                holder = new LocalBookmarkPlaylistItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case REMOTE_PLAYLIST_HOLDER_TYPE:
-                return new RemotePlaylistItemHolder(localItemBuilder, parent);
+                holder = new RemotePlaylistItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case REMOTE_PLAYLIST_GRID_HOLDER_TYPE:
-                return new RemotePlaylistGridItemHolder(localItemBuilder, parent);
+                holder = new RemotePlaylistCardItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case REMOTE_PLAYLIST_CARD_HOLDER_TYPE:
-                return new RemotePlaylistCardItemHolder(localItemBuilder, parent);
+                holder = new HeaderFooterHolder(footer);
+                setUpFont(holder);
+                return holder;
             case REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE:
-                return new RemoteBookmarkPlaylistItemHolder(localItemBuilder, parent);
+                holder = new RemoteBookmarkPlaylistItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_PLAYLIST_HOLDER_TYPE:
-                return new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_PLAYLIST_GRID_HOLDER_TYPE:
-                return new LocalPlaylistStreamGridItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistStreamGridItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_PLAYLIST_CARD_HOLDER_TYPE:
-                return new LocalPlaylistStreamCardItemHolder(localItemBuilder, parent);
+                holder = new LocalPlaylistStreamCardItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_STATISTICS_HOLDER_TYPE:
-                return new LocalStatisticStreamItemHolder(localItemBuilder, parent);
+                holder = new LocalStatisticStreamItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_STATISTICS_GRID_HOLDER_TYPE:
-                return new LocalStatisticStreamGridItemHolder(localItemBuilder, parent);
+                holder = new LocalStatisticStreamGridItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             case STREAM_STATISTICS_CARD_HOLDER_TYPE:
-                return new LocalStatisticStreamCardItemHolder(localItemBuilder, parent);
+                holder = new LocalStatisticStreamCardItemHolder(localItemBuilder, parent);
+                setUpFont(holder);
+                return holder;
             default:
+                holder = new FallbackViewHolder(new View(parent.getContext()));
+                setUpFont(holder);
                 Log.e(TAG, "No view type has been considered for holder: [" + type + "]");
-                return new FallbackViewHolder(new View(parent.getContext()));
+                return holder;
         }
+    }
+    public void setUpFont(final RecyclerView.ViewHolder holder) {
+        final View view = holder.itemView;
+        final String preferredFont = getPreferredFont(view.getContext());
+        if (!preferredFont.equals("system")) {
+            Fonty.setFonts((ViewGroup) view);
+        }
+    }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "system");
     }
 
     @SuppressWarnings("FinalParameters")

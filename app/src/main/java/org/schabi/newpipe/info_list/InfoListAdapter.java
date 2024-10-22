@@ -1,6 +1,8 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -274,11 +278,19 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return -1;
         }
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", "system");
+    }
+
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                       final int type) {
+        final RecyclerView.ViewHolder holder;
+        final String preferredFont;
         if (DEBUG) {
             Log.d(TAG, "onCreateViewHolder() called with: "
                     + "parent = [" + parent + "], type = [" + type + "]");
@@ -288,40 +300,120 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // Always create a new instance otherwise the same instance
             // is sometimes reused which causes a crash
             case HEADER_TYPE:
-                return new HFHolder(headerSupplier.get());
+                holder = new HFHolder(headerSupplier.get());
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case FOOTER_TYPE:
-                return new HFHolder(PignateFooterBinding
+                holder = new HFHolder(PignateFooterBinding
                         .inflate(layoutInflater, parent, false)
                         .getRoot()
                 );
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case MINI_STREAM_HOLDER_TYPE:
-                return new StreamMiniInfoItemHolder(infoItemBuilder, parent);
+                holder = new StreamMiniInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case STREAM_HOLDER_TYPE:
-                return new StreamInfoItemHolder(infoItemBuilder, parent);
+                holder = new StreamInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case GRID_STREAM_HOLDER_TYPE:
-                return new StreamGridInfoItemHolder(infoItemBuilder, parent);
+                holder = new StreamGridInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case CARD_STREAM_HOLDER_TYPE:
-                return new StreamCardInfoItemHolder(infoItemBuilder, parent);
+                holder = new StreamCardInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case MINI_CHANNEL_HOLDER_TYPE:
-                return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
+                holder = new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case CHANNEL_HOLDER_TYPE:
-                return new ChannelInfoItemHolder(infoItemBuilder, parent);
+                holder = new ChannelInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case CARD_CHANNEL_HOLDER_TYPE:
-                return new ChannelCardInfoItemHolder(infoItemBuilder, parent);
+                holder = new ChannelCardInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case GRID_CHANNEL_HOLDER_TYPE:
-                return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
+                holder = new ChannelGridInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case MINI_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
+                holder = new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case PLAYLIST_HOLDER_TYPE:
-                return new PlaylistInfoItemHolder(infoItemBuilder, parent);
+                holder = new PlaylistInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case GRID_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
+                holder = new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case CARD_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
+                holder = new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             case COMMENT_HOLDER_TYPE:
-                return new CommentInfoItemHolder(infoItemBuilder, parent);
+                holder = new CommentInfoItemHolder(infoItemBuilder, parent);
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
             default:
-                return new FallbackViewHolder(new View(parent.getContext()));
+                holder = new FallbackViewHolder(new View(parent.getContext()));
+                preferredFont = getPreferredFont(holder.itemView.getContext());
+                if (!preferredFont.equals("system")) {
+                    Fonty.setFonts((ViewGroup) holder.itemView);
+                }
+                return holder;
         }
     }
 

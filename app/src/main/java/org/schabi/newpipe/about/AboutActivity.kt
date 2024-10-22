@@ -1,5 +1,6 @@
 package org.schabi.newpipe.about
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -10,8 +11,10 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.preference.PreferenceManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.marcinorlowski.fonty.Fonty
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.ActivityAboutBinding
@@ -44,6 +47,15 @@ class AboutActivity : AppCompatActivity() {
         ) { tab, position ->
             tab.setText(mAboutStateAdapter.getPageTitle(position))
         }.attach()
+        val preferredFont = getPreferredFont(this)
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts(this)
+        }
+    }
+    fun getPreferredFont(context: Context?): String? {
+        val preferences = PreferenceManager
+            .getDefaultSharedPreferences(context!!)
+        return preferences.getString("preferred_font", getString(R.string.default_font_key))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

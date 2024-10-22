@@ -60,7 +60,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     public String getPreferredFont(final Context context) {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        return preferences.getString("preferred_font", "default_font_name");
+        return preferences.getString("preferred_font", (getString(R.string.default_font_key)));
     }
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {

@@ -2,6 +2,8 @@ package org.schabi.newpipe.settings;
 
 import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -146,8 +151,18 @@ public class SelectPlaylistFragment extends DialogFragment {
                                                            final int viewType) {
             final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_playlist_mini_item, parent, false);
+            final String preferredFont = getPreferredFont(item.getContext());
+            if (!preferredFont.equals(getString(R.string.default_font_key))) {
+                Fonty.setFonts((ViewGroup) item);
+            }
             return new SelectPlaylistItemHolder(item);
         }
+        public String getPreferredFont(final Context context) {
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(context);
+            return preferences.getString("preferred_font", (getString(R.string.default_font_key)));
+        }
+
 
         @Override
         public void onBindViewHolder(@NonNull final SelectPlaylistItemHolder holder,

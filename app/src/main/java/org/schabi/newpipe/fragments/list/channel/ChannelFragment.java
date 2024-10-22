@@ -28,6 +28,7 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.rxbinding4.view.RxView;
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.NotificationMode;
@@ -192,8 +193,18 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         binding = FragmentChannelBinding.inflate(inflater, container, false);
+        final String preferredFont = getPreferredFont(binding.getRoot().getContext());
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) binding.getRoot());
+        }
         return binding.getRoot();
     }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
+    }
+
 
     @Override // called from onViewCreated in BaseFragment.onViewCreated
     protected void initViews(final View rootView, final Bundle savedInstanceState) {

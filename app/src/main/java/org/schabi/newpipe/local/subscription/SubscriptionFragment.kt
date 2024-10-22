@@ -19,7 +19,9 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
+import com.marcinorlowski.fonty.Fonty
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
@@ -106,7 +108,18 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_subscription, container, false)
+        val curView = inflater.inflate(R.layout.fragment_subscription, container, false) as ViewGroup
+        val preferredFont = getPreferredFont(curView.context)
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts(curView)
+        }
+
+        return curView
+    }
+    fun getPreferredFont(context: Context?): String? {
+        val preferences = PreferenceManager
+            .getDefaultSharedPreferences(context!!)
+        return preferences.getString("preferred_font", (getString(R.string.default_font_key)))
     }
 
     override fun onPause() {

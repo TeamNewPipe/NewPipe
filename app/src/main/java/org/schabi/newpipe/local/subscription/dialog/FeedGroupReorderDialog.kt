@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.subscription.dialog
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.marcinorlowski.fonty.Fonty
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.TouchCallback
 import icepick.Icepick
@@ -48,7 +51,18 @@ class FeedGroupReorderDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_feed_group_reorder, container)
+        val curView = (inflater.inflate(R.layout.dialog_feed_group_reorder, container)) as ViewGroup
+        val preferredFont = getPreferredFont(curView.context)
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts(curView)
+        }
+
+        return curView
+    }
+    fun getPreferredFont(context: Context?): String? {
+        val preferences = PreferenceManager
+            .getDefaultSharedPreferences(context!!)
+        return preferences.getString("preferred_font", getString(R.string.default_font_key))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

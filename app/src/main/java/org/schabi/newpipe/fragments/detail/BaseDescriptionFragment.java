@@ -4,6 +4,8 @@ import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.text.TextLinkifier.SET_LINK_MOVEMENT_METHOD;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -21,8 +23,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.chip.Chip;
+import com.marcinorlowski.fonty.Fonty;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -53,7 +57,16 @@ public abstract class BaseDescriptionFragment extends BaseFragment {
         setupDescription();
         setupMetadata(inflater, binding.detailMetadataLayout);
         addTagsMetadataItem(inflater, binding.detailMetadataLayout);
+        final String preferredFont = getPreferredFont(binding.getRoot().getContext());
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
+            Fonty.setFonts((ViewGroup) binding.getRoot());
+        }
         return binding.getRoot();
+    }
+    public String getPreferredFont(final Context context) {
+        final SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
     }
 
     @Override

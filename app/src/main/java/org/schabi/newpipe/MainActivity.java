@@ -179,12 +179,13 @@ public class MainActivity extends AppCompatActivity {
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
-        if (preferredFont != "default_font_name") {
+        if (!preferredFont.equals(getString(R.string.default_font_key))) {
             Fonty.setFonts(this);
         }
+
     }
 
-    @Override
+@Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     public String getPreferredFont(final Context context) {
         final SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        return preferences.getString("preferred_font", "default_font_name");
+        return preferences.getString("preferred_font", getString(R.string.default_font_key));
     }
 
     public void setUpFont(final String preferredFont) {
