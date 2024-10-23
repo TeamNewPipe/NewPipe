@@ -138,8 +138,12 @@ class AboutActivity : AppCompatActivity() {
                 "https://github.com/lisawray/groupie", StandardLicenses.MIT
             ),
             SoftwareComponent(
-                "Icepick", "2015", "Frankie Sardo",
-                "https://github.com/frankiesardo/icepick", StandardLicenses.EPL1
+                "Android-State", "2018", "Evernote",
+                "https://github.com/Evernote/android-state", StandardLicenses.EPL1
+            ),
+            SoftwareComponent(
+                "Bridge", "2021", "Livefront",
+                "https://github.com/livefront/bridge", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
                 "Jsoup", "2009 - 2020", "Jonathan Hedley",

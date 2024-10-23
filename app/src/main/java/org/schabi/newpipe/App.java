@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.BridgeStateSaverInitializer;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -107,6 +108,7 @@ public class App extends Application implements ImageLoaderFactory {
             Localization.getPreferredContentCountry(this));
         Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
 
+        BridgeStateSaverInitializer.init(this);
         StateSaver.init(this);
         initNotificationChannels();
 
