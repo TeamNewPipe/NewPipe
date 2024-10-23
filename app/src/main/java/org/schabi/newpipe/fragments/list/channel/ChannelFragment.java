@@ -25,6 +25,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.view.MenuProvider;
 import androidx.preference.PreferenceManager;
 
+import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.rxbinding4.view.RxView;
@@ -50,16 +51,15 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
-import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -249,7 +249,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     private void monitorSubscription(final ChannelInfo info) {
-        final Consumer<Throwable> onError = (Throwable throwable) -> {
+        final Consumer<Throwable> onError = (final Throwable throwable) -> {
             animate(binding.channelSubscribeButton, false, 100);
             showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_GET,
                     "Get subscription status", currentInfo));
@@ -284,14 +284,14 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
-        return (@NonNull Object o) -> {
+        return (@NonNull final Object o) -> {
             subscriptionManager.insertSubscription(subscription);
             return o;
         };
     }
 
     private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
-        return (@NonNull Object o) -> {
+        return (@NonNull final Object o) -> {
             subscriptionManager.deleteSubscription(subscription);
             return o;
         };
@@ -318,7 +318,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Disposable monitorSubscribeButton(final Function<Object, Object> action) {
-        final Consumer<Object> onNext = (@NonNull Object o) -> {
+        final Consumer<Object> onNext = (@NonNull final Object o) -> {
             if (DEBUG) {
                 Log.d(TAG, "Changed subscription status to this channel!");
             }
@@ -338,7 +338,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
-        return (List<SubscriptionEntity> subscriptionEntities) -> {
+        return (final List<SubscriptionEntity> subscriptionEntities) -> {
             if (DEBUG) {
                 Log.d(TAG, "subscriptionManager.subscriptionTable.doOnNext() called with: "
                         + "subscriptionEntities = [" + subscriptionEntities + "]");

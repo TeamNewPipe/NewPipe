@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import icepick.Icepick;
-import icepick.State;
+import com.evernote.android.state.State;
+import com.livefront.bridge.Bridge;
+
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
@@ -48,7 +49,7 @@ public abstract class BaseFragment extends Fragment {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
         super.onCreate(savedInstanceState);
-        Icepick.restoreInstanceState(this, savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
@@ -70,7 +71,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {

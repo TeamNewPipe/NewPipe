@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.Description;
@@ -18,8 +20,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
-
-import icepick.State;
 
 public class DescriptionFragment extends BaseDescriptionFragment {
 
@@ -31,7 +31,7 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     }
 
     public DescriptionFragment() {
-        // keep empty constructor for IcePick when resuming fragment from memory
+        // keep empty constructor for State when resuming fragment from memory
     }
 
 

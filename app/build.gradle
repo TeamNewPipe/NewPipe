@@ -113,7 +113,7 @@ ext {
     androidxRoomVersion = '2.6.1'
     androidxWorkVersion = '2.8.1'
 
-    icepickVersion = '3.2.0'
+    stateSaverVersion = '1.4.1'
     exoPlayerVersion = '2.18.7'
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
@@ -236,8 +236,9 @@ dependencies {
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
-    implementation "frankiesardo:icepick:${icepickVersion}"
-    kapt "frankiesardo:icepick-processor:${icepickVersion}"
+    implementation 'com.github.livefront:bridge:v2.0.2'
+    implementation "com.evernote:android-state:$stateSaverVersion"
+    kapt "com.evernote:android-state-processor:$stateSaverVersion"
 
     // HTML parser
     implementation "org.jsoup:jsoup:1.17.2"
