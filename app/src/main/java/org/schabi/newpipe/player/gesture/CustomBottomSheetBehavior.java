@@ -88,23 +88,24 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
                 }
             }
         }
-        // Implement the distance threshold logic
+        // Implement the distance threshold logic, when the gesture move distance
+        // is shorter than the threshold, just do not intercept the touch event.
         switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN://initialize the tracked total distance
                 startY = event.getY();
                 totalDrag = 0f;
                 break;
-            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE://accumulate the total distance
                 final float currentY = event.getY();
                 totalDrag += Math.abs(currentY - startY);
                 startY = currentY;
                 if (totalDrag < dragThreshold) {
-                    return false; // Do not intercept touch events yet
+                    return false; // Do not intercept touch events yet if shorter than threshold
                 } else {
                     return super.onInterceptTouchEvent(parent, child, event);
                 }
             case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_CANCEL://reset the drag distance and start point
                 totalDrag = 0f;
                 startY = 0f;
                 break;
