@@ -133,7 +133,7 @@ public class SeekbarPreviewThumbnailHolder {
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
                 generatedDataForUrl.put(currentPosMs,
-                                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                        createBitmapSupplier(srcBitMap, bounds, frameset));
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
@@ -166,6 +166,18 @@ public class SeekbarPreviewThumbnailHolder {
             // "cannot use a recycled source in createBitmap" Exception -> simply return null
             if (srcBitMap == null || srcBitMap.isRecycled()) {
                 return null;
+            }
+
+            // Under some rare circumstances the YouTube API returns slightly too small storyboards,
+            // (or not the matching frame width/height)
+            // This would lead to createBitmap cutting out a bitmap that is out of bounds,
+            // so we need to adjust the bounds accordingly
+            if (srcBitMap.getWidth() < bounds[1] + frameset.getFrameWidth()) {
+                bounds[1] = srcBitMap.getWidth() - frameset.getFrameWidth();
+            }
+
+            if (srcBitMap.getHeight() < bounds[2] + frameset.getFrameHeight()) {
+                bounds[2] = srcBitMap.getHeight() - frameset.getFrameHeight();
             }
 
             // Cut out the corresponding bitmap form the "srcBitMap"
