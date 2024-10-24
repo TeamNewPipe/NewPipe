@@ -168,7 +168,7 @@ public class SeekbarPreviewThumbnailHolder {
                 return null;
             }
 
-            // Under some rare circumstances the youtube api returns slightly too small storyboards,
+            // Under some rare circumstances the YouTube API returns slightly too small storyboards,
             // (or not the matching frame width/height)
             // This would lead to createBitmap cutting out a bitmap that is out of bounds,
             // so we need to adjust the bounds accordingly
