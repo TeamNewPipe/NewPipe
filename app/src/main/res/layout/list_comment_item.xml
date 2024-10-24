@@ -63,6 +63,7 @@
         android:layout_alignBottom="@+id/replies_button"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
+        android:layout_marginStart="2dp"
         android:src="@drawable/ic_thumb_up" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -99,6 +100,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/video_item_detail_heart_margin"
         android:minHeight="0dp"
+        android:textAllCaps="false"
         tools:text="543 replies" />
 
 </RelativeLayout>
