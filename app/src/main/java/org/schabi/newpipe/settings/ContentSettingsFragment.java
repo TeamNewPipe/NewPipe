@@ -94,7 +94,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } else if ((!selectedFont.equals(initialSelectedFont))) {
             Toast.makeText(requireContext(), R.string.font_changes_requires_app_restart,
                     Toast.LENGTH_LONG).show();
-            NewPipe.setupFont(selectedFont);
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
             final SharedPreferences.Editor editor = preferences.edit();

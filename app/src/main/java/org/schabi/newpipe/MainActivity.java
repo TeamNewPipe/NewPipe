@@ -20,7 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.extractor.NewPipe.getPreferredFont;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
