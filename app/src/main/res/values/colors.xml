@@ -48,6 +48,7 @@
     <color name="black_card_item_background_color">#0F0F0F</color>
     <color name="black_card_item_contrast_color">#202020</color>
     <color name="black_border_color">#25FFFFFF</color>
+    <color name="black_top_bar_color">#000000</color>
 
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
