@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Constants;
@@ -52,6 +53,14 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
                         getString(R.string.auto_device_theme_title)));
             }
         }
+
+        // Add preference for enabling completely black top bar
+        final SwitchPreferenceCompat blackTopBarPreference = new SwitchPreferenceCompat(getContext());
+        blackTopBarPreference.setKey(getString(R.string.black_top_bar_key));
+        blackTopBarPreference.setTitle(R.string.black_top_bar_title);
+        blackTopBarPreference.setSummary(R.string.black_top_bar_summary);
+        blackTopBarPreference.setDefaultValue(false);
+        getPreferenceScreen().addPreference(blackTopBarPreference);
     }
 
     @Override

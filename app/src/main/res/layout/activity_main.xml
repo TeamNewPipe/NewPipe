@@ -16,7 +16,8 @@
 
         <include
             layout="@layout/toolbar_layout"
-            android:id="@+id/toolbar_layout"/>
+            android:id="@+id/toolbar_layout"
+            android:background="?attr/black_top_bar_color" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_player_holder"
