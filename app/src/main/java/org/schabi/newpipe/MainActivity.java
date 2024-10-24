@@ -221,14 +221,19 @@ public class MainActivity extends AppCompatActivity {
                         .normalTypeface("Algerian.TTF")
                         .build();
                 break;
-            case "Bell TM":
+            case "Bell MT":
                 Fonty.context(this)
                         .normalTypeface("BELL.TTF")
                         .build();
                 break;
             case "Calibri":
                 Fonty.context(this)
-                        .normalTypeface("calibri.ttf")
+                        .normalTypeface("calibrii.ttf")
+                        .build();
+                break;
+            case "Time New Roman":
+                Fonty.context(this)
+                        .normalTypeface("times.ttf")
                         .build();
                 break;
             default:
