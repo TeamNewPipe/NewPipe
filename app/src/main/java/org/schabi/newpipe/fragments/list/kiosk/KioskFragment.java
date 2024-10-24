@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -29,7 +31,6 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
-import icepick.State;
 import io.reactivex.rxjava3.core.Single;
 
 /**

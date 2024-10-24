@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
@@ -20,8 +22,6 @@ import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
 
-import icepick.State;
-
 public class ChannelAboutFragment extends BaseDescriptionFragment {
     @State
     protected ChannelInfo channelInfo;
@@ -31,7 +31,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
     }
 
     public ChannelAboutFragment() {
-        // keep empty constructor for IcePick when resuming fragment from memory
+        // keep empty constructor for State when resuming fragment from memory
     }
 
     @Override

@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.evernote.android.state.State;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -49,12 +51,12 @@ import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.util.debounce.DebounceSavable;
-import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
@@ -63,7 +65,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -843,6 +844,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
     }
 
+    @Override
     public PlayQueue getPlayQueue() {
         return getPlayQueue(0);
     }
