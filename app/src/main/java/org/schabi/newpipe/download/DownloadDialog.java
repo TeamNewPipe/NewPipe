@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -331,6 +332,14 @@ public class DownloadDialog extends DialogFragment
             }
         });
 
+        final Button button = (Button) dialogBinding.btnChngeDir;
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                askForSavePath = true;
+                prepareSelectedDownload();
+            }
+        });
+
         fetchStreamsSize();
     }
 
@@ -347,7 +356,6 @@ public class DownloadDialog extends DialogFragment
 
         okButton = toolbar.findViewById(R.id.okay);
         okButton.setEnabled(false); // disable until the download service connection is done
-
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
