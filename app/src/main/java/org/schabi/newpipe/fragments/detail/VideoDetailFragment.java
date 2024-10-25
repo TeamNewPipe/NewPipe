@@ -2308,7 +2308,6 @@ public final class VideoDetailFragment
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 updateBottomSheetState(newState);
-
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
                         moveFocusToMainFragment(true);
@@ -2368,6 +2367,26 @@ public final class VideoDetailFragment
                         break;
                 }
             }
+
+            private String getStateName(final int state) {
+                switch (state) {
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        return "DRAGGING";
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        return "SETTLING";
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        return "EXPANDED";
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        return "COLLAPSED";
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        return "HIDDEN";
+                    case BottomSheetBehavior.STATE_HALF_EXPANDED:
+                        return "HALF_EXPANDED";
+                    default:
+                        return "UNKNOWN";
+                }
+            }
+
 
             @Override
             public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
