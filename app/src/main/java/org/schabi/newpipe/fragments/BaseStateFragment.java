@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -21,8 +23,6 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import icepick.State;
 
 public abstract class BaseStateFragment<I> extends BaseFragment implements ViewContract<I> {
     @State
@@ -134,6 +134,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         hideErrorPanel();
     }
 
+    @Override
     public void showEmptyState() {
         isLoading.set(false);
         if (emptyStateView != null) {
