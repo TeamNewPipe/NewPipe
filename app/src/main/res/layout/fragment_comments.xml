@@ -68,4 +68,15 @@
         android:background="?attr/toolbar_shadow"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/scrollToTopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="onClick"
+        android:text="@string/scroll_to_top" />
+
 </RelativeLayout>

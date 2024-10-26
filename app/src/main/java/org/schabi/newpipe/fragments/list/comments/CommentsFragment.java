@@ -6,10 +6,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.upstream.cache.Cache;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
@@ -28,6 +31,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private TextView emptyStateDesc;
+    private Button scrollToTopButton;
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name) {
@@ -45,6 +49,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
         super.initViews(rootView, savedInstanceState);
 
         emptyStateDesc = rootView.findViewById(R.id.empty_state_desc);
+        scrollToTopButton = rootView.findViewById(R.id.scrollToTopButton);
+
+        // Set up the scroll-to-top button functionality
+        scrollToTopButton.setOnClickListener(v -> itemsList.scrollToPosition(0));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -120,4 +128,5 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
         itemsList.scrollToPosition(position);
         return true;
     }
+
 }
