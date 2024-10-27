@@ -33,7 +33,8 @@ class FeedViewModel(
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean,
     initialShowPartiallyPlayedItems: Boolean,
-    initialShowFutureItems: Boolean
+    initialShowFutureItems: Boolean,
+    initialShowShortsItems: Boolean
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
 
@@ -50,6 +51,11 @@ class FeedViewModel(
     private val showFutureItems = BehaviorProcessor.create<Boolean>()
     private val showFutureItemsFlowable = showFutureItems
         .startWithItem(initialShowFutureItems)
+        .distinctUntilChanged()
+
+    private val showShortsItems = BehaviorProcessor.create<Boolean>()
+    private val showShortsItemsFlowable = showShortsItems
+        .startWithItem(initialShowShortsItems)
         .distinctUntilChanged()
 
     private val mutableStateLiveData = MutableLiveData<FeedState>()
@@ -149,6 +155,16 @@ class FeedViewModel(
 
     fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(application)
 
+    fun setSaveShowShortsItems(showShortsItems: Boolean) {
+        PreferenceManager.getDefaultSharedPreferences(application).edit {
+
+            this.putBoolean(application.getString(R.string.feed_show_future_items_key), showShortsItems)
+            this.apply()
+        }
+    }
+
+    fun getShowShortsItemsFromPreferences() = getShowShortsItemsFromPreferences(application)
+
     companion object {
         private fun getShowPlayedItemsFromPreferences(context: Context) =
             PreferenceManager.getDefaultSharedPreferences(context)
@@ -162,6 +178,10 @@ class FeedViewModel(
             PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.feed_show_future_items_key), true)
 
+        private fun getShowShortsItemsFromPreferences(context: Context) =
+            PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.feed_show_shorts_items_key), true)
+
         fun getFactory(context: Context, groupId: Long) = viewModelFactory {
             initializer {
                 FeedViewModel(
@@ -170,7 +190,8 @@ class FeedViewModel(
                     // Read initial value from preferences
                     getShowPlayedItemsFromPreferences(context.applicationContext),
                     getShowPartiallyPlayedItemsFromPreferences(context.applicationContext),
-                    getShowFutureItemsFromPreferences(context.applicationContext)
+                    getShowFutureItemsFromPreferences(context.applicationContext),
+                    getShowShortsItemsFromPreferences(context.applicationContext)
                 )
             }
         }
