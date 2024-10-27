@@ -223,7 +223,7 @@ class FeedLoadManager(private val context: Context) {
                     streams!!.filter {
                         defaultSharedPreferences
                                 .getBoolean(context.getString(R.string.feed_show_shorts_items_key), true)
-                                ||!it.isShortFormContent
+                                ||!it.isShortFormContent()
                     },
                     errors,
                 )
