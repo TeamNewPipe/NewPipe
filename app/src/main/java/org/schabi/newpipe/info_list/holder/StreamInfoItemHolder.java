@@ -1,16 +1,25 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.preference.PreferenceManager;
+
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.Localization;
+
+import java.util.concurrent.TimeUnit;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -49,6 +58,7 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
@@ -57,9 +67,31 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         if (!(infoItem instanceof StreamInfoItem)) {
             return;
         }
-        final StreamInfoItem item = (StreamInfoItem) infoItem;
 
+        final StreamInfoItem item = (StreamInfoItem) infoItem;
         itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
+
+        final SharedPreferences prefs = PreferenceManager.
+                getDefaultSharedPreferences(itemView.getContext());
+        final boolean isFeatureEnabled = prefs.getBoolean(itemView.getContext().
+                getString(R.string.grey_out_watched_key), false);
+        if (isFeatureEnabled) {
+            // Load progress state from history
+            StreamStateEntity state = null;
+            if (DependentPreferenceHelper.getPositionsInListsEnabled(itemView.getContext())) {
+                state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
+            }
+
+            if (state != null && item.getDuration() > 0) {
+                final int duration = (int) TimeUnit.MILLISECONDS.toSeconds(item.getDuration());
+                final int progress = (int) TimeUnit.MILLISECONDS.
+                        toSeconds(state.getProgressMillis());
+
+                if (progress >= 0.9 * duration) {
+                    itemView.setBackgroundColor(Color.GRAY);  // Set to grey
+                }
+            }
+        }
     }
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
