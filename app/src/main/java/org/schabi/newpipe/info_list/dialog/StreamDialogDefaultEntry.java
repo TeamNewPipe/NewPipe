@@ -114,7 +114,8 @@ public enum StreamDialogDefaultEntry {
             fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
                     item.getUrl(), info -> {
                         // Ensure the fragment is attached and its state hasn't been saved to avoid
-                        // showing dialog during lifecycle changes or when the activity is paused.
+                        // showing dialog during lifecycle changes or when the activity is paused,
+                        // e.g. by selecting the download option and opening a different fragment.
                         if (fragment.isAdded() && !fragment.isStateSaved()) {
                             final DownloadDialog downloadDialog =
                                     new DownloadDialog(fragment.requireContext(), info);
