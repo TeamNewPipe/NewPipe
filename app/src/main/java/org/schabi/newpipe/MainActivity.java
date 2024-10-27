@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         return preferences.getString("preferred_font", getString(R.string.default_font_key));
     }
 
+    // build the relevant font TypeFace
     public void setUpFont(final String preferredFont) {
         switch (preferredFont) {
             case "Arial":

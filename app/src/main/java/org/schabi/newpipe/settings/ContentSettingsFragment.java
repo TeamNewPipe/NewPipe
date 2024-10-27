@@ -39,6 +39,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
+        //saving the initial font as system default
         initialSelectedFont = defaultPreferences
                 .getString(getString(R.string.app_font_key), getString(R.string.default_font_key));
         final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
@@ -82,6 +83,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredContentCountry(requireContext());
         final String selectedLanguage =
                 defaultPreferences.getString(getString(R.string.app_language_key), "en");
+        // getting the selectedFont from SharedPreference
         final String selectedFont =
                 defaultPreferences.getString(getString(R.string.app_font_key), "Arial");
         if (!selectedLocalization.equals(initialSelectedLocalization)
@@ -91,9 +93,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_LONG).show();
 
             NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
+            // checking if the font is changed from the initial
         } else if ((!selectedFont.equals(initialSelectedFont))) {
+            // showing toast to prompt restarting app
             Toast.makeText(requireContext(), R.string.font_changes_requires_app_restart,
                     Toast.LENGTH_LONG).show();
+
+            // saving the font selected into SharedPreference
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
             final SharedPreferences.Editor editor = preferences.edit();
