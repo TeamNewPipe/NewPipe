@@ -133,7 +133,7 @@ public class SeekbarPreviewThumbnailHolder {
                 // Get the bounds where the frame is found
                 final int[] bounds = frameset.getFrameBoundsAt(currentPosMs);
                 generatedDataForUrl.put(currentPosMs,
-                        createBitmapSupplier(srcBitMap, bounds, frameset));
+                                        createBitmapSupplier(srcBitMap, bounds, frameset));
 
                 currentPosMs += frameset.getDurationPerFrame();
                 pos++;
