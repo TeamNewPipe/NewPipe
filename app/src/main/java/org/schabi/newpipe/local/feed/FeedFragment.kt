@@ -252,7 +252,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             viewModel.getShowPlayedItemsFromPreferences(),
             viewModel.getShowPartiallyPlayedItemsFromPreferences(),
             viewModel.getShowFutureItemsFromPreferences(),
-            viewModel.getShowShortsFromPreferences()
+            viewModel.getShowShortsItemsFromPreferences()
         )
 
         AlertDialog.Builder(context!!)
@@ -264,7 +264,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 viewModel.setSaveShowPlayedItems(checkedDialogItems[0])
                 viewModel.setSaveShowPartiallyPlayedItems(checkedDialogItems[1])
                 viewModel.setSaveShowFutureItems(checkedDialogItems[2])
-                viewModel.setSaveShowShorts(checkedDialogItems[3])
+                viewModel.setSaveShowShortsItems(checkedDialogItems[3])
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
