@@ -34,7 +34,7 @@
         app:useSimpleSummaryProvider="true" />
 
     <ListPreference
-        android:defaultValue="@string/default_localization_key"
+        android:defaultValue="@string/default_font_key"
         android:entries="@array/app_font_name"
         android:entryValues="@array/app_font_code"
         android:key="@string/app_font_key"
