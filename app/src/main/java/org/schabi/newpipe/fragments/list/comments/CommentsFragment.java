@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.upstream.cache.Cache;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -51,7 +49,6 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
         emptyStateDesc = rootView.findViewById(R.id.empty_state_desc);
         scrollToTopButton = rootView.findViewById(R.id.scrollToTopButton);
 
-        // Set up the scroll-to-top button functionality
         scrollToTopButton.setOnClickListener(v -> itemsList.scrollToPosition(0));
     }
 
