@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+// the kotlin version might be different from NewPipe main
 buildscript {
     ext.kotlin_version = '1.9.10'
     repositories {
