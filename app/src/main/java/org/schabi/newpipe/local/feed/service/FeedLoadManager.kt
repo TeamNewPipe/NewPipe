@@ -220,7 +220,11 @@ class FeedLoadManager(private val context: Context) {
                 FeedUpdateInfo(
                     subscriptionEntity,
                     originalInfo!!,
-                    streams!!,
+                    streams!!.filter {
+                        defaultSharedPreferences
+                                .getBoolean(context.getString(R.string.feed_show_shorts_items_key), true)
+                                ||!it.isShortFormContent
+                    },
                     errors,
                 )
             )
@@ -260,7 +264,6 @@ class FeedLoadManager(private val context: Context) {
         override fun accept(item: Notification<FeedUpdateInfo>) {
             currentProgress.incrementAndGet()
             notificationUpdater.onNext(item.value?.name.orEmpty())
-
             broadcastProgress()
         }
     }
