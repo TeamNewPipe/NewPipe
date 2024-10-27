@@ -40,8 +40,6 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.evernote.android.state.State;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentSearchBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -79,6 +77,7 @@ import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import com.evernote.android.state.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -551,7 +550,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             }
         });
 
-        searchEditText.setOnFocusChangeListener((final View v, final boolean hasFocus) -> {
+        searchEditText.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (DEBUG) {
                 Log.d(TAG, "onFocusChange() called with: "
                         + "v = [" + v + "], hasFocus = [" + hasFocus + "]");
@@ -580,6 +579,24 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 if (item.fromHistory) {
                     showDeleteSuggestionDialog(item);
                 }
+            }
+
+            @Override
+            public void onBookmark(final SuggestionItem item) {
+
+                if  (item.historyId > 0) {
+                    disposables.add(historyRecordManager.onBookmark(item)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    ignored -> {
+                                    },
+                                    throwable -> showSnackBarError(new ErrorInfo(throwable,
+                                            UserAction.SEARCHED, item.query,
+                                            item.serviceId))
+                            ));
+                }
+                // Trigger refresh of list to show updated book using existing text watcher
+                searchEditText.setText(searchEditText.getText());
             }
         });
 
@@ -612,7 +629,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         };
         searchEditText.addTextChangedListener(textWatcher);
         searchEditText.setOnEditorActionListener(
-                (final TextView v, final int actionId, final KeyEvent event) -> {
+                (TextView v, int actionId, KeyEvent event) -> {
                     if (DEBUG) {
                         Log.d(TAG, "onEditorAction() called with: v = [" + v + "], "
                                 + "actionId = [" + actionId + "], event = [" + event + "]");
@@ -728,7 +745,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .toObservable()
                 .map(searchHistoryEntries ->
                         searchHistoryEntries.stream()
-                                .map(entry -> new SuggestionItem(true, entry))
+                                .map(entry -> new SuggestionItem(entry))
                                 .collect(Collectors.toList()));
     }
 
@@ -764,14 +781,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
                     if (showLocalSuggestions && shallShowRemoteSuggestionsNow) {
                         return Observable.zip(
-                                getLocalSuggestionsObservable(query, 3),
-                                getRemoteSuggestionsObservable(query),
-                                (local, remote) -> {
-                                    remote.removeIf(remoteItem -> local.stream().anyMatch(
-                                            localItem -> localItem.equals(remoteItem)));
-                                    local.addAll(remote);
-                                    return local;
-                                })
+                                        getLocalSuggestionsObservable(query, 3),
+                                        getRemoteSuggestionsObservable(query),
+                                        (local, remote) -> {
+                                            remote.removeIf(remoteItem -> local.stream().anyMatch(
+                                                    localItem -> localItem.equals(remoteItem)));
+                                            local.addAll(remote);
+                                            return local;
+                                        })
                                 .materialize();
                     } else if (showLocalSuggestions) {
                         return getLocalSuggestionsObservable(query, 25)
@@ -876,9 +893,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.searchFor(serviceId,
-                searchString,
-                Arrays.asList(contentFilter),
-                sortFilter)
+                        searchString,
+                        Arrays.asList(contentFilter),
+                        sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -897,11 +914,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             searchDisposable.dispose();
         }
         searchDisposable = ExtractorHelper.getMoreSearchItems(
-                serviceId,
-                searchString,
-                asList(contentFilter),
-                sortFilter,
-                nextPage)
+                        serviceId,
+                        searchString,
+                        asList(contentFilter),
+                        sortFilter,
+                        nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))

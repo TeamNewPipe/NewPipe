@@ -16,7 +16,8 @@ data class SearchHistoryEntry(
     @field:ColumnInfo(
         name = SERVICE_ID
     ) var serviceId: Int,
-    @field:ColumnInfo(name = SEARCH) var search: String?
+    @field:ColumnInfo(name = SEARCH) var search: String?,
+    @field:ColumnInfo(name = BOOKMARK) var bookmark: Boolean
 ) {
     @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
@@ -36,5 +37,6 @@ data class SearchHistoryEntry(
         const val SERVICE_ID = "service_id"
         const val CREATION_DATE = "creation_date"
         const val SEARCH = "search"
+        const val BOOKMARK = "bookmark"
     }
 }

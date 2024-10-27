@@ -28,6 +28,8 @@ public final class Migrations {
     public static final int DB_VER_8 = 8;
     public static final int DB_VER_9 = 9;
 
+    public static final int DB_VER_10 = 10;
+
     private static final String TAG = Migrations.class.getName();
     public static final boolean DEBUG = MainActivity.DEBUG;
 
@@ -301,7 +303,15 @@ public final class Migrations {
             }
         }
     };
+    public static final Migration MIGRATION_9_10 = new Migration(DB_VER_9, DB_VER_10) {
+        @Override
+        public void migrate(@NonNull final SupportSQLiteDatabase database) {
+            // Adding in new column for search shortcut
+            database.execSQL("ALTER TABLE `search_history` ADD COLUMN `bookmark` "
+                    + "INTEGER NOT NULL DEFAULT 0");
 
+        }
+    };
     private Migrations() {
     }
 }

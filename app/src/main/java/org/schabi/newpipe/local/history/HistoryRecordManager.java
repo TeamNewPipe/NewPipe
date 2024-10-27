@@ -43,6 +43,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.list.search.SuggestionItem;
 import org.schabi.newpipe.local.feed.FeedViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -103,10 +104,10 @@ public class HistoryRecordManager {
             // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
             if (info.getDuration() < 0) {
                 final StreamInfo completeInfo = ExtractorHelper.getStreamInfo(
-                        info.getServiceId(),
-                        info.getUrl(),
-                        false
-                )
+                                info.getServiceId(),
+                                info.getUrl(),
+                                false
+                        )
                         .subscribeOn(Schedulers.io())
                         .blockingGet();
                 duration = completeInfo.getDuration();
@@ -195,7 +196,8 @@ public class HistoryRecordManager {
         }
 
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
-        final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
+        final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search,
+                false);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final SearchHistoryEntry latestEntry = searchHistoryTable.getLatestEntry();
@@ -205,6 +207,21 @@ public class HistoryRecordManager {
             } else {
                 return searchHistoryTable.insert(newEntry);
             }
+        })).subscribeOn(Schedulers.io());
+    }
+    public Maybe<Long> onBookmark(final SuggestionItem entry) {
+        if (!isSearchHistoryEnabled()) {
+            return Maybe.empty();
+        }
+
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime,
+                entry.serviceId, entry.query, !entry.bookmark);
+        //ID is normally set to autogenerate, but the id needs to be set to the
+        // id of the existing database entry
+        newEntry.setId(entry.historyId);
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            return (long) searchHistoryTable.update(newEntry);
         })).subscribeOn(Schedulers.io());
     }
 
@@ -218,9 +235,9 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<String>> getRelatedSearches(final String query,
-                                                     final int similarQueryLimit,
-                                                     final int uniqueQueryLimit) {
+    public Flowable<List<SearchHistoryEntry>> getRelatedSearches(final String query,
+                                                                 final int similarQueryLimit,
+                                                                 final int uniqueQueryLimit) {
         return query.length() > 0
                 ? searchHistoryTable.getSimilarEntries(query, similarQueryLimit)
                 : searchHistoryTable.getUniqueEntries(uniqueQueryLimit);

@@ -51,10 +51,10 @@ class HistoryRecordManagerTest {
     @Test
     fun deleteSearchHistory() {
         val entries = listOf(
-            SearchHistoryEntry(time.minusSeconds(1), 0, "A"),
-            SearchHistoryEntry(time.minusSeconds(2), 2, "A"),
-            SearchHistoryEntry(time.minusSeconds(3), 1, "B"),
-            SearchHistoryEntry(time.minusSeconds(4), 0, "B"),
+            SearchHistoryEntry(time.minusSeconds(1), 0, "A", false),
+            SearchHistoryEntry(time.minusSeconds(2), 2, "A", false),
+            SearchHistoryEntry(time.minusSeconds(3), 1, "B", false),
+            SearchHistoryEntry(time.minusSeconds(4), 0, "B", false),
         )
 
         // make sure all 4 were inserted
@@ -83,9 +83,9 @@ class HistoryRecordManagerTest {
     @Test
     fun deleteCompleteSearchHistory() {
         val entries = listOf(
-            SearchHistoryEntry(time.minusSeconds(1), 1, "A"),
-            SearchHistoryEntry(time.minusSeconds(2), 2, "B"),
-            SearchHistoryEntry(time.minusSeconds(3), 0, "C"),
+            SearchHistoryEntry(time.minusSeconds(1), 1, "A", false),
+            SearchHistoryEntry(time.minusSeconds(2), 2, "B", false),
+            SearchHistoryEntry(time.minusSeconds(3), 0, "C", false),
         )
 
         // make sure all 3 were inserted
@@ -118,10 +118,10 @@ class HistoryRecordManagerTest {
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("", 6, 4).blockingFirst()
         assertThat(searches).containsExactly(
-            RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
-            RELATED_SEARCHES_ENTRIES[4].search, // B
-            RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[2].search, // BA
+            RELATED_SEARCHES_ENTRIES[6], // A (even if in two places)
+            RELATED_SEARCHES_ENTRIES[4], // B
+            RELATED_SEARCHES_ENTRIES[5], // AA
+            RELATED_SEARCHES_ENTRIES[2], // BA
         )
     }
 
@@ -129,20 +129,25 @@ class HistoryRecordManagerTest {
     fun getRelatedSearches_emptyQuery_manyDuplicates() {
         insertShuffledRelatedSearches(
             listOf(
-                SearchHistoryEntry(time.minusSeconds(9), 3, "A"),
-                SearchHistoryEntry(time.minusSeconds(8), 3, "AB"),
-                SearchHistoryEntry(time.minusSeconds(7), 3, "A"),
-                SearchHistoryEntry(time.minusSeconds(6), 3, "A"),
-                SearchHistoryEntry(time.minusSeconds(5), 3, "BA"),
-                SearchHistoryEntry(time.minusSeconds(4), 3, "A"),
-                SearchHistoryEntry(time.minusSeconds(3), 3, "A"),
-                SearchHistoryEntry(time.minusSeconds(2), 0, "A"),
-                SearchHistoryEntry(time.minusSeconds(1), 2, "AA"),
+                SearchHistoryEntry(time.minusSeconds(9), 3, "A", false),
+                SearchHistoryEntry(time.minusSeconds(8), 3, "AB", false),
+                SearchHistoryEntry(time.minusSeconds(7), 3, "A", false),
+                SearchHistoryEntry(time.minusSeconds(6), 3, "A", false),
+                SearchHistoryEntry(time.minusSeconds(5), 3, "BA", false),
+                SearchHistoryEntry(time.minusSeconds(4), 3, "A", false),
+                SearchHistoryEntry(time.minusSeconds(3), 3, "A", false),
+                SearchHistoryEntry(time.minusSeconds(2), 0, "A", false),
+                SearchHistoryEntry(time.minusSeconds(1), 2, "AA", false),
             )
         )
 
         val searches = manager.getRelatedSearches("", 9, 3).blockingFirst()
-        assertThat(searches).containsExactly("AA", "A", "BA")
+        var res = listOf<String>(
+            searches[0].search.toString(),
+            searches[1].search.toString(),
+            searches[2].search.toString()
+        )
+        assertThat(res).containsExactly("AA", "A", "BA")
     }
 
     @Test
@@ -152,9 +157,9 @@ class HistoryRecordManagerTest {
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("A", 3, 5).blockingFirst()
         assertThat(searches).containsExactly(
-            RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
-            RELATED_SEARCHES_ENTRIES[5].search, // AA
-            RELATED_SEARCHES_ENTRIES[1].search, // BA
+            RELATED_SEARCHES_ENTRIES[6], // A (even if in two places)
+            RELATED_SEARCHES_ENTRIES[5], // AA
+            RELATED_SEARCHES_ENTRIES[1], // BA
         )
 
         // also make sure that the string comparison is case insensitive
@@ -166,13 +171,13 @@ class HistoryRecordManagerTest {
         private val time = OffsetDateTime.of(LocalDateTime.of(2000, 1, 1, 1, 1), ZoneOffset.UTC)
 
         private val RELATED_SEARCHES_ENTRIES = listOf(
-            SearchHistoryEntry(time.minusSeconds(7), 2, "AC"),
-            SearchHistoryEntry(time.minusSeconds(6), 0, "ABC"),
-            SearchHistoryEntry(time.minusSeconds(5), 1, "BA"),
-            SearchHistoryEntry(time.minusSeconds(4), 3, "A"),
-            SearchHistoryEntry(time.minusSeconds(2), 0, "B"),
-            SearchHistoryEntry(time.minusSeconds(3), 2, "AA"),
-            SearchHistoryEntry(time.minusSeconds(1), 1, "A"),
+            SearchHistoryEntry(time.minusSeconds(7), 2, "AC", false),
+            SearchHistoryEntry(time.minusSeconds(6), 0, "ABC", false),
+            SearchHistoryEntry(time.minusSeconds(5), 1, "BA", false),
+            SearchHistoryEntry(time.minusSeconds(4), 3, "A", false),
+            SearchHistoryEntry(time.minusSeconds(2), 0, "B", false),
+            SearchHistoryEntry(time.minusSeconds(3), 2, "AA", false),
+            SearchHistoryEntry(time.minusSeconds(1), 1, "A", false),
         )
     }
 }

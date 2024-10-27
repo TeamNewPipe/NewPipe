@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ItemSearchSuggestionBinding;
 
+
 public class SuggestionListAdapter
         extends ListAdapter<SuggestionItem, SuggestionListAdapter.SuggestionItemHolder> {
     private OnSuggestionItemSelected listener;
@@ -34,7 +35,29 @@ public class SuggestionListAdapter
     @Override
     public void onBindViewHolder(final SuggestionItemHolder holder, final int position) {
         final SuggestionItem currentItem = getItem(position);
-        holder.updateFrom(currentItem);
+        holder.updateFrom(currentItem, position);
+
+        holder.itemBinding.itemSuggestionIcon.setOnClickListener(v -> {
+            if (listener != null) {
+                // Only allow bookmarking if item was searched before
+                // otherwise default to previous
+                if (currentItem.fromHistory) {
+                    listener.onBookmark(currentItem);
+                    //listener.onSuggestionItemInserted(currentItem);
+
+                } else {
+                    listener.onSuggestionItemSelected(currentItem);
+                }
+            }
+        });
+
+        holder.itemBinding.itemSuggestionIcon.setOnLongClickListener(v -> {
+            if (listener != null) {
+                listener.onSuggestionItemLongClick(currentItem);
+            }
+            return true;
+        });
+
         holder.itemBinding.suggestionSearch.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemSelected(currentItem);
@@ -51,6 +74,7 @@ public class SuggestionListAdapter
                 listener.onSuggestionItemInserted(currentItem);
             }
         });
+
     }
 
     public interface OnSuggestionItemSelected {
@@ -59,6 +83,8 @@ public class SuggestionListAdapter
         void onSuggestionItemInserted(SuggestionItem item);
 
         void onSuggestionItemLongClick(SuggestionItem item);
+
+        void onBookmark(SuggestionItem item);
     }
 
     public static final class SuggestionItemHolder extends RecyclerView.ViewHolder {
@@ -69,20 +95,27 @@ public class SuggestionListAdapter
             this.itemBinding = binding;
         }
 
-        private void updateFrom(final SuggestionItem item) {
-            itemBinding.itemSuggestionIcon.setImageResource(item.fromHistory ? R.drawable.ic_history
-                    : R.drawable.ic_search);
+        private void updateFrom(final SuggestionItem item, final int position) {
+
+            itemBinding.itemSuggestionIcon.setImageResource(item.bookmark ? R.drawable.ic_bookmark
+                    : (item.fromHistory ? R.drawable.ic_history
+                    : R.drawable.ic_search));
             itemBinding.itemSuggestionQuery.setText(item.query);
         }
+
     }
 
     private static class SuggestionItemCallback extends DiffUtil.ItemCallback<SuggestionItem> {
         @Override
         public boolean areItemsTheSame(@NonNull final SuggestionItem oldItem,
                                        @NonNull final SuggestionItem newItem) {
+
             return oldItem.fromHistory == newItem.fromHistory
-                    && oldItem.query.equals(newItem.query);
+                    && oldItem.query.equals(newItem.query)
+                    && oldItem.bookmark == newItem.bookmark;
+
         }
+
 
         @Override
         public boolean areContentsTheSame(@NonNull final SuggestionItem oldItem,

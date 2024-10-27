@@ -28,6 +28,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:clickable="true"
+            android:focusable="true"
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_history" />
 
