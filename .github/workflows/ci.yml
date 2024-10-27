@@ -47,10 +47,10 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: git checkout -B "$BRANCH"
 
-      - name: set up JDK 17
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 
@@ -88,10 +88,10 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: set up JDK 17
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 
@@ -121,10 +121,10 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 
