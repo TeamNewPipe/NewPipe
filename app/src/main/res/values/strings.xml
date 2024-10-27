@@ -858,5 +858,5 @@
     <string name="show_less">Show less</string>
     <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
     <string name="feed_show_shorts_items_key">feed_show_shorts_items</string>
-    <string name="feed_show_shorts">Shorts (streams under 60 seconds)</string>
+    <string name="feed_show_shorts">Short form content</string>
 </resources>
