@@ -92,6 +92,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
     packagingOptions {
@@ -112,7 +113,7 @@ ext {
     androidxRoomVersion = '2.6.1'
     androidxWorkVersion = '2.8.1'
 
-    icepickVersion = '3.2.0'
+    stateSaverVersion = '1.4.1'
     exoPlayerVersion = '2.18.7'
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
@@ -198,7 +199,8 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.2'
+    // WORKAROUND: v0.24.2 can't be resolved by jitpack -> use git commit hash instead
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:176da72cb4c3ec4679211339b0e59f6b01bf2f52'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -234,8 +236,9 @@ dependencies {
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
-    implementation "frankiesardo:icepick:${icepickVersion}"
-    kapt "frankiesardo:icepick-processor:${icepickVersion}"
+    implementation 'com.github.livefront:bridge:v2.0.2'
+    implementation "com.evernote:android-state:$stateSaverVersion"
+    kapt "com.evernote:android-state-processor:$stateSaverVersion"
 
     // HTML parser
     implementation "org.jsoup:jsoup:1.17.2"
