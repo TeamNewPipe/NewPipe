@@ -168,6 +168,18 @@ public class SeekbarPreviewThumbnailHolder {
                 return null;
             }
 
+            // Under some rare circumstances the YouTube API returns slightly too small storyboards,
+            // (or not the matching frame width/height)
+            // This would lead to createBitmap cutting out a bitmap that is out of bounds,
+            // so we need to adjust the bounds accordingly
+            if (srcBitMap.getWidth() < bounds[1] + frameset.getFrameWidth()) {
+                bounds[1] = srcBitMap.getWidth() - frameset.getFrameWidth();
+            }
+
+            if (srcBitMap.getHeight() < bounds[2] + frameset.getFrameHeight()) {
+                bounds[2] = srcBitMap.getHeight() - frameset.getFrameHeight();
+            }
+
             // Cut out the corresponding bitmap form the "srcBitMap"
             final Bitmap cutOutBitmap = Bitmap.createBitmap(srcBitMap, bounds[1], bounds[2],
                     frameset.getFrameWidth(), frameset.getFrameHeight());
