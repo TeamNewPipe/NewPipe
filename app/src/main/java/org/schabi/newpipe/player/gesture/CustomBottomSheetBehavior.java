@@ -47,7 +47,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         if (event.getAction() == MotionEvent.ACTION_CANCEL
                 || event.getAction() == MotionEvent.ACTION_UP) {
             skippingInterception = false;
-            //reset the variables
+            // reset the variables for swipe down threshold
             totalDrag = 0f;
             startY = 0f;
         }
