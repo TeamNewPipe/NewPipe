@@ -179,29 +179,23 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
 
     @Override
     protected void showInfoItemDialog(final StreamInfoItem item) {
-        try {
-            final Fragment parentFragment = getParentFragment();
-
-            // Try and attach the InfoItemDialog to the parent fragment of the RelatedItemsFragment
-            // so that its context is not lost when the RelatedItemsFragment is reinitialized.
-            if (parentFragment != null) {
+        // Try and attach the InfoItemDialog to the parent fragment of the RelatedItemsFragment
+        // so that its context is not lost when the RelatedItemsFragment is reinitialized,
+        // e.g. when a new stream is loaded in a parent VideoDetailFragment.
+        final Fragment parentFragment = getParentFragment();
+        if (parentFragment != null) {
+            try {
                 new InfoItemDialog.Builder(
                         parentFragment.getActivity(),
                         parentFragment.getContext(),
                         parentFragment,
                         item
                 ).create().show();
-            } else {
-                new InfoItemDialog.Builder(
-                        getActivity(),
-                        getContext(),
-                        this,
-                        item)
-                        .create().show();
+            } catch (final IllegalArgumentException e) {
+                InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
             }
-
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
+        } else {
+            super.showInfoItemDialog(item);
         }
     }
 
