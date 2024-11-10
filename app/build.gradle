@@ -294,7 +294,7 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
     // Jetpack Compose
-    implementation(platform('androidx.compose:compose-bom:2024.09.03'))
+    implementation(platform('androidx.compose:compose-bom:2024.10.01'))
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.compose.material3.adaptive:adaptive'
     implementation 'androidx.activity:activity-compose'
@@ -304,7 +304,7 @@ dependencies {
 
     // Jetpack Compose related dependencies
     implementation 'androidx.paging:paging-compose:3.3.2'
-    implementation "androidx.navigation:navigation-compose"
+    implementation "androidx.navigation:navigation-compose:2.8.3"
 
     // Coroutines interop
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'
