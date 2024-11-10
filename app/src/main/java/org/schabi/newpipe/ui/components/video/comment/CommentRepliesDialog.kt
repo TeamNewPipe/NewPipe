@@ -32,7 +32,7 @@ import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.paging.CommentsSource
+import org.schabi.newpipe.paging.CommentRepliesSource
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.common.NoItemsMessage
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -46,8 +46,9 @@ fun CommentRepliesDialog(
     val coroutineScope = rememberCoroutineScope()
     val commentsFlow = remember {
         Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-            CommentsSource(parentComment.serviceId, parentComment.url, parentComment.replies)
-        }.flow
+            CommentRepliesSource(parentComment)
+        }
+            .flow
             .cachedIn(coroutineScope)
     }
 

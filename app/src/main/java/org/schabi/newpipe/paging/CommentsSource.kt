@@ -9,35 +9,20 @@ import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.ui.components.video.comment.CommentInfo
-import org.schabi.newpipe.util.NO_SERVICE_ID
 
-class CommentsSource(
-    serviceId: Int,
-    private val url: String,
-    private val repliesPage: Page?,
-    private val commentInfo: CommentInfo? = null,
-) : PagingSource<Page, CommentsInfoItem>() {
-    constructor(commentInfo: CommentInfo) : this(
-        commentInfo.serviceId, commentInfo.url, commentInfo.nextPage, commentInfo
-    )
-
-    init {
-        require(serviceId != NO_SERVICE_ID) { "serviceId is NO_SERVICE_ID" }
-    }
-    private val service = NewPipe.getService(serviceId)
+class CommentsSource(private val commentInfo: CommentInfo) : PagingSource<Page, CommentsInfoItem>() {
+    private val service = NewPipe.getService(commentInfo.serviceId)
 
     override suspend fun load(params: LoadParams<Page>): LoadResult<Page, CommentsInfoItem> {
-        // repliesPage is non-null only when used to load the comment replies
-        val nextKey = params.key ?: repliesPage
-
-        return withContext(Dispatchers.IO) {
-            nextKey?.let {
-                val info = CommentsInfo.getMoreItems(service, url, it)
-                LoadResult.Page(info.items, null, info.nextPage)
-            } ?: run {
-                val info = commentInfo ?: CommentInfo(CommentsInfo.getInfo(service, url))
-                LoadResult.Page(info.comments, null, info.nextPage)
+        // params.key is null the first time the load() function is called, so we need to return the
+        // first batch of already-loaded comments
+        if (params.key == null) {
+            return LoadResult.Page(commentInfo.comments, null, commentInfo.nextPage)
+        } else {
+            val info = withContext(Dispatchers.IO) {
+                CommentsInfo.getMoreItems(service, commentInfo.url, params.key)
             }
+            return LoadResult.Page(info.items, null, info.nextPage)
         }
     }
 
