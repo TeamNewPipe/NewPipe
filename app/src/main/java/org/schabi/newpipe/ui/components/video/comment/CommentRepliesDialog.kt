@@ -6,7 +6,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -14,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -78,7 +81,7 @@ private fun CommentRepliesDialog(
                     CommentRepliesHeader(comment = parentComment)
                     HorizontalDivider(
                         thickness = 1.dp,
-                        modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 8.dp)
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
                     )
                 }
 
@@ -97,6 +100,18 @@ private fun CommentRepliesDialog(
                         }
                     }
                 } else {
+                    if (comments.itemCount >= 0) {
+                        item {
+                            Text(
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                                text = pluralStringResource(
+                                    R.plurals.replies, comments.itemCount, comments.itemCount
+                                ),
+                                maxLines = 1,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
+                    }
                     items(comments.itemCount) {
                         Comment(comment = comments[it]!!)
                     }

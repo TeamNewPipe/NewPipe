@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -84,12 +83,17 @@ private fun CommentSection(
                                 NoItemsMessage(R.string.no_comments)
                             }
                         } else {
-                            item {
-                                Text(
-                                    modifier = Modifier.padding(start = 8.dp),
-                                    text = pluralStringResource(R.plurals.comments, count, count),
-                                    fontWeight = FontWeight.Bold
-                                )
+                            // do not show anything if the comment count is unknown
+                            if (count >= 0) {
+                                item {
+                                    Text(
+                                        modifier = Modifier
+                                            .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
+                                        text = pluralStringResource(R.plurals.comments, count, count),
+                                        maxLines = 1,
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
+                                }
                             }
 
                             when (comments.loadState.refresh) {

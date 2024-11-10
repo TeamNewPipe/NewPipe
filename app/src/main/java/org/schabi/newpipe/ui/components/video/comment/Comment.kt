@@ -135,26 +135,28 @@ fun Comment(comment: CommentsInfoItem) {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(start = 1.dp, top = 6.dp, end = 4.dp, bottom = 6.dp)
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_thumb_up),
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description),
-                        modifier = Modifier
-                            .padding(end = 4.dp)
-                            .size(20.dp),
-                    )
-                    Text(
-                        text = Localization.likeCount(context, comment.likeCount),
-                        maxLines = 1,
-                        style = MaterialTheme.typography.labelMedium,
-                    )
+                    // do not show anything if the like count is unknown
+                    if (comment.likeCount >= 0) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_thumb_up),
+                            contentDescription = stringResource(R.string.detail_likes_img_view_description),
+                            modifier = Modifier
+                                .padding(end = 4.dp)
+                                .size(20.dp),
+                        )
+                        Text(
+                            text = Localization.likeCount(context, comment.likeCount),
+                            maxLines = 1,
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                    }
 
                     if (comment.isHeartedByUploader) {
                         Image(
                             painter = painterResource(R.drawable.ic_heart),
                             contentDescription = stringResource(R.string.detail_heart_img_view_description),
-                            modifier = Modifier
-                                .padding(start = 8.dp)
-                                .size(20.dp),
+                            modifier = Modifier.size(20.dp),
                         )
                     }
                 }

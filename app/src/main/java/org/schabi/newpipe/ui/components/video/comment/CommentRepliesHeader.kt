@@ -83,14 +83,17 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(R.drawable.ic_thumb_up),
-                    contentDescription = stringResource(R.string.detail_likes_img_view_description)
-                )
-                Text(
-                    text = Localization.likeCount(context, comment.likeCount),
-                    maxLines = 1,
-                )
+                // do not show anything if the like count is unknown
+                if (comment.likeCount >= 0) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_thumb_up),
+                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                    )
+                    Text(
+                        text = Localization.likeCount(context, comment.likeCount),
+                        maxLines = 1,
+                    )
+                }
 
                 if (comment.isHeartedByUploader) {
                     Image(
