@@ -6,10 +6,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -67,54 +70,64 @@ private fun CommentRepliesDialog(
     val state = rememberLazyListState()
 
     ModalBottomSheet(onDismissRequest = onDismissRequest) {
-        LazyColumnScrollbar(
-            state = state,
-            settings = ScrollbarSettings.Default.copy(
-                thumbSelectedColor = md_theme_dark_primary,
-                thumbUnselectedColor = Color.Red
-            )
+        CompositionLocalProvider(
+            // contentColorFor(MaterialTheme.colorScheme.containerColor), i.e. ModalBottomSheet's
+            // default background color, does not resolve correctly, so need to manually set the
+            // content color for MaterialTheme.colorScheme.background instead
+            LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.background)
         ) {
-            LazyColumn(
-                modifier = Modifier.nestedScroll(nestedScrollInterop),
-                state = state
+            LazyColumnScrollbar(
+                state = state,
+                settings = ScrollbarSettings.Default.copy(
+                    thumbSelectedColor = md_theme_dark_primary,
+                    thumbUnselectedColor = Color.Red
+                )
             ) {
-                item {
-                    CommentRepliesHeader(comment = parentComment)
-                    HorizontalDivider(
-                        thickness = 1.dp,
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
-                    )
-                }
-
-                if (comments.itemCount == 0) {
+                LazyColumn(
+                    modifier = Modifier.nestedScroll(nestedScrollInterop),
+                    state = state
+                ) {
                     item {
-                        val refresh = comments.loadState.refresh
-                        if (refresh is LoadState.Loading) {
-                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                        } else {
-                            val message = if (refresh is LoadState.Error) {
-                                R.string.error_unable_to_load_comments
-                            } else {
-                                R.string.no_comments
-                            }
-                            NoItemsMessage(message)
-                        }
+                        CommentRepliesHeader(comment = parentComment)
+                        HorizontalDivider(
+                            thickness = 1.dp,
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
+                        )
                     }
-                } else {
-                    if (comments.itemCount >= 0) {
+
+                    if (comments.itemCount == 0) {
                         item {
-                            Text(
-                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
-                                text = pluralStringResource(
-                                    R.plurals.replies, comments.itemCount, comments.itemCount
-                                ),
-                                maxLines = 1,
-                                style = MaterialTheme.typography.titleMedium
-                            )
+                            val refresh = comments.loadState.refresh
+                            if (refresh is LoadState.Loading) {
+                                LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                            } else {
+                                val message = if (refresh is LoadState.Error) {
+                                    R.string.error_unable_to_load_comments
+                                } else {
+                                    R.string.no_comments
+                                }
+                                NoItemsMessage(message)
+                            }
                         }
-                    }
-                    items(comments.itemCount) {
-                        Comment(comment = comments[it]!!)
+                    } else {
+                        if (comments.itemCount >= 0) {
+                            item {
+                                Text(
+                                    modifier = Modifier.padding(
+                                        horizontal = 12.dp,
+                                        vertical = 4.dp
+                                    ),
+                                    text = pluralStringResource(
+                                        R.plurals.replies, comments.itemCount, comments.itemCount
+                                    ),
+                                    maxLines = 1,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
+                        }
+                        items(comments.itemCount) {
+                            Comment(comment = comments[it]!!)
+                        }
                     }
                 }
             }
