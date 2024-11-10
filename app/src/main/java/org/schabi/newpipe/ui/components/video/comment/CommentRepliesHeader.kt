@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -43,11 +44,13 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
-                modifier = Modifier.clickable {
-                    NavigationHelper.openCommentAuthorIfPresent(context, comment)
-                },
+                modifier = Modifier
+                    .padding(end = 12.dp)
+                    .clip(CircleShape)
+                    .clickable { NavigationHelper.openCommentAuthorIfPresent(context, comment) }
+                    .weight(1.0f, true),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 AsyncImage(
                     model = ImageStrategy.choosePreferredImage(comment.uploaderAvatars),
@@ -60,14 +63,18 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                 )
 
                 Column {
-                    Text(text = comment.uploaderName)
+                    Text(
+                        text = comment.uploaderName,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.titleSmall,
+                    )
 
                     Text(
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.bodySmall,
                         text = Localization.relativeTimeOrTextual(
                             context, comment.uploadDate, comment.textualUploadDate
-                        )
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
                     )
                 }
             }
@@ -80,7 +87,10 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                     painter = painterResource(R.drawable.ic_thumb_up),
                     contentDescription = stringResource(R.string.detail_likes_img_view_description)
                 )
-                Text(text = Localization.likeCount(context, comment.likeCount))
+                Text(
+                    text = Localization.likeCount(context, comment.likeCount),
+                    maxLines = 1,
+                )
 
                 if (comment.isHeartedByUploader) {
                     Image(
@@ -100,7 +110,8 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
 
         DescriptionText(
             description = comment.commentText,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(8.dp)
         )
     }
 }
@@ -111,7 +122,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
 fun CommentRepliesHeaderPreview() {
     val comment = CommentsInfoItem(
         commentText = Description("Hello world!", Description.PLAIN_TEXT),
-        uploaderName = "Test",
+        uploaderName = "Test really long lorem ipsum dolor sit",
         likeCount = 1000,
         isPinned = true,
         isHeartedByUploader = true
