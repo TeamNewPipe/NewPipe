@@ -15,11 +15,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,7 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
@@ -71,7 +73,7 @@ fun Comment(comment: CommentsInfoItem) {
                 },
                 onClick = { isExpanded = !isExpanded }
             )
-            .padding(8.dp),
+            .padding(start = 8.dp, top = 10.dp, end = 8.dp, bottom = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         AsyncImage(
@@ -80,6 +82,7 @@ fun Comment(comment: CommentsInfoItem) {
             placeholder = painterResource(R.drawable.placeholder_person),
             error = painterResource(R.drawable.placeholder_person),
             modifier = Modifier
+                .padding(vertical = 4.dp)
                 .size(42.dp)
                 .clip(CircleShape)
                 .clickable {
@@ -87,12 +90,15 @@ fun Comment(comment: CommentsInfoItem) {
                 }
         )
 
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 if (comment.isPinned) {
                     Image(
                         painter = painterResource(R.drawable.ic_pin),
-                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description),
+                        modifier = Modifier
+                            .padding(start = 1.dp, end = 4.dp)
+                            .size(20.dp)
                     )
                 }
 
@@ -102,7 +108,12 @@ fun Comment(comment: CommentsInfoItem) {
                     )
                     Localization.concatenateStrings(comment.uploaderName, date)
                 }
-                Text(text = nameAndDate, color = MaterialTheme.colorScheme.secondary)
+                Text(
+                    text = nameAndDate,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
 
             Text(
@@ -111,35 +122,56 @@ fun Comment(comment: CommentsInfoItem) {
                 // otherwise we only display the first two lines
                 maxLines = if (isExpanded) Int.MAX_VALUE else 2,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 6.dp)
             )
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(start = 1.dp, top = 6.dp, end = 4.dp, bottom = 6.dp)
+                ) {
                     Image(
                         painter = painterResource(R.drawable.ic_thumb_up),
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                        contentDescription = stringResource(R.string.detail_likes_img_view_description),
+                        modifier = Modifier
+                            .padding(end = 4.dp)
+                            .size(20.dp),
                     )
-                    Text(text = Localization.likeCount(context, comment.likeCount))
+                    Text(
+                        text = Localization.likeCount(context, comment.likeCount),
+                        maxLines = 1,
+                        style = MaterialTheme.typography.labelMedium,
+                    )
 
                     if (comment.isHeartedByUploader) {
                         Image(
                             painter = painterResource(R.drawable.ic_heart),
-                            contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                            contentDescription = stringResource(R.string.detail_heart_img_view_description),
+                            modifier = Modifier
+                                .padding(start = 8.dp)
+                                .size(20.dp),
                         )
                     }
                 }
 
                 if (comment.replies != null) {
-                    TextButton(onClick = { showReplies = true }) {
-                        val text = pluralStringResource(
-                            R.plurals.replies, comment.replyCount, comment.replyCount.toString()
-                        )
-                        Text(text = text)
+                    // reduce LocalMinimumInteractiveComponentSize from 48dp to 44dp to slightly
+                    // reduce the button margin (which is still clickable but not visible)
+                    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 44.dp) {
+                        TextButton(
+                            onClick = { showReplies = true },
+                            modifier = Modifier.padding(end = 2.dp)
+                        ) {
+                            val text = pluralStringResource(
+                                R.plurals.replies, comment.replyCount, comment.replyCount.toString()
+                            )
+                            Text(text = text)
+                        }
                     }
                 }
             }
@@ -174,32 +206,70 @@ fun CommentsInfoItem(
     this.replyCount = replyCount
 }
 
-private class DescriptionPreviewProvider : PreviewParameterProvider<Description> {
-    override val values = sequenceOf(
-        Description("Hello world!<br><br>This line should be hidden by default.", Description.HTML),
-        Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+private class CommentPreviewProvider : CollectionPreviewParameterProvider<CommentsInfoItem>(
+    listOf(
+        CommentsInfoItem(
+            commentText = Description("Hello world!\n\nThis line should be hidden by default.", Description.PLAIN_TEXT),
+            uploaderName = "Test",
+            likeCount = 100,
+            isPinned = false,
+            isHeartedByUploader = true,
+            replies = null,
+            replyCount = 0
+        ),
+        CommentsInfoItem(
+            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
+            uploaderName = "Test",
+            likeCount = 92847,
+            isPinned = true,
+            isHeartedByUploader = false,
+            replies = Page(""),
+            replyCount = 10
+        ),
+        CommentsInfoItem(
+            commentText = Description("Hello world, long long long text lorem ipsum dolor sit amet!<br><br>This line should be hidden by default.", Description.HTML),
+            uploaderName = "Test really long long long long lorem ipsum dolor sit amet consectetur",
+            likeCount = 92847,
+            isPinned = true,
+            isHeartedByUploader = true,
+            replies = null,
+            replyCount = 0
+        ),
+        CommentsInfoItem(
+            commentText = Description("Short comment", Description.HTML),
+            uploaderName = "Test really long long long long lorem ipsum dolor sit amet consectetur",
+            likeCount = 92847,
+            isPinned = false,
+            isHeartedByUploader = false,
+            replies = Page(""),
+            replyCount = 4283
+        ),
     )
-}
+)
 
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CommentPreview(
-    @PreviewParameter(DescriptionPreviewProvider::class) description: Description
+    @PreviewParameter(CommentPreviewProvider::class) commentsInfoItem: CommentsInfoItem
 ) {
-    val comment = CommentsInfoItem(
-        commentText = description,
-        uploaderName = "Test",
-        likeCount = 100,
-        isPinned = true,
-        isHeartedByUploader = true,
-        replies = Page(""),
-        replyCount = 10
-    )
-
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Comment(comment)
+            Comment(commentsInfoItem)
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CommentListPreview() {
+    AppTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            Column {
+                for (comment in CommentPreviewProvider().values) {
+                    Comment(comment)
+                }
+            }
         }
     }
 }
