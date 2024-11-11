@@ -74,7 +74,6 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -881,8 +880,7 @@ public final class VideoDetailFragment
         tabContentDescriptions.clear();
 
         if (shouldShowComments()) {
-            pageAdapter.addFragment(
-                    CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
+            pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url), COMMENTS_TAB_TAG);
             tabIcons.add(R.drawable.ic_comment);
             tabContentDescriptions.add(R.string.comments_tab_description);
         }
@@ -1010,20 +1008,6 @@ public final class VideoDetailFragment
         binding.appBarLayout.setExpanded(true, true);
         // notify tab layout of scrolling
         updateTabLayoutVisibility();
-    }
-
-    public void scrollToComment(final CommentsInfoItem comment) {
-        final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
-        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
-        if (!(fragment instanceof CommentsFragment)) {
-            return;
-        }
-
-        // unexpand the app bar only if scrolling to the comment succeeded
-        if (((CommentsFragment) fragment).scrollToComment(comment)) {
-            binding.appBarLayout.setExpanded(false, false);
-            binding.viewPager.setCurrentItem(commentsTabPos, false);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

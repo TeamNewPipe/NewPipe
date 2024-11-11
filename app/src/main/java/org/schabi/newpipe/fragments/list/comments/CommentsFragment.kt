@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.videos
+package org.schabi.newpipe.fragments.list.comments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import androidx.compose.material3.Surface
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
-import org.schabi.newpipe.extractor.stream.StreamInfo
-import org.schabi.newpipe.ktx.serializable
-import org.schabi.newpipe.ui.components.video.RelatedItems
+import org.schabi.newpipe.ui.components.video.comment.CommentSection
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.util.KEY_INFO
+import org.schabi.newpipe.util.KEY_SERVICE_ID
+import org.schabi.newpipe.util.KEY_URL
 
-class RelatedItemsFragment : Fragment() {
+class CommentsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,15 +21,15 @@ class RelatedItemsFragment : Fragment() {
     ) = content {
         AppTheme {
             Surface(color = MaterialTheme.colorScheme.background) {
-                RelatedItems(requireArguments().serializable<StreamInfo>(KEY_INFO)!!)
+                CommentSection()
             }
         }
     }
 
     companion object {
         @JvmStatic
-        fun getInstance(info: StreamInfo) = RelatedItemsFragment().apply {
-            arguments = bundleOf(KEY_INFO to info)
+        fun getInstance(serviceId: Int, url: String?) = CommentsFragment().apply {
+            arguments = bundleOf(KEY_SERVICE_ID to serviceId, KEY_URL to url)
         }
     }
 }
