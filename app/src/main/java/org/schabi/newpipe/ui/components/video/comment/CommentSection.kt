@@ -48,71 +48,69 @@ private fun CommentSection(
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        LazyColumnThemedScrollbar(state = state) {
-            LazyColumn(
-                modifier = Modifier.nestedScroll(nestedScrollInterop),
-                state = state
-            ) {
-                when (uiState) {
-                    is Resource.Loading -> {
-                        item {
-                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                        }
+    LazyColumnThemedScrollbar(state = state) {
+        LazyColumn(
+            modifier = Modifier.nestedScroll(nestedScrollInterop),
+            state = state
+        ) {
+            when (uiState) {
+                is Resource.Loading -> {
+                    item {
+                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                     }
+                }
 
-                    is Resource.Success -> {
-                        val commentInfo = uiState.data
-                        val count = commentInfo.commentCount
+                is Resource.Success -> {
+                    val commentInfo = uiState.data
+                    val count = commentInfo.commentCount
 
-                        if (commentInfo.isCommentsDisabled) {
+                    if (commentInfo.isCommentsDisabled) {
+                        item {
+                            NoItemsMessage(R.string.comments_are_disabled)
+                        }
+                    } else if (count == 0) {
+                        item {
+                            NoItemsMessage(R.string.no_comments)
+                        }
+                    } else {
+                        // do not show anything if the comment count is unknown
+                        if (count >= 0) {
                             item {
-                                NoItemsMessage(R.string.comments_are_disabled)
+                                Text(
+                                    modifier = Modifier
+                                        .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
+                                    text = pluralStringResource(R.plurals.comments, count, count),
+                                    maxLines = 1,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
                             }
-                        } else if (count == 0) {
-                            item {
-                                NoItemsMessage(R.string.no_comments)
-                            }
-                        } else {
-                            // do not show anything if the comment count is unknown
-                            if (count >= 0) {
+                        }
+
+                        when (comments.loadState.refresh) {
+                            is LoadState.Loading -> {
                                 item {
-                                    Text(
-                                        modifier = Modifier
-                                            .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
-                                        text = pluralStringResource(R.plurals.comments, count, count),
-                                        maxLines = 1,
-                                        style = MaterialTheme.typography.titleMedium
-                                    )
+                                    LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                                 }
                             }
 
-                            when (comments.loadState.refresh) {
-                                is LoadState.Loading -> {
-                                    item {
-                                        LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                                    }
+                            is LoadState.Error -> {
+                                item {
+                                    NoItemsMessage(R.string.error_unable_to_load_comments)
                                 }
+                            }
 
-                                is LoadState.Error -> {
-                                    item {
-                                        NoItemsMessage(R.string.error_unable_to_load_comments)
-                                    }
-                                }
-
-                                else -> {
-                                    items(comments.itemCount) {
-                                        Comment(comment = comments[it]!!) {}
-                                    }
+                            else -> {
+                                items(comments.itemCount) {
+                                    Comment(comment = comments[it]!!) {}
                                 }
                             }
                         }
                     }
+                }
 
-                    is Resource.Error -> {
-                        item {
-                            NoItemsMessage(R.string.error_unable_to_load_comments)
-                        }
+                is Resource.Error -> {
+                    item {
+                        NoItemsMessage(R.string.error_unable_to_load_comments)
                     }
                 }
             }
