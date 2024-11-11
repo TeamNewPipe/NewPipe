@@ -17,7 +17,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
@@ -33,16 +32,14 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
-import my.nanihadesuka.compose.LazyColumnScrollbar
-import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.CommentRepliesSource
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.common.NoItemsMessage
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.ui.theme.md_theme_dark_primary
 
 @Composable
 fun CommentRepliesDialog(
@@ -94,13 +91,7 @@ private fun CommentRepliesDialog(
             // content color for MaterialTheme.colorScheme.background instead
             LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.background)
         ) {
-            LazyColumnScrollbar(
-                state = listState,
-                settings = ScrollbarSettings.Default.copy(
-                    thumbSelectedColor = md_theme_dark_primary,
-                    thumbUnselectedColor = Color.Red
-                )
-            ) {
+            LazyColumnThemedScrollbar(state = listState) {
                 LazyColumn(
                     modifier = Modifier.nestedScroll(nestedScrollInterop),
                     state = listState

@@ -10,24 +10,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
-import my.nanihadesuka.compose.LazyColumnScrollbar
-import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
-import org.schabi.newpipe.ui.theme.md_theme_dark_primary
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
@@ -75,13 +72,7 @@ fun ItemList(
     } else {
         val state = rememberLazyListState()
 
-        LazyColumnScrollbar(
-            state = state,
-            settings = ScrollbarSettings.Default.copy(
-                thumbSelectedColor = md_theme_dark_primary,
-                thumbUnselectedColor = Color.Red
-            )
-        ) {
+        LazyColumnThemedScrollbar(state = state) {
             LazyColumn(modifier = nestedScrollModifier, state = state) {
                 listHeader()
 
