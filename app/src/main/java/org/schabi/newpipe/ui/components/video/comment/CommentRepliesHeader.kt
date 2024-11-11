@@ -1,7 +1,6 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -92,9 +96,9 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
             ) {
                 // do not show anything if the like count is unknown
                 if (comment.likeCount >= 0) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_thumb_up),
-                        contentDescription = stringResource(R.string.detail_likes_img_view_description)
+                    Icon(
+                        imageVector = Icons.Default.ThumbUp,
+                        contentDescription = stringResource(R.string.detail_likes_img_view_description),
                     )
                     Text(
                         text = Localization.likeCount(context, comment.likeCount),
@@ -103,16 +107,17 @@ fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () ->
                 }
 
                 if (comment.isHeartedByUploader) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_heart),
-                        contentDescription = stringResource(R.string.detail_heart_img_view_description)
+                    Icon(
+                        imageVector = Icons.Default.Favorite,
+                        contentDescription = stringResource(R.string.detail_heart_img_view_description),
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 }
 
                 if (comment.isPinned) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_pin),
-                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description)
+                    Icon(
+                        imageVector = Icons.Default.PushPin,
+                        contentDescription = stringResource(R.string.detail_pinned_comment_view_description),
                     )
                 }
             }

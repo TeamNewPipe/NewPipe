@@ -301,6 +301,7 @@ dependencies {
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
     implementation 'androidx.compose.ui:ui-text' // Needed for parsing HTML to AnnotatedString
+    implementation 'androidx.compose.material:material-icons-extended'
 
     // Jetpack Compose related dependencies
     implementation 'androidx.paging:paging-compose:3.3.2'

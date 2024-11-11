@@ -5,7 +5,6 @@ import android.os.Build
 import android.widget.Toast
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -94,11 +98,11 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
         Column {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (comment.isPinned) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_pin),
+                    Icon(
+                        imageVector = Icons.Default.PushPin,
                         contentDescription = stringResource(R.string.detail_pinned_comment_view_description),
                         modifier = Modifier
-                            .padding(start = 1.dp, end = 4.dp)
+                            .padding(end = 3.dp)
                             .size(20.dp)
                     )
                 }
@@ -138,8 +142,8 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                 ) {
                     // do not show anything if the like count is unknown
                     if (comment.likeCount >= 0) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_thumb_up),
+                        Icon(
+                            imageVector = Icons.Default.ThumbUp,
                             contentDescription = stringResource(R.string.detail_likes_img_view_description),
                             modifier = Modifier
                                 .padding(end = 4.dp)
@@ -154,9 +158,10 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                     }
 
                     if (comment.isHeartedByUploader) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_heart),
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
                             contentDescription = stringResource(R.string.detail_heart_img_view_description),
+                            tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp),
                         )
                     }
