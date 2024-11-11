@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -31,6 +32,7 @@ import androidx.paging.cachedIn
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.launch
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.ScrollbarSettings
 import org.schabi.newpipe.R
@@ -46,6 +48,7 @@ import org.schabi.newpipe.ui.theme.md_theme_dark_primary
 fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     onDismissRequest: () -> Unit,
+    onCommentAuthorOpened: () -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val commentsFlow = remember {
@@ -56,7 +59,7 @@ fun CommentRepliesDialog(
             .cachedIn(coroutineScope)
     }
 
-    CommentRepliesDialog(parentComment, commentsFlow, onDismissRequest)
+    CommentRepliesDialog(parentComment, commentsFlow, onDismissRequest, onCommentAuthorOpened)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,12 +68,26 @@ private fun CommentRepliesDialog(
     parentComment: CommentsInfoItem,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>,
     onDismissRequest: () -> Unit,
+    onCommentAuthorOpened: () -> Unit,
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
-    val state = rememberLazyListState()
+    val listState = rememberLazyListState()
 
-    ModalBottomSheet(onDismissRequest = onDismissRequest) {
+    val coroutineScope = rememberCoroutineScope()
+    val sheetState = rememberModalBottomSheetState()
+    val nestedOnCommentAuthorOpened: () -> Unit = {
+        // also partialExpand any parent dialog
+        onCommentAuthorOpened()
+        coroutineScope.launch {
+            sheetState.partialExpand()
+        }
+    }
+
+    ModalBottomSheet(
+        sheetState = sheetState,
+        onDismissRequest = onDismissRequest,
+    ) {
         CompositionLocalProvider(
             // contentColorFor(MaterialTheme.colorScheme.containerColor), i.e. ModalBottomSheet's
             // default background color, does not resolve correctly, so need to manually set the
@@ -78,7 +95,7 @@ private fun CommentRepliesDialog(
             LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.background)
         ) {
             LazyColumnScrollbar(
-                state = state,
+                state = listState,
                 settings = ScrollbarSettings.Default.copy(
                     thumbSelectedColor = md_theme_dark_primary,
                     thumbUnselectedColor = Color.Red
@@ -86,10 +103,13 @@ private fun CommentRepliesDialog(
             ) {
                 LazyColumn(
                     modifier = Modifier.nestedScroll(nestedScrollInterop),
-                    state = state
+                    state = listState
                 ) {
                     item {
-                        CommentRepliesHeader(comment = parentComment)
+                        CommentRepliesHeader(
+                            comment = parentComment,
+                            onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                        )
                         HorizontalDivider(
                             thickness = 1.dp,
                             modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
@@ -127,7 +147,10 @@ private fun CommentRepliesDialog(
                             }
                         }
                         items(comments.itemCount) {
-                            Comment(comment = comments[it]!!)
+                            Comment(
+                                comment = comments[it]!!,
+                                onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                            )
                         }
                     }
                 }
@@ -159,6 +182,6 @@ private fun CommentRepliesDialogPreview() {
     val flow = flowOf(PagingData.from(replies))
 
     AppTheme {
-        CommentRepliesDialog(comment, flow, onDismissRequest = {})
+        CommentRepliesDialog(comment, flow, onDismissRequest = {}, onCommentAuthorOpened = {})
     }
 }

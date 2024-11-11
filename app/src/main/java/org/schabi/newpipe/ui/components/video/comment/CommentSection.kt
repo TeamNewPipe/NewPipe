@@ -111,7 +111,7 @@ private fun CommentSection(
 
                                 else -> {
                                     items(comments.itemCount) {
-                                        Comment(comment = comments[it]!!)
+                                        Comment(comment = comments[it]!!) {}
                                     }
                                 }
                             }

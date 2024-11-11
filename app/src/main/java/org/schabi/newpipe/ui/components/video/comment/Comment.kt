@@ -53,7 +53,7 @@ import org.schabi.newpipe.util.image.ImageStrategy
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Comment(comment: CommentsInfoItem) {
+fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
     val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
@@ -87,6 +87,7 @@ fun Comment(comment: CommentsInfoItem) {
                 .clip(CircleShape)
                 .clickable {
                     NavigationHelper.openCommentAuthorIfPresent(context, comment)
+                    onCommentAuthorOpened()
                 }
         )
 
@@ -181,7 +182,11 @@ fun Comment(comment: CommentsInfoItem) {
     }
 
     if (showReplies) {
-        CommentRepliesDialog(comment, onDismissRequest = { showReplies = false })
+        CommentRepliesDialog(
+            parentComment = comment,
+            onDismissRequest = { showReplies = false },
+            onCommentAuthorOpened = onCommentAuthorOpened,
+        )
     }
 }
 
@@ -257,7 +262,7 @@ private fun CommentPreview(
 ) {
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Comment(commentsInfoItem)
+            Comment(commentsInfoItem) {}
         }
     }
 }
@@ -269,7 +274,7 @@ private fun CommentListPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             Column {
                 for (comment in CommentPreviewProvider().values) {
-                    Comment(comment)
+                    Comment(comment) {}
                 }
             }
         }

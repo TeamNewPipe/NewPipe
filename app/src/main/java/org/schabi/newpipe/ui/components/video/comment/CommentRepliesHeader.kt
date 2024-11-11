@@ -35,10 +35,13 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
-fun CommentRepliesHeader(comment: CommentsInfoItem) {
+fun CommentRepliesHeader(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
     val context = LocalContext.current
 
-    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -48,7 +51,10 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
                 modifier = Modifier
                     .padding(end = 12.dp)
                     .clip(CircleShape)
-                    .clickable { NavigationHelper.openCommentAuthorIfPresent(context, comment) }
+                    .clickable {
+                        NavigationHelper.openCommentAuthorIfPresent(context, comment)
+                        onCommentAuthorOpened()
+                    }
                     .weight(1.0f, true),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -133,7 +139,7 @@ fun CommentRepliesHeaderPreview() {
 
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            CommentRepliesHeader(comment)
+            CommentRepliesHeader(comment) {}
         }
     }
 }
