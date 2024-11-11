@@ -1,8 +1,6 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
-import android.os.Build
-import android.widget.Toast
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -34,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -53,12 +50,12 @@ import org.schabi.newpipe.ui.components.common.rememberParsedDescription
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.external_communication.copyToClipboardCallback
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
-    val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var showReplies by rememberSaveable { mutableStateOf(false) }
@@ -68,14 +65,8 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
         modifier = Modifier
             .animateContentSize()
             .combinedClickable(
-                onLongClick = {
-                    clipboardManager.setText(parsedDescription)
-                    if (Build.VERSION.SDK_INT < 33) {
-                        // Android 13 has its own "copied to clipboard" dialog
-                        Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show()
-                    }
-                },
-                onClick = { isExpanded = !isExpanded }
+                onLongClick = copyToClipboardCallback { parsedDescription },
+                onClick = { isExpanded = !isExpanded },
             )
             .padding(start = 8.dp, top = 10.dp, end = 8.dp, bottom = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
