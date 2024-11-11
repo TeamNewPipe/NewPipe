@@ -21,6 +21,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.Pager
@@ -146,10 +147,13 @@ private fun CommentRepliesDialogPreview() {
         isPinned = true,
         isHeartedByUploader = true
     )
-    val replies = (1..10).map {
+    val replies = (1..10).map { i ->
         CommentsInfoItem(
-            commentText = Description("Reply $it", Description.PLAIN_TEXT),
-            uploaderName = "Test"
+            commentText = Description(
+                "Reply $i: ${LoremIpsum(i * i).values.first()}",
+                Description.PLAIN_TEXT,
+            ),
+            uploaderName = LoremIpsum(11 - i).values.first()
         )
     }
     val flow = flowOf(PagingData.from(replies))

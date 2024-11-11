@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.schabi.newpipe.R
@@ -37,7 +38,7 @@ import org.schabi.newpipe.util.image.ImageStrategy
 fun CommentRepliesHeader(comment: CommentsInfoItem) {
     val context = LocalContext.current
 
-    Column(modifier = Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -114,7 +115,6 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
         DescriptionText(
             description = comment.commentText,
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(8.dp)
         )
     }
 }
@@ -124,7 +124,7 @@ fun CommentRepliesHeader(comment: CommentsInfoItem) {
 @Composable
 fun CommentRepliesHeaderPreview() {
     val comment = CommentsInfoItem(
-        commentText = Description("Hello world!", Description.PLAIN_TEXT),
+        commentText = Description(LoremIpsum(50).values.first(), Description.PLAIN_TEXT),
         uploaderName = "Test really long lorem ipsum dolor sit",
         likeCount = 1000,
         isPinned = true,
