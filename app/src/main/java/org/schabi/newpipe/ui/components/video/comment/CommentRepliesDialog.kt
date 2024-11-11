@@ -116,6 +116,24 @@ private fun CommentRepliesDialog(
                         )
                     }
 
+                    if (parentComment.replyCount >= 0) {
+                        item {
+                            Text(
+                                modifier = Modifier.padding(
+                                    horizontal = 12.dp,
+                                    vertical = 4.dp
+                                ),
+                                text = pluralStringResource(
+                                    R.plurals.replies,
+                                    parentComment.replyCount,
+                                    parentComment.replyCount,
+                                ),
+                                maxLines = 1,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
+                    }
+
                     if (comments.itemCount == 0) {
                         item {
                             val refresh = comments.loadState.refresh
@@ -131,21 +149,6 @@ private fun CommentRepliesDialog(
                             }
                         }
                     } else {
-                        if (comments.itemCount >= 0) {
-                            item {
-                                Text(
-                                    modifier = Modifier.padding(
-                                        horizontal = 12.dp,
-                                        vertical = 4.dp
-                                    ),
-                                    text = pluralStringResource(
-                                        R.plurals.replies, comments.itemCount, comments.itemCount
-                                    ),
-                                    maxLines = 1,
-                                    style = MaterialTheme.typography.titleMedium
-                                )
-                            }
-                        }
                         items(comments.itemCount) {
                             Comment(
                                 comment = comments[it]!!,
