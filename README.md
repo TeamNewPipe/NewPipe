@@ -114,7 +114,7 @@ In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's 
 
 ### APK Info
 
-This is the SHA fingerprint of NewPipe's signing key to verify downloaded APKs which are signed by uy. The fingerprint is also available on [NewPipe's website](https://newpipe.net#download). This is relevant for method 2.
+This is the SHA fingerprint of NewPipe's signing key to verify downloaded APKs which are signed by us. The fingerprint is also available on [NewPipe's website](https://newpipe.net#download). This is relevant for method 2.
 ```
 CB:84:06:9B:D6:81:16:BA:FA:E5:EE:4E:E5:B0:8A:56:7A:A6:D8:98:40:4E:7C:B1:2F:9E:75:6D:F5:CF:5C:AB
 ```
