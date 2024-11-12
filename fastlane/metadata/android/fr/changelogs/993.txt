@@ -1,0 +1,12 @@
+Nouveau
+• Ajout d'un avertissement lors de l'ajout de doublons de playlist et ajout d'un bouton pour les supprimer
+• Autoriser l'ignorance des boutons matériels
+• Autoriser le masquage des vidéos partiellement regardées dans le flux
+
+Amélioré
+• Utiliser plus de colonnes de grille sur les grands écrans
+• Rendre les indicateurs de progression cohérents avec les paramètres
+
+Corrigé
+• Correction de l'ouverture des URL du navigateur, des téléchargements et des lecteurs externes sur Android 11+
+• Correction de l'interaction avec le plein écran nécessitant deux appuis sur MIUI

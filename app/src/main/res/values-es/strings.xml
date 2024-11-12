@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Publicado el %1$s</string>
+    <string name="upload_date_text">Publicado en %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de retransmisiones. ¿Instalar VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
@@ -107,7 +107,7 @@
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="title_licenses">Licencias de terceros</string>
     <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
-    <string name="tab_about">FAQ &amp; Acerca de</string>
+    <string name="tab_about">FAQ y Acerca de</string>
     <string name="tab_licenses">Licencias</string>
     <string name="app_description">Reproducción de transmisiones ligera y libre para Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
@@ -169,7 +169,7 @@
     <string name="channel_page_summary">Página del canal</string>
     <string name="select_a_channel">Seleccione un canal</string>
     <string name="no_channel_subscribed_yet">No hay suscripciones a canales todavía</string>
-    <string name="select_a_kiosk">Seleccione un kiosco</string>
+    <string name="select_a_kiosk">Seleccione un quiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">50 mejores</string>
     <string name="show_hold_to_append_summary">Mostrar sugerencia al pulsar el botón de segundo plano o emergente en la página «Detalles:» del vídeo</string>
@@ -219,7 +219,7 @@
     <string name="override_current_data">Esto reemplazará tu configuración actual.</string>
     <string name="controls_download_desc">Descargar archivo de retransmisión</string>
     <string name="show_info">Mostrar información</string>
-    <string name="tab_bookmarks">Playlists de marcadores</string>
+    <string name="tab_bookmarks">Listas de reproducción marcadas</string>
     <string name="controls_add_to_playlist_title">Añadir a</string>
     <string name="detail_drag_description">Arrastrar para reordenar</string>
     <string name="create">Crear</string>
@@ -537,7 +537,7 @@
     <string name="youtube_restricted_mode_enabled_title">Activar el «Modo restringido» de YouTube</string>
     <string name="playlist_page_summary">Página de lista de reproducción</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar solo suscripciones desagrupadas</string>
-    <string name="no_playlist_bookmarked_yet">Sin marcadores de lista de reproducción aún</string>
+    <string name="no_playlist_bookmarked_yet">Aún no hay marcadores para listas de reproducción</string>
     <string name="select_a_playlist">Selecciona una lista de reproducción</string>
     <string name="error_report_open_github_notice">Por favor revisa si ya existe una discusión sobre tu problema. Al crear entradas duplicadas, toma tiempo de nosotros que podríamos usar para arreglar tal problema.</string>
     <string name="error_report_open_issue_button_text">Informe en GitHub</string>
@@ -783,7 +783,7 @@
     <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas de los canales</string>
     <string name="show_channel_tabs">Pestañas del canal</string>
     <string name="channel_tab_shorts">Shorts</string>
-    <string name="loading_metadata_title">Cargando los metadatos…</string>
+    <string name="loading_metadata_title">Cargando metadatos…</string>
     <string name="feed_fetch_channel_tabs">Recuperar las fichas del canal</string>
     <string name="channel_tab_about">Acerca de</string>
     <string name="channel_tab_albums">Álbumes</string>
@@ -831,7 +831,7 @@
     <string name="show_less">Mostrar menos</string>
     <string name="notification_actions_summary_android13">Edite cada acción de notificación pulsando sobre ella. Las tres primeras acciones (reproducir/pausa, anterior y siguiente) las establece el sistema y no se pueden personalizar.</string>
     <string name="error_insufficient_storage">No hay suficiente espacio libre en el dispositivo</string>
-    <string name="settings_category_backup_restore_title">Copia de seguridad y restaurar</string>
+    <string name="settings_category_backup_restore_title">Respaldar y restaurar</string>
     <string name="reset_settings_title">Reiniciar ajustes</string>
     <string name="reset_settings_summary">Restablecer todos los ajustes a sus valores predeterminados</string>
     <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación.
@@ -841,4 +841,5 @@
     <string name="no">No</string>
     <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles.
 \n¿Quieres habilitar esto?</string>
+    <string name="import_settings_vulnerable_format">La configuración de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
 </resources>

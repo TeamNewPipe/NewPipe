@@ -824,4 +824,5 @@
     <string name="reset_all_settings">Om du återställer alla inställningar försvinner alla dina föredragna inställningar och appen startas om.
 \n
 \nÄr du säker på att du vill fortsätta?</string>
+    <string name="import_settings_vulnerable_format">Inställningarna i exporten som importeras använder ett sårbart format som fasades ut i NewPipe 0.27.0. Se till att exporten som importeras är från en betrodd källa, och överväg att endast använda exporter som erhållits från NewPipe 0.27.0 eller nyare i framtiden. Stöd för import av inställningar från detta sårbara format kommer snart att tas bort helt, och sedan kommer gamla versioner av NewPipe inte att kunna importera inställningar av exporter från nya versioner längre.</string>
 </resources>

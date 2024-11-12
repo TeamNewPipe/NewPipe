@@ -5,12 +5,12 @@
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
-    <string name="share">Подели</string>
+    <string name="share">Дели</string>
     <string name="download">Преузми</string>
     <string name="search">Претрага</string>
     <string name="settings">Подешавања</string>
     <string name="did_you_mean">Да ли сте мислили: „%1$s“\?</string>
-    <string name="share_dialog_title">Подели помоћу</string>
+    <string name="share_dialog_title">Делите помоћу</string>
     <string name="download_path_title">Фолдер за преузимање видео снимака</string>
     <string name="download_path_summary">Преузети видео снимци се чувају овде</string>
     <string name="download_path_dialog_title">Изаберите фолдер за преузимање видео снимака</string>
@@ -191,13 +191,13 @@
     <string name="always">Увек</string>
     <string name="just_once">Само једном</string>
     <string name="unknown_content">[Непознато]</string>
-    <string name="show_hold_to_append_title">Прикажи савет „Задржи за стављање у ред чекања”</string>
+    <string name="show_hold_to_append_title">Прикажи савет „Задржати за стављање у редослед”</string>
     <string name="donation_title">Донација</string>
     <string name="donation_encouragement">NewPipe је развијен од стране волонтера који проводе своје слободно време доносећи вам најбоље корисничко искуство. Узвратите програмерима како би учинили NewPipe још бољим, док уживају у шољици кафе.</string>
     <string name="give_back">Узврати</string>
     <string name="website_title">Веб-сајт</string>
     <string name="website_encouragement">За више информација и новости посетите NewPipe веб-сајт.</string>
-    <string name="hold_to_append">Задржи за стављање у ред чекања</string>
+    <string name="hold_to_append">Задржати за стављање у редослед</string>
     <string name="use_inexact_seek_title">Користи брзо, непрецизно премотавање</string>
     <string name="use_inexact_seek_summary">Непрецизно премотавање омогућава плејеру да брже долази до позиције уз смањену прецизност. Премотавање за 5, 15 или 25 секунди са овом опцијом не ради</string>
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>
@@ -224,7 +224,7 @@
     <string name="pause_downloads">Паузирај преузимања</string>
     <string name="start_downloads">Започни преузимања</string>
     <string name="enable_queue_limit_desc">Једно преузимање ће бити покренуто у исто време</string>
-    <string name="enable_queue_limit">Ограничи ред за преузимање</string>
+    <string name="enable_queue_limit">Ограничи редослед преузимања</string>
     <string name="close">Затвори</string>
     <string name="pause_downloads_on_mobile_desc">Корисно при преласку на мобилне податке, иако нека преузимања не могу бити обустављена</string>
     <string name="pause_downloads_on_mobile">Прекид на мрежама с ограничењем</string>
@@ -258,10 +258,10 @@
     <string name="generate_unique_name">Генериши јединствен назив</string>
     <string name="download_failed">Преузимање није успело</string>
     <string name="permission_denied">Систем је одбио радњу</string>
-    <string name="enqueue">Ред чекања</string>
+    <string name="enqueue">Стави у редослед</string>
     <string name="recovering">опорављање</string>
     <string name="post_processing">накнадна обрада</string>
-    <string name="queued">у реду чекања</string>
+    <string name="queued">у редоследу</string>
     <string name="paused">паузирано</string>
     <string name="missions_header_pending">На чекању</string>
     <string name="missions_header_finished">Завршено</string>
@@ -289,7 +289,7 @@
     <string name="playback_reset">Ресетуј</string>
     <string name="playback_step">Корак</string>
     <string name="skip_silence_checkbox">Премотавање унапред током тишине</string>
-    <string name="unhook_checkbox">Откачити (може изазвати изобличења)</string>
+    <string name="unhook_checkbox">Откачи (може изазвати изобличења)</string>
     <string name="playback_pitch">Висина тона</string>
     <string name="playback_tempo">Брзина</string>
     <string name="playback_speed_control">Контроле брзине репродукције</string>
@@ -361,9 +361,9 @@
     <string name="drawer_open">Отвори фиоку</string>
     <string name="start_here_on_popup">Почни пуштање у искачућем прозору</string>
     <string name="start_here_on_background">Почни пуштање у позадини</string>
-    <string name="enqueue_stream">Стави у ред чекања</string>
-    <string name="enqueued">Стављено у ред чекања</string>
-    <string name="title_activity_play_queue">Ред пуштања</string>
+    <string name="enqueue_stream">Стави у редослед</string>
+    <string name="enqueued">Стављено у редослед</string>
+    <string name="title_activity_play_queue">Редослед пуштања</string>
     <string name="conferences">Конференције</string>
     <string name="most_liked">Највише свиђања</string>
     <string name="recently_added">Недавно додато</string>
@@ -467,7 +467,7 @@
     <string name="songs">Песме</string>
     <string name="events">Догађаји</string>
     <string name="users">Корисници</string>
-    <string name="tracks">Снимци</string>
+    <string name="tracks">Нумере</string>
     <string name="videos_string">Видео снимци</string>
     <string name="playlists">Плејлисте</string>
     <string name="channels">Канали</string>
@@ -490,22 +490,22 @@
     <string name="peertube_instance_url_summary">Изаберите своје омиљене PeerTube инстанце</string>
     <string name="unsupported_url_dialog_message">URL адреса није препозната. Отворити помоћу друге апликације\?</string>
     <string name="autoplay_title">Аутоматско пуштање</string>
-    <string name="settings_category_clear_data_title">Очисти податке</string>
+    <string name="settings_category_clear_data_title">Чишћење података</string>
     <string name="enable_playback_state_lists_summary">Прикажите индикаторе положаја репродукције на листама</string>
     <string name="enable_playback_state_lists_title">Позиције на листама</string>
     <string name="enable_playback_resume_summary">Вратите последњу позицију репродукције</string>
     <string name="enable_playback_resume_title">Настави репродукцију</string>
-    <string name="auto_queue_toggle">Аутоматско стављање у ред чекања</string>
-    <string name="auto_queue_summary">Наставите да завршавате (непонављајући) ред репродукције додавањем повезаног стрима</string>
-    <string name="auto_queue_title">Аутоматски стави у ред чекања следећи стрим</string>
+    <string name="auto_queue_toggle">Аутоматско стављање у редослед</string>
+    <string name="auto_queue_summary">Наставите да завршавате (непонављајући) редослед репродукције додавањем сродног стрима</string>
+    <string name="auto_queue_title">Аутоматски стави у редослед следећи стрим</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаподатака обрисан</string>
     <string name="show_meta_info_summary">Искључите да бисте сакрили поља за метаподатке са додатним информацијама о креатору стрима, садржају стрима или захтеву за претрагу</string>
     <string name="show_meta_info_title">Прикажи метаподатке</string>
     <string name="show_description_summary">Искључите да бисте сакрили опис видео снимка и додатне информације</string>
     <string name="show_description_title">Прикажи опис</string>
-    <string name="clear_queue_confirmation_description">Ред активног плејера биће замењен</string>
-    <string name="clear_queue_confirmation_summary">Пребацивање на други плејер може променити ваш ред чекања</string>
-    <string name="clear_queue_confirmation_title">Питај за потврду пре чишћења реда</string>
+    <string name="clear_queue_confirmation_description">Редослед активног плејера биће замењен</string>
+    <string name="clear_queue_confirmation_summary">Пребацивање на други плејер може променити ваш редослед</string>
+    <string name="clear_queue_confirmation_title">Питај за потврду пре чишћења редоследа</string>
     <string name="seek_duration_title">Период премотавања напред/назад</string>
     <string name="night_theme_title">Ноћна тема</string>
     <string name="notification_colorize_summary">Android ће прилагодити боју обавештења према главној боји на сличици (није доступно на свим уређајима)</string>
@@ -604,7 +604,7 @@
         <item quantity="other">%d секунди</item>
     </plurals>
     <string name="show_channel_details">Прикажи детаље о каналу</string>
-    <string name="related_items_tab_description">Повезани видео снимци</string>
+    <string name="related_items_tab_description">Сродне ставке</string>
     <string name="disable_media_tunneling_summary">Онемогућите тунеловање медија ако искусите црни екран или застајкивање при репродукцији видео снимка.</string>
     <string name="disable_media_tunneling_title">Онемогући тунеловање медија</string>
     <string name="open_website_license">Отвори веб-сајт</string>
@@ -637,8 +637,8 @@
     <string name="off">Искључи</string>
     <string name="on">Укључи</string>
     <string name="tablet_mode_title">Режим таблета</string>
-    <string name="enqueue_next_stream">Стави у ред чекања следећи</string>
-    <string name="enqueued_next">Стављен у ред чекања следећи</string>
+    <string name="enqueue_next_stream">Стави у редослед следећи</string>
+    <string name="enqueued_next">Стављен у редослед следећи</string>
     <string name="local_search_suggestions">Локални предлози претраге</string>
     <string name="remote_search_suggestions">Удаљени предлози претраге</string>
     <string name="mark_as_watched">Означи као одгледано</string>
@@ -715,9 +715,9 @@
     <string name="duplicate_in_playlist">Плејлисте које су затамњене већ садрже ову ставку.</string>
     <string name="leak_canary_not_available">LeakCanary није доступан</string>
     <string name="app_update_available_notification_text">Додирните да бисте преузели %s</string>
-    <string name="check_for_updates">Провери ажурирања</string>
+    <string name="check_for_updates">Провера ажурирања</string>
     <string name="seekbar_preview_thumbnail_title">Преглед сличице траке за претрагу</string>
-    <string name="feed_hide_streams_title">Прикажи следеће стримове</string>
+    <string name="feed_hide_streams_title">Приказ следећих стримова</string>
     <string name="feed_show_hide_streams">Прикажи/сакриј стримове</string>
     <string name="use_exoplayer_decoder_fallback_title">Користи резервну функцију декодера ExoPlayer-а</string>
     <string name="audio_track_type_original">оригинални</string>
@@ -797,7 +797,7 @@
     <string name="metadata_avatars">Аватари</string>
     <string name="next_stream">Следећи стрим</string>
     <string name="metadata_subchannel_avatars">Аватари потканала</string>
-    <string name="open_play_queue">Отвори ред чекања за пуштање</string>
+    <string name="open_play_queue">Отвори редослед пуштања</string>
     <string name="image_quality_none">Не учитавај слике</string>
     <string name="image_quality_high">Висок квалитет</string>
     <string name="forward">Унапред</string>
@@ -838,4 +838,5 @@
     <string name="yes">Да</string>
     <string name="auto_update_check_description">NewPipe може аутоматски да проверава да ли постоје нове верзије с времена на време и да вас обавести када буду доступне.
 \nЖелите ли да омогућите ово?</string>
+    <string name="import_settings_vulnerable_format">Подешавања у извозу који се увозе користе рањив формат који је застарео од NewPipe верзије 0.27.0. Уверите се да извоз који се увози долази из поузданог извора и радије користите само извозе добијене из NewPipe 0.27.0 или новије верзије, у будућности. Подршка за увоз подешавања у овом рањивом формату ће ускоро бити потпуно уклоњена и тада старе NewPipe верзије више неће моћи да увозе подешавања извоза из нових верзија.</string>
 </resources>

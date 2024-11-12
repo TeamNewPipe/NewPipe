@@ -810,4 +810,5 @@
     <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。
 \n你想开启该功能吗？</string>
     <string name="yes">是</string>
+    <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
 </resources>

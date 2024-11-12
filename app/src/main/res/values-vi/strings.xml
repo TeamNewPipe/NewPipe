@@ -38,7 +38,7 @@
     <string name="theme_title">Chủ đề</string>
     <string name="light_theme_title">Sáng</string>
     <string name="dark_theme_title">Tối</string>
-    <string name="black_theme_title">Đen (Amoled)</string>
+    <string name="black_theme_title">Đen</string>
     <string name="popup_remember_size_pos_title">Ghi nhớ thuộc tính cửa sổ bật lên</string>
     <string name="popup_remember_size_pos_summary">Ghi nhớ kích thước và vị trí cuối cùng của cửa sổ bật lên</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
@@ -68,7 +68,7 @@
     <string name="app_ui_crash">Ứng dụng/Giao diện người dùng bị lỗi</string>
     <string name="sorry_string">Có vẻ NewPipe đã xảy ra lỗi, lướt xuống kiểm tra xem.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
-    <string name="error_snackbar_message">Rất tiếc, đã xảy ra lỗi rồi.</string>
+    <string name="error_snackbar_message">Rất tiếc, đã xảy ra lỗi.</string>
     <string name="error_snackbar_action">Báo cáo</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
@@ -136,14 +136,14 @@
     <string name="metadata_cache_wipe_title">Xóa sạch siêu dữ liệu đã lưu đệm</string>
     <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>
     <string name="metadata_cache_wipe_complete_notice">Đã xóa bộ nhớ cache siêu dữ liệu</string>
-    <string name="auto_queue_title">Tự động xếp hàng luồng phát tiếp theo</string>
+    <string name="auto_queue_title">Tự động thêm vào hàng đợi luồng phát tiếp theo</string>
     <string name="auto_queue_summary">Tiếp tục hàng đợi (không lặp lại) bằng cách thêm một luồng phát liên quan</string>
     <string name="enable_search_history_title">Lịch sử tìm kiếm</string>
     <string name="enable_search_history_summary">Lưu trữ truy vấn tìm kiếm cục bộ</string>
     <string name="enable_watch_history_summary">Theo dõi các video đã xem</string>
     <string name="resume_on_audio_focus_gain_title">Tiếp tục đang phát</string>
     <string name="resume_on_audio_focus_gain_summary">Tiếp tục phát lại sau khi bị gián đoạn (ví dụ: cuộc gọi)</string>
-    <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để xếp hàng\"</string>
+    <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để thêm vào hàng đợi\"</string>
     <string name="show_hold_to_append_summary">Hiển thị mẹo khi nhấn vào nút nền hoặc nút bật lên trong \"Chi tiết:\" video</string>
     <string name="default_content_country_title">Quốc gia nội dung mặc định</string>
     <string name="settings_category_player_title">Trình phát</string>
@@ -240,22 +240,22 @@
     <string name="could_not_import_all_files">Cảnh báo: Không thể nhập tất cả các tệp.</string>
     <string name="override_current_data">Thao tác này sẽ ghi đè cài đặt hiện tại của bạn.</string>
     <string name="import_settings">Bạn có muốn cũng nhập các cài đặt không?</string>
-    <string name="trending">Thịnh hành</string>
-    <string name="new_and_hot">Mới và nóng</string>
+    <string name="trending">Đang thịnh hành</string>
+    <string name="new_and_hot">Mới và phổ biến</string>
     <string name="play_queue_remove">Loại bỏ</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>
-    <string name="hold_to_append">Giữ để xếp hàng</string>
-    <string name="start_here_on_background">Bắt đầu phát từ đây trong nền</string>
+    <string name="hold_to_append">Chờ để thêm vào hàng đợi</string>
+    <string name="start_here_on_background">Bắt đầu phát trong nền</string>
     <string name="start_here_on_popup">Bắt đầu phát trong cửa sổ bật lên</string>
     <string name="drawer_open">Mở ngăn kéo</string>
     <string name="drawer_close">Đóng ngăn</string>
-    <string name="preferred_open_action_settings_title">Hành động \'mở\' được ưu tiên</string>
+    <string name="preferred_open_action_settings_title">Ưu tiên hành động \'mở\'</string>
     <string name="preferred_open_action_settings_summary">Hành động mặc định khi mở nội dung — %s</string>
     <string name="video_player">Trình phát video</string>
-    <string name="background_player">Trình phát nền</string>
-    <string name="popup_player">Trình phát bật lên</string>
-    <string name="always_ask_open_action">Luôn luôn hỏi</string>
+    <string name="background_player">Trình phát trong nền</string>
+    <string name="popup_player">Trình phát cửa sổ nổi</string>
+    <string name="always_ask_open_action">Luôn hỏi</string>
     <string name="preferred_player_fetcher_notification_title">Đang nhận thông tin…</string>
     <string name="preferred_player_fetcher_notification_message">Đang tải nội dung được yêu cầu</string>
     <string name="create_playlist">Danh sách phát mới</string>
@@ -286,8 +286,8 @@
     <string name="export_ongoing">Đang xuất…</string>
     <string name="import_file_title">Nhập tệp</string>
     <string name="previous_export">Xuất trước</string>
-    <string name="subscriptions_import_unsuccessful">Không thể nhập đăng ký</string>
-    <string name="subscriptions_export_unsuccessful">Không thể xuất đăng ký</string>
+    <string name="subscriptions_import_unsuccessful">Không thể nhập kênh đăng ký</string>
+    <string name="subscriptions_export_unsuccessful">Không thể xuất kênh đăng ký</string>
     <string name="import_youtube_instructions">Nhập danh sách đăng ký YouTube từ Google Takeout:
 \n
 \n1. Vào URL này: %1$s
@@ -440,7 +440,7 @@
     <string name="unmute">Bật tiếng</string>
     <string name="mute">Tắt tiếng</string>
     <string name="most_liked">Được yêu thích nhất</string>
-    <string name="recently_added">Thêm vào gần đây</string>
+    <string name="recently_added">Đã thêm gần đây</string>
     <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
     <string name="done">Đã hoàn thành</string>
@@ -524,7 +524,7 @@
     <string name="error_report_open_issue_button_text">Báo cáo trên GitHub</string>
     <string name="copy_for_github">Sao chép bản báo cáo đã được định dạng</string>
     <string name="unsupported_url_dialog_message">Không thể đọc URL này. Mở với ứng dụng khác?</string>
-    <string name="auto_queue_toggle">Tự động xếp hàng</string>
+    <string name="auto_queue_toggle">Tự động thêm vào hàng đợi</string>
     <string name="clear_queue_confirmation_description">Hàng đợi của trình phát hiện tại sẽ bị thay thế</string>
     <string name="clear_queue_confirmation_summary">Việc chuyển từ trình phát này sang trình phát khác có thể sẽ thay thế hàng đợi</string>
     <string name="clear_queue_confirmation_title">Yêu cầu xác nhận trước khi xóa hàng đợi</string>
@@ -542,12 +542,12 @@
     <string name="notification_scale_to_square_image_summary">Cắt bớt hình thu nhỏ video hiển thị trong thông báo từ tỷ lệ khung hình 16:9 xuống 1:1</string>
     <string name="notification_scale_to_square_image_title">Chỉnh ảnh thu nhỏ thành tỉ lệ 1:1</string>
     <string name="search_showing_result_for">Đang hiện kết quả cho: %s</string>
-    <string name="enqueue_stream">Xếp hàng</string>
+    <string name="enqueue_stream">Thêm vào hàng đợi</string>
     <string name="show_age_restricted_content_summary">Hiển thị nội dung không phù hợp vì có giới hạn độ tuổi (18+)</string>
     <string name="show_thumbnail_summary">Hiện ảnh thu nhỏ (thumbnail) trên nền màn hình khóa và trong thông báo</string>
     <string name="show_thumbnail_title">Xem hình thu nhỏ</string>
     <string name="show_memory_leaks">Kiểm tra bộ nhớ</string>
-    <string name="enqueued">Đã xếp hàng</string>
+    <string name="enqueued">Đã thêm vào hàng đợi</string>
     <string name="clear_cookie_summary">Xoá Cookie mà NewPipe lưu trữ sau khi bạn hoàn thành nó</string>
     <string name="recaptcha_cookies_cleared">Cookie reCAPTCHA đã được xóa</string>
     <string name="clear_cookie_title">Xóa Cookie của reCAPCHA</string>
@@ -668,7 +668,7 @@
     <plurals name="new_streams">
         <item quantity="other">%s luồng truyền mới</item>
     </plurals>
-    <string name="loading_stream_details">Đang tải chi tiết luồng truyền…</string>
+    <string name="loading_stream_details">Đang tải chi tiết luồng phát trực tiếp…</string>
     <string name="check_new_streams">Chạy kiểm tra luồng truyền mới</string>
     <string name="enable_streams_notifications_title">Thông báo về luồng mới</string>
     <string name="enable_streams_notifications_summary">Thông báo về các luồng mới từ các kênh đăng ký</string>
@@ -810,4 +810,5 @@
     <string name="auto_update_check_description">NewPipe có thể tự động kiểm tra các phiên bản mới theo thời gian và thông báo cho bạn khi chúng có sẵn.
 \nBạn có muốn kích hoạt tính năng này không?</string>
     <string name="yes">Có</string>
+    <string name="import_settings_vulnerable_format">Cài đặt trong xuất đang được nhập sử dụng định dạng dễ bị tấn công và không được dùng nữa kể từ NewPipe 0.27.0. Đảm bảo rằng bản xuất đang được nhập là từ một nguồn đáng tin cậy và chỉ ưu tiên sử dụng các bản xuất lấy từ NewPipe 0.27.0 hoặc mới hơn trong tương lai. Hỗ trợ nhập cài đặt ở định dạng dễ bị tấn công này sẽ sớm bị xóa hoàn toàn và khi đó các phiên bản cũ của NewPipe sẽ không thể nhập cài đặt xuất từ phiên bản mới nữa.</string>
 </resources>

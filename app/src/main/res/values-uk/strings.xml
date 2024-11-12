@@ -91,7 +91,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_subscriptions">Підписки</string>
     <string name="fragment_feed_title">Новинки</string>
-    <string name="controls_background_title">Фоново</string>
+    <string name="controls_background_title">У фоні</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої можуть відтворювати 2K/4K-відео</string>
@@ -112,7 +112,7 @@
     <string name="enable_watch_history_title">Історія переглядів</string>
     <string name="resume_on_audio_focus_gain_title">Відновлювати відтворення</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення після переривань (напр. телефонних дзвінків)</string>
-    <string name="show_hold_to_append_title">Показувати підказку «Утримуйте, щоб додати в чергу»</string>
+    <string name="show_hold_to_append_title">Показати підказку «Затисніть, щоб додати»</string>
     <string name="default_content_country_title">Типова країна вмісту</string>
     <string name="settings_category_player_title">Програвач</string>
     <string name="settings_category_player_behavior_title">Поведінка</string>
@@ -170,7 +170,7 @@
     <string name="show_info">Показати інформацію</string>
     <string name="tab_bookmarks">Закладки відтворення</string>
     <string name="controls_add_to_playlist_title">Додати до</string>
-    <string name="show_hold_to_append_summary">Показати підказку при натисканні на тло або на спливну кнопку «Деталі:» у відео</string>
+    <string name="show_hold_to_append_summary">Показати підказку при натисканні «У вікні» або «У фоні» на сторінці відомостей про відео</string>
     <string name="player_unrecoverable_failure">Сталася невиправна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
     <string name="info_labels">Що:\\nЗапит:\\nМова вмісту:\\nКраїна вмісту:\\nМова застосунку:\\nСлужба:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
@@ -283,7 +283,7 @@
 \n7. [Якщо не вдалося імпортувати zip] Видобудьте файл .csv (зазвичай у розділі «YouTube і YouTube Music/Підписки/subscriptions.csv»), натисніть ІМПОРТУВАТИ ФАЙЛ нижче та виберіть видобутий файл csv</string>
     <string name="import_soundcloud_instructions">Імпортуйте профіль SoundCloud, вписавши або URL, або ваш ID:
 \n
-\n1. Увімкніть режим «режим комп\'ютера» у браузері (сайт не підтримується мобільними пристроями)
+\n1. Увімкніть режим «Версія для ПК» у браузері (сайт не підтримується мобільними пристроями)
 \n2. Перейдіть за цим посиланням: %1$s
 \n3. За запитом увійдіть до облікового запису
 \n4. Скопіюйте URL профілю, до якого ви будете переспрямовані.</string>
@@ -335,7 +335,7 @@
     <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
     <string name="playlists">Добірки</string>
-    <string name="tracks">Доріжки</string>
+    <string name="tracks">Треки</string>
     <string name="users">Користувачі</string>
     <string name="list_view_mode">Режим перегляду списком</string>
     <string name="list">Список</string>
@@ -447,7 +447,7 @@
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших застосунків</string>
     <string name="app_language_title">Мова</string>
     <string name="systems_language">Мова телефону</string>
-    <string name="subtitle_activity_recaptcha">Розв\'язавши натисніть «Готово»</string>
+    <string name="subtitle_activity_recaptcha">Після завершення натисніть «Готово»</string>
     <string name="done">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
     <string name="feed_group_dialog_delete_message">Бажаєте видалити цю групу\?</string>
@@ -790,7 +790,7 @@
     <string name="channel_tab_albums">Альбоми</string>
     <string name="feed_fetch_channel_tabs_summary">Отримувані вкладки під час оновлення стрічки. Ця опція не застосовується, якщо канал оновлюється за допомогою швидкого режиму.</string>
     <string name="channel_tab_playlists">Добірки</string>
-    <string name="channel_tab_tracks">Доріжки</string>
+    <string name="channel_tab_tracks">Треки</string>
     <string name="channel_tab_channels">Канали</string>
     <string name="channel_tab_livestreams">Наживо</string>
     <string name="toggle_screen_orientation">Змінити орієнтацію екрана</string>
@@ -843,4 +843,5 @@
     <string name="reset_all_settings">Скидання всіх налаштувань призведе до скидання всіх вибраних вами налаштувань і перезапуску застосунку.
 \n
 \nВи впевнені, що хочете продовжити?</string>
+    <string name="import_settings_vulnerable_format">Параметри експорту, який імпортується, використовують вразливий формат, який не підтримується з NewPipe 0.27.0. Переконайтеся, що експорт, який імпортується, походить із надійного джерела, і в майбутньому віддайте перевагу використанню лише експорту, отриманого з NewPipe 0.27.0 або новішої версії. Підтримку імпорту налаштувань у цьому вразливому форматі незабаром буде повністю припинено, і тоді старі версії NewPipe більше не зможуть імпортувати налаштування експорту з нових версій.</string>
 </resources>
