@@ -2,10 +2,10 @@
 
 - Burgermenü animáció tiltása #1486
 - a letöltések törlésének visszavonása #1472
-- Letöltési lehetőség a megosztás menüben #1498
-- Megosztás hozzáadása a hosszú érintéshez #1454
-- A fő lejátszó minimalizálása a kilépésnél #1354
-- A könyvtár verzió frissítése és az adatbázis biztonsági mentésének javítása #1510
+- Letöltési a megosztásban #1498
+- Megosztás a hosszú érintéshez #1454
+- Fő lejátszó minimalizálása a kilépésnél #1354
+- Könyvtár verzió frissítés és az adatbázis biztonsági mentésének javítása #1510
 - ExoPlayer 2.8.2 frissítés #1392
   - Átdolgoztuk a lejátszásisebesség-vezérlő panelt, hogy támogasson gyorsabb csévélést is.
   - Csend-átugrás hozzáadása a sebesség vezérlőpulthoz. Ez hasznos lehet hangoskönyvek és bizonyos zenék esetén, ezzel folyamatos élményt nyújthat (azonban tönkre teheti a csendes zenéket =\\).
