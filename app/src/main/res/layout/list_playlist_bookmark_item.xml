@@ -78,10 +78,11 @@
         android:layout_below="@+id/itemTitleView"
         android:layout_toLeftOf="@id/itemHandle"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         tools:ignore="RtlHardcoded"
-        tools:text="Uploader" />
+        tools:text="Uploader really long lorem ipsum dolor sit amet consectetur" />
 
 </RelativeLayout>
