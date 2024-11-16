@@ -44,11 +44,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.evernote.android.state.State
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
-import icepick.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable

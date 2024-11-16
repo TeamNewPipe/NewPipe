@@ -2,13 +2,11 @@ package org.schabi.newpipe.fragments.list.videos
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.Surface
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.compose.content
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.ktx.serializable
 import org.schabi.newpipe.ui.components.video.RelatedItems
@@ -20,15 +18,10 @@ class RelatedItemsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        return ComposeView(requireContext()).apply {
-            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            setContent {
-                AppTheme {
-                    Surface {
-                        RelatedItems(requireArguments().serializable<StreamInfo>(KEY_INFO)!!)
-                    }
-                }
+    ) = content {
+        AppTheme {
+            Surface {
+                RelatedItems(requireArguments().serializable<StreamInfo>(KEY_INFO)!!)
             }
         }
     }

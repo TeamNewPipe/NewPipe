@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.BridgeStateSaverInitializer;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import coil.ImageLoader;
 import coil.ImageLoaderFactory;
 import coil.util.DebugLogger;
+import dagger.hilt.android.HiltAndroidApp;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
@@ -61,6 +63,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@HiltAndroidApp
 public class App extends Application implements ImageLoaderFactory {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String TAG = App.class.toString();
@@ -105,6 +108,7 @@ public class App extends Application implements ImageLoaderFactory {
             Localization.getPreferredContentCountry(this));
         Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
 
+        BridgeStateSaverInitializer.init(this);
         StateSaver.init(this);
         initNotificationChannels();
 

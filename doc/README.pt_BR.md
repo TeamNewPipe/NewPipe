@@ -106,7 +106,7 @@ Enquanto isso, se você quiser trocar de fontes por algum motivo (por exemplo, a
 4. Importe os dados da etapa 1 via Configurações > Backup e Restauração > Importar Base de Dados
 
 ## Contribuições
-Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda. O aplicativo fica cada vez melhor a cada contribuição, não importa quão grande ou pequena! Se você quiser se envolver, verifique nossas [notas de contribuição](.github/CONTRIBUTING.md).
+Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda. O aplicativo fica cada vez melhor a cada contribuição, não importa quão grande ou pequena! Se você quiser se envolver, verifique nossas [notas de contribuição](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Estado da tradução" />
