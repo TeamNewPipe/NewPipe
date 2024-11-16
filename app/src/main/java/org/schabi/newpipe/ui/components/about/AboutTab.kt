@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
-import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
+import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 private val ABOUT_ITEMS = listOf(
@@ -59,7 +59,7 @@ private class AboutData(
 fun AboutTab() {
     val scrollState = rememberScrollState()
 
-    ColumnScrollbar(state = scrollState, settings = NewPipeScrollbarSettings) {
+    ColumnScrollbar(state = scrollState, settings = defaultThemedScrollbarSettings()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

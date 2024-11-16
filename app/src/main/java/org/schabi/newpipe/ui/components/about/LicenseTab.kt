@@ -13,16 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
-import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 
 @Composable
 @NonRestartableComposable
 fun LicenseTab() {
     val lazyListState = rememberLazyListState()
 
-    LazyColumnScrollbar(state = lazyListState, settings = NewPipeScrollbarSettings) {
+    LazyColumnThemedScrollbar(state = lazyListState) {
         LibrariesContainer(
             modifier = Modifier
                 .fillMaxWidth()
