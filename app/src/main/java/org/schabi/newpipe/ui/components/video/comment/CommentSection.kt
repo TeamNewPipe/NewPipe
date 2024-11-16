@@ -123,7 +123,7 @@ private fun CommentSection(
 @Composable
 private fun CommentSectionLoadingPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(uiState = Resource.Loading, commentsFlow = flowOf())
         }
     }
@@ -151,7 +151,7 @@ private fun CommentSectionSuccessPreview() {
     }
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(
                 uiState = Resource.Success(
                     CommentInfo(
@@ -170,7 +170,7 @@ private fun CommentSectionSuccessPreview() {
 @Composable
 private fun CommentSectionErrorPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
         }
     }

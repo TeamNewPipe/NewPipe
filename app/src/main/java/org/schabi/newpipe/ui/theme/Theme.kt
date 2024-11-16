@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.preference.PreferenceManager
-import my.nanihadesuka.compose.ScrollbarSettings
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -87,11 +86,6 @@ private val darkScheme = darkColorScheme(
 )
 
 private val blackScheme = darkScheme.copy(surface = Color.Black)
-
-val NewPipeScrollbarSettings = ScrollbarSettings(
-    thumbSelectedColor = primaryDark,
-    thumbUnselectedColor = primaryLight
-)
 
 @Composable
 fun AppTheme(useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
