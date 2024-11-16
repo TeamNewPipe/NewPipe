@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.UserAction;
@@ -32,13 +34,12 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import icepick.State;
 import io.reactivex.rxjava3.core.Single;
 
 public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTabInfo>
         implements PlaylistControlViewHolder {
 
-    // states must be protected and not private for IcePick being able to access them
+    // states must be protected and not private for State being able to access them
     @State
     protected ListLinkHandler tabHandler;
     @State
@@ -156,6 +157,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
         }
     }
 
+    @Override
     public PlayQueue getPlayQueue() {
         final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
                 .filter(StreamInfoItem.class::isInstance)

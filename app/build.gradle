@@ -96,6 +96,7 @@ android {
     buildFeatures {
         viewBinding true
         compose true
+        buildConfig true
     }
 
     packagingOptions {
@@ -116,7 +117,7 @@ ext {
     androidxRoomVersion = '2.6.1'
     androidxWorkVersion = '2.8.1'
 
-    icepickVersion = '3.2.0'
+    stateSaverVersion = '1.4.1'
     exoPlayerVersion = '2.18.7'
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
@@ -206,7 +207,8 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.teamnewpipe:newpipeextractor:v0.24.2'
+    // WORKAROUND: v0.24.2 can't be resolved by jitpack -> use git commit hash instead
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:176da72cb4c3ec4679211339b0e59f6b01bf2f52'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -222,7 +224,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+    implementation 'androidx.fragment:fragment-compose:1.8.2'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
@@ -239,8 +241,9 @@ dependencies {
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
-    implementation "frankiesardo:icepick:${icepickVersion}"
-    kapt "frankiesardo:icepick-processor:${icepickVersion}"
+    implementation 'com.github.livefront:bridge:v2.0.2'
+    implementation "com.evernote:android-state:$stateSaverVersion"
+    kapt "com.evernote:android-state-processor:$stateSaverVersion"
 
     // HTML parser
     implementation "org.jsoup:jsoup:1.17.2"
@@ -288,18 +291,19 @@ dependencies {
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
-    // Jetpack Compose BOM group
-    implementation(platform('androidx.compose:compose-bom:2024.09.03'))
+    // Jetpack Compose
+    implementation(platform('androidx.compose:compose-bom:2024.10.01'))
     implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material3.adaptive:adaptive'
+    implementation 'androidx.activity:activity-compose'
     implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
     implementation 'androidx.compose.ui:ui-text' // Needed for parsing HTML to AnnotatedString
+    implementation 'androidx.compose.material:material-icons-extended'
 
     // Jetpack Compose related dependencies
-    implementation 'androidx.compose.material3.adaptive:adaptive:1.0.0'
-    implementation 'androidx.activity:activity-compose:1.9.2'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6'
     implementation 'androidx.paging:paging-compose:3.3.2'
-    implementation "androidx.navigation:navigation-compose:2.8.2"
+    implementation "androidx.navigation:navigation-compose:2.8.3"
 
     // Coroutines interop
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.8.1'

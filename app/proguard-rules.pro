@@ -13,15 +13,6 @@
 ## Rules for ExoPlayer
 -keep class com.google.android.exoplayer2.** { *; }
 
-## Rules for Icepick. Copy pasted from https://github.com/frankiesardo/icepick
--dontwarn icepick.**
--keep class icepick.** { *; }
--keep class **$$Icepick { *; }
--keepclasseswithmembernames class * {
-    @icepick.* <fields>;
-}
--keepnames class * { @icepick.State *;}
-
 ## Rules for OkHttp. Copy pasted from https://github.com/square/okhttp
 -dontwarn okhttp3.**
 -dontwarn okio.**

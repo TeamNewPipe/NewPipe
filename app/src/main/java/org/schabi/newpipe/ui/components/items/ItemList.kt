@@ -14,15 +14,15 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
-import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
-import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
+import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
 import org.schabi.newpipe.util.DependentPreferenceHelper
@@ -37,7 +37,7 @@ fun ItemList(
     val context = LocalContext.current
     val onClick = remember {
         { item: InfoItem ->
-            val fragmentManager = (context as FragmentActivity).supportFragmentManager
+            val fragmentManager = context.findFragmentActivity().supportFragmentManager
             if (item is StreamInfoItem) {
                 NavigationHelper.openVideoDetailFragment(
                     context, fragmentManager, item.serviceId, item.url, item.name, null, false
@@ -72,7 +72,7 @@ fun ItemList(
     } else {
         val state = rememberLazyListState()
 
-        LazyColumnScrollbar(state = state) {
+        LazyColumnThemedScrollbar(state = state) {
             LazyColumn(modifier = nestedScrollModifier, state = state) {
                 listHeader()
 

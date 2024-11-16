@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        kotlin_version = '2.0.0'
+        kotlin_version = '2.0.21'
         about_libs = '11.2.2'
     }
     repositories {
@@ -11,7 +11,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.0'
+        classpath 'com.android.tools.build:gradle:8.7.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.51.1'
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$about_libs"
