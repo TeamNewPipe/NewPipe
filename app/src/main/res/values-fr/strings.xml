@@ -840,4 +840,5 @@
 \nVoulez-vous activer cette vérification ?</string>
     <string name="reset_settings_title">Réinitialiser les paramètres</string>
     <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
+    <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
 </resources>

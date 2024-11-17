@@ -544,7 +544,7 @@
     <string name="notification_action_shuffle">Sekoita</string>
     <string name="notification_action_repeat">Toista uudelleen</string>
     <string name="notification_actions_at_most_three">Voit valita enintään kolme toimintoa ilmoituksessa näytettäväksi!</string>
-    <string name="notification_actions_summary">Muokkaa ilmoitustoimintoja näpäyttämällä niitä. Valitse ilmoituksessa näytettäväksi enintään kolme käyttämällä oikealla olevia valintaruutuja</string>
+    <string name="notification_actions_summary">Muokkaa ilmoitustoimintoja näpäyttämällä niitä. Valitse ilmoituksessa näytettäväksi enintään kolme käyttämällä oikealla olevia valintaruutuja.</string>
     <string name="notification_action_4_title">Viides toimintopainike</string>
     <string name="notification_action_3_title">Neljäs toimintopainike</string>
     <string name="notification_action_2_title">Kolmas toimintopainike</string>
@@ -799,4 +799,15 @@
     <string name="show_more">Näytä lisää</string>
     <string name="show_less">Näytä vähemmän</string>
     <string name="show_channel_tabs">Kanavan välilehdet</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="reset_all_settings">Kaikkien asetusten nollaaminen hävittää kaikki valitsemasi asetukset ja käynnistää sovelluksen uudelleen.
+\n
+\nOletko varma, että haluat jatkaa?</string>
+    <string name="settings_category_backup_restore_title">Varmuuskopiointi ja palauttaminen</string>
+    <string name="reset_settings_title">Nollaa asetukset</string>
+    <string name="reset_settings_summary">Palauta kaikki asetukset oletusarvoihin</string>
+    <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla.
+\nHaluatko ottaa tämän käyttöön?</string>
+    <string name="error_insufficient_storage">Laitteella ei ole riittävästi vapaata tilaa</string>
 </resources>

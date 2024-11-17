@@ -632,7 +632,7 @@
         <item quantity="other">%1$s つのダウンロードを削除しました</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="other">%s つのダウンロードが完了しました</item>
+        <item quantity="other">%s 個のダウンロードが完了しました</item>
     </plurals>
     <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
     <string name="show_image_indicators_title">画像に標識を表示</string>
@@ -810,4 +810,5 @@
     <string name="reset_all_settings">全ての設定をリセットすると、優先設定が全て破棄され、アプリが再起動します。
 \n
 \n続行しますか？</string>
+    <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
 </resources>

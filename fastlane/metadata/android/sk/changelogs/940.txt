@@ -1,0 +1,16 @@
+New
+• Add support for SoundCloud comments
+• Add YouTube restricted mode setting
+• Show PeerTube parent channel details
+
+Improved
+• Show Kore button only for supported services
+• Block player gestures that begin at the NavigationBar or StatusBar
+• Change retry & subscribe buttons background color based on service color
+
+Fixed
+• Fix download dialog freeze
+• Open in browser button now really opens in browser
+• Fix crash on opening videos and "Could not play this stream"
+
+and more

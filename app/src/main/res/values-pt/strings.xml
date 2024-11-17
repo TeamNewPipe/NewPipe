@@ -104,10 +104,10 @@
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="best_resolution">Melhor resolução</string>
-    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="title_licenses">Licenças de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s nos termos da %3$s</string>
-    <string name="tab_about">Acerca e FAQ</string>
+    <string name="tab_about">Sobre e perguntas frequentes</string>
     <string name="tab_licenses">Licenças</string>
     <string name="app_description">Aplicação de reprodução para Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
@@ -401,7 +401,7 @@
     <string name="error_insufficient_storage_left">Não há espaço livre no dispositivo</string>
     <string name="error_progress_lost">Progresso perdido, o ficheiro foi eliminado</string>
     <string name="error_timeout">Ligação expirada</string>
-    <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
+    <string name="confirm_prompt">Deseja limpar o histórico de descargas ou eliminar todos os ficheiros descarregados?</string>
     <string name="enable_queue_limit">Limitar fila de descargas</string>
     <string name="enable_queue_limit_desc">Permitir apenas uma descarga de cada vez</string>
     <string name="start_downloads">Iniciar descargas</string>
@@ -446,7 +446,7 @@
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
-    <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
+    <string name="delete_downloaded_files">Eliminar ficheiros descarregados</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
@@ -617,7 +617,7 @@
 \nDeseja cancelar a subscrição deste canal?</string>
     <string name="feed_load_error_account_info">Não foi possível carregar a fonte para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar a fonte</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partir de Android 10, apenas \'Storage Access Framework\' é compatível</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas é compatível o \'Storage Access Framework\'</string>
     <string name="seekbar_preview_thumbnail_title">Pré-visualização da miniatura na barra de pesquisa</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="off">Desligado</string>
@@ -696,7 +696,7 @@
     <string name="any_network">Qualquer rede</string>
     <string name="you_successfully_subscribed">É agora um subscritor deste canal</string>
     <string name="toggle_all">Alternar tudo</string>
-    <string name="delete_downloaded_files_confirm">Remover todos os ficheiros descarregados?</string>
+    <string name="delete_downloaded_files_confirm">Eliminar todos os ficheiros descarregados?</string>
     <string name="streams_notification_channel_name">Novos vídeos</string>
     <string name="streams_notification_channel_description">Notificações sobre novos vídeos nas subscrições</string>
     <plurals name="new_streams">
@@ -709,7 +709,7 @@
     <string name="enumeration_comma">,</string>
     <string name="percent">Percentual</string>
     <string name="semitone">Semi-tom</string>
-    <string name="streams_not_yet_supported_removed">Os vídeos não suportadas para descarga não são mostradas</string>
+    <string name="streams_not_yet_supported_removed">Os vídeos não suportados para descarga não são mostrados</string>
     <string name="no_audio_streams_available_for_external_players">Não estão disponíveis reproduções de áudio para reprodutores externos</string>
     <string name="no_video_streams_available_for_external_players">Não estão disponíveis reproduções de vídeo para reprodutores externos</string>
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
@@ -798,7 +798,7 @@
     <string name="open_play_queue">Abrir fila de reprodução</string>
     <string name="image_quality_none">Não carregar imagens</string>
     <string name="image_quality_high">Alta qualidade</string>
-    <string name="channel_tab_about">Acerca</string>
+    <string name="channel_tab_about">Sobre</string>
     <string name="share_playlist">Partilhar lista de reprodução</string>
     <string name="forward">Avançar</string>
     <string name="channel_tab_albums">Álbuns</string>
@@ -831,11 +831,12 @@
     <string name="yes">Sim</string>
     <string name="no">Não</string>
     <string name="reset_settings_summary">Repor valores originais de todas as definições</string>
-    <string name="settings_category_backup_restore_title">Backup e restauro</string>
+    <string name="settings_category_backup_restore_title">Cópia de segurança e restauro</string>
     <string name="reset_settings_title">Repor definições</string>
-    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a app.
+    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a aplicação.
 \n
 \nTem certeza que deseja continuar?</string>
     <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
 \nDeseja ativar essa opção?</string>
+    <string name="import_settings_vulnerable_format">As configurações na exportação a serem importadas usam um formato vulnerável depreciado desde NewPipe 0.27.0. Certifique-se de que a exportação que é importada é de uma fonte confiável e prefira usar apenas as exportações obtidas do NewPipe 0.27.0 ou mais recentes no futuro. O suporte para importar configurações neste formato vulnerável será removido em breve completamente e, em seguida, versões antigas do NewPipe não serão capazes de importar configurações de exportações de novas versões.</string>
 </resources>

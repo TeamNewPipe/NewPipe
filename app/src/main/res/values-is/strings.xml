@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Pikkaðu á stækkunarglerið til að byrja.</string>
+    <string name="main_bg_subtitle">Ýttu á stækkunarglerið til að byrja.</string>
     <string name="cancel">Hætta við</string>
     <string name="search">Leita</string>
-    <string name="use_external_video_player_title">Nota ytri myndspilara</string>
+    <string name="use_external_video_player_title">Nota utanaðkomandi myndspilara</string>
     <string name="ok">Í lagi</string>
     <string name="open_in_browser">Opna í vafra</string>
     <string name="open_with">Opna með</string>
-    <string name="controls_download_desc">Sækja straumskrá</string>
+    <string name="controls_download_desc">Sækja streymisskrá</string>
     <string name="settings">Stillingar</string>
     <string name="upload_date_text">Birt %1$s</string>
-    <string name="no_player_found">Enginn straumspilari fannst. Setja upp VLC\?</string>
-    <string name="open_in_popup_mode">Opna í sprettiglugga</string>
+    <string name="no_player_found">Enginn streymisspilari fannst. Setja upp VLC?</string>
+    <string name="open_in_popup_mode">Opna í sprettglugga</string>
     <string name="download">Sækja</string>
-    <string name="no_player_found_toast">Enginn straumspilari fannst (þú getur sett upp VLC til að spila það).</string>
+    <string name="no_player_found_toast">Enginn streymisspilari fannst (þú getur sett upp VLC til að spila það).</string>
     <string name="install">Setja upp</string>
     <string name="import_data_summary">Núverandi áskriftum, spilunarlistum, feril og (valfrjálst) stillingum verður skipt út</string>
     <string name="export_data_summary">Flytja út feril, áskriftir, spilunarlista og stillingar</string>
@@ -26,7 +26,7 @@
     <string name="did_you_mean">Áttirðu við „%1$s\?“</string>
     <string name="search_showing_result_for">Niðurstöður fyrir: %s</string>
     <string name="tab_subscriptions">Áskriftir</string>
-    <string name="streams_notification_channel_description">Tilkynningar um nýja strauma fyrir áskriftir</string>
+    <string name="streams_notification_channel_description">Tilkynningar um ný streymi fyrir áskriftir</string>
     <string name="subscriptions_export_unsuccessful">Ekki tókst að flytja út áskriftir</string>
     <string name="no_channel_subscribed_yet">Engar áskriftir ennþá</string>
     <string name="subscriptions_import_unsuccessful">Ekki tókst að flytja inn áskriftir</string>
@@ -39,7 +39,7 @@
 \n5) Smelltu á \"Sækja\" hnappinn eftir að hann birtist.
 \n6) Smelltu á FLYTJA INN SKRÁ fyrir neðan og veldu .zip skrána.
 \n7) [Ef .zip innflutningur mistekst] Taktu út .csv skrána (venjulega undir „YouTube og YouTube Music/subscriptions/subscriptions.csv“), smelltu á FLYTJA INN SKRÁ fyrir neðan og veldu þá skrá.</string>
-    <string name="use_external_audio_player_title">Nota ytri hljóðspilara</string>
+    <string name="use_external_audio_player_title">Nota utanaðkomandi hljóðspilara</string>
     <string name="app_description">Frjáls og léttur streymisspilari fyrir Android.</string>
     <string name="title_activity_about">Um NewPipe</string>
     <string name="channel_unsubscribed">Áskrift hætt</string>
@@ -52,23 +52,23 @@
     <string name="notification_channel_description">Tilkynningar fyrir spilara NewPipe</string>
     <string name="app_update_notification_channel_description">Tilkynningar fyrir nýjar útgáfur NewPipe</string>
     <string name="clear_cookie_summary">Hreinsa vefkökur sem NewPipe geymir þegar þú leysir reCAPTCHA</string>
-    <string name="error_report_notification_title">NewPipe rakst á villu, pikkaðu til að tilkynna</string>
+    <string name="error_report_notification_title">NewPipe rakst á villu, ýttu til að tilkynna hana</string>
     <string name="tab_about">Um okkur og algengar spurningar</string>
     <string name="subscribe_button_title">Gerast áskrifandi</string>
-    <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2K/4K myndbönd</string>
+    <string name="show_higher_resolutions_summary">Aðeins sum tæki geta spilað 2K/4K myndskeið</string>
     <string name="play_with_kodi_title">Spila með Kodi</string>
-    <string name="show_play_with_kodi_summary">Sýna hnapp til að spila myndband í gegnum fjölmiðlamiðstöð Kodi</string>
+    <string name="show_play_with_kodi_summary">Birta hnapp til að spila myndskeið í gegnum Kodi margmiðlunarmiðstöð</string>
     <string name="crash_the_player">Láta spilarann hrynja</string>
     <string name="default_audio_format_title">Sjálfgefið hljóðsnið</string>
     <string name="clear_queue_confirmation_summary">Að skipta úr einum spilara í annan getur ruglað röðina þína</string>
     <string name="show_comments_summary">Slökktu á til að fela ummæli</string>
-    <string name="show_next_and_similar_title">Sýna „Næstu“ og „Svipuð“ myndbönd</string>
+    <string name="show_next_and_similar_title">Sýna „Næstu“ og „Svipuð“ myndskeið</string>
     <string name="notification_scale_to_square_image_title">1:1 smámyndir</string>
-    <string name="notification_actions_summary">Allt að þrem aðgerðum er hægt að birta í þéttum tilkyningum. Pikkaðu til að breyta þeim</string>
+    <string name="notification_actions_summary">Breyttu hverri tilkynningu hér fyrir neðan með því að ýta á hana. Veldu í gátreitunum hægra megin allt að þrjár þeirra til að birta í samþjöppuðum tilkynningum.</string>
     <string name="invalid_directory">Engin slík mappa</string>
     <string name="permission_display_over_apps">Gefðu leyfi til að birta yfir önnur forrit</string>
     <string name="error_report_notification_toast">Villa kom upp, sjáðu tilkynninguna</string>
-    <string name="default_video_format_title">Sjálfgefið myndbandssnið</string>
+    <string name="default_video_format_title">Sjálfgefið skráasnið myndskeiða</string>
     <string name="night_theme_title">Næturþema</string>
     <string name="popup_remember_size_pos_summary">Muna síðustu stærð og stöðu sprettiglugga</string>
     <string name="show_description_title">Sýna lýsingu</string>
@@ -78,7 +78,7 @@
         <item quantity="other">%s að horfa</item>
     </plurals>
     <string name="no_one_watching">Еnginn еr að horfa</string>
-    <string name="infinite_videos">∞ myndbönd</string>
+    <string name="infinite_videos">∞ myndskeið</string>
     <string name="settings_file_charset_title">Leyfðir stafir í skráarnöfnum</string>
     <string name="charset_letters_and_digits">Bókstafir og tölustafir</string>
     <string name="main_page_content_summary">Hvaða flipar eru sýndir á aðalsíðunni</string>
@@ -104,7 +104,7 @@
     <string name="audio">Hljóð</string>
     <string name="start">Byrja</string>
     <string name="dismiss">Hunsa</string>
-    <string name="download_path_dialog_title">Veldu möppu fyrir sótt myndbönd</string>
+    <string name="download_path_dialog_title">Veldu möppu fyrir sótt myndskeið</string>
     <string name="download_path_audio_dialog_title">Veldu möppu fyrir sóttar hljóðskrár</string>
     <string name="download_path_audio_summary">Sóttar hljóðskrár fara hingað</string>
     <string name="default_popup_resolution_title">Sjálfgefin upplausn sprettiglugga</string>
@@ -114,7 +114,7 @@
     <string name="delete">Eyða</string>
     <string name="rename">Endurnefna</string>
     <string name="msg_name">Skráarnafn</string>
-    <string name="private_content">Þetta efni er ekki opinbert — það er ekki hægt að streyma eða sækja það með NewPipe.</string>
+    <string name="private_content">Þetta efni er ekki opinbert — það er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="open_website_license">Opna vefsíðu</string>
     <string name="settings_category_downloads_title">Niðurhal</string>
     <string name="settings_category_player_behavior_title">Hegðun</string>
@@ -141,7 +141,7 @@
     <string name="controls_popup_title">Sprettiglugga</string>
     <string name="notification_action_repeat">Endurtaka</string>
     <string name="black_theme_title">Svört</string>
-    <string name="auto_queue_title">Setja næsta straum í biðröð sjálfkrafa</string>
+    <string name="auto_queue_title">Setja næsta streymi sjálfkrafa í biðröð</string>
     <string name="notification_action_shuffle">Stokka</string>
     <string name="content">Innihald</string>
     <string name="notification_action_nothing">Ekkert</string>
@@ -157,36 +157,36 @@
     <string name="show_info">Sýna upplýsingar</string>
     <string name="controls_background_title">Í bakgrunni</string>
     <string name="tab_choose">Veldu flipa</string>
-    <string name="download_path_title">Mappa fyrir sótt myndbönd</string>
-    <string name="download_path_summary">Sótt myndbönd fara hingað</string>
+    <string name="download_path_title">Mappa fyrir sótt myndskeið</string>
+    <string name="download_path_summary">Sótt myndskeið fara hingað</string>
     <string name="download_path_audio_title">Mappa fyrir sóttar hljóðskrár</string>
     <string name="default_resolution_title">Sjálfgefin upplausn</string>
     <string name="kore_not_found">Kore forritið fannst ekki, setja það upp\?</string>
     <string name="show_play_with_kodi_title">Sýna \"Spila með Kodi\" hnapp</string>
-    <string name="notification_scale_to_square_image_summary">Skera myndskeiðssmámyndina sem sýnd er í tilkynningum úr 16:9 í 1:1 myndhlutfall</string>
+    <string name="notification_scale_to_square_image_summary">Skera smámynd myndskeiðs sem sýnd er í tilkynningum úr 16:9 niður í 1:1 stærðarhlutföll</string>
     <string name="notification_action_2_title">Þriðji aðgerðahnappur</string>
     <string name="notification_action_1_title">Annar aðgerðahnappur</string>
     <string name="notification_action_0_title">Fyrsti aðgerðahnappur</string>
     <string name="notification_action_3_title">Fjórði aðgerðahnappur</string>
     <string name="notification_action_4_title">Fimmti aðgerðahnappur</string>
-    <string name="notification_actions_at_most_three">Allt að þrem aðgerðum er hægt að birta í þéttum tilkyningum!</string>
+    <string name="notification_actions_at_most_three">Þú getur valið mest þrjár aðgerðir til að birta í samþjöppuðum tilkynningum.!</string>
     <string name="notification_action_buffering">Í vinnslu</string>
     <string name="notification_colorize_title">Litaðar tilkynningar</string>
     <string name="notification_colorize_summary">Láta Android sérsníða lit tilkynningarinnar í samræmi við aðallitinn í smámyndinni (athugaðu að þetta er ekki fáanlegt í öllum tækjum)</string>
     <string name="popup_remember_size_pos_title">Muna eiginleika sprettiglugga</string>
-    <string name="use_inexact_seek_title">Nota hraða en ónákvæma leit</string>
-    <string name="seek_duration_title">Lengd skrefs</string>
+    <string name="use_inexact_seek_title">Nota hröð en ónákvæm hopp</string>
+    <string name="seek_duration_title">Lengd hopps</string>
     <string name="clear_queue_confirmation_title">Biðja um staðfestingu áður en röð er hreinsuð</string>
     <string name="show_comments_title">Sýna ummæli</string>
     <string name="auto_queue_toggle">Sjálfvirk biðröð</string>
     <string name="settings_category_clear_data_title">Hreinsa gögn</string>
     <string name="download_dialog_title">Sækja</string>
-    <string name="duration_live">Útsending</string>
+    <string name="duration_live">Í beinni</string>
     <string name="downloads_title">Sótt gögn</string>
     <string name="all">Allt</string>
     <string name="channels">Rásir</string>
     <string name="playlists">Spilunarlistar</string>
-    <string name="videos_string">Myndbönd</string>
+    <string name="videos_string">Myndskeið</string>
     <string name="tracks">Spor</string>
     <string name="users">Notendur</string>
     <string name="events">Viðburðir</string>
@@ -206,7 +206,7 @@
     <string name="restore_defaults">Endurheimta sjálfgefnar stillingar</string>
     <string name="restore_defaults_confirmation">Viltu endurheimta sjálfgefnar stillingar\?</string>
     <string name="sorry_string">Æi, þetta ætti ekki að gerast.</string>
-    <string name="error_report_button_text">Tilkynna þessa villu með tölvupósti</string>
+    <string name="error_report_button_text">Tilkynna með tölvupósti</string>
     <string name="error_snackbar_action">Tilkynna</string>
     <string name="what_device_headline">Upplýsingar:</string>
     <string name="error_report_open_github_notice">Athugaðu hvort vandamál sem fjallar um hrun þitt sé þegar til staðar. Þegar þú býrð til tvítekna miða eyðir þú tíma okkar sem við gætum eytt í að laga villuna.</string>
@@ -216,7 +216,7 @@
     <string name="info_labels">Hvað:\\nBeiðni:\\nTungumál Efnis:\\nLand Efnis:\\nTungumál forrits:\\nÞjónusta:\\nGMT Tími:\\nPakki:\\nÚtgáfa:\\nÚtgáfu Stýrikerfis:</string>
     <string name="your_comment">Athugasemd þín (á ensku):</string>
     <string name="search_no_results">Engar niðurstöður</string>
-    <string name="video">Myndband</string>
+    <string name="video">Myndskeið</string>
     <string name="short_billion">ma.</string>
     <string name="no_views">Engin áhorf</string>
     <plurals name="views">
@@ -234,18 +234,18 @@
         <item quantity="one">%s að hlusta</item>
         <item quantity="other">%s að hlusta</item>
     </plurals>
-    <string name="no_videos">Engin myndbönd</string>
-    <string name="more_than_100_videos">100+ myndbönd</string>
+    <string name="no_videos">Engin myndskeið</string>
+    <string name="more_than_100_videos">100+ myndskeið</string>
     <plurals name="videos">
-        <item quantity="one">%s myndband</item>
-        <item quantity="other">%s myndbönd</item>
+        <item quantity="one">%s myndskeið</item>
+        <item quantity="other">%s myndskeið</item>
     </plurals>
     <string name="no_comments">Engin ummæli</string>
     <string name="comments_are_disabled">Ummæli eru óvirk</string>
     <string name="checksum">Gátsumma</string>
     <string name="msg_threads">Þræðir</string>
     <string name="msg_error">Villa</string>
-    <string name="msg_running_detail">Pikkaðu á til að fá nánari upplýsingar</string>
+    <string name="msg_running_detail">Ýttu til að fá nánari upplýsingar</string>
     <string name="msg_wait">Bíddu aðeins…</string>
     <string name="msg_copied">Afritað á klemmuspjald</string>
     <string name="one_item_deleted">1 atriði eytt.</string>
@@ -281,9 +281,9 @@
     <string name="enqueue_stream">Setja í röð</string>
     <string name="enqueued">Í röð</string>
     <string name="show_channel_details">Sýna upplýsingar um rás</string>
-    <string name="loading_stream_details">Hleður upplýsingar um straum…</string>
+    <string name="loading_stream_details">Hleður inn upplýsingum um streymi…</string>
     <string name="preferred_open_action_settings_title">Þegar hlekkur er opnaður</string>
-    <string name="video_player">Myndbandsspilari</string>
+    <string name="video_player">Myndspilari</string>
     <string name="background_player">Bakgrunnsspilari</string>
     <string name="popup_player">Sprettigluggaspilari</string>
     <string name="create_playlist">Nýr spilunarlisti</string>
@@ -354,7 +354,7 @@
     <string name="metadata_tags">Merki</string>
     <string name="donation_encouragement">NewPipe er þróað af sjálfboðaliðum sem eyða frítíma sínum í að færa þér bestu notendaupplifunina. Gefðu til baka til að hjálpa forriturum að gera NewPipe enn betri á meðan þeir njóta kaffibolla.</string>
     <string name="short_million">millj.</string>
-    <string name="show_description_summary">Slökktu á til að fela myndbandslýsingu og viðbótarupplýsingar</string>
+    <string name="show_description_summary">Slökktu á til að fela lýsingu og viðbótarupplýsingar myndskeiðs</string>
     <string name="error_occurred_detail">Villa kom upp: %1$s</string>
     <string name="title_activity_recaptcha">Þraut reCAPTCHA</string>
     <string name="subscribers_count_not_available">Fjöldi áskrifenda ekki tiltækur</string>
@@ -432,7 +432,7 @@
     <string name="skip_silence_checkbox">Spóla áfram í þögn</string>
     <string name="limit_data_usage_none_description">Engin takmörk</string>
     <string name="limit_mobile_data_usage_title">Takmarka upplausn þegar farsímagögn eru notuð</string>
-    <string name="enable_streams_notifications_title">Tilkynningar um nýtt efni</string>
+    <string name="enable_streams_notifications_title">Tilkynningar um nýtt efni streyma</string>
     <string name="enable_streams_notifications_summary">Senda tilkynningar um nýtt efni áskrifta</string>
     <string name="streams_notifications_interval_title">Hversu oft á að athuga</string>
     <string name="streams_notifications_network_title">Tegund tengingar</string>
@@ -444,10 +444,10 @@
     <string name="minimize_on_exit_background_description">Nota bakgrunnsspilara</string>
     <string name="minimize_on_exit_popup_description">Nota sprettigluggaspilara</string>
     <string name="autoplay_summary">Sjálfvirk spilun — %s</string>
-    <string name="minimize_on_exit_summary">Aðgerð þegar skipt er yfir í annað forrit frá aðal myndspilara — %s</string>
+    <string name="minimize_on_exit_summary">Aðgerð þegar skipt er yfir í annað forrit frá aðalmyndspilara — %s</string>
     <string name="wifi_only">Aðeins Wi-Fi</string>
     <string name="list_view_mode">Listasýn</string>
-    <string name="seekbar_preview_thumbnail_title">Smámynd spilunarstiku</string>
+    <string name="seekbar_preview_thumbnail_title">Forskoðun á smámynd hoppstiku</string>
     <string name="high_quality_larger">Hágæða (stærra)</string>
     <string name="low_quality_smaller">Lágæða (minna)</string>
     <string name="dont_show">Ekki sýna</string>
@@ -476,7 +476,7 @@
     <string name="fragment_feed_title">Hvað er nýtt</string>
     <string name="feed_groups_header_title">Rásarhópar</string>
     <string name="feed_notification_loading">Hleður…</string>
-    <string name="settings_category_feed_title">Straumur</string>
+    <string name="settings_category_feed_title">Streymi</string>
     <string name="feed_group_dialog_select_subscriptions">Veldu áskriftir</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valin</item>
@@ -499,29 +499,19 @@
     <string name="downloads_storage_use_saf_summary">„Geymsluaðgangsrammi“ (SAF) gerir þér kleift að vista skrár á ytra SD-kort</string>
     <string name="choose_instance_prompt">Veldu netþjón</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Sýna aðeins óflokkaðar áskriftir</string>
-    <string name="feed_load_error">Villa við að hlaða straumi</string>
-    <string name="feed_load_error_account_info">Gat ekki hlaðið straumi fyrir ‚%s.‘</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Fáanlegt fyrir sumar þjónustur. Það er venjulega miklu hraðari en getur skilað ófullnægjandi upplýsingum, t.d. engin lengd, tegund, staða</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Ef áskriftir eru uppfærðar of hægt máttu prófa hraðstraumsham (kveiktu á honum í stillingunum eða með hnappinum að neðan).
-\n
-\nNewPipe getur uppfært áskriftir á tvo vegu:
-\n• Sækja alla áskriftarrásina — hægt en veitir allar upplýsingar.
-\n• Nota sérstakt forritaskil — fljótt en upplýsingar verða færi.
-\n
-\nHraðstraumshamur getur veitt ófullnægjandi upplýsingum, t.d. engin lengd, tegund, staða og getur skilað færi atriðum.
-\n
-\nYouTube er dæmi um þjónustu sem býður upp á þetta með RSS-straumi sínum.
-\n
-\nValið er hraði eða nákvæmar upplýsingar.</string>
+    <string name="feed_load_error">Villa við að hlaða streymi</string>
+    <string name="feed_load_error_account_info">Gat ekki hlaðið streymi fyrir ‚%s.‘</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Fáanlegt fyrir sumar þjónustur. Það er venjulega miklu hraðari en getur skilað ófullnægjandi upplýsingum (t.d. engin lengd, tegund, staða beinna útsendinga)</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Ef áskriftir eru uppfærðar of hægt máttu prófa hraðstreymissham (kveiktu á honum í stillingunum eða með hnappnum hér að neðan).\n\nNewPipe getur uppfært áskriftir á tvo vegu:\n• Sækja alla áskriftarrásina - hægvirkt en veitir allar upplýsingar.\n• Nota sérstök forritaskil - fljótvirkt en upplýsingar verða minni.\n\nHraðstreymishamur getur veitt ófullnægjandi upplýsingar, t.d. engin lengd, tegund, staða og getur skilað færri atriðum.\n\nYouTube er dæmi um þjónustu sem býður upp á þetta með RSS-streymi sínu.\n\nValið er því á milli hraða eða nákvæmra upplýsinga.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Smámynd rásar</string>
-    <string name="soundcloud_go_plus_content">Þetta er SoundCloud Go+ lag að minnsta kosti í þínu landi — það er ekki hægt að streyma eða sækja það með NewPipe.</string>
-    <string name="youtube_music_premium_content">Þetta myndband er aðeins í boði fyrir YouTube Tónlist Premium meðlima — það er ekki hægt að streyma eða sækja það með NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Þetta er SoundCloud Go+ lag að minnsta kosti í þínu landi — það er ekki hægt að streyma því eða sækja með NewPipe.</string>
+    <string name="youtube_music_premium_content">Þetta myndskeið er aðeins í boði fyrir YouTube Tónlist Premium meðlimi, það er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="description_select_note">Þú getur nú valið texta inni í lýsingunni. Athugaðu að síðan getur flöktað og mögulega er ekki hægt að smella á tengla í valhami.</string>
     <string name="enable_search_history_summary">Geyma leitarfyrirspurnir í tæki</string>
     <string name="start_main_player_fullscreen_title">Ræsa aðalspilara í fullskjásstillingu</string>
     <string name="popup_playing_toast">Sprettigluggaspilun</string>
-    <string name="restricted_video_no_stream">Þetta myndband er með aldurstakmark.
-\nVegna nýrra reglna YouTube er ekki hægt að streyma eða sækja það með NewPipe.</string>
+    <string name="restricted_video_no_stream">Þetta myndskeið er með aldurstakmörk.
+\nVegna nýrra reglna YouTube er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="delete_playback_states_alert">Eyða öllum spilunarstaðsetningum\?</string>
     <string name="watch_history_states_deleted">Spilunarstaðsetningum eytt</string>
     <string name="clear_search_history_title">Hreinsa leitarferil</string>
@@ -531,21 +521,21 @@
     <string name="could_not_load_thumbnails">Gat ekki hlaðið inn öllum smámyndum</string>
     <string name="parsing_error">Gat ekki túlkað vefsíðu</string>
     <string name="could_not_setup_download_menu">Gat ekki sett upp niðurhalsvalmynd</string>
-    <string name="player_stream_failure">Ekki tókst að spila þennan straum</string>
+    <string name="player_stream_failure">Ekki tókst að spila þetta streymi</string>
     <string name="player_unrecoverable_failure">Banvæn villa í spilaranum</string>
     <string name="player_recoverable_failure">Að jafna sig eftir villu í spilara</string>
-    <string name="external_player_unsupported_link_type">Ytri spilarar styðja ekki þessar tegundir tengla</string>
-    <string name="video_streams_empty">Engir myndstraumar fundust</string>
-    <string name="audio_streams_empty">Engir hljóðstraumar fundust</string>
+    <string name="external_player_unsupported_link_type">Utanaðkomandi spilarar styðja ekki þessar tegundir tengla</string>
+    <string name="video_streams_empty">Engin myndstreymi fundust</string>
+    <string name="audio_streams_empty">Engin hljóðstreymi fundust</string>
     <string name="invalid_source">Ekkert slíkt efni fanst</string>
-    <string name="no_streams_available_download">Engir straumar til að sækja</string>
+    <string name="no_streams_available_download">Engin streymi til að sækja</string>
     <string name="saved_tabs_invalid_json">Gat ekki lesið vistaða flipa þannig að mun nota sjálfgefna</string>
-    <string name="detail_thumbnail_view_description">Spila myndband, lengd:</string>
+    <string name="detail_thumbnail_view_description">Spila myndskeið, lengd:</string>
     <string name="detail_uploader_thumbnail_view_description">Smámynd höfundar</string>
     <string name="drawer_header_description">Víxla þjónustu. Nú valin:</string>
     <plurals name="new_streams">
-        <item quantity="one">%s nýr straumur</item>
-        <item quantity="other">%s nýir straumar</item>
+        <item quantity="one">%s nýtt streymi</item>
+        <item quantity="other">%s ný streymi</item>
     </plurals>
     <string name="no_available_dir">Vinsamlega veldu niðurhalsmöppu síðar í stillingunum</string>
     <string name="no_dir_yet">Engin niðurhalsmappa er stillt ennþá. Veldu sjálfgefna niðurhalsmöppu núna</string>
@@ -563,21 +553,19 @@
 \nVirkjaðu kerfismöppuval (SAF) ef þú vilt nota ytra SD-kort</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Þú verður spurð(ur) hvert ætti að sækja skrár í hvert skipti</string>
     <string name="downloads_storage_use_saf_title">Virkja kerfismöppuval (SAF)</string>
-    <string name="remove_watched_popup_title">Fjarlægja myndbönd sem horft var á\?</string>
-    <string name="feed_oldest_subscription_update">Straumur síðast uppfærður: %s</string>
+    <string name="remove_watched_popup_title">Fjarlægja áhorfð myndskeið?</string>
+    <string name="feed_oldest_subscription_update">Streymi síðast uppfært %s</string>
     <string name="feed_subscription_not_loaded_count">Ekki hlaðið: %d</string>
-    <string name="feed_new_items">Ný atriði í straumi</string>
+    <string name="feed_new_items">Ný atriði í streymi</string>
     <string name="feed_group_dialog_empty_selection">Engar áskriftir valdar</string>
     <string name="feed_group_dialog_empty_name">Tómt hópsnafn</string>
     <string name="feed_group_dialog_delete_message">Viltu eyða þessum hóp\?</string>
-    <string name="feed_update_threshold_summary">Hversu oft á að uppfæra straum — %s</string>
-    <string name="feed_update_threshold_title">Bil á uppfærslu straums</string>
-    <string name="feed_load_error_terminated">Reikningi höfundar er lokaður.
-\nNewPipe getur ekki sótt þennan straum lengur.
-\nViltu segja upp áskrift\?</string>
-    <string name="feed_load_error_fast_unknown">Hraðstraumshamurinn veitir ekki frekari upplýsingar um þetta.</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Virkja hraðstraumsham</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Afvirkja hraðstraumsham</string>
+    <string name="feed_update_threshold_summary">Hversu oft á að uppfæra streymi áður en áskrift er talin útrunnin — %s</string>
+    <string name="feed_update_threshold_title">Takmörk á uppfærslu streymis</string>
+    <string name="feed_load_error_terminated">Reikningur höfundar er lokaður.\nNewPipe getur ekki sótt þetta streymi lengur.\nViltu segja upp áskrift?</string>
+    <string name="feed_load_error_fast_unknown">Hraðstreymishamurinn veitir ekki frekari upplýsingar um þetta.</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Virkja hraðstreymisham</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Afvirkja hraðstreymisham</string>
     <string name="content_not_supported">NewPipe styður ekki þetta efni.
 \n
 \nÞað verður vonandi stutt í framtíðarútgáfu.</string>
@@ -590,57 +578,57 @@
 \nVinsamlegast settu upp skráarstjóra sem styður Geymsluaðgangsramma (SAF)</string>
     <string name="georestricted_content">Þetta efni er ekki fáanlegt í þínu landi.</string>
     <string name="service_provides_reason">%s gefur þessa ástæðu:</string>
-    <string name="paid_content">Þetta efni er aðeins í boði fyrir notendur sem hafa greitt — það er ekki hægt að streyma eða sækja það með NewPipe.</string>
+    <string name="paid_content">Þetta efni er aðeins í boði fyrir notendur sem hafa greitt — það er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="auto_device_theme_title">Sjálfvirk (þema tækis)</string>
     <string name="night_theme_summary">Veldu uppáhalds næturþemu þína — %s</string>
     <string name="select_night_theme_toast">Þú getur valið uppáhalds næturþemu þína hér að neðan</string>
     <string name="download_has_started">Niðurhal hafið</string>
     <string name="description_select_enable">Virkja valham fyrir lýsinguna</string>
     <string name="description_select_disable">Afvirkja valham fyrir lýsinguna</string>
-    <string name="use_inexact_seek_summary">Ónákvæm leit gerir leikmanninum kleift að leita hraðar í stöður með minni nákvæmni. Að leita í 5, 15 eða 25 sekúndur virkar ekki með þessu</string>
+    <string name="use_inexact_seek_summary">Ónákvæm hopp gerir leikmanninum kleift að leita hraðar í stöður með minni nákvæmni. Að leita í 5, 15 eða 25 sekúndur virkar ekki með þessu</string>
     <string name="enable_watch_history_summary">Geyma áhorfsferil</string>
     <string name="resume_on_audio_focus_gain_summary">Halda áfram að spila eftir hlé (t.d. símtöl)</string>
-    <string name="start_main_player_fullscreen_summary">Ekki byrja myndbönd í smáspilaranum heldur fara í skjáfylliham ef sjálfvirkur snúningur er læstur. Þú getur samt fengið aðgang að smáspilaranum með því að fara úr skjáfylliham</string>
-    <string name="check_new_streams">Byrja leit að nýjum straumum</string>
+    <string name="start_main_player_fullscreen_summary">Ekki byrja myndskeið í smáspilaranum heldur fara í skjáfylliham ef sjálfvirkur snúningur er læstur. Þú getur samt fengið aðgang að smáspilaranum með því að fara úr skjáfylliham</string>
+    <string name="check_new_streams">Byrja leit að nýjum streymum</string>
     <string name="overwrite_failed">get ekki skrifað yfir skrána</string>
     <string name="delete_downloaded_files">Eyða sóttum skrám</string>
     <string name="confirm_prompt">Viltu hreinsa niðurhalsferilinn eða eyða öllum sóttum skrám\?</string>
-    <string name="no_video_streams_available_for_external_players">Engir myndstraumar eru í boði fyrir ytri spilara</string>
+    <string name="no_video_streams_available_for_external_players">Engin myndstreymi eru í boði fyrir utanaðkomandi spilara</string>
     <string name="clear_cookie_title">Eyða vefkökum reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Vefkökum reCAPTCHA eytt</string>
     <string name="progressive_load_interval_title">Stærð forhleðslu</string>
-    <string name="progressive_load_interval_summary">Breyta stærð forhleðslu (nú %s). Lægra gildi gæti flýtt fyrir upphaflegu hleðslu myndbands. Breytingar krefjast endurræsingar spilara</string>
+    <string name="progressive_load_interval_summary">Breyta stærð millibils forhleðslu (núna %s). Lægra gildi gæti flýtt fyrir hleðslu myndskeiðs í upphafi</string>
     <string name="clear_queue_confirmation_description">Biðröð spilarans verður skipt út</string>
-    <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um straumhöfund, straumefni eða leitarbeiðni</string>
+    <string name="show_meta_info_summary">Slökktu á til að fela lýsigagnareiti með viðbótarupplýsingum um höfund streymis, efni streymis eða leitarbeiðni</string>
     <string name="metadata_cache_wipe_summary">Fjarlæga öll síðugögn úr skyndiminni</string>
-    <string name="auto_queue_summary">Bæta svipuðum straumum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>
+    <string name="auto_queue_summary">Bæta svipuðum streymum við biðröðina þegar síðasta er spilað og endurspilun er ekki virkjuð</string>
     <string name="show_search_suggestions_summary">Veldu tillögur til að sýna þegar leitað er</string>
     <string name="enable_playback_resume_summary">Endurheimta síðustu spilunarstöðu</string>
     <string name="enable_playback_state_lists_title">Spilunarstöður í listum</string>
     <string name="enable_playback_state_lists_summary">Sýna spilunarstöður í listum</string>
     <string name="show_hold_to_append_title">Sýna ábendinguna „Haltu niðri til að bæta við spilunarröð“</string>
-    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappin í „Nánar:“ myndbandsins</string>
+    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappinn í „Nánar:“ á myndskeiðinu</string>
     <string name="unsupported_url_dialog_message">Óþekkt slóð. Opna með öðru forriti\?</string>
     <string name="peertube_instance_url_summary">Veldu uppáhalds PeerTube tilvik þín</string>
     <string name="peertube_instance_url_help">Þú mátt finna tilviki á %s</string>
     <string name="peertube_instance_add_fail">Gat ekki staðfest tilvik</string>
     <string name="peertube_instance_add_https_only">Aðeins HTTPS vefslóðir eru studdar</string>
-    <string name="settings_category_player_notification_summary">Stilla tilkynningu fyrir spilandi straum</string>
+    <string name="settings_category_player_notification_summary">Stilla tilkynningu fyrir spilandi streymi</string>
     <string name="show_age_restricted_content_title">Sýna aldurstakmarkað efni</string>
     <string name="show_age_restricted_content_summary">Sýna efni sem hugsanlega hentar ekki börnum vegna þess að það hefur aldurstakmark (t.d. 18+)</string>
     <string name="youtube_restricted_mode_enabled_title">Kveikja á öryggisham YouTube</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube býður upp á öryggisham sem felur efni sem gæti hugsanlega verið óviðeigandi fyrir börn</string>
-    <string name="restricted_video">Þetta myndband er aldurstakmark.
+    <string name="restricted_video">Þetta myndskeið er með aldurstakmörk.
 \n
 \nKveiktu á „%1$s“ í stillingunum ef þú vilt sjá það.</string>
-    <string name="hash_channel_name">Myndbandsathugunarsummutilkynning</string>
-    <string name="hash_channel_description">Tilkynning um framvindu myndbandsathugunarsummu</string>
+    <string name="hash_channel_name">Tilkynning um gátsummu myndskeiðs</string>
+    <string name="hash_channel_description">Tilkynning um framvindu gátsummu myndskeiðs</string>
     <string name="error_report_channel_name">Villuskýrslutilkynning</string>
     <string name="error_report_channel_description">Tilkynningar um villur</string>
     <string name="switch_to_background">Skipta yfir í bakgrunn</string>
     <string name="switch_to_popup">Skipta yfir í sprettiglugga</string>
     <string name="switch_to_main">Skipta yfir í aðalspilara</string>
-    <string name="clear_views_history_summary">Eyðir feril spilaðra strauma og spilunarstöðum</string>
+    <string name="clear_views_history_summary">Eyðir ferli spilaðra streyma og stöðum í spilun</string>
     <string name="delete_view_history_alert">Eyða áhorfsferil\?</string>
     <string name="watch_history_deleted">Áhorfsferli eytt</string>
     <string name="clear_playback_states_title">Eyða spilunarstöðum</string>
@@ -654,9 +642,9 @@
     <string name="hold_to_append">Haltu niðri til að bæta við spilunarröð</string>
     <string name="preferred_player_fetcher_notification_message">Hleður umbeðið efni</string>
     <string name="show_original_time_ago_title">Sýna upprunatíma á atriðum</string>
-    <string name="show_original_time_ago_summary">Upprunalegir textar frá þjónustu verða sýnilegir í atriðum</string>
-    <string name="disable_media_tunneling_title">Slökkva á fjölmiðlagöngum</string>
-    <string name="disable_media_tunneling_summary">Slökktu á fjölmiðlagöngum ef þú finnur fyrir svörtum skjá eða stami við spilun myndbandar</string>
+    <string name="show_original_time_ago_summary">Upprunalegir textar frá þjónustu verða sýnilegir í streymisatriðum</string>
+    <string name="disable_media_tunneling_title">Slökkva á margmiðlagöngum</string>
+    <string name="disable_media_tunneling_summary">Slökktu á margmiðlunargöngum (media tunneling) ef vart verður við svartan skjá eða hökt við spilun myndskeiða.</string>
     <string name="show_image_indicators_title">Sýna myndvísa</string>
     <string name="show_image_indicators_summary">Sýna Picasso litaða borða ofan á myndum sem gefa til kynna uppruna þeirra: rauðan fyrir netið, bláan fyrir disk og grænan fyrir minni</string>
     <string name="show_crash_the_player_title">Sýna „Hrynja spilara“</string>
@@ -690,19 +678,129 @@
         <item quantity="other">%1$s sóttum skrám eytt</item>
     </plurals>
     <string name="max_retry_desc">Fjöldi tilrauna áður en hætt er við niðurhal</string>
-    <string name="remove_watched_popup_warning">Myndböndum sem skoðuð var áður eða eftir að þeim var bætt við spilunaristann verður eytt.
-\nErtu viss\? Það er ekki hægt að afturkalla þetta!</string>
+    <string name="remove_watched_popup_warning">Myndskeiðum sem skoðuð voru áður eða eftir að þeim var bætt við spilunarlistann verður eytt.
+\nErtu viss? Það er ekki hægt að afturkalla þetta!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Já og skoðuð að hluta</string>
     <string name="feed_use_dedicated_fetch_method_title">Nota RSS ef tiltækt</string>
     <string name="detail_heart_img_view_description">Hjartað af höfunda</string>
     <string name="notifications_disabled">Slökkt er á tilkynningum</string>
     <string name="you_successfully_subscribed">Þú ert nú áskrifandi</string>
-    <string name="streams_not_yet_supported_removed">Straumar sem ekki eru enn studdir af niðurhalaranum eru ekki sýndir</string>
-    <string name="selected_stream_external_player_not_supported">Valinn straumur er ekki studdur af ytri spilurum</string>
-    <string name="no_audio_streams_available_for_external_players">Engir hljóðstraumar eru í boði fyrir ytri spilara</string>
-    <string name="select_quality_external_players">Veldu gæði fyrir ytri spilara</string>
+    <string name="streams_not_yet_supported_removed">Streymi sem ekki eru enn studd af niðurhalaranum eru ekki sýnd</string>
+    <string name="selected_stream_external_player_not_supported">Valið streymi er ekki stutt af utanaðkomandi spilurum</string>
+    <string name="no_audio_streams_available_for_external_players">Engin hljóðstreymi eru í boði fyrir utanaðkomandi spilara</string>
+    <string name="select_quality_external_players">Veldu gæði fyrir utanaðkomandi spilara</string>
     <string name="faq_description">Ef þú átt í vandræðum með að nota forritið vertu viss um að skoða þessi svör við algengum spurningum!</string>
     <string name="faq_title">Algengar spurningar</string>
     <string name="faq">Skoða á vefsíðu</string>
     <string name="sort">Raða</string>
+    <string name="brightness">Birtustig</string>
+    <string name="no_streams">Engin streymi</string>
+    <string name="no_live_streams">Engin streymi í beinni</string>
+    <string name="unknown_audio_track">Óþekkt</string>
+    <string name="select_audio_track_external_players">Veldu hljóðspor fyrir utanaðkomandi spilara</string>
+    <string name="app_update_unavailable_toast">Þú ert að keyra nýjustu útgáfuna af NewPipe</string>
+    <string name="remove_duplicates_message">Ertu viss um að þú viljir fjarlægja öll tvítekin streymi í þessum spilunarlista?</string>
+    <string name="feed_fetch_channel_tabs">Sækja flipa rásar</string>
+    <string name="feed_hide_streams_title">Birta eftirfarandi streymi</string>
+    <string name="metadata_avatars">Auðkennismyndir</string>
+    <string name="metadata_banners">Borðar</string>
+    <string name="metadata_subchannel_avatars">Auðkennismyndir undirrása</string>
+    <string name="settings_category_exoplayer_summary">Sýslaðu með sumar stillingar ExoPlayer. Breytingar á þessu krefjast endurræsingar spilarans til að taka gildi</string>
+    <string name="settings_category_exoplayer_title">Stillingar ExoPlayer</string>
+    <string name="previous_stream">Fyrra streymi</string>
+    <string name="audio_track_type_dubbed">yfirtalað</string>
+    <string name="audio_track_type_descriptive">lýsandi</string>
+    <plurals name="replies">
+        <item quantity="one">%s svar</item>
+        <item quantity="other">%s svör</item>
+    </plurals>
+    <string name="msg_failed_to_copy">Mistókst að afrita á klippispjald</string>
+    <string name="no">Nei</string>
+    <string name="prefer_original_audio_title">Velja frekar upprunalegt hljóð</string>
+    <string name="volume">Hljóðstyrkur</string>
+    <string name="none">Ekkert</string>
+    <string name="play_queue_audio_track">Hljóð: %s</string>
+    <string name="app_update_available_notification_title">Uppfærsla á NewPipe er tiltæk!</string>
+    <string name="app_update_available_notification_text">Ýttu til að sækja %s</string>
+    <string name="reset_settings_title">Frumstilla stillingar</string>
+    <string name="remove_duplicates_title">Fjarlægja tvítök?</string>
+    <string name="metadata_thumbnails">Smámyndir</string>
+    <string name="metadata_subscribers">Áskrifendur</string>
+    <string name="feed_show_watched">Búið að horfa</string>
+    <string name="feed_show_upcoming">Á næstunni</string>
+    <string name="channel_tab_videos">Myndskeið</string>
+    <string name="channel_tab_tracks">Spor</string>
+    <string name="channel_tab_shorts">Stuttmyndir</string>
+    <string name="channel_tab_playlists">Spilunarlistar</string>
+    <string name="channel_tab_albums">Albúm</string>
+    <string name="channel_tab_about">Um hugbúnaðinn</string>
+    <string name="show_channel_tabs">Rásaflipar</string>
+    <string name="open_play_queue">Opna spilunarröð</string>
+    <string name="toggle_screen_orientation">Víxla stefnu skjás</string>
+    <string name="play">Spila</string>
+    <string name="replay">Endurspila</string>
+    <string name="more_options">Fleiri valkostir</string>
+    <string name="duration">Tímalengd</string>
+    <string name="rewind">Spóla til baka</string>
+    <string name="forward">Áfram</string>
+    <string name="image_quality_title">Myndgæði</string>
+    <string name="image_quality_none">Ekki hlaða inn myndum</string>
+    <string name="image_quality_low">Lággæða</string>
+    <string name="image_quality_medium">Meðalgæði</string>
+    <string name="image_quality_high">Hágæða</string>
+    <string name="question_mark">\?</string>
+    <string name="share_playlist">Deila spilunarlista</string>
+    <string name="share_playlist_with_titles">Deila með titlum</string>
+    <string name="share_playlist_with_list">Deila lista yfir slóðir</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="show_more">Sýna meira</string>
+    <string name="show_less">Sýna minna</string>
+    <string name="night_theme_available">Þessi valkostur er aðeins tiltækur ef %s er valið sem þema</string>
+    <string name="audio_track_present_in_video">Hljóðspor ætti þegar að vera til staðar í þessu streymi</string>
+    <string name="feed_show_partially_watched">Skoðað að hluta</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="audio_track_type_original">upprunalegt</string>
+    <string name="feed_show_hide_streams">Birta/Fela streymi</string>
+    <string name="loading_metadata_title">Hleð inn lýsigögnum…</string>
+    <string name="card">Spjald</string>
+    <string name="channel_tab_livestreams">Í beinni</string>
+    <string name="channel_tab_channels">Rásir</string>
+    <string name="audio_track">Hljóðspor</string>
+    <string name="yes">Já</string>
+    <string name="settings_category_backup_restore_title">Öryggisafrita og endurheimta</string>
+    <string name="main_tabs_position_title">Staðsetning aðalflipa</string>
+    <string name="playlist_add_stream_success_duplicate">Tvítaki bætt við %d sinnum</string>
+    <string name="error_insufficient_storage">Ekkert pláss eftir á tæki</string>
+    <string name="reset_settings_summary">Frumstilla allar stillingar á sjálfgefin gildi</string>
+    <string name="remove_duplicates">Fjarlægja tvítök</string>
+    <string name="metadata_uploader_avatars">Auðkennismyndir innsendenda</string>
+    <string name="show_channel_tabs_summary">Hvaða flipar eru sýndir á rásasíðunum</string>
+    <string name="toggle_fullscreen">Víxla skjáfylli af/á</string>
+    <string name="next_stream">Næsta streymi</string>
+    <string name="fast_mode">Hraðstreymishamur</string>
+    <string name="import_subscriptions_hint">Flytja áskriftir inn eða út með 3-punkta valmyndinni</string>
+    <string name="ignore_hardware_media_buttons_title">Hunsa atvik frá margmiðlunarhnöppum vélbúnaðar</string>
+    <string name="prefer_original_audio_summary">Velja upprunalegt hljóðspor án tillits til tungumáls</string>
+    <string name="prefer_descriptive_audio_title">Velja frekar lýsandi hljóð</string>
+    <string name="right_gesture_control_title">Hægri bendingaraðgerð</string>
+    <string name="left_gesture_control_summary">Veldu bendingu fyrir vinstri helming spilaraskjás</string>
+    <string name="left_gesture_control_title">Vinstri bendingaraðgerð</string>
+    <string name="right_gesture_control_summary">Veldu bendingu fyrir hægri helming spilaraskjás</string>
+    <string name="duplicate_in_playlist">Spilunarlistarnir sem eru gráir innihalda þegar þetta atriði.</string>
+    <string name="unset_playlist_thumbnail">Losa varanlega smámynd</string>
+    <string name="notification_actions_summary_android13">Breyttu hverri tilkynningu hér fyrir neðan með því að ýta á hana. Fyrstu þrjár aðgerðirnar (spila/bíða, fyrra og næsta) eru skilgreindar af kerfinu og er því ekki hægt að sérsníða.</string>
+    <string name="feed_fetch_channel_tabs_summary">Flipar sem á að sækja við uppfærslu þessa streymis. Þetta hefur engin áhrif ef rás er uppfærð með hraðstreymisham.</string>
+    <string name="share_playlist_with_titles_message">Deildu spilunarlista með atriðum eins og heiti spilunarlistans og titlum myndskeiða eða sem einföldum lista yfir slóðir á myndskeið</string>
+    <string name="use_exoplayer_decoder_fallback_title">Nota varaeiginleika ExoPlayer-afkóðarans</string>
+    <string name="new_seek_duration_toast">Vegna takmarkana í ExoPlayer-spilaranum var tímalengd hoppa sett á %d sekúndur</string>
+    <string name="disable_media_tunneling_automatic_info">Margmiðlunargöng (media tunneling) voru gerð óvirk á tækinu þínu þar sem þessi gerð tækja er þekkt fyrir að styðja ekki þennan eiginleika.</string>
+    <string name="auto_update_check_description">NewPipe getur athugað sjálfkrafa hvort nýjar útgáfur séu í boði og láta þig vita þegar slíkt gerist.\nViltu virkja þetta?</string>
+    <string name="reset_all_settings">Frumstilling allra stillinga mun henda öllum áður skilgreindum stillingum og endurræsa forritið.\n\nErtu viss um að þú viljir halda áfram?</string>
+    <string name="ignore_hardware_media_buttons_summary">Nytsamlegt ef þú til dæmis þarft að nota heyrnartól með biluðum tökkum</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Alltaf nota framhjáhlaupsstillingar ExoPlayer-spilarans fyrir frálagsflöt myndmerkis</string>
+    <string name="prefer_descriptive_audio_summary">Veldu hljóðspor með lýsingum fyrir sjónskerta, ef slíkt er tiltækt</string>
+    <string name="main_tabs_position_summary">Færa veljara aðalflipa neðst</string>
+    <string name="show_error_snackbar">Sýna villustiku</string>
 </resources>

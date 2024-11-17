@@ -498,11 +498,11 @@
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abrufen wenn verfügbar</string>
     <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist\? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
+    <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
 \n• das Abrufen des gesamten abonnierten Kanals, was langsam aber vollständig geschieht.
-\n• das Verwenden eines fest zugeordneten Serviceendpunkts, was schnell aber für gewöhnlich inkomplett ist.
+\n• das Verwenden eines fest zugeordneten Serviceendpunkts, was schnell aber für gewöhnlich unvollständig ist.
 \n
 \nDer Unterschied zwischen den beiden ist, dass der schnellen normalerweise einige Informationen fehlen, wie die Dauer oder der Typ des Elements (keine Unterscheidung zwischen Live-Videos und normalen) und sie eventuell weniger Elemente liefert.
 \n
@@ -824,4 +824,5 @@
     <string name="reset_all_settings">Wenn du alle Einstellungen zurücksetzt, werden alle deine bevorzugten Einstellungen verworfen und die App wird neu gestartet.
 \n
 \nMöchtest du wirklich fortfahren?</string>
+    <string name="import_settings_vulnerable_format">Die Einstellungen in dem zu importierenden Export verwenden ein angreifbares Format, das seit NewPipe 0.27.0 veraltet ist. Stellen Sie sicher, dass der zu importierende Export aus einer vertrauenswürdigen Quelle stammt, und verwenden Sie in Zukunft nur noch Exporte, die aus NewPipe 0.27.0 oder neuer stammen. Die Unterstützung für den Import von Einstellungen in diesem angreifbaren Format wird bald vollständig entfernt werden, und dann werden alte Versionen von NewPipe nicht mehr in der Lage sein, Einstellungen von Exporten aus neuen Versionen zu importieren.</string>
 </resources>

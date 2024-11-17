@@ -178,7 +178,7 @@
     <string name="delete">Kustuta</string>
     <string name="checksum">Kontrollsumma</string>
     <string name="dismiss">Loobu</string>
-    <string name="rename">Nimeta ümber</string>
+    <string name="rename">Muuda nime</string>
     <string name="ok">OK</string>
     <string name="msg_name">Faili nimi</string>
     <string name="msg_threads">Lõimed</string>
@@ -248,7 +248,7 @@
     <string name="preferred_player_fetcher_notification_title">Info hankimine…</string>
     <string name="preferred_player_fetcher_notification_message">Soovitud sisu laadimine</string>
     <string name="create_playlist">Uus esitusloend</string>
-    <string name="rename_playlist">Nimeta ümber</string>
+    <string name="rename_playlist">Muuda nime</string>
     <string name="name">Nimi</string>
     <string name="add_to_playlist">Lisa esitusloendisse</string>
     <string name="set_as_playlist_thumbnail">Määra esitusloendi pisipildiks</string>
@@ -824,4 +824,5 @@
 \nKas sa soovid jätkata?</string>
     <string name="yes">Jah</string>
     <string name="no">Ei</string>
+    <string name="import_settings_vulnerable_format">Imporditavad andmed kasutavad turvaprobleemidega vormingut, mida alates versioonist 0.27.0 NewPipe enam luua ei suuda. Palun kontrolli, et impordifail on loodud usaldusväärse osapoole poolt ning edaspidi loo ekspordifailid NewPipe versiooniga 0.27.0 või uuemaga. Tugi sellise vana vormingu kasutamisele kaob õige pea ja seejärel NewPipe uuemad ja vanemad versioonid ei saa omavahel andmeid enam vahetada.</string>
 </resources>

@@ -1,0 +1,17 @@
+Yeni
+• Yorum yanıtları ekle
+• Oynatma listelerini yeniden sıralamaya izin ver
+• Oynatma listesi açıklamasını ve süresini göster
+• Ayarların sıfırlanmasına izin ver
+
+İyileştirildi
+• [Android 13+] Özel bildirim eylemlerini geri yükle
+• Güncelleme denetimi için onay iste
+• Arabelleğe alma sırasında bildirim oynatma/duraklatmaya izin ver
+• Bazı ayarları yeniden sırala
+
+Düzeltildi
+• [YouTube] Yorumların yüklenmemesini düzelt, ayrıca diğer düzeltmeler ve iyileştirmeler
+• Ayarların içe aktarılmasındaki güvenlik açığını çöz ve JSON'a geç
+• Çeşitli indirme düzeltmeleri
+• Arama metnini kırp
