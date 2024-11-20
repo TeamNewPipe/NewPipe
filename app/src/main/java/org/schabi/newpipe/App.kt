@@ -1,49 +1,43 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe
 
-import android.app.ActivityManager;
-import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.NotificationChannelCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
-
-import com.jakewharton.processphoenix.ProcessPhoenix;
-
-import org.acra.ACRA;
-import org.acra.config.CoreConfigurationBuilder;
-import org.schabi.newpipe.error.ReCaptchaActivity;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.downloader.Downloader;
-import org.schabi.newpipe.ktx.ExceptionUtils;
-import org.schabi.newpipe.settings.NewPipeSettings;
-import org.schabi.newpipe.util.BridgeStateSaverInitializer;
-import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.image.ImageStrategy;
-import org.schabi.newpipe.util.image.PreferredImageQuality;
-
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.net.SocketException;
-import java.util.List;
-import java.util.Objects;
-
-import coil.ImageLoader;
-import coil.ImageLoaderFactory;
-import coil.util.DebugLogger;
-import dagger.hilt.android.HiltAndroidApp;
-import io.reactivex.rxjava3.exceptions.CompositeException;
-import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
-import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
-import io.reactivex.rxjava3.exceptions.UndeliverableException;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import android.app.ActivityManager
+import android.app.Application
+import android.content.Context
+import android.util.Log
+import androidx.core.app.NotificationChannelCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.request.allowRgb565
+import coil3.request.crossfade
+import coil3.util.DebugLogger
+import com.jakewharton.processphoenix.ProcessPhoenix
+import dagger.hilt.android.HiltAndroidApp
+import io.reactivex.rxjava3.exceptions.CompositeException
+import io.reactivex.rxjava3.exceptions.MissingBackpressureException
+import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException
+import io.reactivex.rxjava3.exceptions.UndeliverableException
+import io.reactivex.rxjava3.functions.Consumer
+import io.reactivex.rxjava3.plugins.RxJavaPlugins
+import org.acra.ACRA.init
+import org.acra.ACRA.isACRASenderServiceProcess
+import org.acra.config.CoreConfigurationBuilder
+import org.schabi.newpipe.error.ReCaptchaActivity
+import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.downloader.Downloader
+import org.schabi.newpipe.ktx.hasAssignableCause
+import org.schabi.newpipe.settings.NewPipeSettings
+import org.schabi.newpipe.util.BridgeStateSaverInitializer
+import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.StateSaver
+import org.schabi.newpipe.util.image.ImageStrategy
+import org.schabi.newpipe.util.image.PreferredImageQuality
+import java.io.IOException
+import java.io.InterruptedIOException
+import java.net.SocketException
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -62,218 +56,218 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 @HiltAndroidApp
-public class App extends Application implements ImageLoaderFactory {
-    public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
-    private static final String TAG = App.class.toString();
+open class App :
+    Application(),
+    SingletonImageLoader.Factory {
+    var isFirstRun = false
+        private set
 
-    private boolean isFirstRun = false;
-    private static App app;
-
-    @NonNull
-    public static App getApp() {
-        return app;
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        initACRA()
     }
 
-    @Override
-    protected void attachBaseContext(final Context base) {
-        super.attachBaseContext(base);
-        initACRA();
-    }
+    override fun onCreate() {
+        super.onCreate()
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        app = this;
+        instance = this
 
         if (ProcessPhoenix.isPhoenixProcess(this)) {
-            Log.i(TAG, "This is a phoenix process! "
-                    + "Aborting initialization of App[onCreate]");
-            return;
+            Log.i(TAG, "This is a phoenix process! Aborting initialization of App[onCreate]")
+            return
         }
 
         // check if the last used preference version is set
         // to determine whether this is the first app run
-        final int lastUsedPrefVersion = PreferenceManager.getDefaultSharedPreferences(this)
-                .getInt(getString(R.string.last_used_preferences_version), -1);
-        isFirstRun = lastUsedPrefVersion == -1;
+        val lastUsedPrefVersion =
+            PreferenceManager
+                .getDefaultSharedPreferences(this)
+                .getInt(getString(R.string.last_used_preferences_version), -1)
+        isFirstRun = lastUsedPrefVersion == -1
 
         // Initialize settings first because other initializations can use its values
-        NewPipeSettings.initSettings(this);
+        NewPipeSettings.initSettings(this)
 
-        NewPipe.init(getDownloader(),
+        NewPipe.init(
+            getDownloader(),
             Localization.getPreferredLocalization(this),
-            Localization.getPreferredContentCountry(this));
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+            Localization.getPreferredContentCountry(this),
+        )
+        Localization.initPrettyTime(Localization.resolvePrettyTime(this))
 
-        BridgeStateSaverInitializer.init(this);
-        StateSaver.init(this);
-        initNotificationChannels();
+        BridgeStateSaverInitializer.init(this)
+        StateSaver.init(this)
+        initNotificationChannels()
 
-        ServiceHelper.initServices(this);
+        ServiceHelper.initServices(this)
 
         // Initialize image loader
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        ImageStrategy.setPreferredImageQuality(PreferredImageQuality.fromPreferenceKey(this,
-                prefs.getString(getString(R.string.image_quality_key),
-                        getString(R.string.image_quality_default))));
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        ImageStrategy.setPreferredImageQuality(
+            PreferredImageQuality.fromPreferenceKey(
+                this,
+                prefs.getString(
+                    getString(R.string.image_quality_key),
+                    getString(R.string.image_quality_default),
+                ),
+            ),
+        )
 
-        configureRxJavaErrorHandler();
+        configureRxJavaErrorHandler()
     }
 
-    @NonNull
-    @Override
-    public ImageLoader newImageLoader() {
-        return new ImageLoader.Builder(this)
-                .allowRgb565(ContextCompat.getSystemService(this, ActivityManager.class)
-                        .isLowRamDevice())
-                .logger(BuildConfig.DEBUG ? new DebugLogger() : null)
-                .crossfade(true)
-                .build();
+    override fun newImageLoader(context: Context): ImageLoader =
+        ImageLoader
+            .Builder(this)
+            .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
+            .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
+            .crossfade(true)
+            .build()
+
+    protected open fun getDownloader(): Downloader {
+        val downloader = DownloaderImpl.init(null)
+        setCookiesToDownloader(downloader)
+        return downloader
     }
 
-    protected Downloader getDownloader() {
-        final DownloaderImpl downloader = DownloaderImpl.init(null);
-        setCookiesToDownloader(downloader);
-        return downloader;
+    protected fun setCookiesToDownloader(downloader: DownloaderImpl) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val key = getString(R.string.recaptcha_cookies_key)
+        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, null))
+        downloader.updateYoutubeRestrictedModeCookies(this)
     }
 
-    protected void setCookiesToDownloader(final DownloaderImpl downloader) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                getApplicationContext());
-        final String key = getApplicationContext().getString(R.string.recaptcha_cookies_key);
-        downloader.setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, prefs.getString(key, null));
-        downloader.updateYoutubeRestrictedModeCookies(getApplicationContext());
-    }
-
-    private void configureRxJavaErrorHandler() {
+    private fun configureRxJavaErrorHandler() {
         // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
-        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull final Throwable throwable) {
-                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : "
-                        + "throwable = [" + throwable.getClass().getName() + "]");
+        RxJavaPlugins.setErrorHandler(
+            object : Consumer<Throwable> {
+                override fun accept(throwable: Throwable) {
+                    Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : throwable = [${throwable.javaClass.getName()}]")
 
-                final Throwable actualThrowable;
-                if (throwable instanceof UndeliverableException) {
                     // As UndeliverableException is a wrapper,
                     // get the cause of it to get the "real" exception
-                    actualThrowable = Objects.requireNonNull(throwable.getCause());
-                } else {
-                    actualThrowable = throwable;
-                }
+                    val actualThrowable = (throwable as? UndeliverableException)?.cause ?: throwable
 
-                final List<Throwable> errors;
-                if (actualThrowable instanceof CompositeException) {
-                    errors = ((CompositeException) actualThrowable).getExceptions();
-                } else {
-                    errors = List.of(actualThrowable);
-                }
+                    val errors = (actualThrowable as? CompositeException)?.exceptions ?: listOf(actualThrowable)
 
-                for (final Throwable error : errors) {
-                    if (isThrowableIgnored(error)) {
-                        return;
+                    for (error in errors) {
+                        if (isThrowableIgnored(error)) {
+                            return
+                        }
+                        if (isThrowableCritical(error)) {
+                            reportException(error)
+                            return
+                        }
                     }
-                    if (isThrowableCritical(error)) {
-                        reportException(error);
-                        return;
+
+                    // Out-of-lifecycle exceptions should only be reported if a debug user wishes so,
+                    // When exception is not reported, log it
+                    if (isDisposedRxExceptionsReported()) {
+                        reportException(actualThrowable)
+                    } else {
+                        Log.e(TAG, "RxJavaPlugin: Undeliverable Exception received: ", actualThrowable)
                     }
                 }
 
-                // Out-of-lifecycle exceptions should only be reported if a debug user wishes so,
-                // When exception is not reported, log it
-                if (isDisposedRxExceptionsReported()) {
-                    reportException(actualThrowable);
-                } else {
-                    Log.e(TAG, "RxJavaPlugin: Undeliverable Exception received: ", actualThrowable);
+                fun isThrowableIgnored(throwable: Throwable): Boolean {
+                    // Don't crash the application over a simple network problem
+                    return throwable // network api cancellation
+                        .hasAssignableCause(
+                            IOException::class.java,
+                            SocketException::class.java, // blocking code disposed
+                            InterruptedException::class.java,
+                            InterruptedIOException::class.java,
+                        )
                 }
-            }
 
-            private boolean isThrowableIgnored(@NonNull final Throwable throwable) {
-                // Don't crash the application over a simple network problem
-                return ExceptionUtils.hasAssignableCause(throwable,
-                        // network api cancellation
-                        IOException.class, SocketException.class,
-                        // blocking code disposed
-                        InterruptedException.class, InterruptedIOException.class);
-            }
+                fun isThrowableCritical(throwable: Throwable): Boolean {
+                    // Though these exceptions cannot be ignored
+                    return throwable
+                        .hasAssignableCause(
+                            NullPointerException::class.java,
+                            IllegalArgumentException::class.java, // bug in app
+                            OnErrorNotImplementedException::class.java,
+                            MissingBackpressureException::class.java,
+                            IllegalStateException::class.java,
+                        ) // bug in operator
+                }
 
-            private boolean isThrowableCritical(@NonNull final Throwable throwable) {
-                // Though these exceptions cannot be ignored
-                return ExceptionUtils.hasAssignableCause(throwable,
-                        NullPointerException.class, IllegalArgumentException.class, // bug in app
-                        OnErrorNotImplementedException.class, MissingBackpressureException.class,
-                        IllegalStateException.class); // bug in operator
-            }
-
-            private void reportException(@NonNull final Throwable throwable) {
-                // Throw uncaught exception that will trigger the report system
-                Thread.currentThread().getUncaughtExceptionHandler()
-                        .uncaughtException(Thread.currentThread(), throwable);
-            }
-        });
+                fun reportException(throwable: Throwable) {
+                    // Throw uncaught exception that will trigger the report system
+                    Thread.currentThread().uncaughtExceptionHandler
+                        .uncaughtException(Thread.currentThread(), throwable)
+                }
+            },
+        )
     }
 
     /**
-     * Called in {@link #attachBaseContext(Context)} after calling the {@code super} method.
+     * Called in [.attachBaseContext] after calling the `super` method.
      * Should be overridden if MultiDex is enabled, since it has to be initialized before ACRA.
      */
-    protected void initACRA() {
-        if (ACRA.isACRASenderServiceProcess()) {
-            return;
+    protected fun initACRA() {
+        if (isACRASenderServiceProcess()) {
+            return
         }
 
-        final CoreConfigurationBuilder acraConfig = new CoreConfigurationBuilder()
-                .withBuildConfigClass(BuildConfig.class);
-        ACRA.init(this, acraConfig);
+        val acraConfig =
+            CoreConfigurationBuilder()
+                .withBuildConfigClass(BuildConfig::class.java)
+        init(this, acraConfig)
     }
 
-    private void initNotificationChannels() {
+    private fun initNotificationChannels() {
         // Keep the importance below DEFAULT to avoid making noise on every notification update for
         // the main and update channels
-        final List<NotificationChannelCompat> notificationChannelCompats = List.of(
-                new NotificationChannelCompat.Builder(getString(R.string.notification_channel_id),
-                        NotificationManagerCompat.IMPORTANCE_LOW)
-                        .setName(getString(R.string.notification_channel_name))
-                        .setDescription(getString(R.string.notification_channel_description))
-                        .build(),
-                new NotificationChannelCompat
-                        .Builder(getString(R.string.app_update_notification_channel_id),
-                        NotificationManagerCompat.IMPORTANCE_LOW)
-                        .setName(getString(R.string.app_update_notification_channel_name))
-                        .setDescription(
-                                getString(R.string.app_update_notification_channel_description))
-                        .build(),
-                new NotificationChannelCompat.Builder(getString(R.string.hash_channel_id),
-                        NotificationManagerCompat.IMPORTANCE_HIGH)
-                        .setName(getString(R.string.hash_channel_name))
-                        .setDescription(getString(R.string.hash_channel_description))
-                        .build(),
-                new NotificationChannelCompat.Builder(getString(R.string.error_report_channel_id),
-                        NotificationManagerCompat.IMPORTANCE_LOW)
-                        .setName(getString(R.string.error_report_channel_name))
-                        .setDescription(getString(R.string.error_report_channel_description))
-                        .build(),
-                new NotificationChannelCompat
-                        .Builder(getString(R.string.streams_notification_channel_id),
-                        NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                        .setName(getString(R.string.streams_notification_channel_name))
-                        .setDescription(
-                                getString(R.string.streams_notification_channel_description))
-                        .build()
-        );
+        val mainChannel = NotificationChannelCompat.Builder(
+                getString(R.string.notification_channel_id),
+                NotificationManagerCompat.IMPORTANCE_LOW,
+            )
+            .setName(getString(R.string.notification_channel_name))
+            .setDescription(getString(R.string.notification_channel_description))
+            .build()
+        val appUpdateChannel = NotificationChannelCompat.Builder(
+                getString(R.string.app_update_notification_channel_id),
+                NotificationManagerCompat.IMPORTANCE_LOW,
+            )
+            .setName(getString(R.string.app_update_notification_channel_name))
+            .setDescription(getString(R.string.app_update_notification_channel_description))
+            .build()
+        val hashChannel = NotificationChannelCompat.Builder(
+                getString(R.string.hash_channel_id),
+                NotificationManagerCompat.IMPORTANCE_HIGH,
+            )
+            .setName(getString(R.string.hash_channel_name))
+            .setDescription(getString(R.string.hash_channel_description))
+            .build()
+        val errorReportChannel = NotificationChannelCompat.Builder(
+                getString(R.string.error_report_channel_id),
+                NotificationManagerCompat.IMPORTANCE_LOW,
+            )
+            .setName(getString(R.string.error_report_channel_name))
+            .setDescription(getString(R.string.error_report_channel_description))
+            .build()
+        val newStreamChannel = NotificationChannelCompat.Builder(
+                getString(R.string.streams_notification_channel_id),
+                NotificationManagerCompat.IMPORTANCE_DEFAULT,
+            )
+            .setName(getString(R.string.streams_notification_channel_name))
+            .setDescription(getString(R.string.streams_notification_channel_description))
+            .build()
 
-        final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.createNotificationChannelsCompat(notificationChannelCompats);
+        val channels = listOf(mainChannel, appUpdateChannel, hashChannel, errorReportChannel, newStreamChannel)
+
+        NotificationManagerCompat.from(this).createNotificationChannelsCompat(channels)
     }
 
-    protected boolean isDisposedRxExceptionsReported() {
-        return false;
-    }
+    protected open fun isDisposedRxExceptionsReported(): Boolean = false
 
-    public boolean isFirstRun() {
-        return isFirstRun;
+    companion object {
+        const val PACKAGE_NAME: String = BuildConfig.APPLICATION_ID
+        private val TAG = App::class.java.toString()
+
+        @JvmStatic
+        lateinit var instance: App
     }
 }

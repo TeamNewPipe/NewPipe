@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationWorker.initialize(this);
         }
         if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getApp().isFirstRun()
+                && !App.getInstance().isFirstRun()
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final App app = App.getApp();
+        final App app = App.getInstance();
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         if (prefs.getBoolean(app.getString(R.string.update_app_key), false)

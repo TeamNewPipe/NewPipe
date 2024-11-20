@@ -46,6 +46,7 @@ import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static coil3.Image_androidKt.toBitmap;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -53,14 +54,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.DrawableKt;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -125,7 +124,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import coil.target.Target;
+import coil3.target.Target;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -193,7 +192,7 @@ public final class Player implements PlaybackListener, Listener {
     @Nullable
     private Bitmap currentThumbnail;
     @Nullable
-    private coil.request.Disposable thumbnailDisposable;
+    private coil3.request.Disposable thumbnailDisposable;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -789,27 +788,26 @@ public final class Player implements PlaybackListener, Listener {
         // scale down the notification thumbnail for performance
         final var thumbnailTarget = new Target() {
             @Override
-            public void onError(@Nullable final Drawable error) {
+            public void onError(@Nullable final coil3.Image error) {
                 Log.e(TAG, "Thumbnail - onError() called");
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
                 onThumbnailLoaded(null);
             }
 
             @Override
-            public void onStart(@Nullable final Drawable placeholder) {
+            public void onStart(@Nullable final coil3.Image placeholder) {
                 if (DEBUG) {
                     Log.d(TAG, "Thumbnail - onStart() called");
                 }
             }
 
             @Override
-            public void onSuccess(@NonNull final Drawable result) {
+            public void onSuccess(@NonNull final coil3.Image result) {
                 if (DEBUG) {
                     Log.d(TAG, "Thumbnail - onSuccess() called with: drawable = [" + result + "]");
                 }
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(DrawableKt.toBitmapOrNull(result, result.getIntrinsicWidth(),
-                        result.getIntrinsicHeight(), null));
+                onThumbnailLoaded(toBitmap(result));
             }
         };
         thumbnailDisposable = CoilHelper.INSTANCE
