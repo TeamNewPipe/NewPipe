@@ -41,7 +41,7 @@ import java.net.SocketException
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
- * App.java is part of NewPipe.
+ * App.kt is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
