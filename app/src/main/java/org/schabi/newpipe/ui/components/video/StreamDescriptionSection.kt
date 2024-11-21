@@ -43,19 +43,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.parseDescription
 import org.schabi.newpipe.ui.components.metadata.MetadataItem
 import org.schabi.newpipe.ui.components.metadata.TagsSection
 import org.schabi.newpipe.ui.components.metadata.imageMetadataItem
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.ui.theme.NewPipeScrollbarSettings
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import java.time.OffsetDateTime
@@ -67,7 +66,7 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
     val hasDescription = streamInfo.description != Description.EMPTY_DESCRIPTION
     val lazyListState = rememberLazyListState()
 
-    LazyColumnScrollbar(state = lazyListState, settings = NewPipeScrollbarSettings) {
+    LazyColumnThemedScrollbar(state = lazyListState) {
         LazyColumn(
             modifier = Modifier
                 .padding(start = 12.dp, end = 12.dp)
