@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
-import coil.Coil;
+import coil3.SingletonImageLoader;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
@@ -41,7 +41,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 (preference, newValue) -> {
                     ImageStrategy.setPreferredImageQuality(PreferredImageQuality
                             .fromPreferenceKey(requireContext(), (String) newValue));
-                    final var loader = Coil.imageLoader(preference.getContext());
+                    final var loader = SingletonImageLoader.get(preference.getContext());
                     loader.getMemoryCache().clear();
                     loader.getDiskCache().clear();
                     Toast.makeText(preference.getContext(),

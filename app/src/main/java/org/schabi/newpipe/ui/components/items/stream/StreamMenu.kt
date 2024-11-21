@@ -96,8 +96,10 @@ fun StreamMenu(
                 val list = listOf(StreamEntity(stream))
                 PlaylistDialog.createCorrespondingDialog(context, list) { dialog ->
                     val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
-                    val fragmentManager = context.findFragmentActivity().supportFragmentManager
-                    dialog.show(fragmentManager, "StreamDialogEntry@${tag}_playlist")
+                    dialog.show(
+                        context.findFragmentActivity().supportFragmentManager,
+                        "StreamDialogEntry@${tag}_playlist"
+                    )
                 }
             }
         )
@@ -129,7 +131,8 @@ fun StreamMenu(
                 SparseItemUtil.fetchUploaderUrlIfSparse(
                     context, stream.serviceId, stream.url, stream.uploaderUrl
                 ) { url ->
-                    NavigationHelper.openChannelFragment(context.findFragmentActivity(), stream, url)
+                    val activity = context.findFragmentActivity()
+                    NavigationHelper.openChannelFragment(activity, stream, url)
                 }
             }
         )

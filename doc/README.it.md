@@ -107,7 +107,7 @@ Nel frattempo, se vuoi cambiare fonte per la stessa ragione (ad es. la funzional
 
 ## Contribuire
 
-Se hai idee, traduzioni, cambiamenti di *design*, pulizia di codice, o addirittura grossi cambiamenti di codice, l'aiuto è sempre apprezzato. L'app diventa sempre meglio con ogni contribuzione, non importa quanto grande o piccola essa sia! Se ti piacerebbe essere parte del progetto, vedi le nostre [note di contribuzione](.github/CONTRIBUTING.md).
+Se hai idee, traduzioni, cambiamenti di *design*, pulizia di codice, o addirittura grossi cambiamenti di codice, l'aiuto è sempre apprezzato. L'app diventa sempre meglio con ogni contribuzione, non importa quanto grande o piccola essa sia! Se ti piacerebbe essere parte del progetto, vedi le nostre [note di contribuzione](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Stato traduzione" />

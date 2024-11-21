@@ -16,13 +16,13 @@ import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
-import my.nanihadesuka.compose.LazyColumnScrollbar
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
+import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
 import org.schabi.newpipe.util.DependentPreferenceHelper
@@ -72,7 +72,7 @@ fun ItemList(
     } else {
         val state = rememberLazyListState()
 
-        LazyColumnScrollbar(state = state) {
+        LazyColumnThemedScrollbar(state = state) {
             LazyColumn(modifier = nestedScrollModifier, state = state) {
                 listHeader()
 

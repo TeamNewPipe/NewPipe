@@ -21,7 +21,6 @@ import org.schabi.newpipe.info_list.holder.ChannelCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.CommentInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistCardInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
@@ -283,46 +282,32 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.d(TAG, "onCreateViewHolder() called with: "
                     + "parent = [" + parent + "], type = [" + type + "]");
         }
-        switch (type) {
+        return switch (type) {
             // #4475 and #3368
             // Always create a new instance otherwise the same instance
             // is sometimes reused which causes a crash
-            case HEADER_TYPE:
-                return new HFHolder(headerSupplier.get());
-            case FOOTER_TYPE:
-                return new HFHolder(PignateFooterBinding
-                        .inflate(layoutInflater, parent, false)
-                        .getRoot()
-                );
-            case MINI_STREAM_HOLDER_TYPE:
-                return new StreamMiniInfoItemHolder(infoItemBuilder, parent);
-            case STREAM_HOLDER_TYPE:
-                return new StreamInfoItemHolder(infoItemBuilder, parent);
-            case GRID_STREAM_HOLDER_TYPE:
-                return new StreamGridInfoItemHolder(infoItemBuilder, parent);
-            case CARD_STREAM_HOLDER_TYPE:
-                return new StreamCardInfoItemHolder(infoItemBuilder, parent);
-            case MINI_CHANNEL_HOLDER_TYPE:
-                return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
-            case CHANNEL_HOLDER_TYPE:
-                return new ChannelInfoItemHolder(infoItemBuilder, parent);
-            case CARD_CHANNEL_HOLDER_TYPE:
-                return new ChannelCardInfoItemHolder(infoItemBuilder, parent);
-            case GRID_CHANNEL_HOLDER_TYPE:
-                return new ChannelGridInfoItemHolder(infoItemBuilder, parent);
-            case MINI_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
-            case PLAYLIST_HOLDER_TYPE:
-                return new PlaylistInfoItemHolder(infoItemBuilder, parent);
-            case GRID_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
-            case CARD_PLAYLIST_HOLDER_TYPE:
-                return new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
-            case COMMENT_HOLDER_TYPE:
-                return new CommentInfoItemHolder(infoItemBuilder, parent);
-            default:
-                return new FallbackViewHolder(new View(parent.getContext()));
-        }
+            case HEADER_TYPE -> new HFHolder(headerSupplier.get());
+            case FOOTER_TYPE -> new HFHolder(PignateFooterBinding
+                    .inflate(layoutInflater, parent, false)
+                    .getRoot()
+            );
+            case MINI_STREAM_HOLDER_TYPE -> new StreamMiniInfoItemHolder(infoItemBuilder, parent);
+            case STREAM_HOLDER_TYPE -> new StreamInfoItemHolder(infoItemBuilder, parent);
+            case GRID_STREAM_HOLDER_TYPE -> new StreamGridInfoItemHolder(infoItemBuilder, parent);
+            case CARD_STREAM_HOLDER_TYPE -> new StreamCardInfoItemHolder(infoItemBuilder, parent);
+            case MINI_CHANNEL_HOLDER_TYPE -> new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
+            case CHANNEL_HOLDER_TYPE -> new ChannelInfoItemHolder(infoItemBuilder, parent);
+            case CARD_CHANNEL_HOLDER_TYPE -> new ChannelCardInfoItemHolder(infoItemBuilder, parent);
+            case GRID_CHANNEL_HOLDER_TYPE -> new ChannelGridInfoItemHolder(infoItemBuilder, parent);
+            case MINI_PLAYLIST_HOLDER_TYPE ->
+                    new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
+            case PLAYLIST_HOLDER_TYPE -> new PlaylistInfoItemHolder(infoItemBuilder, parent);
+            case GRID_PLAYLIST_HOLDER_TYPE ->
+                    new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
+            case CARD_PLAYLIST_HOLDER_TYPE ->
+                    new PlaylistCardInfoItemHolder(infoItemBuilder, parent);
+            default -> new FallbackViewHolder(new View(parent.getContext()));
+        };
     }
 
     @Override
