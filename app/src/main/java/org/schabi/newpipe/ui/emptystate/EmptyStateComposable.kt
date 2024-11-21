@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
@@ -42,6 +43,7 @@ private fun EmptyStateComposable(
         Text(
             text = emojiText,
             style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
         )
 
         Text(
@@ -50,6 +52,7 @@ private fun EmptyStateComposable(
                 .padding(horizontal = 16.dp),
             text = descriptionText,
             style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -119,6 +122,18 @@ data class EmptyStateSpec(
                 modifier = { it },
                 emojiText = { "(╥﹏╥)" },
                 descriptionText = { stringResource(id = R.string.no_playlist_bookmarked_yet) },
+            )
+
+        val NoSubscriptionsHint =
+            EmptyStateSpec(
+                modifier = { it },
+                emojiText = { "(꩜ᯅ꩜)" },
+                descriptionText = { stringResource(id = R.string.import_subscriptions_hint) },
+            )
+
+        val NoSubscriptions =
+            NoSubscriptionsHint.copy(
+                descriptionText = { stringResource(id = R.string.no_channel_subscribed_yet) },
             )
     }
 }

@@ -30,8 +30,7 @@
         android:id="@+id/empty_state_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        />
+        android:layout_margin="10dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
