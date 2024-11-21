@@ -69,7 +69,7 @@ fun EmptyStateComposableGenericErrorPreview() {
 @Composable
 fun EmptyStateComposableNoCommentPreview() {
     AppTheme {
-        EmptyStateComposable(EmptyStateSpec.NoComment)
+        EmptyStateComposable(EmptyStateSpec.NoComments)
     }
 }
 
@@ -91,15 +91,35 @@ data class EmptyStateSpec(
                 descriptionText = { stringResource(id = R.string.empty_list_subtitle) },
             )
 
-        val NoComment =
+        val NoVideos =
             EmptyStateSpec(
-                modifier = { it.padding(top = 85.dp) },
+                modifier = {
+                    it
+                        .fillMaxWidth()
+                        .heightIn(min = 128.dp)
+                },
                 emojiText = { "(╯°-°)╯" },
+                descriptionText = { stringResource(id = R.string.no_videos) },
+            )
+
+        val NoComments =
+            EmptyStateSpec(
+                modifier = {
+                    it
+                        .fillMaxWidth()
+                        .heightIn(min = 128.dp)
+                },
+                emojiText = { "¯\\_(╹x╹)_/¯" },
                 descriptionText = { stringResource(id = R.string.no_comments) },
             )
 
+        val DisabledComments =
+            NoComments.copy(
+                descriptionText = { stringResource(id = R.string.comments_are_disabled) },
+            )
+
         val NoSearchResult =
-            NoComment.copy(
+            NoComments.copy(
                 modifier = { it },
                 emojiText = { "╰(°●°╰)" },
                 descriptionText = { stringResource(id = R.string.search_no_results) }
@@ -111,7 +131,7 @@ data class EmptyStateSpec(
             )
 
         val ContentNotSupported =
-            NoComment.copy(
+            NoComments.copy(
                 modifier = { it.padding(top = 90.dp) },
                 emojiText = { "(︶︹︺)" },
                 descriptionText = { stringResource(id = R.string.content_not_supported) },
