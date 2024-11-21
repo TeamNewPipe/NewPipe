@@ -185,12 +185,14 @@ open class App :
                     // Though these exceptions cannot be ignored
                     return throwable
                         .hasAssignableCause(
+                            // bug in app
                             NullPointerException::class.java,
-                            IllegalArgumentException::class.java, // bug in app
+                            IllegalArgumentException::class.java,
                             OnErrorNotImplementedException::class.java,
                             MissingBackpressureException::class.java,
+                            // bug in operator
                             IllegalStateException::class.java,
-                        ) // bug in operator
+                        )
                 }
 
                 fun reportException(throwable: Throwable) {
