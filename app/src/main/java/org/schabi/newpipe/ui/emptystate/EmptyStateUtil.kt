@@ -71,16 +71,12 @@ fun <T> mutableStateOf(param: T): MutableState<T> {
  * Used in Java land to modify [EmptyStateSpec] properties.
  * TODO: remove after Kotlin migration
  */
-class EmptyStateSpecBuilder(var spec: EmptyStateSpec) {
+class EmptyStateSpecBuilder(private var spec: EmptyStateSpec) {
 
     fun descriptionText(@StringRes stringRes: Int) = apply {
         spec = spec.copy(
             descriptionText = { stringResource(id = stringRes) }
         )
-    }
-
-    fun descriptionVisibility(descriptionTextVisibility: Boolean) = apply {
-        spec = spec.copy(descriptionVisibility = { descriptionTextVisibility })
     }
 
     fun build() = spec

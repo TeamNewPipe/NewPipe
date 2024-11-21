@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.compose.runtime.MutableState;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.MenuProvider;
@@ -46,7 +45,6 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
-import org.schabi.newpipe.ui.emptystate.EmptyStateSpecBuilder;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.Constants;
@@ -104,8 +102,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     private MenuItem menuNotifyButton;
     private SubscriptionEntity channelSubscription;
     private MenuProvider menuProvider;
-
-    private MutableState<EmptyStateSpec> emptyStateSpec;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -204,9 +200,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        emptyStateSpec = EmptyStateUtil.mutableStateOf(
-                EmptyStateSpec.Companion.getContentNotSupported());
-        EmptyStateUtil.setEmptyStateComposable(binding.emptyStateView, emptyStateSpec);
+        EmptyStateUtil.setEmptyStateComposable(
+                binding.emptyStateView,
+                EmptyStateSpec.Companion.getContentNotSupported()
+        );
 
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
@@ -654,10 +651,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             return;
         }
 
-        emptyStateSpec.setValue(
-                new EmptyStateSpecBuilder(emptyStateSpec.getValue())
-                        .descriptionVisibility(true)
-                        .build()
-        );
+        binding.emptyStateView.setVisibility(View.VISIBLE);
     }
 }

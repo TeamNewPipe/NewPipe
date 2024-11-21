@@ -37,7 +37,6 @@ fun EmptyStateComposable(
     descriptionModifier = spec.descriptionModifier(),
     descriptionText = spec.descriptionText(),
     descriptionTextStyle = spec.descriptionTextStyle(),
-    descriptionTextVisibility = spec.descriptionVisibility(),
 )
 
 @Composable
@@ -49,7 +48,6 @@ private fun EmptyStateComposable(
     descriptionModifier: Modifier,
     descriptionText: String,
     descriptionTextStyle: TextStyle,
-    descriptionTextVisibility: Boolean,
 ) {
     CompositionLocalProvider(
         LocalContentColor provides MaterialTheme.colorScheme.errorHint
@@ -65,13 +63,11 @@ private fun EmptyStateComposable(
                 style = emojiTextStyle,
             )
 
-            if (descriptionTextVisibility) {
-                Text(
-                    modifier = descriptionModifier,
-                    text = descriptionText,
-                    style = descriptionTextStyle,
-                )
-            }
+            Text(
+                modifier = descriptionModifier,
+                text = descriptionText,
+                style = descriptionTextStyle,
+            )
         }
     }
 }
@@ -100,9 +96,7 @@ data class EmptyStateSpec(
     val descriptionText: @Composable () -> String,
     val descriptionModifier: () -> Modifier,
     val descriptionTextStyle: @Composable () -> TextStyle,
-    val descriptionVisibility: () -> Boolean = { true },
 ) {
-
     companion object {
 
         val GenericError =
@@ -162,7 +156,6 @@ data class EmptyStateSpec(
                 descriptionModifier = { Modifier.padding(top = 20.dp) },
                 descriptionText = { stringResource(id = R.string.content_not_supported) },
                 descriptionTextStyle = { LocalTextStyle.current.merge(fontSize = 15.sp) },
-                descriptionVisibility = { false },
             )
     }
 }
