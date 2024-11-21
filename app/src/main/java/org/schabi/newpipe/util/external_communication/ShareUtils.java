@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util.external_communication;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static coil3.Image_androidKt.toBitmap;
 
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
@@ -31,9 +32,9 @@ import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 
-import coil.Coil;
-import coil.disk.DiskCache;
-import coil.memory.MemoryCache;
+import coil3.SingletonImageLoader;
+import coil3.disk.DiskCache;
+import coil3.memory.MemoryCache;
 
 public final class ShareUtils {
     private static final String TAG = ShareUtils.class.getSimpleName();
@@ -377,13 +378,13 @@ public final class ShareUtils {
             // Save the image in memory to the application's cache because we need a URI to the
             // image to generate a ClipData which will show the share sheet, and so an image file
             final Context applicationContext = context.getApplicationContext();
-            final var loader = Coil.imageLoader(context);
+            final var loader = SingletonImageLoader.get(context);
             final var value = loader.getMemoryCache()
                     .get(new MemoryCache.Key(thumbnailUrl, Collections.emptyMap()));
 
             final Bitmap cachedBitmap;
             if (value != null) {
-                cachedBitmap = value.getBitmap();
+                cachedBitmap = toBitmap(value.getImage());
             } else {
                 try (var snapshot = loader.getDiskCache().openSnapshot(thumbnailUrl)) {
                     if (snapshot != null) {

@@ -165,7 +165,7 @@ class FeedViewModel(
         fun getFactory(context: Context, groupId: Long) = viewModelFactory {
             initializer {
                 FeedViewModel(
-                    App.getApp(),
+                    App.instance,
                     groupId,
                     // Read initial value from preferences
                     getShowPlayedItemsFromPreferences(context.applicationContext),

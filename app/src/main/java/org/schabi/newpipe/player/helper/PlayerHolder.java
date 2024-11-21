@@ -16,8 +16,8 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
@@ -116,7 +116,7 @@ public final class PlayerHolder {
     // helper to handle context in common place as using the same
     // context to bind/unbind a service is crucial
     private Context getCommonContext() {
-        return App.getApp();
+        return App.getInstance();
     }
 
     public void startService(final boolean playAfterConnect,
