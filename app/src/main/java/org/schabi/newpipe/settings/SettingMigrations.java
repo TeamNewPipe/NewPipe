@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -17,8 +19,6 @@ import org.schabi.newpipe.util.DeviceUtils;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
 
 /**
  * In order to add a migration, follow these steps, given P is the previous version:<br>
@@ -171,7 +171,7 @@ public final class SettingMigrations {
         final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
 
         // no migration to run, already up to date
-        if (App.getApp().isFirstRun()) {
+        if (App.getInstance().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
         } else if (lastPrefVersion == VERSION) {

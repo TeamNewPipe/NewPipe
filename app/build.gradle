@@ -125,6 +125,8 @@ ext {
 
     leakCanaryVersion = '2.12'
     stethoVersion = '1.6.0'
+
+    coilVersion = '3.0.3'
 }
 
 configurations {
@@ -208,7 +210,7 @@ dependencies {
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     // WORKAROUND: v0.24.2 can't be resolved by jitpack -> use git commit hash instead
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:176da72cb4c3ec4679211339b0e59f6b01bf2f52'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:d3d5f2b3f03a5f2b479b9f6fdf1c2555cbb9de0e'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -270,7 +272,8 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
     // Image loading
-    implementation 'io.coil-kt:coil-compose:2.7.0'
+    implementation "io.coil-kt.coil3:coil-compose:${coilVersion}"
+    implementation "io.coil-kt.coil3:coil-network-okhttp:${coilVersion}"
 
     // Markdown library for Android
     implementation "io.noties.markwon:core:${markwonVersion}"
