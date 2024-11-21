@@ -276,5 +276,6 @@ open class App :
 
         @JvmStatic
         lateinit var instance: App
+            private set
     }
 }
