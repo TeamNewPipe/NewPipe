@@ -3,7 +3,6 @@
 package org.schabi.newpipe.ui.emptystate
 
 import androidx.annotation.StringRes
-import androidx.compose.material3.Text
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.platform.ComposeView
@@ -11,21 +10,6 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
 import org.schabi.newpipe.ui.theme.AppTheme
 import androidx.compose.runtime.mutableStateOf as composeRuntimeMutableStateOf
-
-@JvmOverloads
-fun ComposeView.setEmptyStateText(
-    @StringRes stringRes: Int,
-    strategy: ViewCompositionStrategy = ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed,
-) = apply {
-    setViewCompositionStrategy(strategy)
-    setContent {
-        AppTheme {
-            Text(
-                text = stringResource(id = stringRes),
-            )
-        }
-    }
-}
 
 @JvmOverloads
 fun ComposeView.setEmptyStateComposable(

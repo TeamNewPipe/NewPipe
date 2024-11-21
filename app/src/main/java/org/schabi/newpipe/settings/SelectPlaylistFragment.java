@@ -28,6 +28,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.image.CoilHelper;
 
@@ -64,7 +65,8 @@ public class SelectPlaylistFragment extends DialogFragment {
         recyclerView = v.findViewById(R.id.items_list);
         emptyView = v.findViewById(R.id.empty_state_view);
 
-        EmptyStateUtil.setEmptyStateText(emptyView, R.string.no_playlist_bookmarked_yet);
+        EmptyStateUtil.setEmptyStateComposable(emptyView,
+                EmptyStateSpec.Companion.getNoBookmarkedPlaylist());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SelectPlaylistAdapter playlistAdapter = new SelectPlaylistAdapter();
         recyclerView.setAdapter(playlistAdapter);

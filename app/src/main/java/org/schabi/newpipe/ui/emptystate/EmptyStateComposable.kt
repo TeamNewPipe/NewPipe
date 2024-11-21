@@ -113,5 +113,12 @@ data class EmptyStateSpec(
                 emojiText = { "(︶︹︺)" },
                 descriptionText = { stringResource(id = R.string.content_not_supported) },
             )
+
+        val NoBookmarkedPlaylist =
+            EmptyStateSpec(
+                modifier = { it },
+                emojiText = { "(╥﹏╥)" },
+                descriptionText = { stringResource(id = R.string.no_playlist_bookmarked_yet) },
+            )
     }
 }
