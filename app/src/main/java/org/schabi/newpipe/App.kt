@@ -195,7 +195,9 @@ open class App :
 
                 fun reportException(throwable: Throwable) {
                     // Throw uncaught exception that will trigger the report system
-                    Thread.currentThread().uncaughtExceptionHandler
+                    Thread
+                        .currentThread()
+                        .uncaughtExceptionHandler
                         .uncaughtException(Thread.currentThread(), throwable)
                 }
             },
@@ -220,41 +222,46 @@ open class App :
     private fun initNotificationChannels() {
         // Keep the importance below DEFAULT to avoid making noise on every notification update for
         // the main and update channels
-        val mainChannel = NotificationChannelCompat.Builder(
-                getString(R.string.notification_channel_id),
-                NotificationManagerCompat.IMPORTANCE_LOW,
-            )
-            .setName(getString(R.string.notification_channel_name))
-            .setDescription(getString(R.string.notification_channel_description))
-            .build()
-        val appUpdateChannel = NotificationChannelCompat.Builder(
-                getString(R.string.app_update_notification_channel_id),
-                NotificationManagerCompat.IMPORTANCE_LOW,
-            )
-            .setName(getString(R.string.app_update_notification_channel_name))
-            .setDescription(getString(R.string.app_update_notification_channel_description))
-            .build()
-        val hashChannel = NotificationChannelCompat.Builder(
-                getString(R.string.hash_channel_id),
-                NotificationManagerCompat.IMPORTANCE_HIGH,
-            )
-            .setName(getString(R.string.hash_channel_name))
-            .setDescription(getString(R.string.hash_channel_description))
-            .build()
-        val errorReportChannel = NotificationChannelCompat.Builder(
-                getString(R.string.error_report_channel_id),
-                NotificationManagerCompat.IMPORTANCE_LOW,
-            )
-            .setName(getString(R.string.error_report_channel_name))
-            .setDescription(getString(R.string.error_report_channel_description))
-            .build()
-        val newStreamChannel = NotificationChannelCompat.Builder(
-                getString(R.string.streams_notification_channel_id),
-                NotificationManagerCompat.IMPORTANCE_DEFAULT,
-            )
-            .setName(getString(R.string.streams_notification_channel_name))
-            .setDescription(getString(R.string.streams_notification_channel_description))
-            .build()
+        val mainChannel =
+            NotificationChannelCompat
+                .Builder(
+                    getString(R.string.notification_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_LOW,
+                ).setName(getString(R.string.notification_channel_name))
+                .setDescription(getString(R.string.notification_channel_description))
+                .build()
+        val appUpdateChannel =
+            NotificationChannelCompat
+                .Builder(
+                    getString(R.string.app_update_notification_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_LOW,
+                ).setName(getString(R.string.app_update_notification_channel_name))
+                .setDescription(getString(R.string.app_update_notification_channel_description))
+                .build()
+        val hashChannel =
+            NotificationChannelCompat
+                .Builder(
+                    getString(R.string.hash_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_HIGH,
+                ).setName(getString(R.string.hash_channel_name))
+                .setDescription(getString(R.string.hash_channel_description))
+                .build()
+        val errorReportChannel =
+            NotificationChannelCompat
+                .Builder(
+                    getString(R.string.error_report_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_LOW,
+                ).setName(getString(R.string.error_report_channel_name))
+                .setDescription(getString(R.string.error_report_channel_description))
+                .build()
+        val newStreamChannel =
+            NotificationChannelCompat
+                .Builder(
+                    getString(R.string.streams_notification_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_DEFAULT,
+                ).setName(getString(R.string.streams_notification_channel_name))
+                .setDescription(getString(R.string.streams_notification_channel_description))
+                .build()
 
         val channels = listOf(mainChannel, appUpdateChannel, hashChannel, errorReportChannel, newStreamChannel)
 
