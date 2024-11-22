@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
@@ -38,7 +39,8 @@ import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.paging.CommentRepliesSource
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
-import org.schabi.newpipe.ui.components.common.NoItemsMessage
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
@@ -130,13 +132,17 @@ private fun CommentRepliesDialog(
                             val refresh = comments.loadState.refresh
                             if (refresh is LoadState.Loading) {
                                 LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                            } else if (refresh is LoadState.Error) {
+                                // TODO use error panel instead
+                                EmptyStateComposable(
+                                    EmptyStateSpec.DisabledComments.copy(
+                                        descriptionText = {
+                                            stringResource(R.string.error_unable_to_load_comments)
+                                        }
+                                    )
+                                )
                             } else {
-                                val message = if (refresh is LoadState.Error) {
-                                    R.string.error_unable_to_load_comments
-                                } else {
-                                    R.string.no_comments
-                                }
-                                NoItemsMessage(message)
+                                EmptyStateComposable(EmptyStateSpec.NoComments)
                             }
                         }
                     } else {
