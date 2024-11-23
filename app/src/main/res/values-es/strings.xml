@@ -328,7 +328,7 @@
     <string name="minimize_on_exit_popup_description">Minimizar al reproductor emergente</string>
     <string name="skip_silence_checkbox">Avance rápido durante el silencio</string>
     <string name="playback_step">Paso</string>
-    <string name="playback_reset">Reiniciar</string>
+    <string name="playback_reset">Restablecer</string>
     <string name="channels">Canales</string>
     <string name="users">Usuarios</string>
     <string name="playlists">Listas de reproducción</string>
@@ -392,7 +392,7 @@
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
     <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
-    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
+    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. ¿Restablecer la ubicación de la carpeta de descarga?</string>
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
     <string name="restore_defaults">Restaurar valores predefinidos</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores predefinidos\?</string>
@@ -492,7 +492,7 @@
         <item quantity="other">%d seleccionados</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
-    <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
+    <string name="feed_group_dialog_delete_message">¿Quieres borrar este grupo?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
     <string name="settings_category_feed_title">Fuente</string>
     <string name="feed_update_threshold_title">Velocidad de actualización del contenido</string>
@@ -627,9 +627,7 @@
     <string name="feed_load_error_account_info">No fue posible cargar el muro por \'%s\'.</string>
     <string name="account_terminated">Cuenta cancelada</string>
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
-    <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.
-\nNewPipe no podrá acceder a ella en el futuro.
-\n¿Desea desuscribirse de este canal\?</string>
+    <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.\nNewPipe no podrá acceder a ella en el futuro.\n¿Quieres desuscribirte de este canal?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
@@ -737,7 +735,7 @@
     <string name="ignore_hardware_media_buttons_summary">Útil, por ejemplo, si está utilizando un auricular con botones físicos rotos</string>
     <string name="ignore_hardware_media_buttons_title">Ignorar eventos para botones multimedia de hardware</string>
     <string name="remove_duplicates_title">¿Eliminar los duplicados\?</string>
-    <string name="remove_duplicates_message">¿Desea eliminar todas las secuencias duplicadas de esta lista de reproducción\?</string>
+    <string name="remove_duplicates_message">¿Quieres eliminar todas las secuencias duplicadas de esta lista de reproducción?</string>
     <string name="feed_hide_streams_title">Mostrar las siguientes secuencias</string>
     <string name="feed_show_hide_streams">Mostrar/Ocultar secuencias</string>
     <string name="feed_show_upcoming">Próximamente</string>
@@ -767,7 +765,7 @@
     <string name="audio_track_type_dubbed">doblado</string>
     <string name="audio_track_type_descriptive">descriptivo</string>
     <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga en contenidos progresivos (actualmente %s). Un valor más bajo puede acelerar la carga inicial</string>
-    <string name="settings_category_exoplayer_title">Ajustes para ExoPlayer</string>
+    <string name="settings_category_exoplayer_title">Ajustes de ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gestiona algunos ajustes de ExoPlayer. Estos cambios requieren reiniciar el reproductor para que surtan efecto</string>
     <string name="use_exoplayer_decoder_fallback_summary">Habilite esta opción si tiene problemas con la inicialización del decodificador recurriendo a decodificadores de menor prioridad si el decodificador principal no se inicializa. Esto puede dar como resultado un rendimiento de reproducción más bajo que cuando se usan decodificadores primarios</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera los códecs de video y los vuelve a instanciar cuando cambia la máscara, en lugar de configurar la máscara directamente en el códec. ExoPlayer ya usa esta configuración en algunos dispositivos con este problema y solo afecta a Android 6 y versiones posteriores
@@ -832,7 +830,7 @@
     <string name="notification_actions_summary_android13">Edite cada acción de notificación pulsando sobre ella. Las tres primeras acciones (reproducir/pausa, anterior y siguiente) las establece el sistema y no se pueden personalizar.</string>
     <string name="error_insufficient_storage">No hay suficiente espacio libre en el dispositivo</string>
     <string name="settings_category_backup_restore_title">Respaldar y restaurar</string>
-    <string name="reset_settings_title">Reiniciar ajustes</string>
+    <string name="reset_settings_title">Restablecer ajustes</string>
     <string name="reset_settings_summary">Restablecer todos los ajustes a sus valores predeterminados</string>
     <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación.
 \n

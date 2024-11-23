@@ -204,7 +204,7 @@
     <string name="drawer_close">Navigationsleiste schließen</string>
     <string name="video_player">Video-Player</string>
     <string name="background_player">Wiedergabe im Hintergrund</string>
-    <string name="popup_player">Popup-Player</string>
+    <string name="popup_player">Pop-up-Player</string>
     <string name="preferred_player_fetcher_notification_title">Erhalte Informationen …</string>
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
     <string name="import_data_title">Datenbank importieren</string>

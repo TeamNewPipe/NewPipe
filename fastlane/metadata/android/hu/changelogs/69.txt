@@ -11,7 +11,7 @@
 - Nyelvek támogatása #1792
 
 ### Javítások
-- Idő elemzés fixálása a  . format formátumhoz, így Finnországban is használható a NewPipe
+- Idő elemzés fixálása a . format formátumhoz, így Finnországban is használható a NewPipe
 - Feliratkozó számláló javítása
 - Az API 28+ eszközök esetén előtéri szolgáltatás elérés hozzáadása #1830
 
