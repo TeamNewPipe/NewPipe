@@ -76,7 +76,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
 
         try {
             outFile = new StoredFileHelper(this, path, "application/json");
-            outputStream = new SharpOutputStream(outFile.getStream());
+            outputStream = new SharpOutputStream(outFile.openAndTruncateStream());
         } catch (final IOException e) {
             handleError(e);
             return START_NOT_STICKY;

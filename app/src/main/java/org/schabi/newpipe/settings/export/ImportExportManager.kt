@@ -24,8 +24,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
      */
     @Throws(Exception::class)
     fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
-        file.create()
-        ZipOutputStream(SharpOutputStream(file.stream).buffered()).use { outZip ->
+        ZipOutputStream(SharpOutputStream(file.openAndTruncateStream()).buffered()).use { outZip ->
             // add the database
             ZipHelper.addFileToZip(
                 outZip,
