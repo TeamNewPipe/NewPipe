@@ -803,4 +803,5 @@
     <string name="prefer_descriptive_audio_summary">Veldu hljóðspor með lýsingum fyrir sjónskerta, ef slíkt er tiltækt</string>
     <string name="main_tabs_position_summary">Færa veljara aðalflipa neðst</string>
     <string name="show_error_snackbar">Sýna villustiku</string>
+    <string name="image_quality_summary">Veldu gæði mynda og hvort eigi að hlaða myndum inn yfirhöfuð, til að minnka notun gagna og minnis. Breytingar munu hreinsa bæði vinnsluminni og diskminni - %s</string>
 </resources>

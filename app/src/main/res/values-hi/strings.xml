@@ -74,7 +74,7 @@
     <string name="enable_watch_history_summary">देखे गए वीडियोज़ की सूची रखें</string>
     <string name="resume_on_audio_focus_gain_title">प्लेबैक फिर से शुरू करें</string>
     <string name="resume_on_audio_focus_gain_summary">रुकावटें (जैसे कि फ़ोन कॉल) खत्म होने के बाद वीडियो प्ले जारी रखें</string>
-    <string name="show_next_and_similar_title">\'अगला\' और \'समान\' वीडियो दिखाएं</string>
+    <string name="show_next_and_similar_title">\'अगले\' और \'सबंधित\' वीडियो दिखाएं</string>
     <string name="show_hold_to_append_title">\"कतार में जोड़ने के लिए स्पर्श बनाये रखें\" दिखाएं</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन वीडियो के विवरण पन्ने में दबाई जाए तो सलाह दिखाएं</string>
     <string name="unsupported_url">असमर्थित URL</string>
@@ -248,9 +248,9 @@
     <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता है। इससे 5, 15 या 25 सेकंड आगे पीछे लिजाना काम नहीं करता</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
-    <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
+    <string name="metadata_cache_wipe_summary">वेबपेजों का कैश किया तमाम डेटा हटाएं</string>
     <string name="metadata_cache_wipe_complete_notice">मेटाडाटा कैश मिटाया गया</string>
-    <string name="auto_queue_title">अगली स्ट्रीम को अपने आप जोड़े</string>
+    <string name="auto_queue_title">अगली स्ट्रीम को ऑटो-कतारबद्ध करें</string>
     <string name="auto_queue_summary">खत्म होने वाली पर ना-दोहराने वाली प्लेबैक कतार को संबंधित स्ट्रीम जोड़ते हुए जारी रखें</string>
     <string name="file">फाइल</string>
     <string name="channels">चेनल्स</string>
@@ -444,7 +444,7 @@
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पन्ना</string>
-    <string name="search_showing_result_for">%s : के लिए परिणाम दिखाया जा रहा है</string>
+    <string name="search_showing_result_for">%s : के लिए परिणाम दिखाए जा रहे हैं</string>
     <string name="done">संपन्न</string>
     <string name="artists">कलाकार</string>
     <string name="songs">गीत</string>
@@ -461,9 +461,9 @@
     <string name="show_age_restricted_content_summary">वह सामग्री भी दिखाएं जो आयु सीमा की वजह से शायद बच्चों के लिए अनुपयुक्त हो (जैसे 18+)</string>
     <string name="peertube_instance_add_https_only">केवल HTTPS यूआरएल ही समर्थित हैं</string>
     <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें\?</string>
-    <string name="auto_queue_toggle">अपने आप कतार में जोड़े</string>
+    <string name="auto_queue_toggle">ऑटो-कतारबद्ध करें</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
-    <string name="seek_duration_title">फास्ट-फ़ॉरवर्ड /- रिवाइंड करने की अवधि</string>
+    <string name="seek_duration_title">फास्ट-फॉरवर्ड/-रिवाइंड सीक अवधि</string>
     <string name="notification_colorize_summary">एंड्रॉइड को थंमनेल में मुख्य रंग के अनुसार नोटीफिकेशन रंग को अनुकूलित करने की अनुमति दें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
     <string name="notification_colorize_title">नोटीफिकेशन को रंगीन करें</string>
     <string name="notification_action_nothing">कुछ नहीं</string>
@@ -513,7 +513,7 @@
     <string name="permission_display_over_apps">अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
     <string name="hash_channel_description">विडीओ हैशिंग की प्रगति का नोटीफिकेशन</string>
     <string name="hash_channel_name">वीडियो हैश नोटीफिकेशन</string>
-    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
+    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी देते मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
     <string name="show_meta_info_title">मेटा जानकारी दिखाएं</string>
     <string name="show_description_summary">वीडियो का विवरण और अतिरिक्त जानकारी छिपाने के लिए इसे बंद करें</string>
     <string name="show_description_title">विवरण दिखाएं</string>
