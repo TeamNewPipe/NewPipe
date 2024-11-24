@@ -462,9 +462,6 @@ public final class Player implements PlaybackListener, Listener {
         if (oldPlayerType != playerType && playQueue != null) {
             // If playerType changes from one to another we should reload the player
             // (to disable/enable video stream or to set quality)
-            if (playerType != PlayerType.POPUP) {
-                setRecovery();
-            }
             reloadPlayQueueManager();
         }
 
