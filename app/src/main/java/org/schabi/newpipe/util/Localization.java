@@ -327,25 +327,20 @@ public final class Localization {
 
         if (track.getAudioTrackType() != null) {
             final String trackType = audioTrackType(context, track.getAudioTrackType());
-            if (trackType != null) {
-                return context.getString(R.string.audio_track_name, name, trackType);
-            }
+            return context.getString(R.string.audio_track_name, name, trackType);
         }
         return name;
     }
 
-    @Nullable
+    @NonNull
     private static String audioTrackType(@NonNull final Context context,
-                                         final AudioTrackType trackType) {
-        switch (trackType) {
-            case ORIGINAL:
-                return context.getString(R.string.audio_track_type_original);
-            case DUBBED:
-                return context.getString(R.string.audio_track_type_dubbed);
-            case DESCRIPTIVE:
-                return context.getString(R.string.audio_track_type_descriptive);
-        }
-        return null;
+                                         @NonNull final AudioTrackType trackType) {
+        return switch (trackType) {
+            case ORIGINAL -> context.getString(R.string.audio_track_type_original);
+            case DUBBED -> context.getString(R.string.audio_track_type_dubbed);
+            case DESCRIPTIVE -> context.getString(R.string.audio_track_type_descriptive);
+            case SECONDARY -> context.getString(R.string.audio_track_type_secondary);
+        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
