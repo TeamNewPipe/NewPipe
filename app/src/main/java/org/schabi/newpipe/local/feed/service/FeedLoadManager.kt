@@ -17,6 +17,7 @@ import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.feed.FeedInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
@@ -90,9 +91,9 @@ class FeedLoadManager(private val context: Context) {
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
-        // like `currentProgress`, but counts the number of extractions that have begun, so they
-        // can be properly throttled every once in a while (see doOnNext below)
-        val extractionCount = AtomicInteger()
+        // like `currentProgress`, but counts the number of YouTube extractions that have begun, so
+        // they can be properly throttled every once in a while (see doOnNext below)
+        val youtubeExtractionCount = AtomicInteger()
 
         return outdatedSubscriptions
             .take(1)
@@ -109,11 +110,13 @@ class FeedLoadManager(private val context: Context) {
             .observeOn(Schedulers.io())
             .flatMap { Flowable.fromIterable(it) }
             .takeWhile { !cancelSignal.get() }
-            .doOnNext {
-                // throttle extractions once every BATCH_SIZE to avoid being throttled
-                val previousCount = extractionCount.getAndIncrement()
-                if (previousCount != 0 && previousCount % BATCH_SIZE == 0) {
-                    Thread.sleep(DELAY_BETWEEN_BATCHES_MILLIS.random())
+            .doOnNext { subscriptionEntity ->
+                // throttle YouTube extractions once every BATCH_SIZE to avoid being rate limited
+                if (subscriptionEntity.serviceId == ServiceList.YouTube.serviceId) {
+                    val previousCount = youtubeExtractionCount.getAndIncrement()
+                    if (previousCount != 0 && previousCount % BATCH_SIZE == 0) {
+                        Thread.sleep(DELAY_BETWEEN_BATCHES_MILLIS.random())
+                    }
                 }
             }
             .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
@@ -342,14 +345,14 @@ class FeedLoadManager(private val context: Context) {
         private const val PARALLEL_EXTRACTIONS = 3
 
         /**
-         * How many extractions to perform before waiting [DELAY_BETWEEN_BATCHES_MILLIS] to avoid
-         * being rate limited
+         * How many YouTube extractions to perform before waiting [DELAY_BETWEEN_BATCHES_MILLIS]
+         * to avoid being rate limited
          */
         private const val BATCH_SIZE = 50
 
         /**
-         * Wait a random delay in this range once every [BATCH_SIZE] extractions to avoid being
-         * rate limited
+         * Wait a random delay in this range once every [BATCH_SIZE] YouTube extractions to avoid
+         * being rate limited
          */
         private val DELAY_BETWEEN_BATCHES_MILLIS = (6000L..12000L)
 
