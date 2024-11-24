@@ -48,10 +48,12 @@ public final class ListHelper {
     private static final Set<String> HIGH_RESOLUTION_LIST = Set.of("1440p", "2160p");
     // Audio track types in order of priority. 0=lowest, n=highest
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING =
-            List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL);
+            List.of(AudioTrackType.DESCRIPTIVE, AudioTrackType.SECONDARY, AudioTrackType.DUBBED,
+                    AudioTrackType.ORIGINAL);
     // Audio track types in order of priority when descriptive audio is preferred.
     private static final List<AudioTrackType> AUDIO_TRACK_TYPE_RANKING_DESCRIPTIVE =
-            List.of(AudioTrackType.ORIGINAL, AudioTrackType.DUBBED, AudioTrackType.DESCRIPTIVE);
+            List.of(AudioTrackType.SECONDARY, AudioTrackType.DUBBED, AudioTrackType.ORIGINAL,
+                    AudioTrackType.DESCRIPTIVE);
 
     /**
      * List of supported YouTube Itag ids.

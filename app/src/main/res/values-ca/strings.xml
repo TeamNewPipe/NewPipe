@@ -61,7 +61,7 @@
     <string name="msg_error">Error</string>
     <string name="settings_category_downloads_title">Baixades</string>
     <string name="title_licenses">Llicències de tercers</string>
-    <string name="tab_about">Quant a</string>
+    <string name="tab_about">Quant a i PMF</string>
     <string name="tab_licenses">Llicències</string>
     <string name="contribution_title">Col·labora-hi</string>
     <string name="website_title">Lloc web</string>
@@ -714,4 +714,18 @@
     <string name="prefer_descriptive_audio_summary">Seleccioneu una pista d\'àudio amb descripcions per a persones amb discapacitat visual si està disponible</string>
     <string name="streams_notification_channel_name">Nous streams</string>
     <string name="streams_notification_channel_description">Notificacions sobre nous streams per a subscripcions</string>
+    <string name="msg_failed_to_copy">Ha fallat en copiar al porta-retalls</string>
+    <string name="yes">Sí</string>
+    <string name="settings_category_backup_restore_title">Còpia de seguretat i restauració</string>
+    <string name="no_live_streams">Cap retransmissió en directe</string>
+    <string name="import_subscriptions_hint">Importa o exporta les subscripcions des del menú de 3 punts</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s retransmissió nova</item>
+        <item quantity="many">%s retransmissions noves</item>
+        <item quantity="other">%s retransmissions noves</item>
+    </plurals>
+    <string name="play_queue_audio_track">Àudio: %s</string>
+    <string name="audio_track">Pista d\'àudio</string>
+    <string name="no">No</string>
+    <string name="no_streams">Cap emissió</string>
 </resources>

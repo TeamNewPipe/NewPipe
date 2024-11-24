@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
+import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.reactivestreams.Subscriber;
@@ -45,7 +46,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -332,10 +332,6 @@ public class StatisticsPlaylistFragment
                             StreamDialogDefaultEntry.DELETE,
                             (f, i) -> deleteEntry(
                                     Math.max(itemListAdapter.getItemsList().indexOf(item), 0)))
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
                     .create()
                     .show();
         } catch (final IllegalArgumentException e) {
@@ -368,6 +364,7 @@ public class StatisticsPlaylistFragment
         }
     }
 
+    @Override
     public PlayQueue getPlayQueue() {
         return getPlayQueue(0);
     }

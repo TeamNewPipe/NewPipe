@@ -838,4 +838,5 @@
     <string name="yes">Áno</string>
     <string name="auto_update_check_description">NewPipe môže z času na čas automaticky kontrolovať nové verzie a upozorniť vás, keď budú k dispozícii.
 \nChcete to povoliť?</string>
+    <string name="import_settings_vulnerable_format">Nastavenia v importovanom exporte používajú zraniteľný formát, ktorý bol od verzie NewPipe 0.27.0 zrušený. Uistite sa, že importovaný export pochádza z dôveryhodného zdroja, a v budúcnosti radšej používajte len exporty získané z verzie NewPipe 0.27.0 alebo novšej. Podpora importu nastavení v tomto zraniteľnom formáte bude čoskoro úplne odstránená a potom už staré verzie programu NewPipe nebudú môcť importovať nastavenia exportov z nových verzií.</string>
 </resources>

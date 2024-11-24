@@ -6,6 +6,7 @@ on:
     branches:
       - dev
       - master
+      - refactor
       - release**
     paths-ignore:
       - 'README.md'
@@ -46,10 +47,10 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: git checkout -B "$BRANCH"
 
-      - name: set up JDK 17
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 
@@ -63,8 +64,7 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
 
   test-android:
-    # macos has hardware acceleration. See android-emulator-runner action
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       matrix:
@@ -82,10 +82,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: set up JDK 17
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 
@@ -115,10 +121,10 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: "temurin"
           cache: 'gradle'
 

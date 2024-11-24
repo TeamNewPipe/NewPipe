@@ -952,11 +952,14 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         super.onRepeatModeChanged(repeatMode);
 
         if (repeatMode == REPEAT_MODE_ALL) {
-            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_all);
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
         } else if (repeatMode == REPEAT_MODE_ONE) {
-            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_one);
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
         } else /* repeatMode == REPEAT_MODE_OFF */ {
-            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_off);
+            binding.repeatButton.setImageResource(
+                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
         }
     }
 

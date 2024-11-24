@@ -1,0 +1,16 @@
+Nouveau
+• Prise en charge des onglets de chaîne
+• Sélection de la qualité de l'image
+• Obtenir les URL de toutes les images
+
+Amélioré
+• Accessibilité des interfaces du lecteur
+• Meilleure sélection audio pour les téléchargements de vidéos uniquement
+• Option permettant d'inclure les noms de playlist et de vidéo dans le contenu de playlist partagé
+
+Corrigé
+• [YouTube] Correction de l'obtention du nombre de likes
+• Correction des fenêtres contextuelles et des plantages du lecteur
+• Sélection de mauvaises langues dans le sélecteur de langue
+• Le focus audio du lecteur ne respectait pas la fonction muet
+• L'ajout d'éléments de liste de lecture ne fonctionnait parfois pas

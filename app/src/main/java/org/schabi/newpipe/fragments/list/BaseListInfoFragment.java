@@ -9,6 +9,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -24,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -143,7 +144,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull L result) -> {
+                .subscribe((@NonNull final L result) -> {
                     isLoading.set(false);
                     currentInfo = result;
                     currentNextPage = result.getNextPage();

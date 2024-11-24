@@ -1,14 +1,9 @@
-Mejora de
-- Añadir más títulos para mejorar la accesibilidad de los invidentes #2655
-- Hacer que el lenguaje de la configuración de la carpeta de descarga sea más consistente y menos ambiguo #2637
+Mejorado
+• Añadir más títulos para mejorar la accesibilidad de los invidentes #2655
+• Hacer que el lenguaje de la configuración de la carpeta de descarga sea más consistente y menos ambiguo #2637
 
 Corregido
-- Comprobar si se descarga el último byte del bloque #2646
-- Corregido el desplazamiento en el fragmento de detalle del vídeo #2672
-- Quitar las animaciones de doble caja de búsqueda a una sola #2695
-- [SoundCloud] Fijar la extracción de client_id #2745
-
-Desarrollo
-- Añadir las dependencias que faltan heredadas de NewPipeExtractor en NewPipe #2535
-- Migrar a AndroidX #685
-- Actualizar a ExoPlayer 2.10.6 #2697, #2736
+• Comprobar si se descarga el último byte del bloque #2646
+• Corregido el desplazamiento en el fragmento de detalle del vídeo #2672
+• Eliminar las animaciones de doble caja de búsqueda a una sola #2695
+• [SoundCloud] Arreglar la extracción de client_id #2745

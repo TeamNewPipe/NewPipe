@@ -829,7 +829,7 @@
     <string name="channel_tab_tracks">Piste</string>
     <string name="error_insufficient_storage">Nu este suficient spațiu liber pe dispozitiv</string>
     <string name="settings_category_backup_restore_title">Backup și restabilire</string>
-    <string name="auto_update_check_description">NewPipe poate verifica automat pentru versiuni noi din când în când și te poate notifica când acestea sunt disponibile.
+    <string name="auto_update_check_description">NewPipe poate verifica automat pentru versiuni noi din când în când și vă poate notifica când acestea sunt disponibile.
 \nDoriți să activați acest lucru?</string>
     <string name="reset_settings_summary">Resetează toate setările la valorile inițiale</string>
     <string name="yes">Da</string>
@@ -838,4 +838,5 @@
     <string name="reset_all_settings">Resetarea tuturor setărilor va elimina toate setările tale preferate și va reporni aplicația.
 \n
 \nSigur doriți să continuați?</string>
+    <string name="import_settings_vulnerable_format">Setările din exportul importat folosesc un format vulnerabil care a fost depreciat de la NewPipe 0.27.0. Asigurați-vă că exportul care este importat este dintr-o sursă de încredere și preferați să utilizați numai exporturi obținute din NewPipe 0.27.0 sau mai nou în viitor. Suportul pentru importul setărilor în acest format vulnerabil va fi în curând eliminat complet, iar versiunile vechi ale NewPipe nu vor mai putea importa setările exporturilor din versiunile noi.</string>
 </resources>

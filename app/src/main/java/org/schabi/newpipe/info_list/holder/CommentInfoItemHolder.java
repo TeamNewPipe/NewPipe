@@ -1,9 +1,13 @@
 package org.schabi.newpipe.info_list.holder;
 
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
+import static org.schabi.newpipe.util.text.TouchUtils.getOffsetForHorizontalLine;
 
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,7 +29,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
-import org.schabi.newpipe.util.text.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.text.TextEllipsizer;
 
 public class CommentInfoItemHolder extends InfoItemHolder {
@@ -128,7 +131,26 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         textEllipsizer.ellipsize();
 
         //noinspection ClickableViewAccessibility
-        itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
+        itemContentView.setOnTouchListener((v, event) -> {
+            final CharSequence text = itemContentView.getText();
+            if (text instanceof Spanned buffer) {
+                final int action = event.getAction();
+
+                if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_DOWN) {
+                    final int offset = getOffsetForHorizontalLine(itemContentView, event);
+                    final var links = buffer.getSpans(offset, offset, ClickableSpan.class);
+
+                    if (links.length != 0) {
+                        if (action == MotionEvent.ACTION_UP) {
+                            links[0].onClick(itemContentView);
+                        }
+                        // we handle events that intersect links, so return true
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
 
         itemView.setOnClickListener(view -> {
             textEllipsizer.toggle();

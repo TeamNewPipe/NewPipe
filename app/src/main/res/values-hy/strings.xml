@@ -219,4 +219,26 @@
     <string name="empty_list_subtitle">Ոչինչ բացի դատարկությունից</string>
     <string name="retry">Կրկին փորձել</string>
     <string name="feed_new_items">Հոսքի նորերը</string>
+    <string name="metadata_language">Լեզու</string>
+    <string name="open_with">Բացել…</string>
+    <string name="metadata_licence">Արտոնագիր</string>
+    <string name="unknown_format">Անհյատ ֆորմատ</string>
+    <string name="channel_tab_playlists">Նվագացանկեր</string>
+    <string name="image_quality_medium">Միջին որակ</string>
+    <string name="sort">Դասավորել</string>
+    <string name="detail_pinned_comment_view_description">Գամված մեկնաբանություն</string>
+    <string name="account_terminated">Հաշիվը կասեցված է</string>
+    <string name="channel_tab_about"></string>
+    <string name="channel_tab_albums">Ալբոմներ</string>
+    <string name="yes">Այո</string>
+    <string name="no">Ոչ</string>
+    <string name="show_less">Պակաս</string>
+    <string name="show_more">Ավելին</string>
+    <string name="image_quality_high">Բարձր որակ</string>
+    <string name="image_quality_low">Ցածր որակ</string>
+    <string name="image_quality_none">Նկարները չներբեռնել</string>
+    <string name="image_quality_title">Պատկերի որակ</string>
+    <string name="channel_tab_channels">Ալիքներ</string>
+    <string name="channel_tab_livestreams">Ուղիղ</string>
+    <string name="unknown_audio_track">Անհայտ</string>
 </resources>

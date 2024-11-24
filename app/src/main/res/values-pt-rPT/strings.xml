@@ -47,7 +47,7 @@
         <item quantity="many">%s visualizações</item>
         <item quantity="other">%s visualizações</item>
     </plurals>
-    <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
+    <string name="confirm_prompt">Deseja limpar o histórico de descargas ou eliminar todos os ficheiros descarregados?</string>
     <string name="settings_category_history_title">Histórico e cache</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
     <string name="controls_download_desc">Descarregar ficheiro de vídeo</string>
@@ -95,7 +95,7 @@
     <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida, mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="export_to">Exportar para</string>
-    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="title_activity_about">Sobre o NewPipe</string>
     <string name="blank_page_summary">Página vazia</string>
     <string name="playlist_no_uploader">Geração automática (não foi encontrado nenhum enviador)</string>
     <string name="default_resolution_title">Resolução padrão</string>
@@ -141,7 +141,7 @@
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="enqueue">Enfileirar</string>
     <string name="no_one_watching">Ninguém está a ver</string>
-    <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
+    <string name="delete_downloaded_files">Eliminar ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="users">Utilizadores</string>
     <string name="remove_watched_popup_warning">Os vídeos que tenham sido vistos antes e depois de serem adicionados à lista de reprodução serão removidos.
@@ -495,7 +495,7 @@
     <string name="content_not_available">Conteúdo indisponível</string>
     <string name="subscribed_button_title">Subscrito</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
-    <string name="tab_about">Sobre e FAQ</string>
+    <string name="tab_about">Sobre e perguntas frequentes</string>
     <string name="subscribers_count_not_available">Contagem de subscrições indisponível</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir o conteúdo — %s</string>
     <string name="playback_reset">Repor</string>
@@ -649,9 +649,9 @@
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
     <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
     <plurals name="deleted_downloads_toast">
-        <item quantity="one">Transferência %1$s eliminada</item>
-        <item quantity="many">Transferências %1$s eliminadas</item>
-        <item quantity="other">Transferências %1$s eliminadas</item>
+        <item quantity="one">%1$s descarga eliminada</item>
+        <item quantity="many">%1$s descargas eliminadas</item>
+        <item quantity="other">%1$s descargas eliminadas</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="one">Download concluído</item>
@@ -689,7 +689,7 @@
     <string name="check_new_streams">Verificar se há novos vídeos</string>
     <string name="enable_streams_notifications_title">Notificações sobre novos vídeos</string>
     <string name="streams_notifications_interval_title">Frequência da verificação</string>
-    <string name="delete_downloaded_files_confirm">Apagar todos os ficheiros descarregados do disco\?</string>
+    <string name="delete_downloaded_files_confirm">Eliminar todos os ficheiros descarregados do disco?</string>
     <string name="notifications_disabled">Notificações são desativadas</string>
     <plurals name="new_streams">
         <item quantity="one">%s vídeo novo</item>
@@ -797,7 +797,7 @@
     <string name="open_play_queue">Abrir fila de reprodução</string>
     <string name="image_quality_none">Não carregar imagens</string>
     <string name="image_quality_high">Alta qualidade</string>
-    <string name="channel_tab_about">Acerca</string>
+    <string name="channel_tab_about">Sobre</string>
     <string name="share_playlist">Partilhar lista de reprodução</string>
     <string name="forward">Avançar</string>
     <string name="channel_tab_albums">Álbuns</string>
@@ -830,12 +830,13 @@
     <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
 \nDeseja ativar essa opção?</string>
     <string name="reset_settings_summary">Repor valores originais de todas as definições</string>
-    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a app.
+    <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará a aplicação.
 \n
 \nTem certeza que deseja continuar?</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
-    <string name="settings_category_backup_restore_title">Backup e restauro</string>
+    <string name="settings_category_backup_restore_title">Cópia de segurança e restauro</string>
     <string name="reset_settings_title">Repor definições</string>
     <string name="error_insufficient_storage">Não há espaço suficiente no aparelho</string>
+    <string name="import_settings_vulnerable_format">As configurações na exportação a serem importadas usam um formato vulnerável depreciado desde NewPipe 0.27.0. Certifique-se de que a exportação que é importada é de uma fonte confiável e prefira usar apenas as exportações obtidas do NewPipe 0.27.0 ou mais recentes no futuro. O suporte para importar configurações neste formato vulnerável será removido em breve completamente e, em seguida, versões antigas do NewPipe não serão capazes de importar configurações de exportações de novas versões.</string>
 </resources>

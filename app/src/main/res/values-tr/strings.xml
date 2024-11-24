@@ -648,8 +648,8 @@
     <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
     <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişebilirsiniz</string>
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
-    <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
-    <string name="enqueued_next">Sonraki sıraya eklendi</string>
+    <string name="enqueue_next_stream">Bundan sonra oynat</string>
+    <string name="enqueued_next">Bundan sonra oynatılmak için sıraya eklendi</string>
     <string name="processing_may_take_a_moment">İşleniyor… Biraz zaman alabilir</string>
     <string name="check_for_updates">Güncellemeleri denetle</string>
     <string name="manual_update_description">Yeni sürümleri el ile denetleyin</string>
@@ -824,4 +824,5 @@
     <string name="no">Hayır</string>
     <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir.
 \nBunu etkinleştirmek istiyor musunuz?</string>
+    <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
 </resources>

@@ -9,7 +9,7 @@
     <string name="download">Скачать</string>
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду \"%1$s\"\?</string>
+    <string name="did_you_mean">Возможно, вы имели в виду «%1$s»?</string>
     <string name="share_dialog_title">Поделиться</string>
     <string name="download_path_title">Папка для скачанного видео</string>
     <string name="download_path_summary">Папка для скачанного видео</string>
@@ -17,7 +17,7 @@
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено, установить\?</string>
-    <string name="show_play_with_kodi_title">\"Воспроизвести в Kodi\"</string>
+    <string name="show_play_with_kodi_title">Показать опцию «Воспроизвести в Kodi»</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
@@ -33,7 +33,7 @@
     <string name="detail_likes_img_view_description">Понравилось</string>
     <string name="use_external_video_player_title">Внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Внешний аудиоплеер</string>
-    <string name="background_player_playing_toast">Фоновое воспроизведение</string>
+    <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
@@ -78,7 +78,7 @@
     <string name="audio">Аудио</string>
     <string name="retry">Повтор</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="controls_background_title">Фон</string>
+    <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
@@ -189,8 +189,8 @@
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
-    <string name="show_hold_to_append_title">\"Зажмите, чтобы добавить\"</string>
-    <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
+    <string name="show_hold_to_append_title">Показать подсказку «Зажмите, чтобы добавить»</string>
+    <string name="show_hold_to_append_summary">Показать подсказку при нажатии «В окне» или «В фоне» на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
@@ -282,16 +282,16 @@
 \n
 \n1. Перейдите по ссылке: %1$s
 \n2. Авторизуйтесь, если потребуется
-\n3. Отметьте пункт \"YouTube и YouTube Music\", затем выберите тип \"подписки\"
-\n4. Нажмите \"Далее\" и \"Создать экспорт\"
-\n5. Нажмите кнопку \"Скачать\", когда она появится
+\n3. Отметьте пункт «YouTube и YouTube Music», затем выберите тип «подписки»
+\n4. Нажмите «Далее» и «Создать экспорт»
+\n5. Нажмите кнопку «Скачать», когда она появится
 \n6. Нажмите ИМПОРТ ФАЙЛА внизу и выберите скачанный ZIP-архив
-\n7. [Если импортировать ZIP-файл не удалось] Из скачанного ZIP-архива распакуйте CSV-файл (обычно это \"YouTube и YouTube Music/подписки/подписки.csv\"), нажмите ИМПОРТ ФАЙЛА и выберите этот CSV-файл</string>
-    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
-\n 
-\n1. Включите режим \"Полная версия сайта\" в браузере.
+\n7. [Если импортировать ZIP-файл не удалось] Из скачанного ZIP-архива распакуйте CSV-файл (обычно это «YouTube и YouTube Music/подписки/подписки.csv»), нажмите ИМПОРТ ФАЙЛА и выберите этот CSV-файл</string>
+    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID:
+\n
+\n1. Включите «Версия для ПК» в браузере (сайт не поддерживается мобильными устройствами)
 \n2. Перейдите по ссылке %1$s
-\n3. Выполните вход.
+\n3. Авторизуйтесь, если потребуется
 \n4. Скопируйте URL профиля из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика.
@@ -341,7 +341,7 @@
     <string name="minimize_on_exit_title">При сворачивании плеера</string>
     <string name="minimize_on_exit_summary">При переключении со встроенного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
-    <string name="minimize_on_exit_background_description">Фоновый плеер</string>
+    <string name="minimize_on_exit_background_description">Свернуть в фоновый плеер</string>
     <string name="minimize_on_exit_popup_description">Свернуть в плеер в окне</string>
     <string name="list_view_mode">Вид списка</string>
     <string name="list">Список</string>
@@ -416,7 +416,7 @@
     <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения.
 \nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
     <string name="downloads_storage_use_saf_title">Системный выбор папки (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" позволяет сохранять файлы на внешнюю SD-карту</string>
+    <string name="downloads_storage_use_saf_summary">«Storage Access Framework» позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -456,7 +456,7 @@
     <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
     <string name="app_language_title">Язык интерфейса</string>
     <string name="systems_language">Как в системе</string>
-    <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
+    <string name="subtitle_activity_recaptcha">По завершении нажмите «Готово»</string>
     <string name="done">Готово</string>
     <string name="videos_string">Видео</string>
     <plurals name="seconds">
@@ -519,7 +519,7 @@
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
-\nВключите \"%1$s\" в настройках, если хотите его видеть.</string>
+\nВключите «%1$s» в настройках, если хотите его видеть.</string>
     <string name="content_not_supported">NewPipe не поддерживает этот контент. 
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
@@ -535,7 +535,7 @@
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
-    <string name="youtube_restricted_mode_enabled_title">\"Безопасный режим\" YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Включить «Безопасный режим» YouTube</string>
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
@@ -574,7 +574,7 @@
     <string name="recaptcha_cookies_cleared">Куки reCAPTCHA удалены</string>
     <string name="clear_cookie_title">Удалить куки reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Показывать контент, который, возможно, не подходит для детей, так как имеет возрастное ограничение (например, 18+)</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube предоставляет \"Безопасный режим\", скрывая потенциально взрослый контент</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube предоставляет «Безопасный режим», скрывая потенциально взрослый контент</string>
     <string name="enqueued">Добавлено в очередь</string>
     <string name="enqueue_stream">Добавить в очередь</string>
     <string name="clear_cookie_summary">Удалить сохранённые при решении reCAPTCHA куки</string>
@@ -639,7 +639,7 @@
     <string name="open_website_license">Открыть веб-сайт</string>
     <string name="service_provides_reason">%s указывает следующую причину:</string>
     <string name="account_terminated">Аккаунт отключён</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только «Storage Access Framework»</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
     <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
     <string name="off">Отключить</string>
@@ -690,7 +690,7 @@
     <string name="get_notified">Уведомлять</string>
     <string name="you_successfully_subscribed">Вы подписались на канал</string>
     <string name="toggle_all">Переключить все</string>
-    <string name="show_crash_the_player_title">Показать \"Вызвать сбой плеера\"</string>
+    <string name="show_crash_the_player_title">Показать «Сбой плеера»</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>
     <string name="error_report_channel_name">Уведомление отчёта об ошибке</string>
@@ -789,7 +789,7 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="show_channel_tabs">Вкладки канала</string>
-    <string name="channel_tab_shorts">Шорты</string>
+    <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Загрузка метаданных…</string>
     <string name="toggle_screen_orientation">Изменить ориентацию экрана</string>
     <string name="image_quality_low">Низкое качество</string>
@@ -818,11 +818,11 @@
     <string name="play">Воспроизвести</string>
     <string name="more_options">Другие опции</string>
     <string name="metadata_thumbnails">Миниатюры</string>
-    <string name="channel_tab_tracks">Дорожки</string>
+    <string name="channel_tab_tracks">Треки</string>
     <string name="duration">Продолжительность</string>
     <string name="channel_tab_channels">Каналы</string>
     <string name="previous_stream">Предыдущий стрим</string>
-    <string name="channel_tab_livestreams">Живая трансляция</string>
+    <string name="channel_tab_livestreams">Стримы</string>
     <string name="show_more">Показать больше</string>
     <string name="show_less">Показать меньше</string>
     <plurals name="replies">
@@ -840,4 +840,8 @@
     <string name="reset_settings_title">Сбросить настройки</string>
     <string name="auto_update_check_description">NewPipe может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны.
 \nЖелаете включить эту функцию?</string>
+    <string name="reset_all_settings">Сброс всех настроек приведёт к сбросу всех ваших настроек и перезапуску приложения.
+\n
+\nВы уверены, что хотите продолжить?</string>
+    <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
 </resources>

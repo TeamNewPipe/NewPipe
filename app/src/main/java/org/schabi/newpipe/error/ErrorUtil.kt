@@ -54,7 +54,7 @@ class ErrorUtil {
          */
         @JvmStatic
         fun showSnackbar(context: Context, errorInfo: ErrorInfo) {
-            val rootView = if (context is Activity) context.findViewById<View>(R.id.content) else null
+            val rootView = (context as? Activity)?.findViewById<View>(android.R.id.content)
             showSnackbar(context, rootView, errorInfo)
         }
 
@@ -71,7 +71,7 @@ class ErrorUtil {
         fun showSnackbar(fragment: Fragment, errorInfo: ErrorInfo) {
             var rootView = fragment.view
             if (rootView == null && fragment.activity != null) {
-                rootView = fragment.requireActivity().findViewById(R.id.content)
+                rootView = fragment.requireActivity().findViewById(android.R.id.content)
             }
             showSnackbar(fragment.requireContext(), rootView, errorInfo)
         }

@@ -131,7 +131,7 @@
     <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continua vídeo após interrupções (ex: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
-    <string name="enable_search_history_summary">Armazena histórico de pesquisa localmente</string>
+    <string name="enable_search_history_summary">Armazena o histórico de pesquisa localmente</string>
     <string name="enable_watch_history_title">Histórico de exibição</string>
     <string name="enable_watch_history_summary">Mantenha o controle dos vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
@@ -284,8 +284,8 @@
 \n
 \nVocê deseja continuar\?</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens removidos</string>
-    <string name="metadata_cache_wipe_title">Limpar cache de metadados</string>
-    <string name="metadata_cache_wipe_summary">Remove todos os dados de páginas em cache</string>
+    <string name="metadata_cache_wipe_title">Remover metadados em cache</string>
+    <string name="metadata_cache_wipe_summary">Remover todos os dados da página web armazenados em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados removidos</string>
     <string name="playback_speed_control">Controles para velocidade de reprodução</string>
     <string name="playback_tempo">Velocidade</string>
@@ -298,13 +298,13 @@
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Mudar tamanho da legenda e estilos de plano de fundo. Requer reiniciar o aplicativo para ter efeito</string>
-    <string name="clear_views_history_title">Limpar histórico de exibição</string>
-    <string name="clear_views_history_summary">Remove histórico de vídeos assistidos e as posições de reprodução</string>
+    <string name="clear_views_history_title">Remover histórico de exibição</string>
+    <string name="clear_views_history_summary">Remove o histórico de vídeos assistidos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Remover todo o histórico de exibição?</string>
     <string name="watch_history_deleted">Histórico de exibição removido</string>
     <string name="clear_search_history_title">Remover histórico de pesquisas</string>
-    <string name="clear_search_history_summary">Remove histórico de pesquisas</string>
-    <string name="delete_search_history_alert">Remover todo histórico de pesquisas?</string>
+    <string name="clear_search_history_summary">Remove o histórico de pesquisas</string>
+    <string name="delete_search_history_alert">Remover todo o histórico de pesquisas?</string>
     <string name="search_history_deleted">Histórico de pesquisa removido</string>
     <string name="one_item_deleted">1 item excluído.</string>
     <string name="app_license">NewPipe é um copyleft de software livre: Você pode usar, estudar, compartilhar e melhorar a seu gosto. Especificamente você pode redistribuir e/ou modificá-lo sob os termos da GNU General Public License como publicado pela Fundação de Software Livre, na versão 3 da Licença, ou (a seu critério) qualquer versão posterior.</string>
@@ -345,7 +345,7 @@
     <string name="restore_defaults">Restaurar configurações</string>
     <string name="restore_defaults_confirmation">Deseja restaurar os padrões?</string>
     <string name="subscribers_count_not_available">Número de inscritos indisponível</string>
-    <string name="main_page_content_summary">Quais guias são exibidas na página inicial</string>
+    <string name="main_page_content_summary">Quais guias são exibidas na tela inicial</string>
     <string name="conferences">Conferências</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="updates_setting_description">Notificar quando uma nova versão do aplicativo estiver disponível</string>
@@ -388,10 +388,10 @@
     <string name="error_unable_to_load_comments">Não foi possível carregar os comentários</string>
     <string name="close">Fechar</string>
     <string name="enable_playback_resume_title">Continuar reprodução</string>
-    <string name="enable_playback_resume_summary">Restaura última posição da reprodução</string>
+    <string name="enable_playback_resume_summary">Restaurar a última posição de reprodução</string>
     <string name="enable_playback_state_lists_title">Posições em listas</string>
-    <string name="enable_playback_state_lists_summary">Mostra indicadores de posição de reprodução em listas</string>
-    <string name="settings_category_clear_data_title">Excluir dados</string>
+    <string name="enable_playback_state_lists_summary">Mostra os indicadores de posição de reprodução em listas</string>
+    <string name="settings_category_clear_data_title">Remover dados</string>
     <string name="watch_history_states_deleted">Posições de reprodução removidas</string>
     <string name="missing_file">Arquivo movido ou excluído</string>
     <string name="overwrite_unrelated_warning">Já existe um arquivo com este nome</string>
@@ -565,9 +565,9 @@
     <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
     <string name="enqueued">Na fila</string>
     <string name="enqueue_stream">Pôr na fila</string>
-    <string name="clear_cookie_summary">Apaga os cookies que o NewPipe armazena quando você resolve um reCAPTCHA</string>
-    <string name="clear_cookie_title">Apagar cookies de reCAPTCHA</string>
-    <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram apagados</string>
+    <string name="clear_cookie_summary">Remove os cookies que o NewPipe armazena quando você resolve um reCAPTCHA</string>
+    <string name="clear_cookie_title">Remover cookies de reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">Os cookies de reCAPTCHA foram removidos</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube oferece um \"Modo Restrito\" que oculta conteúdo potencialmente adulto</string>
     <string name="show_age_restricted_content_summary">Mostra conteúdo possivelmente inadequado para crianças pois tem restrição de idade (como +18)</string>
     <string name="notification_colorize_summary">Permite que o Android personalize a cor da notificação de acordo com a cor principal da miniatura (isso não está disponível em todos os dispositivos)</string>
@@ -690,7 +690,7 @@
     <string name="streams_notification_channel_name">Novos vídeos</string>
     <string name="streams_notification_channel_description">Notificações sobre novos vídeos de inscrições</string>
     <string name="enable_streams_notifications_title">Notificações sobre novos vídeos</string>
-    <string name="enable_streams_notifications_summary">Notificar sobre novos vídeos de inscrições</string>
+    <string name="enable_streams_notifications_summary">Notificar sobre novos vídeos de suas inscrições</string>
     <string name="streams_notifications_interval_title">Frequência de verificação</string>
     <string name="any_network">Nenhuma rede</string>
     <string name="delete_downloaded_files_confirm">Excluir todos os arquivos baixados?</string>
@@ -799,7 +799,7 @@
     <string name="image_quality_low">Baixa qualidade</string>
     <string name="toggle_fullscreen">Alternar tela cheia</string>
     <string name="metadata_avatars">Fotos</string>
-    <string name="next_stream">Próxima vídeo</string>
+    <string name="next_stream">Próximo vídeo</string>
     <string name="metadata_subchannel_avatars">Fotos de perfil do subcanal</string>
     <string name="open_play_queue">Abrir fila de reprodução</string>
     <string name="image_quality_none">Não carregar imagens</string>
@@ -830,7 +830,7 @@
     <string name="error_insufficient_storage">Não há espaço livre suficiente no dispositivo</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
-    <string name="settings_category_backup_restore_title">Backup e restauração</string>
+    <string name="settings_category_backup_restore_title">Backup &amp; Restauração</string>
     <string name="auto_update_check_description">O NewPipe pode verificar automaticamente se há novas versões de tempos em tempos e notificá-lo quando elas estiverem disponíveis.
 \nDeseja ativar essa opção?</string>
     <string name="reset_settings_title">Restaurar configurações</string>
@@ -838,4 +838,5 @@
     <string name="reset_all_settings">A restauração de todas as configurações descartará todas as suas configurações preferidas e reiniciará o aplicativo.
 \n
 \nTem certeza de que deseja continuar?</string>
+    <string name="import_settings_vulnerable_format">As configurações na exportação que está sendo importada usam um formato vulnerável que foi descontinuado desde o NewPipe 0.27.0. Certifique-se de que a exportação que está sendo importada seja de uma fonte confiável e prefira usar apenas exportações obtidas do NewPipe 0.27.0 ou mais recente no futuro. O suporte para importação de configurações neste formato vulnerável será completamente removido em breve e as versões antigas do NewPipe não poderão mais importar configurações de exportações de novas versões.</string>
 </resources>

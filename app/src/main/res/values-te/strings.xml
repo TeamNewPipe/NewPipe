@@ -115,11 +115,11 @@
     <string name="title_activity_about">న్యూపిప్ గురించి</string>
     <string name="title_licenses">మూడవ పార్టీ లైసెన్స్</string>
     <string name="tab_about">గురించి</string>
-    <string name="tab_licenses">లైసెన్సుల</string>
+    <string name="tab_licenses">లైసెన్సులు</string>
     <string name="view_on_github">GitHub పై చూడండి</string>
-    <string name="app_license_title">న్యూపెయిప్స్ లైసెన్స్</string>
+    <string name="app_license_title">న్యూపెయిప్ యొక్క లైసెన్స్</string>
     <string name="contribution_encouragement">మీకు ఆలోచనలు ఉన్నాయా; అనువాదం, డిజైన్ మార్పులు, కోడ్ శుభ్రపరచడం లేదా నిజమైన భారీ కోడ్ మార్పులు-సహాయం ఎల్లప్పుడూ స్వాగతం. ఎంత ఎక్కువ చేస్తే అంత మంచిది!</string>
-    <string name="read_full_license">లైసెన్స్ చదువు</string>
+    <string name="read_full_license">లైసెన్స్‌ను చదువు</string>
     <string name="contribution_title">సహకరించటానికి</string>
     <string name="title_activity_history">చరిత్ర</string>
     <string name="action_history">చరిత్ర</string>
@@ -397,7 +397,7 @@
     <string name="background_player">తేలియాడే ప్లేయర్</string>
     <string name="processing_may_take_a_moment">ప్రాసెస్ చేస్తోంది... కొంత సమయం పట్టవచ్చు</string>
     <string name="playlist_thumbnail_change_success">వినోదజాబితా సూక్ష్మచిత్రం మార్చబడింది.</string>
-    <string name="caption_none">శీర్షికలు లేవు</string>
+    <string name="caption_none">శీర్షికలు వద్దు</string>
     <string name="playlist_creation_success">వినోదజాబితా రూపొందించబడింది</string>
     <string name="playlist_add_stream_success">వినోదజాబితా చేయబడింది</string>
     <string name="unmute">అన్‌మ్యూట్ చేయండి</string>
@@ -469,4 +469,6 @@
     <string name="progressive_load_interval_summary">ప్రగతిశీల విషయాలపై లోడ్ విరామం పరిమాణాన్ని మార్చండి (ప్రస్తుతం %s). తక్కువ విలువ వాటి ప్రారంభ లోడింగ్‌ను వేగవంతం చేయవచ్చు</string>
     <string name="ignore_hardware_media_buttons_title">హార్డ్‌వేర్ మీడియా బటన్ ఈవెంట్‌లను విస్మరించండి</string>
     <string name="prefer_original_audio_title">అసలు శ్రావ్యయానికి ప్రాధాన్యత ఇవ్వండి</string>
+    <string name="limit_mobile_data_usage_title">మొబైల్ డేటా వాడుతున్నప్పుడు స్పష్టతకు హద్దుపెట్టు</string>
+    <string name="import_subscriptions_hint">3-చుక్కల మెనూలో సభ్యత్వాలను ఎగుమతి లేదా దిగుమతి చేయండి</string>
 </resources>

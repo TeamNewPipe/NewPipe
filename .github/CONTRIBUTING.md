@@ -42,10 +42,6 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 * Create PRs that cover only **one specific issue/solution/bug**. Do not create PRs that are huge monoliths and could have been split into multiple independent contributions.
 * NewPipe uses [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor) to fetch data from services. If you need to change something there, you must test your changes in NewPipe. Telling NewPipe to use your extractor version can be accomplished by editing the `app/build.gradle` file: the comments under the "NewPipe libraries" section of `dependencies` will help you out.
 
-### Kotlin in NewPipe
-* NewPipe will remain mostly Java for time being
-* Contributions containing a simple conversion from Java to Kotlin should be avoided. Conversions to Kotlin should only be done if Kotlin actually brings improvements like bug fixes or better performance which are not, or only with much more effort, implementable in Java. The core team sees Java as an easier to learn and generally well adopted programming language.
-
 ### Creating a Pull Request (PR)
 
 * Make changes on a **separate branch** with a meaningful name, not on the _master_ branch or the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub.
@@ -83,6 +79,6 @@ The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as ch
 
 ## Communication
 
-* The #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) has the core team and other developers in it. [Click here for webchat](https://web.libera.chat/#newpipe)!
-* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat). Some convenient clients, available both for phone and desktop, are listed at that link.
-* You can post your suggestions, changes, ideas etc. on either GitHub or IRC.
+* You can use a Matrix account to join the NewPipe channel at [#newpipe:matrix.newpipe-ev.de](https://matrix.to/#/#newpipe:matrix.newpipe-ev.de). Some convenient clients, available both for phone and desktop, are listed at that link.
+* Alternatively, the #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) can also be joined, as it is bridged to the Matrix room. [Click here for webchat](https://web.libera.chat/#newpipe)!
+* You can post your suggestions, changes, ideas etc. on either GitHub or Matrix (including via IRC).

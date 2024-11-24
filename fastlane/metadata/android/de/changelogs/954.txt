@@ -2,8 +2,8 @@
 • MediaStyle-Benachrichtigungen: Anpassbare Aktionen in Benachrichtigungen
 • Grundlegende Größenänderung für NewPipe als Desktop-App
 
-• Dialog mit geöffneten Optionen anzeigen für nicht unterstützte URL-Toasts
+• Dialog mit offenen Optionen bei nicht unterstütztem URL-Toast anzeigen 
 • Verbesserte Suchvorschläge, wenn Remote-Vorschläge nicht abgerufen werden können
-• Standardvideoqualität auf 720p60 (In-App) und 480p (Popup) angepasst
+• Standardvideoqualität auf 720p60 (In-App) und 480p (Pop-up) angepasst
 
 • Fehlerbehebungen

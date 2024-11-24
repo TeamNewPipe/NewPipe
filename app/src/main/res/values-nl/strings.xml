@@ -66,7 +66,7 @@
     <string name="error_report_title">Foutrapport</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
     <string name="info_labels">Wat:\\nVerzoek:\\nInhoudstaal:\\nInhoudsland:\\nApp-taal:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
-    <string name="start">Begin</string>
+    <string name="start">Starten</string>
     <string name="pause">Pauzeren</string>
     <string name="delete">Verwijderen</string>
     <string name="checksum">Controlesom</string>
@@ -181,8 +181,8 @@
     <string name="play_queue_audio_settings">Audio-instellingen</string>
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan de wachtrij</string>
     <string name="unknown_content">[onbekend]</string>
-    <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
-    <string name="start_here_on_popup">Begin met afspelen in pop-up</string>
+    <string name="start_here_on_background">Op de achter­grond afspelen</string>
+    <string name="start_here_on_popup">In een pop-up afspelen</string>
     <string name="donation_title">Doneren</string>
     <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
@@ -807,8 +807,8 @@
     <string name="share_playlist_with_titles_message">Deel afspeellijst met details zoals afspeellijstnaam en videotitels of als een eenvoudige lijst met video-URL\'s</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
-        <item quantity="one">%s antwoord</item>
-        <item quantity="other">%s antwoorden</item>
+        <item quantity="one">%s reactie</item>
+        <item quantity="other">%s reacties</item>
     </plurals>
     <string name="show_more">Meer tonen</string>
     <string name="show_less">Minder tonen</string>
@@ -824,4 +824,5 @@
     <string name="auto_update_check_description">NewPipe kan van tĳd tot tĳd auto­matisch controleren op nieuwe versies en u op de hoogte stellen zodra deze beschik­baar zijn.
 \nWilt u dit inschakelen?</string>
     <string name="reset_settings_title">Instellingen resetten</string>
+    <string name="import_settings_vulnerable_format">De instellingen in de export die wordt geïmporteerd, gebruiken een kwetsbaar formaat dat verouderd is sinds NewPipe 0.27.0. Zorg ervoor dat de export die wordt geïmporteerd afkomstig is van een vertrouwde bron, en geef er de voorkeur aan om in de toekomst alleen exporten te gebruiken die zijn verkregen van NewPipe 0.27.0 of nieuwer. Ondersteuning voor het importeren van instellingen in dit kwetsbare formaat zal binnenkort volledig worden verwijderd, en oude versies van NewPipe zullen dan geen export­instellingen meer uit nieuwe versies kunnen importeren.</string>
 </resources>

@@ -2,7 +2,6 @@ package org.schabi.newpipe.error;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +20,6 @@ import androidx.core.content.IntentCompat;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
@@ -185,25 +182,6 @@ public class ErrorActivity extends AppCompatActivity {
         final String separator = "-------------------------------------";
         return Arrays.stream(el)
                 .collect(Collectors.joining(separator + "\n", separator + "\n", separator));
-    }
-
-    /**
-     * Get the checked activity.
-     *
-     * @param returnActivity the activity to return to
-     * @return the casted return activity or null
-     */
-    @Nullable
-    static Class<? extends Activity> getReturnActivity(final Class<?> returnActivity) {
-        Class<? extends Activity> checkedReturnActivity = null;
-        if (returnActivity != null) {
-            if (Activity.class.isAssignableFrom(returnActivity)) {
-                checkedReturnActivity = returnActivity.asSubclass(Activity.class);
-            } else {
-                checkedReturnActivity = MainActivity.class;
-            }
-        }
-        return checkedReturnActivity;
     }
 
     private void buildInfo(final ErrorInfo info) {
