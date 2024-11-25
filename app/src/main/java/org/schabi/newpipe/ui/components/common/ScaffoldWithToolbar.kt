@@ -28,8 +28,13 @@ fun ScaffoldWithToolbar(
         topBar = {
             TopAppBar(
                 title = { Text(text = title) },
+                // TODO decide whether to use default colors instead
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 ),
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
