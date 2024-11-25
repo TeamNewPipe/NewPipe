@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -28,7 +29,8 @@ import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
-import org.schabi.newpipe.ui.components.common.NoItemsMessage
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.CommentsViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
@@ -66,11 +68,11 @@ private fun CommentSection(
 
                     if (commentInfo.isCommentsDisabled) {
                         item {
-                            NoItemsMessage(R.string.comments_are_disabled)
+                            EmptyStateComposable(EmptyStateSpec.DisabledComments)
                         }
                     } else if (count == 0) {
                         item {
-                            NoItemsMessage(R.string.no_comments)
+                            EmptyStateComposable(EmptyStateSpec.NoComments)
                         }
                     } else {
                         // do not show anything if the comment count is unknown
@@ -95,7 +97,14 @@ private fun CommentSection(
 
                             is LoadState.Error -> {
                                 item {
-                                    NoItemsMessage(R.string.error_unable_to_load_comments)
+                                    // TODO use error panel instead
+                                    EmptyStateComposable(
+                                        EmptyStateSpec.DisabledComments.copy(
+                                            descriptionText = {
+                                                stringResource(R.string.error_unable_to_load_comments)
+                                            }
+                                        )
+                                    )
                                 }
                             }
 
@@ -110,7 +119,14 @@ private fun CommentSection(
 
                 is Resource.Error -> {
                     item {
-                        NoItemsMessage(R.string.error_unable_to_load_comments)
+                        // TODO use error panel instead
+                        EmptyStateComposable(
+                            EmptyStateSpec.DisabledComments.copy(
+                                descriptionText = {
+                                    stringResource(R.string.error_unable_to_load_comments)
+                                }
+                            )
+                        )
                     }
                 }
             }
