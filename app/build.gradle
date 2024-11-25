@@ -1,6 +1,7 @@
 import com.android.tools.profgen.ArtProfileKt
 import com.android.tools.profgen.ArtProfileSerializer
 import com.android.tools.profgen.DexFile
+import com.mikepenz.aboutlibraries.plugin.DuplicateMode
 
 plugins {
     id "com.android.application"
@@ -199,6 +200,13 @@ kapt {
     correctErrorTypes true
 }
 
+aboutLibraries {
+    // note: offline mode prevents the plugin from fetching licenses at build time, which would be
+    // harmful for reproducible builds
+    offlineMode = true
+    duplicationMode = DuplicateMode.MERGE
+}
+
 dependencies {
 /** Desugaring **/
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
@@ -295,7 +303,7 @@ dependencies {
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
 
     // Jetpack Compose
-    implementation(platform('androidx.compose:compose-bom:2024.10.01'))
+    implementation(platform('androidx.compose:compose-bom:2024.11.00'))
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.compose.material3.adaptive:adaptive'
     implementation 'androidx.activity:activity-compose'
