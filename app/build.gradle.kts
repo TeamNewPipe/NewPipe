@@ -12,6 +12,8 @@ plugins {
     checkstyle
 }
 
+apply(from = "check-dependencies.gradle.kts")
+
 val gitWorkingBranch = providers.exec {
     commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
 }.standardOutput.asText.map { it.trim() }
@@ -180,7 +182,7 @@ afterEvaluate {
         if (!System.getProperties().containsKey("skipFormatKtlint")) {
             dependsOn("formatKtlint")
         }
-        dependsOn("runCheckstyle", "runKtlint")
+        dependsOn("runCheckstyle", "runKtlint", "checkDependenciesOrder")
     }
 }
 
