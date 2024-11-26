@@ -9,6 +9,7 @@ plugins {
     alias libs.plugins.kotlin.compose
     alias libs.plugins.kotlin.kapt
     alias libs.plugins.kotlin.parcelize
+    alias libs.plugins.kotlinx.serialization
     alias libs.plugins.checkstyle
     alias libs.plugins.sonarqube
     alias libs.plugins.hilt
@@ -16,7 +17,7 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
@@ -313,6 +314,9 @@ dependencies {
 
     // Scroll
     implementation libs.lazycolumnscrollbar
+
+    // Kotlinx Serialization
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3'
 
 /** Debugging **/
     // Memory leak detection

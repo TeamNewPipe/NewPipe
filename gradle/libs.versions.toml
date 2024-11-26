@@ -55,7 +55,8 @@ swiperefreshlayout = "1.1.0"
 teamnewpipe-filepicker = "5.0.0"
 teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
 teamnewpipe-newpipe-extractor = "v0.24.4"
-work = "2.8.1"
+viewpager2 = "1.1.0-beta02"
+work = "2.10.0"
 
 [plugins]
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin" }
@@ -66,6 +67,7 @@ kotlin-android = { id = "kotlin-android" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-kapt = { id = "kotlin-kapt" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
+kotlinx-serialization = { id = "kotlinx-serialization" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 
 [libraries]
@@ -130,6 +132,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinxCoroutinesRx3" }
+kotlinx-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 lazycolumnscrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScrollbar", version.ref = "lazycolumnscrollbar" }
 leakcanary-android-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 leakcanary-object-watcher = { group = "com.squareup.leakcanary", name = "leakcanary-object-watcher-android", version.ref = "leakcanary" }

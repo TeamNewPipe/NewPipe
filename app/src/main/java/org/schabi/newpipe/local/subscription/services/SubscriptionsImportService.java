@@ -41,8 +41,8 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.tabs.ChannelTabInfo;
-import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.local.subscription.workers.SubscriptionItem;
 import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
@@ -50,10 +50,10 @@ import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -177,18 +177,12 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private void startImport() {
         showToast(R.string.import_ongoing);
 
-        Flowable<List<SubscriptionItem>> flowable = null;
-        switch (currentMode) {
-            case CHANNEL_URL_MODE:
-                flowable = importFromChannelUrl();
-                break;
-            case INPUT_STREAM_MODE:
-                flowable = importFromInputStream();
-                break;
-            case PREVIOUS_EXPORT_MODE:
-                flowable = importFromPreviousExport();
-                break;
-        }
+        final var flowable = switch (currentMode) {
+            case CHANNEL_URL_MODE -> importFromChannelUrl();
+            case INPUT_STREAM_MODE -> importFromInputStream();
+            case PREVIOUS_EXPORT_MODE -> importFromPreviousExport();
+            default -> null;
+        };
 
         if (flowable == null) {
             final String message = "Flowable given by \"importFrom\" is null "
@@ -290,13 +284,10 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private Function<List<Notification<Pair<ChannelInfo, List<ChannelTabInfo>>>>,
             List<SubscriptionEntity>> upsertBatch() {
         return notificationList -> {
-            final List<Pair<ChannelInfo, List<ChannelTabInfo>>> infoList =
-                    new ArrayList<>(notificationList.size());
-            for (final Notification<Pair<ChannelInfo, List<ChannelTabInfo>>> n : notificationList) {
-                if (n.isOnNext()) {
-                    infoList.add(n.getValue());
-                }
-            }
+            final var infoList = notificationList.stream()
+                    .filter(Notification::isOnNext)
+                    .map(Notification::getValue)
+                    .collect(Collectors.toList());
 
             return subscriptionManager.upsertAll(infoList);
         };
@@ -305,7 +296,11 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private Flowable<List<SubscriptionItem>> importFromChannelUrl() {
         return Flowable.fromCallable(() -> NewPipe.getService(currentServiceId)
                 .getSubscriptionExtractor()
-                .fromChannelUrl(channelUrl));
+                .fromChannelUrl(channelUrl))
+                .map(list -> list.stream()
+                        .map(item -> new SubscriptionItem(item.getServiceId(), item.getUrl(),
+                                item.getName()))
+                        .collect(Collectors.toList()));
     }
 
     private Flowable<List<SubscriptionItem>> importFromInputStream() {
@@ -314,11 +309,15 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
         return Flowable.fromCallable(() -> NewPipe.getService(currentServiceId)
                 .getSubscriptionExtractor()
-                .fromInputStream(inputStream, inputStreamType));
+                .fromInputStream(inputStream, inputStreamType))
+                .map(list -> list.stream()
+                        .map(item -> new SubscriptionItem(item.getServiceId(), item.getUrl(),
+                                item.getName()))
+                        .collect(Collectors.toList()));
     }
 
     private Flowable<List<SubscriptionItem>> importFromPreviousExport() {
-        return Flowable.fromCallable(() -> ImportExportJsonHelper.readFrom(inputStream, null));
+        return Flowable.fromCallable(() -> ImportExportJsonHelper.readFrom(inputStream));
     }
 
     protected void handleError(@NonNull final Throwable error) {
