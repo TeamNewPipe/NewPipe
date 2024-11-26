@@ -49,11 +49,11 @@ import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
 import org.schabi.newpipe.local.subscription.item.GroupsHeader
 import org.schabi.newpipe.local.subscription.item.Header
 import org.schabi.newpipe.local.subscription.item.ImportSubscriptionsHintPlaceholderItem
-import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
+import org.schabi.newpipe.local.subscription.workers.SubscriptionExportWorker
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
@@ -224,11 +224,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun requestExportResult(result: ActivityResult) {
-        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
-            activity.startService(
-                Intent(activity, SubscriptionsExportService::class.java)
-                    .putExtra(SubscriptionsExportService.KEY_FILE_PATH, result.data?.data)
-            )
+        val data = result.data?.data
+        if (data != null && result.resultCode == Activity.RESULT_OK) {
+            SubscriptionExportWorker.schedule(activity, data)
         }
     }
 
