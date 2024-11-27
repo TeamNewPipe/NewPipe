@@ -1,4 +1,5 @@
 [versions]
+aboutLibraries = "11.2.3"
 acraCore = "5.11.3"
 androidState = "1.4.1"
 androidx-junit = "1.1.5"
@@ -58,6 +59,7 @@ viewpager2 = "1.1.0-beta02"
 work = "2.8.1"
 
 [plugins]
+aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin" }
 android-application = { id = "com.android.application" }
 checkstyle = { id = "checkstyle" }
 hilt = { id = "com.google.dagger.hilt.android" }
@@ -68,6 +70,8 @@ kotlin-parcelize = { id = "kotlin-parcelize" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 
 [libraries]
+aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+aboutlibraries-plugin = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutLibraries" }
 acra-core = { group = "ch.acra", name = "acra-core", version.ref = "acraCore" }
 android-state = { group = "com.evernote", name = "android-state", version.ref = "androidState" }
 android-state-processor = { group = "com.evernote", name = "android-state-processor", version.ref = "androidState" }
