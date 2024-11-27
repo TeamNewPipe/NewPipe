@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.schabi.newpipe.databinding.SettingsPreferencesearchFragmentBinding;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class PreferenceSearchFragment extends Fragment {
         binding = SettingsPreferencesearchFragmentBinding.inflate(inflater, container, false);
 
         binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
+        EmptyStateUtil.setEmptyStateComposable(
+                binding.emptyStateView,
+                EmptyStateSpec.Companion.getNoSearchMaxSizeResult());
 
         adapter = new PreferenceSearchAdapter();
         adapter.setOnItemClickListener(this::onItemClicked);
