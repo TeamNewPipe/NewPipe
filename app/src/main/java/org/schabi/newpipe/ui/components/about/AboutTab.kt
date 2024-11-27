@@ -73,12 +73,12 @@ fun AboutTab() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Column(
                 modifier = Modifier
+                    .padding(16.dp)
                     .fillMaxWidth()
                     .wrapContentSize(Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -108,11 +108,11 @@ fun AboutTab() {
                 )
             }
 
-            Spacer(modifier = Modifier.height(4.dp))
-
             for (item in ABOUT_ITEMS) {
-                AboutItem(item)
+                AboutItem(item, Modifier.padding(horizontal = 16.dp))
             }
+
+            Spacer(Modifier.height(8.dp))
         }
     }
 }
@@ -120,8 +120,11 @@ fun AboutTab() {
 @Preview(backgroundColor = 0xFFFFFFFF, showBackground = true)
 @Composable
 @NonRestartableComposable
-private fun AboutItem(@PreviewParameter(AboutDataProvider::class) aboutData: AboutData) {
-    Column {
+private fun AboutItem(
+    @PreviewParameter(AboutDataProvider::class) aboutData: AboutData,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
         Text(
             text = stringResource(aboutData.title),
             style = MaterialTheme.typography.titleMedium
