@@ -41,7 +41,7 @@ fun Library(
     showLicenseDialog: (licenseFilename: String) -> Unit,
     descriptionMaxLines: Int,
 ) {
-    val spdxLicense = library.licenses.firstOrNull()?.spdxId
+    val spdxLicense = library.licenses.firstOrNull()?.spdxId?.takeIf { it.isNotBlank() }
     val licenseAssetPath = spdxLicense?.let { SPDX_ID_TO_ASSET_PATH[it] }
     val context = LocalContext.current
 
