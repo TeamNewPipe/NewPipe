@@ -52,8 +52,8 @@ swiperefreshlayout = "1.1.0"
 # name and the commit hash with the commit hash of the (pushed) commit you want to test
 # This works thanks to JitPack: https://jitpack.io/
 teamnewpipe-filepicker = "5.0.0"
-teamnewpipe-newpipe-extractor = "d3d5f2b3f03a5f2b479b9f6fdf1c2555cbb9de0e"
 teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
+teamnewpipe-newpipe-extractor = "d3d5f2b3f03a5f2b479b9f6fdf1c2555cbb9de0e"
 viewpager2 = "1.1.0-beta02"
 work = "2.8.1"
 
@@ -86,6 +86,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-documentfile = { group = "androidx.documentfile", name = "documentfile", version.ref = "documentFile" }
 androidx-fragment-compose = { group = "androidx.fragment", name = "fragment-compose", version.ref = "fragment-compose" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
@@ -93,13 +94,12 @@ androidx-localbroadcastmanager = { group = "androidx.localbroadcastmanager", nam
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-media = { group = "androidx.media", name = "media", version.ref = "media" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
 androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "room" }
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
@@ -112,9 +112,9 @@ auto-service-kapt = { group = "com.google.auto.service", name = "auto-service", 
 coil-compose = { group = "io.coil-kt.coil3", name = 'coil-compose', version.ref = "coil" }
 desugar-jdk-libs-nio = { group = "com.android.tools", name = "desugar_jdk_libs_nio", version.ref = "desugar-jdk-libs-nio" }
 exoplayer-core = { group = "com.google.android.exoplayer", name = "exoplayer-core", version.ref = "exoplayer" }
+exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }
 exoplayer-database = { group = "com.google.android.exoplayer", name = "exoplayer-database", version.ref = "exoplayer" }
 exoplayer-datasource = { group = "com.google.android.exoplayer", name = "exoplayer-datasource", version.ref = "exoplayer" }
-exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }
 exoplayer-hls = { group = "com.google.android.exoplayer", name = "exoplayer-hls", version.ref = "exoplayer" }
 exoplayer-smoothstreaming = { group = "com.google.android.exoplayer", name = "exoplayer-smoothstreaming", version.ref = "exoplayer" }
 exoplayer-ui = { group = "com.google.android.exoplayer", name = "exoplayer-ui", version.ref = "exoplayer" }
@@ -140,13 +140,13 @@ mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mo
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 prettytime = { group = "org.ocpsoft.prettytime", name = "prettytime", version.ref = "prettytime" }
 process-phoenix = { group = "com.jakewharton", name = "process-phoenix", version.ref = "processPhoenix" }
-rxjava3-rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 rxbinding4-rxbinding = { group = "com.jakewharton.rxbinding4", name = "rxbinding", version.ref = "rxbinding" }
+rxjava3-rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 rxjava3-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
 stetho = { group = "com.facebook.stetho", name = "stetho", version.ref = "stetho" }
 stetho-okhttp3 = { group = "com.facebook.stetho", name = "stetho-okhttp3", version.ref = "stetho" }
+teamnewpipe-nanojson = { group = "com.github.TeamNewPipe", name = "nanojson", version.ref = "teamnewpipe-nanojson" }
 teamnewpipe-newpipe-extractor = { group = "com.github.TeamNewPipe", name = "NewPipeExtractor", version.ref = "teamnewpipe-newpipe-extractor" }
 teamnewpipe-nononsense-filepicker = { group = "com.github.TeamNewPipe", name = "NoNonsense-FilePicker", version.ref = "teamnewpipe-filepicker" }
-teamnewpipe-nanojson = { group = "com.github.TeamNewPipe", name = "nanojson", version.ref = "teamnewpipe-nanojson" }
 tools-checkstyle = { group = "com.puppycrawl.tools", name = "checkstyle", version.ref = "checkstyle" }
 tools-ktlint = { group = "com.pinterest", name = "ktlint", version.ref = "ktlint" }

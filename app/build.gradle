@@ -160,11 +160,13 @@ tasks.register('formatKtlint', JavaExec) {
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
+apply from: 'check-dependencies.gradle'
+
 afterEvaluate {
     if (!System.properties.containsKey('skipFormatKtlint')) {
         preDebugBuild.dependsOn formatKtlint
     }
-    preDebugBuild.dependsOn runCheckstyle, runKtlint
+    preDebugBuild.dependsOn runCheckstyle, runKtlint, checkDependenciesOrder
 }
 
 sonar {
