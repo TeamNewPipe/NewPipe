@@ -26,14 +26,11 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-
-    <org.schabi.newpipe.views.NewPipeTextView
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/empty_state_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/no_playlist_bookmarked_yet"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:layout_margin="10dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
