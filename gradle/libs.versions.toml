@@ -9,7 +9,7 @@ auto-service = "1.1.1"
 bridge = "2.0.2"
 cardview = "1.0.0"
 checkstyle = "10.12.1"
-coil = "3.0.3"
+coil = "3.0.4"
 constraintlayout = "2.1.4"
 core-ktx = "1.12.0"
 desugar-jdk-libs-nio = "2.0.4"
@@ -114,6 +114,7 @@ assertj-core = { group = "org.assertj", name = "assertj-core", version.ref = "as
 auto-service = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "auto-service" }
 auto-service-kapt = { group = "com.google.auto.service", name = "auto-service", version.ref = "auto-service" }
 coil-compose = { group = "io.coil-kt.coil3", name = 'coil-compose', version.ref = "coil" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = 'coil-network-okhttp', version.ref = "coil" }
 desugar-jdk-libs-nio = { group = "com.android.tools", name = "desugar_jdk_libs_nio", version.ref = "desugar-jdk-libs-nio" }
 exoplayer-core = { group = "com.google.android.exoplayer", name = "exoplayer-core", version.ref = "exoplayer" }
 exoplayer-dash = { module = "com.google.android.exoplayer:exoplayer-dash", version.ref = "exoplayer" }

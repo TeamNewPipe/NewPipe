@@ -262,6 +262,7 @@ dependencies {
 
     // Image loading
     implementation libs.coil.compose
+    implementation libs.coil.network.okhttp
 
     // Markdown library for Android
     implementation libs.markwon.core
