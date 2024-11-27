@@ -20,6 +20,7 @@ val SPDX_ID_TO_ASSET_PATH = mapOf(
     "Apache-2.0" to "apache2.html",
     "EPL-1.0" to "epl1.html",
     "GPL-3.0-only" to "gpl_3.html",
+    "GPL-3.0-or-later" to "gpl_3.html",
     "MIT" to "mit.html",
     "MPL-2.0" to "mpl2.html",
 )
@@ -33,9 +34,9 @@ fun getFirstPartyLibraries(
             name = "GNU General Public License v3.0",
             url = "https://www.gnu.org/licenses/gpl-3.0.txt",
             year = null,
-            spdxId = "GPL-3.0-only",
+            spdxId = "GPL-3.0-or-later",
             licenseContent = null,
-            hash = "GPL-3.0-only",
+            hash = "GPL-3.0-or-later",
         )
     ).toImmutableSet()
 
