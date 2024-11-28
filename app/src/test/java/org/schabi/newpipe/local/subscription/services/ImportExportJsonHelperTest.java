@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
+import org.schabi.newpipe.local.subscription.workers.ImportExportJsonHelper;
 import org.schabi.newpipe.local.subscription.workers.SubscriptionItem;
 
 import java.io.ByteArrayInputStream;

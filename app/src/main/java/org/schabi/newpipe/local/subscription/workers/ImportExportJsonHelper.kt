@@ -17,15 +17,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe.local.subscription.services
+package org.schabi.newpipe.local.subscription.workers
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.encodeToStream
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.InvalidSourceException
-import org.schabi.newpipe.local.subscription.workers.SubscriptionData
-import org.schabi.newpipe.local.subscription.workers.SubscriptionItem
 import java.io.InputStream
 import java.io.OutputStream
 
