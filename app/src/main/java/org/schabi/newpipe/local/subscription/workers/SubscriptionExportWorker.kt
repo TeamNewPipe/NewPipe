@@ -23,7 +23,6 @@ import kotlinx.coroutines.withContext
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
-import org.schabi.newpipe.local.subscription.services.ImportExportJsonHelper
 
 class SubscriptionExportWorker(
     appContext: Context,
