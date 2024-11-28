@@ -16,7 +16,7 @@ class SubscriptionData(
 }
 
 @Serializable
-class SubscriptionItem(
+data class SubscriptionItem(
     @SerialName("service_id")
     val serviceId: Int,
     val url: String,
