@@ -257,7 +257,7 @@ private fun CommentPreview(
     @PreviewParameter(CommentPreviewProvider::class) commentsInfoItem: CommentsInfoItem
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             Comment(commentsInfoItem) {}
         }
     }
@@ -267,7 +267,7 @@ private fun CommentPreview(
 @Composable
 private fun CommentListPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             Column {
                 for (comment in CommentPreviewProvider().values) {
                     Comment(comment) {}

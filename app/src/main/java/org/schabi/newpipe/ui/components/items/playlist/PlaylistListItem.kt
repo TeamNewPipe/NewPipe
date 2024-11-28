@@ -64,7 +64,7 @@ private fun PlaylistListItemPreview() {
     playlist.uploaderName = "Uploader"
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             PlaylistListItem(playlist)
         }
     }
