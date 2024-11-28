@@ -10,6 +10,7 @@ import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
+import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.allowRgb565
 import coil3.request.crossfade
 import coil3.util.DebugLogger
@@ -123,7 +124,9 @@ open class App :
             .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
             .allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
             .crossfade(true)
-            .build()
+            .components {
+                add(OkHttpNetworkFetcherFactory(callFactory = DownloaderImpl.getInstance().client))
+            }.build()
 
     protected open fun getDownloader(): Downloader {
         val downloader = DownloaderImpl.init(null)
