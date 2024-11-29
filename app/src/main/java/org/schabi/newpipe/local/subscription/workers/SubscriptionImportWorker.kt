@@ -6,6 +6,7 @@ import android.content.pm.ServiceInfo
 import android.os.Build
 import android.util.Pair
 import android.webkit.MimeTypeMap
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker
@@ -96,6 +97,12 @@ class SubscriptionImportWorker(
             }
             index += chunk.size
             setForeground(createForegroundInfo(createNotification(title, null, index, qty)))
+        }
+
+        withContext(Dispatchers.Main) {
+            Toast
+                .makeText(applicationContext, R.string.import_complete_toast, Toast.LENGTH_SHORT)
+                .show()
         }
 
         return Result.success()
