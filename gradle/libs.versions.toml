@@ -24,6 +24,7 @@ jsoup = "1.17.2"
 junit = "4.13.2"
 kotlin = "2.0.21"
 kotlinxCoroutinesRx3 = "1.8.1"
+kotlinxSerializationJson = "1.7.3"
 ktlint = "0.45.2"
 lazycolumnscrollbar = "2.2.0"
 leakcanary = "2.12"
@@ -133,6 +134,7 @@ kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-p
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinxCoroutinesRx3" }
 kotlinx-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 lazycolumnscrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScrollbar", version.ref = "lazycolumnscrollbar" }
 leakcanary-android-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 leakcanary-object-watcher = { group = "com.squareup.leakcanary", name = "leakcanary-object-watcher-android", version.ref = "leakcanary" }
