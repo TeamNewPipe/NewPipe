@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.subscription.workers
 
-import android.app.Notification
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.net.Uri
@@ -30,8 +29,7 @@ class SubscriptionExportWorker(
 ) : CoroutineWorker(appContext, params) {
     // This is needed for API levels < 31 (Android S).
     override suspend fun getForegroundInfo(): ForegroundInfo {
-        val notification = createNotification(applicationContext.getString(R.string.export_ongoing))
-        return createForegroundInfo(notification)
+        return createForegroundInfo(applicationContext.getString(R.string.export_ongoing))
     }
 
     override suspend fun doWork(): Result {
@@ -44,9 +42,8 @@ class SubscriptionExportWorker(
                     .map { SubscriptionItem(it.serviceId, it.url, it.name) }
 
             val qty = subscriptions.size
-            val title =
-                applicationContext.resources.getQuantityString(R.plurals.export_subscriptions, qty, qty)
-            setForeground(createForegroundInfo(createNotification(title)))
+            val title = applicationContext.resources.getQuantityString(R.plurals.export_subscriptions, qty, qty)
+            setForeground(createForegroundInfo(title))
 
             withContext(Dispatchers.IO) {
                 applicationContext.contentResolver.openOutputStream(uri)?.use {
@@ -80,18 +77,17 @@ class SubscriptionExportWorker(
         }
     }
 
-    private fun createNotification(title: String): Notification =
-        NotificationCompat
-            .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setOngoing(true)
-            .setProgress(-1, -1, true)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
-            .setContentTitle(title)
-            .build()
-
-    private fun createForegroundInfo(notification: Notification): ForegroundInfo {
+    private fun createForegroundInfo(title: String): ForegroundInfo {
+        val notification =
+            NotificationCompat
+                .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setOngoing(true)
+                .setProgress(-1, -1, true)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+                .setContentTitle(title)
+                .build()
         val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
         return ForegroundInfo(NOTIFICATION_ID, notification, serviceType)
     }

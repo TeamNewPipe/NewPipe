@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.subscription.workers
 
-import android.app.Notification
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
@@ -33,8 +32,7 @@ class SubscriptionImportWorker(
 ) : CoroutineWorker(appContext, params) {
     // This is needed for API levels < 31 (Android S).
     override suspend fun getForegroundInfo(): ForegroundInfo {
-        val title = applicationContext.getString(R.string.import_ongoing)
-        return createForegroundInfo(createNotification(title, null, 0, 0))
+        return createForegroundInfo(applicationContext.getString(R.string.import_ongoing), null, 0, 0)
     }
 
     override suspend fun doWork(): Result {
@@ -78,8 +76,7 @@ class SubscriptionImportWorker(
                             ExtractorHelper.getChannelTab(it.serviceId, channelInfo.tabs[0], true).await()
 
                         val currentIndex = mutex.withLock { index++ }
-                        val notification = createNotification(title, channelInfo.name, currentIndex, qty)
-                        setForeground(createForegroundInfo(notification))
+                        setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
 
                         Pair(channelInfo, listOf(channelTab))
                     }
@@ -87,7 +84,7 @@ class SubscriptionImportWorker(
         }
 
         title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, qty, qty)
-        setForeground(createForegroundInfo(createNotification(title, null, 0, 0)))
+        setForeground(createForegroundInfo(title, null, 0, 0))
         index = 0
 
         val subscriptionManager = SubscriptionManager(applicationContext)
@@ -96,7 +93,7 @@ class SubscriptionImportWorker(
                 subscriptionManager.upsertAll(chunk)
             }
             index += chunk.size
-            setForeground(createForegroundInfo(createNotification(title, null, index, qty)))
+            setForeground(createForegroundInfo(title, null, index, qty))
         }
 
         withContext(Dispatchers.Main) {
@@ -108,38 +105,38 @@ class SubscriptionImportWorker(
         return Result.success()
     }
 
-    private fun createNotification(
+    private fun createForegroundInfo(
         title: String,
         text: String?,
         currentProgress: Int,
         maxProgress: Int,
-    ): Notification =
-        NotificationCompat
-            .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setOngoing(true)
-            .setProgress(maxProgress, currentProgress, currentProgress == 0)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
-            .setContentTitle(title)
-            .setContentText(text)
-            .addAction(
-                R.drawable.ic_close,
-                applicationContext.getString(R.string.cancel),
-                WorkManager.getInstance(applicationContext).createCancelPendingIntent(id),
-            ).apply {
-                if (currentProgress > 0 && maxProgress > 0) {
-                    val progressText = "$currentProgress/$maxProgress"
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        setSubText(progressText)
-                    } else {
-                        setContentInfo(progressText)
+    ): ForegroundInfo {
+        val notification =
+            NotificationCompat
+                .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setOngoing(true)
+                .setProgress(maxProgress, currentProgress, currentProgress == 0)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+                .setContentTitle(title)
+                .setContentText(text)
+                .addAction(
+                    R.drawable.ic_close,
+                    applicationContext.getString(R.string.cancel),
+                    WorkManager.getInstance(applicationContext).createCancelPendingIntent(id),
+                ).apply {
+                    if (currentProgress > 0 && maxProgress > 0) {
+                        val progressText = "$currentProgress/$maxProgress"
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            setSubText(progressText)
+                        } else {
+                            setContentInfo(progressText)
+                        }
                     }
-                }
-            }.build()
-
-    private fun createForegroundInfo(notification: Notification): ForegroundInfo {
+                }.build()
         val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
+
         return ForegroundInfo(NOTIFICATION_ID, notification, serviceType)
     }
 
