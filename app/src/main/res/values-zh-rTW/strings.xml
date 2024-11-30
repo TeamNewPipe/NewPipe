@@ -811,4 +811,5 @@
     <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。
 \n您想要啟用此功能嗎？</string>
     <string name="import_settings_vulnerable_format">匯入的匯出中的設定使用自 NewPipe 0.27.0 起已廢棄的脆弱格式。請確定匯入的匯出是來自可信賴的來源，並在未來只使用從 NewPipe 0.27.0 或更新版本取得的匯出。對於匯入此脆弱格式設定的支援即將完全移除，屆時舊版本的 NewPipe 將無法再匯入新版本匯出的設定。</string>
+    <string name="audio_track_type_secondary">次要</string>
 </resources>

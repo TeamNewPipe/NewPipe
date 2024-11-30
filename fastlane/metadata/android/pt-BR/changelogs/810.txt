@@ -1,0 +1,19 @@
+Novo
+- Mostrar a miniatura do vídeo no ecrã de bloqueio ao tocar em fundo
+
+Melhorado
+- Adicionar lista de reprodução local à fila de espera ao premir durante muito tempo no botão de fundo / popup
+- Faça com que os separadores da página principal possam ser deslocados e escondidos quando só existe um único separador
+- Quantidade limite de actualizações de miniaturas de notificação no leitor de fundo
+- Adicionar miniatura de miniatura para listas de reprodução locais vazias
+- Use a extensão de ficheiro *.opus em vez de *.webm e mostre "opus" na etiqueta de formato em vez de "WebM Opus" no menu pendente de download
+- Adicionar botão para apagar ficheiros descarregados ou histórico de descarregamentos em "Downloads
+- [YouTube] Adicionar suporte a /c/shortened_url channel links
+
+Fixa
+- Corrigido múltiplos problemas ao partilhar um vídeo para NewPipe e descarregar diretamente os seus fluxos
+- Acesso fixo do jogador fora do seu fio de criação
+- Paginação fixa de resultados de pesquisa
+- Ligar nulo fixo causando NPE
+- [YouTube] Comentários de visualização fixos ao abrir uma url invidio.us
+- ClientCloud] Client_id actualizado

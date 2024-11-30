@@ -825,4 +825,5 @@
 \n
 \nMöchtest du wirklich fortfahren?</string>
     <string name="import_settings_vulnerable_format">Die Einstellungen in dem zu importierenden Export verwenden ein angreifbares Format, das seit NewPipe 0.27.0 veraltet ist. Stellen Sie sicher, dass der zu importierende Export aus einer vertrauenswürdigen Quelle stammt, und verwenden Sie in Zukunft nur noch Exporte, die aus NewPipe 0.27.0 oder neuer stammen. Die Unterstützung für den Import von Einstellungen in diesem angreifbaren Format wird bald vollständig entfernt werden, und dann werden alte Versionen von NewPipe nicht mehr in der Lage sein, Einstellungen von Exporten aus neuen Versionen zu importieren.</string>
+    <string name="audio_track_type_secondary">Sekundär</string>
 </resources>

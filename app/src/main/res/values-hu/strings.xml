@@ -825,4 +825,5 @@
 \n
 \nBiztosan folytatja?</string>
     <string name="import_settings_vulnerable_format">Az importálandó exportban lévő beállítások sérülékeny formátumot használnak, amely a NewPipe 0.27.0-s verziója óta elavult. Győződjön meg arról, hogy megbízható forrásból importálja, és a jövőben csak a NewPipe 0.27.0-s vagy újabb verziójából származó exportokat használjon. A beállítások ebből a sérülékeny forrásból történő importálása hamarosan végleg el lesz távolítva, és a NewPipe régi verziói nem fogják tudni importálni az újabb verziókból származó exportokat.</string>
+    <string name="audio_track_type_secondary">másodlagos</string>
 </resources>

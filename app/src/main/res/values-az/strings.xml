@@ -213,7 +213,7 @@
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
     <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
 \nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
-    <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Çərçivəsi \' xarici SD karta endirməyə imkan verir</string>
+    <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Quruluşu\' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem standartı</string>
     <string name="app_language_title">Tətbiq dili</string>
     <plurals name="days">
@@ -236,17 +236,7 @@
     <string name="feed_update_threshold_title">Axın yeniləmə aralığı</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Sürətli rejimi aktivləşdir</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Sürətli rejimi bağla</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Axının çox yavaş yükləndiyini düşünürsünüz?Elədirsə, sürətli yükləməni işə salmağı sınayın (tənzimləmələrdə dəyişə və ya aşağıdakı düyməni basa bilərsiniz).
-\n
-\nNewPipe 2 axın yükləmə üsulu təklif edir:
-\n• Yavaş, lakin tam şəkildə bütün abunəlik kanalı gətirilir.
-\n• Ayrılmış xidmət uc nöqtəsi istifadə etmək, bu sürətlidir, amma tam deyil.
-\n
-\nİkisi arasında fərq budur ki, sürətlisində, adətən elementin müddəti və növü kimi bəzi məlumatlar çatışmır (canlı video ilə adisini ayırd edə bilmir) və daha az elementlər gətirir.
-\n
-\nYouTube öz RSS axını ilə bu sürətli metodu təklif edən xidmətlərdən biridir.
-\n
-\nBeləliklə, seçim sizin nəyə üstünlük verməyinizdən asılıdır: sürət yoxsa dəqiq məlumat.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Axının çox yavaş yükləndiyini düşünürsünüz? \n Elədirsə, sürətli yükləməni işə salmağı sınayın (tənzimləmələrdə dəyişə və ya aşağıdakı düyməni basa bilərsiniz). \n \nNewPipe 2 axın yükləmə üsulu təklif edir: \n• Yavaş, lakin tam şəkildə bütün abunəlik kanalı gətirilir. \n• Ayrılmış xidmət uc nöqtəsi istifadə etmək, bu sürətlidir, amma tam deyil. \n \nİkisi arasında fərq budur ki, sürətlisində, adətən elementin müddəti və növü kimi bəzi məlumatlar çatışmır (canlı video ilə adisini ayırd edə bilmir) və daha az elementlər gətirir. \n \nYouTube öz RSS axını ilə bu sürətli metodu təklif edən xidmətlərdən biridir. \n \nBeləliklə, seçim sizin nəyə üstünlük verməyinizdən asılıdır: sürət yoxsa dəqiq məlumat.</string>
     <string name="player_stream_failure">Bu yayımı oynatmaq alınmadı</string>
     <string name="app_ui_crash">Tətbiq/UI çökdü</string>
     <string name="could_not_setup_download_menu">Endirmə menyusunu qurmaq mümkün olmadı</string>
@@ -456,7 +446,7 @@
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq</string>
-    <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Çərçivəsi\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Quruluşu\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
     <string name="select_night_theme_toast">Sevdiyiniz gecə temasını aşağıda seçə bilərsiniz</string>
     <string name="notification_colorize_summary">Android\'in bildiriş rəngini miniatürdəki əsas rəngə uyğun fərdiləşdirməsini təmin et (qeyd edək ki, bu, bütün cihazlarda mövcud deyil)</string>
@@ -614,7 +604,7 @@
     <string name="export_to">Bura ixrac et</string>
     <string name="import_file_title">Faylı idxal et</string>
     <string name="subscriptions_import_unsuccessful">Abunəlikləri idxal etmək mümkün olmadı</string>
-    <string name="start_accept_privacy_policy">Avropa Ümumi Məlumat Mühafizəsi Qaydasına (GDPR) riayət etmək üçün diqqətinizi NewPipe məxfilik siyasətinə cəlb edirik. Xahiş edirik, diqqətlə oxuyun. Xəta məlumatın bizə göndərmək üçün qəbul etməlisiniz.</string>
+    <string name="start_accept_privacy_policy">Avropa Ümumi Məlumat Mühafizəsi Qaydasına (GDPR) riayət etmək üçün diqqətinizi NewPipe məxfilik siyasətinə cəlb edirik. Xahiş edirik, diqqətlə oxuyun. \nXəta məlumatın bizə göndərmək üçün qəbul etməlisiniz.</string>
     <string name="overwrite_unrelated_warning">Bu adda fayl artıq mövcuddur</string>
     <string name="download_already_pending">Bu adla gözlənilən bir endirmə var</string>
     <string name="error_path_creation">Təyinat qovluğu yaradıla bilməz</string>
@@ -663,16 +653,7 @@
     <string name="loading_stream_details">Yayım təfərrüatları yüklənir…</string>
     <string name="disable_media_tunneling_title">Media girişin qeyri-aktiv et</string>
     <string name="crash_the_app">Tətbiq çökdü</string>
-    <string name="import_youtube_instructions">YouTube abunəliklərin Google Takeout-dan
-\nidxal et:
-\n
-\n1. %1$s URL\'ə keçin:
-\n2. Soruşulduqda daxil ol
-\n3. \"Bütün Məlumatlar Daxildir\",sonra \"Hamısın Seçmə\", yalnız \"abunəlikləri\" seç və \"Oldu\" kliklə
-\n4. \"Növbəti addım\"üzərinə kliklə, sonra isə \"İxrac Yarat\" üzərinə kliklə
-\n5. Görünəndən sonra, \"Endirin\"düyməsin bas
-\n6. Aşağıda FAYLI İDXAL ET düyməsin kliklə və yüklənilmiş (.zip) faylın seç
-\n7. [Əgər .zip faylı idxalı uğursuz olsa] .csv faylın çıxar(adətən\"YouTubeandYouTubeMusic/subscriptions/subscriptions.csv\" altında),aşağıda FAYLI İDXAL ET-ə kliklə və çıxarılan csv faylın seç</string>
+    <string name="import_youtube_instructions">YouTube abunəliklərin Google Takeout-dan idxal et: \n \n1. %1$s URL\'ə keçin: \n2. Soruşulduqda daxil ol \n3. \"Bütün Məlumatlar Daxildir\",sonra \"Hamısın Seçmə\", yalnız \"abunəlikləri\" seç və \"Oldu\" kliklə \n4. \"Növbəti addım\"üzərinə kliklə, sonra isə \"İxrac Yarat\" üzərinə kliklə \n5. Görünəndən sonra, \"Endirin\"düyməsin bas \n6. Aşağıda FAYLI İDXAL ET düyməsin kliklə və yüklənilmiş (.zip) faylın seç \n7. [Əgər .zip faylı idxalı uğursuz olsa] .csv faylın çıxar(adətən\"YouTubeandYouTubeMusic/subscriptions/subscriptions.csv\" altında),aşağıda FAYLI İDXAL ET-ə kliklə və çıxarılan csv faylın seç</string>
     <string name="playback_speed_control">Oynatma Sürəti Nizamlamaları</string>
     <string name="unhook_checkbox">Ayır (pozuntuya səbəb ola bilər)</string>
     <string name="show_error">Xətanı göstər</string>
@@ -686,11 +667,9 @@
     <string name="feed_load_error_fast_unknown">Sürətli axın rejimi bu barədə əlavə məlumat vermir.</string>
     <string name="new_seek_duration_toast">ExoPlayer məhdudiyyətlərinə görə axtarış müddəti %d saniyəyə təyin edildi</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bəzi xidmətlərdə mövcuddur, adətən daha sürətli olur, lakin məhdud sayda elementləri və çox vaxt natamam məlumatı qaytara bilər (məsələn, müddət, element növü, canlı status yoxdur)</string>
-    <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa, fayl menecerini quraşdır və ya endirmə tənzimləmələrində \'%s\'-i qeyri-aktiv etməyə çalış</string>
+    <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı. Zəhmət olmasa, fayl menecerini quraşdır və ya endirmə tənzimləmələrində \'%s\'-i qeyri-aktiv etməyə çalış</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
-    <string name="no_appropriate_file_manager_message_android_10">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın</string>
+    <string name="no_appropriate_file_manager_message_android_10">Bu fəaliyyət üçün uyğun fayl meneceri tapılmadı.\nXahiş olunur, Yaddaş Giriş Quruluşuna uyğun fayl meneceri quraşdırın.</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və linklər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
@@ -748,9 +727,7 @@
     <string name="settings_category_exoplayer_summary">Bəzi ExoPlayer tənzimləmələrin idarə et. Bu dəyişiklikləri təsirli etmək üçün oynadıcını yenidən başlatmaq tələb olunur</string>
     <string name="use_exoplayer_decoder_fallback_title">ExoPlayer-in çözücü xüsusiyyətin istifadə et</string>
     <string name="use_exoplayer_decoder_fallback_summary">Əsas çözücüləri işlətmə uğursuz olarsa, çözücü işlətmək probleminiz varsa (daha aşağı prioritetli çözücülərə düşür), bu seçimi aktiv edin. Bu, əsas çözücülərdən istifadə ilə müqayisədə zəif oynatma performansı ilə nəticələnə bilər</string>
-    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer vasitəsilə bu problemli bəzi cihazlarda istifadə olunur, bu tənzimləmə təsiri yalnız Android 6 və daha yüksəkdə var.
-\n
-\nBu seçimi işlətmə cari video oynadıcı dəyişəndə və ya tam ekrana keçəndə oynatma xətaların düzəldə bilər</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Bu həll yolu səthi kodlayıcıya birbaşa tənzimləmək əvəzinə, səth dəyişikliyi olarsa video kodlayıcıları buraxır və yenidən işlədir. Artıq ExoPlayer vasitəsilə bu problemli bəzi cihazlarda istifadə olunur, bu tənzimləmə təsiri yalnız Android 6 və daha yüksəkdə var.\n\nBu seçimi işlətmə cari video oynadıcı dəyişəndə və ya tam ekrana keçəndə oynatma xətaların düzəldə bilər</string>
     <string name="audio_track_type_original">orijinal</string>
     <string name="audio_track_type_dubbed">dublyaj edilib</string>
     <string name="audio_track_type_descriptive">təsviri</string>
@@ -775,7 +752,7 @@
     <string name="auto_update_check_description">NewPipe arabir avtomatik şəkildə yeni versiyaları yoxlaya və onlar mövcud olduqda sizə bildirə bilər.
 \nBunu aktivləşdirmək istəyirsiniz?</string>
     <string name="yes">Bəli</string>
-    <string name="reset_settings_title">Sıfırlama tənzimləmələri</string>
+    <string name="reset_settings_title">Tənzimləmələri sıfırla</string>
     <string name="reset_settings_summary">Bütün tənzimləmələri standart dəyərlərinə sıfırla</string>
     <string name="error_insufficient_storage">Cihazda yetərlik boş yer yoxdur</string>
     <string name="metadata_subscribers">Abunəliklər</string>
@@ -826,4 +803,5 @@
     <string name="image_quality_title">Şəkil keyfiyyəti</string>
     <string name="image_quality_summary">Məlumat və yaddaş istifadəsini azaltmaq üçün şəkillərin keyfiyyətini və ya şəkillərin əsla yüklənib-yüklənilməməsini seçin. Dəyişikliklər həm yaddaşdaxili, həm də diskdə olan təsvir qalığın təmizləyir — %s</string>
     <string name="share_playlist_with_list">URL siyahısını paylaşın</string>
+    <string name="audio_track_type_secondary">ikinci dərəcəli</string>
 </resources>

@@ -825,4 +825,5 @@
     <string name="yes">Jah</string>
     <string name="no">Ei</string>
     <string name="import_settings_vulnerable_format">Imporditavad andmed kasutavad turvaprobleemidega vormingut, mida alates versioonist 0.27.0 NewPipe enam luua ei suuda. Palun kontrolli, et impordifail on loodud usaldusväärse osapoole poolt ning edaspidi loo ekspordifailid NewPipe versiooniga 0.27.0 või uuemaga. Tugi sellise vana vormingu kasutamisele kaob õige pea ja seejärel NewPipe uuemad ja vanemad versioonid ei saa omavahel andmeid enam vahetada.</string>
+    <string name="audio_track_type_secondary">täiendav</string>
 </resources>

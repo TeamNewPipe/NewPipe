@@ -502,7 +502,7 @@
     <string name="feed_load_error">Villa við að hlaða streymi</string>
     <string name="feed_load_error_account_info">Gat ekki hlaðið streymi fyrir ‚%s.‘</string>
     <string name="feed_use_dedicated_fetch_method_summary">Fáanlegt fyrir sumar þjónustur. Það er venjulega miklu hraðari en getur skilað ófullnægjandi upplýsingum (t.d. engin lengd, tegund, staða beinna útsendinga)</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Ef áskriftir eru uppfærðar of hægt máttu prófa hraðstreymissham (kveiktu á honum í stillingunum eða með hnappnum hér að neðan).\n\nNewPipe getur uppfært áskriftir á tvo vegu:\n• Sækja alla áskriftarrásina - hægvirkt en veitir allar upplýsingar.\n• Nota sérstök forritaskil - fljótvirkt en upplýsingar verða minni.\n\nHraðstreymishamur getur veitt ófullnægjandi upplýsingar, t.d. engin lengd, tegund, staða og getur skilað færri atriðum.\n\nYouTube er dæmi um þjónustu sem býður upp á þetta með RSS-streymi sínu.\n\nValið er því á milli hraða eða nákvæmra upplýsinga.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Ef áskriftir eru uppfærðar of hægt máttu prófa hraðstreymissham (kveiktu á honum í stillingunum eða með hnappnum hér að neðan). \n \nNewPipe getur uppfært áskriftir á tvo vegu: \n• Sækja alla áskriftarrásina - hægvirkt en veitir allar upplýsingar. \n• Nota sérstök forritaskil - fljótvirkt en upplýsingar verða minni. \n \nHraðstreymishamur getur veitt ófullnægjandi upplýsingar, t.d. engin lengd, tegund, staða og getur skilað færri atriðum. \n \nYouTube er dæmi um þjónustu sem býður upp á þetta með RSS-streymi sínu. \n \nValið er því á milli hraða eða nákvæmra upplýsinga.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Smámynd rásar</string>
     <string name="soundcloud_go_plus_content">Þetta er SoundCloud Go+ lag að minnsta kosti í þínu landi — það er ekki hægt að streyma því eða sækja með NewPipe.</string>
     <string name="youtube_music_premium_content">Þetta myndskeið er aðeins í boði fyrir YouTube Tónlist Premium meðlimi, það er ekki hægt að streyma því eða sækja með NewPipe.</string>
@@ -804,4 +804,5 @@
     <string name="main_tabs_position_summary">Færa veljara aðalflipa neðst</string>
     <string name="show_error_snackbar">Sýna villustiku</string>
     <string name="image_quality_summary">Veldu gæði mynda og hvort eigi að hlaða myndum inn yfirhöfuð, til að minnka notun gagna og minnis. Breytingar munu hreinsa bæði vinnsluminni og diskminni - %s</string>
+    <string name="audio_track_type_secondary">auka</string>
 </resources>

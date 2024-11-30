@@ -1,0 +1,14 @@
+Új
+• Feliratkozói csoportok és feed-ek rendbetétele
+• Némító gomb a lejátszókban
+
+Fejlesztések
+• A music.youtube.com és media.ccc.de domainek megnyitása a NewPipe-ban
+• Két beállítás áthelyezése a Megjelenésből a Kontetbe
+• Az 5, 15, 25 mp-es csévélés kikapcsolva ha a pontatlan keresés be van kapcsolva
+
+Javítások
+• Egyes WebM videók most már csévélhetőek
+• Adatbázis biztonsági mentás Android P-n
+• Összeomlás egy letöltött fájl megosztásánál
+• Egy tonna YouTube kivonatoló és még sok más hiba javítása...

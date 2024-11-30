@@ -57,8 +57,8 @@
     <string name="resume_on_audio_focus_gain_title">Възобновяване</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
     <string name="download_dialog_title">Изтегли</string>
-    <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
-    <string name="show_hold_to_append_title">Показване на съвета „Задръжте за поставяне в опашка“</string>
+    <string name="show_next_and_similar_title">Покажи „следващ“ и „подобни“</string>
+    <string name="show_hold_to_append_title">Покажи съвет „Задръжте за поставяне в опашка“</string>
     <string name="unsupported_url">Непознат URL</string>
     <string name="content_language_title">Език на съдържанието по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
@@ -69,7 +69,7 @@
     <string name="background_player_playing_toast">Възпроизвеждане във фонов режим</string>
     <string name="popup_playing_toast">Възпроизвеждане в подпрозорец</string>
     <string name="content">Съдържание</string>
-    <string name="show_age_restricted_content_title">Показване на съдържание с възрастови ограничения</string>
+    <string name="show_age_restricted_content_title">Покажи съдържание с възрастови ограничения</string>
     <string name="duration_live">На живо</string>
     <string name="downloads">Изтегляния</string>
     <string name="downloads_title">Изтегляния</string>
@@ -152,7 +152,7 @@
     <string name="use_inexact_seek_title">Използвай бързо, но неточно превъртане</string>
     <string name="use_inexact_seek_summary">По-бързо превъртане с по-ниска прецизност. Превъртане с по 5, 15 или 25 секунди няма да работи с тази опция</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш-паметта с изображения е изтрита</string>
-    <string name="metadata_cache_wipe_title">Изтрий кешираните метаданни</string>
+    <string name="metadata_cache_wipe_title">Изтрий кешираните мета данни</string>
     <string name="metadata_cache_wipe_summary">Премахни всички метаданни за уебстраници от кеш-паметта</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш-паметта с метаданни бе изтрита</string>
     <string name="auto_queue_title">Автоматично поставяне на следващия поток в опашка</string>
@@ -165,8 +165,8 @@
     <string name="switch_to_background">Мини във фонов режим</string>
     <string name="switch_to_popup">Мини към нов прозорец</string>
     <string name="switch_to_main">Мини в основен режим</string>
-    <string name="import_data_title">Импортиране на база данни</string>
-    <string name="export_data_title">Експортиране на база данни</string>
+    <string name="import_data_title">Внасяне на база данни</string>
+    <string name="export_data_title">Изнасяне на база данни</string>
     <string name="import_data_summary">Замества текущата ви история, абонаменти, списъци за възпроизвеждане и (по избор) настройки</string>
     <string name="export_data_summary">Изнасяне на история, абонаменти, плейлисти и настройки</string>
     <string name="clear_views_history_title">Изтрий историята с изгледани</string>
@@ -203,7 +203,7 @@
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
     <string name="app_license_title">Лицензът на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
-    <string name="show_hold_to_append_summary">Показване на съвет при натискане на фона или изскачащия бутон във видеоклипа „Подробности:“</string>
+    <string name="show_hold_to_append_summary">Покажи съвет при натискане на фона или изскачащия бутон във видеоклипа „Подробности:“</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
@@ -233,12 +233,12 @@
     <string name="select_a_channel">Изберете канал</string>
     <string name="no_channel_subscribed_yet">За момента нямате абонаменти</string>
     <string name="select_a_kiosk">Изберете павилион</string>
-    <string name="export_complete_toast">Експортирането приключи</string>
-    <string name="import_complete_toast">Импортирането приключи</string>
+    <string name="export_complete_toast">Изнасянето приключи</string>
+    <string name="import_complete_toast">Внасянето приключи</string>
     <string name="no_valid_zip_file">Невалиден ZIP файл</string>
-    <string name="could_not_import_all_files">Внимание: не всички файлове бяха импортирани успешно.</string>
+    <string name="could_not_import_all_files">Внимание: не всички файлове бяха внесени успешно.</string>
     <string name="override_current_data">Това ще замени текущата Ви инсталация.</string>
-    <string name="import_settings">Желаете ли също да импортирате настройките?</string>
+    <string name="import_settings">Искате ли да внесете и настройки?</string>
     <string name="trending">Набиращи популярност</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Ново и горещо</string>
@@ -278,30 +278,17 @@
     <string name="caption_setting_description">Модифицирай текстовия мащаб на надписите и стила на техния фон. За промените се изисква рестарт на приложението</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
-    <string name="import_title">Импортирай</string>
-    <string name="import_from">Импортирай от</string>
-    <string name="export_to">Експортирай в</string>
-    <string name="import_ongoing">Импортиране…</string>
-    <string name="export_ongoing">Експортиране…</string>
-    <string name="import_file_title">Файл с данни за импортиране</string>
-    <string name="previous_export">Предишно експортиране</string>
-    <string name="subscriptions_import_unsuccessful">Неуспешно импортиране на абонатите</string>
-    <string name="subscriptions_export_unsuccessful">Неуспешно експортиране на абонатите</string>
-    <string name="import_youtube_instructions">Импортиране на абонаменти в YouTube от Google Takeout:
-\n
-\n1. Отидете на този URL: %1$s
-\n2. Влезте, когато бъдете помолени
-\n3. Щракнете върху „Всички включени данни“, след това върху „Демаркиране на всички“, след това изберете само „абонаменти“ и щракнете върху „OK“
-\n4. Кликнете върху „Следваща стъпка“ и след това върху „Създаване на експорт“
-\n5. Кликнете върху бутона \"Изтегляне\", след като се появи
-\n6. Кликнете върху ИМПОРТИРАНЕ НА ФАЙЛ по-долу и изберете изтегления .zip файл
-\n7. [Ако импортирането на .zip е неуспешно] Разархивирайте .csv файла (обикновено под „YouTube и YouTube Music/subscriptions/subscriptions.csv“), щракнете върху ИМПОРТИРАНЕ НА ФАЙЛ по-долу и изберете извлечения csv файл</string>
-    <string name="import_soundcloud_instructions">Импортирайте SoundCloud профил чрез въвеждане на хипервръзката към него или чрез вашия ID:
-\n
-\n1. Включете „десктоп режим“ в браузър (сайтът е недостъпен за мобилни устройства)
-\n2. Посетете връзката: %1$s
-\n3. Влезте в профила си, ако се изисква
-\n4. Копирайте хипервръзката на профилната страница, към която сте насочени.</string>
+    <string name="import_title">Внасяне</string>
+    <string name="import_from">Внасяне от</string>
+    <string name="export_to">Изнеси в</string>
+    <string name="import_ongoing">Внасяне…</string>
+    <string name="export_ongoing">Изнасяне…</string>
+    <string name="import_file_title">Файл с данни за внасяне</string>
+    <string name="previous_export">Предишно изнасяне</string>
+    <string name="subscriptions_import_unsuccessful">Неуспешно внасяне на абонатите</string>
+    <string name="subscriptions_export_unsuccessful">Неуспешно изнасяне на абонатите</string>
+    <string name="import_youtube_instructions">Внасяне на абонаменти в YouTube от Google Takeout: \n \n1. Отидете на този URL: %1$s \n2. Влезте, когато бъдете помолени \n3. Щракнете върху „Всички включени данни“, след това върху „Демаркиране на всички“, след това изберете само „абонаменти“ и щракнете върху „OK“ \n4. Кликнете върху „Следваща стъпка“ и след това върху „Създаване на износ“ \n5. Кликнете върху бутона \"Изтегляне\", след като се появи \n6. Кликнете върху ВНАСЯНЕ НА ФАЙЛ по-долу и изберете изтегления .zip файл \n7. [Ако внасянето на .zip е неуспешно] Разархивирайте .csv файла (обикновено под „YouTube и YouTube Music/subscriptions/subscriptions.csv“), щракнете върху ВНАСЯНЕ НА ФАЙЛ по-долу и изберете извлечения csv файл</string>
+    <string name="import_soundcloud_instructions">Внесете профил в SoundCloud, като въведете или URL адреса, или вашия ID: \n \n1. Включете „десктоп режим“ в браузър (сайтът е недостъпен за мобилни устройства) \n2. Посетете връзката: %1$s \n3. Влезте в профила си, ако се изисква \n4. Копирайте хипервръзката на профилната страница, към която сте насочени.</string>
     <string name="import_soundcloud_instructions_hint">вашиятID, soundcloud.com/вашиятID</string>
     <string name="import_network_expensive_warning">Това действие може да изразходва голямо количество данни от вашия трафик.
 \n
@@ -332,8 +319,8 @@
     <string name="unsubscribe">Отписване</string>
     <string name="file_deleted">Файлът е изтрит</string>
     <string name="events">Събития</string>
-    <string name="show_comments_title">Показвай коментари</string>
-    <string name="show_comments_summary">Изключване за скриване на коментарите</string>
+    <string name="show_comments_title">Покажи коментари</string>
+    <string name="show_comments_summary">Изключете за скриване на коментарите</string>
     <string name="autoplay_title">Автоматично пускане</string>
     <string name="tab_choose">Избор на раздел</string>
     <string name="settings_category_updates_title">Промени</string>
@@ -353,7 +340,7 @@
     <string name="no_one_watching">Няма зрители</string>
     <string name="clear_playback_states_summary">Изтрива всички позиции на възпроизвеждане</string>
     <string name="unsupported_url_dialog_message">URL адресът не можа да бъде разпознат. Да се отвори ли с друго приложение?</string>
-    <string name="show_description_title">Показване на описание</string>
+    <string name="show_description_title">Покажи описание</string>
     <string name="night_theme_title">Нощна тема</string>
     <string name="notification_colorize_title">Оцветяване на известие</string>
     <string name="notification_action_nothing">Нищо</string>
@@ -371,7 +358,7 @@
     <string name="dont_show">Не показвай</string>
     <string name="local_search_suggestions">Местни предложения за търсене</string>
     <string name="error_report_open_github_notice">Моля проверете дали има създадена дискусия за срив като този. Постъпилите дубликати са в ущърб на така ценното време за разработка.</string>
-    <string name="show_meta_info_title">Показване на метаданни</string>
+    <string name="show_meta_info_title">Покажи мета данни</string>
     <string name="grid">Мрежа</string>
     <string name="list">Списък</string>
     <string name="notification_action_3_title">Четвърто действие</string>
@@ -537,7 +524,7 @@
     <string name="restricted_video">Това видео е с възрастова граница.
 \n
 \nВключете „%1$s“ в настройките ако искате да го пуснете.</string>
-    <string name="show_image_indicators_summary">Показвай цветни Picasso-панделки в горната част на изображенията като индикатор за техния произход (червен – от мрежата, син – от диска и червен – от паметта)</string>
+    <string name="show_image_indicators_summary">Покажи цветни Picasso-панделки в горната част на изображенията като индикатор за техния произход (червен – от мрежата, син – от диска и червен – от паметта)</string>
     <string name="auto_device_theme_title">Автоматична (тази на устройството)</string>
     <string name="notification_scale_to_square_image_summary">Мащабиране на миниатюрата в известието от 16:9 към 1:1 формат (възможни са изкривявания)</string>
     <string name="select_a_playlist">Избете плейлист</string>
@@ -568,10 +555,10 @@
     <string name="progressive_load_interval_title">Размер на интервала на зареждане при възпроизвеждане</string>
     <string name="ignore_hardware_media_buttons_title">Игнорирайте събитията с хардуерни медийни бутони</string>
     <string name="left_gesture_control_summary">Изберете жест за лявата половина на екрана на плейъра</string>
-    <string name="enable_playback_state_lists_summary">Показване на индикатори за позиция на изглед в списъци</string>
+    <string name="enable_playback_state_lists_summary">Покажи индикатори за позиция на възпроизвеждане в списъци</string>
     <string name="notification_actions_summary_android13">Редактирайте всяко действие за известяване по-долу, като щракнете върху него. Първите три действия (възпроизвеждане/пауза, предишно и следващо) се задават от системата и не могат да бъдат конфигурирани.</string>
-    <string name="right_gesture_control_summary">Жест за дясната страна на екрана на плейъра</string>
-    <string name="right_gesture_control_title">Действие жеста справа</string>
+    <string name="right_gesture_control_summary">Изберете жест за дясната половина на екрана на плейъра</string>
+    <string name="right_gesture_control_title">Действие с жест на дясно</string>
     <string name="start_main_player_fullscreen_title">Стартирайте основния плейър на цял екран</string>
     <string name="streams_notification_channel_description">Известия за нови видеоклипове в абонаментите</string>
     <string name="enable_streams_notifications_summary">Известявайте за нови видеоклипове в абонаментите</string>
@@ -601,7 +588,7 @@
 \nИскате ли да махнете абонамента от този канал?</string>
     <string name="feed_update_threshold_option_always_update">Винаги опреснявай</string>
     <string name="feed_load_error">Грешка при зареждане на емисия</string>
-    <string name="feed_show_hide_streams">Показване/Скриване на потоци</string>
+    <string name="feed_show_hide_streams">Покажи/Скрий потоци</string>
     <string name="private_content">Съдържанието е лично, затова не може да бъде възпроизведено или изтеглено от NewPipe.</string>
     <string name="select_night_theme_toast">Можете да изберете любимата си тъмна тема по-долу</string>
     <string name="tablet_mode_title">Режим таблет</string>
@@ -655,7 +642,7 @@
     <string name="settings_category_backup_restore_title">Резервно копие и възстановяване</string>
     <string name="loading_metadata_title">Зареждане на метаданни…</string>
     <string name="restore_defaults_confirmation">Искате ли да възстановите настройките по подразбиране?</string>
-    <string name="show_age_restricted_content_summary">Показвай съдържание, което вероятно е неподходящо за деца, защото има възрастово ограничение (например 18+)</string>
+    <string name="show_age_restricted_content_summary">Покажи съдържание, което вероятно е неподходящо за деца, защото има възрастово ограничение (например 18+)</string>
     <string name="error_report_notification_toast">Възникна грешка, погледнете известието</string>
     <string name="no_dir_yet">Не е избрана директория за теглене. Изберете директорията за теглене по подразбиране сега</string>
     <string name="audio_track">Аудио поток</string>
@@ -705,14 +692,14 @@
     <string name="channel_tab_livestreams">На живо</string>
     <string name="error_progress_lost">Прогресът е загубен, защото файлът е изтрит</string>
     <string name="card">Карта</string>
-    <string name="delete_downloaded_files_confirm">Изтриване на всички изтеглени файлове от диска?</string>
+    <string name="delete_downloaded_files_confirm">Изтрий всички изтеглени файлове от диска?</string>
     <string name="enable_queue_limit_desc">Едно изтегляне ще се изпълнява едновременно</string>
     <string name="downloads_storage_ask_title">Попитайте къде да изтеглите</string>
     <string name="systems_language">Система по подразбиране</string>
     <string name="remove_duplicates">Премахване на дубликати</string>
     <string name="remove_duplicates_message">Искате ли да премахнете всички дублиращи се потоци в този плейлист?</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Показване само на негрупирани абонаменти</string>
-    <string name="feed_hide_streams_title">Покажете следните потоци</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Покажи само на негрупирани абонаменти</string>
+    <string name="feed_hide_streams_title">Покажи следните потоци</string>
     <string name="no_appropriate_file_manager_message">Не е намерен подходящ файлов мениджър за това действие.
 \nМоля, инсталирайте файлов мениджър или опитайте да деактивирате „%s“ в настройките за изтегляне</string>
     <string name="no_appropriate_file_manager_message_android_10">Не е намерен подходящ файлов мениджър за това действие.
@@ -757,7 +744,7 @@
     <string name="show_crash_the_player_title">Покажи \"Сриване на плейъра\"</string>
     <string name="show_crash_the_player_summary">Показва опция за срив при използване на плейъра</string>
     <string name="check_new_streams">Стартирайте проверка за нови потоци</string>
-    <string name="show_error_snackbar">Показване на бърза лента за грешка</string>
+    <string name="show_error_snackbar">Покажи бърза лента за грешка</string>
     <string name="local">Местен</string>
     <string name="max_retry_msg">Максимален брой повторни опити</string>
     <string name="enable_queue_limit">Ограничете опашката за изтегляне</string>
@@ -765,7 +752,7 @@
     <string name="unset_playlist_thumbnail">Премахване на постоянното миниизображение</string>
     <string name="enable_streams_notifications_title">Известия за нови потоци</string>
     <string name="any_network">Всяка мрежа</string>
-    <string name="updates_setting_description">Показване на известие за актуализация на приложението, когато е налична нова версия</string>
+    <string name="updates_setting_description">Покажи известие за актуализация на приложението, когато е налична нова версия</string>
     <string name="account_terminated">Акаунтът е прекратен</string>
     <string name="detail_pinned_comment_view_description">Фиксиран коментар</string>
     <string name="streams_not_yet_supported_removed">Потоци, които все още не се поддържат от програмата за изтегляне, не се показват</string>
@@ -793,7 +780,7 @@
     <string name="image_quality_summary">Изберете качеството на изображенията и дали изобщо да се зареждат изображения, за да намалите използването на данни и памет. Промените изчистват както кеша на изображенията в паметта, така и на диска — %s</string>
     <string name="share_playlist_with_titles">Споделяне със заглавия</string>
     <string name="feed_fetch_channel_tabs">Извличане на раздели на канали</string>
-    <string name="import_settings_vulnerable_format">Настройките в внесения експорт използват уязвим формат, който е отпаднал от NewPipe 0.27.0. Уверете се, че внесеният експорт е от надежден източник, и предпочитайте в бъдеще да използвате само експорти, получени от NewPipe 0.27.0 или по-нова версия. Поддръжката за импортиране на настройки в този уязвим формат скоро ще бъде напълно премахната и тогава старите версии на NewPipe вече няма да могат да внасят настройки на експорти от нови версии.</string>
+    <string name="import_settings_vulnerable_format">Настройките в изнасяния файл, който се внася, използват уязвим формат, който е отпаднал от NewPipe 0.27.0. Уверете се, че внесеният износ е от надежден източник, и предпочитайте в бъдеще да използвате само изнасяния, получени от NewPipe 0.27.0 или по-нова версия. Поддръжката за внасяне на настройки в този уязвим формат скоро ще бъде напълно премахната и тогава старите версии на NewPipe вече няма да могат да внасят настройки на изнесени от нови версии.</string>
     <string name="hash_channel_name">Видео хеш известие</string>
     <string name="clear_cookie_summary">Изчистете бисквитките, които NewPipe съхранява, когато разрешите reCAPTCHA</string>
     <string name="streams_notifications_network_title">Необходима мрежова връзка</string>
@@ -810,7 +797,7 @@
     <string name="error_report_notification_title">NewPipe откри грешка, докоснете, за да докладвате</string>
     <string name="no_streams">Няма потоци</string>
     <string name="disable_media_tunneling_title">Деактивиране на медийното тунелиране</string>
-    <string name="show_image_indicators_title">Показване на индикатори за изображения</string>
+    <string name="show_image_indicators_title">Покажи индикатори за изображения</string>
     <string name="missions_header_pending">В очакване</string>
     <string name="error_postprocessing_failed">Неуспешна последваща обработка</string>
     <string name="pause_downloads_on_mobile">Прекъсване на мрежи с измерване</string>
@@ -824,5 +811,6 @@
     <string name="metadata_subchannel_avatars">Аватари за подканали</string>
     <string name="metadata_banners">Банери</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Винаги използвайте заобикаляне на настройката на повърхността на видеоизхода на ExoPlayer</string>
-    <string name="clear_playback_states_title">Изтриване на позиции за възпроизвеждане</string>
+    <string name="clear_playback_states_title">Изтрий позиции за възпроизвеждане</string>
+    <string name="audio_track_type_secondary">вторичен</string>
 </resources>
