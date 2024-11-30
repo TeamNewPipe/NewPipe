@@ -29,7 +29,6 @@ ktlint = "0.45.2"
 lazycolumnscrollbar = "2.2.0"
 leakcanary = "2.12"
 lifecycle = "2.6.2"
-localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0"
 media = "1.7.0"
@@ -96,7 +95,6 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
-androidx-localbroadcastmanager = { group = "androidx.localbroadcastmanager", name = "localbroadcastmanager", version.ref = "localbroadcastmanager" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-media = { group = "androidx.media", name = "media", version.ref = "media" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }

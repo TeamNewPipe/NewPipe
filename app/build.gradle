@@ -223,7 +223,6 @@ dependencies {
     implementation libs.androidx.fragment.compose
     implementation libs.androidx.lifecycle.livedata
     implementation libs.androidx.lifecycle.viewmodel
-    implementation libs.androidx.localbroadcastmanager
     implementation libs.androidx.media
     implementation libs.androidx.preference
     implementation libs.androidx.recyclerview
