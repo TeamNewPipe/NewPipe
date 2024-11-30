@@ -1,0 +1,38 @@
+name: "Build unsigned release APK on master"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 'master'
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: "Build release APK"
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: "Rename APK"
+        run: |
+          VERSION_NAME="$(jq -r ".elements[0].versionName" "app/build/outputs/apk/release/output-metadata.json")"
+          echo "Version name: $VERSION_NAME" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat "app/build/outputs/apk/release/output-metadata.json" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          # assume there is only one APK in that folder
+          mv app/build/outputs/apk/release/*.apk "app/build/outputs/apk/release/NewPipe_v$VERSION_NAME.apk"
+
+      - name: "Upload APK"
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: app/build/outputs/apk/release/*.apk
