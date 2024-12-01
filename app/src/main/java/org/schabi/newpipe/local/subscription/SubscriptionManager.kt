@@ -48,23 +48,16 @@ class SubscriptionManager(context: Context) {
         }
     }
 
-    fun upsertAll(infoList: List<Pair<ChannelInfo, List<ChannelTabInfo>>>): List<SubscriptionEntity> {
-        val listEntities = subscriptionTable.upsertAll(
-            infoList.map { SubscriptionEntity.from(it.first) }
-        )
+    fun upsertAll(infoList: List<Pair<ChannelInfo, ChannelTabInfo>>) {
+        val listEntities = infoList.map { SubscriptionEntity.from(it.first) }
+        subscriptionTable.upsertAll(listEntities)
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
-                info.second.forEach {
-                    feedDatabaseManager.upsertAll(
-                        listEntities[index].uid,
-                        it.relatedItems.filterIsInstance<StreamInfoItem>()
-                    )
-                }
+                val streams = info.second.relatedItems.filterIsInstance<StreamInfoItem>()
+                feedDatabaseManager.upsertAll(listEntities[index].uid, streams)
             }
         }
-
-        return listEntities
     }
 
     fun updateChannelInfo(info: ChannelInfo): Completable =
