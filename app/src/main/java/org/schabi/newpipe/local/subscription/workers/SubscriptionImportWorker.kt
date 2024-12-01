@@ -37,20 +37,19 @@ class SubscriptionImportWorker(
 
     override suspend fun doWork(): Result {
         val mode = inputData.getInt(KEY_MODE, CHANNEL_URL_MODE)
-        val extractor = NewPipe.getService(inputData.getInt(KEY_SERVICE_ID, NO_SERVICE_ID))
-            .subscriptionExtractor
-        val value = inputData.getString(KEY_VALUE) ?: ""
+        val serviceId = inputData.getInt(KEY_SERVICE_ID, NO_SERVICE_ID)
+        val value = inputData.getString(KEY_VALUE)!!
 
         val subscriptions = withContext(Dispatchers.IO) {
             if (mode == CHANNEL_URL_MODE) {
-                extractor
+                NewPipe.getService(serviceId).subscriptionExtractor
                     .fromChannelUrl(value)
                     .map { SubscriptionItem(it.serviceId, it.url, it.name) }
             } else {
                 applicationContext.contentResolver.openInputStream(value.toUri())?.use {
                     if (mode == INPUT_STREAM_MODE) {
                         val contentType = MimeTypeMap.getFileExtensionFromUrl(value).ifEmpty { DEFAULT_MIME }
-                        extractor
+                        NewPipe.getService(serviceId).subscriptionExtractor
                             .fromInputStream(it, contentType)
                             .map { SubscriptionItem(it.serviceId, it.url, it.name) }
                     } else {
