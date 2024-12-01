@@ -77,7 +77,7 @@ class SubscriptionImportWorker(
                         val currentIndex = mutex.withLock { index++ }
                         setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
 
-                        Pair(channelInfo, listOf(channelTab))
+                        Pair(channelInfo, channelTab)
                     }
                 }.awaitAll()
         }
