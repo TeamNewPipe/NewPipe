@@ -9,3 +9,10 @@ include ':app'
 //        substitute module('com.github.TeamNewPipe:NewPipeExtractor') using project(':extractor')
 //    }
 //}
+
+
+includeBuild('../NewPlayer') {
+    dependencySubstitution {
+        substitute module('com.github.TeamNewPipe:NewPlayer') using project(':new-player')
+    }
+}

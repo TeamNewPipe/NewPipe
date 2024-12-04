@@ -56,6 +56,8 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import net.newpipe.newplayer.NewPlayer;
+
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
@@ -94,10 +96,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
+    @Inject
+    NewPlayer newPlayer;
 
     private ActivityMainBinding mainBinding;
     private DrawerHeaderBinding drawerHeaderBinding;

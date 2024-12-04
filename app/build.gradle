@@ -199,6 +199,8 @@ dependencies {
     implementation libs.teamnewpipe.newpipe.extractor
     implementation libs.teamnewpipe.nononsense.filepicker
 
+    implementation 'com.github.TeamNewPipe:NewPlayer'
+
 /** Checkstyle **/
     checkstyle libs.tools.checkstyle
     ktlint libs.tools.ktlint
