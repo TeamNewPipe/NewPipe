@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.newpipe.newplayer.ui.NewPlayerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/embedded_player_newplayer"
+    android:name="net.newpipe.newplayer.VideoPlayerFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="50dp" />

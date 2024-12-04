@@ -229,6 +229,9 @@ dependencies {
     implementation libs.androidx.work.runtime
     implementation libs.androidx.work.rxjava3
     implementation libs.androidx.material
+    implementation libs.androidx.media3.common
+    implementation libs.androidx.media3.exoplayer
+    implementation libs.androidx.media3.ui
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination

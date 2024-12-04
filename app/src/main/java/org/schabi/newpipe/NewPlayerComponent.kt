@@ -21,8 +21,14 @@
 package net.newpipe.newplayer.testapp
 
 import android.app.Application
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Log
+import androidx.annotation.OptIn
 import androidx.core.graphics.drawable.IconCompat
+import androidx.media3.common.MediaMetadata
+import androidx.media3.common.util.UnstableApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,11 +36,19 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import net.newpipe.newplayer.NewPlayer
 import net.newpipe.newplayer.NewPlayerImpl
+import net.newpipe.newplayer.data.AudioStreamTrack
+import net.newpipe.newplayer.data.Chapter
+import net.newpipe.newplayer.data.Stream
+import net.newpipe.newplayer.data.Subtitle
+import net.newpipe.newplayer.data.VideoStreamTrack
 import net.newpipe.newplayer.repository.CachingRepository
-import net.newpipe.newplayer.repository.PlaceHolderRepository
+import net.newpipe.newplayer.repository.MediaRepository
 import net.newpipe.newplayer.repository.PrefetchingRepository
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity
 import javax.inject.Singleton
@@ -47,7 +61,7 @@ object NewPlayerComponent {
     fun provideNewPlayer(app: Application): NewPlayer {
         val player = NewPlayerImpl(
             app = app,
-            repository = PrefetchingRepository(CachingRepository(PlaceHolderRepository())),
+            repository = PrefetchingRepository(CachingRepository(TestMediaRepository())),
             notificationIcon = IconCompat.createWithResource(app, net.newpipe.newplayer.R.drawable.new_player_tiny_icon),
             playerActivityClass = MainActivity::class.java,
             // rescueStreamFault = …
@@ -63,4 +77,84 @@ object NewPlayerComponent {
         }
         return player
     }
+}
+
+class TestMediaRepository() : MediaRepository {
+    private val client = OkHttpClient()
+
+    override fun getRepoInfo() =
+        MediaRepository.RepoMetaInfo(canHandleTimestampedLinks = true, pullsDataFromNetwork = true)
+
+    @OptIn(UnstableApi::class)
+    override suspend fun getMetaInfo(item: String): MediaMetadata =
+        MediaMetadata.Builder()
+            .setTitle("BGP and the rule of bla")
+            .setArtist("mr BGP")
+            .setArtworkUri(Uri.parse("https://static.media.ccc.de/media/congress/2017/9072-hd.jpg"))
+            .setDurationMs(
+                1871L * 1000L
+            )
+            .build()
+
+    override suspend fun getStreams(item: String): List<Stream> {
+        return listOf(
+            Stream(
+                item = "bgp",
+                streamUri = Uri.parse("https://cdn.media.ccc.de/congress/2017/h264-hd/34c3-9072-eng-BGP_and_the_Rule_of_Custom.mp4"),
+                mimeType = null,
+                streamTracks = listOf(
+                    AudioStreamTrack(
+                        bitrate = 480000,
+                        fileFormat = "MPEG4",
+                        language = "en"
+                    ),
+                    VideoStreamTrack(
+                        width = 1920,
+                        height = 1080,
+                        frameRate = 25,
+                        fileFormat = "MPEG4"
+                    )
+                )
+            )
+        )
+    }
+
+    override suspend fun getSubtitles(item: String) =
+        emptyList<Subtitle>()
+
+    override suspend fun getPreviewThumbnail(item: String, timestampInMs: Long): Bitmap? {
+
+        val templateUrl = "https://static.media.ccc.de/media/congress/2017/9072-hd.jpg"
+
+        val thumbnailId = (timestampInMs / (10 * 1000)) + 1
+
+        if (getPreviewThumbnailsInfo(item).count < thumbnailId) {
+            return null
+        }
+
+        val thumbUrl = String.format(templateUrl, thumbnailId)
+
+        val bitmap = withContext(Dispatchers.IO) {
+            val request = Request.Builder().url(thumbUrl).build()
+            val response = client.newCall(request).execute()
+            try {
+                val responseBody = response.body
+                val bitmap = BitmapFactory.decodeStream(responseBody?.byteStream())
+                return@withContext bitmap
+            } catch (e: Exception) {
+                return@withContext null
+            }
+        }
+
+        return bitmap
+    }
+
+    override suspend fun getPreviewThumbnailsInfo(item: String) =
+        MediaRepository.PreviewThumbnailsInfo(0, 0)
+
+    override suspend fun getChapters(item: String) =
+        listOf<Chapter>()
+
+    override suspend fun getTimestampLink(item: String, timestampInSeconds: Long) =
+        ""
 }

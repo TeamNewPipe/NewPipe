@@ -63,6 +63,9 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
 
+import net.newpipe.newplayer.NewPlayer;
+import net.newpipe.newplayer.data.PlayMode;
+
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -128,11 +131,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import coil3.util.CoilUtils;
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@AndroidEntryPoint
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
@@ -228,6 +235,8 @@ public final class VideoDetailFragment
     @Nullable
     private PlayerService playerService;
     private Player player;
+    @Inject
+    NewPlayer newPlayer;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1138,10 +1147,13 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(false);
         tryAddVideoPlayerView();
+        newPlayer.playStream("bgp", PlayMode.EMBEDDED_VIDEO);
+        newPlayer.setPlayWhenReady(true);
+        newPlayer.prepare();
 
-        final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                PlayerService.class, queue, true, autoPlayEnabled);
-        ContextCompat.startForegroundService(activity, playerIntent);
+//        final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
+//                PlayerService.class, queue, true, autoPlayEnabled);
+//        ContextCompat.startForegroundService(activity, playerIntent);
     }
 
     /**
@@ -1234,15 +1246,18 @@ public final class VideoDetailFragment
             // setup the surface view height, so that it fits the video correctly
             setHeightThumbnail();
 
-            player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
-                // sometimes binding would be null here, even though getView() != null above u.u
-                if (binding != null) {
-                    // prevent from re-adding a view multiple times
-                    playerUi.removeViewFromParent();
-                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
-                    playerUi.setupVideoSurfaceIfNeeded();
-                }
-            });
+            getLayoutInflater().inflate(
+                    R.layout.fragment_newplayer_view, binding.playerPlaceholder);
+
+//            player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
+//                // sometimes binding would be null here, even though getView() != null above u.u
+//                if (binding != null) {
+//                    // prevent from re-adding a view multiple times
+//                    playerUi.removeViewFromParent();
+//                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+//                    playerUi.setupVideoSurfaceIfNeeded();
+//                }
+//            });
         });
     }
 

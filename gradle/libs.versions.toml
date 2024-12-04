@@ -32,6 +32,7 @@ localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0"
 media = "1.7.0"
+media3 = "1.3.1"
 mockitoCore = "5.6.0"
 navigationCompose = "2.8.3"
 okhttp = "4.12.0"
@@ -96,6 +97,9 @@ androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "l
 androidx-localbroadcastmanager = { group = "androidx.localbroadcastmanager", name = "localbroadcastmanager", version.ref = "localbroadcastmanager" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-media = { group = "androidx.media", name = "media", version.ref = "media" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
+androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
 androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
