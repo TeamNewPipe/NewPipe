@@ -120,20 +120,20 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     private fun createPlaylistMediaItem(playlist: PlaylistLocalItem): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
-        val isRemote = playlist is PlaylistRemoteEntity
-        builder.setMediaId(createMediaIdForInfoItem(isRemote, playlist.uid))
+        builder
+            .setMediaId(createMediaIdForInfoItem(playlist is PlaylistRemoteEntity, playlist.uid))
             .setTitle(playlist.orderingName)
-            .setIconUri(Uri.parse(playlist.thumbnailUrl))
+            .setIconUri(playlist.thumbnailUrl?.let { Uri.parse(it) })
 
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            playerService.resources.getString(R.string.tab_bookmarks)
+            playerService.resources.getString(R.string.tab_bookmarks),
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
             builder.build(),
-            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
+            MediaBrowserCompat.MediaItem.FLAG_BROWSABLE,
         )
     }
 

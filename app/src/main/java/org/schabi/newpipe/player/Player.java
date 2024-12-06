@@ -45,7 +45,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import android.content.BroadcastReceiver;
@@ -87,8 +86,8 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -119,9 +118,9 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -416,9 +415,12 @@ public final class Player implements PlaybackListener, Listener {
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
             }
+            // Seeks to a specific index and position in the player if the queue index has changed.
             if (playQueue.getIndex() != newQueue.getIndex()) {
-                simpleExoPlayer.seekTo(newQueue.getIndex(),
-                        requireNonNull(newQueue.getItem()).getRecoveryPosition());
+                final PlayQueueItem queueItem = newQueue.getItem();
+                if (queueItem != null) {
+                    simpleExoPlayer.seekTo(newQueue.getIndex(), queueItem.getRecoveryPosition());
+                }
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
