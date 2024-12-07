@@ -71,4 +71,9 @@ public class PlaylistMetadataEntry implements PlaylistLocalItem {
     public void setDisplayIndex(final long displayIndex) {
         this.displayIndex = displayIndex;
     }
+
+    @Override
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
 }

@@ -86,8 +86,8 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -118,9 +118,9 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
+import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -302,7 +302,7 @@ public final class Player implements PlaybackListener, Listener {
         // notification ui in the UIs list, since the notification depends on the media session in
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
-                new MediaSessionPlayerUi(this),
+                new MediaSessionPlayerUi(this, service.getSessionConnector()),
                 new NotificationPlayerUi(this)
         );
     }
@@ -414,6 +414,13 @@ public final class Player implements PlaybackListener, Listener {
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
                 simpleExoPlayer.prepare();
+            }
+            // Seeks to a specific index and position in the player if the queue index has changed.
+            if (playQueue.getIndex() != newQueue.getIndex()) {
+                final PlayQueueItem queueItem = newQueue.getItem();
+                if (queueItem != null) {
+                    simpleExoPlayer.seekTo(newQueue.getIndex(), queueItem.getRecoveryPosition());
+                }
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
