@@ -180,7 +180,8 @@ class PlayerService : MediaBrowserServiceCompat() {
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        if (SERVICE_INTERFACE == intent.getAction()) {
+        if (SERVICE_INTERFACE == intent.action) {
+            // For actions related to the media browser service, pass the onBind to the superclass
             return super.onBind(intent)
         }
         return mBinder
