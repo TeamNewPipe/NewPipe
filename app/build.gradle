@@ -233,7 +233,6 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.6.2'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-process:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'androidx.media:media:1.7.0'
     implementation 'androidx.preference:preference:1.2.1'
