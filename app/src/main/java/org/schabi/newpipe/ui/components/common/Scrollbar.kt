@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.ScrollbarSettings
 
 @Composable
@@ -20,7 +21,7 @@ fun LazyColumnThemedScrollbar(
     indicatorContent: (@Composable (index: Int, isThumbSelected: Boolean) -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
-    my.nanihadesuka.compose.LazyColumnScrollbar(
+    LazyColumnScrollbar(
         state = state,
         modifier = modifier,
         settings = settings,
