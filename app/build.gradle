@@ -223,9 +223,6 @@ dependencies {
     implementation libs.androidx.room.rxjava3
     kapt libs.androidx.room.compiler
     implementation libs.androidx.swiperefreshlayout
-    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
-    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
-    implementation libs.androidx.viewpager2
     implementation libs.androidx.work.runtime
     implementation libs.androidx.work.rxjava3
     implementation libs.androidx.material
