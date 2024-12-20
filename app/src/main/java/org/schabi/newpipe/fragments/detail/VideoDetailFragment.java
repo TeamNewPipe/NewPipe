@@ -54,6 +54,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwnerKt;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.media3.common.util.UnstableApi;
 import androidx.preference.PreferenceManager;
 
 import com.evernote.android.state.State;
@@ -65,6 +68,10 @@ import com.google.android.material.tabs.TabLayout;
 
 import net.newpipe.newplayer.NewPlayer;
 import net.newpipe.newplayer.data.PlayMode;
+import net.newpipe.newplayer.ui.ContentScale;
+import net.newpipe.newplayer.ui.NewPlayerView;
+import net.newpipe.newplayer.uiModel.NewPlayerViewModel;
+import net.newpipe.newplayer.uiModel.NewPlayerViewModelImpl;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
@@ -138,7 +145,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlinx.coroutines.CoroutineScopeKt;
 
+@UnstableApi
 @AndroidEntryPoint
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -238,6 +247,7 @@ public final class VideoDetailFragment
 //    private Player player;
     @Inject
     NewPlayer newPlayer;
+    NewPlayerViewModel newPlayerViewModel;
 //    private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
 //    /*//////////////////////////////////////////////////////////////////////////
@@ -313,6 +323,10 @@ public final class VideoDetailFragment
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        newPlayerViewModel = new ViewModelProvider(this).get(NewPlayerViewModelImpl.class);
+        newPlayerViewModel.setNewPlayer(this.newPlayer);
+        newPlayerViewModel.setContentFitMode(ContentScale.FIT_INSIDE);
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
@@ -1250,8 +1264,10 @@ public final class VideoDetailFragment
             // setup the surface view height, so that it fits the video correctly
             setHeightThumbnail();
 
-            getLayoutInflater().inflate(
+            final View v = getLayoutInflater().inflate(
                     R.layout.fragment_newplayer_view, binding.playerPlaceholder);
+            final NewPlayerView npv = v.findViewById(R.id.embedded_player_newplayer);
+            npv.setViewModel(newPlayerViewModel);
 
 //            player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
 //                // sometimes binding would be null here, even though getView() != null above u.u
