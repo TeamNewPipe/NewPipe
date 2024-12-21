@@ -42,7 +42,7 @@ fun AboutChannelSection(channelInfo: ParcelableChannelInfo) {
         ) {
             if (description.isNotEmpty()) {
                 item {
-                    Text(text = description)
+                    Text(text = description, style = MaterialTheme.typography.bodyMedium)
                 }
             }
 

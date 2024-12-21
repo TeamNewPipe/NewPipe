@@ -40,7 +40,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.R
@@ -83,7 +82,7 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
                         val date = Localization.formatDate(LocalContext.current, it.offsetDateTime())
                         Text(
                             text = stringResource(R.string.upload_date_text, date),
-                            fontWeight = FontWeight.Bold
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
 
@@ -135,10 +134,10 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
 
                     if (isSelectable) {
                         SelectionContainer {
-                            Text(text = description)
+                            Text(text = description, style = MaterialTheme.typography.bodyMedium)
                         }
                     } else {
-                        Text(text = description)
+                        Text(text = description, style = MaterialTheme.typography.bodyMedium)
                     }
                 }
             }
