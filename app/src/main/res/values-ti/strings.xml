@@ -67,4 +67,8 @@
     <string name="notification_action_1_title">ካልኣይ ስጉምቲ መጠወቒ</string>
     <string name="notification_action_2_title">ሳልሳይ ስጉምቲ መጠወቒ</string>
     <string name="notification_action_4_title">ሓሙሻይ ስጉምቲ መጠወቒ</string>
+    <string name="yes">እወ</string>
+    <string name="no">ኣይፋልን</string>
+    <string name="black_theme_title">ጸሊም</string>
+    <string name="theme_title">ኣርእስቲ</string>
 </resources>

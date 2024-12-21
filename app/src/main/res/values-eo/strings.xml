@@ -611,4 +611,6 @@
     <string name="recaptcha_solve">Solvi</string>
     <string name="msg_failed_to_copy">Malsukcesis kopii al la tondujo</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Oni petos al vi kien salvi ĉiujn elŝutojn</string>
+    <string name="yes">Jes</string>
+    <string name="no">Ne</string>
 </resources>

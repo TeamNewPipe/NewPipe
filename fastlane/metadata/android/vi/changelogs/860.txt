@@ -1,0 +1,7 @@
+Cải thiện
+• Lưu và khôi phục trạng thái bật/tắt âm vực và nhịp độ.
+• Hỗ trợ hiển thị phần cắt trên màn hình trong trình phát.
+• Làm tròn lượt xem và số lượng người đăng ký.
+• Tối ưu hóa YouTube để sử dụng ít dữ liệu hơn.
+
+Hơn 15 lỗi liên quan đến YouTube đã được sửa trong bản phát hành này.

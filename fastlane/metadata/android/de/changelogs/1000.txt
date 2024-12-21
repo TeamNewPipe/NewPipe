@@ -1,0 +1,12 @@
+Verbessert
+• Wiedergabelisten-Beschreibung klickbar, um mehr/weniger Inhalt anzuzeigen
+• [PeerTube] Automat. Handhabung von `subscribeto.me`-Instanzlinks
+• Nur einzelnes Element im Verlaufsbildschirm abspielen
+
+Behoben
+• Sichtbarkeit der RSS-Schaltfläche
+• Abstürze der Suchleistenvorschau
+• Erstellen einer Wiedergabeliste ohne Vorschaubild
+• Beenden des Download-Dialogs, bevor er erscheint
+• Pop-up-Fenster für die Liste der verwandten Elemente in der Warteschlange
+• …
