@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.subscription.workers
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
-import android.util.Pair
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -77,7 +76,7 @@ class SubscriptionImportWorker(
                         val currentIndex = mutex.withLock { index++ }
                         setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
 
-                        Pair(channelInfo, channelTab)
+                        channelInfo to channelTab
                     }
                 }.awaitAll()
         }
