@@ -51,6 +51,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.schabi.newpipe.App
 import org.schabi.newpipe.MainActivity
+import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.services.media_ccc.extractors.MediaCCCStreamExtractor
+import org.schabi.newpipe.extractor.services.media_ccc.extractors.data.MediaCCCRecording
 import javax.inject.Singleton
 
 @Module
@@ -61,7 +64,7 @@ object NewPlayerComponent {
     fun provideNewPlayer(app: Application): NewPlayer {
         val player = NewPlayerImpl(
             app = app,
-            repository = PrefetchingRepository(CachingRepository(TestMediaRepository())),
+            repository = PrefetchingRepository(CachingRepository(MediaCCCTestRepository())),
             notificationIcon = IconCompat.createWithResource(app, net.newpipe.newplayer.R.drawable.new_player_tiny_icon),
             playerActivityClass = MainActivity::class.java,
             // rescueStreamFault = …
@@ -151,6 +154,111 @@ class TestMediaRepository() : MediaRepository {
 
     override suspend fun getPreviewThumbnailsInfo(item: String) =
         MediaRepository.PreviewThumbnailsInfo(0, 0)
+
+    override suspend fun getChapters(item: String) =
+        listOf<Chapter>()
+
+    override suspend fun getTimestampLink(item: String, timestampInSeconds: Long) =
+        ""
+}
+
+class MediaCCCTestRepository() : MediaRepository {
+    private val client = OkHttpClient()
+
+    private val service = ServiceList.MediaCCC
+
+    suspend fun fetchPage(item: String): MediaCCCStreamExtractor {
+        return withContext(Dispatchers.IO) {
+            // TODO: handle MediaCCCLiveStreamExtractor as well
+            val extractor = service.getStreamExtractor(item) as MediaCCCStreamExtractor
+            extractor.fetchPage()
+            extractor
+        }
+    }
+
+    override fun getRepoInfo() =
+        MediaRepository.RepoMetaInfo(canHandleTimestampedLinks = true, pullsDataFromNetwork = true)
+
+    @OptIn(UnstableApi::class)
+    override suspend fun getMetaInfo(item: String): MediaMetadata {
+        val extractor = fetchPage(item)
+        return MediaMetadata.Builder().apply {
+            setTitle(extractor.name)
+            setArtist(extractor.subChannelName)
+            setDurationMs(
+                extractor.length * 1000L
+            )
+            extractor.thumbnails.firstOrNull()?.url?.let {
+                setArtworkUri(Uri.parse(it))
+            }
+        }.build()
+    }
+
+    override suspend fun getStreams(item: String): List<Stream> {
+        val extractor = fetchPage(item)
+        return extractor.recordings.filterIsInstance<MediaCCCRecording.Video>()
+            .filter { it.recordingType == MediaCCCRecording.VideoType.MAIN }
+            .map { track ->
+                Stream(
+                    item = item,
+                    streamUri = Uri.parse(track.url),
+                    streamTracks =
+                    listOf(
+                        VideoStreamTrack(
+                            width = track.width,
+                            height = track.height,
+                            fileFormat = track.mimeType
+                        ),
+                    ) +
+                            // one audio track per language
+                            // (TODO: probably don’t need to attach the audio track here?)
+                        track.languages.map { language ->
+                            AudioStreamTrack(
+                                // TODO: should we pass the Locale instead??
+                                language = language.language,
+                                fileFormat = track.mimeType,
+                                // TODO: that’s something ExoPlayer should determine for us,
+                                // we don’t know that from the metadata
+                                bitrate = 44100,
+                            )
+                        }
+                )
+            }
+    }
+
+    override suspend fun getSubtitles(item: String) =
+        emptyList<Subtitle>()
+
+    override suspend fun getPreviewThumbnail(item: String, timestampInMs: Long): Bitmap? {
+        val extractor = fetchPage(item)
+
+        val templateUrl = extractor.thumbnails.firstOrNull()?.url ?: return null
+
+        val thumbnailId = (timestampInMs / (10 * 1000)) + 1
+
+        if (getPreviewThumbnailsInfo(item).count < thumbnailId) {
+            return null
+        }
+
+        val thumbUrl = String.format(templateUrl, thumbnailId)
+
+        val bitmap = withContext(Dispatchers.IO) {
+            val request = Request.Builder().url(thumbUrl).build()
+            val response = client.newCall(request).execute()
+            try {
+                val responseBody = response.body
+                val bitmap = BitmapFactory.decodeStream(responseBody?.byteStream())
+                return@withContext bitmap
+            } catch (e: Exception) {
+                return@withContext null
+            }
+        }
+
+        return bitmap
+    }
+
+    override suspend fun getPreviewThumbnailsInfo(item: String) =
+        MediaRepository.PreviewThumbnailsInfo(1, 0)
 
     override suspend fun getChapters(item: String) =
         listOf<Chapter>()

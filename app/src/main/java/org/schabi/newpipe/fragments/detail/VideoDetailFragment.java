@@ -1165,7 +1165,7 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(false);
         tryAddVideoPlayerView();
-        newPlayer.playStream("bgp", PlayMode.EMBEDDED_VIDEO);
+        newPlayer.playStream("https://media.ccc.de/v/34c3-9072-bgp_and_the_rule_of_custom", PlayMode.EMBEDDED_VIDEO);
         newPlayer.setPlayWhenReady(true);
         newPlayer.prepare();
 
