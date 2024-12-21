@@ -1,0 +1,13 @@
+Peningkatan
+• Jadikan deskripsi daftar putar dapat diklik untuk menampilkan lebih banyak/sedikit konten
+• [PeerTube] Menangani tautan server `subscribeto.me` secara otomatis
+• Hanya mulai memutar satu item di layar riwayat
+
+Telah diperbaiki
+• Visibilitas tombol RSS
+• Kemogokan pratinjau seekbar
+• Daftar putar item tanpa gambar mini
+• Keluar dari dialog unduhan sebelum muncul
+• Popup antrean daftar item terkait
+• Urutan dalam dialog tambah ke daftar putar
+• Tata letak item penanda daftar putar

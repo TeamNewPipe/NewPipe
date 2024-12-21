@@ -1,1 +1,12 @@
-Behoben, dass YouTube keinen Stream abspielte
+Diese Hotfix-Version behebt HTTP-403-Fehler mitten in YouTube-Videos.
+
+Neu
+• [SoundCloud] Unterstützung für on.soundcloud.com-URLs hinzugefügt
+
+Verbessert
+• [Bandcamp]Anzeige zusätzlicher Informationen im Radio-Kiosk
+
+Behoben
+• [YouTube] Behebung gelegentlicher HTTP 403-Fehler am Anfang oder in der Mitte von Videos
+• [YouTube] Extrahieren von Avataren und Banner aus mehr Kanal-Header-Typen
+• [Bandcamp] Verschiedene Fehler behoben und HTTPS wird stets verwendet

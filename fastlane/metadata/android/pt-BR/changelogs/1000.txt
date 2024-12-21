@@ -1,0 +1,13 @@
+Melhorado
+• Torne a descrição da lista de reprodução clicável para mostrar mais / menos conteudo
+• [PeerTube] Gerênciar links de instâncias `subscribeto.me` automaticamente
+• Começar a reprodução apenas de um item na tela de histórico
+
+Corrigido
+• Corrigir visibilidade do botão RSS
+• Corrigir falhas na pré-visualização da barra de busca
+• Corrigir erro ao adicionar item sem miniatura à playlist
+• Corrigir erro ao sair da caixa de diálogo de descarregar antes de ela aparecer
+• Corrigir itens relacionados ao pop-up de colocar na fila
+• Corrigir a ordem no diálogo de adicionar à lista de reprodução
+• Ajustar o layout do item de marcador de lista de reprodução

@@ -188,7 +188,7 @@
     <string name="clear_queue_confirmation_description">செயலிலுள்ள இயக்கி வரிசை மாற்றப்படும்</string>
     <string name="clear_queue_confirmation_summary">ஒரு இயக்கி விட்டு மறு இயக்கி மாறுதல் உங்கள் வரிசையை மாற்றக்கூடும்</string>
     <string name="use_inexact_seek_summary">துல்லியமற்ற நாடல் குறைந்த துல்லியத்துடன் விரைவாக நாட இயக்கியை அனுமதிக்கிறது. 5, 15 அ 25 நொடிகள் நாடுவது இதனுடன் செயல்படாது</string>
-    <string name="night_theme_title">இரவு தோற்றம்</string>
+    <string name="night_theme_title">இரவுத் தோற்றம்</string>
     <string name="notification_colorize_summary">சிறுபடத்திலுள்ள முதன்மை நிறத்திற்கேற்ப அறிவிப்பின் நிறத்தை Androidஐ தனிப்பயனாக்கச் செய் (இது எல்லா சாதனங்களிலும் கிடைக்காதென்பதை குறித்துக்கொள்)</string>
     <string name="notification_colorize_title">அறிவிப்பை வண்ணமயமாக்கு</string>
     <string name="notification_action_nothing">ஏதுமில்லை</string>
@@ -314,7 +314,7 @@
     <string name="never">ஒருபோதுமில்லை</string>
     <string name="list_view_mode">பட்டியல் பார்வை முறை</string>
     <string name="overwrite_finished_warning">இப்பெயருடன் ஏற்கனவே ஒரு பதிவிறக்கிய கோப்பு உள்ளது</string>
-    <string name="delete_downloaded_files">பதிவிறக்கிய கோப்புகளை அழி</string>
+    <string name="delete_downloaded_files">பதிவிறக்கிய கோப்புகளை நீக்கு</string>
     <string name="systems_language">இயங்குதள இயல்பிருப்பு</string>
     <string name="show_thumbnail_title">சிறுபடங்காட்டு</string>
     <string name="auto_device_theme_title">தானியங்கி (சாதன தோற்றம்)</string>
@@ -367,4 +367,10 @@
     <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது.
 \nவயது வரம்புக்குட்பட்ட வீடியோக்கள் கொண்ட புதிய YouTube கொள்கைகள் காரணமாக, NewPipe ஆல் அதன் எந்த வீடியோ ஸ்ட்ரீம்களையும் அணுக முடியாது, இதனால் அதை இயக்க முடியவில்லை.</string>
     <string name="fast_mode">வேகமான பயன்முறை</string>
+    <string name="yes">ஆம்</string>
+    <string name="no">இல்லை</string>
+    <string name="delete_downloaded_files_confirm">வட்டில் இருக்கும் பதிவிறக்கம் செய்யப்பட்ட அனைத்து கோப்புகளையும் அழிக்கவா?</string>
+    <string name="feed_group_dialog_delete_message">இந்தக் குழுவை நீக்க வேண்டுமா?</string>
+    <string name="delete">நீக்கு</string>
+    <string name="one_item_deleted">ஒரு உருப்படி நீக்கப்பட்டது.</string>
 </resources>

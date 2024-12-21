@@ -1,0 +1,19 @@
+### Új
+- Hosszú lenyomásnál törlés és megosztás a feliratkozásoknál #1516 
+- Tablet felület és rácslistát elrendezés #1617 
+
+### Fejlesztések
+- Legutolsó képarány mentése és betöltése #1748 
+- Letöltések egyszerű elrendezése teljes videó nevekkel #1771 
+- Feliratkozások törlése és megosztása közvetlenül a feliratkozások fülön #1516 
+- Ha a lista végére kerül egy videó, akkor a lista végeztével folytatja azzal #1783 
+- Külön beállítások a hangerő és fényerő gesztusokhoz #1644
+- Nyelvek támogatása #1792
+
+### Javítások
+- Idő elemzés fixálása a . format formátumhoz, így Finnországban is használható a NewPipe
+- Feliratkozó számláló javítása
+- Az API 28+ eszközök esetén előtéri szolgáltatás elérés hozzáadása #1830
+
+### Ismert hibák
+- Lejátszási státusz nem menthető Android P-n

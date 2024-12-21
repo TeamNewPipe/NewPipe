@@ -1,27 +1,9 @@
 Nuevo
-- Soporte de PeerTube sin P2P (#2201) [Beta]:
+• Soporte de PeerTube sin P2P (#2201) [Beta]:
   ◦ Ver y descargar vídeos de las instancias de PeerTube.
   ◦ Añadir instancias en la configuración para acceder al mundo completo de PeerTube
-  ◦ Podría haber problemas con los apretones de manos SSL en Android 4.4 y 7.1 al acceder a ciertas instancias, lo que resulta en un error de red.
+  ◦ Puede haber problemas con los apretones de manos SSL en Android 4.4 y 7.1 al acceder a ciertas instancias que dan lugar a un error de red.
 
-- Descargador (#2679):
+• Gestor de descargas (#2679):
   ◦ Calcular el tiempo estimado de descarga
   ◦ Descargar opus (archivos webm) como ogg
-  ◦ Recuperar enlaces de descarga caducados para reanudar las descargas tras una larga pausa
-
-Mejorado
-- Hacer el KioskFragment consciente de los cambios en el país de contenido preferido y mejorar el rendimiento de todas las fichas principales #2742
-- Utilizar las nuevas implementaciones de localización y descargador del extractor #2713 
-- Hacer traducible la cadena "Kiosco por defecto
-- Barra de navegación negra para el tema negro #2569
-
-Corregido
-- Se ha corregido un error que impedía mover el reproductor emergente si se colocaba otro dedo mientras se movía el reproductor emergente #2772 
-- Permitir que las listas de reproducción no tengan un cargador y arreglar los fallos relacionados con este problema #2724, TeamNewPipe/NewPipeExtractor#219
-- Habilitar TLS1.1/1.2 en dispositivos Android 4.4 (API 19/KitKat) para arreglar el apretón de manos TLS con MediaCCC y algunas instancias de PeerTube #2792
-- SoundCloud] Corregida la extracción de client_id TeamNewPipe/NewPipeExtractor#217
-- SoundCloud] Corregir la extracción de flujos de audio
-
-Desarrollo
-- Actualizar ExoPlayer a la versión 2.10.8 #2791, #2816
-- Actualizar Gradle a 3.5.1 y añadir soporte para Kotlin #2714

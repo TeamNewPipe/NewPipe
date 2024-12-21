@@ -1,0 +1,4 @@
+Khắc phục nhanh
+• Sửa lỗi hình thu nhỏ và tiêu đề bị cắt trong bố cục lưới, do tính toán sai về số lượng video có thể vừa trong một hàng.
+• Sửa lỗi hộp thoại tải xuống biến mất mà không làm gì nếu được mở từ menu chia sẻ.
+• Cập nhật thư viện liên quan đến việc mở các hoạt động bên ngoài như trình chọn tệp của Storage Access Framework.

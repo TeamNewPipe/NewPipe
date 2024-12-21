@@ -12,7 +12,7 @@
 
 ### Verbesserungen
 - Reworked Gesture Controls #1604
-- Neue Möglichkeit, den Popup-Player #1597 zu schließen
+- Neue Möglichkeit, den Pop-up-Player #1597 zu schließen
 
 ### Fixed
 - Fehler beheben, wenn die Anzahl der Abonnements nicht verfügbar ist. Schließt #1649.

@@ -1,1 +1,1 @@
-Solución a YouTube no reproduciendo flujos.
+Arreglado el fallo por el cuál YouTube no reproducía ningún stream

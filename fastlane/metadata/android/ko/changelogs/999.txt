@@ -1,0 +1,12 @@
+이 핫픽스 릴리스는 YouTube 비디오 중간에 발생하는 HTTP 403 오류를 수정합니다.
+
+새로운 사항
+• [SoundCloud] on.soundcloud.com URL 지원 추가
+
+개선된 사항
+• [Bandcamp] 라디오 키오스크에 추가 정보 표시
+
+수정된 사항
+• [YouTube] 비디오 시작 또는 중간에 발생하는 HTTP 403 오류 수정
+• [YouTube] 더 많은 채널 헤더 유형에서 아바타와 배너 추출
+• [Bandcamp] 다양한 버그 수정 및 항상 HTTPS 사용

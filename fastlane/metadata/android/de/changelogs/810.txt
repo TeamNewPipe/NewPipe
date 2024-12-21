@@ -2,7 +2,7 @@ Neu
 • Video Vorschau auf den Sperrbildschirm beim Spielen im Hintergrund anzeigen
 
 Verbessert
-• Fügen Sie lokale Wiedergabeliste hinzu, um zu löschen, wenn lange Drücken auf Hintergrund / Popup-Taste
+• Fügen Sie lokale Wiedergabeliste hinzu, um zu löschen, wenn lange Drücken auf Hintergrund / Pop-up-Taste
 
 Behoben
 • Mehrere Probleme behoben, wenn ein Video zu NewPipe geteilt und seine Streams direkt herunterladen

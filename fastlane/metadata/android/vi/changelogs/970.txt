@@ -1,0 +1,11 @@
+Mới
+• Hiển thị siêu dữ liệu nội dung (thẻ, danh mục, giấy phép, ...) bên dưới phần mô tả
+• Thêm tùy chọn "Hiển thị chi tiết kênh" trong danh sách phát từ xa (không phải cục bộ)
+• Thêm tùy chọn "Mở trong trình duyệt" vào menu nhấn giữ
+
+Sửa lỗi
+• Sửa lỗi xoay màn hình bị lỗi trên trang chi tiết video
+• Sửa lỗi nút "Phát với Kodi" trong trình phát luôn nhắc cài đặt Kore
+• Sửa lỗi và cải thiện đường dẫn nhập và xuất cài đặt
+• [YouTube] Sửa lỗi số lượng thích cho bình luận
+Và nhiều hơn nữa

@@ -1,0 +1,2 @@
+media.ccc.de'de bir kanal / konferans açarken yaşanan NullPointerException sorunu düzeltildi.
+Grinch size Noel hediyemizi bozmaya çalıştı ama biz düzelttik.

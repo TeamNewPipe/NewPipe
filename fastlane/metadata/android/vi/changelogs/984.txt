@@ -1,0 +1,7 @@
+Tải đủ số lượng mục ban đầu trong danh sách để lấp đầy toàn bộ màn hình và sửa lỗi cuộn trên máy tính bảng và TV
+Sửa lỗi sập ứng dụng ngẫu nhiên khi cuộn qua danh sách
+Làm cho vòng cung tìm kiếm nhanh của trình phát đi dưới giao diện người dùng hệ thống
+Hoàn tác thay đổi đối với phần cắt khi phát trong nhiều cửa sổ, gây ra lỗi hồi quy trình phát bị đặt sai vị trí trên một số điện thoại
+Tăng compileSdk từ 30 lên 31
+Cập nhật thư viện báo cáo lỗi
+Cấu trúc lại một số mã trong trình phát

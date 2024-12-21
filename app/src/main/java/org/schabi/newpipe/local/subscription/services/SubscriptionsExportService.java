@@ -76,7 +76,10 @@ public class SubscriptionsExportService extends BaseImportExportService {
 
         try {
             outFile = new StoredFileHelper(this, path, "application/json");
-            outputStream = new SharpOutputStream(outFile.getStream());
+            // truncate the file before writing to it, otherwise if the new content is smaller than
+            // the previous file size, the file will retain part of the previous content and be
+            // corrupted
+            outputStream = new SharpOutputStream(outFile.openAndTruncateStream());
         } catch (final IOException e) {
             handleError(e);
             return START_NOT_STICKY;

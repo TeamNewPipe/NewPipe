@@ -1,0 +1,1 @@
+Nid yw NewPipe yn defnyddio unrhyw fframweithiau lyfrgell Google neu API YouTube. Mae ond yn didoli'r wefan er mwyn cael y wybodaeth mae ei angen. Felly mae modd ei ddefnyddio ar ddyfeisiau sydd heb Google Services wedi'u gosod. Hefyd, does dim angen cyfrif YouTube arnoch i ddefnyddio NewPipe ac mae'n FLOSS.

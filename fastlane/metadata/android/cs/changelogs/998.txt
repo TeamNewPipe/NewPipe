@@ -1,1 +1,4 @@
-Opraveno nepřehrávání jakéhokoli streamu ve službě YouTube
+Opraveno nepřehrávání žádného streamu ve službě YouTube kvůli chybám HTTP 403.
+
+Občasné chyby HTTP 403 uprostřed videí zatím nejsou opraveny.
+Tento problém bude opraven v dalším hotfix vydání jak nejdříve to bude možné.

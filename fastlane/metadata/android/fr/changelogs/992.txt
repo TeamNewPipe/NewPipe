@@ -1,0 +1,17 @@
+Nouveau
+• Nombre d'abonnés dans les détails de la vidéo
+• Télécharger depuis la file d'attente
+• Définir de manière permanente une miniature de liste de lecture
+• Hashtags et liens à appui long
+• Mode d'affichage de la carte
+
+Amélioré
+• Bouton de fermeture du mini-lecteur plus grand
+• Réduction d'échelle des vignettes plus fluide
+• Cible Android 13 (API 33)
+• La recherche ne met plus le lecteur en pause
+
+Corrigé
+• Correction de la superposition sur DeX/souris
+• Autoriser le lecteur d'arrière-plan sans flux audio séparés
+• Divers correctifs YouTube et plus encore…

@@ -1,12 +1,11 @@
 Cambios en 0.17.3
 
 Se ha mejorado
-- Añadida la opción de borrar los estados de reproducción #2550
-- Mostrar directorios ocultos en el selector de archivos #2591
-- Soportar URLs de instancias de `invidio.us` para ser abiertas con NewPipe #2488 
-- Añadir soporte para URLs de `music.youtube.com` TeamNewPipe/NewPipeExtractor#194
+• Añadida la opción de borrar los estados de reproducción #2550
+• Mostrar directorios ocultos en el selector de archivos #2591
+• Soportar URLs de instancias de `invidio.us` para ser abiertas con NewPipe #2488 
+• Añadir soporte para URLs de `music.youtube.com` TeamNewPipe/NewPipeExtractor#194
 
 Corregido
-- YouTube] Corregido 'java.lang.IllegalArgumentException' #192
+- YouTube] Corregido 'java.lang.IllegalArgumentException #192
 - YouTube] Arreglado que las transmisiones en directo no funcionan TeamNewPipe/NewPipeExtractor#195
-- Corregido el problema de rendimiento en android pie al descargar un stream #2592

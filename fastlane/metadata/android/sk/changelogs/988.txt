@@ -1,0 +1,2 @@
+[YouTube] Fix "Could not get any stream" error when trying to play any video
+[YouTube] Fix "The Following content is not available on this app." message shown instead of the video requested

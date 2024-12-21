@@ -1,8 +1,8 @@
 ### Geliştirmeler
-- Mobil veri kullanıldığında video kalitesini sınırlandırma seçeneği eklendi #1339
-- O an açık oturum için parlaklığı hatırla #1442
-- eski CPU'larda indirme performansı iyileştirildi #1431
+- Mobil veri kullanıldığında video kalitesini sınırlandırma seçeneği eklendi. #1339
+- Oturum boyunca parlaklığı hatırla #1442
+- düşük performanslı CPU'larda indirme performansı iyileştirildi #1431
 - Medya oturumu için destek eklendi (çalışıyor) #1433
 
-###Düzeltmeler
-- İndirmeler açılırken çökme düzeltildi #1441
+### Düzeltmeler
+- İndirilenler açılırken çökme düzeltildi(Yayın sürümleri için düzeltme mevcut) #1441

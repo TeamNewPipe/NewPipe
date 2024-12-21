@@ -1,0 +1,31 @@
+# mudanças da v0.14.1
+
+### fixo
+- Fixo falhou em desencriptar a url de vídeo #1659 
+- Ligação de descrição fixa não extraída bem #1657
+
+# mudanças de v0.14.0
+
+### Novo
+- Novo desenho de gaveta #1461
+- Nova página inicial personalizável #1461
+
+### Melhorias
+- Controlos por gestos retrabalhados #1604 
+- Nova forma de fechar o leitor de popup #1597
+
+### Fixa
+- Corrigir erro quando a contagem de assinaturas não está disponível. Fecha #1649.
+  - Mostrar "Contagem de subscritores não disponível" nesses casos
+- Consertar NPE quando uma lista de reprodução do YouTube está vazia
+- Correcção rápida para os quiosques em SoundCloud
+- Refactor e correcção de bugs #1623 
+  - Resultado de pesquisa cíclica reparada #1562
+  - Barra de procura fixa não estática
+  - Os vídeos do YT Premium não estão bloqueados correctamente
+  - Vídeos Fixos por vezes não carregados (devido à análise do DASH)
+  - Corrigir ligações na descrição vídeo
+  - Mostrar aviso quando alguém tenta descarregar para sdcard externo
+  - nada de excepção mostrado dispara o relatório
+  - thumbnail não mostrado no leitor de fundo para andróide 8.1 [ver aqui](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Correcção do registo do receptor de radiodifusão. Fecha #1641.

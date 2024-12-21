@@ -1,0 +1,3 @@
+Khắc phục nhanh
+• Tăng bộ nhớ đệm cho phát lại sau khi tải lại bộ nhớ đệm
+• Sửa lỗi sập ứng dụng trên máy tính bảng và TV khi nhấp vào biểu tượng hàng đợi phát trong trình phát

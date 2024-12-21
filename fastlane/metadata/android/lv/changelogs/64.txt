@@ -1,5 +1,5 @@
 ### Uzlabojumi
-- Pievienota iespēja ierobežot video kvalitāti, ja tiek lietoti mobilie dati. #1339 
+- Pievienota iespēja ierobežot video kvalitāti, ja tiek lietoti mobilie dati. #1339
 - Iegaumē spilgtuma iestatījumu visu sesijas laiku #1442 
 - Uzlabots lejupielāžu ātrums uz vājākiem procesoriem #1431 
 - pievienots (working) mēdiju sesijas atbalsts #1433

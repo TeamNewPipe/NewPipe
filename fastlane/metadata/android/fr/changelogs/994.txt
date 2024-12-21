@@ -1,0 +1,15 @@
+Nouveau
+• Prise en charge de plusieurs pistes audio/langues
+• Possibilité de régler le volume et la luminosité par gestes sur n'importe quel côté de l'écran
+• Prise en charge de l'affichage des onglets principaux en bas de l'écran
+
+Amélioré
+• [Bandcamp] Gestion des pistes derrière le mur payant
+
+Corrigé
+• [YouTube] Erreurs HTTP 403 pour les flux
+• Lecteur noir lors du passage au lecteur principal depuis la vue playlist
+• Fuite de mémoire du service de lecture
+• [PeerTube] Les avatars du téléchargeur et du sous-canal ont été échangés
+
+et plus

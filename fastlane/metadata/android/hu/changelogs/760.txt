@@ -1,0 +1,43 @@
+Változások a 0.17.1-ban
+
+Új
+• Tháj fordítás
+
+
+Fejlesztések
+• Lejátszás innen lista funkció újra hozzáadása a hosszúnyomás menühöz #2518
+• Kapcsoló hozzáadása a SAF-hoz / régi fájl kiválasztó #2521
+
+Javítások
+• App váltásnál a letöltés nézetnél eltűnő gombok javítása #2487
+• Lejátszási pozíció elmentődik, de nem menti az előzményeket
+• Listanézet visszajátszás pozíciója által okozott csökkentett teljesítmény gondok javítása #2517
+• [Kivonatoló] ReCaptchaActivity javítása #2527, TeamNewPipe/NewPipeExtractor#186
+• [Kivonatoló] [YouTube] Lista eredményes keresésnél felmerülő hiba javítása TeamNewPipe/NewPipeExtractor#185
+
+
+
+Változások a 0.17.0-ban
+
+Új
+Lejátszás folytatás #2288
+• Videók ott folytatása, hol abba maradtak
+Letöltő Javítások #2149
+• Tárhely Hozzáférés Keretrendszer használata a külső SD kártyára való mentéshez
+• Új mp4 muxer
+• Opcionálisan megváltoztatható a letöltési könyvtár letöltés előtt
+• Fizetős hálózatok tiszteletben tartása 
+
+
+Fejlesztések
+• Gema string-ek eltávolítása #2295
+• Munkamenet közbeni (auto)elforgatás változtatások #2444
+• Hosszúnyomás menük konzisztensebbek #2368
+
+Javítások
+• Egyes felirat nevek nem jelentek meg #2394
+• Sikertelen frissítés esetén most már nem omlik össze (GitHub verzió) #2423 
+• Letöltés nem áll meg 99,9%-nál #2440
+• Lejátszási lista metaadat frissítése #2453 
+• [SoundCloud] Lejátszásilista betöltésnél való összeomlás javítása TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Videó hossza nem kiszámítható hiba javítása TeamNewPipe/NewPipeExtractor#177

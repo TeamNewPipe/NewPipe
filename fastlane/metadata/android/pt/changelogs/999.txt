@@ -1,1 +1,12 @@
-Corrigido YouTube não reproduzir nenhuma transmissão
+Este hotfix corrige erros HTTP 403 no meio de vídeos do YouTube.
+
+Novo
+• [SoundCloud] Suporte adicionado para URLs do tipo on.soundcloud.com
+
+Melhorado
+• [Bandcamp] Exibição de informações adicionais no quiosque de rádio
+
+Corrigido
+• [YouTube] Correção de erros ocasionais HTTP 403 no início ou no meio dos vídeos
+• [YouTube] Extração de avatar e banner de mais tipos de cabeçalhos de canal
+• [Bandcamp] Correção de vários bugs e uso constante de HTTPS

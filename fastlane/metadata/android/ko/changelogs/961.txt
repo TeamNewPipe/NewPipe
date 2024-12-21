@@ -1,0 +1,12 @@
+• [YouTube] 믹스 지원
+• [YouTube] 공공 방송사와 Covid-19에 대한 정보 표시
+• [media.ccc.de] 최신 비디오 추가
+• 소말리아어 번역 추가
+
+• 많은 내부 개선 사항
+
+• 플레이어 내에서 비디오 공유 수정
+• 빈 ReCaptcha 웹뷰 수정
+• 목록에서 스트림을 제거할 때 발생하는 충돌 수정
+• [PeerTube] 관련 스트림 수정
+• [YouTube] YouTube Music 검색 수정

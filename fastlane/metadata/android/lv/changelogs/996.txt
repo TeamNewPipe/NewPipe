@@ -1,0 +1,2 @@
+Salabota NullPointerException kļūda, kad atvēra media.ccc.de vietnes kanālu/konferenci.
+Grinčs mēģināja salauzt mūsu Ziemassvētku dāvanu jums, taču mēs to salabojām.

@@ -1,0 +1,13 @@
+Improved
+• Make playlist description clickable to show more / less content
+• [PeerTube] Handle `subscribeto.me` instance links automatically
+• Only start playing single item in history screen
+
+Fixed
+• Fix RSS button visibility
+• Fix seekbar preview crashes
+• Fix playlisting a thumbnail-less item
+• Fix exiting the download dialog before it appears
+• Fix related items list enqueue popup
+• Fix order in add to playlist dialog
+• Adjust the playlist bookmark item layout

@@ -1,0 +1,7 @@
+Melhorado
+- Gravar e restaurar se o tom e o tempo estão desengatados ou não
+- Recorte de exibição de suporte no jogador
+- Vista redonda e contagem de subscritores
+- YouTube otimizado para usar menos dados
+
+Mais de 15 bugs relacionados ao YouTube foram corrigidos nesta versão.

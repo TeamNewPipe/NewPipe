@@ -1,0 +1,10 @@
+### Melhoria
+* Adicionar notificação de atualização do aplicativo para compilação do GitHub (#1608 por @ krtkush)
+* Várias melhorias para o downloader(# 1944 por @kapodamy):
+  * * adicione ícones brancos ausentes e use o modo hardcore para alterar as cores dos ícones
+  * verifique se o iterador foi inicializado (correções #2031)
+  * * permitir novas tentativas de downloads com erro "Falha no pós-processamento" no novo mixer
+  * novo muxer MPEG - 4 que fixa fluxos de vídeo e áudio não síncronos (#2039)
+
+### Corrigido
+* * As transmissões ao vivo do YouTube param de ser reproduzidas após um curto período de tempo(# 1996 por @username)

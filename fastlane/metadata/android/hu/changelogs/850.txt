@@ -1,0 +1,1 @@
+A YouTube weboldala frissítésre került ebben a verzióban. A régi weboldal verzió Márciusban kivezetésre kerül, ezért kérjük frissítse a NewPipe-ot.

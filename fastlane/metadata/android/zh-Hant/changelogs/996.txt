@@ -1,0 +1,2 @@
+修正在 media.ccc.de 開啟頻道/會議時的 NullPointerException。
+鬼靈精試圖破壞我們送給您的聖誕禮物，但我們修好了。

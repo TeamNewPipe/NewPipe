@@ -1,22 +1,13 @@
 Nuevo
-Resumen de la reproducción #2288
-- Reanudar las transmisiones donde se detuvo la última vez
-Mejoras en el descargador #2149 
-- Use Storage Access Framework para almacenar descargas en tarjetas SD externas
+Reanudación de la reproducción #2288
+- Reanudar la reproducción donde se detuvo la última vez
+Mejoras en el gestor de descargas #2149 
+- Utilizar el marco de acceso al almacenamiento para guardar las descargas en tarjetas SD externas
 - Nuevo mp4 muxer
-- Opción de cambiar el directorio de la descarga antes de iniciar una descarga
-- Respeta las redes con contador 
+- Opción de cambiar el directorio de descarga antes de iniciar una descarga
+- Respetar las redes con contador 
 
 
-Mejora de
+Mejorado
 - Eliminación de las cadenas de gema #2295
-- Manejar los cambios de (auto)rotación durante la reproducción #2444
-- Hacer consistentes los menús de pulsación larga #2368
-
-Arreglado
-- Se corrigió el nombre de la pista de subtítulos seleccionados que no se mostraba #2394
-- No se bloquee cuando falle la verificación de la actualización de la aplicación (versión GitHub) #2423 
-- Corregidas las descargas atascadas en el 99,9% #2440
-- Actualizar los metadatos de la cola de reproducción #2453 
-- SoundCloud] Corregido el fallo al cargar listas de reproducción TeamNewPipe/NewPipeExtractor#170
-- YouTube] La duración fija no se puede emparejar TeamNewPipe/NewPipeExtractor#177
+- Manejar cambios de (auto)rotación en el ciclo de vida de la actividad #2444

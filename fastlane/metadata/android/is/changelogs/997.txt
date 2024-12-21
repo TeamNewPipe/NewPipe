@@ -1,0 +1,17 @@
+Nýtt
+• Bætt við svörum í athugasemdum
+• Leyfð endurröðun spilunarlista
+• Birt lýsing og lengd spilunarlista
+• Leyfð frumstilling stillinga
+
+Bætt
+• [Android 13+] Endurheimt aðgerða sérsniðinna tilkynninga
+• Beðið um samþykki við leit að uppfærslum
+• Leyfð afspilun/bið tilkynninga á meðan biðminni er fyllt
+• Endurröðun sumra stillinga
+
+Lagfært
+• [YouTube] Lagaðir hnökrar við innhleðslu athugasemda, auk annarra endurbóta
+• Leystur öryggisgalli við innflutning stillinga og yfirfærsla í JSON
+• Ýmsar endurbætur við niðurhal
+• Afskurður óþarfa leitartexta

@@ -1,0 +1,5 @@
+Khắc phục nhanh
+• Sửa lỗi bộ nhớ đệm do YouTube giới hạn tốc độ
+• Sửa lỗi trích xuất bình luận YouTube và lỗi sập ứng dụng khi tắt bình luận
+• Sửa lỗi tìm kiếm nhạc YouTube
+• Sửa lỗi phát trực tiếp PeerTube

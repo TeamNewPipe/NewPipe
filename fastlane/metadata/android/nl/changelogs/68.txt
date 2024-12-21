@@ -1,0 +1,31 @@
+# changelog versie v0.14.1
+
+ ### opgelost
+ - Probleem opgelost waarbij video-URL #1659 niet kon worden gedecodeerd 
+ - Vaste beschrijvingslink wordt niet goed geëxtraheerd #1657
+
+ # wijzigingen van v0.14.0
+
+ ### Nieuw
+ - Nieuw ladeontwerp #1461
+ - Nieuwe aanpasbare voorpagina #1461
+
+ ### Verbeteringen
+ - Herwerkte gebarenbediening #1604 
+ - Nieuwe manier om de pop-upspeler #1597 te sluiten
+
+ ### Vast
+ - Fout opgelost wanneer het aantal abonnementen niet beschikbaar is.  Sluit #1649.
+   - Toon in die gevallen "Aantal abonnees niet beschikbaar".
+ - Fix NPE wanneer een YouTube-afspeellijst leeg is
+ - Snelle oplossing voor de kiosken in SoundCloud
+ - Refactor en bugfix #1623 
+   - Fix Cyclisch zoekresultaat #1562
+   - Fix Zoekbalk niet statisch opgemaakt
+   - Fix YT Premium-video wordt niet correct geblokkeerd
+   - Fix Video's worden soms niet geladen (vanwege DASH-parsing)
+   - Corrigeer links in de videobeschrijving
+   - Toon waarschuwing wanneer iemand probeert te downloaden naar een externe SD-kaart
+   - niets repareren weergegeven uitzonderingstriggersrapport
+   - miniatuur wordt niet weergegeven in de achtergrondspeler voor Android 8.1 [zie hier](https://github.com/TeamNewPipe/NewPipe/issues/943)
+ - Fix registratie van uitzendingsontvanger.  Sluit #1641.

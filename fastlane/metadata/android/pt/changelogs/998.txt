@@ -1,1 +1,4 @@
-Corrigido YouTube não reproduzir nenhuma transmissão
+Corrigido YouTube não reproduzir nenhuma transmissão por causa de erros HTTP 403
+
+Erros HTTP 403 ocasionais a meio de um video de Youtube ainda não foram resolvidos.
+Esse problema será resolvido em outro hotfix o mais rápido possível.

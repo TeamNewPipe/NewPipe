@@ -1,1 +1,12 @@
-Åtgärdat att YouTube inte spelar någon stream
+Denna uppdatering löser HTTP 403 fel i mitten av YouTube-videor.
+
+Nytt
+• [SoundCloud] Lägg till stöd för on.soundcloud.com URLs
+
+Förbättrat
+• [Bandcamp] Visa ytterligare information i radio kiosk
+
+Fixat
+• [YouTube] Löst tillfälliga HTTP 403 fel i början eller i mitten av videor
+• [YouTube] Extrahera avatar och banner från fler kanalhuvudtyper
+• [Bandcamp] Fixat olika buggar och använd alltid HTTPS

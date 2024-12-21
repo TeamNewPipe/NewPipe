@@ -1,0 +1,14 @@
+Melhorado
+- Adicionar mais títulos para melhorar a acessibilidade para os cegos #2655
+- Tornar a linguagem da pasta de download mais consistente e menos ambígua #2637
+
+Fixa
+- Verificar se o último byte no bloco é descarregado #2646
+- Rolagem fixa em fragmento de detalhe de vídeo #2672
+- Remover a dupla pesquisa de animações de caixa transparente para uma #2695
+- Fixar extracção client_id #2745
+
+Desenvolvimento
+- Adicionar dependências em falta herdadas de NewPipeExtractor em NewPipe #2535
+- Migrar para AndroidX #2685
+- Actualização para ExoPlayer 2.10.6 #2697, #2736

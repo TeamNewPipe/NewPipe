@@ -1,0 +1,25 @@
+FIGYELEM: Az előzőhöz hasonlóan ez is bugoktól hemzseg. A 17-i teljes leállás után jobb egy bugos verzió mint a semmi. Nincs igazam? ¯\_(ツ)_/¯
+
+### Fejlesztések
+* letöltött fájl egy érintéssel megnyitható #1879 
+* android 4.1 - 4.3 támogatása megszűnt #1884 
+* régi lejátszó eltávolítása #1884 
+* videók eltávolítása a listából jobbra húzással #1915 
+* automata hozzáadott videók eltávolítása manuális hozzáadásnál #1878 
+* Utófeldolgozás a letöltésekhez és hiányzó funkciók pótlása #1759 @kapodamy jóvoltából
+  * Utófeldolgozási infrastruktúra
+  * Rendes hibakezelő "infrastruktúra" (letöltéshez)
+  * Több párhuzamos letöltés helyett sorba letöltés
+  * Sorbarendezett letöltések áthelyezése az app data-ba (`.giga` fájlok)
+  * Maximum letöltési újrapróbálkozás implementálása
+  * Rendes többszálú letöltés szüneteltetés
+  * Letöltések megállítása mobiladatra váltáskor (sosem működik, lásd második pont)
+  * Szálak számának mentése a következő letöltésekhez
+  * Sok zavaros kód javítása
+
+### Javítás
+* Limitált adathasználat melletti legnagyobb felbontás használata esetén fagyás javítása #1835
+* Kiugró ablakos lejátszó fagyás javítása #1874 
+* NPE a háttérben futó lejátszó megnyitásakor #1901
+* Új videók hozzáadásának javítása ha fel van töltve a lista automata videókkal #1878
+* A megfejtett leállás hiba javítása

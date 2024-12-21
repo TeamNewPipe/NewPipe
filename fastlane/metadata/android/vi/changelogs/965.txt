@@ -1,0 +1,6 @@
+Sửa lỗi sập ứng dụng khi sắp xếp lại các nhóm kênh.
+Sửa lỗi lấy thêm video YouTube từ kênh và danh sách phát.
+Sửa lỗi lấy bình luận YouTube.
+Thêm hỗ trợ cho các đường dẫn phụ /watch/, /v/ và /w/ trong URL YouTube.
+Sửa lỗi trích xuất ID khách hàng SoundCloud và nội dung bị giới hạn địa lý.
+Thêm bản địa hóa tiếng Kurd Bắc.

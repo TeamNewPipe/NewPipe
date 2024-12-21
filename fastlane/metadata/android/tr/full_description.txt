@@ -1,2 +1,1 @@
-NewPipe herhangi bir Google framework’ü ya da YouTube API’ı kullanmaz. Yalnızca, kendisine gereken bilgiyi edinmek için web sitesini ayrıştırır.
-Bu nedenle Google hizmetlerinin kurulmadığı aygıtlarda kullanılabilir. Ayrıca NewPipe'ı kullanırken bir YouTube hesabına gerek yoktur ve NewPipe özgür ve açık kaynaklı bir yazılımdır.
+NewPipe, Google çerçeve kütüphanelerini veya YouTube API'sını kullanmaz. İhtiyaç duyduğu bilgileri almak için sadece web sitesini ayrıştırır. Bu nedenle bu uygulama, Google Hizmetleri yüklü olmayan cihazlarda kullanılabilir. Ayrıca NewPipe'ı kullanmak için bir YouTube hesabına ihtiyacınız yoktur ve bu FLOSS.

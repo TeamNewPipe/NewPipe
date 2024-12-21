@@ -1,0 +1,9 @@
+Add new double-tap-to-seek UI and behaviour
+Make settings searchable
+Highlight pinned comments as such
+Add open-with-app support for FSFE's PeerTube instance
+Add error notifications
+Fix replay of first queue item on player change
+Wait longer when buffering during livestreams before failing
+Fix order of local search results
+Fix empty item fields in play queue

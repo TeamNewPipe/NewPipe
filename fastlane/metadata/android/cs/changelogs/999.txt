@@ -1,1 +1,12 @@
-Opraveno nepřehrávání jakéhokoli streamu ve službě YouTube
+Tato opravná verze opravuje chyby HTTP 403 uprostřed videí YouTube.
+
+Nové
+- [SoundCloud] Přidána podpora pro adresy on.soundcloud.com
+
+Vylepšení
+- [Bandcamp] Zobrazení dalších informací v rádiovém kiosku
+
+Opravena stránka
+- [YouTube] Oprava občasných chyb HTTP 403 na začátku nebo uprostřed videí
+- YouTube] Extrahování avataru a banneru z více typů hlaviček kanálů
+- Bandcamp] Opraveny různé chyby a vynucené použití protokolu HTTPS

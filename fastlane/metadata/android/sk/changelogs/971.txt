@@ -1,0 +1,3 @@
+Hotfix
+• Increase buffer for playback after rebuffer
+• Fixed crash on tablets and TVs when clicking on the play-queue icon in the player

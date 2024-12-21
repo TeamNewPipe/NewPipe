@@ -1,0 +1,19 @@
+Nieuw
+ • Zoek op YouTube Muziek
+ • Basisondersteuning voor Android TV
+
+ Verbeterd
+ • De mogelijkheid toegevoegd om alle bekeken video's uit een lokale afspeellijst te verwijderen
+ • Toon bericht wanneer inhoud nog niet wordt ondersteund in plaats van te crashen
+ • Verbeterde grootte van de pop-upspeler met knijpbewegingen
+ • Zet streams in de wachtrij door lang op de achtergrond- en pop-upknoppen in het kanaal te drukken
+ • Verbeterde formaatverwerking van de titel van de ladekoptekst
+
+ Opgelost
+ •  instelling voor inhoud met leeftijdsbeperking werkt niet opgelost 
+ • Bepaalde soorten reCAPTCHA's opgelost
+ • Crash opgelost bij het openen van bladwijzers terwijl de afspeellijst 'null' is
+ • Vaste detectie van netwerkgerelateerde uitzonderingen
+ • Probleem opgelost met de zichtbaarheid van de groepssorteerknop in het abonnementsfragment
+
+ en meer

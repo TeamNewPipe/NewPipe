@@ -1,43 +1,13 @@
 Cambios en 0.17.1
 
 Nuevo
-- Localización en tailandés
+•Localización tailandesa
 
 
 Mejora de
-- Añadir la acción de empezar a reproducir aquí en los menús de pulsación larga para las listas de reproducción de nuevo #2518
-- Añadir interruptor para SAF / legado selector de archivos #2521
+•Añadir la acción de empezar a reproducir aquí en los menús de pulsación larga para las listas de reproducción de nuevo #2518
+•Añadir interruptor para SAF / legado selector de archivos #2521
 
 Corregido
-- Arreglar la desaparición de los botones en la vista de descargas al cambiar de aplicación #2487
-- Arreglar que la posición de reproducción se almacene aunque el historial de visionado esté desactivado
-- Corregir la reducción del rendimiento causada por la posición de reproducción en las vistas de lista #2517
-- Extractor] Fijar ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor#186
-- Extractor] [YouTube] Corregir error de búsqueda casual cuando las listas de reproducción están en los resultados TeamNewPipe/NewPipeExtractor#185
-
-
-
-Cambios en 0.17.0
-
-Nuevo
-Reanudación de la reproducción #2288
-- Reanudar las secuencias donde se detuvo la última vez
-- Mejoras en el descargador #2149 
-- Utiliza el marco de acceso al almacenamiento para guardar las descargas en tarjetas SD externas
-- Nuevo mp4 muxer
-- Opción de cambiar el directorio de descarga antes de iniciar una descarga
-- Respeta las redes con contador 
-
-
-Mejora de
-- Eliminación de las cadenas de gema #2295
-- Manejar los cambios de (auto)rotación durante la reproducción #2444
-- Hacer consistentes los menús de pulsación larga #2368
-
-Arreglado
-- Corregido el nombre de la pista de subtítulos seleccionada que no se muestra #2394
-- No se bloquea cuando falla la comprobación de la actualización de la aplicación (versión GitHub) #2423 
-- Corregidas las descargas atascadas en el 99,9% #2440
-- Actualizar los metadatos de la cola de reproducción #2453 
-- SoundCloud] Corregido el fallo al cargar listas de reproducción TeamNewPipe/NewPipeExtractor#170
-- YouTube] Corregida la duración que no se puede emparejar TeamNewPipe/NewPipeExtractor#177
+• Arreglar la desaparición de los botones en la vista de descargas al cambiar de aplicación #2487
+• Arreglar que la posición de reproducción se almacene aunque el historial de visionado esté desactivado

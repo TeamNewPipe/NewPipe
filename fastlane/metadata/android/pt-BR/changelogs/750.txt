@@ -1,0 +1,22 @@
+Novo
+Resumo da reprodução #2288
+* Retomar fluxos onde parou da última vez
+Melhorias Do Downloader #2149 
+* Use o Storage Access Framework para armazenar downloads em cartões SD externos
+* Novo MP4 muxer
+* Opcionalmente, altere o diretório de download antes de iniciar um download
+* Respeitar as redes de medição 
+
+
+Melhorado
+* Cordas gema removidas #2295
+* Lidar com mudanças de rotação (automática) durante o ciclo de vida da atividade #2444
+* Tornar os menus de pressão longa consistentes #2368
+
+Corrigido
+* Corrigido o nome da faixa de legenda selecionada não sendo mostrado #2394
+• Não trave quando a verificação da atualização do aplicativo falhar (versão do GitHub) #2423 
+* Downloads fixos presos em 99,9% #2440
+* Atualizar meta dados da fila de reprodução #2453 
+* [*[SoundCloud] corrigida a falha ao carregar listas de reprodução Team New Pipe / New Pipe Extractor#170
+* [*[YouTube] A duração fixa não pode ser analisada Team New Pipe / New Pipe Extractor#177
