@@ -10,9 +10,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfi
 import static org.schabi.newpipe.util.DependentPreferenceHelper.getResumePlaybackEnabled;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
-//import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
 
-//import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -39,7 +37,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-//import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -54,14 +51,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwnerKt;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.util.UnstableApi;
 import androidx.preference.PreferenceManager;
 
 import com.evernote.android.state.State;
-//import com.google.android.exoplayer2.PlaybackException;
-//import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
@@ -82,7 +76,6 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
-//import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -101,17 +94,10 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
-//import org.schabi.newpipe.player.Player;
-//import org.schabi.newpipe.player.PlayerService;
-//import org.schabi.newpipe.player.PlayerType;
-//import org.schabi.newpipe.player.event.OnKeyDownListener;
-//import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-//import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-//import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -133,7 +119,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-//import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -145,7 +130,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import kotlinx.coroutines.CoroutineScopeKt;
 
 @UnstableApi
 @AndroidEntryPoint
@@ -733,6 +717,8 @@ public final class VideoDetailFragment
 
         // That means that we are on the start of the stack,
         if (stack.size() <= 1) {
+            newPlayer.pause();
+
             restoreDefaultOrientation();
             return false; // let MainActivity handle the onBack (e.g. to minimize the mini player)
         }
@@ -874,6 +860,7 @@ public final class VideoDetailFragment
                             getString(R.string.show_age_restricted_content), false)) {
                         hideAgeRestrictedContent();
                     } else {
+                        startNewPlayer();
                         handleResult(result);
                         showContent();
                         if (addToBackStack) {
@@ -1165,16 +1152,20 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(false);
         tryAddVideoPlayerView();
-        newPlayer.playStream("https://media.ccc.de/v/34c3-9072-bgp_and_the_rule_of_custom", PlayMode.EMBEDDED_VIDEO);
-        newPlayer.setPlayWhenReady(true);
-        newPlayer.prepare();
+        startNewPlayer();
 
 //        final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
 //                PlayerService.class, queue, true, autoPlayEnabled);
 //        ContextCompat.startForegroundService(activity, playerIntent);
     }
 
-    /**
+    private void startNewPlayer() {
+        newPlayer.playStream("https://media.ccc.de/v/34c3-9072-bgp_and_the_rule_of_custom", PlayMode.EMBEDDED_VIDEO);
+        newPlayer.setPlayWhenReady(true);
+        newPlayer.prepare();
+    }
+
+            /**
      * When the video detail fragment is already showing details for a video and the user opens a
      * new one, the video detail fragment changes all of its old data to the new stream, so if there
      * is a video player currently open it should be hidden. This method does exactly that. If
