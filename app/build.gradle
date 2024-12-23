@@ -88,6 +88,11 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
+        freeCompilerArgs += [
+                // Generate default method implementations for interfaces
+                // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
+                '-Xjvm-default=all'
+        ]
     }
 
     sourceSets {

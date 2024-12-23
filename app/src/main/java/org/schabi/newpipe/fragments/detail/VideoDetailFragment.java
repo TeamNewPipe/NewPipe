@@ -103,6 +103,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.InfoCache;
+import org.schabi.newpipe.util.JavaFlow;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -130,6 +131,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 
 @UnstableApi
 @AndroidEntryPoint
@@ -311,6 +313,11 @@ public final class VideoDetailFragment
         newPlayerViewModel = new ViewModelProvider(this).get(NewPlayerViewModelImpl.class);
         newPlayerViewModel.setNewPlayer(this.newPlayer);
         newPlayerViewModel.setContentFitMode(ContentScale.FIT_INSIDE);
+        new JavaFlow<Unit>().collect(newPlayerViewModel.getOnBackPressed(), result -> {
+            Log.d(TAG, "NewPlayer forwarded backpress");
+            newPlayerViewModel.setNewPlayer(null);
+            newPlayer.pause();
+        });
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
