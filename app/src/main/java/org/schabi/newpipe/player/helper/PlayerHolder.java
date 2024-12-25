@@ -162,6 +162,26 @@ public final class PlayerHolder {
         context.stopService(new Intent(context, PlayerService.class));
     }
 
+
+    private void unbind(final Context context) {
+        if (DEBUG) {
+            Log.d(TAG, "unbind() called");
+        }
+
+        if (bound) {
+            context.unbindService(serviceConnection);
+            bound = false;
+            if (player != null) {
+                player.removeFragmentListener(internalListener);
+            }
+            playerService = null;
+            player = null;
+            if (listener != null) {
+                listener.onServiceDisconnected();
+            }
+        }
+    }
+
     class PlayerServiceConnection implements ServiceConnection {
 
         private boolean playAfterConnect = false;
@@ -191,25 +211,6 @@ public final class PlayerHolder {
             }
             if (player != null) {
                 player.setFragmentListener(internalListener);
-            }
-        }
-    }
-
-    private void unbind(final Context context) {
-        if (DEBUG) {
-            Log.d(TAG, "unbind() called");
-        }
-
-        if (bound) {
-            context.unbindService(serviceConnection);
-            bound = false;
-            if (player != null) {
-                player.removeFragmentListener(internalListener);
-            }
-            playerService = null;
-            player = null;
-            if (listener != null) {
-                listener.onServiceDisconnected();
             }
         }
     }
