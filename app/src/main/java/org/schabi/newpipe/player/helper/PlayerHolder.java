@@ -123,6 +123,13 @@ public final class PlayerHolder {
         return App.getInstance();
     }
 
+
+    /** Connect to (and if needed start) the {@link PlayerService}
+     * and bind {@link PlayerServiceConnection} to it.
+     * If the service is already started, only set the listener.
+     * @param playAfterConnect If the service is started, start playing immediately
+     * @param newListener set this listener
+     * */
     public void startService(final boolean playAfterConnect,
                              final PlayerServiceExtendedEventListener newListener) {
         final Context context = getCommonContext();
@@ -136,7 +143,17 @@ public final class PlayerHolder {
         unbind(context);
         ContextCompat.startForegroundService(context, new Intent(context, PlayerService.class));
         serviceConnection.playAfterConnect = playAfterConnect;
-        bind(context);
+
+        if (DEBUG) {
+            Log.d(TAG, "bind() called");
+        }
+
+        final Intent serviceIntent = new Intent(context, PlayerService.class);
+        bound = context.bindService(serviceIntent, serviceConnection,
+                Context.BIND_AUTO_CREATE);
+        if (!bound) {
+            context.unbindService(serviceConnection);
+        }
     }
 
     public void stopService() {
@@ -175,23 +192,6 @@ public final class PlayerHolder {
             if (player != null) {
                 player.setFragmentListener(internalListener);
             }
-        }
-    }
-
-    /** Connect to (and if needed start) the {@link PlayerService}
-     * and bind {@link PlayerServiceConnection} to it.
-     * @param context common holder context
-     * */
-    private void bind(final Context context) {
-        if (DEBUG) {
-            Log.d(TAG, "bind() called");
-        }
-
-        final Intent serviceIntent = new Intent(context, PlayerService.class);
-        bound = context.bindService(serviceIntent, serviceConnection,
-                Context.BIND_AUTO_CREATE);
-        if (!bound) {
-            context.unbindService(serviceConnection);
         }
     }
 
