@@ -81,8 +81,8 @@ public final class PlayerHolder {
         return player != null && player.getPlayQueue() != null;
     }
 
-    public boolean isBound() {
-        return bound;
+    public boolean isNotBoundYet() {
+        return !bound;
     }
 
     public int getQueueSize() {

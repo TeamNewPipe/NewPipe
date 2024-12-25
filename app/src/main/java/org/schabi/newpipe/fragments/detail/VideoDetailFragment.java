@@ -657,7 +657,7 @@ public final class VideoDetailFragment
         });
 
         setupBottomPlayer();
-        if (!playerHolder.isBound()) {
+        if (playerHolder.isNotBoundYet()) {
             setHeightThumbnail();
         } else {
             playerHolder.startService(false, this);
@@ -1383,7 +1383,7 @@ public final class VideoDetailFragment
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        if (!playerHolder.isBound()) {
+                        if (playerHolder.isNotBoundYet()) {
                             playerHolder.startService(
                                     false, VideoDetailFragment.this);
                         }
