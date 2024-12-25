@@ -43,6 +43,7 @@ public final class PlayerHolder {
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
+
     @Nullable private PlayerService playerService;
     @Nullable private Player player;
 
@@ -108,13 +109,16 @@ public final class PlayerHolder {
 
         // Force reload data from service
         if (player != null) {
-            listener.onServiceConnected(player, playerService, false);
-            startPlayerListener();
+            listener.onServiceConnected(playerService, false);
+            player.setFragmentListener(internalListener);
         }
     }
 
-    // helper to handle context in common place as using the same
-    // context to bind/unbind a service is crucial
+    /** Helper to handle context in common place as using the same
+     * context to bind/unbind a service is crucial.
+     *
+     * @return the common context
+     * */
     private Context getCommonContext() {
         return App.getInstance();
     }
@@ -131,7 +135,7 @@ public final class PlayerHolder {
         // bound twice. Prevent it with unbinding first
         unbind(context);
         ContextCompat.startForegroundService(context, new Intent(context, PlayerService.class));
-        serviceConnection.doPlayAfterConnect(playAfterConnect);
+        serviceConnection.playAfterConnect = playAfterConnect;
         bind(context);
     }
 
@@ -144,10 +148,6 @@ public final class PlayerHolder {
     class PlayerServiceConnection implements ServiceConnection {
 
         private boolean playAfterConnect = false;
-
-        public void doPlayAfterConnect(final boolean playAfterConnection) {
-            this.playAfterConnect = playAfterConnection;
-        }
 
         @Override
         public void onServiceDisconnected(final ComponentName compName) {
@@ -167,14 +167,21 @@ public final class PlayerHolder {
             final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
             playerService = localBinder.getService();
-            player = localBinder.getPlayer();
+            player = playerService != null ? playerService.getPlayer() : null;
+
             if (listener != null) {
-                listener.onServiceConnected(player, playerService, playAfterConnect);
+                listener.onServiceConnected(playerService, playAfterConnect);
             }
-            startPlayerListener();
+            if (player != null) {
+                player.setFragmentListener(internalListener);
+            }
         }
     }
 
+    /** Connect to (and if needed start) the {@link PlayerService}
+     * and bind {@link PlayerServiceConnection} to it.
+     * @param context common holder context
+     * */
     private void bind(final Context context) {
         if (DEBUG) {
             Log.d(TAG, "bind() called");
@@ -196,24 +203,14 @@ public final class PlayerHolder {
         if (bound) {
             context.unbindService(serviceConnection);
             bound = false;
-            stopPlayerListener();
+            if (player != null) {
+                player.removeFragmentListener(internalListener);
+            }
             playerService = null;
             player = null;
             if (listener != null) {
                 listener.onServiceDisconnected();
             }
-        }
-    }
-
-    private void startPlayerListener() {
-        if (player != null) {
-            player.setFragmentListener(internalListener);
-        }
-    }
-
-    private void stopPlayerListener() {
-        if (player != null) {
-            player.removeFragmentListener(internalListener);
         }
     }
 

@@ -234,10 +234,9 @@ public final class VideoDetailFragment
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
     @Override
-    public void onServiceConnected(final Player connectedPlayer,
-                                   final PlayerService connectedPlayerService,
+    public void onServiceConnected(final PlayerService connectedPlayerService,
                                    final boolean playAfterConnect) {
-        player = connectedPlayer;
+        player = connectedPlayerService.getPlayer();
         playerService = connectedPlayerService;
 
         // It will do nothing if the player is not in fullscreen mode
