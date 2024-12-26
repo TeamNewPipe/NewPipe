@@ -429,18 +429,15 @@ public final class VideoDetailFragment
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case ReCaptchaActivity.RECAPTCHA_REQUEST:
-                if (resultCode == Activity.RESULT_OK) {
-                    NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                            serviceId, url, title, null, false);
-                } else {
-                    Log.e(TAG, "ReCaptcha failed");
-                }
-                break;
-            default:
-                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
-                break;
+        if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                        serviceId, url, title, null, false);
+            } else {
+                Log.e(TAG, "ReCaptcha failed");
+            }
+        } else {
+            Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
         }
     }
 
@@ -1129,7 +1126,7 @@ public final class VideoDetailFragment
     }
 
     private void openMainPlayer() {
-        if (!isPlayerServiceAvailable()) {
+        if (noPlayerServiceAvailable()) {
             playerHolder.startService(autoPlayEnabled, this, this);
             return;
         }
@@ -1154,7 +1151,7 @@ public final class VideoDetailFragment
      */
     private void hideMainPlayerOnLoadingNewStream() {
         final var root = getRoot();
-        if (!isPlayerServiceAvailable() || root.isEmpty() || !player.videoPlayerSelected()) {
+        if (noPlayerServiceAvailable() || root.isEmpty() || !player.videoPlayerSelected()) {
             return;
         }
 
@@ -1338,13 +1335,13 @@ public final class VideoDetailFragment
         this.playQueue = newPlayQueue;
     }
 
-    private void setErrorImage(final int imageResource) {
+    private void setErrorImage() {
         if (binding == null || activity == null) {
             return;
         }
 
         binding.detailThumbnailImageView.setImageDrawable(
-                AppCompatResources.getDrawable(requireContext(), imageResource));
+                AppCompatResources.getDrawable(requireContext(), R.drawable.not_available_monkey));
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
                 0, () -> animate(binding.detailThumbnailImageView, true, 500));
     }
@@ -1352,7 +1349,7 @@ public final class VideoDetailFragment
     @Override
     public void handleError() {
         super.handleError();
-        setErrorImage(R.drawable.not_available_monkey);
+        setErrorImage();
 
         if (binding.relatedItemsLayout != null) { // hide related streams for tablets
             binding.relatedItemsLayout.setVisibility(View.INVISIBLE);
@@ -1769,16 +1766,14 @@ public final class VideoDetailFragment
                                  final PlaybackParameters parameters) {
         setOverlayPlayPauseImage(player != null && player.isPlaying());
 
-        switch (state) {
-            case Player.STATE_PLAYING:
-                if (binding.positionView.getAlpha() != 1.0f
-                        && player.getPlayQueue() != null
-                        && player.getPlayQueue().getItem() != null
-                        && player.getPlayQueue().getItem().getUrl().equals(url)) {
-                    animate(binding.positionView, true, 100);
-                    animate(binding.detailPositionView, true, 100);
-                }
-                break;
+        if (state == Player.STATE_PLAYING) {
+            if (binding.positionView.getAlpha() != 1.0f
+                    && player.getPlayQueue() != null
+                    && player.getPlayQueue().getItem() != null
+                    && player.getPlayQueue().getItem().getUrl().equals(url)) {
+                animate(binding.positionView, true, 100);
+                animate(binding.detailPositionView, true, 100);
+            }
         }
     }
 
@@ -2434,8 +2429,8 @@ public final class VideoDetailFragment
         return player != null;
     }
 
-    boolean isPlayerServiceAvailable() {
-        return playerService != null;
+    boolean noPlayerServiceAvailable() {
+        return playerService == null;
     }
 
     boolean isPlayerAndPlayerServiceAvailable() {
