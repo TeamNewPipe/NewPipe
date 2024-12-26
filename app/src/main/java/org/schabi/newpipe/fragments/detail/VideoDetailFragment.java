@@ -188,21 +188,21 @@ public final class VideoDetailFragment
             };
 
     @State
-    protected int serviceId = Constants.NO_SERVICE_ID;
+    int serviceId = Constants.NO_SERVICE_ID;
     @State
     @NonNull
-    protected String title = "";
+    String title = "";
     @State
     @Nullable
-    protected String url = null;
+    String url = null;
     @Nullable
-    protected PlayQueue playQueue = null;
+    private PlayQueue playQueue = null;
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
     int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
-    protected boolean autoPlayEnabled = true;
+    boolean autoPlayEnabled = true;
 
     @Nullable
     private StreamInfo currentInfo = null;
@@ -815,7 +815,7 @@ public final class VideoDetailFragment
 
     }
 
-    protected void prepareAndLoadInfo() {
+    private void prepareAndLoadInfo() {
         scrollToTop();
         startLoading(false);
     }
@@ -1337,10 +1337,10 @@ public final class VideoDetailFragment
         binding.detailContentRootHiding.setVisibility(View.VISIBLE);
     }
 
-    protected void setInitialData(final int newServiceId,
-                                  @Nullable final String newUrl,
-                                  @NonNull final String newTitle,
-                                  @Nullable final PlayQueue newPlayQueue) {
+    private void setInitialData(final int newServiceId,
+                                @Nullable final String newUrl,
+                                @NonNull final String newTitle,
+                                @Nullable final PlayQueue newPlayQueue) {
         this.serviceId = newServiceId;
         this.url = newUrl;
         this.title = newTitle;
