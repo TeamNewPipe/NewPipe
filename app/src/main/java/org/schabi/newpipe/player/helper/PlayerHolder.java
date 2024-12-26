@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -20,7 +21,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
-import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.event.PlayerHolderLifecycleEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
 /** Singleton that manages a `PlayerService`
@@ -41,7 +42,8 @@ public final class PlayerHolder {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = PlayerHolder.class.getSimpleName();
 
-    @Nullable private PlayerServiceExtendedEventListener listener;
+    @Nullable private PlayerServiceEventListener listener;
+    @Nullable private PlayerHolderLifecycleEventListener holderListener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
@@ -102,16 +104,19 @@ public final class PlayerHolder {
         return player.getPlayQueue().getIndex();
     }
 
-    public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
-        listener = newListener;
+    public void unsetListeners() {
+        listener = null;
+        holderListener = null;
+    }
 
-        if (listener == null) {
-            return;
-        }
+    public void setListener(@NonNull final PlayerServiceEventListener newListener,
+                            @NonNull final PlayerHolderLifecycleEventListener newHolderListener) {
+        listener = newListener;
+        holderListener = newHolderListener;
 
         // Force reload data from service
         if (player != null) {
-            listener.onServiceConnected(playerService, false);
+            holderListener.onServiceConnected(playerService, false);
             player.setFragmentListener(internalListener);
         }
     }
@@ -131,11 +136,14 @@ public final class PlayerHolder {
      * If the service is already started, only set the listener.
      * @param playAfterConnect If the service is started, start playing immediately
      * @param newListener set this listener
+     * @param newHolderListener set this listener
      * */
     public void startService(final boolean playAfterConnect,
-                             final PlayerServiceExtendedEventListener newListener) {
+                             final PlayerServiceEventListener newListener,
+                             final PlayerHolderLifecycleEventListener newHolderListener
+    ) {
         final Context context = getCommonContext();
-        setListener(newListener);
+        setListener(newListener, newHolderListener);
         if (bound) {
             return;
         }
@@ -182,8 +190,8 @@ public final class PlayerHolder {
             }
             playerService = null;
             player = null;
-            if (listener != null) {
-                listener.onServiceDisconnected();
+            if (holderListener != null) {
+                holderListener.onServiceDisconnected();
             }
         }
     }
@@ -212,8 +220,8 @@ public final class PlayerHolder {
             playerService = localBinder.getService();
             player = playerService != null ? playerService.getPlayer() : null;
 
-            if (listener != null) {
-                listener.onServiceConnected(playerService, playAfterConnect);
+            if (holderListener != null) {
+                holderListener.onServiceConnected(playerService, playAfterConnect);
             }
             if (player != null) {
                 player.setFragmentListener(internalListener);
