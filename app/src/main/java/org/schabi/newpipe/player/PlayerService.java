@@ -66,7 +66,7 @@ public final class PlayerService extends Service {
         loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
         service would never be put in the foreground while we said to the system we would do so
          */
-        player.UIs().get(NotificationPlayerUi.class)
+        player.UIs().getOpt(NotificationPlayerUi.class)
                 .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
     }
 
@@ -88,7 +88,7 @@ public final class PlayerService extends Service {
         do anything
          */
         if (player != null) {
-            player.UIs().get(NotificationPlayerUi.class)
+            player.UIs().getOpt(NotificationPlayerUi.class)
                     .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
         }
 
@@ -106,7 +106,7 @@ public final class PlayerService extends Service {
 
         if (player != null) {
             player.handleIntent(intent);
-            player.UIs().get(MediaSessionPlayerUi.class)
+            player.UIs().getOpt(MediaSessionPlayerUi.class)
                     .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
         }
 

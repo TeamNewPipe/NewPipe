@@ -65,20 +65,31 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param playerUiType the class of the player UI to return;
      * the [Class.isInstance] method will be used, so even subclasses could be returned
      * @param T the class type parameter
-     * @return the first player UI of the required type found in the list, or an empty
-     * [         ] otherwise
+     * @return the first player UI of the required type found in the list, or null
      </T> */
-    fun <T> get(playerUiType: Class<T>): Optional<T & Any> {
+    fun <T> get(playerUiType: Class<T>): T? {
         for (ui in playerUis) {
             if (playerUiType.isInstance(ui)) {
                 when (val r = playerUiType.cast(ui)) {
+                    // try all UIs before returning null
                     null -> continue
-                    else -> return Optional.of(r)
+                    else -> return r
                 }
             }
         }
-        return Optional.empty()
+        return null
     }
+
+    /**
+     * @param playerUiType the class of the player UI to return;
+     * the [Class.isInstance] method will be used, so even subclasses could be returned
+     * @param T the class type parameter
+     * @return the first player UI of the required type found in the list, or an empty
+     * [Optional] otherwise
+     </T> */
+    @Deprecated("use get", ReplaceWith("get(playerUiType)"))
+    fun <T> getOpt(playerUiType: Class<T>): Optional<T & Any> =
+        Optional.ofNullable(get(playerUiType))
 
     /**
      * Calls the provided consumer on all player UIs in the list, in order of addition.
