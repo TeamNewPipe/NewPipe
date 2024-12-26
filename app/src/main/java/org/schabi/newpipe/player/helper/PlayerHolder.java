@@ -23,6 +23,8 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
+/** Singleton that manages a `PlayerService`
+ * and can be used to control the player instance through the service. */
 public final class PlayerHolder {
 
     private PlayerHolder() {
@@ -162,7 +164,11 @@ public final class PlayerHolder {
         context.stopService(new Intent(context, PlayerService.class));
     }
 
-
+    /** Call {@link Context#unbindService(ServiceConnection)} on our service
+     * (does not necesarily stop the service right away).
+     * Remove all our listeners and deinitialize them.
+     * @param context shared context
+     * */
     private void unbind(final Context context) {
         if (DEBUG) {
             Log.d(TAG, "unbind() called");
@@ -215,6 +221,10 @@ public final class PlayerHolder {
         }
     }
 
+    /** Delegate all {@link PlayerServiceEventListener} events to our current `listener` object.
+     * Only difference is that if {@link PlayerServiceEventListener#onServiceStopped()} is called,
+     * it also calls {@link PlayerHolder#unbind(Context)}.
+     * */
     private final PlayerServiceEventListener internalListener =
             new PlayerServiceEventListener() {
                 @Override
