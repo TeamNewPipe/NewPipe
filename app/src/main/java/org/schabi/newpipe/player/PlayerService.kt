@@ -30,7 +30,6 @@ import org.schabi.newpipe.player.notification.NotificationPlayerUi
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ThemeHelper
 import java.lang.ref.WeakReference
-import java.util.function.Consumer
 
 /**
  * One background service for our player. Even though the player has multiple UIs
@@ -60,8 +59,8 @@ class PlayerService : Service() {
         loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
         service would never be put in the foreground while we said to the system we would do so
          */
-        player.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
-            .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
+        player.UIs().get(NotificationPlayerUi::class.java)
+            ?.createNotificationAndStartForeground()
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -85,11 +84,11 @@ class PlayerService : Service() {
         If the service is already started in foreground, requesting it to be started shouldn't
         do anything
          */
-        player.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
-            .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
+        player.UIs().get<NotificationPlayerUi>(NotificationPlayerUi::class.java)
+            ?.createNotificationAndStartForeground()
 
-        if (Intent.ACTION_MEDIA_BUTTON == intent.getAction() &&
-            (player.getPlayQueue() == null)
+        if (Intent.ACTION_MEDIA_BUTTON == intent.action &&
+            (player.playQueue == null)
         ) {
             /*
             No need to process media button's actions if the player is not working, otherwise
@@ -102,14 +101,8 @@ class PlayerService : Service() {
         }
 
         player.handleIntent(intent)
-        player.UIs().getOpt<MediaSessionPlayerUi>(MediaSessionPlayerUi::class.java)
-            .ifPresent(
-                Consumer { ui: MediaSessionPlayerUi? ->
-                    ui!!.handleMediaButtonIntent(
-                        intent
-                    )
-                }
-            )
+        player.UIs().get<MediaSessionPlayerUi>(MediaSessionPlayerUi::class.java)
+            ?.handleMediaButtonIntent(intent)
 
         return START_NOT_STICKY
     }
@@ -162,11 +155,8 @@ class PlayerService : Service() {
      * back to our [org.schabi.newpipe.player.helper.PlayerHolder].
      */
     class LocalBinder internal constructor(playerService: PlayerService?) : Binder() {
-        private val playerService: WeakReference<PlayerService?>
-
-        init {
-            this.playerService = WeakReference<PlayerService?>(playerService)
-        }
+        private val playerService: WeakReference<PlayerService?> =
+            WeakReference<PlayerService?>(playerService)
 
         /**
          * Get the PlayerService object itself.
