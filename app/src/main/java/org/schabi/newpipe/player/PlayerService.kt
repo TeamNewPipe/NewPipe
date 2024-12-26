@@ -38,13 +38,10 @@ import java.util.function.Consumer
  * this allows us to keep playing even when switching between the different UIs.
  */
 class PlayerService : Service() {
-    private var player: Player? = null
+    lateinit var player: Player
+        private set
 
     private val mBinder: IBinder = LocalBinder(this)
-
-    fun getPlayer(): Player? {
-        return player
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -63,7 +60,7 @@ class PlayerService : Service() {
         loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
         service would never be put in the foreground while we said to the system we would do so
          */
-        player!!.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
+        player.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
             .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
     }
 
@@ -88,13 +85,11 @@ class PlayerService : Service() {
         If the service is already started in foreground, requesting it to be started shouldn't
         do anything
          */
-        if (player != null) {
-            player!!.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
-                .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
-        }
+        player.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
+            .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
 
         if (Intent.ACTION_MEDIA_BUTTON == intent.getAction() &&
-            (player == null || player!!.getPlayQueue() == null)
+            (player.getPlayQueue() == null)
         ) {
             /*
             No need to process media button's actions if the player is not working, otherwise
@@ -106,17 +101,15 @@ class PlayerService : Service() {
             return START_NOT_STICKY
         }
 
-        if (player != null) {
-            player!!.handleIntent(intent)
-            player!!.UIs().getOpt<MediaSessionPlayerUi>(MediaSessionPlayerUi::class.java)
-                .ifPresent(
-                    Consumer { ui: MediaSessionPlayerUi? ->
-                        ui!!.handleMediaButtonIntent(
-                            intent
-                        )
-                    }
-                )
-        }
+        player.handleIntent(intent)
+        player.UIs().getOpt<MediaSessionPlayerUi>(MediaSessionPlayerUi::class.java)
+            .ifPresent(
+                Consumer { ui: MediaSessionPlayerUi? ->
+                    ui!!.handleMediaButtonIntent(
+                        intent
+                    )
+                }
+            )
 
         return START_NOT_STICKY
     }
@@ -126,17 +119,17 @@ class PlayerService : Service() {
             Log.d(TAG, "stopForImmediateReusing() called")
         }
 
-        if (player != null && !player!!.exoPlayerIsNull()) {
+        if (!player.exoPlayerIsNull()) {
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
-            player!!.smoothStopForImmediateReusing()
+            player.smoothStopForImmediateReusing()
         }
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
-        if (player != null && !player!!.videoPlayerSelected()) {
+        if (!player.videoPlayerSelected()) {
             return
         }
         onDestroy()
@@ -148,18 +141,11 @@ class PlayerService : Service() {
         if (DEBUG) {
             Log.d(TAG, "destroy() called")
         }
-        cleanup()
-    }
-
-    private fun cleanup() {
-        if (player != null) {
-            player!!.destroy()
-            player = null
-        }
+        player.saveAndShutdown()
     }
 
     fun stopService() {
-        cleanup()
+        player.saveAndShutdown()
         stopSelf()
     }
 

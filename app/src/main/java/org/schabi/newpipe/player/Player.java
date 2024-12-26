@@ -580,7 +580,12 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
-    public void destroy() {
+
+    /** Shut down this player.
+     * Saves the stream progress, sets recovery.
+     * Then destroys the player in all UIs and destroys the UIs as well.
+     */
+    public void saveAndShutdown() {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
