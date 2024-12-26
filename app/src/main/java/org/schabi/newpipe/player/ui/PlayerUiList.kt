@@ -1,10 +1,10 @@
 package org.schabi.newpipe.player.ui
 
-import androidx.core.util.Consumer
+import org.schabi.newpipe.util.GuardedByMutex
 import java.util.Optional
 
 class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
-    val playerUis = mutableListOf<PlayerUi>()
+    var playerUis = GuardedByMutex(mutableListOf<PlayerUi>())
 
     /**
      * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
@@ -16,7 +16,9 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param initialPlayerUis the player uis this list should start with; the order will be kept
      */
     init {
-        playerUis.addAll(listOf(*initialPlayerUis))
+        playerUis.runWithLockSync {
+            lockData.addAll(listOf(*initialPlayerUis))
+        }
     }
 
     /**
@@ -41,7 +43,9 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
             }
         }
 
-        playerUis.add(playerUi)
+        playerUis.runWithLockSync {
+            lockData.add(playerUi)
+        }
     }
 
     /**
@@ -52,12 +56,24 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param T the class type parameter </T>
      * */
     fun <T> destroyAll(playerUiType: Class<T?>) {
-        for (ui in playerUis) {
-            if (playerUiType.isInstance(ui)) {
-                ui.destroyPlayer()
-                ui.destroy()
-                playerUis.remove(ui)
+        val toDestroy = mutableListOf<PlayerUi>()
+
+        // short blocking removal from class to prevent interfering from other threads
+        playerUis.runWithLockSync {
+            val new = mutableListOf<PlayerUi>()
+            for (ui in lockData) {
+                if (playerUiType.isInstance(ui)) {
+                    toDestroy.add(ui)
+                } else {
+                    new.add(ui)
+                }
             }
+            lockData = new
+        }
+        // then actually destroy the UIs
+        for (ui in toDestroy) {
+            ui.destroyPlayer()
+            ui.destroy()
         }
     }
 
@@ -67,18 +83,19 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param T the class type parameter
      * @return the first player UI of the required type found in the list, or null
      </T> */
-    fun <T> get(playerUiType: Class<T>): T? {
-        for (ui in playerUis) {
-            if (playerUiType.isInstance(ui)) {
-                when (val r = playerUiType.cast(ui)) {
-                    // try all UIs before returning null
-                    null -> continue
-                    else -> return r
+    fun <T> get(playerUiType: Class<T>): T? =
+        playerUis.runWithLockSync {
+            for (ui in lockData) {
+                if (playerUiType.isInstance(ui)) {
+                    when (val r = playerUiType.cast(ui)) {
+                        // try all UIs before returning null
+                        null -> continue
+                        else -> return@runWithLockSync r
+                    }
                 }
             }
+            return@runWithLockSync null
         }
-        return null
-    }
 
     /**
      * @param playerUiType the class of the player UI to return;
@@ -96,7 +113,11 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param consumer the consumer to call with player UIs
      */
     fun call(consumer: java.util.function.Consumer<PlayerUi>) {
-        for (ui in playerUis) {
+        // copy the list out of the mutex before calling the consumer which might block
+        val new = playerUis.runWithLockSync {
+            lockData.toMutableList()
+        }
+        for (ui in new) {
             consumer.accept(ui)
         }
     }
