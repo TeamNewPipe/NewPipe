@@ -819,18 +819,10 @@ public final class VideoDetailFragment
 
     @Override
     public void startLoading(final boolean forceLoad) {
-        super.startLoading(forceLoad);
-
-        initTabs();
-        currentInfo = null;
-        if (currentWorker != null) {
-            currentWorker.dispose();
-        }
-
-        runWorker(forceLoad, stack.isEmpty());
+        startLoading(forceLoad, null);
     }
 
-    private void startLoading(final boolean forceLoad, final boolean addToBackStack) {
+    private void startLoading(final boolean forceLoad, final @Nullable Boolean addToBackStack) {
         super.startLoading(forceLoad);
 
         initTabs();
@@ -839,7 +831,7 @@ public final class VideoDetailFragment
             currentWorker.dispose();
         }
 
-        runWorker(forceLoad, addToBackStack);
+        runWorker(forceLoad, addToBackStack != null ? addToBackStack : stack.isEmpty());
     }
 
     private void runWorker(final boolean forceLoad, final boolean addToBackStack) {
