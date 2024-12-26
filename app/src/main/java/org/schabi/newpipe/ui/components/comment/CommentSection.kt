@@ -1,28 +1,21 @@
 package org.schabi.newpipe.ui.components.comment
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.LoadStates
 import androidx.paging.PagingData
@@ -30,11 +23,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import my.nanihadesuka.compose.LazyColumnScrollbar
-import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.paging.CommentsDisabledException
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 
 @Composable
@@ -62,7 +55,7 @@ fun CommentSection(
                         if (refresh is LoadState.Loading) {
                             LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                         } else {
-                            NoCommentsMessage((refresh as? LoadState.Error)?.error)
+                            EmptyStateComposable(EmptyStateSpec.NoComments)
                         }
                     }
                 } else {
@@ -72,25 +65,6 @@ fun CommentSection(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun NoCommentsMessage(error: Throwable?) {
-    val message = if (error is CommentsDisabledException) {
-        R.string.comments_are_disabled
-    } else {
-        R.string.no_comments
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "(╯°-°)╯", fontSize = 35.sp)
-        Text(text = stringResource(id = message), fontSize = 24.sp)
     }
 }
 
@@ -106,11 +80,6 @@ private class CommentDataProvider : PreviewParameterProvider<PagingData<Comments
                     uploaderName = "Test"
                 )
             }
-        ),
-        // Comments disabled
-        PagingData.from(
-            listOf<CommentsInfoItem>(),
-            LoadStates(LoadState.Error(CommentsDisabledException()), notLoading, notLoading)
         ),
         // No comments
         PagingData.from(

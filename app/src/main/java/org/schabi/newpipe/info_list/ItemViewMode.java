@@ -5,6 +5,10 @@ package org.schabi.newpipe.info_list;
  */
 public enum ItemViewMode {
     /**
+     * View mode is automatically determined based on the device configuration.
+     */
+    AUTO,
+    /**
      * Full width list item with thumb on the left and two line title & uploader in right.
      */
     LIST,

@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +24,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.view.MenuProvider;
 import androidx.preference.PreferenceManager;
 
+import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.rxbinding4.view.RxView;
@@ -44,6 +44,8 @@ import org.schabi.newpipe.fragments.detail.TabAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
+import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.ChannelTabHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -59,8 +61,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
-import coil.util.CoilUtils;
-import icepick.State;
+import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -199,6 +200,11 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
+        EmptyStateUtil.setEmptyStateComposable(
+                binding.emptyStateView,
+                EmptyStateSpec.Companion.getContentNotSupported()
+        );
+
         tabAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(tabAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
@@ -249,7 +255,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     private void monitorSubscription(final ChannelInfo info) {
-        final Consumer<Throwable> onError = (Throwable throwable) -> {
+        final Consumer<Throwable> onError = (final Throwable throwable) -> {
             animate(binding.channelSubscribeButton, false, 100);
             showSnackBarError(new ErrorInfo(throwable, UserAction.SUBSCRIPTION_GET,
                     "Get subscription status", currentInfo));
@@ -284,14 +290,14 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
-        return (@NonNull Object o) -> {
+        return (@NonNull final Object o) -> {
             subscriptionManager.insertSubscription(subscription);
             return o;
         };
     }
 
     private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
-        return (@NonNull Object o) -> {
+        return (@NonNull final Object o) -> {
             subscriptionManager.deleteSubscription(subscription);
             return o;
         };
@@ -318,7 +324,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Disposable monitorSubscribeButton(final Function<Object, Object> action) {
-        final Consumer<Object> onNext = (@NonNull Object o) -> {
+        final Consumer<Object> onNext = (@NonNull final Object o) -> {
             if (DEBUG) {
                 Log.d(TAG, "Changed subscription status to this channel!");
             }
@@ -338,7 +344,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
-        return (List<SubscriptionEntity> subscriptionEntities) -> {
+        return (final List<SubscriptionEntity> subscriptionEntities) -> {
             if (DEBUG) {
                 Log.d(TAG, "subscriptionManager.subscriptionTable.doOnNext() called with: "
                         + "subscriptionEntities = [" + subscriptionEntities + "]");
@@ -645,8 +651,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             return;
         }
 
-        binding.errorContentNotSupported.setVisibility(View.VISIBLE);
-        binding.channelKaomoji.setText("(︶︹︺)");
-        binding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
+        binding.emptyStateView.setVisibility(View.VISIBLE);
     }
 }

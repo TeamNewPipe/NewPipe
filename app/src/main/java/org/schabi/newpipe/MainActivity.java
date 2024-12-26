@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationWorker.initialize(this);
         }
         if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getApp().isFirstRun()
+                && !App.getInstance().isFirstRun()
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        final App app = App.getApp();
+        final App app = App.getInstance();
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         if (prefs.getBoolean(app.getString(R.string.update_app_key), false)
@@ -553,28 +553,27 @@ public class MainActivity extends AppCompatActivity {
         // In case bottomSheet is not visible on the screen or collapsed we can assume that the user
         // interacts with a fragment inside fragment_holder so all back presses should be
         // handled by it
+        final var fragmentManager = getSupportFragmentManager();
+
         if (bottomSheetHiddenOrCollapsed()) {
-            final var fm = getSupportFragmentManager();
-            final var fragment = fm.findFragmentById(R.id.fragment_holder);
+            final var fragment = fragmentManager.findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)
             // delegate the back press to it
             if (fragment instanceof BackPressable backPressable && backPressable.onBackPressed()) {
                 return;
             }
         } else {
-            final var fragmentPlayer = getSupportFragmentManager()
-                    .findFragmentById(R.id.fragment_player_holder);
+            final var player = fragmentManager.findFragmentById(R.id.fragment_player_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)
             // delegate the back press to it
-            if (fragmentPlayer instanceof BackPressable backPressable
-                    && !backPressable.onBackPressed()) {
+            if (player instanceof BackPressable backPressable && !backPressable.onBackPressed()) {
                 BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
                         .setState(BottomSheetBehavior.STATE_COLLAPSED);
                 return;
             }
         }
 
-        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+        if (fragmentManager.getBackStackEntryCount() == 1) {
             finish();
         } else {
             super.onBackPressed();

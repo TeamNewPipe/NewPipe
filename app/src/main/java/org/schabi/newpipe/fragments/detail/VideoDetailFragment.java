@@ -56,6 +56,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.evernote.android.state.State;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
@@ -73,7 +74,6 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -127,8 +127,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import coil.util.CoilUtils;
-import icepick.State;
+import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -1009,19 +1008,6 @@ public final class VideoDetailFragment
         binding.appBarLayout.setExpanded(true, true);
         // notify tab layout of scrolling
         updateTabLayoutVisibility();
-    }
-
-    public void scrollToComment(final CommentsInfoItem comment) {
-        final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
-        final var fragment = pageAdapter.getItem(commentsTabPos);
-
-        // TODO: Implement the scrolling with Compose.
-        // unexpand the app bar only if scrolling to the comment succeeded
-//        if (fragment instanceof CommentsFragment commentsFragment &&
-//                commentsFragment.scrollToComment(comment)) {
-//            binding.appBarLayout.setExpanded(false, false);
-//            binding.viewPager.setCurrentItem(commentsTabPos, false);
-//        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

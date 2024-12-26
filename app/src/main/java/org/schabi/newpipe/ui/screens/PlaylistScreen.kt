@@ -19,10 +19,10 @@ import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
+import org.schabi.newpipe.ui.components.items.ItemList
+import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
 import org.schabi.newpipe.ui.components.playlist.PlaylistHeader
 import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
-import org.schabi.newpipe.ui.components.stream.StreamInfoItem
-import org.schabi.newpipe.ui.components.stream.StreamList
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
 
@@ -51,8 +51,8 @@ private fun PlaylistScreen(
             }
         }
 
-        StreamList(
-            streams = streams,
+        ItemList(
+            items = streams,
             gridHeader = {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     PlaylistHeader(it, totalDuration)

@@ -11,9 +11,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
     CircularProgressIndicator(
-        modifier = modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
+        modifier = modifier.fillMaxSize().wrapContentSize(Alignment.Center),
         color = MaterialTheme.colorScheme.primary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,
     )

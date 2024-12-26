@@ -64,8 +64,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             StreamStateEntity state2 = null;
             if (DependentPreferenceHelper
                     .getPositionsInListsEnabled(itemProgressView.getContext())) {
-                state2 = historyRecordManager.loadStreamState(infoItem)
-                        .blockingGet()[0];
+                state2 = historyRecordManager.loadStreamState(infoItem).blockingGet();
             }
             if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
@@ -120,7 +119,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         if (DependentPreferenceHelper.getPositionsInListsEnabled(itemProgressView.getContext())) {
             state = historyRecordManager
                     .loadStreamState(infoItem)
-                    .blockingGet()[0];
+                    .blockingGet();
         }
         if (state != null && item.getDuration() > 0
                 && !StreamTypeUtil.isLiveStream(item.getStreamType())) {

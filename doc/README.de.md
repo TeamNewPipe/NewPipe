@@ -126,7 +126,7 @@ So eine Aktion wird nicht unterstützt und du solltest sie nur in Erwägung zieh
 ## Beitrag
 Egal ob du neue Ideen, Übersetzungen, Designvorschläge, kleine Code-Bereinigungen, oder sogar große Code-Verbesserungen hast, jegliche Unterstützung ist immer gern gesehen.
 Die App wird mit _jedem_ Beitrag besser und besser - egal wie viel Arbeit in ihn gesteckt wird!
-Wenn du dich einbringen willst, sehe dir die [Beitragshinweise](.github/CONTRIBUTING.md) an.
+Wenn du dich einbringen willst, sieh dir die [Beitragshinweise](/.github/CONTRIBUTING.md) an.
 
 <a href="https://hosted.weblate.org/engage/newpipe/de/">
 <img src="https://hosted.weblate.org/widgets/newpipe/de/287x66-grey.png" alt="Übersetzt" />

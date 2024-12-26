@@ -40,12 +40,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
-import org.schabi.newpipe.paging.CommentsSource
+import org.schabi.newpipe.paging.CommentRepliesSource
 import org.schabi.newpipe.ui.components.common.DescriptionText
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
@@ -147,7 +147,7 @@ fun Comment(comment: CommentsInfoItem) {
             val coroutineScope = rememberCoroutineScope()
             val flow = remember {
                 Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
-                    CommentsSource(comment.serviceId, comment.url, comment.replies)
+                    CommentRepliesSource(comment)
                 }.flow
                     .cachedIn(coroutineScope)
             }
