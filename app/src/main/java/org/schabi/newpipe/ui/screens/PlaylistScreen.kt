@@ -5,11 +5,11 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -23,48 +23,67 @@ import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
 import org.schabi.newpipe.ui.components.playlist.PlaylistHeader
 import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.viewmodels.PlaylistViewModel
+import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
 fun PlaylistScreen(playlistViewModel: PlaylistViewModel = viewModel()) {
     Surface(color = MaterialTheme.colorScheme.background) {
-        val playlistInfo by playlistViewModel.playlistInfo.collectAsState()
-        PlaylistScreen(playlistInfo, playlistViewModel.streamItems)
+        val uiState by playlistViewModel.uiState.collectAsStateWithLifecycle()
+        PlaylistScreen(uiState, playlistViewModel.streamItems)
     }
 }
 
 @Composable
 private fun PlaylistScreen(
-    playlistInfo: PlaylistInfo?,
+    uiState: Resource<PlaylistInfo>,
     streamFlow: Flow<PagingData<StreamInfoItem>>
 ) {
-    playlistInfo?.let {
-        val streams = streamFlow.collectAsLazyPagingItems()
+    when (uiState) {
+        is Resource.Success -> {
+            val info = uiState.data
+            val streams = streamFlow.collectAsLazyPagingItems()
 
-        // Paging's load states only indicate when loading is currently happening, not if it can/will
-        // happen. As such, the duration initially displayed will be the incomplete duration if more
-        // items can be loaded.
-        val totalDuration by remember {
-            derivedStateOf {
-                streams.itemSnapshotList.sumOf { it!!.duration }
+            // Paging's load states only indicate when loading is currently happening, not if it can/will
+            // happen. As such, the duration initially displayed will be the incomplete duration if more
+            // items can be loaded.
+            val totalDuration by remember {
+                derivedStateOf {
+                    streams.itemSnapshotList.sumOf { it!!.duration }
+                }
             }
+
+            ItemList(
+                items = streams,
+                gridHeader = {
+                    item(span = { GridItemSpan(maxLineSpan) }) {
+                        PlaylistHeader(info, totalDuration)
+                    }
+                },
+                listHeader = {
+                    item {
+                        PlaylistHeader(info, totalDuration)
+                    }
+                }
+            )
         }
 
-        ItemList(
-            items = streams,
-            gridHeader = {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    PlaylistHeader(it, totalDuration)
-                }
-            },
-            listHeader = {
-                item {
-                    PlaylistHeader(it, totalDuration)
-                }
-            }
-        )
-    } ?: LoadingIndicator()
+        is Resource.Loading -> {
+            LoadingIndicator()
+        }
+
+        is Resource.Error -> {
+            // TODO use error panel instead
+            EmptyStateComposable(
+                EmptyStateSpec.DisabledComments.copy(
+                    descriptionText = { "Could not load streams" }
+                )
+            )
+        }
+    }
 }
 
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
@@ -81,7 +100,7 @@ private fun PlaylistPreview() {
 
     AppTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            PlaylistScreen(playlistInfo, streamFlow)
+            PlaylistScreen(Resource.Success(playlistInfo), streamFlow)
         }
     }
 }
