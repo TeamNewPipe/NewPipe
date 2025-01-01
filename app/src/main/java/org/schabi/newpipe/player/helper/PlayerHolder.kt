@@ -22,12 +22,19 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.NavigationHelper
 import java.util.function.Consumer
 
-class PlayerHolder private constructor() {
+private val DEBUG = MainActivity.DEBUG
+private val TAG: String = PlayerHolder::class.java.getSimpleName()
+
+/**
+ * Singleton that manages a `PlayerService`
+ * and can be used to control the player instance through the service.
+ */
+object PlayerHolder {
     private var listener: PlayerServiceExtendedEventListener? = null
 
-    private val serviceConnection = PlayerServiceConnection()
     var isBound: Boolean = false
         private set
+
     private var playerService: PlayerService? = null
 
     private val player: Player?
@@ -110,7 +117,7 @@ class PlayerHolder private constructor() {
         val intent = Intent(context, PlayerService::class.java)
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true)
         ContextCompat.startForegroundService(context, intent)
-        serviceConnection.doPlayAfterConnect(playAfterConnect)
+        PlayerServiceConnection.doPlayAfterConnect(playAfterConnect)
         bind(context)
     }
 
@@ -126,7 +133,7 @@ class PlayerHolder private constructor() {
         context.stopService(Intent(context, PlayerService::class.java))
     }
 
-    internal inner class PlayerServiceConnection : ServiceConnection {
+    internal object PlayerServiceConnection : ServiceConnection {
         internal var playAfterConnect = false
 
         /**
@@ -185,7 +192,7 @@ class PlayerHolder private constructor() {
         // BIND_AUTO_CREATE starts the service if it's not already running
         this.isBound = bind(context, Context.BIND_AUTO_CREATE)
         if (!this.isBound) {
-            context.unbindService(serviceConnection)
+            context.unbindService(PlayerServiceConnection)
         }
     }
 
@@ -201,7 +208,7 @@ class PlayerHolder private constructor() {
     private fun bind(context: Context, flags: Int): Boolean {
         val serviceIntent = Intent(context, PlayerService::class.java)
         serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION)
-        return context.bindService(serviceIntent, serviceConnection, flags)
+        return context.bindService(serviceIntent, PlayerServiceConnection, flags)
     }
 
     private fun unbind(context: Context) {
@@ -210,7 +217,7 @@ class PlayerHolder private constructor() {
         }
 
         if (this.isBound) {
-            context.unbindService(serviceConnection)
+            context.unbindService(PlayerServiceConnection)
             this.isBound = false
             stopPlayerListener()
             playerService = null
@@ -223,18 +230,18 @@ class PlayerHolder private constructor() {
         // setting the player listener will take care of calling relevant callbacks if the
         // player in the service is (not) already active, also see playerStateListener below
         playerService?.setPlayerListener(playerStateListener)
-        this.player?.setFragmentListener(internalListener)
+        this.player?.setFragmentListener(HolderPlayerServiceEventListener)
     }
 
     private fun stopPlayerListener() {
         playerService?.setPlayerListener(null)
-        this.player?.removeFragmentListener(internalListener)
+        this.player?.removeFragmentListener(HolderPlayerServiceEventListener)
     }
 
     /**
      * This listener will be held by the players created by [PlayerService].
      */
-    private val internalListener: PlayerServiceEventListener = object : PlayerServiceEventListener {
+    private object HolderPlayerServiceEventListener : PlayerServiceEventListener {
         override fun onViewCreated() {
             listener?.onViewCreated()
         }
@@ -307,26 +314,11 @@ class PlayerHolder private constructor() {
                 // before setting its player to null
                 l.onPlayerDisconnected()
             } else {
-                l.onPlayerConnected(player, serviceConnection.playAfterConnect)
+                l.onPlayerConnected(player, PlayerServiceConnection.playAfterConnect)
                 // reset the value of playAfterConnect: if it was true before, it is now "consumed"
-                serviceConnection.playAfterConnect = false;
-                player.setFragmentListener(internalListener)
+                PlayerServiceConnection.playAfterConnect = false
+                player.setFragmentListener(HolderPlayerServiceEventListener)
             }
         }
-    }
-
-    companion object {
-        private var instance: PlayerHolder? = null
-
-        @Synchronized
-        fun getInstance(): PlayerHolder {
-            if (instance == null) {
-                instance = PlayerHolder()
-            }
-            return instance!!
-        }
-
-        private val DEBUG = MainActivity.DEBUG
-        private val TAG: String = PlayerHolder::class.java.getSimpleName()
     }
 }
