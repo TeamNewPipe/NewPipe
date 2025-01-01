@@ -120,6 +120,14 @@ public final class PlayerHolder {
         return App.getInstance();
     }
 
+    /**
+     * Connect to (and if needed start) the {@link PlayerService}
+     * and bind {@link PlayerServiceConnection} to it.
+     * If the service is already started, only set the listener.
+     * @param playAfterConnect If this holder’s service was already started,
+     *                         start playing immediately
+     * @param newListener set this listener
+     * */
     public void startService(final boolean playAfterConnect,
                              final PlayerServiceExtendedEventListener newListener) {
         if (DEBUG) {
