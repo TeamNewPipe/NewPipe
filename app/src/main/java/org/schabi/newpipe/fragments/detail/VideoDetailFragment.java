@@ -228,7 +228,7 @@ public final class VideoDetailFragment
     @Nullable
     private PlayerService playerService;
     private Player player;
-    private final PlayerHolder playerHolder = PlayerHolder.getInstance();
+    private final PlayerHolder playerHolder = PlayerHolder.Companion.getInstance();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
