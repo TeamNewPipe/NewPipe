@@ -125,7 +125,8 @@ public final class PlayerHolder {
      * Connect to (and if needed start) the {@link PlayerService}
      * and bind {@link PlayerServiceConnection} to it.
      * If the service is already started, only set the listener.
-     * @param playAfterConnect If the service is started, start playing immediately
+     * @param playAfterConnect If this holder’s service was already started,
+     *                         start playing immediately
      * @param newListener set this listener
      * @param newHolderListener set this listener
      * */
