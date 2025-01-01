@@ -849,7 +849,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.Companion.getInstance().isPlayerOpen()) {
             // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {
@@ -859,7 +859,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onReceive(final Context context, final Intent intent) {
                     if (Objects.equals(intent.getAction(),
                             VideoDetailFragment.ACTION_PLAYER_STARTED)
-                            && PlayerHolder.getInstance().isPlayerOpen()) {
+                            && PlayerHolder.Companion.getInstance().isPlayerOpen()) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.
@@ -874,7 +874,7 @@ public class MainActivity extends AppCompatActivity {
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
-            PlayerHolder.getInstance().tryBindIfNeeded(this);
+            PlayerHolder.Companion.getInstance().tryBindIfNeeded(this);
         }
     }
 
