@@ -26,7 +26,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -67,10 +67,6 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_GITHUB_ISSUE_URL =
             "https://github.com/TeamNewPipe/NewPipe/issues";
 
-    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-
     private ErrorInfo errorInfo;
     private String currentTimeStamp;
 
@@ -107,7 +103,9 @@ public class ErrorActivity extends AppCompatActivity {
 
         // important add guru meditation
         addGuruMeditation();
-        currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now());
+        // print current time, as zoned ISO8601 timestamp
+        final ZonedDateTime now = ZonedDateTime.now();
+        currentTimeStamp = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
         activityErrorBinding.errorReportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
