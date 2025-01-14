@@ -1,15 +1,30 @@
 package org.schabi.newpipe.local.history
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.map
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
-import org.schabi.newpipe.App
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import org.schabi.newpipe.NewPipeDatabase
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry
+import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.ui.components.items.Stream
+import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.ServiceHelper
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
-class HistoryViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
-    private val historyDao = NewPipeDatabase.getInstance(App.instance).streamHistoryDAO()
+class HistoryViewModel(
+    application: Application,
+    private val savedStateHandle: SavedStateHandle,
+) : AndroidViewModel(application) {
+    private val historyDao = NewPipeDatabase.getInstance(getApplication()).streamHistoryDAO()
+    private val dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
 
     val sortKey = savedStateHandle.getStateFlow(ORDER_KEY, SortKey.MOST_PLAYED)
     val historyItems = sortKey
@@ -21,9 +36,37 @@ class HistoryViewModel(private val savedStateHandle: SavedStateHandle) : ViewMod
                 }
             }.flow
         }
+        .map { pagingData ->
+            pagingData.map {
+                val thumbnails = listOfNotNull(
+                    it.streamEntity.thumbnailUrl?.let {
+                        Image(it, -1, -1, Image.ResolutionLevel.UNKNOWN)
+                    }
+                )
+                val detail = getHistoryDetailText(it, dateTimeFormatter)
+
+                Stream(
+                    it.streamEntity.serviceId, it.streamEntity.url, it.streamEntity.title,
+                    thumbnails, it.streamEntity.uploader, it.streamEntity.streamType,
+                    it.streamEntity.uploaderUrl, it.streamEntity.duration, detail
+                )
+            }
+        }
+        .flowOn(Dispatchers.IO)
 
     fun updateOrder(sortKey: SortKey) {
         savedStateHandle[ORDER_KEY] = sortKey
+    }
+
+    fun getHistoryDetailText(
+        entry: StreamStatisticsEntry,
+        dateTimeFormatter: DateTimeFormatter,
+    ): String {
+        return Localization.concatenateStrings(
+            Localization.shortViewCount(getApplication(), entry.watchCount),
+            dateTimeFormatter.format(entry.latestAccessDate),
+            ServiceHelper.getNameOfServiceById(entry.streamEntity.serviceId),
+        )
     }
 
     companion object {

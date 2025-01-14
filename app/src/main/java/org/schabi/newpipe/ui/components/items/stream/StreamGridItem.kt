@@ -1,4 +1,4 @@
-package org.schabi.newpipe.ui.components.items.history
+package org.schabi.newpipe.ui.components.items.stream
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -13,31 +13,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import org.schabi.newpipe.database.stream.StreamStatisticsEntry
-import org.schabi.newpipe.ui.components.items.stream.StreamMenu
-import org.schabi.newpipe.ui.components.items.stream.StreamThumbnail
-import java.time.format.DateTimeFormatter
+import org.schabi.newpipe.ui.components.items.Stream
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HistoryGridItem(
-    entry: StreamStatisticsEntry,
-    dateTimeFormatter: DateTimeFormatter,
+fun StreamGridItem(
+    stream: Stream,
     showProgress: Boolean,
     isSelected: Boolean = false,
     isMini: Boolean = false,
-    onClick: (StreamStatisticsEntry) -> Unit = {},
-    onLongClick: (StreamStatisticsEntry) -> Unit = {},
+    onClick: (Stream) -> Unit = {},
+    onLongClick: (Stream) -> Unit = {},
     onDismissPopup: () -> Unit = {}
 ) {
-    val stream = entry.toStreamInfoItem()
-
     Box {
         Column(
             modifier = Modifier
                 .combinedClickable(
-                    onLongClick = { onLongClick(entry) },
-                    onClick = { onClick(entry) }
+                    onLongClick = { onLongClick(stream) },
+                    onClick = { onClick(stream) }
                 )
                 .padding(12.dp)
         ) {
@@ -50,16 +44,16 @@ fun HistoryGridItem(
             )
 
             Text(
-                text = entry.streamEntity.title,
+                text = stream.name,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleSmall,
                 maxLines = 2
             )
 
-            Text(text = entry.streamEntity.uploader, style = MaterialTheme.typography.bodySmall)
+            Text(text = stream.uploaderName, style = MaterialTheme.typography.bodySmall)
 
             Text(
-                text = getHistoryDetail(entry, dateTimeFormatter),
+                text = stream.detailText,
                 style = MaterialTheme.typography.bodySmall
             )
         }

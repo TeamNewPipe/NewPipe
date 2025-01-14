@@ -12,11 +12,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.player.helper.PlayerHolder
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -24,10 +24,11 @@ import org.schabi.newpipe.viewmodels.StreamViewModel
 
 @Composable
 fun StreamMenu(
-    stream: StreamInfoItem,
+    stream: Stream,
     expanded: Boolean,
     onDismissRequest: () -> Unit
 ) {
+    val info = stream.toStreamInfoItem()
     val context = LocalContext.current
     val streamViewModel = viewModel<StreamViewModel>()
     val playerHolder = PlayerHolder.getInstance()
@@ -38,7 +39,7 @@ fun StreamMenu(
                 text = R.string.enqueue_stream,
                 onClick = {
                     onDismissRequest()
-                    SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
+                    SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                         NavigationHelper.enqueueOnPlayer(context, it)
                     }
                 }
@@ -49,7 +50,7 @@ fun StreamMenu(
                     text = R.string.enqueue_next_stream,
                     onClick = {
                         onDismissRequest()
-                        SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
+                        SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                             NavigationHelper.enqueueNextOnPlayer(context, it)
                         }
                     }
@@ -61,7 +62,7 @@ fun StreamMenu(
             text = R.string.start_here_on_background,
             onClick = {
                 onDismissRequest()
-                SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
+                SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnBackgroundPlayer(context, it, true)
                 }
             }
@@ -70,7 +71,7 @@ fun StreamMenu(
             text = R.string.start_here_on_popup,
             onClick = {
                 onDismissRequest()
-                SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
+                SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnPopupPlayer(context, it, true)
                 }
             }
@@ -93,7 +94,7 @@ fun StreamMenu(
             text = R.string.add_to_playlist,
             onClick = {
                 onDismissRequest()
-                val list = listOf(StreamEntity(stream))
+                val list = listOf(StreamEntity(info))
                 PlaylistDialog.createCorrespondingDialog(context, list) { dialog ->
                     val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
                     dialog.show(
@@ -121,7 +122,7 @@ fun StreamMenu(
             text = R.string.mark_as_watched,
             onClick = {
                 onDismissRequest()
-                streamViewModel.markAsWatched(stream)
+                streamViewModel.markAsWatched(info)
             }
         )
         StreamMenuItem(
@@ -132,7 +133,7 @@ fun StreamMenu(
                     context, stream.serviceId, stream.url, stream.uploaderUrl
                 ) { url ->
                     val activity = context.findFragmentActivity()
-                    NavigationHelper.openChannelFragment(activity, stream, url)
+                    NavigationHelper.openChannelFragment(activity, info, url)
                 }
             }
         )

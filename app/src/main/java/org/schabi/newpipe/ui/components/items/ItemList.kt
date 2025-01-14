@@ -7,14 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
-import org.schabi.newpipe.extractor.InfoItem
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
@@ -25,19 +23,19 @@ import org.schabi.newpipe.util.NavigationHelper
 
 @Composable
 fun ItemList(
-    items: List<InfoItem>,
+    items: List<Info>,
     mode: ItemViewMode = determineItemViewMode(),
     listHeader: LazyListScope.() -> Unit = {}
 ) {
     val context = LocalContext.current
     val onClick = remember {
-        { item: InfoItem ->
+        { item: Info ->
             val fragmentManager = context.findFragmentActivity().supportFragmentManager
-            if (item is StreamInfoItem) {
+            if (item is Stream) {
                 NavigationHelper.openVideoDetailFragment(
                     context, fragmentManager, item.serviceId, item.url, item.name, null, false
                 )
-            } else if (item is PlaylistInfoItem) {
+            } else if (item is Playlist) {
                 NavigationHelper.openPlaylistFragment(
                     fragmentManager, item.serviceId, item.url, item.name
                 )
@@ -47,9 +45,9 @@ fun ItemList(
 
     // Handle long clicks for stream items
     // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by remember { mutableStateOf<StreamInfoItem?>(null) }
+    var selectedStream by rememberSaveable { mutableStateOf<Stream?>(null) }
     val onLongClick = remember {
-        { stream: StreamInfoItem ->
+        { stream: Stream ->
             selectedStream = stream
         }
     }
@@ -74,12 +72,12 @@ fun ItemList(
                 items(items.size) {
                     val item = items[it]
 
-                    if (item is StreamInfoItem) {
+                    if (item is Stream) {
                         val isSelected = selectedStream == item
                         StreamListItem(
                             item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
                         )
-                    } else if (item is PlaylistInfoItem) {
+                    } else if (item is Playlist) {
                         PlaylistListItem(item, onClick)
                     }
                 }

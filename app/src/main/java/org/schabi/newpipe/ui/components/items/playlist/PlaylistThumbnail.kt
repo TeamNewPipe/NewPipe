@@ -20,13 +20,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
+import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.image.ImageStrategy
 
 @Composable
 fun PlaylistThumbnail(
-    playlist: PlaylistInfoItem,
+    playlist: Playlist,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
 ) {

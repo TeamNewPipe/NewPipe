@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -33,23 +34,21 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.window.core.layout.WindowWidthSizeClass
 import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.history.HistoryViewModel
 import org.schabi.newpipe.local.history.SortKey
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
+import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.components.items.determineItemViewMode
-import org.schabi.newpipe.ui.components.items.history.HistoryCardItem
-import org.schabi.newpipe.ui.components.items.history.HistoryGridItem
-import org.schabi.newpipe.ui.components.items.history.HistoryListItem
+import org.schabi.newpipe.ui.components.items.stream.StreamCardItem
+import org.schabi.newpipe.ui.components.items.stream.StreamGridItem
+import org.schabi.newpipe.ui.components.items.stream.StreamListItem
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 @Composable
 fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
@@ -62,28 +61,26 @@ fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
 
 @Composable
 private fun HistoryScreen(
-    items: LazyPagingItems<StreamStatisticsEntry>,
+    items: LazyPagingItems<Stream>,
     sortKey: SortKey,
     onSelectItem: (SortKey) -> Unit,
 ) {
     val mode = determineItemViewMode()
     val context = LocalContext.current
     val onClick = remember {
-        { item: StreamStatisticsEntry ->
+        { item: Stream ->
             val fragmentManager = context.findFragmentActivity().supportFragmentManager
             NavigationHelper.openVideoDetailFragment(
-                context, fragmentManager, item.streamEntity.serviceId, item.streamEntity.url,
-                item.streamEntity.title, null, false
+                context, fragmentManager, item.serviceId, item.url, item.name, null, false
             )
         }
     }
-    val dateTimeFormatter = remember { DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT) }
 
     // Handle long clicks for stream items
     // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by remember { mutableStateOf<StreamStatisticsEntry?>(null) }
+    var selectedStream by rememberSaveable { mutableStateOf<Stream?>(null) }
     val onLongClick = remember {
-        { stream: StreamStatisticsEntry ->
+        { stream: Stream ->
             selectedStream = stream
         }
     }
@@ -114,9 +111,9 @@ private fun HistoryScreen(
                     val item = items[it]!!
                     val isSelected = selectedStream == item
 
-                    HistoryGridItem(
-                        item, dateTimeFormatter, showProgress, isSelected, isCompact, onClick,
-                        onLongClick, onDismissPopup
+                    StreamGridItem(
+                        item, showProgress, isSelected, isCompact, onClick, onLongClick,
+                        onDismissPopup
                     )
                 }
             }
@@ -135,14 +132,12 @@ private fun HistoryScreen(
                     val isSelected = selectedStream == item
 
                     if (mode == ItemViewMode.CARD) {
-                        HistoryCardItem(
-                            item, dateTimeFormatter, showProgress, isSelected, onClick, onLongClick,
-                            onDismissPopup
+                        StreamCardItem(
+                            item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
                         )
                     } else {
-                        HistoryListItem(
-                            item, dateTimeFormatter, showProgress, isSelected, onClick, onLongClick,
-                            onDismissPopup
+                        StreamListItem(
+                            item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
                         )
                     }
                 }
