@@ -221,6 +221,7 @@ dependencies {
     implementation libs.androidx.recyclerview
     implementation libs.androidx.room.runtime
     implementation libs.androidx.room.rxjava3
+    implementation libs.androidx.room.paging
     kapt libs.androidx.room.compiler
     implementation libs.androidx.swiperefreshlayout
     implementation libs.androidx.work.runtime

@@ -3,7 +3,6 @@ package org.schabi.newpipe.ui.components.items
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,10 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
-import androidx.compose.ui.res.stringResource
-import androidx.preference.PreferenceManager
-import androidx.window.core.layout.WindowWidthSizeClass
-import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -90,25 +85,5 @@ fun ItemList(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun determineItemViewMode(): ItemViewMode {
-    val prefValue = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
-        .getString(stringResource(R.string.list_view_mode_key), null)
-    val viewMode = prefValue?.let { ItemViewMode.valueOf(it.uppercase()) } ?: ItemViewMode.AUTO
-
-    return when (viewMode) {
-        ItemViewMode.AUTO -> {
-            // Evaluate whether to use Grid based on screen real estate.
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED) {
-                ItemViewMode.GRID
-            } else {
-                ItemViewMode.LIST
-            }
-        }
-        else -> viewMode
     }
 }

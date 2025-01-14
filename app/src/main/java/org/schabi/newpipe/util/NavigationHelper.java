@@ -52,7 +52,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.ktx.ContextKt;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
-import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.history.HistoryFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
@@ -557,7 +557,7 @@ public final class NavigationHelper {
 
     public static void openStatisticFragment(final FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new StatisticsPlaylistFragment())
+                .replace(R.id.fragment_holder, HistoryFragment.class, null, null)
                 .addToBackStack(null)
                 .commit();
     }
