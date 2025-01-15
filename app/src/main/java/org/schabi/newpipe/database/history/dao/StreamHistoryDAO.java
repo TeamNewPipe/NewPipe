@@ -15,6 +15,8 @@ import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_
 import androidx.annotation.Nullable;
 import androidx.paging.PagingSource;
 import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.RewriteQueriesToDropUnusedColumns;
 
@@ -24,36 +26,19 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
-public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity> {
-    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE
-            + " WHERE " + STREAM_ACCESS_DATE + " = "
-            + "(SELECT MAX(" + STREAM_ACCESS_DATE + ") FROM " + STREAM_HISTORY_TABLE + ")")
-    @Override
-    @Nullable
-    public abstract StreamHistoryEntity getLatestEntry();
+public abstract class StreamHistoryDAO {
+    @Insert
+    public abstract long insert(StreamHistoryEntity entity);
 
-    @Override
-    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE)
-    public abstract Flowable<List<StreamHistoryEntity>> getAll();
+    @Delete
+    public abstract void delete(StreamHistoryEntity entity);
 
-    @Override
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE)
-    public abstract int deleteAll();
-
-    @Override
-    public Flowable<List<StreamHistoryEntity>> listByService(final int serviceId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Query("SELECT * FROM " + STREAM_TABLE
-            + " INNER JOIN " + STREAM_HISTORY_TABLE
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
-            + " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
-    public abstract Flowable<List<StreamHistoryEntry>> getHistory();
-
+    public abstract Completable deleteAll();
 
     @Query("SELECT * FROM " + STREAM_TABLE
             + " INNER JOIN " + STREAM_HISTORY_TABLE

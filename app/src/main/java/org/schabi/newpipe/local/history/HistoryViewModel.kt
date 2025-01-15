@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.history
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.map
@@ -10,12 +11,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.NewPipeDatabase
-import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
-import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -38,14 +39,12 @@ class HistoryViewModel(
         }
         .map { pagingData ->
             pagingData.map {
-                val thumbnails = ImageStrategy.dbUrlToImageList(it.streamEntity.thumbnailUrl)
-                val detail = getHistoryDetailText(it, dateTimeFormatter)
-
-                Stream(
-                    it.streamEntity.serviceId, it.streamEntity.url, it.streamEntity.title,
-                    thumbnails, it.streamEntity.uploader, it.streamEntity.streamType,
-                    it.streamEntity.uploaderUrl, it.streamEntity.duration, detail
+                val detail = Localization.concatenateStrings(
+                    Localization.shortViewCount(getApplication(), it.watchCount),
+                    dateTimeFormatter.format(it.latestAccessDate),
+                    ServiceHelper.getNameOfServiceById(it.streamEntity.serviceId),
                 )
+                Stream(it.streamEntity, detail)
             }
         }
         .flowOn(Dispatchers.IO)
@@ -54,15 +53,10 @@ class HistoryViewModel(
         savedStateHandle[ORDER_KEY] = sortKey
     }
 
-    fun getHistoryDetailText(
-        entry: StreamStatisticsEntry,
-        dateTimeFormatter: DateTimeFormatter,
-    ): String {
-        return Localization.concatenateStrings(
-            Localization.shortViewCount(getApplication(), entry.watchCount),
-            dateTimeFormatter.format(entry.latestAccessDate),
-            ServiceHelper.getNameOfServiceById(entry.streamEntity.serviceId),
-        )
+    fun deleteWatchHistory() {
+        viewModelScope.launch(Dispatchers.IO) {
+            historyDao.deleteAll().await()
+        }
     }
 
     companion object {

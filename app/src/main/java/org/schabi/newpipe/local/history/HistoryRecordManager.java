@@ -157,9 +157,8 @@ public class HistoryRecordManager {
         }).subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteWholeStreamHistory() {
-        return Single.fromCallable(streamHistoryTable::deleteAll)
-                .subscribeOn(Schedulers.io());
+    public Completable deleteWholeStreamHistory() {
+        return streamHistoryTable.deleteAll().subscribeOn(Schedulers.io());
     }
 
     public Single<Integer> deleteCompleteStreamStateHistory() {
