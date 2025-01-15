@@ -1,12 +1,6 @@
 package org.schabi.newpipe.ui.screens
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -15,135 +9,30 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.window.core.layout.WindowWidthSizeClass
-import my.nanihadesuka.compose.LazyVerticalGridScrollbar
 import org.schabi.newpipe.R
-import org.schabi.newpipe.info_list.ItemViewMode
-import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.history.HistoryViewModel
 import org.schabi.newpipe.local.history.SortKey
-import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
-import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
-import org.schabi.newpipe.ui.components.items.Stream
-import org.schabi.newpipe.ui.components.items.determineItemViewMode
-import org.schabi.newpipe.ui.components.items.stream.StreamCardItem
-import org.schabi.newpipe.ui.components.items.stream.StreamGridItem
-import org.schabi.newpipe.ui.components.items.stream.StreamListItem
-import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
-import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
-import org.schabi.newpipe.util.DependentPreferenceHelper
-import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.ui.components.items.ItemList
 
 @Composable
 fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
     val sortKey by viewModel.sortKey.collectAsStateWithLifecycle()
     val historyItems = viewModel.historyItems.collectAsLazyPagingItems()
-    val onSelectItem = viewModel::updateOrder
 
-    HistoryScreen(historyItems, sortKey, onSelectItem)
-}
-
-@Composable
-private fun HistoryScreen(
-    items: LazyPagingItems<Stream>,
-    sortKey: SortKey,
-    onSelectItem: (SortKey) -> Unit,
-) {
-    val mode = determineItemViewMode()
-    val context = LocalContext.current
-    val onClick = remember {
-        { item: Stream ->
-            val fragmentManager = context.findFragmentActivity().supportFragmentManager
-            NavigationHelper.openVideoDetailFragment(
-                context, fragmentManager, item.serviceId, item.url, item.name, null, false
-            )
-        }
-    }
-
-    // Handle long clicks for stream items
-    // TODO: Adjust the menu display depending on where it was triggered
-    var selectedStream by rememberSaveable { mutableStateOf<Stream?>(null) }
-    val onLongClick = remember {
-        { stream: Stream ->
-            selectedStream = stream
-        }
-    }
-    val onDismissPopup = remember {
-        {
-            selectedStream = null
-        }
-    }
-
-    val showProgress = DependentPreferenceHelper.getPositionsInListsEnabled(context)
-
-    if (items.loadState.refresh is LoadState.NotLoading && items.itemCount == 0) {
-        EmptyStateComposable(EmptyStateSpec.NoVideos)
-    } else if (mode == ItemViewMode.GRID) {
-        val state = rememberLazyGridState()
-
-        LazyVerticalGridScrollbar(state = state, settings = defaultThemedScrollbarSettings()) {
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            val isCompact = windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-            val minSize = if (isCompact) 150.dp else 250.dp
-
-            LazyVerticalGrid(state = state, columns = GridCells.Adaptive(minSize)) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    HistoryHeader(sortKey, onSelectItem)
-                }
-
-                items(items.itemCount) {
-                    val item = items[it]!!
-                    val isSelected = selectedStream == item
-
-                    StreamGridItem(
-                        item, showProgress, isSelected, isCompact, onClick, onLongClick,
-                        onDismissPopup
-                    )
-                }
-            }
-        }
-    } else {
-        val state = rememberLazyListState()
-
-        LazyColumnThemedScrollbar(state = state) {
-            LazyColumn(state = state) {
-                item {
-                    HistoryHeader(sortKey, onSelectItem)
-                }
-
-                items(items.itemCount) {
-                    val item = items[it]!!
-                    val isSelected = selectedStream == item
-
-                    if (mode == ItemViewMode.CARD) {
-                        StreamCardItem(
-                            item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
-                        )
-                    } else {
-                        StreamListItem(
-                            item, showProgress, isSelected, onClick, onLongClick, onDismissPopup
-                        )
-                    }
-                }
-            }
-        }
-    }
+    ItemList(historyItems, header = {
+        HistoryHeader(sortKey, viewModel::updateOrder)
+    })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

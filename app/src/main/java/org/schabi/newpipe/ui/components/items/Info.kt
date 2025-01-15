@@ -2,13 +2,11 @@ package org.schabi.newpipe.ui.components.items
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.schabi.newpipe.App
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.image.ImageStrategy
 import java.util.concurrent.TimeUnit
@@ -28,9 +26,9 @@ class Stream(
     val detailText: String = "",
 ) : Info(), Parcelable {
 
-    constructor(item: StreamInfoItem) : this(
+    constructor(item: StreamInfoItem, detailText: String) : this(
         item.serviceId, item.url, item.name, item.thumbnails, item.uploaderName.orEmpty(),
-        item.streamType, item.uploaderUrl, item.duration, getStreamDetailText(item)
+        item.streamType, item.uploaderUrl, item.duration, detailText
     )
 
     constructor(entry: StreamEntity, detailText: String) : this(
@@ -46,32 +44,6 @@ class Stream(
         item.uploaderUrl = uploaderUrl
         item.thumbnails = thumbnails
         return item
-    }
-
-    companion object {
-        fun getStreamDetailText(stream: StreamInfoItem): String {
-            val context = App.instance
-            val count = stream.viewCount
-            val views = if (count >= 0) {
-                when (stream.streamType) {
-                    StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, count)
-                    StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, count)
-                    else -> Localization.shortViewCount(context, count)
-                }
-            } else {
-                ""
-            }
-            val date =
-                Localization.relativeTimeOrTextual(context, stream.uploadDate, stream.textualUploadDate)
-
-            return if (views.isEmpty()) {
-                date.orEmpty()
-            } else if (date.isNullOrEmpty()) {
-                views
-            } else {
-                "$views • $date"
-            }
-        }
     }
 }
 
@@ -89,3 +61,5 @@ class Playlist(
         item.streamCount
     )
 }
+
+object Unknown : Info()

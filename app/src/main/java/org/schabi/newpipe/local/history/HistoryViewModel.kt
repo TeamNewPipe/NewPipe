@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
-import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -38,11 +38,7 @@ class HistoryViewModel(
         }
         .map { pagingData ->
             pagingData.map {
-                val thumbnails = listOfNotNull(
-                    it.streamEntity.thumbnailUrl?.let {
-                        Image(it, -1, -1, Image.ResolutionLevel.UNKNOWN)
-                    }
-                )
+                val thumbnails = ImageStrategy.dbUrlToImageList(it.streamEntity.thumbnailUrl)
                 val detail = getHistoryDetailText(it, dateTimeFormatter)
 
                 Stream(

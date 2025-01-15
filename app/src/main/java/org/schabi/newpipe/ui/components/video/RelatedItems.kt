@@ -1,5 +1,6 @@
 package org.schabi.newpipe.ui.components.video
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -21,78 +22,98 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.preference.PreferenceManager
+import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
+import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.ui.components.items.Stream
-import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
-import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
+import org.schabi.newpipe.ui.components.items.Unknown
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import java.util.concurrent.TimeUnit
-import org.schabi.newpipe.extractor.stream.StreamInfo as ExtractorStreamInfo
 
 @Composable
-fun RelatedItems(info: ExtractorStreamInfo) {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+fun RelatedItems(info: StreamInfo) {
+    val context = LocalContext.current
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     val key = stringResource(R.string.auto_queue_key)
     // TODO: AndroidX DataStore might be a better option.
     var isAutoQueueEnabled by rememberSaveable {
         mutableStateOf(sharedPreferences.getBoolean(key, false))
     }
+    val displayItems = info.relatedItems.map {
+        if (it is StreamInfoItem) {
+            Stream(it, getStreamDetailText(context, it))
+        } else if (it is PlaylistInfoItem) {
+            Playlist(it)
+        } else {
+            Unknown
+        }
+    }
 
     ItemList(
-        items = info.relatedItems.map {
-            if (it is StreamInfoItem) {
-                Stream(it)
-            } else if (it is PlaylistInfoItem) {
-                Playlist(it)
-            } else {
-                throw IllegalArgumentException()
-            }
-        },
+        items = flowOf(PagingData.from(displayItems)).collectAsLazyPagingItems(),
         mode = ItemViewMode.LIST,
-        listHeader = {
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 12.dp, end = 12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(text = stringResource(R.string.auto_queue_description))
+        header = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp, end = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(text = stringResource(R.string.auto_queue_description))
 
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = stringResource(R.string.auto_queue_toggle))
-                        Switch(
-                            checked = isAutoQueueEnabled,
-                            onCheckedChange = {
-                                isAutoQueueEnabled = it
-                                sharedPreferences.edit {
-                                    putBoolean(key, it)
-                                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = stringResource(R.string.auto_queue_toggle))
+                    Switch(
+                        checked = isAutoQueueEnabled,
+                        onCheckedChange = {
+                            isAutoQueueEnabled = it
+                            sharedPreferences.edit {
+                                putBoolean(key, it)
                             }
-                        )
-                    }
-                }
-            }
-            if (info.relatedItems.isEmpty()) {
-                item {
-                    EmptyStateComposable(EmptyStateSpec.NoVideos)
+                        }
+                    )
                 }
             }
         }
     )
+}
+
+private fun getStreamDetailText(context: Context, stream: StreamInfoItem): String {
+    val count = stream.viewCount
+    val views = if (count >= 0) {
+        when (stream.streamType) {
+            StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, count)
+            StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, count)
+            else -> Localization.shortViewCount(context, count)
+        }
+    } else {
+        ""
+    }
+    val date = Localization.relativeTimeOrTextual(context, stream.uploadDate, stream.textualUploadDate)
+
+    return if (views.isEmpty()) {
+        date.orEmpty()
+    } else if (date.isNullOrEmpty()) {
+        views
+    } else {
+        "$views • $date"
+    }
 }
 
 private fun StreamInfoItem(
@@ -119,7 +140,7 @@ private fun StreamInfoItem(
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun RelatedItemsPreview() {
-    val info = ExtractorStreamInfo(NO_SERVICE_ID, "", "", StreamType.VIDEO_STREAM, "", "", 0)
+    val info = StreamInfo(NO_SERVICE_ID, "", "", StreamType.VIDEO_STREAM, "", "", 0)
     info.relatedItems = listOf(
         StreamInfoItem(streamType = StreamType.NONE),
         StreamInfoItem(streamType = StreamType.LIVE_STREAM),
