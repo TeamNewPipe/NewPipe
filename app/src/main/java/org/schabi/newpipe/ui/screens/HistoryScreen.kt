@@ -57,7 +57,9 @@ fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
     val context = LocalContext.current
     val sortKey by viewModel.sortKey.collectAsStateWithLifecycle()
     val historyItems = viewModel.historyItems.collectAsLazyPagingItems()
-    val queue = SinglePlayQueue(historyItems.itemSnapshotList.map { it!!.toStreamInfoItem() }, 0)
+
+    val streams = historyItems.itemSnapshotList.mapNotNull { it?.toStreamInfoItem() }
+    val queue = SinglePlayQueue(streams, 0)
     val onClickBackground = {
         NavigationHelper.playOnBackgroundPlayer(context, queue, false)
     }

@@ -97,7 +97,7 @@ fun ItemList(
                 }
 
                 items(items.itemCount) {
-                    val item = items[it]!!
+                    val item = items[it]
                     val isSelected = selectedStream == item
 
                     // TODO: Implement playlist and channel grid items.
