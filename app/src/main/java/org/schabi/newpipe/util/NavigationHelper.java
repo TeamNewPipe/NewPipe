@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -137,7 +136,7 @@ public final class NavigationHelper {
     }
 
     /* PLAY */
-    public static void playOnMainPlayer(final AppCompatActivity activity,
+    public static void playOnMainPlayer(final FragmentActivity activity,
                                         @NonNull final PlayQueue playQueue) {
         final PlayQueueItem item = playQueue.getItem();
         if (item != null) {
