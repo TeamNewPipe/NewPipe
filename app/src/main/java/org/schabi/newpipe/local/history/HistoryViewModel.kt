@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
@@ -48,6 +49,7 @@ class HistoryViewModel(
             }
         }
         .flowOn(Dispatchers.IO)
+        .cachedIn(viewModelScope)
 
     fun updateOrder(sortKey: SortKey) {
         savedStateHandle[ORDER_KEY] = sortKey
