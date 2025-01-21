@@ -1,0 +1,22 @@
+Újdonság
+Lejátszás folytatás #2288
+• Videó folytatása ott ahol leállításra került
+Letöltő Downloader javítások #2149 
+• Háttértár Hozzáférés Keretrendszer használata az SD kártyára való mentéshez
+• Új mp4 muxer
+• Opcionálisan megváltoztatható a letöltési könyvtár letöltés előtt
+• Mért hálózatok tiszteletben tartása 
+
+
+Fejlesztések
+• gema string-ek eltávolítása #2295
+• Auto-elforgatás használat változások életciklus aktivitás közben #2444
+• Hosszúnyomós menük konzisztensebb viselkedése #2368
+
+Javítás
+• Kiválasztott felirat neve nem látszódásának javítása #2394
+• Ha nem sikerül a frissítés keresése, nem omlik össze (GitHub version) #2423 
+• Letöltés nem akad meg 99,9%-nál #2440
+• Lejátszási lista metaadatainak frissítése #2453 
+• [SoundCloud] Lejátszásilista betöltésnél levő összeomlás javítása TeamNewPipe/NewPipeExtractor#170
+• [YouTube] Nem kielemezhető a videó hossza javítva TeamNewPipe/NewPipeExtractor#177

@@ -10,5 +10,5 @@ Verbessert
 
 Behoben
 • [YouTube] Erhalten der Like-Anzahl
-• Nicht reagierende Popups und Abstürze des Players
+• Nicht reagierende Pop-ups und Abstürze des Players
 • Hinzufügen von Wiedergabelistenelementen funktionierte gelegentlich nicht

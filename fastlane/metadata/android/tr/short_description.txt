@@ -1,1 +1,1 @@
-Android için özgür ve hafif bir YouTube istemcisi.
+Android için Bedava ve hafif bir YouTube istemcisi.

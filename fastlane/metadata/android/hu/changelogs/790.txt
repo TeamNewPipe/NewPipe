@@ -1,0 +1,14 @@
+Fejlesztések
+• Hosszabb cím hozzáadása a gyengék látók miatt #2655
+• Jobban értelmezhető és következetesebb a letöltés beállítások nyelvezete #2637
+
+Javítások
+• Letöltött fájl utolsó byte-jának ellenőrzése #2646
+• Videó részleti között szkrollozás fixálva #2672
+• A kereső rubrika kitörlés animációja nem duplázódik #2695
+• [SoundCloud] client_id kivonása fixálva #2745
+
+Fejlesztés
+• Hiányzó összefüggések poótlása melyek a NewPipeExtractor-ból jönnek a NewPipe rendszerbe #2535
+• Migráció AndroidX-be #2685
+• Frissítés ExoPlayer 2.10.6 #2697, #2736

@@ -1,0 +1,13 @@
+Mejorado
+• Lista de reproducción muestra más/menos contenido
+• [PeerTube] Manejar automáticamente las instancia de subscribeto.me.
+• Reproducir único elemento en el historial
+
+Corregido
+• Visibilidad del botón RSS
+• Bloqueos en la barra de búsqueda.
+• Reproducción de un elemento sin miniaturas
+• Salir del cuadro de diálogo de descarga antes de que aparezca
+• Lista de elementos relacionados a la cola
+• Orden al añadir a la lista de reproducción
+• Diseño de favoritos en lista de reproducción

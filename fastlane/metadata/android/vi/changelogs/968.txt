@@ -1,0 +1,7 @@
+Thêm tùy chọn chi tiết kênh vào menu nhấn giữ lâu.
+Thêm chức năng đổi tên Danh sách phát từ giao diện danh sách phát.
+Cho phép người dùng tạm dừng trong khi video đang được đệm.
+Hoàn thiện giao diện màu trắng.
+Sửa lỗi font chữ chồng lên nhau khi sử dụng kích thước font chữ lớn hơn.
+Sửa lỗi không có video trên thiết bị Formuler và Zephier.
+Sửa lỗi treo ứng dụng.

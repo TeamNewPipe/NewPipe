@@ -1,0 +1,1 @@
+Sửa lỗi YouTube không hoạt động đúng cách ở EU. Nguyên nhân là do hệ thống cookie và đồng ý quyền riêng tư mới yêu cầu NewPipe đặt cookie CONSENT.

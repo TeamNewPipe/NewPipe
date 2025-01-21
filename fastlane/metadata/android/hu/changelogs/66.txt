@@ -1,0 +1,33 @@
+# v0.13.7 változásnaplója
+
+### Javítva
+- v0.13.6a szűrés javítása
+
+# v0.13.6 változásnaplója
+
+### Fejlesztések
+
+- Burgermenü animációk kikapcsolása #1486 
+- Letöltések törlésének visszavonása #1472 
+- Letöltés megjelenítése a megosztás menüben #1498
+- Megosztás hozzáadása a hosszú lenyomás menühöz #1454 
+- Főlejátszó minimalizálása kilépéskor #1354 
+- Könyvtár verzió frissítés és adatbázis biztonsági mentés javítás #1510 
+- ExoPlayer 2.8.2 Frissítés #1392
+  - Visszajátszási sebesség irányítópult újradolgozása a különböző sebességléptek támogatására.
+  - Kapcsoló hozzáadása a visszajátszási vezérlőpulthoz a hangtalan részek átugrására. Hasznos lehet a hangoskönyvekhez és egyes zenestílusokhoz, és folyamatos zene élmányt eredményezhet (viszont tönkre tehet egy zenét amiben túl sok csönd van =\\).  
+  - Média forrás felbontás újradolgozása a metaadat automatikus lejátszóban való továbbítása érdekében. Már csak egyetlen metaadat forrás áll rendelkezésre lejátszáskor.
+  - Lejátszási lista darabka megnyitásakor megjelenő új metaadatnál nincs frissülés.
+  - Számos felület javítás: #1383, háttérben futó lejátszó gombja mindig fehérek, könnyebb a bezárás elhúzással
+- Multiszervizes kibontó újradolgozása
+
+### Javítások
+
+- Javítás #1440 Hibás videó infó elrendezés #1491 
+- Előzmény megtekintés javítás #1497
+  - #1495, a metaadat frissítése (előnézet, cím és videó szám) amint a felhasználó belép a lejátszólistába. 
+  - #1475, adatbázis nézet regisztrálásra kerül a külső lejátszó elemrészleteinél.
+- Időtúllépés javítása kiugró ablaknál. #1463 (Fixed #640)
+- Fő videólejátszó javítás #1509 
+  - [#1412] Az ismétlő mód NPE-t okoz, amikor a háttérben futó alkalmazás ilyen parancsot kap.
+  - A felugró ablak mód letiltása esetén felugró mód nem zárja be az appot.

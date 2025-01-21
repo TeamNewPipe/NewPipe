@@ -1,0 +1,15 @@
+Novo
+• Pesquisa de selecionador de assinaturas
+• Filtro ao diálogo do grupo de feed
+• Ficha de lista de reprodução à página principal
+• Avanço/retrocesso rápido na fila de fundo/pop-up de jogadores
+• Mostrar sugestão de pesquisa: quis dizer & a mostrar resultado para
+
+Melhorado
+• Não escrever metadados de apps em ficheiros muxed
+• Não remover fluxos falhados da fila
+• A cor da barra de estado corresponde à da de ferramentas
+
+Fixo
+• Desync de áudio/vídeo
+• [PeerTube] Gerir comentários apagados
