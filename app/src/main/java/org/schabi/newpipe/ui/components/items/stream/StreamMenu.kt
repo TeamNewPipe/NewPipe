@@ -1,13 +1,8 @@
 package org.schabi.newpipe.ui.components.items.stream
 
-import androidx.annotation.StringRes
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -16,6 +11,7 @@ import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.player.helper.PlayerHolder
+import org.schabi.newpipe.ui.components.common.DropdownTextMenuItem
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
@@ -36,59 +32,59 @@ fun StreamMenu(
         val streamViewModel = viewModel<StreamViewModel>()
 
         if (playerHolder.isPlayQueueReady) {
-            StreamMenuItem(
+            DropdownTextMenuItem(
                 text = R.string.enqueue_stream,
                 onClick = {
                     onDismissRequest()
                     SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                         NavigationHelper.enqueueOnPlayer(context, it)
                     }
-                }
+                },
             )
 
             if (playerHolder.queuePosition < playerHolder.queueSize - 1) {
-                StreamMenuItem(
+                DropdownTextMenuItem(
                     text = R.string.enqueue_next_stream,
                     onClick = {
                         onDismissRequest()
                         SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                             NavigationHelper.enqueueNextOnPlayer(context, it)
                         }
-                    }
+                    },
                 )
             }
         }
 
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.start_here_on_background,
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnBackgroundPlayer(context, it, true)
                 }
-            }
+            },
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.start_here_on_popup,
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchItemInfoIfSparse(context, info) {
                     NavigationHelper.playOnPopupPlayer(context, it, true)
                 }
-            }
+            },
         )
 
         if (stream.streamId != -1L) {
-            StreamMenuItem(
+            DropdownTextMenuItem(
                 text = R.string.delete,
                 onClick = {
                     onDismissRequest()
                     streamViewModel.deleteStreamHistory(stream.streamId)
-                }
+                },
             )
         }
 
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.download,
             onClick = {
                 onDismissRequest()
@@ -100,9 +96,9 @@ fun StreamMenu(
                     val fragmentManager = context.findFragmentActivity().supportFragmentManager
                     downloadDialog.show(fragmentManager, "downloadDialog")
                 }
-            }
+            },
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.add_to_playlist,
             onClick = {
                 onDismissRequest()
@@ -111,33 +107,33 @@ fun StreamMenu(
                     val tag = if (dialog is PlaylistAppendDialog) "append" else "create"
                     dialog.show(
                         context.findFragmentActivity().supportFragmentManager,
-                        "StreamDialogEntry@${tag}_playlist"
+                        "StreamDialogEntry@${tag}_playlist",
                     )
                 }
-            }
+            },
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.share,
             onClick = {
                 onDismissRequest()
                 ShareUtils.shareText(context, stream.name, stream.url, stream.thumbnails)
-            }
+            },
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.open_in_browser,
             onClick = {
                 onDismissRequest()
                 ShareUtils.openUrlInBrowser(context, stream.url)
-            }
+            },
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.mark_as_watched,
             onClick = {
                 onDismissRequest()
                 streamViewModel.markAsWatched(info)
             }
         )
-        StreamMenuItem(
+        DropdownTextMenuItem(
             text = R.string.show_channel_details,
             onClick = {
                 onDismissRequest()
@@ -150,17 +146,4 @@ fun StreamMenu(
             }
         )
     }
-}
-
-@Composable
-private fun StreamMenuItem(
-    @StringRes text: Int,
-    onClick: () -> Unit
-) {
-    DropdownMenuItem(
-        text = {
-            Text(text = stringResource(text), color = MaterialTheme.colorScheme.onBackground)
-        },
-        onClick = onClick
-    )
 }

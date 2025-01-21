@@ -15,7 +15,6 @@ import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
 import androidx.compose.material.icons.filled.ClearAll
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PictureInPicture
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
@@ -49,6 +48,7 @@ import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.history.HistoryViewModel
 import org.schabi.newpipe.local.history.SortKey
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
+import org.schabi.newpipe.ui.components.common.DropdownTextMenuItem
 import org.schabi.newpipe.ui.components.common.IconButtonWithLabel
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -127,25 +127,15 @@ private fun HistoryHeader(
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
                 ) {
-                    DropdownMenuItem(
-                        text = {
-                            Text(
-                                text = stringResource(R.string.title_most_played),
-                                color = MaterialTheme.colorScheme.onBackground,
-                            )
-                        },
+                    DropdownTextMenuItem(
+                        text = R.string.title_most_played,
                         onClick = {
                             expanded = false
                             onSelectSortKey(SortKey.MOST_PLAYED)
                         }
                     )
-                    DropdownMenuItem(
-                        text = {
-                            Text(
-                                text = stringResource(R.string.title_last_played),
-                                color = MaterialTheme.colorScheme.onBackground,
-                            )
-                        },
+                    DropdownTextMenuItem(
+                        text = R.string.title_last_played,
                         onClick = {
                             expanded = false
                             onSelectSortKey(SortKey.LAST_PLAYED)
