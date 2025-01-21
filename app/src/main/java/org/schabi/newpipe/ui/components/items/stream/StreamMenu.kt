@@ -30,10 +30,11 @@ fun StreamMenu(
 ) {
     val info = stream.toStreamInfoItem()
     val context = LocalContext.current
-    val streamViewModel = viewModel<StreamViewModel>()
     val playerHolder = PlayerHolder.getInstance()
 
     DropdownMenu(expanded = expanded, onDismissRequest = onDismissRequest) {
+        val streamViewModel = viewModel<StreamViewModel>()
+
         if (playerHolder.isPlayQueueReady) {
             StreamMenuItem(
                 text = R.string.enqueue_stream,

@@ -6,8 +6,8 @@ import org.schabi.newpipe.ui.components.items.Stream
 
 internal class StreamItemPreviewProvider : PreviewParameterProvider<Stream> {
     override val values = sequenceOf(
-        Stream(type = StreamType.NONE, uploaderName = "Uploader"),
-        Stream(type = StreamType.LIVE_STREAM),
-        Stream(type = StreamType.AUDIO_LIVE_STREAM),
+        Stream(type = StreamType.NONE, name = "Stream", uploaderName = "Uploader"),
+        Stream(type = StreamType.LIVE_STREAM, name = "Stream", uploaderName = "Uploader"),
+        Stream(type = StreamType.AUDIO_LIVE_STREAM, name = "Stream", uploaderName = "Uploader"),
     )
 }
