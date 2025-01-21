@@ -248,6 +248,9 @@ public class ErrorActivity extends AppCompatActivity {
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
                     .append("\n* __App Language:__ ").append(getAppLanguage())
                     .append("\n* __Service:__ ").append(errorInfo.getServiceName())
+                    .append("\n* __Timestamp:__ ").append(currentTimeStamp)
+                    .append("\n* __Package:__ ").append(getPackageName())
+                    .append("\n* __Service:__ ").append(errorInfo.getServiceName())
                     .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
                     .append("\n* __OS:__ ").append(getOsString()).append("\n");
 
