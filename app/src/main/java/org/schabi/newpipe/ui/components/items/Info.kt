@@ -24,6 +24,7 @@ class Stream(
     val uploaderUrl: String? = null,
     val duration: Long = TimeUnit.HOURS.toSeconds(1),
     val detailText: String = "",
+    val streamId: Long = -1,
 ) : Info(), Parcelable {
 
     constructor(item: StreamInfoItem, detailText: String) : this(
@@ -31,10 +32,10 @@ class Stream(
         item.streamType, item.uploaderUrl, item.duration, detailText
     )
 
-    constructor(entry: StreamEntity, detailText: String) : this(
-        entry.serviceId, entry.url, entry.title,
-        ImageStrategy.dbUrlToImageList(entry.thumbnailUrl), entry.uploader,
-        entry.streamType, entry.uploaderUrl, entry.duration, detailText
+    constructor(entity: StreamEntity, detailText: String, streamId: Long) : this(
+        entity.serviceId, entity.url, entity.title,
+        ImageStrategy.dbUrlToImageList(entity.thumbnailUrl), entity.uploader,
+        entity.streamType, entity.uploaderUrl, entity.duration, detailText, streamId
     )
 
     fun toStreamInfoItem(): StreamInfoItem {

@@ -76,6 +76,17 @@ fun StreamMenu(
                 }
             }
         )
+
+        if (stream.streamId != -1L) {
+            StreamMenuItem(
+                text = R.string.delete,
+                onClick = {
+                    onDismissRequest()
+                    streamViewModel.deleteStreamHistory(stream.streamId)
+                }
+            )
+        }
+
         StreamMenuItem(
             text = R.string.download,
             onClick = {

@@ -3,6 +3,8 @@ package org.schabi.newpipe.ui.screens
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -82,7 +84,7 @@ fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
     })
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 private fun HistoryHeader(
     sortKey: SortKey,
@@ -170,7 +172,7 @@ private fun HistoryHeader(
 
         Spacer(Modifier.height(12.dp))
 
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             IconButtonWithLabel(
                 icon = Icons.Default.Headphones,
                 label = R.string.controls_background_title,

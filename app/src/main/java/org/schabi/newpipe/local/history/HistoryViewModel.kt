@@ -45,7 +45,7 @@ class HistoryViewModel(
                     dateTimeFormatter.format(it.latestAccessDate),
                     ServiceHelper.getNameOfServiceById(it.streamEntity.serviceId),
                 )
-                Stream(it.streamEntity, detail)
+                Stream(it.streamEntity, detail, it.streamId)
             }
         }
         .flowOn(Dispatchers.IO)
