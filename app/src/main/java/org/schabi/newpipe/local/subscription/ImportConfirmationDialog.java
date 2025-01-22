@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
-import androidx.work.Data;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
@@ -22,29 +21,17 @@ import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput;
 import org.schabi.newpipe.local.subscription.workers.SubscriptionImportWorker;
-import org.schabi.newpipe.util.Constants;
 
 public class ImportConfirmationDialog extends DialogFragment {
     @State
-    protected int mode;
-    @State
-    protected String value;
-    @State
-    protected int serviceId;
+    protected SubscriptionImportInput input;
 
-    public static void show(@NonNull final Fragment fragment, final int mode,
-                            @Nullable final String value, final int serviceId) {
+    public static void show(@NonNull final Fragment fragment, final SubscriptionImportInput input) {
         final var confirmationDialog = new ImportConfirmationDialog();
-        confirmationDialog.setData(mode, value, serviceId);
+        confirmationDialog.input = input;
         confirmationDialog.show(fragment.getParentFragmentManager(), null);
-    }
-
-    @SuppressWarnings("HiddenField")
-    public void setData(final int mode, final String value, final int serviceId) {
-        this.mode = mode;
-        this.value = value;
-        this.serviceId = serviceId;
     }
 
     @NonNull
@@ -57,17 +44,12 @@ public class ImportConfirmationDialog extends DialogFragment {
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                    final var inputData = new Data.Builder()
-                            .putString(SubscriptionImportWorker.KEY_VALUE, value)
-                            .putInt(SubscriptionImportWorker.KEY_MODE, mode)
-                            .putInt(Constants.KEY_SERVICE_ID, serviceId)
-                            .build();
                     final var constraints = new Constraints.Builder()
                             .setRequiredNetworkType(NetworkType.CONNECTED)
                             .build();
 
                     final var req = new OneTimeWorkRequest.Builder(SubscriptionImportWorker.class)
-                            .setInputData(inputData)
+                            .setInputData(input.toData())
                             .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                             .setConstraints(constraints)
                             .build();
@@ -84,10 +66,6 @@ public class ImportConfirmationDialog extends DialogFragment {
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (mode == 0 && value == null && serviceId == 0) {
-            throw new IllegalStateException("Input data not provided");
-        }
 
         Bridge.restoreInstanceState(this, savedInstanceState);
     }

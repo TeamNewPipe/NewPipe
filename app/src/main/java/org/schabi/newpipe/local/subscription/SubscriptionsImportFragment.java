@@ -33,7 +33,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
-import org.schabi.newpipe.local.subscription.workers.SubscriptionImportWorker;
+import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
@@ -164,8 +164,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportUrl(final String value) {
-        ImportConfirmationDialog.show(this, SubscriptionImportWorker.CHANNEL_URL_MODE, value,
-                currentServiceId);
+        ImportConfirmationDialog.show(this,
+                new SubscriptionImportInput.ChannelUrlMode(currentServiceId, value));
     }
 
     public void onImportFile() {
@@ -182,8 +182,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private void requestImportFileResult(final ActivityResult result) {
         final String data = result.getData() != null ? result.getData().getDataString() : null;
         if (result.getResultCode() == Activity.RESULT_OK && data != null) {
-            ImportConfirmationDialog.show(this, SubscriptionImportWorker.INPUT_STREAM_MODE,
-                    data, currentServiceId);
+            ImportConfirmationDialog.show(this,
+                    new SubscriptionImportInput.InputStreamMode(currentServiceId, data));
         }
     }
 

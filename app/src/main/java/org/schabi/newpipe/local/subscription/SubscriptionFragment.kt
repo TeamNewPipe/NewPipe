@@ -49,11 +49,10 @@ import org.schabi.newpipe.local.subscription.item.GroupsHeader
 import org.schabi.newpipe.local.subscription.item.Header
 import org.schabi.newpipe.local.subscription.item.ImportSubscriptionsHintPlaceholderItem
 import org.schabi.newpipe.local.subscription.workers.SubscriptionExportWorker
-import org.schabi.newpipe.local.subscription.workers.SubscriptionImportWorker
+import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
-import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
@@ -231,7 +230,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val data = result.data?.dataString
         if (data != null && result.resultCode == Activity.RESULT_OK) {
             ImportConfirmationDialog.show(
-                this, SubscriptionImportWorker.PREVIOUS_EXPORT_MODE, data, NO_SERVICE_ID
+                this, SubscriptionImportInput.PreviousExportMode(data)
             )
         }
     }

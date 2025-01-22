@@ -3,11 +3,13 @@ package org.schabi.newpipe.local.subscription.workers
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
+import android.os.Parcelable
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker
+import androidx.work.Data
 import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -18,12 +20,11 @@ import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExtractorHelper
-import org.schabi.newpipe.util.KEY_SERVICE_ID
-import org.schabi.newpipe.util.NO_SERVICE_ID
 
 class SubscriptionImportWorker(
     appContext: Context,
@@ -35,27 +36,29 @@ class SubscriptionImportWorker(
     }
 
     override suspend fun doWork(): Result {
-        val mode = inputData.getInt(KEY_MODE, CHANNEL_URL_MODE)
-        val serviceId = inputData.getInt(KEY_SERVICE_ID, NO_SERVICE_ID)
-        val value = inputData.getString(KEY_VALUE)!!
+        val input = SubscriptionImportInput.fromData(inputData)
 
         val subscriptions = withContext(Dispatchers.IO) {
-            if (mode == CHANNEL_URL_MODE) {
-                NewPipe.getService(serviceId).subscriptionExtractor
-                    .fromChannelUrl(value)
-                    .map { SubscriptionItem(it.serviceId, it.url, it.name) }
-            } else {
-                applicationContext.contentResolver.openInputStream(value.toUri())?.use {
-                    if (mode == INPUT_STREAM_MODE) {
-                        val contentType = MimeTypeMap.getFileExtensionFromUrl(value).ifEmpty { DEFAULT_MIME }
-                        NewPipe.getService(serviceId).subscriptionExtractor
+            when (input) {
+                is SubscriptionImportInput.ChannelUrlMode ->
+                    NewPipe.getService(input.serviceId).subscriptionExtractor
+                        .fromChannelUrl(input.url)
+                        .map { SubscriptionItem(it.serviceId, it.url, it.name) }
+
+                is SubscriptionImportInput.InputStreamMode ->
+                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use {
+                        val contentType =
+                            MimeTypeMap.getFileExtensionFromUrl(input.url).ifEmpty { DEFAULT_MIME }
+                        NewPipe.getService(input.serviceId).subscriptionExtractor
                             .fromInputStream(it, contentType)
                             .map { SubscriptionItem(it.serviceId, it.url, it.name) }
-                    } else {
+                    }
+
+                is SubscriptionImportInput.PreviousExportMode ->
+                    applicationContext.contentResolver.openInputStream(input.url.toUri())?.use {
                         ImportExportJsonHelper.readFrom(it)
                     }
-                } ?: emptyList()
-            }
+            } ?: emptyList()
         }
 
         val mutex = Mutex()
@@ -146,10 +149,69 @@ class SubscriptionImportWorker(
         private const val BUFFER_COUNT_BEFORE_INSERT = 50
 
         const val WORK_NAME = "SubscriptionImportWorker"
-        const val CHANNEL_URL_MODE = 0
-        const val INPUT_STREAM_MODE = 1
-        const val PREVIOUS_EXPORT_MODE = 2
-        const val KEY_MODE = "key_mode"
-        const val KEY_VALUE = "key_value"
+    }
+}
+
+sealed class SubscriptionImportInput : Parcelable {
+    @Parcelize
+    data class ChannelUrlMode(val serviceId: Int, val url: String) : SubscriptionImportInput()
+    @Parcelize
+    data class InputStreamMode(val serviceId: Int, val url: String) : SubscriptionImportInput()
+    @Parcelize
+    data class PreviousExportMode(val url: String) : SubscriptionImportInput()
+
+    fun toData(): Data {
+        return when (this) {
+            is ChannelUrlMode -> Data.Builder()
+                .putInt("mode", CHANNEL_URL_MODE)
+                .putInt("service_id", serviceId)
+                .putString("url", url)
+                .build()
+            is InputStreamMode ->
+                Data.Builder()
+                    .putInt("mode", INPUT_STREAM_MODE)
+                    .putInt("service_id", serviceId)
+                    .putString("url", url)
+                    .build()
+            is PreviousExportMode ->
+                Data.Builder()
+                    .putInt("mode", PREVIOUS_EXPORT_MODE)
+                    .putString("url", url)
+                    .build()
+        }
+    }
+
+    companion object {
+
+        private const val CHANNEL_URL_MODE = 0
+        private const val INPUT_STREAM_MODE = 1
+        private const val PREVIOUS_EXPORT_MODE = 2
+
+        fun fromData(data: Data): SubscriptionImportInput {
+            val mode = data.getInt("mode", PREVIOUS_EXPORT_MODE)
+            when (mode) {
+                CHANNEL_URL_MODE -> {
+                    val serviceId = data.getInt("service_id", -1)
+                    if (serviceId == -1) {
+                        throw IllegalArgumentException("No service id provided")
+                    }
+                    val url = data.getString("url")!!
+                    return ChannelUrlMode(serviceId, url)
+                }
+                INPUT_STREAM_MODE -> {
+                    val serviceId = data.getInt("service_id", -1)
+                    if (serviceId == -1) {
+                        throw IllegalArgumentException("No service id provided")
+                    }
+                    val url = data.getString("url")!!
+                    return InputStreamMode(serviceId, url)
+                }
+                PREVIOUS_EXPORT_MODE -> {
+                    val url = data.getString("url")!!
+                    return PreviousExportMode(url)
+                }
+                else -> throw IllegalArgumentException("Unknown mode: $mode")
+            }
+        }
     }
 }
