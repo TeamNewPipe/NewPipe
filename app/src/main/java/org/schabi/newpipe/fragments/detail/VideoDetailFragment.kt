@@ -991,7 +991,7 @@ class VideoDetailFragment :
             // restored (i.e. bottomSheetState) to STATE_EXPANDED.
             updateBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
             // toggle landscape in order to open directly in fullscreen
-            onScreenRotationButtonClicked()
+            onFullscreenToggleButtonClicked()
         }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
@@ -1726,7 +1726,7 @@ class VideoDetailFragment :
         tryAddVideoPlayerView()
     }
 
-    override fun onScreenRotationButtonClicked() {
+    override fun onFullscreenToggleButtonClicked() {
         // In tablet user experience will be better if screen will not be rotated
         // from landscape to portrait every time.
         // Just turn on fullscreen mode in landscape orientation
