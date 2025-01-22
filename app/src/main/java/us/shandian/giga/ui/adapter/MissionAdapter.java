@@ -664,6 +664,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 return true;
             case R.id.md5:
             case R.id.sha1:
+                final StoredFileHelper storage = h.item.mission.storage;
+                if (!storage.existsAsFile()) {
+                    Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
+                    mDeleter.append(h.item.mission);
+                    applyChanges();
+                    return true;
+                }
                 final NotificationManager notificationManager
                         = ContextCompat.getSystemService(mContext, NotificationManager.class);
                 final NotificationCompat.Builder progressNotificationBuilder
@@ -678,7 +685,6 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
                 notificationManager.notify(HASH_NOTIFICATION_ID, progressNotificationBuilder
                         .build());
-                final StoredFileHelper storage = h.item.mission.storage;
                 compositeDisposable.add(
                         Observable.fromCallable(() -> Utility.checksum(storage, id))
                                 .subscribeOn(Schedulers.computation())
