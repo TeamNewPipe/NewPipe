@@ -363,7 +363,7 @@
                         tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/fullScreenButton"
+                        android:id="@+id/fullscreenToggleButtonSecondaryMenu"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
@@ -457,7 +457,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
-                    android:nextFocusDown="@id/screenRotationButton"
+                    android:nextFocusDown="@id/fullscreenToggleButton"
                     tools:progress="25"
                     tools:secondaryProgress="50" />
 
@@ -486,7 +486,7 @@
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/screenRotationButton"
+                    android:id="@+id/fullscreenToggleButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="4dp"

@@ -154,7 +154,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     protected void initListeners() {
         super.initListeners();
 
-        binding.screenRotationButton.setOnClickListener(makeOnClickListener(() -> {
+        binding.fullscreenToggleButton.setOnClickListener(makeOnClickListener(() -> {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
             if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
@@ -270,7 +270,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         closeItemsList();
         showHideKodiButton();
-        binding.fullScreenButton.setVisibility(View.GONE);
+        binding.fullscreenToggleButtonSecondaryMenu.setVisibility(View.GONE);
         setupScreenRotationButton();
         binding.resizeTextView.setVisibility(View.VISIBLE);
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
@@ -885,10 +885,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Video size, orientation, fullscreen
 
     private void setupScreenRotationButton() {
-        binding.screenRotationButton.setVisibility(globalScreenOrientationLocked(context)
+        binding.fullscreenToggleButton.setVisibility(globalScreenOrientationLocked(context)
                 || isVerticalVideo || DeviceUtils.isTablet(context)
                 ? View.VISIBLE : View.GONE);
-        binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
+        binding.fullscreenToggleButton.setImageDrawable(AppCompatResources.getDrawable(context,
                 isFullscreen ? R.drawable.ic_fullscreen_exit
                         : R.drawable.ic_fullscreen));
     }
