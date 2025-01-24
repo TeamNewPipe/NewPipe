@@ -1,0 +1,7 @@
+Uzlabojumi
+• Saglabāt un atjaunot neatkarīgi no tā, vai augstums un temps ir atspējoti vai nav
+• Atbalsta displeja izgriezumu atskaņotājā
+• Apaļš (360 grādu) skats un abonentu skaits
+• Optimizēts YouTube, lai izmantotu mazāk datu
+
+Šajā versijā ir novērstas vairāk nekā 15 ar YouTube saistītas kļūdas.

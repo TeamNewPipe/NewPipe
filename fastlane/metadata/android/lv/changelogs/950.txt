@@ -1,0 +1,4 @@
+Šajā versijā ir veikti tikai trīs nelieli labojumi:
+• Salabota piekļuve krātuvei Android 10+ operētājsistēmās
+• Salabota kiosku atvēršana
+• Salabota ilguma noteikšana ilgiem videoklipiem

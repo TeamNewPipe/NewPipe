@@ -13,4 +13,4 @@ Corrigido
 - Correção de popups e falhas do leitor que não responde
 - Seleção de idiomas errados no seletor de idiomas
 - A focagem do áudio do leitor não estava a respeitar o silêncio
-- A adição de itens à lista de reprodução não funcionava ocasionalmente.
+- A adição de itens à lista de reprodução não funcionava ocasionalmente

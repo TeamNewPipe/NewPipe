@@ -1,0 +1,14 @@
+Dipertingkat
+• Tambah lebih banyak tajuk untuk meningkatkan keterlihatan bagi orang buta #2655
+• Jadikan bahasa tetapan folder muat turun lebih tekal dan jelas #2637
+
+Dibaiki
+• Periksa jika bait terakhir di blok telah dimuat turun #2646
+• Baiki penatalan di cebisan butiran video #2672
+• Keluarkan animasi kotak kosongkan carian berganda kepada satu #2695
+• [SoundCloud] Baiki penyarian client_id #2745
+
+Pembangunan
+• Tambah tanggungan yang hilang diwarisi daripada NewPipeExtractor kepada NewPipe #2535
+• Berhijrah ke AndroidX #2685
+• Kemas kini kepada ExoPlayer 2.10.6 #2697, #2736

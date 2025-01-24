@@ -1,0 +1,1 @@
+Adatbázis migráció fixálva, mely megakadályozta a NewPipe elindulását egyes esetekben.

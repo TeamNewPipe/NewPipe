@@ -1,0 +1,22 @@
+Nouveau
+• Ajout d'un sélecteur de langue pour changer la langue de l'application
+• Ajout du bouton Envoyer vers Kodi au menu déroulant du lecteur
+• Ajout de la possibilité de copier les commentaires en appuyant longuement
+
+Amélioré
+• Corriger l'activité ReCaptcha et enregistrer correctement les cookies obtenus
+• Suppression du menu à points au profit du tiroir et du bouton Masquer l'historique lorsque l'historique de visionnage n'est pas activé dans les paramètres
+• Demander correctement l'autorisation d'affichage sur d'autres applications dans les paramètres sur Android 6 et versions ultérieures
+• Renommer la liste de lecture locale en cliquant longuement dans BookmarkFragment
+• Diverses améliorations de PeerTube
+• Amélioration de plusieurs chaînes sources en anglais
+
+Corrigé
+• Correction du redémarrage du lecteur bien qu'il soit en pause lorsque l'option « Réduire au changement d'application » est activée et que NewPipe est réduit
+• Correction de la valeur de luminosité initiale pour le geste
+• Correction des téléchargements de sous-titres .srt ne contenant pas tous les sauts de ligne
+• Correction du téléchargement sur la carte SD qui échoue car certains appareils Android 5 ne sont pas conformes CTF
+• Correction du téléchargement sur Android KitKat
+• Correction du fichier vidéo .mp4 corrompu reconnu comme fichier audio
+• Correction de la localisation multiple  problèmes, notamment des codes de langue chinois erronés
+• [YouTube] Les horodatages dans la description sont à nouveau cliquables

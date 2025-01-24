@@ -1,0 +1,9 @@
+Uzlabojumi
+
+• Pievienots augšupielādes datums un skatījumu skaits plūsmas elementiem režģa skatā
+• Uzlabojumi atvilktņu galvenes izkārtojumā
+
+Salabots
+
+• Salabota skaņas izslēgšanas poga, kas izraisīja avārijas uz Android ar API 19
+• Salabota ilgu 1080p 60 kadri sekundē videoklipu lejupielāde

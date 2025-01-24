@@ -7,5 +7,5 @@ Verbessert
 • Schwarze Navigationsleiste für schwarzes Theme #2569
 
 Behoben
-• Fehler wurde behoben, der den Popup-Player nicht verschieben konnte, wenn ein anderer Finger beim Verschieben des Popup-Players #2772 platziert wurde
+• Fehler wurde behoben, der den Pop-up-Player nicht verschieben konnte, wenn ein anderer Finger beim Verschieben des Pop-up-Players #2772 platziert wurde
 • [SoundCloud] Audio-Stream-Extraktion

@@ -1,0 +1,25 @@
+Atenção: esta versão é provavelmente um bugfest, tal como a última. No entanto, devido ao desligamento total desde o 17. uma versão quebrada é melhor do que nenhuma versão. Certo? ¯\_(ツ)_/¯
+
+### Melhoria
+* os arquivos baixados agora podem ser abertos com um clique #1879 
+* suporte drop para android 4.1-4.3 #1884 
+* remover jogador antigo #1884 
+* remova os fluxos da fila de reprodução atual passando-os para a direita #1915 
+* remova o fluxo enfileirado automático quando um novo fluxo é enfileirado manualmente # 1878 
+* Pós-processamento para downloads e implementar recursos ausentes #1759 por @ kapodamy
+  * Infra-estruturas de pós-processamento
+  * Tratamento adequado de erros "infraestrutura" (para downloader)
+  * Fila em vez de vários downloads
+  * Mover transferências pendentes serializadas (`.arquivos giga`) para dados do aplicativo
+  * Implementar nova tentativa máxima de download
+  * Pausa adequada para o download de vários segmentos
+  * Parar downloads quando swicthing à rede móvel (nunca funciona, ver ponto 2)
+  * Salve a contagem de threads para os próximos downloads
+  * Muitas incoerências corrigidas
+
+### Corrigido
+* Corrigir falha com resolução padrão definida como a melhor e limitada resolução de dados móveis #1835
+* falha do jogador pop-up corrigida #1874 
+* NPE ao tentar abrir o jogador de fundo #1901
+* Correção para inserir novos fluxos quando o enfileiramento automático está habilitado #1878
+* Corrigido o problema decypering shuttown
