@@ -1,0 +1,33 @@
+# changelog  versie v0.13.7
+
+ ### opgelost
+ - Problemen met sorteerfilters van v0.13.6 oplossen
+
+ # Wijzigingslog van v0.13.6
+
+ ### Verbeteringen
+
+ - Schakel burgermenupictogramanimatie #1486 uit 
+ - Verwijdering van downloads #1472 ongedaan maken 
+ - Downloadoptie in deelmenu #1498
+ - Deeloptie toegevoegd aan langtikmenu #1454 
+ - Minimaliseer de hoofdspeler bij verlaten #1354 
+ - Update van bibliotheekversie en fix #1510 voor databaseback-up 
+ - ExoPlayer 2.8.2 Update #1392
+   - Herwerkt het dialoogvenster voor de afspeelsnelheid om verschillende stapgroottes te ondersteunen voor een snellere snelheidsverandering.
+   - Een schakelaar toegevoegd om snel vooruit te spoelen tijdens stiltes in de afspeelsnelheid.  Dit zou nuttig moeten zijn voor audioboeken en bepaalde muziekgenres, en kan een echt naadloze ervaring opleveren (en kan een nummer breken met veel stiltes =\\).  
+   - Herstructureerde mediabronresolutie om het doorgeven van metadata naast media intern in de speler mogelijk te maken, in plaats van dit handmatig te doen.  Nu hebben we één enkele bron met metadata, die direct beschikbaar is wanneer het afspelen begint.
+   - Probleem opgelost dat metagegevens van externe afspeellijsten niet worden bijgewerkt wanneer nieuwe metagegevens beschikbaar zijn wanneer het afspeellijstfragment wordt geopend.
+   - Verschillende UI-oplossingen: #1383, bedieningselementen voor meldingen op de achtergrondspeler zijn nu altijd wit, het is gemakkelijker om de pop-upspeler af te sluiten door te gooien
+ - Gebruik een nieuwe extractor met gerefactoreerde architectuur voor multiservice
+
+ ### Oplossingen
+
+ - Repareer #1440 Kapotte video-info-indeling #1491 
+ - Bekijk geschiedenisfix #1497
+   - #1495, door de metagegevens (miniatuur, titel en aantal video's) bij te werken zodra de gebruiker de afspeellijst opent. 
+   - #1475, door een weergave in de database te registreren wanneer de gebruiker een video start op een externe speler op detailfragment.
+ - Fix creen time-out in geval van pop-upmodus.  #1463 (vast #640)
+ - Reparatie hoofdvideospeler #1509 
+   - [#1412] Probleem opgelost waarbij de herhaalmodus ervoor zorgt dat spelers NPE krijgen als er nieuwe intentie wordt ontvangen terwijl spelersactiviteit op de achtergrond plaatsvindt.
+   - Probleem opgelost waarbij de speler tot een pop-up wordt geminimaliseerd, waardoor de speler niet wordt vernietigd als er geen toestemming voor de pop-up wordt verleend.

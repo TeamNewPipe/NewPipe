@@ -1,0 +1,2 @@
+- Sửa lỗi tiếp tục phát lại
+- Cải thiện để đảm bảo dịch vụ xác định xem NewPipe có nên kiểm tra phiên bản mới hay không không được khởi động trong nền

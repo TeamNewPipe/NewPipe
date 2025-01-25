@@ -1,0 +1,8 @@
+• Added support for chapters in player controls
+• [PeerTube] Added Sepia search
+• Re-added share button in video detail view and moved stream description into the tab layout
+• Disable restoring brightness if brightness gesture is disabled
+• Added list item to play video on kodi
+• Fixed crash when no default browser is set on some devices and improve share dialogs
+• Toggle play/pause with hardware space button in fullscreen player
+• [media.ccc.de] Various fixes and improvements
