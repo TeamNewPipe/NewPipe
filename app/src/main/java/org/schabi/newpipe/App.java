@@ -3,7 +3,15 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.UserManager;
 import android.util.Log;
+import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationChannelCompat;
@@ -17,6 +25,8 @@ import org.acra.config.CoreConfigurationBuilder;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
+import org.schabi.newpipe.extractor.services.youtube.PoTokenResult;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.BridgeStateSaverInitializer;
@@ -26,6 +36,7 @@ import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
+import org.schabi.newpipe.util.potoken.PoTokenWebView;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -33,12 +44,16 @@ import java.net.SocketException;
 import java.util.List;
 import java.util.Objects;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
 import io.reactivex.rxjava3.exceptions.UndeliverableException;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import kotlin.Pair;
 
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -118,6 +133,23 @@ public class App extends Application {
                 && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 
         configureRxJavaErrorHandler();
+
+        CompositeDisposable disposable = new CompositeDisposable();
+        disposable.add(PoTokenWebView.Companion.newPoTokenGenerator(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .flatMap(poTokenGenerator -> Single.zip(
+                        poTokenGenerator.generatePoToken(YoutubeParsingHelper
+                                .randomVisitorData(NewPipe.getPreferredContentCountry())),
+                        poTokenGenerator.generatePoToken("i_SsnRdgitA"),
+                        Pair::new
+                ))
+                .subscribe(
+                        pots -> Log.e(TAG, "success! " + pots.getSecond().poToken +
+                                ",web.gvs+" + pots.getFirst().poToken +
+                                ";visitor_data=" + pots.getFirst().visitorData),
+                        error -> Log.e(TAG, "error", error)
+                ));
     }
 
     @Override

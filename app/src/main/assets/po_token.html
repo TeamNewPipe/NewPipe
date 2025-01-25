@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head><title></title><script>
+class BotGuardClient {
+  constructor(options) {
+    this.userInteractionElement = options.userInteractionElement;
+    this.vm = options.globalObj[options.globalName];
+    this.program = options.program;
+    this.vmFunctions = {};
+    this.syncSnapshotFunction = null;
+  }
+
+  /**
+   * Factory method to create and load a BotGuardClient instance.
+   * @param options - Configuration options for the BotGuardClient.
+   * @returns A promise that resolves to a loaded BotGuardClient instance.
+   */
+  static async create(options) {
+    return await new BotGuardClient(options).load();
+  }
+
+  async load() {
+    if (!this.vm)
+      throw new Error('[BotGuardClient]: VM not found in the global object');
+
+    if (!this.vm.a)
+      throw new Error('[BotGuardClient]: Could not load program');
+
+    const vmFunctionsCallback = (
+      asyncSnapshotFunction,
+      shutdownFunction,
+      passEventFunction,
+      checkCameraFunction
+    ) => {
+      this.vmFunctions = {
+        asyncSnapshotFunction: asyncSnapshotFunction,
+        shutdownFunction: shutdownFunction,
+        passEventFunction: passEventFunction,
+        checkCameraFunction: checkCameraFunction
+      };
+    };
+
+    try {
+      this.syncSnapshotFunction = await this.vm.a(this.program, vmFunctionsCallback, true, this.userInteractionElement, () => {/** no-op */ }, [ [], [] ])[0];
+    } catch (error) {
+      throw new Error(`[BotGuardClient]: Failed to load program (${error.message})`);
+    }
+
+    // an asynchronous function runs in the background and it will eventually call
+    // `vmFunctionsCallback`, however we need to manually tell JavaScript to pass
+    // control to the things running in the background by interrupting this async
+    // function in any way, e.g. with a delay of 1ms. The loop is most probably not
+    // needed but is there just because.
+    for (let i = 0; i < 10000 && !this.vmFunctions.asyncSnapshotFunction; ++i) {
+      await new Promise(f => setTimeout(f, 1))
+    }
+
+    return this;
+  }
+
+  /**
+   * Takes a snapshot asynchronously.
+   * @returns The snapshot result.
+   * @example
+   * ```ts
+   * const result = await botguard.snapshot({
+   *   contentBinding: {
+   *     c: "a=6&a2=10&b=SZWDwKVIuixOp7Y4euGTgwckbJA&c=1729143849&d=1&t=7200&c1a=1&c6a=1&c6b=1&hh=HrMb5mRWTyxGJphDr0nW2Oxonh0_wl2BDqWuLHyeKLo",
+   *     e: "ENGAGEMENT_TYPE_VIDEO_LIKE",
+   *     encryptedVideoId: "P-vC09ZJcnM"
+   *    }
+   * });
+   *
+   * console.log(result);
+   * ```
+   */
+  async snapshot(args) {
+    return new Promise((resolve, reject) => {
+      if (!this.vmFunctions.asyncSnapshotFunction)
+        return reject(new Error('[BotGuardClient]: Async snapshot function not found'));
+
+      this.vmFunctions.asyncSnapshotFunction((response) => resolve(response), [
+        args.contentBinding,
+        args.signedTimestamp,
+        args.webPoSignalOutput,
+        args.skipPrivacyBuffer
+      ]);
+    });
+  }
+}
+/**
+ * Parses the challenge data from the provided response data.
+ */
+function parseChallengeData(rawData) {
+  let challengeData = [];
+
+  if (rawData.length > 1 && typeof rawData[1] === 'string') {
+    const descrambled = descramble(rawData[1]);
+    challengeData = JSON.parse(descrambled || '[]');
+  } else if (rawData.length && typeof rawData[0] === 'object') {
+    challengeData = rawData[0];
+  }
+
+  const [ messageId, wrappedScript, wrappedUrl, interpreterHash, program, globalName, , clientExperimentsStateBlob ] = challengeData;
+
+  const privateDoNotAccessOrElseSafeScriptWrappedValue = Array.isArray(wrappedScript) ? wrappedScript.find((value) => value && typeof value === 'string') : null;
+  const privateDoNotAccessOrElseTrustedResourceUrlWrappedValue = Array.isArray(wrappedUrl) ? wrappedUrl.find((value) => value && typeof value === 'string') : null;
+
+  return {
+    messageId,
+    interpreterJavascript: {
+      privateDoNotAccessOrElseSafeScriptWrappedValue,
+      privateDoNotAccessOrElseTrustedResourceUrlWrappedValue
+    },
+    interpreterHash,
+    program,
+    globalName,
+    clientExperimentsStateBlob
+  };
+}
+
+/**
+ * Descrambles the given challenge data.
+ */
+function descramble(scrambledChallenge) {
+  const buffer = base64ToU8(scrambledChallenge);
+  if (buffer.length)
+    return new TextDecoder().decode(buffer.map((b) => b + 97));
+}
+
+const base64urlCharRegex = /[-_.]/g;
+
+const base64urlToBase64Map = {
+  '-': '+',
+  _: '/',
+  '.': '='
+};
+
+function base64ToU8(base64) {
+  let base64Mod;
+
+  if (base64urlCharRegex.test(base64)) {
+    base64Mod = base64.replace(base64urlCharRegex, function (match) {
+      return base64urlToBase64Map[match];
+    });
+  } else {
+    base64Mod = base64;
+  }
+
+  base64Mod = atob(base64Mod);
+
+  return new Uint8Array(
+    [ ...base64Mod ].map(
+      (char) => char.charCodeAt(0)
+    )
+  );
+}
+
+function u8ToBase64(u8, base64url = false) {
+  const result = btoa(String.fromCharCode(...u8));
+
+  if (base64url) {
+    return result
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+
+  return result;
+}
+
+async function runBotGuard(rawChallengeData) {
+  const challengeData = parseChallengeData(rawChallengeData)
+  const interpreterJavascript = challengeData.interpreterJavascript.privateDoNotAccessOrElseSafeScriptWrappedValue;
+
+  if (interpreterJavascript) {
+    new Function(interpreterJavascript)();
+  } else throw new Error('Could not load VM');
+
+  const botguard = await BotGuardClient.create({
+    globalName: challengeData.globalName,
+    globalObj: globalThis,
+    program: challengeData.program
+  });
+
+  const webPoSignalOutput = [];
+  const botguardResponse = await botguard.snapshot({ webPoSignalOutput });
+  return { webPoSignalOutput, botguardResponse }
+}
+
+async function obtainPoToken(webPoSignalOutput, integrityTokenResponse, identifier) {
+  const integrityToken = integrityTokenResponse[0];
+  const getMinter = webPoSignalOutput[0];
+
+  if (!getMinter)
+    throw new Error('PMD:Undefined');
+
+  const mintCallback = await getMinter(base64ToU8(integrityToken));
+
+  if (!(mintCallback instanceof Function))
+    throw new Error('APF:Failed');
+
+  const result = await mintCallback(new TextEncoder().encode(identifier));
+
+  if (!result)
+    throw new Error('YNJ:Undefined');
+
+  if (!(result instanceof Uint8Array))
+    throw new Error('ODM:Invalid');
+
+  return u8ToBase64(result, true);
+}
+</script></head><body></body></html>
