@@ -46,7 +46,8 @@ class SubscriptionExportWorker(
             setForeground(createForegroundInfo(title))
 
             withContext(Dispatchers.IO) {
-                applicationContext.contentResolver.openOutputStream(uri)?.use {
+                // Truncate file if it already exists
+                applicationContext.contentResolver.openOutputStream(uri, "wt")?.use {
                     ImportExportJsonHelper.writeTo(subscriptions, it)
                 }
             }
