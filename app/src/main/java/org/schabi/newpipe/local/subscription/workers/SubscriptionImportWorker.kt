@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.Parcelable
+import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -21,6 +22,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.local.subscription.SubscriptionManager
@@ -36,9 +38,79 @@ class SubscriptionImportWorker(
     }
 
     override suspend fun doWork(): Result {
-        val input = SubscriptionImportInput.fromData(inputData)
+        val subscriptions =
+            try {
+                loadSubscriptionsFromInput(SubscriptionImportInput.fromData(inputData))
+            } catch (e: Exception) {
+                if (BuildConfig.DEBUG) {
+                    Log.e(TAG, "Error while loading subscriptions from path", e)
+                }
+                withContext(Dispatchers.Main) {
+                    Toast
+                        .makeText(applicationContext, R.string.subscriptions_import_unsuccessful, Toast.LENGTH_SHORT)
+                        .show()
+                }
+                return Result.failure()
+            }
 
-        val subscriptions = withContext(Dispatchers.IO) {
+        val mutex = Mutex()
+        var index = 1
+        val qty = subscriptions.size
+        var title =
+            applicationContext.resources.getQuantityString(R.plurals.load_subscriptions, qty, qty)
+
+        val channelInfoList =
+            try {
+                withContext(Dispatchers.IO.limitedParallelism(PARALLEL_EXTRACTIONS)) {
+                    subscriptions
+                        .map {
+                            async {
+                                val channelInfo =
+                                    ExtractorHelper.getChannelInfo(it.serviceId, it.url, true).await()
+                                val channelTab =
+                                    ExtractorHelper.getChannelTab(it.serviceId, channelInfo.tabs[0], true).await()
+
+                                val currentIndex = mutex.withLock { index++ }
+                                setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
+
+                                channelInfo to channelTab
+                            }
+                        }.awaitAll()
+                }
+            } catch (e: Exception) {
+                if (BuildConfig.DEBUG) {
+                    Log.e(TAG, "Error while loading subscription data", e)
+                }
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(applicationContext, R.string.subscriptions_import_unsuccessful, Toast.LENGTH_SHORT)
+                        .show()
+                }
+                return Result.failure()
+            }
+
+        title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, qty, qty)
+        setForeground(createForegroundInfo(title, null, 0, 0))
+        index = 0
+
+        val subscriptionManager = SubscriptionManager(applicationContext)
+        for (chunk in channelInfoList.chunked(BUFFER_COUNT_BEFORE_INSERT)) {
+            withContext(Dispatchers.IO) {
+                subscriptionManager.upsertAll(chunk)
+            }
+            index += chunk.size
+            setForeground(createForegroundInfo(title, null, index, qty))
+        }
+
+        withContext(Dispatchers.Main) {
+            Toast.makeText(applicationContext, R.string.import_complete_toast, Toast.LENGTH_SHORT)
+                .show()
+        }
+
+        return Result.success()
+    }
+
+    private suspend fun loadSubscriptionsFromInput(input: SubscriptionImportInput): List<SubscriptionItem> {
+        return withContext(Dispatchers.IO) {
             when (input) {
                 is SubscriptionImportInput.ChannelUrlMode ->
                     NewPipe.getService(input.serviceId).subscriptionExtractor
@@ -60,50 +132,6 @@ class SubscriptionImportWorker(
                     }
             } ?: emptyList()
         }
-
-        val mutex = Mutex()
-        var index = 1
-        val qty = subscriptions.size
-        var title =
-            applicationContext.resources.getQuantityString(R.plurals.load_subscriptions, qty, qty)
-
-        val channelInfoList = withContext(Dispatchers.IO.limitedParallelism(PARALLEL_EXTRACTIONS)) {
-            subscriptions
-                .map {
-                    async {
-                        val channelInfo =
-                            ExtractorHelper.getChannelInfo(it.serviceId, it.url, true).await()
-                        val channelTab =
-                            ExtractorHelper.getChannelTab(it.serviceId, channelInfo.tabs[0], true).await()
-
-                        val currentIndex = mutex.withLock { index++ }
-                        setForeground(createForegroundInfo(title, channelInfo.name, currentIndex, qty))
-
-                        channelInfo to channelTab
-                    }
-                }.awaitAll()
-        }
-
-        title = applicationContext.resources.getQuantityString(R.plurals.import_subscriptions, qty, qty)
-        setForeground(createForegroundInfo(title, null, 0, 0))
-        index = 0
-
-        val subscriptionManager = SubscriptionManager(applicationContext)
-        for (chunk in channelInfoList.chunked(BUFFER_COUNT_BEFORE_INSERT)) {
-            withContext(Dispatchers.IO) {
-                subscriptionManager.upsertAll(chunk)
-            }
-            index += chunk.size
-            setForeground(createForegroundInfo(title, null, index, qty))
-        }
-
-        withContext(Dispatchers.Main) {
-            Toast
-                .makeText(applicationContext, R.string.import_complete_toast, Toast.LENGTH_SHORT)
-                .show()
-        }
-
-        return Result.success()
     }
 
     private fun createForegroundInfo(
@@ -142,6 +170,9 @@ class SubscriptionImportWorker(
     }
 
     companion object {
+        // Log tag length is limited to 23 characters on API levels < 24.
+        private const val TAG = "SubscriptionImport"
+
         private const val NOTIFICATION_ID = 4568
         private const val NOTIFICATION_CHANNEL_ID = "newpipe"
         private const val DEFAULT_MIME = "application/octet-stream"
