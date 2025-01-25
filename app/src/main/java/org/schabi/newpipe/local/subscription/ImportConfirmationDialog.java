@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
@@ -17,7 +18,6 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.OutOfQuotaPolicy;
 import androidx.work.WorkManager;
 
-import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 
 import org.schabi.newpipe.R;
@@ -25,12 +25,13 @@ import org.schabi.newpipe.local.subscription.workers.SubscriptionImportInput;
 import org.schabi.newpipe.local.subscription.workers.SubscriptionImportWorker;
 
 public class ImportConfirmationDialog extends DialogFragment {
-    @State
-    protected SubscriptionImportInput input;
+    private static final String INPUT = "input";
 
     public static void show(@NonNull final Fragment fragment, final SubscriptionImportInput input) {
         final var confirmationDialog = new ImportConfirmationDialog();
-        confirmationDialog.input = input;
+        final var arguments = new Bundle();
+        arguments.putParcelable(INPUT, input);
+        confirmationDialog.setArguments(arguments);
         confirmationDialog.show(fragment.getParentFragmentManager(), null);
     }
 
@@ -47,6 +48,8 @@ public class ImportConfirmationDialog extends DialogFragment {
                     final var constraints = new Constraints.Builder()
                             .setRequiredNetworkType(NetworkType.CONNECTED)
                             .build();
+                    final var input = BundleCompat.getParcelable(requireArguments(), INPUT,
+                            SubscriptionImportInput.class);
 
                     final var req = new OneTimeWorkRequest.Builder(SubscriptionImportWorker.class)
                             .setInputData(input.toData())
