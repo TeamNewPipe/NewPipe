@@ -345,7 +345,7 @@ public final class DeviceUtils {
         try {
             CookieManager.getInstance();
             return true;
-        } catch (Throwable ignored) {
+        } catch (final Throwable ignored) {
             return false;
         }
     }
