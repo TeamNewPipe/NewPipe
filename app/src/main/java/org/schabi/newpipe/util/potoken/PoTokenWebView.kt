@@ -7,14 +7,13 @@ import android.os.Looper
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
-import androidx.annotation.MainThread
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.DownloaderImpl
-import org.schabi.newpipe.extractor.services.youtube.PoTokenResult
+import java.time.Instant
 
 class PoTokenWebView private constructor(
     context: Context,
@@ -23,7 +22,8 @@ class PoTokenWebView private constructor(
 ) : PoTokenGenerator {
     private val webView = WebView(context)
     private val disposables = CompositeDisposable() // used only during initialization
-    private val poTokenEmitters = mutableListOf<Pair<String, SingleEmitter<PoTokenResult>>>()
+    private val poTokenEmitters = mutableListOf<Pair<String, SingleEmitter<String>>>()
+    private lateinit var expirationInstant: Instant
 
     //region Initialization
     init {
@@ -114,11 +114,12 @@ class PoTokenWebView private constructor(
             "https://jnn-pa.googleapis.com/\$rpc/google.internal.waa.v1.Waa/GenerateIT",
             "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]",
         ) { responseBody ->
+            Log.e(TAG, "GenerateIT response: $responseBody")
             webView.evaluateJavascript(
                 """(async function() {
                     try {
                         globalThis.integrityToken = JSON.parse(String.raw`$responseBody`)
-                        PoTokenWebView.onInitializationFinished()
+                        PoTokenWebView.onInitializationFinished(integrityToken[1])
                     } catch (error) {
                         PoTokenWebView.onJsInitializationError(error.toString())
                     }
@@ -130,9 +131,14 @@ class PoTokenWebView private constructor(
     /**
      * Called during initialization by the JavaScript snippet from [onRunBotguardResult] when the
      * `integrityToken` has been received by JavaScript.
+     *
+     * @param expirationTimeInSeconds in how many seconds the integrity token expires, can be found
+     * in `integrityToken[1]`
      */
     @JavascriptInterface
-    fun onInitializationFinished() {
+    fun onInitializationFinished(expirationTimeInSeconds: Long) {
+        // leave 10 minutes of margin just to be sure
+        expirationInstant = Instant.now().plusSeconds(expirationTimeInSeconds - 600)
         generatorEmitter.onSuccess(this)
     }
     //endregion
@@ -143,7 +149,7 @@ class PoTokenWebView private constructor(
      * multiple poToken requests can be generated invparallel, and the results will be notified to
      * the right emitters.
      */
-    private fun addPoTokenEmitter(identifier: String, emitter: SingleEmitter<PoTokenResult>) {
+    private fun addPoTokenEmitter(identifier: String, emitter: SingleEmitter<String>) {
         synchronized(poTokenEmitters) {
             poTokenEmitters.add(Pair(identifier, emitter))
         }
@@ -154,7 +160,7 @@ class PoTokenWebView private constructor(
      * [identifier]. The emitter is supposed to be used immediately after to either signal a success
      * or an error.
      */
-    private fun popPoTokenEmitter(identifier: String): SingleEmitter<PoTokenResult>? {
+    private fun popPoTokenEmitter(identifier: String): SingleEmitter<String>? {
         return synchronized(poTokenEmitters) {
             poTokenEmitters.indexOfFirst { it.first == identifier }.takeIf { it >= 0 }?.let {
                 poTokenEmitters.removeAt(it).second
@@ -162,22 +168,23 @@ class PoTokenWebView private constructor(
         }
     }
 
-    @MainThread
-    override fun generatePoToken(identifier: String): Single<PoTokenResult> =
+    override fun generatePoToken(identifier: String): Single<String> =
         Single.create { emitter ->
             addPoTokenEmitter(identifier, emitter)
-
-            webView.evaluateJavascript(
-                """(async function() {
-                    identifier = String.raw`$identifier`
-                    try {
-                        poToken = await obtainPoToken(webPoSignalOutput, integrityToken, identifier)
-                        PoTokenWebView.onObtainPoTokenResult(identifier, poToken)
-                    } catch (error) {
-                        PoTokenWebView.onObtainPoTokenError(identifier, error.toString())
-                    }
-                })();""",
-            ) {}
+            Handler(Looper.getMainLooper()).post {
+                webView.evaluateJavascript(
+                    """(async function() {
+                        identifier = String.raw`$identifier`
+                        try {
+                            poToken = await obtainPoToken(webPoSignalOutput, integrityToken,
+                                identifier)
+                            PoTokenWebView.onObtainPoTokenResult(identifier, poToken)
+                        } catch (error) {
+                            PoTokenWebView.onObtainPoTokenError(identifier, error.toString())
+                        }
+                    })();""",
+                ) {}
+            }
         }
 
     /**
@@ -198,7 +205,11 @@ class PoTokenWebView private constructor(
     fun onObtainPoTokenResult(identifier: String, poToken: String) {
         Log.e(TAG, "identifier=$identifier")
         Log.e(TAG, "poToken=$poToken")
-        popPoTokenEmitter(identifier)?.onSuccess(PoTokenResult(identifier, poToken))
+        popPoTokenEmitter(identifier)?.onSuccess(poToken)
+    }
+
+    override fun isExpired(): Boolean {
+        return Instant.now().isAfter(expirationInstant)
     }
     //endregion
 
@@ -286,12 +297,13 @@ class PoTokenWebView private constructor(
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
         private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
 
-        @MainThread
         override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> =
             Single.create { emitter ->
-                val potWv = PoTokenWebView(context, emitter)
-                potWv.loadHtmlAndObtainBotguard(context)
-                emitter.setDisposable(potWv.disposables)
+                Handler(Looper.getMainLooper()).post {
+                    val potWv = PoTokenWebView(context, emitter)
+                    potWv.loadHtmlAndObtainBotguard(context)
+                    emitter.setDisposable(potWv.disposables)
+                }
             }
     }
 }
