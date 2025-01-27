@@ -1,0 +1,2 @@
+Šis ielāpu izlaidums ļauj jaunajai New Pipe versijai atkal izmantot SoundCloud bez liekām problēmām.
+Ekstraktorā tagad tiek izmantots Soundcloud v2 API, kā arī ir uzlabota nederīgu klientu ID noteikšana.

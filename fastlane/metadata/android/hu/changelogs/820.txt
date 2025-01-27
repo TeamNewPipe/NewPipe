@@ -1,0 +1,1 @@
+Regex név feloldás funkció használhatatlanná teszi a Youtube-ot

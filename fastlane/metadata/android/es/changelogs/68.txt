@@ -1,31 +1,18 @@
 # cambios de la v0.14.1
 
-### Fijado
+### Arreglado
 - Arreglado el fallo de descifrar la url del vídeo #1659 
 - Corregido el enlace de descripción que no se extrae bien #1657
 
-# cambios de v0.14.0
+# cambios de la v0.14.0
 
 ### Nuevo
-- Nuevo diseño del cajón #1461
+- Nuevo diseño del drawer #1461
 - Nueva página frontal personalizable #1461
 
 ### Mejoras
-- Controles gestuales rediseñados #1604 
+- Mejora de los controles gestuales #1604 
 - Nueva forma de cerrar el reproductor emergente #1597
 
 ### Corregido
-- Arreglado el error cuando el recuento de suscripciones no está disponible. Cierra #1649.
-  - Mostrar "Recuento de suscriptores no disponible" en esos casos
-- Arreglar NPE cuando una lista de reproducción de YouTube está vacía
-- Arreglo rápido de los quioscos en SoundCloud
-- Refactorización y corrección de errores #1623 
-  - Arreglar resultado de búsqueda cíclica #1562
-  - Corrección de la barra de búsqueda no estática
-  - Fix YT Premium video no se bloquean correctamente
-  - Corregir los vídeos que a veces no se cargan (debido al análisis sintáctico de DASH)
-  - Arreglar los enlaces en la descripción del vídeo
-  - Mostrar advertencia cuando alguien trata de descargar a sdcard externa
-  - Fix nothing shown exception triggers report
-  - la miniatura no se muestra en el reproductor de fondo para android 8.1 [ver aquí](https://github.com/TeamNewPipe/NewPipe/issues/943)
-- Arreglar el registro del receptor de transmisión. Cierra #1641.
+- Corregido el error cuando el recuento de suscripciones no está disponible. Cierra #1649.

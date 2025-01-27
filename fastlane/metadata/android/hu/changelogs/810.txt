@@ -1,0 +1,19 @@
+Új
+• indexkép mutatása a lezárt képernyőn ha a háttérben fut
+
+Fejlesztések
+• Háttér hosszú nyomásánál vagy felugró gombnál hozzáadja a helyi lejátszólistát
+• Fő fülek scrollozhatóak, és egy fül esetén elrejtődik a többi
+• Indexképek limitálása a háttérben futó lejátszónál
+• Ál-indexkép használata hiányos helyi listákhoz
+• *.opus kiterjesztés használata *.webm helyett a "WebM Opus" letöltési opciónál
+• Új gomb a letöltések és előzmények törlésére a Letöltések-nél
+• [YouTube] Támogatás a /c/shortened_url csatorna linkekhez
+
+Javítások
+• Több hiba javítása NewPipe-on megosztást követő letöltés esetén
+• Lejátszó hozzáférés létrehozó szál fixálása
+• Keresési eredmény lapozás fixálása
+• [YouTube] NPE-tokozó null fixálása
+• [YouTube] Kommentek megtekintése invidio.us domain megnyitásánál
+• [SoundCloud] client_id frissítése

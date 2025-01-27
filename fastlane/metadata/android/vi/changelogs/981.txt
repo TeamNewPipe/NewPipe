@@ -1,0 +1,2 @@
+Loại bỏ hỗ trợ MediaParser để sửa lỗi tiếp tục phát lại thất bại sau khi bộ nhớ đệm trên Android 11+.
+Vô hiệu hóa truyền thông qua đường hầm trên Philips QM16XE để sửa lỗi phát lại.

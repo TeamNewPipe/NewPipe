@@ -1,0 +1,9 @@
+Thêm giao diện người dùng và hành vi vuốt đúp để tìm kiếm mới
+Làm cho cài đặt có thể tìm kiếm được
+Làm nổi bật các bình luận đã ghim
+Thêm hỗ trợ mở với ứng dụng cho phiên bản PeerTube của FSFE
+Thêm thông báo lỗi
+Sửa lỗi phát lại mục đầu tiên trong hàng đợi khi thay đổi trình phát
+Chờ lâu hơn khi bộ nhớ đệm trong các phát trực tiếp trước khi thất bại
+Sửa thứ tự kết quả tìm kiếm cục bộ
+Sửa lỗi trường mục trống trong hàng đợi phát

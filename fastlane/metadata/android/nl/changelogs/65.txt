@@ -2,13 +2,13 @@
 
 - Burgermenu icoon animatie uitschakelen #1486 
 - Verwijderen van downloads ongedaan maken #1472 
-- Downloadoptie in aandelenmenu #1498
-- Deeloptie toegevoegd aan menu met lange tikken #1454 
+- Downloadoptie in deel menu #1498
+- Deeloptie toegevoegd aan menu met lange ingedrukt houden #1454 
 - Hoofdspeler minimaliseren bij afsluiten #1354 
 - Bibliotheek versie update en database back-up fix #1510 
 - ExoPlayer 2.8.2 Update #1392
   - De afspeelsnelheidsdialoog herwerkt om verschillende stapgrootten te ondersteunen voor snellere snelheidsverandering.
-  - Een schakelaar toegevoegd om snel vooruit te spoelen tijdens stiltes in de afspeelsnelheidcontrole. Dit zou handig moeten zijn voor luisterboeken en bepaalde muziekgenres, en kan een echte naadloze ervaring opleveren (en kan een nummer met veel stiltes = breken).  
+  - Een schakelaar toegevoegd om snel vooruit te spoelen tijdens stiltes in de afspeelsnelheidcontrole. Dit zou handig moeten zijn voor luisterboeken en bepaalde muziekgenres, en kan een echte naadloze ervaring opleveren (en kan een nummer met veel stiltes verkorten = //).  
   - Verfijnde mediabronresolutie zodat metadata naast media intern in de speler kunnen worden doorgegeven, in plaats van dit handmatig te doen. Nu hebben we een enkele bron van metadata en deze is direct beschikbaar wanneer het afspelen begint.
   - Metagegevens van afspeellijst op afstand niet bijgewerkt wanneer nieuwe metagegevens beschikbaar zijn wanneer afspeellijstfragment wordt geopend.
   - Diverse UI fixes: #1383, achtergrondspeler meldingselementen nu altijd wit, makkelijker uitschakelen van popup speler door gooien
@@ -18,9 +18,9 @@
 
 - Fix #1440 Gebroken video-info-indeling #1491 
 - Geschiedenis bekijken fix #1497
-  - #1495, door de metadata (thumbnail, titel en videotelling) bij te werken zodra de gebruiker de afspeellijst opent. 
+  - #1495, door de metadata (thumbnail, titel en videotelling) werkt bij zodra de gebruiker de afspeellijst opent. 
   - #1475, door een weergave in de database te registreren wanneer de gebruiker een video start op externe speler op detailfragment.
-- Fix creen timeout bij popup modus. #1463 (Fixed #640)
+- Fix scherm timeout bij popup modus. #1463 (Fixed #640)
 - Hoofd video speler fix #1509 
   - #1412] Fixed repeat mode veroorzaakt speler NPE wanneer nieuwe intentie wordt ontvangen terwijl speler activiteit op de achtergrond is.
   - Fixed minimaliseren van speler naar popup vernietigt speler niet wanneer popup toestemming niet is verleend.

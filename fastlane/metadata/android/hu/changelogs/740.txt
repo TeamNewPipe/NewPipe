@@ -1,0 +1,23 @@
+<h4>Fejlesztések</h4>
+<ul>
+<li>kommentekben levő linkek kattinthatóak, szöveg méret növelése</li>
+<li>kommentben levő időlinknél oda ugrik</li>
+<li>preferált fül mutatása az utoljára kijelölt alapján</li>
+<li>lejátszás lista hozzáadása amikor hosszan nyomja a &#39;Háttér&#39; gombot a lista ablakban</li>
+<li>megosztott szövegben keresés ha nem link</li>
+<li>&quot;megosztás jelenlegi időben&quot; gomb hozzáadása a fő videó lejátszóhoz</li>
+<li>fő lejátszónál megjelenik a bezárás gomb, ha a lista végére ért</li>
+<li>&quot;Közvetelnül háttérben lejátszás&quot; hozzáadása a hosszú nyomás menühöz a videó lista elemekhez</li>
+<li>Angol fordítások javítása a Lejátszás/Listáhozadás parancsoknál</li>
+<li>kisebb teljesítményi javítás</li>
+<li>nem használt fájlok eltávolítása</li>
+<li>ExoPlayer frissítése 2.9.6-ra</li>
+<li>egyéni linkek támogatása</li>
+</ul>
+<h4>Javítás</h4>
+<ul>
+<li>scroll javítása kikapcsolt kommentek és streamek esetében</li>
+<li>CheckForNewAppVersionTask elindul amikor nem kéne javítása</li>
+<li>youtube feliratkozó import javítása: hibás URL címek figyelmen kívül hagyása, üres címmel ellátottak megtartása</li>
+<li>helytelen youtube url cím javítása: aláírás tag név név nem mindig "aláírás", mely megakadályozza a videók betöltését</li>
+</ul>
