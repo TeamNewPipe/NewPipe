@@ -283,11 +283,11 @@ public final class VideoDetailFragment
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(final int serviceId,
-                                                  @Nullable final String videoUrl,
+                                                  @Nullable final String url,
                                                   @NonNull final String name,
                                                   @Nullable final PlayQueue queue) {
         final VideoDetailFragment instance = new VideoDetailFragment();
-        instance.setInitialData(serviceId, videoUrl, name, queue);
+        instance.setInitialData(serviceId, url, name, queue);
         return instance;
     }
 
@@ -1736,7 +1736,7 @@ public final class VideoDetailFragment
         playQueue = queue;
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
-                    + serviceId + "], videoUrl = [" + url + "], name = ["
+                    + serviceId + "], url = [" + url + "], name = ["
                     + title + "], playQueue = [" + playQueue + "]");
         }
 

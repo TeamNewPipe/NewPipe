@@ -452,8 +452,8 @@ public final class NavigationHelper {
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             onVideoDetailFragmentReady.run((VideoDetailFragment) fragment);
         } else {
-            // Specify no videoUrl here, otherwise the VideoDetailFragment will start loading the
-            // video automatically if it's the first time it is being opened, but then
+            // Specify no url here, otherwise the VideoDetailFragment will start loading the
+            // stream automatically if it's the first time it is being opened, but then
             // onVideoDetailFragmentReady will kick in and start another loading process.
             // See VideoDetailFragment.wasCleared() and its usage in doInitialLoadLogic().
             final VideoDetailFragment instance = VideoDetailFragment
