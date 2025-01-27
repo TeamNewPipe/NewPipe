@@ -170,8 +170,8 @@ class PoTokenWebView private constructor(
 
     override fun generatePoToken(identifier: String): Single<String> =
         Single.create { emitter ->
-            addPoTokenEmitter(identifier, emitter)
-            Handler(Looper.getMainLooper()).post {
+            runOnMainThread(emitter) {
+                addPoTokenEmitter(identifier, emitter)
                 webView.evaluateJavascript(
                     """(async function() {
                         identifier = String.raw`$identifier`
@@ -266,7 +266,7 @@ class PoTokenWebView private constructor(
      * to [generatorEmitter].
      */
     private fun onInitializationErrorCloseAndCancel(error: Throwable) {
-        Handler(Looper.getMainLooper()).post {
+        runOnMainThread(generatorEmitter) {
             close()
             generatorEmitter.onError(error)
         }
@@ -295,15 +295,29 @@ class PoTokenWebView private constructor(
         private val TAG = PoTokenWebView::class.simpleName
         private const val GOOGLE_API_KEY = "AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw"
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
-        private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
+        private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
 
         override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> =
             Single.create { emitter ->
-                Handler(Looper.getMainLooper()).post {
+                runOnMainThread(emitter) {
                     val potWv = PoTokenWebView(context, emitter)
                     potWv.loadHtmlAndObtainBotguard(context)
                     emitter.setDisposable(potWv.disposables)
                 }
             }
+
+        /**
+         * Runs [runnable] on the main thread using `Handler(Looper.getMainLooper()).post()`, and
+         * if the `post` fails emits an error on [emitterIfPostFails].
+         */
+        private fun runOnMainThread(
+            emitterIfPostFails: SingleEmitter<out Any>,
+            runnable: () -> Unit,
+        ) {
+            if (!Handler(Looper.getMainLooper()).post(runnable)) {
+                emitterIfPostFails.onError(PoTokenException("Could not run on main thread"))
+            }
+        }
     }
 }
