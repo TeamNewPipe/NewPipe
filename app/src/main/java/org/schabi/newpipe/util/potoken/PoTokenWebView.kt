@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import androidx.annotation.MainThread
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
@@ -275,6 +276,7 @@ class PoTokenWebView private constructor(
     /**
      * Releases all [webView] and [disposables] resources.
      */
+    @MainThread
     override fun close() {
         disposables.dispose()
 
