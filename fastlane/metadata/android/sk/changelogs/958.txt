@@ -1,0 +1,15 @@
+New and improved:
+• Re-added option to hide thumbnail on lock screen
+• Pull to refresh feed
+• Improved performance when fetching local lists
+
+Fixed:
+• Fixed crash when starting NewPipe after it was removed from RAM
+• Fixed crash on startup when there is no internet connection
+• Fixed respecting brightness- and volume-gesture settings
+• [YouTube] Fixed long playlists
+
+Other:
+• Code cleanup and several internal improvements
+• Dependency updates
+• Translation updates

@@ -1,8 +1,8 @@
 #### Melhorias
 - Configurações de importação/exportação #1333
-- Reduzir o overdraw (melhoria de desempenho) #1371
+- Reduzir a sobrecarga de renderização (melhoria de desempenho) #1371
 - Pequenas melhorias de código #1375
 - Adicione tudo sobre o GDPR #1420
 
-#### Fixo
-- Descarregador: corrigir falha no carregamento de descarregas inacabadas dos ficheiros .giga #1407
+#### Corrigido
+- Descarregador: Corrigir falha no carregamento de descarregas inacabadas dos ficheiros .giga #1407
