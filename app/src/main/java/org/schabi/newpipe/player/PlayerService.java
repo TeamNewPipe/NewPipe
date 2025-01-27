@@ -174,9 +174,10 @@ public final class PlayerService extends Service {
         return mBinder;
     }
 
-    /** Allows us this {@link org.schabi.newpipe.player.PlayerService} over the Service boundary
+    /**
+     * Allows us this {@link org.schabi.newpipe.player.PlayerService} over the Service boundary
      * back to our {@link org.schabi.newpipe.player.helper.PlayerHolder}.
-      */
+     */
     public static class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 
@@ -184,7 +185,8 @@ public final class PlayerService extends Service {
             this.playerService = new WeakReference<>(playerService);
         }
 
-        /** Get the PlayerService object itself.
+        /**
+         * Get the PlayerService object itself.
          * @return this
          * */
         public @Nullable PlayerService getService() {

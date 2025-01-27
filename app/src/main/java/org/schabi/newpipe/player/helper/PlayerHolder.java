@@ -24,8 +24,10 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerHolderLifecycleEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
-/** Singleton that manages a `PlayerService`
- * and can be used to control the player instance through the service. */
+/**
+ * Singleton that manages a `PlayerService`
+ * and can be used to control the player instance through the service.
+ */
 public final class PlayerHolder {
 
     private PlayerHolder() {
@@ -121,7 +123,8 @@ public final class PlayerHolder {
         }
     }
 
-    /** Helper to handle context in common place as using the same
+    /**
+     * Helper to handle context in common place as using the same
      * context to bind/unbind a service is crucial.
      *
      * @return the common context
@@ -131,7 +134,8 @@ public final class PlayerHolder {
     }
 
 
-    /** Connect to (and if needed start) the {@link PlayerService}
+    /**
+     * Connect to (and if needed start) the {@link PlayerService}
      * and bind {@link PlayerServiceConnection} to it.
      * If the service is already started, only set the listener.
      * @param playAfterConnect If the service is started, start playing immediately
@@ -172,7 +176,8 @@ public final class PlayerHolder {
         context.stopService(new Intent(context, PlayerService.class));
     }
 
-    /** Call {@link Context#unbindService(ServiceConnection)} on our service
+    /**
+     * Call {@link Context#unbindService(ServiceConnection)} on our service
      * (does not necesarily stop the service right away).
      * Remove all our listeners and deinitialize them.
      * @param context shared context
@@ -229,7 +234,8 @@ public final class PlayerHolder {
         }
     }
 
-    /** Delegate all {@link PlayerServiceEventListener} events to our current `listener` object.
+    /**
+     * Delegate all {@link PlayerServiceEventListener} events to our current `listener` object.
      * Only difference is that if {@link PlayerServiceEventListener#onServiceStopped()} is called,
      * it also calls {@link PlayerHolder#unbind(Context)}.
      * */
