@@ -39,7 +39,7 @@ class PoTokenWebView private constructor(
         webviewSettings.blockNetworkLoads = true // the WebView does not need internet access
 
         // so that we can run async functions and get back the result
-        webView.addJavascriptInterface(this, "PoTokenWebView")
+        webView.addJavascriptInterface(this, JS_INTERFACE)
     }
 
     /**
@@ -48,6 +48,10 @@ class PoTokenWebView private constructor(
      * run it, and obtain an `integrityToken`.
      */
     private fun loadHtmlAndObtainBotguard(context: Context) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "loadHtmlAndObtainBotguard() called")
+        }
+
         disposables.add(
             Single.fromCallable {
                 val html = context.assets.open("po_token.html").bufferedReader()
@@ -60,12 +64,15 @@ class PoTokenWebView private constructor(
                     { html ->
                         webView.loadDataWithBaseURL(
                             "https://www.youtube.com",
-                            html,
+                            html.replace(
+                                "</script>",
+                                // calls downloadAndRunBotguard() when the page has finished loading
+                                "\n$JS_INTERFACE.downloadAndRunBotguard()</script>"
+                            ),
                             "text/html",
                             "utf-8",
                             null,
                         )
-                        downloadAndRunBotguard()
                     },
                     this::onInitializationErrorCloseAndCancel
                 )
@@ -73,9 +80,15 @@ class PoTokenWebView private constructor(
     }
 
     /**
-     * Called during initialization after the WebView content has been loaded.
+     * Called during initialization by the JavaScript snippet appended to the HTML page content in
+     * [loadHtmlAndObtainBotguard] after the WebView content has been loaded.
      */
-    private fun downloadAndRunBotguard() {
+    @JavascriptInterface
+    fun downloadAndRunBotguard() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "downloadAndRunBotguard() called")
+        }
+
         makeJnnPaGoogleapisRequest(
             "https://jnn-pa.googleapis.com/\$rpc/google.internal.waa.v1.Waa/Create",
             "[ \"$REQUEST_KEY\" ]",
@@ -86,9 +99,9 @@ class PoTokenWebView private constructor(
                         data = JSON.parse(String.raw`$responseBody`)
                         result = await runBotGuard(data)
                         globalThis.webPoSignalOutput = result.webPoSignalOutput
-                        PoTokenWebView.onRunBotguardResult(result.botguardResponse)
+                        $JS_INTERFACE.onRunBotguardResult(result.botguardResponse)
                     } catch (error) {
-                        PoTokenWebView.onJsInitializationError(error.toString())
+                        $JS_INTERFACE.onJsInitializationError(error.toString())
                     }
                 })();""",
             ) {}
@@ -127,9 +140,9 @@ class PoTokenWebView private constructor(
                 """(async function() {
                     try {
                         globalThis.integrityToken = JSON.parse(String.raw`$responseBody`)
-                        PoTokenWebView.onInitializationFinished(integrityToken[1])
+                        $JS_INTERFACE.onInitializationFinished(integrityToken[1])
                     } catch (error) {
-                        PoTokenWebView.onJsInitializationError(error.toString())
+                        $JS_INTERFACE.onJsInitializationError(error.toString())
                     }
                 })();""",
             ) {}
@@ -145,6 +158,9 @@ class PoTokenWebView private constructor(
      */
     @JavascriptInterface
     fun onInitializationFinished(expirationTimeInSeconds: Long) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onInitializationFinished() called, expiration=${expirationTimeInSeconds}s")
+        }
         // leave 10 minutes of margin just to be sure
         expirationInstant = Instant.now().plusSeconds(expirationTimeInSeconds - 600)
         generatorEmitter.onSuccess(this)
@@ -178,6 +194,9 @@ class PoTokenWebView private constructor(
 
     override fun generatePoToken(identifier: String): Single<String> =
         Single.create { emitter ->
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "generatePoToken() called with identifier $identifier")
+            }
             runOnMainThread(emitter) {
                 addPoTokenEmitter(identifier, emitter)
                 webView.evaluateJavascript(
@@ -186,9 +205,9 @@ class PoTokenWebView private constructor(
                         try {
                             poToken = await obtainPoToken(webPoSignalOutput, integrityToken,
                                 identifier)
-                            PoTokenWebView.onObtainPoTokenResult(identifier, poToken)
+                            $JS_INTERFACE.onObtainPoTokenResult(identifier, poToken)
                         } catch (error) {
-                            PoTokenWebView.onObtainPoTokenError(identifier, error.toString())
+                            $JS_INTERFACE.onObtainPoTokenError(identifier, error.toString())
                         }
                     })();""",
                 ) {}
@@ -309,6 +328,7 @@ class PoTokenWebView private constructor(
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
         private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
+        private const val JS_INTERFACE = "PoTokenWebView"
 
         override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> =
             Single.create { emitter ->
