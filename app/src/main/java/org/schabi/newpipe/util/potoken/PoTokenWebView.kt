@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.DownloaderImpl
 import java.time.Instant
 
@@ -100,7 +101,9 @@ class PoTokenWebView private constructor(
      */
     @JavascriptInterface
     fun onJsInitializationError(error: String) {
-        Log.e(TAG, "Initialization error from JavaScript: $error")
+        if (BuildConfig.DEBUG) {
+            Log.e(TAG, "Initialization error from JavaScript: $error")
+        }
         onInitializationErrorCloseAndCancel(PoTokenException(error))
     }
 
@@ -110,12 +113,16 @@ class PoTokenWebView private constructor(
      */
     @JavascriptInterface
     fun onRunBotguardResult(botguardResponse: String) {
-        Log.e(TAG, "botguardResponse: $botguardResponse")
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "botguardResponse: $botguardResponse")
+        }
         makeJnnPaGoogleapisRequest(
             "https://jnn-pa.googleapis.com/\$rpc/google.internal.waa.v1.Waa/GenerateIT",
             "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]",
         ) { responseBody ->
-            Log.e(TAG, "GenerateIT response: $responseBody")
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "GenerateIT response: $responseBody")
+            }
             webView.evaluateJavascript(
                 """(async function() {
                     try {
@@ -194,7 +201,9 @@ class PoTokenWebView private constructor(
      */
     @JavascriptInterface
     fun onObtainPoTokenError(identifier: String, error: String) {
-        Log.e(TAG, "obtainPoToken error from JavaScript: $error")
+        if (BuildConfig.DEBUG) {
+            Log.e(TAG, "obtainPoToken error from JavaScript: $error")
+        }
         popPoTokenEmitter(identifier)?.onError(PoTokenException(error))
     }
 
@@ -204,8 +213,9 @@ class PoTokenWebView private constructor(
      */
     @JavascriptInterface
     fun onObtainPoTokenResult(identifier: String, poToken: String) {
-        Log.e(TAG, "identifier=$identifier")
-        Log.e(TAG, "poToken=$poToken")
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Generated poToken: identifier=$identifier poToken=$poToken")
+        }
         popPoTokenEmitter(identifier)?.onSuccess(poToken)
     }
 
@@ -298,7 +308,7 @@ class PoTokenWebView private constructor(
         private const val GOOGLE_API_KEY = "AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw"
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
         private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
 
         override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> =
             Single.create { emitter ->

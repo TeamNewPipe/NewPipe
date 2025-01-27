@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import org.schabi.newpipe.App
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.services.youtube.PoTokenProvider
 import org.schabi.newpipe.extractor.services.youtube.PoTokenResult
@@ -39,7 +40,7 @@ object PoTokenProviderImpl : PoTokenProvider {
         val (poTokenGenerator, visitorData, streamingPot, hasBeenRecreated) =
             synchronized(WebPoTokenGenLock) {
                 val shouldRecreate = webPoTokenGenerator == null || forceRecreate ||
-                        webPoTokenGenerator!!.isExpired()
+                    webPoTokenGenerator!!.isExpired()
 
                 if (shouldRecreate) {
                     // close the current webPoTokenGenerator on the main thread
@@ -84,7 +85,14 @@ object PoTokenProviderImpl : PoTokenProvider {
             }
         }
 
-        Log.e(TAG, "success($videoId) $playerPot,web.gvs+$streamingPot;visitor_data=$visitorData")
+        if (BuildConfig.DEBUG) {
+            Log.d(
+                TAG,
+                "poToken for $videoId: playerPot=$playerPot, " +
+                    "streamingPot=$streamingPot, visitor_data=$visitorData"
+            )
+        }
+
         return PoTokenResult(visitorData, playerPot, streamingPot)
     }
 
