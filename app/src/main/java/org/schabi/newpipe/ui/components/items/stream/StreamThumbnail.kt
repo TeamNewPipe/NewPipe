@@ -1,33 +1,25 @@
 package org.schabi.newpipe.ui.components.items.stream
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.items.Stream
+import org.schabi.newpipe.ui.components.items.common.Thumbnail
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.StreamTypeUtil
-import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.viewmodels.StreamViewModel
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -40,31 +32,21 @@ fun StreamThumbnail(
     contentScale: ContentScale = ContentScale.Fit
 ) {
     Column(modifier = modifier) {
-        Box(contentAlignment = Alignment.BottomEnd) {
-            AsyncImage(
-                model = ImageStrategy.choosePreferredImage(stream.thumbnails),
-                contentDescription = null,
-                placeholder = painterResource(R.drawable.placeholder_thumbnail_video),
-                error = painterResource(R.drawable.placeholder_thumbnail_video),
-                contentScale = contentScale,
-                modifier = modifier
-            )
-
-            val isLive = StreamTypeUtil.isLiveStream(stream.type)
-            Text(
-                modifier = Modifier
-                    .padding(2.dp)
-                    .background(if (isLive) Color.Red else Color.Black.copy(alpha = 0.5f))
-                    .padding(2.dp),
-                text = if (isLive) {
-                    stringResource(R.string.duration_live)
-                } else {
-                    Localization.getDurationString(stream.duration)
-                },
-                color = Color.White,
-                style = MaterialTheme.typography.bodySmall
-            )
-        }
+        val isLive = StreamTypeUtil.isLiveStream(stream.type)
+        Thumbnail(
+            images = stream.thumbnails,
+            imageDescription = stringResource(R.string.stream_content_description, stream.name),
+            imagePlaceholder = R.drawable.placeholder_thumbnail_video,
+            cornerBackgroundColor = if (isLive) Color.Red else Color.Black.copy(alpha = 0.5f),
+            cornerIcon = null,
+            cornerText = if (isLive) {
+                stringResource(R.string.duration_live)
+            } else {
+                Localization.getDurationString(stream.duration)
+            },
+            contentScale = contentScale,
+            modifier = modifier
+        )
 
         if (showProgress) {
             val streamViewModel = viewModel<StreamViewModel>()

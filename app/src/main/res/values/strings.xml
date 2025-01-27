@@ -861,6 +861,8 @@
     <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
     <string name="history_sort_label">Sort by</string>
     <string name="clear_history_description">Button to clear watch history</string>
+    <string name="playlist_content_description">Thumbnail for playlist %1$s</string>
+    <string name="stream_content_description">Thumbnail for stream %1$s</string>
     <plurals name="comments">
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>
