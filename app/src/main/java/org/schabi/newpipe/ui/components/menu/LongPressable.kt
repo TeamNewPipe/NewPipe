@@ -5,6 +5,12 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.Either
 import java.time.OffsetDateTime
 
+sealed interface LongPressableDecoration {
+    data class Duration(val duration: Long) : LongPressableDecoration
+    data object Live : LongPressableDecoration
+    data class Playlist(val itemCount: Long) : LongPressableDecoration
+}
+
 @Stable
 interface LongPressable {
     val title: String
@@ -14,8 +20,7 @@ interface LongPressable {
     val uploaderUrl: String?
     val viewCount: Long?
     val uploadDate: Either<String, OffsetDateTime>?
-    val playlistSize: Long? // null if this is not a playlist
-    val duration: Long?
+    val decoration: LongPressableDecoration?
 
     fun getPlayQueue(): PlayQueue
 }
