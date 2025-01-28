@@ -31,14 +31,13 @@ import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.PlaylistAdd
 import androidx.compose.material.icons.filled.QueuePlayNext
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -54,6 +53,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
@@ -81,7 +81,8 @@ fun LongPressMenu(
         sheetState = sheetState,
     ) {
         BoxWithConstraints(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(bottom = 16.dp)
         ) {
             val maxContainerWidth = maxWidth
@@ -189,6 +190,7 @@ fun LongPressMenu(
                     icon = Icons.Default.Person,
                     text = stringResource(R.string.show_channel_details),
                     onClick = {},
+                    enabled = longPressable.uploaderUrl != null,
                     modifier = Modifier.size(buttonWidth, buttonHeight),
                 )
 
@@ -344,11 +346,12 @@ fun LongPressMenuButton(
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
-    FilledTonalButton(
+    OutlinedButton(
         onClick = onClick,
         enabled = enabled,
         shape = MaterialTheme.shapes.large,
         contentPadding = PaddingValues(4.dp),
+        border = null,
         modifier = modifier,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -357,18 +360,22 @@ fun LongPressMenuButton(
                 contentDescription = null,
                 modifier = Modifier.size(32.dp),
             )
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                // make all text visible with marquee (so new users can learn about the button
-                // labels), but wait 3 seconds before making many parts of the UI move so that
-                // normal users are not distracted
-                modifier = Modifier.basicMarquee(
-                    initialDelayMillis = 3000,
-                    iterations = if (enabled) 2 else 0,
+            Box {
+                // this allows making the box always the same height (i.e. the height of two text
+                // lines), while making the text appear centered if it is just a single line
+                Text(
+                    text = "",
+                    style = MaterialTheme.typography.bodySmall,
+                    minLines = 2,
                 )
-            )
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 2,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
         }
     }
 }
@@ -463,7 +470,7 @@ private fun LongPressMenuPreview(
     }
     AppTheme {
         LongPressMenu(
-            longPressable = LongPressablePreviews().values.first(),
+            longPressable = longPressable,
             onDismissRequest = {},
             sheetState = rememberStandardBottomSheetState(), // makes it start out as open
         )
