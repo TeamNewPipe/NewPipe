@@ -1,17 +1,20 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 
 package org.schabi.newpipe.ui.components.menu
 
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
@@ -36,7 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.times
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.player.playqueue.PlayQueue
@@ -55,20 +60,53 @@ fun LongPressMenu(
         onDismissRequest,
         sheetState = sheetState,
     ) {
-        Column {
-            LongPressMenuHeader(
-                item = longPressable,
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth()
-            )
-            Spacer(Modifier.height(100.dp))
+        BoxWithConstraints(
+            modifier = Modifier.fillMaxWidth()
+                .padding(bottom = 16.dp)
+        ) {
+            val maxContainerWidth = maxWidth
+            val minButtonWidth = 60.dp
+            val buttonHeight = 70.dp
+            val padding = 12.dp
+            val boxCount = ((maxContainerWidth - padding) / (minButtonWidth + padding)).toInt()
+            val buttonWidth = (maxContainerWidth - (boxCount + 1) * padding) / boxCount
+            val desiredHeaderWidth = buttonWidth * 5 + padding * 4
+
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(padding),
+                verticalArrangement = Arrangement.spacedBy(padding),
+                // left and right padding are implicit in the .align(Center), this way approximation
+                // errors in the calculations above don't make the items wrap at the wrong position
+                modifier = Modifier.align(Alignment.Center),
+            ) {
+                LongPressMenuHeader(
+                    item = longPressable,
+                    thumbnailHeight = buttonHeight,
+                    // subtract 2.dp to account for approximation errors in the calculations above
+                    modifier = if (desiredHeaderWidth >= maxContainerWidth - 2 * padding - 2.dp) {
+                        // leave the height as small as possible, since it's the only item on the
+                        // row anyway
+                        Modifier.width(maxContainerWidth - 2 * padding)
+                    } else {
+                        // make sure it has the same height as other buttons
+                        Modifier.size(desiredHeaderWidth, buttonHeight)
+                    }
+                )
+
+                for (i in 0..10) {
+                    LongPressMenuButton(modifier = Modifier.size(buttonWidth, buttonHeight))
+                }
+            }
         }
     }
 }
 
 @Composable
-fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
+fun LongPressMenuHeader(
+    item: LongPressable,
+    thumbnailHeight: Dp,
+    modifier: Modifier = Modifier,
+) {
     val ctx = LocalContext.current
 
     Surface(
@@ -77,10 +115,8 @@ fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
         shape = MaterialTheme.shapes.large,
         modifier = modifier,
     ) {
-        Row {
-            Box(
-                modifier = Modifier.height(70.dp)
-            ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box {
                 if (item.thumbnailUrl != null) {
                     AsyncImage(
                         model = item.thumbnailUrl,
@@ -88,7 +124,7 @@ fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
                         placeholder = painterResource(R.drawable.placeholder_thumbnail_video),
                         error = painterResource(R.drawable.placeholder_thumbnail_video),
                         modifier = Modifier
-                            .fillMaxHeight()
+                            .height(thumbnailHeight)
                             .widthIn(max = 125.dp) // 16:9 thumbnail at most
                             .clip(MaterialTheme.shapes.large)
                     )
@@ -100,7 +136,7 @@ fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
                         contentColor = Color.White,
                         modifier = Modifier
                             .align(Alignment.TopEnd)
-                            .fillMaxHeight()
+                            .height(thumbnailHeight)
                             .width(40.dp)
                             .clip(MaterialTheme.shapes.large),
                     ) {
@@ -143,10 +179,7 @@ fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
             }
 
             Column(
-                verticalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .height(70.dp)
-                    .padding(vertical = 12.dp, horizontal = 12.dp),
+                modifier = Modifier.padding(vertical = 12.dp, horizontal = 12.dp),
             ) {
                 Text(
                     text = item.title,
@@ -155,21 +188,34 @@ fun LongPressMenuHeader(item: LongPressable, modifier: Modifier = Modifier) {
                     modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
                 )
 
-                Text(
-                    text = Localization.concatenateStrings(
-                        item.uploader,
-                        item.uploadDate?.match<String>(
-                            { it },
-                            { Localization.localizeUploadDate(ctx, it) }
-                        ),
-                        item.viewCount?.let { Localization.localizeViewCount(ctx, it) }
+                val subtitle = Localization.concatenateStrings(
+                    item.uploader,
+                    item.uploadDate?.match<String>(
+                        { it },
+                        { Localization.relativeTime(it) }
                     ),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
+                    item.viewCount?.let { Localization.localizeViewCount(ctx, it) }
                 )
+                if (subtitle.isNotBlank()) {
+                    Spacer(Modifier.height(1.dp))
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
+                    )
+                }
             }
         }
     }
+}
+
+@Composable
+fun LongPressMenuButton(modifier: Modifier = Modifier) {
+    Surface(
+        color = Color.Black,
+        modifier = modifier,
+        shape = MaterialTheme.shapes.large,
+    ) { }
 }
 
 private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPressable>(
@@ -208,6 +254,21 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
         object : LongPressable {
             override val title: String = LoremIpsum().values.first()
             override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
+            override val thumbnailUrl: String? = null
+            override val uploader: String? = null
+            override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
+            override val viewCount: Long? = null
+            override val uploadDate: Either<String, OffsetDateTime>? = null
+            override val playlistSize: Long? = null
+            override val duration: Long? = null
+
+            override fun getPlayQueue(): PlayQueue {
+                return SinglePlayQueue(listOf(), 0)
+            }
+        },
+        object : LongPressable {
+            override val title: String = LoremIpsum().values.first()
+            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
             override val thumbnailUrl: String =
                 "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp"
             override val uploader: String? = null
@@ -228,7 +289,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploader: String? = null
             override val uploaderUrl: String? = null
             override val viewCount: Long? = null
-            override val uploadDate: Either<String, OffsetDateTime>? = null
+            override val uploadDate: Either<String, OffsetDateTime> = Either.right(OffsetDateTime.now().minusSeconds(12))
             override val playlistSize: Long = 1500
             override val duration: Long = 500
 
@@ -240,13 +301,14 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
 )
 
 @Preview
+@Preview(device = "spec:width=1280dp,height=800dp,dpi=240")
 @Composable
 private fun LongPressMenuPreview(
     @PreviewParameter(LongPressablePreviews::class) longPressable: LongPressable
 ) {
     LongPressMenu(
-        longPressable = longPressable,
+        longPressable = LongPressablePreviews().values.toList()[4],
         onDismissRequest = {},
-        sheetState =  rememberStandardBottomSheetState(), // makes it start out as open
+        sheetState = rememberStandardBottomSheetState(), // makes it start out as open
     )
 }
