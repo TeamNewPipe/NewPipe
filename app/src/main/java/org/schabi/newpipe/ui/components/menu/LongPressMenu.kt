@@ -29,12 +29,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
@@ -130,51 +132,76 @@ fun LongPressMenuHeader(
                     )
                 }
 
-                item.playlistSize?.let { playlistSize ->
-                    Surface(
-                        color = Color.Black.copy(alpha = 0.6f),
-                        contentColor = Color.White,
-                        modifier = Modifier
-                            .align(Alignment.TopEnd)
-                            .height(thumbnailHeight)
-                            .width(40.dp)
-                            .clip(MaterialTheme.shapes.large),
-                    ) {
-                        Column(
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxWidth(),
-                        ) {
-                            Icon(
-                                Icons.AutoMirrored.Default.PlaylistPlay,
-                                contentDescription = null,
-                            )
-                            Text(
-                                text = Localization.localizeStreamCountMini(ctx, playlistSize),
-                                style = MaterialTheme.typography.labelMedium,
-                                maxLines = 1,
-                            )
+                when (val decoration = item.decoration) {
+                    is LongPressableDecoration.Duration -> {
+                        // only show duration if there is a thumbnail
+                        if (item.thumbnailUrl != null) {
+                            Surface(
+                                color = Color.Black.copy(alpha = 0.6f),
+                                contentColor = Color.White,
+                                modifier = Modifier
+                                    .align(Alignment.BottomEnd)
+                                    .padding(4.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                            ) {
+                                Text(
+                                    text = Localization.getDurationString(decoration.duration),
+                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp)
+                                )
+                            }
                         }
                     }
-                }
+                    is LongPressableDecoration.Live -> {
+                        // only show "Live" if there is a thumbnail
+                        if (item.thumbnailUrl != null) {
+                            Surface(
+                                color = Color.Red.copy(alpha = 0.6f),
+                                contentColor = Color.White,
+                                modifier = Modifier
+                                    .align(Alignment.BottomEnd)
+                                    .padding(4.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.duration_live).uppercase(),
+                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp)
+                                )
+                            }
+                        }
+                    }
 
-                item.duration?.takeIf { it >= 0 }?.let { duration ->
-                    // only show duration if there is a thumbnail and there is no playlist header
-                    if (item.thumbnailUrl != null && item.playlistSize == null) {
+                    is LongPressableDecoration.Playlist -> {
                         Surface(
                             color = Color.Black.copy(alpha = 0.6f),
                             contentColor = Color.White,
                             modifier = Modifier
-                                .align(Alignment.BottomEnd)
-                                .padding(4.dp)
-                                .clip(MaterialTheme.shapes.medium),
+                                .align(Alignment.TopEnd)
+                                .height(thumbnailHeight)
+                                .width(40.dp)
+                                .clip(MaterialTheme.shapes.large),
                         ) {
-                            Text(
-                                text = Localization.getDurationString(duration),
-                                modifier = Modifier.padding(vertical = 2.dp, horizontal = 3.dp)
-                            )
+                            Column(
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                Icon(
+                                    Icons.AutoMirrored.Default.PlaylistPlay,
+                                    contentDescription = null,
+                                )
+                                Text(
+                                    text = Localization.localizeStreamCountMini(
+                                        ctx,
+                                        decoration.itemCount
+                                    ),
+                                    style = MaterialTheme.typography.labelMedium,
+                                    maxLines = 1,
+                                )
+                            }
                         }
                     }
+
+                    null -> {}
                 }
             }
 
@@ -229,8 +256,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
             override val viewCount: Long = 8765432
             override val uploadDate: Either<String, OffsetDateTime> = Either.left("16 years ago")
-            override val playlistSize: Long = 12
-            override val duration: Long = 500
+            override val decoration: LongPressableDecoration = LongPressableDecoration.Playlist(12)
 
             override fun getPlayQueue(): PlayQueue {
                 return SinglePlayQueue(listOf(), 0)
@@ -244,8 +270,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
             override val viewCount: Long = 8765432
             override val uploadDate: Either<String, OffsetDateTime> = Either.left("16 years ago")
-            override val playlistSize: Long? = null
-            override val duration: Long = 500
+            override val decoration: LongPressableDecoration = LongPressableDecoration.Duration(500)
 
             override fun getPlayQueue(): PlayQueue {
                 return SinglePlayQueue(listOf(), 0)
@@ -259,8 +284,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
             override val viewCount: Long? = null
             override val uploadDate: Either<String, OffsetDateTime>? = null
-            override val playlistSize: Long? = null
-            override val duration: Long? = null
+            override val decoration: LongPressableDecoration? = null
 
             override fun getPlayQueue(): PlayQueue {
                 return SinglePlayQueue(listOf(), 0)
@@ -275,8 +299,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploaderUrl: String? = null
             override val viewCount: Long? = null
             override val uploadDate: Either<String, OffsetDateTime>? = null
-            override val playlistSize: Long? = null
-            override val duration: Long = 500
+            override val decoration: LongPressableDecoration = LongPressableDecoration.Live
 
             override fun getPlayQueue(): PlayQueue {
                 return SinglePlayQueue(listOf(), 0)
@@ -290,8 +313,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             override val uploaderUrl: String? = null
             override val viewCount: Long? = null
             override val uploadDate: Either<String, OffsetDateTime> = Either.right(OffsetDateTime.now().minusSeconds(12))
-            override val playlistSize: Long = 1500
-            override val duration: Long = 500
+            override val decoration: LongPressableDecoration = LongPressableDecoration.Playlist(1500)
 
             override fun getPlayQueue(): PlayQueue {
                 return SinglePlayQueue(listOf(), 0)
@@ -306,8 +328,12 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
 private fun LongPressMenuPreview(
     @PreviewParameter(LongPressablePreviews::class) longPressable: LongPressable
 ) {
+    DisposableEffect(null) {
+        Localization.initPrettyTime(Localization.resolvePrettyTime())
+        onDispose {}
+    }
     LongPressMenu(
-        longPressable = LongPressablePreviews().values.toList()[4],
+        longPressable = longPressable,
         onDismissRequest = {},
         sheetState = rememberStandardBottomSheetState(), // makes it start out as open
     )
