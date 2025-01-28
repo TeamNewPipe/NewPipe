@@ -2,6 +2,7 @@
 
 package org.schabi.newpipe.ui.components.menu
 
+import android.content.res.Configuration
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,8 +20,22 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
+import androidx.compose.material.icons.filled.AddToQueue
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Headset
+import androidx.compose.material.icons.filled.OpenInBrowser
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PictureInPicture
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.PlaylistAdd
+import androidx.compose.material.icons.filled.QueuePlayNext
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -34,6 +50,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,6 +65,7 @@ import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
+import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
 import java.time.OffsetDateTime
@@ -67,12 +85,12 @@ fun LongPressMenu(
                 .padding(bottom = 16.dp)
         ) {
             val maxContainerWidth = maxWidth
-            val minButtonWidth = 60.dp
+            val minButtonWidth = 70.dp
             val buttonHeight = 70.dp
             val padding = 12.dp
             val boxCount = ((maxContainerWidth - padding) / (minButtonWidth + padding)).toInt()
             val buttonWidth = (maxContainerWidth - (boxCount + 1) * padding) / boxCount
-            val desiredHeaderWidth = buttonWidth * 5 + padding * 4
+            val desiredHeaderWidth = buttonWidth * 4 + padding * 3
 
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(padding),
@@ -95,9 +113,91 @@ fun LongPressMenu(
                     }
                 )
 
-                for (i in 0..10) {
-                    LongPressMenuButton(modifier = Modifier.size(buttonWidth, buttonHeight))
-                }
+                LongPressMenuButton(
+                    icon = Icons.Default.AddToQueue,
+                    text = stringResource(R.string.enqueue),
+                    onClick = {},
+                    enabled = false,
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.QueuePlayNext,
+                    text = stringResource(R.string.enqueue_next_stream),
+                    onClick = {},
+                    enabled = false,
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Headset,
+                    text = stringResource(R.string.controls_background_title),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.PictureInPicture,
+                    text = stringResource(R.string.controls_popup_title),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.PlayArrow,
+                    text = stringResource(R.string.play),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Download,
+                    text = stringResource(R.string.download),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.AutoMirrored.Default.PlaylistAdd,
+                    text = stringResource(R.string.add_to_playlist),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Share,
+                    text = stringResource(R.string.share),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.OpenInBrowser,
+                    text = stringResource(R.string.open_in_browser),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Done,
+                    text = stringResource(R.string.mark_as_watched),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Person,
+                    text = stringResource(R.string.show_channel_details),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
+
+                LongPressMenuButton(
+                    icon = Icons.Default.Delete,
+                    text = stringResource(R.string.delete),
+                    onClick = {},
+                    modifier = Modifier.size(buttonWidth, buttonHeight),
+                )
             }
         }
     }
@@ -112,8 +212,8 @@ fun LongPressMenuHeader(
     val ctx = LocalContext.current
 
     Surface(
-        color = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         shape = MaterialTheme.shapes.large,
         modifier = modifier,
     ) {
@@ -237,12 +337,40 @@ fun LongPressMenuHeader(
 }
 
 @Composable
-fun LongPressMenuButton(modifier: Modifier = Modifier) {
-    Surface(
-        color = Color.Black,
-        modifier = modifier,
+fun LongPressMenuButton(
+    icon: ImageVector,
+    text: String,
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+    modifier: Modifier = Modifier,
+) {
+    FilledTonalButton(
+        onClick = onClick,
+        enabled = enabled,
         shape = MaterialTheme.shapes.large,
-    ) { }
+        contentPadding = PaddingValues(4.dp),
+        modifier = modifier,
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(32.dp),
+            )
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 1,
+                // make all text visible with marquee (so new users can learn about the button
+                // labels), but wait 3 seconds before making many parts of the UI move so that
+                // normal users are not distracted
+                modifier = Modifier.basicMarquee(
+                    initialDelayMillis = 3000,
+                    iterations = if (enabled) 2 else 0,
+                )
+            )
+        }
+    }
 }
 
 private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPressable>(
@@ -323,6 +451,7 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
 )
 
 @Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
 @Preview(device = "spec:width=1280dp,height=800dp,dpi=240")
 @Composable
 private fun LongPressMenuPreview(
@@ -332,9 +461,11 @@ private fun LongPressMenuPreview(
         Localization.initPrettyTime(Localization.resolvePrettyTime())
         onDispose {}
     }
-    LongPressMenu(
-        longPressable = longPressable,
-        onDismissRequest = {},
-        sheetState = rememberStandardBottomSheetState(), // makes it start out as open
-    )
+    AppTheme {
+        LongPressMenu(
+            longPressable = LongPressablePreviews().values.first(),
+            onDismissRequest = {},
+            sheetState = rememberStandardBottomSheetState(), // makes it start out as open
+        )
+    }
 }
