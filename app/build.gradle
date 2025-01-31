@@ -208,7 +208,7 @@ dependencies {
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     // WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
     // the corresponding commit hash, since JitPack is sometimes buggy
-    implementation 'com.github.FireMasterK:NewPipeExtractor:d2cbd09089e8af933738f98b671ad58236a79d6e'
+    implementation 'com.github.AudricV:NewPipeExtractor:15e35a28df1205e8a0cf4680dd240554a818a120'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
