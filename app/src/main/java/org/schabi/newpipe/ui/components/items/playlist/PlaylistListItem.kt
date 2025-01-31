@@ -62,7 +62,7 @@ private fun PlaylistListItemPreview() {
     val playlist = Playlist(NO_SERVICE_ID, "", "Playlist", uploaderName = "Uploader")
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             PlaylistListItem(playlist)
         }
     }
