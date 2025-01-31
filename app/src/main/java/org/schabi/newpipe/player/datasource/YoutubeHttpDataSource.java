@@ -14,10 +14,12 @@ import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
 import static com.google.android.exoplayer2.util.Util.castNonNull;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getAndroidUserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getIosUserAgent;
+import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.getTvHtml5UserAgent;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isAndroidStreamingUrl;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isIosStreamingUrl;
+import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isTvHtml5StreamingUrl;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isWebStreamingUrl;
-import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isTvHtml5SimplyEmbeddedPlayerStreamingUrl;
+import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.isWebEmbeddedPlayerStreamingUrl;
 import static java.lang.Math.min;
 
 import android.net.Uri;
@@ -270,6 +272,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
 
     private static final String RN_PARAMETER = "&rn=";
     private static final String YOUTUBE_BASE_URL = "https://www.youtube.com";
+    private static final byte[] POST_BODY = new byte[] {0x78, 0};
 
     private final boolean allowCrossProtocolRedirects;
     private final boolean rangeParameterEnabled;
@@ -658,8 +661,11 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
             }
         }
 
+        final boolean isTvHtml5StreamingUrl = isTvHtml5StreamingUrl(requestUrl);
+
         if (isWebStreamingUrl(requestUrl)
-                || isTvHtml5SimplyEmbeddedPlayerStreamingUrl(requestUrl)) {
+                || isTvHtml5StreamingUrl
+                || isWebEmbeddedPlayerStreamingUrl(requestUrl)) {
             httpURLConnection.setRequestProperty(HttpHeaders.ORIGIN, YOUTUBE_BASE_URL);
             httpURLConnection.setRequestProperty(HttpHeaders.REFERER, YOUTUBE_BASE_URL);
             httpURLConnection.setRequestProperty(HttpHeaders.SEC_FETCH_DEST, "empty");
@@ -679,6 +685,9 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         } else if (isIosStreamingUrl) {
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
                     getIosUserAgent(null));
+        } else if (isTvHtml5StreamingUrl) {
+            httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
+                    getTvHtml5UserAgent());
         } else {
             // non-mobile user agent
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT, DownloaderImpl.USER_AGENT);
@@ -687,22 +696,16 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         httpURLConnection.setRequestProperty(HttpHeaders.ACCEPT_ENCODING,
                 allowGzip ? "gzip" : "identity");
         httpURLConnection.setInstanceFollowRedirects(followRedirects);
-        httpURLConnection.setDoOutput(httpBody != null);
+        // Most clients use POST requests to fetch contents
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setFixedLengthStreamingMode(POST_BODY.length);
+        httpURLConnection.connect();
 
-        // Mobile clients uses POST requests to fetch contents
-        httpURLConnection.setRequestMethod(isAndroidStreamingUrl || isIosStreamingUrl
-                ? "POST"
-                : DataSpec.getStringForHttpMethod(httpMethod));
+        final OutputStream os = httpURLConnection.getOutputStream();
+        os.write(POST_BODY);
+        os.close();
 
-        if (httpBody != null) {
-            httpURLConnection.setFixedLengthStreamingMode(httpBody.length);
-            httpURLConnection.connect();
-            final OutputStream os = httpURLConnection.getOutputStream();
-            os.write(httpBody);
-            os.close();
-        } else {
-            httpURLConnection.connect();
-        }
         return httpURLConnection;
     }
 
