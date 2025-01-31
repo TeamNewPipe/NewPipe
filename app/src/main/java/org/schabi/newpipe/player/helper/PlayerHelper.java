@@ -91,23 +91,30 @@ public final class PlayerHelper {
 
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
-    ////////////////////////////////////////////////////////////////////////////
+
+    /// /////////////////////////////////////////////////////////////////////////
 
     @NonNull
     public static String getTimeString(final int milliSeconds) {
-        final int seconds = (milliSeconds % 60000) / 1000;
-        final int minutes = (milliSeconds % 3600000) / 60000;
-        final int hours = (milliSeconds % 86400000) / 3600000;
-        final int days = (milliSeconds % (86400000 * 7)) / 86400000;
+        final int SECONDS_IN_MINUTE = 60;
+        final int SECONDS_IN_HOUR = 3600;
+        final int SECONDS_IN_DAY = 86400;
 
-        STRING_BUILDER.setLength(0);
-        return (days > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-                : hours > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds)
-                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds)
-        ).toString();
+        int totalSeconds = milliSeconds / 1000;
+
+        int days = totalSeconds / (SECONDS_IN_DAY);
+        int hours = (totalSeconds % (SECONDS_IN_DAY)) / SECONDS_IN_HOUR;
+        int minutes = (totalSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;
+        int seconds = totalSeconds % SECONDS_IN_MINUTE;
+
+        if (days > 0) {
+            return STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString();
+        } else if (hours > 0) {
+            return STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds).toString();
+        }
+        return STRING_FORMATTER.format("%02d:%02d", minutes, seconds).toString();
     }
+
 
     @NonNull
     public static String formatSpeed(final double speed) {
@@ -221,7 +228,8 @@ public final class PlayerHelper {
 
     ////////////////////////////////////////////////////////////////////////////
     // Settings Resolution
-    ////////////////////////////////////////////////////////////////////////////
+
+    /// /////////////////////////////////////////////////////////////////////////
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
         return getPreferences(context)
@@ -388,8 +396,8 @@ public final class PlayerHelper {
         // if the accelerometer sensor is missing completely, assume locked orientation
         return android.provider.Settings.System.getInt(
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0
-                    || !context.getPackageManager()
-                        .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
+                || !context.getPackageManager()
+                .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
     }
 
     public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {
@@ -407,7 +415,8 @@ public final class PlayerHelper {
 
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
-    ////////////////////////////////////////////////////////////////////////////
+
+    /// /////////////////////////////////////////////////////////////////////////
 
     @NonNull
     private static SharedPreferences getPreferences(@NonNull final Context context) {
@@ -429,7 +438,8 @@ public final class PlayerHelper {
 
     ////////////////////////////////////////////////////////////////////////////
     // Utils used by player
-    ////////////////////////////////////////////////////////////////////////////
+
+    /// /////////////////////////////////////////////////////////////////////////
 
     @RepeatMode
     public static int nextRepeatMode(@RepeatMode final int repeatMode) {
