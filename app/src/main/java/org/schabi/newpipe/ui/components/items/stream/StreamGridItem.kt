@@ -74,7 +74,7 @@ private fun StreamGridItemPreview(
     @PreviewParameter(StreamItemPreviewProvider::class) stream: Stream
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             StreamGridItem(stream, showProgress = false, isSelected = false)
         }
     }

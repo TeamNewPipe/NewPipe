@@ -84,7 +84,7 @@ private fun StreamCardItemPreview(
     @PreviewParameter(StreamItemPreviewProvider::class) stream: Stream
 ) {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             StreamCardItem(stream, showProgress = false, isSelected = false)
         }
     }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.fragment.app.Fragment
 import androidx.fragment.compose.content
@@ -20,7 +19,7 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = content {
         AppTheme {
-            Surface(color = MaterialTheme.colorScheme.background) {
+            Surface {
                 HistoryScreen()
             }
         }

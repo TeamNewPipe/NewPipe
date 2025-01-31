@@ -20,7 +20,6 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Surface
@@ -189,7 +188,7 @@ private fun HistoryHeader(
 @Composable
 private fun HistoryHeaderPreview() {
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             HistoryHeader(SortKey.MOST_PLAYED, {}, {}, {}, {}, {})
         }
     }
