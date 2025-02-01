@@ -379,9 +379,8 @@ public final class PlayerHelper {
         // viewing block so we fall back to the default brightness
         if ((System.currentTimeMillis() - timestamp) > TimeUnit.HOURS.toMillis(4)) {
             return -1;
-        } else {
-            return sp.getFloat(context.getString(R.string.screen_brightness_key), -1);
         }
+        return sp.getFloat(context.getString(R.string.screen_brightness_key), -1);
     }
 
     public static void setScreenBrightness(@NonNull final Context context,
