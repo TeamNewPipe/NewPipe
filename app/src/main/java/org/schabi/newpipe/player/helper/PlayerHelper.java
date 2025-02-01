@@ -307,11 +307,14 @@ public final class PlayerHelper {
     }
 
     public static long getPreferredCacheSize() {
-        return 64 * 1024 * 1024L;
+
+        final long MEGABYTE = 1024 * 1024L;
+        return 64 * MEGABYTE;
     }
 
     public static long getPreferredFileSize() {
-        return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
+        final long MEGABYTE = 1024 * 1024L;
+        return 2 * MEGABYTE; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
     @NonNull
