@@ -14,14 +14,32 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.paging.CommentsSource
 import org.schabi.newpipe.ui.components.video.comment.CommentInfo
+import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.KEY_SERVICE_ID
 import org.schabi.newpipe.util.KEY_URL
+import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.viewmodels.util.Resource
 
 class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-    val uiState = savedStateHandle.getStateFlow(KEY_URL, "")
+    private val url = savedStateHandle.getStateFlow(KEY_URL, "")
+    private val serviceId = savedStateHandle[KEY_SERVICE_ID] ?: NO_SERVICE_ID
+
+    val streamState = url
+        .map {
+            try {
+                Resource.Success(ExtractorHelper.getStreamInfo(serviceId, it, false).await())
+            } catch (e: Exception) {
+                Resource.Error(e)
+            }
+        }
+        .flowOn(Dispatchers.IO)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Resource.Loading)
+
+    val commentState = url
         .map {
             try {
                 Resource.Success(CommentInfo(CommentsInfo.getInfo(it)))
@@ -33,7 +51,7 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Resource.Loading)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val comments = uiState
+    val comments = commentState
         .filterIsInstance<Resource.Success<CommentInfo>>()
         .flatMapLatest {
             Pager(PagingConfig(pageSize = 20, enablePlaceholders = false)) {
