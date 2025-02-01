@@ -6,6 +6,7 @@ import android.util.Log
 import org.schabi.newpipe.App
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.services.youtube.InnertubeClientRequestInfo
 import org.schabi.newpipe.extractor.services.youtube.PoTokenProvider
 import org.schabi.newpipe.extractor.services.youtube.PoTokenResult
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper
@@ -49,8 +50,20 @@ object PoTokenProviderImpl : PoTokenProvider {
                     // create a new webPoTokenGenerator
                     webPoTokenGenerator = PoTokenWebView
                         .newPoTokenGenerator(App.getApp()).blockingGet()
-                    webPoTokenVisitorData = YoutubeParsingHelper
-                        .randomVisitorData(NewPipe.getPreferredContentCountry())
+
+                    val innertubeClientRequestInfo = InnertubeClientRequestInfo.ofWebClient()
+                    innertubeClientRequestInfo.clientInfo.clientVersion =
+                        YoutubeParsingHelper.getClientVersion()
+
+                    webPoTokenVisitorData = YoutubeParsingHelper.getVisitorDataFromInnertube(
+                        innertubeClientRequestInfo,
+                        NewPipe.getPreferredLocalization(),
+                        NewPipe.getPreferredContentCountry(),
+                        YoutubeParsingHelper.getYouTubeHeaders(),
+                        YoutubeParsingHelper.YOUTUBEI_V1_URL,
+                        null,
+                        false
+                    )
 
                     // The streaming poToken needs to be generated exactly once before generating
                     // any other (player) tokens.
