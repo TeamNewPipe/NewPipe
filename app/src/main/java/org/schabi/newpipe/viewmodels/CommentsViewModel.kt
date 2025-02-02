@@ -31,7 +31,7 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     val streamState = url
         .map {
             try {
-                Resource.Success(ExtractorHelper.getStreamInfo(serviceId, it, false).await())
+                Resource.Success(ExtractorHelper.getStreamInfo(serviceId, it, true).await())
             } catch (e: Exception) {
                 Resource.Error(e)
             }
