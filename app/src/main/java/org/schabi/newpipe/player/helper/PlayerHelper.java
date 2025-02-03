@@ -500,21 +500,38 @@ public final class PlayerHelper {
                                                      final float speed,
                                                      final float pitch,
                                                      final boolean skipSilence) {
+        if (player == null || player.getContext() == null) {
+            throw new IllegalArgumentException("Player or its context cannot be null");
+        }
+
+        String playbackSpeedKey = player.getContext().getString(R.string.playback_speed_key);
+        String playbackPitchKey = player.getContext().getString(R.string.playback_pitch_key);
+        String playbackSkipSilenceKey = player.getContext().getString(R.string.playback_skip_silence_key);
+
         player.getPrefs().edit()
-                .putFloat(player.getContext().getString(R.string.playback_speed_key), speed)
-                .putFloat(player.getContext().getString(R.string.playback_pitch_key), pitch)
-                .putBoolean(player.getContext().getString(R.string.playback_skip_silence_key),
-                        skipSilence)
+                .putFloat(playbackSpeedKey, speed)
+                .putFloat(playbackPitchKey, pitch)
+                .putBoolean(playbackSkipSilenceKey, skipSilence)
                 .apply();
     }
+
 
     public static float getMinimumVideoHeight(final float width) {
         return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
     }
 
     public static int retrieveSeekDurationFromPreferences(final Player player) {
-        return Integer.parseInt(Objects.requireNonNull(player.getPrefs().getString(
-                player.getContext().getString(R.string.seek_duration_key),
-                player.getContext().getString(R.string.seek_duration_default_value))));
+        String seekDurationKey = player.getContext().getString(R.string.seek_duration_key);
+        String defaultValue = player.getContext().getString(R.string.seek_duration_default_value);
+
+        String seekDurationString = player.getPrefs().getString(seekDurationKey, defaultValue);
+
+        try {
+            return Integer.parseInt(seekDurationString);
+        } catch (NumberFormatException e) {
+            System.err.println("Error during the conversion of the seek duration. : " + e.getMessage());
+            return Integer.parseInt(defaultValue);
+        }
     }
+
 }
