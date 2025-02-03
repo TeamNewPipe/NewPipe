@@ -5,7 +5,7 @@ import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCap
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
-import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
+import static org.schabi.newpipe.player.helper.PlayerHelper.isScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.util.DependentPreferenceHelper.getResumePlaybackEnabled;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
@@ -319,7 +319,7 @@ public final class VideoDetailFragment
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
             public void onChange(final boolean selfChange) {
-                if (activity != null && !globalScreenOrientationLocked(activity)) {
+                if (activity != null && !isScreenOrientationLocked(activity)) {
                     activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 }
             }
@@ -1096,7 +1096,7 @@ public final class VideoDetailFragment
     public void openVideoPlayer(final boolean directlyFullscreenIfApplicable) {
         if (directlyFullscreenIfApplicable
                 && !DeviceUtils.isLandscape(requireContext())
-                && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
+                && PlayerHelper.isScreenOrientationLocked(requireContext())) {
             // Make sure the bottom sheet turns out expanded. When this code kicks in the bottom
             // sheet could not have fully expanded yet, and thus be in the STATE_SETTLING state.
             // When the activity is rotated, and its state is saved and then restored, the bottom
@@ -1889,7 +1889,7 @@ public final class VideoDetailFragment
         // or portrait & unlocked global orientation
         final boolean isLandscape = DeviceUtils.isLandscape(requireContext());
         if (DeviceUtils.isTablet(activity)
-                && (!globalScreenOrientationLocked(activity) || isLandscape)) {
+                && (!isScreenOrientationLocked(activity) || isLandscape)) {
             player.UIs().get(MainPlayerUi.class).ifPresent(MainPlayerUi::toggleFullscreen);
             return;
         }
@@ -2069,7 +2069,7 @@ public final class VideoDetailFragment
 
         player.UIs().get(MainPlayerUi.class).ifPresent(MainPlayerUi::checkLandscape);
         // Let's give a user time to look at video information page if video is not playing
-        if (globalScreenOrientationLocked(activity) && !player.isPlaying()) {
+        if (isScreenOrientationLocked(activity) && !player.isPlaying()) {
             player.play();
         }
     }

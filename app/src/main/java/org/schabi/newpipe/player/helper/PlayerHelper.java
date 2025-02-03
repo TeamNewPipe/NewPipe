@@ -307,7 +307,6 @@ public final class PlayerHelper {
     }
 
     public static long getPreferredCacheSize() {
-
         final long MEGABYTE = 1024 * 1024L;
         return 64 * MEGABYTE;
     }
@@ -392,14 +391,17 @@ public final class PlayerHelper {
                 .apply();
     }
 
-    public static boolean globalScreenOrientationLocked(final Context context) {
-        // 1: Screen orientation changes using accelerometer
-        // 0: Screen orientation is locked
-        // if the accelerometer sensor is missing completely, assume locked orientation
-        return android.provider.Settings.System.getInt(
-                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0
-                || !context.getPackageManager()
+    public static boolean isScreenOrientationLocked(final Context context) {
+        int accelerometerRotation = android.provider.Settings.System.getInt(
+                context.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION,
+                0
+        );
+
+        boolean hasAccelerometer = context.getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
+
+        return accelerometerRotation == 0 || !hasAccelerometer;
     }
 
     public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {

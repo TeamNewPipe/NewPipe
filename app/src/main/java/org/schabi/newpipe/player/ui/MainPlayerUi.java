@@ -12,7 +12,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZ
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
+import static org.schabi.newpipe.player.helper.PlayerHelper.isScreenOrientationLocked;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
 
 import android.app.Activity;
@@ -120,7 +120,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private void directlyOpenFullscreenIfNeeded() {
         if (PlayerHelper.isStartMainPlayerFullscreenEnabled(player.getService())
                 && DeviceUtils.isTablet(player.getService())
-                && PlayerHelper.globalScreenOrientationLocked(player.getService())) {
+                && PlayerHelper.isScreenOrientationLocked(player.getService())) {
             player.getFragmentListener().ifPresent(
                     PlayerServiceEventListener::onScreenRotationButtonClicked);
         }
@@ -157,7 +157,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.screenRotationButton.setOnClickListener(makeOnClickListener(() -> {
             // Only if it's not a vertical video or vertical video but in landscape with locked
             // orientation a screen orientation can be changed automatically
-            if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
+            if (!isVerticalVideo || (isLandscape() && isScreenOrientationLocked(context))) {
                 player.getFragmentListener()
                         .ifPresent(PlayerServiceEventListener::onScreenRotationButtonClicked);
             } else {
@@ -885,7 +885,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Video size, orientation, fullscreen
 
     private void setupScreenRotationButton() {
-        binding.screenRotationButton.setVisibility(globalScreenOrientationLocked(context)
+        binding.screenRotationButton.setVisibility(isScreenOrientationLocked(context)
                 || isVerticalVideo || DeviceUtils.isTablet(context)
                 ? View.VISIBLE : View.GONE);
         binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
@@ -898,7 +898,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         super.onVideoSizeChanged(videoSize);
         isVerticalVideo = videoSize.width < videoSize.height;
 
-        if (globalScreenOrientationLocked(context)
+        if (isScreenOrientationLocked(context)
                 && isFullscreen
                 && isLandscape() == isVerticalVideo
                 && !DeviceUtils.isTv(context)
