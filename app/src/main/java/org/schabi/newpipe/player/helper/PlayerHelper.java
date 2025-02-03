@@ -199,31 +199,26 @@ public final class PlayerHelper {
     @Nullable
     public static PlayQueue autoQueueOf(@NonNull final StreamInfo info,
                                         @NonNull final List<PlayQueueItem> existingItems) {
-        final Set<String> urls = new HashSet<>(existingItems.size());
-        for (final PlayQueueItem item : existingItems) {
-            urls.add(item.getUrl());
-        }
+        final Set<String> urls = existingItems.stream()
+                .map(PlayQueueItem::getUrl)
+                .collect(Collectors.toSet());
 
         final List<InfoItem> relatedItems = info.getRelatedItems();
         if (Utils.isNullOrEmpty(relatedItems)) {
             return null;
         }
 
-        if (relatedItems.get(0) instanceof StreamInfoItem
-                && !urls.contains(relatedItems.get(0).getUrl())) {
-            return getAutoQueuedSinglePlayQueue((StreamInfoItem) relatedItems.get(0));
+        if (relatedItems.get(0) instanceof StreamInfoItem firstItem && !urls.contains(firstItem.getUrl())) {
+            return getAutoQueuedSinglePlayQueue(firstItem);
         }
 
-        final List<StreamInfoItem> autoQueueItems = new ArrayList<>();
-        for (final InfoItem item : relatedItems) {
-            if (item instanceof StreamInfoItem && !urls.contains(item.getUrl())) {
-                autoQueueItems.add((StreamInfoItem) item);
-            }
-        }
+        List<StreamInfoItem> autoQueueItems = relatedItems.stream()
+                .filter(item -> item instanceof StreamInfoItem && !urls.contains(item.getUrl()))
+                .map(item -> (StreamInfoItem) item)
+                .collect(Collectors.toList());
 
         Collections.shuffle(autoQueueItems);
-        return autoQueueItems.isEmpty()
-                ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
+        return autoQueueItems.isEmpty() ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -271,9 +266,8 @@ public final class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_POPUP;
         } else if (action.equals(context.getString(R.string.minimize_on_exit_none_key))) {
             return MINIMIZE_ON_EXIT_MODE_NONE;
-        } else {
-            return MINIMIZE_ON_EXIT_MODE_BACKGROUND; // default
         }
+        return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
     }
 
     @AutoplayType
@@ -284,9 +278,8 @@ public final class PlayerHelper {
             return AUTOPLAY_TYPE_ALWAYS;
         } else if (type.equals(context.getString(R.string.autoplay_never_key))) {
             return AUTOPLAY_TYPE_NEVER;
-        } else {
-            return AUTOPLAY_TYPE_WIFI; // default
         }
+        return AUTOPLAY_TYPE_WIFI;
     }
 
     public static boolean isAutoplayAllowedByUser(@NonNull final Context context) {
