@@ -89,8 +89,8 @@ class PoTokenWebView private constructor(
             Log.d(TAG, "downloadAndRunBotguard() called")
         }
 
-        makeJnnPaGoogleapisRequest(
-            "https://jnn-pa.googleapis.com/\$rpc/google.internal.waa.v1.Waa/Create",
+        makeBotguardServiceRequest(
+            "https://www.youtube.com/api/jnn/v1/Create",
             "[ \"$REQUEST_KEY\" ]",
         ) { responseBody ->
             webView.evaluateJavascript(
@@ -129,8 +129,8 @@ class PoTokenWebView private constructor(
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "botguardResponse: $botguardResponse")
         }
-        makeJnnPaGoogleapisRequest(
-            "https://jnn-pa.googleapis.com/\$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        makeBotguardServiceRequest(
+            "https://www.youtube.com/api/jnn/v1/GenerateIT",
             "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]",
         ) { responseBody ->
             if (BuildConfig.DEBUG) {
@@ -252,7 +252,7 @@ class PoTokenWebView private constructor(
      * successful. The request is performed in the background and a disposable is added to
      * [disposables].
      */
-    private fun makeJnnPaGoogleapisRequest(
+    private fun makeBotguardServiceRequest(
         url: String,
         data: String,
         handleResponseBody: (String) -> Unit,
