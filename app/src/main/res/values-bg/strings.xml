@@ -60,7 +60,7 @@
     <string name="show_next_and_similar_title">Покажи „следващ“ и „подобни“</string>
     <string name="show_hold_to_append_title">Покажи съвет „Задръжте за поставяне в опашка“</string>
     <string name="unsupported_url">Непознат URL</string>
-    <string name="content_language_title">Език на съдържанието по подразбиране</string>
+    <string name="content_language_title">Език на съдържание по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
@@ -583,9 +583,7 @@
     <string name="remove_duplicates_title">Премахни повторения?</string>
     <string name="feed_groups_header_title">Група от канали</string>
     <string name="feed_load_error_account_info">Неуспешно зареждане на емисия за \'%s\'.</string>
-    <string name="feed_load_error_terminated">Акаунтът на автора е бил отстранен.
-\nNewPipe няма да може да зареди тази емисия вече.
-\nИскате ли да махнете абонамента от този канал?</string>
+    <string name="feed_load_error_terminated">Профилът на автора е бил отстранен. \nNewPipe няма да може да зареди тази емисия вече. \nИскате ли да махнете абонамента от този канал?</string>
     <string name="feed_update_threshold_option_always_update">Винаги опреснявай</string>
     <string name="feed_load_error">Грешка при зареждане на емисия</string>
     <string name="feed_show_hide_streams">Покажи/Скрий потоци</string>
@@ -694,7 +692,7 @@
     <string name="card">Карта</string>
     <string name="delete_downloaded_files_confirm">Изтрий всички изтеглени файлове от диска?</string>
     <string name="enable_queue_limit_desc">Едно изтегляне ще се изпълнява едновременно</string>
-    <string name="downloads_storage_ask_title">Попитайте къде да изтеглите</string>
+    <string name="downloads_storage_ask_title">Подкана за папка за изтегляне</string>
     <string name="systems_language">Система по подразбиране</string>
     <string name="remove_duplicates">Премахване на дубликати</string>
     <string name="remove_duplicates_message">Искате ли да премахнете всички дублиращи се потоци в този плейлист?</string>
@@ -753,7 +751,7 @@
     <string name="enable_streams_notifications_title">Известия за нови потоци</string>
     <string name="any_network">Всяка мрежа</string>
     <string name="updates_setting_description">Покажи известие за актуализация на приложението, когато е налична нова версия</string>
-    <string name="account_terminated">Акаунтът е прекратен</string>
+    <string name="account_terminated">Профилът е прекратен</string>
     <string name="detail_pinned_comment_view_description">Фиксиран коментар</string>
     <string name="streams_not_yet_supported_removed">Потоци, които все още не се поддържат от програмата за изтегляне, не се показват</string>
     <string name="soundcloud_go_plus_content">Това е песен на SoundCloud Go+, поне във вашата страна, така че не може да бъде предавана поточно или изтеглена от NewPipe.</string>

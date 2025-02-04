@@ -604,7 +604,7 @@
     <string name="export_to">Bura ixrac et</string>
     <string name="import_file_title">Faylı idxal et</string>
     <string name="subscriptions_import_unsuccessful">Abunəlikləri idxal etmək mümkün olmadı</string>
-    <string name="start_accept_privacy_policy">Avropa Ümumi Məlumat Mühafizəsi Qaydasına (GDPR) riayət etmək üçün diqqətinizi NewPipe məxfilik siyasətinə cəlb edirik. Xahiş edirik, diqqətlə oxuyun. \nXəta məlumatın bizə göndərmək üçün qəbul etməlisiniz.</string>
+    <string name="start_accept_privacy_policy">Avropa Ümumi Məlumat Mühafizəsi Qaydasına (GDPR) riayət etmək üçün diqqətinizi NewPipe məxfilik siyasətinə cəlb edirik. Xahiş edirik, diqqətlə oxuyun.\nXəta məlumatın bizə göndərmək üçün qəbul etməlisiniz.</string>
     <string name="overwrite_unrelated_warning">Bu adda fayl artıq mövcuddur</string>
     <string name="download_already_pending">Bu adla gözlənilən bir endirmə var</string>
     <string name="error_path_creation">Təyinat qovluğu yaradıla bilməz</string>
@@ -669,7 +669,7 @@
     <string name="feed_use_dedicated_fetch_method_summary">Bəzi xidmətlərdə mövcuddur, adətən daha sürətli olur, lakin məhdud sayda elementləri və çox vaxt natamam məlumatı qaytara bilər (məsələn, müddət, element növü, canlı status yoxdur)</string>
     <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı. Zəhmət olmasa, fayl menecerini quraşdır və ya endirmə tənzimləmələrində \'%s\'-i qeyri-aktiv etməyə çalış</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
-    <string name="no_appropriate_file_manager_message_android_10">Bu fəaliyyət üçün uyğun fayl meneceri tapılmadı.\nXahiş olunur, Yaddaş Giriş Quruluşuna uyğun fayl meneceri quraşdırın.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Bu fəaliyyət üçün uyğun fayl meneceri tapılmadı.\nXahiş olunur, Yaddaş Giriş Quruluşuna uyğun fayl meneceri quraşdırın</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və linklər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
@@ -743,7 +743,7 @@
     <string name="feed_fetch_channel_tabs">Kanal səhifələrin əldə et</string>
     <string name="metadata_avatars">Avatarlar</string>
     <string name="metadata_subchannel_avatars">Alt kanal avatarları</string>
-    <string name="feed_fetch_channel_tabs_summary">Axın yenilənərkən əldə edilən səhifələr.Kanal sürətli rejim istifadə edərək yenilənirsə, bu seçimin heç bir təsiri yoxdur.</string>
+    <string name="feed_fetch_channel_tabs_summary">Axın yenilənərkən əldə edilən səhifələr. Kanal sürətli rejim istifadə edərək yenilənirsə, bu seçimin heç bir təsiri yoxdur.</string>
     <string name="metadata_uploader_avatars">Yükləyici avatarları</string>
     <string name="metadata_thumbnails">Miniatürlər</string>
     <string name="notification_actions_summary_android13">Aşağıdakı hər bildiriş fəaliyyətin ona toxunub redaktə edin. İlk üç fəaliyyət (oynatma/fasilə, əvvəlki və növbəti) sistem tərəfindən tənzimlənib və dəyişdirilə bilməz.</string>

@@ -839,4 +839,5 @@
 \n
 \nSigur doriți să continuați?</string>
     <string name="import_settings_vulnerable_format">Setările din exportul importat folosesc un format vulnerabil care a fost depreciat de la NewPipe 0.27.0. Asigurați-vă că exportul care este importat este dintr-o sursă de încredere și preferați să utilizați numai exporturi obținute din NewPipe 0.27.0 sau mai nou în viitor. Suportul pentru importul setărilor în acest format vulnerabil va fi în curând eliminat complet, iar versiunile vechi ale NewPipe nu vor mai putea importa setările exporturilor din versiunile noi.</string>
+    <string name="audio_track_type_secondary">secundar</string>
 </resources>

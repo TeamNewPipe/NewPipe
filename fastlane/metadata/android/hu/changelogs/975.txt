@@ -1,0 +1,17 @@
+Új
+• Videón belüli keresésnél mutassa az előképet
+• Kikapcsolt kommentek felismerése
+• A feed-en megjelenő videók megnézettnek jelölése
+• Komment szívecskézés megjelenítése
+
+Fejlesztések
+• Metaadat és tag elrendezés javítása
+• Szolgáltatás szín alkalmazása a felhasználói felületre
+
+Javítások
+• Indexképek javítása a mini lejátszóban
+• Duplázott listaelemnél végtelen bufferelés javítása
+• Lejátszó javítások, mint például az elforgatás és a gyorsabb bezárás
+• ReCAPTCHA immáron nem fut tovább a háttérben
+• Interakció kikapcsolása a feed frissíténél
+• Egyes letöltő összeomlás javítása

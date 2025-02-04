@@ -1,1 +1,1 @@
-Arreglado el fallo por el cuál YouTube no reproducía ningún stream
+Arreglado el fallo por el cuál YouTube no reproducía ningún stream.

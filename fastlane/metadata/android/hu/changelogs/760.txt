@@ -1,7 +1,7 @@
 Változások a 0.17.1-ban
 
 Új
-• Tháj fordítás
+• Thai fordítás
 
 
 Fejlesztések
@@ -32,7 +32,7 @@ Letöltő Javítások #2149
 Fejlesztések
 • Gema string-ek eltávolítása #2295
 • Munkamenet közbeni (auto)elforgatás változtatások #2444
-• Hosszúnyomás menük konzisztensebbek #2368
+• Hosszan nyomandó menük konzisztensebbek #2368
 
 Javítások
 • Egyes felirat nevek nem jelentek meg #2394

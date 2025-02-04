@@ -1,0 +1,13 @@
+Új
+• A megosztás menübe bekerült a "Hozzáadás listához" opció
+• y2u.be és PeerTube rövid linkek támogatása
+
+Fejlesztések
+• A Visszajátszás-Sebesség-Irányítók összébb tömörítése
+• A feed most már kiemeli az új elemeket
+• A "Mutassa a megtekintett videókat" opció megfelelően mentésre kerül
+
+Javítás
+• A YouTube Tetszik/Nem tetszik kinyerés javításra került
+• Automata újrajátszás javítása a háttérből való visszaváltáskor
+És még sok minden más

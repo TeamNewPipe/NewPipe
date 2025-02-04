@@ -324,7 +324,7 @@
     <string name="app_update_notification_channel_name">Alkalmazásfrissítés értesítése</string>
     <string name="file_deleted">Fájl törölve</string>
     <string name="settings_category_updates_title">Frissítések</string>
-    <string name="show_hold_to_append_summary">Tipp megjelenítése, ha megnyomja a hátteret vagy a felugró gombot a videó részleteinél</string>
+    <string name="show_hold_to_append_summary">Tipp megjelenítése a háttér vagy a felugró gomb megnyomásakor a videó „Részletek:\\” lehetőségnél</string>
     <string name="autoplay_title">Automatikus lejátszás</string>
     <string name="settings_category_clear_data_title">Adatok törlése</string>
     <string name="enable_playback_state_lists_summary">Lejátszási pozíciók megjelenítése a listákban</string>
@@ -534,7 +534,7 @@
     <string name="hash_channel_description">Értesítések a videók ujjlenyomatkészítési folyamatához</string>
     <string name="hash_channel_name">Videó ujjlenyomat-készítési értesítése</string>
     <string name="youtube_restricted_mode_enabled_summary">A YouTube biztosít egy „Korlátozott módot”, amely elrejti a lehetséges felnőtteknek szóló tartalmat</string>
-    <string name="youtube_restricted_mode_enabled_title">A YouTube „Korlátozott módjának” bekapcsolása</string>
+    <string name="youtube_restricted_mode_enabled_title">A YouTube „Korlátozott mód\\” bekapcsolása</string>
     <string name="peertube_instance_add_exists">A példány már létezik</string>
     <string name="peertube_instance_add_fail">A példány érvényesítése nem sikerült</string>
     <string name="peertube_instance_add_help">Adja meg a példány webcímét</string>
@@ -658,7 +658,7 @@
     <string name="show_original_time_ago_summary">A szolgáltatásokból származó eredeti szövegek láthatók lesznek a közvetítési elemeken</string>
     <string name="crash_the_player">Lejátszó összeomlasztása</string>
     <string name="show_image_indicators_title">Képjelölők megjelenítése</string>
-    <string name="show_crash_the_player_title">A „lejátszó összeomlasztása” lehetőség megjelenítése</string>
+    <string name="show_crash_the_player_title">A „lejátszó összeomlasztása\\” lehetőség megjelenítése</string>
     <string name="show_crash_the_player_summary">Megjeleníti az összeomlasztási lehetőséget a lejátszó használatakor</string>
     <string name="unhook_checkbox">Hangmagasság megtartása (torzítást okozhat)</string>
     <string name="check_for_updates">Frissítések keresése</string>

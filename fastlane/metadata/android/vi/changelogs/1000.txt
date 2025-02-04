@@ -1,0 +1,13 @@
+Đã cải thiện
+• Làm cho mô tả của danh sách phát có thể nhấp vào để hiển thị nhiều / ít nội dung hơn
+• [PeerTube] Tự động xử lý các liên kết như 'subscribeto.me'
+• Chỉ bắt đầu phát một mục trong màn hình lịch sử
+
+Đã sửa các lỗi trước đó
+• Sửa lỗi khả năng hiển thị nút RSS
+• Khắc phục sự cố xem trước thanh tìm kiếm
+• Sửa danh sách phát một mục không có hình xem trước
+• Sửa lỗi việc thoát khỏi hộp thoại tải xuống trước khi nó xuất hiện
+• Sửa cửa sổ bật lên cho danh sách các mục liên quan khi xếp hàng.
+• Sửa thứ tự trong hộp thoại được thêm vào danh sách phát
+• Đã điều chỉnh bố cục của mục đánh dấu trong danh sách phát
