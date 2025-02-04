@@ -15,6 +15,7 @@ import org.schabi.newpipe.util.DeviceUtils
 object PoTokenProviderImpl : PoTokenProvider {
     val TAG = PoTokenProviderImpl::class.simpleName
     private val webViewSupported by lazy { DeviceUtils.supportsWebView() }
+    private var webViewBadImpl = false // whether the system has a bad WebView implementation
 
     private object WebPoTokenGenLock
     private var webPoTokenVisitorData: String? = null
@@ -22,11 +23,24 @@ object PoTokenProviderImpl : PoTokenProvider {
     private var webPoTokenGenerator: PoTokenGenerator? = null
 
     override fun getWebClientPoToken(videoId: String): PoTokenResult? {
-        if (!webViewSupported) {
+        if (!webViewSupported || webViewBadImpl) {
             return null
         }
 
-        return getWebClientPoToken(videoId = videoId, forceRecreate = false)
+        try {
+            return getWebClientPoToken(videoId = videoId, forceRecreate = false)
+        } catch (e: RuntimeException) {
+            // RxJava's Single wraps exceptions into RuntimeErrors, so we need to unwrap them here
+            when (val cause = e.cause) {
+                is BadWebViewException -> {
+                    Log.e(TAG, "Could not obtain poToken because WebView is broken", e)
+                    webViewBadImpl = true
+                    return null
+                }
+                null -> throw e
+                else -> throw cause // includes PoTokenException
+            }
+        }
     }
 
     /**

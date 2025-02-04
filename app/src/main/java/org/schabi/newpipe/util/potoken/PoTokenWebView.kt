@@ -5,7 +5,9 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
+import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.annotation.MainThread
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -40,6 +42,24 @@ class PoTokenWebView private constructor(
 
         // so that we can run async functions and get back the result
         webView.addJavascriptInterface(this, JS_INTERFACE)
+
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onConsoleMessage(m: ConsoleMessage): Boolean {
+                if (m.message().contains("Uncaught")) {
+                    // There should not be any uncaught errors while executing the code, because
+                    // everything that can fail is guarded by try-catch. Therefore, this likely
+                    // indicates that there was a syntax error in the code, i.e. the WebView only
+                    // supports a really old version of JS.
+
+                    val fmt = "\"${m.message()}\", source: ${m.sourceId()} (${m.lineNumber()})"
+                    Log.e(TAG, "This WebView implementation is broken: $fmt")
+
+                    // This can only happen during initialization, where there is no try-catch
+                    onInitializationErrorCloseAndCancel(BadWebViewException(fmt))
+                }
+                return super.onConsoleMessage(m)
+            }
+        }
     }
 
     /**
@@ -117,7 +137,7 @@ class PoTokenWebView private constructor(
         if (BuildConfig.DEBUG) {
             Log.e(TAG, "Initialization error from JavaScript: $error")
         }
-        onInitializationErrorCloseAndCancel(PoTokenException(error))
+        onInitializationErrorCloseAndCancel(buildExceptionForJsError(error))
     }
 
     /**
@@ -223,7 +243,7 @@ class PoTokenWebView private constructor(
         if (BuildConfig.DEBUG) {
             Log.e(TAG, "obtainPoToken error from JavaScript: $error")
         }
-        popPoTokenEmitter(identifier)?.onError(PoTokenException(error))
+        popPoTokenEmitter(identifier)?.onError(buildExceptionForJsError(error))
     }
 
     /**
