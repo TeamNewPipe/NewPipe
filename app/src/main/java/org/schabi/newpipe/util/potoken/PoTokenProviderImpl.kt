@@ -58,12 +58,6 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator!!.isExpired()
 
                 if (shouldRecreate) {
-                    // close the current webPoTokenGenerator on the main thread
-                    webPoTokenGenerator?.let { Handler(Looper.getMainLooper()).post { it.close() } }
-
-                    // create a new webPoTokenGenerator
-                    webPoTokenGenerator = PoTokenWebView
-                        .newPoTokenGenerator(App.getApp()).blockingGet()
 
                     val innertubeClientRequestInfo = InnertubeClientRequestInfo.ofWebClient()
                     innertubeClientRequestInfo.clientInfo.clientVersion =
@@ -78,6 +72,12 @@ object PoTokenProviderImpl : PoTokenProvider {
                         null,
                         false
                     )
+                    // close the current webPoTokenGenerator on the main thread
+                    webPoTokenGenerator?.let { Handler(Looper.getMainLooper()).post { it.close() } }
+
+                    // create a new webPoTokenGenerator
+                    webPoTokenGenerator = PoTokenWebView
+                        .newPoTokenGenerator(App.getApp()).blockingGet()
 
                     // The streaming poToken needs to be generated exactly once before generating
                     // any other (player) tokens.
