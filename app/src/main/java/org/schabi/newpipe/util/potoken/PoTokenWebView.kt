@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util.potoken
 
 import android.content.Context
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -10,6 +9,8 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.annotation.MainThread
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewFeature
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
@@ -31,14 +32,14 @@ class PoTokenWebView private constructor(
 
     //region Initialization
     init {
-        val webviewSettings = webView.settings
+        val webViewSettings = webView.settings
         //noinspection SetJavaScriptEnabled we want to use JavaScript!
-        webviewSettings.javaScriptEnabled = true
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            webviewSettings.safeBrowsingEnabled = false
+        webViewSettings.javaScriptEnabled = true
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
+            WebSettingsCompat.setSafeBrowsingEnabled(webViewSettings, false)
         }
-        webviewSettings.userAgentString = USER_AGENT
-        webviewSettings.blockNetworkLoads = true // the WebView does not need internet access
+        webViewSettings.userAgentString = USER_AGENT
+        webViewSettings.blockNetworkLoads = true // the WebView does not need internet access
 
         // so that we can run async functions and get back the result
         webView.addJavascriptInterface(this, JS_INTERFACE)
