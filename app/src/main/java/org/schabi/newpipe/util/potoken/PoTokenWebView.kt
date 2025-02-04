@@ -98,7 +98,7 @@ class PoTokenWebView private constructor(
                     try {
                         data = JSON.parse(String.raw`$responseBody`)
                         result = await runBotGuard(data)
-                        globalThis.webPoSignalOutput = result.webPoSignalOutput
+                        this.webPoSignalOutput = result.webPoSignalOutput
                         $JS_INTERFACE.onRunBotguardResult(result.botguardResponse)
                     } catch (error) {
                         $JS_INTERFACE.onJsInitializationError(error.toString())
@@ -139,7 +139,7 @@ class PoTokenWebView private constructor(
             webView.evaluateJavascript(
                 """(async function() {
                     try {
-                        globalThis.integrityToken = JSON.parse(String.raw`$responseBody`)
+                        this.integrityToken = JSON.parse(String.raw`$responseBody`)
                         $JS_INTERFACE.onInitializationFinished(integrityToken[1])
                     } catch (error) {
                         $JS_INTERFACE.onJsInitializationError(error.toString())

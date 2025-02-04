@@ -177,7 +177,7 @@ async function runBotGuard(rawChallengeData) {
 
   const botguard = await BotGuardClient.create({
     globalName: challengeData.globalName,
-    globalObj: globalThis,
+    globalObj: this,
     program: challengeData.program
   });
 
