@@ -177,44 +177,6 @@ class PoTokenWebView private constructor(
     }
     //endregion
 
-    //region Handling multiple emitters
-    /**
-     * Adds the ([identifier], [emitter]) pair to the [poTokenEmitters] list. This makes it so that
-     * multiple poToken requests can be generated invparallel, and the results will be notified to
-     * the right emitters.
-     */
-    private fun addPoTokenEmitter(identifier: String, emitter: SingleEmitter<String>) {
-        synchronized(poTokenEmitters) {
-            poTokenEmitters.add(Pair(identifier, emitter))
-        }
-    }
-
-    /**
-     * Extracts and removes from the [poTokenEmitters] list a [SingleEmitter] based on its
-     * [identifier]. The emitter is supposed to be used immediately after to either signal a success
-     * or an error.
-     */
-    private fun popPoTokenEmitter(identifier: String): SingleEmitter<String>? {
-        return synchronized(poTokenEmitters) {
-            poTokenEmitters.indexOfFirst { it.first == identifier }.takeIf { it >= 0 }?.let {
-                poTokenEmitters.removeAt(it).second
-            }
-        }
-    }
-
-    /**
-     * Clears [poTokenEmitters] and returns its previous contents. The emitters are supposed to be
-     * used immediately after to either signal a success or an error.
-     */
-    private fun popAllPoTokenEmitters(): List<Pair<String, SingleEmitter<String>>> {
-        return synchronized(poTokenEmitters) {
-            val result = poTokenEmitters.toList()
-            poTokenEmitters.clear()
-            result
-        }
-    }
-    //endregion
-
     //region Obtaining poTokens
     override fun generatePoToken(identifier: String): Single<String> =
         Single.create { emitter ->
@@ -278,6 +240,44 @@ class PoTokenWebView private constructor(
 
     override fun isExpired(): Boolean {
         return Instant.now().isAfter(expirationInstant)
+    }
+    //endregion
+
+    //region Handling multiple emitters
+    /**
+     * Adds the ([identifier], [emitter]) pair to the [poTokenEmitters] list. This makes it so that
+     * multiple poToken requests can be generated invparallel, and the results will be notified to
+     * the right emitters.
+     */
+    private fun addPoTokenEmitter(identifier: String, emitter: SingleEmitter<String>) {
+        synchronized(poTokenEmitters) {
+            poTokenEmitters.add(Pair(identifier, emitter))
+        }
+    }
+
+    /**
+     * Extracts and removes from the [poTokenEmitters] list a [SingleEmitter] based on its
+     * [identifier]. The emitter is supposed to be used immediately after to either signal a success
+     * or an error.
+     */
+    private fun popPoTokenEmitter(identifier: String): SingleEmitter<String>? {
+        return synchronized(poTokenEmitters) {
+            poTokenEmitters.indexOfFirst { it.first == identifier }.takeIf { it >= 0 }?.let {
+                poTokenEmitters.removeAt(it).second
+            }
+        }
+    }
+
+    /**
+     * Clears [poTokenEmitters] and returns its previous contents. The emitters are supposed to be
+     * used immediately after to either signal a success or an error.
+     */
+    private fun popAllPoTokenEmitters(): List<Pair<String, SingleEmitter<String>>> {
+        return synchronized(poTokenEmitters) {
+            val result = poTokenEmitters.toList()
+            poTokenEmitters.clear()
+            result
+        }
     }
     //endregion
 
