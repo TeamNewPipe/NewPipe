@@ -1,0 +1,4 @@
+Đã sửa lỗi YouTube không phát bất kỳ luồng nào.
+
+Bản phát hành này chỉ giải quyết lỗi cấp bách nhất khiến video YouTube không tải thông tin chi tiết về video.
+Chúng tôi biết có những vấn đề khác và chúng tôi sẽ sớm đưa ra một bản phát hành riêng để giải quyết những vấn đề đó.
