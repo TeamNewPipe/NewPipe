@@ -1,0 +1,6 @@
+Verbessert
+• Ändern der Player-Benachrichtigungseinstellungen ist unter Android 13+ immer möglich
+
+Behoben
+• Beim Exportieren von Datenbanken/Abonnements wurde eine bereits vorhandene Datei nicht verkürzt, was möglicherweise zu einem beschädigten Export führte
+• Der Player wurde beim Anklicken eines Zeitstempel von Anfang an fortgesetzt

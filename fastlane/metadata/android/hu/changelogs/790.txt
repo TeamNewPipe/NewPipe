@@ -9,6 +9,6 @@ Javítások
 • [SoundCloud] client_id kivonása fixálva #2745
 
 Fejlesztés
-• Hiányzó összefüggések poótlása melyek a NewPipeExtractor-ból jönnek a NewPipe rendszerbe #2535
+• Hiányzó összefüggések pótlása melyek a NewPipeExtractorból jönnek a NewPipe rendszerbe #2535
 • Migráció AndroidX-be #2685
 • Frissítés ExoPlayer 2.10.6 #2697, #2736

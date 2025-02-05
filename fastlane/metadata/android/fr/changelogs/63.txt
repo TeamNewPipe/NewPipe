@@ -5,4 +5,4 @@
 - Ajout d'un popup RGPD #1420
 
 ### Corrections
-- Téléchargeur : Correction d'un plantage lors du chargement de téléchargements inachevés de fichiers .giga #1407
+- Téléchargeur : Correction d'un plantage lors du chargement de téléchargements inachevés de fichiers .giga #1407

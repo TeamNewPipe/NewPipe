@@ -1,0 +1,12 @@
+Új
+• A progresszív HTTP-n kívül más átadó támogatása: gyorsabb visszajátszó betöltés idő, javítások PeerTube-hoz és SoundCloud-hoz, nemrég befejezett élő adások visszajátszása
+• Távoli listához hozzáadandó helyi lista gomb hozzáadása
+• Előkép az Android 10+ megosztó felületen
+
+Fejlesztések
+• Visszajátszási paraméter dialógus fejlesztése
+• A felirakozás importálás/exportálás gomb berakása a három-pontos menübe
+
+Javítások
+• Teljesen megnézett videók eltávolítása a feed-ből javítása
+• megosztási menü téma fixálása, és "listához adás" elem hozzáadása

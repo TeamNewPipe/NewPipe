@@ -1,0 +1,7 @@
+Kellő mennyiségű elemet töltsön be a lista elejére, hogy mind a Tv és a tablet képernyőt betelítse
+Véletlenszerű kifagyások javítása listák görgetése közben
+A lejátszó gyorskeresés felülete kerüljön a rendszer felülete alá
+A többablakos nézetnél kivágós üzemmődban fut, ezzel kijavítva, hogy egyes telefonokon rossz helyre helyeződik át a lejátszó
+A compileSdk növelése 30-ról 31-re
+Hiba jelentő mappa frissítése
+A lejátszó egyes kódjainak refaktorálása

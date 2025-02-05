@@ -825,4 +825,5 @@
 \nWilt u dit inschakelen?</string>
     <string name="reset_settings_title">Instellingen resetten</string>
     <string name="import_settings_vulnerable_format">De instellingen in de export die wordt geïmporteerd, gebruiken een kwetsbaar formaat dat verouderd is sinds NewPipe 0.27.0. Zorg ervoor dat de export die wordt geïmporteerd afkomstig is van een vertrouwde bron, en geef er de voorkeur aan om in de toekomst alleen exporten te gebruiken die zijn verkregen van NewPipe 0.27.0 of nieuwer. Ondersteuning voor het importeren van instellingen in dit kwetsbare formaat zal binnenkort volledig worden verwijderd, en oude versies van NewPipe zullen dan geen export­instellingen meer uit nieuwe versies kunnen importeren.</string>
+    <string name="audio_track_type_secondary">secundair</string>
 </resources>

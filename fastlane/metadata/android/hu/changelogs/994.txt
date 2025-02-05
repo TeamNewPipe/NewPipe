@@ -1,0 +1,15 @@
+Új
+• Több hang/nyelv sáv támogatása
+• A hangerő és fényerő bármely képernyőszélen állítható
+• A fő fülek a képernyő alján is megjeleníthetőek
+
+Fejlesztés
+• [Bandcamp] Paywall mögötti számok kezelése
+
+Javítások
+• [YouTube] 203 HTTP videó hiba javítása
+• Lejátszó befeketedésének javítása a lista nézetből váltáskor
+• Lejátszó szolgáltatás memória szivárgás
+• [PeerTube] Feltöltő és alcsatorna avatárok felcserélésre kerültek
+
+és sok más

@@ -1,0 +1,8 @@
+• Fejezetek támogatása a lejátszó vezérlőknél
+• [PeerTube] Sepia keresés hozzáadása
+• Újra hozzáadva a megosztás gomb a részletekhez, és a fül felülethez került a leírás maga
+• Ha a fényerő gesztus ki van kapcsolva, a fényerő helyreállítás nem lehetséges
+• Új listaelemként megjelenik a Kodi-ban való lejátszás
+• Összeomlás javítása egyes eszközöknél ahol nincs megjelölve az alapértelmezett böngésző, megosztási panel fejlesztése
+• Lejátszás/szüneteltetés funkció a fizikai billentyűzet szóközével
+• [media.ccc.de] Számtalan javítás és fejlesztés

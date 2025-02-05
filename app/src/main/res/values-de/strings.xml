@@ -135,7 +135,7 @@
     <string name="action_history">Verlauf</string>
     <string name="subscription_change_failed">Abonnement konnte nicht geändert werden</string>
     <string name="subscription_update_failed">Abonnement konnte nicht aktualisiert werden</string>
-    <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z. B. Telefonaten) Wiedergabe fortsetzen</string>
+    <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z. B. Telefonaten) Wiedergabe fortsetzen</string>
     <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
     <string name="notification_channel_description">Benachrichtigungen für den NewPipe-Player</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
@@ -319,7 +319,7 @@
 \nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
-    <string name="minimize_on_exit_title">Beim App-wechsel minimieren</string>
+    <string name="minimize_on_exit_title">Beim App-Wechsel minimieren</string>
     <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Für die Wiedergabe im Hintergrund minimieren</string>
@@ -409,7 +409,7 @@
     <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
     <string name="confirm_prompt">Möchtest du deinen Downloadverlauf oder alle heruntergeladenen Dateien löschen\?</string>
     <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
-    <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
+    <string name="enable_queue_limit_desc">Ein Download wird gleichzeitig ausgeführt</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Downloadziel abfragen</string>
@@ -497,7 +497,7 @@
     <string name="feed_oldest_subscription_update">Feed zuletzt aktualisiert: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abrufen wenn verfügbar</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
@@ -527,7 +527,7 @@
     <string name="remove_watched_popup_title">Gesehene Videos entfernen\?</string>
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
-    <string name="youtube_restricted_mode_enabled_title">Aktivieren des „Eingeschränkten Modus“ von YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTubes „Eingeschränkten Modus“ aktivieren</string>
     <string name="detail_sub_channel_thumbnail_view_description">Profilbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
@@ -659,7 +659,7 @@
     <string name="checking_updates_toast">Suche nach Aktualisierungen …</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
     <string name="feed_new_items">Neue Feed-Elemente</string>
-    <string name="show_crash_the_player_title">\"Player abstürzen lassen\" anzeigen</string>
+    <string name="show_crash_the_player_title">„Player abstürzen lassen“ anzeigen</string>
     <string name="crash_the_player">Player abstürzen lassen</string>
     <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
     <string name="error_report_channel_name">Fehlerbericht-Benachrichtigung</string>
@@ -719,7 +719,7 @@
     <string name="card">Karte</string>
     <string name="playlist_add_stream_success_duplicate">Duplikat %d mal hinzugefügt</string>
     <string name="duplicate_in_playlist">Die ausgegrauten Wiedergabelisten enthalten dieses Element bereits.</string>
-    <string name="ignore_hardware_media_buttons_summary">Nützlich, wenn z. B. ein Headset mit defekten physischen Tasten verwendet wird</string>
+    <string name="ignore_hardware_media_buttons_summary">Nützlich, wenn z. B. ein Headset mit defekten physischen Tasten verwendet wird</string>
     <string name="ignore_hardware_media_buttons_title">Ereignisse der Hardware-Medientasten ignorieren</string>
     <string name="remove_duplicates">Duplikate entfernen</string>
     <string name="remove_duplicates_title">Duplikate entfernen\?</string>
