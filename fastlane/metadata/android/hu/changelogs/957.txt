@@ -1,0 +1,10 @@
+• Az egyes sorba állítási műveletek egyesítése
+• Lejátszó bezárása kétujjas gesztussal
+• reCAPTCHA sütik törlésének engedélyezése
+• Opció, hogy az értesítések ne színeződjenek
+• Videó leírás javítása annak érdekében hogy ne buffereljen végtelenségig, bugos viselkedés NewPipe megosztásnál, más egyéb ellentmondás javítása
+• Youtube videók felgyorsítása, és korhatáros videók fixálása
+• Csévéléskori összeomlás fixálása
+• Ne rendezze újra a listát az indexkép mozgatásával
+• Emlékezzen a kiugró lejátszó beállításokra
+• Szantáli nyelv hozzáadása

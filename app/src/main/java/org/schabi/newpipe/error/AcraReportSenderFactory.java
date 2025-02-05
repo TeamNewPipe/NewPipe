@@ -9,7 +9,6 @@ import com.google.auto.service.AutoService;
 import org.acra.config.CoreConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.App;
 
 /*
  * Created by Christian Schabesberger on 13.09.16.

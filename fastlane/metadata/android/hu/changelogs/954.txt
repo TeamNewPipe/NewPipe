@@ -1,9 +1,9 @@
 • Új app workflow: videók lejátszása a részletes oldalon, és lehúzva minimalizálja a lejátszót
-• MediaStílus értesítések: MediaStyle notifications: customizable actions in notifications, performance improvements
-• basic resizing when using NewPipe as desktop app
+• MediaStílus értesítések: testre szabható műveletek az értesítésekben, teljesítmény javítások
+• Alapvető átméretezés amikor a NewPipe mint asztali alkalmazás fut
 
-• show dialog with open options in case of an unsupported URL toast
-• Improve search suggestion experience when remote ones can't be fetched
-• Increased default video quality to 720p60 (in-app player) and 480p (pop-up player)
+• Ablak szabad beállításokkal ha esetleg nem támogatott URL toast üzenet jelenik meg
+• Keresési ajánlatok feljavítása amikor a távoliak nem elérhetőek
+• Alap lejátszó minőség megemelve 720p60-re (belső lejátszó) és 480p-re (felugró lejátszó)
 
-• tons of bug fixes and more
+• Egy tonna hibajavítás és egyéb

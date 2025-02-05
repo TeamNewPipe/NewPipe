@@ -1,8 +1,8 @@
 ### Cải thiện
-- Nhập/xuất cài đặt #1333
-- Giảm thiểu overdraw (cải thiện hiệu năng) #1371
-- Một chút cải thiện code #1375
-- Thêm thông tin về GDPR #1420
+- Nhập/xuất cài đặt (yêu cầu #1333)
+- Giảm thiểu overdraw (cải thiện hiệu năng tổng quan) (vấn đề #1371)
+- Cải thiện code một chút (vấn đề #1375)
+- Thêm thông tin về GDPR (yêu cầu #1420)
 
 ### Sửa lỗi
-- Trình tải: Sửa lỗi crash khi nạp các file .giga chưa tải về xong
+- Trình tải: Sửa lỗi crash khi nạp các file .giga chưa xong việc tải về
