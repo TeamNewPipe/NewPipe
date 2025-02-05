@@ -89,7 +89,7 @@
     <string name="duration_live">Otse</string>
     <string name="downloads">Allalaadimised</string>
     <string name="downloads_title">Allalaadimised</string>
-    <string name="error_report_title">Vea teatamine</string>
+    <string name="error_report_title">Veateade</string>
     <string name="all">Kõik</string>
     <string name="disabled">Keelatud</string>
     <string name="clear">Kustuta</string>
@@ -180,7 +180,7 @@
     <string name="dismiss">Loobu</string>
     <string name="rename">Muuda nime</string>
     <string name="ok">OK</string>
-    <string name="msg_name">Faili nimi</string>
+    <string name="msg_name">Failinimi</string>
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
     <string name="msg_running">NewPipe allalaadimine</string>
@@ -369,7 +369,7 @@
     <string name="error_file_creation">Faili ei saa luua</string>
     <string name="error_ssl_exception">Turvalist ühendust ei suudetud luua</string>
     <string name="error_unknown_host">Serverit ei leitud</string>
-    <string name="error_connect_host">Serveriga ei saadud ühendust</string>
+    <string name="error_connect_host">Serveriga ei saa ühendust</string>
     <string name="error_http_no_content">Server ei saada andmeid</string>
     <string name="error_http_unsupported_range">Server ei toeta mitmelõimelisi allalaadimisi. Proovi uuesti kasutades @string/msg_threads = 1</string>
     <string name="error_http_not_found">Ei leitud</string>
@@ -453,7 +453,7 @@
         <item quantity="other">%s kuulajat</item>
     </plurals>
     <string name="hash_channel_description">Teavitused video räsimise edenemise kohta</string>
-    <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“</string>
+    <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“\\</string>
     <string name="missing_file">Faili asukoht on muutunud või on ta kustutatud</string>
     <string name="watch_history_states_deleted">Taasesituste asukohad on kustutatud</string>
     <string name="delete_playback_states_alert">Kas kustutame kõik taasesituste asukohad\?</string>
@@ -656,7 +656,7 @@
     <string name="check_for_updates">Kontrolli uuendusi</string>
     <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
     <string name="feed_new_items">Uued andmevoo kirjed</string>
-    <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
+    <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest\\</string>
     <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
     <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks toksa</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>

@@ -670,7 +670,7 @@
     <string name="feed_new_items">Nové položky informačného kanála</string>
     <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov.
 \nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania</string>
-    <string name="show_crash_the_player_title">Zobraziť „zlyhať prehrávač“</string>
+    <string name="show_crash_the_player_title">Zobraziť „Zhodiť prehrávač“</string>
     <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
     <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
 \nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework</string>

@@ -1,0 +1,6 @@
+İyileştirildi
+• Android 13+'ta her zaman oynatıcı bildirim tercihlerini değiştirmeye izin ver
+
+Düzeltildi
+• Veritabanı/abonelikleri dışa aktarmak çoktan var olan bir dosyayı kısaltmayıp, muhtemelen bozuk bir dışa aktarıma sebep olması düzeltildi
+• Zaman damgasına tıklandığında oynatıcının başlangıçtan devam etmesi düzeltildi

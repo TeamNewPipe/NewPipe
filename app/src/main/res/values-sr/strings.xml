@@ -711,7 +711,7 @@
     <string name="progressive_load_interval_title">Величина интервала учитавања репродукције</string>
     <string name="error_report_channel_name">Обавештење о извештају о грешци</string>
     <string name="feed_new_items">Нове ставке фида</string>
-    <string name="ignore_hardware_media_buttons_title">Игнориши догађаје хардверског дугмета за медије</string>
+    <string name="ignore_hardware_media_buttons_title">Занемари догађаје хардверског дугмета за медије</string>
     <string name="duplicate_in_playlist">Плејлисте које су затамњене већ садрже ову ставку.</string>
     <string name="leak_canary_not_available">LeakCanary није доступан</string>
     <string name="app_update_available_notification_text">Додирните да бисте преузели %s</string>

@@ -1,0 +1,8 @@
+• Külső meghajtóról való telepítés engedélyezése
+• [Bandcamp] A legelső három komment megjelenítése a zenén
+• A 'letöltés megkezdődött' toast értesítő csak valóban a letöltéskor jelenik meg
+• Ha nincs engedélyezve a süti tárolás, ne tárolja a reCaptcha sütiket se
+• [Lejátszó] Cache teljesítmény javítása
+• [Lejátszó] A lejátszó most már automatikusan elindul
+• Korábbi Snackbar-ok elutasítása a letöltések törlésénél
+• A listában nem szereplő elem törlésének javítása

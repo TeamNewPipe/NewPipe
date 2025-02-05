@@ -96,8 +96,8 @@
     <string name="show_higher_resolutions_title">Mostra risoluzioni più elevate</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
-    <string name="popup_remember_size_pos_title">Ricorda proprietà lettore popup</string>
-    <string name="popup_remember_size_pos_summary">Ricorda dimensione e posizione del lettore popup</string>
+    <string name="popup_remember_size_pos_title">Ricorda proprietà del popup</string>
+    <string name="popup_remember_size_pos_summary">Ricorda ultima dimensione e posizione del popup</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
     <string name="show_search_suggestions_summary">Scegli suggerimenti di ricerca</string>
     <string name="clear">Cancella</string>
@@ -139,7 +139,7 @@
     <string name="settings_category_player_title">Lettore multimediale</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Cronologia e cache</string>
-    <string name="undo">Annulla</string>
+    <string name="undo">Rifai</string>
     <string name="notification_channel_name">Notifica NewPipe</string>
     <string name="notification_channel_description">Notifiche per il lettore multimediale di NewPipe</string>
     <string name="search_no_results">Nessun risultato</string>
@@ -839,4 +839,5 @@
     <string name="auto_update_check_description">NewPipe può cercare automaticamente nuove versioni di tanto in tanto e avvisarti quando sono disponibili.
 \nVuoi attivarlo?</string>
     <string name="import_settings_vulnerable_format">Le impostazioni nell\'export che viene importato usano un formato vulnerabile che è stato deprecato dalla versione 0.27.0 di NewPipe. Assicuratevi che l\'export importato venga da una fonte fidata, sarebbe preferibile usare solo exports ottenuti da NewPipe 0.27.0 o superiori, nel futuro. Il supporto all\'importazione di Impostazioni in questo formato vulnerabile sarà presto rimosso completamente, da quel momento le versioni di NewPipe più vecchie non saranno più in grado di importare impostazioni tramite export di versioni più recenti.</string>
+    <string name="audio_track_type_secondary">secondaria</string>
 </resources>

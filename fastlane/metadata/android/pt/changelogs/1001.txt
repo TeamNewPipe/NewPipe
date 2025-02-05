@@ -1,0 +1,6 @@
+Melhorias
+• Sempre permitir mudanças de preferências de notificações do player no Android 13+
+
+Corrigidos
+• Corrigido exportar banco de dados/inscrições não deve truncado a um arquivo existente recentemente, possivelmente que se levou a exportação sendo corrompido.
+• Corrigido player por resumir do começo quando clicar numa estampa de tempo.

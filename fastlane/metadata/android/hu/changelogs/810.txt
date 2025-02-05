@@ -1,5 +1,5 @@
 Új
-• indexkép mutatása a lezárt képernyőn ha a háttérben fut
+• Bélyegkép mutatása a lezárt képernyőn ha a háttérben fut
 
 Fejlesztések
 • Háttér hosszú nyomásánál vagy felugró gombnál hozzáadja a helyi lejátszólistát

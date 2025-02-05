@@ -12,11 +12,11 @@
     <string name="share_dialog_title">Konigi kun</string>
     <string name="use_external_video_player_title">Uzi eksteran filmetoludilon</string>
     <string name="use_external_audio_player_title">Uzi eksteran sonludilon</string>
-    <string name="default_resolution_title">Defaŭlta rezolucio</string>
+    <string name="default_resolution_title">Preferata distingumo</string>
     <string name="play_with_kodi_title">Ludi per Kodi</string>
     <string name="show_play_with_kodi_title">Montri \"Ludi per Kodi\"-opcion</string>
     <string name="play_audio">Sono</string>
-    <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
+    <string name="default_audio_format_title">Preferata sona dosierformo</string>
     <string name="theme_title">Etoso</string>
     <string name="dark_theme_title">Malhela</string>
     <string name="light_theme_title">Hela</string>
@@ -24,7 +24,7 @@
     <string name="download_dialog_title">Elŝuti</string>
     <string name="unsupported_url">Ligilo ne subtenita</string>
     <string name="content_language_title">Preferata enhavlingvo</string>
-    <string name="settings_category_video_audio_title">Filmeto kaj sono</string>
+    <string name="settings_category_video_audio_title">Filmo kaj sono</string>
     <string name="settings_category_appearance_title">Apero</string>
     <string name="background_player_playing_toast">Ludanta fone</string>
     <string name="general_error">Eraro</string>
@@ -32,17 +32,17 @@
     <string name="content_not_available">Enhavo malhavebla</string>
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
-    <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC\?</string>
-    <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
-    <string name="show_next_and_similar_title">Montri \'Sekvajn\' kaj \'Similajn\' videojn</string>
+    <string name="no_player_found">Neniu ludilo de elsendoj trovita. Ĉu instalu la programon VLC?</string>
+    <string name="kore_not_found">Ĉu instalu la mankatan programon Kore?</string>
+    <string name="show_next_and_similar_title">Montri ‹Sekvajn› kaj ‹Similajn› filmetojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
     <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>
     <string name="download_path_title">Elŝutujo por filmetoj</string>
     <string name="download_path_audio_title">Elŝutujo por aŭdio</string>
-    <string name="show_play_with_kodi_summary">Montri opcion por ludi filmeton per la aplikaĵo Kodi</string>
-    <string name="download_path_summary">Elŝutitaj filmetoj estas konservitaj tie</string>
+    <string name="show_play_with_kodi_summary">Montri opcion por ludi filmeton per la programo Kodi</string>
+    <string name="download_path_summary">Elŝutitaj filmetoj konserviĝas ĉi tie</string>
     <string name="download_path_audio_summary">Dosierujo por konservi elŝutitajn muzikojn</string>
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn filmetojn</string>
     <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitajn muzikojn</string>
@@ -57,7 +57,7 @@
     <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci.</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestran modon</string>
-    <string name="use_external_video_player_summary">Forigas aŭdon ĉe kelkaj rezolucioj</string>
+    <string name="use_external_video_player_summary">Forigas aŭdon ĉe kelkaj distingumoj</string>
     <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
     <string name="channel_unsubscribed">Kanalo malabonita</string>
@@ -71,10 +71,10 @@
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>
-    <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestra ludilo</string>
-    <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
-    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
-    <string name="default_video_format_title">Defaŭlta filmetdosierformo</string>
+    <string name="default_popup_resolution_title">Komenca distingumo de la ŝprucfenestra ludilo</string>
+    <string name="show_higher_resolutions_title">Montri pli altajn distingumojn</string>
+    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi filmetojn je distingumoj 2K / 4K</string>
+    <string name="default_video_format_title">Preferata filma dosierformo</string>
     <string name="popup_remember_size_pos_title">Memori ecojn de ŝprucfenestro</string>
     <string name="popup_remember_size_pos_summary">Memori lastan grandon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapidan malekzaktan serĉon</string>
@@ -100,7 +100,7 @@
     <string name="clear">Forviŝi</string>
     <string name="show_search_suggestions_title">Serĉi sugestojn</string>
     <string name="show_search_suggestions_summary">Montri sugestojn kiam serĉanto</string>
-    <string name="best_resolution">Plej bona rezolucio</string>
+    <string name="best_resolution">Plej bona distingumo</string>
     <string name="app_description">Libera malpeza torentado ĉe Android.</string>
     <string name="settings_category_downloads_title">Elŝuti</string>
     <string name="charset_letters_and_digits">Leteroj kaj ciferoj</string>
@@ -110,7 +110,7 @@
     <string name="enable_search_history_title">Serĉa historio</string>
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
     <string name="enable_watch_history_title">Rigardu historion</string>
-    <string name="enable_watch_history_summary">Spuri la viditajn filmetojn</string>
+    <string name="enable_watch_history_summary">Protokoli spektitajn filmetojn</string>
     <string name="notification_channel_name">Sciigo de NewPipe</string>
     <string name="notification_channel_description">Sciigoj por ludilo de NewPipe</string>
     <string name="settings_category_player_title">Ludilo</string>
@@ -121,7 +121,7 @@
     <string name="top_50">Supro 50</string>
     <string name="new_and_hot">Nova kaj varma</string>
     <string name="show_hold_to_append_title">Montri la indiko « Tenu por aldoni »</string>
-    <string name="show_hold_to_append_summary">Montri indikon premante la fona aŭ la ŝprucfenestra butono en filmeta \"Detaloj:\"</string>
+    <string name="show_hold_to_append_summary">Montri indikon premante la fonon aŭ la ŝprucfenestran butonon en filmeta «Detaloj:»</string>
     <string name="play_all">Ludi ĉiujn</string>
     <string name="player_stream_failure">Ne povis ludi tion torenton</string>
     <string name="player_unrecoverable_failure">Neatendebla eraro de ludilo okazis</string>
@@ -138,7 +138,7 @@
     <string name="switch_to_main">Ŝangi al Ĉefa</string>
     <string name="always">Ĉiam</string>
     <string name="just_once">Nur unufoje</string>
-    <string name="video_streams_empty">Neniuj filmeta torentoj trovitaj</string>
+    <string name="video_streams_empty">Neniu filmofluo trovita</string>
     <string name="audio_streams_empty">Neniuj sonaj torentoj trovis</string>
     <string name="popup_player">Ŝprucfenestra ludilo</string>
     <string name="import_data_title">Importi la datumbazon</string>
@@ -191,7 +191,7 @@
     <string name="clear_search_history_summary">Forviŝi la serĉajn ŝlosilvortojn</string>
     <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo \?</string>
     <string name="search_history_deleted">Historio de serĉo forviŝita</string>
-    <string name="limit_mobile_data_usage_title">Limigi rezolucio kiam uzanta moveblan datumon</string>
+    <string name="limit_mobile_data_usage_title">Limigi distingumon uzante telefonan retkonekton</string>
     <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestra ludilo</string>
     <string name="channels">Kanaloj</string>
     <string name="playlists">Ludlistoj</string>
@@ -258,8 +258,8 @@
     <string name="msg_copied">Enpoŝigita</string>
     <string name="no_available_dir">Bonvolu difini elŝutan dosierujon poste en agordoj</string>
     <plurals name="views">
-        <item quantity="one">%s spektaĵo</item>
-        <item quantity="other">%s spektaĵoj</item>
+        <item quantity="one">%s spekto</item>
+        <item quantity="other">%s spektoj</item>
     </plurals>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
@@ -286,7 +286,7 @@
         <item quantity="one">%s abonanto</item>
         <item quantity="other">%s abonantoj</item>
     </plurals>
-    <string name="no_views">Neniuj spektaĵoj</string>
+    <string name="no_views">Neniuj spektoj</string>
     <string name="no_videos">Neniu filmeto</string>
     <string name="delete_item_search_history">Ĉu vi volas forviŝi tion eron el la historio de serĉo \?</string>
     <string name="main_page_content">Enhavo de la ĉefpaĝo</string>
@@ -305,7 +305,7 @@
     <string name="drawer_open">Malfermi la tirkeston</string>
     <string name="drawer_close">Fermi la tirtekston</string>
     <string name="external_player_unsupported_link_type">Ekstaraj ludantoj ne suportas tiajn ligilojn</string>
-    <string name="video_player">Filmetoludilo</string>
+    <string name="video_player">Filmludilo</string>
     <string name="background_player">Fona ludilo</string>
     <string name="preferred_player_fetcher_notification_title">Akiranta informoj…</string>
     <string name="preferred_player_fetcher_notification_message">Ŝarĝante petita enhavo</string>
@@ -347,7 +347,7 @@
     <string name="playback_pitch">Ludkampo</string>
     <string name="unhook_checkbox">Malligi (povas kaŭzi distordon)</string>
     <string name="preferred_open_action_settings_title">Preferita \'malfermi\' ago</string>
-    <string name="preferred_open_action_settings_summary">Defaŭlta ago malfermante enhavo — %s</string>
+    <string name="preferred_open_action_settings_summary">Implicita ago malfermante vidaŭdaĵon — %s</string>
     <string name="caption_setting_title">Subtitoloj</string>
     <string name="caption_setting_description">Modifi la dimension de la teksto kaj la fonajn stilojn de la subtitoloj de la ludilo. Ĝi bezonas restarto de la apo por efektiviĝi.</string>
     <string name="one_item_deleted">1 ero forviŝita.</string>
@@ -369,9 +369,9 @@
     <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>
     <string name="playback_step">Paŝo</string>
     <string name="playback_reset">Restarigi</string>
-    <string name="saved_tabs_invalid_json">Ne povis legi konservitajn ongletoj, tial uzante la defaŭltajn</string>
-    <string name="restore_defaults">Restaŭri la defaŭltojn</string>
-    <string name="restore_defaults_confirmation">Ĉu vi volas restaŭri la defaŭltojn valorojn\?</string>
+    <string name="saved_tabs_invalid_json">Ne povis legi agorditajn langetojn, do uzos la implicitajn</string>
+    <string name="restore_defaults">Restarigi implicitajn valorojn</string>
+    <string name="restore_defaults_confirmation">Ĉu vi volas restarigi la implicitajn valorojn?</string>
     <string name="subscribers_count_not_available">Abonantoj kalkulo malhaveblas</string>
     <string name="main_page_content_summary">Kioj ongletoj estas montritaj en la ĉefpaĝo</string>
     <string name="updates_setting_title">Ĝisdatigoj</string>
@@ -410,7 +410,7 @@
     <string name="error_progress_lost">Progreso perdita, ĉar la dosiero estis forviŝita</string>
     <string name="error_timeout">Eltempiĝo de Konekto</string>
     <string name="drawer_header_description">Ŝangi la servon, nuntempe elektita:</string>
-    <string name="default_kiosk_page_summary">Defaŭlta Kiosko</string>
+    <string name="default_kiosk_page_summary">Implicita Kiosko</string>
     <string name="no_one_watching">Neniu spektas</string>
     <plurals name="watching">
         <item quantity="one">%s spektanto</item>
@@ -443,7 +443,7 @@
     <string name="videos_string">Filmetoj</string>
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Preferata aplingvo</string>
-    <string name="systems_language">Sistemnormo</string>
+    <string name="systems_language">Sistema</string>
     <string name="subtitle_activity_recaptcha">Premu “Finita” kiam solvita</string>
     <string name="done">Finita</string>
     <plurals name="seconds">
@@ -499,9 +499,7 @@
     <string name="notification_action_repeat">Ripeti</string>
     <string name="search_showing_result_for">Montrante rezultojn pri: %s</string>
     <string name="open_with">Malfermi per</string>
-    <string name="restricted_video">Tiu ĉi filmeto havas aĝlimon.
-\n
-\nŜalti \"%1$s\" en la agordoj, se vi volas vidi ĝin.</string>
+    <string name="restricted_video">Tiu ĉi filmeto havas aĝminimumon. \n \nŜaltu «%1$s» en la agordoj, se vi volus vidi ĝin.</string>
     <string name="night_theme_title">Malhela etoso</string>
     <string name="notification_colorize_title">farbi sciigon</string>
     <string name="notification_action_buffering">Alŝuto</string>
@@ -530,11 +528,11 @@
     <string name="description_tab_description">Priskribo</string>
     <string name="comments_tab_description">Komentoj</string>
     <string name="show_description_title">Montri priskribon</string>
-    <string name="notification_scale_to_square_image_summary">Stuci la bildeton de la video en la sciigo de 16:9 ĝis 1:1 propocio</string>
+    <string name="notification_scale_to_square_image_summary">Stuci la antaŭvidan bildeton de la filmo en la sciigo de proporcio 16:9 al 1:1</string>
     <string name="show_meta_info_title">Montri metadatumojn</string>
     <string name="mark_as_watched">Marki spektita</string>
     <string name="show_meta_info_summary">Malŝatu por kaŝi metadatumujojn kio havas aldonajn informojn pri la elsendfluisto, enhavo de la fluo, aŭ serĉpto</string>
-    <string name="show_description_summary">Malŝaltu por kaŝi la videan priskribon kaj aldonan informon</string>
+    <string name="show_description_summary">Malŝaltu por kaŝi priskribojn kaj aldonajn informojn de filmetoj</string>
     <string name="clear_queue_confirmation_title">Peti por konfirmo antaŭ vakigado atendvico</string>
     <string name="clear_queue_confirmation_summary">Via atendvico povas anstataŭigi se vi ŝanĝi al malsama ludilo</string>
     <string name="clear_queue_confirmation_description">La aktiva ludila atendvico anstataŭigos</string>
@@ -549,7 +547,7 @@
     <string name="volume">Laŭteco</string>
     <string name="none">Neniu</string>
     <string name="notification_colorize_summary">Permesi al Android agordi koloron de sciigo laŭ la precipa koloro de videaĵminiaturo (noti, ke ĉi tio ne disponeblas en ĉiuj iloj)</string>
-    <string name="auto_queue_toggle">Aŭtomata vicigado</string>
+    <string name="auto_queue_toggle">Memaga vicigado</string>
     <string name="right_gesture_control_title">Ago de dekstra gesto</string>
     <string name="notification_actions_summary">Redakti ĉiun agon de sciigo per tuŝi gin. Elekti maksimume tri agon por montri en la kompakta sciigo per markobutonoj dekstre.</string>
     <string name="prefer_original_audio_summary">Elekti la originalan aŭdiotrakon malgraŭ lingvo</string>
@@ -574,20 +572,19 @@
     <string name="remote_search_suggestions">Foraj serĉsugestoj</string>
     <string name="error_report_channel_description">Sciigoj por raporti erarojn</string>
     <string name="loading_metadata_title">Ŝargante metadatumoj…</string>
-    <string name="hash_channel_description">Sciigo por kreado de haketaĵoj de videoj</string>
+    <string name="hash_channel_description">Sciigo por kreado de haketaĵoj de filmetoj</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provizas \"Limigitan Reĝimon\", kiu kaŝas enhavon, kiu potence maltaŭgas por infanoj</string>
-    <string name="restricted_video_no_stream">Ĉi tiu video estas aĝo-limigita.
-\nPro novaj reguloj de YouTube, kiuj aplikas al aĝo-limigitaj videoj, NewPipe ne povas atingi iun ajn video-fluoj de ĉi tiu video kaj konsekvence ne povas ludi ĝin.</string>
+    <string name="restricted_video_no_stream">Ĉi tiu filmeto havas aĝminimumon. \nPro novaj reguloj de YouTube, kiuj rilatas filmojn kun minimuma aĝo, NewPipe ne povas atingi ajnan fluon de ĉi tiu filmo kaj tial ne povas ludi ĝin.</string>
     <string name="error_report_channel_name">Sciigo por erar-raportoj</string>
     <string name="notifications">Sciigoj</string>
     <string name="settings_category_player_notification_title">Ludila sciigo</string>
-    <string name="hash_channel_name">Sciigo por haketado de videoj</string>
+    <string name="hash_channel_name">Sciigo por haketado de filmetoj</string>
     <string name="local_search_suggestions">Lokaj serĉsugestoj</string>
     <string name="start_main_player_fullscreen_title">Ŝalti ĉefan ludilon plenekrane</string>
     <string name="streams_notification_channel_description">Sciigo por novaj fluoj de abonoj</string>
     <string name="clear_cookie_title">Forigi kuketojn de reCAPTCHA</string>
     <string name="settings_category_player_notification_summary">Agordi la sciigon por ĉi-momente ludantaj datumtorentoj</string>
-    <string name="start_main_player_fullscreen_summary">Ne komenci ludi videojn en la mini-ludilo, sed ŝalti plenekranan reĝimon rekte, se aŭtomata rotacio ŝlositas. Vi ankoraŭ povus atingi mini-ludilon, se vi elirus plenekranan reĝimon.</string>
+    <string name="start_main_player_fullscreen_summary">Ne ekludu filmojn en la etludilo, sed ŝalti plenekranan reĝimon rekte, se memaga turniĝo estas ŝaltita. Vi ankoraŭ povus aliri la etludilon elirinte la plenekranan reĝimon.</string>
     <string name="clear_cookie_summary">Forigi kuketojn, kiujn NewPipe konservas, kiam vi solvas reCAPTCHA-taskojn</string>
     <string name="error_report_notification_title">NewPipe renkontis eraron, tuŝi por raporti</string>
     <string name="main_tabs_position_title">Pozicio de la ĉefaj langetoj</string>
@@ -605,7 +602,7 @@
     <string name="import_subscriptions_hint">Importi aŭ eksporti abonojn per la tri-punkta menuo</string>
     <string name="msg_calculating_hash">Kalkulado de haketaĵo</string>
     <string name="faq_title">Oftaj demandoj</string>
-    <string name="no_dir_yet">Neniu dosierujo por elŝutoj agordita, bonvolu elekti la defaŭltan elŝuto-dosierujon nun</string>
+    <string name="no_dir_yet">Neniu dosierujo por elŝutoj agordita, bonvolu elekti la preferatan elŝuto-dosierujon nun</string>
     <string name="error_report_open_github_notice">Bonvolu certigi, ĉu erarraporto, kiu diskutas pri via eraro, jam ekzistas. Kreado de duoblaĵaj erarraportoj forprenas tempon el ni, kiun ni povus uzi por ripari la veran eraron.</string>
     <string name="related_items_tab_description">Rilatajn erojn</string>
     <string name="recaptcha_solve">Solvi</string>
@@ -613,4 +610,13 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">Oni petos al vi kien salvi ĉiujn elŝutojn</string>
     <string name="yes">Jes</string>
     <string name="no">Ne</string>
+    <string name="remove_watched_popup_title">Ĉu forigu spektitajn filmetojn?</string>
+    <string name="youtube_music_premium_content">Ĉu tiu filmeto sole haveblas al abonantoj de YouTube Music Premium, do ĝi ne spekteblas nek elŝuteblas de NewPipe.</string>
+    <string name="audio_track_present_in_video">Sono devus jam esti en ĉi tiu fluo</string>
+    <string name="no_video_streams_available_for_external_players">Neniu filmofluo ludeblas por ekstera ludilo</string>
+    <string name="channel_tab_videos">Filmetoj</string>
+    <string name="remove_watched_popup_warning">Filmetoj kiuj spektiĝis antaŭ aŭ post sia aldoniĝo al la ludlisto foriĝus.. \nĈu vi certas? Ĉi tio nemalfareblus!</string>
+    <string name="share_playlist_with_titles_message">Kunhavigus ludliston inkluzivante informojn kiel la nomoj de listeroj, aŭ kiel simpla listo de ligiloj</string>
+    <string name="reset_settings_summary">Restarigi implicitajn agordojn</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jes, kaj ankaŭ parte spektitajn filmetojn</string>
 </resources>
