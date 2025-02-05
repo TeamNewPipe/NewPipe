@@ -6,15 +6,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
 import androidx.compose.material.icons.filled.ClearAll
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PictureInPicture
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
@@ -24,6 +23,7 @@ import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
@@ -93,20 +93,20 @@ private fun HistoryHeader(
     onClickPlayAll: () -> Unit,
     onClickPopup: () -> Unit
 ) {
-    var expanded by remember { mutableStateOf(false) }
-    val selected = when (sortKey) {
-        SortKey.MOST_PLAYED -> R.string.title_most_played
-        SortKey.LAST_PLAYED -> R.string.title_last_played
-    }
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            var expanded by remember { mutableStateOf(false) }
+            val selected = when (sortKey) {
+                SortKey.MOST_PLAYED -> R.string.title_most_played
+                SortKey.LAST_PLAYED -> R.string.title_last_played
+            }
+
             ExposedDropdownMenuBox(
                 expanded = expanded,
                 onExpandedChange = { expanded = it },
@@ -119,7 +119,7 @@ private fun HistoryHeader(
                     onValueChange = {},
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                     colors = ExposedDropdownMenuDefaults.textFieldColors(),
-                    label = { Text(text = stringResource(R.string.history_sort_label)) }
+                    label = { Text(text = stringResource(R.string.history_sort_label)) },
                 )
 
                 ExposedDropdownMenu(
@@ -131,14 +131,14 @@ private fun HistoryHeader(
                         onClick = {
                             expanded = false
                             onSelectSortKey(SortKey.MOST_PLAYED)
-                        }
+                        },
                     )
                     DropdownTextMenuItem(
                         text = R.string.title_last_played,
                         onClick = {
                             expanded = false
                             onSelectSortKey(SortKey.LAST_PLAYED)
-                        }
+                        },
                     )
                 }
             }
@@ -150,36 +150,66 @@ private fun HistoryHeader(
                 },
                 state = rememberTooltipState(),
             ) {
-                IconButton(onClick = onClickClear) {
+                var openClearDialog by remember { mutableStateOf(false) }
+
+                IconButton(onClick = { openClearDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.ClearAll,
                         contentDescription = stringResource(R.string.clear_history_description),
                     )
                 }
+
+                ClearHistoryDialog(openClearDialog, onClickClear, onDismissRequest = { openClearDialog = false })
             }
         }
-
-        Spacer(Modifier.height(12.dp))
 
         FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             IconButtonWithLabel(
                 icon = Icons.Default.Headphones,
                 label = R.string.controls_background_title,
-                onClick = onClickBackground
+                onClick = onClickBackground,
             )
 
             IconButtonWithLabel(
                 icon = Icons.AutoMirrored.Filled.PlaylistPlay,
                 label = R.string.play_all,
-                onClick = onClickPlayAll
+                onClick = onClickPlayAll,
             )
 
             IconButtonWithLabel(
                 icon = Icons.Default.PictureInPicture,
                 label = R.string.controls_popup_title,
-                onClick = onClickPopup
+                onClick = onClickPopup,
             )
         }
+    }
+}
+
+@Composable
+private fun ClearHistoryDialog(
+    openClearDialog: Boolean,
+    onClickClear: () -> Unit,
+    onDismissRequest: () -> Unit
+) {
+    if (openClearDialog) {
+        AlertDialog(
+            onDismissRequest = onDismissRequest,
+            title = { Text(text = stringResource(R.string.delete_view_history_alert)) },
+            text = { Text(text = stringResource(R.string.delete_view_history_description)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    onClickClear()
+                    onDismissRequest()
+                }) {
+                    Text(stringResource(R.string.delete))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = onDismissRequest) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+        )
     }
 }
 
