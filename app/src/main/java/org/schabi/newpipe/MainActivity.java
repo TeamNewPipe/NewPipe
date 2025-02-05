@@ -578,8 +578,8 @@ public class MainActivity extends AppCompatActivity {
             if (player instanceof BackPressable backPressable && !backPressable.onBackPressed()) {
                 BottomSheetBehavior.from(mainBinding.fragmentPlayerHolder)
                         .setState(BottomSheetBehavior.STATE_COLLAPSED);
-                return;
             }
+            return;
         }
 
         if (fragmentManager.getBackStackEntryCount() == 1) {
