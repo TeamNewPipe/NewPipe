@@ -67,6 +67,7 @@ public final class PlayerHelper {
             new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
+    private static final long MEGABYTE = 1024 * 1024L;
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -300,12 +301,10 @@ public final class PlayerHelper {
     }
 
     public static long getPreferredCacheSize() {
-        final long MEGABYTE = 1024 * 1024L;
         return 64 * MEGABYTE;
     }
 
     public static long getPreferredFileSize() {
-        final long MEGABYTE = 1024 * 1024L;
         return 2 * MEGABYTE; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
