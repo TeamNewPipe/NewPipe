@@ -1,0 +1,4 @@
+A YouTube videók HTTP 403-as hibára futásának javítása.
+
+A videó közben megjelenő 403-as hiba még nem került megoldásra.
+Ez a hiba a következő patch-el kerül kijavításra amilyen hamar csak tudjuk.

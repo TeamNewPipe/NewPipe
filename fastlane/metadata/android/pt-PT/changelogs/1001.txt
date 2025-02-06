@@ -1,0 +1,6 @@
+Melhorias
+• Sempre permitir mudanças de preferências de notificações do reprodutor no Android 13+
+
+Corrigido
+• Corrigido exportar base de dados/inscrições não deve truncar um ficheiro existente previamente, possivelmente levar a uma exportação corrompida..
+• Corrigido reprodutor a resumir do início quando clicar numa estampa de tempo

@@ -217,11 +217,16 @@ public final class PlayQueueActivity extends AppCompatActivity
             }
 
             @Override
-            public void onServiceConnected(final ComponentName name, final IBinder service) {
+            public void onServiceConnected(final ComponentName name, final IBinder binder) {
                 Log.d(TAG, "Player service is connected");
 
-                if (service instanceof PlayerService.LocalBinder) {
-                    player = ((PlayerService.LocalBinder) service).getPlayer();
+                if (binder instanceof PlayerService.LocalBinder localBinder) {
+                    final @Nullable PlayerService s = localBinder.getService();
+                    if (s == null) {
+                        player = null;
+                    } else {
+                        player = s.getPlayer();
+                    }
                 }
 
                 if (player == null || player.getPlayQueue() == null || player.exoPlayerIsNull()) {

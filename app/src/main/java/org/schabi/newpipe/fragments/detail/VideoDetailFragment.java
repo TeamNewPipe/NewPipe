@@ -95,7 +95,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
-import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.event.PlayerHolderLifecycleEventListener;
+import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -136,7 +137,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
-        PlayerServiceExtendedEventListener,
+        PlayerServiceEventListener,
+        PlayerHolderLifecycleEventListener,
         OnKeyDownListener {
     public static final String KEY_SWITCHING_PLAYERS = "switching_players";
 
@@ -234,10 +236,9 @@ public final class VideoDetailFragment
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
     @Override
-    public void onServiceConnected(final Player connectedPlayer,
-                                   final PlayerService connectedPlayerService,
+    public void onServiceConnected(final PlayerService connectedPlayerService,
                                    final boolean playAfterConnect) {
-        player = connectedPlayer;
+        player = connectedPlayerService.getPlayer();
         playerService = connectedPlayerService;
 
         // It will do nothing if the player is not in fullscreen mode
@@ -281,11 +282,11 @@ public final class VideoDetailFragment
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(final int serviceId,
-                                                  @Nullable final String videoUrl,
+                                                  @Nullable final String url,
                                                   @NonNull final String name,
                                                   @Nullable final PlayQueue queue) {
         final VideoDetailFragment instance = new VideoDetailFragment();
-        instance.setInitialData(serviceId, videoUrl, name, queue);
+        instance.setInitialData(serviceId, url, name, queue);
         return instance;
     }
 
@@ -393,7 +394,7 @@ public final class VideoDetailFragment
         if (activity.isFinishing() && isPlayerAvailable() && player.videoPlayerSelected()) {
             playerHolder.stopService();
         } else {
-            playerHolder.setListener(null);
+            playerHolder.unsetListeners();
         }
 
         PreferenceManager.getDefaultSharedPreferences(activity)
@@ -658,10 +659,10 @@ public final class VideoDetailFragment
         });
 
         setupBottomPlayer();
-        if (!playerHolder.isBound()) {
+        if (playerHolder.isNotBoundYet()) {
             setHeightThumbnail();
         } else {
-            playerHolder.startService(false, this);
+            playerHolder.startService(false, this, this);
         }
     }
 
@@ -1052,7 +1053,7 @@ public final class VideoDetailFragment
 
         // See UI changes while remote playQueue changes
         if (!isPlayerAvailable()) {
-            playerHolder.startService(false, this);
+            playerHolder.startService(false, this, this);
         } else {
             // FIXME Workaround #7427
             player.setRecovery();
@@ -1115,7 +1116,7 @@ public final class VideoDetailFragment
     private void openNormalBackgroundPlayer(final boolean append) {
         // See UI changes while remote playQueue changes
         if (!isPlayerAvailable()) {
-            playerHolder.startService(false, this);
+            playerHolder.startService(false, this, this);
         }
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
@@ -1129,7 +1130,7 @@ public final class VideoDetailFragment
 
     private void openMainPlayer() {
         if (!isPlayerServiceAvailable()) {
-            playerHolder.startService(autoPlayEnabled, this);
+            playerHolder.startService(autoPlayEnabled, this, this);
             return;
         }
         if (currentInfo == null) {
@@ -1384,9 +1385,11 @@ public final class VideoDetailFragment
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        if (!playerHolder.isBound()) {
+                        if (playerHolder.isNotBoundYet()) {
                             playerHolder.startService(
-                                    false, VideoDetailFragment.this);
+                                    false,
+                                    VideoDetailFragment.this,
+                                    VideoDetailFragment.this);
                         }
                         break;
                 }
@@ -1723,7 +1726,7 @@ public final class VideoDetailFragment
         playQueue = queue;
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
-                    + serviceId + "], videoUrl = [" + url + "], name = ["
+                    + serviceId + "], url = [" + url + "], name = ["
                     + title + "], playQueue = [" + playQueue + "]");
         }
 

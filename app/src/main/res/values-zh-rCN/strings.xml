@@ -207,7 +207,7 @@
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新与热门</string>
     <string name="show_hold_to_append_title">显示“长按加入播放队列”提示</string>
-    <string name="show_hold_to_append_summary">在视频详情页中，长按后台播放或悬浮窗播放按钮时显示提示</string>
+    <string name="show_hold_to_append_summary">在视频详情页中，按下后台播放或悬浮窗播放按钮时显示提示</string>
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法处理的播放器错误</string>
     <string name="player_recoverable_failure">播放器错误 自动恢复</string>
@@ -471,7 +471,7 @@
     <string name="feed_group_dialog_empty_name">清空组名</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed 更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过期的时间 — %s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>

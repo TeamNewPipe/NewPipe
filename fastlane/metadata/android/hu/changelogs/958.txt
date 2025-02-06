@@ -1,0 +1,15 @@
+Újdonságok és fejlesztések:
+• Újra el lehet rejteni a bélyegképet a lezárási képernyőn
+• Lehúzással frissül a feed
+• Teljesítmények javítása a helyi listák beszerzésekor
+
+Javítások:
+• A RAM-ból való eltávolítástás utáni indítás utáni összeomlás javítása
+• Internet kapcsolat hiánya miatti összeomlás javítása
+• Világosság és hangerő megjegyzése, és a gesztusirányítás javítása
+• [YouTube] Hosszú lejátszásilisták javítása
+
+Egyéb:
+• Kód tisztítás és más egyéb belső fejlesztés
+• Tartozákok frissítése
+• Fordítási frissítések

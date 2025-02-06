@@ -1,0 +1,6 @@
+Mejorado
+• Permitir siempre cambiar las preferencias de notificación del reproductor en Android 13+
+
+Corregido
+• Al exportar bases de datos/suscripciones no se truncaba un archivo ya existente, lo que podía dar lugar a una exportación corrupta
+• El reproductor se reiniciaba desde el principio al hacer clic en una marca de tiempo

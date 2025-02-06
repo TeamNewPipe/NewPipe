@@ -88,6 +88,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_DOWNLOADS = -4;
     private static final int ITEM_ID_HISTORY = -5;
     private static final int ITEM_ID_SETTINGS = 0;
-    private static final int ITEM_ID_ABOUT = 1;
+    private static final int ITEM_ID_DONATION = 1;
+    private static final int ITEM_ID_ABOUT = 2;
 
     private static final int ORDER = 0;
 
@@ -259,6 +261,10 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
                 .setIcon(R.drawable.ic_settings);
         drawerLayoutBinding.navigation.getMenu()
+                .add(R.id.menu_options_about_group, ITEM_ID_DONATION, ORDER,
+                        R.string.donation_title)
+                .setIcon(R.drawable.volunteer_activism_ic);
+        drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
                 .setIcon(R.drawable.ic_info_outline);
     }
@@ -332,6 +338,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case ITEM_ID_SETTINGS:
                 NavigationHelper.openSettings(this);
+                break;
+            case ITEM_ID_DONATION:
+                ShareUtils.openUrlInBrowser(this, getString(R.string.donation_url));
                 break;
             case ITEM_ID_ABOUT:
                 NavigationHelper.openAbout(this);
@@ -840,4 +849,5 @@ public class MainActivity extends AppCompatActivity {
         return sheetState == BottomSheetBehavior.STATE_HIDDEN
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
+
 }
