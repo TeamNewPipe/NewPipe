@@ -1,0 +1,2 @@
+[YouTube] A "Nem elérhető a videó" hiba javítása lejátszáskor
+[YouTube] A "A következő kontent nem elérhetőaz országában" jelenik meg a videó lekérése helyett

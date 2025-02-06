@@ -825,4 +825,5 @@
 \nEr du sikker på, at du vil fortsætte?</string>
     <string name="import_settings_vulnerable_format">Indstillingerne i den eksport, der importeres, bruger et sårbart format, der er blevet forældet siden NewPipe 0.27.0. Sørg for, at den eksport, der importeres, er fra en pålidelig kilde, og brug helst kun eksport fra NewPipe 0.27.0 eller nyere i fremtiden. Understøttelse af import af indstillinger i dette sårbare format fjernes snart helt, og så vil gamle versioner af NewPipe ikke længere være i stand til at importere indstillinger fra eksport fra nye versioner.</string>
     <string name="settings_category_backup_restore_title">Sikkerhedskopiering og gendannelse</string>
+    <string name="audio_track_type_secondary">sekundær</string>
 </resources>

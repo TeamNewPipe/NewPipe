@@ -1,0 +1,6 @@
+Vylepšení
+• Vždy umožněno změnit nastavení oznámení přehrávače na Android 13+
+
+Opraveno
+• Oprava chyby, při které export databáze/odběrů nezkracoval již existující soubor, což mohlo vést k poškozenému exportu
+• Opraveno pokračování přehrávače v přehrávání videa po klepnutí na časovou značku

@@ -91,7 +91,7 @@
     <string name="resume_on_audio_focus_gain_title">Återuppta uppspelning</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätt uppspelning efter avbrott (t.ex. telefonsamtal)</string>
     <string name="show_hold_to_append_title">Visa \"Håll för att köa\"-tips</string>
-    <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för videodetaljer</string>
+    <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för video \"Detaljer:\\</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
     <string name="settings_category_history_title">Historik och cacheminne</string>
@@ -825,4 +825,5 @@
 \n
 \nÄr du säker på att du vill fortsätta?</string>
     <string name="import_settings_vulnerable_format">Inställningarna i exporten som importeras använder ett sårbart format som fasades ut i NewPipe 0.27.0. Se till att exporten som importeras är från en betrodd källa, och överväg att endast använda exporter som erhållits från NewPipe 0.27.0 eller nyare i framtiden. Stöd för import av inställningar från detta sårbara format kommer snart att tas bort helt, och sedan kommer gamla versioner av NewPipe inte att kunna importera inställningar av exporter från nya versioner längre.</string>
+    <string name="audio_track_type_secondary">sekundär</string>
 </resources>

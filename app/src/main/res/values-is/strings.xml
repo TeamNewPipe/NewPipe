@@ -607,7 +607,7 @@
     <string name="enable_playback_state_lists_title">Spilunarstöður í listum</string>
     <string name="enable_playback_state_lists_summary">Sýna spilunarstöður í listum</string>
     <string name="show_hold_to_append_title">Sýna ábendinguna „Haltu niðri til að bæta við spilunarröð“</string>
-    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappinn í „Nánar:“ á myndskeiðinu</string>
+    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappinn á myndskeiðinu í „Nánar:\\</string>
     <string name="unsupported_url_dialog_message">Óþekkt slóð. Opna með öðru forriti\?</string>
     <string name="peertube_instance_url_summary">Veldu uppáhalds PeerTube tilvik þín</string>
     <string name="peertube_instance_url_help">Þú mátt finna tilviki á %s</string>
@@ -647,7 +647,7 @@
     <string name="disable_media_tunneling_summary">Slökktu á margmiðlunargöngum (media tunneling) ef vart verður við svartan skjá eða hökt við spilun myndskeiða.</string>
     <string name="show_image_indicators_title">Sýna myndvísa</string>
     <string name="show_image_indicators_summary">Sýna Picasso litaða borða ofan á myndum sem gefa til kynna uppruna þeirra: rauðan fyrir netið, bláan fyrir disk og grænan fyrir minni</string>
-    <string name="show_crash_the_player_title">Sýna „Hrynja spilara“</string>
+    <string name="show_crash_the_player_title">Sýna „Láta spilara hrynja\\</string>
     <string name="show_crash_the_player_summary">Sýna valkost til að hrynja spilara</string>
     <string name="crash_the_app">Hrynja forrit</string>
     <string name="create_error_notification">Búа til villutilkynningu</string>
@@ -730,7 +730,7 @@
     <string name="feed_show_upcoming">Á næstunni</string>
     <string name="channel_tab_videos">Myndskeið</string>
     <string name="channel_tab_tracks">Spor</string>
-    <string name="channel_tab_shorts">Stuttmyndir</string>
+    <string name="channel_tab_shorts">Símamyndir</string>
     <string name="channel_tab_playlists">Spilunarlistar</string>
     <string name="channel_tab_albums">Albúm</string>
     <string name="channel_tab_about">Um hugbúnaðinn</string>

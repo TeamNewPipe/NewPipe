@@ -1,0 +1,2 @@
+A media.ccc.de csatorna/konferencia megnyitásakor javításra került egy NullPointerException.
+A Grincs megpróbálta ellopni a karácsonyi ajándékunkat, de kicseleztük.

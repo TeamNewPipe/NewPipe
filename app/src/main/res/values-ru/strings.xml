@@ -190,7 +190,7 @@
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">Показать подсказку «Зажмите, чтобы добавить»</string>
-    <string name="show_hold_to_append_summary">Показать подсказку при нажатии «В окне» или «В фоне» на странице сведений о видео</string>
+    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на фон или всплывающую кнопку в видео \"Подробнее:\\</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
@@ -535,7 +535,7 @@
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
-    <string name="youtube_restricted_mode_enabled_title">Включить «Безопасный режим» YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Включите на YouTube \"Ограниченный режим\\</string>
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
@@ -690,7 +690,7 @@
     <string name="get_notified">Уведомлять</string>
     <string name="you_successfully_subscribed">Вы подписались на канал</string>
     <string name="toggle_all">Переключить все</string>
-    <string name="show_crash_the_player_title">Показать «Сбой плеера»</string>
+    <string name="show_crash_the_player_title">Шоу \"Разбей игрока\\</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>
     <string name="error_report_channel_name">Уведомление отчёта об ошибке</string>
@@ -844,4 +844,5 @@
 \n
 \nВы уверены, что хотите продолжить?</string>
     <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
+    <string name="audio_track_type_secondary">вторичный</string>
 </resources>

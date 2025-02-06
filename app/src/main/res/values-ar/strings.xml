@@ -83,7 +83,7 @@
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار تلميح \"اضغط للفتح\"</string>
-    <string name="show_hold_to_append_summary">عرض تلميح عند الضغط على زر استخدام المشغل الخلفي أو النافذة المنبثقة في صفحة تفاصيل الفديو</string>
+    <string name="show_hold_to_append_summary">إظهار التلميح عند الضغط على الخلفية أو الزر المنبثق في الفيديو \"التفاصيل:\\</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="popup_playing_toast">تشغيل في وضع منبثق</string>
@@ -558,7 +558,7 @@
     <string name="remove_watched">إزالة ما تمت مشاهدته</string>
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
     <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
-    <string name="youtube_restricted_mode_enabled_title">قم بتشغيل \"وضع تقييد المحتوى\" في يوتيوب</string>
+    <string name="youtube_restricted_mode_enabled_title">قم بتشغيل \"وضع تقييد المحتوى\" في يوتيوب\\</string>
     <string name="video_detail_by">بواسطة %s</string>
     <string name="channel_created_by">أنشأها %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">الصورة الرمزية للقناة</string>
@@ -881,4 +881,5 @@
 \nهل تريد تمكين هذا؟</string>
     <string name="no">لا</string>
     <string name="import_settings_vulnerable_format">تستخدم الإعدادات الموجودة في عملية التصدير التي يتم استيرادها تنسيقًا عرضة للاختراق تم إهماله منذ NewPipe 0.27.0. تأكد من أن التصدير الذي يتم استيراده من مصدر موثوق به، ويفضل استخدام عمليات التصدير التي تم الحصول عليها من NewPipe 0.27.0 أو الأحدث في المستقبل فقط. سيتم قريبًا إزالة دعم استيراد الإعدادات بهذا التنسيق الضعيف تمامًا، وبعد ذلك لن تتمكن الإصدارات القديمة من NewPipe من استيراد إعدادات التصدير من الإصدارات الجديدة بعد الآن.</string>
+    <string name="audio_track_type_secondary">الثانوي</string>
 </resources>

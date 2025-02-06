@@ -23,9 +23,9 @@ android {
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1002
+            versionCode 1003
         }
-        versionName "0.27.5"
+        versionName "0.27.6"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
@@ -208,7 +208,7 @@ dependencies {
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     // WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
     // the corresponding commit hash, since JitPack is sometimes buggy
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.4'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:9f83b385a'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -241,6 +241,7 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
     implementation 'com.google.android.material:material:1.11.0'
+    implementation "androidx.webkit:webkit:1.9.0"
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
