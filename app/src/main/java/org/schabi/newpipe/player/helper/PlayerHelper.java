@@ -97,23 +97,8 @@ public final class PlayerHelper {
 
     @NonNull
     public static String getTimeString(final int milliSeconds) {
-        final int SECONDS_IN_MINUTE = 60;
-        final int SECONDS_IN_HOUR = 3600;
-        final int SECONDS_IN_DAY = 86400;
-
-        int totalSeconds = milliSeconds / 1000;
-
-        int days = totalSeconds / (SECONDS_IN_DAY);
-        int hours = (totalSeconds % (SECONDS_IN_DAY)) / SECONDS_IN_HOUR;
-        int minutes = (totalSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE;
-        int seconds = totalSeconds % SECONDS_IN_MINUTE;
-
-        if (days > 0) {
-            return STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString();
-        } else if (hours > 0) {
-            return STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds).toString();
-        }
-        return STRING_FORMATTER.format("%02d:%02d", minutes, seconds).toString();
+        int seconds = milliSeconds / 1000;
+        return DateUtils.formatElapsedTime(seconds);
     }
 
 
