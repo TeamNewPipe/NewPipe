@@ -69,9 +69,9 @@ import java.util.ArrayList
 import java.util.stream.Collectors
 
 class MediaBrowserConnector(private val playerService: PlayerService) : PlaybackPreparer {
-    private val context: Context
+    private val context: Context = playerService
     private val sessionConnector: MediaSessionConnector
-    private val mediaSession: MediaSessionCompat
+    private val mediaSession: MediaSessionCompat = MediaSessionCompat(playerService, TAG)
 
     private var database: AppDatabase? = null
     private var localPlaylistManager: LocalPlaylistManager? = null
@@ -79,13 +79,31 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     private var prepareOrPlayDisposable: Disposable? = null
     private var searchDisposable: Disposable? = null
 
+    var bookmarksNotificationsDisposable: Disposable
+
+    init {
+        sessionConnector = MediaSessionConnector(mediaSession)
+        sessionConnector.setMetadataDeduplicationEnabled(true)
+        sessionConnector.setPlaybackPreparer(this)
+        playerService.setSessionToken(mediaSession.sessionToken)
+
+        bookmarksNotificationsDisposable = getPlaylists().subscribe(
+            { playlistMetadataEntries ->
+                playerService.notifyChildrenChanged(
+                    ID_BOOKMARKS
+                )
+            }
+        )
+    }
+
+
     fun getSessionConnector(): MediaSessionConnector {
         return sessionConnector
     }
 
     fun release() {
         disposePrepareOrPlayCommands()
-        disposeBookmarksNotifications()
+        bookmarksNotificationsDisposable.dispose()
         mediaSession.release()
     }
 
@@ -373,32 +391,6 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         )
     }
 
-    var bookmarksNotificationsDisposable: Disposable? = null
-
-    init {
-        this.context = playerService
-        mediaSession = MediaSessionCompat(playerService, TAG)
-        sessionConnector = MediaSessionConnector(mediaSession)
-        sessionConnector.setMetadataDeduplicationEnabled(true)
-        sessionConnector.setPlaybackPreparer(this)
-        playerService.setSessionToken(mediaSession.sessionToken)
-
-        bookmarksNotificationsDisposable = getPlaylists().subscribe(
-            { playlistMetadataEntries ->
-                this.context.notifyChildrenChanged(
-                    ID_BOOKMARKS
-                )
-            }
-        )
-    }
-
-    private fun disposeBookmarksNotifications() {
-        if (bookmarksNotificationsDisposable != null) {
-            bookmarksNotificationsDisposable!!.dispose()
-            bookmarksNotificationsDisposable = null
-        }
-    }
-
     private fun populateBookmarks(): Single<List<MediaBrowserCompat.MediaItem>> {
         val playlists = getPlaylists().firstOrError()
         return playlists.map<List<MediaBrowserCompat.MediaItem>>(
@@ -616,10 +608,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun disposePrepareOrPlayCommands() {
-        if (prepareOrPlayDisposable != null) {
-            prepareOrPlayDisposable!!.dispose()
-            prepareOrPlayDisposable = null
-        }
+        prepareOrPlayDisposable?.dispose()
     }
 
     override fun onPrepare(playWhenReady: Boolean) {
@@ -689,9 +678,9 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         val exceptions = result.errors
         if (!exceptions.isEmpty() &&
             !(
-                    exceptions.size == 1 &&
-                            exceptions.get(0) is NothingFoundException
-                    )
+                exceptions.size == 1 &&
+                    exceptions.get(0) is NothingFoundException
+                )
         ) {
             return Single.error(exceptions.get(0))
         }
