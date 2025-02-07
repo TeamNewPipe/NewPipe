@@ -203,7 +203,7 @@ class PlayerService : MediaBrowserServiceCompat() {
 
     override fun onLoadChildren(
         parentId: String,
-        result: Result<MutableList<MediaBrowserCompat.MediaItem?>?>
+        result: Result<List<MediaBrowserCompat.MediaItem>>
     ) {
         result.detach()
         val disposable = mediaBrowserConnector!!.onLoadChildren(parentId)
@@ -220,7 +220,7 @@ class PlayerService : MediaBrowserServiceCompat() {
     override fun onSearch(
         query: String,
         extras: Bundle?,
-        result: Result<MutableList<MediaBrowserCompat.MediaItem?>?>
+        result: Result<List<MediaBrowserCompat.MediaItem>>
     ) {
         mediaBrowserConnector!!.onSearch(query, result)
     }

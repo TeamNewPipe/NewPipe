@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.mediabrowser
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.net.Uri
 import android.os.Bundle
@@ -22,7 +23,6 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleSource
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.BuildConfig
@@ -56,6 +56,7 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.player.PlayerService
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
+import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
@@ -97,7 +98,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(mediaId)
         builder.setTitle(folderName)
-        val resources = playerService.getResources()
+        val resources = playerService.resources
         builder.setIconUri(
             Uri.Builder()
                 .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -129,7 +130,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            playerService.getResources().getString(R.string.tab_bookmarks)
+            playerService.resources.getString(R.string.tab_bookmarks)
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
@@ -141,17 +142,17 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     private fun createInfoItemMediaItem(item: InfoItem): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForInfoItem(item))
-            .setTitle(item.getName())
+            .setTitle(item.name)
 
-        when (item.getInfoType()) {
-            InfoType.STREAM -> builder.setSubtitle((item as StreamInfoItem).getUploaderName())
-            InfoType.PLAYLIST -> builder.setSubtitle((item as PlaylistInfoItem).getUploaderName())
-            InfoType.CHANNEL -> builder.setSubtitle((item as ChannelInfoItem).getDescription())
+        when (item.infoType) {
+            InfoType.STREAM -> builder.setSubtitle((item as StreamInfoItem).uploaderName)
+            InfoType.PLAYLIST -> builder.setSubtitle((item as PlaylistInfoItem).uploaderName)
+            InfoType.CHANNEL -> builder.setSubtitle((item as ChannelInfoItem).description)
             else -> {}
         }
-        val thumbnails = item.getThumbnails()
+        val thumbnails = item.thumbnails
         if (!thumbnails.isEmpty()) {
-            builder.setIconUri(Uri.parse(thumbnails.get(0)!!.getUrl()))
+            builder.setIconUri(Uri.parse(thumbnails.get(0)!!.url))
         }
         return MediaBrowserCompat.MediaItem(
             builder.build(),
@@ -177,9 +178,9 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     private fun buildInfoItemMediaId(item: InfoItem): Uri.Builder {
         return buildMediaId()
             .appendPath(ID_INFO_ITEM)
-            .appendPath(infoItemTypeToString(item.getInfoType()))
-            .appendPath(item.getServiceId().toString())
-            .appendQueryParameter(ID_URL, item.getUrl())
+            .appendPath(infoItemTypeToString(item.infoType))
+            .appendPath(item.serviceId.toString())
+            .appendQueryParameter(ID_URL, item.url)
     }
 
     private fun createMediaIdForInfoItem(remote: Boolean, playlistId: Long): String {
@@ -211,11 +212,11 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForPlaylistIndex(true, playlistId, index))
-            .setTitle(item.getName())
-            .setSubtitle(item.getUploaderName())
-        val thumbnails = item.getThumbnails()
+            .setTitle(item.name)
+            .setSubtitle(item.uploaderName)
+        val thumbnails = item.thumbnails
         if (!thumbnails.isEmpty()) {
-            builder.setIconUri(Uri.parse(thumbnails.get(0)!!.getUrl()))
+            builder.setIconUri(Uri.parse(thumbnails.get(0)!!.url))
         }
 
         return MediaBrowserCompat.MediaItem(
@@ -260,22 +261,22 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         return MediaBrowserServiceCompat.BrowserRoot(ID_ROOT, extras)
     }
 
-    fun onLoadChildren(parentId: String): Single<MutableList<MediaBrowserCompat.MediaItem?>?>? {
+    fun onLoadChildren(parentId: String): Single<List<MediaBrowserCompat.MediaItem>> {
         if (MainActivity.DEBUG) {
             Log.d(TAG, String.format("MediaBrowserService.onLoadChildren(%s)", parentId))
         }
 
         try {
             val parentIdUri = Uri.parse(parentId)
-            val path: MutableList<String> = ArrayList<String>(parentIdUri.getPathSegments())
+            val path: MutableList<String> = ArrayList<String>(parentIdUri.pathSegments)
 
             if (path.isEmpty()) {
-                val mediaItems: MutableList<MediaBrowserCompat.MediaItem?> =
-                    ArrayList<MediaBrowserCompat.MediaItem?>()
+                val mediaItems: MutableList<MediaBrowserCompat.MediaItem> =
+                    ArrayList<MediaBrowserCompat.MediaItem>()
                 mediaItems.add(
                     createRootMediaItem(
                         ID_BOOKMARKS,
-                        playerService.getResources().getString(
+                        playerService.resources.getString(
                             R.string.tab_bookmarks_short
                         ),
                         R.drawable.ic_bookmark_white
@@ -284,11 +285,11 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 mediaItems.add(
                     createRootMediaItem(
                         ID_HISTORY,
-                        playerService.getResources().getString(R.string.action_history),
+                        playerService.resources.getString(R.string.action_history),
                         R.drawable.ic_history_white
                     )
                 )
-                return Single.just<MutableList<MediaBrowserCompat.MediaItem?>?>(mediaItems)
+                return Single.just(mediaItems)
             }
 
             val uriType = path.get(0)
@@ -316,16 +317,16 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 else -> throw parseError()
             }
         } catch (e: ContentNotAvailableException) {
-            return Single.error<MutableList<MediaBrowserCompat.MediaItem?>?>(e)
+            return Single.error(e)
         }
     }
 
-    private fun populateHistory(): Single<MutableList<MediaBrowserCompat.MediaItem?>?>? {
+    private fun populateHistory(): Single<List<MediaBrowserCompat.MediaItem>> {
         val streamHistory = getDatabase().streamHistoryDAO()
         val history = streamHistory.getHistory().firstOrError()
-        return history.map<MutableList<MediaBrowserCompat.MediaItem?>?>(
-            Function { items: MutableList<StreamHistoryEntry?>? ->
-                items!!.stream()
+        return history.map<List<MediaBrowserCompat.MediaItem>>(
+            Function { items ->
+                items.stream()
                     .map<MediaBrowserCompat.MediaItem?> { streamHistoryEntry: StreamHistoryEntry? ->
                         this.createHistoryMediaItem(
                             streamHistoryEntry!!
@@ -360,7 +361,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         return database!!
     }
 
-    private fun getPlaylists(): Flowable<MutableList<PlaylistLocalItem?>?>? {
+    private fun getPlaylists(): Flowable<MutableList<PlaylistLocalItem>> {
         if (localPlaylistManager == null) {
             localPlaylistManager = LocalPlaylistManager(getDatabase())
         }
@@ -381,14 +382,14 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         sessionConnector = MediaSessionConnector(mediaSession)
         sessionConnector.setMetadataDeduplicationEnabled(true)
         sessionConnector.setPlaybackPreparer(this)
-        playerService.setSessionToken(mediaSession.getSessionToken())
+        playerService.setSessionToken(mediaSession.sessionToken)
 
         setupBookmarksNotifications()
     }
 
     private fun setupBookmarksNotifications() {
-        bookmarksNotificationsDisposable = getPlaylists()!!.subscribe(
-            Consumer { playlistMetadataEntries: MutableList<PlaylistLocalItem?>? ->
+        bookmarksNotificationsDisposable = getPlaylists().subscribe(
+            { playlistMetadataEntries ->
                 playerService.notifyChildrenChanged(
                     ID_BOOKMARKS
                 )
@@ -405,12 +406,12 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
     // available in Android API 34 and not currently available with desugaring
-    private fun populateBookmarks(): Single<MutableList<MediaBrowserCompat.MediaItem?>?>? {
-        val playlists = getPlaylists()!!.firstOrError()
-        return playlists.map<MutableList<MediaBrowserCompat.MediaItem?>?>(
-            Function { playlist: MutableList<PlaylistLocalItem?>? ->
-                playlist!!.stream()
-                    .map<MediaBrowserCompat.MediaItem?> { playlist: PlaylistLocalItem? ->
+    private fun populateBookmarks(): Single<List<MediaBrowserCompat.MediaItem>> {
+        val playlists = getPlaylists().firstOrError()
+        return playlists.map<List<MediaBrowserCompat.MediaItem>>(
+            { playlist: List<PlaylistLocalItem> ->
+                playlist.stream()
+                    .map<MediaBrowserCompat.MediaItem> { playlist: PlaylistLocalItem? ->
                         this.createPlaylistMediaItem(
                             playlist!!
                         )
@@ -420,14 +421,14 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun populateLocalPlaylist(playlistId: Long): Single<MutableList<MediaBrowserCompat.MediaItem?>?>? {
+    private fun populateLocalPlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
         val playlist = localPlaylistManager!!.getPlaylistStreams(playlistId).firstOrError()
-        return playlist.map<MutableList<MediaBrowserCompat.MediaItem?>?>(
-            Function { items: MutableList<PlaylistStreamEntry>? ->
-                val results: MutableList<MediaBrowserCompat.MediaItem?> =
-                    ArrayList<MediaBrowserCompat.MediaItem?>()
+        return playlist.map<List<MediaBrowserCompat.MediaItem>>(
+            { items: List<PlaylistStreamEntry> ->
+                val results: MutableList<MediaBrowserCompat.MediaItem> =
+                    ArrayList()
                 var index = 0
-                for (item in items!!) {
+                for (item in items) {
                     results.add(createLocalPlaylistStreamMediaItem(playlistId, item, index))
                     ++index
                 }
@@ -436,20 +437,23 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun getRemotePlaylist(playlistId: Long): Single<MutableList<Pair<StreamInfoItem?, Int?>?>?>? {
+    // Suppress Sonar warning replace list collection by Stream.toList call, as this method is only
+    // available in Android API 34 and not currently available with desugaring
+    @SuppressLint("NewApi")
+    private fun getRemotePlaylist(playlistId: Long): Single<MutableList<Pair<StreamInfoItem, Int>>> {
         val playlistFlow = remotePlaylistManager!!.getPlaylist(playlistId).firstOrError()
-        return playlistFlow.flatMap<MutableList<Pair<StreamInfoItem?, Int?>?>?>(
-            Function { item: MutableList<PlaylistRemoteEntity>? ->
-                val playlist = item!!.get(0)
+        return playlistFlow.flatMap<MutableList<Pair<StreamInfoItem, Int>>>(
+            { item: MutableList<PlaylistRemoteEntity> ->
+                val playlist = item.get(0)
                 val playlistInfo = ExtractorHelper.getPlaylistInfo(
-                    playlist.getServiceId(),
-                    playlist.getUrl(), false
+                    playlist.serviceId,
+                    playlist.url, false
                 )
-                playlistInfo.flatMap<MutableList<Pair<StreamInfoItem?, Int?>?>?>(
-                    Function { info: PlaylistInfo? ->
-                        val infoItemsPage = info!!.getRelatedItems()
-                        if (!info.getErrors().isEmpty()) {
-                            val errors: MutableList<Throwable?> = ArrayList<Throwable?>(info.getErrors())
+                playlistInfo.flatMap<MutableList<Pair<StreamInfoItem, Int>>>(
+                    { info: PlaylistInfo ->
+                        val infoItemsPage = info.relatedItems
+                        if (!info.errors.isEmpty()) {
+                            val errors: MutableList<Throwable> = ArrayList(info.errors)
 
                             errors.removeIf { obj: Throwable? ->
                                 ContentNotSupportedException::class.java.isInstance(
@@ -458,16 +462,16 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                             }
 
                             if (!errors.isEmpty()) {
-                                return@flatMap Single.error<MutableList<Pair<StreamInfoItem?, Int?>?>?>(
+                                return@flatMap Single.error(
                                     errors.get(0)
                                 )
                             }
                         }
-                        Single.just<MutableList<Pair<StreamInfoItem?, Int?>?>?>(
+                        Single.just<MutableList<Pair<StreamInfoItem, Int>>>(
                             IntStream.range(0, infoItemsPage.size)
-                                .mapToObj<Pair<StreamInfoItem?, Int?>?>(
-                                    java.util.function.IntFunction { i: kotlin.Int ->
-                                        android.util.Pair.create<StreamInfoItem?, kotlin.Int?>(
+                                .mapToObj<Pair<StreamInfoItem, Int>>(
+                                    java.util.function.IntFunction { i: Int ->
+                                        Pair.create<StreamInfoItem?, Int?>(
                                             infoItemsPage.get(i),
                                             i
                                         )
@@ -481,17 +485,17 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun populateRemotePlaylist(playlistId: Long): Single<MutableList<MediaBrowserCompat.MediaItem?>?>? {
-        return getRemotePlaylist(playlistId)!!.map<MutableList<MediaBrowserCompat.MediaItem?>?>(
-            Function { items: MutableList<Pair<StreamInfoItem?, Int?>?>? ->
-                items!!.stream()
-                    .map<MediaBrowserCompat.MediaItem?> { pair: Pair<StreamInfoItem?, Int?>? ->
+    private fun populateRemotePlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
+        return getRemotePlaylist(playlistId).map<List<MediaBrowserCompat.MediaItem>>(
+            { items ->
+                items
+                    .map { pair ->
                         createRemotePlaylistStreamMediaItem(
                             playlistId,
-                            pair!!.first!!,
-                            pair.second!!
+                            pair.first,
+                            pair.second
                         )
-                    }.toList()
+                    }
             }
         )
     }
@@ -505,11 +509,11 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         playbackError(errorInfo.messageStringId, PlaybackStateCompat.ERROR_CODE_APP_ERROR)
     }
 
-    private fun extractLocalPlayQueue(playlistId: Long, index: Int): Single<PlayQueue?>? {
+    private fun extractLocalPlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
         return localPlaylistManager!!.getPlaylistStreams(playlistId)
             .firstOrError()
-            .map<PlayQueue?>(
-                Function { items: MutableList<PlaylistStreamEntry?>? ->
+            .map<PlayQueue>(
+                { items: MutableList<PlaylistStreamEntry?>? ->
                     val infoItems = items!!.stream()
                         .map<StreamInfoItem?> { obj: PlaylistStreamEntry? -> obj!!.toStreamInfoItem() }
                         .collect(Collectors.toList())
@@ -518,21 +522,20 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             )
     }
 
-    private fun extractRemotePlayQueue(playlistId: Long, index: Int): Single<PlayQueue?>? {
-        return getRemotePlaylist(playlistId)!!.map<PlayQueue?>(
-            Function { items: MutableList<Pair<StreamInfoItem?, Int?>?>? ->
-                val infoItems = items!!.stream()
-                    .map<StreamInfoItem?> { pair: Pair<StreamInfoItem?, Int?>? -> pair!!.first }
-                    .toList()
+    private fun extractRemotePlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
+        return getRemotePlaylist(playlistId).map<PlayQueue>(
+            { items ->
+                val infoItems = items
+                    .map { pair -> pair.first }
                 SinglePlayQueue(infoItems, index)
             }
         )
     }
 
-    private fun extractPlayQueueFromMediaId(mediaId: String?): Single<PlayQueue?>? {
+    private fun extractPlayQueueFromMediaId(mediaId: String?): Single<PlayQueue> {
         try {
             val mediaIdUri = Uri.parse(mediaId)
-            val path: MutableList<String> = ArrayList<String>(mediaIdUri.getPathSegments())
+            val path: MutableList<String> = ArrayList<String>(mediaIdUri.pathSegments)
 
             if (path.isEmpty()) {
                 throw parseError()
@@ -556,7 +559,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 else -> throw parseError()
             }
         } catch (e: ContentNotAvailableException) {
-            return Single.error<PlayQueue?>(e)
+            return Single.error(e)
         }
     }
 
@@ -564,7 +567,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     private fun extractPlayQueueFromPlaylistMediaId(
         path: MutableList<String>,
         url: String?
-    ): Single<PlayQueue?>? {
+    ): Single<PlayQueue> {
         if (path.isEmpty()) {
             throw parseError()
         }
@@ -592,7 +595,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
                 val serviceId = path.get(0).toInt()
                 return ExtractorHelper.getPlaylistInfo(serviceId, url, false)
-                    .map<PlayQueue?>(Function { info: PlaylistInfo? -> PlaylistPlayQueue(info) })
+                    .map<PlayQueue>({ info: PlaylistInfo? -> PlaylistPlayQueue(info) })
             }
 
             else -> throw parseError()
@@ -601,8 +604,8 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     @Throws(ContentNotAvailableException::class)
     private fun extractPlayQueueFromHistoryMediaId(
-        path: MutableList<String>
-    ): Single<PlayQueue?>? {
+        path: List<String>
+    ): Single<PlayQueue> {
         if (path.size != 1) {
             throw parseError()
         }
@@ -610,7 +613,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val streamId = path.get(0).toLong()
         return getDatabase().streamHistoryDAO().getHistory()
             .firstOrError()
-            .map<PlayQueue?>(
+            .map<PlayQueue>(
                 Function { items: MutableList<StreamHistoryEntry?>? ->
                     val infoItems = items!!.stream()
                         .filter { it: StreamHistoryEntry? -> it!!.streamId == streamId }
@@ -657,14 +660,14 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                Consumer { playQueue: PlayQueue? ->
+                { playQueue: PlayQueue? ->
                     sessionConnector.setCustomErrorMessage(null)
                     NavigationHelper.playOnBackgroundPlayer(
                         playerService, playQueue,
                         playWhenReady
                     )
                 },
-                Consumer { throwable: Throwable? ->
+                { throwable: Throwable ->
                     playbackError(
                         ErrorInfo(
                             throwable, UserAction.PLAY_STREAM,
@@ -687,7 +690,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun searchMusicBySongTitle(query: String?): Single<SearchInfo?> {
+    private fun searchMusicBySongTitle(query: String?): Single<SearchInfo> {
         val serviceId = ServiceHelper.getSelectedServiceId(playerService)
         return ExtractorHelper.searchFor(
             serviceId, query,
@@ -695,36 +698,36 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         )
     }
 
-    private fun mediaItemsFromInfoItemList(result: ListInfo<InfoItem?>): SingleSource<MutableList<MediaBrowserCompat.MediaItem?>?> {
-        val exceptions = result.getErrors()
+    private fun mediaItemsFromInfoItemList(result: ListInfo<InfoItem>): SingleSource<List<MediaBrowserCompat.MediaItem>> {
+        val exceptions = result.errors
         if (!exceptions.isEmpty() &&
             !(
                 exceptions.size == 1 &&
                     exceptions.get(0) is NothingFoundException
                 )
         ) {
-            return Single.error<MutableList<MediaBrowserCompat.MediaItem?>?>(exceptions.get(0))
+            return Single.error(exceptions.get(0))
         }
 
         val items = result.getRelatedItems()
         if (items.isEmpty()) {
-            return Single.error<MutableList<MediaBrowserCompat.MediaItem?>?>(NullPointerException("Got no search results."))
+            return Single.error(NullPointerException("Got no search results."))
         }
         try {
-            val results = items.stream()
-                .filter { item: InfoItem? -> item!!.getInfoType() == InfoType.STREAM || item.getInfoType() == InfoType.PLAYLIST || item.getInfoType() == InfoType.CHANNEL }
-                .map<MediaBrowserCompat.MediaItem?> { item: InfoItem? ->
+            val results = items
+                .filter { item: InfoItem -> item.infoType == InfoType.STREAM || item.infoType == InfoType.PLAYLIST || item.infoType == InfoType.CHANNEL }
+                .map { item: InfoItem ->
                     this.createInfoItemMediaItem(
-                        item!!
+                        item
                     )
-                }.toList()
-            return Single.just<MutableList<MediaBrowserCompat.MediaItem?>?>(results)
+                }
+            return Single.just(results)
         } catch (e: Exception) {
-            return Single.error<MutableList<MediaBrowserCompat.MediaItem?>?>(e)
+            return Single.error(e)
         }
     }
 
-    private fun handleSearchError(throwable: Throwable?) {
+    private fun handleSearchError(throwable: Throwable) {
         Log.e(TAG, "Search error: " + throwable)
         disposePrepareOrPlayCommands()
         playbackError(R.string.content_not_supported, PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED)
@@ -750,28 +753,23 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     fun onSearch(
         query: String,
-        result: MediaBrowserServiceCompat.Result<MutableList<MediaBrowserCompat.MediaItem?>?>
+        result: MediaBrowserServiceCompat.Result<List<MediaBrowserCompat.MediaItem>>
     ) {
         result.detach()
         if (searchDisposable != null) {
             searchDisposable!!.dispose()
         }
         searchDisposable = searchMusicBySongTitle(query)
-            .flatMap<MutableList<MediaBrowserCompat.MediaItem?>?>(
-                Function { result: SearchInfo? ->
-                    this.mediaItemsFromInfoItemList(
-                        result!!
-                    )
-                }
-            )
+            .flatMap<List<MediaBrowserCompat.MediaItem>>
+            {
+                this.mediaItemsFromInfoItemList(
+                    it
+                )
+            }
             .subscribeOn(Schedulers.io())
             .subscribe(
-                Consumer { result: MutableList<MediaBrowserCompat.MediaItem?>? ->
-                    result.sendResult(
-                        result
-                    )
-                },
-                Consumer { throwable: Throwable? -> this.handleSearchError(throwable) }
+                { result.sendResult(it) },
+                { throwable: Throwable -> this.handleSearchError(throwable) }
             )
     }
 
@@ -815,9 +813,9 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
         @Throws(ContentNotAvailableException::class)
         private fun extractPlayQueueFromInfoItemMediaId(
-            path: MutableList<String>,
+            path: List<String>,
             url: String?
-        ): Single<PlayQueue?>? {
+        ): Single<PlayQueue> {
             if (path.size != 2) {
                 throw parseError()
             }
@@ -825,19 +823,19 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
             val serviceId = path.get(1).toInt()
             return when (infoItemType) {
                 InfoType.STREAM -> ExtractorHelper.getStreamInfo(serviceId, url, false)
-                    .map<PlayQueue?>(Function { info: StreamInfo? -> SinglePlayQueue(info) })
+                    .map<PlayQueue>(Function { info: StreamInfo? -> SinglePlayQueue(info) })
 
                 InfoType.PLAYLIST -> ExtractorHelper.getPlaylistInfo(serviceId, url, false)
-                    .map<PlayQueue?>(Function { info: PlaylistInfo? -> PlaylistPlayQueue(info) })
+                    .map<PlayQueue>(Function { info: PlaylistInfo? -> PlaylistPlayQueue(info) })
 
-                InfoType.CHANNEL -> ExtractorHelper.getChannelInfo(serviceId, url, false)
-                    .map<PlayQueue?>(
-                        Function { info: ChannelInfo? ->
-                            val playableTab = info!!.getTabs()
+                InfoType.CHANNEL -> {
+                    ExtractorHelper.getChannelInfo(serviceId, url, false)
+                        .map<PlayQueue> { info: ChannelInfo ->
+                            val playableTab = info.tabs
                                 .stream()
                                 .filter { tab: ListLinkHandler? -> ChannelTabHelper.isStreamsTab(tab) }
                                 .findFirst()
-                            if (playableTab.isPresent()) {
+                            if (playableTab.isPresent) {
                                 return@map ChannelTabPlayQueue(
                                     serviceId,
                                     ListLinkHandler(playableTab.get())
@@ -846,7 +844,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                                 throw ContentNotAvailableException("No streams tab found")
                             }
                         }
-                    )
+                }
 
                 else -> throw parseError()
             }
