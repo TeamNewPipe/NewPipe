@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.mediabrowser
 
 import android.content.ContentResolver
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.ResultReceiver
@@ -67,8 +68,8 @@ import java.lang.NullPointerException
 import java.util.ArrayList
 import java.util.stream.Collectors
 
-class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
-    private val playerService: PlayerService
+class MediaBrowserConnector(private val playerService: PlayerService) : PlaybackPreparer {
+    private val context: Context
     private val sessionConnector: MediaSessionConnector
     private val mediaSession: MediaSessionCompat
 
@@ -96,7 +97,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(mediaId)
         builder.setTitle(folderName)
-        val resources = playerService.resources
+        val resources = context.resources
         builder.setIconUri(
             Uri.Builder()
                 .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -109,7 +110,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            playerService.getString(R.string.app_name)
+            context.getString(R.string.app_name)
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
@@ -128,7 +129,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val extras = Bundle()
         extras.putString(
             MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            playerService.resources.getString(R.string.tab_bookmarks),
+            context.resources.getString(R.string.tab_bookmarks),
         )
         builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
@@ -274,7 +275,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 mediaItems.add(
                     createRootMediaItem(
                         ID_BOOKMARKS,
-                        playerService.resources.getString(
+                        context.resources.getString(
                             R.string.tab_bookmarks_short
                         ),
                         R.drawable.ic_bookmark_white
@@ -283,7 +284,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 mediaItems.add(
                     createRootMediaItem(
                         ID_HISTORY,
-                        playerService.resources.getString(R.string.action_history),
+                        context.resources.getString(R.string.action_history),
                         R.drawable.ic_history_white
                     )
                 )
@@ -354,7 +355,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     private fun getDatabase(): AppDatabase {
         if (database == null) {
-            database = NewPipeDatabase.getInstance(playerService)
+            database = NewPipeDatabase.getInstance(context)
         }
         return database!!
     }
@@ -375,20 +376,16 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     var bookmarksNotificationsDisposable: Disposable? = null
 
     init {
-        this.playerService = playerService
+        this.context = playerService
         mediaSession = MediaSessionCompat(playerService, TAG)
         sessionConnector = MediaSessionConnector(mediaSession)
         sessionConnector.setMetadataDeduplicationEnabled(true)
         sessionConnector.setPlaybackPreparer(this)
         playerService.setSessionToken(mediaSession.sessionToken)
 
-        setupBookmarksNotifications()
-    }
-
-    private fun setupBookmarksNotifications() {
         bookmarksNotificationsDisposable = getPlaylists().subscribe(
             { playlistMetadataEntries ->
-                playerService.notifyChildrenChanged(
+                this.context.notifyChildrenChanged(
                     ID_BOOKMARKS
                 )
             }
@@ -488,7 +485,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
 
     private fun playbackError(@StringRes resId: Int, code: Int) {
         playerService.stopForImmediateReusing()
-        sessionConnector.setCustomErrorMessage(playerService.getString(resId), code)
+        sessionConnector.setCustomErrorMessage(context.getString(resId), code)
     }
 
     private fun playbackError(errorInfo: ErrorInfo) {
@@ -653,7 +650,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
                 { playQueue: PlayQueue? ->
                     sessionConnector.setCustomErrorMessage(null)
                     NavigationHelper.playOnBackgroundPlayer(
-                        playerService, playQueue,
+                        context, playQueue,
                         playWhenReady
                     )
                 },
@@ -681,7 +678,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
     }
 
     private fun searchMusicBySongTitle(query: String?): Single<SearchInfo> {
-        val serviceId = ServiceHelper.getSelectedServiceId(playerService)
+        val serviceId = ServiceHelper.getSelectedServiceId(context)
         return ExtractorHelper.searchFor(
             serviceId, query,
             ArrayList<String?>(), ""
@@ -692,9 +689,9 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         val exceptions = result.errors
         if (!exceptions.isEmpty() &&
             !(
-                exceptions.size == 1 &&
-                    exceptions.get(0) is NothingFoundException
-                )
+                    exceptions.size == 1 &&
+                            exceptions.get(0) is NothingFoundException
+                    )
         ) {
             return Single.error(exceptions.get(0))
         }
@@ -721,7 +718,7 @@ class MediaBrowserConnector(playerService: PlayerService) : PlaybackPreparer {
         Log.e(TAG, "Search error: " + throwable)
         disposePrepareOrPlayCommands()
         sessionConnector.setCustomErrorMessage(
-            playerService.getString(R.string.search_no_results),
+            context.getString(R.string.search_no_results),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR,
         )
     }
