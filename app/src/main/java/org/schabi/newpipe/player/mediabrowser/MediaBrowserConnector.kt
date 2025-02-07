@@ -19,7 +19,6 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector.PlaybackPreparer
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleSource
 import io.reactivex.rxjava3.disposables.Disposable
@@ -73,9 +72,13 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     private val sessionConnector: MediaSessionConnector
     private val mediaSession: MediaSessionCompat = MediaSessionCompat(playerService, TAG)
 
-    private var database: AppDatabase? = null
-    private var localPlaylistManager: LocalPlaylistManager? = null
-    private var remotePlaylistManager: RemotePlaylistManager? = null
+    private val database: AppDatabase
+        get() = NewPipeDatabase.getInstance(context)
+    private val mergedPlaylists
+        get() = MergedPlaylistManager.getMergedOrderedPlaylists(
+            LocalPlaylistManager(database),
+            RemotePlaylistManager(database)
+        )
     private var prepareOrPlayDisposable: Disposable? = null
     private var searchDisposable: Disposable? = null
 
@@ -87,7 +90,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         sessionConnector.setPlaybackPreparer(this)
         playerService.setSessionToken(mediaSession.sessionToken)
 
-        bookmarksNotificationsDisposable = getPlaylists().subscribe(
+        bookmarksNotificationsDisposable = mergedPlaylists.subscribe(
             { playlistMetadataEntries ->
                 playerService.notifyChildrenChanged(
                     ID_BOOKMARKS
@@ -95,7 +98,6 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
             }
         )
     }
-
 
     fun getSessionConnector(): MediaSessionConnector {
         return sessionConnector
@@ -339,8 +341,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun populateHistory(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val streamHistory = getDatabase().streamHistoryDAO()
-        val history = streamHistory.getHistory().firstOrError()
+        val history = database.streamHistoryDAO().getHistory().firstOrError()
         return history.map<List<MediaBrowserCompat.MediaItem>>(
             Function { items ->
                 items.stream()
@@ -371,28 +372,8 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         )
     }
 
-    private fun getDatabase(): AppDatabase {
-        if (database == null) {
-            database = NewPipeDatabase.getInstance(context)
-        }
-        return database!!
-    }
-
-    private fun getPlaylists(): Flowable<MutableList<PlaylistLocalItem>> {
-        if (localPlaylistManager == null) {
-            localPlaylistManager = LocalPlaylistManager(getDatabase())
-        }
-        if (remotePlaylistManager == null) {
-            remotePlaylistManager = RemotePlaylistManager(getDatabase())
-        }
-        return MergedPlaylistManager.getMergedOrderedPlaylists(
-            localPlaylistManager,
-            remotePlaylistManager
-        )
-    }
-
     private fun populateBookmarks(): Single<List<MediaBrowserCompat.MediaItem>> {
-        val playlists = getPlaylists().firstOrError()
+        val playlists = mergedPlaylists.firstOrError()
         return playlists.map<List<MediaBrowserCompat.MediaItem>>(
             { playlist: List<PlaylistLocalItem> ->
                 playlist.stream()
@@ -407,7 +388,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun populateLocalPlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
-        val playlist = localPlaylistManager!!.getPlaylistStreams(playlistId).firstOrError()
+        val playlist = LocalPlaylistManager(database).getPlaylistStreams(playlistId).firstOrError()
         return playlist.map<List<MediaBrowserCompat.MediaItem>>(
             { items: List<PlaylistStreamEntry> ->
                 val results: MutableList<MediaBrowserCompat.MediaItem> =
@@ -423,7 +404,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun getRemotePlaylist(playlistId: Long): Single<List<Pair<StreamInfoItem, Int>>> {
-        val playlistFlow = remotePlaylistManager!!.getPlaylist(playlistId).firstOrError()
+        val playlistFlow = RemotePlaylistManager(database).getPlaylist(playlistId).firstOrError()
         return playlistFlow.flatMap<List<Pair<StreamInfoItem, Int>>>(
             { item: List<PlaylistRemoteEntity> ->
                 val playlist = item.get(0)
@@ -485,7 +466,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
     }
 
     private fun extractLocalPlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
-        return localPlaylistManager!!.getPlaylistStreams(playlistId)
+        return LocalPlaylistManager(database).getPlaylistStreams(playlistId)
             .firstOrError()
             .map<PlayQueue>(
                 { items: MutableList<PlaylistStreamEntry?>? ->
@@ -590,7 +571,7 @@ class MediaBrowserConnector(private val playerService: PlayerService) : Playback
         }
 
         val streamId = path.get(0).toLong()
-        return getDatabase().streamHistoryDAO().getHistory()
+        return database.streamHistoryDAO().getHistory()
             .firstOrError()
             .map<PlayQueue>(
                 Function { items: MutableList<StreamHistoryEntry?>? ->
