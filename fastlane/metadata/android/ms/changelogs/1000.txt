@@ -1,0 +1,13 @@
+Dipertingkat
+• Jadikan penerangan senarai main boleh diklik untuk menunjukkan kandungan yang lebih banyak/kurang
+• [PeerTube] Kendalikan pautan segera `subscribeto.me` secara automatik
+• Hanya mula mainkan item tunggal di skrin sejarah
+
+Dibaiki
+• Baiki keterlihatan butang RSS
+• Baiki ranap pratonton bar carian
+• Baiki pembuatan senarai main item tanpa lakaran kecil
+• Baiki dialog keluar daripada muat turun sebelum ia muncul
+• Baiki timbul baris gilir senarai item yang berkaitan
+• Baiki susunan dalam menambah dialog senarai main
+• Laraskan susun atur item penanda buku senarai main

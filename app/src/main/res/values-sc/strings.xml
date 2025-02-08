@@ -824,4 +824,5 @@
     <string name="reset_all_settings">Resetende totu sas impostatziones as a iscartare totu sas impostatziones preferidas tuas e a torrare a allùghere s\'aplicatzione.
 \n
 \nSes seguru de bòlere sighire?</string>
+    <string name="import_settings_vulnerable_format">Sas impostatziones in s\'esportatzione chi benit importada impreant unu formadu vulneràbile chi est disusadu dae sa versione 0.27.0 de NewPipe. Assegura·ti chi s\'esportatzione importada bèngiat dae una fonte fidada, e preferi a impreare petzi esportatziones otentas dae NewPipe 0.27.0 o prus nou, in su benidore. Su suportu a s\'importatzione de impostatziones in custu formadu vulneràbile at a èssere luego bogadu de su totu, e dae cussu momentu sas versiones de NewPipe prus betzas no ant a èssere prus in gradu de importare impostatziones pro mèdiu de esportatziones de versiones prus noas.</string>
 </resources>

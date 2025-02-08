@@ -559,7 +559,7 @@
     <string name="enqueue_stream">Jarri ilaran</string>
     <string name="show_original_time_ago_summary">Zerbitzuen jatorrizko testuak igorpenaren elementuetan ikusgai egongo dira</string>
     <string name="show_original_time_ago_title">Erakutsi «orain dela» jatorrizko denbora elementuetan</string>
-    <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz</string>
+    <string name="notification_actions_summary">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko eskuineko kontrol laukiak erabiliz.</string>
     <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
     <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
     <string name="show_thumbnail_summary">Erabili miniatura blokeo pantaila eta jakinarazpenentzako</string>
@@ -734,11 +734,11 @@
     <string name="use_exoplayer_decoder_fallback_title">Erabili ExoPlayer-en deskodetzailearen ordezko eginbidea</string>
     <string name="none">Bat ere ez</string>
     <string name="loading_metadata_title">Metadatuak kargatzen…</string>
-    <string name="settings_category_exoplayer_summary">Kudeatu ExoPlayer-en ezarpen batzuk. Aldaketa hauek eragina izan dezaten, erreproduzitzailea berrabiarazi behar da.</string>
+    <string name="settings_category_exoplayer_summary">Kudeatu ExoPlayer-en ezarpen batzuk. Aldaketa hauek eragina izan dezaten, erreproduzitzailea berrabiarazi behar da</string>
     <string name="main_tabs_position_title">Fitxa nagusien kokapena</string>
     <string name="feed_fetch_channel_tabs">Lortu kanalaren fitxak</string>
     <string name="metadata_avatars">Abatarrak</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Gaitu aukera hau deskodetzailea hasieratzeko arazoak badituzu, hala nola, lehentasun gutxiago duen deskodetzailetara igarotzea deskodetzaile nagusiaren hasieratzeak huts egiten badu. Aukera honek erreprodukzioak kalitate urria izatea ekar dezake, deskodetzaile nagusiak erabiltzean ez bezala.</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Gaitu aukera hau deskodetzailea hasieratzeko arazoak badituzu, hala nola, lehentasun gutxiago duen deskodetzailetara igarotzea deskodetzaile nagusiaren hasieratzeak huts egiten badu. Aukera honek erreprodukzioak kalitate urria izatea ekar dezake, deskodetzaile nagusiak erabiltzean ez bezala</string>
     <string name="right_gesture_control_title">Eskuineko keinuaren ekintza</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Erabili beti ExoPlayer-en bideo-irteeraren interfazeko ezarpenaren konponbidea</string>
     <string name="next_stream">Hurrengo igorpena</string>
@@ -752,7 +752,7 @@
     <string name="left_gesture_control_title">Ezkerreko keinuaren ekintza</string>
     <string name="prefer_descriptive_audio_title">Hobetsi audio deskribatzailea</string>
     <string name="metadata_uploader_avatars">Igotako abatarrak</string>
-    <string name="progressive_load_interval_summary">Aldatu eduki progresiboen kargatze-tartearen tamaina (oraingoa: %s). Balio baxu batek hasierako kargatzea bizkortu dezake.</string>
+    <string name="progressive_load_interval_summary">Aldatu eduki progresiboen kargatze-tartearen tamaina (oraingoa: %s). Balio baxu batek hasierako kargatzea bizkortu dezake</string>
     <string name="prefer_original_audio_title">Hobetsi jatorrizko audioa</string>
     <string name="play_queue_audio_track">Audioa: %s</string>
     <string name="metadata_banners">Bannerrak</string>
@@ -767,4 +767,63 @@
     <string name="previous_stream">Aurreko igorpena</string>
     <string name="left_gesture_control_summary">Aukeratu erreproduzitzailearen pantailaren ezker erdiaren keinua</string>
     <string name="channel_tab_livestreams">Zuzenekoa</string>
+    <string name="audio_track_type_descriptive">deskriptiboa</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="channel_tab_about">Honi buruz</string>
+    <string name="no">Ez</string>
+    <string name="notification_actions_summary_android13">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Lehen hiru ekintzak (erreproduzitu/pausatu, aurrekoa eta hurrengoa) sistemarengatik ezarrita daude eta ezin dira pertsonalizatu.</string>
+    <string name="rewind">Atzera egin</string>
+    <string name="image_quality_title">Irudiaren kalitatea</string>
+    <string name="share_playlist_with_titles_message">Partekatu erreprodukzio-zerrenda xehetasunekin, esate baterako, erreprodukzio-zerrendaren izena eta bideo-izenburuak edo bideo-URLen zerrenda soil gisa</string>
+    <string name="more_options">Aukera gehiago</string>
+    <string name="duration">Iraupena</string>
+    <string name="forward">Aurrera egin</string>
+    <string name="audio_track_type_original">jatorrizkoa</string>
+    <string name="question_mark">\?</string>
+    <string name="import_settings_vulnerable_format">Inportatzen den esportazioko ezarpenek NewPipe 0.27.0 geroztik zaharkituta zegoen formatu ahula erabiltzen dute. Ziurtatu inportatzen ari den esportazioa iturri fidagarri batekoa dela, eta etorkizunean NewPipe 0.27.0 edo berriagoa den esportazioak soilik erabili. Formatu ahul honetan ezarpenak inportatzeko euskarria erabat kenduko da laster, eta NewPipe-ren bertsio zaharrek ezin izango dituzte bertsio berrietatik esportazioen ezarpenak inportatu.</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="yes">Bai</string>
+    <string name="settings_category_backup_restore_title">Babeskopia eta berrezarpena</string>
+    <string name="auto_update_check_description">NewPipe-k bertsio berriak bilatu ditzake eta eskuragarri daudenean jakinarazi.
+\nHau gaitu nahi duzu?</string>
+    <string name="reset_settings_title">Berrezarri ezarpenak</string>
+    <string name="reset_settings_summary">Berrezarri ezarpen guztiak lehenetsitako baliotara</string>
+    <string name="reset_all_settings">Ezarpenak berrezartzeak zure ezarpen gogokoenak baztertzen ditu eta aplikazioa berrabiarazten du.
+\n
+\nAurrera egin nahi duzu?</string>
+    <string name="error_insufficient_storage">Ez dago nahikoa lekurik gailuan</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Konponbide honek azal aldaketa bat gertatzean bideo kodekak askatu eta berrezartzen ditu, azalaren kodeka zuzenean ezarri ordez. ExoPlayer-ek dagoeneko erabiltzen du arazoak dituzten gailu batzuetan. Ezarpen honek Android 6 eta berriagotan funtzionatzen du soilik
+\n
+\nAukera hau gaitzeak erreprodukzio erroreak saihestu ditzake bideo-erreproduktorea aldatzean edo pantaila osoan jartzean</string>
+    <string name="audio_track_type_dubbed">bikoiztua</string>
+    <string name="channel_tab_videos">Bideoak</string>
+    <string name="channel_tab_tracks">Pistak</string>
+    <string name="channel_tab_shorts">Shorts</string>
+    <string name="channel_tab_channels">Kanalak</string>
+    <string name="channel_tab_playlists">Erreprodukzio-zerrendak</string>
+    <string name="channel_tab_albums">Albumak</string>
+    <string name="show_channel_tabs">Kanalaren fitxak</string>
+    <string name="show_channel_tabs_summary">Ze fitxa erakusten diren kanal-orrietan</string>
+    <string name="open_play_queue">Ireki erreprodukzio-ilara</string>
+    <string name="toggle_fullscreen">Aldatu pantaila osora</string>
+    <string name="toggle_screen_orientation">Aldatu pantailaren orientazioa</string>
+    <string name="play">Erreproduzitu</string>
+    <string name="replay">Berriro erreproduzitu</string>
+    <string name="image_quality_summary">Aukeratu irudien kalitatea eta irudiak kargatu nahi dituzun ala ez, datuen eta memoriaren erabilera murrizteko. Aldaketek memoriako zein diskoko irudien cachea garbitzen dute — %s</string>
+    <string name="image_quality_none">Ez kargatu irudiak</string>
+    <string name="image_quality_low">Kalitate baxua</string>
+    <string name="image_quality_medium">Kalitate ertaina</string>
+    <string name="image_quality_high">Kalitate altua</string>
+    <string name="share_playlist">Partekatu erreprodukzio-zerrenda</string>
+    <string name="show_more">Erakutsi gehiago</string>
+    <string name="share_playlist_with_titles">Partekatu tituluekin</string>
+    <string name="share_playlist_with_list">Partekatu URL zerrenda</string>
+    <plurals name="replies">
+        <item quantity="one">erantzun %s</item>
+        <item quantity="other">%s erantzun</item>
+    </plurals>
+    <string name="show_less">Erakutsi gutxiago</string>
+    <string name="audio_track_type_secondary">bigarren mailako</string>
 </resources>

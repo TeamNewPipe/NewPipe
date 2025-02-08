@@ -93,7 +93,7 @@
     <string name="msg_error">Kļūda</string>
     <string name="msg_threads">Procesi</string>
     <string name="msg_name">Faila nosaukums</string>
-    <string name="ok">OK</string>
+    <string name="ok">Labi</string>
     <string name="rename">Pārsaukt</string>
     <string name="dismiss">Atcelt</string>
     <string name="checksum">Kontrolsumma</string>
@@ -157,11 +157,11 @@
     <string name="info_labels">Kas:\\nRequest:\\nContent Valoda:\\nContent Valsts:\\nApp Valoda:\\nService:\\nGMT Laiks:\\nPackage:\\nVersion:\\nOS versija:</string>
     <string name="hash_channel_description">Paziņojumi video apstrādes progresam</string>
     <string name="hash_channel_name">Video haša paziņojums</string>
-    <string name="popup_remember_size_pos_summary">Atcerēties pēdējo popup izmēru un pozīciju</string>
-    <string name="popup_remember_size_pos_title">Atcerēties popup īpašības</string>
-    <string name="default_popup_resolution_title">Noklusējuma popup izšķirtspēja</string>
-    <string name="controls_popup_title">Popup</string>
-    <string name="open_in_popup_mode">Atvērt popup režīmā</string>
+    <string name="popup_remember_size_pos_summary">Atcerēties pēdējo uznirstošā loga izmēru un pozīciju</string>
+    <string name="popup_remember_size_pos_title">Atcerēties uznirstošā loga īpašības</string>
+    <string name="default_popup_resolution_title">Uznirstošā loga noklusējuma izšķirtspēja</string>
+    <string name="controls_popup_title">Uznirstošs logs</string>
+    <string name="open_in_popup_mode">Atvērt uznirstošā logā</string>
     <string name="what_happened_headline">Kas notika:</string>
     <string name="what_device_headline">Informācija:</string>
     <string name="error_snackbar_action">Ziņot</string>
@@ -271,7 +271,7 @@
     <string name="peertube_instance_add_title">Pievienot instanci</string>
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
     <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļākās PeerTube instances</string>
-    <string name="peertube_instance_url_title">PeerTube instances</string>
+    <string name="peertube_instance_url_title">PeerTube serveri (instances)</string>
     <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
     <string name="chapters">Nodaļas</string>
@@ -407,22 +407,14 @@
     <string name="drawer_close">Aizvērt Atvilkni</string>
     <string name="drawer_open">Atvērt Atvilkni</string>
     <string name="most_liked">Vispopulārākais</string>
-    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">jūsuID , soundcloud.com/jūsuID</string>
     <string name="import_soundcloud_instructions">Importējiet SoundCloud profilu, ierakstot URL vai ID:
 \n
 \n1. Tīmekļa pārlūkprogrammā ieslēdziet \"datoru vietni\" (vietne nav pieejama mobilajām ierīcēm)
 \n2. Dodieties uz šo URL:%1$s
 \n3. Ierakstaties, kad tiek prasīts
 \n4. Nokopējiet profila URL, uz kuru tikāt novirzīts.</string>
-    <string name="import_youtube_instructions">YouTube abonementu importēšana no Google TakeOut:
-\n
-\n1. Dodieties uz šo URL:%1$s
-\n2. Ierakstaties, kad tiek prasīts
-\n3. Noklikšķiniet uz \"Visi dati iekļauti\", pēc tam uz \"Atcelt visu atlasi\", pēc tam atlasiet tikai \"Abonementi\" un noklikšķiniet uz \"Labi\"
-\n4. Noklikšķiniet uz \"Nākamais solis\" un pēc tam uz \"Izveidot eksportu\"
-\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\"
-\n6. Noklikšķiniet \"Importēt failu\" apakšā un izvēlaties lejupielādēto zip failu
-\n7. [Ja zip faila imports neizdodas] No lejupielādētā izņemšanas zip izvelciet .csv failu (parasti sadaļā “YouTube un YouTube mūzika / abonementi / abonementi.csv\"), noklikšķiniet uz \"Importēt failu\" apakšā un izvēlaties iegūto csv failu</string>
+    <string name="import_youtube_instructions">YouTube abonementu importēšana no Google Takeout:\n\n1. Dodieties uz šo vietni: %1$s\n2. Autorizējieties, ja nepieciešams\n3. Noklikšķiniet uz \"Visi dati iekļauti\", pēc tam uz \"Atcelt visu atlasi\", pēc tam atlasiet tikai \"Abonementi\" un noklikšķiniet uz \"Labi\"\n4. Noklikšķiniet uz \"Nākamais solis\" un pēc tam uz \"Izveidot eksportu\"\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\"\n6. Noklikšķiniet IMPORTĒT DATNI zemāk un izvēlaties lejupielādēto .zip failu\n7. [Ja .zip failu neizdodas importēt] Izvelciet .csv failu (parasti zem \"YouTube un YouTube Music/subscriptions/subscriptions.csv\") no arhīva, tad noklikšķiniet uz IMPORTĒT DATNI zemāk un izvēlaties tikko izvilkto csv failu</string>
     <string name="preferred_open_action_settings_summary">Noklusējuma darbība, kad atver saturu — %s</string>
     <string name="show_original_time_ago_summary">Pakalpojumu oriģinālteksti būs redzami video vienumos</string>
     <string name="enable_disposed_exceptions_summary">Pēc izdzēšanas, piespiedu kārtā ziņot par nepiegādātiem Rx izņēmumiem, ārpus fragmenta vai darbības dzīves cikla</string>
@@ -498,7 +490,7 @@
     <string name="enable_playback_resume_summary">Saglabāt pēdējo atskaņošanas pozīciju</string>
     <string name="enable_playback_resume_title">Atsākt atskaņošanu</string>
     <string name="enable_watch_history_title">Skatīšanās vēsture</string>
-    <string name="enable_search_history_summary">Glabāt meklēšanas vēsturi atmiņā</string>
+    <string name="enable_search_history_summary">Glabāt meklēšanas vēsturi lokāli (ierīces krātuvē)</string>
     <string name="enable_search_history_title">Meklēšanas vēsture</string>
     <string name="show_search_suggestions_summary">Izvēlieties, kādus ieteikumus rādīt, rakstot meklēšanas joslā</string>
     <string name="show_search_suggestions_title">Meklēšanas ieteikumi</string>
@@ -509,34 +501,34 @@
     <string name="metadata_cache_wipe_summary">Izdzēst visus kešatmiņā glabātos mājaslapu datus</string>
     <string name="metadata_cache_wipe_title">Notīrīt kešatmiņas metadatus</string>
     <string name="thumbnail_cache_wipe_complete_notice">Attēlu kešatmiņa notīrīta</string>
-    <string name="show_meta_info_summary">Izslēdziet, lai paslēptu informācijas zīmes ar papildus ziņām par video autoru, video saturu vai meklēšanas rezultātu</string>
+    <string name="show_meta_info_summary">Izslēdziet, lai paslēptu papildus informācijas laukus par video autoru, video saturu vai meklēšanas vaicājuma rezultātu</string>
     <string name="show_meta_info_title">Rādīt papildus informāciju</string>
-    <string name="show_description_summary">Izslēdziet, ja nevēlaties redzēt video aprakstus un papildus informāciju</string>
+    <string name="show_description_summary">Izslēdziet, ja nevēlaties redzēt video aprakstu un papildus informāciju</string>
     <string name="show_description_title">Rādīt video aprakstu</string>
     <string name="show_next_and_similar_title">Rādīt \'Nākošos\' un \'Līdzīgos\' videoklipus</string>
     <string name="show_comments_summary">Izslēdziet, lai paslēptu komentārus</string>
     <string name="show_comments_title">Rādīt komentārus</string>
     <string name="clear_queue_confirmation_description">Tagadējā atskaņošanas rinda tiks aizvietota</string>
-    <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams, notīrīsies jūsu atskaņošanas rinda</string>
+    <string name="clear_queue_confirmation_summary">Mainot vienu atskaņotāju uz citu, jūsu atskaņošanas rinda var tikt aizstāta/pārrakstīta</string>
     <string name="clear_queue_confirmation_title">Prasīt apstiprinājumu, pirms notīrīt atskaņošanas rindu</string>
-    <string name="seek_duration_title">Uz priekšu/atpakaļ meklētāja ilgums</string>
-    <string name="use_inexact_seek_summary">Neprecīzs meklētājs atļauj video atskaņotājam atrast pozīciju ātrāk, bet ar zemāku precizitāti. Meklēšana 5, 15 vai 25 sekundes uz priekšu vai atpakaļ, nestrādā ar šo opciju</string>
-    <string name="use_inexact_seek_title">Izmantot ātru, neprecīzu meklētāju</string>
-    <string name="black_theme_title">Melna</string>
-    <string name="dark_theme_title">Tumša</string>
-    <string name="light_theme_title">Balta</string>
-    <string name="theme_title">Aplikācijas krāsa</string>
+    <string name="seek_duration_title">Ātrās uz priekšu/atpakaļ tīšanas solis</string>
+    <string name="use_inexact_seek_summary">Ar neprecīzo tīšanu video atskaņotājs var ātrāk sasniegt aptuveno atskaņošanas pozīciju, bet ar zemāku precizitāti. Tīšana pa 5, 15 vai 25 sekundēm uz priekšu vai atpakaļ nedarbojas ar šo opciju</string>
+    <string name="use_inexact_seek_title">Izmantot ātro, neprecīzo tīšanu</string>
+    <string name="black_theme_title">Melns</string>
+    <string name="dark_theme_title">Tumšs</string>
+    <string name="light_theme_title">Gaišs</string>
+    <string name="theme_title">Motīvs</string>
     <string name="default_video_format_title">Noklusējuma video formāts</string>
     <string name="default_audio_format_title">Noklusējuma audio formāts</string>
     <string name="play_audio">Audio</string>
-    <string name="notification_colorize_summary">Ļaujiet Android pielāgot paziņojuma krāsu atbilstoši galvenajai krāsai video attēlā (ņemiet vērā, ka tas nav pieejams visās ierīcēs)</string>
+    <string name="notification_colorize_summary">Ļaut Android pielāgot paziņojuma krāsu atbilstoši galvenajai krāsai video attēlā (ņemiet vērā, ka tas nav pieejams visās ierīcēs)</string>
     <string name="share">Kopīgot</string>
     <string name="open_with">Atvērt ar</string>
-    <string name="open_in_browser">Atvērt pārlūkprogrammā</string>
+    <string name="open_in_browser">Atvērt pārlūkā</string>
     <string name="cancel">Atcelt</string>
-    <string name="install">Instalēt</string>
-    <string name="no_player_found_toast">Netika atrasts video atskaņotājs (jūs varat instalēt VLC, lai to atskaņotu).</string>
-    <string name="no_player_found">Netika atrasts video atskaņotājs. Instalēt VLC\?</string>
+    <string name="install">Uzstādīt</string>
+    <string name="no_player_found_toast">Netika atrasts video atskaņotājs (jūs varat uzstādīt VLC, lai to atskaņotu).</string>
+    <string name="no_player_found">Netika atrasts video atskaņotājs. Uzstādīt VLC?</string>
     <string name="upload_date_text">Publicēts %1$s</string>
     <string name="main_bg_subtitle">Nospiediet uz meklēšanas ikonas, lai sāktu.</string>
     <string name="notification_colorize_title">Iekrāsot paziņojumu</string>
@@ -544,8 +536,8 @@
     <string name="notification_action_buffering">Ielādējas</string>
     <string name="notification_action_shuffle">Sajaukt</string>
     <string name="notification_action_repeat">Atkārtot</string>
-    <string name="notification_actions_at_most_three">Jūs varat izvēlēties tikai 3 darbības, kuras rādīs kompaktajā paziņojumā!</string>
-    <string name="notification_actions_summary">Rediģējiet katru paziņojuma darbību, pieskaroties tai. Izvēlieties trīs darbības, kuras rādīs kompaktā paziņojumā, izmantojot rūtiņas labajā pusē</string>
+    <string name="notification_actions_at_most_three">Jūs varat izvēlēties ne vairāk kā 3 darbības, kuras rādīs kompaktajā paziņojumā!</string>
+    <string name="notification_actions_summary">Rediģējiet katru paziņojuma darbību, pieskaroties tai. Izvēlieties trīs darbības, kuras rādīs kompaktā paziņojumā, izmantojot rūtiņas labajā pusē.</string>
     <string name="notification_action_4_title">Piektā darbības poga</string>
     <string name="notification_action_3_title">Ceturtā darbības poga</string>
     <string name="notification_action_2_title">Trešā darbības poga</string>
@@ -555,7 +547,7 @@
     <string name="notification_scale_to_square_image_title">Apgriezt video attēlu uz 1:1 proporciju</string>
     <string name="show_play_with_kodi_summary">Rādīt opciju atskaņot video ar Kodi mediju centru</string>
     <string name="show_play_with_kodi_title">Rādīt \"Atskaņot ar Kodi\" opciju</string>
-    <string name="kore_not_found">Instalēt trūkstošo Kode aplikāciju\?</string>
+    <string name="kore_not_found">Uzstādīt trūkstošo Kore lietotni?</string>
     <string name="play_with_kodi_title">Atskaņot ar Kodi</string>
     <string name="show_higher_resolutions_summary">Tikai dažas ierīcas var atskaņot 2K/4K videoklipus</string>
     <string name="show_higher_resolutions_title">Rādīt augstākas izšķirtspējas</string>
@@ -567,14 +559,14 @@
     <string name="download_path_summary">Lejupielādētie video faili tiek glabāti šeit</string>
     <string name="download_path_title">Video lejupielādes mape</string>
     <string name="controls_add_to_playlist_title">Pievienot</string>
-    <string name="controls_background_title">Fons</string>
+    <string name="controls_background_title">Fonā</string>
     <string name="tab_choose">Izvēlieties Cilni</string>
     <string name="tab_bookmarks">Saglabātie saraksti</string>
     <string name="tab_subscriptions">Abonementi</string>
     <string name="show_info">Rādīt informāciju</string>
-    <string name="subscription_update_failed">Nevarēja atjaunināt abonementu</string>
+    <string name="subscription_update_failed">Abonementu nevarēja atjaunināt</string>
     <string name="subscription_change_failed">Nevarēja mainīt abonementu</string>
-    <string name="channel_unsubscribed">Kanālam atcelts abonements</string>
+    <string name="channel_unsubscribed">Atcelts kanāla abonements</string>
     <string name="unsubscribe">Atcelt abonementu</string>
     <string name="subscribed_button_title">Abonēts</string>
     <string name="subscribe_button_title">Abonēt</string>
@@ -604,7 +596,7 @@
     <string name="recaptcha_solve">Atrisināt</string>
     <string name="restricted_video_no_stream">Šis video ir ierobežots ar vecumu.
 \nŅemot vērā jauno YouTube politiku ar vecuma ierobežotiem videoklipiem, Newpipe nevar piekļūt šim videoklipam.</string>
-    <string name="night_theme_title">Nakts Motīvs</string>
+    <string name="night_theme_title">Nakts režīma motīvs</string>
     <string name="off">Izslēgts</string>
     <string name="on">Ieslēgts</string>
     <string name="metadata_privacy_private">Privāts</string>
@@ -612,7 +604,7 @@
     <string name="metadata_support">Atbalsts</string>
     <string name="metadata_language">Valoda</string>
     <string name="metadata_age_limit">Vecuma ierobežojums</string>
-    <string name="metadata_licence">Licence</string>
+    <string name="metadata_licence">License</string>
     <string name="metadata_tags">Tagi</string>
     <string name="metadata_category">Kategorija</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Jums tiks jautāts, kur saglabāt katru lejupielādi</string>
@@ -624,7 +616,7 @@
     <string name="start_main_player_fullscreen_title">Sākt video atskaņotāju pilnekrāna režīmā</string>
     <string name="start_main_player_fullscreen_summary">Nesākt video atskaņošanu samazinātā režīmā, bet pilnekrāna režīmā, ja automātiskā rotācija ir izslēgta</string>
     <string name="disable_media_tunneling_title">Izslēgt multivides tuneļošanu</string>
-    <string name="disable_media_tunneling_summary">Izslēdziet multivides tuneļošanu, ja jums video atskaņošanas laikā parādās melns ekrāns vai aizķeršanās</string>
+    <string name="disable_media_tunneling_summary">Izslēdziet multivides tuneļošanu, ja jums video atskaņošanas laikā parādās melns ekrāns vai aizķeršanās.</string>
     <string name="show_image_indicators_summary">Rādīt krāsainas lentes virs attēliem, norādot to avotu: sarkana - tīkls, zila - disks, zaļa - atmiņa</string>
     <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
     <string name="no_dir_yet">Lejupielādes mape vēl nav iestatīta, izvēlieties noklusējuma lejupielādes mapi</string>
@@ -633,7 +625,7 @@
     <string name="show_image_indicators_title">Rādīt attēlu indikatorus</string>
     <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>
     <string name="check_for_updates">Pārbaudīt atjauninājumus</string>
-    <string name="manual_update_description">Manuāli pārbaudīt, vai ir atjauninājumi</string>
+    <string name="manual_update_description">Manuāli pārbaudīt, vai ir jaunas versijas</string>
     <string name="seekbar_preview_thumbnail_title">Video atskaņošanas joslas sīktēla priekšskatījums</string>
     <string name="checking_updates_toast">Pārbauda, vai ir atjauninājumi…</string>
     <string name="downloads_storage_use_saf_summary_api_29">Sākot ar Android 10, tikai“Krātuves Piekļuves Sistēma” ir atbalstīta</string>
@@ -648,7 +640,7 @@
     <string name="metadata_privacy_internal">Iekšeji</string>
     <string name="detail_heart_img_view_description">Autors piekrīt</string>
     <string name="open_website_license">Atvērt mājaslapu</string>
-    <string name="tablet_mode_title">Tabletes režīms</string>
+    <string name="tablet_mode_title">Planšetes režīms</string>
     <string name="low_quality_smaller">Zemas kvalitātes (mazāks)</string>
     <string name="metadata_privacy">Privātums</string>
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
@@ -662,9 +654,9 @@
         <item quantity="other">Izdzēsa %1$s lejupielādes</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="zero">Lejupielāžu pabeigtas</item>
-        <item quantity="one">Lejupielāde pabeigta</item>
-        <item quantity="other">Lejupielādes pabeigtas</item>
+        <item quantity="zero">%s lejupielādes pabeigtas</item>
+        <item quantity="one">%s lejupielāde pabeigta</item>
+        <item quantity="other">%s lejupielādes pabeigtas</item>
     </plurals>
     <string name="description_select_note">Tagad varat atlasīt tekstu video aprakstā.</string>
     <string name="notifications">Paziņojumi</string>
@@ -682,7 +674,7 @@
     <string name="faq_title">Bieži uzdotie jautājumi</string>
     <string name="error_report_channel_description">Paziņojumi, lai ziņotu par kļūdām</string>
     <string name="error_report_channel_name">Kļūdas ziņojuma paziņojums</string>
-    <string name="progressive_load_interval_title">Atskaņošanas ielādēšanas intervāla lielums</string>
+    <string name="progressive_load_interval_title">Atskaņošanas ielādes intervāla lielums</string>
     <string name="error_report_notification_title">NewPipe radās kļūdu, pieskarieties, lai ziņotu</string>
     <string name="left_gesture_control_title">Kreisā žesta darbība</string>
     <string name="msg_failed_to_copy">Neizdevās kopēt starpliktuvē</string>
@@ -702,7 +694,7 @@
     <string name="delete_downloaded_files_confirm">Izdzēst visus lejupielādētos failus\?</string>
     <string name="feed_new_items">Jaunumi kanālā</string>
     <string name="prefer_original_audio_title">Dot priekšroku oriģinālajai skaņai</string>
-    <string name="prefer_original_audio_summary">Izvēlēties oriģinālo skaņu celiņu, neatkarīgi no valodas</string>
+    <string name="prefer_original_audio_summary">Izvēlēties oriģinālo skaņu celiņu neatkarīgi no valodas</string>
     <string name="prefer_descriptive_audio_title">Dot priekšroku skaņu celiņam ar audio aprakstu</string>
     <string name="left_gesture_control_summary">Izvēlēties žestu kreisajai atskaņotāja ekrāna pusei</string>
     <string name="right_gesture_control_summary">Izvēlēties žestu labajai atskaņotāja ekrāna pusei</string>
@@ -729,4 +721,112 @@
     <string name="semitone">Pustonis</string>
     <string name="enable_streams_notifications_title">Paziņojumi par jaunām tiešraidēm</string>
     <string name="streams_notifications_interval_title">Pārbaužu biežums</string>
+    <string name="main_tabs_position_summary">Galvenās cilnes atlasītāja pārvietošana uz apakšu</string>
+    <string name="notification_actions_summary_android13">Rediģējiet katru turpmāk norādīto paziņojuma darbību, pieskaroties tai. Pirmās trīs darbības (atskaņošana/pauze, iepriekšējais un nākamais) ir iestatītas sistēmā, un tās nevar pielāgot.</string>
+    <string name="progressive_load_interval_summary">Mainīt progresīvā satura ielādes intervāla lielumu (pašlaik %s). Mazāka vērtība var paātrināt to sākotnējo ielādi</string>
+    <string name="yes">Jā</string>
+    <string name="no">Nē</string>
+    <string name="settings_category_backup_restore_title">Rezerves kopēšana un atjaunošana</string>
+    <string name="loading_metadata_title">Metadatu ielādēšana…</string>
+    <string name="main_tabs_position_title">Galvenās cilnes pozīcija</string>
+    <string name="unknown_format">Nepazīstams formāts</string>
+    <string name="feed_show_partially_watched">Daļēji noskatīti</string>
+    <string name="no_streams">Nav tiešraides</string>
+    <string name="error_insufficient_storage">Nav pietiekami daudz brīvās vietas uz ierīces</string>
+    <string name="channel_tab_about">Par</string>
+    <string name="metadata_thumbnails">Sīkattēli</string>
+    <string name="sort">Kārtot</string>
+    <string name="auto_update_check_description">NewPipe var automātiski pārbaudīt, vai ir jaunas versijas laiku pa laikam un paziņot jūs, kad tās ir pieejamas.
+\nVai jūs gribat šo ieslēgt?</string>
+    <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
+\nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
+    <string name="audio_track_type_original">oriģinālais</string>
+    <string name="streams_notifications_network_title">Nepieciešams tīkla savienojums</string>
+    <string name="reset_settings_summary">Atiestatīt visus iestatījumus uz to sākotnējām vērtībām</string>
+    <string name="reset_settings_title">Atiestatīt iestatījumus</string>
+    <string name="reset_all_settings">Visu iestatījumu atiestatošana atmetīs visus jūsu izvēlētos iestatījumus un restartēs aplikāciju.
+\n
+\nVai jūs esat droši, ka vēlaties turpināt?</string>
+    <string name="night_theme_available">Šī opcija ir pieejama tikai, ja %s ir izvēlēts kā motīvs</string>
+    <string name="detail_pinned_comment_view_description">Piespraustais komentārs</string>
+    <string name="notifications_disabled">Paziņojumi ir atspējoti</string>
+    <string name="you_successfully_subscribed">Jūs abonējāt šim kanālam</string>
+    <string name="metadata_banners">Banneri</string>
+    <string name="metadata_subscribers">Abonenti</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Pārslēgt visus</string>
+    <string name="unknown_quality">Nepazīstama kvalitāte</string>
+    <string name="feed_show_watched">Noskatīti</string>
+    <string name="feed_show_upcoming">Gaidāmie</string>
+    <string name="audio_track_type_dubbed">dublēts</string>
+    <string name="audio_track_type_descriptive">aprakstošs</string>
+    <string name="channel_tab_videos">Video</string>
+    <string name="channel_tab_livestreams">Tiešraides</string>
+    <string name="channel_tab_channels">Kanāli</string>
+    <string name="channel_tab_playlists">Atskaņošanas saraksti</string>
+    <string name="channel_tab_albums">Albumi</string>
+    <string name="no_appropriate_file_manager_message_android_10">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
+\nLūdzu lejuplādējiet ar krātuves pieejas struktūras saderīgu failu pārvaldnieku</string>
+    <string name="no_live_streams">Nav tiešraides</string>
+    <string name="show_error_snackbar">Rādīt kļūdas paziņojumu</string>
+    <string name="feed_fetch_channel_tabs">Piegādāt kanālu cilnes</string>
+    <string name="feed_fetch_channel_tabs_summary">Cilnes, kuras piegādāt, atjaunojot jauninājumus. Šai opcijai nav nekādas iedarbības, ja kanāls tiek atjaunots ātrajā režīmā.</string>
+    <string name="disable_media_tunneling_automatic_info">Multivides tuneļošana tika atspēkota pēc noklusējuma tādēļ, ka ir zināms, ka jūsu ierīces modelis to neatbalsta.</string>
+    <string name="select_quality_external_players">Izvēlēties kvalitāti ārējiem atskaņotājiem</string>
+    <string name="settings_category_exoplayer_title">ExoPlayer iestatījumi</string>
+    <string name="show_channel_tabs">Kanālu cilnes</string>
+    <string name="question_mark">\?</string>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="get_notified">Tiec paziņots</string>
+    <string name="metadata_subchannel_avatars">Apakškanālu avatāri</string>
+    <string name="metadata_uploader_avatars">Augšuplādētāju avatāri</string>
+    <string name="duration">Ilgums</string>
+    <string name="rewind">Attīt</string>
+    <string name="forward">Patīt</string>
+    <string name="image_quality_summary">Izvēlēties attēlu kvalitāti un vai vispār ielādēt attēlus, lai samazinātu datu un atmiņas lietojumu. Izmaiņas iztīra iekšējās atmiņas un diska attēlu kešatmiņu — %s</string>
+    <plurals name="replies">
+        <item quantity="zero">%s atbildes</item>
+        <item quantity="one">%s atbilde</item>
+        <item quantity="other">%s atbildes</item>
+    </plurals>
+    <string name="play">Atskaņot</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="show_more">Rādīt vairāk</string>
+    <string name="show_less">Rādīt mazāk</string>
+    <string name="metadata_avatars">Avatāri</string>
+    <string name="streams_not_yet_supported_removed">Tiešraides, kuras vēl neatbalsta lejuplādētājs, netiek rādītas</string>
+    <string name="selected_stream_external_player_not_supported">Izvēlēto tiešraidi neatbalsta ārējie atskaņotāji</string>
+    <string name="open_play_queue">Atvērt atskaņošanas rindu</string>
+    <string name="toggle_fullscreen">Pārslēgt pilnekrāna režīmu</string>
+    <string name="toggle_screen_orientation">Pārslēgt ekrāna orientāciju</string>
+    <string name="previous_stream">Iepriekšējā tiešraide</string>
+    <string name="next_stream">Nākamā tiešraide</string>
+    <string name="image_quality_none">Neielādēt attēlus</string>
+    <string name="image_quality_high">Augsta kvalitāte</string>
+    <string name="more_options">Vairāk opciju</string>
+    <string name="replay">Atkārtoti atskaņot</string>
+    <string name="image_quality_title">Attēlu kvalitāte</string>
+    <string name="image_quality_low">Zema kvalitāte</string>
+    <string name="image_quality_medium">Vidēja kvalitāte</string>
+    <string name="audio_track_present_in_video">Audio celiņam jau ir jābūt šajā straumē</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer noklusējuma vērtība</string>
+    <string name="no_video_streams_available_for_external_players">Ārējiem atskaņotājiem nav pieejama neviena video straume</string>
+    <string name="use_exoplayer_decoder_fallback_title">Izmantot ExoPlayer dekodētāja atkāpšanās funkciju</string>
+    <string name="settings_category_exoplayer_summary">Pārvaldīt dažus ExoPlayer iestatījumus. Lai šīs izmaiņas stātos spēkā, ir jārestartē atskaņotājs</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Iespējojiet šo opciju, ja ir problēmas ar dekodētāja inicializāciju, kas atgriežas pie zemākas prioritātes dekodētājiem, ja primārajiem dekodētājiem neizdodas inicializēties. Tas var izraisīt pazeminātu atskaņošanas kvalitāti, nekā, kad izmanto primāros dekoderus</string>
+    <string name="no_audio_streams_available_for_external_players">Ārējiem atskaņotājiem nav pieejama neviena audio straume</string>
+    <string name="unknown_audio_track">Nezināms</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Vienmēr izmantot ExoPlayer video izvades virsmas iestatījumu risinājumu</string>
+    <string name="select_audio_track_external_players">Atlasiet audio celiņu ārējiem atskaņotājiem</string>
+    <string name="show_channel_tabs_summary">Kādas cilnes tiek rādītas kanāla lapās</string>
+    <string name="share_playlist_with_list">Kopīgot video URL sarakstu</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="channel_tab_tracks">Skaņdarbi</string>
+    <string name="channel_tab_shorts">Īsie video</string>
+    <string name="share_playlist_with_titles_message">Kopīgot atskaņošanas saraksta nosaukumu un to video nosaukumus vai tikai atskaņošanas sarakstā iekļauto video URL saites</string>
+    <string name="share_playlist">Kopīgot atskaņošanas sarakstu</string>
+    <string name="share_playlist_with_titles">Kopīgot nosaukumus</string>
+    <string name="import_settings_vulnerable_format">Importētā eksporta iestatījumi izmanto ievainojamo formātu, kas tika pārtraukts kopš NewPipe 0.27.0 versijas. Pārliecinieties, ka importētie dati ir no uzticama avota, un turpmāk ir vēlams izmantot tikai datus, kas veikti NewPipe 0.27.0 vai jaunākās versijās. Iestatījumu importēšanas atbalsts šajā neaizsargātajā formātā drīzumā tiks pilnībā aizvākts, un tad vecās NewPipe versijas vairs nevarēs importēt iestatījumus, kas veikti jaunajās versijās.</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Šis risinājums problēmas novēršanai atbrīvo un atkārtoti instantiē video kodekus, kad notiek virsmas maiņa, nevis tieši iestatīt virsmu kodekam. ExoPlayer jau izmanto šo risinājumu dažās ierīcēs, kurām ir šī problēma. Šis iestatījums darbosies tikai ierīcēs, kurās uzstādīta operētājsistēma Android 6 un jaunāka.\n\nIespējojot šo iestatījumu, var novērst atskaņošanas kļūdas, pārslēdzot pašreizējo video atskaņotāju vai pārejot uz pilnekrāna režīmu</string>
 </resources>

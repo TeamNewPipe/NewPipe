@@ -358,7 +358,7 @@
     <string name="notification_action_buffering">Kraunama</string>
     <string name="notification_action_shuffle">Maišyti</string>
     <string name="notification_actions_at_most_three">Galite pasirinkit iki trijų veiksmų kompaktiškame pranešime!</string>
-    <string name="notification_actions_summary">Norėdami pakeisti kiekvieną pranešimo veiksmą paspauskite ant jo. Pasirinkite iki trijų norėdami kompaktiškos peržiūros</string>
+    <string name="notification_actions_summary">Redaguokite kiekvieną toliau pateiktą pranešimo veiksmą bakstelėdami jį. Naudodami dešinėje esančius žymimuosius langelius pasirinkite iki trijų iš jų, kurie bus rodomi kompaktiškame pranešime.</string>
     <string name="notification_action_4_title">Penktas veiksmo mygtukas</string>
     <string name="notification_action_3_title">Ketvirtas veiksmo mygtukas</string>
     <string name="notification_action_2_title">Trečias veiksmo mygtukas</string>
@@ -396,7 +396,7 @@
 \n4. Nukopijuokite profilio URL, į kurį buvote nukreipti.</string>
     <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
-    <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas</string>
+    <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas.</string>
     <string name="caption_setting_description">Pakeiskite grotuvo subtitrų teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą</string>
     <string name="private_content">Šis turinys yra privatus, todėl \"NewPipe\" jo negali transliuoti ar atsisiųsti.</string>
     <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus\?</string>
@@ -445,7 +445,7 @@
         <item quantity="other">%d sekundžių</item>
     </plurals>
     <string name="systems_language">Sistemos numatytoji</string>
-    <string name="app_language_title">Kalba</string>
+    <string name="app_language_title">Programos kalba</string>
     <string name="downloads_storage_use_saf_title">Naudoti sistemos aplanko parinktuką (SAP)</string>
     <string name="pause_downloads">Sustabdyti siuntimus</string>
     <string name="error_http_not_found">Nerasta</string>
@@ -769,4 +769,74 @@
     <string name="audio_track_type_dubbed">dubliuotas</string>
     <string name="use_exoplayer_decoder_fallback_summary">Įjunkite šią parinktį, jei kyla dekoderio inicializavimo problemų, o nepavykus inicializuoti pagrindinių dekoderių, grįžtama prie žemesnio prioriteto dekoderių. Dėl to atkūrimo našumas gali būti prastesnis nei naudojant pirminius dekoderius</string>
     <string name="audio_track_type_descriptive">aprašomasis</string>
+    <string name="no_live_streams">Jokių gyvų transliacijų</string>
+    <string name="no_streams">Jokių transliacijų</string>
+    <string name="feed_fetch_channel_tabs">Parsiųsti kanalo skirtukus</string>
+    <string name="feed_fetch_channel_tabs_summary">Kokius skirtukus parsiųsti atnaujinant srauta. Ši parinktis neturi efekto jei kanalas yra atnaujintas greituoju rėžimu.</string>
+    <string name="channel_tab_livestreams">Gyva transliacija</string>
+    <string name="channel_tab_shorts">Trumpi</string>
+    <string name="show_more">Rodyti daugiau</string>
+    <string name="reset_all_settings">Visų nustatymų atstatymas į numatytasias reikšmes panaikins visus jūsų pasirinkimus ir iš naujo paleis programą.
+\n
+\nAr norite tęsti?</string>
+    <string name="loading_metadata_title">Metaduomenų įkėlimas…</string>
+    <string name="metadata_banners">Baneriai</string>
+    <string name="metadata_subscribers">Prenumeratoriai</string>
+    <string name="play">Paleisti</string>
+    <string name="metadata_uploader_avatars">Įkėlėjo avataras</string>
+    <string name="import_settings_vulnerable_format">Importuojamo eksporto nustatymuose naudojamas pažeidžiamas formatas, kurio atsisakyta nuo NewPipe 0.27.0. Įsitikinkite, kad importuojamas eksportas yra iš patikimo šaltinio, ir ateityje verčiau naudokite tik \"NewPipe 0.27.0\" ar naujesnės versijos eksportą. Šio pažeidžiamo formato nustatymų importavimo palaikymas netrukus bus visiškai panaikintas ir senos \"NewPipe\" versijos nebegalės importuoti nustatymų iš naujų versijų.</string>
+    <string name="yes">Taip</string>
+    <string name="no">Ne</string>
+    <string name="main_tabs_position_summary">Pagrindinio skirtuko parinkiklio perkėlimas į apačią</string>
+    <string name="disable_media_tunneling_automatic_info">Medijos tuneliavimas buvo išjungtas pagal numatytuosius nustatymus jūsų prietaise, nes žinoma, kad jūsų prietaiso modelis jo nepalaiko.</string>
+    <string name="auto_update_check_description">\"NewPipe\" gali automatiškai patikrinti, ar yra naujų versijų, ir pranešti jums, kai jos pasirodys.
+\nAr norite tai įjungti?</string>
+    <string name="image_quality_none">Neįkelti paveikslėlių</string>
+    <string name="audio_track_name">%1$s %2$s</string>
+    <string name="notification_actions_summary_android13">Redaguokite kiekvieną toliau pateiktą pranešimo veiksmą bakstelėdami jį. Pirmi trys veiksmai (groti/pauzė, ankstensnis ir paskesnis) yra sistemos numatytieji ir negali būti pakeisti.</string>
+    <string name="settings_category_backup_restore_title">Atsarginės kopijos</string>
+    <string name="main_tabs_position_title">Pagrindinio skirtuko pozicija</string>
+    <string name="reset_settings_title">Nustatymų atstatymas</string>
+    <string name="reset_settings_summary">Atstatyti visus nustatymus į numatytasias reikšmes</string>
+    <string name="error_insufficient_storage">Nepakanka laisvos vietos įrenginyje</string>
+    <string name="metadata_thumbnails">Miniatiūra</string>
+    <string name="metadata_subchannel_avatars">Sub-Kanalo avatarai</string>
+    <string name="metadata_avatars">Avatarai</string>
+    <string name="image_quality_title">Vaizdo kokybė</string>
+    <string name="forward">Pirmyn</string>
+    <string name="duration">Trukmė</string>
+    <string name="toggle_screen_orientation">Pakeisti ekrano orientaciją</string>
+    <string name="toggle_fullscreen">Perjungti į pilną ekraną</string>
+    <string name="show_channel_tabs">Kanalų skirtukai</string>
+    <string name="show_channel_tabs_summary">Kokie skirtukai rodomi kanalų puslapiuose</string>
+    <string name="replay">Pakartoti</string>
+    <string name="more_options">Daugiau parinkčių</string>
+    <string name="channel_tab_channels">Kanalai</string>
+    <string name="channel_tab_playlists">Grojaraščiai</string>
+    <string name="channel_tab_albums">Albumai</string>
+    <string name="channel_tab_about">Apie</string>
+    <string name="open_play_queue">Paleisti eilę</string>
+    <string name="previous_stream">Ankstesnė transliacija</string>
+    <string name="next_stream">Sekanti transliacija</string>
+    <string name="rewind">Prasukti</string>
+    <string name="image_quality_low">Žema kokybė</string>
+    <string name="image_quality_medium">Vidutinė kokybė</string>
+    <string name="image_quality_high">Aukšta kokybė</string>
+    <string name="channel_tab_videos">Vaizdo įrašai</string>
+    <string name="channel_tab_tracks">Takeliai</string>
+    <string name="image_quality_summary">Pasirinkite paveikslėlių kokybę ir ar apskritai įkelti paveikslėlius, kad sumažintumėte duomenų ir atminties naudojimą. Pakeitimai išvalo atmintyje ir diske esančių vaizdų talpyklą - %s</string>
+    <string name="share_playlist_with_titles_message">Dalintis grojaraščiu su tokia informacija kaip grojaraščio pavadinimas ir vaizdo įrašo pavadinimas arba paprastas vaizdo įrašų nuorodų sąrašas</string>
+    <string name="share_playlist_with_titles">Dalintis su pavadinimais</string>
+    <string name="share_playlist">Dalintis grojaraščiu</string>
+    <string name="share_playlist_with_list">Dalintis nuorodų sąrašu</string>
+    <string name="show_less">Rodyti mažiau</string>
+    <plurals name="replies">
+        <item quantity="one">%s atsakymas</item>
+        <item quantity="few">%s atsakymai</item>
+        <item quantity="other">%s atsakymų</item>
+    </plurals>
+    <string name="share_playlist_content_details">%1$s
+\n%2$s</string>
+    <string name="question_mark">\?</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

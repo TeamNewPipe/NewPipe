@@ -840,4 +840,16 @@
         <item quantity="other">%s תשובות</item>
     </plurals>
     <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
+    <string name="auto_update_check_description">NewPipe יכול לבדוק אוטומטית אם יש גרסאות חדשות מעת לעת ולהודיע כאשר הן זמינות.
+\nלהפעיל את היכולת הזאת?</string>
+    <string name="reset_settings_title">איפוס הגדרות</string>
+    <string name="reset_settings_summary">איפוס כל ההגדרות לערכי ברירת המחדל שלהן</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="settings_category_backup_restore_title">גיבוי ושחזור</string>
+    <string name="reset_all_settings">איפוס כל ההגדרות ימחק את כל ההגדרות המועדפות שלך ויפעיל את היישומון מחדש.
+\n
+\nלהמשיך?</string>
+    <string name="error_insufficient_storage">אין מספיק מקום פנוי במכשיר</string>
+    <string name="import_settings_vulnerable_format">ההגדרות בייצוא המיובא משתמשות בתסדיר פגיע שהוצא משימוש מאז NewPipe 0.27.0. יש לוודא שהייצוא המיובא הוא ממקור מהימן, ועדיף להשתמש רק בייצוא שהושג מ־NewPipe 0.27.0 ומעלה בעתיד. תמיכה בייבוא הגדרות בתסדיר פגיע זה תוסר בקרוב לחלוטין, ואז גרסאות ישנות של NewPipe לא יוכלו לייבא עוד הגדרות של ייצוא מגרסאות חדשות.</string>
 </resources>

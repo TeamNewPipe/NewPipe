@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nZnacznik czasu:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>
@@ -847,4 +847,6 @@
     <string name="no">Nie</string>
     <string name="auto_update_check_description">NewPipe może od czasu do czasu automatycznie sprawdzać dostępność nowych wersji i powiadamiać Cię, gdy tylko będą dostępne.
 \nCzy chcesz to włączyć?</string>
+    <string name="import_settings_vulnerable_format">Ustawienia w importowanym eksporcie korzystają z podatnego na ataki formatu, który został wycofany od wersji NewPipe 0.27.0. Upewnij się, że importowany eksport pochodzi z zaufanego źródła, i w przyszłości używaj wyłącznie eksportów uzyskanych z NewPipe 0.27.0 lub nowszego. Obsługa importowania ustawień w tym podatnym formacie zostanie wkrótce całkowicie usunięta, a wtedy starsze wersje NewPipe nie będą już mogły importować ustawień z eksportu z nowych wersji.</string>
+    <string name="audio_track_type_secondary">dodatkowa</string>
 </resources>

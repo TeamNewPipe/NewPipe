@@ -41,6 +41,8 @@ import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
+import com.evernote.android.state.State;
+import com.livefront.bridge.Bridge;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
@@ -61,6 +63,8 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.AudioTrackAdapter;
+import org.schabi.newpipe.util.AudioTrackAdapter.AudioTracksWrapper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -69,8 +73,6 @@ import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
-import org.schabi.newpipe.util.AudioTrackAdapter;
-import org.schabi.newpipe.util.AudioTrackAdapter.AudioTracksWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
@@ -81,8 +83,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
-import icepick.Icepick;
-import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.postprocessing.Postprocessing;
@@ -218,7 +218,7 @@ public class DownloadDialog extends DialogFragment
         context = getContext();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
-        Icepick.restoreInstanceState(this, savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         this.audioTrackAdapter = new AudioTrackAdapter(wrappedAudioTracks);
         this.subtitleStreamsAdapter = new StreamItemAdapter<>(wrappedSubtitleStreams);
@@ -398,7 +398,7 @@ public class DownloadDialog extends DialogFragment
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
 

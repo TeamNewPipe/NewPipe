@@ -245,4 +245,11 @@
     <string name="mark_as_watched">Marcar como reguardate</string>
     <string name="ok">OK</string>
     <string name="use_external_video_player_title">Usar reproductor de video externe</string>
+    <string name="show_more">Monstrar plus</string>
+    <string name="yes">Si</string>
+    <string name="no">Non</string>
+    <string name="show_less">Monstrar minus</string>
+    <string name="settings_category_player_notification_summary">Configurar le notification del fluxo in reproduction</string>
+    <string name="settings_category_player_notification_title">Notification de reproductor</string>
+    <string name="settings_category_backup_restore_title">Facer un copia de securitate e restaurar</string>
 </resources>

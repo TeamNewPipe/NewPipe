@@ -1,0 +1,12 @@
+Ez a gyorsjavítás javítja a 403-as YouTube videó közben fellépő hibát.
+
+Új
+• [SoundCloud] Az on.soundcloud.com cím támogatása
+
+Fejlesztés
+• [Bandcamp] A rádió fülke részen további infó jelenik meg
+
+Javítások
+• [YouTube] A videó elején s közepén fellépő HTTP 403-as hiba javítása
+• [YouTube] Az avatár és banner kinyerése több csatorna fejlécből
+• [Bandcamp] Különböző bugok javítása, és áttérés HTTPS-re

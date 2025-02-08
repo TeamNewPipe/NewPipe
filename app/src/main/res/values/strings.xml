@@ -268,7 +268,7 @@
     <string name="error_snackbar_action">Report</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Language:\\nContent Country:\\nApp Language:\\nService:\\nTimestamp:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
@@ -818,6 +818,7 @@
     <string name="audio_track_type_original">original</string>
     <string name="audio_track_type_dubbed">dubbed</string>
     <string name="audio_track_type_descriptive">descriptive</string>
+    <string name="audio_track_type_secondary">secondary</string>
     <string name="channel_tab_videos">Videos</string>
     <string name="channel_tab_tracks">Tracks</string>
     <string name="channel_tab_shorts">Shorts</string>

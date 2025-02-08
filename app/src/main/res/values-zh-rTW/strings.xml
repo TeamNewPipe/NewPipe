@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">發布於%1$s</string>
-    <string name="no_player_found">找不到串流播放器。要安裝 VLC 嗎？</string>
+    <string name="upload_date_text">發佈於 %1$s</string>
+    <string name="no_player_found">未找到串流播放器。安裝 VLC？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">以瀏覽器開啟</string>
@@ -15,7 +15,7 @@
     <string name="use_external_audio_player_title">使用外部音訊播放器</string>
     <string name="download_path_title">影片下載資料夾</string>
     <string name="download_path_summary">下載好的影片檔案會儲存在這裡</string>
-    <string name="download_path_dialog_title">選擇影片檔的下載資料夾</string>
+    <string name="download_path_dialog_title">選擇視訊檔案的下載資料夾</string>
     <string name="default_resolution_title">預設解析度</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
@@ -41,7 +41,7 @@
     <string name="download_path_audio_title">音訊下載資料夾</string>
     <string name="download_path_audio_summary">下載好的音訊檔案會儲存在這裡</string>
     <string name="download_path_audio_dialog_title">選擇音訊檔的下載資料夾</string>
-    <string name="main_bg_subtitle">輕觸放大鏡以開始使用。</string>
+    <string name="main_bg_subtitle">點選放大鏡即可開始。</string>
     <string name="open_in_popup_mode">以懸浮視窗開啟</string>
     <string name="use_external_video_player_summary">移除某些解析度的音訊</string>
     <string name="controls_background_title">背景播放</string>
@@ -210,7 +210,7 @@
     <string name="preferred_player_fetcher_notification_message">正在載入要求的內容</string>
     <string name="controls_download_desc">下載串流檔案</string>
     <string name="show_info">顯示資訊</string>
-    <string name="tab_bookmarks">已加入書籤的播放清單</string>
+    <string name="tab_bookmarks">書籤播放列表</string>
     <string name="controls_add_to_playlist_title">新增至</string>
     <string name="detail_drag_description">拖曳以重新排序</string>
     <string name="create">建立</string>
@@ -241,7 +241,7 @@
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
     <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
     <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15 或 25 秒無法與其一同使用</string>
-    <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
+    <string name="auto_queue_title">自動排序下一個串流</string>
     <string name="auto_queue_summary">透過加入相關的串流來繼續結束的（未重複）播放佇列</string>
     <string name="file">檔案</string>
     <string name="invalid_directory">無效的資料夾</string>
@@ -531,8 +531,8 @@
     <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
     <string name="notification_action_nothing">無</string>
     <string name="notification_action_buffering">正在緩衝</string>
-    <string name="notification_action_shuffle">隨機播放</string>
-    <string name="notification_action_repeat">循環播放</string>
+    <string name="notification_action_shuffle">隨機</string>
+    <string name="notification_action_repeat">循環</string>
     <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
     <string name="notification_actions_summary">透過輕觸下方的通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
@@ -583,7 +583,7 @@
     <string name="select_night_theme_toast">您可以在下方選取您最愛的夜間佈景主題</string>
     <string name="night_theme_summary">選取您最愛的夜間佈景主題 ─ %s</string>
     <string name="auto_device_theme_title">自動（裝置佈景主題）</string>
-    <string name="night_theme_title">夜間布景主題</string>
+    <string name="night_theme_title">深色主題</string>
     <string name="show_channel_details">顯示頻道詳細資訊</string>
     <string name="disable_media_tunneling_summary">如果您遇到黑畫面或影片播放停頓的現象，請停用媒體隧道。</string>
     <string name="disable_media_tunneling_title">停用媒體隧道</string>
@@ -623,7 +623,7 @@
     <string name="high_quality_larger">高品質（較大）</string>
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
-    <string name="mark_as_watched">標記為已觀看</string>
+    <string name="mark_as_watched">標記為已看</string>
     <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
     <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
@@ -644,7 +644,7 @@
     <string name="manual_update_description">手動檢查新版本</string>
     <string name="checking_updates_toast">正在檢查更新……</string>
     <string name="feed_new_items">新 feed 項目</string>
-    <string name="crash_the_player">使播放器當機</string>
+    <string name="crash_the_player">讓播放器崩潰</string>
     <string name="show_crash_the_player_title">顯示「播放器當機」</string>
     <string name="show_crash_the_player_summary">使用播放器時顯示當機選項</string>
     <string name="error_report_channel_name">錯誤回報通知</string>
@@ -786,12 +786,12 @@
     <string name="metadata_uploader_avatars">上傳者大頭照</string>
     <string name="metadata_banners">橫幅</string>
     <string name="image_quality_summary">選擇影像品質以及是否載入影像，以減少資料與記憶體使用。變更會清除記憶體中與磁碟上的影像快取 — %s</string>
-    <string name="share_playlist_with_list">分享 URL 清單</string>
+    <string name="share_playlist_with_list">分享網址清單</string>
     <string name="share_playlist_with_titles">分享標題</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">分享播放清單</string>
-    <string name="share_playlist_with_titles_message">分享包含播放清單名稱與影片標題等詳細資訊的播放清單，或是僅作為簡單的影片 URL 清單</string>
+    <string name="share_playlist_with_titles_message">分享包含播放清單名稱與影片標題等詳細資訊的播放清單，或是僅作為簡單的影片網址清單</string>
     <string name="video_details_list_item">- %1$s：%2$s</string>
     <plurals name="replies">
         <item quantity="other">%s 個回覆</item>
@@ -810,4 +810,6 @@
     <string name="no">否</string>
     <string name="auto_update_check_description">NewPipe 可以隨時自動檢查新版本，並在新版本可用時通知您。
 \n您想要啟用此功能嗎？</string>
+    <string name="import_settings_vulnerable_format">匯入的匯出中的設定使用自 NewPipe 0.27.0 起已廢棄的脆弱格式。請確定匯入的匯出是來自可信賴的來源，並在未來只使用從 NewPipe 0.27.0 或更新版本取得的匯出。對於匯入此脆弱格式設定的支援即將完全移除，屆時舊版本的 NewPipe 將無法再匯入新版本匯出的設定。</string>
+    <string name="audio_track_type_secondary">次要</string>
 </resources>

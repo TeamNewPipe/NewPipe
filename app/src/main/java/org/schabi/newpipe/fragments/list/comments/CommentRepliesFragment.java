@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.text.HtmlCompat;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.CommentRepliesHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
@@ -30,7 +32,6 @@ import org.schabi.newpipe.util.text.TextLinkifier;
 import java.util.Queue;
 import java.util.function.Supplier;
 
-import icepick.State;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 

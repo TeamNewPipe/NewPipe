@@ -207,7 +207,7 @@
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新与热门</string>
     <string name="show_hold_to_append_title">显示“长按加入播放队列”提示</string>
-    <string name="show_hold_to_append_summary">在视频详情页中，长按后台播放或悬浮窗播放按钮时显示提示</string>
+    <string name="show_hold_to_append_summary">在视频详情页中，按下后台播放或悬浮窗播放按钮时显示提示</string>
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法处理的播放器错误</string>
     <string name="player_recoverable_failure">播放器错误 自动恢复</string>
@@ -471,7 +471,7 @@
     <string name="feed_group_dialog_empty_name">清空组名</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">订阅</string>
     <string name="feed_update_threshold_title">Feed 更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过期的时间 — %s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
@@ -810,4 +810,6 @@
     <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。
 \n你想开启该功能吗？</string>
     <string name="yes">是</string>
+    <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
+    <string name="audio_track_type_secondary">第二</string>
 </resources>

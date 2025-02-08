@@ -1,3 +1,6 @@
+<h3 align="center">Nous prévoyons de <i>réécrire</i> une large partie de code, afin de créer <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">un NewPipe encore plus moderne et stable</a>!</h3>
+<h4 align="center">Prière de ne pas ouvrir de nouvelles pull-up requêtes contenant de <i>nouvelles fonctionnalités</i>. Seules les corrections de bugs seront acceptées.</h4>
+
 <p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un front-end de streaming libre et léger pour Android.</h4>
@@ -16,12 +19,12 @@
 <p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
 
 > [!warning]
-> <b>CETTE APP EST EN BETA, VOUS POUVEZ DONC RENCONTRER DES BUGS. SI C'EST LE CAS, OUVREZ UNE ISSUE DANS NOTRE DÉPÔT GITHUB EN REMPLISSANT LE MODÈLE D'ISSUE.</b>
+> <b>CETTE APP EST EN BETA, VOUS POUVEZ DONC RENCONTRER DES BUGS. SI C'EST LE CAS, OUVREZ UNE ISSUE DANS NOTRE DÉPÔT GITHUB EN REMPLISSANT LA CATEGORIE ISSUE.</b>
 >
-> <b>METTRE NEWPIPE, OU N'IMPORTE QUEL FORK DE NEWPIPE, SUR LE GOOGLE PLAY STORE ENFREINT LEURS CONDITIONS D'UTILISATION</b>
+> <b>AJOUTER NEWPIPE, OU N'IMPORTE QUEL FORK DE NEWPIPE, SUR LE GOOGLE PLAY STORE ENFREINT LEURS CONDITIONS D'UTILISATION</b>
 
 ## Captures d'écran
 
@@ -49,9 +52,9 @@ NewPipe supporte actuellement ces services:
 * SoundCloud ([site web](https://soundcloud.com/)) ([wiki](https://fr.wikipedia.org/wiki/SoundCloud))
 * media.ccc.de ([site web](https://media.ccc.de/)) ([wiki](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
 
-Comme vous pouvez le constater, NewPipe supporte de multiples services vidéo et audio. Bien que cela ait commencé avec YouTube, d'autres personnes ont ajouté de nouveaux services au fil des ans, rendant NewPipe de plus en plus polyvalent !
+Comme vous pouvez le constater, NewPipe supporte de multiples services vidéo et audio. Bien que cela ait commencé avec YouTube, d'autres personnes ont ajouté de nouveaux services au fil des années, rendant NewPipe de plus en plus polyvalent !
 
-En partie pour les circonstances et en partie en raison de sa popularité, YouTube est le service le mieux pris en charge. Si vous utilisez ou connaissez l'un de ces autres services, aidez-nous à améliorer leur prise en charge ! Nous recherchons des mainteneurs pour SoundCloud et PeerTube.
+Grace aux circonstances et en raison de sa popularité, YouTube est le service le mieux pris en charge. Si vous utilisez ou connaissez l'un de ces autres services, aidez-nous à améliorer leur prise en charge ! Nous recherchons des mainteneurs pour SoundCloud et PeerTube.
 
 Si vous avez l'intention d'ajouter un nouveau service, veuillez d'abord nous contacter ! Notre [documentation](https://teamnewpipe.github.io/documentation/) fournit plus d'informations sur la façon dont un nouveau service peut être ajouté à l'application et au [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor).
 
@@ -66,17 +69,17 @@ De plus, puisqu'il s'agit de logiciels libres et gratuits, ni l'application ni l
 * Regarder des vidéos à des résolutions allant jusqu'à la 4K
 * Écouter de l'audio en arrière-plan, en ne chargant que le flux audio pour économiser des données
 * Mode Popup (lecteur floattant, aka Picture-in-Picture)
-* Regarder des flux en direct
+* Regarder des diffusions en direct
 * Afficher/masquer les sous-titres
-* Chercher des vidéos et de l'audio (sur Youtube, vous pouvez également spécifier la langue du contenu)
+* Chercher des vidéos et des audios (sur Youtube, vous pouvez également spécifier la langue du contenu)
 * Mettre en file d'attente les vidéos (et éventuellement les enregistrer en tant que listes de lecture locales)
-* Afficher/cacher les inforamtions générales à propos des vidéos (comme la description et les tags)
+* Afficher/cacher les informations générales à propos des vidéos (comme la description et les tags)
 * Afficher/cacher les vidéos suivantes ou en relation
 * Afficher/cacher les commentaires
-* Chercher des vidéos, de l'audio, des chaînes, des listes et lecture et des albums
+* Chercher des vidéos, des audios, des chaînes, des listes de lecture et des albums
 * Parcourir les vidéos et les audios d'une chaîne
 * S'abonner à des chaînes (oui, sans avoir besoin de se connecter à un compte !)
-* Recevoir des notifications sur les nouvelles vidéos des chaînes auxquelles vous êtes abonné.
+* Recevoir des notifications sur les nouvelles vidéos des chaînes auxquelles vous êtes abonnés.
 * Créer et modifier des groupes de chaînes (pour une gestion et une navigation plus simples)
 * Parcourir des fils de vidéos générés depuis vos groupes de chaînes
 * Voir et rechercher dans votre historique de visionnage
@@ -94,22 +97,22 @@ Vous pouvez installer NewPipe en utilisant l'une de ces méthodes:
  1. Ajoutez notre dépôt dans F-Droid et l'installer de là. Les instructions sont ici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Téléchargez l'APK depuis les [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) et l'installer.
  3. Mettez à jour via F-Droid. C'est la méthode la plus lente pour avoir des mises à jour, car F-Droid doit détecter les changements, construire l'APK lui-même, le signer puis enfin publier la mise à jour.
- 4. Construisez un APK de débug vous-même. C'est la façon la plus rapide d'avoir des nouvelles fonctionnalités sur votre appareil, mais c'est bien plus compliqué, c'est pour ça que nous vous recommandons d'utiliser une des autres méthodes.
- 5. Si vous êtes intéréssé par une fonctionnalité ou une résolution de bug spécifique à une PR de ce dépôt, vous pouvez également télécharger l'APK depuis ladite PR. Vous trouverez les instructions dans la description de la PR. Ce qui est super avec les APK spécifiques à des PR est qu'ils sont installés à côté de l'application officielle, vous n'avez donc pas à vous inquiéter de perdre vos données ou de casser quoi que ce soit.
+ 4. Construisez un APK de débug par vous-même. C'est la façon la plus rapide d'avoir des nouvelles fonctionnalités sur votre appareil, mais c'est bien plus compliqué, c'est pour cela que nous vous recommandons d'utiliser une des autres méthodes.
+ 5. Si vous êtes intéréssé par une fonctionnalité ou une résolution de bug spécifique à une PR de ce dépôt, vous pouvez également télécharger l'APK à partir de la PR. Vous trouverez les instructions dans la description de la PR. Ce qui est super avec les APK spécifiques à des PR est qu'ils sont installés à côté de l'application officielle, vous n'avez donc pas à vous inquiéter de perdre vos données ou de foirer quoi que ce soit.
 
-Nous recommandons la méthode 1 pour la plupart des utilisateurs. Les APKs installés en suivant les méthodes 1 ou 2 sont compatibles les uns avec les autres (ce qui signifie que si vous installez NewPipe en utilisant une de ces deux méthodes, vous pouvez également mettre à jour NewPipe en utilisant l'autre), mais pas avec ceux installés en utilisant la méthode 3. Cela est dû au fait que la même clé de signature (la notre) est utilisée pour les méthodes 1 et 2, mais une différente clé (celle de F-Droid) est utilisée pour la 3. Construire un APK de débug en utilisant la méthode 4 ne requiert aucune clé. Les clés de signature aident à assurer que l'utilisateur ne s'est pas fait avoir et installe une mise à jour frauduleuse de l'app. Lorsque la méthode 5 est utilisée, chaque APK est signé avec une clé unique et aléatoire générée par les GitHub Actions; vous ne pouvez donc pas les mettre à jour. Vous devrez alors sauvegarder et restaurer les données de l'application à chaque fois que vous voudrez utiliser un nouvel APK.
+Nous recommandons la méthode 1 pour la plupart des utilisateurs. Les APKs installés en suivant les méthodes 1 ou 2 sont compatibles les uns avec les autres (ce qui signifie que si vous installez NewPipe en utilisant une de ces deux méthodes, vous pouvez également mettre à jour NewPipe en utilisant l'autre), mais pas avec ceux installés en utilisant la méthode 3. Cela est dû au fait que la même clé de signature (la notre) est utilisée pour les méthodes 1 et 2, mais une différente clé (celle de F-Droid) est utilisée pour la 3. Construire un APK de débug en utilisant la méthode 4 ne requiert aucune clé. Les clés de signature aident à assurer que l'utilisateur ne s'est pas fait avoir et installe une mise à jour frauduleuse de l'app. Lorsque la méthode 5 est utilisée, chaque APK est signé avec une clé unique et aléatoire générée par les GitHub Actions; vous ne pouvez donc pas les mettre à jour. Vous devrez alors sauvegarder et restaurer les données de l'application chaque fois que vous souhaitez utiliser un nouveau APK.
 
 Entre temps, si vous voulez changer de source pour une raison quelconque (par exemple, la fonctionnalité de base de NewPipe est cassée et F-Droid n'a pas encore la dernière mise à jour), nous vous recommandons de suivre cette procédure :
-1. Sauvegardez vos données via Settings > Content > Export Database pour conserver votre historique, vos abonnements et vos listes de lecture.
+1. Sauvegardez vos données via Settings(paramètre) > Content(contenu) > Export Database(exporter la base de donnée) pour conserver votre historique, vos abonnements et vos listes de lecture.
 2. Désinstallez NewPipe
 3. Téléchargez l'APK depuis la nouvelle source et installez le.
 4. Restaurez les données de l'étape 1 via Settings > Content > Import Database
 
-<b>Note: lorsque vous importez une base de données dans l'application officielle, assurez vous de toujours vérifier que c'est celle que vous avez exportée _depuis_ l'application officielle. Si vous importez une base de données provenant d'un autre APK que l'officiel, il se peut que des choses cassent. Une telle action n'est pas supportée, et vous devriez le faire uniquement lorsque vous êtes absolument certains de savoir ce que vous faites</b>
+<b>Note: lorsque vous importez une base de données dans l'application officielle, assurez vous de toujours vérifier que c'est celle que vous avez exporté _depuis_ l'application officielle. Si vous importez une base de données provenant d'un autre APK que l'officiel, il se peut que des choses cassent. Une telle action n'est pas supportée, et vous devriez le faire uniquement lorsque vous êtes absolument certains de savoir ce que vous faites</b>
 
 ## Contribuer
 
-Que vous ayez des idées, des traductions, des changements de design, du nettoyage de code, ou encore un changement de code majeur, toute aide est la bienvenue. L'app s'améliore un peu plus à chaque contribution, peu importe qu'elle soit grosse ou petite ! Si vous aimeriez être impliqué, jetez un coup d'oeil à nos [notes pour contribuer](.github/CONTRIBUTING.md).
+Que vous ayez des idées, des traductions, des changements de design, du nettoyage de code, ou encore un changement de code majeur, toute aide est la bienvenue. L'app s'améliore un peu plus à chaque contribution, peu importe qu'elle soit grosse ou petite ! Si vous aimeriez être impliqué, jetez un coup d'oeil à nos [notes pour contribuer](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />

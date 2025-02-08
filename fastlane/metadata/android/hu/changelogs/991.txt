@@ -1,13 +1,13 @@
 Újdonság
 • "Megnyitás böngészőben" gomb került a hibapanelre
 • Bekerült a csatornacsoportok listaként megjeleníthetősége
-• [YouTube] Nyomj hosszan a stream szegmenseire időbélyegzett URL megosztásához
+• [YouTube] A szegmensekre való hosszan-nyomás időbélyeggel megosztást tesznek lehetővé
 • Sor lejátszása gomb került a minilejátszóra
 
 Javítások
 • Bekerült az izlandi fordítás és sok fordítás frissítve lett
-• Sok belső javítás történt
+• Sok más belső javítás 
 
-Hibajavítások
-• Többféle összeomlás lett javítva
+Javítások
+• Többféle összeomlás javítása
 • [YouTube] Javítva lett a csatornák betöltése, a nem elkülönített feed, és néhány ország lejátszási gondjait megkerültük

@@ -1,0 +1,22 @@
+Új
+• Nyelvválasztó hozzáadása
+• Küldés Kodi-ba opció a legördülő menüben
+• Kommentek hosszan nyomása másolja őket
+
+Fejlesztések
+• ReCaptcha aktivitás fixálása, és beérkező sütik korrekt kezelése
+• Hárompontos gomb törlése a legördülő menü érdekében, és előzmény gomb elrejtődik ha már látszódnak az előzmények
+• Android 6 és későbbi verzióknál korrektül megjelenik az overlay hozzáférés opció panel
+• Helyi lejátszásilista átnevezése a "KönyvjelzőRész"-re hosszan nyomással
+• Különböző egyéb PeerTube fejlesztések
+• Több Angol fordítószál javítása
+
+Javítások
+• Lejátszó újrindul annak ellenére, hogy a beállításokban "átváltás minimalizálásnál" van beállítva
+• Kiinduló fényerő érték javítása gesztus-irányításnál
+• .srt felirat letöltést követően nem tartalmaz minden sortörést
+• SD kártyára mentés javítása egyes Android 5-ös eszközönél, amelyek nem felelnek meg a CTF szabványnak
+• Android KitKat letöltések fixálása
+• Hibás mp4 videó hangfájlként felismerés fixálása
+• Többféle fordítási probléma javítása, a kínai nyelvkóddal együtt
+• [YouTube] Időkódok újra klikkelhetőek a leírásban

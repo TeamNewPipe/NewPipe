@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
@@ -18,8 +19,10 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
+import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.ktx.ViewUtils;
 
 import java.io.Serializable;
@@ -173,4 +176,27 @@ public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, Related
         }
         return mode;
     }
+
+    @Override
+    protected void showInfoItemDialog(final StreamInfoItem item) {
+        // Try and attach the InfoItemDialog to the parent fragment of the RelatedItemsFragment
+        // so that its context is not lost when the RelatedItemsFragment is reinitialized,
+        // e.g. when a new stream is loaded in a parent VideoDetailFragment.
+        final Fragment parentFragment = getParentFragment();
+        if (parentFragment != null) {
+            try {
+                new InfoItemDialog.Builder(
+                        parentFragment.getActivity(),
+                        parentFragment.getContext(),
+                        parentFragment,
+                        item
+                ).create().show();
+            } catch (final IllegalArgumentException e) {
+                InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
+            }
+        } else {
+            super.showInfoItemDialog(item);
+        }
+    }
+
 }

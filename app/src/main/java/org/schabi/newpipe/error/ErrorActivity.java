@@ -2,7 +2,6 @@ package org.schabi.newpipe.error;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +20,13 @@ import androidx.core.content.IntentCompat;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -70,10 +67,6 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_GITHUB_ISSUE_URL =
             "https://github.com/TeamNewPipe/NewPipe/issues";
 
-    public static final DateTimeFormatter CURRENT_TIMESTAMP_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-
     private ErrorInfo errorInfo;
     private String currentTimeStamp;
 
@@ -110,7 +103,9 @@ public class ErrorActivity extends AppCompatActivity {
 
         // important add guru meditation
         addGuruMeditation();
-        currentTimeStamp = CURRENT_TIMESTAMP_FORMATTER.format(LocalDateTime.now());
+        // print current time, as zoned ISO8601 timestamp
+        final ZonedDateTime now = ZonedDateTime.now();
+        currentTimeStamp = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
         activityErrorBinding.errorReportEmailButton.setOnClickListener(v ->
                 openPrivacyPolicyDialog(this, "EMAIL"));
@@ -187,25 +182,6 @@ public class ErrorActivity extends AppCompatActivity {
                 .collect(Collectors.joining(separator + "\n", separator + "\n", separator));
     }
 
-    /**
-     * Get the checked activity.
-     *
-     * @param returnActivity the activity to return to
-     * @return the casted return activity or null
-     */
-    @Nullable
-    static Class<? extends Activity> getReturnActivity(final Class<?> returnActivity) {
-        Class<? extends Activity> checkedReturnActivity = null;
-        if (returnActivity != null) {
-            if (Activity.class.isAssignableFrom(returnActivity)) {
-                checkedReturnActivity = returnActivity.asSubclass(Activity.class);
-            } else {
-                checkedReturnActivity = MainActivity.class;
-            }
-        }
-        return checkedReturnActivity;
-    }
-
     private void buildInfo(final ErrorInfo info) {
         String text = "";
 
@@ -271,6 +247,9 @@ public class ErrorActivity extends AppCompatActivity {
                     .append("\n* __Content Country:__ ").append(getContentCountryString())
                     .append("\n* __Content Language:__ ").append(getContentLanguageString())
                     .append("\n* __App Language:__ ").append(getAppLanguage())
+                    .append("\n* __Service:__ ").append(errorInfo.getServiceName())
+                    .append("\n* __Timestamp:__ ").append(currentTimeStamp)
+                    .append("\n* __Package:__ ").append(getPackageName())
                     .append("\n* __Service:__ ").append(errorInfo.getServiceName())
                     .append("\n* __Version:__ ").append(BuildConfig.VERSION_NAME)
                     .append("\n* __OS:__ ").append(getOsString()).append("\n");

@@ -56,6 +56,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.evernote.android.state.State;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
@@ -127,7 +128,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -283,11 +283,11 @@ public final class VideoDetailFragment
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(final int serviceId,
-                                                  @Nullable final String videoUrl,
+                                                  @Nullable final String url,
                                                   @NonNull final String name,
                                                   @Nullable final PlayQueue queue) {
         final VideoDetailFragment instance = new VideoDetailFragment();
-        instance.setInitialData(serviceId, videoUrl, name, queue);
+        instance.setInitialData(serviceId, url, name, queue);
         return instance;
     }
 
@@ -1736,7 +1736,7 @@ public final class VideoDetailFragment
         playQueue = queue;
         if (DEBUG) {
             Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
-                    + serviceId + "], videoUrl = [" + url + "], name = ["
+                    + serviceId + "], url = [" + url + "], name = ["
                     + title + "], playQueue = [" + playQueue + "]");
         }
 

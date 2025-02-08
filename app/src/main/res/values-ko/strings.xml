@@ -63,7 +63,7 @@
     <string name="retry">재시도</string>
     <string name="downloads">다운로드</string>
     <string name="downloads_title">다운로드</string>
-    <string name="start">재생</string>
+    <string name="start">시작</string>
     <string name="pause">일시정지</string>
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
@@ -189,7 +189,7 @@
     <string name="use_inexact_seek_title">정확하지 않은 빠른 탐색 사용</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색을 사용하면 정확도가 떨어지는 대신 더 빠르게 위치를 탐색할 수 있습니다. 5초, 15초 또는 25초 탐색 기능은 이 기능과 같이 동작하지 않습니다</string>
     <string name="auto_queue_title">다음 스트림을 자동으로 대기열에 추가</string>
-    <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생</string>
+    <string name="auto_queue_summary">관련 스트림을 추가하여 (반복되지 않는) 재생 대기열을 계속 종료</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
     <string name="settings_category_debug_title">디버그</string>
     <string name="always">항상</string>
@@ -506,7 +506,7 @@
     <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다</string>
     <string name="night_theme_title">어두운 테마</string>
     <string name="notification_actions_at_most_three">축소된 알림에서 최대 3개까지 표시될 항목을 고를 수 있습니다!</string>
-    <string name="notification_actions_summary">아래의 각 알림 작업을 눌러 편집하세요 오른쪽에 있는 확인란을 사용하여 압축 알림에 표시할 항목을 최대 3개까지 선택</string>
+    <string name="notification_actions_summary">아래의 각 알림 동작을 탭하여 편집합니다. 오른쪽의 체크박스를 사용하여 최대 3개까지 선택하여 압축 알림에 표시합니다.</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
     <string name="hash_channel_description">비디오 해싱 진행 알림</string>
     <string name="streams_notification_channel_name">새로운 스트림</string>
@@ -794,4 +794,21 @@
     <string name="previous_stream">이전 스트림</string>
     <string name="channel_tab_livestreams">실시간</string>
     <string name="notification_actions_summary_android13">아래의 각 알림 작업을 탭하여 편집하세요. 처음 세 가지 작업(재생/일시 중지, 이전 및 다음)은 시스템에 의해 설정되며 사용자 정의할 수 없습니다.</string>
+    <string name="show_more">더보기</string>
+    <string name="no">아니오</string>
+    <string name="error_insufficient_storage">기기에 저장공간이 충분하지 않습니다</string>
+    <string name="show_less">덜보기</string>
+    <string name="settings_category_backup_restore_title">백업 및 복원</string>
+    <string name="auto_update_check_description">NewPipe에서 자동으로 새 버전을 확인하고 업데이트가 있으면 알려줍니다.
+\n이 기능을 켜시겠습니까?</string>
+    <string name="reset_all_settings">모든 설정을 초기화하면 설정해둔 사항이 모두 삭제되며 앱을 다시 시작합니다.
+\n
+\n정말 계속하시겠습니까?</string>
+    <string name="import_settings_vulnerable_format">가져오려는 설정 파일이 NewPipe 0.27.0 이상에서는 권장하지 않는 취약한 형식으로 작성되어 있습니다. 설정 파일의 출처를 신뢰할 수 있는지 꼭 확인하시기 바라며, 다음부터는 가급적 NewPipe 0.27.0 이후의 설정 파일만 이용하시기 바랍니다. 이 취약한 형식의 설정 파일은 곧 더 이상 지원되지 않으며, 오래된 버전의 NewPipe에서 새 버전의 설정 파일을 가져오는 것도 불가능해질 예정입니다.</string>
+    <plurals name="replies">
+        <item quantity="other">답글 %s개</item>
+    </plurals>
+    <string name="yes">네</string>
+    <string name="reset_settings_title">설정 초기화</string>
+    <string name="reset_settings_summary">모든 설정을 기본값으로 초기화</string>
 </resources>

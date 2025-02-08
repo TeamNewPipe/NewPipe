@@ -20,7 +20,7 @@
 <p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Leia esse documento em outras línguas: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
+*Leia esse documento em outras línguas: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md), [العربية](README.ar.md)*
 
 > [!warning]
 > <b>ESTA É UMA VERSÃO BETA, PORTANTO, VOCÊ PODE ENCONTRAR BUGS. ENCONTROU ALGUM, ABRA UM ISSUE ATRAVÉS DO NOSSO REPOSITÓRIO GITHUB PREENCHENDO O MODELO.</b>
@@ -106,7 +106,7 @@ Enquanto isso, se você quiser trocar de fontes por algum motivo (por exemplo, a
 4. Importe os dados da etapa 1 via Configurações > Backup e Restauração > Importar Base de Dados
 
 ## Contribuições
-Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda. O aplicativo fica cada vez melhor a cada contribuição, não importa quão grande ou pequena! Se você quiser se envolver, verifique nossas [notas de contribuição](.github/CONTRIBUTING.md).
+Se você tem ideias, traduções, alterações de design, limpeza de códigos ou mudanças reais de código, a ajuda é sempre bem-vinda. O aplicativo fica cada vez melhor a cada contribuição, não importa quão grande ou pequena! Se você quiser se envolver, verifique nossas [notas de contribuição](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Estado da tradução" />

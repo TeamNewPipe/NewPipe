@@ -74,7 +74,7 @@
     <string name="enable_watch_history_summary">देखे गए वीडियोज़ की सूची रखें</string>
     <string name="resume_on_audio_focus_gain_title">प्लेबैक फिर से शुरू करें</string>
     <string name="resume_on_audio_focus_gain_summary">रुकावटें (जैसे कि फ़ोन कॉल) खत्म होने के बाद वीडियो प्ले जारी रखें</string>
-    <string name="show_next_and_similar_title">\'अगला\' और \'समान\' वीडियो दिखाएं</string>
+    <string name="show_next_and_similar_title">\'अगले\' और \'सबंधित\' वीडियो दिखाएं</string>
     <string name="show_hold_to_append_title">\"कतार में जोड़ने के लिए स्पर्श बनाये रखें\" दिखाएं</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन वीडियो के विवरण पन्ने में दबाई जाए तो सलाह दिखाएं</string>
     <string name="unsupported_url">असमर्थित URL</string>
@@ -96,7 +96,7 @@
     <string name="undo">वापिस</string>
     <string name="play_all">सभी प्ले करें</string>
     <string name="notification_channel_name">न्यूपाइप की नोटीफिकेशन</string>
-    <string name="notification_channel_description">न्यूपाइप के बैकग्राउंड और पॉपअप प्लेयर के लिए नोटीफिकेशन</string>
+    <string name="notification_channel_description">न्यूपाइप के प्लेयर के लिए नोटीफिकेशन</string>
     <string name="unknown_content">[अज्ञात]</string>
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
@@ -191,8 +191,8 @@
     <string name="default_content_country_title">सामग्री का डिफ़ॉल्ट देश</string>
     <string name="always">हमेशा</string>
     <string name="just_once">सिर्फ एक बार</string>
-    <string name="switch_to_background">बैकग्राउंड में स्विच करें</string>
-    <string name="switch_to_popup">पॉपअप मोड में जाएं</string>
+    <string name="switch_to_background">बैकग्राउंड मोड में चलाएं</string>
+    <string name="switch_to_popup">पॉपअप मोड में चलाएं</string>
     <string name="switch_to_main">मुख्य पर स्विच करें</string>
     <string name="import_data_title">डेटाबेस आयात करें</string>
     <string name="export_data_title">डेटाबेस निर्यात करें</string>
@@ -245,12 +245,12 @@
     <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग ऐप को अनुत्तरदायी बना सकता है</string>
     <string name="enable_disposed_exceptions_title">चक्र से बाहर त्रुटियों की रिपोर्ट करें</string>
     <string name="use_inexact_seek_title">तेज और अनिश्चित तलाश का प्रयोग करें</string>
-    <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर में कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता हैं। 5, 15 या 25 सेकंड की तलाश में यह काम नहीं करता</string>
+    <string name="use_inexact_seek_summary">अनिश्चित खोज से प्लेयर कम सटीकता से लेकिन तेजी से वीडियो पोजीशन्स की तलाश कर सकता है। इससे 5, 15 या 25 सेकंड आगे पीछे लिजाना काम नहीं करता</string>
     <string name="thumbnail_cache_wipe_complete_notice">चित्र कैश मिटाया गया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा मिटाएं</string>
-    <string name="metadata_cache_wipe_summary">कैश किए गए सभी वेबपेज का डेटा हटाएं</string>
+    <string name="metadata_cache_wipe_summary">वेबपेजों का कैश किया तमाम डेटा हटाएं</string>
     <string name="metadata_cache_wipe_complete_notice">मेटाडाटा कैश मिटाया गया</string>
-    <string name="auto_queue_title">अगली स्ट्रीम को अपने आप जोड़े</string>
+    <string name="auto_queue_title">अगली स्ट्रीम को ऑटो-कतारबद्ध करें</string>
     <string name="auto_queue_summary">खत्म होने वाली पर ना-दोहराने वाली प्लेबैक कतार को संबंधित स्ट्रीम जोड़ते हुए जारी रखें</string>
     <string name="file">फाइल</string>
     <string name="channels">चेनल्स</string>
@@ -258,7 +258,7 @@
     <string name="tracks">ट्रैकस</string>
     <string name="users">उपभोगता</string>
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
-    <string name="clear_views_history_summary">चलाये गए स्ट्रीम के इतिहास और प्लेबैक स्थानों को साफ करता है</string>
+    <string name="clear_views_history_summary">चलाई गए स्ट्रीमों के इतिहास और प्लेबैक स्थानों को मिटाता है</string>
     <string name="delete_view_history_alert">क्या देखा गया सब इतिहास मिटा दिया जाए\?</string>
     <string name="watch_history_deleted">देखा हुआ इतिहास मिटा दिया गया</string>
     <string name="clear_search_history_title">खोज इतिहास को साफ करें</string>
@@ -444,7 +444,7 @@
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
     <string name="playlist_page_summary">प्लेलिस्ट पन्ना</string>
-    <string name="search_showing_result_for">%s : के लिए परिणाम दिखाया जा रहा है</string>
+    <string name="search_showing_result_for">%s : के लिए परिणाम दिखाए जा रहे हैं</string>
     <string name="done">संपन्न</string>
     <string name="artists">कलाकार</string>
     <string name="songs">गीत</string>
@@ -461,9 +461,9 @@
     <string name="show_age_restricted_content_summary">वह सामग्री भी दिखाएं जो आयु सीमा की वजह से शायद बच्चों के लिए अनुपयुक्त हो (जैसे 18+)</string>
     <string name="peertube_instance_add_https_only">केवल HTTPS यूआरएल ही समर्थित हैं</string>
     <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें\?</string>
-    <string name="auto_queue_toggle">अपने आप कतार में जोड़े</string>
+    <string name="auto_queue_toggle">ऑटो-कतारबद्ध करें</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
-    <string name="seek_duration_title">फास्ट-फ़ॉरवर्ड /- रिवाइंड करने की अवधि</string>
+    <string name="seek_duration_title">फास्ट-फॉरवर्ड/-रिवाइंड सीक अवधि</string>
     <string name="notification_colorize_summary">एंड्रॉइड को थंमनेल में मुख्य रंग के अनुसार नोटीफिकेशन रंग को अनुकूलित करने की अनुमति दें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
     <string name="notification_colorize_title">नोटीफिकेशन को रंगीन करें</string>
     <string name="notification_action_nothing">कुछ नहीं</string>
@@ -513,7 +513,7 @@
     <string name="permission_display_over_apps">अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
     <string name="hash_channel_description">विडीओ हैशिंग की प्रगति का नोटीफिकेशन</string>
     <string name="hash_channel_name">वीडियो हैश नोटीफिकेशन</string>
-    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
+    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम सामग्री या खोज अनुरोध के बारे में अतिरिक्त जानकारी देते मेटा जानकारी बक्से को छिपाने के लिए बंद करें</string>
     <string name="show_meta_info_title">मेटा जानकारी दिखाएं</string>
     <string name="show_description_summary">वीडियो का विवरण और अतिरिक्त जानकारी छिपाने के लिए इसे बंद करें</string>
     <string name="show_description_title">विवरण दिखाएं</string>
@@ -549,7 +549,7 @@
     <string name="peertube_instance_url_help">%s पर अपनी पसंद के इंसटैंस ढूँढ़ें</string>
     <string name="peertube_instance_url_summary">अपने पसंदीदा पीयर ट्यूब इंसटैंस चुनें</string>
     <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>
-    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं</string>
+    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, बलकि अगर ऑटो रोटेशन लॉक है तो सीधे फुल स्क्रीन मोड पर चलाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं</string>
     <string name="comments_are_disabled">टिप्पणियाँ करना बंद है</string>
     <string name="mark_as_watched">देखा हुआ चिह्नित करें</string>
     <string name="settings_category_player_notification_title">प्लेयर नोटीफिकेशन</string>
@@ -557,7 +557,7 @@
     <string name="crash_the_player">प्लेयर क्रैश करें</string>
     <string name="local_search_suggestions">स्थानीय खोज सुझाव</string>
     <string name="metadata_privacy_public">सार्वजनिक</string>
-    <string name="settings_category_player_notification_summary">चल रही स्ट्रीम नोटीफिकेशन को कॉन्फ़िगर करें</string>
+    <string name="settings_category_player_notification_summary">चल रही स्ट्रीम की नोटीफिकेशन को कॉन्फ़िगर करें</string>
     <string name="streams_notification_channel_name">नई स्ट्रीमें</string>
     <string name="streams_notification_channel_description">सब्सक्रिप्शनस की नई स्ट्रीमों के नोटीफिकेशन</string>
     <string name="error_report_channel_name">त्रुटि रिपोर्ट नोटीफिकेशन</string>
@@ -751,8 +751,8 @@
     <string name="audio_track_type_dubbed">डब की हूई</string>
     <string name="audio_track_type_descriptive">वर्णनात्मक</string>
     <string name="audio_track_present_in_video">एक ऑडियो ट्रैक पहले से ही इस स्ट्रीम में मौजूद होना चाहिए</string>
-    <string name="use_exoplayer_decoder_fallback_summary">इस विकल्प को सक्षम करें यदि आपके पास डिकोडर आरंभीकरण समस्याएं हैं, जो प्राथमिक डिकोडर आरंभ करने में विफल होने पर कम प्राथमिकता वाले डिकोडर पर वापस आ जाती हैं। प्राथमिक डिकोडर का उपयोग करते समय इसके परिणामस्वरूप खराब प्लेबैक प्रदर्शन हो सकता है</string>
-    <string name="settings_category_exoplayer_summary">कुछ एक्सोप्लेयर सेटिंग्स प्रबंधित करें। इन परिवर्तनों को प्रभावी बनाने के लिए किसी प्लेयर को पुनरारंभ करने की आवश्यकता होती है</string>
+    <string name="use_exoplayer_decoder_fallback_summary">इस विकल्प को सक्षम करें यदि आपके पास डिकोडर आरंभीकरण समस्याएं हैं, जो प्राथमिक डिकोडर आरंभ करने में विफल होने पर कम प्राथमिकता वाले डिकोडर पर वापस आ जाती है। इससे प्राथमिक डिकोडर का उपयोग करने की तुलना में खराब प्लेबैक प्रदर्शन हो सकता है</string>
+    <string name="settings_category_exoplayer_summary">कुछ एक्सोप्लेयर सेटिंग्स प्रबंधित करें। इन परिवर्तनों को प्रभावी बनाने के लिए प्लेयर को पुनरारंभ करने की आवश्यकता होती है</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">सतह को सीधे कोडेक पर सेट करने के बजाय, सतह परिवर्तन होने पर यह वर्कअराउंड वीडियो कोडेक्स को जारी और पुन: चालू करता है। इस समस्या के साथ कुछ उपकरणों पर ExoPlayer द्वारा पहले से ही उपयोग किया जाता है, इस सेटिंग का केवल Android 6 और उच्चतर पर प्रभाव पड़ता है
 \n
 \nइस विकल्प को सक्षम करने से वर्तमान वीडियो प्लेयर स्विच करते समय या फुलस्क्रीन पर स्विच करते समय प्लेबैक त्रुटियों को रोका जा सकता है</string>
@@ -824,4 +824,6 @@
     <string name="no">नहीं</string>
     <string name="error_insufficient_storage">डिवाइस पर पर्याप्त खाली स्थान नहीं है</string>
     <string name="settings_category_backup_restore_title">बैकअप और रिस्टोर</string>
+    <string name="import_settings_vulnerable_format">आयात किए जा रहे निर्यात में सेटिंग्स एक कमजोर प्रारूप का उपयोग करती हैं जिसे न्यूपाइप 0.27.0 के बाद से हटा दिया गया था। सुनिश्चित करें कि आयात किया जा रहा निर्यात किसी विश्वसनीय स्रोत से है, और भविष्य में केवल न्यूपाइप 0.27.0 या नए से प्राप्त निर्यात का उपयोग करना पसंद करें। इस असुरक्षित प्रारूप में सेटिंग्स आयात करने के लिए समर्थन जल्द ही पूरी तरह से हटा दिया जाएगा, और फिर न्यूपाइप के पुराने संस्करण अब नए संस्करणों से निर्यात की सेटिंग्स आयात नहीं कर पाएंगे।</string>
+    <string name="audio_track_type_secondary">सेकेंडरी</string>
 </resources>

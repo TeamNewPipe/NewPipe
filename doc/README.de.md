@@ -19,7 +19,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Über NewPipe</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md)*
+*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
 
 > [!warning]
 > <b>DIESE APP BEFINDET SICH IN EINER BETA-PHASE, DAHER KÖNNTEST DU BUGS BEGEGNEN. FALLS DIES PASSIERT, ERSTELLE EIN ISSUE (AUF ENGLISCH) IN UNSEREM GITHUB REPOSITORY, INDEM DU DIE VORLAGE DORT AUSFÜLLST.</b>
@@ -126,7 +126,7 @@ So eine Aktion wird nicht unterstützt und du solltest sie nur in Erwägung zieh
 ## Beitrag
 Egal ob du neue Ideen, Übersetzungen, Designvorschläge, kleine Code-Bereinigungen, oder sogar große Code-Verbesserungen hast, jegliche Unterstützung ist immer gern gesehen.
 Die App wird mit _jedem_ Beitrag besser und besser - egal wie viel Arbeit in ihn gesteckt wird!
-Wenn du dich einbringen willst, sehe dir die [Beitragshinweise](.github/CONTRIBUTING.md) an.
+Wenn du dich einbringen willst, sieh dir die [Beitragshinweise](/.github/CONTRIBUTING.md) an.
 
 <a href="https://hosted.weblate.org/engage/newpipe/de/">
 <img src="https://hosted.weblate.org/widgets/newpipe/de/287x66-grey.png" alt="Übersetzt" />

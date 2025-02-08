@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Publikováno %1$s</string>
-    <string name="no_player_found">Nenalezen žádný streamový přehrávač. Nainstalovat VLC\?</string>
+    <string name="upload_date_text">Publikováno na %1$s</string>
+    <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
     <string name="open_in_browser">Otevřít v prohlížeči</string>
@@ -117,7 +117,7 @@
     <string name="settings_category_history_title">Historie a mezipaměť</string>
     <string name="popup_playing_toast">Přehrávání v okně</string>
     <string name="disabled">Zakázáno</string>
-    <string name="clear">Vyčistit</string>
+    <string name="clear">Vymazat</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
     <string name="notification_channel_name">Oznámení NewPipe</string>
@@ -521,11 +521,11 @@
     <string name="restricted_video">Toto video má věkové omezení.
 \n
 \nPokud jej chcete vidět, povolte „%1$s“ v nastavení.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti shlédnutá videa</string>
-    <string name="remove_watched_popup_title">Odstranit shlédnutá videa\?</string>
-    <string name="remove_watched">Odstranit shlédnutá</string>
-    <string name="remove_watched_popup_warning">Videa, která jste shlédli před a po jejich doplnění do playlistu, budou odstraněna.
-\nJste se jisti\? Nelze zvrátit!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ano, i zčásti zhlédnutá videa</string>
+    <string name="remove_watched_popup_title">Odstranit zhlédnutá videa?</string>
+    <string name="remove_watched">Odstranit zhlédnutá</string>
+    <string name="remove_watched_popup_warning">Videa, která jste zhlédli před a po jejich přidání do playlistu, budou odstraněna.
+\nJste se jisti? Tato akce je nevratná!</string>
     <string name="show_original_time_ago_summary">Původní texty služeb budou viditelné u položek streamů</string>
     <string name="show_original_time_ago_title">U položek zobrazit původní čas</string>
     <string name="youtube_restricted_mode_enabled_title">Zapnout „Omezený režim“ YouTube</string>
@@ -838,4 +838,6 @@
     <string name="no">Ne</string>
     <string name="auto_update_check_description">NewPipe může čas od času automaticky kontrolovat nové verze a upozornit vás na jejich dostupnost.
 \nChcete tuto funkci povolit?</string>
+    <string name="import_settings_vulnerable_format">Nastavení v importovaném exportu používají zranitelný formát. NewPipe používá nový formát od verze 0.27.0. Ujistěte se, že export importujete z důvěryhodného zdroje a v budoucnu upřednostňujte používání exportů získaných z NewPipe 0.27.0 nebo novějších. Podpora importu nastavení v tomto zranitelném formátu bude brzy kompletně odstraněna, kvůli čemuž staré verze NewPipe nebudou moci importovat nastavení z exportů z nových verzí.</string>
+    <string name="audio_track_type_secondary">sekundární</string>
 </resources>

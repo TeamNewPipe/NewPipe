@@ -1,0 +1,14 @@
+Mới
+• Nhóm đăng ký và luồng được sắp xếp
+• Nút tắt tiếng trong trình phát
+
+Cải thiện
+• Cho phép mở liên kết music.youtube.com và media.ccc.de trong NewPipe
+• Di dời hai cài đặt từ Xuất hiện sang Nội dung
+• Ẩn tùy chọn tìm kiếm 5, 15, 25 giây nếu tìm kiếm không chính xác được bật
+
+Sửa lỗi
+• Một số video WebM không thể tìm kiếm
+• Sao lưu cơ sở dữ liệu trên Android P
+• Sự cố khi chia sẻ tệp đã tải xuống
+• Rất nhiều vấn đề trích xuất YouTube và nhiều hơn nữa...
