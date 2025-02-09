@@ -23,4 +23,10 @@ class StreamViewModel(application: Application) : AndroidViewModel(application) 
             historyRecordManager.markAsWatched(stream).await()
         }
     }
+
+    fun deleteStreamHistory(streamId: Long) {
+        viewModelScope.launch {
+            historyRecordManager.deleteStreamHistoryAndState(streamId).await()
+        }
+    }
 }

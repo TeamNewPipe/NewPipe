@@ -157,9 +157,8 @@ public class HistoryRecordManager {
         }).subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteWholeStreamHistory() {
-        return Single.fromCallable(streamHistoryTable::deleteAll)
-                .subscribeOn(Schedulers.io());
+    public Completable deleteWholeStreamHistory() {
+        return streamHistoryTable.deleteAll().subscribeOn(Schedulers.io());
     }
 
     public Single<Integer> deleteCompleteStreamStateHistory() {
@@ -169,10 +168,6 @@ public class HistoryRecordManager {
 
     public Flowable<List<StreamHistoryEntry>> getStreamHistorySortedById() {
         return streamHistoryTable.getHistorySortedById().subscribeOn(Schedulers.io());
-    }
-
-    public Flowable<List<StreamStatisticsEntry>> getStreamStatistics() {
-        return streamHistoryTable.getStatistics().subscribeOn(Schedulers.io());
     }
 
     private boolean isStreamHistoryEnabled() {

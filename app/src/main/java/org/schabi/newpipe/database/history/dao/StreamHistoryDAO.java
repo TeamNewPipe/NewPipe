@@ -1,18 +1,5 @@
 package org.schabi.newpipe.database.history.dao;
 
-import androidx.annotation.Nullable;
-import androidx.room.Dao;
-import androidx.room.Query;
-import androidx.room.RewriteQueriesToDropUnusedColumns;
-
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
-import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Flowable;
-
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_ACCESS_DATE;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
@@ -25,34 +12,33 @@ import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_ST
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
+import androidx.annotation.Nullable;
+import androidx.paging.PagingSource;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.RewriteQueriesToDropUnusedColumns;
+
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+
 @Dao
-public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity> {
-    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE
-            + " WHERE " + STREAM_ACCESS_DATE + " = "
-            + "(SELECT MAX(" + STREAM_ACCESS_DATE + ") FROM " + STREAM_HISTORY_TABLE + ")")
-    @Override
-    @Nullable
-    public abstract StreamHistoryEntity getLatestEntry();
+public abstract class StreamHistoryDAO {
+    @Insert
+    public abstract long insert(StreamHistoryEntity entity);
 
-    @Override
-    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE)
-    public abstract Flowable<List<StreamHistoryEntity>> getAll();
+    @Delete
+    public abstract void delete(StreamHistoryEntity entity);
 
-    @Override
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE)
-    public abstract int deleteAll();
-
-    @Override
-    public Flowable<List<StreamHistoryEntity>> listByService(final int serviceId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Query("SELECT * FROM " + STREAM_TABLE
-            + " INNER JOIN " + STREAM_HISTORY_TABLE
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
-            + " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
-    public abstract Flowable<List<StreamHistoryEntry>> getHistory();
-
+    public abstract Completable deleteAll();
 
     @Query("SELECT * FROM " + STREAM_TABLE
             + " INNER JOIN " + STREAM_HISTORY_TABLE
@@ -70,13 +56,13 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
 
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM " + STREAM_TABLE
-
             // Select the latest entry and watch count for each stream id on history table
             + " INNER JOIN "
             + "(SELECT " + JOIN_STREAM_ID + ", "
             + "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", "
             + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
-            + " FROM " + STREAM_HISTORY_TABLE + " GROUP BY " + JOIN_STREAM_ID + ")"
+            + " FROM " + STREAM_HISTORY_TABLE
+            + " GROUP BY " + JOIN_STREAM_ID + ")"
 
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
 
@@ -84,6 +70,31 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
             + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
             + STREAM_PROGRESS_MILLIS
             + " FROM " + STREAM_STATE_TABLE + " )"
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS)
-    public abstract Flowable<List<StreamStatisticsEntry>> getStatistics();
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
+
+            + " ORDER BY " + STREAM_LATEST_DATE + " DESC"
+    )
+    public abstract PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByLastWatched();
+
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT * FROM " + STREAM_TABLE
+            // Select the latest entry and watch count for each stream id on history table
+            + " INNER JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + ", "
+            + "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", "
+            + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
+            + " FROM " + STREAM_HISTORY_TABLE
+            + " GROUP BY " + JOIN_STREAM_ID + ")"
+
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            + STREAM_PROGRESS_MILLIS
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
+
+            + " ORDER BY " + STREAM_WATCH_COUNT + " DESC"
+    )
+    public abstract PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByViewCount();
 }

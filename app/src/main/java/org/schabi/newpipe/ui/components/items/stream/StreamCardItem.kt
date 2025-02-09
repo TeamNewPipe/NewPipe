@@ -9,13 +9,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -25,7 +24,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StreamListItem(
+fun StreamCardItem(
     stream: Stream,
     showProgress: Boolean,
     isSelected: Boolean,
@@ -33,24 +32,23 @@ fun StreamListItem(
     onLongClick: (Stream) -> Unit = {},
     onDismissPopup: () -> Unit = {}
 ) {
-    // Box serves as an anchor for the dropdown menu
-    Box(
-        modifier = Modifier
-            .combinedClickable(onLongClick = { onLongClick(stream) }, onClick = { onClick(stream) })
-            .fillMaxWidth()
-            .padding(12.dp)
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-            verticalAlignment = Alignment.CenterVertically
+    Box {
+        Column(
+            modifier = Modifier
+                .combinedClickable(
+                    onLongClick = { onLongClick(stream) },
+                    onClick = { onClick(stream) }
+                )
+                .padding(top = 12.dp, start = 2.dp, end = 2.dp)
         ) {
             StreamThumbnail(
                 stream = stream,
                 showProgress = showProgress,
-                modifier = Modifier.size(width = 140.dp, height = 78.dp)
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.FillWidth
             )
 
-            Column {
+            Column(modifier = Modifier.padding(10.dp)) {
                 Text(
                     text = stream.name,
                     overflow = TextOverflow.Ellipsis,
@@ -58,12 +56,20 @@ fun StreamListItem(
                     maxLines = 2
                 )
 
-                Text(text = stream.uploaderName, style = MaterialTheme.typography.bodySmall)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = stream.uploaderName,
+                        style = MaterialTheme.typography.bodySmall
+                    )
 
-                Text(
-                    text = stream.detailText,
-                    style = MaterialTheme.typography.bodySmall
-                )
+                    Text(
+                        text = stream.detailText,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
             }
         }
 
@@ -74,12 +80,12 @@ fun StreamListItem(
 @Preview(name = "Light mode", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun StreamListItemPreview(
+private fun StreamCardItemPreview(
     @PreviewParameter(StreamItemPreviewProvider::class) stream: Stream
 ) {
     AppTheme {
         Surface {
-            StreamListItem(stream, showProgress = false, isSelected = false)
+            StreamCardItem(stream, showProgress = false, isSelected = false)
         }
     }
 }

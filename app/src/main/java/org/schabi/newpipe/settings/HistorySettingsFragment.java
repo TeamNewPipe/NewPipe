@@ -91,7 +91,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         return recordManager.deleteWholeStreamHistory()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        howManyDeleted -> Toast.makeText(context,
+                        () -> Toast.makeText(context,
                                 R.string.watch_history_deleted, Toast.LENGTH_SHORT).show(),
                         throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
