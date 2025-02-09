@@ -35,7 +35,6 @@ import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.ui.components.items.Stream
-import org.schabi.newpipe.ui.components.items.Unknown
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
@@ -50,13 +49,11 @@ fun RelatedItems(info: StreamInfo) {
     var isAutoQueueEnabled by rememberSaveable {
         mutableStateOf(sharedPreferences.getBoolean(key, false))
     }
-    val displayItems = info.relatedItems.map {
-        if (it is StreamInfoItem) {
-            Stream(it, getStreamDetailText(context, it))
-        } else if (it is PlaylistInfoItem) {
-            Playlist(it)
-        } else {
-            Unknown
+    val displayItems = info.relatedItems.mapNotNull {
+        when (it) {
+            is StreamInfoItem -> Stream(it, getStreamDetailText(context, it))
+            is PlaylistInfoItem -> Playlist(it)
+            else -> null
         }
     }
 

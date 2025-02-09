@@ -62,5 +62,3 @@ class Playlist(
         item.streamCount
     )
 }
-
-object Unknown : Info()
