@@ -346,7 +346,7 @@ public final class PlayerHelper {
         // Hypothesis: 4h covers a viewing block, e.g. evening.
         // External lightning conditions will change in the next
         // viewing block so we fall back to the default brightness
-        if ((System.currentTimeMillis() - timestamp) > TimeUnit.HOURS.toMillis(4)) {
+        if (Instant.ofEpochMilli(timestamp).until(Instant.now(), ChronoUnit.HOURS) > 4) {
             return -1;
         }
         return sp.getFloat(context.getString(R.string.screen_brightness_key), -1);
