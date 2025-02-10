@@ -51,21 +51,18 @@ import org.schabi.newpipe.util.ListHelper;
 import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Formatter;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public final class PlayerHelper {
-    private static final StringBuilder STRING_BUILDER = new StringBuilder();
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
     private static final long MEGABYTE = 1024 * 1024L;
+    Logger logger = Logger.getLogger(getClass().getName());
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -95,7 +92,7 @@ public final class PlayerHelper {
 
     @NonNull
     public static String getTimeString(final int milliSeconds) {
-        int seconds = milliSeconds / 1000;
+        final int seconds = milliSeconds / 1000;
         return DateUtils.formatElapsedTime(seconds);
     }
 
@@ -155,8 +152,8 @@ public final class PlayerHelper {
                 return context.getResources().getString(R.string.resize_fill);
             case AspectRatioFrameLayout.RESIZE_MODE_ZOOM:
                 return context.getResources().getString(R.string.resize_zoom);
-            case AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT:
-            case AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH:
+            case AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT,
+                 AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH:
             default:
                 throw new IllegalArgumentException("Unrecognized resize mode: " + resizeMode);
         }
@@ -192,17 +189,19 @@ public final class PlayerHelper {
             return null;
         }
 
-        if (relatedItems.get(0) instanceof StreamInfoItem firstItem && !urls.contains(firstItem.getUrl())) {
+        if (relatedItems.get(0) instanceof StreamInfoItem firstItem &&
+                !urls.contains(firstItem.getUrl())) {
             return getAutoQueuedSinglePlayQueue(firstItem);
         }
 
-        List<StreamInfoItem> autoQueueItems = relatedItems.stream()
+        final List<StreamInfoItem> autoQueueItems = relatedItems.stream()
                 .filter(item -> item instanceof StreamInfoItem && !urls.contains(item.getUrl()))
-                .map(item -> (StreamInfoItem) item)
+                .map(StreamInfoItem.class::cast)
                 .collect(Collectors.toList());
 
         Collections.shuffle(autoQueueItems);
-        return autoQueueItems.isEmpty() ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
+        return autoQueueItems.isEmpty() ? null :
+                getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -300,10 +299,6 @@ public final class PlayerHelper {
                 AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
-    public static boolean isUsingDSP() {
-        return true;
-    }
-
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
         final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
@@ -367,13 +362,13 @@ public final class PlayerHelper {
     }
 
     public static boolean isScreenOrientationLocked(final Context context) {
-        int accelerometerRotation = android.provider.Settings.System.getInt(
+        final int accelerometerRotation = android.provider.Settings.System.getInt(
                 context.getContentResolver(),
                 Settings.System.ACCELEROMETER_ROTATION,
                 0
         );
 
-        boolean hasAccelerometer = context.getPackageManager()
+        final boolean hasAccelerometer = context.getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
 
         return accelerometerRotation == 0 || !hasAccelerometer;
@@ -479,9 +474,10 @@ public final class PlayerHelper {
             throw new IllegalArgumentException("Player or its context cannot be null");
         }
 
-        String playbackSpeedKey = player.getContext().getString(R.string.playback_speed_key);
-        String playbackPitchKey = player.getContext().getString(R.string.playback_pitch_key);
-        String playbackSkipSilenceKey = player.getContext().getString(R.string.playback_skip_silence_key);
+        final String playbackSpeedKey = player.getContext().getString(R.string.playback_speed_key);
+        final String playbackPitchKey = player.getContext().getString(R.string.playback_pitch_key);
+        final String playbackSkipSilenceKey = player.getContext()
+                .getString(R.string.playback_skip_silence_key);
 
         player.getPrefs().edit()
                 .putFloat(playbackSpeedKey, speed)
@@ -496,15 +492,17 @@ public final class PlayerHelper {
     }
 
     public static int retrieveSeekDurationFromPreferences(final Player player) {
-        String seekDurationKey = player.getContext().getString(R.string.seek_duration_key);
-        String defaultValue = player.getContext().getString(R.string.seek_duration_default_value);
+        final String seekDurationKey = player.getContext().getString(R.string.seek_duration_key);
+        final String defaultValue =
+                player.getContext().getString(R.string.seek_duration_default_value);
 
-        String seekDurationString = player.getPrefs().getString(seekDurationKey, defaultValue);
+        final String seekDurationString = player.getPrefs().getString(seekDurationKey,
+                defaultValue);
 
         try {
             return Integer.parseInt(seekDurationString);
-        } catch (NumberFormatException e) {
-            System.err.println("Error during the conversion of the seek duration. : " + e.getMessage());
+        } catch (final NumberFormatException e) {
+            logger.info("Error during the conversion of the seek duration. : " + e.getMessage());
             return Integer.parseInt(defaultValue);
         }
     }
