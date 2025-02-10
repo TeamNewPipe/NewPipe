@@ -108,7 +108,10 @@ android {
             // no idea how they ended up in the META-INF dir...
             excludes += ['META-INF/README.md', 'META-INF/CHANGES',
                          // 'COPYRIGHT' belongs to RxJava...
-                         'META-INF/COPYRIGHT']
+                         'META-INF/COPYRIGHT',
+                         // belongs
+                         'META-INF/DEPENDENCIES'
+                        ]
         }
     }
 }
@@ -295,6 +298,10 @@ dependencies {
 
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.8.Final"
+
+    // Web browser automation
+    implementation "org.htmlunit:htmlunit:4.9.0"
+
 
 /** Debugging **/
     // Memory leak detection
