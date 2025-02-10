@@ -62,7 +62,7 @@ public final class PlayerHelper {
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
     private static final long MEGABYTE = 1024 * 1024L;
-    Logger logger = Logger.getLogger(getClass().getName());
+    private static final Logger logger = Logger.getLogger(getClass().getName());
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
