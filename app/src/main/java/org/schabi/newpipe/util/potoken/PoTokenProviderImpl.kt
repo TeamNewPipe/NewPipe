@@ -76,7 +76,7 @@ object PoTokenProviderImpl : PoTokenProvider {
                     webPoTokenGenerator?.let { Handler(Looper.getMainLooper()).post { it.close() } }
 
                     // create a new webPoTokenGenerator
-                    webPoTokenGenerator = PoTokenWebView
+                    webPoTokenGenerator = PoTokenHtmlUnit
                         .newPoTokenGenerator(App.getApp()).blockingGet()
 
                     // The streaming poToken needs to be generated exactly once before generating
