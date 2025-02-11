@@ -5,12 +5,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.Either
 import java.time.OffsetDateTime
 
+// TODO move within LongPressable
 sealed interface LongPressableDecoration {
     data class Duration(val duration: Long) : LongPressableDecoration
     data object Live : LongPressableDecoration
     data class Playlist(val itemCount: Long) : LongPressableDecoration
 }
 
+// TODO this can be a data class
 @Stable
 interface LongPressable {
     val title: String

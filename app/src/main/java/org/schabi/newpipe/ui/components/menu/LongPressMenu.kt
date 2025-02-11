@@ -4,8 +4,10 @@ package org.schabi.newpipe.ui.components.menu
 
 import android.content.Context
 import android.content.res.Configuration
+import android.view.ViewGroup
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -22,25 +24,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
-import androidx.compose.material.icons.filled.AddToQueue
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Headset
-import androidx.compose.material.icons.filled.OpenInBrowser
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.PictureInPicture
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.QueuePlayNext
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
@@ -51,11 +40,16 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,18 +68,60 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
+
+fun getLongPressMenuView(
+    context: Context,
+    streamInfoItem: StreamInfoItem,
+): ComposeView {
+    return ComposeView(context).apply {
+        setContent {
+            LongPressMenu(
+                longPressable = object : LongPressable {
+                    override val title: String = streamInfoItem.name
+                    override val url: String? = streamInfoItem.url?.takeIf { it.isNotBlank() }
+                    override val thumbnailUrl: String? =
+                        ImageStrategy.choosePreferredImage(streamInfoItem.thumbnails)
+                    override val uploader: String? =
+                        streamInfoItem.uploaderName?.takeIf { it.isNotBlank() }
+                    override val uploaderUrl: String? =
+                        streamInfoItem.uploaderUrl?.takeIf { it.isNotBlank() }
+                    override val viewCount: Long? =
+                        streamInfoItem.viewCount.takeIf { it >= 0 }
+                    override val uploadDate: Either<String, OffsetDateTime>? =
+                        streamInfoItem.uploadDate?.let { Either.right(it.offsetDateTime()) }
+                            ?: streamInfoItem.textualUploadDate?.let { Either.left(it) }
+                    override val decoration: LongPressableDecoration? =
+                        streamInfoItem.duration.takeIf { it >= 0 }?.let {
+                            LongPressableDecoration.Duration(it)
+                        }
+
+                    override fun getPlayQueue(): PlayQueue {
+                        TODO("Not yet implemented")
+                    }
+                },
+                onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
+                actions = LongPressAction.buildActionList(streamInfoItem, false),
+                onEditActions = {},
+            )
+        }
+    }
+}
 
 @Composable
 fun LongPressMenu(
     longPressable: LongPressable,
     onDismissRequest: () -> Unit,
+    actions: List<LongPressAction>,
+    onEditActions: () -> Unit,
     sheetState: SheetState = rememberModalBottomSheetState(),
 ) {
     ModalBottomSheet(
@@ -99,17 +135,19 @@ fun LongPressMenu(
                     modifier = Modifier.align(Alignment.Center)
                 )
                 IconButton(
-                    onClick = {},
+                    onClick = onEditActions,
                     modifier = Modifier.align(Alignment.CenterEnd)
                 ) {
                     // show a small button here, it's not an important button and it shouldn't
                     // capture the user attention
                     Icon(
-                        imageVector = Icons.Default.Edit,
+                        imageVector = Icons.Default.Settings,
                         contentDescription = stringResource(R.string.edit),
                         // same color and height as the DragHandle
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(2.dp).size(16.dp),
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .size(16.dp),
                     )
                 }
             }
@@ -135,9 +173,21 @@ fun LongPressMenu(
                 // errors in the calculations above don't make the items wrap at the wrong position
                 modifier = Modifier.align(Alignment.Center),
             ) {
+                val actionsWithoutChannel = actions.toMutableList()
+                val showChannelAction = actionsWithoutChannel.indexOfFirst {
+                    it.type == LongPressAction.Type.ShowChannelDetails
+                }.let { i ->
+                    if (i >= 0) {
+                        actionsWithoutChannel.removeAt(i)
+                    } else {
+                        null
+                    }
+                }
+
                 LongPressMenuHeader(
                     item = longPressable,
                     thumbnailHeight = buttonHeight,
+                    onUploaderClickAction = showChannelAction?.action,
                     // subtract 2.dp to account for approximation errors in the calculations above
                     modifier = if (desiredHeaderWidth >= maxContainerWidth - 2 * padding - 2.dp) {
                         // leave the height as small as possible, since it's the only item on the
@@ -149,92 +199,16 @@ fun LongPressMenu(
                     }
                 )
 
-                LongPressMenuButton(
-                    icon = Icons.Default.AddToQueue,
-                    text = stringResource(R.string.enqueue),
-                    onClick = {},
-                    enabled = false,
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.QueuePlayNext,
-                    text = stringResource(R.string.enqueue_next_stream),
-                    onClick = {},
-                    enabled = false,
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Headset,
-                    text = stringResource(R.string.controls_background_title),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.PictureInPicture,
-                    text = stringResource(R.string.controls_popup_title),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.PlayArrow,
-                    text = stringResource(R.string.play),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Download,
-                    text = stringResource(R.string.download),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.AutoMirrored.Default.PlaylistAdd,
-                    text = stringResource(R.string.add_to_playlist),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Share,
-                    text = stringResource(R.string.share),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.OpenInBrowser,
-                    text = stringResource(R.string.open_in_browser),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Done,
-                    text = stringResource(R.string.mark_as_watched),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Person,
-                    text = stringResource(R.string.show_channel_details),
-                    onClick = {},
-                    enabled = longPressable.uploaderUrl != null,
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
-
-                LongPressMenuButton(
-                    icon = Icons.Default.Delete,
-                    text = stringResource(R.string.delete),
-                    onClick = {},
-                    modifier = Modifier.size(buttonWidth, buttonHeight),
-                )
+                val ctx = LocalContext.current
+                for (action in actionsWithoutChannel) {
+                    LongPressMenuButton(
+                        icon = action.type.icon,
+                        text = stringResource(action.type.label),
+                        onClick = { action.action(ctx) },
+                        enabled = action.enabled(false),
+                        modifier = Modifier.size(buttonWidth, buttonHeight),
+                    )
+                }
             }
         }
     }
@@ -244,6 +218,7 @@ fun LongPressMenu(
 fun LongPressMenuHeader(
     item: LongPressable,
     thumbnailHeight: Dp,
+    onUploaderClickAction: ((context: Context) -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val ctx = LocalContext.current
@@ -354,6 +329,7 @@ fun LongPressMenuHeader(
 
                 val subtitle = getSubtitleAnnotatedString(
                     item = item,
+                    showLink = onUploaderClickAction != null,
                     linkColor = MaterialTheme.customColors.onSurfaceVariantLink,
                     ctx = ctx,
                 )
@@ -363,12 +339,10 @@ fun LongPressMenuHeader(
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = if (item.uploaderUrl.isNullOrBlank()) {
+                        modifier = if (onUploaderClickAction == null) {
                             Modifier
                         } else {
-                            Modifier.clickable {
-                                // TODO handle click on uploader URL
-                            }
+                            Modifier.clickable { onUploaderClickAction(ctx) }
                         }.basicMarquee(iterations = Int.MAX_VALUE)
                     )
                 }
@@ -379,11 +353,12 @@ fun LongPressMenuHeader(
 
 fun getSubtitleAnnotatedString(
     item: LongPressable,
+    showLink: Boolean,
     linkColor: Color,
     ctx: Context,
 ) = buildAnnotatedString {
     var shouldAddSeparator = false
-    if (!item.uploaderUrl.isNullOrBlank()) {
+    if (showLink) {
         withStyle(
             SpanStyle(
                 fontWeight = FontWeight.Bold,
@@ -554,10 +529,21 @@ private fun LongPressMenuPreview(
         Localization.initPrettyTime(Localization.resolvePrettyTime())
         onDispose {}
     }
-    AppTheme {
+
+    // the incorrect theme is set when running the preview in an emulator for some reason...
+    val initialUseDarkTheme = isSystemInDarkTheme()
+    var useDarkTheme by remember { mutableStateOf(initialUseDarkTheme) }
+
+    AppTheme(useDarkTheme = useDarkTheme) {
+        // longPressable is null when running the preview in an emulator for some reason...
+        @Suppress("USELESS_ELVIS")
         LongPressMenu(
-            longPressable = longPressable,
+            longPressable = longPressable ?: LongPressablePreviews().values.first(),
             onDismissRequest = {},
+            actions = LongPressAction.Type.entries
+                // disable Enqueue actions just to show it off
+                .map { t -> t.buildAction({ !t.name.startsWith("E") }) { } },
+            onEditActions = { useDarkTheme = !useDarkTheme },
             sheetState = rememberStandardBottomSheetState(), // makes it start out as open
         )
     }
