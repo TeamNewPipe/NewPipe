@@ -69,8 +69,6 @@ import androidx.compose.ui.unit.times
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.player.playqueue.PlayQueue
-import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
@@ -80,36 +78,26 @@ import java.time.OffsetDateTime
 
 fun getLongPressMenuView(
     context: Context,
-    streamInfoItem: StreamInfoItem,
+    item: StreamInfoItem,
 ): ComposeView {
     return ComposeView(context).apply {
         setContent {
             LongPressMenu(
-                longPressable = object : LongPressable {
-                    override val title: String = streamInfoItem.name
-                    override val url: String? = streamInfoItem.url?.takeIf { it.isNotBlank() }
-                    override val thumbnailUrl: String? =
-                        ImageStrategy.choosePreferredImage(streamInfoItem.thumbnails)
-                    override val uploader: String? =
-                        streamInfoItem.uploaderName?.takeIf { it.isNotBlank() }
-                    override val uploaderUrl: String? =
-                        streamInfoItem.uploaderUrl?.takeIf { it.isNotBlank() }
-                    override val viewCount: Long? =
-                        streamInfoItem.viewCount.takeIf { it >= 0 }
-                    override val uploadDate: Either<String, OffsetDateTime>? =
-                        streamInfoItem.uploadDate?.let { Either.right(it.offsetDateTime()) }
-                            ?: streamInfoItem.textualUploadDate?.let { Either.left(it) }
-                    override val decoration: LongPressableDecoration? =
-                        streamInfoItem.duration.takeIf { it >= 0 }?.let {
-                            LongPressableDecoration.Duration(it)
-                        }
-
-                    override fun getPlayQueue(): PlayQueue {
-                        TODO("Not yet implemented")
-                    }
-                },
+                longPressable = LongPressable(
+                    title = item.name,
+                    url = item.url?.takeIf { it.isNotBlank() },
+                    thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
+                    uploader = item.uploaderName?.takeIf { it.isNotBlank() },
+                    uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
+                    viewCount = item.viewCount.takeIf { it >= 0 },
+                    uploadDate = item.uploadDate?.let { Either.right(it.offsetDateTime()) }
+                        ?: item.textualUploadDate?.let { Either.left(it) },
+                    decoration = item.duration.takeIf { it >= 0 }?.let {
+                        LongPressable.Decoration.Duration(it)
+                    },
+                ),
                 onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
-                actions = LongPressAction.buildActionList(streamInfoItem, false),
+                actions = LongPressAction.buildActionList(item, false),
                 onEditActions = {},
             )
         }
@@ -245,7 +233,7 @@ fun LongPressMenuHeader(
                 }
 
                 when (val decoration = item.decoration) {
-                    is LongPressableDecoration.Duration -> {
+                    is LongPressable.Decoration.Duration -> {
                         // only show duration if there is a thumbnail
                         if (item.thumbnailUrl != null) {
                             Surface(
@@ -263,7 +251,7 @@ fun LongPressMenuHeader(
                             }
                         }
                     }
-                    is LongPressableDecoration.Live -> {
+                    is LongPressable.Decoration.Live -> {
                         // only show "Live" if there is a thumbnail
                         if (item.thumbnailUrl != null) {
                             Surface(
@@ -282,7 +270,7 @@ fun LongPressMenuHeader(
                         }
                     }
 
-                    is LongPressableDecoration.Playlist -> {
+                    is LongPressable.Decoration.Playlist -> {
                         Surface(
                             color = Color.Black.copy(alpha = 0.6f),
                             contentColor = Color.White,
@@ -443,78 +431,56 @@ fun LongPressMenuButton(
 
 private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPressable>(
     listOf(
-        object : LongPressable {
-            override val title: String = "Big Buck Bunny"
-            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
-            override val thumbnailUrl: String =
-                "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp"
-            override val uploader: String = "Blender"
-            override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
-            override val viewCount: Long = 8765432
-            override val uploadDate: Either<String, OffsetDateTime> = Either.left("16 years ago")
-            override val decoration: LongPressableDecoration = LongPressableDecoration.Playlist(12)
-
-            override fun getPlayQueue(): PlayQueue {
-                return SinglePlayQueue(listOf(), 0)
-            }
-        },
-        object : LongPressable {
-            override val title: String = LoremIpsum().values.first()
-            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
-            override val thumbnailUrl: String? = null
-            override val uploader: String = "Blender"
-            override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
-            override val viewCount: Long = 8765432
-            override val uploadDate: Either<String, OffsetDateTime> = Either.left("16 years ago")
-            override val decoration: LongPressableDecoration = LongPressableDecoration.Duration(500)
-
-            override fun getPlayQueue(): PlayQueue {
-                return SinglePlayQueue(listOf(), 0)
-            }
-        },
-        object : LongPressable {
-            override val title: String = LoremIpsum().values.first()
-            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
-            override val thumbnailUrl: String? = null
-            override val uploader: String? = null
-            override val uploaderUrl: String = "https://www.youtube.com/@BlenderOfficial"
-            override val viewCount: Long? = null
-            override val uploadDate: Either<String, OffsetDateTime>? = null
-            override val decoration: LongPressableDecoration? = null
-
-            override fun getPlayQueue(): PlayQueue {
-                return SinglePlayQueue(listOf(), 0)
-            }
-        },
-        object : LongPressable {
-            override val title: String = LoremIpsum().values.first()
-            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
-            override val thumbnailUrl: String =
-                "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp"
-            override val uploader: String? = null
-            override val uploaderUrl: String? = null
-            override val viewCount: Long? = null
-            override val uploadDate: Either<String, OffsetDateTime>? = null
-            override val decoration: LongPressableDecoration = LongPressableDecoration.Live
-
-            override fun getPlayQueue(): PlayQueue {
-                return SinglePlayQueue(listOf(), 0)
-            }
-        },
-        object : LongPressable {
-            override val title: String = LoremIpsum().values.first()
-            override val url: String = "https://www.youtube.com/watch?v=YE7VzlLtp-4"
-            override val thumbnailUrl: String? = null
-            override val uploader: String? = null
-            override val uploaderUrl: String? = null
-            override val viewCount: Long? = null
-            override val uploadDate: Either<String, OffsetDateTime> = Either.right(OffsetDateTime.now().minusSeconds(12))
-            override val decoration: LongPressableDecoration = LongPressableDecoration.Playlist(1500)
-
-            override fun getPlayQueue(): PlayQueue {
-                return SinglePlayQueue(listOf(), 0)
-            }
-        }
+        LongPressable(
+            title = "Big Buck Bunny",
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp",
+            uploader = "Blender",
+            uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
+            viewCount = 8765432,
+            uploadDate = Either.left("16 years ago"),
+            decoration = LongPressable.Decoration.Playlist(12),
+        ),
+        LongPressable(
+            title = LoremIpsum().values.first(),
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = null,
+            uploader = "Blender",
+            uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
+            viewCount = 8765432,
+            uploadDate = Either.left("16 years ago"),
+            decoration = LongPressable.Decoration.Duration(500),
+        ),
+        LongPressable(
+            title = LoremIpsum().values.first(),
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = null,
+            uploader = null,
+            uploaderUrl = "https://www.youtube.com/@BlenderOfficial",
+            viewCount = null,
+            uploadDate = null,
+            decoration = null,
+        ),
+        LongPressable(
+            title = LoremIpsum().values.first(),
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp",
+            uploader = null,
+            uploaderUrl = null,
+            viewCount = null,
+            uploadDate = null,
+            decoration = LongPressable.Decoration.Live,
+        ),
+        LongPressable(
+            title = LoremIpsum().values.first(),
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = null,
+            uploader = null,
+            uploaderUrl = null,
+            viewCount = null,
+            uploadDate = Either.right(OffsetDateTime.now().minusSeconds(12)),
+            decoration = LongPressable.Decoration.Playlist(1500),
+        ),
     )
 )
 
