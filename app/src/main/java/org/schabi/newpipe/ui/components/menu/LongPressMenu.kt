@@ -128,8 +128,14 @@ fun LongPressMenu(
 
             // the channel icon goes in the menu header, so do not show a button for it
             val actions = longPressActions.toMutableList()
-            val showChannelAction = actions.popFirst { it.type == ShowChannelDetails }
             val ctx = LocalContext.current
+            val onUploaderClick = actions.popFirst { it.type == ShowChannelDetails }
+                ?.let { showChannelDetailsAction ->
+                    {
+                        showChannelDetailsAction.action(ctx)
+                        onDismissRequest()
+                    }
+                }
 
             Column {
                 var actionIndex = -1 // -1 indicates the header
@@ -157,7 +163,10 @@ fun LongPressMenu(
                                 LongPressMenuButton(
                                     icon = action.type.icon,
                                     text = stringResource(action.type.label),
-                                    onClick = { action.action(ctx) },
+                                    onClick = {
+                                        action.action(ctx)
+                                        onDismissRequest()
+                                    },
                                     enabled = action.enabled(false),
                                     modifier = Modifier
                                         .height(buttonHeight)
@@ -171,7 +180,7 @@ fun LongPressMenu(
                                 // (i.e. on phones in portrait)
                                 LongPressMenuHeader(
                                     item = longPressable,
-                                    onUploaderClickAction = showChannelAction?.action,
+                                    onUploaderClick = onUploaderClick,
                                     modifier = Modifier
                                         // leave the height as small as possible, since it's the
                                         // only item on the row anyway
@@ -186,7 +195,7 @@ fun LongPressMenu(
                                 // right (i.e. on tablets or on phones in landscape)
                                 LongPressMenuHeader(
                                     item = longPressable,
-                                    onUploaderClickAction = showChannelAction?.action,
+                                    onUploaderClick = onUploaderClick,
                                     modifier = Modifier
                                         .padding(6.dp)
                                         .heightIn(min = 70.dp)
@@ -236,7 +245,7 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit = {}) {
 @Composable
 fun LongPressMenuHeader(
     item: LongPressable,
-    onUploaderClickAction: ((context: Context) -> Unit)?,
+    onUploaderClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val ctx = LocalContext.current
@@ -346,7 +355,7 @@ fun LongPressMenuHeader(
 
                 val subtitle = getSubtitleAnnotatedString(
                     item = item,
-                    showLink = onUploaderClickAction != null,
+                    showLink = onUploaderClick != null,
                     linkColor = MaterialTheme.customColors.onSurfaceVariantLink,
                     ctx = ctx,
                 )
@@ -356,11 +365,13 @@ fun LongPressMenuHeader(
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = if (onUploaderClickAction == null) {
+                        modifier = if (onUploaderClick == null) {
                             Modifier
                         } else {
-                            Modifier.clickable { onUploaderClickAction(ctx) }
-                        }.basicMarquee(iterations = Int.MAX_VALUE)
+                            Modifier.clickable(onClick = onUploaderClick)
+                        }
+                            .fillMaxWidth()
+                            .basicMarquee(iterations = Int.MAX_VALUE)
                     )
                 }
             }
