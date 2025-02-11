@@ -64,7 +64,6 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.popFirst
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.EnqueueNext
 import org.schabi.newpipe.ui.components.menu.LongPressAction.Type.ShowChannelDetails
@@ -72,33 +71,23 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.image.ImageStrategy
 import java.time.OffsetDateTime
 
 fun getLongPressMenuView(
     context: Context,
-    item: StreamInfoItem,
+    longPressable: LongPressable,
+    longPressActions: List<LongPressAction>,
 ): ComposeView {
     return ComposeView(context).apply {
         setContent {
-            LongPressMenu(
-                longPressable = LongPressable(
-                    title = item.name,
-                    url = item.url?.takeIf { it.isNotBlank() },
-                    thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
-                    uploader = item.uploaderName?.takeIf { it.isNotBlank() },
-                    uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
-                    viewCount = item.viewCount.takeIf { it >= 0 },
-                    uploadDate = item.uploadDate?.let { Either.right(it.offsetDateTime()) }
-                        ?: item.textualUploadDate?.let { Either.left(it) },
-                    decoration = item.duration.takeIf { it >= 0 }?.let {
-                        LongPressable.Decoration.Duration(it)
-                    },
-                ),
-                onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
-                longPressActions = LongPressAction.buildActionList(item, false),
-                onEditActions = {},
-            )
+            AppTheme {
+                LongPressMenu(
+                    longPressable = longPressable,
+                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
+                    longPressActions = longPressActions,
+                    onEditActions = {},
+                )
+            }
         }
     }
 }
@@ -157,7 +146,6 @@ fun LongPressMenu(
                                         .weight((buttonsPerRow - rowIndex).toFloat()),
                                 )
                                 break
-
                             } else if (actionIndex >= 0) {
                                 val action = actions[actionIndex]
                                 LongPressMenuButton(
@@ -174,7 +162,6 @@ fun LongPressMenu(
                                         .weight(1F),
                                 )
                                 rowIndex += 1
-
                             } else if (headerWidthInButtons >= buttonsPerRow) {
                                 // this branch is taken if the header is going to fit on one line
                                 // (i.e. on phones in portrait)
@@ -189,7 +176,6 @@ fun LongPressMenu(
                                         .weight(headerWidthInButtons.toFloat()),
                                 )
                                 rowIndex += headerWidthInButtons
-
                             } else {
                                 // this branch is taken if the header will have some buttons to its
                                 // right (i.e. on tablets or on phones in landscape)
@@ -203,7 +189,6 @@ fun LongPressMenu(
                                         .weight(headerWidthInButtons.toFloat()),
                                 )
                                 rowIndex += headerWidthInButtons
-
                             }
                             actionIndex += 1
                         }

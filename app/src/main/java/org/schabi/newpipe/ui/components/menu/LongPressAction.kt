@@ -100,6 +100,7 @@ data class LongPressAction(
             )
         }
 
+        @JvmStatic
         fun buildActionList(
             item: StreamInfoItem,
             isKodiEnabled: Boolean,
