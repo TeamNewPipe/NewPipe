@@ -1,9 +1,8 @@
 package org.schabi.newpipe.ui.components.items
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -19,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.preference.PreferenceManager
 import androidx.window.core.layout.WindowWidthSizeClass
@@ -35,6 +35,8 @@ import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamCardItem
 import org.schabi.newpipe.ui.components.items.stream.StreamGridItem
 import org.schabi.newpipe.ui.components.items.stream.StreamListItem
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.util.DependentPreferenceHelper
 import org.schabi.newpipe.util.NavigationHelper
 
@@ -42,8 +44,7 @@ import org.schabi.newpipe.util.NavigationHelper
 fun ItemList(
     items: LazyPagingItems<out InfoItem>,
     mode: ItemViewMode = determineItemViewMode(),
-    gridHeader: LazyGridScope.() -> Unit = {},
-    listHeader: LazyListScope.() -> Unit = {}
+    header: @Composable () -> Unit = {}
 ) {
     val context = LocalContext.current
     val onClick = remember {
@@ -76,7 +77,9 @@ fun ItemList(
     val showProgress = DependentPreferenceHelper.getPositionsInListsEnabled(context)
     val nestedScrollModifier = Modifier.nestedScroll(rememberNestedScrollInteropConnection())
 
-    if (mode == ItemViewMode.GRID) {
+    if (items.loadState.refresh is LoadState.NotLoading && items.itemCount == 0) {
+        EmptyStateComposable(EmptyStateSpec.NoVideos)
+    } else if (mode == ItemViewMode.GRID) {
         val gridState = rememberLazyGridState()
 
         LazyVerticalGridScrollbar(state = gridState, settings = defaultThemedScrollbarSettings()) {
@@ -85,7 +88,9 @@ fun ItemList(
             val minSize = if (isCompact) 150.dp else 250.dp
 
             LazyVerticalGrid(state = gridState, columns = GridCells.Adaptive(minSize)) {
-                gridHeader()
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    header()
+                }
 
                 items(items.itemCount) {
                     val item = items[it]!!
@@ -104,7 +109,9 @@ fun ItemList(
 
         LazyColumnThemedScrollbar(state = state) {
             LazyColumn(modifier = nestedScrollModifier, state = state) {
-                listHeader()
+                item {
+                    header()
+                }
 
                 items(items.itemCount) {
                     val item = items[it]!!

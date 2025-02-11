@@ -1,13 +1,13 @@
 package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -15,6 +15,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -52,23 +53,11 @@ private fun PlaylistScreen(
             // items can be loaded.
             val totalDuration by remember {
                 derivedStateOf {
-                    streams.itemSnapshotList.sumOf { it!!.duration }
+                    streams.itemSnapshotList.sumOf { it?.duration ?: 0 }
                 }
             }
 
-            ItemList(
-                items = streams,
-                gridHeader = {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        PlaylistHeader(info, totalDuration)
-                    }
-                },
-                listHeader = {
-                    item {
-                        PlaylistHeader(info, totalDuration)
-                    }
-                }
-            )
+            ItemList(streams, header = { PlaylistHeader(info, totalDuration) })
         }
 
         is Resource.Loading -> {
@@ -79,7 +68,7 @@ private fun PlaylistScreen(
             // TODO use error panel instead
             EmptyStateComposable(
                 EmptyStateSpec.DisabledComments.copy(
-                    descriptionText = { "Could not load streams" }
+                    descriptionText = { stringResource(R.string.error_unable_to_load_streams) },
                 )
             )
         }
