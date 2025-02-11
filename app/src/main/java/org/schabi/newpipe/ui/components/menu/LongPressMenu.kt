@@ -115,31 +115,7 @@ fun LongPressMenu(
     ModalBottomSheet(
         onDismissRequest,
         sheetState = sheetState,
-        dragHandle = {
-            Box(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                BottomSheetDefaults.DragHandle(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-                IconButton(
-                    onClick = onEditActions,
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                ) {
-                    // show a small button here, it's not an important button and it shouldn't
-                    // capture the user attention
-                    Icon(
-                        imageVector = Icons.Default.Settings,
-                        contentDescription = stringResource(R.string.edit),
-                        // same color and height as the DragHandle
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier
-                            .padding(2.dp)
-                            .size(16.dp),
-                    )
-                }
-            }
-        },
+        dragHandle = { LongPressMenuDragHandle(onEditActions) },
     ) {
         BoxWithConstraints(
             modifier = Modifier
@@ -198,6 +174,34 @@ fun LongPressMenu(
                     )
                 }
             }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun LongPressMenuDragHandle(onEditActions: () -> Unit = {}) {
+    Box(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        BottomSheetDefaults.DragHandle(
+            modifier = Modifier.align(Alignment.Center)
+        )
+        IconButton(
+            onClick = onEditActions,
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            // show a small button here, it's not an important button and it shouldn't
+            // capture the user attention
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = stringResource(R.string.edit),
+                // same color and height as the DragHandle
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .padding(2.dp)
+                    .size(16.dp),
+            )
         }
     }
 }
