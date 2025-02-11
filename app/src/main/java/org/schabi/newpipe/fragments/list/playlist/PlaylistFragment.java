@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.getLongPressMenuView;
 import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
 
 import android.content.Context;
@@ -150,6 +151,16 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     protected void showInfoItemDialog(final StreamInfoItem item) {
+        activity.addContentView(
+                getLongPressMenuView(requireContext(), item),
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
+        );
+        if (Context.class.getSimpleName().startsWith("C")) {
+            return;
+        }
         final Context context = getContext();
         try {
             final InfoItemDialog.Builder dialogBuilder =
