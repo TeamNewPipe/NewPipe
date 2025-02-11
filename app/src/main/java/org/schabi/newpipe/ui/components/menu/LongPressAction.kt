@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.findFragmentActivity
@@ -107,7 +108,16 @@ data class LongPressAction(
             return buildPlayerActionList { SinglePlayQueue(item) } +
                 buildShareActionList(item) +
                 listOf(
-                    Type.Download.buildAction { context -> /* TODO */ },
+                    Type.Download.buildAction { context ->
+                        SparseItemUtil.fetchStreamInfoAndSaveToDatabase(
+                            context, item.serviceId, item.url
+                        ) { info ->
+                            val downloadDialog = DownloadDialog(context, info)
+                            val fragmentManager = context.findFragmentActivity()
+                                .supportFragmentManager
+                            downloadDialog.show(fragmentManager, "downloadDialog")
+                        }
+                    },
                     Type.AddToPlaylist.buildAction { context ->
                         PlaylistDialog.createCorrespondingDialog(
                             context,
