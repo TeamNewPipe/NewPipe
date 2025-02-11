@@ -2,8 +2,10 @@
 
 package org.schabi.newpipe.ui.components.menu
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -57,9 +59,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
@@ -72,6 +77,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
 import java.time.OffsetDateTime
@@ -346,24 +352,75 @@ fun LongPressMenuHeader(
                     modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
                 )
 
-                val subtitle = Localization.concatenateStrings(
-                    item.uploader,
-                    item.uploadDate?.match<String>(
-                        { it },
-                        { Localization.relativeTime(it) }
-                    ),
-                    item.viewCount?.let { Localization.localizeViewCount(ctx, it) }
+                val subtitle = getSubtitleAnnotatedString(
+                    item = item,
+                    linkColor = MaterialTheme.customColors.onSurfaceVariantLink,
+                    ctx = ctx,
                 )
                 if (subtitle.isNotBlank()) {
                     Spacer(Modifier.height(1.dp))
+
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
+                        modifier = if (item.uploaderUrl.isNullOrBlank()) {
+                            Modifier
+                        } else {
+                            Modifier.clickable {
+                                // TODO handle click on uploader URL
+                            }
+                        }.basicMarquee(iterations = Int.MAX_VALUE)
                     )
                 }
             }
         }
+    }
+}
+
+fun getSubtitleAnnotatedString(
+    item: LongPressable,
+    linkColor: Color,
+    ctx: Context,
+) = buildAnnotatedString {
+    var shouldAddSeparator = false
+    if (!item.uploaderUrl.isNullOrBlank()) {
+        withStyle(
+            SpanStyle(
+                fontWeight = FontWeight.Bold,
+                color = linkColor,
+                textDecoration = TextDecoration.Underline
+            )
+        ) {
+            if (item.uploader.isNullOrBlank()) {
+                append(ctx.getString(R.string.show_channel_details))
+            } else {
+                append(item.uploader)
+            }
+        }
+        shouldAddSeparator = true
+    } else if (!item.uploader.isNullOrBlank()) {
+        append(item.uploader)
+        shouldAddSeparator = true
+    }
+
+    val uploadDate = item.uploadDate?.match<String>(
+        { it },
+        { Localization.relativeTime(it) }
+    )
+    if (!uploadDate.isNullOrBlank()) {
+        if (shouldAddSeparator) {
+            append(Localization.DOT_SEPARATOR)
+        }
+        shouldAddSeparator = true
+        append(uploadDate)
+    }
+
+    val viewCount = item.viewCount?.let { Localization.localizeViewCount(ctx, it) }
+    if (!viewCount.isNullOrBlank()) {
+        if (shouldAddSeparator) {
+            append(Localization.DOT_SEPARATOR)
+        }
+        append(viewCount)
     }
 }
 
