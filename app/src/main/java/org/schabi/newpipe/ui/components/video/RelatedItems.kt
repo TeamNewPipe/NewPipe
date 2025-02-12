@@ -20,15 +20,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.preference.PreferenceManager
+import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
-import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
-import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.NO_SERVICE_ID
 
@@ -42,39 +43,32 @@ fun RelatedItems(info: StreamInfo) {
     }
 
     ItemList(
-        items = info.relatedItems,
+        items = flowOf(PagingData.from(info.relatedItems)).collectAsLazyPagingItems(),
         mode = ItemViewMode.LIST,
-        listHeader = {
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 12.dp, end = 12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(text = stringResource(R.string.auto_queue_description))
+        header = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp, end = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(text = stringResource(R.string.auto_queue_description))
 
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = stringResource(R.string.auto_queue_toggle))
-                        Switch(
-                            checked = isAutoQueueEnabled,
-                            onCheckedChange = {
-                                isAutoQueueEnabled = it
-                                sharedPreferences.edit {
-                                    putBoolean(key, it)
-                                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = stringResource(R.string.auto_queue_toggle))
+                    Switch(
+                        checked = isAutoQueueEnabled,
+                        onCheckedChange = {
+                            isAutoQueueEnabled = it
+                            sharedPreferences.edit {
+                                putBoolean(key, it)
                             }
-                        )
-                    }
-                }
-            }
-            if (info.relatedItems.isEmpty()) {
-                item {
-                    EmptyStateComposable(EmptyStateSpec.NoVideos)
+                        }
+                    )
                 }
             }
         }

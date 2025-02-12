@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -508,10 +509,13 @@ public final class NavigationHelper {
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
-                                            final int serviceId, final String url,
-                                            @NonNull final String name) {
+                                            final int serviceId, final String url) {
+        final var args = new Bundle();
+        args.putInt(Constants.KEY_SERVICE_ID, serviceId);
+        args.putString(Constants.KEY_URL, url);
+
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, PlaylistFragment.class, args)
                 .addToBackStack(null)
                 .commit();
     }
