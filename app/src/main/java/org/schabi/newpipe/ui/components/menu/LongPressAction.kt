@@ -1,7 +1,7 @@
 package org.schabi.newpipe.ui.components.menu
 
 import android.content.Context
-import android.net.Uri
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Headset
 import androidx.compose.material.icons.filled.OpenInBrowser
+import androidx.compose.material.icons.filled.Panorama
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.PlayArrow
@@ -20,6 +21,8 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.error.ErrorInfo
@@ -35,7 +38,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
-import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 data class LongPressAction(
@@ -60,6 +62,7 @@ data class LongPressAction(
         ShowChannelDetails(R.string.show_channel_details, Icons.Default.Person),
         MarkAsWatched(R.string.mark_as_watched, Icons.Default.Done),
         Delete(R.string.delete, Icons.Default.Delete),
+        SetAsPlaylistThumbnail(R.string.set_as_playlist_thumbnail, Icons.Default.Panorama),
         ;
 
         // TODO allow actions to return disposables
@@ -104,9 +107,9 @@ data class LongPressAction(
         }
 
         @JvmStatic
-        fun buildActionList(
+        fun fromStreamInfoItem(
             item: StreamInfoItem,
-            isKodiEnabled: Boolean,
+            /* TODO isKodiEnabled: Boolean, */
             /* TODO wholeListQueue: (() -> PlayQueue)? */
         ): List<LongPressAction> {
             return buildPlayerActionList { SinglePlayQueue(item) } +
@@ -163,11 +166,57 @@ data class LongPressAction(
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe()
                     },
-                ) + if (isKodiEnabled) listOf(
+                )
+            /* TODO handle kodi
+            + if (isKodiEnabled) listOf(
                 Type.PlayWithKodi.buildAction { context ->
                     KoreUtils.playWithKore(context, Uri.parse(item.url))
                 },
-            ) else listOf()
+            ) else listOf()*/
+        }
+
+        @JvmStatic
+        fun fromStreamEntity(
+            item: StreamEntity,
+        ): List<LongPressAction> {
+            // TODO decide if it's fine to just convert to StreamInfoItem here (it poses an
+            //  unnecessary dependency on the extractor, when we want to just look at data; maybe
+            //  using something like LongPressable would work)
+            return fromStreamInfoItem(item.toStreamInfoItem())
+        }
+
+        @JvmStatic
+        fun fromStreamStatisticsEntry(
+            item: StreamStatisticsEntry,
+        ): List<LongPressAction> {
+            return fromStreamEntity(item.streamEntity) +
+                listOf(
+                    Type.Delete.buildAction { context ->
+                        HistoryRecordManager(context)
+                            .deleteStreamHistoryAndState(item.streamId)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                Toast.makeText(
+                                    context,
+                                    R.string.one_item_deleted,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                )
+        }
+
+        @JvmStatic
+        fun fromPlaylistStreamEntry(
+            item: PlaylistStreamEntry,
+            onDelete: Runnable,
+            onSetAsPlaylistThumbnail: Runnable,
+        ): List<LongPressAction> {
+            return fromStreamEntity(item.streamEntity) +
+                listOf(
+                    Type.Delete.buildAction { onDelete.run() },
+                    Type.SetAsPlaylistThumbnail.buildAction { onSetAsPlaylistThumbnail.run() }
+                )
         }
     }
 }

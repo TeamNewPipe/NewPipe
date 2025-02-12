@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments.list;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,7 +28,8 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemViewMode;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -387,11 +389,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected void showInfoItemDialog(final StreamInfoItem item) {
-        try {
-            new InfoItemDialog.Builder(getActivity(), getContext(), this, item).create().show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
-        }
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamInfoItem(item),
+                LongPressAction.fromStreamInfoItem(item)
+        );
     }
 
     /*//////////////////////////////////////////////////////////////////////////
