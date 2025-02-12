@@ -22,9 +22,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
+import androidx.compose.material.icons.filled.Panorama
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -110,7 +112,7 @@ fun LongPressMenu(
     longPressActions: List<LongPressAction>,
     onDismissRequest: () -> Unit,
     onEditActions: () -> Unit = {}, // TODO handle this menu
-    sheetState: SheetState = rememberModalBottomSheetState(),
+    sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
 ) {
     ModalBottomSheet(
         onDismissRequest,
@@ -122,8 +124,8 @@ fun LongPressMenu(
                 .fillMaxWidth()
                 .padding(start = 6.dp, end = 6.dp, bottom = 16.dp)
         ) {
-            val minButtonWidth = 80.dp
-            val buttonHeight = 85.dp
+            val minButtonWidth = 86.dp
+            val buttonHeight = 86.dp
             val headerWidthInButtons = 5 // the header is 5 times as wide as the buttons
             val buttonsPerRow = (maxWidth / minButtonWidth).toInt()
 
@@ -282,11 +284,13 @@ fun LongPressMenuHeader(
                             ) {
                                 Text(
                                     text = Localization.getDurationString(decoration.duration),
-                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp)
+                                    style = MaterialTheme.typography.bodySmall,
+                                    modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp),
                                 )
                             }
                         }
                     }
+
                     is LongPressable.Decoration.Live -> {
                         // only show "Live" if there is a thumbnail
                         if (item.thumbnailUrl != null) {
@@ -300,6 +304,7 @@ fun LongPressMenuHeader(
                             ) {
                                 Text(
                                     text = stringResource(R.string.duration_live).uppercase(),
+                                    style = MaterialTheme.typography.bodySmall,
                                     modifier = Modifier.padding(vertical = 2.dp, horizontal = 4.dp)
                                 )
                             }
@@ -343,11 +348,17 @@ fun LongPressMenuHeader(
             Column(
                 modifier = Modifier.padding(vertical = 12.dp, horizontal = 12.dp),
             ) {
+                val marquee = Modifier.basicMarquee(
+                    // wait some time before starting animations, to not distract the user
+                    initialDelayMillis = 4000,
+                    iterations = Int.MAX_VALUE
+                )
+
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
-                    modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE),
+                    modifier = marquee,
                 )
 
                 val subtitle = getSubtitleAnnotatedString(
@@ -368,7 +379,7 @@ fun LongPressMenuHeader(
                             Modifier.clickable(onClick = onUploaderClick)
                         }
                             .fillMaxWidth()
-                            .basicMarquee(iterations = Int.MAX_VALUE)
+                            .then(marquee)
                     )
                 }
             }
@@ -466,6 +477,17 @@ fun LongPressMenuButton(
     }
 }
 
+@Preview
+@Composable
+private fun LongPressMenuButtonPreview() {
+    LongPressMenuButton(
+        icon = Icons.Default.Panorama,
+        text = "Set as playlist thumbnail",
+        onClick = { },
+        modifier = Modifier.width(86.dp)
+    )
+}
+
 private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPressable>(
     listOf(
         LongPressable(
@@ -497,6 +519,16 @@ private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPre
             viewCount = null,
             uploadDate = null,
             decoration = null,
+        ),
+        LongPressable(
+            title = LoremIpsum().values.first(),
+            url = "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+            thumbnailUrl = "https://i.ytimg.com/vi_webp/YE7VzlLtp-4/maxresdefault.webp",
+            uploader = null,
+            uploaderUrl = null,
+            viewCount = null,
+            uploadDate = null,
+            decoration = LongPressable.Decoration.Duration(500),
         ),
         LongPressable(
             title = LoremIpsum().values.first(),
