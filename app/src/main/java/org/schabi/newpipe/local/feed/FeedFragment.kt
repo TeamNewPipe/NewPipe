@@ -20,7 +20,6 @@
 package org.schabi.newpipe.local.feed
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -65,17 +64,18 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.info_list.ItemViewMode
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.ui.components.menu.LongPressAction
+import org.schabi.newpipe.ui.components.menu.LongPressable
+import org.schabi.newpipe.ui.components.menu.openLongPressMenuInActivity
 import org.schabi.newpipe.ui.emptystate.setEmptyStateComposable
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
@@ -381,14 +381,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.loadingProgressBar.max = progressState.maxProgress
     }
 
-    private fun showInfoItemDialog(item: StreamInfoItem) {
-        val context = context
-        val activity: Activity? = getActivity()
-        if (context == null || context.resources == null || activity == null) return
-
-        InfoItemDialog.Builder(activity, context, this, item).create().show()
-    }
-
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
         override fun onItemClick(item: Item<*>, view: View) {
             if (item is StreamItem && !isRefreshing) {
@@ -407,7 +399,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         override fun onItemLongClick(item: Item<*>, view: View): Boolean {
             if (item is StreamItem && !isRefreshing) {
-                showInfoItemDialog(item.streamWithState.stream.toStreamInfoItem())
+                openLongPressMenuInActivity(
+                    requireActivity(),
+                    LongPressable.fromStreamEntity(item.streamWithState.stream),
+                    LongPressAction.fromStreamEntity(item.streamWithState.stream),
+                )
                 return true
             }
             return false

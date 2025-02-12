@@ -8,6 +8,7 @@ import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 
@@ -52,13 +53,13 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -789,39 +790,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     protected void showInfoItemDialog(final PlaylistStreamEntry item) {
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
-
-        try {
-            final Context context = getContext();
-            final InfoItemDialog.Builder dialogBuilder =
-                    new InfoItemDialog.Builder(getActivity(), context, this, infoItem);
-
-            // add entries in the middle
-            dialogBuilder.addAllEntries(
-                    StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                    StreamDialogDefaultEntry.DELETE
-            );
-
-            // set custom actions
-            // all entries modified below have already been added within the builder
-            dialogBuilder
-                    .setAction(
-                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
-                                    context, getPlayQueueStartingAt(item), true))
-                    .setAction(
-                            StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                            (f, i) ->
-                                    changeThumbnailStreamId(item.getStreamEntity().getUid(),
-                                            true))
-                    .setAction(
-                            StreamDialogDefaultEntry.DELETE,
-                            (f, i) -> deleteItem(item))
-                    .create()
-                    .show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, infoItem);
-        }
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamEntity(item.getStreamEntity()),
+                // TODO getPlayQueueStartingAt(), resumePlayback=true
+                LongPressAction.fromPlaylistStreamEntry(
+                        item,
+                        () -> deleteItem(item),
+                        () -> changeThumbnailStreamId(item.getStreamEntity().getUid(), true)
+                )
+        );
     }
 
     private void setInitialData(final long pid, final String title) {

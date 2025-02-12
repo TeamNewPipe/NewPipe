@@ -2,9 +2,11 @@
 
 package org.schabi.newpipe.ui.components.menu
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -73,6 +75,17 @@ import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
 import java.time.OffsetDateTime
 
+fun openLongPressMenuInActivity(
+    activity: Activity,
+    longPressable: LongPressable,
+    longPressActions: List<LongPressAction>,
+) {
+    activity.addContentView(
+        getLongPressMenuView(activity, longPressable, longPressActions),
+        LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    )
+}
+
 fun getLongPressMenuView(
     context: Context,
     longPressable: LongPressable,
@@ -83,9 +96,8 @@ fun getLongPressMenuView(
             AppTheme {
                 LongPressMenu(
                     longPressable = longPressable,
-                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
                     longPressActions = longPressActions,
-                    onEditActions = {},
+                    onDismissRequest = { (this.parent as ViewGroup).removeView(this) },
                 )
             }
         }
@@ -95,9 +107,9 @@ fun getLongPressMenuView(
 @Composable
 fun LongPressMenu(
     longPressable: LongPressable,
-    onDismissRequest: () -> Unit,
     longPressActions: List<LongPressAction>,
-    onEditActions: () -> Unit,
+    onDismissRequest: () -> Unit,
+    onEditActions: () -> Unit = {}, // TODO handle this menu
     sheetState: SheetState = rememberModalBottomSheetState(),
 ) {
     ModalBottomSheet(

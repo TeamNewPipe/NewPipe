@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.history;
 
-import android.content.Context;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
+
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -9,13 +10,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.evernote.android.state.State;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -29,12 +28,12 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
-import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.settings.HistorySettingsFragment;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
@@ -48,7 +47,6 @@ import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 public class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void>
@@ -318,50 +316,11 @@ public class StatisticsPlaylistFragment
     }
 
     private void showInfoItemDialog(final StreamStatisticsEntry item) {
-        final Context context = getContext();
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
-
-        try {
-            final InfoItemDialog.Builder dialogBuilder =
-                    new InfoItemDialog.Builder(getActivity(), context, this, infoItem);
-
-            // set entries in the middle; the others are added automatically
-            dialogBuilder
-                    .addEntry(StreamDialogDefaultEntry.DELETE)
-                    .setAction(
-                            StreamDialogDefaultEntry.DELETE,
-                            (f, i) -> deleteEntry(
-                                    Math.max(itemListAdapter.getItemsList().indexOf(item), 0)))
-                    .create()
-                    .show();
-        } catch (final IllegalArgumentException e) {
-            InfoItemDialog.Builder.reportErrorDuringInitialization(e, infoItem);
-        }
-    }
-
-    private void deleteEntry(final int index) {
-        final LocalItem infoItem = itemListAdapter.getItemsList().get(index);
-        if (infoItem instanceof StreamStatisticsEntry) {
-            final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelete = recordManager
-                    .deleteStreamHistoryAndState(entry.getStreamId())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            () -> {
-                                if (getView() != null) {
-                                    Snackbar.make(getView(), R.string.one_item_deleted,
-                                            Snackbar.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getContext(),
-                                            R.string.one_item_deleted,
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            },
-                            throwable -> showSnackBarError(new ErrorInfo(throwable,
-                                    UserAction.DELETE_FROM_HISTORY, "Deleting item")));
-
-            disposables.add(onDelete);
-        }
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamEntity(item.getStreamEntity()),
+                LongPressAction.fromStreamStatisticsEntry(item)
+        );
     }
 
     @Override
