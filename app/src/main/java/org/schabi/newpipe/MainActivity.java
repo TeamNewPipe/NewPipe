@@ -140,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
 
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+
+        // Fixes text color turning black in dark/black mode:
+        // https://github.com/TeamNewPipe/NewPipe/issues/12016
+        // For further reference see: https://issuetracker.google.com/issues/37124582
         new WebView(this);
 
         assureCorrectAppLanguage(this);
