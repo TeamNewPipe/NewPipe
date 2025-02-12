@@ -10,10 +10,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -21,22 +26,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.ui.components.menu.LongPressAction
+import org.schabi.newpipe.ui.components.menu.LongPressMenu
+import org.schabi.newpipe.ui.components.menu.LongPressable
 import org.schabi.newpipe.ui.theme.AppTheme
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun StreamListItem(
     stream: StreamInfoItem,
     showProgress: Boolean,
-    isSelected: Boolean,
     onClick: (StreamInfoItem) -> Unit = {},
-    onLongClick: (StreamInfoItem) -> Unit = {},
-    onDismissPopup: () -> Unit = {}
 ) {
-    // Box serves as an anchor for the dropdown menu
+    var showLongPressMenu by rememberSaveable { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
-            .combinedClickable(onLongClick = { onLongClick(stream) }, onClick = { onClick(stream) })
+            .combinedClickable(
+                onLongClick = { showLongPressMenu = true },
+                onClick = { onClick(stream) }
+            )
             .fillMaxWidth()
             .padding(12.dp)
     ) {
@@ -67,7 +76,13 @@ fun StreamListItem(
             }
         }
 
-        StreamMenu(stream, isSelected, onDismissPopup)
+        if (showLongPressMenu) {
+            LongPressMenu(
+                longPressable = LongPressable.fromStreamInfoItem(stream),
+                longPressActions = LongPressAction.fromStreamInfoItem(stream),
+                onDismissRequest = { showLongPressMenu = false },
+            )
+        }
     }
 }
 
@@ -79,7 +94,7 @@ private fun StreamListItemPreview(
 ) {
     AppTheme {
         Surface {
-            StreamListItem(stream, showProgress = false, isSelected = false)
+            StreamListItem(stream, showProgress = false)
         }
     }
 }
