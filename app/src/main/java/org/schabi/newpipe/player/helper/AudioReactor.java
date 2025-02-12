@@ -91,8 +91,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                 onAudioFocusLossCanDuck();
                 break;
-            case AudioManager.AUDIOFOCUS_LOSS:
-            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+            case AudioManager.AUDIOFOCUS_LOSS,
+                 AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 onAudioFocusLoss();
                 break;
         }

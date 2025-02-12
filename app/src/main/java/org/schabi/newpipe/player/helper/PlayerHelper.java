@@ -55,14 +55,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public final class PlayerHelper {
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
     private static final long MEGABYTE = 1024 * 1024L;
-    private static final Logger logger = Logger.getLogger(getClass().getName());
+    private static final Logger LOGGER = Logger.getLogger(getClass().getName());
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -189,8 +188,8 @@ public final class PlayerHelper {
             return null;
         }
 
-        if (relatedItems.get(0) instanceof StreamInfoItem firstItem &&
-                !urls.contains(firstItem.getUrl())) {
+        if (relatedItems.get(0) instanceof StreamInfoItem firstItem
+                && !urls.contains(firstItem.getUrl())) {
             return getAutoQueuedSinglePlayQueue(firstItem);
         }
 
@@ -200,8 +199,8 @@ public final class PlayerHelper {
                 .collect(Collectors.toList());
 
         Collections.shuffle(autoQueueItems);
-        return autoQueueItems.isEmpty() ? null :
-                getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
+        return autoQueueItems.isEmpty() ? null
+                : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -502,7 +501,7 @@ public final class PlayerHelper {
         try {
             return Integer.parseInt(seekDurationString);
         } catch (final NumberFormatException e) {
-            logger.info("Error during the conversion of the seek duration. : " + e.getMessage());
+            LOGGER.info("Error during the conversion of the seek duration. : " + e.getMessage());
             return Integer.parseInt(defaultValue);
         }
     }

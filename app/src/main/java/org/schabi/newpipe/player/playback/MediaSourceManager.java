@@ -226,8 +226,7 @@ public class MediaSourceManager {
 
         // Event specific action
         switch (event.type()) {
-            case INIT:
-            case ERROR:
+            case INIT, ERROR:
                 maybeBlock();
             case APPEND:
                 populateSources();
@@ -257,10 +256,10 @@ public class MediaSourceManager {
 
         // Loading and Syncing
         switch (event.type()) {
-            case INIT: case REORDER: case ERROR: case SELECT:
+            case INIT, REORDER, ERROR, SELECT:
                 loadImmediate(); // low frequency, critical events
                 break;
-            case APPEND: case REMOVE: case MOVE: case RECOVERY:
+            case APPEND, REMOVE, MOVE, RECOVERY:
             default:
                 loadDebounced(); // high frequency or noncritical events
                 break;
@@ -268,7 +267,7 @@ public class MediaSourceManager {
 
         // update ui and notification
         switch (event.type()) {
-            case APPEND: case REMOVE: case MOVE: case REORDER:
+            case APPEND, REMOVE, MOVE, REORDER:
                 playbackListener.onPlayQueueEdited();
         }
 
