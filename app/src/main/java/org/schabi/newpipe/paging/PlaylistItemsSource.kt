@@ -18,8 +18,7 @@ class PlaylistItemsSource(
     override suspend fun load(params: LoadParams<Page>): LoadResult<Page, StreamInfoItem> {
         return params.key?.let {
             withContext(Dispatchers.IO) {
-                val response = ExtractorPlaylistInfo
-                    .getMoreItems(service, playlistInfo.url, playlistInfo.nextPage)
+                val response = ExtractorPlaylistInfo.getMoreItems(service, playlistInfo.url, it)
                 LoadResult.Page(response.items, null, response.nextPage)
             }
         } ?: LoadResult.Page(playlistInfo.relatedItems, null, playlistInfo.nextPage)
