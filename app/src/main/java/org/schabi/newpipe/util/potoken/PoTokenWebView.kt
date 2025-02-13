@@ -10,7 +10,6 @@ import androidx.annotation.MainThread
 import androidx.collection.ArrayMap
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
-import io.reactivex.rxjava3.core.SingleEmitter
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -68,7 +67,7 @@ class PoTokenWebView private constructor(
                     Log.e(TAG, "This WebView implementation is broken: $fmt")
 
                     onInitializationErrorCloseAndCancel(exception)
-                    popAllPoTokenContinuations().forEach { (_, emitter) -> emitter.resumeWithException(exception) }
+                    popAllPoTokenContinuations().forEach { (_, cont) -> cont.resumeWithException(exception) }
                 }
                 return super.onConsoleMessage(m)
             }
@@ -236,16 +235,16 @@ class PoTokenWebView private constructor(
     /**
      * Adds the ([identifier], [continuation]) pair to the [poTokenContinuations] list. This makes
      * it so that multiple poToken requests can be generated in parallel, and the results will be
-     * notified to the right emitters.
+     * notified to the right continuations.
      */
     private fun addPoTokenEmitter(identifier: String, continuation: Continuation<String>) {
         poTokenContinuations[identifier] = continuation
     }
 
     /**
-     * Extracts and removes from the [poTokenContinuations] list a [SingleEmitter] based on its
-     * [identifier]. The emitter is supposed to be used immediately after to either signal a success
-     * or an error.
+     * Extracts and removes from the [poTokenContinuations] list a [Continuation] based on its
+     * [identifier]. The continuation is supposed to be used immediately after to either signal a
+     * success or an error.
      */
     private fun popPoTokenContinuation(identifier: String): Continuation<String>? {
         return poTokenContinuations.remove(identifier)
