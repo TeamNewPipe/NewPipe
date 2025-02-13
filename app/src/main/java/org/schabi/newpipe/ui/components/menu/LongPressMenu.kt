@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,12 +24,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.PlaylistPlay
-import androidx.compose.material.icons.filled.Panorama
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -213,9 +213,8 @@ fun LongPressMenu(
     }
 }
 
-@Preview
 @Composable
-fun LongPressMenuDragHandle(onEditActions: () -> Unit = {}) {
+fun LongPressMenuDragHandle(onEditActions: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -229,7 +228,7 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit = {}) {
             // show a small button here, it's not an important button and it shouldn't
             // capture the user attention
             Icon(
-                imageVector = Icons.Default.Settings,
+                imageVector = Icons.Default.Tune,
                 contentDescription = stringResource(R.string.edit),
                 // same color and height as the DragHandle
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -237,6 +236,17 @@ fun LongPressMenuDragHandle(onEditActions: () -> Unit = {}) {
                     .padding(2.dp)
                     .size(16.dp),
             )
+        }
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
+@Composable
+private fun LongPressMenuDragHandlePreview() {
+    AppTheme {
+        Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
+            LongPressMenuDragHandle {}
         }
     }
 }
@@ -443,6 +453,8 @@ fun LongPressMenuButton(
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
+    // TODO possibly make it so that when you long-press on the button, the label appears on-screen
+    //  as a small popup, so in case the label text is cut off the users can still read it in full
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,
@@ -477,15 +489,25 @@ fun LongPressMenuButton(
     }
 }
 
-@Preview
+@ExperimentalLayoutApi
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
 @Composable
-private fun LongPressMenuButtonPreview() {
-    LongPressMenuButton(
-        icon = Icons.Default.Panorama,
-        text = "Set as playlist thumbnail",
-        onClick = { },
-        modifier = Modifier.width(86.dp)
-    )
+private fun LongPressMenuButtonPreviews() {
+    AppTheme {
+        Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
+            FlowRow {
+                for (entry in LongPressAction.Type.entries) {
+                    LongPressMenuButton(
+                        icon = entry.icon,
+                        text = stringResource(entry.label),
+                        onClick = { },
+                        modifier = Modifier.size(86.dp)
+                    )
+                }
+            }
+        }
+    }
 }
 
 private class LongPressablePreviews : CollectionPreviewParameterProvider<LongPressable>(
