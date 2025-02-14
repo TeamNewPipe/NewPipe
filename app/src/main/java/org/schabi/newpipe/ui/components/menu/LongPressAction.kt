@@ -10,9 +10,11 @@ import androidx.compose.material.icons.filled.Cast
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Headset
+import androidx.compose.material.icons.filled.HideImage
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.OpenInBrowser
-import androidx.compose.material.icons.filled.Panorama
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material.icons.filled.PlayArrow
@@ -21,7 +23,9 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.graphics.vector.ImageVector
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
@@ -62,7 +66,9 @@ data class LongPressAction(
         ShowChannelDetails(R.string.show_channel_details, Icons.Default.Person),
         MarkAsWatched(R.string.mark_as_watched, Icons.Default.Done),
         Delete(R.string.delete, Icons.Default.Delete),
-        SetAsPlaylistThumbnail(R.string.set_as_playlist_thumbnail, Icons.Default.Panorama),
+        Rename(R.string.rename, Icons.Default.Edit),
+        SetAsPlaylistThumbnail(R.string.set_as_playlist_thumbnail, Icons.Default.Image),
+        UnsetPlaylistThumbnail(R.string.unset_playlist_thumbnail, Icons.Default.HideImage),
         ;
 
         // TODO allow actions to return disposables
@@ -102,6 +108,17 @@ data class LongPressAction(
                 },
                 Type.OpenInBrowser.buildAction { context ->
                     ShareUtils.openUrlInBrowser(context, item.url)
+                },
+            )
+        }
+
+        private fun buildShareActionList(name: String, url: String, thumbnailUrl: String?): List<LongPressAction> {
+            return listOf(
+                Type.Share.buildAction { context ->
+                    ShareUtils.shareText(context, name, url, thumbnailUrl)
+                },
+                Type.OpenInBrowser.buildAction { context ->
+                    ShareUtils.openUrlInBrowser(context, url)
                 },
             )
         }
@@ -209,6 +226,7 @@ data class LongPressAction(
         @JvmStatic
         fun fromPlaylistStreamEntry(
             item: PlaylistStreamEntry,
+            // TODO possibly embed these two actions here
             onDelete: Runnable,
             onSetAsPlaylistThumbnail: Runnable,
         ): List<LongPressAction> {
@@ -216,6 +234,37 @@ data class LongPressAction(
                 listOf(
                     Type.Delete.buildAction { onDelete.run() },
                     Type.SetAsPlaylistThumbnail.buildAction { onSetAsPlaylistThumbnail.run() }
+                )
+        }
+
+        @JvmStatic
+        fun fromPlaylistMetadataEntry(
+            item: PlaylistMetadataEntry,
+            onRename: Runnable,
+            onDelete: Runnable,
+            unsetPlaylistThumbnail: Runnable?,
+        ): List<LongPressAction> {
+            return listOf(
+                Type.Rename.buildAction { onRename.run() },
+                Type.Delete.buildAction { onDelete.run() },
+                Type.UnsetPlaylistThumbnail.buildAction(
+                    enabled = { unsetPlaylistThumbnail != null }
+                ) { unsetPlaylistThumbnail?.run() }
+            )
+        }
+
+        @JvmStatic
+        fun fromPlaylistRemoteEntity(
+            item: PlaylistRemoteEntity,
+            onDelete: Runnable,
+        ): List<LongPressAction> {
+            return buildShareActionList(
+                item.orderingName ?: "",
+                item.url ?: "",
+                item.thumbnailUrl
+            ) +
+                listOf(
+                    Type.Delete.buildAction { onDelete.run() },
                 )
         }
     }
