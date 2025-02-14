@@ -1,7 +1,10 @@
 package org.schabi.newpipe.ui.components.menu
 
 import androidx.compose.runtime.Stable
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.extractor.ListExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
@@ -61,6 +64,33 @@ data class LongPressable(
             uploadDate = item.uploadDate?.let { Either.right(it) }
                 ?: item.textualUploadDate?.let { Either.left(it) },
             decoration = Decoration.from(item.streamType, item.duration),
+        )
+
+        @JvmStatic
+        fun fromPlaylistMetadataEntry(item: PlaylistMetadataEntry) = LongPressable(
+            // many fields are null because this is a local playlist
+            title = item.orderingName ?: "",
+            url = null,
+            thumbnailUrl = item.thumbnailUrl,
+            uploader = null,
+            uploaderUrl = null,
+            viewCount = null,
+            uploadDate = null,
+            decoration = Decoration.Playlist(item.streamCount),
+        )
+
+        @JvmStatic
+        fun fromPlaylistRemoteEntity(item: PlaylistRemoteEntity) = LongPressable(
+            title = item.orderingName ?: "",
+            url = item.url,
+            thumbnailUrl = item.thumbnailUrl,
+            uploader = item.uploader,
+            uploaderUrl = null,
+            viewCount = null,
+            uploadDate = null,
+            decoration = Decoration.Playlist(
+                item.streamCount ?: ListExtractor.ITEM_COUNT_UNKNOWN
+            ),
         )
     }
 }
