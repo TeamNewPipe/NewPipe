@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -75,6 +74,7 @@ import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.customColors
 import org.schabi.newpipe.util.Either
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.text.fadedMarquee
 import java.time.OffsetDateTime
 
 fun openLongPressMenuInActivity(
@@ -356,19 +356,15 @@ fun LongPressMenuHeader(
             }
 
             Column(
-                modifier = Modifier.padding(vertical = 12.dp, horizontal = 12.dp),
+                modifier = Modifier.padding(vertical = 12.dp),
             ) {
-                val marquee = Modifier.basicMarquee(
-                    // wait some time before starting animations, to not distract the user
-                    initialDelayMillis = 4000,
-                    iterations = Int.MAX_VALUE
-                )
-
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
-                    modifier = marquee,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fadedMarquee(edgeWidth = 12.dp),
                 )
 
                 val subtitle = getSubtitleAnnotatedString(
@@ -389,7 +385,7 @@ fun LongPressMenuHeader(
                             Modifier.clickable(onClick = onUploaderClick)
                         }
                             .fillMaxWidth()
-                            .then(marquee)
+                            .fadedMarquee(edgeWidth = 12.dp)
                     )
                 }
             }
