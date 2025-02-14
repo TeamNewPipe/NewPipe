@@ -285,7 +285,7 @@ fun LongPressMenuHeader(
                         // only show duration if there is a thumbnail
                         if (item.thumbnailUrl != null) {
                             Surface(
-                                color = Color.Black.copy(alpha = 0.6f),
+                                color = Color.Black.copy(alpha = 0.5f),
                                 contentColor = Color.White,
                                 modifier = Modifier
                                     .align(Alignment.BottomEnd)
@@ -323,7 +323,7 @@ fun LongPressMenuHeader(
 
                     is LongPressable.Decoration.Playlist -> {
                         Surface(
-                            color = Color.Black.copy(alpha = 0.6f),
+                            color = Color.Black.copy(alpha = 0.4f),
                             contentColor = Color.White,
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
