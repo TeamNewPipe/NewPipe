@@ -1,8 +1,8 @@
 package org.schabi.newpipe.local.bookmark;
 
 import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
+import static org.schabi.newpipe.ui.components.menu.LongPressMenuKt.openLongPressMenuInActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -38,6 +38,8 @@ import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.ui.components.menu.LongPressAction;
+import org.schabi.newpipe.ui.components.menu.LongPressable;
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec;
 import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -163,7 +165,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     showLocalDialog((PlaylistMetadataEntry) selectedItem);
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                    showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
+                    showRemoteDialog((PlaylistRemoteEntity) selectedItem);
                 }
             }
 
@@ -492,42 +494,31 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     // Utils
     ///////////////////////////////////////////////////////////////////////////
 
-    private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        showDeleteDialog(item.getName(), item);
+    private void showRemoteDialog(final PlaylistRemoteEntity item) {
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromPlaylistRemoteEntity(item),
+                LongPressAction.fromPlaylistRemoteEntity(
+                        item,
+                        () -> showDeleteDialog(item.getName(), item)
+                )
+        );
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        final String rename = getString(R.string.rename);
-        final String delete = getString(R.string.delete);
-        final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
         final boolean isThumbnailPermanent = localPlaylistManager
                 .getIsPlaylistThumbnailPermanent(selectedItem.getUid());
 
-        final ArrayList<String> items = new ArrayList<>();
-        items.add(rename);
-        items.add(delete);
-        if (isThumbnailPermanent) {
-            items.add(unsetThumbnail);
-        }
-
-        final DialogInterface.OnClickListener action = (d, index) -> {
-            if (items.get(index).equals(rename)) {
-                showRenameDialog(selectedItem);
-            } else if (items.get(index).equals(delete)) {
-                showDeleteDialog(selectedItem.name, selectedItem);
-            } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
-                final long thumbnailStreamId = localPlaylistManager
-                        .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
-                localPlaylistManager
-                        .changePlaylistThumbnail(selectedItem.getUid(), thumbnailStreamId, false)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe();
-            }
-        };
-
-        new AlertDialog.Builder(activity)
-                .setItems(items.toArray(new String[0]), action)
-                .show();
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromPlaylistMetadataEntry(selectedItem),
+                LongPressAction.fromPlaylistMetadataEntry(
+                        selectedItem,
+                        () -> showRenameDialog(selectedItem),
+                        () -> showDeleteDialog(selectedItem.name, selectedItem),
+                        isThumbnailPermanent ? () -> unsetPermanentThumbnail(selectedItem) : null
+                )
+        );
     }
 
     private void showRenameDialog(final PlaylistMetadataEntry selectedItem) {
@@ -559,5 +550,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setPositiveButton(R.string.delete, (dialog, i) -> deleteItem(item))
                 .setNegativeButton(R.string.cancel, null)
                 .show();
+    }
+
+    private void unsetPermanentThumbnail(final PlaylistMetadataEntry item) {
+        final long thumbnailStreamId = localPlaylistManager
+                .getAutomaticPlaylistThumbnailStreamId(item.getUid());
+        localPlaylistManager
+                .changePlaylistThumbnail(item.getUid(), thumbnailStreamId, false)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 }
