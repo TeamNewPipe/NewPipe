@@ -21,12 +21,17 @@ package org.schabi.newpipe.player;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.media.MediaBrowserCompat;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.MediaBrowserServiceCompat;
 
 import org.schabi.newpipe.ktx.BundleKt;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
@@ -34,15 +39,18 @@ import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 
 /**
  * One service for all players.
  */
-public final class PlayerService extends Service {
+public final class PlayerService extends MediaBrowserServiceCompat {
     private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
+
     public static final String SHOULD_START_FOREGROUND_EXTRA = "should_start_foreground_extra";
+    public static final String BIND_PLAYER_HOLDER_ACTION = "bind_player_holder_action";
 
     private Player player;
 
@@ -55,6 +63,8 @@ public final class PlayerService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
+
         if (DEBUG) {
             Log.d(TAG, "onCreate() called");
         }
@@ -148,6 +158,7 @@ public final class PlayerService extends Service {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
+        super.onDestroy();
         cleanup();
     }
 
@@ -170,7 +181,25 @@ public final class PlayerService extends Service {
 
     @Override
     public IBinder onBind(final Intent intent) {
-        return mBinder;
+        if (DEBUG) {
+            Log.d(TAG, "onBind() called with: intent = [" + intent
+                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras()) + "]");
+        }
+
+        if (BIND_PLAYER_HOLDER_ACTION.equals(intent.getAction())) {
+            // Note that this binder might be reused multiple times while the service is alive, even
+            // after unbind() has been called: https://stackoverflow.com/a/8794930 .
+            return mBinder;
+
+        } else if (MediaBrowserServiceCompat.SERVICE_INTERFACE.equals(intent.getAction())) {
+            // MediaBrowserService also uses its own binder, so for actions related to the media
+            // browser service, pass the onBind to the superclass.
+            return super.onBind(intent);
+
+        } else {
+            // This is an unknown request, avoid returning any binder to not leak objects.
+            return null;
+        }
     }
 
     public static class LocalBinder extends Binder {
@@ -187,5 +216,19 @@ public final class PlayerService extends Service {
         public Player getPlayer() {
             return playerService.get().player;
         }
+    }
+
+    @Nullable
+    @Override
+    public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
+                                 final int clientUid,
+                                 @Nullable final Bundle rootHints) {
+        return null;
+    }
+
+    @Override
+    public void onLoadChildren(@NonNull final String parentId,
+                               @NonNull final Result<List<MediaBrowserCompat.MediaItem>> result) {
+
     }
 }

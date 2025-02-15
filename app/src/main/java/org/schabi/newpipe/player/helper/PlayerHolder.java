@@ -183,6 +183,7 @@ public final class PlayerHolder {
         }
 
         final Intent serviceIntent = new Intent(context, PlayerService.class);
+        serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
         bound = context.bindService(serviceIntent, serviceConnection,
                 Context.BIND_AUTO_CREATE);
         if (!bound) {
