@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open_in_browser">im brüscher öffn</string>
+    <string name="yes">passd scho</string>
+    <string name="ok">passd scho</string>
+    <string name="cancel">stoarnieren</string>
+    <string name="install">iser</string>
+    <string name="no">net</string>
+    <string name="share">tealn</string>
+</resources>

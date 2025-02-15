@@ -1,1 +1,1 @@
-Jednoduchý a bezplatný YouTube prehrávač pre Android.
+Slobodný a nenáročný YouTube prehrávač pre Android.

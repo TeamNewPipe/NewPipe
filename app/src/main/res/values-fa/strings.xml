@@ -764,4 +764,6 @@
     <string name="duration">مدّت</string>
     <string name="rewind">پسروی</string>
     <string name="question_mark">؟</string>
+    <string name="settings_category_backup_restore_title">پشتیبان‌گیری و بازیابی</string>
+    <string name="no_live_streams">بدون جریان زنده</string>
 </resources>
