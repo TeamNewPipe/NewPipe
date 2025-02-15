@@ -2,6 +2,9 @@ package org.schabi.newpipe.local.playlist;
 
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 import android.content.Context;
@@ -64,12 +67,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.HttpUrl;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void>
         implements PlaylistControlViewHolder, DebounceSavable {
@@ -385,34 +390,76 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     /**
-     * Shares the playlist as a list of stream URLs if {@code shouldSharePlaylistDetails} is
-     * set to {@code false}. Shares the playlist name along with a list of video titles and URLs
-     * if {@code shouldSharePlaylistDetails} is set to {@code true}.
+     * FIXME update this
      *
-     * @param shouldSharePlaylistDetails Whether the playlist details should be included in the
-     *                                   shared content.
+     * Shares the playlist as a list of stream URLs if {@code shareMode} is
+     * set to {@code false}. Shares the playlist name along with a list of video titles and URLs
+     * if {@code shareMode} is set to {@code true}.
+     *
+     * @param shareMode Whether the playlist details should be included in the
+     *                  shared content.
      */
-    private void sharePlaylist(final boolean shouldSharePlaylistDetails) {
+    private void sharePlaylist(PlayListShareMode shareMode) {
         final Context context = requireContext();
 
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
-                .flatMapSingle(playlist -> Single.just(playlist.stream()
-                        .map(PlaylistStreamEntry::getStreamEntity)
-                        .map(streamEntity -> {
-                            if (shouldSharePlaylistDetails) {
-                                return context.getString(R.string.video_details_list_item,
-                                        streamEntity.getTitle(), streamEntity.getUrl());
-                            } else {
-                                return streamEntity.getUrl();
-                            }
-                        })
-                        .collect(Collectors.joining("\n"))))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(urlsText -> ShareUtils.shareText(
-                                context, name, shouldSharePlaylistDetails
-                                        ? context.getString(R.string.share_playlist_content_details,
-                                        name, urlsText) : urlsText),
-                        throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
+            .flatMapSingle(playlist -> Single.just(export( shareMode
+                                                         , playlist.stream().map(PlaylistStreamEntry::getStreamEntity)
+                                                         , context
+                                                         )
+            ))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe( urlsText -> ShareUtils.shareText( context
+                                                        , name
+                                                        , shareMode == JUST_URLS ? urlsText
+                                                                                 : context.getString(R.string.share_playlist_content_details, name, urlsText))
+                      , throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable))
+                      );
+    }
+
+    static String export(PlayListShareMode shareMode, Stream<StreamEntity> entityStream, Context context) {
+
+        return switch(shareMode) {
+
+            case WITH_TITLES            -> exportWithTitles(entityStream, context);
+            case JUST_URLS              -> exportJustUrls(entityStream);
+            case YOUTUBE_TEMP_PLAYLIST  -> exportAsYoutubeTempPlaylist(entityStream);
+        };
+    }
+
+    static String exportWithTitles(Stream<StreamEntity> entityStream, Context context) {
+
+        return entityStream
+            .map(entity -> context.getString(R.string.video_details_list_item, entity.getTitle(), entity.getUrl()))
+            .collect(Collectors.joining("\n"));
+    }
+
+    static String exportJustUrls(Stream<StreamEntity> entityStream) {
+
+        return entityStream
+            .map(StreamEntity::getUrl)
+            .collect(Collectors.joining("\n"));
+    }
+
+    static String exportAsYoutubeTempPlaylist(Stream<StreamEntity> entityStream) {
+
+        String videoIDs = entityStream
+                .map(entity -> getYouTubeId(entity.getUrl()))
+                .collect(Collectors.joining(","));
+
+        return "http://www.youtube.com/watch_videos?video_ids=" + videoIDs;
+    }
+
+    /**
+     * Gets the video id from a YouTube URL
+     */
+    static String getYouTubeId(String url) {
+
+        HttpUrl httpUrl = HttpUrl.parse(url);
+
+        return httpUrl == null ? null
+                               : httpUrl.queryParameter("v")
+                               ;
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
@@ -875,10 +922,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setMessage(R.string.share_playlist_with_titles_message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ true)
+                    sharePlaylist(WITH_TITLES)
+                )
+                .setNeutralButton("Share as YouTube temporary playlist", (dialog, which) -> // TODO R.string.share_playlist_as_YouTube_temporary_playlist
+                    sharePlaylist(YOUTUBE_TEMP_PLAYLIST)
                 )
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ false)
+                    sharePlaylist(JUST_URLS)
                 )
                 .show();
     }
