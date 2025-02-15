@@ -28,6 +28,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import org.schabi.newpipe.ktx.BundleKt;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -41,6 +42,7 @@ import java.lang.ref.WeakReference;
 public final class PlayerService extends Service {
     private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
+    public static final String SHOULD_START_FOREGROUND_EXTRA = "should_start_foreground_extra";
 
     private Player player;
 
@@ -59,35 +61,39 @@ public final class PlayerService extends Service {
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
-        player = new Player(this);
-        /*
-        Create the player notification and start immediately the service in foreground,
-        otherwise if nothing is played or initializing the player and its components (especially
-        loading stream metadata) takes a lot of time, the app would crash on Android 8+ as the
-        service would never be put in the foreground while we said to the system we would do so
-         */
-        player.UIs().get(NotificationPlayerUi.class)
-                .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+        // Note: you might be tempted to create the player instance and call startForeground here,
+        // but be aware that the Android system might start the service just to perform media
+        // queries. In those cases creating a player instance is a waste of resources, and calling
+        // startForeground means creating a useless empty notification. In case it's really needed
+        // the player instance can be created here, but startForeground() should definitely not be
+        // called here unless the service is actually starting in the foreground, to avoid the
+        // useless notification.
     }
 
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if (DEBUG) {
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent
+                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras())
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
 
-        /*
-        Be sure that the player notification is set and the service is started in foreground,
-        otherwise, the app may crash on Android 8+ as the service would never be put in the
-        foreground while we said to the system we would do so
-        The service is always requested to be started in foreground, so always creating a
-        notification if there is no one already and starting the service in foreground should
-        not create any issues
-        If the service is already started in foreground, requesting it to be started shouldn't
-        do anything
-         */
-        if (player != null) {
+        // All internal NewPipe intents used to interact with the player, that are sent to the
+        // PlayerService using startForegroundService(), will have SHOULD_START_FOREGROUND_EXTRA,
+        // to ensure startForeground() is called (otherwise Android will force-crash the app).
+        if (intent.getBooleanExtra(SHOULD_START_FOREGROUND_EXTRA, false)) {
+            if (player == null) {
+                // make sure the player exists, in case the service was resumed
+                player = new Player(this);
+            }
+
+            // Be sure that the player notification is set and the service is started in foreground,
+            // otherwise, the app may crash on Android 8+ as the service would never be put in the
+            // foreground while we said to the system we would do so. The service is always
+            // requested to be started in foreground, so always creating a notification if there is
+            // no one already and starting the service in foreground should not create any issues.
+            // If the service is already started in foreground, requesting it to be started
+            // shouldn't do anything.
             player.UIs().get(NotificationPlayerUi.class)
                     .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
         }
