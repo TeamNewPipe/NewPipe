@@ -96,7 +96,12 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         mediaBrowserPlaybackPreparer = new MediaBrowserPlaybackPreparer(
                 this,
                 sessionConnector::setCustomErrorMessage,
-                () -> sessionConnector.setCustomErrorMessage(null)
+                () -> sessionConnector.setCustomErrorMessage(null),
+                (playWhenReady) -> {
+                    if (player != null) {
+                        player.onPrepare();
+                    }
+                }
         );
         sessionConnector.setPlaybackPreparer(mediaBrowserPlaybackPreparer);
 

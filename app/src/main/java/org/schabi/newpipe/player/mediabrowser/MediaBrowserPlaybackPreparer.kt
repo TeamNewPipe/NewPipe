@@ -29,6 +29,7 @@ import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
 import java.util.function.BiConsumer
+import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -40,11 +41,15 @@ import java.util.function.BiConsumer
  * @param setMediaSessionError takes an error String and an error code from [PlaybackStateCompat],
  * calls `sessionConnector.setCustomErrorMessage(errorString, errorCode)`
  * @param clearMediaSessionError calls `sessionConnector.setCustomErrorMessage(null)`
+ * @param onPrepare takes playWhenReady, calls `player.prepare()`; this is needed because
+ * `MediaSessionConnector`'s `onPlay()` method calls this class'  [onPrepare] instead of
+ * `player.prepare()` if the playback preparer is not null, but we want the original behavior
  */
 class MediaBrowserPlaybackPreparer(
     private val context: Context,
     private val setMediaSessionError: BiConsumer<String, Int>, // error string, error code
     private val clearMediaSessionError: Runnable,
+    private val onPrepare: Consumer<Boolean>,
 ) : PlaybackPreparer {
     private val database = NewPipeDatabase.getInstance(context)
     private var disposable: Disposable? = null
@@ -59,7 +64,7 @@ class MediaBrowserPlaybackPreparer(
     }
 
     override fun onPrepare(playWhenReady: Boolean) {
-        // TODO handle onPrepare
+        onPrepare.accept(playWhenReady)
     }
 
     override fun onPrepareFromMediaId(mediaId: String, playWhenReady: Boolean, extras: Bundle?) {

@@ -1386,6 +1386,19 @@ public final class Player implements PlaybackListener, Listener {
     public void onCues(@NonNull final CueGroup cueGroup) {
         UIs.call(playerUi -> playerUi.onCues(cueGroup.cues));
     }
+
+    /**
+     * To be called when the {@code PlaybackPreparer} set in the {@link MediaSessionConnector}
+     * receives an {@code onPrepare()} call. This function allows restoring the default behavior
+     * that would happen if there was no playback preparer set, i.e. to just call
+     * {@code player.prepare()}. You can find the default behavior in `onPlay()` inside the
+     * {@link MediaSessionConnector} file.
+     */
+    public void onPrepare() {
+        if (!exoPlayerIsNull()) {
+            simpleExoPlayer.prepare();
+        }
+    }
     //endregion
 
 
