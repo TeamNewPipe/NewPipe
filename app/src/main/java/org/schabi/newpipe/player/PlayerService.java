@@ -37,6 +37,8 @@ import androidx.media.MediaBrowserServiceCompat;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.ktx.BundleKt;
+import org.schabi.newpipe.player.mediabrowser.MediaBrowserImpl;
+import org.schabi.newpipe.player.mediabrowser.MediaBrowserPlaybackPreparer;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -55,6 +57,12 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public static final String SHOULD_START_FOREGROUND_EXTRA = "should_start_foreground_extra";
     public static final String BIND_PLAYER_HOLDER_ACTION = "bind_player_holder_action";
 
+    // These objects are used to cleanly separate the Service implementation (in this file) and the
+    // media browser and playback preparer implementations. At the moment the playback preparer is
+    // only used in conjunction with the media browser.
+    private MediaBrowserImpl mediaBrowserImpl;
+    private MediaBrowserPlaybackPreparer mediaBrowserPlaybackPreparer;
+
     // these are instantiated in onCreate() as per
     // https://developer.android.com/training/cars/media#browser_workflow
     private MediaSessionCompat mediaSession;
@@ -66,10 +74,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
 
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Service's LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
-
+    //region Service lifecycle
     @Override
     public void onCreate() {
         super.onCreate();
@@ -80,11 +85,20 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
 
+        mediaBrowserImpl = new MediaBrowserImpl(this, this::notifyChildrenChanged);
+
         // see https://developer.android.com/training/cars/media#browser_workflow
         mediaSession = new MediaSessionCompat(this, "MediaSessionPlayerServ");
         setSessionToken(mediaSession.getSessionToken());
         sessionConnector = new MediaSessionConnector(mediaSession);
         sessionConnector.setMetadataDeduplicationEnabled(true);
+
+        mediaBrowserPlaybackPreparer = new MediaBrowserPlaybackPreparer(
+                this,
+                sessionConnector::setCustomErrorMessage,
+                () -> sessionConnector.setCustomErrorMessage(null)
+        );
+        sessionConnector.setPlaybackPreparer(mediaBrowserPlaybackPreparer);
 
         // Note: you might be tempted to create the player instance and call startForeground here,
         // but be aware that the Android system might start the service just to perform media
@@ -177,8 +191,10 @@ public final class PlayerService extends MediaBrowserServiceCompat {
 
         cleanup();
 
+        mediaBrowserPlaybackPreparer.dispose();
         mediaSession.setActive(false);
         mediaSession.release();
+        mediaBrowserImpl.dispose();
     }
 
     private void cleanup() {
@@ -197,7 +213,9 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     protected void attachBaseContext(final Context base) {
         super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(base));
     }
+    //endregion
 
+    //region Bind
     @Override
     public IBinder onBind(final Intent intent) {
         if (DEBUG) {
@@ -236,18 +254,28 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             return playerService.get().player;
         }
     }
+    //endregion
 
-    @Nullable
+    //region Media browser
     @Override
     public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
                                  final int clientUid,
                                  @Nullable final Bundle rootHints) {
-        return null;
+        // TODO check if the accessing package has permission to view data
+        return mediaBrowserImpl.onGetRoot(clientPackageName, clientUid, rootHints);
     }
 
     @Override
     public void onLoadChildren(@NonNull final String parentId,
                                @NonNull final Result<List<MediaBrowserCompat.MediaItem>> result) {
-
+        mediaBrowserImpl.onLoadChildren(parentId, result);
     }
+
+    @Override
+    public void onSearch(@NonNull final String query,
+                         final Bundle extras,
+                         @NonNull final Result<List<MediaBrowserCompat.MediaItem>> result) {
+        mediaBrowserImpl.onSearch(query, result);
+    }
+    //endregion
 }
