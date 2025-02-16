@@ -17,7 +17,6 @@ import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem.InfoType
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager
@@ -131,12 +130,9 @@ class MediaBrowserPlaybackPreparer(
     private fun extractRemotePlayQueue(playlistId: Long, index: Int): Single<PlayQueue> {
         return RemotePlaylistManager(database).getPlaylist(playlistId).firstOrError()
             .flatMap { ExtractorHelper.getPlaylistInfo(it.serviceId, it.url, false) }
-            .flatMap { info ->
-                info.errors.firstOrNull { it !is ContentNotSupportedException }?.let {
-                    return@flatMap Single.error(it)
-                }
-                Single.just(PlaylistPlayQueue(info, index))
-            }
+            // ignore info.errors, i.e. ignore errors about specific items, since there would
+            // be no way to show the error properly in Android Auto anyway
+            .map { info -> PlaylistPlayQueue(info, index) }
     }
 
     private fun extractPlayQueueFromMediaId(mediaId: String): Single<PlayQueue> {

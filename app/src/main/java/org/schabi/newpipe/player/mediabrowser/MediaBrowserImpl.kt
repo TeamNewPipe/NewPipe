@@ -13,7 +13,6 @@ import androidx.media.MediaBrowserServiceCompat.Result
 import androidx.media.utils.MediaConstants
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.core.SingleSource
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.MainActivity.DEBUG
@@ -25,10 +24,8 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.InfoItem.InfoType
-import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.search.SearchInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -86,6 +83,10 @@ class MediaBrowserImpl(
 
     //region onLoadChildren
     fun onLoadChildren(parentId: String, result: Result<List<MediaBrowserCompat.MediaItem>>) {
+        if (DEBUG) {
+            Log.d(TAG, "onLoadChildren($parentId)")
+        }
+
         result.detach() // allows sendResult() to happen later
         disposables.add(
             onLoadChildren(parentId)
@@ -101,10 +102,6 @@ class MediaBrowserImpl(
     }
 
     private fun onLoadChildren(parentId: String): Single<List<MediaBrowserCompat.MediaItem>> {
-        if (DEBUG) {
-            Log.d(TAG, "onLoadChildren($parentId)")
-        }
-
         try {
             val parentIdUri = Uri.parse(parentId)
             val path = ArrayList(parentIdUri.pathSegments)
@@ -353,15 +350,12 @@ class MediaBrowserImpl(
     private fun populateRemotePlaylist(playlistId: Long): Single<List<MediaBrowserCompat.MediaItem>> {
         return RemotePlaylistManager(database).getPlaylist(playlistId).firstOrError()
             .flatMap { ExtractorHelper.getPlaylistInfo(it.serviceId, it.url, false) }
-            .flatMap { info ->
-                info.errors.firstOrNull { it !is ContentNotSupportedException }?.let {
-                    return@flatMap Single.error(it)
+            .map {
+                // ignore it.errors, i.e. ignore errors about specific items, since there would
+                // be no way to show the error properly in Android Auto anyway
+                it.relatedItems.mapIndexed { index, item ->
+                    createRemotePlaylistStreamMediaItem(playlistId, item, index)
                 }
-                Single.just(
-                    info.relatedItems.mapIndexed { index, item ->
-                        createRemotePlaylistStreamMediaItem(playlistId, item, index)
-                    }
-                )
             }
     }
     //endregion
@@ -371,10 +365,16 @@ class MediaBrowserImpl(
         query: String,
         result: Result<List<MediaBrowserCompat.MediaItem>>
     ) {
+        if (DEBUG) {
+            Log.d(TAG, "onSearch($query)")
+        }
+
         result.detach() // allows sendResult() to happen later
         disposables.add(
             searchMusicBySongTitle(query)
-                .flatMap { this.mediaItemsFromInfoItemList(it) }
+                // ignore it.errors, i.e. ignore errors about specific items, since there would
+                // be no way to show the error properly in Android Auto anyway
+                .map { it.relatedItems.mapNotNull(this::createInfoItemMediaItem) }
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     { result.sendResult(it) },
@@ -390,20 +390,6 @@ class MediaBrowserImpl(
     private fun searchMusicBySongTitle(query: String?): Single<SearchInfo> {
         val serviceId = ServiceHelper.getSelectedServiceId(context)
         return ExtractorHelper.searchFor(serviceId, query, listOf(), "")
-    }
-
-    private fun mediaItemsFromInfoItemList(
-        result: ListInfo<InfoItem>
-    ): SingleSource<List<MediaBrowserCompat.MediaItem>> {
-        result.errors.firstOrNull()?.let { return@mediaItemsFromInfoItemList Single.error(it) }
-
-        return try {
-            Single.just(
-                result.relatedItems.mapNotNull { item -> this.createInfoItemMediaItem(item) }
-            )
-        } catch (e: Exception) {
-            Single.error(e)
-        }
     }
     //endregion
 
