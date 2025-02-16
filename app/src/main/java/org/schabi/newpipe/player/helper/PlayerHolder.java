@@ -138,8 +138,16 @@ public final class PlayerHolder {
     }
 
     public void stopService() {
+        if (DEBUG) {
+            Log.d(TAG, "stopService() called");
+        }
+        if (playerService != null) {
+            playerService.destroyPlayerAndStopService();
+        }
         final Context context = getCommonContext();
         unbind(context);
+        // destroyPlayerAndStopService() already runs the next line of code, but run it again just
+        // to make sure to stop the service even if playerService is null by any chance.
         context.stopService(new Intent(context, PlayerService.class));
     }
 

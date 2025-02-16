@@ -32,6 +32,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ServiceCompat;
 import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -150,7 +151,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             Stop the service in this case, which will be removed from the foreground and its
             notification cancelled in its destruction
              */
-            stopSelf();
+            destroyPlayerAndStopService();
             return START_NOT_STICKY;
         }
 
@@ -197,7 +198,6 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         cleanup();
 
         mediaBrowserPlaybackPreparer.dispose();
-        mediaSession.setActive(false);
         mediaSession.release();
         mediaBrowserImpl.dispose();
     }
@@ -207,11 +207,36 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             player.destroy();
             player = null;
         }
+
+        // Should already be handled by MediaSessionPlayerUi, but just to be sure.
+        mediaSession.setActive(false);
+
+        // Should already be handled by NotificationUtil.cancelNotificationAndStopForeground() in
+        // NotificationPlayerUi, but let's make sure that the foreground service is stopped.
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
     }
 
-    public void stopService() {
+    /**
+     * Destroys the player and allows the player instance to be garbage collected. Sets the media
+     * session to inactive. Stops the foreground service and removes the player notification
+     * associated with it. Tries to stop the {@link PlayerService} completely, but this step will
+     * have no effect in case some service connection still uses the service (e.g. the Android Auto
+     * system accesses the media browser even when no player is running).
+     */
+    public void destroyPlayerAndStopService() {
+        if (DEBUG) {
+            Log.d(TAG, "destroyPlayerAndStopService() called");
+        }
+
         cleanup();
-        stopSelf();
+
+        // This only really stops the service if there are no other service connections (see docs):
+        // for example the (Android Auto) media browser binder will block stopService().
+        // This is why we also stopForeground() above, to make sure the notification is removed.
+        // If we were to call stopSelf(), then the service would be surely stopped (regardless of
+        // other service connections), but this would be a waste of resources since the service
+        // would be immediately restarted by those same connections to perform the queries.
+        stopService(new Intent(this, PlayerService.class));
     }
 
     @Override

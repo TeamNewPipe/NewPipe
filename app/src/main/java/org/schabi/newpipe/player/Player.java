@@ -657,7 +657,7 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "onPlaybackShutdown() called");
         }
         // destroys the service, which in turn will destroy the player
-        service.stopService();
+        service.destroyPlayerAndStopService();
     }
 
     public void smoothStopForImmediateReusing() {
@@ -729,7 +729,7 @@ public final class Player implements PlaybackListener, Listener {
                 pause();
                 break;
             case ACTION_CLOSE:
-                service.stopService();
+                service.destroyPlayerAndStopService();
                 break;
             case ACTION_PLAY_PAUSE:
                 playPause();
