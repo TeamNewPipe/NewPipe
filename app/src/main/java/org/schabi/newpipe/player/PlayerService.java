@@ -27,11 +27,14 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.media.MediaBrowserServiceCompat;
+
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.ktx.BundleKt;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
@@ -52,6 +55,12 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public static final String SHOULD_START_FOREGROUND_EXTRA = "should_start_foreground_extra";
     public static final String BIND_PLAYER_HOLDER_ACTION = "bind_player_holder_action";
 
+    // these are instantiated in onCreate() as per
+    // https://developer.android.com/training/cars/media#browser_workflow
+    private MediaSessionCompat mediaSession;
+    private MediaSessionConnector sessionConnector;
+
+    @Nullable
     private Player player;
 
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
@@ -70,6 +79,12 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         }
         assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
+
+        // see https://developer.android.com/training/cars/media#browser_workflow
+        mediaSession = new MediaSessionCompat(this, "MediaSessionPlayerServ");
+        setSessionToken(mediaSession.getSessionToken());
+        sessionConnector = new MediaSessionConnector(mediaSession);
+        sessionConnector.setMetadataDeduplicationEnabled(true);
 
         // Note: you might be tempted to create the player instance and call startForeground here,
         // but be aware that the Android system might start the service just to perform media
@@ -94,7 +109,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         if (intent.getBooleanExtra(SHOULD_START_FOREGROUND_EXTRA, false)) {
             if (player == null) {
                 // make sure the player exists, in case the service was resumed
-                player = new Player(this);
+                player = new Player(this, mediaSession, sessionConnector);
             }
 
             // Be sure that the player notification is set and the service is started in foreground,
@@ -159,7 +174,11 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             Log.d(TAG, "destroy() called");
         }
         super.onDestroy();
+
         cleanup();
+
+        mediaSession.setActive(false);
+        mediaSession.release();
     }
 
     private void cleanup() {

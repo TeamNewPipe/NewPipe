@@ -55,6 +55,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -71,6 +72,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -269,7 +271,16 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Constructor
 
-    public Player(@NonNull final PlayerService service) {
+    /**
+     * @param service the service this player resides in
+     * @param mediaSession used to build the {@link MediaSessionPlayerUi}, lives in the service and
+     *                     could possibly be reused with multiple player instances
+     * @param sessionConnector used to build the {@link MediaSessionPlayerUi}, lives in the service
+     *                         and could possibly be reused with multiple player instances
+     */
+    public Player(@NonNull final PlayerService service,
+                  @NonNull final MediaSessionCompat mediaSession,
+                  @NonNull final MediaSessionConnector sessionConnector) {
         this.service = service;
         context = service;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -302,7 +313,7 @@ public final class Player implements PlaybackListener, Listener {
         // notification ui in the UIs list, since the notification depends on the media session in
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
-                new MediaSessionPlayerUi(this),
+                new MediaSessionPlayerUi(this, mediaSession, sessionConnector),
                 new NotificationPlayerUi(this)
         );
     }
