@@ -147,7 +147,7 @@ class MediaBrowserPlaybackPreparer(
                 ID_BOOKMARKS -> extractPlayQueueFromPlaylistMediaId(
                     mediaId,
                     path,
-                    mediaIdUri.getQueryParameter(ID_URL) ?: throw parseError(mediaId)
+                    mediaIdUri.getQueryParameter(ID_URL)
                 )
 
                 ID_HISTORY -> extractPlayQueueFromHistoryMediaId(mediaId, path)
@@ -169,7 +169,7 @@ class MediaBrowserPlaybackPreparer(
     private fun extractPlayQueueFromPlaylistMediaId(
         mediaId: String,
         path: MutableList<String>,
-        url: String,
+        url: String?,
     ): Single<PlayQueue> {
         if (path.isEmpty()) {
             throw parseError(mediaId)
@@ -189,7 +189,7 @@ class MediaBrowserPlaybackPreparer(
             }
 
             ID_URL -> {
-                if (path.size != 1) {
+                if (path.size != 1 || url == null) {
                     throw parseError(mediaId)
                 }
 
