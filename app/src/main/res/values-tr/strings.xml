@@ -157,7 +157,7 @@
     <string name="action_history">Geçmiş</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Basılı tutarak kuyruğa ekle\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
+    <string name="show_hold_to_append_summary">Şurada arka plan ya da açılır pencere düğmesine basıldığında ipucu göster: Video \"Ayrıntılar:\\</string>
     <string name="play_all">Tümünü Oynat</string>
     <string name="unknown_content">[Bilinmeyen]</string>
     <string name="player_stream_failure">Bu akış oynatılamadı</string>
@@ -517,7 +517,7 @@
     <string name="remove_watched">İzleneni kaldır</string>
     <string name="show_original_time_ago_summary">Akış ögelerinde hizmetlerden alınan özgün metinler görünecektir</string>
     <string name="show_original_time_ago_title">Ögelerde özgün \'… önce\'yi göster</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube\'un \"Kısıtlı Kip\"ini aç</string>
+    <string name="youtube_restricted_mode_enabled_title">Aç: YouTube \"Kısıtlı Kip\\</string>
     <string name="video_detail_by">%s tarafından</string>
     <string name="channel_created_by">%s tarafından oluşturuldu</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar küçük resmi</string>
@@ -658,7 +658,7 @@
     <string name="error_report_channel_name">Hata raporlama bildirimi</string>
     <string name="error_report_notification_title">NewPipe hatayla karşılaştı, bildirmek için dokun</string>
     <string name="error_report_notification_toast">Hata oluştu, bildirime bakın</string>
-    <string name="show_crash_the_player_title">\"Oynatıcıyı çöktür\"ü göster</string>
+    <string name="show_crash_the_player_title">Göster: \"Oynatıcıyı çöktür\\</string>
     <string name="create_error_notification">Hata bildirimi oluştur</string>
     <string name="show_error_snackbar">Hata balonu göster</string>
     <string name="no_appropriate_file_manager_message">Bu eyleme uygun dosya yönetici yok.
