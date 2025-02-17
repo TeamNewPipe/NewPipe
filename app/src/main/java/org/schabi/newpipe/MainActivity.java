@@ -144,7 +144,15 @@ public class MainActivity extends AppCompatActivity {
         // Fixes text color turning black in dark/black mode:
         // https://github.com/TeamNewPipe/NewPipe/issues/12016
         // For further reference see: https://issuetracker.google.com/issues/37124582
-        new WebView(this);
+        if (DeviceUtils.supportsWebView()) {
+            try {
+                new WebView(this);
+            } catch (final Exception e) {
+                if (DEBUG) {
+                    Log.e(TAG, "Failed to create WebView", e);
+                }
+            }
+        }
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
