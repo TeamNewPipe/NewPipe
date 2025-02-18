@@ -1848,13 +1848,16 @@ public final class VideoDetailFragment
 
     @Override
     public void onServiceStopped() {
-        setOverlayPlayPauseImage(false);
-        if (currentInfo != null) {
-            updateOverlayData(currentInfo.getName(),
-                    currentInfo.getUploaderName(),
-                    currentInfo.getThumbnails());
+        // the binding could be null at this point, if the app is finishing
+        if (binding != null) {
+            setOverlayPlayPauseImage(false);
+            if (currentInfo != null) {
+                updateOverlayData(currentInfo.getName(),
+                        currentInfo.getUploaderName(),
+                        currentInfo.getThumbnails());
+            }
+            updateOverlayPlayQueueButtonVisibility();
         }
-        updateOverlayPlayQueueButtonVisibility();
     }
 
     @Override
