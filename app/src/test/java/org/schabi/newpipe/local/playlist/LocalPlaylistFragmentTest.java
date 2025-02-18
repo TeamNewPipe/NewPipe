@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 
 import androidx.annotation.NonNull;
@@ -15,21 +16,43 @@ import java.util.stream.Stream;
 public class LocalPlaylistFragmentTest {
 
     @Test
-    public void youTubeTempPlaylist() {
+    public void export_asYouTubeTempPlaylist() {
 
-        Stream<StreamEntity> entityStream = List.of(
+        Stream<StreamEntity> entityStream = asStreamEntityStream(
 
             "https://www.youtube.com/watch?v=1"
            ,"https://www.youtube.com/watch?v=2"
            ,"https://www.youtube.com/watch?v=3"
-        )
-        .stream()
-        .map(LocalPlaylistFragmentTest::newStreamEntity)
-        ;
+        );
 
         String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, entityStream, null);
 
         Assert.assertEquals("http://www.youtube.com/watch_videos?video_ids=1,2,3", url);
+    }
+
+    @Test
+    public void export_justUrls() {
+
+        Stream<StreamEntity> entityStream = asStreamEntityStream(
+
+            "https://www.youtube.com/watch?v=1"
+           ,"https://www.youtube.com/watch?v=2"
+           ,"https://www.youtube.com/watch?v=3"
+        );
+
+        String exported = LocalPlaylistFragment.export(JUST_URLS, entityStream, null);
+
+        Assert.assertEquals("""
+            https://www.youtube.com/watch?v=1
+            https://www.youtube.com/watch?v=2
+            https://www.youtube.com/watch?v=3""", exported);
+    }
+
+    @NonNull
+    private static Stream<StreamEntity> asStreamEntityStream(String... urls) {
+
+        return Stream.of(urls)
+            .map(LocalPlaylistFragmentTest::newStreamEntity);
     }
 
     @NonNull
