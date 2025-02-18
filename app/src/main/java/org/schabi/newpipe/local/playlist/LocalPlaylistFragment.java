@@ -399,27 +399,39 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
      * @param shareMode Whether the playlist details should be included in the
      *                  shared content.
      */
-    private void sharePlaylist(PlayListShareMode shareMode) {
+    private void sharePlaylist(final PlayListShareMode shareMode) {
         final Context context = requireContext();
 
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
-            .flatMapSingle(playlist -> Single.just(export( shareMode
-                                                         , playlist.stream().map(PlaylistStreamEntry::getStreamEntity)
-                                                         , context
-                                                         )
-            ))
+            .flatMapSingle(playlist -> Single.just(export(
+
+                shareMode,
+                playlist.stream().map(PlaylistStreamEntry::getStreamEntity),
+                context
+            )))
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe( urlsText -> ShareUtils.shareText( context
-                                                        , name
-                                                        , shareMode == JUST_URLS ? urlsText
-                                                                                 : context.getString(R.string.share_playlist_content_details, name, urlsText))
-                      , throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable))
-                      );
+            .subscribe(
+                urlsText -> {
+
+                    final String content = shareMode == JUST_URLS
+                        ? urlsText
+                        : context.getString(R.string.share_playlist_content_details,
+                                            name,
+                                            urlsText
+                                           );
+
+                    ShareUtils.shareText(context, name, content);
+                },
+                throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)
+            )
+        );
     }
 
-    static String export(PlayListShareMode shareMode, Stream<StreamEntity> entityStream, Context context) {
+    static String export(final PlayListShareMode shareMode,
+                         final Stream<StreamEntity> entityStream,
+                         final Context context) {
 
-        return switch(shareMode) {
+        return switch (shareMode) {
 
             case WITH_TITLES            -> exportWithTitles(entityStream, context);
             case JUST_URLS              -> exportJustUrls(entityStream);
@@ -427,23 +439,27 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         };
     }
 
-    static String exportWithTitles(Stream<StreamEntity> entityStream, Context context) {
+    static String exportWithTitles(final Stream<StreamEntity> entityStream, final Context context) {
 
         return entityStream
-            .map(entity -> context.getString(R.string.video_details_list_item, entity.getTitle(), entity.getUrl()))
+            .map(entity -> context.getString(R.string.video_details_list_item,
+                                             entity.getTitle(),
+                                             entity.getUrl()
+                                            )
+            )
             .collect(Collectors.joining("\n"));
     }
 
-    static String exportJustUrls(Stream<StreamEntity> entityStream) {
+    static String exportJustUrls(final Stream<StreamEntity> entityStream) {
 
         return entityStream
             .map(StreamEntity::getUrl)
             .collect(Collectors.joining("\n"));
     }
 
-    static String exportAsYoutubeTempPlaylist(Stream<StreamEntity> entityStream) {
+    static String exportAsYoutubeTempPlaylist(final Stream<StreamEntity> entityStream) {
 
-        String videoIDs = entityStream
+        final String videoIDs = entityStream
                 .map(entity -> getYouTubeId(entity.getUrl()))
                 .collect(Collectors.joining(","));
 
@@ -451,15 +467,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     /**
-     * Gets the video id from a YouTube URL
+     * Gets the video id from a YouTube URL.
+     *
+     * @param url YouTube URL
+     * @return the video id
      */
-    static String getYouTubeId(String url) {
+    static String getYouTubeId(final String url) {
 
-        HttpUrl httpUrl = HttpUrl.parse(url);
+        final HttpUrl httpUrl = HttpUrl.parse(url);
 
         return httpUrl == null ? null
-                               : httpUrl.queryParameter("v")
-                               ;
+                               : httpUrl.queryParameter("v");
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
@@ -924,7 +942,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
                     sharePlaylist(WITH_TITLES)
                 )
-                .setNeutralButton("Share as YouTube temporary playlist", (dialog, which) -> // TODO R.string.share_playlist_as_YouTube_temporary_playlist
+                // TODO           R.string.share_playlist_as_YouTube_temporary_playlist
+                .setNeutralButton("Share as YouTube temporary playlist", (dialog, which) ->
                     sharePlaylist(YOUTUBE_TEMP_PLAYLIST)
                 )
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
