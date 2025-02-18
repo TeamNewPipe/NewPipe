@@ -236,11 +236,14 @@ public final class VideoDetailFragment
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
     @Override
-    public void onServiceConnected(final Player connectedPlayer,
-                                   final PlayerService connectedPlayerService,
-                                   final boolean playAfterConnect) {
-        player = connectedPlayer;
+    public void onServiceConnected(@NonNull final PlayerService connectedPlayerService) {
         playerService = connectedPlayerService;
+    }
+
+    @Override
+    public void onPlayerConnected(@NonNull final Player connectedPlayer,
+                                  final boolean playAfterConnect) {
+        player = connectedPlayer;
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded();
@@ -273,10 +276,17 @@ public final class VideoDetailFragment
     }
 
     @Override
+    public void onPlayerDisconnected() {
+        player = null;
+        // the binding could be null at this point, if the app is finishing
+        if (binding != null) {
+            restoreDefaultBrightness();
+        }
+    }
+
+    @Override
     public void onServiceDisconnected() {
         playerService = null;
-        player = null;
-        restoreDefaultBrightness();
     }
 
 

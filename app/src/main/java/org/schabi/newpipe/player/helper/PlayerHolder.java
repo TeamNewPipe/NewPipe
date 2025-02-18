@@ -24,6 +24,9 @@ import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+
 public final class PlayerHolder {
 
     private PlayerHolder() {
@@ -45,7 +48,16 @@ public final class PlayerHolder {
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
     @Nullable private PlayerService playerService;
-    @Nullable private Player player;
+
+    private Optional<Player> getPlayer() {
+        return Optional.ofNullable(playerService)
+                .flatMap(s -> Optional.ofNullable(s.getPlayer()));
+    }
+
+    private Optional<PlayQueue> getPlayQueue() {
+        // player play queue might be null e.g. while player is starting
+        return getPlayer().flatMap(p -> Optional.ofNullable(p.getPlayQueue()));
+    }
 
     /**
      * Returns the current {@link PlayerType} of the {@link PlayerService} service,
@@ -55,21 +67,15 @@ public final class PlayerHolder {
      */
     @Nullable
     public PlayerType getType() {
-        if (player == null) {
-            return null;
-        }
-        return player.getPlayerType();
+        return getPlayer().map(Player::getPlayerType).orElse(null);
     }
 
     public boolean isPlaying() {
-        if (player == null) {
-            return false;
-        }
-        return player.isPlaying();
+        return getPlayer().map(Player::isPlaying).orElse(false);
     }
 
     public boolean isPlayerOpen() {
-        return player != null;
+        return getPlayer().isPresent();
     }
 
     /**
@@ -78,7 +84,7 @@ public final class PlayerHolder {
      * @return true only if the player is open and its play queue is ready (i.e. it is not null)
      */
     public boolean isPlayQueueReady() {
-        return player != null && player.getPlayQueue() != null;
+        return getPlayQueue().isPresent();
     }
 
     public boolean isBound() {
@@ -86,18 +92,11 @@ public final class PlayerHolder {
     }
 
     public int getQueueSize() {
-        if (player == null || player.getPlayQueue() == null) {
-            // player play queue might be null e.g. while player is starting
-            return 0;
-        }
-        return player.getPlayQueue().size();
+        return getPlayQueue().map(PlayQueue::size).orElse(0);
     }
 
     public int getQueuePosition() {
-        if (player == null || player.getPlayQueue() == null) {
-            return 0;
-        }
-        return player.getPlayQueue().getIndex();
+        return getPlayQueue().map(PlayQueue::getIndex).orElse(0);
     }
 
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
@@ -108,9 +107,10 @@ public final class PlayerHolder {
         }
 
         // Force reload data from service
-        if (player != null) {
-            listener.onServiceConnected(player, playerService, false);
+        if (playerService != null) {
+            listener.onServiceConnected(playerService);
             startPlayerListener();
+            // ^ will call listener.onPlayerConnected() down the line if there is an active player
         }
     }
 
@@ -181,11 +181,12 @@ public final class PlayerHolder {
             final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
             playerService = localBinder.getService();
-            player = localBinder.getPlayer();
             if (listener != null) {
-                listener.onServiceConnected(player, playerService, playAfterConnect);
+                listener.onServiceConnected(playerService);
+                getPlayer().ifPresent(p -> listener.onPlayerConnected(p, playAfterConnect));
             }
             startPlayerListener();
+            // ^ will call listener.onPlayerConnected() down the line if there is an active player
 
             // notify the main activity that binding the service has completed, so that it can
             // open the bottom mini-player
@@ -229,25 +230,32 @@ public final class PlayerHolder {
             bound = false;
             stopPlayerListener();
             playerService = null;
-            player = null;
             if (listener != null) {
+                listener.onPlayerDisconnected();
                 listener.onServiceDisconnected();
             }
         }
     }
 
     private void startPlayerListener() {
-        if (player != null) {
-            player.setFragmentListener(internalListener);
+        if (playerService != null) {
+            // setting the player listener will take care of calling relevant callbacks if the
+            // player in the service is (not) already active, also see playerStateListener below
+            playerService.setPlayerListener(playerStateListener);
         }
+        getPlayer().ifPresent(p -> p.setFragmentListener(internalListener));
     }
 
     private void stopPlayerListener() {
-        if (player != null) {
-            player.removeFragmentListener(internalListener);
+        if (playerService != null) {
+            playerService.setPlayerListener(null);
         }
+        getPlayer().ifPresent(p -> p.removeFragmentListener(internalListener));
     }
 
+    /**
+     * This listener will be held by the players created by {@link PlayerService}.
+     */
     private final PlayerServiceEventListener internalListener =
             new PlayerServiceEventListener() {
                 @Override
@@ -334,4 +342,23 @@ public final class PlayerHolder {
                     unbind(getCommonContext());
                 }
             };
+
+    /**
+     * This listener will be held by bound {@link PlayerService}s to notify of the player starting
+     * or stopping. This is necessary since the service outlives the player e.g. to answer Android
+     * Auto media browser queries.
+     */
+    private final Consumer<Player> playerStateListener = (@Nullable final Player player) -> {
+        if (listener != null) {
+            if (player == null) {
+                // player.fragmentListener=null is already done by player.stopActivityBinding(),
+                // which is called by player.destroy(), which is in turn called by PlayerService
+                // before setting its player to null
+                listener.onPlayerDisconnected();
+            } else {
+                listener.onPlayerConnected(player, serviceConnection.playAfterConnect);
+                player.setFragmentListener(internalListener);
+            }
+        }
+    };
 }

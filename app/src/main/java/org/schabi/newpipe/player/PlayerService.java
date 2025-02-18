@@ -46,6 +46,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 /**
@@ -73,6 +74,13 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     private Player player;
 
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
+
+    /**
+     * The parameter taken by this {@link Consumer} can be null to indicate the player is being
+     * stopped.
+     */
+    @Nullable
+    private Consumer<Player> onPlayerStartedOrStopped = null;
 
 
     //region Service lifecycle
@@ -127,7 +135,8 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         // PlayerService using startForegroundService(), will have SHOULD_START_FOREGROUND_EXTRA,
         // to ensure startForeground() is called (otherwise Android will force-crash the app).
         if (intent.getBooleanExtra(SHOULD_START_FOREGROUND_EXTRA, false)) {
-            if (player == null) {
+            final boolean playerWasNull = (player == null);
+            if (playerWasNull) {
                 // make sure the player exists, in case the service was resumed
                 player = new Player(this, mediaSession, sessionConnector);
             }
@@ -141,6 +150,13 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             // shouldn't do anything.
             player.UIs().get(NotificationPlayerUi.class)
                     .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
+
+            if (playerWasNull && onPlayerStartedOrStopped != null) {
+                // notify that a new player was created (but do it after creating the foreground
+                // notification just to make sure we don't incur, due to slowness, in
+                // "Context.startForegroundService() did not then call Service.startForeground()")
+                onPlayerStartedOrStopped.accept(player);
+            }
         }
 
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
@@ -204,6 +220,10 @@ public final class PlayerService extends MediaBrowserServiceCompat {
 
     private void cleanup() {
         if (player != null) {
+            if (onPlayerStartedOrStopped != null) {
+                // notify that the player is being destroyed
+                onPlayerStartedOrStopped.accept(null);
+            }
             player.destroy();
             player = null;
         }
@@ -279,9 +299,31 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         public PlayerService getService() {
             return playerService.get();
         }
+    }
 
-        public Player getPlayer() {
-            return playerService.get().player;
+    /**
+     * @return the current active player instance. May be null, since the player service can outlive
+     * the player e.g. to respond to Android Auto media browser queries.
+     */
+    @Nullable
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * Sets the listener that will be called when the player is started or stopped. If a
+     * {@code null} listener is passed, then the current listener will be unset. The parameter taken
+     * by the {@link Consumer} can be null to indicate that the player is stopping.
+     * @param listener the listener to set or unset
+     */
+    public void setPlayerListener(@Nullable final Consumer<Player> listener) {
+        this.onPlayerStartedOrStopped = listener;
+        if (listener != null) {
+            if (player == null) {
+                listener.accept(null);
+            } else {
+                listener.accept(player);
+            }
         }
     }
     //endregion
