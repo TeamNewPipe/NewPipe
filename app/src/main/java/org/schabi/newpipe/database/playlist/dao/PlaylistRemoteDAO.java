@@ -34,7 +34,7 @@ public interface PlaylistRemoteDAO extends BasicDAO<PlaylistRemoteEntity> {
 
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
             + REMOTE_PLAYLIST_ID + " = :playlistId")
-    Flowable<List<PlaylistRemoteEntity>> getPlaylist(long playlistId);
+    Flowable<PlaylistRemoteEntity> getPlaylist(long playlistId);
 
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
             + REMOTE_PLAYLIST_URL + " = :url AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
