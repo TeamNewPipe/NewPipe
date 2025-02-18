@@ -22,6 +22,7 @@ import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.util.NavigationHelper;
 
 public final class PlayerHolder {
 
@@ -121,6 +122,9 @@ public final class PlayerHolder {
 
     public void startService(final boolean playAfterConnect,
                              final PlayerServiceExtendedEventListener newListener) {
+        if (DEBUG) {
+            Log.d(TAG, "startService() called with playAfterConnect=" + playAfterConnect);
+        }
         final Context context = getCommonContext();
         setListener(newListener);
         if (bound) {
@@ -182,6 +186,10 @@ public final class PlayerHolder {
                 listener.onServiceConnected(player, playerService, playAfterConnect);
             }
             startPlayerListener();
+
+            // notify the main activity that binding the service has completed, so that it can
+            // open the bottom mini-player
+            NavigationHelper.sendPlayerStartedEvent(localBinder.getService());
         }
     }
 
@@ -189,14 +197,26 @@ public final class PlayerHolder {
         if (DEBUG) {
             Log.d(TAG, "bind() called");
         }
-
-        final Intent serviceIntent = new Intent(context, PlayerService.class);
-        serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
-        bound = context.bindService(serviceIntent, serviceConnection,
-                Context.BIND_AUTO_CREATE);
+        // BIND_AUTO_CREATE starts the service if it's not already running
+        bound = bind(context, Context.BIND_AUTO_CREATE);
         if (!bound) {
             context.unbindService(serviceConnection);
         }
+    }
+
+    public void tryBindIfNeeded(final Context context) {
+        if (!bound) {
+            // flags=0 means the service will not be started if it does not already exist. In this
+            // case the return value is not useful, as a value of "true" does not really indicate
+            // that the service is going to be bound.
+            bind(context, 0);
+        }
+    }
+
+    private boolean bind(final Context context, final int flags) {
+        final Intent serviceIntent = new Intent(context, PlayerService.class);
+        serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
+        return context.bindService(serviceIntent, serviceConnection, flags);
     }
 
     private void unbind(final Context context) {
