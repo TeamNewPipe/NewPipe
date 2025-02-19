@@ -20,7 +20,8 @@ public class LocalPlaylistFragmentTest {
         final Stream<StreamEntity> entityStream = asStreamEntityStream(
 
             "https://www.youtube.com/watch?v=1",
-            "https://www.youtube.com/watch?v=2",
+            "https://soundcloud.com/cautious-clayofficial/cold-war-2", // non-Youtube URLs should be
+            "https://www.youtube.com/watch?v=2",                       // ignored
             "https://www.youtube.com/watch?v=3"
         );
 

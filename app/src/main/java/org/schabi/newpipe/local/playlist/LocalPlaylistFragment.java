@@ -65,6 +65,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -461,6 +462,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final String videoIDs = entityStream
                 .map(entity -> getYouTubeId(entity.getUrl()))
+                .filter(Objects::nonNull)
                 .collect(Collectors.joining(","));
 
         return "http://www.youtube.com/watch_videos?video_ids=" + videoIDs;
