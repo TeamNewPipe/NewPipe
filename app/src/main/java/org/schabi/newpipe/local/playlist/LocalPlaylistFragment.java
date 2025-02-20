@@ -31,6 +31,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
 
+import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -460,10 +461,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     static String exportAsYoutubeTempPlaylist(final Stream<StreamEntity> entityStream) {
 
-        final String videoIDs = entityStream
-                .map(entity -> getYouTubeId(entity.getUrl()))
-                .filter(Objects::nonNull)
-                .collect(Collectors.joining(","));
+        final CircularFifoQueue<String> last50 = new CircularFifoQueue<>(50);
+
+        entityStream
+            .map(entity -> getYouTubeId(entity.getUrl()))
+            .filter(Objects::nonNull)
+            .forEachOrdered(last50::add);
+
+        final String videoIDs = last50.stream()
+            .collect(Collectors.joining(","));
 
         return "http://www.youtube.com/watch_videos?video_ids=" + videoIDs;
     }
