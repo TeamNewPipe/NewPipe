@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         if (DeviceUtils.supportsWebView()) {
             try {
                 new WebView(this);
-            } catch (final Exception e) {
+            } catch (final Throwable e) {
                 if (DEBUG) {
                     Log.e(TAG, "Failed to create WebView", e);
                 }
