@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -139,6 +140,19 @@ public class MainActivity extends AppCompatActivity {
 
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+
+        // Fixes text color turning black in dark/black mode:
+        // https://github.com/TeamNewPipe/NewPipe/issues/12016
+        // For further reference see: https://issuetracker.google.com/issues/37124582
+        if (DeviceUtils.supportsWebView()) {
+            try {
+                new WebView(this);
+            } catch (final Throwable e) {
+                if (DEBUG) {
+                    Log.e(TAG, "Failed to create WebView", e);
+                }
+            }
+        }
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
