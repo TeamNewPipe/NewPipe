@@ -174,7 +174,7 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Segure para pôr na fila\"</string>
-    <string name="show_hold_to_append_summary">Mostra dica ao tocar no botão segundo plano ou Popup em \"Detalhes:\" do vídeo</string>
+    <string name="show_hold_to_append_summary">Mostra dica ao tocar no botão segundo plano ou Popup em \"Detalhes:\\ do vídeo</string>
     <string name="play_all">Reproduzir tudo</string>
     <string name="player_stream_failure">Não é possível reproduzir este vídeo</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável na reprodução</string>
@@ -528,7 +528,7 @@
     <string name="remove_watched">Remover assistidos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>
     <string name="show_original_time_ago_title">Mostrar tempo original nos itens</string>
-    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\" do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\\ do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Foto de perfil do canal</string>

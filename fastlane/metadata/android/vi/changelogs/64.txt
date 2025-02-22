@@ -1,8 +1,8 @@
 ### Cải thiện
-- Thêm tính năng giới hạn độ phân giải video nếu đang xài dữ liệu di động #1339
-- Ghi nhớ độ sáng màn hình trong phiên #1442
-- Cải thiện hiệu năng của trình tải cho các CPU yếu #1431
-- Hỗ trợ cho media session #1433
+- Thêm tính năng giới hạn độ phân giải video nếu đang sử dụng dữ liệu di động (yêu cầu #1339)
+- Ghi nhớ độ sáng màn hình trong phiên (yêu cầu #1442)
+- Cải thiện hiệu năng của trình tải cho các CPU có hiệu năng yếu (vấn đề #1431)
+- Hỗ trợ cho media session (yêu cầu #1433)
 
 ### Sửa lỗi
-- Sửa lỗi crash khi mở các file tải về (bản sửa lỗi này giờ đã có trên các build release) #1441
+- Sửa lỗi crash khi mở các file đã tải về (bản sửa lỗi này giờ đã có trên các build mới hơn) (vấn đề #1441)

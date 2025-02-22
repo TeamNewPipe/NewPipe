@@ -138,7 +138,7 @@
     <string name="auto_queue_summary">Melanjutkan akhir dari antrean pemutaran (tak berulang) dengan menambahkan video terkait</string>
     <string name="enable_watch_history_summary">Simpan daftar video yang telah ditonton</string>
     <string name="show_hold_to_append_title">Tip \"Tahan untuk menambahkan\"</string>
-    <string name="show_hold_to_append_summary">Tampilkan tip ketika menekan tombol latar belakang atau popup di dalam \"Detail:\" video</string>
+    <string name="show_hold_to_append_summary">Tampilkan tip ketika menekan tombol latar belakang atau popup di dalam video \"Detail:\\</string>
     <string name="default_content_country_title">Lokasi Konten</string>
     <string name="settings_category_player_title">Pemutar</string>
     <string name="settings_category_player_behavior_title">Perilaku</string>
@@ -508,7 +508,7 @@
 \nJadi pilihlah yang sesuai yang Anda inginkan: kecepatan atau kelengkapan informasi.</string>
     <string name="show_original_time_ago_summary">Teks asli dari layanan akan ditampilkan di dalam video</string>
     <string name="show_original_time_ago_title">Tampilkan waktu yang lalu sebenarnya pada item</string>
-    <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mode Terbatas\" YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mode Terbatas\\</string>
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>

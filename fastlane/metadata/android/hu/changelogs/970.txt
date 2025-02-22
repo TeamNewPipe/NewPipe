@@ -1,0 +1,11 @@
+Új
+• Tartalom metaadat megjelenítése (tagek, kategóriák, licensz, ...) a lenti leírásban
+• "Csatona részletek megjelenítése" hozzáadása távoli (nem-helyi) lejátszási listáknál
+• "Megniytás böngészőben" opció megjelenítése hosszú nyomáskor
+
+Javítások
+• Részletek oldal forgatás összeomlás javítása
+• A "Eljátszás Kodi-val" lejátszó gomb most már nem akar mindig Kore-t installálni
+• Javított beállítás import és export útvonalak
+• [YouTube] Komment like számláló mutatása
+És sok más

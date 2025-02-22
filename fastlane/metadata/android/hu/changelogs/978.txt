@@ -1,1 +1,1 @@
-Kijavítva az új NewPipe-verzió ellenőrzésének végrehajtása. Ez az ellenőrzés néha túl korán lett végregajtva, és ez az alkalmazás összeomlásához vezetett. Ezt most meg lett oldva.
+Kijavítva az új NewPipe-verzió ellenőrzésének végrehajtása. Ez az ellenőrzés néha túl korán lett végrehajtva, és ez az alkalmazás összeomlásához vezetett. Ez javításra került.

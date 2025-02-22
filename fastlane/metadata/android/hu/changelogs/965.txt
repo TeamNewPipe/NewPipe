@@ -1,0 +1,6 @@
+Csatona csoportoknál fellépő összeomlás javítása.
+További videók és lejátszásilisták kérésének fixálása.
+YouTube kommentek megjelenítésének fixálása.
+A /watch/, /v/ és /w/ YouTube alcímek támogatása.
+A SoundCLoud kliens id és földrajzilag korlátozott kontent kibontásának fixálása.
+Észek-Kurd fordítás hozzáadása.

@@ -18,5 +18,5 @@ Corrigé
 • Correction du téléchargement sur la carte SD qui échoue car certains appareils Android 5 ne sont pas conformes CTF
 • Correction du téléchargement sur Android KitKat
 • Correction du fichier vidéo .mp4 corrompu reconnu comme fichier audio
-• Correction de la localisation multiple  problèmes, notamment des codes de langue chinois erronés
+• Correction de plusieurs problèmes de localisation, y compris des codes de langue chinois erronés
 • [YouTube] Les horodatages dans la description sont à nouveau cliquables

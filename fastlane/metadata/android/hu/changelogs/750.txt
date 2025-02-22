@@ -9,14 +9,14 @@ Letöltő Downloader javítások #2149
 
 
 Fejlesztések
-• gema string-ek eltávolítása #2295
+• gema stringek eltávolítása #2295
 • Auto-elforgatás használat változások életciklus aktivitás közben #2444
-• Hosszúnyomós menük konzisztensebb viselkedése #2368
+• Hosszan nyomós menük konzisztensebb viselkedése #2368
 
 Javítás
-• Kiválasztott felirat neve nem látszódásának javítása #2394
+• Javítva, a kiválasztott feliratsáv neve nem jelenik meg #2394
 • Ha nem sikerül a frissítés keresése, nem omlik össze (GitHub version) #2423 
 • Letöltés nem akad meg 99,9%-nál #2440
 • Lejátszási lista metaadatainak frissítése #2453 
-• [SoundCloud] Lejátszásilista betöltésnél levő összeomlás javítása TeamNewPipe/NewPipeExtractor#170
+• [SoundCloud] Lejátszási lista betöltésnél levő összeomlás javítása TeamNewPipe/NewPipeExtractor#170
 • [YouTube] Nem kielemezhető a videó hossza javítva TeamNewPipe/NewPipeExtractor#177
