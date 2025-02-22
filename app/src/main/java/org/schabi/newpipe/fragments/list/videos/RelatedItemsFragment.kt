@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.videos
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -21,7 +20,7 @@ class RelatedItemsFragment : Fragment() {
         savedInstanceState: Bundle?
     ) = content {
         AppTheme {
-            Surface(color = MaterialTheme.colorScheme.background) {
+            Surface {
                 RelatedItems(requireArguments().serializable<StreamInfo>(KEY_INFO)!!)
             }
         }

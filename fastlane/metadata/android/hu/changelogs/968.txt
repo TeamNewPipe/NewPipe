@@ -1,0 +1,7 @@
+Menü hosszú nyomásánál megjeleníthető a csatorna részletei.
+A Lista felületen átnevezhető a lejátszásilista.
+Videó megállítható bufferelés közben.
+A világos téma felfrissítve.
+Nagyobb betűméretnél nem takarják egymást a szövegek.
+Formuler és Zephier eszközökön immáron megjelennek a videók.
+Megannyi hibajavítás.

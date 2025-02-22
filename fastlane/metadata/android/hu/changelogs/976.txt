@@ -1,0 +1,10 @@
+• Hozzáadott lehetőség, hogy közvetlenül teljes képernyőn nyíljon meg a lejátszó
+• Kiválasztható milyen keresési javaslat jelenjen meg
+• A sötét téma sötétebb + sötét kezdőkép hozzáadása
+• Fájl kiválasztó kiszürkíti az oda nem illő fájlokat
+• YouTube feliratkozások javítása
+• A videó végeztével az ismétlő gombbal újra működik az újrakezdés
+• A hang nélküli munkamenet javítása
+• [Android TV] Az irányválasztó gombbal lehet ugrani az idővonalon
+
+A további változásokért, tekintse meg a változásnaplót (és blog bejegyzést) a lenti Linkek résznél.

@@ -1,0 +1,13 @@
+Amélioré
+• Rendre la description de la playlist cliquable pour afficher plus / moins de contenu
+• [PeerTube] Gérer automatiquement les liens d'instance `subscribeto.me`
+• Ne commencer à lire qu'un seul élément dans l'écran d'historique
+
+Corrigé
+• Correction de la visibilité du bouton RSS
+• Correction des plantages de l'aperçu de la barre de recherche
+• Correction de la mise en playlist d'un élément sans vignette
+• Correction de la sortie de la boîte de dialogue de téléchargement avant qu'elle n'apparaisse
+• Correction de la fenêtre contextuelle de mise en file d'attente de la liste des éléments associés
+• Correction de l'ordre dans la boîte de dialogue d'ajout à la playlist
+• Ajuster la disposition des éléments de signet de la playlist

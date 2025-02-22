@@ -143,7 +143,7 @@ fun CommentRepliesHeaderPreview() {
     )
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             CommentRepliesHeader(comment) {}
         }
     }

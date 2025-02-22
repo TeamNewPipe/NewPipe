@@ -1,1 +1,4 @@
-Correction de YouTube qui ne lisait aucun média
+Correction de YouTube ne lisant aucun flux à cause d'erreurs HTTP 403.
+
+Les erreurs HTTP 403 occasionnelles au milieu d'une vidéo YouTube ne sont pas encore corrigées.
+Ce problème sera traité dans un autre correctif dès que possible.

@@ -6,14 +6,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -87,71 +84,64 @@ private fun CommentRepliesDialog(
         sheetState = sheetState,
         onDismissRequest = onDismissRequest,
     ) {
-        CompositionLocalProvider(
-            // contentColorFor(MaterialTheme.colorScheme.containerColor), i.e. ModalBottomSheet's
-            // default background color, does not resolve correctly, so need to manually set the
-            // content color for MaterialTheme.colorScheme.background instead
-            LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.background)
-        ) {
-            LazyColumnThemedScrollbar(state = listState) {
-                LazyColumn(
-                    modifier = Modifier.nestedScroll(nestedScrollInterop),
-                    state = listState
-                ) {
+        LazyColumnThemedScrollbar(state = listState) {
+            LazyColumn(
+                modifier = Modifier.nestedScroll(nestedScrollInterop),
+                state = listState
+            ) {
+                item {
+                    CommentRepliesHeader(
+                        comment = parentComment,
+                        onCommentAuthorOpened = nestedOnCommentAuthorOpened,
+                    )
+                    HorizontalDivider(
+                        thickness = 1.dp,
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
+                    )
+                }
+
+                if (parentComment.replyCount >= 0) {
                     item {
-                        CommentRepliesHeader(
-                            comment = parentComment,
+                        Text(
+                            modifier = Modifier.padding(
+                                horizontal = 12.dp,
+                                vertical = 4.dp
+                            ),
+                            text = pluralStringResource(
+                                R.plurals.replies,
+                                parentComment.replyCount,
+                                parentComment.replyCount,
+                            ),
+                            maxLines = 1,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                }
+
+                if (comments.itemCount == 0) {
+                    item {
+                        val refresh = comments.loadState.refresh
+                        if (refresh is LoadState.Loading) {
+                            LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
+                        } else if (refresh is LoadState.Error) {
+                            // TODO use error panel instead
+                            EmptyStateComposable(
+                                EmptyStateSpec.DisabledComments.copy(
+                                    descriptionText = {
+                                        stringResource(R.string.error_unable_to_load_comments)
+                                    },
+                                ),
+                            )
+                        } else {
+                            EmptyStateComposable(EmptyStateSpec.NoComments)
+                        }
+                    }
+                } else {
+                    items(comments.itemCount) {
+                        Comment(
+                            comment = comments[it]!!,
                             onCommentAuthorOpened = nestedOnCommentAuthorOpened,
                         )
-                        HorizontalDivider(
-                            thickness = 1.dp,
-                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
-                        )
-                    }
-
-                    if (parentComment.replyCount >= 0) {
-                        item {
-                            Text(
-                                modifier = Modifier.padding(
-                                    horizontal = 12.dp,
-                                    vertical = 4.dp
-                                ),
-                                text = pluralStringResource(
-                                    R.plurals.replies,
-                                    parentComment.replyCount,
-                                    parentComment.replyCount,
-                                ),
-                                maxLines = 1,
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-                    }
-
-                    if (comments.itemCount == 0) {
-                        item {
-                            val refresh = comments.loadState.refresh
-                            if (refresh is LoadState.Loading) {
-                                LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
-                            } else if (refresh is LoadState.Error) {
-                                // TODO use error panel instead
-                                EmptyStateComposable(
-                                    EmptyStateSpec.DisabledComments.copy(
-                                        descriptionText = {
-                                            stringResource(R.string.error_unable_to_load_comments)
-                                        }
-                                    )
-                                )
-                            } else {
-                                EmptyStateComposable(EmptyStateSpec.NoComments)
-                            }
-                        }
-                    } else {
-                        items(comments.itemCount) {
-                            Comment(
-                                comment = comments[it]!!,
-                                onCommentAuthorOpened = nestedOnCommentAuthorOpened,
-                            )
-                        }
                     }
                 }
             }

@@ -1,0 +1,12 @@
+Förbättrat
+• Gör spellistans beskrivning klickbar för att visa mer / mindre innehåll
+• [PeerTube] Hantera `subscribeto.me` instans länkar automatiskt
+• Börja bara spela enstaka objekt i historik skärmen
+
+Fixat
+• Fixat RSS-knappsynlighet
+• Fixat kraschar från sökbar förhandsgranskning
+• Fixat tilläggning av miniatyr-lösa objekt i spellistor
+• Fixat lämnande av nedladdningsdialogen innan den visas
+• Fixat relaterade objekt listans köa popup
+• Fixat ordning i lägg till i spellista dialogruta

@@ -1,0 +1,3 @@
+[YouTube] Keresés fixálása egyes felhasználók számára
+[YouTube] Véletlen előforduló dekódoló kivételek fixálása
+[SoundCloud] Megfelelően kerülnek feldolgozásra azon címek amelyek per jelre végződnek

@@ -1,0 +1,3 @@
+Gyorsjavítás
+• Buffer növelése lejátszáshoz rebuffer-t követően
+• Összeomlás javítása a tévéken és tableteken a lejátszás-hozzáadás gomb megnyomásakor

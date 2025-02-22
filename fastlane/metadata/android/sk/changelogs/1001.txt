@@ -1,0 +1,6 @@
+Vylepšené
+- Vždy umožnená zmena predvolieb oznámení prehrávača na Android 13+
+
+Opravené
+- Oprava exportu databázy/odberov, pri ktorom nedochádzalo k skráteniu už existujúceho súboru, čo mohlo viesť k poškodeniu exportu
+- Oprava pokračovania prehrávania od začiatku pri kliknutí na časovú značku

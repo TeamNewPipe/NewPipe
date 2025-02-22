@@ -1,4 +1,4 @@
-# v0.13.7 változásnaplója
+# Változásnapló v0.13.7
 
 ### Javítva
 - v0.13.6a szűrés javítása

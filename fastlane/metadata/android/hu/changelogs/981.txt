@@ -1,0 +1,2 @@
+MédiaElemző támogatás eltávolításra került az Anroid 11+ rendszereken a bufferelés utáni sikertelen lejátszás javítása miatt.
+A Philips QM16XE-en kikapcsolásra kerül a média alagútazás a visszajátszási problémák kiküszöbölése miatt.

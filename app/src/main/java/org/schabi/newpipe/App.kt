@@ -28,6 +28,7 @@ import org.acra.config.CoreConfigurationBuilder
 import org.schabi.newpipe.error.ReCaptchaActivity
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.downloader.Downloader
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor
 import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.util.BridgeStateSaverInitializer
@@ -36,6 +37,7 @@ import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.StateSaver
 import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.util.image.PreferredImageQuality
+import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
 import java.io.IOException
 import java.io.InterruptedIOException
 import java.net.SocketException
@@ -116,6 +118,8 @@ open class App :
         )
 
         configureRxJavaErrorHandler()
+
+        YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
     }
 
     override fun newImageLoader(context: Context): ImageLoader =

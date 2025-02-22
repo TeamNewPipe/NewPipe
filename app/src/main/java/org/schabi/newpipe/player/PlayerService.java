@@ -28,6 +28,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -36,7 +38,9 @@ import java.lang.ref.WeakReference;
 
 
 /**
- * One service for all players.
+ * One background service for our player. Even though the player has multiple UIs
+ * (e.g. the audio-only UI, the main UI, the pulldown-menu UI),
+ * this allows us to keep playing even when switching between the different UIs.
  */
 public final class PlayerService extends Service {
     private static final String TAG = PlayerService.class.getSimpleName();
@@ -46,6 +50,9 @@ public final class PlayerService extends Service {
 
     private final IBinder mBinder = new PlayerService.LocalBinder(this);
 
+    public Player getPlayer() {
+        return player;
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -167,6 +174,10 @@ public final class PlayerService extends Service {
         return mBinder;
     }
 
+    /**
+     * Allows us this {@link org.schabi.newpipe.player.PlayerService} over the Service boundary
+     * back to our {@link org.schabi.newpipe.player.helper.PlayerHolder}.
+     */
     public static class LocalBinder extends Binder {
         private final WeakReference<PlayerService> playerService;
 
@@ -174,12 +185,12 @@ public final class PlayerService extends Service {
             this.playerService = new WeakReference<>(playerService);
         }
 
-        public PlayerService getService() {
+        /**
+         * Get the PlayerService object itself.
+         * @return this
+         * */
+        public @Nullable PlayerService getService() {
             return playerService.get();
-        }
-
-        public Player getPlayer() {
-            return playerService.get().player;
         }
     }
 }

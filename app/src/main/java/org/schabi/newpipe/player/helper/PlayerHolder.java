@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -20,9 +21,13 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
-import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.event.PlayerHolderLifecycleEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
+/**
+ * Singleton that manages a `PlayerService`
+ * and can be used to control the player instance through the service.
+ */
 public final class PlayerHolder {
 
     private PlayerHolder() {
@@ -39,10 +44,12 @@ public final class PlayerHolder {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = PlayerHolder.class.getSimpleName();
 
-    @Nullable private PlayerServiceExtendedEventListener listener;
+    @Nullable private PlayerServiceEventListener listener;
+    @Nullable private PlayerHolderLifecycleEventListener holderListener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
+
     @Nullable private PlayerService playerService;
     @Nullable private Player player;
 
@@ -80,8 +87,8 @@ public final class PlayerHolder {
         return player != null && player.getPlayQueue() != null;
     }
 
-    public boolean isBound() {
-        return bound;
+    public boolean isNotBoundYet() {
+        return !bound;
     }
 
     public int getQueueSize() {
@@ -99,30 +106,48 @@ public final class PlayerHolder {
         return player.getPlayQueue().getIndex();
     }
 
-    public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
-        listener = newListener;
+    public void unsetListeners() {
+        listener = null;
+        holderListener = null;
+    }
 
-        if (listener == null) {
-            return;
-        }
+    public void setListener(@NonNull final PlayerServiceEventListener newListener,
+                            @NonNull final PlayerHolderLifecycleEventListener newHolderListener) {
+        listener = newListener;
+        holderListener = newHolderListener;
 
         // Force reload data from service
         if (player != null) {
-            listener.onServiceConnected(player, playerService, false);
-            startPlayerListener();
+            holderListener.onServiceConnected(playerService, false);
+            player.setFragmentListener(internalListener);
         }
     }
 
-    // helper to handle context in common place as using the same
-    // context to bind/unbind a service is crucial
+    /**
+     * Helper to handle context in common place as using the same
+     * context to bind/unbind a service is crucial.
+     *
+     * @return the common context
+     * */
     private Context getCommonContext() {
         return App.getInstance();
     }
 
+
+    /**
+     * Connect to (and if needed start) the {@link PlayerService}
+     * and bind {@link PlayerServiceConnection} to it.
+     * If the service is already started, only set the listener.
+     * @param playAfterConnect If the service is started, start playing immediately
+     * @param newListener set this listener
+     * @param newHolderListener set this listener
+     * */
     public void startService(final boolean playAfterConnect,
-                             final PlayerServiceExtendedEventListener newListener) {
+                             final PlayerServiceEventListener newListener,
+                             final PlayerHolderLifecycleEventListener newHolderListener
+    ) {
         final Context context = getCommonContext();
-        setListener(newListener);
+        setListener(newListener, newHolderListener);
         if (bound) {
             return;
         }
@@ -131,8 +156,18 @@ public final class PlayerHolder {
         // bound twice. Prevent it with unbinding first
         unbind(context);
         ContextCompat.startForegroundService(context, new Intent(context, PlayerService.class));
-        serviceConnection.doPlayAfterConnect(playAfterConnect);
-        bind(context);
+        serviceConnection.playAfterConnect = playAfterConnect;
+
+        if (DEBUG) {
+            Log.d(TAG, "bind() called");
+        }
+
+        final Intent serviceIntent = new Intent(context, PlayerService.class);
+        bound = context.bindService(serviceIntent, serviceConnection,
+                Context.BIND_AUTO_CREATE);
+        if (!bound) {
+            context.unbindService(serviceConnection);
+        }
     }
 
     public void stopService() {
@@ -141,13 +176,34 @@ public final class PlayerHolder {
         context.stopService(new Intent(context, PlayerService.class));
     }
 
+    /**
+     * Call {@link Context#unbindService(ServiceConnection)} on our service
+     * (does not necesarily stop the service right away).
+     * Remove all our listeners and deinitialize them.
+     * @param context shared context
+     * */
+    private void unbind(final Context context) {
+        if (DEBUG) {
+            Log.d(TAG, "unbind() called");
+        }
+
+        if (bound) {
+            context.unbindService(serviceConnection);
+            bound = false;
+            if (player != null) {
+                player.removeFragmentListener(internalListener);
+            }
+            playerService = null;
+            player = null;
+            if (holderListener != null) {
+                holderListener.onServiceDisconnected();
+            }
+        }
+    }
+
     class PlayerServiceConnection implements ServiceConnection {
 
         private boolean playAfterConnect = false;
-
-        public void doPlayAfterConnect(final boolean playAfterConnection) {
-            this.playAfterConnect = playAfterConnection;
-        }
 
         @Override
         public void onServiceDisconnected(final ComponentName compName) {
@@ -167,56 +223,22 @@ public final class PlayerHolder {
             final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
             playerService = localBinder.getService();
-            player = localBinder.getPlayer();
-            if (listener != null) {
-                listener.onServiceConnected(player, playerService, playAfterConnect);
+            player = playerService != null ? playerService.getPlayer() : null;
+
+            if (holderListener != null) {
+                holderListener.onServiceConnected(playerService, playAfterConnect);
             }
-            startPlayerListener();
-        }
-    }
-
-    private void bind(final Context context) {
-        if (DEBUG) {
-            Log.d(TAG, "bind() called");
-        }
-
-        final Intent serviceIntent = new Intent(context, PlayerService.class);
-        bound = context.bindService(serviceIntent, serviceConnection,
-                Context.BIND_AUTO_CREATE);
-        if (!bound) {
-            context.unbindService(serviceConnection);
-        }
-    }
-
-    private void unbind(final Context context) {
-        if (DEBUG) {
-            Log.d(TAG, "unbind() called");
-        }
-
-        if (bound) {
-            context.unbindService(serviceConnection);
-            bound = false;
-            stopPlayerListener();
-            playerService = null;
-            player = null;
-            if (listener != null) {
-                listener.onServiceDisconnected();
+            if (player != null) {
+                player.setFragmentListener(internalListener);
             }
         }
     }
 
-    private void startPlayerListener() {
-        if (player != null) {
-            player.setFragmentListener(internalListener);
-        }
-    }
-
-    private void stopPlayerListener() {
-        if (player != null) {
-            player.removeFragmentListener(internalListener);
-        }
-    }
-
+    /**
+     * Delegate all {@link PlayerServiceEventListener} events to our current `listener` object.
+     * Only difference is that if {@link PlayerServiceEventListener#onServiceStopped()} is called,
+     * it also calls {@link PlayerHolder#unbind(Context)}.
+     * */
     private final PlayerServiceEventListener internalListener =
             new PlayerServiceEventListener() {
                 @Override

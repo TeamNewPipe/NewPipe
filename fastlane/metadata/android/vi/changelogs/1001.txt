@@ -1,0 +1,6 @@
+Đã cải thiện
+• Luôn cho phép thay đổi tùy chọn thông báo của trình phát video/nhạc trên Android 13+
+
+Đã sửa lỗi trước đó
+• Sửa lỗi khi xuất cơ sở dữ liệu / đăng ký sẽ không cắt / xoá một tệp đã tồn tại, có thể dẫn đến dữ liệu / đăng ký đã xuất bị hỏng
+• Sửa lỗi trình phát bắt đầu lại từ đầu khi nhấp vào dấu thời gian

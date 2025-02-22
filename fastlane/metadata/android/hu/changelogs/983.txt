@@ -1,0 +1,9 @@
+Új dupla-érintéses-csévélés felhasználói felület és kezelés hozzáadása
+Kereshetőek a beállítások
+Kiemelt kommentek valóban kiemelésre kerülnek
+Az FSFE PeerTube folyamatok számára appal-való-megnyitás támogatás hozzáadása
+Hiba értesítő hozzáadása
+Lejátszó váltáskor az első videó hiábs lejátszásának javítása
+A bufferelés során több ideig vár a lejátszó mielőtt hibára fut az élő közvetítés
+A helyi keresési eredmények sorrendjének javítása
+Üres elemek javítása a lejátszási listában

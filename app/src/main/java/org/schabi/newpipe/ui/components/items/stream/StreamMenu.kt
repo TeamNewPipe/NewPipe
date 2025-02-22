@@ -1,9 +1,7 @@
 package org.schabi.newpipe.ui.components.items.stream
 
-import androidx.annotation.StringRes
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -34,8 +32,8 @@ fun StreamMenu(
 
     DropdownMenu(expanded = expanded, onDismissRequest = onDismissRequest) {
         if (playerHolder.isPlayQueueReady) {
-            StreamMenuItem(
-                text = R.string.enqueue_stream,
+            DropdownMenuItem(
+                text = { Text(text = stringResource(R.string.enqueue_stream)) },
                 onClick = {
                     onDismissRequest()
                     SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
@@ -45,8 +43,8 @@ fun StreamMenu(
             )
 
             if (playerHolder.queuePosition < playerHolder.queueSize - 1) {
-                StreamMenuItem(
-                    text = R.string.enqueue_next_stream,
+                DropdownMenuItem(
+                    text = { Text(text = stringResource(R.string.enqueue_next_stream)) },
                     onClick = {
                         onDismissRequest()
                         SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
@@ -57,8 +55,8 @@ fun StreamMenu(
             }
         }
 
-        StreamMenuItem(
-            text = R.string.start_here_on_background,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.start_here_on_background)) },
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
@@ -66,8 +64,8 @@ fun StreamMenu(
                 }
             }
         )
-        StreamMenuItem(
-            text = R.string.start_here_on_popup,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.start_here_on_popup)) },
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchItemInfoIfSparse(context, stream) {
@@ -75,8 +73,8 @@ fun StreamMenu(
                 }
             }
         )
-        StreamMenuItem(
-            text = R.string.download,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.download)) },
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchStreamInfoAndSaveToDatabase(
@@ -89,8 +87,8 @@ fun StreamMenu(
                 }
             }
         )
-        StreamMenuItem(
-            text = R.string.add_to_playlist,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.add_to_playlist)) },
             onClick = {
                 onDismissRequest()
                 val list = listOf(StreamEntity(stream))
@@ -103,29 +101,29 @@ fun StreamMenu(
                 }
             }
         )
-        StreamMenuItem(
-            text = R.string.share,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.share)) },
             onClick = {
                 onDismissRequest()
                 ShareUtils.shareText(context, stream.name, stream.url, stream.thumbnails)
             }
         )
-        StreamMenuItem(
-            text = R.string.open_in_browser,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.open_in_browser)) },
             onClick = {
                 onDismissRequest()
                 ShareUtils.openUrlInBrowser(context, stream.url)
             }
         )
-        StreamMenuItem(
-            text = R.string.mark_as_watched,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.mark_as_watched)) },
             onClick = {
                 onDismissRequest()
                 streamViewModel.markAsWatched(stream)
             }
         )
-        StreamMenuItem(
-            text = R.string.show_channel_details,
+        DropdownMenuItem(
+            text = { Text(text = stringResource(R.string.show_channel_details)) },
             onClick = {
                 onDismissRequest()
                 SparseItemUtil.fetchUploaderUrlIfSparse(
@@ -137,17 +135,4 @@ fun StreamMenu(
             }
         )
     }
-}
-
-@Composable
-private fun StreamMenuItem(
-    @StringRes text: Int,
-    onClick: () -> Unit
-) {
-    DropdownMenuItem(
-        text = {
-            Text(text = stringResource(text), color = MaterialTheme.colorScheme.onBackground)
-        },
-        onClick = onClick
-    )
 }

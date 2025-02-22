@@ -19,5 +19,5 @@
 <li>scroll javítása kikapcsolt kommentek és streamek esetében</li>
 <li>CheckForNewAppVersionTask elindul amikor nem kéne javítása</li>
 <li>youtube feliratkozó import javítása: hibás URL címek figyelmen kívül hagyása, üres címmel ellátottak megtartása</li>
-<li>helytelen youtube url cím javítása: aláírás tag név név nem mindig "aláírás", mely megakadályozza a videók betöltését</li>
+<li>helytelen youtube url javítása: aláírás címke neve nem mindig "aláírás", mely megakadályozza a videók betöltését</li>
 </ul>

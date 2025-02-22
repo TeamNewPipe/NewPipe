@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nZnacznik czasu:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>

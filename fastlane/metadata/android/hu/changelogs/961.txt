@@ -1,0 +1,12 @@
+• [YouTube] Mix támogatás
+• [YouTube] Kiírás a publikus adásokról és Covid-19-ről
+• [media.ccc.de] Legutóbbi videók hozzáadása
+• Szomális fordítás hozzáadása
+
+• Sok belső fejlesztés
+
+• Lejátszón belüli megosztás javítása
+• Üres ReCaptcha fixálása
+• Videó listából való eltávolítása esetén van összeomlás fixálása
+• [PeerTube] Kapcsolódó videók fixálása
+• [YouTube] A YouTube Music keresés fixálása

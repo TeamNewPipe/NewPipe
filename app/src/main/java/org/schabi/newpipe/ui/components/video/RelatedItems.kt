@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -94,7 +93,7 @@ private fun RelatedItemsPreview() {
     )
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        Surface {
             RelatedItems(info)
         }
     }
