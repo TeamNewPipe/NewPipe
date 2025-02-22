@@ -1,0 +1,4 @@
+Javítva: a YouTube-ról nem játszik le semmilyen streamet.
+
+Ez a kiadás csak a legsürgősebb hibát kezeli, ami megakadályozza a YouTube-videó részleteinek betöltését.
+Tisztában vagyunk azzal, hogy vannak más problémák is, és hamarosan külön kiadást készítünk ezek megoldására.

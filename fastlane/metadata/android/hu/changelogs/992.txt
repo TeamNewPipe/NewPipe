@@ -1,0 +1,17 @@
+Új
+• Feliratkozó szám a videó részleteinál
+• Letöltés a listából is
+• Végleges előkép hozzáadása a listához
+• Kettőskeresztekre és linkekre való hosszú nyomás
+• Kártya néző mód
+
+Fejlesztések
+• Nagyobb mini-lejátszó bezáró gomb
+• Simább bélyegkép méretezés
+• Kiemelt cél az Anrdoid 13 (API 33)
+• A keresés immáron nem szünetelteti a lejátszást
+
+Javítások
+• Felület javítása DeX/egérnél
+• Háttérlejátszás ha a videó nem rendelkezik hangsávval
+• Számos YouTube javítás és egyéb…

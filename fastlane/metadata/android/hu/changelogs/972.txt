@@ -1,0 +1,14 @@
+Új
+Időpontok és kettőskeresztek felismerése
+Manuális tablet mód hozzáadva
+Megnézett videók elrejtése a feed-ben
+
+Fejlesztések
+A Háttértár Hozzáférés Keretrendszer megfelelő támogatása
+Jobb hibajelentés elérhetetlen és törölt csatornák esetében
+Az Android 10+ megosztás panel immáron megjeleníti a tartalom címét is.
+Invidious folyamatok frissítése és Piped linkek támogatása.
+
+Javítás
+[YouTube] Korhatáros tartalom
+Megakadályozva, hogy a kivételek ablaka belecsússzon a megnyitott lehetőség panelbe

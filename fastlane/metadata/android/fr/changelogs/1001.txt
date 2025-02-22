@@ -1,0 +1,6 @@
+Amélioré
+• Toujours autoriser la modification des préférences de notification du lecteur sur Android 13+
+
+Corrigé
+• Correction de l'exportation de la base de données / des abonnements qui ne tronquait pas un fichier déjà existant, ce qui pouvait conduire à une exportation corrompue
+• Correction de la reprise de lecture depuis le début en cliquant sur un horodatage

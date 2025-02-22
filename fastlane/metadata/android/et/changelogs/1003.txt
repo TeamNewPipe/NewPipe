@@ -1,0 +1,4 @@
+Parandasime vea, kus ühtegi YouTube'i meediavoogu ei õnnestunud esitada.
+
+See versioon parandab vaid hetkel kõige olulisema vea, kus YouTube'i video andmeid ei õnnestunud laadida.
+Me oleme teadlikud ka muudest vigadest ning nendega tegeleme hiljem.

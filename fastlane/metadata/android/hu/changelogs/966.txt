@@ -1,0 +1,14 @@
+Új:
+• Új szolgáltatás került hozzáadásra: Bandcamp
+
+Fejlesztések:
+• Készülék téma követő beállítás hozzáadása
+• Egyes hibák megakadályozása az újradolgozott hibaértesítő segítségével
+• Többi információ arról, hogy miért nem elérhető a kontent
+• Hardveres szóköz aktiválja a lejátszást/szüneteltetést
+• "letöltés megkezdődött" toast értesítő mutatása
+
+Javítva:
+• A videó bélyegképe túl kicsi volt a háttérlejátszónál
+• Üres cím javítása a háttérben való lejátszásnál
+• Utolsó méretezés helyreállítása nem történt meg

@@ -2,9 +2,9 @@
 * App frissítések értesítés hozzáadása a GitHub verzióhoz (#1608 @krtkush jóvoltából)
 * Különféle javítások a letöltőhöz (#1944 @kapodamy jóvoltából):
   * hiányzó fehér gombok pótlása és ikon színek módosítása
-  * megbizonyosodni arról, hogy az iterátor kezdésre kész e (fixes #2031)
+  * megbizonyosodni arról, hogy az iterátor kezdésre kész-e (fixes #2031)
   * az új muxer lehetővé teszi az újbóli letöltés próbálkozást az "sikertelen utómunkálat" hiba esetén
   * az új MPEG-4 muxer javítja ha a videó és hang nincs szinkronban (#2039)
 
 ### Javítás
-* YouTube élő steam-el leállnak egy idő után (#1996 @yausername jóvoltából)
+* YouTube élő streamek leállnak egy idő után (#1996 @yausername jóvoltából)

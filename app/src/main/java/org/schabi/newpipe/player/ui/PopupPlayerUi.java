@@ -424,9 +424,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     @Override
     protected void setupSubtitleView(final float captionScale) {
-        final float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
         binding.subtitleView.setFractionalTextSize(
-                SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
+                SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionScale);
     }
 
     @Override

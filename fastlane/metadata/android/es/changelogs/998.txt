@@ -1,1 +1,4 @@
-Arreglo en YouTube no reproduciendo flujos
+Se solucionó el problema por el cual YouTube no reproducía ninguna transmisión debido a errores HTTP 403. 
+
+Los errores HTTP 403 ocasionales en medio de un video de YouTube aún no se han solucionado. 
+Ese problema se solucionará en otra liberación de solución de errores lo antes posible.
