@@ -319,11 +319,8 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public void setPlayerListener(@Nullable final Consumer<Player> listener) {
         this.onPlayerStartedOrStopped = listener;
         if (listener != null) {
-            if (player == null) {
-                listener.accept(null);
-            } else {
-                listener.accept(player);
-            }
+            // if there is no player, then `null` will be sent here, to ensure the state is synced
+            listener.accept(player);
         }
     }
     //endregion
