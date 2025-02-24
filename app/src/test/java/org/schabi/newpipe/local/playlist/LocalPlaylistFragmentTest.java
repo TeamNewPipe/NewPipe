@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
@@ -18,7 +19,7 @@ public class LocalPlaylistFragmentTest {
     @Test
     public void exportAsYouTubeTempPlaylist() {
 
-        final Stream<StreamEntity> entityStream = asStreamEntityStream(
+        final List<PlaylistStreamEntry> playlist = asPlaylist(
 
             "https://www.youtube.com/watch?v=1",
             "https://soundcloud.com/cautious-clayofficial/cold-war-2", // non-Youtube URLs should be
@@ -26,7 +27,7 @@ public class LocalPlaylistFragmentTest {
             "https://www.youtube.com/watch?v=3"
         );
 
-        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, entityStream, null);
+        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
 
         Assert.assertEquals("http://www.youtube.com/watch_videos?video_ids=1,2,3", url);
     }
@@ -48,11 +49,13 @@ public class LocalPlaylistFragmentTest {
             41, 42, 43, 44, 45, 46, 47, 48, 49, 50
         );
 
-        final Stream<StreamEntity> entityStream = ids.stream()
-            .map(id -> "https://www.youtube.com/watch?v=" + id)
-            .map(LocalPlaylistFragmentTest::newStreamEntity);
+        final List<PlaylistStreamEntry> playlist = asPlaylist(
 
-        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, entityStream, null);
+            ids.stream()
+            .map(id -> "https://www.youtube.com/watch?v=" + id)
+        );
+
+        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
 
         Assert.assertEquals(
 
@@ -70,14 +73,14 @@ public class LocalPlaylistFragmentTest {
     @Test
     public void exportJustUrls() {
 
-        final Stream<StreamEntity> entityStream = asStreamEntityStream(
+        final List<PlaylistStreamEntry> playlist = asPlaylist(
 
             "https://www.youtube.com/watch?v=1",
             "https://www.youtube.com/watch?v=2",
             "https://www.youtube.com/watch?v=3"
         );
 
-        final String exported = LocalPlaylistFragment.export(JUST_URLS, entityStream, null);
+        final String exported = LocalPlaylistFragment.export(JUST_URLS, playlist, null);
 
         Assert.assertEquals("""
             https://www.youtube.com/watch?v=1
@@ -86,10 +89,23 @@ public class LocalPlaylistFragmentTest {
     }
 
     @NonNull
-    private static Stream<StreamEntity> asStreamEntityStream(final String... urls) {
+    static List<PlaylistStreamEntry> asPlaylist(final String... urls) {
 
-        return Stream.of(urls)
-            .map(LocalPlaylistFragmentTest::newStreamEntity);
+        return asPlaylist(Stream.of(urls));
+    }
+
+    @NonNull
+    static List<PlaylistStreamEntry> asPlaylist(final Stream<String> urls) {
+
+        return urls
+            .map(LocalPlaylistFragmentTest::newPlaylistStreamEntry)
+            .toList();
+    }
+
+    @NonNull
+    private static PlaylistStreamEntry newPlaylistStreamEntry(final String url) {
+
+        return new PlaylistStreamEntry(newStreamEntity(url), 0, 0, 0);
     }
 
     @NonNull

@@ -1,11 +1,15 @@
 package org.schabi.newpipe.local.playlist;
 
+import static com.google.common.collect.Streams.stream;
+import static org.apache.commons.collections4.IterableUtils.reversedIterable;
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
+
+import static java.util.Collections.reverse;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -30,7 +34,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
+import com.google.common.collect.Streams;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -408,7 +414,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             .flatMapSingle(playlist -> Single.just(export(
 
                 shareMode,
-                playlist.stream().map(PlaylistStreamEntry::getStreamEntity),
+                playlist,
                 context
             )))
             .observeOn(AndroidSchedulers.mainThread())
@@ -430,20 +436,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     static String export(final PlayListShareMode shareMode,
-                         final Stream<StreamEntity> entityStream,
+                         final List<PlaylistStreamEntry> playlist,
                          final Context context) {
 
         return switch (shareMode) {
 
-            case WITH_TITLES            -> exportWithTitles(entityStream, context);
-            case JUST_URLS              -> exportJustUrls(entityStream);
-            case YOUTUBE_TEMP_PLAYLIST  -> exportAsYoutubeTempPlaylist(entityStream);
+            case WITH_TITLES            -> exportWithTitles(playlist, context);
+            case JUST_URLS              -> exportJustUrls(playlist);
+            case YOUTUBE_TEMP_PLAYLIST  -> exportAsYoutubeTempPlaylist(playlist);
         };
     }
 
-    static String exportWithTitles(final Stream<StreamEntity> entityStream, final Context context) {
+    static String exportWithTitles(final List<PlaylistStreamEntry> playlist, final Context context) {
 
-        return entityStream
+        return playlist.stream()
+            .map(PlaylistStreamEntry::getStreamEntity)
             .map(entity -> context.getString(R.string.video_details_list_item,
                                              entity.getTitle(),
                                              entity.getUrl()
@@ -452,26 +459,30 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             .collect(Collectors.joining("\n"));
     }
 
-    static String exportJustUrls(final Stream<StreamEntity> entityStream) {
+    static String exportJustUrls(final List<PlaylistStreamEntry> playlist) {
 
-        return entityStream
+        return playlist.stream()
+            .map(PlaylistStreamEntry::getStreamEntity)
             .map(StreamEntity::getUrl)
             .collect(Collectors.joining("\n"));
     }
 
-    static String exportAsYoutubeTempPlaylist(final Stream<StreamEntity> entityStream) {
+    static String exportAsYoutubeTempPlaylist(final List<PlaylistStreamEntry> playlist) {
 
-        final CircularFifoQueue<String> last50 = new CircularFifoQueue<>(50);
-
-        entityStream
+        final List<String> videoIDs =
+             stream(reversedIterable(playlist))
+            .map(PlaylistStreamEntry::getStreamEntity)
             .map(entity -> getYouTubeId(entity.getUrl()))
             .filter(Objects::nonNull)
-            .forEachOrdered(last50::add);
+            .limit(50)
+            .collect(Collectors.toList());
 
-        final String videoIDs = last50.stream()
-            .collect(Collectors.joining(","));
+        reverse(videoIDs);
 
-        return "http://www.youtube.com/watch_videos?video_ids=" + videoIDs;
+        final String commaSeparatedVideoIDs = videoIDs.stream()
+                .collect(Collectors.joining(","));
+
+        return "http://www.youtube.com/watch_videos?video_ids=" + commaSeparatedVideoIDs;
     }
 
     /**
