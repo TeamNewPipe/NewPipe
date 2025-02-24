@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
+import static org.schabi.newpipe.local.playlist.ExportPlaylist.export;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 
@@ -14,7 +15,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class LocalPlaylistFragmentTest {
+public class ExportPlaylistTest {
 
     @Test
     public void exportAsYouTubeTempPlaylist() {
@@ -27,7 +28,7 @@ public class LocalPlaylistFragmentTest {
             "https://www.youtube.com/watch?v=3"
         );
 
-        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
+        final String url = export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
 
         Assert.assertEquals("http://www.youtube.com/watch_videos?video_ids=1,2,3", url);
     }
@@ -55,7 +56,7 @@ public class LocalPlaylistFragmentTest {
             .map(id -> "https://www.youtube.com/watch?v=" + id)
         );
 
-        final String url = LocalPlaylistFragment.export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
+        final String url = export(YOUTUBE_TEMP_PLAYLIST, playlist, null);
 
         Assert.assertEquals(
 
@@ -80,7 +81,7 @@ public class LocalPlaylistFragmentTest {
             "https://www.youtube.com/watch?v=3"
         );
 
-        final String exported = LocalPlaylistFragment.export(JUST_URLS, playlist, null);
+        final String exported = export(JUST_URLS, playlist, null);
 
         Assert.assertEquals("""
             https://www.youtube.com/watch?v=1
@@ -98,7 +99,7 @@ public class LocalPlaylistFragmentTest {
     static List<PlaylistStreamEntry> asPlaylist(final Stream<String> urls) {
 
         return urls
-            .map(LocalPlaylistFragmentTest::newPlaylistStreamEntry)
+            .map(ExportPlaylistTest::newPlaylistStreamEntry)
             .toList();
     }
 

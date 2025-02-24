@@ -1,15 +1,13 @@
 package org.schabi.newpipe.local.playlist;
 
-import static com.google.common.collect.Streams.stream;
-import static org.apache.commons.collections4.IterableUtils.reversedIterable;
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.local.playlist.ExportPlaylist.export;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
-import static java.util.Collections.reverse;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -34,10 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
-import com.google.common.collect.Streams;
-
-import org.apache.commons.collections4.IterableUtils;
-import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -72,17 +66,14 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import okhttp3.HttpUrl;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void>
         implements PlaylistControlViewHolder, DebounceSavable {
@@ -433,70 +424,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)
             )
         );
-    }
-
-    static String export(final PlayListShareMode shareMode,
-                         final List<PlaylistStreamEntry> playlist,
-                         final Context context) {
-
-        return switch (shareMode) {
-
-            case WITH_TITLES            -> exportWithTitles(playlist, context);
-            case JUST_URLS              -> exportJustUrls(playlist);
-            case YOUTUBE_TEMP_PLAYLIST  -> exportAsYoutubeTempPlaylist(playlist);
-        };
-    }
-
-    static String exportWithTitles(final List<PlaylistStreamEntry> playlist, final Context context) {
-
-        return playlist.stream()
-            .map(PlaylistStreamEntry::getStreamEntity)
-            .map(entity -> context.getString(R.string.video_details_list_item,
-                                             entity.getTitle(),
-                                             entity.getUrl()
-                                            )
-            )
-            .collect(Collectors.joining("\n"));
-    }
-
-    static String exportJustUrls(final List<PlaylistStreamEntry> playlist) {
-
-        return playlist.stream()
-            .map(PlaylistStreamEntry::getStreamEntity)
-            .map(StreamEntity::getUrl)
-            .collect(Collectors.joining("\n"));
-    }
-
-    static String exportAsYoutubeTempPlaylist(final List<PlaylistStreamEntry> playlist) {
-
-        final List<String> videoIDs =
-             stream(reversedIterable(playlist))
-            .map(PlaylistStreamEntry::getStreamEntity)
-            .map(entity -> getYouTubeId(entity.getUrl()))
-            .filter(Objects::nonNull)
-            .limit(50)
-            .collect(Collectors.toList());
-
-        reverse(videoIDs);
-
-        final String commaSeparatedVideoIDs = videoIDs.stream()
-                .collect(Collectors.joining(","));
-
-        return "http://www.youtube.com/watch_videos?video_ids=" + commaSeparatedVideoIDs;
-    }
-
-    /**
-     * Gets the video id from a YouTube URL.
-     *
-     * @param url YouTube URL
-     * @return the video id
-     */
-    static String getYouTubeId(final String url) {
-
-        final HttpUrl httpUrl = HttpUrl.parse(url);
-
-        return httpUrl == null ? null
-                               : httpUrl.queryParameter("v");
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
