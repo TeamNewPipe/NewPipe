@@ -2,7 +2,7 @@ package org.schabi.newpipe.local.playlist;
 
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.local.playlist.ExportPlaylist.export;
+import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
 import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
