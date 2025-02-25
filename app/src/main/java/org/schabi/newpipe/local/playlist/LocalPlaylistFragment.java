@@ -388,16 +388,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return true;
     }
 
-    /**
-     * FIXME update this
-     *
-     * Shares the playlist as a list of stream URLs if {@code shareMode} is
-     * set to {@code false}. Shares the playlist name along with a list of video titles and URLs
-     * if {@code shareMode} is set to {@code true}.
-     *
-     * @param shareMode Whether the playlist details should be included in the
-     *                  shared content.
-     */
+    ///
+    /// Shares the playlist in one of 3 ways, depending on the value of `shareMode`:
+    ///
+    /// - `JUST_URLS`: shares the URLs only.
+    /// - `WITH_TITLES`: each entry in the list is accompanied by its title.
+    /// - `YOUTUBE_TEMP_PLAYLIST`: shares as a YouTube temporary playlist.
+    ///
+    ///  @param shareMode The way the playlist should be shared.
+    ///
     private void sharePlaylist(final PlayListShareMode shareMode) {
         final Context context = requireContext();
 
