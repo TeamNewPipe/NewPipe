@@ -255,9 +255,6 @@ dependencies {
     // HTTP client
     implementation "com.squareup.okhttp3:okhttp:4.12.0"
 
-    // Apache Commons Collections
-    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-
     // Media player
     implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:exoplayer-dash:${exoPlayerVersion}"
