@@ -227,6 +227,7 @@ class FeedLoadManager(private val context: Context) {
                         }
                     }
                     .filterIsInstance<StreamInfoItem>()
+                    .filter { !it.requiresMembership() }
             }
 
             return Notification.createOnNext(
