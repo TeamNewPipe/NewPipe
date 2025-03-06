@@ -16,17 +16,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.ui.components.items.Stream
-import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.ServiceHelper
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 class HistoryViewModel(
     application: Application,
     private val savedStateHandle: SavedStateHandle,
 ) : AndroidViewModel(application) {
     private val historyDao = NewPipeDatabase.getInstance(getApplication()).streamHistoryDAO()
-    private val dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
 
     val sortKey = savedStateHandle.getStateFlow(ORDER_KEY, SortKey.MOST_PLAYED)
     val historyItems = sortKey
@@ -38,16 +33,7 @@ class HistoryViewModel(
                 }
             }.flow
         }
-        .map { pagingData ->
-            pagingData.map {
-                val detail = Localization.concatenateStrings(
-                    Localization.shortViewCount(getApplication(), it.watchCount),
-                    dateTimeFormatter.format(it.latestAccessDate),
-                    ServiceHelper.getNameOfServiceById(it.streamEntity.serviceId),
-                )
-                Stream(it.streamEntity, detail, it.streamId)
-            }
-        }
+        .map { pagingData -> pagingData.map { Stream(it) } }
         .flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
 

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.ui.components.video
 
-import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -36,7 +35,6 @@ import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.Playlist
 import org.schabi.newpipe.ui.components.items.Stream
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import java.util.concurrent.TimeUnit
 
@@ -51,7 +49,7 @@ fun RelatedItems(info: StreamInfo) {
     }
     val displayItems = info.relatedItems.mapNotNull {
         when (it) {
-            is StreamInfoItem -> Stream(it, getStreamDetailText(context, it))
+            is StreamInfoItem -> Stream(it)
             is PlaylistInfoItem -> Playlist(it)
             else -> null
         }
@@ -88,28 +86,6 @@ fun RelatedItems(info: StreamInfo) {
             }
         }
     )
-}
-
-private fun getStreamDetailText(context: Context, stream: StreamInfoItem): String {
-    val count = stream.viewCount
-    val views = if (count >= 0) {
-        when (stream.streamType) {
-            StreamType.AUDIO_LIVE_STREAM -> Localization.listeningCount(context, count)
-            StreamType.LIVE_STREAM -> Localization.shortWatchingCount(context, count)
-            else -> Localization.shortViewCount(context, count)
-        }
-    } else {
-        ""
-    }
-    val date = Localization.relativeTimeOrTextual(context, stream.uploadDate, stream.textualUploadDate)
-
-    return if (views.isEmpty()) {
-        date.orEmpty()
-    } else if (date.isNullOrEmpty()) {
-        views
-    } else {
-        "$views • $date"
-    }
 }
 
 private fun StreamInfoItem(
