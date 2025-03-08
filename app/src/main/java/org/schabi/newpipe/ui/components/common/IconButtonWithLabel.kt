@@ -3,6 +3,7 @@ package org.schabi.newpipe.ui.components.common
 import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -25,7 +26,10 @@ fun IconButtonWithLabel(
     @StringRes label: Int,
     onClick: () -> Unit,
 ) {
-    FilledTonalButton(onClick = onClick) {
+    FilledTonalButton(
+        contentPadding = PaddingValues(vertical = 8.dp, horizontal = 12.dp),
+        onClick = onClick
+    ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,

@@ -163,7 +163,7 @@ private fun HistoryHeader(
             }
         }
 
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
             IconButtonWithLabel(
                 icon = Icons.Default.Headphones,
                 label = R.string.controls_background_title,
