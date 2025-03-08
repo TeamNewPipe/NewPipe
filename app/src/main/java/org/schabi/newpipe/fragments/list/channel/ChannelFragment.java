@@ -233,6 +233,14 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (menuProvider != null) {
+            activity.removeMenuProvider(menuProvider);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         if (currentWorker != null) {
@@ -240,7 +248,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         }
         disposables.clear();
         binding = null;
-        activity.removeMenuProvider(menuProvider);
         menuProvider = null;
     }
 
