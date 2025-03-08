@@ -14,6 +14,7 @@ import androidx.work.Data
 import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -192,24 +193,12 @@ sealed class SubscriptionImportInput : Parcelable {
     data class PreviousExportMode(val url: String) : SubscriptionImportInput()
 
     fun toData(): Data {
-        return when (this) {
-            is ChannelUrlMode -> Data.Builder()
-                .putInt("mode", CHANNEL_URL_MODE)
-                .putInt("service_id", serviceId)
-                .putString("url", url)
-                .build()
-            is InputStreamMode ->
-                Data.Builder()
-                    .putInt("mode", INPUT_STREAM_MODE)
-                    .putInt("service_id", serviceId)
-                    .putString("url", url)
-                    .build()
-            is PreviousExportMode ->
-                Data.Builder()
-                    .putInt("mode", PREVIOUS_EXPORT_MODE)
-                    .putString("url", url)
-                    .build()
+        val (mode, serviceId, url) = when (this) {
+            is ChannelUrlMode -> Triple(CHANNEL_URL_MODE, serviceId, url)
+            is InputStreamMode -> Triple(INPUT_STREAM_MODE, serviceId, url)
+            is PreviousExportMode -> Triple(PREVIOUS_EXPORT_MODE, null, url)
         }
+        return workDataOf("mode" to mode, "service_id" to serviceId, "url" to url)
     }
 
     companion object {
