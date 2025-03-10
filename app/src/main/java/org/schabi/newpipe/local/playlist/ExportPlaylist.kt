@@ -56,7 +56,7 @@ fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
         .asReversed()
         .joinToString(separator = ",")
 
-    return "http://www.youtube.com/watch_videos?video_ids=$videoIDs"
+    return "https://www.youtube.com/watch_videos?video_ids=$videoIDs"
 }
 
 /**
