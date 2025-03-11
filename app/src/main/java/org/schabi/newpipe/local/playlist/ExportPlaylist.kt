@@ -1,13 +1,13 @@
 package org.schabi.newpipe.local.playlist
 
 import android.content.Context
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
+import org.schabi.newpipe.extractor.exceptions.ParsingException
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeStreamLinkHandlerFactory
 import org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS
 import org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES
 import org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST
-import java.util.Objects.nonNull
 
 fun export(
     shareMode: PlayListShareMode,
@@ -48,9 +48,8 @@ fun exportJustUrls(playlist: List<PlaylistStreamEntry>): String {
 fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
 
     val videoIDs = playlist.asReversed().asSequence()
-        .map { it.streamEntity }
-        .map { getYouTubeId(it.url) }
-        .filter(::nonNull)
+        .map { it.streamEntity.url }
+        .mapNotNull(::getYouTubeId)
         .take(50)
         .toList()
         .asReversed()
@@ -59,6 +58,8 @@ fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
     return "https://www.youtube.com/watch_videos?video_ids=$videoIDs"
 }
 
+val linkHandler: YoutubeStreamLinkHandlerFactory = YoutubeStreamLinkHandlerFactory.getInstance()
+
 /**
  * Gets the video id from a YouTube URL.
  *
@@ -66,7 +67,6 @@ fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
  * @return the video id
  */
 fun getYouTubeId(url: String): String? {
-    val httpUrl = url.toHttpUrlOrNull()
 
-    return httpUrl?.queryParameter("v")
+    return try { linkHandler.getId(url) } catch (e: ParsingException) { null }
 }

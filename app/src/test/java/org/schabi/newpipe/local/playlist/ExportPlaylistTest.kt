@@ -16,15 +16,21 @@ class ExportPlaylistTest {
     @Test
     fun exportAsYouTubeTempPlaylist() {
         val playlist = asPlaylist(
-            "https://www.youtube.com/watch?v=1",
+            "https://www.youtube.com/watch?v=10000000000",
             "https://soundcloud.com/cautious-clayofficial/cold-war-2", // non-Youtube URLs should be ignored
-            "https://www.youtube.com/watch?v=2",
-            "https://www.youtube.com/watch?v=3"
+            "https://www.youtube.com/watch?v=20000000000",
+            "https://www.youtube.com/watch?v=30000000000"
         )
 
         val url = export(YOUTUBE_TEMP_PLAYLIST, playlist, mock(Context::class.java))
 
-        assertEquals("http://www.youtube.com/watch_videos?video_ids=1,2,3", url)
+        assertEquals(
+            "https://www.youtube.com/watch_videos?video_ids=" +
+                "10000000000," +
+                "20000000000," +
+                "30000000000",
+            url
+        )
     }
 
     @Test
@@ -34,30 +40,18 @@ class ExportPlaylistTest {
          * (YouTube limitation)
          */
 
-        val ids = listOf(
-            -1, 0,
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-            31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-            41, 42, 43, 44, 45, 46, 47, 48, 49, 50
-        )
-
         val playlist = asPlaylist(
-            ids.stream()
-                .map { id: Int -> "https://www.youtube.com/watch?v=$id" }
+            (10..70)
+                .map { id -> "https://www.youtube.com/watch?v=aaaaaaaaa$id" } // YouTube video IDs are 11 characters long
+                .stream()
         )
 
         val url = export(YOUTUBE_TEMP_PLAYLIST, playlist, mock(Context::class.java))
 
-        assertEquals(
-            "http://www.youtube.com/watch_videos?video_ids=" +
-                "1,2,3,4,5,6,7,8,9,10," +
-                "11,12,13,14,15,16,17,18,19,20," +
-                "21,22,23,24,25,26,27,28,29,30," +
-                "31,32,33,34,35,36,37,38,39,40," +
-                "41,42,43,44,45,46,47,48,49,50",
+        val videoIDs = (21..70).map { id -> "aaaaaaaaa$id" }.joinToString(",")
 
+        assertEquals(
+            "https://www.youtube.com/watch_videos?video_ids=$videoIDs",
             url
         )
     }
