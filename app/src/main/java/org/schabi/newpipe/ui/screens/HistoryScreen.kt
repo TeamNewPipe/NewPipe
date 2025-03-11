@@ -2,7 +2,6 @@ package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -15,19 +14,13 @@ import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MenuAnchorType
-import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TooltipBox
-import androidx.compose.material3.TooltipDefaults
-import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,7 +40,6 @@ import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.history.HistoryViewModel
 import org.schabi.newpipe.local.history.SortKey
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
-import org.schabi.newpipe.ui.components.common.DropdownTextMenuItem
 import org.schabi.newpipe.ui.components.common.IconButtonWithLabel
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -93,73 +85,23 @@ private fun HistoryHeader(
     onClickPlayAll: () -> Unit,
     onClickPopup: () -> Unit
 ) {
-    Column(
+    FlowRow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            var expanded by remember { mutableStateOf(false) }
-            val selected = when (sortKey) {
-                SortKey.MOST_PLAYED -> R.string.title_most_played
-                SortKey.LAST_PLAYED -> R.string.title_last_played
-            }
-
-            ExposedDropdownMenuBox(
-                expanded = expanded,
-                onExpandedChange = { expanded = it },
-            ) {
-                TextField(
-                    enabled = true,
-                    modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable),
-                    value = stringResource(selected),
-                    readOnly = true,
-                    onValueChange = {},
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors(),
-                    label = { Text(text = stringResource(R.string.history_sort_label)) },
-                )
-
-                ExposedDropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false },
+        SingleChoiceSegmentedButtonRow {
+            SortKey.entries.forEachIndexed { index, key ->
+                SegmentedButton(
+                    selected = key == sortKey,
+                    onClick = { onSelectSortKey(key) },
+                    shape = SegmentedButtonDefaults
+                        .itemShape(index = index, count = SortKey.entries.size)
                 ) {
-                    DropdownTextMenuItem(
-                        text = R.string.title_most_played,
-                        onClick = {
-                            expanded = false
-                            onSelectSortKey(SortKey.MOST_PLAYED)
-                        },
-                    )
-                    DropdownTextMenuItem(
-                        text = R.string.title_last_played,
-                        onClick = {
-                            expanded = false
-                            onSelectSortKey(SortKey.LAST_PLAYED)
-                        },
-                    )
+                    Text(text = stringResource(key.title))
                 }
-            }
-
-            TooltipBox(
-                positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
-                tooltip = {
-                    PlainTooltip { Text(text = stringResource(R.string.clear_views_history_title)) }
-                },
-                state = rememberTooltipState(),
-            ) {
-                var openClearDialog by remember { mutableStateOf(false) }
-
-                IconButton(onClick = { openClearDialog = true }) {
-                    Icon(
-                        imageVector = Icons.Default.ClearAll,
-                        contentDescription = stringResource(R.string.clear_history_description),
-                    )
-                }
-
-                ClearHistoryDialog(openClearDialog, onClickClear, onDismissRequest = { openClearDialog = false })
             }
         }
 
@@ -181,6 +123,20 @@ private fun HistoryHeader(
                 label = R.string.controls_popup_title,
                 onClick = onClickPopup,
             )
+
+            var openClearDialog by remember { mutableStateOf(false) }
+
+            TextButton(onClick = { openClearDialog = true }) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(imageVector = Icons.Default.ClearAll, contentDescription = null)
+                    Text(text = stringResource(R.string.clear))
+                }
+            }
+
+            ClearHistoryDialog(openClearDialog, onClickClear, onDismissRequest = { openClearDialog = false })
         }
     }
 }
