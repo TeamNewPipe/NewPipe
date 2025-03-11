@@ -59,9 +59,9 @@ class ExportPlaylistTest {
     @Test
     fun exportJustUrls() {
         val playlist = asPlaylist(
-            "https://www.youtube.com/watch?v=1",
-            "https://www.youtube.com/watch?v=2",
-            "https://www.youtube.com/watch?v=3"
+            "https://www.youtube.com/watch?v=10000000000",
+            "https://www.youtube.com/watch?v=20000000000",
+            "https://www.youtube.com/watch?v=30000000000"
         )
 
         val exported = export(JUST_URLS, playlist, mock(Context::class.java))
