@@ -50,7 +50,7 @@ fun exportAsYoutubeTempPlaylist(playlist: List<PlaylistStreamEntry>): String {
     val videoIDs = playlist.asReversed().asSequence()
         .map { it.streamEntity.url }
         .mapNotNull(::getYouTubeId)
-        .take(50)                   // YouTube limitation: temp playlists can't have more than 50 items
+        .take(50) // YouTube limitation: temp playlists can't have more than 50 items
         .toList()
         .asReversed()
         .joinToString(separator = ",")
