@@ -887,9 +887,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
                     sharePlaylist(WITH_TITLES)
                 )
-                // TODO           R.string.share_playlist_as_YouTube_temporary_playlist
-                .setNeutralButton("Share as YouTube temporary playlist", (dialog, which) ->
-                    sharePlaylist(YOUTUBE_TEMP_PLAYLIST)
+                .setNeutralButton(R.string.share_playlist_as_youtube_temporary_playlist,
+                    (dialog, which) -> sharePlaylist(YOUTUBE_TEMP_PLAYLIST)
                 )
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
                     sharePlaylist(JUST_URLS)
