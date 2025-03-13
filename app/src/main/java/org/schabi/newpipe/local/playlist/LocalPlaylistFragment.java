@@ -411,12 +411,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             .subscribe(
                 urlsText -> {
 
-                    final String content = shareMode == JUST_URLS
-                        ? urlsText
-                        : context.getString(R.string.share_playlist_content_details,
+                    final String content = shareMode == WITH_TITLES
+                        ? context.getString(R.string.share_playlist_content_details,
                                             name,
                                             urlsText
-                                           );
+                                           )
+                        : urlsText;
 
                     ShareUtils.shareText(context, name, content);
                 },
