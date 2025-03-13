@@ -775,7 +775,6 @@
     <string name="rewind">跳後</string>
     <string name="replay">重播</string>
     <string name="feed_fetch_channel_tabs_summary">更新摘要嘅時候要攞邊啲分頁返嚟。若果頻道用快速模式更新，就橫豎都無相干嘞。</string>
-    <string name="share_playlist_with_titles_message">分享播放清單要詳細包含播放清單個名同埋入面啲片名，定簡單得啲影片嘅 URL</string>
     <string name="image_quality_medium">一般畫質</string>
     <string name="metadata_uploader_avatars">上載者嘅頭像</string>
     <string name="metadata_banners">橫額</string>

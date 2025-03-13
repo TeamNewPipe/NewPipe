@@ -804,7 +804,6 @@
     <string name="metadata_uploader_avatars">Uppladdarens visningsbilder</string>
     <string name="metadata_banners">Banderoller</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
-    <string name="share_playlist_with_titles_message">Dela spellistan med detaljer så som spellistans namn och video-titlarna eller som en enkel lista med URL till videorna</string>
     <string name="image_quality_summary">Välj bildkvalitet och om bilder överhuvudtaget ska laddas för att minska data och minnesanvändningen. Ändringar rensar både i minnet och bildcache på disk – %s</string>
     <string name="show_more">Visa mer</string>
     <plurals name="replies">

@@ -790,7 +790,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Bagikan Daftar Putar</string>
-    <string name="share_playlist_with_titles_message">Bagikan daftar putar dengan detail seperti nama daftar putar dan judul video atau sebagai daftar video URL yang sederhana</string>
     <string name="metadata_banners">Panji</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="notification_actions_summary_android13">Sentuh untuk menyunting tindakan notifikasi di bawah. Tiga tindakan pertama (mainkan/jeda, sebelumnya dan selanjutnya) disetel oleh sistem dan tidak bisa dikustomisasi.</string>

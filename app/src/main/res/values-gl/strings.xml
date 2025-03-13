@@ -815,7 +815,6 @@
     <string name="metadata_banners">Encabezados</string>
     <string name="show_channel_tabs_summary">Lapelas a mostrar nas páxinas das canles</string>
     <string name="image_quality_summary">Escolla da calidade das imaxes e se cargar as imaxes na súa totalidade, para reducir o uso de datos e memoria. Os cambios limpan a caché das imaxes na memoria e no disco - %s</string>
-    <string name="share_playlist_with_titles_message">Compartir a lista de reprodución con detalles como o nome da lista e os títulos dos videos ou como unha lista sinxela cos enlaces URL dos videos</string>
     <string name="share_playlist_with_list">Compartir lista de URLs</string>
     <string name="import_settings_vulnerable_format">A configuración da exportación a ser importada emprega un formato vulnerable que fica obsoleto dende NewPipe 0.27.0. Comprobe que a exportación que está a importar proveña dunha fonte fiable e preferibelmente empregue exportacións de NewPipe 0.27.0 ou posterior. A compatibilidade coa importación deste formato vulnerable será eliminada por completo próximamente e as versión antigas de NewPipe non poderán importar configuracións de exportacións dende novas versións.</string>
     <string name="channel_tab_tracks">Pistas</string>

@@ -804,7 +804,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">प्लेलिस्ट साझा करें</string>
-    <string name="share_playlist_with_titles_message">प्लेलिस्ट को प्लेलिस्ट नाम और वीडियो शीर्षक जैसे विवरण के साथ या वीडियो यूआरएल की एक सरल सूची के रूप में साझा करें</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s जवाब</item>

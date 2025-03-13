@@ -774,7 +774,6 @@
     <string name="notification_actions_summary_android13">Editatu beheko jakinarazpen ekintza bakoitza gainean sakatuz. Lehen hiru ekintzak (erreproduzitu/pausatu, aurrekoa eta hurrengoa) sistemarengatik ezarrita daude eta ezin dira pertsonalizatu.</string>
     <string name="rewind">Atzera egin</string>
     <string name="image_quality_title">Irudiaren kalitatea</string>
-    <string name="share_playlist_with_titles_message">Partekatu erreprodukzio-zerrenda xehetasunekin, esate baterako, erreprodukzio-zerrendaren izena eta bideo-izenburuak edo bideo-URLen zerrenda soil gisa</string>
     <string name="more_options">Aukera gehiago</string>
     <string name="duration">Iraupena</string>
     <string name="forward">Aurrera egin</string>

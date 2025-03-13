@@ -809,7 +809,6 @@
     <string name="forward">Avançar</string>
     <string name="rewind">Retroceder</string>
     <string name="replay">Repetir</string>
-    <string name="share_playlist_with_titles_message">Compartilhar playlist com detalhes como o nome da playlist e títulos de vídeo ou como uma lista simples dos URL de vídeos</string>
     <string name="image_quality_medium">Qualidade média</string>
     <string name="metadata_uploader_avatars">Fotos de perfil do autor</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>

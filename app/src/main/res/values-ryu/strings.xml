@@ -804,7 +804,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">プレイリストちゅーゆーいん</string>
-    <string name="share_playlist_with_titles_message">プレイリストめいてぃがろービデオタイトルんでーぬしょうさいくくむるプレイリスト、あらんでぃビデオURLぬみぬシンプルやるリストとぅしてぃプレイリストちゅーゆーいんさびーん</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
     <plurals name="replies">
         <item quantity="one">%sぬへんしん</item>

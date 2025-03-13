@@ -882,7 +882,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void createShareConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.share_playlist)
-                .setMessage(R.string.share_playlist_with_titles_message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
                     sharePlaylist(WITH_TITLES)

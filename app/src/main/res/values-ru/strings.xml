@@ -808,7 +808,6 @@
     <string name="rewind">Перемотать назад</string>
     <string name="replay">Повторить</string>
     <string name="feed_fetch_channel_tabs_summary">Получаемые вкладки при обновлении ленты. Эта функция не применяется, если канал обновляется с помощью быстрого режима.</string>
-    <string name="share_playlist_with_titles_message">Поделиться подборкой с подробностями, такими как название подборки и названия видео, или просто списком URL видео</string>
     <string name="image_quality_medium">Среднее качество</string>
     <string name="metadata_uploader_avatars">Загрузчик аватаров</string>
     <string name="metadata_banners">Баннеры</string>
