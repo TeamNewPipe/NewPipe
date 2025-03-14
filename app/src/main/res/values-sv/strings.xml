@@ -91,7 +91,7 @@
     <string name="resume_on_audio_focus_gain_title">Återuppta uppspelning</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätt uppspelning efter avbrott (t.ex. telefonsamtal)</string>
     <string name="show_hold_to_append_title">Visa \"Håll för att köa\"-tips</string>
-    <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för video \"Detaljer:\\</string>
+    <string name="show_hold_to_append_summary">Visa tips när bakgrunds eller popup-knappen trycks på sidan för video \"Detaljer:\"</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
     <string name="settings_category_history_title">Historik och cacheminne</string>

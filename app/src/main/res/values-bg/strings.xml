@@ -192,7 +192,7 @@
     <string name="copyright" formatted="true">© %1$s от %2$s под лиценза %3$s</string>
     <string name="contribution_title">Съдействайте</string>
     <string name="contribution_encouragement">За всичко, което се сетите: превод, промени по дизайна, изчистване на кода или много сериозни промени по кода – помощта е винаги добре дошла. Колкото повече развитие, толкова по-добре!</string>
-    <string name="donation_title">Направете дарение</string>
+    <string name="donation_title">Дарение</string>
     <string name="donation_encouragement">NewPipe се разработва от доброволци, които отделят от своето време, за да предоставят най-доброто потребителско изживяване. Включете се в разработката като почерпите разработчиците с една чашка кафе, които да изпият, докато правят NewPipe още по-добро приложение.</string>
     <string name="give_back">Дари</string>
     <string name="website_title">Уебсайт</string>
@@ -203,7 +203,7 @@
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
     <string name="app_license_title">Лицензът на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
-    <string name="show_hold_to_append_summary">Покажи съвет при натискане на фона или изскачащия бутон във видеоклипа „Подробности:“</string>
+    <string name="show_hold_to_append_summary">Покажи съвет при натискане на фона или изскачащия бутон във видеоклипа \"Подробности:“</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
@@ -519,7 +519,7 @@
     <string name="pause_downloads_on_mobile_desc">Полезно при превключване към мобилни данни, въпреки че някои изтегляния не поддържат възобновяване и ще започнат отначало</string>
     <string name="crash_the_app">Срив на приложението</string>
     <string name="notification_colorize_summary">Цветът на известието да се избира според главния цвят в миниатюрата на видеото (може да не работи на всички устройства)</string>
-    <string name="youtube_restricted_mode_enabled_title">Използване на ограничения режим на YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Включване на \"Ограничен режим“ в YouTube</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube предлага „ограничен режим“, чрез който можете да филтрирате потенциално съдържание за възрастни</string>
     <string name="restricted_video">Това видео е с възрастова граница.
 \n
@@ -558,7 +558,7 @@
     <string name="enable_playback_state_lists_summary">Покажи индикатори за позиция на възпроизвеждане в списъци</string>
     <string name="notification_actions_summary_android13">Редактирайте всяко действие за известяване по-долу, като щракнете върху него. Първите три действия (възпроизвеждане/пауза, предишно и следващо) се задават от системата и не могат да бъдат конфигурирани.</string>
     <string name="right_gesture_control_summary">Изберете жест за дясната половина на екрана на плейъра</string>
-    <string name="right_gesture_control_title">Действие с жест на дясно</string>
+    <string name="right_gesture_control_title">Действие с жест надясно</string>
     <string name="start_main_player_fullscreen_title">Стартирайте основния плейър на цял екран</string>
     <string name="streams_notification_channel_description">Известия за нови видеоклипове в абонаментите</string>
     <string name="enable_streams_notifications_summary">Известявайте за нови видеоклипове в абонаментите</string>
