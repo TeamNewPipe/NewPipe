@@ -30,12 +30,16 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.extractor.InfoItem
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog
 import org.schabi.newpipe.local.dialog.PlaylistDialog
 import org.schabi.newpipe.local.history.HistoryRecordManager
+import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue
 import org.schabi.newpipe.player.playqueue.PlayQueue
+import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.SparseItemUtil
@@ -245,10 +249,33 @@ data class LongPressAction(
             item: PlaylistRemoteEntity,
             onDelete: Runnable,
         ): List<LongPressAction> {
-            return buildShareActionList(item.name, item.url, item.thumbnailUrl) +
+            return buildPlayerActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
+                buildShareActionList(item.name, item.url, item.thumbnailUrl) +
                 listOf(
                     Type.Delete.buildAction { onDelete.run() },
                 )
+        }
+
+        @JvmStatic
+        fun fromChannelInfoItem(item: ChannelInfoItem): List<LongPressAction> {
+            return buildPlayerActionList { ChannelTabPlayQueue(item.serviceId, item.url) } +
+                buildShareActionList(item) +
+                listOf(
+                    Type.ShowChannelDetails.buildAction { context ->
+                        NavigationHelper.openChannelFragment(
+                            context.findFragmentActivity().supportFragmentManager,
+                            item.serviceId,
+                            item.url,
+                            item.name,
+                        )
+                    },
+                )
+        }
+
+        @JvmStatic
+        fun fromPlaylistInfoItem(item: PlaylistInfoItem): List<LongPressAction> {
+            return buildPlayerActionList { PlaylistPlayQueue(item.serviceId, item.url) } +
+                buildShareActionList(item)
         }
     }
 }
