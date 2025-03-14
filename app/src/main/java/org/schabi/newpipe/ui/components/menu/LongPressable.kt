@@ -5,6 +5,8 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.ListExtractor
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
@@ -91,6 +93,30 @@ data class LongPressable(
             decoration = Decoration.Playlist(
                 item.streamCount ?: ListExtractor.ITEM_COUNT_UNKNOWN
             ),
+        )
+
+        @JvmStatic
+        fun fromChannelInfoItem(item: ChannelInfoItem) = LongPressable(
+            title = item.name,
+            url = item.url?.takeIf { it.isNotBlank() },
+            thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
+            uploader = null,
+            uploaderUrl = item.url?.takeIf { it.isNotBlank() },
+            viewCount = null,
+            uploadDate = null,
+            decoration = null,
+        )
+
+        @JvmStatic
+        fun fromPlaylistInfoItem(item: PlaylistInfoItem) = LongPressable(
+            title = item.name,
+            url = item.url?.takeIf { it.isNotBlank() },
+            thumbnailUrl = ImageStrategy.choosePreferredImage(item.thumbnails),
+            uploader = item.uploaderName.takeIf { it.isNotBlank() },
+            uploaderUrl = item.uploaderUrl?.takeIf { it.isNotBlank() },
+            viewCount = null,
+            uploadDate = null,
+            decoration = Decoration.Playlist(item.streamCount),
         )
     }
 }

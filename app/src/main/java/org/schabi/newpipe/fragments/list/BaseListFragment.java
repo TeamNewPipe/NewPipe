@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -258,7 +260,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final StreamInfoItem selectedItem) {
-                onStreamSelected(selectedItem);
+                onItemSelected(selectedItem);
+                NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
+                        null, false);
             }
 
             @Override
@@ -267,23 +272,50 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(selectedItem -> {
-            try {
-                onItemSelected(selectedItem);
-                NavigationHelper.openChannelFragment(getFM(), selectedItem.getServiceId(),
-                        selectedItem.getUrl(), selectedItem.getName());
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<>() {
+            @Override
+            public void selected(final ChannelInfoItem selectedItem) {
+                try {
+                    onItemSelected(selectedItem);
+                    NavigationHelper.openChannelFragment(getFM(), selectedItem.getServiceId(),
+                            selectedItem.getUrl(), selectedItem.getName());
+                } catch (final Exception e) {
+                    ErrorUtil.showUiErrorSnackbar(BaseListFragment.this, "Opening channel fragment",
+                            e);
+                }
+            }
+
+            @Override
+            public void held(final ChannelInfoItem selectedItem) {
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromChannelInfoItem(selectedItem),
+                        LongPressAction.fromChannelInfoItem(selectedItem)
+                );
             }
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(selectedItem -> {
-            try {
-                onItemSelected(selectedItem);
-                NavigationHelper.openPlaylistFragment(getFM(), selectedItem.getServiceId(),
-                        selectedItem.getUrl(), selectedItem.getName());
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Opening playlist fragment", e);
+        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<>() {
+            @Override
+            public void selected(final PlaylistInfoItem selectedItem) {
+                try {
+                    BaseListFragment.this.onItemSelected(selectedItem);
+                    NavigationHelper.openPlaylistFragment(BaseListFragment.this.getFM(),
+                            selectedItem.getServiceId(),
+                            selectedItem.getUrl(), selectedItem.getName());
+                } catch (final Exception e) {
+                    ErrorUtil.showUiErrorSnackbar(BaseListFragment.this,
+                            "Opening playlist fragment", e);
+                }
+            }
+
+            @Override
+            public void held(final PlaylistInfoItem selectedItem) {
+                openLongPressMenuInActivity(
+                        requireActivity(),
+                        LongPressable.fromPlaylistInfoItem(selectedItem),
+                        LongPressAction.fromPlaylistInfoItem(selectedItem)
+                );
             }
         });
 
@@ -291,6 +323,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
         // Ensure that there is always a scroll listener (e.g. when rotating the device)
         useNormalItemListScrollListener();
+    }
+
+    protected void showInfoItemDialog(final StreamInfoItem item) {
+        openLongPressMenuInActivity(
+                requireActivity(),
+                LongPressable.fromStreamInfoItem(item),
+                LongPressAction.fromStreamInfoItem(item)
+        );
     }
 
     /**
@@ -375,25 +415,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
-    private void onStreamSelected(final StreamInfoItem selectedItem) {
-        onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
-                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName(),
-                null, false);
-    }
-
     protected void onScrollToBottom() {
         if (hasMoreItems() && !isLoading.get()) {
             loadMoreItems();
         }
-    }
-
-    protected void showInfoItemDialog(final StreamInfoItem item) {
-        openLongPressMenuInActivity(
-                requireActivity(),
-                LongPressable.fromStreamInfoItem(item),
-                LongPressAction.fromStreamInfoItem(item)
-        );
     }
 
     /*//////////////////////////////////////////////////////////////////////////
