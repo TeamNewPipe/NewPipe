@@ -790,7 +790,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Jaga esitusloendit</string>
-    <string name="share_playlist_with_titles_message">Jaga esitusloendit kas väga detailse teabega palade kohta või lihtsa url\'ide loendina</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">Näita veel</string>
     <plurals name="replies">

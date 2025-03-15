@@ -781,7 +781,6 @@
     <string name="rewind">Пераматаць назад</string>
     <string name="replay">Паўтарыць</string>
     <string name="feed_fetch_channel_tabs_summary">Атрыманыя ўкладкі пры абнаўленні стужкі. Гэты параметр не прымяняецца, калі канал абнаўляецца ў хуткім рэжыме.</string>
-    <string name="share_playlist_with_titles_message">Абагуліць плэйліст, перадаецца назва плэйліста і назвы відэа або просты спіс URL-адрасоў відэа</string>
     <string name="image_quality_medium">Сярэдняя якасць</string>
     <string name="metadata_uploader_avatars">Загрузнік аватараў</string>
     <string name="metadata_banners">Банеры</string>

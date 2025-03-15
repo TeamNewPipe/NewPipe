@@ -825,7 +825,6 @@
     <string name="channel_tab_videos">Vaizdo įrašai</string>
     <string name="channel_tab_tracks">Takeliai</string>
     <string name="image_quality_summary">Pasirinkite paveikslėlių kokybę ir ar apskritai įkelti paveikslėlius, kad sumažintumėte duomenų ir atminties naudojimą. Pakeitimai išvalo atmintyje ir diske esančių vaizdų talpyklą - %s</string>
-    <string name="share_playlist_with_titles_message">Dalintis grojaraščiu su tokia informacija kaip grojaraščio pavadinimas ir vaizdo įrašo pavadinimas arba paprastas vaizdo įrašų nuorodų sąrašas</string>
     <string name="share_playlist_with_titles">Dalintis su pavadinimais</string>
     <string name="share_playlist">Dalintis grojaraščiu</string>
     <string name="share_playlist_with_list">Dalintis nuorodų sąrašu</string>

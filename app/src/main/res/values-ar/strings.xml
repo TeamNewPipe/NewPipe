@@ -856,7 +856,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">مشاركة قائمة التشغيل</string>
-    <string name="share_playlist_with_titles_message">شارك تفاصيل قائمة التشغيل مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين URL للفيديو</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="zero">رد %s</item>

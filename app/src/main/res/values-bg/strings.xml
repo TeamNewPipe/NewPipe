@@ -714,7 +714,6 @@
     <string name="replay">Повторение</string>
     <string name="rewind">Превъртане назад</string>
     <string name="forward">Напред</string>
-    <string name="share_playlist_with_titles_message">Споделете плейлист с подробности, като име на плейлист и заглавия на видеоклипове или като обикновен списък с URL адреси на видеоклипове</string>
     <string name="share_playlist_with_list">Споделяне на списък с URL</string>
     <string name="delete_playback_states_alert">Изтрии всички позиции на възпроизвеждане?</string>
     <string name="watch_history_states_deleted">Позициите за възпроизвеждане са изтрити</string>

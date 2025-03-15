@@ -791,7 +791,6 @@
     <string name="rewind">Geri sar</string>
     <string name="replay">Yeniden oynat</string>
     <string name="feed_fetch_channel_tabs_summary">Besleme güncellenirken alınacak sekmeler. Hızlı kip kullanılırken kanal güncelleniyorsa bu seçeneğin etkisi yoktur.</string>
-    <string name="share_playlist_with_titles_message">Oynatma listesini, oynatma listesi adı ve video başlıkları gibi ayrıntılarla ya da video adreslerinin basit listesi olarak paylaş</string>
     <string name="image_quality_medium">Orta nitelik</string>
     <string name="metadata_uploader_avatars">Yükleyen avatarları</string>
     <string name="metadata_banners">Afişler</string>

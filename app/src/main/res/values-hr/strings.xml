@@ -800,7 +800,6 @@
     <string name="image_quality_medium">Srednja kvaliteta</string>
     <string name="image_quality_high">Visoka kvaliteta</string>
     <string name="question_mark">\?</string>
-    <string name="share_playlist_with_titles_message">Dijeli playlistu s detaljima kao što su ime playliste i naslovi videa ili kao jednostavan popis URL-ova videa</string>
     <string name="share_playlist_with_titles">Dijeli s naslovima</string>
     <string name="share_playlist_with_list">Dijeli popis URL-ova</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>

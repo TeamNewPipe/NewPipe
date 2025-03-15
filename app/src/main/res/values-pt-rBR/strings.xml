@@ -791,8 +791,9 @@
     <string name="channel_tab_livestreams">Ao vivo</string>
     <string name="image_quality_title">Qualidade da imagem</string>
     <string name="question_mark">\?</string>
-    <string name="share_playlist_with_list">Compartilhar URL</string>
-    <string name="share_playlist_with_titles">Compartilhar com título</string>
+    <string name="share_playlist_with_list">Compartilhar URLs</string>
+    <string name="share_playlist_with_titles">Compartilhar com títulos</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Compartilhar como playlist temporária do YouTube</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="toggle_screen_orientation">Alternar orientação da tela</string>
@@ -808,7 +809,6 @@
     <string name="forward">Avançar</string>
     <string name="rewind">Retroceder</string>
     <string name="replay">Repetir</string>
-    <string name="share_playlist_with_titles_message">Compartilhar playlist com detalhes como o nome da playlist e títulos de vídeo ou como uma lista simples dos URL de vídeos</string>
     <string name="image_quality_medium">Qualidade média</string>
     <string name="metadata_uploader_avatars">Fotos de perfil do autor</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>

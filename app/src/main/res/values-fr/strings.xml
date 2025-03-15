@@ -817,7 +817,6 @@
     <string name="forward">Avancer</string>
     <string name="rewind">Rembobiner</string>
     <string name="replay">Rejouer</string>
-    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le titre de ses vidéos ou simplement la liste des URLs des vidéos</string>
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>

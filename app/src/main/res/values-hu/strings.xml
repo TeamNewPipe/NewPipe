@@ -796,7 +796,6 @@
     <string name="image_quality_high">Magas minőségű</string>
     <string name="question_mark">\?</string>
     <string name="share_playlist">Lejátszási lista megosztása</string>
-    <string name="share_playlist_with_titles_message">Lejátszási lista megosztása olyan részletekkel, mint például a lejátszási lista neve és a videó címe, vagy a videó webcímek egyszerű listájaként</string>
     <string name="share_playlist_with_titles">Megosztás címekkel</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>

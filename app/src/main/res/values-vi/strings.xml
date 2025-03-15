@@ -787,7 +787,6 @@
     <string name="forward">Tua đi</string>
     <string name="channel_tab_albums">Album</string>
     <string name="rewind">Tua lại</string>
-    <string name="share_playlist_with_titles_message">Chia sẻ danh sách phát với các thông tin chi tiết như tên danh sách phát và tiêu đề video hoặc dưới dạng danh sách URL video đơn giản</string>
     <string name="image_quality_medium">Chất lượng trung bình</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="image_quality_summary">Chọn chất lượng hình ảnh và chọn có tải chất lượng ảnh hay không, để giảm mức sử dụng dữ liệu và bộ nhớ. Thay đổi xoá cache ảnh cho cả trong bộ nhớ lẫn ổ cứng - %s</string>

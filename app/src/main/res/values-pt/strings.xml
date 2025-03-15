@@ -817,7 +817,6 @@
     <string name="channel_tab_channels">Canais</string>
     <string name="previous_stream">Vídeo anterior</string>
     <string name="channel_tab_livestreams">Direto</string>
-    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
     <string name="image_quality_summary">Escolha a qualidade das imagens e se pretende carregar imagens, para reduzir a utilização de dados e de memória. As alterações limpam a cache de imagens na memória e no disco - %s</string>
     <string name="show_more">Mostrar mais</string>
     <plurals name="replies">
