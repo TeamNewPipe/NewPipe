@@ -127,17 +127,20 @@ public class App extends Application {
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl.INSTANCE);
 
         if (Build.VERSION.SDK_INT >= 33) {
+            final String appLanguageDefaultValue = getString(R.string.default_localization_key);
             final String appLanguageKey = getString(R.string.app_language_key);
-            if (prefs.contains(appLanguageKey)) {
+            final String appLanguageCurrentValue = prefs.getString(appLanguageKey, null);
+            if (appLanguageCurrentValue != null) {
                 // Migrate to Android per-app language settings
-                final String languageCode = prefs.getString(appLanguageKey, null);
                 prefs.edit().remove(appLanguageKey).apply();
-                try {
-                    AppCompatDelegate.setApplicationLocales(
-                            LocaleListCompat.forLanguageTags(languageCode)
-                    );
-                } catch (final RuntimeException e) {
-                    Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
+                if (!appLanguageCurrentValue.equals(appLanguageDefaultValue)) {
+                    try {
+                        AppCompatDelegate.setApplicationLocales(
+                                LocaleListCompat.forLanguageTags(appLanguageCurrentValue)
+                        );
+                    } catch (final RuntimeException e) {
+                        Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
+                    }
                 }
             }
         }
