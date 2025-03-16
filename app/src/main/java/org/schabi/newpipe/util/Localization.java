@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -39,6 +40,7 @@ import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -101,6 +103,10 @@ public final class Localization {
     }
 
     public static Locale getAppLocale(@NonNull final Context context) {
+        if (Build.VERSION.SDK_INT >= 33) {
+            final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
+            return Objects.requireNonNullElseGet(customLocale, Locale::getDefault);
+        }
         return getLocaleFromPrefs(context, R.string.app_language_key);
     }
 

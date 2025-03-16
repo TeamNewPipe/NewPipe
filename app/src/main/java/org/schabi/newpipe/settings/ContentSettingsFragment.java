@@ -1,10 +1,15 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -17,6 +22,7 @@ import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
@@ -36,6 +42,26 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
+
+        if (Build.VERSION.SDK_INT >= 33) {
+            requirePreference(R.string.app_language_key).setVisible(false);
+            final Preference newAppLanguagePref =
+                    requirePreference(R.string.app_language_android_13_and_up_key);
+            newAppLanguagePref.setSummaryProvider(preference -> {
+                final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
+                if (customLocale != null) {
+                    return customLocale.getDisplayName();
+                }
+                return getString(R.string.systems_language);
+            });
+            newAppLanguagePref.setOnPreferenceClickListener(preference -> {
+                final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
+                        .setData(Uri.fromParts("package", requireContext().getPackageName(), null));
+                startActivity(intent);
+                return true;
+            });
+            newAppLanguagePref.setVisible(true);
+        }
 
         final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
         imageQualityPreference.setOnPreferenceChangeListener(
