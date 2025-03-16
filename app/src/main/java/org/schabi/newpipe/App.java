@@ -127,20 +127,24 @@ public class App extends Application {
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl.INSTANCE);
 
         if (Build.VERSION.SDK_INT >= 33) {
-            final String appLanguageDefaultValue = getString(R.string.default_localization_key);
-            final String appLanguageKey = getString(R.string.app_language_key);
-            final String appLanguageCurrentValue = prefs.getString(appLanguageKey, null);
-            if (appLanguageCurrentValue != null) {
-                // Migrate to Android per-app language settings
-                prefs.edit().remove(appLanguageKey).apply();
-                if (!appLanguageCurrentValue.equals(appLanguageDefaultValue)) {
-                    try {
-                        AppCompatDelegate.setApplicationLocales(
-                                LocaleListCompat.forLanguageTags(appLanguageCurrentValue)
-                        );
-                    } catch (final RuntimeException e) {
-                        Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
-                    }
+            ensureAppLanguagePreferenceIsMigrated(prefs);
+        }
+    }
+
+    private void ensureAppLanguagePreferenceIsMigrated(final SharedPreferences prefs) {
+        final String appLanguageDefaultValue = getString(R.string.default_localization_key);
+        final String appLanguageKey = getString(R.string.app_language_key);
+        final String appLanguageCurrentValue = prefs.getString(appLanguageKey, null);
+        if (appLanguageCurrentValue != null) {
+            // Migrate to Android per-app language settings
+            prefs.edit().remove(appLanguageKey).apply();
+            if (!appLanguageCurrentValue.equals(appLanguageDefaultValue)) {
+                try {
+                    AppCompatDelegate.setApplicationLocales(
+                            LocaleListCompat.forLanguageTags(appLanguageCurrentValue)
+                    );
+                } catch (final RuntimeException e) {
+                    Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
                 }
             }
         }
