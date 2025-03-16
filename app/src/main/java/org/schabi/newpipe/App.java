@@ -3,11 +3,14 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -122,6 +125,22 @@ public class App extends Application {
         configureRxJavaErrorHandler();
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl.INSTANCE);
+
+        if (Build.VERSION.SDK_INT >= 33) {
+            final String appLanguageKey = getString(R.string.app_language_key);
+            if (prefs.contains(appLanguageKey)) {
+                // Migrate to Android per-app language settings
+                final String languageCode = prefs.getString(appLanguageKey, null);
+                prefs.edit().remove(appLanguageKey).apply();
+                try {
+                    AppCompatDelegate.setApplicationLocales(
+                            LocaleListCompat.forLanguageTags(languageCode)
+                    );
+                } catch (final RuntimeException e) {
+                    Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
+                }
+            }
+        }
     }
 
     @Override
