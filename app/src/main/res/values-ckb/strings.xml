@@ -101,7 +101,6 @@
     <string name="app_license_title">مۆڵەتنامەی نیوپایپ</string>
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
     <string name="msg_threads">دابەشکراوەکان</string>
-    <string name="title_most_played">زۆرترین لێدراو</string>
     <string name="unbookmark_playlist">لادانی نیشانه‌كراو</string>
     <string name="tab_licenses">مۆڵەتەکان</string>
     <string name="subscription_update_failed">ناتوانرێت به‌ژداریكردنه‌كه‌ نوێبكرێته‌وه‌</string>
@@ -312,7 +311,6 @@
     <string name="clear_views_history_summary">مێژوو دەسڕێتەوە لەگەڵ په‌خشه‌ لێدراوه‌كان و شوێنی کارپێکەر</string>
     <string name="caption_auto_generated">دانان-خۆکار</string>
     <string name="one_item_deleted">١ بابەت سڕایەوە.</string>
-    <string name="preferred_open_action_settings_summary">کرداری بنەڕەتی لەکاتی کردنەوەی بابەتدا — %s</string>
     <string name="select_a_kiosk">هکیۆسکێک دیار بکە</string>
     <string name="conferences">کۆنفرانسەکان</string>
     <string name="open_in_popup_mode">كردنه‌وه‌ له‌ دۆخی په‌نجه‌ره‌</string>
@@ -507,7 +505,6 @@
     <string name="play_queue_audio_settings">ڕێکخستنەکانی دەنگ</string>
     <string name="downloads_storage_ask_summary">پرست پێ دەکرێت بۆ شوێنی دابەزاندنی هەر بابەتێک.
 \nهەڵبژێرەری فۆڵدەری سیستەم کارابکە (SAF) گەر دەتەوێت بابەتەکانت لە بیرگەی دەرەکیدا داببەزێنرێن</string>
-    <string name="title_last_played">دواین لێدراو</string>
     <string name="could_not_setup_download_menu">ناتوانرێ لیستی دابه‌زاندن دابنرێت</string>
     <string name="app_update_available_notification_title">وەشانی نوێی نیوپایپ بەردەستە!</string>
     <string name="playlist_thumbnail_change_success">وێنۆچکەی خشتەلێدان گۆڕدرا.</string>

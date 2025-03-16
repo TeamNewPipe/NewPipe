@@ -182,8 +182,6 @@
     <string name="blank_page_summary">Bo\'sh sahifa</string>
     <string name="main_page_content_summary">Asosiy sahifada qanday yorliqlar ko\'rsatilgan</string>
     <string name="main_page_content">Asosiy sahifaning tarkibi</string>
-    <string name="title_most_played">Eng ko\'p ijrolar etilganlar</string>
-    <string name="title_last_played">Oxirgi ijro</string>
     <string name="delete_item_search_history">Ushbu narsani qidiruv tarixidan o\'chirmoqchimisiz\?</string>
     <string name="action_history">Tarix</string>
     <string name="title_activity_history">Tarix</string>

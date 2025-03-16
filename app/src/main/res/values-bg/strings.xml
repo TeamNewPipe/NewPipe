@@ -224,8 +224,6 @@
     <string name="title_activity_history">История</string>
     <string name="action_history">История</string>
     <string name="delete_item_search_history">Искате ли да изтриете този елемент от историята на търсенията?</string>
-    <string name="title_last_played">Последно възпроизвеждани</string>
-    <string name="title_most_played">Най-възпроизвеждани</string>
     <string name="main_page_content">Съдържание на главната страница</string>
     <string name="blank_page_summary">Празна страница</string>
     <string name="kiosk_page_summary">Страница-павилион</string>

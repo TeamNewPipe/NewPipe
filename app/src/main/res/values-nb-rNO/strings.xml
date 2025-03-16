@@ -222,8 +222,6 @@
     <string name="create">Opprett</string>
     <string name="dismiss">Forkast</string>
     <string name="rename">Gi nytt navn</string>
-    <string name="title_last_played">Sist spilt</string>
-    <string name="title_most_played">Mest spilt</string>
     <string name="always_ask_open_action">Alltid spør</string>
     <string name="create_playlist">Ny spilleliste</string>
     <string name="rename_playlist">Gi nytt navn</string>

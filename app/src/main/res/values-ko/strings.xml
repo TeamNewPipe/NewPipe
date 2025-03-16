@@ -209,8 +209,6 @@
     <string name="dismiss">취소</string>
     <string name="rename">이름 바꾸기</string>
     <string name="title_activity_recaptcha">reCAPTCHA 확인</string>
-    <string name="title_last_played">마지막으로 재생</string>
-    <string name="title_most_played">가장 많이 재생</string>
     <string name="export_complete_toast">내보내기 완료</string>
     <string name="import_complete_toast">가져오기 완료</string>
     <string name="no_valid_zip_file">유효한 ZIP 파일 없음</string>

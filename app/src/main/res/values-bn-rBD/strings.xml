@@ -195,8 +195,6 @@
     <string name="select_a_channel">একটি চ্যানেল পছন্দ করুন</string>
     <string name="channel_page_summary">চ্যানেল এর পাতা</string>
     <string name="blank_page_summary">খালি পাতা</string>
-    <string name="title_most_played">সবথেকে বেশি চালানো</string>
-    <string name="title_last_played">শেষ চালানো</string>
     <string name="read_full_license">লাইসেন্স পড়ুন</string>
     <string name="app_license_title">নিউপাইপ এর লাইসেন্স</string>
     <string name="read_privacy_policy">প্রাইভেসি পলিসি পড়ুন</string>

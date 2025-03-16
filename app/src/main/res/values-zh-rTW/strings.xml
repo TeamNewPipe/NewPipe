@@ -216,8 +216,6 @@
     <string name="create">建立</string>
     <string name="dismiss">退出</string>
     <string name="rename">重新命名</string>
-    <string name="title_last_played">上一次播放</string>
-    <string name="title_most_played">最常播放</string>
     <string name="always_ask_open_action">總是詢問</string>
     <string name="create_playlist">新的播放清單</string>
     <string name="rename_playlist">重新命名</string>

@@ -235,8 +235,6 @@
     <string name="title_activity_history">Sejarah</string>
     <string name="action_history">Sejarah</string>
     <string name="delete_item_search_history">Adakah anda mahu memadamkan item ini dari sejarah carian\?</string>
-    <string name="title_last_played">Terakhir dimainkan</string>
-    <string name="title_most_played">Kebanyakan dimainkan</string>
     <string name="main_page_content">Kandungan halaman utama</string>
     <string name="main_page_content_summary">Tab apa yang ditunjukkan pada halaman utama</string>
     <string name="blank_page_summary">Halaman Kosong</string>

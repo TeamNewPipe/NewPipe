@@ -331,7 +331,6 @@
     <string name="msg_popup_permission">దీనికి ఈ అనుమతి అవసరం
 \nతేలియాడే పద్ధతిలో తెరవండి</string>
     <string name="copyright">© %3$s కింద %2$s ద్వారా %1$s</string>
-    <string name="title_last_played">చివరిగా ఆడింది</string>
     <string name="export_data_summary">చరిత్ర, సభ్యత్వాలు, ప్లేజాబితాలు మరియు అమరికలను ఎగుమతిచేయుము</string>
     <string name="import_data_summary">మీ ప్రస్తుత చరిత్ర, సభ్యత్వాలు, ప్లేజాబితాలు మరియు (ఐచ్ఛికంగా) సెట్టింగ్‌లను భర్తీ చేస్తుంది</string>
     <string name="import_data_title">డాటాబేసుని దిగుమతిచేయుము</string>
@@ -352,7 +351,6 @@
     <string name="give_back">తిరిగి ఇవ్వండి</string>
     <string name="website_title">వెబ్సైట్</string>
     <string name="privacy_policy_title">NewPipe యొక్క గోప్యతా విధానం</string>
-    <string name="title_most_played">ఎక్కువగా ఆడినవి</string>
     <string name="main_page_content_summary">ప్రధాన పేజీలో ఏ ట్యాబ్‌లు చూపబడతాయి</string>
     <string name="kiosk_page_summary">కియోస్క్ పేజీ</string>
     <string name="default_kiosk_page_summary">డిఫాల్ట్ కియోస్క్</string>

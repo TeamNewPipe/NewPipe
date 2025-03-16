@@ -190,8 +190,6 @@
     <string name="title_activity_history">مێژوو</string>
     <string name="action_history">مێژوو</string>
     <string name="delete_item_search_history">ئایا دەتەوێ ئەم بابەتە لە مێژووی گەڕان بسڕدرێتەوە؟</string>
-    <string name="title_last_played">دواین کارپێکراو</string>
-    <string name="title_most_played">زۆرترین کارپێکراو</string>
     <string name="main_page_content">ناوەڕۆکی پەڕەی سەرەکی</string>
     <string name="play_queue_remove">لادان</string>
     <string name="play_queue_stream_detail">وردەکارییەکان</string>

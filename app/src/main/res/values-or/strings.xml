@@ -320,7 +320,6 @@
     <string name="read_privacy_policy">ଗୋପନୀୟତା ନୀତି ପଢ଼ନ୍ତୁ</string>
     <string name="app_license_title">NewPipe ର ଲାଇସେନ୍ସ</string>
     <string name="read_full_license">ଲାଇସେନ୍ସ ପଢ଼ନ୍ତୁ</string>
-    <string name="title_last_played">ଶେଷ ଥର ପ୍ଲେ ହୋଇଛି</string>
     <string name="blank_page_summary">ଖାଲି ପୃଷ୍ଠା</string>
     <string name="channel_page_summary">ଚ୍ୟାନେଲ୍ ପୃଷ୍ଠା</string>
     <string name="kiosk_page_summary">କିଓସ୍କ ପୃଷ୍ଠା</string>
@@ -628,7 +627,6 @@
     <string name="faq_description">ଯଦି ଆପଣ ଆପ୍ ବ୍ୟବହାର କରିବାରେ ଅସୁବିଧାର ସମ୍ମୁଖୀନ ହେଉଛନ୍ତି, ସାଧାରଣ ପ୍ରଶ୍ନର ଏହି ଉତ୍ତରଗୁଡିକ ଯାଞ୍ଚ କରିବାକୁ ନିଶ୍ଚିତ ହୁଅନ୍ତୁ!</string>
     <string name="faq">ୱେବସାଇଟ୍ ରେ ଦେଖନ୍ତୁ</string>
     <string name="delete_item_search_history">ଆପଣ ସନ୍ଧାନ ଇତିହାସରୁ ଏହି ଆଇଟମ୍ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
-    <string name="title_most_played">ଅଧିକାଂଶ ପ୍ଲେ ହୋଇଛି</string>
     <string name="main_page_content_summary">ମୁଖ୍ୟ ପୃଷ୍ଠାରେ କେଉଁ ଟ୍ୟାବଗୁଡ଼ିକ ଦେଖାଯାଏ</string>
     <string name="select_a_channel">ଏକ ଚ୍ୟାନେଲ୍ ଚୟନ କରନ୍ତୁ</string>
     <string name="main_page_content_swipe_remove">ସେଗୁଡିକ ଅପସାରଣ କରିବା ପାଇଁ ଆଇଟମଗୁଡିକ ସ୍ୱାଇପ୍ କରନ୍ତୁ</string>

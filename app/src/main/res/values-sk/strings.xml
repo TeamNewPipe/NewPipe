@@ -197,8 +197,6 @@
     <string name="website_title">Webstránka</string>
     <string name="website_encouragement">Pre viac informácií a noviniek navštívte webstránku NewPipe.</string>
     <string name="delete_item_search_history">Chcete odstrániť túto položku z histórie vyhľadávania?</string>
-    <string name="title_last_played">Naposledy prehrávané</string>
-    <string name="title_most_played">Najprehrávanejšie</string>
     <string name="main_page_content">Obsah na hlavnej stránke</string>
     <string name="blank_page_summary">Prázdna strana</string>
     <string name="kiosk_page_summary">Kiosk</string>

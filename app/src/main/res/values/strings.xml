@@ -389,8 +389,8 @@
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
-    <string name="title_last_played">Date</string>
-    <string name="title_most_played">Views</string>
+    <string name="history_sort_date">Date</string>
+    <string name="history_sort_views">Views</string>
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>

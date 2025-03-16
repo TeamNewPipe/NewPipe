@@ -225,8 +225,6 @@
     <string name="create">Crea</string>
     <string name="dismiss">Ignora</string>
     <string name="rename">Rinomina</string>
-    <string name="title_last_played">Ultima riproduzione</string>
-    <string name="title_most_played">I più riprodotti</string>
     <string name="always_ask_open_action">Chiedi ogni volta</string>
     <string name="create_playlist">Nuova playlist</string>
     <string name="rename_playlist">Rinomina</string>

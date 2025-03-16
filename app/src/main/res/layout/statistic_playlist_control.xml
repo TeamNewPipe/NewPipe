@@ -30,7 +30,7 @@
             android:layout_height="50dp"
             android:layout_toRightOf="@id/sortButtonIcon"
             android:gravity="left|center"
-            android:text="@string/title_most_played"
+            android:text="@string/history_sort_views"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="15sp"
             android:textStyle="bold"

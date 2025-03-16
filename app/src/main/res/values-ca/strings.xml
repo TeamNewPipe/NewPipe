@@ -194,8 +194,6 @@
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Feu una donació</string>
     <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre web.</string>
-    <string name="title_last_played">Últimes reproduccions</string>
-    <string name="title_most_played">Més reproduïts</string>
     <string name="kiosk_page_summary">Tendències</string>
     <string name="channel_page_summary">Pàgina d\'un canal</string>
     <string name="select_a_kiosk">Trieu un quiosc</string>

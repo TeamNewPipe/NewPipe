@@ -4,6 +4,6 @@ import androidx.annotation.StringRes
 import org.schabi.newpipe.R
 
 enum class SortKey(@StringRes val title: Int) {
-    LAST_PLAYED(R.string.title_last_played),
-    MOST_PLAYED(R.string.title_most_played)
+    LAST_PLAYED(R.string.history_sort_date),
+    MOST_PLAYED(R.string.history_sort_views)
 }

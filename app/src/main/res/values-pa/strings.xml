@@ -218,8 +218,6 @@
     <string name="title_activity_history">ਇਤਿਹਾਸ</string>
     <string name="action_history">ਇਤਿਹਾਸ</string>
     <string name="delete_item_search_history">ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ ਖੋਜ ਇਤਿਹਾਸ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
-    <string name="title_last_played">ਆਖਰੀ ਚਲਾਈ ਗਈ</string>
-    <string name="title_most_played">ਸਭ ਤੋਂ ਜਿਆਦਾ ਚਲਾਈ ਗਈ</string>
     <string name="main_page_content">ਮੁੱਖ ਪੰਨੇ ਦੀ ਸਮੱਗਰੀ</string>
     <string name="blank_page_summary">ਖ਼ਾਲੀ ਪੰਨਾ</string>
     <string name="kiosk_page_summary">ਕਿਓਸਕ ਪੰਨਾ</string>

@@ -83,8 +83,6 @@
     <string name="blank_page_summary">Pàgina bòida</string>
     <string name="main_page_content_summary">Ischedas benint ammustradas in sa pàgina printzipale</string>
     <string name="main_page_content">Cuntenutu de sa pàgina printzipale</string>
-    <string name="title_most_played">Prus riproduidos</string>
-    <string name="title_last_played">Ùrtima riprodutzione</string>
     <string name="delete_item_search_history">Cheres iscantzellare custu elementu dae sa cronologia de chirca\?</string>
     <string name="action_history">Cronologia</string>
     <string name="title_activity_history">Cronologia</string>

@@ -242,8 +242,6 @@
     <string name="create">Создать</string>
     <string name="dismiss">Скрыть</string>
     <string name="rename">Переименовать</string>
-    <string name="title_last_played">Недавно проигранные</string>
-    <string name="title_most_played">Часто проигрываемые</string>
     <string name="export_complete_toast">Экспорт завершён</string>
     <string name="import_complete_toast">Импорт завершён</string>
     <string name="no_valid_zip_file">Нет верного Zip-файла</string>

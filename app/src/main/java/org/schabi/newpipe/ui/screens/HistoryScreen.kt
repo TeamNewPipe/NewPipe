@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.ClearAll
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.PictureInPicture
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -75,7 +74,7 @@ fun HistoryScreen(viewModel: HistoryViewModel = viewModel()) {
     })
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun HistoryHeader(
     sortKey: SortKey,
@@ -92,6 +91,23 @@ private fun HistoryHeader(
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
         horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
     ) {
+        HistorySortRow(sortKey, onSelectSortKey)
+
+        HistoryButtons(onClickClear, onClickBackground, onClickPlayAll, onClickPopup)
+    }
+}
+
+@Composable
+private fun HistorySortRow(
+    sortKey: SortKey,
+    onSelectSortKey: (SortKey) -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(text = stringResource(R.string.history_sort_label))
+
         SingleChoiceSegmentedButtonRow {
             SortKey.entries.forEachIndexed { index, key ->
                 SegmentedButton(
@@ -104,68 +120,68 @@ private fun HistoryHeader(
                 }
             }
         }
-
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
-            IconButtonWithLabel(
-                icon = Icons.Default.Headphones,
-                label = R.string.controls_background_title,
-                onClick = onClickBackground,
-            )
-
-            IconButtonWithLabel(
-                icon = Icons.AutoMirrored.Filled.PlaylistPlay,
-                label = R.string.play_all,
-                onClick = onClickPlayAll,
-            )
-
-            IconButtonWithLabel(
-                icon = Icons.Default.PictureInPicture,
-                label = R.string.controls_popup_title,
-                onClick = onClickPopup,
-            )
-
-            var openClearDialog by remember { mutableStateOf(false) }
-
-            TextButton(onClick = { openClearDialog = true }) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(imageVector = Icons.Default.ClearAll, contentDescription = null)
-                    Text(text = stringResource(R.string.clear))
-                }
-            }
-
-            ClearHistoryDialog(openClearDialog, onClickClear, onDismissRequest = { openClearDialog = false })
-        }
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun ClearHistoryDialog(
-    openClearDialog: Boolean,
+private fun HistoryButtons(
     onClickClear: () -> Unit,
-    onDismissRequest: () -> Unit
+    onClickBackground: () -> Unit,
+    onClickPlayAll: () -> Unit,
+    onClickPopup: () -> Unit
 ) {
-    if (openClearDialog) {
-        AlertDialog(
-            onDismissRequest = onDismissRequest,
-            title = { Text(text = stringResource(R.string.delete_view_history_alert)) },
-            text = { Text(text = stringResource(R.string.delete_view_history_description)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    onClickClear()
-                    onDismissRequest()
-                }) {
-                    Text(stringResource(R.string.delete))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = onDismissRequest) {
-                    Text(stringResource(R.string.cancel))
-                }
-            },
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
+        IconButtonWithLabel(
+            icon = Icons.Default.Headphones,
+            label = R.string.controls_background_title,
+            onClick = onClickBackground,
         )
+
+        IconButtonWithLabel(
+            icon = Icons.AutoMirrored.Filled.PlaylistPlay,
+            label = R.string.play_all,
+            onClick = onClickPlayAll,
+        )
+
+        IconButtonWithLabel(
+            icon = Icons.Default.PictureInPicture,
+            label = R.string.controls_popup_title,
+            onClick = onClickPopup,
+        )
+
+        var openClearDialog by remember { mutableStateOf(false) }
+
+        TextButton(onClick = { openClearDialog = true }) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(imageVector = Icons.Default.ClearAll, contentDescription = null)
+                Text(text = stringResource(R.string.clear))
+            }
+        }
+
+        if (openClearDialog) {
+            AlertDialog(
+                onDismissRequest = { openClearDialog = false },
+                title = { Text(text = stringResource(R.string.delete_view_history_alert)) },
+                text = { Text(text = stringResource(R.string.delete_view_history_description)) },
+                confirmButton = {
+                    TextButton(onClick = {
+                        onClickClear()
+                        openClearDialog = false
+                    }) {
+                        Text(stringResource(R.string.delete))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { openClearDialog = false }) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
     }
 }
 
