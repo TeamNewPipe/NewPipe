@@ -3,14 +3,11 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -125,29 +122,6 @@ public class App extends Application {
         configureRxJavaErrorHandler();
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl.INSTANCE);
-
-        if (Build.VERSION.SDK_INT >= 33) {
-            ensureAppLanguagePreferenceIsMigrated(prefs);
-        }
-    }
-
-    private void ensureAppLanguagePreferenceIsMigrated(final SharedPreferences prefs) {
-        final String appLanguageDefaultValue = getString(R.string.default_localization_key);
-        final String appLanguageKey = getString(R.string.app_language_key);
-        final String appLanguageCurrentValue = prefs.getString(appLanguageKey, null);
-        if (appLanguageCurrentValue != null) {
-            // Migrate to Android per-app language settings
-            prefs.edit().remove(appLanguageKey).apply();
-            if (!appLanguageCurrentValue.equals(appLanguageDefaultValue)) {
-                try {
-                    AppCompatDelegate.setApplicationLocales(
-                            LocaleListCompat.forLanguageTags(appLanguageCurrentValue)
-                    );
-                } catch (final RuntimeException e) {
-                    Log.e(TAG, "Error migrating to Android 13+ per-app language settings");
-                }
-            }
-        }
     }
 
     @Override
