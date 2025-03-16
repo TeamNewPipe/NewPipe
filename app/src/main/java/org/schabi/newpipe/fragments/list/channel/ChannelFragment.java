@@ -121,11 +121,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         subscriptionManager = new SubscriptionManager(activity);
