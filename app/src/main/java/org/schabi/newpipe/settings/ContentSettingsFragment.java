@@ -27,8 +27,6 @@ import java.util.Locale;
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
 
-    private Localization initialSelectedLocalization;
-    private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
 
     @Override
@@ -37,10 +35,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         addPreferencesFromResourceRegistry();
 
-        initialSelectedLocalization = org.schabi.newpipe.util.Localization
-                .getPreferredLocalization(requireContext());
-        initialSelectedContentCountry = org.schabi.newpipe.util.Localization
-                .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
 
         if (Build.VERSION.SDK_INT >= 33) {
@@ -98,16 +92,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onDestroy() {
         super.onDestroy();
 
-        final Localization selectedLocalization = org.schabi.newpipe.util.Localization
-                .getPreferredLocalization(requireContext());
-        final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
-                .getPreferredContentCountry(requireContext());
         final String selectedLanguage =
                 defaultPreferences.getString(getString(R.string.app_language_key), "en");
 
-        if (!selectedLocalization.equals(initialSelectedLocalization)
-                || !selectedContentCountry.equals(initialSelectedContentCountry)
-                || !selectedLanguage.equals(initialLanguage)) {
+        if (!selectedLanguage.equals(initialLanguage)) {
             if (Build.VERSION.SDK_INT < 33) {
                 Toast.makeText(
                         requireContext(),
@@ -115,6 +103,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         Toast.LENGTH_LONG
                 ).show();
             }
+            final Localization selectedLocalization = org.schabi.newpipe.util.Localization
+                    .getPreferredLocalization(requireContext());
+            final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
+                    .getPreferredContentCountry(requireContext());
             NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
         }
     }
