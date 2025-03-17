@@ -108,9 +108,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
                 || !selectedLanguage.equals(initialLanguage)) {
-            Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart,
-                    Toast.LENGTH_LONG).show();
-
+            if (Build.VERSION.SDK_INT < 33) {
+                Toast.makeText(
+                        requireContext(),
+                        R.string.localization_changes_requires_app_restart,
+                        Toast.LENGTH_LONG
+                ).show();
+            }
             NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
         }
     }
