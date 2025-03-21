@@ -862,7 +862,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onReceive(final Context context, final Intent intent) {
                     if (Objects.equals(intent.getAction(),
-                            VideoDetailFragment.ACTION_PLAYER_STARTED)) {
+                            VideoDetailFragment.ACTION_PLAYER_STARTED)
+                            && PlayerHolder.getInstance().isPlayerOpen()) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.
@@ -874,6 +875,10 @@ public class MainActivity extends AppCompatActivity {
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
             registerReceiver(broadcastReceiver, intentFilter);
+
+            // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
+            // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
+            PlayerHolder.getInstance().tryBindIfNeeded(this);
         }
     }
 
