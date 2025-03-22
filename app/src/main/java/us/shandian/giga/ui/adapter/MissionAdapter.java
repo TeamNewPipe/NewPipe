@@ -71,6 +71,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Date;
+import java.util.Locale;
+import java.text.DateFormat;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -213,6 +216,10 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.status.setText("100%");
             h.progress.setProgress(1.0f);
             h.size.setText(Utility.formatBytes(item.mission.length));
+
+            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
+            Date date = new Date(item.mission.timestamp);
+            h.date.setText(dateFormat.format(date));
         }
     }
 
