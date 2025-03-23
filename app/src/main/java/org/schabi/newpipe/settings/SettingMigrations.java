@@ -2,12 +2,9 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -146,36 +143,6 @@ public final class SettingMigrations {
         }
     };
 
-    public static final Migration MIGRATION_6_7 = new Migration(6, 7) {
-        @Override
-        protected void migrate(@NonNull final Context context) {
-            // Starting with pull request #12093, NewPipe on Android 13+ exclusively uses Android's
-            // public per-app language APIs to read and set the UI language for NewPipe.
-            // If running on Android 13+, the following migration will move any existing custom
-            // app language in SharedPreferences to use the public per-app language APIs instead.
-            if (Build.VERSION.SDK_INT >= 33) {
-                final String appLanguageDefaultValue =
-                        context.getString(R.string.default_localization_key);
-                final String appLanguageKey = context.getString(R.string.app_language_key);
-                final String appLanguageCurrentValue = sp.getString(appLanguageKey, null);
-                if (appLanguageCurrentValue != null) {
-                    sp.edit().remove(appLanguageKey).apply();
-                    if (!appLanguageCurrentValue.equals(appLanguageDefaultValue)) {
-                        try {
-                            AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.forLanguageTags(appLanguageCurrentValue)
-                            );
-                        } catch (final RuntimeException e) {
-                            Log.e(TAG, "Failed to migrate previous custom app language "
-                                    + "setting to public per-app language APIs"
-                            );
-                        }
-                    }
-                }
-            }
-        }
-    };
-
     /**
      * List of all implemented migrations.
      * <p>
@@ -189,13 +156,12 @@ public final class SettingMigrations {
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,
-            MIGRATION_6_7,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 7;
+    private static final int VERSION = 6;
 
 
     public static void runMigrationsIfNeeded(@NonNull final Context context) {
