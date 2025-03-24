@@ -1,5 +1,7 @@
 package org.schabi.newpipe.ui.components.items
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -28,6 +30,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.info_list.ItemViewMode
 import org.schabi.newpipe.ktx.findFragmentActivity
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
+import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.common.defaultThemedScrollbarSettings
 import org.schabi.newpipe.ui.components.items.playlist.PlaylistListItem
 import org.schabi.newpipe.ui.components.items.stream.StreamCardItem
@@ -85,12 +88,12 @@ fun ItemList(
         LazyVerticalGridScrollbar(state = state, settings = defaultThemedScrollbarSettings()) {
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isCompact = windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-            val minSize = if (isCompact) 150.dp else 250.dp
+            val minWidth = if (isCompact) 150.dp else 250.dp
 
             LazyVerticalGrid(
                 modifier = nestedScrollModifier,
                 state = state,
-                columns = GridCells.Adaptive(minSize)
+                columns = GridCells.Adaptive(minWidth)
             ) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     header()
@@ -106,6 +109,8 @@ fun ItemList(
                             item, showProgress, isSelected, isCompact, onClick, onLongClick,
                             onDismissPopup
                         )
+                    } else if (item == null) { // Placeholder
+                        LoadingIndicator(Modifier.size(minWidth, if (isCompact) 150.dp else 200.dp))
                     }
                 }
             }
@@ -137,6 +142,8 @@ fun ItemList(
                         }
                     } else if (item is Playlist) {
                         PlaylistListItem(item, onClick)
+                    } else if (item == null) { // Placeholder
+                        LoadingIndicator(Modifier.height(80.dp))
                     }
                 }
             }
