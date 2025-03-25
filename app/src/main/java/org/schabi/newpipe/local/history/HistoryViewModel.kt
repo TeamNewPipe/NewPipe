@@ -12,8 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.ui.components.items.Stream
 
@@ -39,12 +37,6 @@ class HistoryViewModel(
 
     fun updateOrder(sortKey: SortKey) {
         savedStateHandle[ORDER_KEY] = sortKey
-    }
-
-    fun deleteWatchHistory() {
-        viewModelScope.launch(Dispatchers.IO) {
-            historyDao.deleteAll().await()
-        }
     }
 
     companion object {
