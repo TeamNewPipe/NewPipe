@@ -60,14 +60,14 @@ class HistoryFragment : Fragment() {
                                 .setNegativeButton(R.string.cancel) { dialog, which -> dialog.dismiss() }
                                 .setPositiveButton(R.string.delete) { dialog, which ->
                                     viewLifecycleOwner.lifecycleScope.launch {
-                                        launch(getExceptionHandler("Clear orphaned records")) {
+                                        launch(getExceptionHandler("Delete playback states")) {
                                             recordManager.deleteCompleteStreamStateHistory().await()
                                             Toast
                                                 .makeText(context, R.string.watch_history_states_deleted, Toast.LENGTH_SHORT)
                                                 .show()
                                         }
 
-                                        launch(getExceptionHandler("Delete search history")) {
+                                        launch(getExceptionHandler("Delete watch history")) {
                                             recordManager.deleteWholeStreamHistory().await()
                                             Toast.makeText(context, R.string.watch_history_deleted, Toast.LENGTH_SHORT)
                                                 .show()
