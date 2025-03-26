@@ -30,29 +30,29 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
-public abstract class StreamHistoryDAO {
+public interface StreamHistoryDAO {
     @Insert
-    public abstract long insert(StreamHistoryEntity entity);
+    long insert(StreamHistoryEntity entity);
 
     @Delete
-    public abstract void delete(StreamHistoryEntity entity);
+    void delete(StreamHistoryEntity entity);
 
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE)
-    public abstract Completable deleteAll();
+    Completable deleteAll();
 
     @Query("SELECT * FROM " + STREAM_TABLE
             + " INNER JOIN " + STREAM_HISTORY_TABLE
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
             + " ORDER BY " + STREAM_ID + " ASC")
-    public abstract Flowable<List<StreamHistoryEntry>> getHistorySortedById();
+    Flowable<List<StreamHistoryEntry>> getHistorySortedById();
 
     @Query("SELECT * FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID
             + " = :streamId ORDER BY " + STREAM_ACCESS_DATE + " DESC LIMIT 1")
     @Nullable
-    public abstract StreamHistoryEntity getLatestEntry(long streamId);
+    StreamHistoryEntity getLatestEntry(long streamId);
 
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
-    public abstract int deleteStreamHistory(long streamId);
+    Completable deleteStreamHistory(long streamId);
 
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM " + STREAM_TABLE
@@ -74,7 +74,7 @@ public abstract class StreamHistoryDAO {
 
             + " ORDER BY " + STREAM_LATEST_DATE + " DESC"
     )
-    public abstract PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByLastWatched();
+    PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByLastWatched();
 
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM " + STREAM_TABLE
@@ -96,5 +96,5 @@ public abstract class StreamHistoryDAO {
 
             + " ORDER BY " + STREAM_WATCH_COUNT + " DESC"
     )
-    public abstract PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByViewCount();
+    PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByViewCount();
 }

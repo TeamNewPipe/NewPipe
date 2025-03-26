@@ -20,6 +20,7 @@ import org.schabi.newpipe.util.InfoCache;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.internal.functions.Functions;
 
 public class HistorySettingsFragment extends BasePreferenceFragment {
     private String cacheWipeKey;
@@ -79,8 +80,8 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         return recordManager.deleteCompleteStreamStateHistory()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        howManyDeleted -> Toast.makeText(context,
-                                R.string.watch_history_states_deleted,  Toast.LENGTH_SHORT).show(),
+                        () -> Toast.makeText(context, R.string.watch_history_states_deleted,
+                                Toast.LENGTH_SHORT).show(),
                         throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete playback states")));
@@ -103,7 +104,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         return recordManager.removeOrphanedRecords()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        howManyDeleted -> { },
+                        Functions.EMPTY_ACTION,
                         throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Clear orphaned records")));

@@ -3,6 +3,7 @@ package org.schabi.newpipe.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
 import kotlinx.coroutines.rx3.awaitSingleOrNull
@@ -25,7 +26,7 @@ class StreamViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun deleteStreamHistory(streamId: Long) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             historyRecordManager.deleteStreamHistoryAndState(streamId).await()
         }
     }

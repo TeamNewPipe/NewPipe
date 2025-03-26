@@ -151,19 +151,16 @@ public class HistoryRecordManager {
     }
 
     public Completable deleteStreamHistoryAndState(final long streamId) {
-        return Completable.fromAction(() -> {
-            streamStateTable.deleteState(streamId);
-            streamHistoryTable.deleteStreamHistory(streamId);
-        }).subscribeOn(Schedulers.io());
+        return streamStateTable.deleteState(streamId)
+                .andThen(streamHistoryTable.deleteStreamHistory(streamId));
     }
 
     public Completable deleteWholeStreamHistory() {
         return streamHistoryTable.deleteAll().subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteCompleteStreamStateHistory() {
-        return Single.fromCallable(streamStateTable::deleteAll)
-                .subscribeOn(Schedulers.io());
+    public Completable deleteCompleteStreamStateHistory() {
+        return streamStateTable.deleteAll().subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<StreamHistoryEntry>> getStreamHistorySortedById() {
@@ -278,8 +275,7 @@ public class HistoryRecordManager {
     // Utility
     ///////////////////////////////////////////////////////
 
-    public Single<Integer> removeOrphanedRecords() {
-        return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
+    public Completable removeOrphanedRecords() {
+        return streamTable.deleteOrphans().subscribeOn(Schedulers.io());
     }
-
 }
