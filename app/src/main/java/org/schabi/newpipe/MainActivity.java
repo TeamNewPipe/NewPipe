@@ -190,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
+
+        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
     }
 
     @Override

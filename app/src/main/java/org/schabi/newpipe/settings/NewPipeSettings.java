@@ -6,12 +6,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -45,7 +42,6 @@ import java.util.Set;
  * Helper class for global settings.
  */
 public final class NewPipeSettings {
-    private static final String TAG = NewPipeSettings.class.toString();
     private NewPipeSettings() { }
 
     public static void initSettings(final Context context) {
@@ -68,7 +64,6 @@ public final class NewPipeSettings {
         saveDefaultAudioDownloadDirectory(context);
 
         disableMediaTunnelingIfNecessary(context);
-        migrateAppLanguageSettingIfNecessary(context);
     }
 
     static void saveDefaultVideoDownloadDirectory(final Context context) {
@@ -187,34 +182,6 @@ public final class NewPipeSettings {
             prefs.edit()
                     .putInt(context.getString(R.string.media_tunneling_device_blacklist_version),
                             DeviceUtils.MEDIA_TUNNELING_DEVICE_BLACKLIST_VERSION).apply();
-        }
-    }
-
-    private static void migrateAppLanguageSettingIfNecessary(@NonNull final Context context) {
-        // Starting with pull request #12093, NewPipe on Android 13+ exclusively uses Android's
-        // public per-app language APIs to read and set the UI language for NewPipe.
-        // If running on Android 13+, the following migration will move any existing custom
-        // app language in SharedPreferences to use the public per-app language APIs instead.
-        if (Build.VERSION.SDK_INT >= 33) {
-            final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            final String appLanguageKey = context.getString(R.string.app_language_key);
-            final String appLanguageValue = sp.getString(appLanguageKey, null);
-            if (appLanguageValue != null) {
-                sp.edit().remove(appLanguageKey).apply();
-                final String appLanguageDefaultValue =
-                        context.getString(R.string.default_localization_key);
-                if (!appLanguageValue.equals(appLanguageDefaultValue)) {
-                    try {
-                        AppCompatDelegate.setApplicationLocales(
-                                LocaleListCompat.forLanguageTags(appLanguageValue)
-                        );
-                    } catch (final RuntimeException e) {
-                        Log.e(TAG, "Failed to migrate previous custom app language "
-                                + "setting to public per-app language APIs"
-                        );
-                    }
-                }
-            }
         }
     }
 }
