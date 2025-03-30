@@ -211,6 +211,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
             updateProgress(h);
             mPendingDownloadsItems.add(h);
+
+            h.date.setText("");
         } else {
             h.progress.setMarquee(false);
             h.status.setText("100%");
@@ -839,6 +841,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         ImageView icon;
         TextView name;
         TextView size;
+        TextView date;
         ProgressDrawable progress;
 
         PopupMenu popupMenu;
@@ -869,6 +872,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             name = itemView.findViewById(R.id.item_name);
             icon = itemView.findViewById(R.id.item_icon);
             size = itemView.findViewById(R.id.item_size);
+            date = itemView.findViewById(R.id.item_date);
 
             name.setSelected(true);
 
