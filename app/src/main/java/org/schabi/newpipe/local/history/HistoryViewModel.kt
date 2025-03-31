@@ -21,7 +21,7 @@ class HistoryViewModel(
 ) : AndroidViewModel(application) {
     private val historyDao = NewPipeDatabase.getInstance(getApplication()).streamHistoryDAO()
 
-    val sortKey = savedStateHandle.getStateFlow(ORDER_KEY, SortKey.MOST_PLAYED)
+    val sortKey = savedStateHandle.getStateFlow(ORDER_KEY, SortKey.LAST_PLAYED)
     val historyItems = sortKey
         .flatMapLatest {
             Pager(PagingConfig(pageSize = 20)) {
