@@ -17,7 +17,7 @@ fun parseChallengeData(rawChallengeData: String): String {
         val descrambled = descramble(scrambled.getString(1))
         JsonParser.array().from(descrambled)
     } else {
-        scrambled.getArray(1)
+        scrambled.getArray(0)
     }
 
     val messageId = challengeData.getString(0)
