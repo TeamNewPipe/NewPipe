@@ -101,7 +101,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     private MenuItem menuRssButton;
     private MenuItem menuNotifyButton;
     private SubscriptionEntity channelSubscription;
-    private MenuProvider menuProvider;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -122,9 +121,24 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        menuProvider = new MenuProvider() {
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+        subscriptionManager = new SubscriptionManager(activity);
+    }
+
+    @Override
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
+        binding = FragmentChannelBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override // called from onViewCreated in BaseFragment.onViewCreated
+    protected void initViews(final View rootView, final Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+
+        final var menuProvider = new MenuProvider() {
             @Override
             public void onCreateMenu(@NonNull final Menu menu,
                                      @NonNull final MenuInflater inflater) {
@@ -134,7 +148,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                     Log.d(TAG, "onCreateOptionsMenu() called with: "
                             + "menu = [" + menu + "], inflater = [" + inflater + "]");
                 }
-
             }
 
             @Override
@@ -179,26 +192,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 return true;
             }
         };
-        activity.addMenuProvider(menuProvider);
-    }
-
-    @Override
-    public void onAttach(@NonNull final Context context) {
-        super.onAttach(context);
-        subscriptionManager = new SubscriptionManager(activity);
-    }
-
-    @Override
-    public View onCreateView(@NonNull final LayoutInflater inflater,
-                             @Nullable final ViewGroup container,
-                             @Nullable final Bundle savedInstanceState) {
-        binding = FragmentChannelBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-    @Override // called from onViewCreated in BaseFragment.onViewCreated
-    protected void initViews(final View rootView, final Bundle savedInstanceState) {
-        super.initViews(rootView, savedInstanceState);
+        activity.addMenuProvider(menuProvider, getViewLifecycleOwner());
 
         EmptyStateUtil.setEmptyStateComposable(
                 binding.emptyStateView,
@@ -246,8 +240,6 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         }
         disposables.clear();
         binding = null;
-        activity.removeMenuProvider(menuProvider);
-        menuProvider = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
