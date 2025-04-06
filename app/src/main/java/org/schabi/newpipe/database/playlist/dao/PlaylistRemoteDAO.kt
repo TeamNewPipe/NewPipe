@@ -1,68 +1,44 @@
-package org.schabi.newpipe.database.playlist.dao;
+package org.schabi.newpipe.database.playlist.dao
 
-import androidx.room.Dao;
-import androidx.room.Query;
-import androidx.room.Transaction;
-
-import org.schabi.newpipe.database.BasicDAO;
-import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Flowable;
-
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_DISPLAY_INDEX;
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_ID;
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_SERVICE_ID;
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_TABLE;
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_URL;
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
+import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 
 @Dao
-public interface PlaylistRemoteDAO extends BasicDAO<PlaylistRemoteEntity> {
-    @Override
-    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE)
-    Flowable<List<PlaylistRemoteEntity>> getAll();
+interface PlaylistRemoteDAO {
+    @Query("SELECT * FROM remote_playlists")
+    fun getAll(): Flowable<List<PlaylistRemoteEntity>>
 
-    @Override
-    @Query("DELETE FROM " + REMOTE_PLAYLIST_TABLE)
-    int deleteAll();
+    @Query("SELECT * FROM remote_playlists WHERE url = :url AND service_id = :serviceId")
+    fun getPlaylist(serviceId: Int, url: String): Flow<PlaylistRemoteEntity?>
 
-    @Override
-    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE
-            + " WHERE " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    Flowable<List<PlaylistRemoteEntity>> listByService(int serviceId);
+    @Query("SELECT * FROM remote_playlists ORDER BY display_index")
+    fun getPlaylists(): Flowable<List<PlaylistRemoteEntity>>
 
-    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
-            + REMOTE_PLAYLIST_ID + " = :playlistId")
-    Flowable<List<PlaylistRemoteEntity>> getPlaylist(long playlistId);
+    @Insert
+    suspend fun insert(playlist: PlaylistRemoteEntity): Long
 
-    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
-            + REMOTE_PLAYLIST_URL + " = :url AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    Flowable<List<PlaylistRemoteEntity>> getPlaylist(long serviceId, String url);
-
-    @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE
-     + " ORDER BY " + REMOTE_PLAYLIST_DISPLAY_INDEX)
-    Flowable<List<PlaylistRemoteEntity>> getPlaylists();
-
-    @Query("SELECT " + REMOTE_PLAYLIST_ID + " FROM " + REMOTE_PLAYLIST_TABLE
-            + " WHERE " + REMOTE_PLAYLIST_URL + " = :url "
-            + "AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    Long getPlaylistIdInternal(long serviceId, String url);
+    @Update
+    suspend fun update(playlist: PlaylistRemoteEntity)
 
     @Transaction
-    default long upsert(final PlaylistRemoteEntity playlist) {
-        final Long playlistId = getPlaylistIdInternal(playlist.getServiceId(), playlist.getUrl());
+    suspend fun upsert(playlist: PlaylistRemoteEntity) {
+        val dbPlaylist = getPlaylist(playlist.serviceId, playlist.url).firstOrNull()
 
-        if (playlistId == null) {
-            return insert(playlist);
+        if (dbPlaylist == null) {
+            insert(playlist)
         } else {
-            playlist.setUid(playlistId);
-            update(playlist);
-            return playlistId;
+            playlist.uid = dbPlaylist.uid
+            update(playlist)
         }
     }
 
-    @Query("DELETE FROM " + REMOTE_PLAYLIST_TABLE
-            + " WHERE " + REMOTE_PLAYLIST_ID + " = :playlistId")
-    int deletePlaylist(long playlistId);
+    @Query("DELETE FROM remote_playlists WHERE uid = :playlistId")
+    suspend fun deletePlaylist(playlistId: Long): Int
 }

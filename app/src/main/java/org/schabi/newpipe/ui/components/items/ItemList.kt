@@ -55,7 +55,9 @@ fun ItemList(
                     context, fragmentManager, item.serviceId, item.url, item.name, null, false
                 )
             } else if (item is PlaylistInfoItem) {
-                NavigationHelper.openPlaylistFragment(fragmentManager, item.serviceId, item.url)
+                NavigationHelper.openPlaylistFragment(
+                    fragmentManager, item.serviceId, item.url, item.name
+                )
             }
         }
     }

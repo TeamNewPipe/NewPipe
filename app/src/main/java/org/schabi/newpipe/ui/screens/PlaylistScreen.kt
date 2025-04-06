@@ -1,12 +1,9 @@
 package org.schabi.newpipe.ui.screens
 
 import android.content.res.Configuration
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -23,7 +20,7 @@ import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.components.items.ItemList
 import org.schabi.newpipe.ui.components.items.stream.StreamInfoItem
 import org.schabi.newpipe.ui.components.playlist.PlaylistHeader
-import org.schabi.newpipe.ui.components.playlist.PlaylistInfo
+import org.schabi.newpipe.ui.components.playlist.PlaylistScreenInfo
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
@@ -32,15 +29,13 @@ import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
 fun PlaylistScreen(playlistViewModel: PlaylistViewModel = viewModel()) {
-    Surface(color = MaterialTheme.colorScheme.background) {
-        val uiState by playlistViewModel.uiState.collectAsStateWithLifecycle()
-        PlaylistScreen(uiState, playlistViewModel.streamItems)
-    }
+    val uiState by playlistViewModel.uiState.collectAsStateWithLifecycle()
+    PlaylistScreen(uiState, playlistViewModel.streamItems)
 }
 
 @Composable
 private fun PlaylistScreen(
-    uiState: Resource<PlaylistInfo>,
+    uiState: Resource<PlaylistScreenInfo>,
     streamFlow: Flow<PagingData<StreamInfoItem>>
 ) {
     when (uiState) {
@@ -48,16 +43,10 @@ private fun PlaylistScreen(
             val info = uiState.data
             val streams = streamFlow.collectAsLazyPagingItems()
 
-            // Paging's load states only indicate when loading is currently happening, not if it can/will
-            // happen. As such, the duration initially displayed will be the incomplete duration if more
-            // items can be loaded.
-            val totalDuration by remember {
-                derivedStateOf {
-                    streams.itemSnapshotList.sumOf { it?.duration ?: 0 }
-                }
-            }
-
-            ItemList(streams, header = { PlaylistHeader(info, totalDuration) })
+            ItemList(
+                items = streams,
+                header = { PlaylistHeader(info, streams.itemSnapshotList) },
+            )
         }
 
         is Resource.Loading -> {
@@ -80,16 +69,26 @@ private fun PlaylistScreen(
 @Composable
 private fun PlaylistPreview() {
     val description = Description("Example description", Description.PLAIN_TEXT)
-    val playlistInfo = PlaylistInfo(
-        "", 1, "", "Example playlist", description, listOf(), 1L,
-        null, "Uploader", listOf(), null
+    val playlistScreenInfo = PlaylistScreenInfo(
+        id = "",
+        serviceId = 1,
+        url = "",
+        name = "Example playlist",
+        description = description,
+        relatedItems = listOf(),
+        streamCount = 1L,
+        uploaderUrl = null,
+        uploaderName = "Uploader",
+        uploaderAvatars = listOf(),
+        thumbnails = listOf(),
+        nextPage = null,
     )
     val stream = StreamInfoItem(streamType = StreamType.VIDEO_STREAM)
     val streamFlow = flowOf(PagingData.from(listOf(stream)))
 
     AppTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            PlaylistScreen(Resource.Success(playlistInfo), streamFlow)
+        Surface {
+            PlaylistScreen(Resource.Success(playlistScreenInfo), streamFlow)
         }
     }
 }

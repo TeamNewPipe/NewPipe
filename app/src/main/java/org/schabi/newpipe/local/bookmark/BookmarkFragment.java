@@ -147,7 +147,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                             entry.name);
                 } else if (selectedItem instanceof PlaylistRemoteEntity entry) {
                     NavigationHelper.openPlaylistFragment(fragmentManager, entry.getServiceId(),
-                            entry.getUrl());
+                            entry.getUrl(), entry.getName());
                 }
             }
 

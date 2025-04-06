@@ -1,7 +1,5 @@
 package org.schabi.newpipe.database.playlist.model;
 
-import android.text.TextUtils;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -9,12 +7,11 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.ui.components.playlist.PlaylistScreenInfo;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.image.ImageStrategy;
 
 import static org.schabi.newpipe.database.LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM;
-import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_SERVICE_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_TABLE;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_URL;
@@ -84,29 +81,12 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     }
 
     @Ignore
-    public PlaylistRemoteEntity(final PlaylistInfo info) {
+    public PlaylistRemoteEntity(final PlaylistScreenInfo info) {
         this(info.getServiceId(), info.getName(), info.getUrl(),
                 // use uploader avatar when no thumbnail is available
                 ImageStrategy.imageListToDbUrl(info.getThumbnails().isEmpty()
                         ? info.getUploaderAvatars() : info.getThumbnails()),
                 info.getUploaderName(), info.getStreamCount());
-    }
-
-    @Ignore
-    public boolean isIdenticalTo(final PlaylistInfo info) {
-        /*
-         * Returns boolean comparing the online playlist and the local copy.
-         * (False if info changed such as playlist name or track count)
-         */
-        return getServiceId() == info.getServiceId()
-                && getStreamCount() == info.getStreamCount()
-                && TextUtils.equals(getName(), info.getName())
-                && TextUtils.equals(getUrl(), info.getUrl())
-                // we want to update the local playlist data even when either the remote thumbnail
-                // URL changes, or the preferred image quality setting is changed by the user
-                && TextUtils.equals(getThumbnailUrl(),
-                ImageStrategy.imageListToDbUrl(info.getThumbnails()))
-                && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
     @Override

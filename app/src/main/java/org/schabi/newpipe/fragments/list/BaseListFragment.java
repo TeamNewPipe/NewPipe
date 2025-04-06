@@ -279,7 +279,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             try {
                 onItemSelected(selectedItem);
                 NavigationHelper.openPlaylistFragment(getFM(), selectedItem.getServiceId(),
-                        selectedItem.getUrl());
+                        selectedItem.getUrl(), selectedItem.getName());
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening playlist fragment", e);
             }

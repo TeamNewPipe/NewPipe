@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -138,7 +137,7 @@ public final class NavigationHelper {
     }
 
     /* PLAY */
-    public static void playOnMainPlayer(final AppCompatActivity activity,
+    public static void playOnMainPlayer(final FragmentActivity activity,
                                         @NonNull final PlayQueue playQueue) {
         final PlayQueueItem item = playQueue.getItem();
         if (item != null) {
@@ -509,10 +508,12 @@ public final class NavigationHelper {
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
-                                            final int serviceId, final String url) {
+                                            final int serviceId, final String url,
+                                            @NonNull final String name) {
         final var args = new Bundle();
         args.putInt(Constants.KEY_SERVICE_ID, serviceId);
         args.putString(Constants.KEY_URL, url);
+        args.putString(Constants.KEY_TITLE, name);
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, PlaylistFragment.class, args)

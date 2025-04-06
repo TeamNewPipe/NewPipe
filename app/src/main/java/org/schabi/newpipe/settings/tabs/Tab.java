@@ -578,7 +578,7 @@ public abstract class Tab {
             if (playlistType == LocalItemType.PLAYLIST_LOCAL_ITEM) {
                 return LocalPlaylistFragment.getInstance(playlistId, playlistName);
             } else { // playlistType == LocalItemType.PLAYLIST_REMOTE_ITEM
-                return PlaylistFragment.getInstance(playlistServiceId, playlistUrl);
+                return PlaylistFragment.getInstance(playlistServiceId, playlistUrl, playlistName);
             }
         }
 
