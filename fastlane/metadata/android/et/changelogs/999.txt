@@ -1,0 +1,12 @@
+See kiirparandus teeb korda vea, kus YouTube'i video esituse keskel esitus katkeb HTTP olekuteatega 403.
+
+Uus
+• [SoundCloud] Lisandus on.soundcloud.com võrguaadresside tugi
+
+Täiendused
+• [Bandcamp] Näitame lisateavet raadiokioski vaates
+
+Parandused
+• [YouTube] Parandasime juhuslikud HTTP 403 vead videoesituse keskel
+• [YouTube] Tuvastame tunnuspildi ja päisepildi enamatest kanalipäisete tüüpidest
+• [Bandcamp] Mitmed veaparandused ja nüüdsest alati kasutame HTTPSi

@@ -789,7 +789,6 @@
     <string name="feed_fetch_channel_tabs_summary">File ce vor fi preluate când se actualizează fluxul. Această opțiune nu are niciun efect dacă un canal este actualizat folosind modul rapid.</string>
     <string name="prefer_descriptive_audio_summary">Selectați o coloană sonoră cu descrieri pentru persoane cu deficiențe vizuale, dacă este disponibilă</string>
     <string name="left_gesture_control_title">Acțiunea gestului din stânga</string>
-    <string name="share_playlist_with_titles_message">Distribuiți playlistul cu detalii precum numele playlistului și titlurile videourilor sau ca o simplă listă de URL-uri a videourilor</string>
     <string name="image_quality_medium">Calitate medie</string>
     <string name="prefer_descriptive_audio_title">Preferați audioul descriptiv</string>
     <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare pentru conținuturi progresive (în prezent %s). O valoare mai mică poate accelera încărcarea lor inițială</string>

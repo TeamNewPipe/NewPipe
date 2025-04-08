@@ -822,7 +822,6 @@
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="channel_tab_tracks">Skaņdarbi</string>
     <string name="channel_tab_shorts">Īsie video</string>
-    <string name="share_playlist_with_titles_message">Kopīgot atskaņošanas saraksta nosaukumu un to video nosaukumus vai tikai atskaņošanas sarakstā iekļauto video URL saites</string>
     <string name="share_playlist">Kopīgot atskaņošanas sarakstu</string>
     <string name="share_playlist_with_titles">Kopīgot nosaukumus</string>
     <string name="import_settings_vulnerable_format">Importētā eksporta iestatījumi izmanto ievainojamo formātu, kas tika pārtraukts kopš NewPipe 0.27.0 versijas. Pārliecinieties, ka importētie dati ir no uzticama avota, un turpmāk ir vēlams izmantot tikai datus, kas veikti NewPipe 0.27.0 vai jaunākās versijās. Iestatījumu importēšanas atbalsts šajā neaizsargātajā formātā drīzumā tiks pilnībā aizvākts, un tad vecās NewPipe versijas vairs nevarēs importēt iestatījumus, kas veikti jaunajās versijās.</string>

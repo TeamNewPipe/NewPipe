@@ -785,7 +785,6 @@
     <string name="image_quality_high">Yüksək keyfiyyət</string>
     <string name="question_mark">\?</string>
     <string name="share_playlist">Oynatma siyahısın paylaş</string>
-    <string name="share_playlist_with_titles_message">Pleylist adı və video başlıqları kimi təfsilatlar və ya video URL-lərin sadə siyahısı olaraq pleylist paylaş</string>
     <string name="share_playlist_with_titles">Başlıqlarla paylaşın</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s
