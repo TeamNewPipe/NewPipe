@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_name"
-            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@id/item_more"
             android:padding="6dp"
             android:singleLine="true"
             android:text=""
