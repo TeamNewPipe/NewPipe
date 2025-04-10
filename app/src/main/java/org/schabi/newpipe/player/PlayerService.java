@@ -37,7 +37,6 @@ import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
-import org.schabi.newpipe.ktx.BundleKt;
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserImpl;
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserPlaybackPreparer;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
@@ -126,9 +125,11 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if (DEBUG) {
-            Log.d(TAG, "onStartCommand() called with: intent = [" + intent
-                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras())
-                    + "], flags = [" + flags + "], startId = [" + startId + "]");
+            final var extras = intent.getExtras();
+            // isEmpty unparcels the bundle
+            final var extrasString = extras != null && !extras.isEmpty() ? extras.toString() : "";
+            Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], extras = ["
+                    + extrasString + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
 
         // All internal NewPipe intents used to interact with the player, that are sent to the
@@ -269,8 +270,11 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     @Override
     public IBinder onBind(final Intent intent) {
         if (DEBUG) {
-            Log.d(TAG, "onBind() called with: intent = [" + intent
-                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras()) + "]");
+            final var extras = intent.getExtras();
+            // isEmpty unparcels the bundle
+            final var extrasString = extras != null && !extras.isEmpty() ? extras.toString() : "";
+            Log.d(TAG, "onBind() called with: intent = [" + intent + "], extras = ["
+                    + extrasString + "]");
         }
 
         if (BIND_PLAYER_HOLDER_ACTION.equals(intent.getAction())) {
