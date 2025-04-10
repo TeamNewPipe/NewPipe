@@ -12,6 +12,10 @@ class RemotePlaylistManager(db: AppDatabase) {
     private val database = db
     private val playlistRemoteTable = db.playlistRemoteDAO()
 
+    fun getPlaylist(playlistId: Long): Flowable<PlaylistRemoteEntity> {
+        return playlistRemoteTable.getPlaylist(playlistId).subscribeOn(Schedulers.io())
+    }
+
     fun getPlaylists(): Flowable<List<PlaylistRemoteEntity>> {
         return playlistRemoteTable.getPlaylists().subscribeOn(Schedulers.io())
     }

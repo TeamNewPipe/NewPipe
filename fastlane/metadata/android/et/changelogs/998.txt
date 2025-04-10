@@ -1,0 +1,4 @@
+Parandasime vea, kus ühtegi YouTube'i meediavoogu ei õnnestunud esitada ja HTTP olekuteade oli 403.
+
+Juhuslikud HTTP 403 veas esituse keskel pole veel parandatud.
+Me oleme teadlikud ka sellest veast ja kiirparandus lisandub niipea, kui võimalik.

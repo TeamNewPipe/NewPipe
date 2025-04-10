@@ -174,7 +174,7 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Segure para pôr na fila\"</string>
-    <string name="show_hold_to_append_summary">Mostra dica ao tocar no botão segundo plano ou Popup em \"Detalhes:\\ do vídeo</string>
+    <string name="show_hold_to_append_summary">Mostra dica ao tocar no botão segundo plano ou popup em \"Detalhes:\" do vídeo</string>
     <string name="play_all">Reproduzir tudo</string>
     <string name="player_stream_failure">Não é possível reproduzir este vídeo</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável na reprodução</string>
@@ -528,7 +528,7 @@
     <string name="remove_watched">Remover assistidos</string>
     <string name="show_original_time_ago_summary">Textos originais dos serviços serão visíveis nos itens de transmissão</string>
     <string name="show_original_time_ago_title">Mostrar tempo original nos itens</string>
-    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\\ do YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Ativar o \"Modo Restrito\" do YouTube</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Criado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Foto de perfil do canal</string>
@@ -789,8 +789,9 @@
     <string name="channel_tab_livestreams">Ao vivo</string>
     <string name="image_quality_title">Qualidade da imagem</string>
     <string name="question_mark">\?</string>
-    <string name="share_playlist_with_list">Compartilhar URL</string>
-    <string name="share_playlist_with_titles">Compartilhar com título</string>
+    <string name="share_playlist_with_list">Compartilhar URLs</string>
+    <string name="share_playlist_with_titles">Compartilhar com títulos</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Compartilhar como playlist temporária do YouTube</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="toggle_screen_orientation">Alternar orientação da tela</string>
@@ -806,7 +807,6 @@
     <string name="forward">Avançar</string>
     <string name="rewind">Retroceder</string>
     <string name="replay">Repetir</string>
-    <string name="share_playlist_with_titles_message">Compartilhar playlist com detalhes como o nome da playlist e títulos de vídeo ou como uma lista simples dos URL de vídeos</string>
     <string name="image_quality_medium">Qualidade média</string>
     <string name="metadata_uploader_avatars">Fotos de perfil do autor</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>

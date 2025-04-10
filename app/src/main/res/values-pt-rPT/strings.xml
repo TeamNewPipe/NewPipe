@@ -802,7 +802,6 @@
     <string name="rewind">Recuar</string>
     <string name="replay">Repetição</string>
     <string name="feed_fetch_channel_tabs_summary">Separadores a obter ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado utilizando o modo rápido.</string>
-    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
     <string name="image_quality_medium">Média qualidade</string>
     <string name="metadata_uploader_avatars">Avatar dos publicadores</string>
     <string name="metadata_banners">Bandeiras</string>

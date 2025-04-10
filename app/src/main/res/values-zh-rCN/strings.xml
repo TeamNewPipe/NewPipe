@@ -789,7 +789,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">分享播放列表</string>
-    <string name="share_playlist_with_titles_message">分享详细的播放列表（带名称和视频标题等信息）或只分享视频网址列表</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="other">%s 条回复</item>

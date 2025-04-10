@@ -15,6 +15,9 @@ interface PlaylistRemoteDAO {
     @Query("SELECT * FROM remote_playlists")
     fun getAll(): Flowable<List<PlaylistRemoteEntity>>
 
+    @Query("SELECT * FROM remote_playlists WHERE uid = :playlistId")
+    fun getPlaylist(playlistId: Long): Flowable<PlaylistRemoteEntity>
+
     @Query("SELECT * FROM remote_playlists WHERE url = :url AND service_id = :serviceId")
     fun getPlaylist(serviceId: Int, url: String): Flow<PlaylistRemoteEntity?>
 

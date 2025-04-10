@@ -1,1 +1,1 @@
-NewPipe nepoužíva žiadne Google knižnice ani YouTube rozhranie. Analyzuje iba webovú stránku aby získala potrebné informácie. Preto je možné túto aplikáciu používať na zariadeniach bez nainštalovaných služieb Google. Na použitie aplikácie NewPipe tiež nepotrebujete účet na YouTube, je to bezproblémové.
+NewPipe nepoužíva žiadne Google framework knižnice, ani YouTube API rozhranie. Len analyzuje web, aby získal potrebné informácie. Preto je možné túto aplikáciu používať na zariadeniach bez nainštalovaných Google služieb. Taktiež nepotrebujete účet na YouTube. Appka je FLOSS.
