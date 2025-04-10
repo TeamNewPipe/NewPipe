@@ -9,6 +9,8 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_STREAM_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_URL;
 
+import androidx.annotation.Nullable;
+
 public class PlaylistMetadataEntry implements PlaylistLocalItem {
     public static final String PLAYLIST_STREAM_COUNT = "streamCount";
 
@@ -70,5 +72,11 @@ public class PlaylistMetadataEntry implements PlaylistLocalItem {
     @Override
     public void setDisplayIndex(final long displayIndex) {
         this.displayIndex = displayIndex;
+    }
+
+    @Nullable
+    @Override
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 }

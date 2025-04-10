@@ -813,7 +813,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Дели плејлисту</string>
-    <string name="share_playlist_with_titles_message">Делите плејлисту са детаљима, као што су назив плејлисте и наслови видео снимака или као једноставна листа URL адреса видео снимака</string>
     <string name="video_details_list_item">-%1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s одговор</item>

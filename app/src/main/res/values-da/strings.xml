@@ -768,7 +768,6 @@
     <string name="image_quality_none">Indlæs ikke billeder</string>
     <string name="image_quality_low">Lav kvalitet</string>
     <string name="share_playlist">Del Playliste</string>
-    <string name="share_playlist_with_titles_message">Del playliste med detajler såsom playlistenavn og videotitler eller som en simpel liste over video-URL\'er</string>
     <string name="share_playlist_with_titles">Del med Titler</string>
     <string name="share_playlist_with_list">Del URL-liste</string>
     <plurals name="replies">

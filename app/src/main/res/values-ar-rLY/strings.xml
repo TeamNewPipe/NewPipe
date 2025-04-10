@@ -852,6 +852,5 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">شارِك قائمة التشغيل</string>
-    <string name="share_playlist_with_titles_message">شارِك قائمة التشغيل بتفاصيليها مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين تشعّبيّة للفيديوهات</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

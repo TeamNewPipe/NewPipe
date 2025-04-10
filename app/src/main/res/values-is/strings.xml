@@ -605,7 +605,7 @@
     <string name="enable_playback_state_lists_title">Spilunarstöður í listum</string>
     <string name="enable_playback_state_lists_summary">Sýna spilunarstöður í listum</string>
     <string name="show_hold_to_append_title">Sýna ábendinguna „Haltu niðri til að bæta við spilunarröð“</string>
-    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappinn á myndskeiðinu í „Nánar:\\</string>
+    <string name="show_hold_to_append_summary">Sýna ábendingu þegar ýtt er á bakgrunninn eða sprettihnappinn á myndskeiðinu í „Nánar:\"</string>
     <string name="unsupported_url_dialog_message">Óþekkt slóð. Opna með öðru forriti\?</string>
     <string name="peertube_instance_url_summary">Veldu uppáhalds PeerTube tilvik þín</string>
     <string name="peertube_instance_url_help">Þú mátt finna tilviki á %s</string>
@@ -788,7 +788,6 @@
     <string name="unset_playlist_thumbnail">Losa varanlega smámynd</string>
     <string name="notification_actions_summary_android13">Breyttu hverri tilkynningu hér fyrir neðan með því að ýta á hana. Fyrstu þrjár aðgerðirnar (spila/bíða, fyrra og næsta) eru skilgreindar af kerfinu og er því ekki hægt að sérsníða.</string>
     <string name="feed_fetch_channel_tabs_summary">Flipar sem á að sækja við uppfærslu þessa streymis. Þetta hefur engin áhrif ef rás er uppfærð með hraðstreymisham.</string>
-    <string name="share_playlist_with_titles_message">Deildu spilunarlista með atriðum eins og heiti spilunarlistans og titlum myndskeiða eða sem einföldum lista yfir slóðir á myndskeið</string>
     <string name="use_exoplayer_decoder_fallback_title">Nota varaeiginleika ExoPlayer-afkóðarans</string>
     <string name="new_seek_duration_toast">Vegna takmarkana í ExoPlayer-spilaranum var tímalengd hoppa sett á %d sekúndur</string>
     <string name="disable_media_tunneling_automatic_info">Margmiðlunargöng (media tunneling) voru gerð óvirk á tækinu þínu þar sem þessi gerð tækja er þekkt fyrir að styðja ekki þennan eiginleika.</string>

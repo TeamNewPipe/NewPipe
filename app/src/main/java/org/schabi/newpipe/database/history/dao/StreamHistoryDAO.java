@@ -54,6 +54,12 @@ public interface StreamHistoryDAO {
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
     Completable deleteStreamHistory(long streamId);
 
+    @Query("SELECT * FROM " + STREAM_TABLE
+            + " INNER JOIN " + STREAM_HISTORY_TABLE
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
+    Flowable<List<StreamHistoryEntry>> getHistory();
+
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM " + STREAM_TABLE
             // Select the latest entry and watch count for each stream id on history table

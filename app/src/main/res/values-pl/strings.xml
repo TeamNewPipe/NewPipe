@@ -821,7 +821,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Udostępnij playlistę</string>
-    <string name="share_playlist_with_titles_message">Udostępnij playlistę ze szczegółami, takimi jak nazwa playlisty i tytuły wideo, lub jako prostą listę adresów URL wideo.</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s odpowiedź</item>

@@ -787,7 +787,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">プレイリストを共有</string>
-    <string name="share_playlist_with_titles_message">プレイリスト名やビデオタイトルなどの詳細を含むプレイリスト、またはビデオURLのみのシンプルなリストとしてプレイリストを共有します</string>
     <string name="video_details_list_item">- %1$s： %2$s</string>
     <plurals name="replies">
         <item quantity="other">%sの返信</item>

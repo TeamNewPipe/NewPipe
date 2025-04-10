@@ -819,7 +819,6 @@
         <item quantity="few">%s odpovede</item>
         <item quantity="other">%s odpovedí</item>
     </plurals>
-    <string name="share_playlist_with_titles_message">Zdieľajte playlist s podrobnosťami, ako je jeho názov a názvy videí, alebo ako jednoduchý zoznam URL adries videí</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>

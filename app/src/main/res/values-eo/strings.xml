@@ -614,7 +614,6 @@
     <string name="no_video_streams_available_for_external_players">Neniu filmofluo ludeblas por ekstera ludilo</string>
     <string name="channel_tab_videos">Filmetoj</string>
     <string name="remove_watched_popup_warning">Filmetoj kiuj spektiĝis antaŭ aŭ post sia aldoniĝo al la ludlisto foriĝus.. \nĈu vi certas? Ĉi tio nemalfareblus!</string>
-    <string name="share_playlist_with_titles_message">Kunhavigus ludliston inkluzivante informojn kiel la nomoj de listeroj, aŭ kiel simpla listo de ligiloj</string>
     <string name="reset_settings_summary">Restarigi implicitajn agordojn</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Jes, kaj ankaŭ parte spektitajn filmetojn</string>
 </resources>

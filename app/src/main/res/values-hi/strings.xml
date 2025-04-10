@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s पे प्रकाशित हुआ</string>
-    <string name="no_player_found">स्ट्रीमिंग के लिए प्लेयर नहीं मिला। क्या आप वीएलसी इंस्टॉल करना चाहेंगे\?</string>
+    <string name="no_player_found">स्ट्रीमिंग के लिए प्लेयर नहीं मिला। क्या आप VLC इंस्टॉल करना चाहेंगे?</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
@@ -183,7 +183,7 @@
     <string name="hold_to_append">कतार में जोड़ने के लिए दबाकर रखें</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करें</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करें</string>
-    <string name="no_player_found_toast">स्ट्रीमिंग करने के लिए प्लेयर नहीं मिला (आप इसे चलाने के लिए वीएलसी प्लेयर इंस्टॉल कर सकते हैं)।</string>
+    <string name="no_player_found_toast">स्ट्रीमिंग करने के लिए प्लेयर नहीं मिला (आप इसे चलाने के लिए VLC प्लेयर इंस्टॉल कर सकते हैं)।</string>
     <string name="controls_download_desc">स्ट्रीम फाइल डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
     <string name="tab_bookmarks">बुकमार्क की गई प्लेलिस्टें</string>
@@ -800,7 +800,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">प्लेलिस्ट साझा करें</string>
-    <string name="share_playlist_with_titles_message">प्लेलिस्ट को प्लेलिस्ट नाम और वीडियो शीर्षक जैसे विवरण के साथ या वीडियो यूआरएल की एक सरल सूची के रूप में साझा करें</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s जवाब</item>

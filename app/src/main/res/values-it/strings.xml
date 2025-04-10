@@ -813,7 +813,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Condividi playlist</string>
-    <string name="share_playlist_with_titles_message">Condividi la playlist con dettagli come il suo nome e i titoli video o come un semplice elenco di URL video</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s risposta</item>

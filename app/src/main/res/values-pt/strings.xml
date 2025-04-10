@@ -25,7 +25,7 @@
     <string name="default_audio_format_title">Formato padrão de áudio</string>
     <string name="download_dialog_title">Descarregar</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
-    <string name="unsupported_url">URL não suportado</string>
+    <string name="unsupported_url">URL não suportada</string>
     <string name="content_language_title">Idioma padrão para conteúdo</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
@@ -279,7 +279,7 @@
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes\" da janela popup</string>
+    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes\" da janela popup:</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
@@ -549,7 +549,7 @@
     <string name="never">Nunca</string>
     <string name="notification_action_buffering">A carregar</string>
     <string name="clear_queue_confirmation_description">A fila de reprodução atual será substituída</string>
-    <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
+    <string name="unsupported_url_dialog_message">URL não reconhecida. Abrir com outra aplicação?</string>
     <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
     <string name="notification_action_shuffle">Baralhar</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>
@@ -813,7 +813,6 @@
     <string name="channel_tab_channels">Canais</string>
     <string name="previous_stream">Vídeo anterior</string>
     <string name="channel_tab_livestreams">Direto</string>
-    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
     <string name="image_quality_summary">Escolha a qualidade das imagens e se pretende carregar imagens, para reduzir a utilização de dados e de memória. As alterações limpam a cache de imagens na memória e no disco - %s</string>
     <string name="show_more">Mostrar mais</string>
     <plurals name="replies">

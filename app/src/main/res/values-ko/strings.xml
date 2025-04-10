@@ -772,7 +772,6 @@
     <string name="rewind">되감기</string>
     <string name="replay">다시 재생</string>
     <string name="feed_fetch_channel_tabs_summary">피드를 업데이트할 때 가져올 탭입니다. 빠른 모드를 사용하여 채널을 업데이트하는 경우 이 옵션은 효과가 없습니다.</string>
-    <string name="share_playlist_with_titles_message">재생목록 이름, 동영상 제목 등의 세부정보 또는 간단한 동영상 URL 목록으로 재생목록을 공유하세요</string>
     <string name="image_quality_medium">중간 품질</string>
     <string name="metadata_uploader_avatars">업로더 아바타</string>
     <string name="metadata_banners">배너</string>

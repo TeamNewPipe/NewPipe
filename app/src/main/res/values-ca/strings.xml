@@ -724,4 +724,11 @@
     <string name="audio_track">Pista d\'àudio</string>
     <string name="no">No</string>
     <string name="no_streams">Cap emissió</string>
+    <string name="enable_streams_notifications_summary">Notifica sobre les noves retransmissions de les subscripcions</string>
+    <string name="enable_streams_notifications_title">Noves notificacions de retransmissions</string>
+    <string name="duplicate_in_playlist">Les llistes de reproducció que estan en gris ja contenen aquest element.</string>
+    <string name="unset_playlist_thumbnail">Desestableix la miniatura permanent</string>
+    <string name="playlist_add_stream_success_duplicate">Duplicat afegit/s %d vegada/es</string>
+    <string name="disable_media_tunneling_automatic_info">El túnel multimèdia s\'ha desactivat de manera predeterminada al dispositiu perquè se sap que el vostre model de dispositiu no ho permet.</string>
+    <string name="semitone">Semiton</string>
 </resources>
