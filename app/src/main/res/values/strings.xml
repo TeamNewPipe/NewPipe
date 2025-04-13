@@ -737,6 +737,10 @@
     <string name="playlist_page_summary">Playlist page</string>
     <string name="show_thumbnail_title">Show thumbnail</string>
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
+    <string name="show_title_title">Show title</string>
+    <string name="show_title_summary">Use title for both lock screen background and notifications</string>
+    <string name="show_artist_title">Show artist</string>
+    <string name="show_artist_summary">Use artist for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
