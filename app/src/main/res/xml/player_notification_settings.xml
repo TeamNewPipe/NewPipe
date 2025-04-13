@@ -26,6 +26,24 @@
         android:summary="@string/show_thumbnail_summary"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
+    
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_title_key"
+        android:title="@string/show_title_title"
+        android:summary="@string/show_title_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+    
+     <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_artist_key"
+        android:title="@string/show_artist_title"
+        android:summary="@string/show_artist_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
