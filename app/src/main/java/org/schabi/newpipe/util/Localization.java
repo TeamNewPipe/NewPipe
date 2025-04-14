@@ -12,12 +12,15 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.math.MathUtils;
+import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -39,6 +42,7 @@ import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -63,6 +67,7 @@ import java.util.stream.Collectors;
  */
 
 public final class Localization {
+    private static final String TAG = Localization.class.toString();
     public static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
@@ -101,6 +106,10 @@ public final class Localization {
     }
 
     public static Locale getAppLocale(@NonNull final Context context) {
+        if (Build.VERSION.SDK_INT >= 33) {
+            final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
+            return Objects.requireNonNullElseGet(customLocale, Locale::getDefault);
+        }
         return getLocaleFromPrefs(context, R.string.app_language_key);
     }
 
@@ -421,5 +430,33 @@ public final class Localization {
         // or some language have some specific rule... then we have to change it)
         final int safeCount = (int) MathUtils.clamp(count, Integer.MIN_VALUE, Integer.MAX_VALUE);
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
+    }
+
+    public static void migrateAppLanguageSettingIfNecessary(@NonNull final Context context) {
+        // Starting with pull request #12093, NewPipe on Android 13+ exclusively uses Android's
+        // public per-app language APIs to read and set the UI language for NewPipe.
+        // If running on Android 13+, the following code will migrate any existing custom
+        // app language in SharedPreferences to use the public per-app language APIs instead.
+        if (Build.VERSION.SDK_INT >= 33) {
+            final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+            final String appLanguageKey = context.getString(R.string.app_language_key);
+            final String appLanguageValue = sp.getString(appLanguageKey, null);
+            if (appLanguageValue != null) {
+                sp.edit().remove(appLanguageKey).apply();
+                final String appLanguageDefaultValue =
+                        context.getString(R.string.default_localization_key);
+                if (!appLanguageValue.equals(appLanguageDefaultValue)) {
+                    try {
+                        AppCompatDelegate.setApplicationLocales(
+                                LocaleListCompat.forLanguageTags(appLanguageValue)
+                        );
+                    } catch (final RuntimeException e) {
+                        Log.e(TAG, "Failed to migrate previous custom app language "
+                                + "setting to public per-app language APIs"
+                        );
+                    }
+                }
+            }
+        }
     }
 }
