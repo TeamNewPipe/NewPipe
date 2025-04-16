@@ -11,6 +11,7 @@ import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
+import android.text.BidiFormatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -83,6 +84,25 @@ public final class Localization {
         return strings.stream()
                 .filter(string -> !TextUtils.isEmpty(string))
                 .collect(Collectors.joining(delimiter));
+    }
+
+    /**
+     * Localize a user name like <code>@foobar</code>.
+     *
+     * Will correctly handle right-to-left usernames by using a {@link BidiFormatter}.
+     *
+     * @param plainName username, with an optional leading <code>@</code>
+     * @return a usernames that can include RTL-characters
+     */
+    @NonNull
+    public static String localizeUserName(final String plainName) {
+        final BidiFormatter bidi = BidiFormatter.getInstance();
+
+        if (plainName.startsWith("@")) {
+            return "@" + bidi.unicodeWrap(plainName.substring(1));
+        } else {
+            return bidi.unicodeWrap(plainName);
+        }
     }
 
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
