@@ -802,7 +802,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Κοινοποίηση λίστας</string>
-    <string name="share_playlist_with_titles_message">Μοιραστείτε τη λίστα αναπαραγωγής με λεπτομέρειες όπως το όνομα της λίστας αναπαραγωγής και τους τίτλους βίντεο ή ως μια απλή λίστα διευθύνσεων URL βίντεο</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s απάντηση</item>
