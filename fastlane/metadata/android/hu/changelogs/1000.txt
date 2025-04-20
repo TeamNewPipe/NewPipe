@@ -1,0 +1,13 @@
+Fejlesztés
+• A lejátszási lista leírása kattinthatóvá vált, hogy több/kevesebb tartalom jelenjen meg
+• [PeerTube] Automatikusan kezeli a „subscribeto.me” példány linkjeit
+• Az előzmények közül egyszerre csak egy kerül lejátszásra
+
+Javítva
+• RSS gomb láthatósága
+• Keresősáv előnézet fagyások
+• Bélyegkép nélküli videó is hozzáadható a listához
+• A letöltésből idő előtti kilépés
+• A listához kapcsolódó elemek felugró panelje
+• A listához való hozzáadás panel sorrendje
+• A lejátszólista könyvjelző elemének elrendezése

@@ -178,7 +178,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
     <string name="show_hold_to_append_title">Afficher l\'astuce « Maintenir pour ajouter à la file »</string>
-    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui des boutons « Arrière-plan » ou « Flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui des boutons « Arrière-plan » ou « Flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -197,7 +197,7 @@
     <string name="switch_to_main">Basculer en principal</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur multimédia trouvé (vous pouvez installer VLC pour continuer).</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
     <string name="external_player_unsupported_link_type">Les lecteurs externes ne prennent pas en charge ces types de liens</string>
@@ -534,7 +534,7 @@
     <string name="channel_created_by">Créé par %s</string>
     <string name="show_original_time_ago_summary">Les textes originaux des services vont être visibles dans les items</string>
     <string name="show_original_time_ago_title">Afficher la date originelle sur les items</string>
-    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Activer le « Mode restreint » de YouTube</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Afficher uniquement les abonnements non groupés</string>
     <string name="playlist_page_summary">Page des listes de lecture</string>
     <string name="no_playlist_bookmarked_yet">Aucune liste de lecture encore enregistrée</string>
@@ -669,7 +669,7 @@
     <string name="check_for_updates">Vérifier les mises à jour</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
-    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
+    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
     <string name="show_crash_the_player_summary">Montrer une option de plantage lors de l\'utilisation du lecteur</string>
     <string name="error_report_channel_name">Notification de rapport d\'erreur</string>
     <string name="error_report_channel_description">Notifications pour signaler les erreurs</string>
@@ -815,7 +815,6 @@
     <string name="forward">Avancer</string>
     <string name="rewind">Rembobiner</string>
     <string name="replay">Rejouer</string>
-    <string name="share_playlist_with_titles_message">Partager la liste de lecture avec des détails tel que son nom et le titre de ses vidéos ou simplement la liste des URLs des vidéos</string>
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>
@@ -825,7 +824,7 @@
         <item quantity="other">%s réponses</item>
     </plurals>
     <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
-    <string name="show_more">Afficher plus</string>
+    <string name="show_more">Voir plus</string>
     <string name="show_less">Afficher moins</string>
     <string name="reset_settings_summary">Réinitialiser tous les paramètres à leurs valeurs par défaut</string>
     <string name="no">Non</string>
@@ -839,4 +838,5 @@
     <string name="reset_settings_title">Réinitialiser les paramètres</string>
     <string name="error_insufficient_storage">Pas assez d\'espace disponible sur l\'appareil</string>
     <string name="import_settings_vulnerable_format">Les paramètres de l\'export en cours d\'importation utilisent un format vulnérable qui a été déprécié depuis NewPipe 0.27.0. Assurez-vous que l\'export en cours d\'importation provient d\'une source fiable. Privilégiez les exports obtenues à partir de NewPipe 0.27.0 ou des versions plus récentes à l\'avenir. Le support pour l\'importation des paramètres dans ce format vulnérable sera bientôt complètement supprimé et les anciennes versions de NewPipe ne pourront plus importer les paramètres des exports des nouvelles versions.</string>
+    <string name="audio_track_type_secondary">secondaire</string>
 </resources>

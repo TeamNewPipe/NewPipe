@@ -303,7 +303,7 @@ public final class Localization {
      * <ul>
      *     <li>English (original)</li>
      *     <li>English (descriptive)</li>
-     *     <li>Spanish (dubbed)</li>
+     *     <li>Spanish (Spain) (dubbed)</li>
      * </ul>
      *
      * @param context the context used to get the app language
@@ -313,7 +313,7 @@ public final class Localization {
     public static String audioTrackName(@NonNull final Context context, final AudioStream track) {
         final String name;
         if (track.getAudioLocale() != null) {
-            name = track.getAudioLocale().getDisplayLanguage(getAppLocale(context));
+            name = track.getAudioLocale().getDisplayName();
         } else if (track.getAudioTrackName() != null) {
             name = track.getAudioTrackName();
         } else {

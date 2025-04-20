@@ -47,7 +47,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toca la lupa para empezar.</string>
+    <string name="main_bg_subtitle">Toca la lupa para comenzar..</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -816,7 +816,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Compartir la lista de reproducción</string>
-    <string name="share_playlist_with_titles_message">Compartir las listas de reproducción con los detalles como el nombre de la lista y los títulos de los vídeos o como una simple lista de una dirección URL con los vídeos</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s respuesta</item>

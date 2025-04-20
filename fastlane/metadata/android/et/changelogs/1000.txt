@@ -1,0 +1,13 @@
+Täiendused
+• Esitusloend on kokku/lahtiklikatav 
+• [PeerTube] `subscribeto.me` serverite lingid toimivad automaatselt
+• Käivitame ajaloost vaid ühe rakenduse instantsi
+
+Parandused
+• RSSi nupu nähtavus
+• Otsinguriba eelvaate kokkujooksmine
+• Pisipildita kirje lisamine esitusloendisse
+• Allalaadimisvaate sulgemine enne avamist
+• Seotud kirjed esitusloendi hüpikaknas
+• Esitusloendisse lisamise järjekord
+• Esitusloendi järjehoidjate kirjete paigutus

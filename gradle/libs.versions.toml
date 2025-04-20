@@ -54,7 +54,8 @@ swiperefreshlayout = "1.1.0"
 # This works thanks to JitPack: https://jitpack.io/
 teamnewpipe-filepicker = "5.0.0"
 teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
-teamnewpipe-newpipe-extractor = "v0.24.4"
+teamnewpipe-newpipe-extractor = "0b99100db"
+webkit = "1.9.0"
 work = "2.8.1"
 
 [plugins]
@@ -106,6 +107,7 @@ androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", versio
 androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
 androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
 androidx-work-rxjava3 = { group = "androidx.work", name = "work-rxjava3", version.ref = "work" }
 assertj-core = { group = "org.assertj", name = "assertj-core", version.ref = "assertjCore" }

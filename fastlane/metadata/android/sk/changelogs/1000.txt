@@ -1,4 +1,4 @@
-Vylepšenie
+Vylepšené
 - Umožnené kliknutie na popis playlistu, aby sa zobrazilo viac/menej obsahu
 - [PeerTube] Automatické spracovanie odkazov inštancie `subscribeto.me`
 - Spustenie prehrávania iba jednej položky v histórii

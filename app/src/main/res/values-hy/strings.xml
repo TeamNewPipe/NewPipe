@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Սեղմեք որոնման կոճակը որ սկսել</string>
+    <string name="main_bg_subtitle">Սեղմեք խոշորացույցը որ սկսեք</string>
     <string name="search">Որոնել</string>
     <string name="downloads">Բեռնված</string>
     <string name="downloads_title">Բեռնված</string>
@@ -228,7 +228,7 @@
     <string name="sort">Դասավորել</string>
     <string name="detail_pinned_comment_view_description">Գամված մեկնաբանություն</string>
     <string name="account_terminated">Հաշիվը կասեցված է</string>
-    <string name="channel_tab_about"></string>
+    <string name="channel_tab_about"/>
     <string name="channel_tab_albums">Ալբոմներ</string>
     <string name="yes">Այո</string>
     <string name="no">Ոչ</string>
@@ -241,4 +241,6 @@
     <string name="channel_tab_channels">Ալիքներ</string>
     <string name="channel_tab_livestreams">Ուղիղ</string>
     <string name="unknown_audio_track">Անհայտ</string>
+    <string name="did_you_mean">Նկատի ունե՞ս «%1$s»</string>
+    <string name="volume">Բարձրություն</string>
 </resources>

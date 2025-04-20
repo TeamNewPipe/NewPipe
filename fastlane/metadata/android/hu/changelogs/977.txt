@@ -1,0 +1,10 @@
+• "következő lejátszása" gomb hozzáadása a hosszan nyomandó menühöz
+• Most már a short-ok prefixét is támogatja a filter
+• Beállítások importjának javítása
+• A lista képernyőn az idővonal leváltódik gombokra
+• Számos javítás a MédiaMunkamenetMenedzserrel kapcsolatban
+• Videó végeztével most már teljesen végigfut a idővonal
+• Kikapcsolásra kerül a média alagutazás a RealtekATV-n
+• A minimalizált lejátszó gombok klikkelhető területének növelése
+
+A további változásokért, tekintse meg a változásnaplót (és blog bejegyzést) a lenti Linkek résznél.

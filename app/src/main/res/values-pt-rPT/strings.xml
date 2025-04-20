@@ -802,7 +802,6 @@
     <string name="rewind">Recuar</string>
     <string name="replay">Repetição</string>
     <string name="feed_fetch_channel_tabs_summary">Separadores a obter ao atualizar o feed. Esta opção não tem efeito se um canal for atualizado utilizando o modo rápido.</string>
-    <string name="share_playlist_with_titles_message">Partilhe a lista de reprodução com detalhes como o nome da lista de reprodução e os títulos dos vídeos ou como uma simples lista de URLs de vídeos</string>
     <string name="image_quality_medium">Média qualidade</string>
     <string name="metadata_uploader_avatars">Avatar dos publicadores</string>
     <string name="metadata_banners">Bandeiras</string>
@@ -837,4 +836,5 @@
     <string name="reset_settings_title">Repor definições</string>
     <string name="error_insufficient_storage">Não há espaço suficiente no aparelho</string>
     <string name="import_settings_vulnerable_format">As configurações na exportação a serem importadas usam um formato vulnerável depreciado desde NewPipe 0.27.0. Certifique-se de que a exportação que é importada é de uma fonte confiável e prefira usar apenas as exportações obtidas do NewPipe 0.27.0 ou mais recentes no futuro. O suporte para importar configurações neste formato vulnerável será removido em breve completamente e, em seguida, versões antigas do NewPipe não serão capazes de importar configurações de exportações de novas versões.</string>
+    <string name="audio_track_type_secondary">secundário</string>
 </resources>

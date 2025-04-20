@@ -1,0 +1,6 @@
+Dies ist eine Hotfix-Version, die YouTube-Fehler behebt:
+• [Youtube] Behebung, dass keine Videoinformationen geladen werden, Behebung von HTTP 403-Fehlern beim Abspielen von Videos und Wiederherstellung der Wiedergabe einiger altersbeschränkter Videos
+• Die Größe der Untertitel wird nicht mehr geändert
+• Behebung des doppelten Herunterladens von Informationen beim Öffnen eines Streams
+• [Soundcloud] Entfernen von nicht abspielbaren DRM-geschützten Streams
+• Aktualisierte Übersetzungen

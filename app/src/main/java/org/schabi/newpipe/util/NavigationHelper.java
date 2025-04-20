@@ -98,6 +98,7 @@ public final class NavigationHelper {
         }
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.MAIN.valueForIntent());
         intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
+        intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
 
         return intent;
     }
@@ -454,8 +455,12 @@ public final class NavigationHelper {
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             onVideoDetailFragmentReady.run((VideoDetailFragment) fragment);
         } else {
+            // Specify no url here, otherwise the VideoDetailFragment will start loading the
+            // stream automatically if it's the first time it is being opened, but then
+            // onVideoDetailFragmentReady will kick in and start another loading process.
+            // See VideoDetailFragment.wasCleared() and its usage in doInitialLoadLogic().
             final VideoDetailFragment instance = VideoDetailFragment
-                    .getInstance(serviceId, url, title, playQueue);
+                    .getInstance(serviceId, null, title, playQueue);
             instance.setAutoPlay(autoPlay);
 
             defaultTransaction(fragmentManager)

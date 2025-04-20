@@ -1,1 +1,12 @@
-Correction de YouTube qui ne lisait aucun média
+Ce correctif corrige les erreurs HTTP 403 au milieu des vidéos YouTube.
+
+Nouveau
+• [SoundCloud] Ajout de la prise en charge des URL on.soundcloud.com
+
+Amélioré
+• [Bandcamp] Afficher des informations supplémentaires dans le kiosque radio
+
+Corrigé
+• [YouTube] Correction des erreurs HTTP 403 occasionnelles au début ou au milieu des vidéos
+• [YouTube] Extraction de l'avatar et de la bannière de plus de types d'en-têtes de chaînes
+• [Bandcamp] Correction de divers bugs et utilisation systématique de HTTPS

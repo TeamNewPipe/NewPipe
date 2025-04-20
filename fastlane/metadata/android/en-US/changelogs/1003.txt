@@ -1,0 +1,6 @@
+This is a hotfix release that fixes YouTube errors:
+• [YouTube] Fix not loading any video information, fix HTTP 403 errors while playing videos and restore playback of some age-restricted videos
+• Fix caption sizes not being changed
+• Fix downloading info twice when opening a stream
+• [Soundcloud] Remove unplayable DRM-protected streams
+• Updated translations

@@ -1,0 +1,16 @@
+Új
+• Értesítések új videókról
+• Zavartalan átvezető a háttérből való lejátszó váláskor
+• Félhangonkénti hangszint váltás
+• A főljeátszó listázás hozzácsatolása a lejátszólistához
+
+Fejlesztések
+• Emlékezzen a sebesség/hangszintlépés méretére
+• A kezdő hosszú bufferelés csökkentése a videó lejátszóban
+• Lejátszó felület fejlesztése Anroid TV-n
+• Rákérdezés az összes videó törlése előtt
+
+Javítások
+• A média gomb most már elrejti a lejátszó vezérlőket
+• Visszajátszás fixálva lejátszó típus váltáskor
+• Lejátszólista elforgatásának javításata

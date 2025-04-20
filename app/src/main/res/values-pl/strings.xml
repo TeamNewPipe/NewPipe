@@ -55,7 +55,7 @@
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
+    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nZnacznik czasu:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>
@@ -823,7 +823,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Udostępnij playlistę</string>
-    <string name="share_playlist_with_titles_message">Udostępnij playlistę ze szczegółami, takimi jak nazwa playlisty i tytuły wideo, lub jako prostą listę adresów URL wideo.</string>
     <string name="video_details_list_item">– %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s odpowiedź</item>

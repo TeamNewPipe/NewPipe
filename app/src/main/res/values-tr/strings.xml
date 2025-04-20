@@ -157,7 +157,7 @@
     <string name="action_history">Geçmiş</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Basılı tutarak kuyruğa ekle\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
+    <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan ya da açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="play_all">Tümünü Oynat</string>
     <string name="unknown_content">[Bilinmeyen]</string>
     <string name="player_stream_failure">Bu akış oynatılamadı</string>
@@ -789,7 +789,6 @@
     <string name="rewind">Geri sar</string>
     <string name="replay">Yeniden oynat</string>
     <string name="feed_fetch_channel_tabs_summary">Besleme güncellenirken alınacak sekmeler. Hızlı kip kullanılırken kanal güncelleniyorsa bu seçeneğin etkisi yoktur.</string>
-    <string name="share_playlist_with_titles_message">Oynatma listesini, oynatma listesi adı ve video başlıkları gibi ayrıntılarla ya da video adreslerinin basit listesi olarak paylaş</string>
     <string name="image_quality_medium">Orta nitelik</string>
     <string name="metadata_uploader_avatars">Yükleyen avatarları</string>
     <string name="metadata_banners">Afişler</string>
@@ -823,4 +822,5 @@
     <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir.
 \nBunu etkinleştirmek istiyor musunuz?</string>
     <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
+    <string name="audio_track_type_secondary">ikincil</string>
 </resources>
