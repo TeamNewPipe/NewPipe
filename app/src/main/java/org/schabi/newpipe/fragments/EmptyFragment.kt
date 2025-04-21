@@ -1,37 +1,47 @@
-package org.schabi.newpipe.fragments;
+package org.schabi.newpipe.fragments
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.fragment.app.Fragment
+import androidx.fragment.compose.content
+import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
+import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
+import org.schabi.newpipe.ui.theme.AppTheme
 
-import androidx.annotation.Nullable;
-import androidx.compose.ui.platform.ComposeView;
-
-import org.schabi.newpipe.BaseFragment;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.ui.emptystate.EmptyStateUtil;
-
-public class EmptyFragment extends BaseFragment {
-    private static final String SHOW_MESSAGE = "SHOW_MESSAGE";
-
-    public static final EmptyFragment newInstance(final boolean showMessage) {
-        final EmptyFragment emptyFragment = new EmptyFragment();
-        final Bundle bundle = new Bundle(1);
-        bundle.putBoolean(SHOW_MESSAGE, showMessage);
-        emptyFragment.setArguments(bundle);
-        return emptyFragment;
+class EmptyFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = content {
+        AppTheme {
+            Surface {
+                if (arguments?.getBoolean(SHOW_MESSAGE) == true) {
+                    EmptyStateComposable(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .wrapContentSize(Alignment.TopCenter),
+                        spec = EmptyStateSpec.GenericError
+                    )
+                }
+            }
+        }
     }
 
-    @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
-                             final Bundle savedInstanceState) {
-        final boolean showMessage = getArguments().getBoolean(SHOW_MESSAGE);
-        final View view = inflater.inflate(R.layout.fragment_empty, container, false);
+    companion object {
+        private const val SHOW_MESSAGE = "SHOW_MESSAGE"
 
-        final ComposeView composeView = view.findViewById(R.id.empty_state_view);
-        EmptyStateUtil.setEmptyStateComposable(composeView);
-        composeView.setVisibility(showMessage ? View.VISIBLE : View.GONE);
-        return view;
+        @JvmStatic
+        fun newInstance(showMessage: Boolean) = EmptyFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean(SHOW_MESSAGE, showMessage)
+            }
+        }
     }
 }
