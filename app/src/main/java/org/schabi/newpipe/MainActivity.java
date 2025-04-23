@@ -179,12 +179,17 @@ public class MainActivity extends AppCompatActivity {
         }
         openMiniPlayerUponPlayerStarted();
 
-        if (PermissionHelper.checkPostNotificationsPermission(this,
-                PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE)) {
-            // Schedule worker for checking for new streams and creating corresponding notifications
-            // if this is enabled by the user.
-            NotificationWorker.initialize(this);
-        }
+        PermissionHelper.checkPostNotificationsPermissionOnStartup(
+                this,
+                notificationAllowed -> {
+                    // Schedule worker for checking for new streams and creating corresponding
+                    // notifications if this is enabled by the user.
+                    if (Boolean.TRUE.equals(notificationAllowed)) {
+                        NotificationWorker.initialize(this);
+                    }
+                }
+        );
+
         if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
                 && !App.getApp().isFirstRun()
                 && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
