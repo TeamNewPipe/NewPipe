@@ -101,6 +101,10 @@ android {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     buildFeatures {
         viewBinding true
         compose true
