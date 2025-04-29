@@ -82,6 +82,18 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
 
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name"
+            android:layout_alignParentRight="true"
+            android:padding="6dp"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
     </RelativeLayout>
 
 </RelativeLayout>
