@@ -54,7 +54,7 @@ swiperefreshlayout = "1.1.0"
 # This works thanks to JitPack: https://jitpack.io/
 teamnewpipe-filepicker = "5.0.0"
 teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
-teamnewpipe-newpipe-extractor = "0b99100db"
+teamnewpipe-newpipe-extractor = "67f3301d9"
 webkit = "1.9.0"
 work = "2.10.0"
 
