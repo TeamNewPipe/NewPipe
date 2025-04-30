@@ -2,6 +2,7 @@ package org.schabi.newpipe.local;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -83,6 +84,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int REMOTE_PLAYLIST_CARD_HOLDER_TYPE = 0x3002;
     private static final int REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE = 0x3003;
 
+    private final LayoutInflater layoutInflater;
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
@@ -98,6 +100,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
+        layoutInflater = LayoutInflater.from(context);
 
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
                 .withLocale(Localization.getPreferredLocale(context));
