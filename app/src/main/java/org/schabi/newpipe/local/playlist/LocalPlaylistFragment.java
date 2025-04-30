@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
 import org.reactivestreams.Subscriber;
@@ -66,7 +67,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -158,14 +158,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    protected Supplier<View> getListHeaderSupplier() {
+    protected ViewBinding getListHeader() {
         headerBinding = LocalPlaylistHeaderBinding.inflate(activity.getLayoutInflater(), itemsList,
-            false);
+                false);
         playlistControlBinding = headerBinding.playlistControl;
 
         headerBinding.playlistTitleView.setSelected(true);
 
-        return headerBinding::getRoot;
+        return headerBinding;
     }
 
     @Override
