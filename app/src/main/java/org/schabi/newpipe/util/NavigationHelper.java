@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerIntentType;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -84,7 +86,8 @@ public final class NavigationHelper {
     @NonNull
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue) {
+                                             @Nullable final PlayQueue playQueue,
+                                             @NonNull final PlayerIntentType playerIntentType) {
         final Intent intent = new Intent(context, targetClazz);
 
         if (playQueue != null) {
@@ -95,6 +98,7 @@ public final class NavigationHelper {
         }
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.MAIN.valueForIntent());
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
+        intent.putExtra(Player.PLAYER_INTENT_TYPE, (Parcelable) playerIntentType);
 
         return intent;
     }
@@ -103,8 +107,7 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(Player.ENQUEUE_NEXT, true)
+        return getPlayerIntent(context, targetClazz, playQueue, PlayerIntentType.EnqueueNext)
                 // see comment in `getPlayerEnqueueIntent` as to why `resumePlayback` is false
                 .putExtra(Player.RESUME_PLAYBACK, false);
     }
@@ -140,7 +143,8 @@ public final class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue);
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
+                PlayerIntentType.AllOthers);
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.POPUP.valueForIntent())
                 .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
@@ -152,7 +156,8 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue);
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
+                PlayerIntentType.AllOthers);
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO.valueForIntent());
         intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
@@ -175,8 +180,8 @@ public final class NavigationHelper {
         //   slightly different behaviour than the normal play action: the latter resumes playback,
         //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
         //   by long pressing the video detail fragment, playlist or channel controls
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue)
-                .putExtra(Player.ENQUEUE, true)
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue,
+                PlayerIntentType.Enqueue)
                 .putExtra(Player.RESUME_PLAYBACK, false);
 
         intent.putExtra(Player.PLAYER_TYPE, playerType.valueForIntent());

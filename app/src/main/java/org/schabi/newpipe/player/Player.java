@@ -157,11 +157,10 @@ public final class Player implements PlaybackListener, Listener {
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String ENQUEUE = "enqueue";
-    public static final String ENQUEUE_NEXT = "enqueue_next";
     public static final String RESUME_PLAYBACK = "resume_playback";
     public static final String PLAY_WHEN_READY = "play_when_ready";
     public static final String PLAYER_TYPE = "player_type";
+    public static final String PLAYER_INTENT_TYPE = "player_intent_type";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Time constants
@@ -365,22 +364,26 @@ public final class Player implements PlaybackListener, Listener {
             videoResolver.setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
 
-        // Resolve enqueue intents
-        if (intent.getBooleanExtra(ENQUEUE, false)) {
-            if (playQueue != null) {
-                playQueue.append(newQueue.getStreams());
-            }
-            return;
-        }
+        final PlayerIntentType playerIntentType = intent.getParcelableExtra(PLAYER_INTENT_TYPE);
 
-        // Resolve enqueue next intents
-        if (intent.getBooleanExtra(ENQUEUE_NEXT, false)) {
-            if (playQueue != null) {
-                final int currentIndex = playQueue.getIndex();
-                playQueue.append(newQueue.getStreams());
-                playQueue.move(playQueue.size() - 1, currentIndex + 1);
+        switch (playerIntentType) {
+            case Enqueue -> {
+                if (playQueue != null) {
+                    playQueue.append(newQueue.getStreams());
+                }
+                return;
             }
-            return;
+            case EnqueueNext -> {
+                if (playQueue != null) {
+                    final int currentIndex = playQueue.getIndex();
+                    playQueue.append(newQueue.getStreams());
+                    playQueue.move(playQueue.size() - 1, currentIndex + 1);
+                }
+                return;
+            }
+            case AllOthers -> {
+                // fallthrough; TODO: put other intent data in separate cases
+            }
         }
 
         // initPlayback Parameters

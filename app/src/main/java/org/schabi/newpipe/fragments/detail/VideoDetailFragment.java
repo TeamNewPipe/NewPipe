@@ -93,6 +93,7 @@ import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerIntentType;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
@@ -1168,7 +1169,8 @@ public final class VideoDetailFragment
 
         final Context context = requireContext();
         final Intent playerIntent =
-                NavigationHelper.getPlayerIntent(context, PlayerService.class, queue)
+                NavigationHelper.getPlayerIntent(context, PlayerService.class, queue,
+                                PlayerIntentType.AllOthers)
                         .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
                         .putExtra(Player.RESUME_PLAYBACK, true);
         ContextCompat.startForegroundService(activity, playerIntent);
