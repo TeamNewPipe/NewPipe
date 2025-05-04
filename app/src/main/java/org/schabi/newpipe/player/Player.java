@@ -429,7 +429,8 @@ public final class Player implements PlaybackListener, Listener {
 
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
                 && DependentPreferenceHelper.getResumePlaybackEnabled(context)
-                && !samePlayQueue
+                // !samePlayQueue
+                && (playQueue == null || !playQueue.equalStreamsAndIndex(newQueue))
                 && !newQueue.isEmpty()
                 && newQueue.getItem() != null
                 && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
