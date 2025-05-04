@@ -366,15 +366,20 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         // Resolve enqueue intents
-        if (intent.getBooleanExtra(ENQUEUE, false) && playQueue != null) {
-            playQueue.append(newQueue.getStreams());
+        if (intent.getBooleanExtra(ENQUEUE, false)) {
+            if (playQueue != null) {
+                playQueue.append(newQueue.getStreams());
+            }
             return;
+        }
 
         // Resolve enqueue next intents
-        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
-            final int currentIndex = playQueue.getIndex();
-            playQueue.append(newQueue.getStreams());
-            playQueue.move(playQueue.size() - 1, currentIndex + 1);
+        if (intent.getBooleanExtra(ENQUEUE_NEXT, false)) {
+            if (playQueue != null) {
+                final int currentIndex = playQueue.getIndex();
+                playQueue.append(newQueue.getStreams());
+                playQueue.move(playQueue.size() - 1, currentIndex + 1);
+            }
             return;
         }
 
