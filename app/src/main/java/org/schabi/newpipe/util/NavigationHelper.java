@@ -100,17 +100,6 @@ public final class NavigationHelper {
     }
 
     @NonNull
-    public static <T> Intent getPlayerIntent(@NonNull final Context context,
-                                             @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue,
-                                             final boolean resumePlayback,
-                                             final boolean playWhenReady) {
-        return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(Player.PLAY_WHEN_READY, playWhenReady)
-                .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
-    }
-
-    @NonNull
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {

@@ -1166,8 +1166,11 @@ public final class VideoDetailFragment
         final PlayQueue queue = setupPlayQueueForIntent(false);
         tryAddVideoPlayerView();
 
-        final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                PlayerService.class, queue, true, autoPlayEnabled);
+        final Context context = requireContext();
+        final Intent playerIntent =
+                NavigationHelper.getPlayerIntent(context, PlayerService.class, queue)
+                        .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
+                        .putExtra(Player.RESUME_PLAYBACK, true);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
