@@ -84,8 +84,7 @@ public final class NavigationHelper {
     @NonNull
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue,
-                                             final boolean resumePlayback) {
+                                             @Nullable final PlayQueue playQueue) {
         final Intent intent = new Intent(context, targetClazz);
 
         if (playQueue != null) {
@@ -95,7 +94,6 @@ public final class NavigationHelper {
             }
         }
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.MAIN.valueForIntent());
-        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
 
         return intent;
@@ -107,17 +105,19 @@ public final class NavigationHelper {
                                              @Nullable final PlayQueue playQueue,
                                              final boolean resumePlayback,
                                              final boolean playWhenReady) {
-        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
+        return getPlayerIntent(context, targetClazz, playQueue)
+                .putExtra(Player.PLAY_WHEN_READY, playWhenReady)
+                .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
     }
 
     @NonNull
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {
-        // see comment in `getPlayerEnqueueIntent` as to why `resumePlayback` is false
-        return getPlayerIntent(context, targetClazz, playQueue, false)
-                .putExtra(Player.ENQUEUE_NEXT, true);
+        return getPlayerIntent(context, targetClazz, playQueue)
+                .putExtra(Player.ENQUEUE_NEXT, true)
+                // see comment in `getPlayerEnqueueIntent` as to why `resumePlayback` is false
+                .putExtra(Player.RESUME_PLAYBACK, false);
     }
 
     /* PLAY */
@@ -151,8 +151,9 @@ public final class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, PlayerType.POPUP.valueForIntent());
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue);
+        intent.putExtra(Player.PLAYER_TYPE, PlayerType.POPUP.valueForIntent())
+                .putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -162,8 +163,9 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
 
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, resumePlayback);
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue);
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.AUDIO.valueForIntent());
+        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -176,6 +178,7 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
+
         // when enqueueing `resumePlayback` is always `false` since:
         // - if there is a video already playing, the value of `resumePlayback` just doesn't make
         //   any difference.
@@ -183,8 +186,9 @@ public final class NavigationHelper {
         //   slightly different behaviour than the normal play action: the latter resumes playback,
         //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
         //   by long pressing the video detail fragment, playlist or channel controls
-        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, false)
-                .putExtra(Player.ENQUEUE, true);
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue)
+                .putExtra(Player.ENQUEUE, true)
+                .putExtra(Player.RESUME_PLAYBACK, false);
 
         intent.putExtra(Player.PLAYER_TYPE, playerType.valueForIntent());
         ContextCompat.startForegroundService(context, intent);
