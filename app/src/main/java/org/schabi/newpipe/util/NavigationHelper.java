@@ -112,21 +112,6 @@ public final class NavigationHelper {
     }
 
     @NonNull
-    public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
-                                                    @NonNull final Class<T> targetClazz,
-                                                    @Nullable final PlayQueue playQueue) {
-        // when enqueueing `resumePlayback` is always `false` since:
-        // - if there is a video already playing, the value of `resumePlayback` just doesn't make
-        //   any difference.
-        // - if there is nothing already playing, it is useful for the enqueue action to have a
-        //   slightly different behaviour than the normal play action: the latter resumes playback,
-        //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
-        //   by long pressing the video detail fragment, playlist or channel controls
-        return getPlayerIntent(context, targetClazz, playQueue, false)
-                .putExtra(Player.ENQUEUE, true);
-    }
-
-    @NonNull
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {
@@ -191,7 +176,15 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(context, PlayerService.class, queue);
+        // when enqueueing `resumePlayback` is always `false` since:
+        // - if there is a video already playing, the value of `resumePlayback` just doesn't make
+        //   any difference.
+        // - if there is nothing already playing, it is useful for the enqueue action to have a
+        //   slightly different behaviour than the normal play action: the latter resumes playback,
+        //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
+        //   by long pressing the video detail fragment, playlist or channel controls
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, false)
+                .putExtra(Player.ENQUEUE, true);
 
         intent.putExtra(Player.PLAYER_TYPE, playerType.valueForIntent());
         ContextCompat.startForegroundService(context, intent);
