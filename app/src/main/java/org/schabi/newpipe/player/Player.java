@@ -359,7 +359,6 @@ public final class Player implements PlaybackListener, Listener {
         final PlayerType oldPlayerType = playerType;
         playerType = PlayerType.retrieveFromIntent(intent);
         initUIsForCurrentPlayerType();
-        // We need to setup audioOnly before super(), see "sourceOf"
         isAudioOnly = audioPlayerSelected();
 
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
@@ -371,7 +370,7 @@ public final class Player implements PlaybackListener, Listener {
             playQueue.append(newQueue.getStreams());
             return;
 
-            // Resolve enqueue next intents
+        // Resolve enqueue next intents
         } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
             final int currentIndex = playQueue.getIndex();
             playQueue.append(newQueue.getStreams());
@@ -379,15 +378,17 @@ public final class Player implements PlaybackListener, Listener {
             return;
         }
 
+        // initPlayback Parameters
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
         final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
-
-        final boolean samePlayQueue = playQueue != null && playQueue.equalStreamsAndIndex(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
+
+        // branching parameters for below
+        final boolean samePlayQueue = playQueue != null && playQueue.equalStreamsAndIndex(newQueue);
 
         /*
          * TODO As seen in #7427 this does not work:
