@@ -154,7 +154,6 @@ public final class Player implements PlaybackListener, Listener {
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
     public static final String RESUME_PLAYBACK = "resume_playback";
@@ -392,7 +391,6 @@ public final class Player implements PlaybackListener, Listener {
         final float playbackPitch = savedParameters.pitch;
         final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
                 R.string.playback_skip_silence_key), getPlaybackSkipSilence());
-        final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
 
         // branching parameters for below
@@ -454,7 +452,7 @@ public final class Player implements PlaybackListener, Listener {
                                     newQueue.setRecovery(newQueue.getIndex(),
                                             state.getProgressMillis());
                                 }
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
+                                initPlayback(newQueue, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady);
                             },
                             error -> {
@@ -462,19 +460,19 @@ public final class Player implements PlaybackListener, Listener {
                                     Log.w(TAG, "Failed to start playback", error);
                                 }
                                 // In case any error we can start playback without history
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
+                                initPlayback(newQueue, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady);
                             },
                             () -> {
                                 // Completed but not found in history
-                                initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
+                                initPlayback(newQueue, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady);
                             }
                     ));
         } else {
             // Good to go...
             // In a case of equal PlayQueues we can re-init old one but only when it is disposed
-            initPlayback(samePlayQueue ? playQueue : newQueue, repeatMode, playbackSpeed,
+            initPlayback(samePlayQueue ? playQueue : newQueue, playbackSpeed,
                     playbackPitch, playbackSkipSilence, playWhenReady);
         }
 
@@ -521,14 +519,12 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initPlayback(@NonNull final PlayQueue queue,
-                              @RepeatMode final int repeatMode,
                               final float playbackSpeed,
                               final float playbackPitch,
                               final boolean playbackSkipSilence,
                               final boolean playOnReady) {
         destroyPlayer();
         initPlayer(playOnReady);
-        setRepeatMode(repeatMode);
         setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
 
         playQueue = queue;
