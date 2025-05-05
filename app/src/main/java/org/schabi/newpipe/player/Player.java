@@ -403,9 +403,8 @@ public final class Player implements PlaybackListener, Listener {
                     if (newQueue == null) {
                         return;
                     }
-                    final int currentIndex = playQueue.getIndex();
-                    playQueue.append(newQueue.getStreams());
-                    playQueue.move(playQueue.size() - 1, currentIndex + 1);
+                    final PlayQueueItem newItem = newQueue.getStreams().get(0);
+                    newQueue.enqueueNext(newItem, false);
                 }
                 return;
             }
@@ -417,9 +416,43 @@ public final class Player implements PlaybackListener, Listener {
                 streamItemDisposable.add(single.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(info -> {
-                            final PlayQueue newPlayQueue = new SinglePlayQueue(info,
-                                    dat.getSeconds() * 1000L);
-                            NavigationHelper.playOnPopupPlayer(context, playQueue, false);
+                            final @Nullable PlayQueue oldPlayQueue = playQueue;
+                            info.setStartPosition(dat.getSeconds());
+                            final PlayQueueItem playQueueItem = new PlayQueueItem(info);
+
+                            // If the stream is already playing,
+                            // we can just seek to the appropriate timestamp
+                            if (oldPlayQueue != null
+                                    && playQueueItem.isSameItem(oldPlayQueue.getItem())) {
+                                // Player can have state = IDLE when playback is stopped or failed
+                                // and we should retry in this case
+                                if (simpleExoPlayer.getPlaybackState()
+                                        == com.google.android.exoplayer2.Player.STATE_IDLE) {
+                                    simpleExoPlayer.prepare();
+                                }
+                                simpleExoPlayer.seekTo(oldPlayQueue.getIndex(),
+                                        dat.getSeconds() * 1000L);
+                                simpleExoPlayer.setPlayWhenReady(playWhenReady);
+
+                            } else {
+                                final PlayQueue newPlayQueue;
+
+                                // If there is no queue yet, just add our item
+                                if (oldPlayQueue == null) {
+                                    newPlayQueue = new SinglePlayQueue(playQueueItem);
+
+                                // else we add the timestamped stream behind the current video
+                                // and start playing it.
+                                } else {
+                                    oldPlayQueue.enqueueNext(playQueueItem, true);
+                                    oldPlayQueue.offsetIndex(1);
+                                    newPlayQueue = oldPlayQueue;
+                                }
+                                initPlayback(newPlayQueue, playWhenReady);
+                            }
+
+                            handleIntentPost(oldPlayerType);
+
                         }, throwable -> {
                             // This will only show a snackbar if the passed context has a root view:
                             // otherwise it will resort to showing a notification, so we are safe
@@ -456,7 +489,7 @@ public final class Player implements PlaybackListener, Listener {
         if (!exoPlayerIsNull()
                 && newQueue.size() == 1 && newQueue.getItem() != null
                 && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
-                && newQueue.getItem().getUrl().equals(playQueue.getItem().getUrl())
+                && newQueue.getItem().isSameItem(playQueue.getItem())
                 && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
@@ -521,6 +554,7 @@ public final class Player implements PlaybackListener, Listener {
 
         handleIntentPost(oldPlayerType);
     }
+
 
     private void handleIntentPost(final PlayerType oldPlayerType) {
         if (oldPlayerType != playerType && playQueue != null) {
