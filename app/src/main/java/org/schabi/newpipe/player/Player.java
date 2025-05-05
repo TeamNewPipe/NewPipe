@@ -122,7 +122,6 @@ import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.image.PicassoHelper;
@@ -362,13 +361,8 @@ public final class Player implements PlaybackListener, Listener {
         // can move the initUIs stuff without breaking the setup for edge cases somehow.
         switch (playerIntentType) {
             case TimestampChange -> {
-                // TODO: this breaks out of the pattern of asking for the permission before
-                // sending the PlayerIntent, but I’m not sure yet how to combine the permissions
-                // with the new enum approach. Maybe it’s better that the player asks anyway?
-                if (!PermissionHelper.isPopupEnabledElseAsk(context)) {
-                    return;
-                }
-                newPlayerType = PlayerType.POPUP;
+                // when playing from a timestamp, keep the current player as-is.
+                newPlayerType = playerType;
             }
             default -> {
                 newPlayerType = PlayerType.retrieveFromIntent(intent);
