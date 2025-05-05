@@ -61,6 +61,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerIntentType;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
+import org.schabi.newpipe.player.TimestampChangeData;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -99,6 +100,18 @@ public final class NavigationHelper {
         intent.putExtra(Player.PLAYER_TYPE, PlayerType.MAIN.valueForIntent());
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
         intent.putExtra(Player.PLAYER_INTENT_TYPE, (Parcelable) playerIntentType);
+
+        return intent;
+    }
+
+    @NonNull
+    public static Intent getPlayerTimestampIntent(@NonNull final Context context,
+                                                   @NonNull final TimestampChangeData
+                                                           timestampChangeData) {
+        final Intent intent = new Intent(context, PlayerService.class);
+
+        intent.putExtra(Player.PLAYER_INTENT_TYPE, (Parcelable) PlayerIntentType.TimestampChange);
+        intent.putExtra(Player.PLAYER_INTENT_DATA, timestampChangeData);
 
         return intent;
     }

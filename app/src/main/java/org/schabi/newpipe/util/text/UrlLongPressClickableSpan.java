@@ -28,8 +28,7 @@ final class UrlLongPressClickableSpan extends LongPressClickableSpan {
 
     @Override
     public void onClick(@NonNull final View view) {
-        if (!InternalUrlsHandler.handleUrlDescriptionTimestamp(
-                disposables, context, url)) {
+        if (!InternalUrlsHandler.handleUrlDescriptionTimestamp(context, url)) {
             ShareUtils.openUrlInApp(context, url);
         }
     }

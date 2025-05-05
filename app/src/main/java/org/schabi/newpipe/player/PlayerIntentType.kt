@@ -11,5 +11,16 @@ import kotlinx.parcelize.Parcelize
 enum class PlayerIntentType : Parcelable {
     Enqueue,
     EnqueueNext,
+    TimestampChange,
     AllOthers
 }
+
+/**
+ * A timestamp on the given was clicked and we should switch the playing stream to it.
+ */
+@Parcelize
+data class TimestampChangeData(
+    val serviceId: Int,
+    val url: String,
+    val seconds: Int
+) : Parcelable
