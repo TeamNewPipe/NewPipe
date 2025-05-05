@@ -24,12 +24,12 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJ
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SKIP;
 import static com.google.android.exoplayer2.Player.DiscontinuityReason;
 import static com.google.android.exoplayer2.Player.Listener;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
@@ -1181,14 +1181,23 @@ public final class Player implements PlaybackListener, Listener {
         return exoPlayerIsNull() ? REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
     }
 
-    public void setRepeatMode(@RepeatMode final int repeatMode) {
+    public void cycleNextRepeatMode() {
         if (!exoPlayerIsNull()) {
+            @RepeatMode final int repeatMode;
+            switch (simpleExoPlayer.getRepeatMode()) {
+                case REPEAT_MODE_OFF:
+                    repeatMode = REPEAT_MODE_ONE;
+                    break;
+                case REPEAT_MODE_ONE:
+                    repeatMode = REPEAT_MODE_ALL;
+                    break;
+                case REPEAT_MODE_ALL:
+                default:
+                    repeatMode = REPEAT_MODE_OFF;
+                    break;
+            }
             simpleExoPlayer.setRepeatMode(repeatMode);
         }
-    }
-
-    public void cycleNextRepeatMode() {
-        setRepeatMode(nextRepeatMode(getRepeatMode()));
     }
 
     @Override
