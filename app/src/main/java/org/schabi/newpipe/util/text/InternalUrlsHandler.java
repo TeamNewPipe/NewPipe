@@ -5,11 +5,6 @@ import android.content.Intent;
 import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
-
-import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -21,15 +16,11 @@ import org.schabi.newpipe.util.NavigationHelper;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
 public final class InternalUrlsHandler {
-    private static final String TAG = InternalUrlsHandler.class.getSimpleName();
-    private static final boolean DEBUG = MainActivity.DEBUG;
-
     private static final Pattern AMPERSAND_TIMESTAMP_PATTERN = Pattern.compile("(.*)&t=(\\d+)");
-    private static final Pattern HASHTAG_TIMESTAMP_PATTERN =
-            Pattern.compile("(.*)#timestamp=(\\d+)");
+
+    private InternalUrlsHandler() {
+    }
 
     /**
      * Handle a YouTube timestamp description URL in NewPipe.
@@ -39,7 +30,6 @@ public final class InternalUrlsHandler {
      * player will be opened when the user will click on the timestamp in the video description,
      * at the time and for the video indicated in the timestamp.
      *
-     * @param disposables a field of the Activity/Fragment class that calls this method
      * @param context     the context to use
      * @param url         the URL to check if it can be handled
      * @return true if the URL can be handled by NewPipe, false if it cannot
