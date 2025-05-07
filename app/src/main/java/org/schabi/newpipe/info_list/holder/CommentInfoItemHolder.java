@@ -101,13 +101,15 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         }
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
-
         // setup the top row, with pinned icon, author name and comment date
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
-        itemTitleView.setText(Localization.concatenateStrings(item.getUploaderName(),
-                Localization.relativeTimeOrTextual(itemBuilder.getContext(), item.getUploadDate(),
+        final String uploaderName = Localization.localizeUserName(item.getUploaderName());
+        itemTitleView.setText(Localization.concatenateStrings(
+                uploaderName,
+                Localization.relativeTimeOrTextual(
+                        itemBuilder.getContext(),
+                        item.getUploadDate(),
                         item.getTextualUploadDate())));
-
 
         // setup bottom row, with likes, heart and replies button
         itemLikesCountView.setText(
