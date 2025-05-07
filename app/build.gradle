@@ -23,9 +23,9 @@ android {
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1003
+            versionCode 1004
         }
-        versionName "0.27.6"
+        versionName "0.27.7"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
