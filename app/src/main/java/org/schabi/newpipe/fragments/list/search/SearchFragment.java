@@ -219,6 +219,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         searchBinding = FragmentSearchBinding.bind(rootView);
         super.onViewCreated(rootView, savedInstanceState);
+
+        updateService();
+        // Add the service name to search string hint
+        // to make it more obvious which platform is being searched.
+        if (service != null) {
+            searchEditText.setHint(
+                    getString(R.string.search_with_service_name,
+                            service.getServiceInfo().getName()));
+        }
         showSearchOnStart();
         initSearchListeners();
     }
