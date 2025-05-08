@@ -3,7 +3,6 @@ package org.schabi.newpipe.ui.emptystate
 import android.graphics.Color
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -24,9 +23,9 @@ fun EmptyStateComposable(
     spec: EmptyStateSpec,
     modifier: Modifier = Modifier,
 ) = EmptyStateComposable(
-    modifier = spec.modifier(modifier),
     emojiText = spec.emojiText(),
     descriptionText = spec.descriptionText(),
+    modifier = modifier
 )
 
 @Composable
@@ -61,7 +60,12 @@ private fun EmptyStateComposable(
 @Composable
 fun EmptyStateComposableGenericErrorPreview() {
     AppTheme {
-        EmptyStateComposable(EmptyStateSpec.GenericError)
+        EmptyStateComposable(
+            spec = EmptyStateSpec.GenericError,
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 128.dp)
+        )
     }
 }
 
@@ -69,12 +73,16 @@ fun EmptyStateComposableGenericErrorPreview() {
 @Composable
 fun EmptyStateComposableNoCommentPreview() {
     AppTheme {
-        EmptyStateComposable(EmptyStateSpec.NoComments)
+        EmptyStateComposable(
+            spec = EmptyStateSpec.NoComments,
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 128.dp)
+        )
     }
 }
 
 data class EmptyStateSpec(
-    val modifier: (Modifier) -> Modifier,
     val emojiText: @Composable () -> String,
     val descriptionText: @Composable () -> String,
 ) {
@@ -82,33 +90,21 @@ data class EmptyStateSpec(
 
         val GenericError =
             EmptyStateSpec(
-                modifier = {
-                    it
-                        .fillMaxWidth()
-                        .heightIn(min = 128.dp)
-                },
+
                 emojiText = { "¯\\_(ツ)_/¯" },
                 descriptionText = { stringResource(id = R.string.empty_list_subtitle) },
             )
 
         val NoVideos =
             EmptyStateSpec(
-                modifier = {
-                    it
-                        .fillMaxWidth()
-                        .heightIn(min = 128.dp)
-                },
+
                 emojiText = { "(╯°-°)╯" },
                 descriptionText = { stringResource(id = R.string.no_videos) },
             )
 
         val NoComments =
             EmptyStateSpec(
-                modifier = {
-                    it
-                        .fillMaxWidth()
-                        .heightIn(min = 128.dp)
-                },
+
                 emojiText = { "¯\\_(╹x╹)_/¯" },
                 descriptionText = { stringResource(id = R.string.no_comments) },
             )
@@ -120,33 +116,27 @@ data class EmptyStateSpec(
 
         val NoSearchResult =
             NoComments.copy(
-                modifier = { it },
                 emojiText = { "╰(°●°╰)" },
                 descriptionText = { stringResource(id = R.string.search_no_results) }
             )
 
         val NoSearchMaxSizeResult =
-            NoSearchResult.copy(
-                modifier = { it.fillMaxSize() },
-            )
+            NoSearchResult
 
         val ContentNotSupported =
             NoComments.copy(
-                modifier = { it.padding(top = 90.dp) },
                 emojiText = { "(︶︹︺)" },
                 descriptionText = { stringResource(id = R.string.content_not_supported) },
             )
 
         val NoBookmarkedPlaylist =
             EmptyStateSpec(
-                modifier = { it },
                 emojiText = { "(╥﹏╥)" },
                 descriptionText = { stringResource(id = R.string.no_playlist_bookmarked_yet) },
             )
 
         val NoSubscriptionsHint =
             EmptyStateSpec(
-                modifier = { it },
                 emojiText = { "(꩜ᯅ꩜)" },
                 descriptionText = { stringResource(id = R.string.import_subscriptions_hint) },
             )
