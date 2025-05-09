@@ -192,7 +192,7 @@ public final class TextLinkifier {
      * <p>
      * Instead of using an {@link android.content.Intent#ACTION_VIEW} intent in the description of
      * a content, this method will parse the {@link CharSequence} and replace all current web links
-     * with {@link ShareUtils#openUrlInBrowser(Context, String, boolean)}.
+     * with {@link ShareUtils#openUrlInBrowser(Context, String)}.
      * </p>
      *
      * <p>
@@ -240,7 +240,7 @@ public final class TextLinkifier {
                     for (final URLSpan span : urls) {
                         final String url = span.getURL();
                         final LongPressClickableSpan longPressClickableSpan =
-                                new UrlLongPressClickableSpan(context, disposables, url);
+                                new UrlLongPressClickableSpan(context, url);
 
                         textBlockLinked.setSpan(longPressClickableSpan,
                                 textBlockLinked.getSpanStart(span),
@@ -349,7 +349,7 @@ public final class TextLinkifier {
             }
 
             spannableDescription.setSpan(
-                    new TimestampLongPressClickableSpan(context, descriptionText, disposables,
+                    new TimestampLongPressClickableSpan(context, descriptionText,
                             relatedInfoService, relatedStreamUrl, timestampMatchDTO),
                     timestampMatchDTO.timestampStart(),
                     timestampMatchDTO.timestampEnd(),
