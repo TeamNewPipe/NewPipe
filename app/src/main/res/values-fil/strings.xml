@@ -170,7 +170,6 @@
     <string name="chapters">Mga Kabanata</string>
     <string name="no_app_to_open_intent">Walang app sa device mo ang makakabukas nito</string>
     <string name="featured">Tampok</string>
-    <string name="title_last_played">Huling Pinanood</string>
     <string name="action_history">Kasaysayan</string>
     <string name="no_one_listening">Walang nakikinig</string>
     <string name="search_no_results">Walang nahanap</string>
@@ -181,7 +180,6 @@
         <item quantity="other">Mga %s nanonood</item>
     </plurals>
     <string name="no_videos">Walang mga video</string>
-    <string name="title_most_played">Madalas na Pinanood</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">Mga %s na video</item>
