@@ -355,6 +355,7 @@
     <string name="playback_skip_silence_key">playback_skip_silence_key</string>
 
     <string name="app_language_key">app_language_key</string>
+    <string name="app_language_android_13_and_up_key">app_language_android_13_and_up_key</string>
 
     <string name="feed_update_threshold_key">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value">300</string>

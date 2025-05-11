@@ -88,7 +88,7 @@ class NotificationHelper(val context: Context) {
 
                 // Show individual stream notifications, set channel icon only if there is actually
                 // one
-                showStreamNotifications(newStreams, data.serviceId, bitmap)
+                showStreamNotifications(newStreams, data.serviceId, data.url, bitmap)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
 
@@ -97,7 +97,7 @@ class NotificationHelper(val context: Context) {
 
             override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
                 // Show individual stream notifications
-                showStreamNotifications(newStreams, data.serviceId, null)
+                showStreamNotifications(newStreams, data.serviceId, data.url, null)
                 // Show summary notification
                 manager.notify(data.pseudoId, summaryBuilder.build())
                 iconLoadingTargets.remove(this) // allow it to be garbage-collected
@@ -118,10 +118,11 @@ class NotificationHelper(val context: Context) {
     private fun showStreamNotifications(
         newStreams: List<StreamInfoItem>,
         serviceId: Int,
+        channelUrl: String,
         channelIcon: Bitmap?
     ) {
         for (stream in newStreams) {
-            val notification = createStreamNotification(stream, serviceId, channelIcon)
+            val notification = createStreamNotification(stream, serviceId, channelUrl, channelIcon)
             manager.notify(stream.url.hashCode(), notification)
         }
     }
@@ -129,6 +130,7 @@ class NotificationHelper(val context: Context) {
     private fun createStreamNotification(
         item: StreamInfoItem,
         serviceId: Int,
+        channelUrl: String,
         channelIcon: Bitmap?
     ): Notification {
         return NotificationCompat.Builder(
@@ -139,7 +141,7 @@ class NotificationHelper(val context: Context) {
             .setLargeIcon(channelIcon)
             .setContentTitle(item.name)
             .setContentText(item.uploaderName)
-            .setGroup(item.uploaderUrl)
+            .setGroup(channelUrl)
             .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)

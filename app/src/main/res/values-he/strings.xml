@@ -830,7 +830,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">שיתוף רשימת נגינה</string>
-    <string name="share_playlist_with_titles_message">שיתוף רשימת נגינה עם פרטים כגון שם רשימת נגינה וכותרות סרטונים או כרשימה פשוטה של כתובות סרטונים</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">להציג עוד</string>
     <string name="show_less">להציג פחות</string>
@@ -852,4 +851,5 @@
 \nלהמשיך?</string>
     <string name="error_insufficient_storage">אין מספיק מקום פנוי במכשיר</string>
     <string name="import_settings_vulnerable_format">ההגדרות בייצוא המיובא משתמשות בתסדיר פגיע שהוצא משימוש מאז NewPipe 0.27.0. יש לוודא שהייצוא המיובא הוא ממקור מהימן, ועדיף להשתמש רק בייצוא שהושג מ־NewPipe 0.27.0 ומעלה בעתיד. תמיכה בייבוא הגדרות בתסדיר פגיע זה תוסר בקרוב לחלוטין, ואז גרסאות ישנות של NewPipe לא יוכלו לייבא עוד הגדרות של ייצוא מגרסאות חדשות.</string>
+    <string name="audio_track_type_secondary">משני</string>
 </resources>

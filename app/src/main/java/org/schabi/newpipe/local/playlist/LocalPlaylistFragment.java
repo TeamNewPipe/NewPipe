@@ -2,7 +2,12 @@ package org.schabi.newpipe.local.playlist;
 
 import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.local.playlist.ExportPlaylistKt.export;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.JUST_URLS;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.WITH_TITLES;
+import static org.schabi.newpipe.local.playlist.PlayListShareMode.YOUTUBE_TEMP_PLAYLIST;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
+
 
 import android.content.Context;
 import android.os.Bundle;
@@ -27,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.evernote.android.state.State;
-
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -385,34 +389,41 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     /**
-     * Shares the playlist as a list of stream URLs if {@code shouldSharePlaylistDetails} is
-     * set to {@code false}. Shares the playlist name along with a list of video titles and URLs
-     * if {@code shouldSharePlaylistDetails} is set to {@code true}.
+     * Shares the playlist in one of 3 ways, depending on the value of {@code shareMode}:
+     * <ul>
+     *     <li>{@code JUST_URLS}: shares the URLs only.</li>
+     *     <li>{@code WITH_TITLES}: each entry in the list is accompanied by its title.</li>
+     *     <li>{@code YOUTUBE_TEMP_PLAYLIST}: shares as a YouTube temporary playlist.</li>
+     * </ul>
      *
-     * @param shouldSharePlaylistDetails Whether the playlist details should be included in the
-     *                                   shared content.
+     * @param shareMode The way the playlist should be shared.
      */
-    private void sharePlaylist(final boolean shouldSharePlaylistDetails) {
+    private void sharePlaylist(final PlayListShareMode shareMode) {
         final Context context = requireContext();
 
         disposables.add(playlistManager.getPlaylistStreams(playlistId)
-                .flatMapSingle(playlist -> Single.just(playlist.stream()
-                        .map(PlaylistStreamEntry::getStreamEntity)
-                        .map(streamEntity -> {
-                            if (shouldSharePlaylistDetails) {
-                                return context.getString(R.string.video_details_list_item,
-                                        streamEntity.getTitle(), streamEntity.getUrl());
-                            } else {
-                                return streamEntity.getUrl();
-                            }
-                        })
-                        .collect(Collectors.joining("\n"))))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(urlsText -> ShareUtils.shareText(
-                                context, name, shouldSharePlaylistDetails
-                                        ? context.getString(R.string.share_playlist_content_details,
-                                        name, urlsText) : urlsText),
-                        throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
+            .flatMapSingle(playlist -> Single.just(export(
+
+                shareMode,
+                playlist,
+                context
+            )))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                urlsText -> {
+
+                    final String content = shareMode == WITH_TITLES
+                        ? context.getString(R.string.share_playlist_content_details,
+                                            name,
+                                            urlsText
+                                           )
+                        : urlsText;
+
+                    ShareUtils.shareText(context, name, content);
+                },
+                throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)
+            )
+        );
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
@@ -872,13 +883,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void createShareConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.share_playlist)
-                .setMessage(R.string.share_playlist_with_titles_message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.share_playlist_with_titles, (dialog, which) ->
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ true)
+                    sharePlaylist(WITH_TITLES)
+                )
+                .setNeutralButton(R.string.share_playlist_as_youtube_temporary_playlist,
+                    (dialog, which) -> sharePlaylist(YOUTUBE_TEMP_PLAYLIST)
                 )
                 .setNegativeButton(R.string.share_playlist_with_list, (dialog, which) ->
-                    sharePlaylist(/* shouldSharePlaylistDetails= */ false)
+                    sharePlaylist(JUST_URLS)
                 )
                 .show();
     }

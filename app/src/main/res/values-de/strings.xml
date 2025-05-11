@@ -63,7 +63,7 @@
     <string name="error_snackbar_message">Entschuldigung, etwas ist schiefgelaufen.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu beginnen.</string>
+    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu suchen.</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -425,7 +425,7 @@
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
-        <item quantity="other">%s Zuschauende</item>
+        <item quantity="other">%s Zuschauer</item>
     </plurals>
     <string name="no_one_listening">Niemand hört zu</string>
     <plurals name="listening">
@@ -804,7 +804,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Wiedergabeliste teilen</string>
-    <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s Antwort</item>

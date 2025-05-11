@@ -759,7 +759,6 @@
     <string name="rewind">Kelaa taaksepäin</string>
     <string name="feed_fetch_channel_tabs_summary">Noudettavat välilehdet syötettä päivitettäessä. Tällä valinnalla ei ole vaikutusta, jos kanava päivitetään käyttämällä nopeaa tilaa.</string>
     <string name="delete_downloaded_files_confirm">Poistetaanko kaikki ladatut tiedostot levyltä\?</string>
-    <string name="share_playlist_with_titles_message">Jaa soittolista, jossa on tietoja, kuten soittolistan nimi ja videon nimi, tai yksinkertainen luettelo videoiden URL-osoitteista</string>
     <string name="image_quality_medium">Keskilaatu</string>
     <string name="metadata_uploader_avatars">Lataajan avatarit</string>
     <string name="percent">Prosentti</string>
