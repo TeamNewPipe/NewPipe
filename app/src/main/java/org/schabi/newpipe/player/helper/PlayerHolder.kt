@@ -32,25 +32,12 @@ class PlayerHolder private constructor() {
         private set
     private var playerService: PlayerService? = null
 
-    private val player: Optional<Player?>
-        get() = Optional.ofNullable<PlayerService?>(playerService)
-            .flatMap<Player?>(
-                Function { s: PlayerService? ->
-                    Optional.ofNullable<Player?>(
-                        s!!.player
-                    )
-                }
-            )
+    private val player: Player?
+        get() = playerService?.player
 
-    private val playQueue: Optional<PlayQueue?>
+    private val playQueue: PlayQueue?
         get() = // player play queue might be null e.g. while player is starting
-            this.player.flatMap<PlayQueue?>(
-                Function { p: Player? ->
-                    Optional.ofNullable<PlayQueue?>(
-                        p!!.getPlayQueue()
-                    )
-                }
-            )
+            this.player?.playQueue
 
     val type: PlayerType?
         /**
@@ -59,15 +46,13 @@ class PlayerHolder private constructor() {
          *
          * @return Current PlayerType
          */
-        get() = this.player.map<PlayerType?>(Function { obj: Player? -> obj!!.getPlayerType() })
-            .orElse(null)
+        get() = this.player?.playerType
 
     val isPlaying: Boolean
-        get() = this.player.map<Boolean?>(Function { obj: Player? -> obj!!.isPlaying() })
-            .orElse(false)
+        get() = this.player?.isPlaying == true
 
     val isPlayerOpen: Boolean
-        get() = this.player.isPresent()
+        get() = this.player != null
 
     val isPlayQueueReady: Boolean
         /**
@@ -75,13 +60,13 @@ class PlayerHolder private constructor() {
          * the stream long press menu) when there actually is a play queue to manipulate.
          * @return true only if the player is open and its play queue is ready (i.e. it is not null)
          */
-        get() = this.playQueue.isPresent()
+        get() = this.playQueue != null
 
     val queueSize: Int
-        get() = this.playQueue.map<Int?>(Function { obj: PlayQueue? -> obj!!.size() }).orElse(0)
+        get() = this.playQueue?.size() ?: 0
 
     val queuePosition: Int
-        get() = this.playQueue.map<Int?>(Function { obj: PlayQueue? -> obj!!.getIndex() }).orElse(0)
+        get() = this.playQueue?.index ?: 0
 
     fun setListener(newListener: PlayerServiceExtendedEventListener?) {
         listener = newListener
@@ -182,16 +167,12 @@ class PlayerHolder private constructor() {
                     )
             }
             playerService = s
-            if (listener != null) {
-                listener!!.onServiceConnected(s)
-                this@PlayerHolder.player.ifPresent(
-                    Consumer { p: Player? ->
-                        listener!!.onPlayerConnected(
-                            p!!,
-                            playAfterConnect
-                        )
-                    }
-                )
+            val l = listener
+            if (l != null) {
+                l.onServiceConnected(s)
+                player?.let {
+                    l.onPlayerConnected(it, playAfterConnect)
+                }
             }
             startPlayerListener()
 
@@ -252,14 +233,14 @@ class PlayerHolder private constructor() {
             // player in the service is (not) already active, also see playerStateListener below
             playerService!!.setPlayerListener(playerStateListener)
         }
-        this.player.ifPresent(Consumer { p: Player? -> p!!.setFragmentListener(internalListener) })
+        this.player?.setFragmentListener(internalListener)
     }
 
     private fun stopPlayerListener() {
         if (playerService != null) {
             playerService!!.setPlayerListener(null)
         }
-        this.player.ifPresent(Consumer { p: Player? -> p!!.removeFragmentListener(internalListener) })
+        this.player?.removeFragmentListener(internalListener)
     }
 
     /**
