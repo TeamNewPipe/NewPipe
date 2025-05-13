@@ -188,9 +188,15 @@ public final class PlayerHolder {
             }
             final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
-            playerService = localBinder.getService();
+            @Nullable final PlayerService s = localBinder.getService();
+            if (s == null) {
+                throw new IllegalArgumentException(
+                        "PlayerService.LocalBinder.getService() must never be"
+                                + "null after the service connects");
+            }
+            playerService = s;
             if (listener != null) {
-                listener.onServiceConnected(playerService);
+                listener.onServiceConnected(s);
                 getPlayer().ifPresent(p -> listener.onPlayerConnected(p, playAfterConnect));
             }
             startPlayerListener();
@@ -198,7 +204,7 @@ public final class PlayerHolder {
 
             // notify the main activity that binding the service has completed, so that it can
             // open the bottom mini-player
-            NavigationHelper.sendPlayerStartedEvent(localBinder.getService());
+            NavigationHelper.sendPlayerStartedEvent(s);
         }
     }
 
