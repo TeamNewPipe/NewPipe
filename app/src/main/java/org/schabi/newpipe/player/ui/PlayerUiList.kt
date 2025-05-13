@@ -50,19 +50,19 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
 
     /**
      * Destroys all matching player UIs and removes them from the list.
-     * @param playerUiType the class of the player UI to destroy;
-     * the [Class.isInstance] method will be used, so even subclasses will be
+     * @param playerUiType the class of the player UI to destroy, everything if `null`.
+     * The [Class.isInstance] method will be used, so even subclasses will be
      * destroyed and removed
      * @param T the class type parameter </T>
      * */
-    fun <T> destroyAll(playerUiType: Class<T?>) {
+    fun <T : PlayerUi> destroyAllOfType(playerUiType: Class<T>? = null) {
         val toDestroy = mutableListOf<PlayerUi>()
 
         // short blocking removal from class to prevent interfering from other threads
         playerUis.runWithLockSync {
             val new = mutableListOf<PlayerUi>()
             for (ui in lockData) {
-                if (playerUiType.isInstance(ui)) {
+                if (playerUiType == null || playerUiType.isInstance(ui)) {
                     toDestroy.add(ui)
                 } else {
                     new.add(ui)
@@ -83,7 +83,7 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param T the class type parameter
      * @return the first player UI of the required type found in the list, or null
      </T> */
-    fun <T> get(playerUiType: Class<T>): T? =
+    fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
         playerUis.runWithLockSync {
             for (ui in lockData) {
                 if (playerUiType.isInstance(ui)) {
@@ -105,7 +105,7 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * [Optional] otherwise
      </T> */
     @Deprecated("use get", ReplaceWith("get(playerUiType)"))
-    fun <T> getOpt(playerUiType: Class<T>): Optional<T & Any> =
+    fun <T : PlayerUi> getOpt(playerUiType: Class<T>): Optional<T> =
         Optional.ofNullable(get(playerUiType))
 
     /**

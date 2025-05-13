@@ -492,15 +492,15 @@ public final class Player implements PlaybackListener, Listener {
 
         switch (playerType) {
             case MAIN:
-                UIs.destroyAll(PopupPlayerUi.class);
+                UIs.destroyAllOfType(PopupPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
-                UIs.destroyAll(MainPlayerUi.class);
+                UIs.destroyAllOfType(MainPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
-                UIs.destroyAll(VideoPlayerUi.class);
+                UIs.destroyAllOfType(VideoPlayerUi.class);
                 break;
         }
     }
@@ -606,7 +606,7 @@ public final class Player implements PlaybackListener, Listener {
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
 
-        UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
+        UIs.destroyAllOfType(null);
     }
 
     public void setRecovery() {
@@ -1995,6 +1995,10 @@ public final class Player implements PlaybackListener, Listener {
         triggerProgressUpdate();
     }
 
+    /**
+     * Remove the listener, if it was set.
+     * @param listener listener to remove
+     * */
     public void removeFragmentListener(final PlayerServiceEventListener listener) {
         if (fragmentListener == listener) {
             fragmentListener = null;
@@ -2009,6 +2013,10 @@ public final class Player implements PlaybackListener, Listener {
         triggerProgressUpdate();
     }
 
+    /**
+     * Remove the listener, if it was set.
+     * @param listener listener to remove
+     * */
     void removeActivityListener(final PlayerEventListener listener) {
         if (activityListener == listener) {
             activityListener = null;
