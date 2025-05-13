@@ -20,9 +20,7 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.NavigationHelper
-import java.util.Optional
 import java.util.function.Consumer
-import java.util.function.Function
 
 class PlayerHolder private constructor() {
     private var listener: PlayerServiceExtendedEventListener? = null
@@ -120,9 +118,7 @@ class PlayerHolder private constructor() {
         if (DEBUG) {
             Log.d(TAG, "stopService() called")
         }
-        if (playerService != null) {
-            playerService!!.destroyPlayerAndStopService()
-        }
+        playerService?.destroyPlayerAndStopService()
         val context = this.commonContext
         unbind(context)
         // destroyPlayerAndStopService() already runs the next line of code, but run it again just
@@ -218,26 +214,20 @@ class PlayerHolder private constructor() {
             this.isBound = false
             stopPlayerListener()
             playerService = null
-            if (listener != null) {
-                listener!!.onPlayerDisconnected()
-                listener!!.onServiceDisconnected()
-            }
+            listener?.onPlayerDisconnected()
+            listener?.onServiceDisconnected()
         }
     }
 
     private fun startPlayerListener() {
-        if (playerService != null) {
-            // setting the player listener will take care of calling relevant callbacks if the
-            // player in the service is (not) already active, also see playerStateListener below
-            playerService!!.setPlayerListener(playerStateListener)
-        }
+        // setting the player listener will take care of calling relevant callbacks if the
+        // player in the service is (not) already active, also see playerStateListener below
+        playerService?.setPlayerListener(playerStateListener)
         this.player?.setFragmentListener(internalListener)
     }
 
     private fun stopPlayerListener() {
-        if (playerService != null) {
-            playerService!!.setPlayerListener(null)
-        }
+        playerService?.setPlayerListener(null)
         this.player?.removeFragmentListener(internalListener)
     }
 
@@ -246,48 +236,34 @@ class PlayerHolder private constructor() {
      */
     private val internalListener: PlayerServiceEventListener = object : PlayerServiceEventListener {
         override fun onViewCreated() {
-            if (listener != null) {
-                listener!!.onViewCreated()
-            }
+            listener?.onViewCreated()
         }
 
         override fun onFullscreenStateChanged(fullscreen: Boolean) {
-            if (listener != null) {
-                listener!!.onFullscreenStateChanged(fullscreen)
-            }
+            listener?.onFullscreenStateChanged(fullscreen)
         }
 
         override fun onScreenRotationButtonClicked() {
-            if (listener != null) {
-                listener!!.onScreenRotationButtonClicked()
-            }
+            listener?.onScreenRotationButtonClicked()
         }
 
         override fun onMoreOptionsLongClicked() {
-            if (listener != null) {
-                listener!!.onMoreOptionsLongClicked()
-            }
+            listener?.onMoreOptionsLongClicked()
         }
 
         override fun onPlayerError(
             error: PlaybackException?,
             isCatchableException: Boolean
         ) {
-            if (listener != null) {
-                listener!!.onPlayerError(error, isCatchableException)
-            }
+            listener?.onPlayerError(error, isCatchableException)
         }
 
         override fun hideSystemUiIfNeeded() {
-            if (listener != null) {
-                listener!!.hideSystemUiIfNeeded()
-            }
+            listener?.hideSystemUiIfNeeded()
         }
 
         override fun onQueueUpdate(queue: PlayQueue?) {
-            if (listener != null) {
-                listener!!.onQueueUpdate(queue)
-            }
+            listener?.onQueueUpdate(queue)
         }
 
         override fun onPlaybackUpdate(
@@ -296,9 +272,7 @@ class PlayerHolder private constructor() {
             shuffled: Boolean,
             parameters: PlaybackParameters?
         ) {
-            if (listener != null) {
-                listener!!.onPlaybackUpdate(state, repeatMode, shuffled, parameters)
-            }
+            listener?.onPlaybackUpdate(state, repeatMode, shuffled, parameters)
         }
 
         override fun onProgressUpdate(
@@ -306,21 +280,15 @@ class PlayerHolder private constructor() {
             duration: Int,
             bufferPercent: Int
         ) {
-            if (listener != null) {
-                listener!!.onProgressUpdate(currentProgress, duration, bufferPercent)
-            }
+            listener?.onProgressUpdate(currentProgress, duration, bufferPercent)
         }
 
         override fun onMetadataUpdate(info: StreamInfo?, queue: PlayQueue?) {
-            if (listener != null) {
-                listener!!.onMetadataUpdate(info, queue)
-            }
+            listener?.onMetadataUpdate(info, queue)
         }
 
         override fun onServiceStopped() {
-            if (listener != null) {
-                listener!!.onServiceStopped()
-            }
+            listener?.onServiceStopped()
             unbind(this@PlayerHolder.commonContext)
         }
     }
@@ -331,14 +299,15 @@ class PlayerHolder private constructor() {
      * Auto media browser queries.
      */
     private val playerStateListener = Consumer { player: Player? ->
-        if (listener != null) {
+        val l = listener
+        if (l != null) {
             if (player == null) {
                 // player.fragmentListener=null is already done by player.stopActivityBinding(),
                 // which is called by player.destroy(), which is in turn called by PlayerService
                 // before setting its player to null
-                listener!!.onPlayerDisconnected()
+                l.onPlayerDisconnected()
             } else {
-                listener!!.onPlayerConnected(player, serviceConnection.playAfterConnect)
+                l.onPlayerConnected(player, serviceConnection.playAfterConnect)
                 // reset the value of playAfterConnect: if it was true before, it is now "consumed"
                 serviceConnection.playAfterConnect = false;
                 player.setFragmentListener(internalListener)
