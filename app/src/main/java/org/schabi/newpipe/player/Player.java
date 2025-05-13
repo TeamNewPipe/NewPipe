@@ -133,6 +133,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
 
+/**
+ * The ExoPlayer wrapper & Player business logic.
+ * Only instantiated once, from {@link PlayerService}.
+ */
 public final class Player implements PlaybackListener, Listener {
     public static final boolean DEBUG = MainActivity.DEBUG;
     public static final String TAG = Player.class.getSimpleName();
