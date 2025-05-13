@@ -226,7 +226,7 @@ class PlayerService : MediaBrowserServiceCompat() {
                 // notify that the player is being destroyed
                 onPlayerStartedOrStopped!!.accept(null)
             }
-            player!!.destroy()
+            player!!.saveAndShutdown()
             player = null
         }
 
