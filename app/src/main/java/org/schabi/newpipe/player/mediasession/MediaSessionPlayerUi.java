@@ -124,8 +124,10 @@ public class MediaSessionPlayerUi extends PlayerUi
         MediaButtonReceiver.handleIntent(mediaSession, intent);
     }
 
-    public Optional<MediaSessionCompat.Token> getSessionToken() {
-        return Optional.ofNullable(mediaSession).map(MediaSessionCompat::getSessionToken);
+
+    @NonNull
+    public MediaSessionCompat.Token getSessionToken() {
+        return mediaSession.getSessionToken();
     }
 
 
@@ -138,7 +140,10 @@ public class MediaSessionPlayerUi extends PlayerUi
             public void play() {
                 player.play();
                 // hide the player controls even if the play command came from the media session
-                player.UIs().getOpt(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
+                final VideoPlayerUi ui = player.UIs().get(VideoPlayerUi.class);
+                if (ui != null) {
+                    ui.hideControls(0, 0);
+                }
             }
 
             @Override
