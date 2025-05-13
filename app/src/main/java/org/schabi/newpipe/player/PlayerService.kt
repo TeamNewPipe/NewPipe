@@ -91,7 +91,7 @@ class PlayerService : MediaBrowserServiceCompat() {
 
         // see https://developer.android.com/training/cars/media#browser_workflow
         mediaSession = MediaSessionCompat(this, "MediaSessionPlayerServ")
-        setSessionToken(mediaSession!!.getSessionToken())
+        setSessionToken(mediaSession!!.sessionToken)
         sessionConnector = MediaSessionConnector(mediaSession!!)
         sessionConnector!!.setMetadataDeduplicationEnabled(true)
 
@@ -127,7 +127,7 @@ class PlayerService : MediaBrowserServiceCompat() {
                 TAG,
                 (
                     "onStartCommand() called with: intent = [" + intent +
-                        "], extras = [" + intent.getExtras().toDebugString() +
+                        "], extras = [" + intent.extras.toDebugString() +
                         "], flags = [" + flags + "], startId = [" + startId + "]"
                     )
             )
@@ -150,8 +150,8 @@ class PlayerService : MediaBrowserServiceCompat() {
             // no one already and starting the service in foreground should not create any issues.
             // If the service is already started in foreground, requesting it to be started
             // shouldn't do anything.
-            player!!.UIs().getOpt<NotificationPlayerUi>(NotificationPlayerUi::class.java)
-                .ifPresent(Consumer { obj: NotificationPlayerUi? -> obj!!.createNotificationAndStartForeground() })
+            player!!.UIs().get(NotificationPlayerUi::class.java)
+                ?.createNotificationAndStartForeground()
 
             if (playerWasNull && onPlayerStartedOrStopped != null) {
                 // notify that a new player was created (but do it after creating the foreground
@@ -161,8 +161,8 @@ class PlayerService : MediaBrowserServiceCompat() {
             }
         }
 
-        if (Intent.ACTION_MEDIA_BUTTON == intent.getAction() &&
-            (player == null || player!!.getPlayQueue() == null)
+        if (Intent.ACTION_MEDIA_BUTTON == intent.action &&
+            (player == null || player!!.playQueue == null)
         ) {
             /*
             No need to process media button's actions if the player is not working, otherwise
@@ -174,16 +174,11 @@ class PlayerService : MediaBrowserServiceCompat() {
             return START_NOT_STICKY
         }
 
-        if (player != null) {
-            player!!.handleIntent(intent)
-            player!!.UIs().getOpt<MediaSessionPlayerUi>(MediaSessionPlayerUi::class.java)
-                .ifPresent(
-                    Consumer { ui: MediaSessionPlayerUi? ->
-                        ui!!.handleMediaButtonIntent(
-                            intent
-                        )
-                    }
-                )
+        val p = player
+        if (p != null) {
+            p.handleIntent(intent)
+            p.UIs().get(MediaSessionPlayerUi::class.java)
+                ?.handleMediaButtonIntent(intent)
         }
 
         return START_NOT_STICKY
@@ -278,16 +273,16 @@ class PlayerService : MediaBrowserServiceCompat() {
                 TAG,
                 (
                     "onBind() called with: intent = [" + intent +
-                        "], extras = [" + intent.getExtras().toDebugString() + "]"
+                        "], extras = [" + intent.extras.toDebugString() + "]"
                     )
             )
         }
 
-        if (BIND_PLAYER_HOLDER_ACTION == intent.getAction()) {
+        if (BIND_PLAYER_HOLDER_ACTION == intent.action) {
             // Note that this binder might be reused multiple times while the service is alive, even
             // after unbind() has been called: https://stackoverflow.com/a/8794930 .
             return mBinder
-        } else if (SERVICE_INTERFACE == intent.getAction()) {
+        } else if (SERVICE_INTERFACE == intent.action) {
             // MediaBrowserService also uses its own binder, so for actions related to the media
             // browser service, pass the onBind to the superclass.
             return super.onBind(intent)
@@ -297,7 +292,7 @@ class PlayerService : MediaBrowserServiceCompat() {
         }
     }
 
-    class LocalBinder internal constructor(playerService: PlayerService?) : Binder() {
+    class LocalBinder internal constructor(playerService: PlayerService) : Binder() {
         private val playerService: WeakReference<PlayerService?>
 
         init {
