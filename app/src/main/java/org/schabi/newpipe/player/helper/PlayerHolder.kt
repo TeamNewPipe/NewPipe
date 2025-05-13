@@ -71,15 +71,13 @@ class PlayerHolder private constructor() {
     fun setListener(newListener: PlayerServiceExtendedEventListener?) {
         listener = newListener
 
-        if (listener == null) {
-            return
-        }
-
         // Force reload data from service
-        if (playerService != null) {
-            listener!!.onServiceConnected(playerService!!)
-            startPlayerListener()
-            // ^ will call listener.onPlayerConnected() down the line if there is an active player
+        newListener?.let { listener ->
+            playerService?.let {
+                listener.onServiceConnected(it)
+                startPlayerListener()
+                // ^ will call listener.onPlayerConnected() down the line if there is an active player
+            }
         }
     }
 
