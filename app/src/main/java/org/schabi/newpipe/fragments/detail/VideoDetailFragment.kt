@@ -112,6 +112,7 @@ import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.InfoCache
 import org.schabi.newpipe.util.ListHelper
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.PermissionHelper
 import org.schabi.newpipe.util.PlayButtonHelper
@@ -229,7 +230,7 @@ class VideoDetailFragment :
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded()
 
-        val playerUi: Optional<MainPlayerUi?> =
+        val playerUi: Optional<MainPlayerUi> =
             player!!.UIs().getOpt<MainPlayerUi>(MainPlayerUi::class.java)
         if (!player!!.videoPlayerSelected() && !playAfterConnect) {
             return
@@ -469,8 +470,7 @@ class VideoDetailFragment :
             makeOnClickListener(
                 Consumer { info: StreamInfo? ->
                     if (getFM() != null && currentInfo != null) {
-                        val fragment = getParentFragmentManager().findFragmentById
-                        (R.id.fragment_holder)
+                        val fragment = getParentFragmentManager().findFragmentById(R.id.fragment_holder)
 
                         // commit previous pending changes to database
                         if (fragment is LocalPlaylistFragment) {
@@ -715,7 +715,7 @@ class VideoDetailFragment :
                 View.GONE
         )
         binding!!.detailControlsCrashThePlayer.setVisibility(
-            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(getContext()!!)
+            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .getBoolean(getString(R.string.show_crash_the_player_key), false)
             )
                 View.VISIBLE
@@ -887,11 +887,11 @@ class VideoDetailFragment :
         Handler(Looper.getMainLooper()).postDelayed(
             Runnable {
                 if (activity == null) {
-                    return@postDelayed
+                    return@Runnable
                 }
                 // Data can already be drawn, don't spend time twice
                 if (info.getName() == binding!!.detailVideoTitleView.getText().toString()) {
-                    return@postDelayed
+                    return@Runnable
                 }
                 prepareAndHandleInfo(info, scrollToTop)
             },
@@ -1296,7 +1296,7 @@ class VideoDetailFragment :
         removeVideoPlayerView()
         if (this.isAutoplayEnabled) {
             playerService!!.stopForImmediateReusing()
-            root.ifPresent(Consumer { view: View? -> view!!.setVisibility(View.GONE) })
+            root.ifPresent(Consumer { view: View -> view.setVisibility(View.GONE) })
         } else {
             playerHolder.stopService()
         }
@@ -1373,7 +1373,7 @@ class VideoDetailFragment :
         Handler(Looper.getMainLooper()).post(
             Runnable {
                 if (!this.isPlayerAvailable || getView() == null) {
-                    return@post
+                    return@Runnable
                 }
                 // setup the surface view height, so that it fits the video correctly
                 setHeightThumbnail()
@@ -1424,7 +1424,7 @@ class VideoDetailFragment :
                             activity.getWindow().getDecorView()
                         ).getHeight()
                     setHeightThumbnail(height, metrics)
-                    getView()!!.getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
+                    requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
                 }
                 return false
             }
@@ -1627,11 +1627,11 @@ class VideoDetailFragment :
         binding!!.detailSubChannelThumbnailView.setImageBitmap(null)
     }
 
-    override fun handleResult(info: StreamInfo) {
+    override fun handleResult(info: StreamInfo?) {
         super.handleResult(info)
 
         currentInfo = info
-        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue)
+        setInitialData(info!!.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue)
 
         updateTabs(info)
 
@@ -2277,7 +2277,7 @@ class VideoDetailFragment :
             binding!!.detailControlsOpenInBrowser.setBackgroundColor(transparent)
             binding!!.detailControlsPlayWithKodi.setBackgroundColor(transparent)
         }
-        if (DeviceUtils.isDesktopMode(getContext()!!)) {
+        if (DeviceUtils.isDesktopMode(requireContext())) {
             // Remove the "hover" overlay (since it is visible on all mouse events and interferes
             // with the video content being played)
             binding!!.detailThumbnailRootLayout.setForeground(null)
@@ -2309,9 +2309,9 @@ class VideoDetailFragment :
 
     private fun findQueueInStack(queue: PlayQueue?): StackItem? {
         var item: StackItem? = null
-        val iterator: MutableIterator<StackItem> = stack.descendingIterator()
+        val iterator: MutableIterator<StackItem?> = stack.descendingIterator()
         while (iterator.hasNext()) {
-            val next = iterator.next()
+            val next = iterator.next()!!
             if (next.getPlayQueue().equals(queue)) {
                 item = next
                 break
@@ -2380,9 +2380,9 @@ class VideoDetailFragment :
         } else {
             val selectedVideoStreamIndexForExternalPlayers =
                 ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers)
-            val resolutions = videoStreamsForExternalPlayers.stream()
-                .map<String?> { obj: VideoStream? -> obj!!.getResolution() }
-                .toArray<CharSequence?> { _Dummy_.__Array__() }
+            val resolutions = videoStreamsForExternalPlayers.map {
+                it!!.getResolution() as CharSequence
+            }.toTypedArray()
 
             builder.setSingleChoiceItems(
                 resolutions, selectedVideoStreamIndexForExternalPlayers,
@@ -2430,14 +2430,13 @@ class VideoDetailFragment :
         } else {
             val selectedAudioStream =
                 ListHelper.getDefaultAudioFormat(activity, audioTracks)
-            val trackNames = audioTracks.stream()
-                .map<String?> { audioStream: AudioStream? ->
+            val trackNames = audioTracks
+                .map { audioStream: AudioStream? ->
                     Localization.audioTrackName(
                         activity,
                         audioStream
                     )
-                }
-                .toArray<CharSequence?> { _Dummy_.__Array__() }
+                }.toTypedArray()
 
             AlertDialog.Builder(activity)
                 .setTitle(R.string.select_audio_track_external_players)
@@ -2476,7 +2475,7 @@ class VideoDetailFragment :
         playerHolder.stopService()
         setInitialData(0, null, "", null)
         currentInfo = null
-        updateOverlayData(null, null, mutableListOf<Image?>())
+        updateOverlayData(null, null, mutableListOf<Image>())
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2588,9 +2587,9 @@ class VideoDetailFragment :
                         hideSystemUiIfNeeded()
                         // Conditions when the player should be expanded to fullscreen
                         if (DeviceUtils.isLandscape(requireContext()) &&
-                            this.isPlayerAvailable &&
+                            this@VideoDetailFragment.isPlayerAvailable &&
                             player!!.isPlaying() &&
-                            !this.isFullscreen && !DeviceUtils.isTablet(activity)
+                            !this@VideoDetailFragment.isFullscreen && !DeviceUtils.isTablet(activity)
                         ) {
                             player!!.UIs().getOpt<MainPlayerUi>(MainPlayerUi::class.java)
                                 .ifPresent(Consumer { obj: MainPlayerUi? -> obj!!.toggleFullscreen() })
@@ -2606,7 +2605,7 @@ class VideoDetailFragment :
 
                         // Re-enable clicks
                         setOverlayElementsClickable(true)
-                        if (this.isPlayerAvailable) {
+                        if (this@VideoDetailFragment.isPlayerAvailable) {
                             player!!.UIs().getOpt<MainPlayerUi>(MainPlayerUi::class.java)
                                 .ifPresent(Consumer { obj: MainPlayerUi? -> obj!!.closeItemsList() })
                         }
@@ -2614,10 +2613,10 @@ class VideoDetailFragment :
                     }
 
                     BottomSheetBehavior.STATE_DRAGGING, BottomSheetBehavior.STATE_SETTLING -> {
-                        if (this.isFullscreen) {
+                        if (this@VideoDetailFragment.isFullscreen) {
                             showSystemUi()
                         }
-                        if (this.isPlayerAvailable) {
+                        if (this@VideoDetailFragment.isPlayerAvailable) {
                             player!!.UIs().getOpt<MainPlayerUi>(MainPlayerUi::class.java).ifPresent(
                                 Consumer { ui: MainPlayerUi? ->
                                     if (ui!!.isControlsVisible()) {
@@ -2665,7 +2664,7 @@ class VideoDetailFragment :
     private fun updateOverlayData(
         overlayTitle: String?,
         uploader: String?,
-        thumbnails: MutableList<Image?>
+        thumbnails: MutableList<Image>
     ) {
         binding!!.overlayTitleTextView.setText(if (TextUtils.isEmpty(overlayTitle)) "" else overlayTitle)
         binding!!.overlayChannelTextView.setText(if (TextUtils.isEmpty(uploader)) "" else uploader)
