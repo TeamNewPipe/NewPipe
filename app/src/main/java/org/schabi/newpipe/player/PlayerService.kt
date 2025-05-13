@@ -82,35 +82,35 @@ class PlayerService : MediaBrowserServiceCompat() {
 
         mediaBrowserImpl = MediaBrowserImpl(
             this,
-            Consumer { parentId: String? ->
+            Consumer { parentId: String ->
                 this.notifyChildrenChanged(
-                    parentId!!
+                    parentId
                 )
             }
         )
 
         // see https://developer.android.com/training/cars/media#browser_workflow
-        mediaSession = MediaSessionCompat(this, "MediaSessionPlayerServ")
-        setSessionToken(mediaSession!!.sessionToken)
-        sessionConnector = MediaSessionConnector(mediaSession!!)
-        sessionConnector!!.setMetadataDeduplicationEnabled(true)
+        val session = MediaSessionCompat(this, "MediaSessionPlayerServ")
+        mediaSession = session
+        setSessionToken(session.sessionToken)
+        val connector = MediaSessionConnector(session)
+        sessionConnector = connector
+        connector.setMetadataDeduplicationEnabled(true)
 
         mediaBrowserPlaybackPreparer = MediaBrowserPlaybackPreparer(
             this,
-            BiConsumer { message: String?, code: Int? ->
-                sessionConnector!!.setCustomErrorMessage(
+            BiConsumer { message: String, code: Int ->
+                connector.setCustomErrorMessage(
                     message,
-                    code!!
+                    code
                 )
             },
-            Runnable { sessionConnector!!.setCustomErrorMessage(null) },
+            Runnable { connector.setCustomErrorMessage(null) },
             Consumer { playWhenReady: Boolean? ->
-                if (player != null) {
-                    player!!.onPrepare()
-                }
+                player?.onPrepare()
             }
         )
-        sessionConnector!!.setPlaybackPreparer(mediaBrowserPlaybackPreparer)
+        connector.setPlaybackPreparer(mediaBrowserPlaybackPreparer)
 
         // Note: you might be tempted to create the player instance and call startForeground here,
         // but be aware that the Android system might start the service just to perform media
@@ -153,16 +153,18 @@ class PlayerService : MediaBrowserServiceCompat() {
             player!!.UIs().get(NotificationPlayerUi::class.java)
                 ?.createNotificationAndStartForeground()
 
-            if (playerWasNull && onPlayerStartedOrStopped != null) {
+            val startedOrStopped = onPlayerStartedOrStopped
+            if (playerWasNull && startedOrStopped != null) {
                 // notify that a new player was created (but do it after creating the foreground
                 // notification just to make sure we don't incur, due to slowness, in
                 // "Context.startForegroundService() did not then call Service.startForeground()")
-                onPlayerStartedOrStopped!!.accept(player)
+                startedOrStopped.accept(player)
             }
         }
 
+        val p = player
         if (Intent.ACTION_MEDIA_BUTTON == intent.action &&
-            (player == null || player!!.playQueue == null)
+            (p == null || p.playQueue == null)
         ) {
             /*
             No need to process media button's actions if the player is not working, otherwise
@@ -174,7 +176,6 @@ class PlayerService : MediaBrowserServiceCompat() {
             return START_NOT_STICKY
         }
 
-        val p = player
         if (p != null) {
             p.handleIntent(intent)
             p.UIs().get(MediaSessionPlayerUi::class.java)
@@ -189,17 +190,19 @@ class PlayerService : MediaBrowserServiceCompat() {
             Log.d(TAG, "stopForImmediateReusing() called")
         }
 
-        if (player != null && !player!!.exoPlayerIsNull()) {
+        val p = player
+        if (p != null && !p.exoPlayerIsNull()) {
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
-            player!!.smoothStopForImmediateReusing()
+            p.smoothStopForImmediateReusing()
         }
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
-        if (player != null && !player!!.videoPlayerSelected()) {
+        val p = player
+        if (p != null && !p.videoPlayerSelected()) {
             return
         }
         onDestroy()
@@ -215,23 +218,22 @@ class PlayerService : MediaBrowserServiceCompat() {
 
         cleanup()
 
-        mediaBrowserPlaybackPreparer!!.dispose()
-        mediaSession!!.release()
-        mediaBrowserImpl!!.dispose()
+        mediaBrowserPlaybackPreparer?.dispose()
+        mediaSession?.release()
+        mediaBrowserImpl?.dispose()
     }
 
     private fun cleanup() {
-        if (player != null) {
-            if (onPlayerStartedOrStopped != null) {
-                // notify that the player is being destroyed
-                onPlayerStartedOrStopped!!.accept(null)
-            }
-            player!!.saveAndShutdown()
+        val p = player
+        if (p != null) {
+            // notify that the player is being destroyed
+            onPlayerStartedOrStopped?.accept(null)
+            p.saveAndShutdown()
             player = null
         }
 
         // Should already be handled by MediaSessionPlayerUi, but just to be sure.
-        mediaSession!!.setActive(false)
+        mediaSession?.setActive(false)
 
         // Should already be handled by NotificationUtil.cancelNotificationAndStopForeground() in
         // NotificationPlayerUi, but let's make sure that the foreground service is stopped.
@@ -311,10 +313,7 @@ class PlayerService : MediaBrowserServiceCompat() {
      */
     fun setPlayerListener(listener: Consumer<Player?>?) {
         this.onPlayerStartedOrStopped = listener
-        if (listener != null) {
-            // if there is no player, then `null` will be sent here, to ensure the state is synced
-            listener.accept(player)
-        }
+        listener?.accept(player)
     }
 
     //endregion
@@ -332,7 +331,7 @@ class PlayerService : MediaBrowserServiceCompat() {
         parentId: String,
         result: Result<List<MediaBrowserCompat.MediaItem>>
     ) {
-        mediaBrowserImpl!!.onLoadChildren(parentId, result)
+        mediaBrowserImpl?.onLoadChildren(parentId, result)
     }
 
     override fun onSearch(
@@ -340,7 +339,7 @@ class PlayerService : MediaBrowserServiceCompat() {
         extras: Bundle?,
         result: Result<List<MediaBrowserCompat.MediaItem>>
     ) {
-        mediaBrowserImpl!!.onSearch(query, result)
+        mediaBrowserImpl?.onSearch(query, result)
     } //endregion
 
     companion object {
