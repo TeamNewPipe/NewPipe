@@ -259,8 +259,6 @@
     <string name="import_complete_toast">Uvoženo</string>
     <string name="export_complete_toast">Izvoženo</string>
     <string name="no_channel_subscribed_yet">Ni še nobene naročnine</string>
-    <string name="title_most_played">Najbolj igrano</string>
-    <string name="title_last_played">Nazadnje igrano</string>
     <string name="read_privacy_policy">Preberi pravilnik zasebnosti</string>
     <string name="privacy_policy_title">NewPipe-ovi pravilnik zasebnosti</string>
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
