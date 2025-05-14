@@ -869,4 +869,16 @@
         <item quantity="one">%d comment</item>
         <item quantity="other">%d comments</item>
     </plurals>
+    <plurals name="export_subscriptions">
+        <item quantity="one">Exporting %d subscription…</item>
+        <item quantity="other">Exporting %d subscriptions…</item>
+    </plurals>
+    <plurals name="load_subscriptions">
+        <item quantity="one">Loading %d subscription…</item>
+        <item quantity="other">Loading %d subscriptions…</item>
+    </plurals>
+    <plurals name="import_subscriptions">
+        <item quantity="one">Importing %d subscription…</item>
+        <item quantity="other">Importing %d subscriptions…</item>
+    </plurals>
 </resources>

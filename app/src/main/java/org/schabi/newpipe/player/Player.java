@@ -473,14 +473,15 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
-                || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
+        if ((UIs.getOpt(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
+                || (UIs.getOpt(PopupPlayerUi.class).isPresent()
+                    && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
         }
 
         // try to reuse binding if possible
-        final PlayerBinding binding = UIs.get(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
+        final PlayerBinding binding = UIs.getOpt(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
                 .orElseGet(() -> {
                     if (playerType == PlayerType.AUDIO) {
                         return null;
