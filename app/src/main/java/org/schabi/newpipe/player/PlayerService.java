@@ -148,7 +148,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
             // no one already and starting the service in foreground should not create any issues.
             // If the service is already started in foreground, requesting it to be started
             // shouldn't do anything.
-            player.UIs().get(NotificationPlayerUi.class)
+            player.UIs().getOpt(NotificationPlayerUi.class)
                     .ifPresent(NotificationPlayerUi::createNotificationAndStartForeground);
 
             if (playerWasNull && onPlayerStartedOrStopped != null) {
@@ -173,7 +173,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
 
         if (player != null) {
             player.handleIntent(intent);
-            player.UIs().get(MediaSessionPlayerUi.class)
+            player.UIs().getOpt(MediaSessionPlayerUi.class)
                     .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
         }
 

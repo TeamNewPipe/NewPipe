@@ -102,7 +102,7 @@ public final class NotificationUtil {
             mediaStyle.setShowActionsInCompactView(compactSlots);
         }
         player.UIs()
-                .get(MediaSessionPlayerUi.class)
+                .getOpt(MediaSessionPlayerUi.class)
                 .flatMap(MediaSessionPlayerUi::getSessionToken)
                 .ifPresent(mediaStyle::setMediaSession);
 
