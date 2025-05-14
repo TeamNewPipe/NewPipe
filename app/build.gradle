@@ -9,6 +9,7 @@ plugins {
     alias libs.plugins.kotlin.compose
     alias libs.plugins.kotlin.kapt
     alias libs.plugins.kotlin.parcelize
+    alias libs.plugins.kotlinx.serialization
     alias libs.plugins.checkstyle
     alias libs.plugins.sonarqube
     alias libs.plugins.hilt
@@ -16,7 +17,7 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
     namespace 'org.schabi.newpipe'
 
     defaultConfig {
@@ -27,9 +28,9 @@ android {
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1003
+            versionCode 1004
         }
-        versionName "0.27.6"
+        versionName "0.27.7"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
@@ -99,6 +100,10 @@ android {
 
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    androidResources {
+        generateLocaleConfig = true
     }
 
     buildFeatures {
@@ -222,7 +227,6 @@ dependencies {
     implementation libs.androidx.fragment.compose
     implementation libs.androidx.lifecycle.livedata
     implementation libs.androidx.lifecycle.viewmodel
-    implementation libs.androidx.localbroadcastmanager
     implementation libs.androidx.media
     implementation libs.androidx.preference
     implementation libs.androidx.recyclerview
@@ -314,6 +318,9 @@ dependencies {
 
     // Scroll
     implementation libs.lazycolumnscrollbar
+
+    // Kotlinx Serialization
+    implementation libs.kotlinx.serialization.json
 
 /** Debugging **/
     // Memory leak detection

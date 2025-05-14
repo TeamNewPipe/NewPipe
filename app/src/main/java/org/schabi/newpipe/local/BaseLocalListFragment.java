@@ -194,9 +194,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         if (itemsList != null) {
             animateHideRecyclerViewAllowingScrolling(itemsList);
         }
-        if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
-        }
     }
 
     @Override
@@ -204,9 +201,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.hideLoading();
         if (itemsList != null) {
             animate(itemsList, true, 200);
-        }
-        if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), true, 200);
         }
     }
 
@@ -252,9 +246,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
         if (itemsList != null) {
             animateHideRecyclerViewAllowingScrolling(itemsList);
-        }
-        if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
         }
     }
 
