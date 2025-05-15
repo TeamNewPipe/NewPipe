@@ -32,18 +32,25 @@ import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
 import org.schabi.newpipe.ui.emptystate.EmptyStateSpec
 import org.schabi.newpipe.ui.theme.AppTheme
+import org.schabi.newpipe.util.image.ImageStrategy
 import org.schabi.newpipe.viewmodels.CommentsViewModel
 import org.schabi.newpipe.viewmodels.util.Resource
 
 @Composable
 fun CommentSection(commentsViewModel: CommentsViewModel = viewModel()) {
-    val state by commentsViewModel.uiState.collectAsStateWithLifecycle()
-    CommentSection(state, commentsViewModel.comments)
+    val streamState by commentsViewModel.streamState.collectAsStateWithLifecycle()
+    val commentState by commentsViewModel.commentState.collectAsStateWithLifecycle()
+
+    val avatars = (streamState as? Resource.Success)?.data?.uploaderAvatars.orEmpty()
+    val uploaderAvatarUrl = ImageStrategy.choosePreferredImage(avatars)
+
+    CommentSection(commentState, uploaderAvatarUrl, commentsViewModel.comments)
 }
 
 @Composable
 private fun CommentSection(
     uiState: Resource<CommentInfo>,
+    uploaderAvatarUrl: String? = null,
     commentsFlow: Flow<PagingData<CommentsInfoItem>>
 ) {
     val comments = commentsFlow.collectAsLazyPagingItems()
@@ -110,7 +117,7 @@ private fun CommentSection(
 
                             else -> {
                                 items(comments.itemCount) {
-                                    Comment(comment = comments[it]!!) {}
+                                    Comment(comments[it]!!, uploaderAvatarUrl)
                                 }
                             }
                         }
@@ -140,7 +147,7 @@ private fun CommentSection(
 private fun CommentSectionLoadingPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Loading, commentsFlow = flowOf())
+            CommentSection(Resource.Loading, commentsFlow = flowOf())
         }
     }
 }
@@ -187,7 +194,7 @@ private fun CommentSectionSuccessPreview() {
 private fun CommentSectionErrorPreview() {
     AppTheme {
         Surface {
-            CommentSection(uiState = Resource.Error(RuntimeException()), commentsFlow = flowOf())
+            CommentSection(Resource.Error(RuntimeException()), commentsFlow = flowOf())
         }
     }
 }
