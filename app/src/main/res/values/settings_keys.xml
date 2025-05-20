@@ -1405,6 +1405,7 @@
 
     <string name="recaptcha_cookies_key">recaptcha_cookies_key</string>
 
+    <string name="user_was_asked_notification_permission_on_startup_key">user_was_asked_notification_permission_on_startup</string>
     <string name="enable_streams_notifications">enable_streams_notifications</string>
     <string name="streams_notifications_interval_key">streams_notifications_interval</string>
     <string name="streams_notifications_interval_default">14400</string>
