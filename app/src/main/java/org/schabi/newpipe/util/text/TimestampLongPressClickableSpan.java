@@ -11,16 +11,12 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
 final class TimestampLongPressClickableSpan extends LongPressClickableSpan {
 
     @NonNull
     private final Context context;
     @NonNull
     private final String descriptionText;
-    @NonNull
-    private final CompositeDisposable disposables;
     @NonNull
     private final StreamingService relatedInfoService;
     @NonNull
@@ -31,13 +27,11 @@ final class TimestampLongPressClickableSpan extends LongPressClickableSpan {
     TimestampLongPressClickableSpan(
             @NonNull final Context context,
             @NonNull final String descriptionText,
-            @NonNull final CompositeDisposable disposables,
             @NonNull final StreamingService relatedInfoService,
             @NonNull final String relatedStreamUrl,
             @NonNull final TimestampExtractor.TimestampMatchDTO timestampMatchDTO) {
         this.context = context;
         this.descriptionText = descriptionText;
-        this.disposables = disposables;
         this.relatedInfoService = relatedInfoService;
         this.relatedStreamUrl = relatedStreamUrl;
         this.timestampMatchDTO = timestampMatchDTO;
@@ -45,8 +39,7 @@ final class TimestampLongPressClickableSpan extends LongPressClickableSpan {
 
     @Override
     public void onClick(@NonNull final View view) {
-        playOnPopup(context, relatedStreamUrl, relatedInfoService,
-                timestampMatchDTO.seconds(), disposables);
+        playOnPopup(context, relatedStreamUrl, relatedInfoService, timestampMatchDTO.seconds());
     }
 
     @Override
