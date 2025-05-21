@@ -10,6 +10,7 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
 <p align="center"><a href="#لقطات-الشاشة">لقطات الشاشة</a> &bull; <a href="#الخدمات-المدعومة">الخدمات المدعومة</a> &bull; <a href="#وصف">وصف</a> &bull; <a href="#سمات">سمات</a> &bull; <a href="#التثبيت-و-التحديثات">التثبيت والتحديثات</a> &bull; <a href="#مساهمة">مساهمة</a> &bull; <a href="#التبرعات">التبرعات</a> &bull; <a href="#رخصة">رخصة</a></p>

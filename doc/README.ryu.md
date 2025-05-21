@@ -10,6 +10,7 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ビルドじょうたい"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="ふんやちゅるじょうたい"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">スクリーンショット</a> &bull; <a href="#description">しちめい</a> &bull; <a href="#features">ちぬー</a> &bull; <a href="#installation-and-updates">インストールとぅこうしん</a> &bull; <a href="#contribution">こうきん</a> &bull; <a href="#donate">ちーふ</a> &bull; <a href="#license">ライセンス</a></p>

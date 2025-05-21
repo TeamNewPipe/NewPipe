@@ -13,6 +13,7 @@
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Status des Builds"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Übersetzt"><img src="https://hosted.weblate.org/widgets/newpipe/de/svg-badge.svg"></a>
 <a href="https://web.libera.chat/#newpipe" alt="IRC Chat: #newpipe"><img src="https://img.shields.io/badge/IRC%20Chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#unterstützte-dienste">Unterstützte Dienste</a> &bull; <a href="#beschreibung">Beschreibung</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation-und-updates">Installation und Updates</a> &bull; <a href="#beitrag">Beitrag</a> &bull; <a href="#spenden">Spenden</a> &bull; <a href="#lizenz">Lizenz</a></p>
