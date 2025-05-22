@@ -6,12 +6,22 @@
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub 發佈"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases">
+ <img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly" >
+</a>
+<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases">
+ <img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly" >
+</a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="授權條款: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="建置狀態"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="翻譯進度"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
+</p>
+
+<p align="center">
 <a href="https://web.libera.chat/#newpipe" alt="IRC 頻道: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
 </p>
+
 <hr>
 <p align="center"><a href="#screenshots">截圖</a> &bull; <a href="#description">說明</a> &bull; <a href="#features">功能</a> &bull; <a href="#installation-and-updates">安裝與更新</a> &bull; <a href="#contribution">貢獻</a> &bull; <a href="#donate">捐款</a> &bull; <a href="#license">授權憑證</a></p>
 <p align="center"><a href="https://newpipe.net">網站</a> &bull; <a href="https://newpipe.net/blog/">部落格</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">媒體</a></p>
