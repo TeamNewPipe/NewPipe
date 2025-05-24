@@ -13,7 +13,7 @@
  <img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly" >
 </a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Licencia: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la Traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
 </p>
 

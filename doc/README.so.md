@@ -13,7 +13,7 @@
  <img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly" >
 </a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Laysinka: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Heerka Turjimaada"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
 </p>
 
