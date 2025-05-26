@@ -225,8 +225,6 @@
     <string name="title_activity_history">Lịch sử</string>
     <string name="action_history">Lịch sử</string>
     <string name="delete_item_search_history">Bạn có muốn xóa mục này khỏi lịch sử tìm kiếm không?</string>
-    <string name="title_last_played">Lần phát cuối</string>
-    <string name="title_most_played">Được phát nhiều nhất</string>
     <string name="main_page_content">Nội dung trang chính</string>
     <string name="blank_page_summary">Trang trống</string>
     <string name="kiosk_page_summary">Trang chủ</string>

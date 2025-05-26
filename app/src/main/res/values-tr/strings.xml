@@ -218,8 +218,6 @@
     <string name="create">Oluştur</string>
     <string name="dismiss">Dışla</string>
     <string name="rename">Yeniden adlandır</string>
-    <string name="title_last_played">Son Oynatılan</string>
-    <string name="title_most_played">En Çok Oynatılan</string>
     <string name="always_ask_open_action">Her zaman sor</string>
     <string name="create_playlist">Yeni Oynatma Listesi</string>
     <string name="rename_playlist">Yeniden adlandır</string>

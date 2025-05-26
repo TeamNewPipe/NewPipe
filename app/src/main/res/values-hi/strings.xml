@@ -210,8 +210,6 @@
     <string name="give_back">वापस दें</string>
     <string name="website_title">वेबसाइट</string>
     <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
-    <string name="title_last_played">पिछला चलाया गया</string>
-    <string name="title_most_played">अधिकतम चलाए गए</string>
     <string name="export_complete_toast">निर्यात संपन्न हुआ</string>
     <string name="import_complete_toast">आयात संपन्न हुआ</string>
     <string name="no_valid_zip_file">कोई वैध ज़िप फ़ाइल नहीं है</string>

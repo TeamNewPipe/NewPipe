@@ -72,6 +72,6 @@ class LocalPlaylistManagerTest {
         val result = manager.createPlaylist("name", listOf(stream, upserted))
 
         result.test().await().assertComplete()
-        database.streamDAO().all.test().awaitCount(1).assertValue(listOf(stream, upserted))
+        database.streamDAO().getAll().test().awaitCount(1).assertValue(listOf(stream, upserted))
     }
 }
