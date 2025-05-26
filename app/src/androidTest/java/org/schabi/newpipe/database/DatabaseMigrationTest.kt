@@ -7,6 +7,8 @@ import androidx.room.testing.MigrationTestHelper
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.reactive.awaitFirst
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull
@@ -226,7 +228,7 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun migrateDatabaseFrom8to9() {
+    fun migrateDatabaseFrom8to9() = runBlocking {
         val databaseInV8 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_8)
 
         val localUid1: Long
@@ -283,8 +285,8 @@ class DatabaseMigrationTest {
         )
 
         val migratedDatabaseV9 = getMigratedDatabase()
-        var localListFromDB = migratedDatabaseV9.playlistDAO().all.blockingFirst()
-        var remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().all.blockingFirst()
+        var localListFromDB = migratedDatabaseV9.playlistDAO().getAll().awaitFirst()
+        var remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().awaitFirst()
 
         assertEquals(1, localListFromDB.size)
         assertEquals(localUid2, localListFromDB[0].uid)
@@ -303,8 +305,8 @@ class DatabaseMigrationTest {
             )
         )
 
-        localListFromDB = migratedDatabaseV9.playlistDAO().all.blockingFirst()
-        remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().all.blockingFirst()
+        localListFromDB = migratedDatabaseV9.playlistDAO().getAll().awaitFirst()
+        remoteListFromDB = migratedDatabaseV9.playlistRemoteDAO().getAll().awaitFirst()
         assertEquals(2, localListFromDB.size)
         assertEquals(localUid3, localListFromDB[1].uid)
         assertEquals(-1, localListFromDB[1].displayIndex)
