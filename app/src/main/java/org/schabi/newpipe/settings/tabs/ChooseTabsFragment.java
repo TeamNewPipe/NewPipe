@@ -34,6 +34,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.settings.SelectChannelFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
 import org.schabi.newpipe.settings.SelectPlaylistFragment;
+import org.schabi.newpipe.settings.SelectFeedGroupFragment;
 import org.schabi.newpipe.settings.tabs.AddTabDialog.ChooseTabListItem;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -203,6 +204,14 @@ public class ChooseTabsFragment extends Fragment {
                         });
                 selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
+            case FEEDGROUP:
+                final SelectFeedGroupFragment selectFeedGroupFragment =
+                        new SelectFeedGroupFragment();
+                selectFeedGroupFragment.setOnSelectedListener(
+                        (groupId, name, iconId) ->
+                                addTab(new Tab.FeedGroupTab(groupId, name, iconId)));
+                selectFeedGroupFragment.show(getParentFragmentManager(), "select_feed_group");
+                return;
             default:
                 addTab(type.getTab());
                 break;
@@ -242,6 +251,11 @@ public class ChooseTabsFragment extends Fragment {
                 case PLAYLIST:
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
                             getString(R.string.playlist_page_summary),
+                            tab.getTabIconRes(context)));
+                    break;
+                case FEEDGROUP:
+                    returnList.add(new ChooseTabListItem(tab.getTabId(),
+                            getString(R.string.feed_group_page_summary),
                             tab.getTabIconRes(context)));
                     break;
                 default:
@@ -396,6 +410,9 @@ public class ChooseTabsFragment extends Fragment {
                                 ? getString(R.string.local)
                                 : getNameOfServiceById(serviceId);
                         return serviceName + "/" + tab.getTabName(requireContext());
+                    case FEEDGROUP:
+                        return getString(R.string.feed_groups_header_title)
+                                + "/" + tab.getTabName(requireContext());
                     default:
                         return tab.getTabName(requireContext());
                 }
