@@ -458,7 +458,7 @@ public abstract class Tab {
             final ChannelTab other = (ChannelTab) obj;
             return super.equals(obj)
                     && channelServiceId == other.channelServiceId
-                    && channelUrl.equals(other.channelName)
+                    && channelUrl.equals(other.channelUrl)
                     && channelName.equals(other.channelName);
         }
 
