@@ -15,14 +15,14 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/select_a_channel"
+        android:text="@string/select_a_feed_group"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/select_channel_item" />
+        tools:listitem="@layout/select_feed_group_item" />
 
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/no_channel_subscribed_yet"
+        android:text="@string/no_feed_group_created_yet"
         android:textAppearance="?android:attr/textAppearanceListItem" />
 
     <ProgressBar
