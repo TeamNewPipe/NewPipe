@@ -83,7 +83,7 @@ public class SelectFeedGroupFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
+        final View v = inflater.inflate(R.layout.select_feed_group_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
@@ -181,7 +181,7 @@ public class SelectFeedGroupFragment extends DialogFragment {
         public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
             final View item = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.select_channel_item, parent, false);
+                    .inflate(R.layout.select_feed_group_item, parent, false);
             return new SelectChannelItemHolder(item);
         }
 
