@@ -15,12 +15,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.image.PicassoHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -60,7 +60,7 @@ public class SelectFeedGroupFragment extends DialogFragment {
     private TextView emptyView;
     private RecyclerView recyclerView;
 
-    private List<SubscriptionEntity> subscriptions = new Vector<>();
+    private List<FeedGroupEntity> feedGroups = new Vector<>();
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
         onSelectedListener = listener;
@@ -86,8 +86,8 @@ public class SelectFeedGroupFragment extends DialogFragment {
         final View v = inflater.inflate(R.layout.select_feed_group_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
-        recyclerView.setAdapter(channelAdapter);
+        final SelectFeedGroupAdapter feedGroupAdapter = new SelectFeedGroupAdapter();
+        recyclerView.setAdapter(feedGroupAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
         emptyView = v.findViewById(R.id.empty_state_view);
@@ -96,11 +96,11 @@ public class SelectFeedGroupFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        final SubscriptionManager subscriptionManager = new SubscriptionManager(requireContext());
-        subscriptionManager.subscriptions().toObservable()
+        final AppDatabase database = NewPipeDatabase.getInstance(requireContext());
+        database.feedGroupDAO().getAll().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscriptionObserver());
+                .subscribe(getFeedGroupObserver());
 
         return v;
     }
@@ -119,9 +119,10 @@ public class SelectFeedGroupFragment extends DialogFragment {
 
     private void clickedItem(final int position) {
         if (onSelectedListener != null) {
-            final SubscriptionEntity entry = subscriptions.get(position);
+            final FeedGroupEntity entry = feedGroups.get(position);
             onSelectedListener
-                    .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
+                    .onFeedGroupSelected(entry.getUid(), entry.getName(),
+                            entry.getIcon().getDrawableResource());
         }
         dismiss();
     }
@@ -130,10 +131,10 @@ public class SelectFeedGroupFragment extends DialogFragment {
     // Item handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void displayChannels(final List<SubscriptionEntity> newSubscriptions) {
-        this.subscriptions = newSubscriptions;
+    private void displayFeedGroups(final List<FeedGroupEntity> newFeedGroups) {
+        this.feedGroups = newFeedGroups;
         progressBar.setVisibility(View.GONE);
-        if (newSubscriptions.isEmpty()) {
+        if (newFeedGroups.isEmpty()) {
             emptyView.setVisibility(View.VISIBLE);
             return;
         }
@@ -141,20 +142,20 @@ public class SelectFeedGroupFragment extends DialogFragment {
 
     }
 
-    private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
-        return new Observer<List<SubscriptionEntity>>() {
+    private Observer<List<FeedGroupEntity>> getFeedGroupObserver() {
+        return new Observer<List<FeedGroupEntity>>() {
             @Override
             public void onSubscribe(@NonNull final Disposable disposable) { }
 
             @Override
-            public void onNext(@NonNull final List<SubscriptionEntity> newSubscriptions) {
-                displayChannels(newSubscriptions);
+            public void onNext(@NonNull final List<FeedGroupEntity> newGroups) {
+                displayFeedGroups(newGroups);
             }
 
             @Override
             public void onError(@NonNull final Throwable exception) {
                 ErrorUtil.showUiErrorSnackbar(SelectFeedGroupFragment.this,
-                        "Loading subscription", exception);
+                        "Loading Feed Groups", exception);
             }
 
             @Override
@@ -167,42 +168,42 @@ public class SelectFeedGroupFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedListener {
-        void onChannelSelected(int serviceId, String url, String name);
+        void onFeedGroupSelected(Long groupId, String name, int icon);
     }
 
     public interface OnCancelListener {
         void onCancel();
     }
 
-    private class SelectChannelAdapter
-            extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
+    private class SelectFeedGroupAdapter
+            extends RecyclerView.Adapter<SelectFeedGroupAdapter.SelectFeedGroupItemHolder> {
         @NonNull
         @Override
-        public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
+        public SelectFeedGroupItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
             final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.select_feed_group_item, parent, false);
-            return new SelectChannelItemHolder(item);
+            return new SelectFeedGroupItemHolder(item);
         }
 
         @Override
-        public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
-            final SubscriptionEntity entry = subscriptions.get(position);
+        public void onBindViewHolder(final SelectFeedGroupItemHolder holder, final int position) {
+            final FeedGroupEntity entry = feedGroups.get(position);
             holder.titleView.setText(entry.getName());
             holder.view.setOnClickListener(view -> clickedItem(position));
-            PicassoHelper.loadAvatar(entry.getAvatarUrl()).into(holder.thumbnailView);
+            holder.thumbnailView.setImageResource(entry.getIcon().getDrawableResource());
         }
 
         @Override
         public int getItemCount() {
-            return subscriptions.size();
+            return feedGroups.size();
         }
 
-        public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
+        public class SelectFeedGroupItemHolder extends RecyclerView.ViewHolder {
             public final View view;
             final ImageView thumbnailView;
             final TextView titleView;
-            SelectChannelItemHolder(final View v) {
+            SelectFeedGroupItemHolder(final View v) {
                 super(v);
                 this.view = v;
                 thumbnailView = v.findViewById(R.id.itemThumbnailView);
