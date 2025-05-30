@@ -20,7 +20,6 @@
         android:layout_marginStart="3dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/placeholder_person"
-        app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
