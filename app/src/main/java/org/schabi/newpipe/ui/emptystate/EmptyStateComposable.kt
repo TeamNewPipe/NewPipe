@@ -97,7 +97,6 @@ data class EmptyStateSpec(
 
         val NoVideos =
             EmptyStateSpec(
-
                 emojiText = { "(╯°-°)╯" },
                 descriptionText = { stringResource(id = R.string.no_videos) },
             )
