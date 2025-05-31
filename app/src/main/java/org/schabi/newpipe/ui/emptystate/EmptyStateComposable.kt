@@ -90,7 +90,6 @@ data class EmptyStateSpec(
 
         val GenericError =
             EmptyStateSpec(
-
                 emojiText = { "¯\\_(ツ)_/¯" },
                 descriptionText = { stringResource(id = R.string.empty_list_subtitle) },
             )
