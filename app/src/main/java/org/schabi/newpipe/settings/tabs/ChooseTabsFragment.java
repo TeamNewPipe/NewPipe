@@ -412,7 +412,7 @@ public class ChooseTabsFragment extends Fragment {
                         return serviceName + "/" + tab.getTabName(requireContext());
                     case FEEDGROUP:
                         return getString(R.string.feed_groups_header_title)
-                                + "/" + tab.getTabName(requireContext());
+                                + "/" + ((Tab.FeedGroupTab) tab).getFeedGroupName();
                     default:
                         return tab.getTabName(requireContext());
                 }
