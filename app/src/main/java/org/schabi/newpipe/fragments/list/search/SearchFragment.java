@@ -945,6 +945,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         filterItemCheckedId = item.getItemId();
         item.setChecked(true);
 
+        if ((theContentFilter.isEmpty() || "all".equals(theContentFilter.get(0)))
+                && service != null) {
+            searchEditText.setHint(
+                    getString(R.string.search_with_service_name,
+                            service.getServiceInfo().getName()));
+        } else {
+            searchEditText.setHint(getString(R.string.search_with_service_name, item.getTitle()));
+        }
+
         contentFilter = theContentFilter.toArray(new String[0]);
 
         if (!TextUtils.isEmpty(searchString)) {
