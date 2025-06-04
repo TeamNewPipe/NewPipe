@@ -1,22 +1,31 @@
 package org.schabi.newpipe.util;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
+
+import java.util.function.Consumer;
 
 public final class PermissionHelper {
     public static final int POST_NOTIFICATIONS_REQUEST_CODE = 779;
@@ -81,17 +90,59 @@ public final class PermissionHelper {
         return true;
     }
 
-    public static boolean checkPostNotificationsPermission(final Activity activity,
-                                                           final int requestCode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                && ContextCompat.checkSelfPermission(activity,
-                Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[] {Manifest.permission.POST_NOTIFICATIONS}, requestCode);
-            return false;
+
+    /**
+     * Check that we have the notification permission or ask the user for permission.
+     *
+     * @param activity main activity
+     * @param userChoice a callback that gets called with the user choice
+     */
+    public static void checkPostNotificationsPermissionOnStartup(
+            final ComponentActivity activity,
+            final Consumer<Boolean> userChoice) {
+
+        // On Android before TIRAMISU, notifications are always allowed to be sent
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            userChoice.accept(true);
+            return;
         }
-        return true;
+
+        // if we have the permission already, continue
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            userChoice.accept(true);
+            return;
+        }
+
+        // if we already asked the user, don’t ask again
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        final String wasAskedKey = activity.getString(
+                R.string.user_was_asked_notification_permission_on_startup_key);
+        if (prefs.getBoolean(wasAskedKey, false)) {
+            userChoice.accept(false);
+            return;
+        }
+
+        // else let’s ask the user for permission
+        @SuppressLint("ApplySharedPref")
+        final ActivityResultCallback<Boolean> cb = isGranted -> {
+            // first make sure that we only ever ask the user once on startup
+            final SharedPreferences prefs2 =
+                    PreferenceManager.getDefaultSharedPreferences(activity);
+            // commit setting before doing anything else
+            prefs2.edit().putBoolean(wasAskedKey, true).commit();
+
+            // forward the user choice
+            userChoice.accept(isGranted);
+        };
+
+        final ActivityResultLauncher<String> notificationRequestReference =
+                activity.registerForActivityResult(
+                        new ActivityResultContracts.RequestPermission(),
+                        cb
+                );
+
+        notificationRequestReference.launch(Manifest.permission.POST_NOTIFICATIONS);
     }
 
     /**
