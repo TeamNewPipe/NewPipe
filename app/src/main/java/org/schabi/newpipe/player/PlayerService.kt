@@ -295,11 +295,7 @@ class PlayerService : MediaBrowserServiceCompat() {
     }
 
     class LocalBinder internal constructor(playerService: PlayerService) : Binder() {
-        private val playerService: WeakReference<PlayerService?>
-
-        init {
-            this.playerService = WeakReference<PlayerService?>(playerService)
-        }
+        private val playerService = WeakReference<PlayerService?>(playerService)
 
         val service: PlayerService?
             get() = playerService.get()
@@ -322,9 +318,9 @@ class PlayerService : MediaBrowserServiceCompat() {
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): BrowserRoot {
+    ): BrowserRoot? {
         // TODO check if the accessing package has permission to view data
-        return mediaBrowserImpl!!.onGetRoot(clientPackageName, clientUid, rootHints)
+        return mediaBrowserImpl?.onGetRoot(clientPackageName, clientUid, rootHints)
     }
 
     override fun onLoadChildren(

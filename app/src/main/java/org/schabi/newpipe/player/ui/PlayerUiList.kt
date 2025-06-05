@@ -4,7 +4,7 @@ import org.schabi.newpipe.util.GuardedByMutex
 import java.util.Optional
 
 class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
-    private var playerUis = GuardedByMutex(mutableListOf<PlayerUi>())
+    private val playerUis = GuardedByMutex(mutableListOf<PlayerUi>())
 
     /**
      * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
