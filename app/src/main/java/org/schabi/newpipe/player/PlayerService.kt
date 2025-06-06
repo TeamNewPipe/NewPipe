@@ -295,7 +295,7 @@ class PlayerService : MediaBrowserServiceCompat() {
     }
 
     class LocalBinder internal constructor(playerService: PlayerService) : Binder() {
-        private val playerService = WeakReference<PlayerService?>(playerService)
+        private val playerService = WeakReference(playerService)
 
         val service: PlayerService?
             get() = playerService.get()

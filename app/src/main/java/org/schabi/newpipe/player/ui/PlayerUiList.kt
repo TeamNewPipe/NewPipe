@@ -1,12 +1,22 @@
 package org.schabi.newpipe.player.ui
 
 import org.schabi.newpipe.util.GuardedByMutex
-import java.util.Optional
 
+/**
+ * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
+ * will not be prepared like those passed to [.addAndPrepare], because when
+ * the [PlayerUiList] constructor is called, the player is still not running and it
+ * wouldn't make sense to initialize uis then. Instead the player will initialize them by doing
+ * proper calls to [.call].
+ *
+ * @param initialPlayerUis the player uis this list should start with; the order will be kept
+ */
 class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
-    private val playerUis = GuardedByMutex(mutableListOf<PlayerUi>())
+    private val playerUis = GuardedByMutex(mutableListOf(*initialPlayerUis))
 
     /**
+     * Adds the provided player ui to the list and calls on it the initialization functions that
+     /**
      * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
      * will not be prepared like those passed to [.addAndPrepare], because when
      * the [PlayerUiList] constructor is called, the player is still not running and it
@@ -14,16 +24,7 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * proper calls to [.call].
      *
      * @param initialPlayerUis the player uis this list should start with; the order will be kept
-     */
-    init {
-        playerUis.runWithLockSync {
-            lockData.addAll(listOf(*initialPlayerUis))
-        }
-    }
-
-    /**
-     * Adds the provided player ui to the list and calls on it the initialization functions that
-     * apply based on the current player state. The preparation step needs to be done since when UIs
+     */* apply based on the current player state. The preparation step needs to be done since when UIs
      * are removed and re-added, the player will not call e.g. initPlayer again since the exoplayer
      * is already initialized, but we need to notify the newly built UI that the player is ready
      * nonetheless.
@@ -96,17 +97,6 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
             }
             return@runWithLockSync null
         }
-
-    /**
-     * @param playerUiType the class of the player UI to return;
-     * the [Class.isInstance] method will be used, so even subclasses could be returned
-     * @param T the class type parameter
-     * @return the first player UI of the required type found in the list, or an empty
-     * [Optional] otherwise
-     </T> */
-    @Deprecated("use get", ReplaceWith("get(playerUiType)"))
-    fun <T : PlayerUi> getOpt(playerUiType: Class<T>): Optional<T> =
-        Optional.ofNullable(get(playerUiType))
 
     /**
      * Calls the provided consumer on all player UIs in the list, in order of addition.
