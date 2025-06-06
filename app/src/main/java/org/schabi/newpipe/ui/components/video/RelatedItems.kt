@@ -76,7 +76,7 @@ fun RelatedItems(info: StreamInfo) {
             if (info.relatedItems.isEmpty()) {
                 item {
                     EmptyStateComposable(
-                        spec = EmptyStateSpec.NoComments,
+                        spec = EmptyStateSpec.NoVideos,
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(min = 128.dp)
