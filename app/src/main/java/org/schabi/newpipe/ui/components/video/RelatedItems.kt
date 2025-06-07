@@ -47,9 +47,7 @@ fun RelatedItems(info: StreamInfo) {
         mode = ItemViewMode.LIST,
         header = {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 12.dp, end = 12.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -57,7 +55,7 @@ fun RelatedItems(info: StreamInfo) {
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(text = stringResource(R.string.auto_queue_toggle))
                     Switch(
