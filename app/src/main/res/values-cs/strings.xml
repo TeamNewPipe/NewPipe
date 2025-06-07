@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="upload_date_text">Publikováno na %1$s</string>
+    <string name="upload_date_text">Publikováno %1$s</string>
     <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
@@ -783,7 +783,7 @@
     <string name="question_mark">\?</string>
     <string name="metadata_subscribers">Odběratelé</string>
     <string name="show_channel_tabs_summary">Které karty mají být zobrazeny na stránkách kanálů</string>
-    <string name="share_playlist_with_list">Sdílet URL seznamu</string>
+    <string name="share_playlist_with_list">Sdílet seznam adres</string>
     <string name="share_playlist_with_titles">Sdílet s názvy</string>
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
@@ -804,7 +804,6 @@
     <string name="channel_tab_albums">Alba</string>
     <string name="rewind">Přetočení zpět</string>
     <string name="replay">Znovu přehrát</string>
-    <string name="share_playlist_with_titles_message">Sdílejte playlist s podrobnostmi jako je jeho název a názvy videí, nebo jako jednoduchý seznam adres videí</string>
     <string name="image_quality_medium">Střední kvalita</string>
     <string name="metadata_banners">Bannery</string>
     <string name="channel_tab_playlists">Playlisty</string>

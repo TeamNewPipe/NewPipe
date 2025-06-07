@@ -1,26 +1,26 @@
-### Improvements
+### सुधार
 
-- Disable burgermenu icon animation #1486 
-- undo delete of downloads #1472 
-- Download option in share menu #1498
-- Added share option to long tap menu #1454 
-- Minimize main player on exit #1354 
-- Library version update and database backup fix #1510 
-- ExoPlayer 2.8.2 Update #1392
-  - Reworked the playback speed control dialog to support different step sizes for faster speed change.
-  - Added a toggle to fast-forward during silences in playback speed control. This should be helpful for audiobooks and certain music genres, and can bring a true seamless experience (and can break a song with lots of silences =\\).  
-  - Refactored media source resolution to allow passing metadata alongside media internally in the player, rather than doing so manually. Now we have a single source of metadata and is directly available when playback starts.
-  - Fixed remote playlist metadata not updating when new metadata is available when playlist fragment is opened.
-  - Various UI fixes: #1383, background player notification controls now always white, easier to shutdown popup player through flinging
-- Use new extractor with refactored architecture for multiservice
+- बर्गरमेनू आइकन एनीमेशन को अक्षम करें #1486
+- डाउनलोड को पूर्ववत करें #1472
+- शेयर मेनू में डाउनलोड विकल्प #1498
+- लॉन्ग टैप मेनू में शेयर विकल्प जोड़ा गया #1454
+- बाहर निकलने पर मुख्य प्लेयर को छोटा करें #1354
+- लाइब्रेरी संस्करण अपडेट और डेटाबेस बैकअप फिक्स #1510
+- एक्सोप्लेयर 2.8.2 अपडेट #1392
+- तेज गति परिवर्तन के लिए विभिन्न चरण आकारों का समर्थन करने के लिए प्लेबैक गति नियंत्रण संवाद को फिर से तैयार किया गया।
+- प्लेबैक गति नियंत्रण में मौन के दौरान तेजी से आगे बढ़ने के लिए एक टॉगल जोड़ा गया। यह ऑडियोबुक और कुछ संगीत शैलियों के लिए मददगार होना चाहिए, और एक सच्चा सहज अनुभव ला सकता है (और बहुत सारे मौन वाले गीत को तोड़ सकता है =\\)।
+- मीडिया स्रोत रिज़ॉल्यूशन को फिर से तैयार किया गया ताकि प्लेयर में आंतरिक रूप से मीडिया के साथ मेटाडेटा को पास किया जा सके, बजाय मैन्युअल रूप से ऐसा करने के। अब हमारे पास मेटाडेटा का एक ही स्रोत है और प्लेबैक शुरू होने पर सीधे उपलब्ध है।
+- जब प्लेलिस्ट का टुकड़ा खोला जाता है तो नया मेटाडेटा उपलब्ध होने पर रिमोट प्लेलिस्ट मेटाडेटा अपडेट नहीं होता है।
+- विभिन्न UI फ़िक्सेस: #1383, बैकग्राउंड प्लेयर नोटिफिकेशन कंट्रोल अब हमेशा सफ़ेद रहता है, फ़्लिंगिंग के ज़रिए पॉपअप प्लेयर को बंद करना आसान है
+- मल्टीसर्विस के लिए रीफ़ैक्टर्ड आर्किटेक्चर के साथ नए एक्सट्रैक्टर का उपयोग करें
 
-### Fixes
+### फ़िक्सेस
 
-- Fix #1440 Broken Video Info Layout #1491 
-- View history fix #1497
-  - #1495, by updating the metadata (thumbnail, title and video count) as soon as the user access the playlist. 
-  - #1475, by registering a view in the database when the user starts a video on external player on detail fragment.
-- Fix creen timeout in case of popup mode. #1463 (Fixed #640)
-- Main video player fix #1509 
-  - [#1412] Fixed repeat mode causing player NPE when new intent is received while player activity is in background.
-  - Fixed minimizing player to popup does not destroy player when popup permission is not granted.
+- फ़िक्स #1440 टूटी हुई वीडियो जानकारी लेआउट #1491
+- व्यू हिस्ट्री फ़िक्स #1497
+- #1495, जैसे ही उपयोगकर्ता प्लेलिस्ट एक्सेस करता है मेटाडेटा (थंबनेल, शीर्षक और वीडियो काउंट) को अपडेट करके।
+- #1475, जब उपयोगकर्ता डिटेल फ़्रैगमेंट पर बाहरी प्लेयर पर वीडियो शुरू करता है तो डेटाबेस में व्यू रजिस्टर करके।
+- पॉपअप मोड के मामले में स्क्रीन टाइमआउट को ठीक करें। #1463 (फ़िक्स #640)
+- मुख्य वीडियो प्लेयर फ़िक्स #1509
+- [#1412] प्लेयर गतिविधि के बैकग्राउंड में होने पर नया इंटेंट प्राप्त होने पर प्लेयर NPE का कारण बनने वाले रिपीट मोड को ठीक किया गया।
+- पॉपअप के लिए प्लेयर को छोटा करने की सुविधा को ठीक किया गया, जब पॉपअप की अनुमति नहीं दी जाती है तो प्लेयर नष्ट नहीं होता है।

@@ -55,6 +55,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -71,6 +72,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -263,7 +265,16 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Constructor
 
-    public Player(@NonNull final PlayerService service) {
+    /**
+     * @param service the service this player resides in
+     * @param mediaSession used to build the {@link MediaSessionPlayerUi}, lives in the service and
+     *                     could possibly be reused with multiple player instances
+     * @param sessionConnector used to build the {@link MediaSessionPlayerUi}, lives in the service
+     *                         and could possibly be reused with multiple player instances
+     */
+    public Player(@NonNull final PlayerService service,
+                  @NonNull final MediaSessionCompat mediaSession,
+                  @NonNull final MediaSessionConnector sessionConnector) {
         this.service = service;
         context = service;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -294,7 +305,7 @@ public final class Player implements PlaybackListener, Listener {
         // notification ui in the UIs list, since the notification depends on the media session in
         // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
         UIs = new PlayerUiList(
-                new MediaSessionPlayerUi(this),
+                new MediaSessionPlayerUi(this, mediaSession, sessionConnector),
                 new NotificationPlayerUi(this)
         );
     }
@@ -462,14 +473,15 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
-                || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
+        if ((UIs.getOpt(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
+                || (UIs.getOpt(PopupPlayerUi.class).isPresent()
+                    && playerType == PlayerType.POPUP)) {
             // correct UI already in place
             return;
         }
 
         // try to reuse binding if possible
-        final PlayerBinding binding = UIs.get(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
+        final PlayerBinding binding = UIs.getOpt(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
                 .orElseGet(() -> {
                     if (playerType == PlayerType.AUDIO) {
                         return null;
@@ -480,15 +492,15 @@ public final class Player implements PlaybackListener, Listener {
 
         switch (playerType) {
             case MAIN:
-                UIs.destroyAll(PopupPlayerUi.class);
+                UIs.destroyAllOfType(PopupPlayerUi.class);
                 UIs.addAndPrepare(new MainPlayerUi(this, binding));
                 break;
             case POPUP:
-                UIs.destroyAll(MainPlayerUi.class);
+                UIs.destroyAllOfType(MainPlayerUi.class);
                 UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
-                UIs.destroyAll(VideoPlayerUi.class);
+                UIs.destroyAllOfType(VideoPlayerUi.class);
                 break;
         }
     }
@@ -579,9 +591,15 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
-    public void destroy() {
+
+    /**
+     * Shut down this player.
+     * Saves the stream progress, sets recovery.
+     * Then destroys the player in all UIs and destroys the UIs as well.
+     */
+    public void saveAndShutdown() {
         if (DEBUG) {
-            Log.d(TAG, "destroy() called");
+            Log.d(TAG, "saveAndShutdown() called");
         }
 
         saveStreamProgressState();
@@ -594,7 +612,7 @@ public final class Player implements PlaybackListener, Listener {
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
 
-        UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
+        UIs.destroyAllOfType(null);
     }
 
     public void setRecovery() {
@@ -637,7 +655,7 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "onPlaybackShutdown() called");
         }
         // destroys the service, which in turn will destroy the player
-        service.stopService();
+        service.destroyPlayerAndStopService();
     }
 
     public void smoothStopForImmediateReusing() {
@@ -709,7 +727,7 @@ public final class Player implements PlaybackListener, Listener {
                 pause();
                 break;
             case ACTION_CLOSE:
-                service.stopService();
+                service.destroyPlayerAndStopService();
                 break;
             case ACTION_PLAY_PAUSE:
                 playPause();
@@ -1356,6 +1374,19 @@ public final class Player implements PlaybackListener, Listener {
     public void onCues(@NonNull final CueGroup cueGroup) {
         UIs.call(playerUi -> playerUi.onCues(cueGroup.cues));
     }
+
+    /**
+     * To be called when the {@code PlaybackPreparer} set in the {@link MediaSessionConnector}
+     * receives an {@code onPrepare()} call. This function allows restoring the default behavior
+     * that would happen if there was no playback preparer set, i.e. to just call
+     * {@code player.prepare()}. You can find the default behavior in `onPlay()` inside the
+     * {@link MediaSessionConnector} file.
+     */
+    public void onPrepare() {
+        if (!exoPlayerIsNull()) {
+            simpleExoPlayer.prepare();
+        }
+    }
     //endregion
 
 
@@ -1970,6 +2001,10 @@ public final class Player implements PlaybackListener, Listener {
         triggerProgressUpdate();
     }
 
+    /**
+     * Remove the listener, if it was set.
+     * @param listener listener to remove
+     * */
     public void removeFragmentListener(final PlayerServiceEventListener listener) {
         if (fragmentListener == listener) {
             fragmentListener = null;
@@ -1984,6 +2019,10 @@ public final class Player implements PlaybackListener, Listener {
         triggerProgressUpdate();
     }
 
+    /**
+     * Remove the listener, if it was set.
+     * @param listener listener to remove
+     * */
     void removeActivityListener(final PlayerEventListener listener) {
         if (activityListener == listener) {
             activityListener = null;

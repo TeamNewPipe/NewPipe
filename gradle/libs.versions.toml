@@ -24,11 +24,11 @@ jsoup = "1.17.2"
 junit = "4.13.2"
 kotlin = "2.0.21"
 kotlinxCoroutinesRx3 = "1.8.1"
+kotlinxSerializationJson = "1.7.3"
 ktlint = "0.45.2"
 lazycolumnscrollbar = "2.2.0"
 leakcanary = "2.12"
 lifecycle = "2.6.2"
-localbroadcastmanager = "1.1.0"
 markwon = "4.6.2"
 material = "1.11.0"
 media = "1.7.0"
@@ -54,9 +54,13 @@ swiperefreshlayout = "1.1.0"
 # This works thanks to JitPack: https://jitpack.io/
 teamnewpipe-filepicker = "5.0.0"
 teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
-teamnewpipe-newpipe-extractor = "9f83b385a"
+# WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
+# the corresponding commit hash, since JitPack sometimes deletes artifacts.
+# If there’s already a git hash, just add more of it to the end (or remove a letter)
+# to cause jitpack to regenerate the artifact.
+teamnewpipe-newpipe-extractor = "v0.24.6"
 webkit = "1.9.0"
-work = "2.8.1"
+work = "2.10.0"
 
 [plugins]
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin" }
@@ -67,6 +71,7 @@ kotlin-android = { id = "kotlin-android" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-kapt = { id = "kotlin-kapt" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
+kotlinx-serialization = { id = "kotlinx-serialization" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 
 [libraries]
@@ -94,7 +99,6 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
-androidx-localbroadcastmanager = { group = "androidx.localbroadcastmanager", name = "localbroadcastmanager", version.ref = "localbroadcastmanager" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-media = { group = "androidx.media", name = "media", version.ref = "media" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
@@ -132,6 +136,8 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinxCoroutinesRx3" }
+kotlinx-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 lazycolumnscrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScrollbar", version.ref = "lazycolumnscrollbar" }
 leakcanary-android-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }
 leakcanary-object-watcher = { group = "com.squareup.leakcanary", name = "leakcanary-object-watcher-android", version.ref = "leakcanary" }
