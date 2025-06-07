@@ -56,7 +56,7 @@ private fun PlaylistScreen(
         is Resource.Error -> {
             // TODO use error panel instead
             EmptyStateComposable(
-                EmptyStateSpec.DisabledComments.copy(
+                EmptyStateSpec.NoVideos.copy(
                     descriptionText = { stringResource(R.string.error_unable_to_load_streams) },
                 )
             )
