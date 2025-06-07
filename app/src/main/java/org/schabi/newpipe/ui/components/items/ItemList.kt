@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.items
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -81,7 +83,12 @@ fun ItemList(
     val nestedScrollModifier = Modifier.nestedScroll(rememberNestedScrollInteropConnection())
 
     if (items.loadState.refresh is LoadState.NotLoading && items.itemCount == 0) {
-        EmptyStateComposable(EmptyStateSpec.NoVideos)
+        EmptyStateComposable(
+            spec = EmptyStateSpec.NoVideos,
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 128.dp)
+        )
     } else if (mode == ItemViewMode.GRID) {
         val state = rememberLazyGridState()
 
