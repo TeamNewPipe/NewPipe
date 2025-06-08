@@ -183,7 +183,10 @@ class PoTokenWebView private constructor(
                         identifier = "$identifier"
                         u8Identifier = ${stringToU8(identifier)}
                         poTokenU8 = obtainPoToken(webPoSignalOutput, integrityToken, u8Identifier)
-                        poTokenU8String = poTokenU8.join(",")
+                        for (i = 0; i < poTokenU8.length; i++) {
+                            if (i != 0) poTokenU8String += ","
+                            poTokenU8String += poTokenU8[i]
+                        }
                         $JS_INTERFACE.onObtainPoTokenResult(identifier, poTokenU8String)
                     } catch (error) {
                         $JS_INTERFACE.onObtainPoTokenError(identifier, error + "\n" + error.stack)
