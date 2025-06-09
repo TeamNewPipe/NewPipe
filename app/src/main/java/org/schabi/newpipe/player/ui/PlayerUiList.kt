@@ -1,6 +1,8 @@
 package org.schabi.newpipe.player.ui
 
 import org.schabi.newpipe.util.GuardedByMutex
+import kotlin.reflect.KClass
+import kotlin.reflect.safeCast
 
 /**
  * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
@@ -84,19 +86,19 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param T the class type parameter
      * @return the first player UI of the required type found in the list, or null
      </T> */
-    fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
+    fun <T : PlayerUi> get(playerUiType: KClass<T>): T? =
         playerUis.runWithLockSync {
             for (ui in lockData) {
                 if (playerUiType.isInstance(ui)) {
-                    when (val r = playerUiType.cast(ui)) {
-                        // try all UIs before returning null
-                        null -> continue
-                        else -> return@runWithLockSync r
-                    }
+                    // try all UIs before returning null
+                    playerUiType.safeCast(ui)?.let { return@runWithLockSync it }
                 }
             }
             return@runWithLockSync null
         }
+
+    fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
+        get(playerUiType.kotlin)
 
     /**
      * Calls the provided consumer on all player UIs in the list, in order of addition.
