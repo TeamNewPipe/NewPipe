@@ -20,7 +20,6 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.util.NavigationHelper
-import java.util.function.Consumer
 
 private val DEBUG = MainActivity.DEBUG
 private val TAG: String = PlayerHolder::class.java.getSimpleName()
@@ -40,9 +39,9 @@ object PlayerHolder {
     private val player: Player?
         get() = playerService?.player
 
+    // player play queue might be null e.g. while player is starting
     private val playQueue: PlayQueue?
-        get() = // player play queue might be null e.g. while player is starting
-            this.player?.playQueue
+        get() = this.player?.playQueue
 
     val type: PlayerType?
         /**
@@ -78,8 +77,8 @@ object PlayerHolder {
 
         // Force reload data from service
         newListener?.let { listener ->
-            playerService?.let {
-                listener.onServiceConnected(it)
+            playerService?.let { service ->
+                listener.onServiceConnected(service)
                 startPlayerListener()
                 // ^ will call listener.onPlayerConnected() down the line if there is an active player
             }
@@ -103,7 +102,7 @@ object PlayerHolder {
         newListener: PlayerServiceExtendedEventListener?
     ) {
         if (DEBUG) {
-            Log.d(TAG, "startService() called with playAfterConnect=" + playAfterConnect)
+            Log.d(TAG, "startService() called with playAfterConnect=$playAfterConnect")
         }
         val context = this.commonContext
         setListener(newListener)
@@ -162,21 +161,15 @@ object PlayerHolder {
 
             val s = localBinder.service
             requireNotNull(s) {
-                (
-                    "PlayerService.LocalBinder.getService() must never be" +
-                        "null after the service connects"
-                    )
+                "PlayerService.LocalBinder.getService() must never be" +
+                    "null after the service connects"
             }
             playerService = s
-            val l = listener
-            if (l != null) {
+            listener?.let { l ->
                 l.onServiceConnected(s)
-                player?.let {
-                    l.onPlayerConnected(it, playAfterConnect)
-                }
+                player?.let { l.onPlayerConnected(it, playAfterConnect) }
             }
             startPlayerListener()
-
             // ^ will call listener.onPlayerConnected() down the line if there is an active player
 
             // notify the main activity that binding the service has completed, so that it can
@@ -305,9 +298,8 @@ object PlayerHolder {
      * or stopping. This is necessary since the service outlives the player e.g. to answer Android
      * Auto media browser queries.
      */
-    private val playerStateListener = Consumer { player: Player? ->
-        val l = listener
-        if (l != null) {
+    private val playerStateListener: (Player?) -> Unit = { player: Player? ->
+        listener?.let { l ->
             if (player == null) {
                 // player.fragmentListener=null is already done by player.stopActivityBinding(),
                 // which is called by player.destroy(), which is in turn called by PlayerService

@@ -36,7 +36,6 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.image.ImageStrategy
-import java.util.function.Consumer
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -46,16 +45,14 @@ import java.util.function.Consumer
  */
 class MediaBrowserImpl(
     private val context: Context,
-    notifyChildrenChanged: Consumer<String>, // parentId
+    notifyChildrenChanged: (parentId: String) -> Unit,
 ) {
     private val database = NewPipeDatabase.getInstance(context)
     private var disposables = CompositeDisposable()
 
     init {
         // this will listen to changes in the bookmarks until this MediaBrowserImpl is dispose()d
-        disposables.add(
-            getMergedPlaylists().subscribe { notifyChildrenChanged.accept(ID_BOOKMARKS) }
-        )
+        disposables.add(getMergedPlaylists().subscribe { notifyChildrenChanged(ID_BOOKMARKS) })
     }
 
     //region Cleanup
@@ -204,16 +201,13 @@ class MediaBrowserImpl(
         val builder = MediaDescriptionCompat.Builder()
         builder.setMediaId(createMediaIdForInfoItem(item))
             .setTitle(item.name)
+            .setIconUri(ImageStrategy.choosePreferredImage(item.thumbnails)?.toUri())
 
         when (item.infoType) {
             InfoType.STREAM -> builder.setSubtitle((item as StreamInfoItem).uploaderName)
             InfoType.PLAYLIST -> builder.setSubtitle((item as PlaylistInfoItem).uploaderName)
             InfoType.CHANNEL -> builder.setSubtitle((item as ChannelInfoItem).description)
             else -> return null
-        }
-
-        ImageStrategy.choosePreferredImage(item.thumbnails)?.let {
-            builder.setIconUri(imageUriOrNullIfDisabled(it))
         }
 
         return MediaBrowserCompat.MediaItem(
@@ -276,10 +270,7 @@ class MediaBrowserImpl(
         builder.setMediaId(createMediaIdForPlaylistIndex(true, playlistId, index))
             .setTitle(item.name)
             .setSubtitle(item.uploaderName)
-
-        ImageStrategy.choosePreferredImage(item.thumbnails)?.let {
-            builder.setIconUri(imageUriOrNullIfDisabled(it))
-        }
+            .setIconUri(ImageStrategy.choosePreferredImage(item.thumbnails)?.toUri())
 
         return MediaBrowserCompat.MediaItem(
             builder.build(),

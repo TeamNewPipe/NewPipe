@@ -1,12 +1,10 @@
 package org.schabi.newpipe.fragments.detail
 
 import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
@@ -15,7 +13,6 @@ import android.content.pm.ActivityInfo
 import android.database.ContentObserver
 import android.graphics.Color
 import android.graphics.Rect
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -31,7 +28,7 @@ import android.view.View
 import android.view.View.OnLongClickListener
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnPreDrawListener
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
@@ -44,7 +41,10 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
+import androidx.core.content.edit
+import androidx.core.net.toUri
+import androidx.core.os.postDelayed
+import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import coil3.util.CoilUtils.dispose
 import com.evernote.android.state.State
@@ -57,12 +57,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.Action
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
-import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding
 import org.schabi.newpipe.download.DownloadDialog
 import org.schabi.newpipe.error.ErrorInfo
@@ -75,12 +73,10 @@ import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
-import org.schabi.newpipe.extractor.stream.AudioStream
 import org.schabi.newpipe.extractor.stream.Stream
 import org.schabi.newpipe.extractor.stream.StreamExtractor
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.extractor.stream.VideoStream
 import org.schabi.newpipe.fragments.BackPressable
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.fragments.EmptyFragment
@@ -102,7 +98,6 @@ import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
-import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import org.schabi.newpipe.player.ui.VideoPlayerUi
 import org.schabi.newpipe.util.DependentPreferenceHelper
@@ -114,40 +109,53 @@ import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NO_SERVICE_ID
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.PermissionHelper
+import org.schabi.newpipe.util.PermissionHelper.checkStoragePermissions
 import org.schabi.newpipe.util.PlayButtonHelper
 import org.schabi.newpipe.util.StreamTypeUtil
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.image.CoilHelper
 import org.schabi.newpipe.util.image.CoilHelper.loadAvatar
 import org.schabi.newpipe.util.image.CoilHelper.loadDetailsThumbnail
 import java.util.LinkedList
-import java.util.List
 import java.util.Objects
 import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
 class VideoDetailFragment :
-
     BaseStateFragment<StreamInfo?>(),
     BackPressable,
     PlayerServiceExtendedEventListener,
     OnKeyDownListener {
+
+    // stream info
+    @JvmField @State var serviceId: Int = NO_SERVICE_ID
+    @JvmField @State var title: String = ""
+    @JvmField @State var url: String? = null
+    private var currentInfo: StreamInfo? = null
+
+    // player objects
+    private var playQueue: PlayQueue? = null
+    @JvmField @State var autoPlayEnabled: Boolean = true
+    private var playerService: PlayerService? = null
+    private var player: Player? = null
+
+    // views
+    // can't make this lateinit because it needs to be set to null when the view is destroyed
+    private var nullableBinding: FragmentVideoDetailBinding? = null
+    private val binding: FragmentVideoDetailBinding get() = nullableBinding!!
+    private lateinit var pageAdapter: TabAdapter
+    private var settingsContentObserver: ContentObserver? = null
+
     // tabs
     private var showComments = false
     private var showRelatedItems = false
     private var showDescription = false
-    private var selectedTabTag: String? = null
-
-    @AttrRes
-    val tabIcons: MutableList<Int?> = ArrayList<Int?>()
-
-    @StringRes
-    val tabContentDescriptions: MutableList<Int?> = ArrayList<Int?>()
+    private lateinit var selectedTabTag: String
+    @AttrRes val tabIcons = ArrayList<Int>()
+    @StringRes val tabContentDescriptions = ArrayList<Int>()
     private var tabSettingsChanged = false
     private var lastAppBarVerticalOffset = Int.Companion.MAX_VALUE // prevents useless updates
 
@@ -165,50 +173,17 @@ class VideoDetailFragment :
             }
         }
 
-    @JvmField
-    @State
-    var serviceId: Int = NO_SERVICE_ID
+    // bottom sheet
+    @JvmField @State var bottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
+    @JvmField @State var lastStableBottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout?>
+    private lateinit var bottomSheetCallback: BottomSheetCallback
+    private lateinit var broadcastReceiver: BroadcastReceiver
 
-    @JvmField
-    @State
-    var title: String = ""
-
-    @JvmField
-    @State
-    var url: String? = null
-    private var playQueue: PlayQueue? = null
-
-    @JvmField
-    @State
-    var bottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
-
-    @JvmField
-    @State
-    var lastStableBottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED
-
-    @JvmField
-    @State
-    var autoPlayEnabled: Boolean = true
-
-    private var currentInfo: StreamInfo? = null
+    // disposables
     private var currentWorker: Disposable? = null
     private val disposables = CompositeDisposable()
     private var positionSubscriber: Disposable? = null
-
-    private var bottomSheetBehavior: BottomSheetBehavior<FrameLayout?>? = null
-    private var bottomSheetCallback: BottomSheetCallback? = null
-    private var broadcastReceiver: BroadcastReceiver? = null
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Views
-    ////////////////////////////////////////////////////////////////////////// */
-    private var binding: FragmentVideoDetailBinding? = null
-
-    private var pageAdapter: TabAdapter? = null
-
-    private var settingsContentObserver: ContentObserver? = null
-    private var playerService: PlayerService? = null
-    private var player: Player? = null
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -217,18 +192,14 @@ class VideoDetailFragment :
         playerService = connectedPlayerService
     }
 
-    override fun onPlayerConnected(
-        connectedPlayer: Player,
-        playAfterConnect: Boolean
-    ) {
+    override fun onPlayerConnected(connectedPlayer: Player, playAfterConnect: Boolean) {
         player = connectedPlayer
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded()
 
-        val playerUi: MainPlayerUi? =
-            player!!.UIs().get(MainPlayerUi::class.java)
-        if (!player!!.videoPlayerSelected() && !playAfterConnect) {
+        val mainUi = player?.UIs()?.get(MainPlayerUi::class)
+        if (player?.videoPlayerSelected() != true && !playAfterConnect) {
             return
         }
 
@@ -236,24 +207,16 @@ class VideoDetailFragment :
             // If the video is playing but orientation changed
             // let's make the video in fullscreen again
             checkLandscape()
-        } else if (playerUi != null &&
-            playerUi.isFullscreen() &&
-            !playerUi.isVerticalVideo() &&
+        } else if (mainUi != null && mainUi.isFullscreen && !mainUi.isVerticalVideo &&
             // Tablet UI has orientation-independent fullscreen
             !DeviceUtils.isTablet(activity)
         ) {
             // Device is in portrait orientation after rotation but UI is in fullscreen.
             // Return back to non-fullscreen state
-            playerUi.toggleFullscreen()
+            mainUi.toggleFullscreen()
         }
 
-        if (playAfterConnect ||
-            (
-                currentInfo != null &&
-                    this.isAutoplayEnabled &&
-                    playerUi == null
-                )
-        ) {
+        if (playAfterConnect || (currentInfo != null && this.isAutoplayEnabled && mainUi == null)) {
             autoPlayEnabled = true // forcefully start playing
             openVideoPlayerAutoFullscreen()
         }
@@ -263,7 +226,7 @@ class VideoDetailFragment :
     override fun onPlayerDisconnected() {
         player = null
         // the binding could be null at this point, if the app is finishing
-        if (binding != null) {
+        if (nullableBinding != null) {
             restoreDefaultBrightness()
         }
     }
@@ -284,7 +247,7 @@ class VideoDetailFragment :
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true)
         selectedTabTag = prefs.getString(
             getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG
-        )
+        )!!
         prefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
 
         setupBroadcastReceiver()
@@ -296,7 +259,7 @@ class VideoDetailFragment :
                 }
             }
         }
-        activity.getContentResolver().registerContentObserver(
+        activity.contentResolver.registerContentObserver(
             Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
             settingsContentObserver!!
         )
@@ -307,8 +270,9 @@ class VideoDetailFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
-        return binding!!.getRoot()
+        val newBinding = FragmentVideoDetailBinding.inflate(inflater, container, false)
+        nullableBinding = newBinding
+        return newBinding.getRoot()
     }
 
     override fun onPause() {
@@ -317,13 +281,12 @@ class VideoDetailFragment :
             currentWorker!!.dispose()
         }
         restoreDefaultBrightness()
-        PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .edit()
-            .putString(
+        PreferenceManager.getDefaultSharedPreferences(requireContext()).edit {
+            putString(
                 getString(R.string.stream_info_selected_tab_key),
-                pageAdapter!!.getItemTitle(binding!!.viewPager.getCurrentItem())
+                pageAdapter.getItemTitle(binding.viewPager.currentItem)
             )
-            .apply()
+        }
     }
 
     override fun onResume() {
@@ -355,7 +318,7 @@ class VideoDetailFragment :
     override fun onStop() {
         super.onStop()
 
-        if (!activity.isChangingConfigurations()) {
+        if (!activity.isChangingConfigurations) {
             activity.sendBroadcast(Intent(ACTION_VIDEO_FRAGMENT_STOPPED))
         }
     }
@@ -365,7 +328,7 @@ class VideoDetailFragment :
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
-        if (activity.isFinishing() && this.isPlayerAvailable && player!!.videoPlayerSelected()) {
+        if (activity.isFinishing && player?.videoPlayerSelected() == true) {
             PlayerHolder.stopService()
         } else {
             PlayerHolder.setListener(null)
@@ -374,7 +337,7 @@ class VideoDetailFragment :
         PreferenceManager.getDefaultSharedPreferences(activity)
             .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
         activity.unregisterReceiver(broadcastReceiver)
-        activity.getContentResolver().unregisterContentObserver(settingsContentObserver!!)
+        activity.contentResolver.unregisterContentObserver(settingsContentObserver!!)
 
         if (positionSubscriber != null) {
             positionSubscriber!!.dispose()
@@ -385,9 +348,9 @@ class VideoDetailFragment :
         disposables.clear()
         positionSubscriber = null
         currentWorker = null
-        bottomSheetBehavior!!.removeBottomSheetCallback(bottomSheetCallback!!)
+        bottomSheetBehavior.removeBottomSheetCallback(bottomSheetCallback)
 
-        if (activity.isFinishing()) {
+        if (activity.isFinishing) {
             playQueue = null
             currentInfo = null
             stack = LinkedList<StackItem?>()
@@ -396,7 +359,7 @@ class VideoDetailFragment :
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        nullableBinding = null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -411,7 +374,7 @@ class VideoDetailFragment :
                 Log.e(TAG, "ReCaptcha failed")
             }
         } else {
-            Log.e(TAG, "Request code from activity not supported [" + requestCode + "]")
+            Log.e(TAG, "Request code from activity not supported [$requestCode]")
         }
     }
 
@@ -419,275 +382,175 @@ class VideoDetailFragment :
     // OnClick
     ////////////////////////////////////////////////////////////////////////// */
     private fun setOnClickListeners() {
-        binding!!.detailTitleRootLayout.setOnClickListener(View.OnClickListener { v: View? -> toggleTitleAndSecondaryControls() })
-        binding!!.detailUploaderRootLayout.setOnClickListener(
-            makeOnClickListener(
-                Consumer { info: StreamInfo? ->
-                    if (TextUtils.isEmpty(
-                            info!!.getSubChannelUrl()
-                        )
-                    ) {
-                        if (!TextUtils.isEmpty(info.getUploaderUrl())) {
-                            openChannel(info.getUploaderUrl(), info.getUploaderName())
-                        }
-
-                        if (DEBUG) {
-                            Log.i(TAG, "Can't open sub-channel because we got no channel URL")
-                        }
-                    } else {
-                        openChannel(info.getSubChannelUrl(), info.getSubChannelName())
+        binding.detailTitleRootLayout.setOnClickListener { toggleTitleAndSecondaryControls() }
+        binding.detailUploaderRootLayout.setOnClickListener(
+            makeOnClickListener { info ->
+                if (TextUtils.isEmpty(info.subChannelUrl)) {
+                    if (!TextUtils.isEmpty(info.uploaderUrl)) {
+                        openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
+                    } else if (DEBUG) {
+                        Log.i(TAG, "Can't open sub-channel because we got no channel URL")
                     }
+                } else {
+                    openChannel(info.subChannelUrl, info.subChannelName, info.serviceId)
                 }
-            )
-        )
-        binding!!.detailThumbnailRootLayout.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                autoPlayEnabled = true // forcefully start playing
-                // FIXME Workaround #7427
-                if (this.isPlayerAvailable) {
-                    player!!.setRecovery()
-                }
-                openVideoPlayerAutoFullscreen()
             }
         )
+        binding.detailThumbnailRootLayout.setOnClickListener {
+            autoPlayEnabled = true // forcefully start playing
+            // FIXME Workaround #7427
+            player?.setRecovery()
+            openVideoPlayerAutoFullscreen()
+        }
 
-        binding!!.detailControlsBackground.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                openBackgroundPlayer(
-                    false
-                )
-            }
-        )
-        binding!!.detailControlsPopup.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                openPopupPlayer(
-                    false
-                )
-            }
-        )
-        binding!!.detailControlsPlaylistAppend.setOnClickListener(
-            makeOnClickListener(
-                Consumer { info: StreamInfo? ->
-                    if (getFM() != null && currentInfo != null) {
-                        val fragment = getParentFragmentManager().findFragmentById(R.id.fragment_holder)
+        binding.detailControlsBackground.setOnClickListener { openBackgroundPlayer(false) }
+        binding.detailControlsPopup.setOnClickListener { openPopupPlayer(false) }
+        binding.detailControlsPlaylistAppend.setOnClickListener(
+            makeOnClickListener { info ->
+                if (getFM() != null) {
+                    val fragment = getParentFragmentManager().findFragmentById(R.id.fragment_holder)
 
-                        // commit previous pending changes to database
-                        if (fragment is LocalPlaylistFragment) {
-                            fragment.saveImmediate()
-                        } else if (fragment is MainFragment) {
-                            fragment.commitPlaylistTabs()
-                        }
-
-                        disposables.add(
-                            PlaylistDialog.createCorrespondingDialog(
-                                requireContext(),
-                                List.of<StreamEntity?>(StreamEntity(info!!)),
-                                Consumer { dialog: PlaylistDialog? ->
-                                    dialog!!.show(
-                                        getParentFragmentManager(),
-                                        TAG
-                                    )
-                                }
-                            )
-                        )
+                    // commit previous pending changes to database
+                    if (fragment is LocalPlaylistFragment) {
+                        fragment.saveImmediate()
+                    } else if (fragment is MainFragment) {
+                        fragment.commitPlaylistTabs()
                     }
-                }
-            )
-        )
-        binding!!.detailControlsDownload.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                if (PermissionHelper.checkStoragePermissions(
-                        activity,
-                        PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE
+
+                    disposables.add(
+                        PlaylistDialog.createCorrespondingDialog(
+                            requireContext(),
+                            listOf(StreamEntity(info))
+                        ) { dialog -> dialog.show(getParentFragmentManager(), TAG) }
                     )
-                ) {
-                    openDownloadDialog()
                 }
             }
         )
-        binding!!.detailControlsShare.setOnClickListener(
-            makeOnClickListener(
-                Consumer { info: StreamInfo? ->
-                    ShareUtils.shareText(
-                        requireContext(), info!!.getName(), info.getUrl(),
-                        info.getThumbnails()
-                    )
-                }
-            )
+        binding.detailControlsDownload.setOnClickListener {
+            if (checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                openDownloadDialog()
+            }
+        }
+        binding.detailControlsShare.setOnClickListener(
+            makeOnClickListener { info ->
+                ShareUtils.shareText(requireContext(), info.name, info.url, info.thumbnails)
+            }
         )
-        binding!!.detailControlsOpenInBrowser.setOnClickListener(
-            makeOnClickListener(
-                Consumer { info: StreamInfo? ->
-                    ShareUtils.openUrlInBrowser(
-                        requireContext(),
-                        info!!.getUrl()
-                    )
-                }
-            )
+        binding.detailControlsOpenInBrowser.setOnClickListener(
+            makeOnClickListener { info ->
+                ShareUtils.openUrlInBrowser(requireContext(), info.url)
+            }
         )
-        binding!!.detailControlsPlayWithKodi.setOnClickListener(
-            makeOnClickListener(
-                Consumer { info: StreamInfo? ->
-                    KoreUtils.playWithKore(
-                        requireContext(),
-                        Uri.parse(
-                            info!!.getUrl()
-                        )
-                    )
-                }
-            )
+        binding.detailControlsPlayWithKodi.setOnClickListener(
+            makeOnClickListener { info ->
+                KoreUtils.playWithKore(requireContext(), info.url.toUri())
+            }
         )
         if (DEBUG) {
-            binding!!.detailControlsCrashThePlayer.setOnClickListener(
-                View.OnClickListener { v: View? ->
-                    VideoDetailPlayerCrasher.onCrashThePlayer(
-                        requireContext(),
-                        player
-                    )
-                }
-            )
+            binding.detailControlsCrashThePlayer.setOnClickListener {
+                VideoDetailPlayerCrasher.onCrashThePlayer(requireContext(), player)
+            }
         }
 
-        val overlayListener = View.OnClickListener { v: View? ->
-            bottomSheetBehavior!!
-                .setState(BottomSheetBehavior.STATE_EXPANDED)
+        val overlayListener = View.OnClickListener {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
         }
-        binding!!.overlayThumbnail.setOnClickListener(overlayListener)
-        binding!!.overlayMetadataLayout.setOnClickListener(overlayListener)
-        binding!!.overlayButtonsLayout.setOnClickListener(overlayListener)
-        binding!!.overlayCloseButton.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                bottomSheetBehavior!!
-                    .setState(BottomSheetBehavior.STATE_HIDDEN)
+        binding.overlayThumbnail.setOnClickListener(overlayListener)
+        binding.overlayMetadataLayout.setOnClickListener(overlayListener)
+        binding.overlayButtonsLayout.setOnClickListener(overlayListener)
+        binding.overlayCloseButton.setOnClickListener {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
+        }
+        binding.overlayPlayQueueButton.setOnClickListener {
+            NavigationHelper.openPlayQueue(requireContext())
+        }
+        binding.overlayPlayPauseButton.setOnClickListener {
+            if (!playerIsStopped) {
+                player!!.playPause()
+                player!!.UIs().get(VideoPlayerUi::class)?.hideControls(0, 0)
+                showSystemUi()
+            } else {
+                autoPlayEnabled = true // forcefully start playing
+                openVideoPlayer(false)
             }
-        )
-        binding!!.overlayPlayQueueButton.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                NavigationHelper.openPlayQueue(
-                    requireContext()
-                )
-            }
-        )
-        binding!!.overlayPlayPauseButton.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                if (playerIsNotStopped()) {
-                    player!!.playPause()
-                    player!!.UIs().get(VideoPlayerUi::class.java)?.hideControls(0, 0)
-                    showSystemUi()
-                } else {
-                    autoPlayEnabled = true // forcefully start playing
-                    openVideoPlayer(false)
-                }
-                setOverlayPlayPauseImage(this.isPlayerAvailable && player!!.isPlaying())
-            }
-        )
+            setOverlayPlayPauseImage(player?.isPlaying == true)
+        }
     }
 
-    private fun makeOnClickListener(consumer: Consumer<StreamInfo?>): View.OnClickListener {
-        return View.OnClickListener { v: View? ->
-            if (!isLoading.get() && currentInfo != null) {
-                consumer.accept(currentInfo)
-            }
+    private fun makeOnClickListener(listener: (StreamInfo) -> Unit): View.OnClickListener {
+        return View.OnClickListener {
+            currentInfo?.takeIf { !isLoading.get() }?.let(listener)
         }
     }
 
     private fun setOnLongClickListeners() {
-        binding!!.detailTitleRootLayout.setOnLongClickListener(
-            makeOnLongClickListener(
-                Consumer { info: StreamInfo? ->
-                    ShareUtils.copyToClipboard(
-                        requireContext(),
-                        binding!!.detailVideoTitleView.getText().toString()
-                    )
+        binding.detailTitleRootLayout.setOnLongClickListener {
+            binding.detailVideoTitleView.text?.toString()?.let {
+                if (!it.isBlank()) {
+                    ShareUtils.copyToClipboard(requireContext(), it)
+                    return@setOnLongClickListener true
                 }
-            )
-        )
-        binding!!.detailUploaderRootLayout.setOnLongClickListener(
-            makeOnLongClickListener(
-                Consumer { info: StreamInfo? ->
-                    if (TextUtils.isEmpty(
-                            info!!.getSubChannelUrl()
-                        )
-                    ) {
-                        Log.w(TAG, "Can't open parent channel because we got no parent channel URL")
-                    } else {
-                        openChannel(info.getUploaderUrl(), info.getUploaderName())
-                    }
+            }
+            return@setOnLongClickListener false
+        }
+        binding.detailUploaderRootLayout.setOnLongClickListener(
+            makeOnLongClickListener { info ->
+                if (TextUtils.isEmpty(info.subChannelUrl)) {
+                    Log.w(TAG, "Can't open parent channel because we got no parent channel URL")
+                } else {
+                    openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
                 }
-            )
-        )
-
-        binding!!.detailControlsBackground.setOnLongClickListener(
-            makeOnLongClickListener(
-                Consumer { info: StreamInfo? ->
-                    openBackgroundPlayer(
-                        true
-                    )
-                }
-            )
-        )
-        binding!!.detailControlsPopup.setOnLongClickListener(
-            makeOnLongClickListener(
-                Consumer { info: StreamInfo? ->
-                    openPopupPlayer(
-                        true
-                    )
-                }
-            )
-        )
-        binding!!.detailControlsDownload.setOnLongClickListener(
-            makeOnLongClickListener(
-                Consumer { info: StreamInfo? ->
-                    NavigationHelper.openDownloads(
-                        activity
-                    )
-                }
-            )
-        )
-
-        val overlayListener = makeOnLongClickListener(
-            Consumer { info: StreamInfo? ->
-                openChannel(
-                    info!!.getUploaderUrl(), info.getUploaderName()
-                )
             }
         )
-        binding!!.overlayThumbnail.setOnLongClickListener(overlayListener)
-        binding!!.overlayMetadataLayout.setOnLongClickListener(overlayListener)
+
+        binding.detailControlsBackground.setOnLongClickListener(
+            makeOnLongClickListener { info ->
+                openBackgroundPlayer(true)
+            }
+        )
+        binding.detailControlsPopup.setOnLongClickListener(
+            makeOnLongClickListener { info ->
+                openPopupPlayer(true)
+            }
+        )
+        binding.detailControlsDownload.setOnLongClickListener(
+            makeOnLongClickListener { info ->
+                NavigationHelper.openDownloads(activity)
+            }
+        )
+
+        val overlayListener = makeOnLongClickListener { info ->
+            openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
+        }
+        binding.overlayThumbnail.setOnLongClickListener(overlayListener)
+        binding.overlayMetadataLayout.setOnLongClickListener(overlayListener)
     }
 
-    private fun makeOnLongClickListener(consumer: Consumer<StreamInfo?>): OnLongClickListener {
-        return OnLongClickListener { v: View? ->
-            if (isLoading.get() || currentInfo == null) {
-                return@OnLongClickListener false
-            }
-            consumer.accept(currentInfo)
-            true
+    private fun makeOnLongClickListener(listener: (StreamInfo) -> Unit): OnLongClickListener {
+        return OnLongClickListener {
+            currentInfo?.takeIf { !isLoading.get() }?.let(listener) != null
         }
     }
 
-    private fun openChannel(subChannelUrl: String?, subChannelName: String) {
+    private fun openChannel(subChannelUrl: String?, subChannelName: String, serviceId: Int) {
         try {
-            NavigationHelper.openChannelFragment(
-                getFM(), currentInfo!!.getServiceId(),
-                subChannelUrl, subChannelName
-            )
+            NavigationHelper.openChannelFragment(getFM(), serviceId, subChannelUrl, subChannelName)
         } catch (e: Exception) {
             showUiErrorSnackbar(this, "Opening channel fragment", e)
         }
     }
 
     private fun toggleTitleAndSecondaryControls() {
-        if (binding!!.detailSecondaryControlPanel.getVisibility() == View.GONE) {
-            binding!!.detailVideoTitleView.setMaxLines(10)
-            binding!!.detailToggleSecondaryControlsView
+        if (binding.detailSecondaryControlPanel.visibility == View.GONE) {
+            binding.detailVideoTitleView.setMaxLines(10)
+            binding.detailToggleSecondaryControlsView
                 .animateRotation(VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 180)
-            binding!!.detailSecondaryControlPanel.setVisibility(View.VISIBLE)
+            binding.detailSecondaryControlPanel.visibility = View.VISIBLE
         } else {
-            binding!!.detailVideoTitleView.setMaxLines(1)
-            binding!!.detailToggleSecondaryControlsView
+            binding.detailVideoTitleView.setMaxLines(1)
+            binding.detailToggleSecondaryControlsView
                 .animateRotation(VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 0)
-            binding!!.detailSecondaryControlPanel.setVisibility(View.GONE)
+            binding.detailSecondaryControlPanel.visibility = View.GONE
         }
         // view pager height has changed, update the tab layout
         updateTabLayoutVisibility()
@@ -701,25 +564,23 @@ class VideoDetailFragment :
         super.initViews(rootView, savedInstanceState)
 
         pageAdapter = TabAdapter(getChildFragmentManager())
-        binding!!.viewPager.setAdapter(pageAdapter)
-        binding!!.tabLayout.setupWithViewPager(binding!!.viewPager)
+        binding.viewPager.setAdapter(pageAdapter)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
-        binding!!.detailThumbnailRootLayout.requestFocus()
+        binding.detailThumbnailRootLayout.requestFocus()
 
-        binding!!.detailControlsPlayWithKodi.setVisibility(
+        binding.detailControlsPlayWithKodi.visibility =
             if (KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId))
                 View.VISIBLE
             else
                 View.GONE
-        )
-        binding!!.detailControlsCrashThePlayer.setVisibility(
+        binding.detailControlsCrashThePlayer.visibility =
             if (DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .getBoolean(getString(R.string.show_crash_the_player_key), false)
             )
                 View.VISIBLE
             else
                 View.GONE
-        )
         accommodateForTvAndDesktopMode()
     }
 
@@ -731,30 +592,19 @@ class VideoDetailFragment :
         setOnLongClickListeners()
 
         val controlsTouchListener = OnTouchListener { view: View?, motionEvent: MotionEvent? ->
-            if (motionEvent!!.getAction() == MotionEvent.ACTION_DOWN &&
+            if (motionEvent!!.action == MotionEvent.ACTION_DOWN &&
                 PlayButtonHelper.shouldShowHoldToAppendTip(activity)
             ) {
-                binding!!.touchAppendDetail.animate(
-                    true,
-                    250,
-                    AnimationType.ALPHA,
-                    0,
-                    Runnable {
-                        binding!!.touchAppendDetail.animate(
-                            false,
-                            1500,
-                            AnimationType.ALPHA,
-                            1000
-                        )
-                    }
-                )
+                binding.touchAppendDetail.animate(true, 250, AnimationType.ALPHA, 0) {
+                    binding.touchAppendDetail.animate(false, 1500, AnimationType.ALPHA, 1000)
+                }
             }
             false
         }
-        binding!!.detailControlsBackground.setOnTouchListener(controlsTouchListener)
-        binding!!.detailControlsPopup.setOnTouchListener(controlsTouchListener)
+        binding.detailControlsBackground.setOnTouchListener(controlsTouchListener)
+        binding.detailControlsPopup.setOnTouchListener(controlsTouchListener)
 
-        binding!!.appBarLayout.addOnOffsetChangedListener(
+        binding.appBarLayout.addOnOffsetChangedListener(
             OnOffsetChangedListener { layout: AppBarLayout?, verticalOffset: Int ->
                 // prevent useless updates to tab layout visibility if nothing changed
                 if (verticalOffset != lastAppBarVerticalOffset) {
@@ -774,8 +624,7 @@ class VideoDetailFragment :
     }
 
     override fun onKeyDown(keyCode: Int): Boolean {
-        return this.isPlayerAvailable &&
-            player!!.UIs().get(VideoPlayerUi::class.java)?.onKeyDown(keyCode) == true
+        return player?.UIs()?.get(VideoPlayerUi::class)?.onKeyDown(keyCode) == true
     }
 
     override fun onBackPressed(): Boolean {
@@ -794,10 +643,7 @@ class VideoDetailFragment :
         }
 
         // If we have something in history of played items we replay it here
-        if (this.isPlayerAvailable &&
-            player!!.getPlayQueue() != null && player!!.videoPlayerSelected() &&
-            player!!.getPlayQueue()!!.previous()
-        ) {
+        if (player?.videoPlayerSelected() == true && player?.playQueue?.previous() == true) {
             return true // no code here, as previous() was used in the if
         }
 
@@ -819,25 +665,18 @@ class VideoDetailFragment :
         setAutoPlay(false)
         hideMainPlayerOnLoadingNewStream()
 
-        setInitialData(
-            item.getServiceId(), item.getUrl(),
-            if (item.getTitle() == null) "" else item.getTitle(), item.getPlayQueue()
-        )
+        setInitialData(item.serviceId, item.url, item.title ?: "", item.playQueue)
         startLoading(false)
 
         // Maybe an item was deleted in background activity
-        if (item.getPlayQueue().getItem() == null) {
+        if (item.playQueue.item == null) {
             return
         }
 
-        val playQueueItem = item.getPlayQueue().getItem()
+        val playQueueItem = item.playQueue.item
         // Update title, url, uploader from the last item in the stack (it's current now)
-        val isPlayerStopped = !this.isPlayerAvailable || player!!.isStopped()
-        if (playQueueItem != null && isPlayerStopped) {
-            updateOverlayData(
-                playQueueItem.getTitle(),
-                playQueueItem.getUploader(), playQueueItem.getThumbnails()
-            )
+        if (playQueueItem != null && playerIsStopped) {
+            updateOverlayData(playQueueItem.title, playQueueItem.uploader, playQueueItem.thumbnails)
         }
     }
 
@@ -849,26 +688,22 @@ class VideoDetailFragment :
             return
         }
 
-        if (currentInfo == null) {
+        currentInfo?.let { info ->
+            prepareAndHandleInfoIfNeededAfterDelay(info, false, 50)
+        } ?: {
             prepareAndLoadInfo()
-        } else {
-            prepareAndHandleInfoIfNeededAfterDelay(currentInfo!!, false, 50)
         }
     }
 
     fun selectAndLoadVideo(
         newServiceId: Int,
-        newUrl: String?,
+        newUrl: String,
         newTitle: String,
         newQueue: PlayQueue?
     ) {
-        if (this.isPlayerAvailable && newQueue != null && playQueue != null && playQueue!!.getItem() != null && (
-            playQueue!!.getItem()!!
-                .getUrl() != newUrl
-            )
-        ) {
+        if (newQueue != null && playQueue?.item?.url != newUrl) {
             // Preloading can be disabled since playback is surely being replaced.
-            player!!.disablePreloadingOfCurrentTrack()
+            player?.disablePreloadingOfCurrentTrack()
         }
 
         setInitialData(newServiceId, newUrl, newTitle, newQueue)
@@ -880,30 +715,21 @@ class VideoDetailFragment :
         scrollToTop: Boolean,
         delay: Long
     ) {
-        Handler(Looper.getMainLooper()).postDelayed(
-            Runnable {
-                if (activity == null) {
-                    return@Runnable
-                }
-                // Data can already be drawn, don't spend time twice
-                if (info.getName() == binding!!.detailVideoTitleView.getText().toString()) {
-                    return@Runnable
-                }
-                prepareAndHandleInfo(info, scrollToTop)
-            },
-            delay
-        )
+        Handler(Looper.getMainLooper()).postDelayed(delay) {
+            if (activity == null) {
+                return@postDelayed
+            }
+            // Data can already be drawn, don't spend time twice
+            if (info.name == binding.detailVideoTitleView.getText().toString()) {
+                return@postDelayed
+            }
+            prepareAndHandleInfo(info, scrollToTop)
+        }
     }
 
     private fun prepareAndHandleInfo(info: StreamInfo, scrollToTop: Boolean) {
         if (DEBUG) {
-            Log.d(
-                TAG,
-                (
-                    "prepareAndHandleInfo() called with: " +
-                        "info = [" + info + "], scrollToTop = [" + scrollToTop + "]"
-                    )
-            )
+            Log.d(TAG, "prepareAndHandleInfo(info=[$info], scrollToTop=[$scrollToTop]) called")
         }
 
         showLoading()
@@ -934,7 +760,7 @@ class VideoDetailFragment :
             currentWorker!!.dispose()
         }
 
-        runWorker(forceLoad, if (addToBackStack != null) addToBackStack else stack.isEmpty())
+        runWorker(forceLoad, addToBackStack ?: stack.isEmpty())
     }
 
     private fun runWorker(forceLoad: Boolean, addToBackStack: Boolean) {
@@ -943,12 +769,11 @@ class VideoDetailFragment :
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                io.reactivex.rxjava3.functions.Consumer { result: StreamInfo? ->
+                { result ->
                     isLoading.set(false)
                     hideMainPlayerOnLoadingNewStream()
-                    if (result!!.getAgeLimit() != StreamExtractor.NO_AGE_LIMIT && !prefs.getBoolean(
-                            getString(R.string.show_age_restricted_content), false
-                        )
+                    if (result.ageLimit != StreamExtractor.NO_AGE_LIMIT &&
+                        !prefs.getBoolean(getString(R.string.show_age_restricted_content), false)
                     ) {
                         hideAgeRestrictedContent()
                     } else {
@@ -958,7 +783,7 @@ class VideoDetailFragment :
                             if (playQueue == null) {
                                 playQueue = SinglePlayQueue(result)
                             }
-                            if (stack.isEmpty() || stack.peek()!!.getPlayQueue() != playQueue) {
+                            if (stack.isEmpty() || stack.peek()!!.playQueue != playQueue) {
                                 stack.push(StackItem(serviceId, url, title, playQueue))
                             }
                         }
@@ -968,12 +793,9 @@ class VideoDetailFragment :
                         }
                     }
                 },
-                io.reactivex.rxjava3.functions.Consumer { throwable: Throwable? ->
+                { throwable ->
                     showError(
-                        ErrorInfo(
-                            throwable!!, UserAction.REQUESTED_STREAM,
-                            (if (url == null) "no url" else url)!!, serviceId
-                        )
+                        ErrorInfo(throwable, UserAction.REQUESTED_STREAM, url ?: "no url", serviceId)
                     )
                 }
             )
@@ -983,42 +805,42 @@ class VideoDetailFragment :
     // Tabs
     ////////////////////////////////////////////////////////////////////////// */
     private fun initTabs() {
-        if (pageAdapter!!.getCount() != 0) {
-            selectedTabTag = pageAdapter!!.getItemTitle(binding!!.viewPager.getCurrentItem())
-        }
-        pageAdapter!!.clearAllItems()
+        pageAdapter.getItemTitle(binding.viewPager.currentItem)
+            ?.let { tag -> selectedTabTag = tag }
+
+        pageAdapter.clearAllItems()
         tabIcons.clear()
         tabContentDescriptions.clear()
 
         if (shouldShowComments()) {
-            pageAdapter!!.addFragment(getInstance(serviceId, url), COMMENTS_TAB_TAG)
+            pageAdapter.addFragment(getInstance(serviceId, url), COMMENTS_TAB_TAG)
             tabIcons.add(R.drawable.ic_comment)
             tabContentDescriptions.add(R.string.comments_tab_description)
         }
 
-        if (showRelatedItems && binding!!.relatedItemsLayout == null) {
+        if (showRelatedItems && binding.relatedItemsLayout == null) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter!!.addFragment(EmptyFragment.newInstance(false), RELATED_TAB_TAG)
+            pageAdapter.addFragment(EmptyFragment.newInstance(false), RELATED_TAB_TAG)
             tabIcons.add(R.drawable.ic_art_track)
             tabContentDescriptions.add(R.string.related_items_tab_description)
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter!!.addFragment(EmptyFragment.newInstance(false), DESCRIPTION_TAB_TAG)
+            pageAdapter.addFragment(EmptyFragment.newInstance(false), DESCRIPTION_TAB_TAG)
             tabIcons.add(R.drawable.ic_description)
             tabContentDescriptions.add(R.string.description_tab_description)
         }
 
-        if (pageAdapter!!.getCount() == 0) {
-            pageAdapter!!.addFragment(EmptyFragment.newInstance(true), EMPTY_TAB_TAG)
+        if (pageAdapter.count == 0) {
+            pageAdapter.addFragment(EmptyFragment.newInstance(true), EMPTY_TAB_TAG)
         }
-        pageAdapter!!.notifyDataSetUpdate()
+        pageAdapter.notifyDataSetUpdate()
 
-        if (pageAdapter!!.getCount() >= 2) {
-            val position = pageAdapter!!.getItemPositionByTitle(selectedTabTag)
+        if (pageAdapter.count >= 2) {
+            val position = pageAdapter.getItemPositionByTitle(selectedTabTag)
             if (position != -1) {
-                binding!!.viewPager.setCurrentItem(position)
+                binding.viewPager.setCurrentItem(position)
             }
             updateTabIconsAndContentDescriptions()
         }
@@ -1034,95 +856,87 @@ class VideoDetailFragment :
      */
     private fun updateTabIconsAndContentDescriptions() {
         for (i in tabIcons.indices) {
-            val tab = binding!!.tabLayout.getTabAt(i)
+            val tab = binding.tabLayout.getTabAt(i)
             if (tab != null) {
-                tab.setIcon(tabIcons.get(i)!!)
-                tab.setContentDescription(tabContentDescriptions.get(i)!!)
+                tab.setIcon(tabIcons[i])
+                tab.setContentDescription(tabContentDescriptions[i])
             }
         }
     }
 
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
-            if (binding!!.relatedItemsLayout == null) { // phone
-                pageAdapter!!.updateItem(RELATED_TAB_TAG, getInstance(info))
+            if (binding.relatedItemsLayout == null) { // phone
+                pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info))
             } else { // tablet + TV
                 getChildFragmentManager().beginTransaction()
                     .replace(R.id.relatedItemsLayout, getInstance(info))
                     .commitAllowingStateLoss()
-                binding!!.relatedItemsLayout!!.setVisibility(if (this.isFullscreen) View.GONE else View.VISIBLE)
+                binding.relatedItemsLayout!!.isVisible = !this.isFullscreen
             }
         }
 
         if (showDescription) {
-            pageAdapter!!.updateItem(DESCRIPTION_TAB_TAG, DescriptionFragment(info))
+            pageAdapter.updateItem(DESCRIPTION_TAB_TAG, DescriptionFragment(info))
         }
 
-        binding!!.viewPager.setVisibility(View.VISIBLE)
+        binding.viewPager.visibility = View.VISIBLE
         // make sure the tab layout is visible
         updateTabLayoutVisibility()
-        pageAdapter!!.notifyDataSetUpdate()
+        pageAdapter.notifyDataSetUpdate()
         updateTabIconsAndContentDescriptions()
     }
 
     private fun shouldShowComments(): Boolean {
-        try {
-            return showComments && NewPipe.getService(serviceId)
-                .getServiceInfo()
-                .getMediaCapabilities()
+        return showComments && try {
+            NewPipe.getService(serviceId).serviceInfo.mediaCapabilities
                 .contains(MediaCapability.COMMENTS)
-        } catch (e: ExtractionException) {
-            return false
+        } catch (_: ExtractionException) {
+            false
         }
     }
 
     fun updateTabLayoutVisibility() {
-        if (binding == null) {
+        if (nullableBinding == null) {
             // If binding is null we do not need to and should not do anything with its object(s)
             return
         }
 
-        if (pageAdapter!!.getCount() < 2 || binding!!.viewPager.getVisibility() != View.VISIBLE) {
+        if (pageAdapter.count < 2 || binding.viewPager.visibility != View.VISIBLE) {
             // hide tab layout if there is only one tab or if the view pager is also hidden
-            binding!!.tabLayout.setVisibility(View.GONE)
+            binding.tabLayout.visibility = View.GONE
         } else {
             // call `post()` to be sure `viewPager.getHitRect()`
             // is up to date and not being currently recomputed
-            binding!!.tabLayout.post(
-                Runnable {
-                    val activity = getActivity()
-                    if (activity != null) {
-                        val pagerHitRect = Rect()
-                        binding!!.viewPager.getHitRect(pagerHitRect)
+            binding.tabLayout.post {
+                val activity = getActivity()
+                if (activity != null) {
+                    val pagerHitRect = Rect()
+                    binding.viewPager.getHitRect(pagerHitRect)
 
-                        val height = DeviceUtils.getWindowHeight(activity.getWindowManager())
-                        val viewPagerVisibleHeight = height - pagerHitRect.top
-                        // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
-                        val tabLayoutHeight = TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 48f, getResources().getDisplayMetrics()
-                        )
+                    val height = DeviceUtils.getWindowHeight(activity.windowManager)
+                    val viewPagerVisibleHeight = height - pagerHitRect.top
+                    // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
+                    val tabLayoutHeight = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 48f, resources.displayMetrics
+                    )
 
-                        if (viewPagerVisibleHeight > tabLayoutHeight * 2) {
-                            // no translation at all when viewPagerVisibleHeight > tabLayout.height * 3
-                            binding!!.tabLayout.setTranslationY(
-                                max(
-                                    0.0,
-                                    (tabLayoutHeight * 3 - viewPagerVisibleHeight).toDouble()
-                                ).toFloat()
-                            )
-                            binding!!.tabLayout.setVisibility(View.VISIBLE)
-                        } else {
-                            // view pager is not visible enough
-                            binding!!.tabLayout.setVisibility(View.GONE)
-                        }
+                    if (viewPagerVisibleHeight > tabLayoutHeight * 2) {
+                        // no translation at all when viewPagerVisibleHeight > tabLayout.height * 3
+                        binding.tabLayout.translationY =
+                            max(0.0f, tabLayoutHeight * 3 - viewPagerVisibleHeight)
+                        binding.tabLayout.visibility = View.VISIBLE
+                    } else {
+                        // view pager is not visible enough
+                        binding.tabLayout.visibility = View.GONE
                     }
                 }
-            )
+            }
         }
     }
 
     fun scrollToTop() {
-        binding!!.appBarLayout.setExpanded(true, true)
+        binding.appBarLayout.setExpanded(true, true)
         // notify tab layout of scrolling
         updateTabLayoutVisibility()
     }
@@ -1133,11 +947,9 @@ class VideoDetailFragment :
     private fun toggleFullscreenIfInFullscreenMode() {
         // If a user watched video inside fullscreen mode and than chose another player
         // return to non-fullscreen mode
-        if (this.isPlayerAvailable) {
-            player!!.UIs().get(MainPlayerUi::class.java)?.let {
-                if (it.isFullscreen) {
-                    it.toggleFullscreen()
-                }
+        player?.UIs()?.get(MainPlayerUi::class)?.let {
+            if (it.isFullscreen) {
+                it.toggleFullscreen()
             }
         }
     }
@@ -1149,10 +961,8 @@ class VideoDetailFragment :
 
         toggleFullscreenIfInFullscreenMode()
 
-        if (this.isPlayerAvailable) {
-            // FIXME Workaround #7427
-            player!!.setRecovery()
-        }
+        // FIXME Workaround #7427
+        player?.setRecovery()
 
         if (useExternalAudioPlayer) {
             showExternalAudioPlaybackDialog()
@@ -1167,11 +977,11 @@ class VideoDetailFragment :
         }
 
         // See UI changes while remote playQueue changes
-        if (!this.isPlayerAvailable) {
+        if (player == null) {
             PlayerHolder.startService(false, this)
         } else {
             // FIXME Workaround #7427
-            player!!.setRecovery()
+            player?.setRecovery()
         }
 
         toggleFullscreenIfInFullscreenMode()
@@ -1180,12 +990,7 @@ class VideoDetailFragment :
         if (append) { // resumePlayback: false
             NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.POPUP)
         } else {
-            replaceQueueIfUserConfirms(
-                Runnable {
-                    NavigationHelper
-                        .playOnPopupPlayer(activity, queue, true)
-                }
-            )
+            replaceQueueIfUserConfirms { NavigationHelper.playOnPopupPlayer(activity, queue, true) }
         }
     }
 
@@ -1198,9 +1003,8 @@ class VideoDetailFragment :
      */
     fun openVideoPlayer(directlyFullscreenIfApplicable: Boolean) {
         if (directlyFullscreenIfApplicable &&
-            !DeviceUtils.isLandscape(requireContext()) && PlayerHelper.globalScreenOrientationLocked(
-                    requireContext()
-                )
+            !DeviceUtils.isLandscape(requireContext()) &&
+            PlayerHelper.globalScreenOrientationLocked(requireContext())
         ) {
             // Make sure the bottom sheet turns out expanded. When this code kicks in the bottom
             // sheet could not have fully expanded yet, and thus be in the STATE_SETTLING state.
@@ -1219,7 +1023,7 @@ class VideoDetailFragment :
         ) {
             showExternalVideoPlaybackDialog()
         } else {
-            replaceQueueIfUserConfirms(Runnable { this.openMainPlayer() })
+            replaceQueueIfUserConfirms { this.openMainPlayer() }
         }
     }
 
@@ -1237,7 +1041,7 @@ class VideoDetailFragment :
 
     private fun openNormalBackgroundPlayer(append: Boolean) {
         // See UI changes while remote playQueue changes
-        if (!this.isPlayerAvailable) {
+        if (player == null) {
             PlayerHolder.startService(false, this)
         }
 
@@ -1245,12 +1049,9 @@ class VideoDetailFragment :
         if (append) {
             NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.AUDIO)
         } else {
-            replaceQueueIfUserConfirms(
-                Runnable {
-                    NavigationHelper
-                        .playOnBackgroundPlayer(activity, queue, true)
-                }
-            )
+            replaceQueueIfUserConfirms {
+                NavigationHelper.playOnBackgroundPlayer(activity, queue, true)
+            }
         }
     }
 
@@ -1266,9 +1067,8 @@ class VideoDetailFragment :
         val queue = setupPlayQueueForIntent(false)
         tryAddVideoPlayerView()
 
-        val playerIntent = NavigationHelper.getPlayerIntent<PlayerService?>(
-            requireContext(),
-            PlayerService::class.java, queue, true, autoPlayEnabled
+        val playerIntent = NavigationHelper.getPlayerIntent(
+            requireContext(), PlayerService::class.java, queue, true, autoPlayEnabled
         )
         ContextCompat.startForegroundService(activity, playerIntent)
     }
@@ -1289,7 +1089,7 @@ class VideoDetailFragment :
         removeVideoPlayerView()
         if (this.isAutoplayEnabled) {
             playerService!!.stopForImmediateReusing()
-            root.setVisibility(View.GONE)
+            root.visibility = View.GONE
         } else {
             PlayerHolder.stopService()
         }
@@ -1302,7 +1102,7 @@ class VideoDetailFragment :
 
         var queue = playQueue
         // Size can be 0 because queue removes bad stream automatically when error occurs
-        if (queue == null || queue.isEmpty()) {
+        if (queue == null || queue.isEmpty) {
             queue = SinglePlayQueue(currentInfo)
         }
 
@@ -1322,23 +1122,13 @@ class VideoDetailFragment :
         selectedStream: Stream
     ) {
         NavigationHelper.playOnExternalPlayer(
-            context, currentInfo!!.getName(),
-            currentInfo!!.getSubChannelName(), selectedStream
+            context, info.name, info.subChannelName, selectedStream
         )
 
         val recordManager = HistoryRecordManager(requireContext())
         disposables.add(
             recordManager.onViewed(info).onErrorComplete()
-                .subscribe(
-                    io.reactivex.rxjava3.functions.Consumer { ignored: Long? -> },
-                    io.reactivex.rxjava3.functions.Consumer { error: Throwable? ->
-                        Log.e(
-                            TAG,
-                            "Register view failure: ",
-                            error
-                        )
-                    }
-                )
+                .subscribe({ }, { throwable -> Log.e(TAG, "Register view failure: ", throwable) })
         )
     }
 
@@ -1349,13 +1139,13 @@ class VideoDetailFragment :
     private val isAutoplayEnabled: Boolean
         // This method overrides default behaviour when setAutoPlay() is called.
         get() = autoPlayEnabled &&
-            !this.isExternalPlayerEnabled && (!this.isPlayerAvailable || player!!.videoPlayerSelected()) &&
-            bottomSheetState != BottomSheetBehavior.STATE_HIDDEN && PlayerHelper.isAutoplayAllowedByUser(
-            requireContext()
-        )
+            !this.isExternalPlayerEnabled &&
+            (player?.videoPlayerSelected() != false) &&
+            bottomSheetState != BottomSheetBehavior.STATE_HIDDEN &&
+            PlayerHelper.isAutoplayAllowedByUser(requireContext())
 
     private fun tryAddVideoPlayerView() {
-        if (this.isPlayerAvailable && getView() != null) {
+        if (player != null && view != null) {
             // Setup the surface view height, so that it fits the video correctly; this is done also
             // here, and not only in the Handler, to avoid a choppy fullscreen rotation animation.
             setHeightThumbnail()
@@ -1363,62 +1153,49 @@ class VideoDetailFragment :
 
         // do all the null checks in the posted lambda, too, since the player, the binding and the
         // view could be set or unset before the lambda gets executed on the next main thread cycle
-        Handler(Looper.getMainLooper()).post(
-            Runnable {
-                if (!this.isPlayerAvailable || getView() == null) {
-                    return@Runnable
-                }
-                // setup the surface view height, so that it fits the video correctly
-                setHeightThumbnail()
-                player!!.UIs().get(MainPlayerUi::class.java)?.let { playerUi ->
-                    val b = binding
-                    // sometimes binding would be null here, even though getView() != null above u.u
-                    if (b != null) {
-                        // prevent from re-adding a view multiple times
-                        playerUi.removeViewFromParent()
-                        b.playerPlaceholder.addView(playerUi.getBinding().getRoot())
-                        playerUi.setupVideoSurfaceIfNeeded()
-                    }
+        Handler(Looper.getMainLooper()).post {
+            if (player == null || view == null) {
+                return@post
+            }
+            // setup the surface view height, so that it fits the video correctly
+            setHeightThumbnail()
+            player?.UIs()?.get(MainPlayerUi::class)?.let { playerUi ->
+                // sometimes binding would be null here, even though getView() != null above u.u
+                nullableBinding?.let { b ->
+                    // prevent from re-adding a view multiple times
+                    playerUi.removeViewFromParent()
+                    b.playerPlaceholder.addView(playerUi.getBinding().getRoot())
+                    playerUi.setupVideoSurfaceIfNeeded()
                 }
             }
-        )
+        }
     }
 
     private fun removeVideoPlayerView() {
         makeDefaultHeightForVideoPlaceholder()
-
-        if (player != null) {
-            player!!.UIs().get(VideoPlayerUi::class.java)?.removeViewFromParent()
-        }
+        player?.UIs()?.get(VideoPlayerUi::class)?.removeViewFromParent()
     }
 
     private fun makeDefaultHeightForVideoPlaceholder() {
-        if (getView() == null) {
+        if (view == null) {
             return
         }
 
-        binding!!.playerPlaceholder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT
-        binding!!.playerPlaceholder.requestLayout()
+        binding.playerPlaceholder.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
+        binding.playerPlaceholder.requestLayout()
     }
 
-    private val preDrawListener: ViewTreeObserver.OnPreDrawListener =
-        object : ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                val metrics = getResources().getDisplayMetrics()
-
-                if (getView() != null) {
-                    val height = (
-                        if (DeviceUtils.isInMultiWindow(activity))
-                            requireView()
-                        else
-                            activity.getWindow().getDecorView()
-                        ).getHeight()
-                    setHeightThumbnail(height, metrics)
-                    requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
-                }
-                return false
-            }
+    private val preDrawListener: OnPreDrawListener = OnPreDrawListener {
+        if (view != null) {
+            val decorView = if (DeviceUtils.isInMultiWindow(activity))
+                requireView()
+            else
+                activity.window.decorView
+            setHeightThumbnail(decorView.height, resources.displayMetrics)
+            requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
         }
+        return@OnPreDrawListener false
+    }
 
     /**
      * Method which controls the size of thumbnail and the size of main player inside
@@ -1428,8 +1205,7 @@ class VideoDetailFragment :
      * [.MAX_PLAYER_HEIGHT])
      */
     private fun setHeightThumbnail() {
-        val metrics = getResources().getDisplayMetrics()
-        val isPortrait = metrics.heightPixels > metrics.widthPixels
+        val metrics = resources.displayMetrics
         requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
 
         if (this.isFullscreen) {
@@ -1437,8 +1213,8 @@ class VideoDetailFragment :
                 if (DeviceUtils.isInMultiWindow(activity))
                     requireView()
                 else
-                    activity.getWindow().getDecorView()
-                ).getHeight()
+                    activity.window.decorView
+                ).height
             // Height is zero when the view is not yet displayed like after orientation change
             if (height != 0) {
                 setHeightThumbnail(height, metrics)
@@ -1446,6 +1222,7 @@ class VideoDetailFragment :
                 requireView().getViewTreeObserver().addOnPreDrawListener(preDrawListener)
             }
         } else {
+            val isPortrait = metrics.heightPixels > metrics.widthPixels
             val height = (
                 if (isPortrait)
                     metrics.widthPixels / (16.0f / 9.0f)
@@ -1457,25 +1234,21 @@ class VideoDetailFragment :
     }
 
     private fun setHeightThumbnail(newHeight: Int, metrics: DisplayMetrics) {
-        binding!!.detailThumbnailImageView.setLayoutParams(
-            FrameLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, newHeight
-            )
+        binding.detailThumbnailImageView.setLayoutParams(
+            FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, newHeight)
         )
-        binding!!.detailThumbnailImageView.setMinimumHeight(newHeight)
-        if (this.isPlayerAvailable) {
+        binding.detailThumbnailImageView.setMinimumHeight(newHeight)
+        player?.UIs()?.get(VideoPlayerUi::class)?.let {
             val maxHeight = (metrics.heightPixels * MAX_PLAYER_HEIGHT).toInt()
-            player!!.UIs().get(VideoPlayerUi::class.java)?.let {
-                it.binding.surfaceView.setHeights(
-                    newHeight,
-                    if (it.isFullscreen) newHeight else maxHeight
-                )
-            }
+            it.binding.surfaceView.setHeights(
+                newHeight,
+                if (it.isFullscreen) newHeight else maxHeight
+            )
         }
     }
 
     private fun showContent() {
-        binding!!.detailContentRootHiding.setVisibility(View.VISIBLE)
+        binding.detailContentRootHiding.visibility = View.VISIBLE
     }
 
     private fun setInitialData(
@@ -1491,30 +1264,28 @@ class VideoDetailFragment :
     }
 
     private fun setErrorImage() {
-        if (binding == null || activity == null) {
+        if (nullableBinding == null || activity == null) {
             return
         }
 
-        binding!!.detailThumbnailImageView.setImageDrawable(
+        binding.detailThumbnailImageView.setImageDrawable(
             AppCompatResources.getDrawable(requireContext(), R.drawable.not_available_monkey)
         )
-        binding!!.detailThumbnailImageView.animate(
-            false, 0, AnimationType.ALPHA,
-            0, Runnable { binding!!.detailThumbnailImageView.animate(true, 500) }
-        )
+        binding.detailThumbnailImageView.animate(false, 0, AnimationType.ALPHA, 0) {
+            binding.detailThumbnailImageView.animate(true, 500)
+        }
     }
 
     override fun handleError() {
         super.handleError()
         setErrorImage()
 
-        if (binding!!.relatedItemsLayout != null) { // hide related streams for tablets
-            binding!!.relatedItemsLayout!!.setVisibility(View.INVISIBLE)
-        }
+        // hide related streams for tablets
+        binding.relatedItemsLayout?.visibility = View.INVISIBLE
 
         // hide comments / related streams / description tabs
-        binding!!.viewPager.setVisibility(View.GONE)
-        binding!!.tabLayout.setVisibility(View.GONE)
+        binding.viewPager.visibility = View.GONE
+        binding.tabLayout.visibility = View.GONE
     }
 
     private fun hideAgeRestrictedContent() {
@@ -1529,19 +1300,17 @@ class VideoDetailFragment :
     private fun setupBroadcastReceiver() {
         broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent) {
-                when (intent.getAction()) {
-                    ACTION_SHOW_MAIN_PLAYER -> bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_EXPANDED)
-                    ACTION_HIDE_MAIN_PLAYER -> bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_HIDDEN)
+                when (intent.action) {
+                    ACTION_SHOW_MAIN_PLAYER -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
+                    ACTION_HIDE_MAIN_PLAYER -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
                     ACTION_PLAYER_STARTED -> {
                         // If the state is not hidden we don't need to show the mini player
-                        if (bottomSheetBehavior!!.getState() == BottomSheetBehavior.STATE_HIDDEN) {
-                            bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_COLLAPSED)
+                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
                         }
                         // Rebound to the service if it was closed via notification or mini player
                         if (!PlayerHolder.isBound) {
-                            PlayerHolder.startService(
-                                false, this@VideoDetailFragment
-                            )
+                            PlayerHolder.startService(false, this@VideoDetailFragment)
                         }
                     }
                 }
@@ -1558,7 +1327,7 @@ class VideoDetailFragment :
     // Orientation listener
     ////////////////////////////////////////////////////////////////////////// */
     private fun restoreDefaultOrientation() {
-        if (this.isPlayerAvailable && player!!.videoPlayerSelected()) {
+        if (player?.videoPlayerSelected() == true) {
             toggleFullscreenIfInFullscreenMode()
         }
 
@@ -1579,254 +1348,207 @@ class VideoDetailFragment :
 
         // if data is already cached, transition from VISIBLE -> INVISIBLE -> VISIBLE is not required
         if (!ExtractorHelper.isCached(serviceId, url!!, InfoCache.Type.STREAM)) {
-            binding!!.detailContentRootHiding.setVisibility(View.INVISIBLE)
+            binding.detailContentRootHiding.visibility = View.INVISIBLE
         }
 
-        binding!!.detailThumbnailPlayButton.animate(false, 50)
-        binding!!.detailDurationView.animate(false, 100)
-        binding!!.detailPositionView.setVisibility(View.GONE)
-        binding!!.positionView.setVisibility(View.GONE)
+        binding.detailThumbnailPlayButton.animate(false, 50)
+        binding.detailDurationView.animate(false, 100)
+        binding.detailPositionView.visibility = View.GONE
+        binding.positionView.visibility = View.GONE
 
-        binding!!.detailVideoTitleView.setText(title)
-        binding!!.detailVideoTitleView.setMaxLines(1)
-        binding!!.detailVideoTitleView.animate(true, 0)
+        binding.detailVideoTitleView.text = title
+        binding.detailVideoTitleView.setMaxLines(1)
+        binding.detailVideoTitleView.animate(true, 0)
 
-        binding!!.detailToggleSecondaryControlsView.setVisibility(View.GONE)
-        binding!!.detailTitleRootLayout.setClickable(false)
-        binding!!.detailSecondaryControlPanel.setVisibility(View.GONE)
+        binding.detailToggleSecondaryControlsView.visibility = View.GONE
+        binding.detailTitleRootLayout.isClickable = false
+        binding.detailSecondaryControlPanel.visibility = View.GONE
 
-        if (binding!!.relatedItemsLayout != null) {
-            if (showRelatedItems) {
-                binding!!.relatedItemsLayout!!.setVisibility(
-                    if (this.isFullscreen) View.GONE else View.INVISIBLE
-                )
-            } else {
-                binding!!.relatedItemsLayout!!.setVisibility(View.GONE)
-            }
-        }
+        binding.relatedItemsLayout?.isVisible = showRelatedItems && !this.isFullscreen
 
-        dispose(binding!!.detailThumbnailImageView)
-        dispose(binding!!.detailSubChannelThumbnailView)
-        dispose(binding!!.overlayThumbnail)
-        dispose(binding!!.detailUploaderThumbnailView)
+        dispose(binding.detailThumbnailImageView)
+        dispose(binding.detailSubChannelThumbnailView)
+        dispose(binding.overlayThumbnail)
+        dispose(binding.detailUploaderThumbnailView)
 
-        binding!!.detailThumbnailImageView.setImageBitmap(null)
-        binding!!.detailSubChannelThumbnailView.setImageBitmap(null)
+        binding.detailThumbnailImageView.setImageBitmap(null)
+        binding.detailSubChannelThumbnailView.setImageBitmap(null)
     }
 
     override fun handleResult(info: StreamInfo?) {
         super.handleResult(info)
 
         currentInfo = info
-        setInitialData(info!!.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue)
+        setInitialData(info!!.serviceId, info.originalUrl, info.name, playQueue)
 
         updateTabs(info)
 
-        binding!!.detailThumbnailPlayButton.animate(true, 200)
-        binding!!.detailVideoTitleView.setText(title)
+        binding.detailThumbnailPlayButton.animate(true, 200)
+        binding.detailVideoTitleView.text = title
 
-        binding!!.detailSubChannelThumbnailView.setVisibility(View.GONE)
+        binding.detailSubChannelThumbnailView.visibility = View.GONE
 
-        if (!TextUtils.isEmpty(info.getSubChannelName())) {
+        if (!TextUtils.isEmpty(info.subChannelName)) {
             displayBothUploaderAndSubChannel(info)
         } else {
             displayUploaderAsSubChannel(info)
         }
 
-        if (info.getViewCount() >= 0) {
-            if (info.getStreamType() == StreamType.AUDIO_LIVE_STREAM) {
-                binding!!.detailViewCountView.setText(
-                    Localization.listeningCount(
-                        activity,
-                        info.getViewCount()
-                    )
-                )
-            } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
-                binding!!.detailViewCountView.setText(
-                    Localization
-                        .localizeWatchingCount(activity, info.getViewCount())
-                )
-            } else {
-                binding!!.detailViewCountView.setText(
-                    Localization
-                        .localizeViewCount(activity, info.getViewCount())
-                )
-            }
-            binding!!.detailViewCountView.setVisibility(View.VISIBLE)
+        if (info.viewCount >= 0) {
+            binding.detailViewCountView.text =
+                if (info.streamType == StreamType.AUDIO_LIVE_STREAM) {
+                    Localization.listeningCount(activity, info.viewCount)
+                } else if (info.streamType == StreamType.LIVE_STREAM) {
+                    Localization.localizeWatchingCount(activity, info.viewCount)
+                } else {
+                    Localization.localizeViewCount(activity, info.viewCount)
+                }
+            binding.detailViewCountView.visibility = View.VISIBLE
         } else {
-            binding!!.detailViewCountView.setVisibility(View.GONE)
+            binding.detailViewCountView.visibility = View.GONE
         }
 
-        if (info.getDislikeCount() == -1L && info.getLikeCount() == -1L) {
-            binding!!.detailThumbsDownImgView.setVisibility(View.VISIBLE)
-            binding!!.detailThumbsUpImgView.setVisibility(View.VISIBLE)
-            binding!!.detailThumbsUpCountView.setVisibility(View.GONE)
-            binding!!.detailThumbsDownCountView.setVisibility(View.GONE)
-
-            binding!!.detailThumbsDisabledView.setVisibility(View.VISIBLE)
+        if (info.dislikeCount == -1L && info.likeCount == -1L) {
+            binding.detailThumbsDownImgView.visibility = View.VISIBLE
+            binding.detailThumbsUpImgView.visibility = View.VISIBLE
+            binding.detailThumbsUpCountView.visibility = View.GONE
+            binding.detailThumbsDownCountView.visibility = View.GONE
+            binding.detailThumbsDisabledView.visibility = View.VISIBLE
         } else {
-            if (info.getDislikeCount() >= 0) {
-                binding!!.detailThumbsDownCountView.setText(
-                    Localization
-                        .shortCount(activity, info.getDislikeCount())
-                )
-                binding!!.detailThumbsDownCountView.setVisibility(View.VISIBLE)
-                binding!!.detailThumbsDownImgView.setVisibility(View.VISIBLE)
+            if (info.dislikeCount >= 0) {
+                binding.detailThumbsDownCountView.text =
+                    Localization.shortCount(activity, info.dislikeCount)
+                binding.detailThumbsDownCountView.visibility = View.VISIBLE
+                binding.detailThumbsDownImgView.visibility = View.VISIBLE
             } else {
-                binding!!.detailThumbsDownCountView.setVisibility(View.GONE)
-                binding!!.detailThumbsDownImgView.setVisibility(View.GONE)
+                binding.detailThumbsDownCountView.visibility = View.GONE
+                binding.detailThumbsDownImgView.visibility = View.GONE
             }
 
-            if (info.getLikeCount() >= 0) {
-                binding!!.detailThumbsUpCountView.setText(
-                    Localization.shortCount(
-                        activity,
-                        info.getLikeCount()
-                    )
-                )
-                binding!!.detailThumbsUpCountView.setVisibility(View.VISIBLE)
-                binding!!.detailThumbsUpImgView.setVisibility(View.VISIBLE)
+            if (info.likeCount >= 0) {
+                binding.detailThumbsUpCountView.text =
+                    Localization.shortCount(activity, info.likeCount)
+                binding.detailThumbsUpCountView.visibility = View.VISIBLE
+                binding.detailThumbsUpImgView.visibility = View.VISIBLE
             } else {
-                binding!!.detailThumbsUpCountView.setVisibility(View.GONE)
-                binding!!.detailThumbsUpImgView.setVisibility(View.GONE)
+                binding.detailThumbsUpCountView.visibility = View.GONE
+                binding.detailThumbsUpImgView.visibility = View.GONE
             }
-            binding!!.detailThumbsDisabledView.setVisibility(View.GONE)
+            binding.detailThumbsDisabledView.visibility = View.GONE
         }
 
-        if (info.getDuration() > 0) {
-            binding!!.detailDurationView.setText(Localization.getDurationString(info.getDuration()))
-            binding!!.detailDurationView.setBackgroundColor(
+        if (info.duration > 0) {
+            binding.detailDurationView.text = Localization.getDurationString(info.duration)
+            binding.detailDurationView.setBackgroundColor(
                 ContextCompat.getColor(activity, R.color.duration_background_color)
             )
-            binding!!.detailDurationView.animate(true, 100)
-        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
-            binding!!.detailDurationView.setText(R.string.duration_live)
-            binding!!.detailDurationView.setBackgroundColor(
+            binding.detailDurationView.animate(true, 100)
+        } else if (info.streamType == StreamType.LIVE_STREAM) {
+            binding.detailDurationView.setText(R.string.duration_live)
+            binding.detailDurationView.setBackgroundColor(
                 ContextCompat.getColor(activity, R.color.live_duration_background_color)
             )
-            binding!!.detailDurationView.animate(true, 100)
+            binding.detailDurationView.animate(true, 100)
         } else {
-            binding!!.detailDurationView.setVisibility(View.GONE)
+            binding.detailDurationView.visibility = View.GONE
         }
 
-        binding!!.detailTitleRootLayout.setClickable(true)
-        binding!!.detailToggleSecondaryControlsView.setRotation(0f)
-        binding!!.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE)
-        binding!!.detailSecondaryControlPanel.setVisibility(View.GONE)
+        binding.detailTitleRootLayout.isClickable = true
+        binding.detailToggleSecondaryControlsView.rotation = 0f
+        binding.detailToggleSecondaryControlsView.visibility = View.VISIBLE
+        binding.detailSecondaryControlPanel.visibility = View.GONE
 
         checkUpdateProgressInfo(info)
         loadDetailsThumbnail(
-            binding!!.detailThumbnailImageView,
-            info.getThumbnails()
+            binding.detailThumbnailImageView,
+            info.thumbnails
         )
         ExtractorHelper.showMetaInfoInTextView(
-            info.getMetaInfo(), binding!!.detailMetaInfoTextView,
-            binding!!.detailMetaInfoSeparator, disposables
+            info.metaInfo, binding.detailMetaInfoTextView,
+            binding.detailMetaInfoSeparator, disposables
         )
 
-        if (!this.isPlayerAvailable || player!!.isStopped()) {
-            updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnails())
+        if (playerIsStopped) {
+            updateOverlayData(info.name, info.uploaderName, info.thumbnails)
         }
 
-        if (!info.getErrors().isEmpty()) {
+        if (!info.errors.isEmpty()) {
             // Bandcamp fan pages are not yet supported and thus a ContentNotAvailableException is
             // thrown. This is not an error and thus should not be shown to the user.
-            for (throwable in info.getErrors()) {
+            for (throwable in info.errors) {
                 if (throwable is ContentNotSupportedException &&
                     "Fan pages are not supported" == throwable.message
                 ) {
-                    info.getErrors().remove(throwable)
+                    info.errors.remove(throwable)
                 }
             }
 
-            if (!info.getErrors().isEmpty()) {
+            if (!info.errors.isEmpty()) {
                 showSnackBarError(
-                    ErrorInfo(
-                        info.getErrors(),
-                        UserAction.REQUESTED_STREAM, info.getUrl(), info
-                    )
+                    ErrorInfo(info.errors, UserAction.REQUESTED_STREAM, info.url, info)
                 )
             }
         }
 
-        binding!!.detailControlsDownload.setVisibility(
-            if (StreamTypeUtil.isLiveStream(info.getStreamType())) View.GONE else View.VISIBLE
-        )
-        binding!!.detailControlsBackground.setVisibility(
-            if (info.getAudioStreams().isEmpty() && info.getVideoStreams().isEmpty())
-                View.GONE
-            else
-                View.VISIBLE
-        )
+        val hasAudioStreams = info.videoStreams.isNotEmpty() || info.audioStreams.isNotEmpty()
+        binding.detailControlsDownload.isVisible = !StreamTypeUtil.isLiveStream(info.streamType)
+        binding.detailControlsBackground.isVisible = hasAudioStreams
 
-        val noVideoStreams =
-            info.getVideoStreams().isEmpty() && info.getVideoOnlyStreams().isEmpty()
-        binding!!.detailControlsPopup.setVisibility(if (noVideoStreams) View.GONE else View.VISIBLE)
-        binding!!.detailThumbnailPlayButton.setImageResource(
-            if (noVideoStreams) R.drawable.ic_headset_shadow else R.drawable.ic_play_arrow_shadow
+        val hasVideoStreams = info.videoStreams.isNotEmpty() || info.videoOnlyStreams.isNotEmpty()
+        binding.detailControlsPopup.isVisible = hasVideoStreams
+        binding.detailThumbnailPlayButton.setImageResource(
+            if (hasVideoStreams) R.drawable.ic_play_arrow_shadow else R.drawable.ic_headset_shadow
         )
     }
 
     private fun displayUploaderAsSubChannel(info: StreamInfo) {
-        binding!!.detailSubChannelTextView.setText(info.getUploaderName())
-        binding!!.detailSubChannelTextView.setVisibility(View.VISIBLE)
-        binding!!.detailSubChannelTextView.setSelected(true)
+        binding.detailSubChannelTextView.text = info.uploaderName
+        binding.detailSubChannelTextView.visibility = View.VISIBLE
+        binding.detailSubChannelTextView.setSelected(true)
 
-        if (info.getUploaderSubscriberCount() > -1) {
-            binding!!.detailUploaderTextView.setText(
-                Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount())
-            )
-            binding!!.detailUploaderTextView.setVisibility(View.VISIBLE)
+        if (info.uploaderSubscriberCount > -1) {
+            binding.detailUploaderTextView.text =
+                Localization.shortSubscriberCount(activity, info.uploaderSubscriberCount)
+            binding.detailUploaderTextView.visibility = View.VISIBLE
         } else {
-            binding!!.detailUploaderTextView.setVisibility(View.GONE)
+            binding.detailUploaderTextView.visibility = View.GONE
         }
 
-        loadAvatar(
-            binding!!.detailSubChannelThumbnailView,
-            info.getUploaderAvatars()
-        )
-        binding!!.detailSubChannelThumbnailView.setVisibility(View.VISIBLE)
-        binding!!.detailUploaderThumbnailView.setVisibility(View.GONE)
+        loadAvatar(binding.detailSubChannelThumbnailView, info.uploaderAvatars)
+        binding.detailSubChannelThumbnailView.visibility = View.VISIBLE
+        binding.detailUploaderThumbnailView.visibility = View.GONE
     }
 
     private fun displayBothUploaderAndSubChannel(info: StreamInfo) {
-        binding!!.detailSubChannelTextView.setText(info.getSubChannelName())
-        binding!!.detailSubChannelTextView.setVisibility(View.VISIBLE)
-        binding!!.detailSubChannelTextView.setSelected(true)
+        binding.detailSubChannelTextView.text = info.subChannelName
+        binding.detailSubChannelTextView.visibility = View.VISIBLE
+        binding.detailSubChannelTextView.setSelected(true)
 
         val subText = StringBuilder()
-        if (!TextUtils.isEmpty(info.getUploaderName())) {
-            subText.append(
-                String.format(getString(R.string.video_detail_by), info.getUploaderName())
-            )
+        if (!TextUtils.isEmpty(info.uploaderName)) {
+            subText.append(String.format(getString(R.string.video_detail_by), info.uploaderName))
         }
-        if (info.getUploaderSubscriberCount() > -1) {
-            if (subText.length > 0) {
+        if (info.uploaderSubscriberCount > -1) {
+            if (subText.isNotEmpty()) {
                 subText.append(Localization.DOT_SEPARATOR)
             }
             subText.append(
-                Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount())
+                Localization.shortSubscriberCount(activity, info.uploaderSubscriberCount)
             )
         }
 
-        if (subText.length > 0) {
-            binding!!.detailUploaderTextView.setText(subText)
-            binding!!.detailUploaderTextView.setVisibility(View.VISIBLE)
-            binding!!.detailUploaderTextView.setSelected(true)
+        if (subText.isEmpty()) {
+            binding.detailUploaderTextView.visibility = View.GONE
         } else {
-            binding!!.detailUploaderTextView.setVisibility(View.GONE)
+            binding.detailUploaderTextView.text = subText
+            binding.detailUploaderTextView.visibility = View.VISIBLE
+            binding.detailUploaderTextView.setSelected(true)
         }
 
-        loadAvatar(
-            binding!!.detailSubChannelThumbnailView,
-            info.getSubChannelAvatars()
-        )
-        binding!!.detailSubChannelThumbnailView.setVisibility(View.VISIBLE)
-        loadAvatar(
-            binding!!.detailUploaderThumbnailView,
-            info.getUploaderAvatars()
-        )
-        binding!!.detailUploaderThumbnailView.setVisibility(View.VISIBLE)
+        loadAvatar(binding.detailSubChannelThumbnailView, info.subChannelAvatars)
+        binding.detailSubChannelThumbnailView.visibility = View.VISIBLE
+        loadAvatar(binding.detailUploaderThumbnailView, info.uploaderAvatars)
+        binding.detailUploaderThumbnailView.visibility = View.VISIBLE
     }
 
     fun openDownloadDialog() {
@@ -1836,13 +1558,12 @@ class VideoDetailFragment :
 
         try {
             val downloadDialog = DownloadDialog(activity, currentInfo!!)
-            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog")
+            downloadDialog.show(activity.supportFragmentManager, "downloadDialog")
         } catch (e: Exception) {
             showSnackbar(
                 activity,
                 ErrorInfo(
-                    e, UserAction.DOWNLOAD_OPEN_DIALOG,
-                    "Showing download dialog", currentInfo
+                    e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog", currentInfo
                 )
             )
         }
@@ -1852,12 +1573,10 @@ class VideoDetailFragment :
     // Stream Results
     ////////////////////////////////////////////////////////////////////////// */
     private fun checkUpdateProgressInfo(info: StreamInfo) {
-        if (positionSubscriber != null) {
-            positionSubscriber!!.dispose()
-        }
+        positionSubscriber?.dispose()
         if (!DependentPreferenceHelper.getResumePlaybackEnabled(activity)) {
-            binding!!.positionView.setVisibility(View.GONE)
-            binding!!.detailPositionView.setVisibility(View.GONE)
+            binding.positionView.visibility = View.GONE
+            binding.detailPositionView.visibility = View.GONE
             return
         }
         val recordManager = HistoryRecordManager(requireContext())
@@ -1866,15 +1585,11 @@ class VideoDetailFragment :
             .onErrorComplete()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                io.reactivex.rxjava3.functions.Consumer { state: StreamStateEntity? ->
-                    updatePlaybackProgress(
-                        state!!.getProgressMillis(), info.getDuration() * 1000
-                    )
-                },
-                io.reactivex.rxjava3.functions.Consumer { e: Throwable? -> },
-                Action {
-                    binding!!.positionView.setVisibility(View.GONE)
-                    binding!!.detailPositionView.setVisibility(View.GONE)
+                { state -> updatePlaybackProgress(state.progressMillis, info.duration * 1000) },
+                { throwable -> /* ignore errors */ },
+                { /* onComplete */
+                    binding.positionView.visibility = View.GONE
+                    binding.detailPositionView.visibility = View.GONE
                 }
             )
     }
@@ -1887,25 +1602,20 @@ class VideoDetailFragment :
         val durationSeconds = TimeUnit.MILLISECONDS.toSeconds(duration).toInt()
         // If the old and the new progress values have a big difference then use animation.
         // Otherwise don't because it affects CPU
-        val progressDifference = abs(
-            (
-                binding!!.positionView.getProgress() -
-                    progressSeconds
-                ).toDouble()
-        ).toInt()
-        binding!!.positionView.setMax(durationSeconds)
+        val progressDifference = abs(binding.positionView.progress - progressSeconds)
+        binding.positionView.setMax(durationSeconds)
         if (progressDifference > 2) {
-            binding!!.positionView.setProgressAnimated(progressSeconds)
+            binding.positionView.setProgressAnimated(progressSeconds)
         } else {
-            binding!!.positionView.setProgress(progressSeconds)
+            binding.positionView.progress = progressSeconds
         }
         val position = Localization.getDurationString(progressSeconds.toLong())
-        if (position !== binding!!.detailPositionView.getText()) {
-            binding!!.detailPositionView.setText(position)
+        if (position != binding.detailPositionView.getText()) {
+            binding.detailPositionView.text = position
         }
-        if (binding!!.positionView.getVisibility() != View.VISIBLE) {
-            binding!!.positionView.animate(true, 100)
-            binding!!.detailPositionView.animate(true, 100)
+        if (binding.positionView.visibility != View.VISIBLE) {
+            binding.positionView.animate(true, 100)
+            binding.detailPositionView.animate(true, 100)
         }
     }
 
@@ -1921,48 +1631,32 @@ class VideoDetailFragment :
         if (DEBUG) {
             Log.d(
                 TAG,
-                (
-                    "onQueueUpdate() called with: serviceId = [" +
-                        serviceId + "], url = [" + url + "], name = [" +
-                        title + "], playQueue = [" + playQueue + "]"
-                    )
+                "onQueueUpdate() called with: serviceId = [$serviceId], url = [${
+                url}], name = [$title], playQueue = [$playQueue]"
             )
         }
 
         // Register broadcast receiver to listen to playQueue changes
         // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
-        if (playQueue != null && playQueue!!.getBroadcastReceiver() != null) {
-            playQueue!!.getBroadcastReceiver()!!.subscribe(
-                io.reactivex.rxjava3.functions.Consumer { event: PlayQueueEvent? -> updateOverlayPlayQueueButtonVisibility() }
-            )
-        }
+        playQueue?.broadcastReceiver?.subscribe { updateOverlayPlayQueueButtonVisibility() }
 
         // This should be the only place where we push data to stack.
         // It will allow to have live instance of PlayQueue with actual information about
         // deleted/added items inside Channel/Playlist queue and makes possible to have
         // a history of played items
         val stackPeek: StackItem? = stack.peek()
-        if (stackPeek != null && stackPeek.getPlayQueue() != queue) {
-            val playQueueItem = queue.getItem()
-            if (playQueueItem != null) {
-                stack.push(
-                    StackItem(
-                        playQueueItem.getServiceId(), playQueueItem.getUrl(),
-                        playQueueItem.getTitle(), queue
-                    )
-                )
-                return
-            } // else continue below
+        if (stackPeek != null && stackPeek.playQueue != queue) {
+            queue.item?.let { queueItem ->
+                stack.push(StackItem(queueItem.serviceId, queueItem.url, queueItem.title, queue))
+                return@onQueueUpdate
+            } // if queue.item == null continue below
         }
 
-        val stackWithQueue = findQueueInStack(queue)
-        if (stackWithQueue != null) {
-            // On every MainPlayer service's destroy() playQueue gets disposed and
-            // no longer able to track progress. That's why we update our cached disposed
-            // queue with the new one that is active and have the same history.
-            // Without that the cached playQueue will have an old recovery position
-            stackWithQueue.setPlayQueue(queue)
-        }
+        // On every MainPlayer service's destroy() playQueue gets disposed and
+        // no longer able to track progress. That's why we update our cached disposed
+        // queue with the new one that is active and have the same history.
+        // Without that the cached playQueue will have an old recovery position
+        findQueueInStack(queue)?.playQueue = queue
     }
 
     override fun onPlaybackUpdate(
@@ -1971,15 +1665,13 @@ class VideoDetailFragment :
         shuffled: Boolean,
         parameters: PlaybackParameters?
     ) {
-        setOverlayPlayPauseImage(player != null && player!!.isPlaying())
+        setOverlayPlayPauseImage(player?.isPlaying == true)
 
-        if (state == Player.STATE_PLAYING) {
-            if (binding!!.positionView.getAlpha() != 1.0f && player!!.getPlayQueue() != null && player!!.getPlayQueue()!!
-                .getItem() != null && player!!.getPlayQueue()!!.getItem()!!.getUrl() == url
-            ) {
-                binding!!.positionView.animate(true, 100)
-                binding!!.detailPositionView.animate(true, 100)
-            }
+        if (state == Player.STATE_PLAYING && binding.positionView.alpha != 1.0f &&
+            player?.playQueue?.item?.url?.equals(url) == true
+        ) {
+            binding.positionView.animate(true, 100)
+            binding.detailPositionView.animate(true, 100)
         }
     }
 
@@ -1988,24 +1680,20 @@ class VideoDetailFragment :
         duration: Int,
         bufferPercent: Int
     ) {
-        // Progress updates every second even if media is paused. It's useless until playing
-        if (!player!!.isPlaying() || playQueue == null) {
-            return
-        }
-
-        if (player!!.getPlayQueue()!!.getItem()!!.getUrl() == url) {
+        // Progress updates are received every second even if media is paused. It's useless until
+        // playing, hence the `player?.isPlaying == true` check.
+        if (player?.isPlaying == true && player?.playQueue?.item?.url?.equals(url) == true) {
             updatePlaybackProgress(currentProgress.toLong(), duration.toLong())
         }
     }
 
     override fun onMetadataUpdate(info: StreamInfo, queue: PlayQueue) {
-        val item = findQueueInStack(queue)
-        if (item != null) {
+        findQueueInStack(queue)?.let { item ->
             // When PlayQueue can have multiple streams (PlaylistPlayQueue or ChannelPlayQueue)
             // every new played stream gives new title and url.
             // StackItem contains information about first played stream. Let's update it here
-            item.setTitle(info.getName())
-            item.setUrl(info.getUrl())
+            item.title = info.name
+            item.url = info.url
         }
         // They are not equal when user watches something in popup while browsing in fragment and
         // then changes screen orientation. In that case the fragment will set itself as
@@ -2014,13 +1702,13 @@ class VideoDetailFragment :
             return
         }
 
-        updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnails())
-        if (currentInfo != null && info.getUrl() == currentInfo!!.getUrl()) {
+        updateOverlayData(info.name, info.uploaderName, info.thumbnails)
+        if (currentInfo?.url == info.url) {
             return
         }
 
         currentInfo = info
-        setInitialData(info.getServiceId(), info.getUrl(), info.getName(), queue)
+        setInitialData(info.serviceId, info.url, info.name, queue)
         setAutoPlay(false)
         // Delay execution just because it freezes the main thread, and while playing
         // next/previous video you see visual glitches
@@ -2038,23 +1726,17 @@ class VideoDetailFragment :
 
     override fun onServiceStopped() {
         // the binding could be null at this point, if the app is finishing
-        if (binding != null) {
+        if (nullableBinding != null) {
             setOverlayPlayPauseImage(false)
-            if (currentInfo != null) {
-                updateOverlayData(
-                    currentInfo!!.getName(),
-                    currentInfo!!.getUploaderName(),
-                    currentInfo!!.getThumbnails()
-                )
-            }
+            currentInfo?.let { updateOverlayData(it.name, it.uploaderName, it.thumbnails) }
             updateOverlayPlayQueueButtonVisibility()
         }
     }
 
     override fun onFullscreenStateChanged(fullscreen: Boolean) {
         setupBrightness()
-        if (!this.isPlayerAndPlayerServiceAvailable ||
-            player?.UIs()?.get(MainPlayerUi::class.java) == null ||
+        if (playerService == null ||
+            player?.UIs()?.get(MainPlayerUi::class) == null ||
             this.root?.parent == null
         ) {
             return
@@ -2062,14 +1744,12 @@ class VideoDetailFragment :
 
         if (fullscreen) {
             hideSystemUiIfNeeded()
-            binding!!.overlayPlayPauseButton.requestFocus()
+            binding.overlayPlayPauseButton.requestFocus()
         } else {
             showSystemUi()
         }
 
-        if (binding!!.relatedItemsLayout != null) {
-            binding!!.relatedItemsLayout!!.setVisibility(if (fullscreen) View.GONE else View.VISIBLE)
-        }
+        binding.relatedItemsLayout?.isVisible = !fullscreen
         scrollToTop()
 
         tryAddVideoPlayerView()
@@ -2084,7 +1764,7 @@ class VideoDetailFragment :
         if (DeviceUtils.isTablet(activity) &&
             (!PlayerHelper.globalScreenOrientationLocked(activity) || isLandscape)
         ) {
-            player!!.UIs().get(MainPlayerUi::class.java)?.toggleFullscreen()
+            player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
             return
         }
 
@@ -2101,18 +1781,15 @@ class VideoDetailFragment :
      * */
     override fun onMoreOptionsLongClicked() {
         val params =
-            binding!!.appBarLayout.getLayoutParams() as CoordinatorLayout.LayoutParams
-        val behavior = params.getBehavior() as AppBarLayout.Behavior?
-        val valueAnimator = ValueAnimator
-            .ofInt(0, -binding!!.playerPlaceholder.getHeight())
-        valueAnimator.setInterpolator(DecelerateInterpolator())
-        valueAnimator.addUpdateListener(
-            AnimatorUpdateListener { animation: ValueAnimator? ->
-                behavior!!.setTopAndBottomOffset(animation!!.getAnimatedValue() as Int)
-                binding!!.appBarLayout.requestLayout()
-            }
-        )
-        valueAnimator.setInterpolator(DecelerateInterpolator())
+            binding.appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = params.behavior as AppBarLayout.Behavior
+        val valueAnimator = ValueAnimator.ofInt(0, -binding.playerPlaceholder.height)
+        valueAnimator.interpolator = DecelerateInterpolator()
+        valueAnimator.addUpdateListener { animation ->
+            behavior.setTopAndBottomOffset(animation.getAnimatedValue() as Int)
+            binding.appBarLayout.requestLayout()
+        }
+        valueAnimator.interpolator = DecelerateInterpolator()
         valueAnimator.setDuration(500)
         valueAnimator.start()
     }
@@ -2131,15 +1808,13 @@ class VideoDetailFragment :
 
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+            activity.window.attributes.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT
         }
-        activity.getWindow().getDecorView().setSystemUiVisibility(0)
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        activity.getWindow().setStatusBarColor(
-            ThemeHelper.resolveColorFromAttr(
-                requireContext(), android.R.attr.colorPrimary
-            )
+        activity.window.decorView.systemUiVisibility = 0
+        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        activity.window.statusBarColor = ThemeHelper.resolveColorFromAttr(
+            requireContext(), android.R.attr.colorPrimary
         )
     }
 
@@ -2154,7 +1829,7 @@ class VideoDetailFragment :
 
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
+            activity.window.attributes.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
         var visibility = (
@@ -2171,34 +1846,34 @@ class VideoDetailFragment :
         if (!isInMultiWindow) {
             visibility = visibility or View.SYSTEM_UI_FLAG_FULLSCREEN
         }
-        activity.getWindow().getDecorView().setSystemUiVisibility(visibility)
+        activity.window.decorView.systemUiVisibility = visibility
 
         if (isInMultiWindow || this.isFullscreen) {
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT)
-            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT)
+            activity.window.statusBarColor = Color.TRANSPARENT
+            activity.window.navigationBarColor = Color.TRANSPARENT
         }
-        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     // Listener implementation
     override fun hideSystemUiIfNeeded() {
         if (this.isFullscreen &&
-            bottomSheetBehavior!!.getState() == BottomSheetBehavior.STATE_EXPANDED
+            bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED
         ) {
             hideSystemUi()
         }
     }
 
     private val isFullscreen: Boolean
-        get() = this.isPlayerAvailable && player?.UIs()
-            ?.get(VideoPlayerUi::class.java)?.isFullscreen() == true
+        get() = player?.UIs()?.get(VideoPlayerUi::class)?.isFullscreen == true
 
-    private fun playerIsNotStopped(): Boolean {
-        return this.isPlayerAvailable && !player!!.isStopped()
-    }
+    @Suppress("NullableBooleanElvis") // rewriting as "!= false" creates more confusion
+    private val playerIsStopped
+        // returns true if the player is null, or if the player is nonnull but is stopped
+        get() = player?.isStopped ?: true
 
     private fun restoreDefaultBrightness() {
-        val lp = activity.getWindow().getAttributes()
+        val lp = activity.window.attributes
         if (lp.screenBrightness == -1f) {
             return
         }
@@ -2206,7 +1881,7 @@ class VideoDetailFragment :
         // Restore the old  brightness when fragment.onPause() called or
         // when a player is in portrait
         lp.screenBrightness = -1f
-        activity.getWindow().setAttributes(lp)
+        activity.window.setAttributes(lp)
     }
 
     private fun setupBrightness() {
@@ -2214,21 +1889,15 @@ class VideoDetailFragment :
             return
         }
 
-        val lp = activity.getWindow().getAttributes()
+        val lp = activity.window.attributes
         if (!this.isFullscreen || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
             // Apply system brightness when the player is not in fullscreen
             restoreDefaultBrightness()
         } else {
             // Do not restore if user has disabled brightness gesture
-            if ((
-                PlayerHelper.getActionForRightGestureSide(activity)
-                    != getString(R.string.brightness_control_key)
-                ) && (
-                    PlayerHelper.getActionForLeftGestureSide(
-                            activity
-                        )
-                        != getString(R.string.brightness_control_key)
-                    )
+            val brightnessControlKey = getString(R.string.brightness_control_key)
+            if (PlayerHelper.getActionForRightGestureSide(activity) != brightnessControlKey &&
+                PlayerHelper.getActionForLeftGestureSide(activity) != brightnessControlKey
             ) {
                 return
             }
@@ -2238,7 +1907,7 @@ class VideoDetailFragment :
                 return
             }
             lp.screenBrightness = brightnessLevel
-            activity.getWindow().setAttributes(lp)
+            activity.window.setAttributes(lp)
         }
     }
 
@@ -2247,37 +1916,37 @@ class VideoDetailFragment :
      * or in Android's desktop mode (DeX etc).
      */
     private fun accommodateForTvAndDesktopMode() {
-        if (DeviceUtils.isTv(getContext())) {
+        if (DeviceUtils.isTv(context)) {
             // remove ripple effects from detail controls
             val transparent = ContextCompat.getColor(
                 requireContext(),
                 R.color.transparent_background_color
             )
-            binding!!.detailControlsPlaylistAppend.setBackgroundColor(transparent)
-            binding!!.detailControlsBackground.setBackgroundColor(transparent)
-            binding!!.detailControlsPopup.setBackgroundColor(transparent)
-            binding!!.detailControlsDownload.setBackgroundColor(transparent)
-            binding!!.detailControlsShare.setBackgroundColor(transparent)
-            binding!!.detailControlsOpenInBrowser.setBackgroundColor(transparent)
-            binding!!.detailControlsPlayWithKodi.setBackgroundColor(transparent)
+            binding.detailControlsPlaylistAppend.setBackgroundColor(transparent)
+            binding.detailControlsBackground.setBackgroundColor(transparent)
+            binding.detailControlsPopup.setBackgroundColor(transparent)
+            binding.detailControlsDownload.setBackgroundColor(transparent)
+            binding.detailControlsShare.setBackgroundColor(transparent)
+            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent)
+            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent)
         }
         if (DeviceUtils.isDesktopMode(requireContext())) {
             // Remove the "hover" overlay (since it is visible on all mouse events and interferes
             // with the video content being played)
-            binding!!.detailThumbnailRootLayout.setForeground(null)
+            binding.detailThumbnailRootLayout.setForeground(null)
         }
     }
 
     private fun checkLandscape() {
-        if ((!player!!.isPlaying() && player!!.getPlayQueue() !== playQueue) ||
-            player!!.getPlayQueue() == null
+        if ((!player!!.isPlaying && player!!.playQueue !== playQueue) ||
+            player!!.playQueue == null
         ) {
             setAutoPlay(true)
         }
 
-        player!!.UIs().get(MainPlayerUi::class.java)?.checkLandscape()
+        player!!.UIs().get(MainPlayerUi::class)?.checkLandscape()
         // Let's give a user time to look at video information page if video is not playing
-        if (PlayerHelper.globalScreenOrientationLocked(activity) && !player!!.isPlaying()) {
+        if (PlayerHelper.globalScreenOrientationLocked(activity) && !player!!.isPlaying) {
             player!!.play()
         }
     }
@@ -2290,26 +1959,19 @@ class VideoDetailFragment :
         return url == null
     }
 
-    private fun findQueueInStack(queue: PlayQueue?): StackItem? {
-        var item: StackItem? = null
-        val iterator: MutableIterator<StackItem?> = stack.descendingIterator()
-        while (iterator.hasNext()) {
-            val next = iterator.next()!!
-            if (next.getPlayQueue().equals(queue)) {
-                item = next
-                break
+    private fun findQueueInStack(queue: PlayQueue): StackItem? {
+        stack.descendingIterator().forEach { item ->
+            if (item?.playQueue == queue) {
+                return@findQueueInStack item
             }
         }
-        return item
+        return null
     }
 
     private fun replaceQueueIfUserConfirms(onAllow: Runnable) {
-        val activeQueue = if (this.isPlayerAvailable) player!!.getPlayQueue() else null
-
         // Player will have STATE_IDLE when a user pressed back button
         if (PlayerHelper.isClearingQueueConfirmationRequired(activity) &&
-            playerIsNotStopped() &&
-            activeQueue != playQueue
+            !playerIsStopped && player?.playQueue != playQueue
         ) {
             showClearingQueueConfirmation(onAllow)
         } else {
@@ -2321,41 +1983,29 @@ class VideoDetailFragment :
         AlertDialog.Builder(activity)
             .setTitle(R.string.clear_queue_confirmation_description)
             .setNegativeButton(R.string.cancel, null)
-            .setPositiveButton(
-                R.string.ok,
-                DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
-                    onAllow.run()
-                    dialog!!.dismiss()
-                }
-            )
+            .setPositiveButton(R.string.ok) { dialog, which ->
+                onAllow.run()
+                dialog?.dismiss()
+            }
             .show()
     }
 
     private fun showExternalVideoPlaybackDialog() {
-        if (currentInfo == null) {
-            return
-        }
+        val info = currentInfo ?: return
 
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(R.string.select_quality_external_players)
-        builder.setNeutralButton(
-            R.string.open_in_browser,
-            DialogInterface.OnClickListener { dialog: DialogInterface?, i: Int ->
-                ShareUtils.openUrlInBrowser(
-                    requireActivity(),
-                    url
-                )
-            }
-        )
+        builder.setNeutralButton(R.string.open_in_browser) { dialog, which ->
+            ShareUtils.openUrlInBrowser(requireActivity(), url)
+        }
 
-        val videoStreamsForExternalPlayers =
-            ListHelper.getSortedStreamVideosList(
-                activity,
-                ListHelper.getUrlAndNonTorrentStreams<VideoStream?>(currentInfo!!.getVideoStreams()),
-                ListHelper.getUrlAndNonTorrentStreams<VideoStream?>(currentInfo!!.getVideoOnlyStreams()),
-                false,
-                false
-            )
+        val videoStreamsForExternalPlayers = ListHelper.getSortedStreamVideosList(
+            activity,
+            ListHelper.getUrlAndNonTorrentStreams(info.videoStreams),
+            ListHelper.getUrlAndNonTorrentStreams(info.videoOnlyStreams),
+            false,
+            false
+        )
 
         if (videoStreamsForExternalPlayers.isEmpty()) {
             builder.setMessage(R.string.no_video_streams_available_for_external_players)
@@ -2363,45 +2013,33 @@ class VideoDetailFragment :
         } else {
             val selectedVideoStreamIndexForExternalPlayers =
                 ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers)
-            val resolutions = videoStreamsForExternalPlayers.map {
-                it!!.getResolution() as CharSequence
-            }.toTypedArray()
+            val resolutions = videoStreamsForExternalPlayers
+                .map { it.getResolution() as CharSequence }
+                .toTypedArray()
 
             builder.setSingleChoiceItems(
-                resolutions, selectedVideoStreamIndexForExternalPlayers,
-                null
+                resolutions, selectedVideoStreamIndexForExternalPlayers, null
             )
             builder.setNegativeButton(R.string.cancel, null)
-            builder.setPositiveButton(
-                R.string.ok,
-                DialogInterface.OnClickListener { dialog: DialogInterface?, i: Int ->
-                    val index = (dialog as AlertDialog).getListView().getCheckedItemPosition()
-                    // We don't have to manage the index validity because if there is no stream
-                    // available for external players, this code will be not executed and if there is
-                    // no stream which matches the default resolution, 0 is returned by
-                    // ListHelper.getDefaultResolutionIndex.
-                    // The index cannot be outside the bounds of the list as its always between 0 and
-                    // the list size - 1, .
-                    startOnExternalPlayer(
-                        activity, currentInfo!!,
-                        videoStreamsForExternalPlayers.get(index)!!
-                    )
-                }
-            )
+            builder.setPositiveButton(R.string.ok) { dialog, which ->
+                val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
+                // We don't have to manage the index validity because if there is no stream
+                // available for external players, this code will be not executed and if there is
+                // no stream which matches the default resolution, 0 is returned by
+                // ListHelper.getDefaultResolutionIndex.
+                // The index cannot be outside the bounds of the list as its always between 0 and
+                // the list size - 1, .
+                startOnExternalPlayer(activity, info, videoStreamsForExternalPlayers[index])
+            }
         }
         builder.show()
     }
 
     private fun showExternalAudioPlaybackDialog() {
-        if (currentInfo == null) {
-            return
-        }
+        val info = currentInfo ?: return
 
-        val audioStreams = ListHelper.getUrlAndNonTorrentStreams<AudioStream?>(
-            currentInfo!!.getAudioStreams()
-        )
-        val audioTracks =
-            ListHelper.getFilteredAudioStreams(activity, audioStreams)
+        val audioStreams = ListHelper.getUrlAndNonTorrentStreams(info.audioStreams)
+        val audioTracks = ListHelper.getFilteredAudioStreams(activity, audioStreams)
 
         if (audioTracks.isEmpty()) {
             Toast.makeText(
@@ -2409,39 +2047,24 @@ class VideoDetailFragment :
                 Toast.LENGTH_SHORT
             ).show()
         } else if (audioTracks.size == 1) {
-            startOnExternalPlayer(activity, currentInfo!!, audioTracks.get(0)!!)
+            startOnExternalPlayer(activity, info, audioTracks[0])
         } else {
-            val selectedAudioStream =
-                ListHelper.getDefaultAudioFormat(activity, audioTracks)
+            val selectedAudioStream = ListHelper.getDefaultAudioFormat(activity, audioTracks)
             val trackNames = audioTracks
-                .map { audioStream: AudioStream? ->
-                    Localization.audioTrackName(
-                        activity,
-                        audioStream
-                    )
-                }.toTypedArray()
+                .map { Localization.audioTrackName(activity, it) }
+                .toTypedArray()
 
             AlertDialog.Builder(activity)
                 .setTitle(R.string.select_audio_track_external_players)
-                .setNeutralButton(
-                    R.string.open_in_browser,
-                    DialogInterface.OnClickListener { dialog: DialogInterface?, i: Int ->
-                        ShareUtils.openUrlInBrowser(
-                            requireActivity(),
-                            url
-                        )
-                    }
-                )
+                .setNeutralButton(R.string.open_in_browser) { dialog, which ->
+                    ShareUtils.openUrlInBrowser(requireActivity(), url)
+                }
                 .setSingleChoiceItems(trackNames, selectedAudioStream, null)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(
-                    R.string.ok,
-                    DialogInterface.OnClickListener { dialog: DialogInterface?, i: Int ->
-                        val index = (dialog as AlertDialog).getListView()
-                            .getCheckedItemPosition()
-                        startOnExternalPlayer(activity, currentInfo!!, audioTracks.get(index)!!)
-                    }
-                )
+                .setPositiveButton(R.string.ok) { dialog, which ->
+                    val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
+                    startOnExternalPlayer(activity, info, audioTracks[index])
+                }
                 .show()
         }
     }
@@ -2452,9 +2075,7 @@ class VideoDetailFragment :
     private fun cleanUp() {
         // New beginning
         stack.clear()
-        if (currentWorker != null) {
-            currentWorker!!.dispose()
-        }
+        currentWorker?.dispose()
         PlayerHolder.stopService()
         setInitialData(0, null, "", null)
         currentInfo = null
@@ -2482,7 +2103,7 @@ class VideoDetailFragment :
             toolbar.setDescendantFocusability(afterDescendants)
             (requireView() as ViewGroup).setDescendantFocusability(blockDescendants)
             // Only focus the mainFragment if the mainFragment (e.g. search-results)
-            // or the toolbar (e.g. Textfield for search) don't have focus.
+            // or the toolbar (e.g. TextField for search) don't have focus.
             // This was done to fix problems with the keyboard input, see also #7490
             if (!mainFragment.hasFocus() && !toolbar.hasFocus()) {
                 mainFragment.requestFocus()
@@ -2492,8 +2113,8 @@ class VideoDetailFragment :
             toolbar.setDescendantFocusability(blockDescendants)
             (requireView() as ViewGroup).setDescendantFocusability(afterDescendants)
             // Only focus the player if it not already has focus
-            if (!binding!!.getRoot().hasFocus()) {
-                binding!!.detailThumbnailRootLayout.requestFocus()
+            if (!binding.getRoot().hasFocus()) {
+                binding.detailThumbnailRootLayout.requestFocus()
             }
         }
     }
@@ -2505,43 +2126,37 @@ class VideoDetailFragment :
      * @param showMore whether main fragment should be expanded or not
      */
     private fun manageSpaceAtTheBottom(showMore: Boolean) {
-        val peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height)
+        val peekHeight = resources.getDimensionPixelSize(R.dimen.mini_player_height)
         val holder = requireActivity().findViewById<ViewGroup>(R.id.fragment_holder)
-        val newBottomPadding: Int
-        if (showMore) {
-            newBottomPadding = 0
-        } else {
-            newBottomPadding = peekHeight
-        }
-        if (holder.getPaddingBottom() == newBottomPadding) {
+        val newBottomPadding = if (showMore) 0 else peekHeight
+        if (holder.paddingBottom == newBottomPadding) {
             return
         }
         holder.setPadding(
             holder.getPaddingLeft(),
-            holder.getPaddingTop(),
+            holder.paddingTop,
             holder.getPaddingRight(),
             newBottomPadding
         )
     }
 
     private fun setupBottomPlayer() {
-        val params =
-            binding!!.appBarLayout.getLayoutParams() as CoordinatorLayout.LayoutParams
-        val behavior = params.getBehavior() as AppBarLayout.Behavior?
+        val params = binding.appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = params.behavior as AppBarLayout.Behavior?
 
         val bottomSheetLayout = activity.findViewById<FrameLayout>(R.id.fragment_player_holder)
         bottomSheetBehavior = BottomSheetBehavior.from<FrameLayout?>(bottomSheetLayout)
-        bottomSheetBehavior!!.setState(lastStableBottomSheetState)
+        bottomSheetBehavior.setState(lastStableBottomSheetState)
         updateBottomSheetState(lastStableBottomSheetState)
 
-        val peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height)
+        val peekHeight = resources.getDimensionPixelSize(R.dimen.mini_player_height)
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false)
-            bottomSheetBehavior!!.setPeekHeight(peekHeight)
+            bottomSheetBehavior.peekHeight = peekHeight
             if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
-                binding!!.overlayLayout.setAlpha(MAX_OVERLAY_ALPHA)
+                binding.overlayLayout.setAlpha(MAX_OVERLAY_ALPHA)
             } else if (bottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
-                binding!!.overlayLayout.setAlpha(0f)
+                binding.overlayLayout.setAlpha(0f)
                 setOverlayElementsClickable(false)
             }
         }
@@ -2555,7 +2170,7 @@ class VideoDetailFragment :
                         moveFocusToMainFragment(true)
                         manageSpaceAtTheBottom(true)
 
-                        bottomSheetBehavior!!.setPeekHeight(0)
+                        bottomSheetBehavior.peekHeight = 0
                         cleanUp()
                     }
 
@@ -2563,45 +2178,41 @@ class VideoDetailFragment :
                         moveFocusToMainFragment(false)
                         manageSpaceAtTheBottom(false)
 
-                        bottomSheetBehavior!!.setPeekHeight(peekHeight)
+                        bottomSheetBehavior.peekHeight = peekHeight
                         // Disable click because overlay buttons located on top of buttons
                         // from the player
                         setOverlayElementsClickable(false)
                         hideSystemUiIfNeeded()
                         // Conditions when the player should be expanded to fullscreen
                         if (DeviceUtils.isLandscape(requireContext()) &&
-                            this@VideoDetailFragment.isPlayerAvailable &&
-                            player!!.isPlaying() &&
-                            !this@VideoDetailFragment.isFullscreen && !DeviceUtils.isTablet(activity)
+                            player?.isPlaying == true &&
+                            !this@VideoDetailFragment.isFullscreen &&
+                            !DeviceUtils.isTablet(activity)
                         ) {
-                            player!!.UIs().get(MainPlayerUi::class.java)?.toggleFullscreen()
+                            player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
                         }
-                        setOverlayLook(binding!!.appBarLayout, behavior, 1f)
+                        setOverlayLook(binding.appBarLayout, behavior, 1f)
                     }
 
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         moveFocusToMainFragment(true)
                         manageSpaceAtTheBottom(false)
 
-                        bottomSheetBehavior!!.setPeekHeight(peekHeight)
+                        bottomSheetBehavior.peekHeight = peekHeight
 
                         // Re-enable clicks
                         setOverlayElementsClickable(true)
-                        if (this@VideoDetailFragment.isPlayerAvailable) {
-                            player!!.UIs().get(MainPlayerUi::class.java)?.closeItemsList()
-                        }
-                        setOverlayLook(binding!!.appBarLayout, behavior, 0f)
+                        player?.UIs()?.get(MainPlayerUi::class)?.closeItemsList()
+                        setOverlayLook(binding.appBarLayout, behavior, 0f)
                     }
 
                     BottomSheetBehavior.STATE_DRAGGING, BottomSheetBehavior.STATE_SETTLING -> {
                         if (this@VideoDetailFragment.isFullscreen) {
                             showSystemUi()
                         }
-                        if (this@VideoDetailFragment.isPlayerAvailable) {
-                            player!!.UIs().get(MainPlayerUi::class.java)?.let {
-                                if (it.isControlsVisible) {
-                                    it.hideControls(0, 0)
-                                }
+                        player?.UIs()?.get(MainPlayerUi::class)?.let {
+                            if (it.isControlsVisible) {
+                                it.hideControls(0, 0)
                             }
                         }
                     }
@@ -2611,33 +2222,23 @@ class VideoDetailFragment :
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                setOverlayLook(binding!!.appBarLayout, behavior, slideOffset)
+                setOverlayLook(binding.appBarLayout, behavior, slideOffset)
             }
         }
 
-        bottomSheetBehavior!!.addBottomSheetCallback(bottomSheetCallback!!)
+        bottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback)
 
         // User opened a new page and the player will hide itself
-        activity.getSupportFragmentManager()
-            .addOnBackStackChangedListener(
-                FragmentManager.OnBackStackChangedListener {
-                    if (bottomSheetBehavior!!.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                        bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_COLLAPSED)
-                    }
-                }
-            )
+        activity.supportFragmentManager.addOnBackStackChangedListener {
+            if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
+            }
+        }
     }
 
     private fun updateOverlayPlayQueueButtonVisibility() {
-        val isPlayQueueEmpty =
-            player == null || // no player => no play queue :)
-                player!!.getPlayQueue() == null || player!!.getPlayQueue()!!.isEmpty()
-        if (binding != null) {
-            // binding is null when rotating the device...
-            binding!!.overlayPlayQueueButton.setVisibility(
-                if (isPlayQueueEmpty) View.GONE else View.VISIBLE
-            )
-        }
+        // hide the button if the queue is empty; no player => no play queue :)
+        nullableBinding?.overlayPlayQueueButton?.isVisible = player?.playQueue?.isEmpty != true
     }
 
     private fun updateOverlayData(
@@ -2645,18 +2246,15 @@ class VideoDetailFragment :
         uploader: String?,
         thumbnails: MutableList<Image>
     ) {
-        binding!!.overlayTitleTextView.setText(if (TextUtils.isEmpty(overlayTitle)) "" else overlayTitle)
-        binding!!.overlayChannelTextView.setText(if (TextUtils.isEmpty(uploader)) "" else uploader)
-        binding!!.overlayThumbnail.setImageDrawable(null)
-        CoilHelper.loadDetailsThumbnail(binding!!.overlayThumbnail, thumbnails)
+        binding.overlayTitleTextView.text = overlayTitle ?: ""
+        binding.overlayChannelTextView.text = uploader ?: ""
+        binding.overlayThumbnail.setImageDrawable(null)
+        loadDetailsThumbnail(binding.overlayThumbnail, thumbnails)
     }
 
     private fun setOverlayPlayPauseImage(playerIsPlaying: Boolean) {
-        val drawable = if (playerIsPlaying)
-            R.drawable.ic_pause
-        else
-            R.drawable.ic_play_arrow
-        binding!!.overlayPlayPauseButton.setImageResource(drawable)
+        val drawable = if (playerIsPlaying) R.drawable.ic_pause else R.drawable.ic_play_arrow
+        binding.overlayPlayPauseButton.setImageResource(drawable)
     }
 
     private fun setOverlayLook(
@@ -2669,7 +2267,7 @@ class VideoDetailFragment :
         if (behavior == null || slideOffset < 0) {
             return
         }
-        binding!!.overlayLayout.setAlpha(
+        binding.overlayLayout.setAlpha(
             min(
                 MAX_OVERLAY_ALPHA.toDouble(),
                 (1 - slideOffset).toDouble()
@@ -2677,35 +2275,28 @@ class VideoDetailFragment :
         )
         // These numbers are not special. They just do a cool transition
         behavior.setTopAndBottomOffset(
-            (-binding!!.detailThumbnailImageView.getHeight() * 2 * (1 - slideOffset) / 3).toInt()
+            (-binding.detailThumbnailImageView.height * 2 * (1 - slideOffset) / 3).toInt()
         )
         appBar.requestLayout()
     }
 
     private fun setOverlayElementsClickable(enable: Boolean) {
-        binding!!.overlayThumbnail.setClickable(enable)
-        binding!!.overlayThumbnail.setLongClickable(enable)
-        binding!!.overlayMetadataLayout.setClickable(enable)
-        binding!!.overlayMetadataLayout.setLongClickable(enable)
-        binding!!.overlayButtonsLayout.setClickable(enable)
-        binding!!.overlayPlayQueueButton.setClickable(enable)
-        binding!!.overlayPlayPauseButton.setClickable(enable)
-        binding!!.overlayCloseButton.setClickable(enable)
+        binding.overlayThumbnail.isClickable = enable
+        binding.overlayThumbnail.isLongClickable = enable
+        binding.overlayMetadataLayout.isClickable = enable
+        binding.overlayMetadataLayout.isLongClickable = enable
+        binding.overlayButtonsLayout.isClickable = enable
+        binding.overlayPlayQueueButton.isClickable = enable
+        binding.overlayPlayPauseButton.isClickable = enable
+        binding.overlayCloseButton.isClickable = enable
     }
-
-    val isPlayerAvailable: Boolean
-        // helpers to check the state of player and playerService
-        get() = player != null
 
     fun noPlayerServiceAvailable(): Boolean {
         return playerService == null
     }
 
-    val isPlayerAndPlayerServiceAvailable: Boolean
-        get() = player != null && playerService != null
-
     val root: View?
-        get() = player?.UIs()?.get(VideoPlayerUi::class.java)?.binding?.root
+        get() = player?.UIs()?.get(VideoPlayerUi::class)?.binding?.root
 
     private fun updateBottomSheetState(newState: Int) {
         bottomSheetState = newState
@@ -2722,20 +2313,15 @@ class VideoDetailFragment :
         private const val MAX_OVERLAY_ALPHA = 0.9f
         private const val MAX_PLAYER_HEIGHT = 0.7f
 
-        @JvmField
-        val ACTION_SHOW_MAIN_PLAYER: String =
+        const val ACTION_SHOW_MAIN_PLAYER: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER"
-        @JvmField
-        val ACTION_HIDE_MAIN_PLAYER: String =
+        const val ACTION_HIDE_MAIN_PLAYER: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER"
-        @JvmField
-        val ACTION_PLAYER_STARTED: String =
+        const val ACTION_PLAYER_STARTED: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_PLAYER_STARTED"
-        @JvmField
-        val ACTION_VIDEO_FRAGMENT_RESUMED: String =
+        const val ACTION_VIDEO_FRAGMENT_RESUMED: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED"
-        @JvmField
-        val ACTION_VIDEO_FRAGMENT_STOPPED: String =
+        const val ACTION_VIDEO_FRAGMENT_STOPPED: String =
             App.PACKAGE_NAME + ".VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED"
 
         private const val COMMENTS_TAB_TAG = "COMMENTS"
@@ -2757,16 +2343,15 @@ class VideoDetailFragment :
         }
 
         @JvmStatic
-        val instanceInCollapsedState: VideoDetailFragment
-            get() {
-                val instance = VideoDetailFragment()
-                instance.updateBottomSheetState(BottomSheetBehavior.STATE_COLLAPSED)
-                return instance
-            }
+        fun getInstanceInCollapsedState(): VideoDetailFragment {
+            val instance = VideoDetailFragment()
+            instance.updateBottomSheetState(BottomSheetBehavior.STATE_COLLAPSED)
+            return instance
+        }
 
         /*//////////////////////////////////////////////////////////////////////////
-   // OwnStack
-   ////////////////////////////////////////////////////////////////////////// */
+        // OwnStack
+        ////////////////////////////////////////////////////////////////////////// */
         /**
          * Stack that contains the "navigation history".<br></br>
          * The peek is the current video.
