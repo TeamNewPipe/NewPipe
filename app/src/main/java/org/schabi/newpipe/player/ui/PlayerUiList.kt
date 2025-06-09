@@ -18,15 +18,7 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
 
     /**
      * Adds the provided player ui to the list and calls on it the initialization functions that
-     /**
-     * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
-     * will not be prepared like those passed to [.addAndPrepare], because when
-     * the [PlayerUiList] constructor is called, the player is still not running and it
-     * wouldn't make sense to initialize uis then. Instead the player will initialize them by doing
-     * proper calls to [.call].
-     *
-     * @param initialPlayerUis the player uis this list should start with; the order will be kept
-     */* apply based on the current player state. The preparation step needs to be done since when UIs
+     * apply based on the current player state. The preparation step needs to be done since when UIs
      * are removed and re-added, the player will not call e.g. initPlayer again since the exoplayer
      * is already initialized, but we need to notify the newly built UI that the player is ready
      * nonetheless.
@@ -97,6 +89,9 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
             return@runWithLockSync null
         }
 
+    /**
+     * See [get] above
+     */
     fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
         get(playerUiType.kotlin)
 
