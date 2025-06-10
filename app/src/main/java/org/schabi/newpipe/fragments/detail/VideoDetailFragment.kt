@@ -1115,11 +1115,12 @@ class VideoDetailFragment :
         get() = PreferenceManager.getDefaultSharedPreferences(requireContext())
             .getBoolean(getString(R.string.use_external_video_player_key), false)
 
+    @Suppress("NullableBooleanElvis") // ?: true is clearer than != false
     private val isAutoplayEnabled: Boolean
         // This method overrides default behaviour when setAutoPlay() is called.
         get() = autoPlayEnabled &&
             !this.isExternalPlayerEnabled &&
-            (player?.videoPlayerSelected() != false) &&
+            (player?.videoPlayerSelected() ?: true) && // if no player present, consider it video
             bottomSheetState != BottomSheetBehavior.STATE_HIDDEN &&
             PlayerHelper.isAutoplayAllowedByUser(requireContext())
 
@@ -1607,7 +1608,7 @@ class VideoDetailFragment :
         }
 
         // Register broadcast receiver to listen to playQueue changes
-        // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.7
+        // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
         playQueue?.broadcastReceiver?.subscribe { updateOverlayPlayQueueButtonVisibility() }
             ?.let { disposables.add(it) }
 
