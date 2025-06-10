@@ -9,6 +9,7 @@ import android.support.v4.media.MediaDescriptionCompat
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.MediaBrowserServiceCompat.Result
 import androidx.media.utils.MediaConstants
@@ -179,17 +180,16 @@ class MediaBrowserImpl(
 
     private fun createPlaylistMediaItem(playlist: PlaylistLocalItem): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
-        builder
             .setMediaId(createMediaIdForInfoItem(playlist is PlaylistRemoteEntity, playlist.uid))
             .setTitle(playlist.orderingName)
             .setIconUri(playlist.thumbnailUrl?.toUri())
+            .setExtras(
+                bundleOf(
+                    MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE
+                        to context.resources.getString(R.string.tab_bookmarks)
+                )
+            )
 
-        val extras = Bundle()
-        extras.putString(
-            MediaConstants.DESCRIPTION_EXTRAS_KEY_CONTENT_STYLE_GROUP_TITLE,
-            context.resources.getString(R.string.tab_bookmarks),
-        )
-        builder.setExtras(extras)
         return MediaBrowserCompat.MediaItem(
             builder.build(),
             MediaBrowserCompat.MediaItem.FLAG_BROWSABLE,
@@ -198,7 +198,7 @@ class MediaBrowserImpl(
 
     private fun createInfoItemMediaItem(item: InfoItem): MediaBrowserCompat.MediaItem? {
         val builder = MediaDescriptionCompat.Builder()
-        builder.setMediaId(createMediaIdForInfoItem(item))
+            .setMediaId(createMediaIdForInfoItem(item))
             .setTitle(item.name)
             .setIconUri(ImageStrategy.choosePreferredImage(item.thumbnails)?.toUri())
 
@@ -249,7 +249,7 @@ class MediaBrowserImpl(
         index: Int,
     ): MediaBrowserCompat.MediaItem {
         val builder = MediaDescriptionCompat.Builder()
-        builder.setMediaId(createMediaIdForPlaylistIndex(false, playlistId, index))
+            .setMediaId(createMediaIdForPlaylistIndex(false, playlistId, index))
             .setTitle(item.streamEntity.title)
             .setSubtitle(item.streamEntity.uploader)
             .setIconUri(item.streamEntity.thumbnailUrl?.toUri())
