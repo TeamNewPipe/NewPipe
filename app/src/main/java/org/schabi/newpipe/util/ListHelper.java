@@ -293,7 +293,7 @@ public final class ListHelper {
     public static List<AudioStream> getFilteredAudioStreams(
             @NonNull final Context context,
             @Nullable final List<AudioStream> audioStreams) {
-        if (audioStreams == null) {
+        if (audioStreams == null || audioStreams.isEmpty()) {
             return Collections.emptyList();
         }
 
