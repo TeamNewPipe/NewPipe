@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.ActivityInfo
 import android.database.ContentObserver
@@ -18,7 +17,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
@@ -44,14 +42,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.core.os.postDelayed
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
-import coil3.util.CoilUtils.dispose
+import coil3.util.CoilUtils
 import com.evernote.android.state.State
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -115,17 +113,15 @@ import org.schabi.newpipe.util.StreamTypeUtil
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.KoreUtils
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import org.schabi.newpipe.util.image.CoilHelper.loadAvatar
-import org.schabi.newpipe.util.image.CoilHelper.loadDetailsThumbnail
+import org.schabi.newpipe.util.image.CoilHelper
 import java.util.LinkedList
-import java.util.Objects
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
 class VideoDetailFragment :
-    BaseStateFragment<StreamInfo?>(),
+    BaseStateFragment<StreamInfo>(),
     BackPressable,
     PlayerServiceExtendedEventListener,
     OnKeyDownListener {
@@ -160,15 +156,15 @@ class VideoDetailFragment :
     private var lastAppBarVerticalOffset = Int.Companion.MAX_VALUE // prevents useless updates
 
     private val preferenceChangeListener =
-        OnSharedPreferenceChangeListener { sharedPreferences: SharedPreferences?, key: String? ->
+        OnSharedPreferenceChangeListener { sharedPreferences, key ->
             if (getString(R.string.show_comments_key) == key) {
-                showComments = sharedPreferences!!.getBoolean(key, true)
+                showComments = sharedPreferences.getBoolean(key, true)
                 tabSettingsChanged = true
             } else if (getString(R.string.show_next_video_key) == key) {
-                showRelatedItems = sharedPreferences!!.getBoolean(key, true)
+                showRelatedItems = sharedPreferences.getBoolean(key, true)
                 tabSettingsChanged = true
             } else if (getString(R.string.show_description_key) == key) {
-                showDescription = sharedPreferences!!.getBoolean(key, true)
+                showDescription = sharedPreferences.getBoolean(key, true)
                 tabSettingsChanged = true
             }
         }
@@ -198,11 +194,11 @@ class VideoDetailFragment :
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded()
 
-        val mainUi = player?.UIs()?.get(MainPlayerUi::class)
         if (player?.videoPlayerSelected() != true && !playAfterConnect) {
             return
         }
 
+        val mainUi = player?.UIs()?.get(MainPlayerUi::class)
         if (DeviceUtils.isLandscape(requireContext())) {
             // If the video is playing but orientation changed
             // let's make the video in fullscreen again
@@ -252,7 +248,7 @@ class VideoDetailFragment :
 
         setupBroadcastReceiver()
 
-        settingsContentObserver = object : ContentObserver(Handler()) {
+        settingsContentObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean) {
                 if (activity != null && !PlayerHelper.globalScreenOrientationLocked(activity)) {
                     activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
@@ -277,9 +273,7 @@ class VideoDetailFragment :
 
     override fun onPause() {
         super.onPause()
-        if (currentWorker != null) {
-            currentWorker!!.dispose()
-        }
+        currentWorker?.dispose()
         restoreDefaultBrightness()
         PreferenceManager.getDefaultSharedPreferences(requireContext()).edit {
             putString(
@@ -304,9 +298,7 @@ class VideoDetailFragment :
         if (tabSettingsChanged) {
             tabSettingsChanged = false
             initTabs()
-            if (currentInfo != null) {
-                updateTabs(currentInfo!!)
-            }
+            currentInfo?.let { updateTabs(it) }
         }
 
         // Check if it was loading when the fragment was stopped/paused
@@ -339,12 +331,8 @@ class VideoDetailFragment :
         activity.unregisterReceiver(broadcastReceiver)
         activity.contentResolver.unregisterContentObserver(settingsContentObserver!!)
 
-        if (positionSubscriber != null) {
-            positionSubscriber!!.dispose()
-        }
-        if (currentWorker != null) {
-            currentWorker!!.dispose()
-        }
+        positionSubscriber?.dispose()
+        currentWorker?.dispose()
         disposables.clear()
         positionSubscriber = null
         currentWorker = null
@@ -353,7 +341,7 @@ class VideoDetailFragment :
         if (activity.isFinishing) {
             playQueue = null
             currentInfo = null
-            stack = LinkedList<StackItem?>()
+            stack = LinkedList<StackItem>()
         }
     }
 
@@ -367,8 +355,7 @@ class VideoDetailFragment :
         if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 NavigationHelper.openVideoDetailFragment(
-                    requireContext(), getFM(),
-                    serviceId, url, title, null, false
+                    requireContext(), getFM(), serviceId, url, title, null, false
                 )
             } else {
                 Log.e(TAG, "ReCaptcha failed")
@@ -385,11 +372,11 @@ class VideoDetailFragment :
         binding.detailTitleRootLayout.setOnClickListener { toggleTitleAndSecondaryControls() }
         binding.detailUploaderRootLayout.setOnClickListener(
             makeOnClickListener { info ->
-                if (TextUtils.isEmpty(info.subChannelUrl)) {
-                    if (!TextUtils.isEmpty(info.uploaderUrl)) {
+                if (info.subChannelUrl.isEmpty()) {
+                    if (info.uploaderUrl.isNotEmpty()) {
                         openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
                     } else if (DEBUG) {
-                        Log.i(TAG, "Can't open sub-channel because we got no channel URL")
+                        Log.w(TAG, "Can't open sub-channel because we got no channel URL")
                     }
                 } else {
                     openChannel(info.subChannelUrl, info.subChannelName, info.serviceId)
@@ -495,7 +482,7 @@ class VideoDetailFragment :
         }
         binding.detailUploaderRootLayout.setOnLongClickListener(
             makeOnLongClickListener { info ->
-                if (TextUtils.isEmpty(info.subChannelUrl)) {
+                if (info.subChannelUrl.isEmpty()) {
                     Log.w(TAG, "Can't open parent channel because we got no parent channel URL")
                 } else {
                     openChannel(info.uploaderUrl, info.uploaderName, info.serviceId)
@@ -541,7 +528,7 @@ class VideoDetailFragment :
     }
 
     private fun toggleTitleAndSecondaryControls() {
-        if (binding.detailSecondaryControlPanel.visibility == View.GONE) {
+        if (binding.detailSecondaryControlPanel.isGone) {
             binding.detailVideoTitleView.setMaxLines(10)
             binding.detailToggleSecondaryControlsView
                 .animateRotation(VideoPlayerUi.DEFAULT_CONTROLS_DURATION, 180)
@@ -569,18 +556,12 @@ class VideoDetailFragment :
 
         binding.detailThumbnailRootLayout.requestFocus()
 
-        binding.detailControlsPlayWithKodi.visibility =
-            if (KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId))
-                View.VISIBLE
-            else
-                View.GONE
-        binding.detailControlsCrashThePlayer.visibility =
-            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .getBoolean(getString(R.string.show_crash_the_player_key), false)
-            )
-                View.VISIBLE
-            else
-                View.GONE
+        binding.detailControlsPlayWithKodi.isVisible =
+            KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
+        binding.detailControlsCrashThePlayer.isVisible =
+            DEBUG && PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .getBoolean(getString(R.string.show_crash_the_player_key), false)
+
         accommodateForTvAndDesktopMode()
     }
 
@@ -591,8 +572,8 @@ class VideoDetailFragment :
         setOnClickListeners()
         setOnLongClickListeners()
 
-        val controlsTouchListener = OnTouchListener { view: View?, motionEvent: MotionEvent? ->
-            if (motionEvent!!.action == MotionEvent.ACTION_DOWN &&
+        val controlsTouchListener = OnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN &&
                 PlayButtonHelper.shouldShowHoldToAppendTip(activity)
             ) {
                 binding.touchAppendDetail.animate(true, 250, AnimationType.ALPHA, 0) {
@@ -604,16 +585,14 @@ class VideoDetailFragment :
         binding.detailControlsBackground.setOnTouchListener(controlsTouchListener)
         binding.detailControlsPopup.setOnTouchListener(controlsTouchListener)
 
-        binding.appBarLayout.addOnOffsetChangedListener(
-            OnOffsetChangedListener { layout: AppBarLayout?, verticalOffset: Int ->
-                // prevent useless updates to tab layout visibility if nothing changed
-                if (verticalOffset != lastAppBarVerticalOffset) {
-                    lastAppBarVerticalOffset = verticalOffset
-                    // the view was scrolled
-                    updateTabLayoutVisibility()
-                }
+        binding.appBarLayout.addOnOffsetChangedListener { layout, verticalOffset ->
+            // prevent useless updates to tab layout visibility if nothing changed
+            if (verticalOffset != lastAppBarVerticalOffset) {
+                lastAppBarVerticalOffset = verticalOffset
+                // the view was scrolled
+                updateTabLayoutVisibility()
             }
-        )
+        }
 
         setupBottomPlayer()
         if (!PlayerHolder.isBound) {
@@ -656,7 +635,7 @@ class VideoDetailFragment :
         // Remove top
         stack.pop()
         // Get stack item from the new top
-        setupFromHistoryItem(Objects.requireNonNull<StackItem?>(stack.peek()))
+        setupFromHistoryItem(stack.peek()!!)
 
         return true
     }
@@ -688,10 +667,9 @@ class VideoDetailFragment :
             return
         }
 
-        currentInfo?.let { info ->
-            prepareAndHandleInfoIfNeededAfterDelay(info, false, 50)
-        } ?: {
-            prepareAndLoadInfo()
+        when (val info = currentInfo) {
+            null -> prepareAndLoadInfo()
+            else -> prepareAndHandleInfoIfNeededAfterDelay(info, false, 50)
         }
     }
 
@@ -756,9 +734,7 @@ class VideoDetailFragment :
 
         initTabs()
         currentInfo = null
-        if (currentWorker != null) {
-            currentWorker!!.dispose()
-        }
+        currentWorker?.dispose()
 
         runWorker(forceLoad, addToBackStack ?: stack.isEmpty())
     }
@@ -783,7 +759,7 @@ class VideoDetailFragment :
                             if (playQueue == null) {
                                 playQueue = SinglePlayQueue(result)
                             }
-                            if (stack.isEmpty() || stack.peek()!!.playQueue != playQueue) {
+                            if (stack.peek()?.playQueue != playQueue) { // also if stack empty (!)
                                 stack.push(StackItem(serviceId, url, title, playQueue))
                             }
                         }
@@ -866,13 +842,14 @@ class VideoDetailFragment :
 
     private fun updateTabs(info: StreamInfo) {
         if (showRelatedItems) {
-            if (binding.relatedItemsLayout == null) { // phone
-                pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info))
-            } else { // tablet + TV
-                getChildFragmentManager().beginTransaction()
-                    .replace(R.id.relatedItemsLayout, getInstance(info))
-                    .commitAllowingStateLoss()
-                binding.relatedItemsLayout!!.isVisible = !this.isFullscreen
+            when (val relatedItemsLayout = binding.relatedItemsLayout) {
+                null -> pageAdapter.updateItem(RELATED_TAB_TAG, getInstance(info)) // phone
+                else -> { // tablet + TV
+                    getChildFragmentManager().beginTransaction()
+                        .replace(R.id.relatedItemsLayout, getInstance(info))
+                        .commitAllowingStateLoss()
+                    relatedItemsLayout.isVisible = !this.isFullscreen
+                }
             }
         }
 
@@ -909,8 +886,7 @@ class VideoDetailFragment :
             // call `post()` to be sure `viewPager.getHitRect()`
             // is up to date and not being currently recomputed
             binding.tabLayout.post {
-                val activity = getActivity()
-                if (activity != null) {
+                getActivity()?.let { activity ->
                     val pagerHitRect = Rect()
                     binding.viewPager.getHitRect(pagerHitRect)
 
@@ -1056,7 +1032,7 @@ class VideoDetailFragment :
     }
 
     private fun openMainPlayer() {
-        if (noPlayerServiceAvailable()) {
+        if (playerService == null) {
             PlayerHolder.startService(autoPlayEnabled, this)
             return
         }
@@ -1082,13 +1058,13 @@ class VideoDetailFragment :
      */
     private fun hideMainPlayerOnLoadingNewStream() {
         val root = this.root
-        if (noPlayerServiceAvailable() || root == null || !player!!.videoPlayerSelected()) {
+        if (root == null || playerService == null || player?.videoPlayerSelected() != true) {
             return
         }
 
         removeVideoPlayerView()
         if (this.isAutoplayEnabled) {
-            playerService!!.stopForImmediateReusing()
+            playerService?.stopForImmediateReusing()
             root.visibility = View.GONE
         } else {
             PlayerHolder.stopService()
@@ -1127,8 +1103,11 @@ class VideoDetailFragment :
 
         val recordManager = HistoryRecordManager(requireContext())
         disposables.add(
-            recordManager.onViewed(info).onErrorComplete()
-                .subscribe({ }, { throwable -> Log.e(TAG, "Register view failure: ", throwable) })
+            recordManager.onViewed(info)
+                .subscribe(
+                    { /* successful */ },
+                    { throwable -> Log.e(TAG, "Register view failure: ", throwable) }
+                )
         )
     }
 
@@ -1157,8 +1136,10 @@ class VideoDetailFragment :
             if (player == null || view == null) {
                 return@post
             }
+
             // setup the surface view height, so that it fits the video correctly
             setHeightThumbnail()
+
             player?.UIs()?.get(MainPlayerUi::class)?.let { playerUi ->
                 // sometimes binding would be null here, even though getView() != null above u.u
                 nullableBinding?.let { b ->
@@ -1186,13 +1167,13 @@ class VideoDetailFragment :
     }
 
     private val preDrawListener: OnPreDrawListener = OnPreDrawListener {
-        if (view != null) {
+        view?.let { view ->
             val decorView = if (DeviceUtils.isInMultiWindow(activity))
-                requireView()
+                view
             else
                 activity.window.decorView
             setHeightThumbnail(decorView.height, resources.displayMetrics)
-            requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
+            view.getViewTreeObserver().removeOnPreDrawListener(preDrawListener)
         }
         return@OnPreDrawListener false
     }
@@ -1366,20 +1347,20 @@ class VideoDetailFragment :
 
         binding.relatedItemsLayout?.isVisible = showRelatedItems && !this.isFullscreen
 
-        dispose(binding.detailThumbnailImageView)
-        dispose(binding.detailSubChannelThumbnailView)
-        dispose(binding.overlayThumbnail)
-        dispose(binding.detailUploaderThumbnailView)
+        CoilUtils.dispose(binding.detailThumbnailImageView)
+        CoilUtils.dispose(binding.detailSubChannelThumbnailView)
+        CoilUtils.dispose(binding.overlayThumbnail)
+        CoilUtils.dispose(binding.detailUploaderThumbnailView)
 
         binding.detailThumbnailImageView.setImageBitmap(null)
         binding.detailSubChannelThumbnailView.setImageBitmap(null)
     }
 
-    override fun handleResult(info: StreamInfo?) {
+    override fun handleResult(info: StreamInfo) {
         super.handleResult(info)
 
         currentInfo = info
-        setInitialData(info!!.serviceId, info.originalUrl, info.name, playQueue)
+        setInitialData(info.serviceId, info.originalUrl, info.name, playQueue)
 
         updateTabs(info)
 
@@ -1388,10 +1369,10 @@ class VideoDetailFragment :
 
         binding.detailSubChannelThumbnailView.visibility = View.GONE
 
-        if (!TextUtils.isEmpty(info.subChannelName)) {
-            displayBothUploaderAndSubChannel(info)
-        } else {
+        if (info.subChannelName.isEmpty()) {
             displayUploaderAsSubChannel(info)
+        } else {
+            displayBothUploaderAndSubChannel(info)
         }
 
         if (info.viewCount >= 0) {
@@ -1459,10 +1440,7 @@ class VideoDetailFragment :
         binding.detailSecondaryControlPanel.visibility = View.GONE
 
         checkUpdateProgressInfo(info)
-        loadDetailsThumbnail(
-            binding.detailThumbnailImageView,
-            info.thumbnails
-        )
+        CoilHelper.loadDetailsThumbnail(binding.detailThumbnailImageView, info.thumbnails)
         ExtractorHelper.showMetaInfoInTextView(
             info.metaInfo, binding.detailMetaInfoTextView,
             binding.detailMetaInfoSeparator, disposables
@@ -1475,12 +1453,8 @@ class VideoDetailFragment :
         if (!info.errors.isEmpty()) {
             // Bandcamp fan pages are not yet supported and thus a ContentNotAvailableException is
             // thrown. This is not an error and thus should not be shown to the user.
-            for (throwable in info.errors) {
-                if (throwable is ContentNotSupportedException &&
-                    "Fan pages are not supported" == throwable.message
-                ) {
-                    info.errors.remove(throwable)
-                }
+            info.errors.removeIf {
+                it is ContentNotSupportedException && "Fan pages are not supported" == it.message
             }
 
             if (!info.errors.isEmpty()) {
@@ -1490,8 +1464,9 @@ class VideoDetailFragment :
             }
         }
 
-        val hasAudioStreams = info.videoStreams.isNotEmpty() || info.audioStreams.isNotEmpty()
         binding.detailControlsDownload.isVisible = !StreamTypeUtil.isLiveStream(info.streamType)
+
+        val hasAudioStreams = info.videoStreams.isNotEmpty() || info.audioStreams.isNotEmpty()
         binding.detailControlsBackground.isVisible = hasAudioStreams
 
         val hasVideoStreams = info.videoStreams.isNotEmpty() || info.videoOnlyStreams.isNotEmpty()
@@ -1514,7 +1489,7 @@ class VideoDetailFragment :
             binding.detailUploaderTextView.visibility = View.GONE
         }
 
-        loadAvatar(binding.detailSubChannelThumbnailView, info.uploaderAvatars)
+        CoilHelper.loadAvatar(binding.detailSubChannelThumbnailView, info.uploaderAvatars)
         binding.detailSubChannelThumbnailView.visibility = View.VISIBLE
         binding.detailUploaderThumbnailView.visibility = View.GONE
     }
@@ -1525,8 +1500,8 @@ class VideoDetailFragment :
         binding.detailSubChannelTextView.setSelected(true)
 
         val subText = StringBuilder()
-        if (!TextUtils.isEmpty(info.uploaderName)) {
-            subText.append(String.format(getString(R.string.video_detail_by), info.uploaderName))
+        if (info.uploaderName.isNotEmpty()) {
+            subText.append(getString(R.string.video_detail_by, info.uploaderName))
         }
         if (info.uploaderSubscriberCount > -1) {
             if (subText.isNotEmpty()) {
@@ -1545,26 +1520,22 @@ class VideoDetailFragment :
             binding.detailUploaderTextView.setSelected(true)
         }
 
-        loadAvatar(binding.detailSubChannelThumbnailView, info.subChannelAvatars)
+        CoilHelper.loadAvatar(binding.detailSubChannelThumbnailView, info.subChannelAvatars)
         binding.detailSubChannelThumbnailView.visibility = View.VISIBLE
-        loadAvatar(binding.detailUploaderThumbnailView, info.uploaderAvatars)
+        CoilHelper.loadAvatar(binding.detailUploaderThumbnailView, info.uploaderAvatars)
         binding.detailUploaderThumbnailView.visibility = View.VISIBLE
     }
 
     fun openDownloadDialog() {
-        if (currentInfo == null) {
-            return
-        }
+        val info = currentInfo ?: return
 
         try {
-            val downloadDialog = DownloadDialog(activity, currentInfo!!)
+            val downloadDialog = DownloadDialog(activity, info)
             downloadDialog.show(activity.supportFragmentManager, "downloadDialog")
         } catch (e: Exception) {
             showSnackbar(
                 activity,
-                ErrorInfo(
-                    e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog", currentInfo
-                )
+                ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog", info)
             )
         }
     }
@@ -1586,7 +1557,7 @@ class VideoDetailFragment :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { state -> updatePlaybackProgress(state.progressMillis, info.duration * 1000) },
-                { throwable -> /* ignore errors */ },
+                { throwable -> /* impossible due to the onErrorComplete() */ },
                 { /* onComplete */
                     binding.positionView.visibility = View.GONE
                     binding.detailPositionView.visibility = View.GONE
@@ -1600,11 +1571,10 @@ class VideoDetailFragment :
         }
         val progressSeconds = TimeUnit.MILLISECONDS.toSeconds(progress).toInt()
         val durationSeconds = TimeUnit.MILLISECONDS.toSeconds(duration).toInt()
+        binding.positionView.setMax(durationSeconds)
         // If the old and the new progress values have a big difference then use animation.
         // Otherwise don't because it affects CPU
-        val progressDifference = abs(binding.positionView.progress - progressSeconds)
-        binding.positionView.setMax(durationSeconds)
-        if (progressDifference > 2) {
+        if (abs(binding.positionView.progress - progressSeconds) > 2) {
             binding.positionView.setProgressAnimated(progressSeconds)
         } else {
             binding.positionView.progress = progressSeconds
@@ -1637,15 +1607,15 @@ class VideoDetailFragment :
         }
 
         // Register broadcast receiver to listen to playQueue changes
-        // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
+        // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.7
         playQueue?.broadcastReceiver?.subscribe { updateOverlayPlayQueueButtonVisibility() }
+            ?.let { disposables.add(it) }
 
         // This should be the only place where we push data to stack.
         // It will allow to have live instance of PlayQueue with actual information about
         // deleted/added items inside Channel/Playlist queue and makes possible to have
         // a history of played items
-        val stackPeek: StackItem? = stack.peek()
-        if (stackPeek != null && stackPeek.playQueue != queue) {
+        if (stack.peek()?.playQueue?.equals(queue) == false) {
             queue.item?.let { queueItem ->
                 stack.push(StackItem(queueItem.serviceId, queueItem.url, queueItem.title, queue))
                 return@onQueueUpdate
@@ -1703,7 +1673,7 @@ class VideoDetailFragment :
         }
 
         updateOverlayData(info.name, info.uploaderName, info.thumbnails)
-        if (currentInfo?.url == info.url) {
+        if (info.url == currentInfo?.url) {
             return
         }
 
@@ -1780,17 +1750,15 @@ class VideoDetailFragment :
      * Will scroll down to description view after long click on moreOptionsButton
      * */
     override fun onMoreOptionsLongClicked() {
-        val params =
-            binding.appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        val params = binding.appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
         val behavior = params.behavior as AppBarLayout.Behavior
         val valueAnimator = ValueAnimator.ofInt(0, -binding.playerPlaceholder.height)
-        valueAnimator.interpolator = DecelerateInterpolator()
         valueAnimator.addUpdateListener { animation ->
             behavior.setTopAndBottomOffset(animation.getAnimatedValue() as Int)
             binding.appBarLayout.requestLayout()
         }
         valueAnimator.interpolator = DecelerateInterpolator()
-        valueAnimator.setDuration(500)
+        valueAnimator.duration = 500
         valueAnimator.start()
     }
 
@@ -1867,9 +1835,11 @@ class VideoDetailFragment :
     private val isFullscreen: Boolean
         get() = player?.UIs()?.get(VideoPlayerUi::class)?.isFullscreen == true
 
+    /**
+     * @return true if the player is null, or if the player is nonnull but is stopped.
+     */
     @Suppress("NullableBooleanElvis") // rewriting as "!= false" creates more confusion
     private val playerIsStopped
-        // returns true if the player is null, or if the player is nonnull but is stopped
         get() = player?.isStopped ?: true
 
     private fun restoreDefaultBrightness() {
@@ -2017,9 +1987,8 @@ class VideoDetailFragment :
                 .map { it.getResolution() as CharSequence }
                 .toTypedArray()
 
-            builder.setSingleChoiceItems(
-                resolutions, selectedVideoStreamIndexForExternalPlayers, null
-            )
+            builder
+                .setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers, null)
             builder.setNegativeButton(R.string.cancel, null)
             builder.setPositiveButton(R.string.ok) { dialog, which ->
                 val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
@@ -2050,16 +2019,14 @@ class VideoDetailFragment :
             startOnExternalPlayer(activity, info, audioTracks[0])
         } else {
             val selectedAudioStream = ListHelper.getDefaultAudioFormat(activity, audioTracks)
-            val trackNames = audioTracks
-                .map { Localization.audioTrackName(activity, it) }
-                .toTypedArray()
+            val trackNames = audioTracks.map { Localization.audioTrackName(activity, it) }
 
             AlertDialog.Builder(activity)
                 .setTitle(R.string.select_audio_track_external_players)
                 .setNeutralButton(R.string.open_in_browser) { dialog, which ->
                     ShareUtils.openUrlInBrowser(requireActivity(), url)
                 }
-                .setSingleChoiceItems(trackNames, selectedAudioStream, null)
+                .setSingleChoiceItems(trackNames.toTypedArray(), selectedAudioStream, null)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok) { dialog, which ->
                     val index = (dialog as AlertDialog).listView.getCheckedItemPosition()
@@ -2079,7 +2046,7 @@ class VideoDetailFragment :
         PlayerHolder.stopService()
         setInitialData(0, null, "", null)
         currentInfo = null
-        updateOverlayData(null, null, mutableListOf<Image>())
+        updateOverlayData(null, null, listOf())
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -2145,8 +2112,8 @@ class VideoDetailFragment :
         val behavior = params.behavior as AppBarLayout.Behavior?
 
         val bottomSheetLayout = activity.findViewById<FrameLayout>(R.id.fragment_player_holder)
-        bottomSheetBehavior = BottomSheetBehavior.from<FrameLayout?>(bottomSheetLayout)
-        bottomSheetBehavior.setState(lastStableBottomSheetState)
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout)
+        bottomSheetBehavior.state = lastStableBottomSheetState
         updateBottomSheetState(lastStableBottomSheetState)
 
         val peekHeight = resources.getDimensionPixelSize(R.dimen.mini_player_height)
@@ -2154,9 +2121,9 @@ class VideoDetailFragment :
             manageSpaceAtTheBottom(false)
             bottomSheetBehavior.peekHeight = peekHeight
             if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
-                binding.overlayLayout.setAlpha(MAX_OVERLAY_ALPHA)
+                binding.overlayLayout.alpha = MAX_OVERLAY_ALPHA
             } else if (bottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
-                binding.overlayLayout.setAlpha(0f)
+                binding.overlayLayout.alpha = 0f
                 setOverlayElementsClickable(false)
             }
         }
@@ -2189,7 +2156,7 @@ class VideoDetailFragment :
                             !this@VideoDetailFragment.isFullscreen &&
                             !DeviceUtils.isTablet(activity)
                         ) {
-                            player!!.UIs().get(MainPlayerUi::class)?.toggleFullscreen()
+                            player?.UIs()?.get(MainPlayerUi::class)?.toggleFullscreen()
                         }
                         setOverlayLook(binding.appBarLayout, behavior, 1f)
                     }
@@ -2238,18 +2205,18 @@ class VideoDetailFragment :
 
     private fun updateOverlayPlayQueueButtonVisibility() {
         // hide the button if the queue is empty; no player => no play queue :)
-        nullableBinding?.overlayPlayQueueButton?.isVisible = player?.playQueue?.isEmpty != true
+        nullableBinding?.overlayPlayQueueButton?.isVisible = player?.playQueue?.isEmpty == false
     }
 
     private fun updateOverlayData(
         overlayTitle: String?,
         uploader: String?,
-        thumbnails: MutableList<Image>
+        thumbnails: List<Image>
     ) {
         binding.overlayTitleTextView.text = overlayTitle ?: ""
         binding.overlayChannelTextView.text = uploader ?: ""
         binding.overlayThumbnail.setImageDrawable(null)
-        loadDetailsThumbnail(binding.overlayThumbnail, thumbnails)
+        CoilHelper.loadDetailsThumbnail(binding.overlayThumbnail, thumbnails)
     }
 
     private fun setOverlayPlayPauseImage(playerIsPlaying: Boolean) {
@@ -2267,12 +2234,7 @@ class VideoDetailFragment :
         if (behavior == null || slideOffset < 0) {
             return
         }
-        binding.overlayLayout.setAlpha(
-            min(
-                MAX_OVERLAY_ALPHA.toDouble(),
-                (1 - slideOffset).toDouble()
-            ).toFloat()
-        )
+        binding.overlayLayout.alpha = min(MAX_OVERLAY_ALPHA, 1 - slideOffset)
         // These numbers are not special. They just do a cool transition
         behavior.setTopAndBottomOffset(
             (-binding.detailThumbnailImageView.height * 2 * (1 - slideOffset) / 3).toInt()
@@ -2289,10 +2251,6 @@ class VideoDetailFragment :
         binding.overlayPlayQueueButton.isClickable = enable
         binding.overlayPlayPauseButton.isClickable = enable
         binding.overlayCloseButton.isClickable = enable
-    }
-
-    fun noPlayerServiceAvailable(): Boolean {
-        return playerService == null
     }
 
     val root: View?
@@ -2356,6 +2314,6 @@ class VideoDetailFragment :
          * Stack that contains the "navigation history".<br></br>
          * The peek is the current video.
          */
-        private var stack = LinkedList<StackItem?>()
+        private var stack = LinkedList<StackItem>()
     }
 }
