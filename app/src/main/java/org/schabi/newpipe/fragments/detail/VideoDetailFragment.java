@@ -2072,7 +2072,6 @@ public final class VideoDetailFragment
     private StackItem findQueueInStack(final PlayQueue queue) {
         StackItem item = null;
         final Iterator<StackItem> iterator = stack.descendingIterator();
-
         while (iterator.hasNext()) {
             final StackItem next = iterator.next();
             if (next.getPlayQueue().equals(queue)) {
