@@ -380,8 +380,6 @@
     <string name="select_a_playlist">Изаберите листу пуштања</string>
     <string name="default_kiosk_page_summary">Подразумевани киоск</string>
     <string name="main_page_content_summary">Које картице се приказују на главној страници</string>
-    <string name="title_most_played">Највише пуштано</string>
-    <string name="title_last_played">Последње пуштано</string>
     <string name="app_license">NewPipe је слободан софтвер за копирање: Можете га користити, проучавати, делити и побољшавати по жељи. Конкретно, можете га поново дистрибуирати и/или модификовати под условима GNU Опште јавне лиценце коју је објавила Фондација за слободни софтвер, било верзију 3 лиценце или (по вашем избору) било коју каснију верзију.</string>
     <string name="read_privacy_policy">Прочитај политику приватности</string>
     <string name="privacy_policy_encouragement">Пројекат NewPipe веома озбиљно схвата вашу приватност. Стога, апликација не прикупља никакве податке без вашег пристанка.
