@@ -518,31 +518,18 @@ public abstract class PlayQueue implements Serializable {
      * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
      */
-    public boolean equalStreams(@Nullable final PlayQueue other) {
-        if (other == null) {
-            return false;
-        }
-        if (size() != other.size()) {
-            return false;
-        }
-        for (int i = 0; i < size(); i++) {
-            final PlayQueueItem stream = streams.get(i);
-            final PlayQueueItem otherStream = other.streams.get(i);
-            // Check is based on serviceId and URL
-            if (stream.getServiceId() != otherStream.getServiceId()
-                    || !stream.getUrl().equals(otherStream.getUrl())) {
-                return false;
-            }
-        }
-        return true;
+    @Override
+    public boolean equals(final Object o) {
+        return o instanceof PlayQueue playQueue && streams.equals(playQueue.streams);
+    }
+
+    @Override
+    public int hashCode() {
+        return streams.hashCode();
     }
 
     public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
-        if (equalStreams(other)) {
-            //noinspection ConstantConditions
-            return other.getIndex() == getIndex(); //NOSONAR: other is not null
-        }
-        return false;
+        return equals(other) && other.getIndex() == getIndex();
     }
 
     public boolean isDisposed() {

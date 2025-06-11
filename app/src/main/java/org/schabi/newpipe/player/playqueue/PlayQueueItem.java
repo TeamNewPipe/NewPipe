@@ -11,6 +11,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -138,5 +139,17 @@ public class PlayQueueItem implements Serializable {
 
     public void setAutoQueued(final boolean autoQueued) {
         isAutoQueued = autoQueued;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        return o instanceof PlayQueueItem item
+                && serviceId == item.serviceId
+                && url.equals(item.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(url, serviceId);
     }
 }
