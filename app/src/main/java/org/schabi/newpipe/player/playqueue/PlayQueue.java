@@ -529,7 +529,7 @@ public abstract class PlayQueue implements Serializable {
     }
 
     public boolean equalStreamsAndIndex(@Nullable final PlayQueue other) {
-        return equals(other) && other.getIndex() == getIndex();
+        return equals(other) && other.getIndex() == getIndex(); //NOSONAR: other is not null
     }
 
     public boolean isDisposed() {
