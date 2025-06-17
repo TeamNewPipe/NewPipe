@@ -461,14 +461,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     companion object {
-        val JSON_MIME_TYPE = getMimeType()
-
-        private fun getMimeType(): String {
-            val mimeTypeJson = MimeTypeMap.getSingleton().getMimeTypeFromExtension("json")
-            return if (mimeTypeJson.isNullOrBlank())
-                "application/octet-stream"
-            else
-                mimeTypeJson
-        }
+        val JSON_MIME_TYPE = MimeTypeMap.getSingleton()
+            .getMimeTypeFromExtension("json") ?: "application/octet-stream"
     }
 }
