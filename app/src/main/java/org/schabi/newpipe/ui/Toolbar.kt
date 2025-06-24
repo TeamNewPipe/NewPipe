@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
@@ -143,19 +144,21 @@ fun Toolbar(
                             }
                         }
                     } else {
-                        Column(Modifier.verticalScroll(rememberScrollState())) {
+                        LazyColumn(Modifier.verticalScroll(rememberScrollState())) {
                             searchResults.forEach { result ->
-                                ListItem(
-                                    headlineContent = {
-                                        SearchSuggestionItem(result)
-                                    },
-                                    modifier = Modifier
-                                        .clickable {
-                                            textFieldState.edit { replace(0, length, result) }
-                                            expanded = false
-                                        }
-                                        .fillMaxWidth()
-                                )
+                                item {
+                                    ListItem(
+                                        headlineContent = {
+                                            SearchSuggestionItem(result)
+                                        },
+                                        modifier = Modifier
+                                            .clickable {
+                                                textFieldState.edit { replace(0, length, result) }
+                                                expanded = false
+                                            }
+                                            .fillMaxWidth()
+                                    )
+                                }
                             }
                         }
                     }
