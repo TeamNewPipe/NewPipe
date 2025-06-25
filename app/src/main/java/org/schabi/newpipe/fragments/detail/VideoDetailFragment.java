@@ -1423,7 +1423,8 @@ public final class VideoDetailFragment
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
         intentFilter.addAction(ACTION_PLAYER_STARTED);
-        activity.registerReceiver(broadcastReceiver, intentFilter);
+        ContextCompat.registerReceiver(activity, broadcastReceiver, intentFilter,
+                ContextCompat.RECEIVER_EXPORTED);
     }
 
 
