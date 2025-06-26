@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,11 +36,13 @@ fun TextAction(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun NavigationIcon() {
-    Icon(
-        imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back",
-        modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall)
-    )
+fun NavigationIcon(navigateBack: () -> Unit) {
+    IconButton(onClick = navigateBack) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back",
+            modifier = Modifier.padding(horizontal = SizeTokens.SpacingExtraSmall)
+        )
+    }
 }
 
 @Composable
@@ -53,7 +56,8 @@ fun SearchSuggestionItem(text: String) {
 fun Toolbar(
     title: String,
     modifier: Modifier = Modifier,
-    hasNavigationIcon: Boolean = true,
+    // TODO: Handle search in toolbar in a better way.
+    onNavigateBack: (() -> Unit)? = null,
     hasSearch: Boolean = false,
     onSearchQueryChange: ((String) -> List<String>)? = null,
     actions: @Composable RowScope.() -> Unit = {}
@@ -65,7 +69,14 @@ fun Toolbar(
         TopAppBar(
             title = { Text(text = title) },
             modifier = modifier,
-            navigationIcon = { if (hasNavigationIcon) NavigationIcon() },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            navigationIcon = {
+                onNavigateBack?.let { NavigationIcon(onNavigateBack) }
+            },
             actions = {
                 actions()
                 if (hasSearch) {
