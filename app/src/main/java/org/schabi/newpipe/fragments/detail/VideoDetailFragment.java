@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.detail;
 
+import static android.content.Context.RECEIVER_EXPORTED;
 import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
@@ -1423,7 +1424,11 @@ public final class VideoDetailFragment
         intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
         intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
         intentFilter.addAction(ACTION_PLAYER_STARTED);
-        activity.registerReceiver(broadcastReceiver, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            activity.registerReceiver(broadcastReceiver, intentFilter, RECEIVER_EXPORTED);
+        } else {
+            activity.registerReceiver(broadcastReceiver, intentFilter);
+        }
     }
 
 
