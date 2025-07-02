@@ -23,6 +23,7 @@ import org.schabi.newpipe.viewmodels.util.Resource
 class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     val uiState = savedStateHandle.getStateFlow(KEY_URL, "")
         .map {
+            // Resource.Error(RuntimeException("Forced error for testing"))
             try {
                 Resource.Success(CommentInfo(CommentsInfo.getInfo(it)))
             } catch (e: Exception) {
