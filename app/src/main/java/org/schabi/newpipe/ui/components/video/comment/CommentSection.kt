@@ -11,9 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,6 +24,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
@@ -49,6 +51,7 @@ private fun CommentSection(
     val comments = commentsFlow.collectAsLazyPagingItems()
     val nestedScrollInterop = rememberNestedScrollInteropConnection()
     val state = rememberLazyListState()
+    val context = LocalContext.current
 
     LazyColumnThemedScrollbar(state = state) {
         LazyColumn(
@@ -87,27 +90,23 @@ private fun CommentSection(
                                 )
                             }
                         }
-
                         when (comments.loadState.refresh) {
                             is LoadState.Loading -> {
                                 item {
                                     LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
                                 }
                             }
-
                             is LoadState.Error -> {
                                 item {
                                     // TODO use error panel instead
-                                    EmptyStateComposable(
-                                        EmptyStateSpec.DisabledComments.copy(
-                                            descriptionText = {
-                                                stringResource(R.string.error_unable_to_load_comments)
-                                            }
-                                        )
+                                    CommentErrorHandler(
+                                        throwable = (comments.loadState.refresh as LoadState.Error).error,
+                                        userAction = UserAction.REQUESTED_COMMENTS,
+                                        onRetry = { comments.retry() },
+                                        onReport = { info -> ErrorUtil.openActivity(context, info) },
                                     )
                                 }
                             }
-
                             else -> {
                                 items(comments.itemCount) {
                                     Comment(comment = comments[it]!!) {}
@@ -116,16 +115,14 @@ private fun CommentSection(
                         }
                     }
                 }
-
                 is Resource.Error -> {
                     item {
                         // TODO use error panel instead
-                        EmptyStateComposable(
-                            EmptyStateSpec.DisabledComments.copy(
-                                descriptionText = {
-                                    stringResource(R.string.error_unable_to_load_comments)
-                                }
-                            )
+                        CommentErrorHandler(
+                            throwable = uiState.throwable,
+                            userAction = UserAction.REQUESTED_COMMENTS,
+                            onRetry = { comments.retry() },
+                            onReport = { info -> ErrorUtil.openActivity(context, info) },
                         )
                     }
                 }
