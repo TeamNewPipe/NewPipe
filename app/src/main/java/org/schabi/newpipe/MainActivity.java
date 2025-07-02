@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_ABOUT = 2;
 
     private static final int ORDER = 0;
+    public static final String KEY_IS_IN_BACKGROUND = "is_in_background";
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPrefEditor;
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -152,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefEditor = sharedPreferences.edit();
 
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         drawerLayoutBinding = mainBinding.drawerLayout;
@@ -195,16 +200,29 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         final App app = App.getInstance();
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
-        if (prefs.getBoolean(app.getString(R.string.update_app_key), false)
-                && prefs.getBoolean(app.getString(R.string.update_check_consent_key), false)) {
+        if (sharedPreferences.getBoolean(app.getString(R.string.update_app_key), false)
+                && sharedPreferences
+                .getBoolean(app.getString(R.string.update_check_consent_key), false)) {
             // Start the worker which is checking all conditions
             // and eventually searching for a new version.
             NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, false).apply();
+        Log.d(TAG, "App moved to foreground");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, true).apply();
+        Log.d(TAG, "App moved to background");
+    }
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 
@@ -504,13 +522,11 @@ public class MainActivity extends AppCompatActivity {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
             }
-            sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
+            sharedPrefEditor.putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             ActivityCompat.recreate(this);
         }
 
@@ -518,7 +534,7 @@ public class MainActivity extends AppCompatActivity {
             if (DEBUG) {
                 Log.d(TAG, "main page has changed, recreating main fragment...");
             }
-            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            sharedPrefEditor.putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
 

@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -126,14 +128,22 @@ private fun CommentRepliesDialog(
                         } else if (refresh is LoadState.Error) {
                             // TODO use error panel instead
                             EmptyStateComposable(
-                                EmptyStateSpec.DisabledComments.copy(
+                                spec = EmptyStateSpec.DisabledComments.copy(
                                     descriptionText = {
                                         stringResource(R.string.error_unable_to_load_comments)
                                     },
                                 ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
                             )
                         } else {
-                            EmptyStateComposable(EmptyStateSpec.NoComments)
+                            EmptyStateComposable(
+                                spec = EmptyStateSpec.NoComments,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
+                            )
                         }
                     }
                 } else {

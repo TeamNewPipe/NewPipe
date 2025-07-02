@@ -99,10 +99,12 @@ fun Comment(comment: CommentsInfoItem, onCommentAuthorOpened: () -> Unit) {
                 }
 
                 val nameAndDate = remember(comment) {
-                    val date = Localization.relativeTimeOrTextual(
-                        context, comment.uploadDate, comment.textualUploadDate
+                    Localization.concatenateStrings(
+                        Localization.localizeUserName(comment.uploaderName),
+                        Localization.relativeTimeOrTextual(
+                            context, comment.uploadDate, comment.textualUploadDate
+                        )
                     )
-                    Localization.concatenateStrings(comment.uploaderName, date)
                 }
                 Text(
                     text = nameAndDate,

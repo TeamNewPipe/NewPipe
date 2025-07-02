@@ -16,6 +16,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -761,7 +762,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     /**
-     * Update the play/pause button ({@link R.id.playPauseButton}) to reflect the action
+     * Update the play/pause button (`R.id.playPauseButton`) to reflect the action
      * that will be performed when the button is clicked..
      * @param action the action that is performed when the play/pause button is clicked
      */
@@ -947,6 +948,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         player.toggleShuffleModeEnabled();
     }
 
+    // TODO: don’t reference internal exoplayer2 resources
+    @SuppressLint("PrivateResource")
     @Override
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);

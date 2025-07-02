@@ -138,7 +138,7 @@ public class MediaSessionPlayerUi extends PlayerUi
             public void play() {
                 player.play();
                 // hide the player controls even if the play command came from the media session
-                player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
+                player.UIs().getOpt(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
             }
 
             @Override

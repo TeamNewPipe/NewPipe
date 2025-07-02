@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -71,11 +73,22 @@ private fun CommentSection(
 
                     if (commentInfo.isCommentsDisabled) {
                         item {
-                            EmptyStateComposable(EmptyStateSpec.DisabledComments)
+                            EmptyStateComposable(
+                                spec = EmptyStateSpec.DisabledComments,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
+
+                            )
                         }
                     } else if (count == 0) {
                         item {
-                            EmptyStateComposable(EmptyStateSpec.NoComments)
+                            EmptyStateComposable(
+                                spec = EmptyStateSpec.NoComments,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(min = 128.dp)
+                            )
                         }
                     } else {
                         // do not show anything if the comment count is unknown
@@ -123,6 +136,7 @@ private fun CommentSection(
                             userAction = UserAction.REQUESTED_COMMENTS,
                             onRetry = { comments.retry() },
                             onReport = { info -> ErrorUtil.openActivity(context, info) },
+
                         )
                     }
                 }

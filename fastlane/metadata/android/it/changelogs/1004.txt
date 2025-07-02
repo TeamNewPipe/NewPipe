@@ -1,0 +1,3 @@
+Questa versione risolve il problema di YouTube che permette di riprodurre video solo a 360p.
+
+La soluzione impiegata in questa versione è probabilmente temporanea, e a lungo termine c'è da implementare il protocollo video SABR, ma i membri del TeamNewPipe non hanno tempo al momento, quindi qualsiasi aiuto sarebbe molto apprezzato! https://github.com/TeamNewPipe/NewPipe/issues/12248

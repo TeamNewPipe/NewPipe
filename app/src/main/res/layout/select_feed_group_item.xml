@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/itemThumbnailView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_computer"
+        tools:ignore="RtlHardcoded" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        tools:text="Channel Title, Lorem ipsum" />
+
+</RelativeLayout>
