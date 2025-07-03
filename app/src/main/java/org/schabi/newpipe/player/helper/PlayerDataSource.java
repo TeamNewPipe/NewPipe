@@ -5,7 +5,7 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
@@ -18,15 +18,15 @@ import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
-import org.schabi.newpipe.DownloaderImpl;
+import org.jetbrains.annotations.Contract;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
+import org.schabi.newpipe.player.datasource.LoggingHttpDataSource;
 import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
 import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
 
@@ -78,27 +78,32 @@ public class PlayerDataSource {
     private final CacheFactory ytProgressiveDashCacheDataSourceFactory;
 
 
+    private final Context context;
+    private final TransferListener transferListener;
+
+
     public PlayerDataSource(final Context context,
                             final TransferListener transferListener) {
-
+        this.context = context;
+        this.transferListener = transferListener;
         progressiveLoadIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
 
         // make sure the static cache was created: needed by CacheFactories below
         instantiateCacheIfNeeded(context);
 
-        // generic data source factories use DefaultHttpDataSource.Factory
+        // generic data source factories use LoggingHttpDataSource.Factory, which is a wrapper
+        // around DefaultHttpDataSource
         cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT))
+                new LoggingHttpDataSource.Factory())
                 .setTransferListener(transferListener);
-        cacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT));
+        cacheDataSourceFactory = createCacheDataSourceFactory(new LoggingHttpDataSource.Factory());
 
         // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
-        ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
+        ytHlsCacheDataSourceFactory = createCacheDataSourceFactory(
                 getYoutubeHttpDataSourceFactory(false, false));
-        ytDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
+        ytDashCacheDataSourceFactory = createCacheDataSourceFactory(
                 getYoutubeHttpDataSourceFactory(true, true));
-        ytProgressiveDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
+        ytProgressiveDashCacheDataSourceFactory = createCacheDataSourceFactory(
                 getYoutubeHttpDataSourceFactory(false, true));
 
         // set the maximum size to manifest creators
@@ -108,6 +113,11 @@ public class PlayerDataSource {
                 MAX_MANIFEST_CACHE_SIZE);
     }
 
+    @NonNull
+    @Contract(value = "_ -> new", pure = true)
+    private CacheFactory createCacheDataSourceFactory(final DataSource.Factory wrappedFactory) {
+        return new CacheFactory(context, transferListener, cache, wrappedFactory);
+    }
 
     //region Live media source factories
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {

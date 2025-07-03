@@ -350,8 +350,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                             .build());
         }
 
-        final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder =
-                new NonUriHlsDataSourceFactory.Builder();
+        final var hlsDataSourceFactoryBuilder = new NonUriHlsDataSourceFactory.Builder();
         hlsDataSourceFactoryBuilder.setPlaylistString(stream.getContent());
 
         return dataSource.getHlsMediaSourceFactory(hlsDataSourceFactoryBuilder)
