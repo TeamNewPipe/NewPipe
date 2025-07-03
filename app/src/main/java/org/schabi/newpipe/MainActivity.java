@@ -69,6 +69,8 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
+import org.schabi.newpipe.extractor.utils.ExtractorLogger;
+import org.schabi.newpipe.extractor.utils.Logger;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -137,6 +139,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         if (DEBUG) {
+            // Override Extractor to print to Logcat
+            ExtractorLogger.setLogger(new Logger() {
+                @Override
+                public void debug(final String tag, final String message) {
+                    Log.d(tag, message);
+                }
+
+                @Override
+                public void warn(final String tag, final String message) {
+                    Log.w(tag, message);
+                }
+
+                @Override
+                public void error(final String tag, final String message) {
+                    Log.e(tag, message);
+                }
+
+                @Override
+                public void error(final String tag, final String message, final Throwable t) {
+                    Log.e(tag, message, t);
+                }
+
+            });
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }

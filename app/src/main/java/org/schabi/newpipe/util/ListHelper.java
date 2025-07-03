@@ -302,6 +302,9 @@ public final class ListHelper {
         final Comparator<AudioStream> cmp = getAudioFormatComparator(context);
 
         for (final AudioStream stream : audioStreams) {
+            // TODO: this doesn't add HLS OPUS streams, but soundcloud has that.
+            // Meaning it never actually plays the OPUS soundcloud streams, only
+            // progressive and hls mp3
             if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
                     || (stream.getDeliveryMethod() == DeliveryMethod.HLS
                     && stream.getFormat() == MediaFormat.OPUS)) {

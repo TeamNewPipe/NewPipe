@@ -9,6 +9,7 @@ import androidx.collection.ArraySet;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.extractor.StreamingServiceId;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
@@ -114,6 +115,9 @@ public class MediaSourceManager {
 
     @NonNull
     private final CompositeDisposable loaderReactor;
+    /**
+     * The items that are currently being loaded.
+     */
     @NonNull
     private final Set<PlayQueueItem> loadingItems;
 
@@ -144,6 +148,20 @@ public class MediaSourceManager {
             throw new IllegalArgumentException("Playback end gap=[" + playbackNearEndGapMillis
                     + " ms] must be longer than update interval=[ " + progressUpdateIntervalMillis
                     + " ms] for them to be useful.");
+        }
+
+        if (DEBUG) {
+            final var currentItem = playQueue.getItem();
+
+            if (currentItem != null) {
+                Log.d(TAG, "Creating MediaSourceManager["
+                           + StreamingServiceId.nameFromId(currentItem.getServiceId())
+                           + " currentIndex=" + playQueue.getIndex()
+                           + " currentTitle=" + currentItem.getTitle());
+            } else {
+                Log.d(TAG,
+                      "Creating MediaSourceManager[currentIndex=" + playQueue.getIndex() + "]");
+            }
         }
 
         this.playbackListener = listener;
@@ -180,13 +198,15 @@ public class MediaSourceManager {
      */
     public void dispose() {
         if (DEBUG) {
-            Log.d(TAG, "close() called.");
+            Log.d(TAG, "dispose() called.");
         }
 
         debouncedSignal.onComplete();
         debouncedLoader.dispose();
 
         playQueueReactor.cancel();
+        //TODO: Why not clear here?
+        //TODO: Also why not clear loadingItems here?
         loaderReactor.dispose();
     }
 
@@ -427,6 +447,11 @@ public class MediaSourceManager {
                                 MediaItemTag.from(source.getMediaItem())
                                         .map(tag -> {
                                             final int serviceId = streamInfo.getServiceId();
+                                            // CHECKSTYLE:OFF
+    // TODO: So this expiration is false. Expiration starts from when stream is extracted
+    //  But here it is giving it fresh expiration as though the stream info is new, but it's not
+    //  So cache expiration is not 1-1 with stream expiration, but is it supposed to be?
+                                            // CHECKSTYLE:ON
                                             final long expiration = System.currentTimeMillis()
                                                     + getCacheExpirationMillis(serviceId);
                                             return new LoadedMediaSource(source, tag, stream,
@@ -483,7 +508,7 @@ public class MediaSourceManager {
      * readiness or playlist desynchronization.
      * <p>
      * If the given {@link PlayQueueItem} is currently being played and is already loaded,
-     * then correction is not only needed if the playlist is desynchronized. Otherwise, the
+     * then correction is only needed if the playlist is desynchronized. Otherwise, the
      * check depends on the status (e.g. expiration or placeholder) of the
      * {@link ManagedMediaSource}.
      * </p>
@@ -530,10 +555,12 @@ public class MediaSourceManager {
     }
 
     private void maybeClearLoaders() {
+        final var currentItem = playQueue.getItem();
         if (DEBUG) {
-            Log.d(TAG, "MediaSource - maybeClearLoaders() called.");
+            final var url = currentItem != null ? currentItem.getUrl() : "";
+            Log.d(TAG, "MediaSource - maybeClearLoaders() called. currentItem: " + url);
         }
-        if (!loadingItems.contains(playQueue.getItem())
+        if (!loadingItems.contains(currentItem)
                 && loaderReactor.size() > MAXIMUM_LOADER_SIZE) {
             loaderReactor.clear();
             loadingItems.clear();
