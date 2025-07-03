@@ -342,7 +342,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             throws ResolverException {
         if (stream.isUrl()) {
             throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
-            return dataSource.getHlsMediaSourceFactory(null).createMediaSource(
+            return dataSource.getHlsMediaSourceFactory(stream).createMediaSource(
                     new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(stream.getContent()))

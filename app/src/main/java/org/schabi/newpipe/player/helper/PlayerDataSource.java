@@ -26,8 +26,11 @@ import org.jetbrains.annotations.Contract;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
+import org.schabi.newpipe.extractor.stream.RefreshableStream;
+import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.player.datasource.LoggingHttpDataSource;
 import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
+import org.schabi.newpipe.player.datasource.RefreshableHlsHttpDataSource;
 import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
 
 import java.io.File;
@@ -151,12 +154,23 @@ public class PlayerDataSource {
 
     //region Generic media source factories
     public HlsMediaSource.Factory getHlsMediaSourceFactory(
-            @Nullable final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder) {
-        if (hlsDataSourceFactoryBuilder != null) {
-            hlsDataSourceFactoryBuilder.setDataSourceFactory(cacheDataSourceFactory);
-            return new HlsMediaSource.Factory(hlsDataSourceFactoryBuilder.build());
-        }
+            @NonNull final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder) {
+        hlsDataSourceFactoryBuilder.setDataSourceFactory(cacheDataSourceFactory);
+        return new HlsMediaSource.Factory(hlsDataSourceFactoryBuilder.build());
+    }
 
+    public HlsMediaSource.Factory getHlsMediaSourceFactory(final Stream stream) {
+        if (stream instanceof final RefreshableStream refreshableStream) {
+            return new HlsMediaSource.Factory(
+                createCacheDataSourceFactory(
+                        new RefreshableHlsHttpDataSource.Factory(refreshableStream)
+                )
+            );
+        }
+        return getHlsMediaSourceFactory();
+    }
+
+    public HlsMediaSource.Factory getHlsMediaSourceFactory() {
         return new HlsMediaSource.Factory(cacheDataSourceFactory);
     }
 
