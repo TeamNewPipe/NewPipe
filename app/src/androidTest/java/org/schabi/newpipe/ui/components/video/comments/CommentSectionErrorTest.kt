@@ -24,13 +24,14 @@ class CommentSectionErrorTest {
     /**
      * Test Resource.Error state - when initial comment info loading fails
      */
+    class TestNetworkException : NetworkException("Connection attempt timed out", null) {
+        override fun getErrorCode(): Int = NetworkException.ERROR_CONNECTION_TIMED_OUT
+        override fun isImmediatelyRetryable() = true
+    }
     @Test
     fun testResourceErrorState_ShowsUnableToLoadCommentsUiModel() {
 
-        val networkException = object : NetworkException("Connection attempt timed out", null) {
-            override fun getErrorCode(): Int = NetworkException.ERROR_CONNECTION_TIMED_OUT
-            override fun isImmediatelyRetryable() = true
-        }
+        val networkException = TestNetworkException()
         val errorResource = Resource.Error(networkException)
         assertEquals("Should contain the network exception", networkException, errorResource.throwable)
 
