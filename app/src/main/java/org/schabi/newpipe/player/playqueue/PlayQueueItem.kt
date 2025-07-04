@@ -1,155 +1,71 @@
-package org.schabi.newpipe.player.playqueue;
+package org.schabi.newpipe.player.playqueue
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.extractor.stream.StreamInfo
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.util.ExtractorHelper
+import java.io.Serializable
+import java.util.Objects
 
-import org.schabi.newpipe.extractor.Image;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.util.ExtractorHelper;
+class PlayQueueItem private constructor(
+    val title: String,
+    val url: String,
+    val serviceId: Int,
+    val duration: Long,
+    val thumbnails: List<Image>,
+    val uploader: String,
+    val uploaderUrl: String?,
+    val streamType: StreamType,
+) : Serializable {
+    //
+    // ////////////////////////////////////////////////////////////////////// */
+    // Item States, keep external access out
+    //
+    // ////////////////////////////////////////////////////////////////////// */
+    var isAutoQueued: Boolean = false
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
+    // package-private
+    var recoveryPosition = Long.Companion.MIN_VALUE
+    var error: Throwable? = null
+        private set
 
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-
-public class PlayQueueItem implements Serializable {
-    public static final long RECOVERY_UNSET = Long.MIN_VALUE;
-    private static final String EMPTY_STRING = "";
-
-    @NonNull
-    private final String title;
-    @NonNull
-    private final String url;
-    private final int serviceId;
-    private final long duration;
-    @NonNull
-    private final List<Image> thumbnails;
-    @NonNull
-    private final String uploader;
-    private final String uploaderUrl;
-    @NonNull
-    private final StreamType streamType;
-
-    private boolean isAutoQueued;
-
-    private long recoveryPosition;
-    private Throwable error;
-
-    PlayQueueItem(@NonNull final StreamInfo info) {
-        this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
-                info.getThumbnails(), info.getUploaderName(),
-                info.getUploaderUrl(), info.getStreamType());
-
-        if (info.getStartPosition() > 0) {
-            setRecoveryPosition(info.getStartPosition() * 1000);
+    constructor(info: StreamInfo) : this(
+        info.name.orEmpty(),
+        info.url.orEmpty(),
+        info.serviceId,
+        info.duration,
+        info.thumbnails,
+        info.uploaderName.orEmpty(),
+        info.uploaderUrl,
+        info.streamType,
+    ) {
+        if (info.startPosition > 0) {
+            this.recoveryPosition = info.startPosition * 1000
         }
     }
 
-    PlayQueueItem(@NonNull final StreamInfoItem item) {
-        this(item.getName(), item.getUrl(), item.getServiceId(), item.getDuration(),
-                item.getThumbnails(), item.getUploaderName(),
-                item.getUploaderUrl(), item.getStreamType());
-    }
+    constructor(item: StreamInfoItem) : this(
+        item.name.orEmpty(),
+        item.url.orEmpty(),
+        item.serviceId,
+        item.duration,
+        item.thumbnails,
+        item.uploaderName.orEmpty(),
+        item.uploaderUrl,
+        item.streamType,
+    )
 
-    @SuppressWarnings("ParameterNumber")
-    private PlayQueueItem(@Nullable final String name, @Nullable final String url,
-                          final int serviceId, final long duration,
-                          final List<Image> thumbnails, @Nullable final String uploader,
-                          final String uploaderUrl, @NonNull final StreamType streamType) {
-        this.title = name != null ? name : EMPTY_STRING;
-        this.url = url != null ? url : EMPTY_STRING;
-        this.serviceId = serviceId;
-        this.duration = duration;
-        this.thumbnails = thumbnails;
-        this.uploader = uploader != null ? uploader : EMPTY_STRING;
-        this.uploaderUrl = uploaderUrl;
-        this.streamType = streamType;
-
-        this.recoveryPosition = RECOVERY_UNSET;
-    }
-
-    @NonNull
-    public String getTitle() {
-        return title;
-    }
-
-    @NonNull
-    public String getUrl() {
-        return url;
-    }
-
-    public int getServiceId() {
-        return serviceId;
-    }
-
-    public long getDuration() {
-        return duration;
-    }
-
-    @NonNull
-    public List<Image> getThumbnails() {
-        return thumbnails;
-    }
-
-    @NonNull
-    public String getUploader() {
-        return uploader;
-    }
-
-    public String getUploaderUrl() {
-        return uploaderUrl;
-    }
-
-    @NonNull
-    public StreamType getStreamType() {
-        return streamType;
-    }
-
-    public long getRecoveryPosition() {
-        return recoveryPosition;
-    }
-
-    /*package-private*/ void setRecoveryPosition(final long recoveryPosition) {
-        this.recoveryPosition = recoveryPosition;
-    }
-
-    @Nullable
-    public Throwable getError() {
-        return error;
-    }
-
-    @NonNull
-    public Single<StreamInfo> getStream() {
-        return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
+    val stream: Single<StreamInfo>
+        get() =
+            ExtractorHelper
+                .getStreamInfo(serviceId, url, false)
                 .subscribeOn(Schedulers.io())
-                .doOnError(throwable -> error = throwable);
-    }
+                .doOnError { throwable -> error = throwable }
 
-    public boolean isAutoQueued() {
-        return isAutoQueued;
-    }
+    override fun equals(o: Any?) = o is PlayQueueItem && serviceId == o.serviceId && url == o.url
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Item States, keep external access out
-    ////////////////////////////////////////////////////////////////////////////
-
-    public void setAutoQueued(final boolean autoQueued) {
-        isAutoQueued = autoQueued;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        return o instanceof PlayQueueItem item
-                && serviceId == item.serviceId
-                && url.equals(item.url);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(url, serviceId);
-    }
+    override fun hashCode() = Objects.hash(url, serviceId)
 }
