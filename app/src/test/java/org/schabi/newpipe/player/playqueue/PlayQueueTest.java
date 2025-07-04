@@ -3,6 +3,8 @@ package org.schabi.newpipe.player.playqueue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
@@ -13,12 +15,14 @@ import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
+@RunWith(Enclosed.class)
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class PlayQueueTest {
     static PlayQueue makePlayQueue(final int index, final List<PlayQueueItem> streams) {
@@ -168,7 +172,7 @@ public class PlayQueueTest {
             final List<PlayQueueItem> streams = Collections.nCopies(5, item1);
             final PlayQueue queue1 = makePlayQueue(0, streams);
             final PlayQueue queue2 = makePlayQueue(0, streams);
-            assertTrue(queue1.equalStreams(queue2));
+            assertEquals(queue1, queue2);
             assertTrue(queue1.equalStreamsAndIndex(queue2));
         }
 
@@ -177,7 +181,7 @@ public class PlayQueueTest {
             final List<PlayQueueItem> streams = Collections.nCopies(5, item1);
             final PlayQueue queue1 = makePlayQueue(1, streams);
             final PlayQueue queue2 = makePlayQueue(4, streams);
-            assertTrue(queue1.equalStreams(queue2));
+            assertEquals(queue1, queue2);
             assertFalse(queue1.equalStreamsAndIndex(queue2));
         }
 
@@ -187,7 +191,7 @@ public class PlayQueueTest {
             final List<PlayQueueItem> streams2 = Collections.nCopies(5, item2);
             final PlayQueue queue1 = makePlayQueue(0, streams1);
             final PlayQueue queue2 = makePlayQueue(0, streams2);
-            assertFalse(queue1.equalStreams(queue2));
+            assertNotEquals(queue1, queue2);
         }
 
         @Test
@@ -196,7 +200,7 @@ public class PlayQueueTest {
             final List<PlayQueueItem> streams2 = Collections.nCopies(6, item2);
             final PlayQueue queue1 = makePlayQueue(0, streams1);
             final PlayQueue queue2 = makePlayQueue(0, streams2);
-            assertFalse(queue1.equalStreams(queue2));
+            assertNotEquals(queue1, queue2);
         }
     }
 }
