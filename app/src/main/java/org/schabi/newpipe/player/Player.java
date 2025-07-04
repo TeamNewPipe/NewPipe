@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player;
 
+import static android.content.Context.RECEIVER_EXPORTED;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
@@ -55,6 +56,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.os.Build;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -766,7 +768,11 @@ public final class Player implements PlaybackListener, Listener {
     private void registerBroadcastReceiver() {
         // Try to unregister current first
         unregisterBroadcastReceiver();
-        context.registerReceiver(broadcastReceiver, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(broadcastReceiver, intentFilter, RECEIVER_EXPORTED);
+        } else {
+            context.registerReceiver(broadcastReceiver, intentFilter);
+        }
     }
 
     private void unregisterBroadcastReceiver() {
