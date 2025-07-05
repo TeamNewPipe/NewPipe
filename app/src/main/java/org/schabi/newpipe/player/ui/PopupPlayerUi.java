@@ -219,10 +219,10 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         } else if (player.isPlaying() || player.isLoading()) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
                 // Use only audio source when screen turns off while popup player is playing
-                player.useVideoSource(false);
+                player.useVideoAndSubtitles(false);
             } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 // Restore video source when screen turns on and user was watching video in popup
-                player.useVideoSource(true);
+                player.useVideoAndSubtitles(true);
             }
         }
     }

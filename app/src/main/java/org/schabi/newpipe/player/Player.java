@@ -2195,12 +2195,12 @@ public final class Player implements PlaybackListener, Listener {
         }
     }
 
-    public void useVideoSource(final boolean videoEnabled) {
+    public void useVideoAndSubtitles(final boolean videoAndSubtitlesEnabled) {
         if (playQueue == null || audioPlayerSelected()) {
             return;
         }
 
-        isAudioOnly = !videoEnabled;
+        isAudioOnly = !videoAndSubtitlesEnabled;
 
         getCurrentStreamInfo().ifPresentOrElse(info -> {
             // In case we don't know the source type, fall back to either video-with-audio, or
@@ -2214,10 +2214,11 @@ public final class Player implements PlaybackListener, Listener {
 
             setRecovery();
 
-            // Disable or enable video and subtitles renderers depending of the videoEnabled value
+            // Disable or enable video and subtitles renderers depending of the
+            // videoAndSubtitlesEnabled value
             trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled)
-                    .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled));
+                    .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoAndSubtitlesEnabled)
+                    .setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoAndSubtitlesEnabled));
         }, () -> {
             /*
             The current metadata may be null sometimes (for e.g. when using an unstable connection

@@ -331,7 +331,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         } else if (VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED.equals(intent.getAction())) {
             // Restore video source when user returns to the fragment
             fragmentIsVisible = true;
-            player.useVideoSource(true);
+            player.useVideoAndSubtitles(true);
 
             // When a user returns from background, the system UI will always be shown even if
             // controls are invisible: hide it in that case
@@ -370,7 +370,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (player.isPlaying() || player.isLoading()) {
             switch (getMinimizeOnExitAction(context)) {
                 case MINIMIZE_ON_EXIT_MODE_BACKGROUND:
-                    player.useVideoSource(false);
+                    player.useVideoAndSubtitles(false);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
                     getParentActivity().ifPresent(activity -> {
