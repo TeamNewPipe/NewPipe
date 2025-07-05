@@ -1067,7 +1067,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         infoListAdapter.addInfoItemList(result.getItems());
         nextPage = result.getNextPage();
 
-        if (!result.getErrors().isEmpty()) {
+        if (!result.getErrors().isEmpty() && nextPage != null) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
                     "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
                             + "pageIds: " + nextPage.getIds() + ", "
