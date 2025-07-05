@@ -201,11 +201,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         try {
             final StreamInfoTag tag = StreamInfoTag.of(info);
-            if (!info.getHlsUrl().isEmpty()) {
-                return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
-            } else if (!info.getDashMpdUrl().isEmpty()) {
+            if (!info.getDashMpdUrl().isEmpty()) {
                 return buildLiveMediaSource(
                         dataSource, info.getDashMpdUrl(), C.CONTENT_TYPE_DASH, tag);
+            }
+            if (!info.getHlsUrl().isEmpty()) {
+                return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
             }
         } catch (final Exception e) {
             Log.w(TAG, "Error when generating live media source, falling back to standard sources",
@@ -225,7 +226,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 factory = dataSource.getLiveSsMediaSourceFactory();
                 break;
             case C.CONTENT_TYPE_DASH:
-                factory = dataSource.getLiveDashMediaSourceFactory();
+                if (metadata.getServiceId() == ServiceList.YouTube.getServiceId()) {
+                    factory = dataSource.getLiveYoutubeDashMediaSourceFactory();
+                } else {
+                    factory = dataSource.getLiveDashMediaSourceFactory();
+                }
                 break;
             case C.CONTENT_TYPE_HLS:
                 factory = dataSource.getLiveHlsMediaSourceFactory();
