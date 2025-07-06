@@ -330,7 +330,6 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     public BrowserRoot onGetRoot(@NonNull final String clientPackageName,
                                  final int clientUid,
                                  @Nullable final Bundle rootHints) {
-        // TODO check if the accessing package has permission to view data
         return mediaBrowserImpl.onGetRoot(clientPackageName, clientUid, rootHints);
     }
 
