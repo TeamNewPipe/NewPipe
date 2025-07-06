@@ -38,7 +38,7 @@ public class PlayQueueItem implements Serializable {
     private long recoveryPosition;
     private Throwable error;
 
-    PlayQueueItem(@NonNull final StreamInfo info) {
+    public PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
                 info.getThumbnails(), info.getUploaderName(),
                 info.getUploaderUrl(), info.getStreamType());
@@ -69,6 +69,22 @@ public class PlayQueueItem implements Serializable {
         this.streamType = streamType;
 
         this.recoveryPosition = RECOVERY_UNSET;
+    }
+
+    /** Whether these two items should be treated as the same stream
+     * for the sake of keeping the same player running when e.g. jumping between timestamps.
+     *
+     * @param other the {@link PlayQueueItem} to compare against.
+     * @return whether the two items are the same so the stream can be re-used.
+     */
+    public boolean isSameItem(@Nullable final PlayQueueItem other) {
+        if (other == null) {
+            return false;
+        }
+        // We assume that the same service & URL uniquely determines
+        // that we can keep the same stream running.
+        return getServiceId() == other.getServiceId()
+                && getUrl().equals(other.getUrl());
     }
 
     @NonNull
