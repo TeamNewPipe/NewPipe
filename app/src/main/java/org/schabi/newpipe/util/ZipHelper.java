@@ -37,9 +37,6 @@ import java.util.zip.ZipOutputStream;
  */
 
 public final class ZipHelper {
-
-    private static final int BUFFER_SIZE = 2048;
-
     @FunctionalInterface
     public interface InputStreamConsumer {
         void acceptStream(InputStream inputStream) throws IOException;
@@ -80,13 +77,13 @@ public final class ZipHelper {
                                     final String nameInZip,
                                     final OutputStreamConsumer streamConsumer) throws IOException {
         final byte[] bytes;
-        try (ByteArrayOutputStream byteOutput = new ByteArrayOutputStream()) {
+        try (var byteOutput = new ByteArrayOutputStream()) {
             streamConsumer.acceptStream(byteOutput);
             bytes = byteOutput.toByteArray();
         }
 
-        try (ByteArrayInputStream byteInput = new ByteArrayInputStream(bytes)) {
-            ZipHelper.addFileToZip(outZip, nameInZip, byteInput);
+        try (var byteInput = new ByteArrayInputStream(bytes)) {
+            addFileToZip(outZip, nameInZip, byteInput);
         }
     }
 
@@ -97,19 +94,12 @@ public final class ZipHelper {
      * @param nameInZip   the path of the file inside the zip
      * @param inputStream the content to put inside the file
      */
-    public static void addFileToZip(final ZipOutputStream outZip,
-                                    final String nameInZip,
-                                    final InputStream inputStream) throws IOException {
-        final byte[] data = new byte[BUFFER_SIZE];
-        try (BufferedInputStream bufferedInputStream =
-                     new BufferedInputStream(inputStream, BUFFER_SIZE)) {
-            final ZipEntry entry = new ZipEntry(nameInZip);
-            outZip.putNextEntry(entry);
-            int count;
-            while ((count = bufferedInputStream.read(data, 0, BUFFER_SIZE)) != -1) {
-                outZip.write(data, 0, count);
-            }
-        }
+    private static void addFileToZip(final ZipOutputStream outZip,
+                                     final String nameInZip,
+                                     final InputStream inputStream) throws IOException {
+        final var entry = new ZipEntry(nameInZip);
+        outZip.putNextEntry(entry);
+        inputStream.transferTo(outZip);
     }
 
     /**
