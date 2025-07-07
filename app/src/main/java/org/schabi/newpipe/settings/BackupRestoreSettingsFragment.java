@@ -35,7 +35,6 @@ import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,12 +60,11 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
                                     @Nullable final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        Objects.requireNonNull(homeDir);
-        manager = new ImportExportManager(new BackupFileLocator(homeDir));
+        final var dbDir = Objects.requireNonNull(ContextCompat.getDataDir(requireContext()))
+                .toPath();
+        manager = new ImportExportManager(new BackupFileLocator(dbDir));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
-
 
         addPreferencesFromResourceRegistry();
 
@@ -183,9 +181,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            if (!manager.ensureDbDirectoryExists()) {
-                throw new IOException("Could not create databases dir");
-            }
+            manager.ensureDbDirectoryExists();
 
             // replace the current database
             if (!manager.extractDb(file)) {
