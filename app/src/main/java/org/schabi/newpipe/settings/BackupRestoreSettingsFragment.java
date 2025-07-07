@@ -17,7 +17,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -39,7 +38,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
@@ -60,8 +58,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(@Nullable final Bundle savedInstanceState,
                                     @Nullable final String rootKey) {
-        final var dbDir = Objects.requireNonNull(ContextCompat.getDataDir(requireContext()))
-                .toPath();
+        final var dbDir = requireContext().getDatabasePath(BackupFileLocator.FILE_NAME_DB).toPath()
+                .getParent();
         manager = new ImportExportManager(new BackupFileLocator(dbDir));
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
