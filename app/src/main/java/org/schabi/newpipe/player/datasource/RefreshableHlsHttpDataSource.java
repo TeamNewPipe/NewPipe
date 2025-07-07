@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.datasource;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.net.Uri;
 import android.util.Log;
 
@@ -62,10 +64,15 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
     @Override
     public long open(final DataSpec dataSpec) throws HttpDataSourceException {
         final var url = dataSpec.uri.toString();
-        Log.d(TAG, "called open(" + url + ")");
+        if (DEBUG) {
+            Log.d(TAG, "called open(" + url + ")");
+        }
+
         if (!url.contains(refreshableStream.playlistId())) {
             // TODO: throw error or no?
-            Log.e(TAG, "Playlist id does not match");
+            if (DEBUG) {
+                Log.e(TAG, "Playlist id does not match");
+            }
         }
         return chunkUrlMap.isEmpty()
                 ? openInternal(dataSpec)
@@ -75,7 +82,9 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
     private long openInternal(final DataSpec dataSpec) throws HttpDataSourceException {
         try {
             final var bytesToRead = super.open(dataSpec);
-            Log.d(TAG, "Bytes to read: " + bytesToRead);
+            if (DEBUG) {
+                Log.d(TAG, "Bytes to read: " + bytesToRead);
+            }
             isError = false; // if we got to this line there was no error
             return bytesToRead;
         } catch (final InvalidResponseCodeException e) {
@@ -108,10 +117,16 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
     }
 
     private void refreshPlaylist() throws ExtractionException, IOException {
-        Log.d(TAG, "refreshPlaylist() - originalPlaylistUrl " + originalPlaylistUrl);
+        if (DEBUG) {
+            Log.d(TAG, "refreshPlaylist() - originalPlaylistUrl " + originalPlaylistUrl);
+        }
+
         final var newPlaylistUrl = refreshableStream.fetchLatestUrl();
-        Log.d(TAG, "New playlist url " + newPlaylistUrl);
-        Log.d(TAG, "Extracting new playlist Chunks");
+
+        if (DEBUG) {
+            Log.d(TAG, "New playlist url " + newPlaylistUrl);
+            Log.d(TAG, "Extracting new playlist Chunks");
+        }
         final var newChunks = extractChunksFromPlaylist(newPlaylistUrl);
 
         if (!chunkUrlMap.isEmpty()) {
@@ -151,12 +166,16 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
     // TODO: better name
     private DataSpec getUpdatedDataSpec(final DataSpec dataSpec) {
         final var currentUrl = dataSpec.uri.toString();
-        Log.d(TAG, "getUpdatedDataSpec(" + currentUrl + ')');
+        if (DEBUG) {
+            Log.d(TAG, "getUpdatedDataSpec(" + currentUrl + ')');
+        }
         // Playlist has expired, so get mapping for new url
         final var baseUrl = getBaseUrl(currentUrl);
 
         if (baseUrl.equals(currentUrl)) {
-            Log.e(TAG, "Url has no query parameters");
+            if (DEBUG) {
+                Log.e(TAG, "Url has no query parameters");
+            }
         }
 
         final var updatedUrl = chunkUrlMap.get(baseUrl);
@@ -164,7 +183,9 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
             throw new IllegalStateException("baseUrl not found in mappings: " + baseUrl);
             // TODO: problemo
         }
-        Log.d(TAG, "updated url:" + updatedUrl);
+        if (DEBUG) {
+            Log.d(TAG, "updated url:" + updatedUrl);
+        }
         return dataSpec.buildUpon()
                        .setUri(Uri.parse(updatedUrl))
                        .build();
@@ -179,7 +200,9 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
      */
     private List<String> extractChunksFromPlaylist(final String playlistUrl)
             throws IOException {
-        Log.d(TAG, "extractChunksFromPlaylist(" + playlistUrl + ')');
+        if (DEBUG) {
+            Log.d(TAG, "extractChunksFromPlaylist(" + playlistUrl + ')');
+        }
         final var chunks = new ArrayList<String>();
         final var parser = new HlsPlaylistParser();
         final var dataSpec = new DataSpec(Uri.parse(playlistUrl));
@@ -201,11 +224,16 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
                 throw new IOException("Expected Hls playlist to be an HlsMediaPlaylist, but was a "
                         + playlist.getClass().getSimpleName());
             }
+
             for (final var segment : hlsMediaPlaylist.segments) {
                 chunks.add(segment.url);
             }
-            Log.d(TAG, "Extracted " + chunks.size() + " chunks");
-            chunks.stream().forEach(m -> Log.d(TAG, "Chunk " + m));
+
+            if (DEBUG) {
+                Log.d(TAG, "Extracted " + chunks.size() + " chunks");
+                chunks.stream().forEach(m -> Log.d(TAG, "Chunk " + m));
+            }
+
             return chunks;
         } finally {
             httpDataSource.close();

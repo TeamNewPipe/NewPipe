@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.datasource;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -36,6 +38,10 @@ public class LoggingHttpDataSource extends DefaultHttpDataSource {
 
     @Override
     public long open(final DataSpec dataSpec) throws HttpDataSourceException {
+        if (!DEBUG) {
+            return super.open(dataSpec);
+        }
+
         Log.d(TAG, "Request URL: " + dataSpec.uri);
         try {
             return super.open(dataSpec);
