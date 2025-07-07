@@ -144,6 +144,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private final SparseArrayCompat<String> menuItemToFilterName = new SparseArrayCompat<>();
     private StreamingService service;
+    @Nullable
     private Page nextPage;
     private boolean showLocalSuggestions = true;
     private boolean showRemoteSuggestions = true;
