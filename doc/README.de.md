@@ -1,11 +1,11 @@
-<h3 align="center">Wir planen große Teile des Quellcodes <i>neu zu schreiben</i>, um NewPipe <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">neu, modern und stabiler</a> zu machen!</h3>
-<h4 align="center">Öffne <b>keine</b> neuen Pull Requests für <i>neue Features</i>, es werden nur Fehlerbehebungen akzeptiert.</h4>
+<h3 align="center">Wir sind im Prozess, größere Teile unseres Codes <i>neuzuschreiben</i>, um eine <a href="https://github.com/TeamNewPipe/NewPipe/discussions/10118">moderne und stabile</a> NewPipe App zu kreieren! Du kannst nightly builds <a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases">hier</a> herunterladen.</h3>
+<h4 align="center">Bitte nutze den <code>refactor</code> branch als Arbeitsgrundlage, wenn du <i>neue Funktionen</i> beitragen willst. Die aktuelle Codebase ist im reinen Maintenance mode und bekommt nur noch <i>Fehlerbehebungen</i>.</h4>
 
 <p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Eine freie, offene und leichtgewichtige Streaming App für Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-de.svg" alt="Hole es dir auf F-Droid" height=80/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-de.svg" alt="Hole es dir auf F-Droid" width=206/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub Release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
