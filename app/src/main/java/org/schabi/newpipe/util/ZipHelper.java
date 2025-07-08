@@ -97,8 +97,7 @@ public final class ZipHelper {
     private static void addFileToZip(final ZipOutputStream outZip,
                                      final String nameInZip,
                                      final InputStream inputStream) throws IOException {
-        final var entry = new ZipEntry(nameInZip);
-        outZip.putNextEntry(entry);
+        outZip.putNextEntry(new ZipEntry(nameInZip));
         inputStream.transferTo(outZip);
     }
 
