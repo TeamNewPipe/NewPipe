@@ -90,19 +90,14 @@ public final class Localization {
      * Localize a user name like <code>@foobar</code>.
      *
      * Will correctly handle right-to-left usernames by using a {@link BidiFormatter}.
+     * For right-to-left usernames, it will put the @ on the right side to read more naturally.
      *
      * @param plainName username, with an optional leading <code>@</code>
      * @return a usernames that can include RTL-characters
      */
     @NonNull
     public static String localizeUserName(final String plainName) {
-        final BidiFormatter bidi = BidiFormatter.getInstance();
-
-        if (plainName.startsWith("@")) {
-            return "@" + bidi.unicodeWrap(plainName.substring(1));
-        } else {
-            return bidi.unicodeWrap(plainName);
-        }
+        return BidiFormatter.getInstance().unicodeWrap(plainName);
     }
 
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(

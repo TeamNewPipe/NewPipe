@@ -413,6 +413,8 @@
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
     <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
+    <string name="select_a_feed_group">Select a feed group</string>
+    <string name="no_feed_group_created_yet">No feed group created yet</string>
     <!-- Kiosk Names -->
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
@@ -687,6 +689,7 @@
     </plurals>
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
+    <string name="feed_group_page_summary">Channel group page</string>
     <string name="feed_groups_header_title">Channel groups</string>
     <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
