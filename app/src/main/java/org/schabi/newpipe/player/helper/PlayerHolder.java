@@ -167,6 +167,11 @@ public final class PlayerHolder {
 
         private boolean playAfterConnect = false;
 
+        /**
+         * @param playAfterConnection Sets the value of `playAfterConnect` to pass to the {@link
+         * PlayerServiceExtendedEventListener#onPlayerConnected(Player, boolean)} the next time it
+         * is called. The value of `playAfterConnect` will be reset to false after that.
+         */
         public void doPlayAfterConnect(final boolean playAfterConnection) {
             this.playAfterConnect = playAfterConnection;
         }
@@ -371,6 +376,8 @@ public final class PlayerHolder {
                 listener.onPlayerDisconnected();
             } else {
                 listener.onPlayerConnected(player, serviceConnection.playAfterConnect);
+                // reset the value of playAfterConnect: if it was true before, it is now "consumed"
+                serviceConnection.playAfterConnect = false;
                 player.setFragmentListener(internalListener);
             }
         }
