@@ -25,10 +25,7 @@ class HistoryViewModel(
     val historyItems = sortKey
         .flatMapLatest {
             Pager(PagingConfig(pageSize = 20)) {
-                when (it) {
-                    SortKey.LAST_PLAYED -> historyDao.getHistoryOrderedByLastWatched()
-                    SortKey.MOST_PLAYED -> historyDao.getHistoryOrderedByViewCount()
-                }
+                historyDao.getOrderedHistory(it)
             }.flow
         }
         .map { pagingData -> pagingData.map { Stream(it) } }

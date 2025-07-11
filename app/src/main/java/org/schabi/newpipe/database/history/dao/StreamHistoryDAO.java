@@ -18,11 +18,15 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.RewriteQueriesToDropUnusedColumns;
+import androidx.room.RawQuery;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.local.history.SortKey;
 
 import java.util.List;
 
@@ -31,6 +35,20 @@ import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
 public interface StreamHistoryDAO {
+    String ORDERED_HISTORY_QUERY = "SELECT * FROM " + STREAM_TABLE
+            + " INNER JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + ", "
+            + "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", "
+            + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
+            + " FROM " + STREAM_HISTORY_TABLE
+            + " GROUP BY " + JOIN_STREAM_ID + ")"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
+            + " LEFT JOIN "
+            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
+            + STREAM_PROGRESS_MILLIS
+            + " FROM " + STREAM_STATE_TABLE + " )"
+            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS;
+
     @Insert
     long insert(StreamHistoryEntity entity);
 
@@ -60,47 +78,16 @@ public interface StreamHistoryDAO {
             + " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
     Flowable<List<StreamHistoryEntry>> getHistory();
 
-    @RewriteQueriesToDropUnusedColumns
-    @Query("SELECT * FROM " + STREAM_TABLE
-            // Select the latest entry and watch count for each stream id on history table
-            + " INNER JOIN "
-            + "(SELECT " + JOIN_STREAM_ID + ", "
-            + "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", "
-            + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
-            + " FROM " + STREAM_HISTORY_TABLE
-            + " GROUP BY " + JOIN_STREAM_ID + ")"
+    @RawQuery(observedEntities = {StreamStatisticsEntry.class, StreamEntity.class,
+            StreamHistoryEntity.class})
+    PagingSource<Integer, StreamStatisticsEntry> getOrderedHistoryByRaw(SupportSQLiteQuery query);
 
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
-
-            + " LEFT JOIN "
-            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
-            + STREAM_PROGRESS_MILLIS
-            + " FROM " + STREAM_STATE_TABLE + " )"
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
-
-            + " ORDER BY " + STREAM_LATEST_DATE + " DESC"
-    )
-    PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByLastWatched();
-
-    @RewriteQueriesToDropUnusedColumns
-    @Query("SELECT * FROM " + STREAM_TABLE
-            // Select the latest entry and watch count for each stream id on history table
-            + " INNER JOIN "
-            + "(SELECT " + JOIN_STREAM_ID + ", "
-            + "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", "
-            + "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT
-            + " FROM " + STREAM_HISTORY_TABLE
-            + " GROUP BY " + JOIN_STREAM_ID + ")"
-
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID
-
-            + " LEFT JOIN "
-            + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
-            + STREAM_PROGRESS_MILLIS
-            + " FROM " + STREAM_STATE_TABLE + " )"
-            + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS
-
-            + " ORDER BY " + STREAM_WATCH_COUNT + " DESC"
-    )
-    PagingSource<Integer, StreamStatisticsEntry> getHistoryOrderedByViewCount();
+    default PagingSource<Integer, StreamStatisticsEntry> getOrderedHistory(SortKey key) {
+        final String orderBy = switch (key) {
+            case LAST_PLAYED -> STREAM_LATEST_DATE;
+            case MOST_PLAYED -> STREAM_WATCH_COUNT;
+        };
+        return getOrderedHistoryByRaw(new SimpleSQLiteQuery(ORDERED_HISTORY_QUERY + " ORDER BY "
+                + orderBy + " DESC"));
+    }
 }
