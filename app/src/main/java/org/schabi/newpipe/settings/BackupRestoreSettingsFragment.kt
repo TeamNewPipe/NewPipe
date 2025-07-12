@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
-import androidx.preference.Preference
 import com.grack.nanojson.JsonParserException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -54,23 +53,20 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
 
         addPreferencesFromResourceRegistry()
 
-        val importDataPreference = requirePreference(R.string.import_data)
-        importDataPreference.setOnPreferenceClickListener {
+        requirePreference(R.string.import_data).setOnPreferenceClickListener {
             val picker = StoredFileHelper.getPicker(activity, ZIP_MIME_TYPE, importExportDataUri)
             NoFileManagerSafeGuard.launchSafe(requestImportPathLauncher, picker, TAG, activity)
             true
         }
 
-        val exportDataPreference = requirePreference(R.string.export_data)
-        exportDataPreference.setOnPreferenceClickListener {
+        requirePreference(R.string.export_data).setOnPreferenceClickListener {
             val filename = "NewPipeData-${exportDateFormat.format(LocalDateTime.now())}.zip"
             val picker = StoredFileHelper.getNewPicker(activity, filename, ZIP_MIME_TYPE, importExportDataUri)
             NoFileManagerSafeGuard.launchSafe(requestExportPathLauncher, picker, TAG, activity)
             true
         }
 
-        val resetSettings = requirePreference(R.string.reset_settings)
-        resetSettings.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+        requirePreference(R.string.reset_settings).setOnPreferenceClickListener {
             // Show Alert Dialogue
             AlertDialog
                 .Builder(activity)
