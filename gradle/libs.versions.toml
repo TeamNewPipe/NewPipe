@@ -1,5 +1,6 @@
 [versions]
 aboutLibraries = "11.2.3"
+accompanist = "0.37.3"
 acraCore = "5.11.3"
 androidState = "1.4.1"
 androidx-junit = "1.1.5"
@@ -77,6 +78,7 @@ sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 [libraries]
 aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 aboutlibraries-plugin = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutLibraries" }
+accompanist-drawablepainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanist" }
 acra-core = { group = "ch.acra", name = "acra-core", version.ref = "acraCore" }
 android-state = { group = "com.evernote", name = "android-state", version.ref = "androidState" }
 android-state-processor = { group = "com.evernote", name = "android-state-processor", version.ref = "androidState" }

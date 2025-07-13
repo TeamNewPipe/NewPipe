@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.about
 
 import androidx.annotation.StringRes
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,8 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.getDrawable
-import coil3.compose.AsyncImage
+import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import my.nanihadesuka.compose.ColumnScrollbar
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
@@ -84,10 +84,9 @@ fun AboutTab() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // note: the preview
-                val context = LocalContext.current
-                val launcherDrawable = remember { getDrawable(context, R.mipmap.ic_launcher) }
-                AsyncImage(
-                    model = launcherDrawable,
+                val icon = AppCompatResources.getDrawable(LocalContext.current, R.mipmap.ic_launcher)
+                Image(
+                    painter = rememberDrawablePainter(icon),
                     contentDescription = stringResource(R.string.app_name),
                 )
                 Spacer(Modifier.height(4.dp))
