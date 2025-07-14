@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.net.toUri
 import androidx.media.MediaBrowserServiceCompat
+import androidx.media.MediaBrowserServiceCompat.BrowserRoot.EXTRA_RECENT
 import androidx.media.MediaBrowserServiceCompat.Result
 import androidx.media.utils.MediaConstants
 import io.reactivex.rxjava3.core.Flowable
@@ -48,6 +49,7 @@ class MediaBrowserImpl(
     private val context: Context,
     notifyChildrenChanged: Consumer<String>, // parentId
 ) {
+    private val packageValidator = PackageValidator(context)
     private val database = NewPipeDatabase.getInstance(context)
     private var disposables = CompositeDisposable()
 
@@ -69,9 +71,20 @@ class MediaBrowserImpl(
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): MediaBrowserServiceCompat.BrowserRoot {
+    ): MediaBrowserServiceCompat.BrowserRoot? {
         if (DEBUG) {
             Log.d(TAG, "onGetRoot($clientPackageName, $clientUid, $rootHints)")
+        }
+
+        if (!packageValidator.isKnownCaller(clientPackageName, clientUid)) {
+            // this is a caller we can't trust (see PackageValidator's rules taken from uamp)
+            return null
+        }
+
+        if (rootHints?.getBoolean(EXTRA_RECENT, false) == true) {
+            // the system is asking for a root to do media resumption, but we can't handle that yet,
+            // see https://developer.android.com/media/implement/surfaces/mobile#mediabrowserservice_implementation
+            return null
         }
 
         val extras = Bundle()
