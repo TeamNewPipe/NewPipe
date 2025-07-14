@@ -294,6 +294,7 @@
     <string name="show_channel_tabs_channels">show_channel_tabs_channels</string>
     <string name="show_channel_tabs_playlists">show_channel_tabs_playlists</string>
     <string name="show_channel_tabs_albums">show_channel_tabs_albums</string>
+    <string name="show_channel_tabs_likes">show_channel_tabs_likes</string>
     <string name="show_channel_tabs_about">show_channel_tabs_about</string>
     <string-array name="show_channel_tabs_value_list">
         <item>@string/show_channel_tabs_videos</item>
@@ -303,6 +304,7 @@
         <item>@string/show_channel_tabs_channels</item>
         <item>@string/show_channel_tabs_playlists</item>
         <item>@string/show_channel_tabs_albums</item>
+        <item>@string/show_channel_tabs_likes</item>
         <item>@string/show_channel_tabs_about</item>
     </string-array>
     <string-array name="show_channel_tabs_description_list">
@@ -313,6 +315,7 @@
         <item>@string/channel_tab_channels</item>
         <item>@string/channel_tab_playlists</item>
         <item>@string/channel_tab_albums</item>
+        <item>@string/channel_tab_likes</item>
         <item>@string/channel_tab_about</item>
     </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
@@ -390,17 +393,20 @@
     <string name="fetch_channel_tabs_tracks">fetch_channel_tabs_tracks</string>
     <string name="fetch_channel_tabs_shorts">fetch_channel_tabs_shorts</string>
     <string name="fetch_channel_tabs_livestreams">fetch_channel_tabs_livestreams</string>
+    <string name="fetch_channel_tabs_likes">fetch_channel_tabs_likes</string>
     <string-array name="feed_fetch_channel_tabs_value_list">
         <item>@string/fetch_channel_tabs_videos</item>
         <item>@string/fetch_channel_tabs_tracks</item>
         <item>@string/fetch_channel_tabs_shorts</item>
         <item>@string/fetch_channel_tabs_livestreams</item>
+        <item>@string/fetch_channel_tabs_likes</item>
     </string-array>
     <string-array name="feed_fetch_channel_tabs_description_list">
         <item>@string/channel_tab_videos</item>
         <item>@string/channel_tab_tracks</item>
         <item>@string/channel_tab_shorts</item>
         <item>@string/channel_tab_livestreams</item>
+        <item>@string/channel_tab_likes</item>
     </string-array>
 
     <string name="import_export_data_path">import_export_data_path</string>
