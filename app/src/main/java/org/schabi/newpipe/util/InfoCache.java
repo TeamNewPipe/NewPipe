@@ -90,7 +90,6 @@ public final class InfoCache {
         }
 
         if (data.isExpired()) {
-            // TODO: oh so we do check expiry on retrieval!
             LRU_CACHE.remove(key);
             return null;
         }
@@ -117,9 +116,6 @@ public final class InfoCache {
                         @NonNull final Info info,
                         @NonNull final Type cacheType) {
         final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
-        // CHECKSTYLE:OFF
-        // TODO: Expired items get refreshed by being put again; they are not removed when they expire
-        // CHECKSTYLE:ON
         if (DEBUG) {
             final var expiryDateInstant = Instant.now().plusMillis(expirationMillis);
             final var expiryDate = LocalDateTime.ofInstant(expiryDateInstant,

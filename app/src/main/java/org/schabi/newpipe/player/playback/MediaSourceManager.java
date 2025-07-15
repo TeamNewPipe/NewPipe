@@ -447,11 +447,6 @@ public class MediaSourceManager {
                                 MediaItemTag.from(source.getMediaItem())
                                         .map(tag -> {
                                             final int serviceId = streamInfo.getServiceId();
-                                            // CHECKSTYLE:OFF
-    // TODO: So this expiration is false. Expiration starts from when stream is extracted
-    //  But here it is giving it fresh expiration as though the stream info is new, but it's not
-    //  So cache expiration is not 1-1 with stream expiration, but is it supposed to be?
-                                            // CHECKSTYLE:ON
                                             final long expiration = System.currentTimeMillis()
                                                     + getCacheExpirationMillis(serviceId);
                                             return new LoadedMediaSource(source, tag, stream,

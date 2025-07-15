@@ -304,7 +304,7 @@ public final class ListHelper {
         for (final AudioStream stream : audioStreams) {
             // TODO: this doesn't add HLS OPUS streams, but soundcloud has that.
             // Meaning it never actually plays the OPUS soundcloud streams, only
-            // progressive and hls mp3
+            // progressive and hls mp3. So should we change this to allow HLS OPUS?
             if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT
                     || (stream.getDeliveryMethod() == DeliveryMethod.HLS
                     && stream.getFormat() == MediaFormat.OPUS)) {

@@ -31,7 +31,6 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
     private final RefreshableStream refreshableStream;
     private final String originalPlaylistUrl;
     private final Map<String, String> chunkUrlMap = new LinkedHashMap<>();
-    private int readsCalled;
     private boolean isError;
 
     public RefreshableHlsHttpDataSource(final RefreshableStream refreshableStream) {
@@ -53,12 +52,6 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
               defaultRequestProperties);
         this.refreshableStream = refreshableStream;
         originalPlaylistUrl = refreshableStream.initialUrl();
-    }
-
-    @Override
-    public int read(@NonNull final byte[] buffer, final int offset, final int length)
-            throws HttpDataSourceException {
-        return super.read(buffer, offset, length);
     }
 
     @Override
@@ -101,10 +94,6 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
             try {
                 refreshPlaylist();
             } catch (final ExtractionException | IOException ex) {
-                // TODO: better error here
-                // TODO: so what happens when we throw exception here
-                //  and this method gets called again in this class?
-                //  if we want to prevent open being called again we need to throw a runtime
                 throw new HttpDataSourceException("Error refreshing Hls playlist: "
                                                   + originalPlaylistUrl,
                                                   new IOException(ex), dataSpec,
@@ -139,7 +128,7 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
                                                 final List<String> newChunks) {
         for (int i = 0; i < newChunks.size(); ++i) {
             final var newUrl = newChunks.get(i);
-            chunkMap.put(getBaseUrl(newUrl), newUrl);
+            chunkMap.put(removeQueryParameters(newUrl), newUrl);
         }
     }
 
@@ -158,19 +147,18 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
         }
     }
 
-    private static String getBaseUrl(final String url) {
+    private static String removeQueryParameters(final String url) {
         final int idx = url.indexOf('?');
         return idx == -1 ? url : url.substring(0, idx);
     }
 
-    // TODO: better name
     private DataSpec getUpdatedDataSpec(final DataSpec dataSpec) {
         final var currentUrl = dataSpec.uri.toString();
         if (DEBUG) {
             Log.d(TAG, "getUpdatedDataSpec(" + currentUrl + ')');
         }
-        // Playlist has expired, so get mapping for new url
-        final var baseUrl = getBaseUrl(currentUrl);
+
+        final var baseUrl = removeQueryParameters(currentUrl);
 
         if (baseUrl.equals(currentUrl)) {
             if (DEBUG) {
@@ -181,7 +169,6 @@ public class RefreshableHlsHttpDataSource extends LoggingHttpDataSource {
         final var updatedUrl = chunkUrlMap.get(baseUrl);
         if (updatedUrl == null) {
             throw new IllegalStateException("baseUrl not found in mappings: " + baseUrl);
-            // TODO: problemo
         }
         if (DEBUG) {
             Log.d(TAG, "updated url:" + updatedUrl);
