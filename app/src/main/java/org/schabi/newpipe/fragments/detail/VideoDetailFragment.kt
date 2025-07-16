@@ -1931,12 +1931,8 @@ class VideoDetailFragment :
     }
 
     private fun findQueueInStack(queue: PlayQueue): StackItem? {
-        stack.descendingIterator().forEach { item ->
-            if (item?.playQueue == queue) {
-                return@findQueueInStack item
-            }
-        }
-        return null
+        return stack.descendingIterator().asSequence()
+            .firstOrNull { it?.playQueue?.equals(queue) == true }
     }
 
     private fun replaceQueueIfUserConfirms(onAllow: Runnable) {
