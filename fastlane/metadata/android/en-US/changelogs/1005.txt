@@ -1,0 +1,17 @@
+New
+• Add support for Android Auto
+• Allow setting feed groups as main screen tabs
+• [YouTube] Share as temporary playlist
+• [SoundCloud] Likes channel tab
+
+Improved
+• Better search bar hints
+• Show download date in Downloads
+• Use Android 13 per-app language
+
+Fixed
+• Fix broken text colors in dark mode
+• [YouTube] Fix playlists not loading more than 100 items
+• [YouTube] Fix missing recommended videos
+• Fix crashes in History list view
+• Fix timestamps in comment replies
