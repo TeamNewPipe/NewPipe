@@ -804,4 +804,6 @@
     <string name="show_error_snackbar">Sýna villustiku</string>
     <string name="image_quality_summary">Veldu gæði mynda og hvort eigi að hlaða myndum inn yfirhöfuð, til að minnka notun gagna og minnis. Breytingar munu hreinsa bæði vinnsluminni og diskminni - %s</string>
     <string name="audio_track_type_secondary">auka</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Deila sem YouTube-bráðabirgðaspilunarlista</string>
+    <string name="tab_bookmarks_short">Spilunarlistar</string>
 </resources>

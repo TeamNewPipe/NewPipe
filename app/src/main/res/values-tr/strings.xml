@@ -212,7 +212,7 @@
     <string name="override_current_data">Bu, var olan kurulumunuzu geçersiz kılacaktır.</string>
     <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgi göster</string>
-    <string name="tab_bookmarks">İmlenen Çalma Listeleri</string>
+    <string name="tab_bookmarks">İmlenen Oynatma Listeleri</string>
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
@@ -825,4 +825,10 @@
 \nBunu etkinleştirmek istiyor musunuz?</string>
     <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
     <string name="audio_track_type_secondary">ikincil</string>
+    <string name="tab_bookmarks_short">Oynatma Listeleri</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube geçici oynatma listesi olarak paylaş</string>
+    <string name="select_a_feed_group">Besleme kümesi seç</string>
+    <string name="feed_group_page_summary">Kanal küme sayfası</string>
+    <string name="no_feed_group_created_yet">Besleme kümesi oluşturulmadı</string>
+    <string name="channel_tab_likes">Beğeni</string>
 </resources>

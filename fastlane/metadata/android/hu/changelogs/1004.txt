@@ -1,1 +1,3 @@
-Immáron minden YouTube videó lejátszásra kerül
+Ez a kiadás javítja, hogy a YouTube csak 360p felbontásban képes lejátszani.
+
+Vegyük figyelembe, hogy az ebben a verzióban alkalmazott megoldás valószínűleg ideiglenes, és hosszú távon a SABR videó protokollt kell megvalósítani, de a TeamNewPipe tagjai jelenleg elfoglaltak, így minden segítséget nagyra értékelnénk! https://github.com/TeamNewPipe/NewPipe/issues/12248
