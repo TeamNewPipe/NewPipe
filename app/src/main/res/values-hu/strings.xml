@@ -218,8 +218,6 @@
     <string name="title_activity_history">Előzmények</string>
     <string name="action_history">Előzmények</string>
     <string name="delete_item_search_history">Törli ezt az elemet a keresési előzmények közül\?</string>
-    <string name="title_last_played">Utoljára lejátszott</string>
-    <string name="title_most_played">Legtöbbet lejátszott</string>
     <string name="main_page_content">Főoldal tartalma</string>
     <string name="blank_page_summary">Üres oldal</string>
     <string name="kiosk_page_summary">Kioszk oldal</string>

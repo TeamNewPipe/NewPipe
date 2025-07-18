@@ -224,8 +224,6 @@
     <string name="create">Créer</string>
     <string name="dismiss">Rejeter</string>
     <string name="rename">Renommer</string>
-    <string name="title_last_played">Dernière lecture</string>
-    <string name="title_most_played">Vidéos les plus vues</string>
     <string name="always_ask_open_action">Toujours demander</string>
     <string name="create_playlist">Nouvelle liste de lecture</string>
     <string name="rename_playlist">Renommer</string>

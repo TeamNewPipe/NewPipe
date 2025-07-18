@@ -217,8 +217,6 @@
     <string name="give_back">Dăruiește înapoi</string>
     <string name="website_title">Site web</string>
     <string name="website_encouragement">Vizitați site-ul NewPipe pentru mai multe informații și noutăți.</string>
-    <string name="title_last_played">Ultimele vizionări</string>
-    <string name="title_most_played">Cele mai multe vizionări</string>
     <string name="export_complete_toast">Exportat</string>
     <string name="import_complete_toast">Importat</string>
     <string name="no_valid_zip_file">Nici un fișier ZIP valid</string>

@@ -228,8 +228,6 @@
     <string name="title_activity_history">Historik</string>
     <string name="action_history">Historik</string>
     <string name="delete_item_search_history">Vil du slette dette element fra søgehistorikken\?</string>
-    <string name="title_last_played">Sidst Afspillet</string>
-    <string name="title_most_played">Mest Afspillet</string>
     <string name="main_page_content">Indhold af hovedside</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
     <string name="blank_page_summary">Tom Side</string>
