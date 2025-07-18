@@ -34,6 +34,8 @@ import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +58,13 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private final ActivityResultLauncher<Intent> requestExportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestExportPathResult);
+    private final ActivityResultLauncher<Intent> requestExportSubsLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    this::requestExportSubsResult);
+
+    private final ActivityResultLauncher<Intent> requestImportSubsLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    this::requestImportSubsResult);
 
 
     @Override
@@ -123,6 +132,42 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             alertDialog.show();
             return true;
         });
+
+        final Preference exportSubsPreference = findPreference("export_subscriptions");
+        if (exportSubsPreference != null) {
+            exportSubsPreference.setOnPreferenceClickListener(preference -> {
+                NoFileManagerSafeGuard.launchSafe(
+                        requestExportSubsLauncher,
+                        StoredFileHelper.getNewPicker(
+                                requireContext(),
+                                "newpipe_subscriptions_" + exportDateFormat.format(new Date())
+                                        + ".json",
+                                "application/json",
+                                null
+                        ),
+                        TAG,
+                        getContext()
+                );
+                return true;
+            });
+        }
+
+        final Preference importSubsPreference = findPreference("import_subscriptions");
+        if (importSubsPreference != null) {
+            importSubsPreference.setOnPreferenceClickListener(preference -> {
+                NoFileManagerSafeGuard.launchSafe(
+                        requestImportSubsLauncher,
+                        StoredFileHelper.getPicker(
+                                requireContext(),
+                                "application/json"
+                        ),
+                        TAG,
+                        getContext()
+                );
+                return true;
+            });
+        }
+
     }
 
     private void requestExportPathResult(final ActivityResult result) {
@@ -154,6 +199,36 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     .setNegativeButton(R.string.cancel, (d, id) ->
                             d.cancel())
                     .show();
+        }
+    }
+
+    private void requestExportSubsResult(final ActivityResult result) {
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            final Uri fileUri = result.getData().getData();
+            if (fileUri != null) {
+                final Intent intent = new Intent(
+                        requireContext(), SubscriptionsExportService.class);
+                intent.putExtra(SubscriptionsExportService.KEY_FILE_PATH, fileUri);
+                requireContext().startService(intent);
+                Toast.makeText(requireContext(), R.string.exporting, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void requestImportSubsResult(final ActivityResult result) {
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            final Uri fileUri = result.getData().getData();
+            if (fileUri != null) {
+                final Intent intent = new Intent(
+                        requireContext(), SubscriptionsImportService.class);
+                intent.putExtra(
+                        SubscriptionsImportService.KEY_MODE,
+                        SubscriptionsImportService.PREVIOUS_EXPORT_MODE
+                );
+                intent.putExtra(SubscriptionsImportService.KEY_VALUE, fileUri);
+                requireContext().startService(intent);
+                Toast.makeText(requireContext(), R.string.importing, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
