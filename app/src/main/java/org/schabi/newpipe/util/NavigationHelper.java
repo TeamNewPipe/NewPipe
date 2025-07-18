@@ -199,7 +199,7 @@ public final class NavigationHelper {
     }
 
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
-        PlayerType playerType = PlayerHolder.getInstance().getType();
+        PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing but no player is open; defaulting to background player");
             playerType = PlayerType.AUDIO;
@@ -210,7 +210,7 @@ public final class NavigationHelper {
 
     /* ENQUEUE NEXT */
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
-        PlayerType playerType = PlayerHolder.getInstance().getType();
+        PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             Log.e(TAG, "Enqueueing next but no player is open; defaulting to background player");
             playerType = PlayerType.AUDIO;
@@ -420,13 +420,13 @@ public final class NavigationHelper {
                                                final boolean switchingPlayers) {
 
         final boolean autoPlay;
-        @Nullable final PlayerType playerType = PlayerHolder.getInstance().getType();
+        @Nullable final PlayerType playerType = PlayerHolder.INSTANCE.getType();
         if (playerType == null) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
-            autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
+            autoPlay = PlayerHolder.INSTANCE.isPlaying(); // keep play/pause state
         } else if (playerType == PlayerType.MAIN) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);

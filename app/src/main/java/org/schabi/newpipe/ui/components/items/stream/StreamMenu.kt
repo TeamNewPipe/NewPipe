@@ -26,12 +26,10 @@ fun StreamMenu(
 ) {
     val info = stream.toStreamInfoItem()
     val context = LocalContext.current
-    val playerHolder = PlayerHolder.getInstance()
+    val streamViewModel = viewModel<StreamViewModel>()
 
     DropdownMenu(expanded = expanded, onDismissRequest = onDismissRequest) {
-        val streamViewModel = viewModel<StreamViewModel>()
-
-        if (playerHolder.isPlayQueueReady) {
+        if (PlayerHolder.isPlayQueueReady) {
             DropdownTextMenuItem(
                 text = R.string.enqueue_stream,
                 onClick = {
@@ -42,13 +40,13 @@ fun StreamMenu(
                 },
             )
 
-            if (playerHolder.queuePosition < playerHolder.queueSize - 1) {
+            if (PlayerHolder.queuePosition < PlayerHolder.queueSize - 1) {
                 DropdownTextMenuItem(
-                    text = R.string.enqueue_next_stream,
+                    text = R.string.enqueue_stream,
                     onClick = {
                         onDismissRequest()
                         SparseItemUtil.fetchItemInfoIfSparse(context, info) {
-                            NavigationHelper.enqueueNextOnPlayer(context, it)
+                            NavigationHelper.enqueueOnPlayer(context, it)
                         }
                     },
                 )
