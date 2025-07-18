@@ -36,7 +36,7 @@ import java.util.stream.IntStream;
 
 public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String TAG = "MediaSessUi";
+    private static final String TAG = MediaSessionPlayerUi.class.getSimpleName();
 
     @NonNull
     private final MediaSessionCompat mediaSession;

@@ -112,7 +112,7 @@ public final class NonUriHlsDataSourceFactory implements HlsDataSourceFactory {
      * </p>
      *
      * <p>
-     * This change allow playback of non-URI HLS contents, when the manifest is not a master
+     * This change allows playback of non-URI HLS contents, when the manifest is not a master
      * manifest/playlist (otherwise, endless loops should be encountered because the
      * {@link DataSource}s created for media playlists should use the master playlist response
      * instead).
