@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.util.Consumer;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
@@ -12,11 +14,11 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.DeviceUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +39,12 @@ public final class SettingMigrations {
 
     private static final String TAG = SettingMigrations.class.toString();
     private static SharedPreferences sp;
+
+    /**
+     * List of UI actions that are performed after the UI is initialized
+     * to inform the user about changes that were applied by migrations.
+     */
+    private static final List<Consumer<Context>> MIGRATION_INFO = new ArrayList<>();
 
     private static final Migration MIGRATION_0_1 = new Migration(0, 1) {
         @Override
@@ -163,6 +171,14 @@ public final class SettingMigrations {
                     .collect(Collectors.toUnmodifiableList());
             if (tabs.size() != cleanedTabs.size()) {
                 tabsManager.saveTabs(cleanedTabs);
+                // create an AlertDialog to inform the user about the change
+                MIGRATION_INFO.add((Context uiContext) -> new AlertDialog.Builder(uiContext)
+                        .setTitle(R.string.migration_info_6_7_title)
+                        .setMessage(R.string.migration_info_6_7_message)
+                        .setPositiveButton(R.string.ok, null)
+                        .setCancelable(false)
+                        .create()
+                        .show());
             }
         }
     };
@@ -231,6 +247,21 @@ public final class SettingMigrations {
 
         // store the current preferences version
         sp.edit().putInt(lastPrefVersionKey, currentVersion).apply();
+    }
+
+    /**
+     * Perform UI actions informing about migrations that took place if they are present.
+     * @param context Context that can be used to show dialogs/snackbars/toasts
+     */
+    public static void showUserInfoIfPresent(@NonNull final Context context) {
+        for (final Consumer<Context> consumer : MIGRATION_INFO) {
+            try {
+                consumer.accept(context);
+            } catch (final Exception e) {
+                ErrorUtil.showUiErrorSnackbar(context, "Showing migration info to the user", e);
+            }
+        }
+        MIGRATION_INFO.clear();
     }
 
     private SettingMigrations() { }
