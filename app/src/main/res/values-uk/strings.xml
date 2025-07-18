@@ -842,4 +842,10 @@
 \nВи впевнені, що хочете продовжити?</string>
     <string name="import_settings_vulnerable_format">Параметри експорту, який імпортується, використовують вразливий формат, який не підтримується з NewPipe 0.27.0. Переконайтеся, що експорт, який імпортується, походить із надійного джерела, і в майбутньому віддайте перевагу використанню лише експорту, отриманого з NewPipe 0.27.0 або новішої версії. Підтримку імпорту налаштувань у цьому вразливому форматі незабаром буде повністю припинено, і тоді старі версії NewPipe більше не зможуть імпортувати налаштування експорту з нових версій.</string>
     <string name="audio_track_type_secondary">вторинний</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Поділитися як тимчасовим списком відтворення YouTube</string>
+    <string name="tab_bookmarks_short">Списки відтворення</string>
+    <string name="feed_group_page_summary">Сторінка групи каналів</string>
+    <string name="select_a_feed_group">Виберіть групу каналів</string>
+    <string name="no_feed_group_created_yet">Групу каналів ще не створено</string>
+    <string name="channel_tab_likes">Вподобання</string>
 </resources>

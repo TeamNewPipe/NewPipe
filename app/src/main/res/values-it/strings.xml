@@ -837,4 +837,12 @@
 \nVuoi attivarlo?</string>
     <string name="import_settings_vulnerable_format">Le impostazioni nell\'export che viene importato usano un formato vulnerabile che è stato deprecato dalla versione 0.27.0 di NewPipe. Assicuratevi che l\'export importato venga da una fonte fidata, sarebbe preferibile usare solo exports ottenuti da NewPipe 0.27.0 o superiori, nel futuro. Il supporto all\'importazione di Impostazioni in questo formato vulnerabile sarà presto rimosso completamente, da quel momento le versioni di NewPipe più vecchie non saranno più in grado di importare impostazioni tramite export di versioni più recenti.</string>
     <string name="audio_track_type_secondary">secondaria</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Condividi come playlist YouTube temporanea</string>
+    <string name="tab_bookmarks_short">Playlist</string>
+    <string name="select_a_feed_group">Seleziona un gruppo di feed</string>
+    <string name="no_feed_group_created_yet">Ancora nessun gruppo di feed creato</string>
+    <string name="feed_group_page_summary">Pagina gruppo canali</string>
+    <string name="search_with_service_name_and_filter">Cerca %1$s (%2$s)</string>
+    <string name="search_with_service_name">Cerca su %1$s</string>
+    <string name="channel_tab_likes">Mi piace</string>
 </resources>

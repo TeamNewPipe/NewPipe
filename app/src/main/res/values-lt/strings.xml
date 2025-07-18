@@ -6,7 +6,7 @@
     <string name="install">Įdiegti</string>
     <string name="cancel">Atšaukti</string>
     <string name="open_in_browser">Atverti naršyklėje</string>
-    <string name="open_in_popup_mode">Atverti iššokančio lango rėžime</string>
+    <string name="open_in_popup_mode">Atverti iššokančio lango režime</string>
     <string name="share">Dalintis</string>
     <string name="download">Atsisiųsti</string>
     <string name="search">Paieška</string>
@@ -836,4 +836,7 @@
 \n%2$s</string>
     <string name="question_mark">\?</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="tab_bookmarks_short">Grojaraščiai</string>
+    <string name="audio_track_type_secondary">Antrinis</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Dalintis kaip laikinuoju youtube grojaraščiu</string>
 </resources>

@@ -53,12 +53,12 @@ swiperefreshlayout = "1.1.0"
 # name and the commit hash with the commit hash of the (pushed) commit you want to test
 # This works thanks to JitPack: https://jitpack.io/
 teamnewpipe-filepicker = "5.0.0"
-teamnewpipe-nanojson = "1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751"
+teamnewpipe-nanojson = "e9d656ddb49a412a5a0a5d5ef20ca7ef09549996"
 # WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
 # the corresponding commit hash, since JitPack sometimes deletes artifacts.
 # If there’s already a git hash, just add more of it to the end (or remove a letter)
 # to cause jitpack to regenerate the artifact.
-teamnewpipe-newpipe-extractor = "v0.24.6"
+teamnewpipe-newpipe-extractor = "68b4c9acbae2d167e7b1209bb6bf0ae086dd427e"
 webkit = "1.9.0"
 work = "2.10.0"
 

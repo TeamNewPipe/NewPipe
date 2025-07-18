@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Објављено %1$s</string>
-    <string name="no_player_found">Нема плејера стримова. Инсталирати VLC\?</string>
+    <string name="no_player_found">Нема извођача довода. Да ли уградити ВЛЦ?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
@@ -60,7 +60,7 @@
     <string name="audio">Аудио снимак</string>
     <string name="retry">Покушај поново</string>
     <string name="duration_live">Уживо</string>
-    <string name="main_bg_subtitle">Додирните лупу да бисте започели.</string>
+    <string name="main_bg_subtitle">Додирните лупу ради почетка.</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
     <string name="delete">Избриши</string>
@@ -86,7 +86,7 @@
     <string name="short_thousand">хиљ.</string>
     <string name="short_million">мил.</string>
     <string name="short_billion">млрд.</string>
-    <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
+    <string name="open_in_popup_mode">Отвори у искачућем облику</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
 \nотварање у искачућем режиму</string>
     <string name="popup_playing_toast">Пуштање у режиму искачућег прозора</string>
@@ -181,7 +181,7 @@
     <string name="play_queue_remove">Уклони</string>
     <string name="play_queue_stream_detail">Детаљи</string>
     <string name="play_queue_audio_settings">Подешавања аудио снимка</string>
-    <string name="no_player_found_toast">Није пронађен ниједан плејер стримова (можете инсталирати VLC да бисте га покренули).</string>
+    <string name="no_player_found_toast">Није пронађен ниједан извођач довода (можете уградити ВЛЦ ради извођења садржаја).</string>
     <string name="controls_download_desc">Преузимање фајла стрима</string>
     <string name="show_info">Прикажи информације</string>
     <string name="tab_bookmarks">Обележене плејлисте</string>
@@ -376,8 +376,8 @@
     <string name="no_valid_zip_file">Нема важећег ZIP фајла</string>
     <string name="import_complete_toast">Увезено</string>
     <string name="export_complete_toast">Извезено</string>
-    <string name="no_playlist_bookmarked_yet">Још нема обележивача на листи</string>
-    <string name="select_a_playlist">Изаберите листу пуштања</string>
+    <string name="no_playlist_bookmarked_yet">Још нема обележивача плејлисте</string>
+    <string name="select_a_playlist">Изаберите плејлисту</string>
     <string name="default_kiosk_page_summary">Подразумевани киоск</string>
     <string name="main_page_content_summary">Које картице се приказују на главној страници</string>
     <string name="title_most_played">Највише пуштано</string>
@@ -411,7 +411,7 @@
     </plurals>
     <string name="no_one_watching">Нико не гледа</string>
     <string name="subscribers_count_not_available">Број пратилаца није доступан</string>
-    <string name="drawer_header_description">Изабери услугу, тренутно изабрана:</string>
+    <string name="drawer_header_description">Изаберите услугу, тренутно изабрана:</string>
     <string name="detail_drag_description">Превуците за преуређивање</string>
     <string name="description_tab_description">Опис</string>
     <string name="comments_tab_description">Коментари</string>
@@ -515,7 +515,7 @@
     <string name="notification_action_shuffle">Мешање</string>
     <string name="notification_action_repeat">Понављање</string>
     <string name="notification_actions_at_most_three">Можете да изаберете највише три радње за приказ у компактном обавештењу!</string>
-    <string name="notification_actions_summary">Измените сваку радњу обавештења додиром на њу. Означите до три радње које ће се приказивати у компактном обавештењу помоћу поља за потврду са десне стране</string>
+    <string name="notification_actions_summary">Измените сваку радњу обавештења додиром на њу. Означите до три радње које ће се приказивати у компактном обавештењу помоћу поља за потврду са десне стране.</string>
     <string name="notification_action_4_title">Дугме пете радње</string>
     <string name="notification_action_3_title">Дугме четврте радње</string>
     <string name="notification_action_2_title">Дугме треће радње</string>
@@ -837,4 +837,10 @@
 \nЖелите ли да омогућите ово?</string>
     <string name="import_settings_vulnerable_format">Подешавања у извозу који се увозе користе рањив формат који је застарео од NewPipe верзије 0.27.0. Уверите се да извоз који се увози долази из поузданог извора и радије користите само извозе добијене из NewPipe 0.27.0 или новије верзије, у будућности. Подршка за увоз подешавања у овом рањивом формату ће ускоро бити потпуно уклоњена и тада старе NewPipe верзије више неће моћи да увозе подешавања извоза из нових верзија.</string>
     <string name="audio_track_type_secondary">секундарни</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Дели као YouTube привремену плејлисту</string>
+    <string name="tab_bookmarks_short">Плејлисте</string>
+    <string name="no_feed_group_created_yet">Још није направљена ниједна група фидова</string>
+    <string name="select_a_feed_group">Изаберите групу фидова</string>
+    <string name="feed_group_page_summary">Страница групе канала</string>
+    <string name="channel_tab_likes">Ликовања</string>
 </resources>

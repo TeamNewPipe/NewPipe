@@ -146,7 +146,7 @@
     <string name="error_details_headline">Üksikasjad:</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
-    <string name="detail_likes_img_view_description">Meeldib</string>
+    <string name="detail_likes_img_view_description">Meeldimisi</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
     <string name="search_no_results">Tulemusi pole</string>
     <string name="empty_list_subtitle">Siin pole veel midagi</string>
@@ -206,8 +206,8 @@
     <string name="donation_title">Anneta</string>
     <string name="website_title">Veebisait</string>
     <string name="website_encouragement">Täiendava info ja uudiste lugemiseks külasta NewPipe\'i veebisaiti.</string>
-    <string name="privacy_policy_title">NewPipe\'i privaatsuspoliitika</string>
-    <string name="read_privacy_policy">Loe privaatsuspoliitikat</string>
+    <string name="privacy_policy_title">NewPipe\'i andmekaitsepõhimõtted</string>
+    <string name="read_privacy_policy">Loe andmekaitsepõhimõtteid</string>
     <string name="app_license_title">NewPipe\'i litsents</string>
     <string name="read_full_license">Loe litsentsi</string>
     <string name="title_activity_history">Ajalugu</string>
@@ -305,7 +305,7 @@
     <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmisest, koodi puhastamisest või suurtest koodi muudatustest - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
     <string name="donation_encouragement">NewPipe\'i arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kasutuskogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe veel paremaks, nautides ise tassi kohvi.</string>
     <string name="give_back">Anneta</string>
-    <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid. \nNewPipe\'i privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
+    <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid. \nNewPipe\'i andmekaitsepõhimõtted selgitavad üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
     <string name="app_license">NewPipe on vaba ja avatud lähtekoodiga tarkvara. Seada võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
@@ -320,7 +320,7 @@
     <string name="skip_silence_checkbox">Keri helitu koht edasi</string>
     <string name="playback_step">Samm</string>
     <string name="playback_reset">Lähtesta</string>
-    <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i privaatsuspoliitikale. Palun loe seda hoolikalt. \nMeile veateate saatmiseks pead sellega nõustuma.</string>
+    <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i andmekaitsepõhimõtetele. Palun loe seda hoolikalt. \nMeile veateate saatmiseks pead sellega nõustuma.</string>
     <string name="minimize_on_exit_title">Minimeeri, kui kasutad teisi rakendusi</string>
     <string name="minimize_on_exit_summary">Tegevus lülitusel peamiselt videopleierilt teisele rakendusele — %s</string>
     <string name="minimize_on_exit_none_description">Pole</string>
@@ -808,4 +808,12 @@
     <string name="no">Ei</string>
     <string name="import_settings_vulnerable_format">Imporditavad andmed kasutavad turvaprobleemidega vormingut, mida alates versioonist 0.27.0 NewPipe enam kasutada ei suuda. Palun kontrolli, et impordifail on loodud usaldusväärse osapoole poolt ning eelista ekspordifaile, mis on loodud NewPipe\'i versiooniga 0.27.0 või uuemaga. Tugi sellise vana vormingu kasutamisele kaob õige pea ja seejärel NewPipe\'i uuemad ja vanemad versioonid ei saa omavahel andmeid enam vahetada.</string>
     <string name="audio_track_type_secondary">täiendav</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Jaga YouTube\'i ajutise esitusloendina</string>
+    <string name="tab_bookmarks_short">Esitusloendid</string>
+    <string name="select_a_feed_group">Vali andmevoo grupp</string>
+    <string name="no_feed_group_created_yet">Ühtegi andmevoo gruppi pole veel loodud</string>
+    <string name="feed_group_page_summary">Kanalirühmade leht</string>
+    <string name="search_with_service_name">Otsi: %1$s</string>
+    <string name="search_with_service_name_and_filter">Otsi: %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Meeldimisi</string>
 </resources>

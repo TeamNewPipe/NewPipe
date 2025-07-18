@@ -807,4 +807,9 @@
     <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla.
 \nHaluatko ottaa tämän käyttöön?</string>
     <string name="error_insufficient_storage">Laitteella ei ole riittävästi vapaata tilaa</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Jaa tilapäisenä YouTube-soittolistana</string>
+    <string name="channel_tab_tracks">Raidat</string>
+    <string name="question_mark">\?</string>
+    <string name="audio_track_type_secondary">toissijainen</string>
+    <string name="tab_bookmarks_short">Soittolistat</string>
 </resources>
