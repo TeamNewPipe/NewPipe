@@ -12,13 +12,19 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.settings.tabs.Tab;
+import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.DeviceUtils;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 /**
  * In order to add a migration, follow these steps, given P is the previous version:<br>
@@ -129,7 +135,7 @@ public final class SettingMigrations {
         }
     };
 
-    public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+    private static final Migration MIGRATION_5_6 = new Migration(5, 6) {
         @Override
         protected void migrate(@NonNull final Context context) {
             final boolean loadImages = sp.getBoolean("download_thumbnail_key", true);
@@ -140,6 +146,24 @@ public final class SettingMigrations {
                                     ? R.string.image_quality_default
                                     : R.string.image_quality_none_key))
                     .apply();
+        }
+    };
+
+    private static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            // The SoundCloud Top 50 Kiosk was removed in the extractor,
+            // so we remove the corresponding tab if it exists.
+            final TabsManager tabsManager = TabsManager.getManager(context);
+            final List<Tab> tabs = tabsManager.getTabs();
+            final List<Tab> cleanedTabs = tabs.stream()
+                    .filter(tab -> !(tab instanceof Tab.KioskTab kioskTab
+                            && kioskTab.getKioskServiceId() == SoundCloud.getServiceId()
+                            && kioskTab.getKioskId().equals("Top 50")))
+                    .collect(Collectors.toUnmodifiableList());
+            if (tabs.size() != cleanedTabs.size()) {
+                tabsManager.saveTabs(cleanedTabs);
+            }
         }
     };
 
@@ -156,12 +180,13 @@ public final class SettingMigrations {
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,
+            MIGRATION_6_7
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 6;
+    private static final int VERSION = 7;
 
 
     public static void runMigrationsIfNeeded(@NonNull final Context context) {
