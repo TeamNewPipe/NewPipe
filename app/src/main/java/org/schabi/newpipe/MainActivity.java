@@ -20,8 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -142,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
+        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -158,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefEditor = sharedPreferences.edit();
@@ -197,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         SettingMigrations.showUserInfoIfPresent(this);
     }
 
@@ -504,9 +501,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+        Localization.initPrettyTime(Localization.resolvePrettyTime());
         super.onResume();
 
         // Close drawer on return, and don't show animation,

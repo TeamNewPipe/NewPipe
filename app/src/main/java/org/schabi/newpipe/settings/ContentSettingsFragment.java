@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -27,26 +28,20 @@ import java.util.Locale;
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private String youtubeRestrictedModeEnabledKey;
 
-    private String initialLanguage;
-
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
         addPreferencesFromResourceRegistry();
 
-        initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
-
+        final var appLanguagePref = requirePreference(R.string.app_language_key);
         if (Build.VERSION.SDK_INT >= 33) {
-            requirePreference(R.string.app_language_key).setVisible(false);
-            final Preference newAppLanguagePref =
+            appLanguagePref.setVisible(false);
+            final var newAppLanguagePref =
                     requirePreference(R.string.app_language_android_13_and_up_key);
             newAppLanguagePref.setSummaryProvider(preference -> {
-                final Locale customLocale = AppCompatDelegate.getApplicationLocales().get(0);
-                if (customLocale != null) {
-                    return customLocale.getDisplayName();
-                }
-                return getString(R.string.systems_language);
+                final Locale loc = AppCompatDelegate.getApplicationLocales().get(0);
+                return loc != null ? loc.getDisplayName() : getString(R.string.systems_language);
             });
             newAppLanguagePref.setOnPreferenceClickListener(preference -> {
                 final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
@@ -55,10 +50,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 return true;
             });
             newAppLanguagePref.setVisible(true);
+        } else {
+            appLanguagePref.setOnPreferenceChangeListener((preference, newValue) -> {
+                final String language = (String) newValue;
+                final Locale locale = Locale.forLanguageTag(language);
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+                return true;
+            });
         }
 
-        final Preference imageQualityPreference = requirePreference(R.string.image_quality_key);
-        imageQualityPreference.setOnPreferenceChangeListener(
+        requirePreference(R.string.image_quality_key).setOnPreferenceChangeListener(
                 (preference, newValue) -> {
                     ImageStrategy.setPreferredImageQuality(PreferredImageQuality
                             .fromPreferenceKey(requireContext(), (String) newValue));
@@ -92,22 +93,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onDestroy() {
         super.onDestroy();
 
-        final String selectedLanguage =
-                defaultPreferences.getString(getString(R.string.app_language_key), "en");
-
-        if (!selectedLanguage.equals(initialLanguage)) {
-            if (Build.VERSION.SDK_INT < 33) {
-                Toast.makeText(
-                        requireContext(),
-                        R.string.localization_changes_requires_app_restart,
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-            final Localization selectedLocalization = org.schabi.newpipe.util.Localization
-                    .getPreferredLocalization(requireContext());
-            final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
-                    .getPreferredContentCountry(requireContext());
-            NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
-        }
+        final Localization selectedLocalization = org.schabi.newpipe.util.Localization
+                .getPreferredLocalization(requireContext());
+        final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
+                .getPreferredContentCountry(requireContext());
+        NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
     }
 }
