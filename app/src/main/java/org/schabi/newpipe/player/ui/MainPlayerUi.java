@@ -829,8 +829,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         binding.itemsListHeaderDuration.setText(
                 String.format("%s/%s",
-                        getTimeString(currentTime + before),
-                        getTimeString(before + after)
+                    getTimeString(context, currentTime + before),
+                    getTimeString(context, before + after)
                 ));
     }
 

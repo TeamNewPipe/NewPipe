@@ -546,7 +546,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         if (player.getCurrentState() != STATE_PAUSED_SEEK) {
             binding.playbackSeekBar.setProgress(currentProgress);
         }
-        binding.playbackCurrentTime.setText(getTimeString(currentProgress));
+        binding.playbackCurrentTime.setText(getTimeString(context, currentProgress));
     }
 
     /**
@@ -555,7 +555,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
      * @param duration the video duration, in milliseconds
      */
     private void setVideoDurationToControls(final int duration) {
-        binding.playbackEndTime.setText(getTimeString(duration));
+        binding.playbackEndTime.setText(getTimeString(context, duration));
 
         binding.playbackSeekBar.setMax(duration);
         // This is important for Android TVs otherwise it would apply the default from
@@ -576,7 +576,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
         }
 
-        binding.currentDisplaySeek.setText(getTimeString(progress));
+        binding.currentDisplaySeek.setText(getTimeString(context, progress));
 
         // Seekbar Preview Thumbnail
         SeekbarPreviewThumbnailHelper
@@ -652,7 +652,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             player.getExoPlayer().play();
         }
 
-        binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
+        binding.playbackCurrentTime.setText(getTimeString(context, seekBar.getProgress()));
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         animate(binding.currentSeekbarPreviewThumbnail, false, 200, AnimationType.SCALE_AND_ALPHA);
 
@@ -794,7 +794,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void onPrepared() {
         super.onPrepared();
         setVideoDurationToControls((int) player.getExoPlayer().getDuration());
-        binding.playbackSpeed.setText(formatSpeed(player.getPlaybackSpeed()));
+        binding.playbackSpeed.setText(formatSpeed(context, player.getPlaybackSpeed()));
     }
 
     @Override
@@ -994,7 +994,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
         super.onPlaybackParametersChanged(playbackParameters);
-        binding.playbackSpeed.setText(formatSpeed(playbackParameters.speed));
+        binding.playbackSpeed.setText(formatSpeed(context, playbackParameters.speed));
     }
 
     @Override
@@ -1147,9 +1147,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
             playbackSpeedPopupMenu.getMenu().add(POPUP_MENU_ID_PLAYBACK_SPEED, i, Menu.NONE,
-                    formatSpeed(PLAYBACK_SPEEDS[i]));
+                formatSpeed(context, PLAYBACK_SPEEDS[i]));
         }
-        binding.playbackSpeed.setText(formatSpeed(player.getPlaybackSpeed()));
+        binding.playbackSpeed.setText(formatSpeed(context, player.getPlaybackSpeed()));
         playbackSpeedPopupMenu.setOnMenuItemClickListener(this);
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
@@ -1274,7 +1274,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             final float speed = PLAYBACK_SPEEDS[speedIndex];
 
             player.setPlaybackSpeed(speed);
-            binding.playbackSpeed.setText(formatSpeed(speed));
+            binding.playbackSpeed.setText(formatSpeed(context, speed));
         }
 
         return false;

@@ -592,7 +592,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {
         if (parameters != null && menu != null && player != null) {
             final MenuItem item = menu.findItem(R.id.action_playback_speed);
-            item.setTitle(formatSpeed(parameters.speed));
+            item.setTitle(formatSpeed(getApplicationContext(), parameters.speed));
         }
     }
 

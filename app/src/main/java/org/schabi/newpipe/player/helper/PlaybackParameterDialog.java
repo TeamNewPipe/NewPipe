@@ -35,6 +35,7 @@ import org.schabi.newpipe.util.SliderStrategy;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import java.util.function.DoubleFunction;
@@ -283,8 +284,16 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setText(
             final TextView textView,
-            final DoubleFunction<String> formatter,
+            final BiFunction<Context, Double, String> formatter,
             final double value
+    ) {
+        Objects.requireNonNull(textView).setText(formatter.apply(requireContext(), value));
+    }
+
+    private void setText(
+        final TextView textView,
+        final DoubleFunction<String> formatter,
+        final double value
     ) {
         Objects.requireNonNull(textView).setText(formatter.apply(value));
     }
@@ -392,7 +401,7 @@ public class PlaybackParameterDialog extends DialogFragment {
             final double stepSizeValue,
             final TextView textView
     ) {
-        setText(textView, PlaybackParameterDialog::getPercentString, stepSizeValue);
+        setText(textView, this::getPercentString, stepSizeValue);
         textView.setOnClickListener(view -> {
             PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .edit()
@@ -576,18 +585,18 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     @NonNull
-    private static String getStepUpPercentString(final double percent) {
+    private String getStepUpPercentString(final double percent) {
         return '+' + getPercentString(percent);
     }
 
     @NonNull
-    private static String getStepDownPercentString(final double percent) {
+    private String getStepDownPercentString(final double percent) {
         return '-' + getPercentString(percent);
     }
 
     @NonNull
-    private static String getPercentString(final double percent) {
-        return PlayerHelper.formatPitch(percent);
+    private String getPercentString(final double percent) {
+        return PlayerHelper.formatPitch(requireContext(), percent);
     }
 
     public interface Callback {

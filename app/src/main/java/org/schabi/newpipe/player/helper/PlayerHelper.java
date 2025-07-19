@@ -45,9 +45,11 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,11 +62,14 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public final class PlayerHelper {
-    private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final Formatter STRING_FORMATTER =
-            new Formatter(STRING_BUILDER, Locale.getDefault());
-    private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
-    private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
+    private static PlayerHelperFormatters formatters;
+
+    private static PlayerHelperFormatters formatters(final Context context) {
+        if (formatters == null) {
+            formatters = PlayerHelperFormatters.create(context);
+        }
+        return formatters;
+    }
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -87,37 +92,32 @@ public final class PlayerHelper {
     private PlayerHelper() {
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Exposed helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // region Exposed helpers
 
     @NonNull
-    public static String getTimeString(final int milliSeconds) {
+    public static String getTimeString(@NonNull final Context context, final int milliSeconds) {
         final int seconds = (milliSeconds % 60000) / 1000;
         final int minutes = (milliSeconds % 3600000) / 60000;
         final int hours = (milliSeconds % 86400000) / 3600000;
         final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
-        STRING_BUILDER.setLength(0);
+        final Formatter stringFormatter = formatters(context).string();
         return (days > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-                : hours > 0
-                ? STRING_FORMATTER.format("%d:%02d:%02d", hours, minutes, seconds)
-                : STRING_FORMATTER.format("%02d:%02d", minutes, seconds)
+            ? stringFormatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
+            : hours > 0
+            ? stringFormatter.format("%d:%02d:%02d", hours, minutes, seconds)
+            : stringFormatter.format("%02d:%02d", minutes, seconds)
         ).toString();
     }
 
     @NonNull
-    public static String formatSpeed(final double speed) {
-        return SPEED_FORMATTER.format(speed);
+    public static String formatSpeed(@NonNull final Context context, final double speed) {
+        return formatters(context).speed().format(speed);
     }
 
     @NonNull
-    public static String formatPitch(final double pitch) {
-        return PITCH_FORMATTER.format(pitch);
-    }
-
-    @NonNull
+    public static String formatPitch(@NonNull final Context context, final double pitch) {
+        return formatters(context).pitch().format(pitch);
     }
 
     @NonNull
@@ -208,9 +208,8 @@ public final class PlayerHelper {
                 ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Settings Resolution
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Resolution
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
         return getPreferences(context)
@@ -394,9 +393,8 @@ public final class PlayerHelper {
         return Integer.parseInt(preferredIntervalBytes) * 1024;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Private helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Private helpers
 
     @NonNull
     private static SharedPreferences getPreferences(@NonNull final Context context) {
@@ -415,10 +413,8 @@ public final class PlayerHelper {
         return singlePlayQueue;
     }
 
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Utils used by player
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Utils used by player
 
     @RepeatMode
     public static int nextRepeatMode(@RepeatMode final int repeatMode) {
@@ -491,5 +487,23 @@ public final class PlayerHelper {
         return Integer.parseInt(Objects.requireNonNull(player.getPrefs().getString(
                 player.getContext().getString(R.string.seek_duration_key),
                 player.getContext().getString(R.string.seek_duration_default_value))));
+    }
+
+    // endregion
+
+    record PlayerHelperFormatters(
+        Formatter string,
+        NumberFormat speed,
+        NumberFormat pitch) {
+
+        static PlayerHelperFormatters create(final Context context) {
+            final Locale locale = Localization.getAppLocale(context);
+
+            final DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(locale);
+            return new PlayerHelperFormatters(
+                new Formatter(locale),
+                new DecimalFormat("0.##x", dfs),
+                new DecimalFormat("##%", dfs));
+        }
     }
 }
