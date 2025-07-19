@@ -33,11 +33,9 @@ import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.ResizeMode;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
-import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -120,15 +118,6 @@ public final class PlayerHelper {
     }
 
     @NonNull
-    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
-        switch (format) {
-            case VTT:
-                return MimeTypes.TEXT_VTT;
-            case TTML:
-                return MimeTypes.APPLICATION_TTML;
-            default:
-                throw new IllegalArgumentException("Unrecognized mime type: " + format.name());
-        }
     }
 
     @NonNull
