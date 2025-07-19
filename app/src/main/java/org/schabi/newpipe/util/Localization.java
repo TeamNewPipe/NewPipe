@@ -437,11 +437,13 @@ public final class Localization {
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
+    // Starting with pull request #12093, NewPipe exclusively uses Android's
+    // public per-app language APIs to read and set the UI language for NewPipe.
+    // The following code will migrate any existing custom app language in SharedPreferences to
+    // use the public per-app language APIs instead.
+    // For reference, see
+    // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
     public static void migrateAppLanguageSettingIfNecessary(@NonNull final Context context) {
-        // Starting with pull request #12093, NewPipe exclusively uses Android's
-        // public per-app language APIs to read and set the UI language for NewPipe.
-        // The following code will migrate any existing custom app language in SharedPreferences to
-        // use the public per-app language APIs instead.
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String appLanguageKey = context.getString(R.string.app_language_key);
         final String appLanguageValue = sp.getString(appLanguageKey, null);
