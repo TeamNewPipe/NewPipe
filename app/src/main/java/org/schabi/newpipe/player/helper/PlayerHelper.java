@@ -53,7 +53,6 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -62,13 +61,13 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public final class PlayerHelper {
-    private static PlayerHelperFormatters formatters;
+    private static PlayerHelperFormatters formattersInstance;
 
     private static PlayerHelperFormatters formatters(final Context context) {
-        if (formatters == null) {
-            formatters = PlayerHelperFormatters.create(context);
+        if (formattersInstance == null) {
+            formattersInstance = PlayerHelperFormatters.create(context);
         }
-        return formatters;
+        return formattersInstance;
     }
 
     @Retention(SOURCE)
@@ -101,13 +100,14 @@ public final class PlayerHelper {
         final int hours = (milliSeconds % 86400000) / 3600000;
         final int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
-        final Formatter stringFormatter = formatters(context).string();
-        return (days > 0
-            ? stringFormatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds)
-            : hours > 0
-            ? stringFormatter.format("%d:%02d:%02d", hours, minutes, seconds)
-            : stringFormatter.format("%02d:%02d", minutes, seconds)
-        ).toString();
+        final PlayerHelperFormatters formatters = formatters(context);
+        if (days > 0) {
+            return formatters.stringFormat("%d:%02d:%02d:%02d", days, hours, minutes, seconds);
+        }
+
+        return hours > 0
+            ? formatters.stringFormat("%d:%02d:%02d", hours, minutes, seconds)
+            : formatters.stringFormat("%02d:%02d", minutes, seconds);
     }
 
     @NonNull
@@ -492,7 +492,7 @@ public final class PlayerHelper {
     // endregion
 
     record PlayerHelperFormatters(
-        Formatter string,
+        Locale locale,
         NumberFormat speed,
         NumberFormat pitch) {
 
@@ -501,9 +501,13 @@ public final class PlayerHelper {
 
             final DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(locale);
             return new PlayerHelperFormatters(
-                new Formatter(locale),
+                locale,
                 new DecimalFormat("0.##x", dfs),
                 new DecimalFormat("##%", dfs));
+        }
+
+        String stringFormat(final String format, final Object... args) {
+            return String.format(locale, format, args);
         }
     }
 }
