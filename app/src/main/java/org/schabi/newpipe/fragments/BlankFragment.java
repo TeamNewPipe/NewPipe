@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import com.evernote.android.state.State;
+
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -14,8 +16,9 @@ import org.schabi.newpipe.error.ErrorPanelHelper;
 
 public class BlankFragment extends BaseFragment {
 
+    @State
     @Nullable
-    final ErrorInfo errorInfo;
+    ErrorInfo errorInfo;
     @Nullable
     ErrorPanelHelper errorPanel = null;
 
