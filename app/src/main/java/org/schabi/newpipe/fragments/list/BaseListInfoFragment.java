@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.evernote.android.state.State;
 
@@ -42,6 +43,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
 
     private final UserAction errorUserAction;
     protected L currentInfo;
+    @Nullable
     protected Page currentNextPage;
     protected Disposable currentWorker;
 
