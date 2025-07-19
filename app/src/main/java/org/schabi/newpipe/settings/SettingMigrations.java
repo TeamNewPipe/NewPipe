@@ -41,8 +41,8 @@ public final class SettingMigrations {
     private static SharedPreferences sp;
 
     /**
-     * List of UI actions that are performed after the UI is initialized
-     * to inform the user about changes that were applied by migrations.
+     * List of UI actions that are performed after the UI is initialized (e.g. showing alert
+     * dialogs) to inform the user about changes that were applied by migrations.
      */
     private static final List<Consumer<Context>> MIGRATION_INFO = new ArrayList<>();
 
