@@ -36,7 +36,9 @@ import com.google.android.material.tabs.TabLayout;
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
+import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -302,10 +304,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final Fragment fragment;
             try {
                 fragment = tab.getFragment(context);
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(context, "Getting fragment item", e);
-                // TODO: show an error fragment instead
-                return new BlankFragment();
+            } catch (final Throwable t) {
+                return new BlankFragment(new ErrorInfo(t, UserAction.GETTING_MAIN_SCREEN_TAB,
+                        "Tab " + tab.getClass().getSimpleName() + ":" + tab.getTabName(context)));
             }
 
             if (fragment instanceof BaseFragment) {
