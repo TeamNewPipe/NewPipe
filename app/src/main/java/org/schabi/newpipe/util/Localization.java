@@ -9,9 +9,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
 import android.os.Build;
+import android.text.BidiFormatter;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.text.BidiFormatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -133,15 +133,14 @@ public final class Localization {
     }
 
     public static String localizeNumber(@NonNull final Context context, final double number) {
-        final NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
-        return nf.format(number);
+        return NumberFormat.getInstance(getAppLocale(context)).format(number);
     }
 
     public static String formatDate(@NonNull final Context context,
                                     @NonNull final OffsetDateTime offsetDateTime) {
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                .withLocale(getAppLocale(context)).format(offsetDateTime
-                        .atZoneSameInstant(ZoneId.systemDefault()));
+            .withLocale(getAppLocale(context))
+            .format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
