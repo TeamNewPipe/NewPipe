@@ -397,10 +397,10 @@
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
     <string name="main_page_content_swipe_remove">Swipe items to remove them</string>
-    <string name="blank_page_summary">Blank Page</string>
-    <string name="kiosk_page_summary">Kiosk Page</string>
+    <string name="blank_page_summary">Blank page</string>
+    <string name="kiosk_page_summary">Kiosk page</string>
     <string name="default_kiosk_page_summary">Default Kiosk</string>
-    <string name="channel_page_summary">Channel Page</string>
+    <string name="channel_page_summary">Channel page</string>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscriptions yet</string>
     <string name="select_a_playlist">Select a playlist</string>
@@ -864,6 +864,8 @@
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
     <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 page removed</string>
+    <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="auto_queue_description">Next</string>
     <string name="newpipe_extractor_description">NewPipeExtractor is a library for extracting things from streaming sites. It is a core component of NewPipe, but could be used independently.</string>
     <plurals name="comments">

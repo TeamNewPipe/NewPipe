@@ -76,6 +76,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.settings.SettingMigrations;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
+        SettingMigrations.showUserInfoIfPresent(this);
     }
 
     @Override
