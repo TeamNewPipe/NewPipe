@@ -487,7 +487,6 @@
     <string name="enqueue_stream">Lisa esitusjärjekorda</string>
     <string name="recently_added">Hiljuti lisatud</string>
     <string name="local">Kohalikud</string>
-    <string name="localization_changes_requires_app_restart">Keele muutus jõustub rakenduse uuesti käivitamisel</string>
     <string name="error_unable_to_load_comments">Kommentaaride laadimine ei õnnestunud</string>
     <string name="no_playlist_bookmarked_yet">Esitusloendi järjehoidjaid veel pole</string>
     <string name="select_a_playlist">Vali esitusloend</string>

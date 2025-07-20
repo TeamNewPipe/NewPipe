@@ -102,7 +102,7 @@ public class App extends Application {
         NewPipe.init(getDownloader(),
             Localization.getPreferredLocalization(this),
             Localization.getPreferredContentCountry(this));
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+        Localization.initPrettyTime(Localization.resolvePrettyTime());
 
         BridgeStateSaverInitializer.init(this);
         StateSaver.init(this);

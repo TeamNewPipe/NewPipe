@@ -428,7 +428,6 @@
         <item quantity="many">%s auditeurs</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>

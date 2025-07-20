@@ -422,7 +422,6 @@
         <item quantity="one">%s lytter</item>
         <item quantity="other">%s lyttere</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Språket vil endres etter at appen har startet på nytt</string>
     <string name="default_kiosk_page_summary">Standard kiosk</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="local">Lokal</string>

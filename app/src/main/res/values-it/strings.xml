@@ -427,7 +427,6 @@
         <item quantity="many">%s ascoltatori</item>
         <item quantity="other">%s ascoltatori</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione</string>
     <string name="default_kiosk_page_summary">Contenuti in evidenza predefiniti</string>
     <string name="seek_duration_title">Durata avanzamento e riavvolgimento rapidi</string>
     <string name="peertube_instance_url_title">Istanze PeerTube</string>

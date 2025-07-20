@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -126,7 +125,6 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestExportPathResult(final ActivityResult result) {
-        assureCorrectAppLanguage(requireContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
             // will be saved only on success
             final Uri lastExportDataUri = result.getData().getData();
@@ -139,7 +137,6 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestImportPathResult(final ActivityResult result) {
-        assureCorrectAppLanguage(requireContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
             // will be saved only on success
             final Uri lastImportDataUri = result.getData().getData();

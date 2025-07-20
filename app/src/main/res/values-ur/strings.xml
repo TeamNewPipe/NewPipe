@@ -417,7 +417,6 @@
         <item quantity="one">%s سننے والا</item>
         <item quantity="other">%s سننے والے</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">جب ایپ دوبارہ شروع ہو گی تو زبان تبدیل ہو جائے گی</string>
     <string name="default_kiosk_page_summary">طے شدہ کیوسک</string>
     <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
     <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>

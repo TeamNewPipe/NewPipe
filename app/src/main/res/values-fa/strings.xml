@@ -469,7 +469,6 @@
     <string name="most_liked">مورد پسندترین‌ها</string>
     <string name="recently_added">اخیرا اضافه شده</string>
     <string name="local">محلی</string>
-    <string name="localization_changes_requires_app_restart">با آغاز دوبارهٔ کاره، زبان تغییر خواهد کرد</string>
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
     <string name="done">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>

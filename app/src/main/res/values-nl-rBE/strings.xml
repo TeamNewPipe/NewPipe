@@ -486,7 +486,6 @@
     <string name="most_liked">Meest leuk gevonden</string>
     <string name="recently_added">Recent toegevoegd</string>
     <string name="local">Lokaal</string>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="no_playlist_bookmarked_yet">Geen afspeellijst bladwijzers</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
