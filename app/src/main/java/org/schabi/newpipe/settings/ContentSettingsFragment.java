@@ -53,8 +53,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } else {
             appLanguagePref.setOnPreferenceChangeListener((preference, newValue) -> {
                 final String language = (String) newValue;
-                final Locale locale = Locale.forLanguageTag(language);
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+                final String systemLang = getString(R.string.default_localization_key);
+                final String tag = systemLang.equals(language) ? null : language;
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag));
                 return true;
             });
         }
