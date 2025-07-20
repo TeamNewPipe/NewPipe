@@ -537,7 +537,6 @@
         <item quantity="other">%d дзён</item>
     </plurals>
     <string name="clear_download_history">Ачысціць гісторыю спампоўвання</string>
-    <string name="localization_changes_requires_app_restart">Мова зменіцца пасля перазапуску праграмы</string>
     <string name="no_one_listening">Ніхто не слухае</string>
     <string name="on">Уключыць</string>
     <string name="hash_channel_description">Апавяшчэнні пра ход відэахэшавання</string>

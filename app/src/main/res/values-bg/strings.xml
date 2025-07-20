@@ -432,7 +432,6 @@
     <string name="most_liked">Най-харесвани</string>
     <string name="done">Готово</string>
     <string name="comments_tab_description">Коментари</string>
-    <string name="localization_changes_requires_app_restart">Езикът ще се смени след рестартиране на приложението</string>
     <string name="metadata_privacy_unlisted">Скрит</string>
     <string name="metadata_privacy_private">Частен</string>
     <string name="remote_search_suggestions">Предложения за отдалечено търсене</string>

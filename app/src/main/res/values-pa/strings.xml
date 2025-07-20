@@ -540,7 +540,6 @@
     <string name="most_liked">ਵਧੇਰੇ ਪਸੰਦ ਕੀਤੇ ਗਏ</string>
     <string name="recently_added">ਹਾਲ ਹੀ ਵਿੱਚ ਸ਼ਾਮਿਲ</string>
     <string name="local">ਸਥਾਨਕ</string>
-    <string name="localization_changes_requires_app_restart">ਭਾਸ਼ਾ ਐਪ ਨੂੰ ਦੋਬਾਰਾ ਚਲਾਉਣ \'ਤੇ ਬਦਲੇਗੀ</string>
     <string name="select_a_playlist">ਪਲੇਲਿਸਟ ਚੁਣੋ</string>
     <string name="done">ਹੋ ਗਿਆ</string>
     <string name="recaptcha_solve">ਹੱਲ ਕਰੋ</string>

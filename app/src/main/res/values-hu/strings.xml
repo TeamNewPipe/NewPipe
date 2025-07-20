@@ -428,7 +428,6 @@
     <string name="no_one_watching">Senki sem nézi</string>
     <string name="subscribers_count_not_available">A feliratkozók száma nem érhető el</string>
     <string name="local">Helyi</string>
-    <string name="localization_changes_requires_app_restart">A nyelv az alkalmazás újraindításakor fog megváltozni</string>
     <string name="error_unable_to_load_comments">A megjegyzések betöltése sikertelen</string>
     <string name="select_a_playlist">Válasszon egy lejátszási listát</string>
     <string name="autoplay_summary">Lejátszás automatikus indítása — %s</string>

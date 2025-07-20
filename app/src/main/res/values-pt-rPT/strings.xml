@@ -527,7 +527,6 @@
     <string name="caption_setting_description">Modificar escala de legendas e estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações</string>
     <string name="permission_denied">Ação recusada pelo sistema</string>
     <string name="songs">Músicas</string>
-    <string name="localization_changes_requires_app_restart">O idioma será alterado assim que reiniciar a app</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="tracks">Faixas</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>

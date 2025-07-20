@@ -494,7 +494,6 @@
     <string name="most_liked">Labiausiai patikę</string>
     <string name="recently_added">Nesenai pridėta</string>
     <string name="local">Vietinė</string>
-    <string name="localization_changes_requires_app_restart">Kalba pasikeis paleidus programą iš naujo</string>
     <string name="error_unable_to_load_comments">Komentarų įkelti nepavyko</string>
     <string name="import_settings">Ar norite importuoti nustatymus\?</string>
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>

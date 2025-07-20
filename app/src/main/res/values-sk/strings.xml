@@ -428,7 +428,6 @@
         <item quantity="few">%s poslucháči</item>
         <item quantity="other">%s poslucháčov</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Zmena jazyka sa prejaví po reštarte aplikácie</string>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>

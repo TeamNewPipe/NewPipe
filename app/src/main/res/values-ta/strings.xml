@@ -616,7 +616,6 @@
     <string name="no_valid_zip_file">செல்லுபடியாகும் சிப் கோப்பு இல்லை</string>
     <string name="override_current_data">இது உங்கள் தற்போதைய அமைப்பை மேலெழுதும்.</string>
     <string name="error_unable_to_load_comments">கருத்துகளை ஏற்ற முடியவில்லை</string>
-    <string name="localization_changes_requires_app_restart">பயன்பாடு மறுதொடக்கம் செய்யப்பட்டவுடன் மொழி மாறும்</string>
     <string name="recently_added">அண்மைக் காலத்தில் சேர்க்கப்பட்டது</string>
     <string name="most_liked">மிகவும் பிடித்தது</string>
     <string name="conferences">மாநாடுகள்</string>
