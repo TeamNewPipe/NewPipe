@@ -33,10 +33,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         addPreferencesFromResourceRegistry();
 
-        final var appLanguagePref = requirePreference(R.string.app_language_key);
-        if (Build.VERSION.SDK_INT >= 33) {
+        setupAppLanguagePreferences();
+        setupImageQualityPref();
+    }
+
+    private void setupAppLanguagePreferences() {
+        final Preference appLanguagePref = requirePreference(R.string.app_language_key);
+        // Android 13+ allows to set app specific languages
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             appLanguagePref.setVisible(false);
-            final var newAppLanguagePref =
+
+            final Preference newAppLanguagePref =
                     requirePreference(R.string.app_language_android_13_and_up_key);
             newAppLanguagePref.setSummaryProvider(preference -> {
                 final Locale loc = AppCompatDelegate.getApplicationLocales().get(0);
@@ -49,30 +56,33 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 return true;
             });
             newAppLanguagePref.setVisible(true);
-        } else {
-            appLanguagePref.setOnPreferenceChangeListener((preference, newValue) -> {
-                final String language = (String) newValue;
-                final String systemLang = getString(R.string.default_localization_key);
-                final String tag = systemLang.equals(language) ? null : language;
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag));
-                return true;
-            });
+            return;
         }
 
+        appLanguagePref.setOnPreferenceChangeListener((preference, newValue) -> {
+            final String language = (String) newValue;
+            final String systemLang = getString(R.string.default_localization_key);
+            final String tag = systemLang.equals(language) ? null : language;
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag));
+            return true;
+        });
+    }
+
+    private void setupImageQualityPref() {
         requirePreference(R.string.image_quality_key).setOnPreferenceChangeListener(
-                (preference, newValue) -> {
-                    ImageStrategy.setPreferredImageQuality(PreferredImageQuality
-                            .fromPreferenceKey(requireContext(), (String) newValue));
-                    try {
-                        PicassoHelper.clearCache(preference.getContext());
-                        Toast.makeText(preference.getContext(),
-                                R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
-                                .show();
-                    } catch (final IOException e) {
-                        Log.e(TAG, "Unable to clear Picasso cache", e);
-                    }
-                    return true;
-                });
+            (preference, newValue) -> {
+                ImageStrategy.setPreferredImageQuality(PreferredImageQuality
+                    .fromPreferenceKey(requireContext(), (String) newValue));
+                try {
+                    PicassoHelper.clearCache(preference.getContext());
+                    Toast.makeText(preference.getContext(),
+                            R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
+                        .show();
+                } catch (final IOException e) {
+                    Log.e(TAG, "Unable to clear Picasso cache", e);
+                }
+                return true;
+            });
     }
 
     @Override
@@ -93,9 +103,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     public void onDestroy() {
         super.onDestroy();
 
-        final var context = requireContext();
-        final var selectedLocalization = Localization.getPreferredLocalization(context);
-        final var selectedContentCountry = Localization.getPreferredContentCountry(context);
-        NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
+        final Context context = requireContext();
+        NewPipe.setupLocalization(
+            Localization.getPreferredLocalization(context),
+            Localization.getPreferredContentCountry(context));
     }
 }

@@ -448,8 +448,8 @@ public final class Localization {
         final String appLanguageKey = context.getString(R.string.app_language_key);
         final String appLanguageValue = sp.getString(appLanguageKey, null);
         if (appLanguageValue != null) {
-            // The app language key is used on Android versions < Tiramisu; for more info, see
-            // ContentSettingsFragment.
+            // The app language key is used on Android versions < 33
+            // for more info, see ContentSettingsFragment
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 sp.edit().remove(appLanguageKey).apply();
             }
@@ -457,8 +457,8 @@ public final class Localization {
                     context.getString(R.string.default_localization_key);
             if (!appLanguageValue.equals(appLanguageDefaultValue)) {
                 try {
-                    final var locales = LocaleListCompat.forLanguageTags(appLanguageValue);
-                    AppCompatDelegate.setApplicationLocales(locales);
+                    AppCompatDelegate.setApplicationLocales(
+                        LocaleListCompat.forLanguageTags(appLanguageValue));
                 } catch (final RuntimeException e) {
                     Log.e(TAG, "Failed to migrate previous custom app language "
                             + "setting to public per-app language APIs"
