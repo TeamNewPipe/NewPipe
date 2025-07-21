@@ -78,8 +78,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.settings.SettingMigrations;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
+import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        SettingMigrations.showUserInfoIfPresent(this);
+        MigrationManager.showUserInfoIfPresent(this);
     }
 
     @Override

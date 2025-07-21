@@ -1,11 +1,14 @@
-package org.schabi.newpipe.settings;
+package org.schabi.newpipe.settings.migration;
+
+import static org.schabi.newpipe.MainActivity.DEBUG;
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Consumer;
 import androidx.preference.PreferenceManager;
 
@@ -25,26 +28,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.schabi.newpipe.MainActivity.DEBUG;
-import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
-
 /**
- * In order to add a migration, follow these steps, given P is the previous version:<br>
- * - in the class body add a new {@code MIGRATION_P_P+1 = new Migration(P, P+1) { ... }} and put in
- *   the {@code migrate()} method the code that need to be run when migrating from P to P+1<br>
- * - add {@code MIGRATION_P_P+1} at the end of {@link SettingMigrations#SETTING_MIGRATIONS}<br>
- * - increment {@link SettingMigrations#VERSION}'s value by 1 (so it should become P+1)
+ * This class contains the code to migrate the settings from one version to another.
+ * Migrations are run automatically when the app is started and the settings version changed.
+ * <br>
+ * In order to add a migration, follow these steps, given {@code P} is the previous version:
+ * <ul>
+ * <li>in the class body add a new {@code MIGRATION_P_P+1 = new Migration(P, P+1) { ... }} and put
+ *     in the {@code migrate()} method the code that need to be run
+ *     when migrating from {@code P} to {@code P+1}</li>
+ * <li>add {@code MIGRATION_P_P+1} at the end of {@link SettingMigrations#SETTING_MIGRATIONS}</li>
+ * <li>increment {@link SettingMigrations#VERSION}'s value by 1
+ *     (so it becomes {@code P+1})</li>
+ * </ul>
+ * Migrations can register UI actions using {@link MigrationManager#addMigrationInfo(Consumer)}
+ * that will be performed after the UI is initialized to inform the user about changes
+ * that were applied by migrations.
  */
 public final class SettingMigrations {
 
     private static final String TAG = SettingMigrations.class.toString();
     private static SharedPreferences sp;
-
-    /**
-     * List of UI actions that are performed after the UI is initialized (e.g. showing alert
-     * dialogs) to inform the user about changes that were applied by migrations.
-     */
-    private static final List<Consumer<Context>> MIGRATION_INFO = new ArrayList<>();
 
     private static final Migration MIGRATION_0_1 = new Migration(0, 1) {
         @Override
@@ -169,16 +173,63 @@ public final class SettingMigrations {
                             && kioskTab.getKioskServiceId() == SoundCloud.getServiceId()
                             && kioskTab.getKioskId().equals("Top 50")))
                     .collect(Collectors.toUnmodifiableList());
-            if (tabs.size() != cleanedTabs.size()) {
+            if (tabs.size() != cleanedTabs.size() || DEBUG) { // TODO: remove debug condition
                 tabsManager.saveTabs(cleanedTabs);
                 // create an AlertDialog to inform the user about the change
-                MIGRATION_INFO.add((Context uiContext) -> new AlertDialog.Builder(uiContext)
-                        .setTitle(R.string.migration_info_6_7_title)
-                        .setMessage(R.string.migration_info_6_7_message)
-                        .setPositiveButton(R.string.ok, null)
-                        .setCancelable(false)
-                        .create()
-                        .show());
+                MigrationManager.addMigrationInfo(uiContext ->
+                        MigrationManager.createMigrationInfoDialog(
+                                uiContext,
+                                uiContext.getString(R.string.migration_info_6_7_title),
+                                uiContext.getString(R.string.migration_info_6_7_message))
+                                .show());
+            }
+        }
+    };
+
+    private static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        protected void migrate(@NonNull final Context context) {
+            // YouTube remove the combined Trending kiosk, see
+            // https://github.com/TeamNewPipe/NewPipe/discussions/12445 for more information.
+            // If the user has a dedicated YouTube/Trending kiosk tab,
+            // it is removed and replaced with the new live kiosk tab.
+            // The default trending kiosk tab is not touched
+            // because it uses the default kiosk provided by the extractor
+            // and is thus updated automatically.
+            final TabsManager tabsManager = TabsManager.getManager(context);
+            final List<Tab> tabs = tabsManager.getTabs();
+            final boolean hadYtTrendingTab = tabs.stream()
+                    .anyMatch(tab -> !(tab instanceof Tab.KioskTab kioskTab
+                            && kioskTab.getKioskServiceId() == YouTube.getServiceId()
+                            && kioskTab.getKioskId().equals("Trending")));
+            if (hadYtTrendingTab) {
+                final List<Tab> cleanedTabs = new ArrayList<>();
+                for (final Tab tab : tabs) {
+                    if (tab instanceof Tab.KioskTab kioskTab
+                            && kioskTab.getKioskServiceId() == YouTube.getServiceId()
+                            && kioskTab.getKioskId().equals("Trending")) {
+                        // replace the YouTube Trending tab with the new live kiosk tab
+                        // TODO: use the correct kiosk ID for the live kiosk tab
+                        cleanedTabs.add(new Tab.KioskTab(YouTube.getServiceId(), "Live"));
+                    } else {
+                        cleanedTabs.add(tab);
+                    }
+                }
+                tabsManager.saveTabs(cleanedTabs);
+            }
+
+            final boolean hasDefaultTrendingTab = tabs.stream()
+                    .anyMatch(tab -> tab instanceof Tab.DefaultKioskTab);
+
+            // TODO: remove debugging code
+            if (hadYtTrendingTab || hasDefaultTrendingTab || newVersion == VERSION) {
+                // User is informed about the change
+                MigrationManager.addMigrationInfo(uiContext ->
+                        MigrationManager.createMigrationInfoDialog(
+                                        uiContext,
+                                        uiContext.getString(R.string.migration_info_7_8_title),
+                                        uiContext.getString(R.string.migration_info_7_8_message))
+                                .show());
             }
         }
     };
@@ -196,26 +247,28 @@ public final class SettingMigrations {
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,
-            MIGRATION_6_7
+            MIGRATION_6_7,
+            MIGRATION_7_8,
     };
 
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    private static final int VERSION = 7;
+    private static final int VERSION = 8;
 
 
-    public static void runMigrationsIfNeeded(@NonNull final Context context) {
+    static void runMigrationsIfNeeded(@NonNull final Context context) {
         // setup migrations and check if there is something to do
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String lastPrefVersionKey = context.getString(R.string.last_used_preferences_version);
-        final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
+        //final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
+        final int lastPrefVersion = 6; // TODO: remove this line after testing
 
         // no migration to run, already up to date
         if (App.getApp().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
-        } else if (lastPrefVersion == VERSION) {
+        } else if (lastPrefVersion == VERSION && !DEBUG) { // TODO: remove DEBUG check
             return;
         }
 
@@ -249,21 +302,6 @@ public final class SettingMigrations {
         sp.edit().putInt(lastPrefVersionKey, currentVersion).apply();
     }
 
-    /**
-     * Perform UI actions informing about migrations that took place if they are present.
-     * @param context Context that can be used to show dialogs/snackbars/toasts
-     */
-    public static void showUserInfoIfPresent(@NonNull final Context context) {
-        for (final Consumer<Context> consumer : MIGRATION_INFO) {
-            try {
-                consumer.accept(context);
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(context, "Showing migration info to the user", e);
-            }
-        }
-        MIGRATION_INFO.clear();
-    }
-
     private SettingMigrations() { }
 
     abstract static class Migration {
@@ -282,7 +320,7 @@ public final class SettingMigrations {
          * the current settings version.
          */
         private boolean shouldMigrate(final int currentVersion) {
-            return oldVersion >= currentVersion;
+            return oldVersion >= currentVersion || newVersion == VERSION;
         }
 
         protected abstract void migrate(@NonNull Context context);
