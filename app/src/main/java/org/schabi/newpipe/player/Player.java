@@ -44,7 +44,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static coil3.Image_androidKt.toBitmap;
 
@@ -756,7 +755,6 @@ public final class Player implements PlaybackListener, Listener {
                 toggleShuffleModeEnabled();
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
-                assureCorrectAppLanguage(service);
                 if (DEBUG) {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }

@@ -427,7 +427,6 @@
         <item quantity="many">%s oyentes</item>
         <item quantity="other">%s oyentes</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">El idioma cambiará después del reinicio de la aplicación</string>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>

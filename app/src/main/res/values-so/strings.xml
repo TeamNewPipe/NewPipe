@@ -139,7 +139,6 @@
     <string name="trending">Shiddan</string>
     <string name="new_and_hot">Cusub oo Shiddan</string>
     <string name="top_50">50ka Sare</string>
-    <string name="localization_changes_requires_app_restart">Luuqadu waxay isbaddali doontaa marka appka dib loo soo kiciyo</string>
     <string name="error_unable_to_load_comments">Faallooyinka lama soo kicin karo</string>
     <string name="import_settings">Inaad sidoo kale fadhiga soo galiso ma rabtaa\?</string>
     <string name="override_current_data">Tani waxay baddali fadhiga siduu kuu yahay hadda.</string>

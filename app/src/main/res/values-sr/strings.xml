@@ -368,7 +368,6 @@
     <string name="most_liked">Највише свиђања</string>
     <string name="recently_added">Недавно додато</string>
     <string name="local">Локално</string>
-    <string name="localization_changes_requires_app_restart">Језик ће бити промењен након рестартовања апликације</string>
     <string name="error_unable_to_load_comments">Није могуће учитати коментаре</string>
     <string name="import_settings">Желите ли да увезете и подешавања\?</string>
     <string name="override_current_data">Ово ће заменити ваше тренутно подешавање.</string>

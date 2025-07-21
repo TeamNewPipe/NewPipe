@@ -419,7 +419,6 @@
         <item quantity="many">%s escoltants</item>
         <item quantity="other">%s escoltants</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Es canviarà l\'idioma en reiniciar l\'aplicació</string>
     <string name="default_kiosk_page_summary">Tendències</string>
     <string name="show_original_time_ago_title">Ensenya el temps passat original sobre els \"items\"</string>
     <string name="playlist_no_uploader">Auto-generat (no es troba cap uploader)</string>

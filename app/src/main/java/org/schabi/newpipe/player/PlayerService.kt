@@ -34,7 +34,6 @@ import org.schabi.newpipe.player.mediabrowser.MediaBrowserImpl
 import org.schabi.newpipe.player.mediabrowser.MediaBrowserPlaybackPreparer
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi
 import org.schabi.newpipe.player.notification.NotificationPlayerUi
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ThemeHelper
 import java.lang.ref.WeakReference
 import java.util.function.Consumer
@@ -76,7 +75,6 @@ class PlayerService : MediaBrowserServiceCompat() {
         if (DEBUG) {
             Log.d(TAG, "onCreate() called")
         }
-        Localization.assureCorrectAppLanguage(this)
         ThemeHelper.setTheme(this)
 
         mediaBrowserImpl = MediaBrowserImpl(this, this::notifyChildrenChanged)

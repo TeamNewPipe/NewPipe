@@ -420,7 +420,6 @@
         <item quantity="one">%s luisteraar</item>
         <item quantity="other">%s luisteraars</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube-instanties</string>

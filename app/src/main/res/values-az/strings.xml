@@ -342,7 +342,6 @@
     <string name="no_valid_zip_file">Etibarlı ZIP faylı yoxdur</string>
     <string name="could_not_import_all_files">Xəbərdarlıq: Bütün faylları idxal etmək mümkün olmadı.</string>
     <string name="import_settings">Tənzimləmələri də idxal etmək istəyirsiniz\?</string>
-    <string name="localization_changes_requires_app_restart">Tətbiq yenidən başladıldıqdan sonra dil dəyişəcəkdir</string>
     <string name="top_50">Ən yaxşı 50</string>
     <string name="new_and_hot">Yeni və populyar</string>
     <string name="local">Yerli</string>

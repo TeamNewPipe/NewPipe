@@ -417,7 +417,6 @@
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Bahasa yang diubah akan diterapkan setelah aplikasi dimulai ulang</string>
     <string name="peertube_instance_url_title">Situs PeerTube</string>
     <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
     <string name="peertube_instance_url_help">Temukan situs yang Anda suka di %s</string>

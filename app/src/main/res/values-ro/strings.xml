@@ -559,7 +559,6 @@
     <string name="most_liked">Cele mai apreciate</string>
     <string name="recently_added">Adăugate recent</string>
     <string name="local">Local</string>
-    <string name="localization_changes_requires_app_restart">Limba se va schimba odată ce aplicația este repornită</string>
     <string name="no_playlist_bookmarked_yet">Nu există încă marcaje în playlist</string>
     <string name="select_a_playlist">Selectați un playlist</string>
     <string name="default_kiosk_page_summary">Chioșc implicit</string>

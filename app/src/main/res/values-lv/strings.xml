@@ -272,7 +272,6 @@
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
     <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļākās PeerTube instances</string>
     <string name="peertube_instance_url_title">PeerTube serveri (instances)</string>
-    <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
     <string name="chapters">Nodaļas</string>
     <string name="recent">Jaunākie</string>

@@ -418,7 +418,6 @@
     <plurals name="listening">
         <item quantity="other">%s 人が聴取中</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます</string>
     <string name="seek_duration_title">高速早送り/巻き戻し間隔</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>

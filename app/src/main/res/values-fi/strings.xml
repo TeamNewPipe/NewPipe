@@ -337,7 +337,6 @@
     <string name="recently_added">Hiljattain lisätyt</string>
     <string name="local">Paikalliset</string>
     <string name="most_liked">Pidetyimmät</string>
-    <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="done">Valmis</string>

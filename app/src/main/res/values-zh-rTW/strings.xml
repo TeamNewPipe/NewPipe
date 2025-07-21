@@ -418,7 +418,6 @@
     <plurals name="listening">
         <item quantity="other">%s 位聽眾</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更</string>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>

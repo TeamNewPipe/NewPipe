@@ -427,7 +427,6 @@
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="no_one_watching">لا توجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
-    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
     <plurals name="watching">
         <item quantity="zero">%s مشاهدة</item>
         <item quantity="one">%s مشاهدة</item>
