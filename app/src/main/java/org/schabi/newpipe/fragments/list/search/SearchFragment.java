@@ -144,6 +144,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     private final SparseArrayCompat<String> menuItemToFilterName = new SparseArrayCompat<>();
     private StreamingService service;
+    @Nullable
     private Page nextPage;
     private boolean showLocalSuggestions = true;
     private boolean showRemoteSuggestions = true;
@@ -1090,7 +1091,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         infoListAdapter.addInfoItemList(result.getItems());
         nextPage = result.getNextPage();
 
-        if (!result.getErrors().isEmpty()) {
+        if (!result.getErrors().isEmpty() && nextPage != null) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
                     "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
                             + "pageIds: " + nextPage.getIds() + ", "
