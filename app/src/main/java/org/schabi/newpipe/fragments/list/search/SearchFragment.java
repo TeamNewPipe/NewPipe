@@ -1089,8 +1089,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void handleNextItems(final ListExtractor.InfoItemsPage<?> result) {
         showListFooter(false);
         infoListAdapter.addInfoItemList(result.getItems());
-        nextPage = result.getNextPage();
 
+        // nextPage should not be null here because it refers to the page
+        // which results are handled here, but we check it anyway
         if (!result.getErrors().isEmpty() && nextPage != null) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.SEARCHED,
                     "\"" + searchString + "\" → pageUrl: " + nextPage.getUrl() + ", "
@@ -1098,6 +1099,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             + "pageCookies: " + nextPage.getCookies(),
                     serviceId));
         }
+
+        // keep the reassignment of nextPage after the error handling to ensure that nextPage
+        // still holds the correct value during the error handling
+        nextPage = result.getNextPage();
         super.handleNextItems(result);
     }
 
