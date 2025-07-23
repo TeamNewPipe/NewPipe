@@ -151,16 +151,11 @@ internal class PackageValidator(context: Context) {
         val uid = packageInfo.applicationInfo?.uid ?: -1
         val signature = getSignature(packageInfo)
 
-        val requestedPermissions = packageInfo.requestedPermissions
-        val permissionFlags = packageInfo.requestedPermissionsFlags
-        val activePermissions = mutableSetOf<String>()
-        if (permissionFlags != null) {
-            requestedPermissions?.forEachIndexed { index, permission ->
-                if (permissionFlags[index] and REQUESTED_PERMISSION_GRANTED != 0) {
-                    activePermissions += permission
-                }
-            }
-        }
+        val requestedPermissions = packageInfo.requestedPermissions?.asSequence().orEmpty()
+        val permissionFlags = packageInfo.requestedPermissionsFlags?.asSequence().orEmpty()
+        val activePermissions = (requestedPermissions zip permissionFlags)
+            .filter { (permission, flag) -> flag and REQUESTED_PERMISSION_GRANTED != 0 }
+            .mapTo(mutableSetOf()) { (permission, flag) -> permission }
 
         return CallerPackageInfo(appName, callingPackage, uid, signature, activePermissions.toSet())
     }
