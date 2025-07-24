@@ -72,8 +72,8 @@ jobs:
           - api-level: 21
             target: default
             arch: x86
-          - api-level: 33
-            target: google_apis # emulator API 33 only exists with Google APIs
+          - api-level: 35
+            target: default
             arch: x86_64
 
     permissions:
