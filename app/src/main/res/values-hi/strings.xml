@@ -126,9 +126,6 @@
     <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करें</string>
-    <string name="short_thousand">हज़ार</string>
-    <string name="short_million">मिलियन</string>
-    <string name="short_billion">अरब</string>
     <string name="no_subscribers">कोई सब्सक्राइबर नहीं</string>
     <plurals name="subscribers">
         <item quantity="one">%s सब्सक्राइबर</item>

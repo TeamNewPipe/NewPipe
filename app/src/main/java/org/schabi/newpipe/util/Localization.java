@@ -191,14 +191,14 @@ public final class Localization {
 
         final double value = (double) count;
         if (count >= 1000000000) {
-            return localizeNumber(round(value / 1000000000))
-                    + context.getString(R.string.short_billion);
+            return context.getString(R.string.short_billion,
+                    localizeNumber(round(value / 1000000000)));
         } else if (count >= 1000000) {
-            return localizeNumber(round(value / 1000000))
-                    + context.getString(R.string.short_million);
+            return context.getString(R.string.short_million,
+                    localizeNumber(round(value / 1000000)));
         } else if (count >= 1000) {
-            return localizeNumber(round(value / 1000))
-                    + context.getString(R.string.short_thousand);
+            return context.getString(R.string.short_thousand,
+                    localizeNumber(round(value / 1000, 0)));
         } else {
             return localizeNumber(value);
         }
@@ -417,7 +417,11 @@ public final class Localization {
     }
 
     private static double round(final double value) {
-        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
+        return round(value, 1);
+    }
+
+    private static double round(final double value, final int scale) {
+        return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
     private static String getQuantity(@NonNull final Context context,

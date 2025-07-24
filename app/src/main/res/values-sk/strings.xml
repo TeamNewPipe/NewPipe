@@ -82,9 +82,6 @@
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
     <string name="open_in_popup_mode">Otvoriť vo vyskakovacom okne</string>
     <string name="msg_popup_permission">Tieto práva sú potrebné pre

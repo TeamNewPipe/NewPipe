@@ -69,9 +69,6 @@
     <string name="error_report_title">Fehlerbericht</string>
     <string name="delete">Löschen</string>
     <string name="checksum">Prüfsumme</string>
-    <string name="short_thousand">Tsd.</string>
-    <string name="short_million">Mio.</string>
-    <string name="short_billion">Mrd.</string>
     <string name="msg_name">Dateiname</string>
     <string name="msg_error">Fehler</string>
     <string name="msg_wait">Bitte warten …</string>

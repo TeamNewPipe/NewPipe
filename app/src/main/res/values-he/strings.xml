@@ -112,9 +112,6 @@
     <string name="video">סרטון</string>
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
-    <string name="short_thousand">אלפ.</string>
-    <string name="short_million">מיל.</string>
-    <string name="short_billion">מיליארד</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>

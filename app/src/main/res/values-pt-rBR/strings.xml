@@ -90,9 +90,6 @@
     <string name="popup_playing_toast">Reproduzindo em modo Popup</string>
     <string name="all">Todos</string>
     <string name="disabled">Desativado</string>
-    <string name="short_thousand">mil</string>
-    <string name="short_million">mi</string>
-    <string name="short_billion">bi</string>
     <string name="msg_popup_permission">Essa permissão é necessária
 \npara abrir em modo Popup</string>
     <string name="clear">Limpar</string>

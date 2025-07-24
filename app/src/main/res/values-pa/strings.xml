@@ -153,9 +153,6 @@
     <string name="video">ਵੀਡੀਓ</string>
     <string name="audio">ਆਡੀਓ</string>
     <string name="retry">ਦੋਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-    <string name="short_thousand">ਹਜ਼ਾਰ</string>
-    <string name="short_million">ਮਿਲੀਅਨ</string>
-    <string name="short_billion">ਅਰਬ</string>
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਈਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
         <item quantity="one">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
