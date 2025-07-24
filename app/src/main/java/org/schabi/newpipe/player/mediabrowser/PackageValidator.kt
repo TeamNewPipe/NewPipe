@@ -146,19 +146,18 @@ internal class PackageValidator(context: Context) {
      */
     private fun buildCallerInfo(callingPackage: String): CallerPackageInfo? {
         val packageInfo = getPackageInfo(callingPackage) ?: return null
-        val applicationInfo = packageInfo.applicationInfo ?: return null
 
-        val appName = applicationInfo.loadLabel(packageManager).toString()
-        val uid = applicationInfo.uid
+        val appName = packageInfo.applicationInfo?.loadLabel(packageManager).toString()
+        val uid = packageInfo.applicationInfo?.uid ?: -1
         val signature = getSignature(packageInfo)
 
         val requestedPermissions = packageInfo.requestedPermissions?.asSequence().orEmpty()
         val permissionFlags = packageInfo.requestedPermissionsFlags?.asSequence().orEmpty()
         val activePermissions = (requestedPermissions zip permissionFlags)
-            .filter { (_, flag) -> flag and REQUESTED_PERMISSION_GRANTED != 0 }
-            .mapTo(mutableSetOf()) { (permission, _) -> permission }
+            .filter { (permission, flag) -> flag and REQUESTED_PERMISSION_GRANTED != 0 }
+            .mapTo(mutableSetOf()) { (permission, flag) -> permission }
 
-        return CallerPackageInfo(appName, callingPackage, uid, signature, activePermissions)
+        return CallerPackageInfo(appName, callingPackage, uid, signature, activePermissions.toSet())
     }
 
     /**
@@ -186,16 +185,15 @@ internal class PackageValidator(context: Context) {
      * returns `null` as the signature.
      */
     @Suppress("deprecation")
-    private fun getSignature(packageInfo: PackageInfo): String? {
-        val signatures = packageInfo.signatures
-        return if (signatures == null || signatures.size != 1) {
+    private fun getSignature(packageInfo: PackageInfo): String? =
+        if (packageInfo.signatures == null || packageInfo.signatures!!.size != 1) {
             // Security best practices dictate that an app should be signed with exactly one (1)
             // signature. Because of this, if there are multiple signatures, reject it.
             null
         } else {
-            getSignatureSha256(signatures[0].toByteArray())
+            val certificate = packageInfo.signatures!![0].toByteArray()
+            getSignatureSha256(certificate)
         }
-    }
 
     /**
      * Finds the Android platform signing key signature. This key is never null.
