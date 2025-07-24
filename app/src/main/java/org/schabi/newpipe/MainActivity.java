@@ -48,6 +48,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -890,7 +891,8 @@ public class MainActivity extends AppCompatActivity {
             };
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-            registerReceiver(broadcastReceiver, intentFilter);
+            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
+                    ContextCompat.RECEIVER_EXPORTED);
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.

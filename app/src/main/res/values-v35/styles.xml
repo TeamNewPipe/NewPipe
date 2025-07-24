@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base Theme -->
+    <style name="Base.V35" parent="Base.V29">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    </style>
+    <style name="Base" parent="Base.V35"/>
+
+    <!-- Light Theme -->
+    <style name="Base.V35.LightTheme" parent="Base.V29.LightTheme">
+    </style>
+    <style name="Base.LightTheme" parent="Base.V35.LightTheme" />
+
+    <!-- Dark Theme -->
+    <style name="Base.V35.DarkTheme" parent="Base.V29.DarkTheme">
+
+    </style>
+    <style name="Base.DarkTheme" parent="Base.V35.DarkTheme" />
+
+    <!-- Black Theme -->
+    <style name="Base.V35.BlackTheme" parent="Base.V29.BlackTheme">
+
+    </style>
+    <style name="Base.BlackTheme" parent="Base.V35.BlackTheme" />
+
+</resources>
