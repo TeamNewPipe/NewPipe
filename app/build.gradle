@@ -305,6 +305,7 @@ dependencies {
     // Jetpack Compose related dependencies
     implementation libs.androidx.paging.compose
     implementation libs.androidx.navigation.compose
+    implementation libs.accompanist.drawablepainter
 
     // Coroutines interop
     implementation libs.kotlinx.coroutines.rx3
