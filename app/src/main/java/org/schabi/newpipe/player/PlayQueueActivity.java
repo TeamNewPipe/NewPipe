@@ -2,7 +2,6 @@ package org.schabi.newpipe.player;
 
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -84,7 +83,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 

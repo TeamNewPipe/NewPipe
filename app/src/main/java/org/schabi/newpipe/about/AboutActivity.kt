@@ -9,11 +9,9 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.ui.components.common.ScaffoldWithToolbar
 import org.schabi.newpipe.ui.screens.AboutScreen
 import org.schabi.newpipe.ui.theme.AppTheme
-import org.schabi.newpipe.util.Localization
 
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        Localization.assureCorrectAppLanguage(this)
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 

@@ -486,7 +486,6 @@
     <string name="most_liked">Meest leuk gevonden</string>
     <string name="recently_added">Recent toegevoegd</string>
     <string name="local">Lokaal</string>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="no_playlist_bookmarked_yet">Geen afspeellijst bladwijzers</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
@@ -551,7 +550,7 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatie actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectie vakjes aan de rechterkant</string>
+    <string name="notification_actions_summary">Pas elke notificatie actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectie vakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actie knop</string>
     <string name="notification_action_3_title">Vierde actie knop</string>
     <string name="notification_action_2_title">Derde actie knop</string>
@@ -580,7 +579,7 @@
 \nAls gevolg van het nieuwe YouTube-beleid met video\'s met leeftijdsbeperkingen heeft NewPipe geen toegang tot deze videostreams en kan deze dus niet afspelen.</string>
     <string name="show_description_summary">Zet uit om videobeschrijving en extra informatie te verbergen</string>
     <string name="show_description_title">Toon beschrijving</string>
-    <string name="night_theme_title">Nacht Thema</string>
+    <string name="night_theme_title">Nacht thema</string>
     <string name="open_with">Open met</string>
     <string name="featured">Featured</string>
     <string name="private_content">Deze inhoud is privé, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
@@ -628,4 +627,14 @@
     <string name="error_report_channel_description">Meldingen om fouten te rapporteren</string>
     <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
     <string name="leak_canary_not_available">LeakCanary is niet beschikbaar</string>
+    <string name="progressive_load_interval_summary">Verander de intervalgrootte voor het laden van progressieve inhoud (momenteel %s). Een lagere waarde kan het initiële laden versnellen</string>
+    <string name="tab_bookmarks_short">Afspeellijsten</string>
+    <string name="notification_actions_summary_android13">Bewerk elke meldingsactie hieronder door erop te tikken. De eerste drie acties (afspelen/pauzeren, vorige en volgende) zijn ingesteld door het systeem en kunnen niet worden aangepast.</string>
+    <string name="progressive_load_interval_title">Intervalgrootte voor afspelen laden</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="ignore_hardware_media_buttons_summary">Handig, bijvoorbeeld, als je een hoofdtelefoon gebruikte met kapotte fysieke knoppen</string>
+    <string name="prefer_descriptive_audio_title">Verkies beschrijvende audio</string>
+    <string name="prefer_original_audio_title">Verkies originele audio</string>
+    <string name="prefer_original_audio_summary">Selecteer het oorspronkelijke audiospoor, ongeacht de taal</string>
 </resources>

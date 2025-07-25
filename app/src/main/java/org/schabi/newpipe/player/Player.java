@@ -44,7 +44,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static coil3.Image_androidKt.toBitmap;
 
@@ -61,6 +60,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -756,7 +756,6 @@ public final class Player implements PlaybackListener, Listener {
                 toggleShuffleModeEnabled();
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
-                assureCorrectAppLanguage(service);
                 if (DEBUG) {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
@@ -769,7 +768,8 @@ public final class Player implements PlaybackListener, Listener {
     private void registerBroadcastReceiver() {
         // Try to unregister current first
         unregisterBroadcastReceiver();
-        context.registerReceiver(broadcastReceiver, intentFilter);
+        ContextCompat.registerReceiver(context, broadcastReceiver, intentFilter,
+                ContextCompat.RECEIVER_EXPORTED);
     }
 
     private void unregisterBroadcastReceiver() {

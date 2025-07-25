@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_category_video_audio_title">Tavidyutt akked d imesli</string>
-    <string name="tab_about">Γef</string>
+    <string name="settings_category_video_audio_title">Avidyu akked d imesli</string>
+    <string name="tab_about">Ɣef &amp; ISTEQSIYEN</string>
     <string name="feed_create_new_group_button_title">Amaynut</string>
     <string name="all">Akk</string>
     <string name="kore_not_found">Sbedd asnas n Kore yexxuṣen\?</string>
@@ -90,7 +90,7 @@
     <string name="users">Iseqdacen</string>
     <string name="settings_category_clear_data_title">Sfeḍ isefka</string>
     <string name="minimize_on_exit_none_description">Ulac</string>
-    <string name="msg_copied">Aḍris yettwanγel γef afus</string>
+    <string name="msg_copied">Yettwanɣel ɣef afus</string>
     <string name="playlists">Tibdarin n tɣuri</string>
     <string name="title_last_played">Aneggaru yettwaslekmen</string>
     <string name="autoplay_title">Taɣuri tawurmant</string>
@@ -116,7 +116,7 @@
     <string name="show_comments_title">Beqqeḍ iwenniten</string>
     <string name="settings_category_player_title">Ameɣri</string>
     <string name="conferences">Isaragen</string>
-    <string name="updates_setting_title">Isedγiten</string>
+    <string name="updates_setting_title">Ileqman</string>
     <string name="theme_title">Asentel</string>
     <string name="dark_theme_title">Ubrik</string>
     <string name="share">Bḍu</string>
@@ -131,7 +131,7 @@
     <string name="short_billion">o</string>
     <string name="controls_background_title">Aɣawas n deffir</string>
     <string name="title_activity_history">Amazray</string>
-    <string name="paused">Asteεfu</string>
+    <string name="paused">yesteɛfay</string>
     <string name="rename_playlist">Snifel isem</string>
     <string name="videos_string">Tividyutin</string>
     <string name="open_in_browser">Ldi deg uminig</string>
@@ -224,4 +224,5 @@
     <string name="radio">Amaṭṭaf</string>
     <string name="metadata_tags">Tibzimin</string>
     <string name="blank_page_summary">Asebter d ilem</string>
+    <string name="settings_category_exoplayer_title">Iɣewwaṛen n ExoPlayer</string>
 </resources>

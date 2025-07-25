@@ -432,7 +432,6 @@
     <string name="most_liked">Най-харесвани</string>
     <string name="done">Готово</string>
     <string name="comments_tab_description">Коментари</string>
-    <string name="localization_changes_requires_app_restart">Езикът ще се смени след рестартиране на приложението</string>
     <string name="metadata_privacy_unlisted">Скрит</string>
     <string name="metadata_privacy_private">Частен</string>
     <string name="remote_search_suggestions">Предложения за отдалечено търсене</string>
@@ -809,4 +808,12 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Винаги използвайте заобикаляне на настройката на повърхността на видеоизхода на ExoPlayer</string>
     <string name="clear_playback_states_title">Изтрий позиции за възпроизвеждане</string>
     <string name="audio_track_type_secondary">вторичен</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Споделяне като временен плейлист в YouTube</string>
+    <string name="tab_bookmarks_short">Плейлисти</string>
+    <string name="no_feed_group_created_yet">Все още няма създадена група за емисии</string>
+    <string name="feed_group_page_summary">Страница на групата канали</string>
+    <string name="select_a_feed_group">Изберете група емисии</string>
+    <string name="search_with_service_name">Търсене %1$s</string>
+    <string name="search_with_service_name_and_filter">Търсене %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Харесвания</string>
 </resources>

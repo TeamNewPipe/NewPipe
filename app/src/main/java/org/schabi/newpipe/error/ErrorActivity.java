@@ -1,7 +1,5 @@
 package org.schabi.newpipe.error;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -79,7 +77,6 @@ public class ErrorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
 
         ThemeHelper.setDayNightMode(this);
@@ -306,7 +303,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getAppLanguage() {
-        return Localization.getAppLocale(getApplicationContext()).toString();
+        return Localization.getAppLocale().toString();
     }
 
     private String getOsString() {

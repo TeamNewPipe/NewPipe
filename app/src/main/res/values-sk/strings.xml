@@ -428,7 +428,6 @@
         <item quantity="few">%s poslucháči</item>
         <item quantity="other">%s poslucháčov</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Zmena jazyka sa prejaví po reštarte aplikácie</string>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
@@ -837,4 +836,12 @@
 \nChcete to povoliť?</string>
     <string name="import_settings_vulnerable_format">Nastavenia v importovanom exporte používajú zraniteľný formát, ktorý bol od verzie NewPipe 0.27.0 zrušený. Uistite sa, že importovaný export pochádza z dôveryhodného zdroja, a v budúcnosti radšej používajte len exporty získané z verzie NewPipe 0.27.0 alebo novšej. Podpora importu nastavení v tomto zraniteľnom formáte bude čoskoro úplne odstránená a potom už staré verzie programu NewPipe nebudú môcť importovať nastavenia exportov z nových verzií.</string>
     <string name="audio_track_type_secondary">sekundárny</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Zdieľať ako dočasný playlist YouTube</string>
+    <string name="tab_bookmarks_short">Playlisty</string>
+    <string name="select_a_feed_group">Vybrať skupinu kanálov</string>
+    <string name="no_feed_group_created_yet">Skupina kanálov zatiaľ nie je vytvorená</string>
+    <string name="feed_group_page_summary">Stránka skupiny kanálov</string>
+    <string name="search_with_service_name_and_filter">Hľadať %1$s (%2$s)</string>
+    <string name="search_with_service_name">Hľadať %1$s</string>
+    <string name="channel_tab_likes">Páči sa</string>
 </resources>
