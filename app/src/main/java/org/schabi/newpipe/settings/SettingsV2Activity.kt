@@ -10,20 +10,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import org.schabi.newpipe.R
 import org.schabi.newpipe.settings.viewmodel.SettingsViewModel
+import org.schabi.newpipe.ui.SettingsRoutes
 import org.schabi.newpipe.ui.Toolbar
 import org.schabi.newpipe.ui.theme.AppTheme
-
-const val SCREEN_TITLE_KEY = "SCREEN_TITLE_KEY"
 
 @AndroidEntryPoint
 class SettingsV2Activity : ComponentActivity() {
@@ -35,37 +33,44 @@ class SettingsV2Activity : ComponentActivity() {
 
         setContent {
             val navController = rememberNavController()
-            var screenTitle by remember { mutableIntStateOf(SettingsScreenKey.ROOT.screenTitle) }
-            navController.addOnDestinationChangedListener { _, _, arguments ->
-                screenTitle =
-                    arguments?.getInt(SCREEN_TITLE_KEY) ?: SettingsScreenKey.ROOT.screenTitle
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            @StringRes val screenTitleRes by remember(navBackStackEntry) {
+                mutableIntStateOf(
+                    when (navBackStackEntry?.destination?.route) {
+                        SettingsRoutes.SettingsMainRoute::class.java.canonicalName -> SettingsRoutes.SettingsMainRoute.screenTitleRes
+                        SettingsRoutes.SettingsDebugRoute::class.java.canonicalName -> SettingsRoutes.SettingsDebugRoute.screenTitleRes
+                        else -> R.string.settings
+                    }
+                )
             }
 
             AppTheme {
                 Scaffold(topBar = {
                     Toolbar(
-                        title = stringResource(id = screenTitle),
+                        title = stringResource(screenTitleRes),
+                        onNavigateBack = {
+                            if (!navController.popBackStack()) {
+                                finish()
+                            }
+                        },
                         hasSearch = true,
-                        onSearchQueryChange = null // TODO: Add suggestions logic
+                        onSearch = {
+                            // TODO: Add suggestions logic
+                        },
+                        searchResults = emptyList()
                     )
                 }) { padding ->
                     NavHost(
                         navController = navController,
-                        startDestination = SettingsScreenKey.ROOT.name,
+                        startDestination = SettingsRoutes.SettingsMainRoute,
                         modifier = Modifier.padding(padding)
                     ) {
-                        composable(
-                            SettingsScreenKey.ROOT.name,
-                            listOf(createScreenTitleArg(SettingsScreenKey.ROOT.screenTitle))
-                        ) {
-                            SettingsScreen(onSelectSettingOption = { screen ->
-                                navController.navigate(screen.name)
+                        composable<SettingsRoutes.SettingsMainRoute> {
+                            SettingsScreen(onSelectSettingOption = { route ->
+                                navController.navigate(route)
                             })
                         }
-                        composable(
-                            SettingsScreenKey.DEBUG.name,
-                            listOf(createScreenTitleArg(SettingsScreenKey.DEBUG.screenTitle))
-                        ) {
+                        composable<SettingsRoutes.SettingsDebugRoute> {
                             DebugScreen(settingsViewModel)
                         }
                     }
@@ -73,13 +78,4 @@ class SettingsV2Activity : ComponentActivity() {
             }
         }
     }
-}
-
-fun createScreenTitleArg(@StringRes screenTitle: Int) = navArgument(SCREEN_TITLE_KEY) {
-    defaultValue = screenTitle
-}
-
-enum class SettingsScreenKey(@StringRes val screenTitle: Int) {
-    ROOT(R.string.settings),
-    DEBUG(R.string.settings_category_debug_title)
 }
