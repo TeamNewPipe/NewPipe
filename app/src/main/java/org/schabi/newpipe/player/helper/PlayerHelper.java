@@ -118,18 +118,6 @@ public final class PlayerHelper {
     }
 
     @NonNull
-    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
-        switch (format) {
-            case VTT:
-                return MimeTypes.TEXT_VTT;
-            case TTML:
-                return MimeTypes.APPLICATION_TTML;
-            default:
-                throw new IllegalArgumentException("Unrecognized mime type: " + format.name());
-        }
-    }
-
-    @NonNull
     public static String captionLanguageOf(@NonNull final Context context,
                                            @NonNull final SubtitlesStream subtitles) {
         final String displayName = subtitles.getDisplayLanguageName();
