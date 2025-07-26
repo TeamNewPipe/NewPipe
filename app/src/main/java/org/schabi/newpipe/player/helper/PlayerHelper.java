@@ -89,9 +89,7 @@ public final class PlayerHelper {
     private PlayerHelper() {
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Exposed helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // region Exposed helpers
 
     @NonNull
     public static String getTimeString(final int milliSeconds) {
@@ -219,9 +217,8 @@ public final class PlayerHelper {
                 ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Settings Resolution
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Resolution
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
         return getPreferences(context)
@@ -405,9 +402,8 @@ public final class PlayerHelper {
         return Integer.parseInt(preferredIntervalBytes) * 1024;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Private helpers
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Private helpers
 
     @NonNull
     private static SharedPreferences getPreferences(@NonNull final Context context) {
@@ -427,9 +423,8 @@ public final class PlayerHelper {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Utils used by player
-    ////////////////////////////////////////////////////////////////////////////
+    // endregion
+    // region Utils used by player
 
     @RepeatMode
     public static int nextRepeatMode(@RepeatMode final int repeatMode) {
@@ -503,4 +498,6 @@ public final class PlayerHelper {
                 player.getContext().getString(R.string.seek_duration_key),
                 player.getContext().getString(R.string.seek_duration_default_value))));
     }
+
+    // endregion
 }
