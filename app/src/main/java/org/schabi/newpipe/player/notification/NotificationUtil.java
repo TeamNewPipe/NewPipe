@@ -167,7 +167,7 @@ public final class NotificationUtil {
                 && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
-
+    @SuppressLint("NewApi") // ServiceInfo constant is inlined
     public void createNotificationAndStartForeground() {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification();

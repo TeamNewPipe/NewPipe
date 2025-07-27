@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
 import android.content.pm.ServiceInfo
-import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.Constraints
@@ -85,7 +84,8 @@ class NotificationWorker(
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentTitle(applicationContext.getString(R.string.feed_notification_loading))
             .build()
-        val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
+        @Suppress("NewApi") // ServiceInfo constant is inlined
+        val serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
         setForegroundAsync(ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification, serviceType))
     }
 
