@@ -96,8 +96,14 @@
             android:exported="false"
             android:label="@string/title_activity_about" />
 
-        <service android:name=".local.subscription.services.SubscriptionsImportService" />
-        <service android:name=".local.subscription.services.SubscriptionsExportService" />
+        <service
+            android:name=".local.subscription.services.SubscriptionsImportService"
+            android:foregroundServiceType="dataSync" />
+
+        <service
+            android:name=".local.subscription.services.SubscriptionsExportService"
+            android:foregroundServiceType="dataSync" />
+
         <service
             android:name=".local.feed.service.FeedLoadService"
             android:foregroundServiceType="dataSync" />
@@ -431,6 +437,7 @@
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->

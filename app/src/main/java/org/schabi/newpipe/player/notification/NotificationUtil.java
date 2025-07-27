@@ -174,12 +174,8 @@ public final class NotificationUtil {
         }
         updateNotification();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build(),
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-        } else {
-            player.getService().startForeground(NOTIFICATION_ID, notificationBuilder.build());
-        }
+        ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
+                notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
     }
 
     public void cancelNotificationAndStopForeground() {
