@@ -301,10 +301,6 @@
     <string name="short_million">Mln</string>
     <string name="short_billion">Mlrd</string>
     <string name="drawer_header_description">Xidməti dəyiş, hazırda seçilmiş:</string>
-    <string name="no_subscribers">Abunəçi yoxdur</string>
-    <string name="no_views">Baxış yoxdur</string>
-    <string name="no_one_watching">Heç kim izləmir</string>
-    <string name="no_one_listening">Heç kim dinləmir</string>
     <string name="no_videos">Video yoxdur</string>
     <string name="comments_are_disabled">Şərhlər qeyri-aktivdir</string>
     <string name="start">Başlat</string>
@@ -424,19 +420,6 @@
     <string name="msg_name">Fayl adı</string>
     <string name="recaptcha_solve">Həll et</string>
     <string name="subscriptions_export_unsuccessful">Abunəlikləri ixrac etmək mümkün olmadı</string>
-    <plurals name="watching">
-        <item quantity="one">%s baxıcı</item>
-        <item quantity="other">%s baxıcı</item>
-    </plurals>
-    <string name="manual_update_description">Yeni versiyaları əl ilə yoxla</string>
-    <plurals name="listening">
-        <item quantity="one">%s dinləyici</item>
-        <item quantity="other">%s dinləyici</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video</item>
-    </plurals>
     <string name="check_for_updates">Yeniləmələri yoxla</string>
     <string name="seekbar_preview_thumbnail_title">Axtarış çubuğunun miniatür önizləməsi</string>
     <string name="permission_denied">Əməliyyat sistem tərəfindən ləğv edildi</string>
@@ -483,8 +466,6 @@
     <string name="remote_search_suggestions">Kənar axtarış təklifləri</string>
     <string name="peertube_instance_add_exists">Server artıq mövcuddur</string>
     <string name="start_main_player_fullscreen_summary">Videoları kiçik oynadıcıda başlatma, avtomatik fırlatma kilidlidirsə, birbaşa tam ekran rejiminə keçid. Siz hələ də tam ekrandan çıxmaqla mini oynadıcıya daxil ola bilərsiniz</string>
-    <string name="more_than_100_videos">100+ video</string>
-    <string name="infinite_videos">∞ video</string>
     <string name="no_comments">Şərhlər yoxdur</string>
     <string name="subtitle_activity_recaptcha">Həll edildikdə \"Bitdi\" düyməsini bas</string>
     <string name="select_a_playlist">Pleylist seç</string>
@@ -515,10 +496,6 @@
     <string name="off">Bağla</string>
     <string name="detail_heart_img_view_description">Müəllifdən ürəkləndi</string>
     <string name="open_website_license">Veb saytı aç</string>
-    <plurals name="views">
-        <item quantity="one">%s baxış</item>
-        <item quantity="other">%s baxış</item>
-    </plurals>
     <string name="playback_step">Addım</string>
     <plurals name="new_streams">
         <item quantity="one">%s yeni yayım</item>
@@ -576,10 +553,6 @@
     <string name="msg_threads">Kadrlar</string>
     <string name="rename">Adını dəyişdir</string>
     <string name="create">Yarat</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abunəçi</item>
-        <item quantity="other">%s abunəçi</item>
-    </plurals>
     <string name="audio">Səs</string>
     <string name="error_details_headline">Təfərrüatlar:</string>
     <string name="info_labels">Nə:\\nSorğu:\\nMəzmun Dili:\\nMəzmun Ölkəsi:\\nTətbiq Dili:\\nXidmət:\\nGMT Saatı:\\nPaket:\\nVersiya:\\nƏS versiyası:</string>
@@ -621,7 +594,6 @@
     <string name="metadata_age_limit">Yaş həddi</string>
     <string name="metadata_language">Dil</string>
     <string name="metadata_privacy_public">İctimai</string>
-    <string name="subscribers_count_not_available">Abunəçi sayı əlçatan deyil</string>
     <string name="read_full_license">Lisenziyanı Oxu</string>
     <string name="title_activity_history">Tarixçə</string>
     <string name="charset_letters_and_digits">Hərflər və rəqəmlər</string>

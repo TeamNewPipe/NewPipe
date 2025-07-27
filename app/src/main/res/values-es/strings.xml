@@ -144,24 +144,7 @@
     <string name="undo">Deshacer</string>
     <string name="search_no_results">No hay resultados</string>
     <string name="empty_list_subtitle">Nada aquí más que grillos</string>
-    <string name="no_subscribers">Sin suscriptores</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s suscriptor</item>
-        <item quantity="many">%s suscriptores</item>
-        <item quantity="other">%s suscriptores</item>
-    </plurals>
-    <string name="no_views">Sin reproducciones</string>
-    <plurals name="views">
-        <item quantity="one">%s vista</item>
-        <item quantity="many">%s vistas</item>
-        <item quantity="other">%s vistas</item>
-    </plurals>
     <string name="no_videos">Sin vídeos</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="many">%s vídeos</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="delete_item_search_history">¿Quieres borrar este elemento del historial de búsquedas\?</string>
     <string name="main_page_content">Contenido de la página principal</string>
     <string name="blank_page_summary">Página en blanco</string>
@@ -390,7 +373,6 @@
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
     <string name="restore_defaults">Restaurar valores predefinidos</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores predefinidos\?</string>
-    <string name="subscribers_count_not_available">Número de suscriptores no disponible</string>
     <string name="main_page_content_summary">Qué pestañas aparecen en la página principal</string>
     <string name="conferences">Conferencias</string>
     <string name="updates_setting_title">Actualizaciones</string>
@@ -415,18 +397,6 @@
     <string name="delete_playback_states_alert">¿Quieres borrar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
     <string name="default_kiosk_page_summary">Quiosco predeterminado</string>
-    <string name="no_one_watching">Nadie está viendo</string>
-    <plurals name="watching">
-        <item quantity="one">Visualización %s</item>
-        <item quantity="many">Visualizaciones %s</item>
-        <item quantity="other">Visualizaciones %s</item>
-    </plurals>
-    <string name="no_one_listening">Nadie está escuchando</string>
-    <plurals name="listening">
-        <item quantity="one">%s oyente</item>
-        <item quantity="many">%s oyentes</item>
-        <item quantity="other">%s oyentes</item>
-    </plurals>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
@@ -509,8 +479,6 @@
     <string name="content_not_supported">Este contenido aún no es soportado por NewPipe.
 \n
 \nEsperamos que sea soportado en una versión futura.</string>
-    <string name="infinite_videos">∞ vídeos</string>
-    <string name="more_than_100_videos">Más de 100 vídeos</string>
     <string name="artists">Artistas</string>
     <string name="albums">Álbumes</string>
     <string name="songs">Canciones</string>

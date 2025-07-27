@@ -73,15 +73,6 @@
     <string name="notification_channel_name">Avisu permanente de NewPipe</string>
     <string name="search_no_results">Nun hai resultaos</string>
     <string name="empty_list_subtitle">Equí nun hai más que grillos</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s soscriptor</item>
-        <item quantity="other">%s soscriptores</item>
-    </plurals>
-    <string name="no_views">Nun hai vistes</string>
-    <plurals name="views">
-        <item quantity="one">%s vista</item>
-        <item quantity="other">%s vistes</item>
-    </plurals>
     <string name="settings_category_downloads_title">Descarga</string>
     <string name="settings_file_charset_title">Caráuteres permitíos nos nomes de los ficheros</string>
     <string name="charset_letters_and_digits">Lletres y díxitos</string>
@@ -150,7 +141,6 @@
     <string name="tracks">Pistes</string>
     <string name="users">Usuarios</string>
     <string name="restore_defaults">Reafitamientu de valores</string>
-    <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="updates_setting_title">Anovamientos</string>
     <string name="updates_setting_description">Amuesa un avisu qu\'apaez cuando hai disponible una versión nueva</string>
     <string name="list">Llista</string>
@@ -215,10 +205,6 @@
     <string name="downloads_storage_ask_title">Entrugar ónde baxar</string>
     <string name="downloads">Descargues</string>
     <string name="downloads_title">Descargues</string>
-    <plurals name="videos">
-        <item quantity="one">%s videu</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
@@ -429,19 +415,6 @@
     <string name="rename">Renomar</string>
     <string name="pause">Posar</string>
     <string name="start">Aniciar</string>
-    <string name="infinite_videos">Vídeos ∞</string>
-    <string name="more_than_100_videos">+100 vídeos</string>
-    <plurals name="listening">
-        <item quantity="one">%s oyente</item>
-        <item quantity="other">%s oyentes</item>
-    </plurals>
-    <string name="no_one_listening">Naide nun ta sintiendo</string>
-    <plurals name="watching">
-        <item quantity="one">%s espectador</item>
-        <item quantity="other">%s espectadores</item>
-    </plurals>
-    <string name="no_one_watching">Nun hai espectadores</string>
-    <string name="no_subscribers">Nun hai soscriptores</string>
     <string name="drawer_header_description">Alternar el serviciu, esbillóse:</string>
     <string name="retry">Retentar</string>
     <string name="detail_drag_description">Arrastra pa reordenar</string>

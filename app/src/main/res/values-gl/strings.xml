@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Prema na lupa para comezar.</string>
-    <string name="upload_date_text">Publicado o día %1$s</string>
     <string name="no_player_found">Non foi encontrado ningún reprodutor. Quere instalar o VLC\?</string>
     <string name="no_player_found_toast">Non se atopou ningún reprodutor de transmisión (podes instalar VLC para reproducilo).</string>
     <string name="install">Instalar</string>
@@ -161,27 +160,12 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="no_subscribers">Ningún subscrito</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subscrito</item>
-        <item quantity="other">%s subscritos</item>
-    </plurals>
-    <string name="no_views">Ningunha visualización</string>
-    <plurals name="views">
-        <item quantity="one">%s visualización</item>
-        <item quantity="other">%s visualizacións</item>
-    </plurals>
     <string name="no_videos">Ningún vídeo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="start">Comezar</string>
     <string name="pause">Pausar</string>
     <string name="create">Crear</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Suma de comprobación</string>
-    <string name="dismiss">Descartar</string>
     <string name="rename">Renomear</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nome do ficheiro</string>
@@ -471,19 +455,6 @@
     <string name="done">Feito</string>
     <string name="subtitle_activity_recaptcha">Prema \"Feito\" cando o resolva</string>
     <string name="no_comments">Ningún comentario</string>
-    <string name="infinite_videos">∞ vídeos</string>
-    <string name="more_than_100_videos">+100 vídeos</string>
-    <plurals name="listening">
-        <item quantity="one">%s oínte</item>
-        <item quantity="other">%s oíntes</item>
-    </plurals>
-    <string name="no_one_listening">Ninguén está escoitando</string>
-    <plurals name="watching">
-        <item quantity="one">%s vendo</item>
-        <item quantity="other">%s véndoos</item>
-    </plurals>
-    <string name="no_one_watching">Ninguén está vendo</string>
-    <string name="subscribers_count_not_available">Non hai dispoñible conta de subscritores</string>
     <string name="drawer_header_description">Cambiar o servizo actualmente seleccionado:</string>
     <string name="error_report_open_github_notice">Verifique se xa existe un problema que fala do seu fallo. Ao crear billetes duplicados, gasta o tempo que nós poderiamos gastar en solucionar o erro real.</string>
     <string name="error_report_open_issue_button_text">Reportar en GitHub</string>
@@ -674,7 +645,6 @@
     <string name="streams_notification_channel_description">Notificacións sobre novas emisións para subscricións</string>
     <string name="streams_notifications_interval_title">Frecuencia de verificación</string>
     <string name="streams_notifications_network_title">Conexión á rede necesaria</string>
-    <string name="enumeration_comma">,</string>
     <string name="toggle_all">Alternar todo</string>
     <plurals name="new_streams">
         <item quantity="one">%s nova emisión</item>
@@ -777,10 +747,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="show_more">Amosar máis</string>
-    <plurals name="replies">
-        <item quantity="one">%s resposta</item>
-        <item quantity="other">%s respostas</item>
-    </plurals>
     <string name="show_less">Amosar menos</string>
     <string name="notification_actions_summary_android13">Edite cada acción de notificación premendo nela. As primeiras tres accións (reproducir/pausar, anterior e seguinte) están definidas polo sistema e non é posíbel personalizalas.</string>
     <string name="metadata_subchannel_avatars">Avatar da subcanle</string>

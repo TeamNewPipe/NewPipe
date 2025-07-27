@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -15,17 +14,15 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.math.MathUtils;
+import androidx.core.i18n.MessageFormat;
 import androidx.core.os.LocaleListCompat;
 import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -41,6 +38,7 @@ import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -122,13 +120,9 @@ public final class Localization {
         return customLocale != null ? customLocale : Locale.getDefault();
     }
 
-    public static String localizeNumber(final long number) {
-        return localizeNumber((double) number);
-    }
-
+    @NonNull
     public static String localizeNumber(final double number) {
-        final NumberFormat nf = NumberFormat.getInstance(getAppLocale());
-        return nf.format(number);
+        return NumberFormat.getInstance(getAppLocale()).format(number);
     }
 
     public static String formatDate(@NonNull final OffsetDateTime offsetDateTime) {
@@ -137,53 +131,18 @@ public final class Localization {
                         .atZoneSameInstant(ZoneId.systemDefault()));
     }
 
-    @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(@NonNull final Context context,
-                                            @NonNull final OffsetDateTime offsetDateTime) {
-        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime));
+    @NonNull
+    public static String formatStreamCount(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.videos, count);
     }
 
-    public static String localizeViewCount(@NonNull final Context context, final long viewCount) {
-        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
-                localizeNumber(viewCount));
+    @NonNull
+    public static String formatStreamCountMini(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.videos_mini, count);
     }
 
-    public static String localizeStreamCount(@NonNull final Context context,
-                                             final long streamCount) {
-        switch ((int) streamCount) {
-            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
-                return "";
-            case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos);
-            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos);
-            default:
-                return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount,
-                        localizeNumber(streamCount));
-        }
-    }
-
-    public static String localizeStreamCountMini(@NonNull final Context context,
-                                                 final long streamCount) {
-        switch ((int) streamCount) {
-            case (int) ListExtractor.ITEM_COUNT_UNKNOWN:
-                return "";
-            case (int) ListExtractor.ITEM_COUNT_INFINITE:
-                return context.getResources().getString(R.string.infinite_videos_mini);
-            case (int) ListExtractor.ITEM_COUNT_MORE_THAN_100:
-                return context.getResources().getString(R.string.more_than_100_videos_mini);
-            default:
-                return String.valueOf(streamCount);
-        }
-    }
-
-    public static String localizeWatchingCount(@NonNull final Context context,
-                                               final long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
-                localizeNumber(watchingCount));
-    }
-
-    public static String shortCount(@NonNull final Context context, final long count) {
+    @NonNull
+    public static String getShortCount(@NonNull final Context context, final long count) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return CompactDecimalFormat.getInstance(getAppLocale(),
                     CompactDecimalFormat.CompactStyle.SHORT).format(count);
@@ -204,55 +163,56 @@ public final class Localization {
         }
     }
 
-    public static String listeningCount(@NonNull final Context context, final long listeningCount) {
-        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount,
-                shortCount(context, listeningCount));
+    @NonNull
+    public static String formatListeningCount(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.listening, count);
     }
 
-    public static String shortWatchingCount(@NonNull final Context context,
-                                            final long watchingCount) {
-        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount,
-                shortCount(context, watchingCount));
+    @NonNull
+    public static String formatWatchingCount(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.watching, count);
     }
 
-    public static String shortViewCount(@NonNull final Context context, final long viewCount) {
-        return getQuantity(context, R.plurals.views, R.string.no_views, viewCount,
-                shortCount(context, viewCount));
+    @NonNull
+    public static String formatViewCount(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.views, count);
     }
 
-    public static String shortSubscriberCount(@NonNull final Context context,
-                                              final long subscriberCount) {
-        return getQuantity(context, R.plurals.subscribers, R.string.no_subscribers, subscriberCount,
-                shortCount(context, subscriberCount));
+    @NonNull
+    public static String formatSubscriberCount(@NonNull final Context context, final long count) {
+        return getQuantity(context, R.string.subscribers, count);
     }
 
-    public static String downloadCount(@NonNull final Context context, final int downloadCount) {
-        return getQuantity(context, R.plurals.download_finished_notification, 0,
-                downloadCount, shortCount(context, downloadCount));
+    @NonNull
+    public static String formatDownloadCount(@NonNull final Context context, final int count) {
+        return context.getResources().getQuantityString(R.plurals.download_finished_notification,
+                count, getShortCount(context, count));
     }
 
-    public static String deletedDownloadCount(@NonNull final Context context,
-                                              final int deletedCount) {
-        return getQuantity(context, R.plurals.deleted_downloads_toast, 0,
-                deletedCount, shortCount(context, deletedCount));
+    @NonNull
+    public static String formatDeletedDownloadCount(@NonNull final Context context,
+                                                    final int count) {
+        return context.getResources().getQuantityString(R.plurals.deleted_downloads_toast, count,
+                getShortCount(context, count));
     }
 
-    public static String replyCount(@NonNull final Context context, final int replyCount) {
-        return getQuantity(context, R.plurals.replies, 0, replyCount,
-                String.valueOf(replyCount));
+    @NonNull
+    public static String formatReplyCount(@NonNull final Context context, final int count) {
+        return context.getResources().getQuantityString(R.plurals.replies, count,
+                getShortCount(context, count));
     }
 
     /**
      * @param context the Android context
      * @param likeCount the like count, possibly negative if unknown
      * @return if {@code likeCount} is smaller than {@code 0}, the string {@code "-"}, otherwise
-     *         the result of calling {@link #shortCount(Context, long)} on the like count
+     *         the result of calling {@link #getShortCount(Context, long)} on the like count
      */
     public static String likeCount(@NonNull final Context context, final int likeCount) {
         if (likeCount < 0) {
             return "-";
         } else {
-            return shortCount(context, likeCount);
+            return getShortCount(context, likeCount);
         }
     }
 
@@ -420,21 +380,11 @@ public final class Localization {
         return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP).doubleValue();
     }
 
-    private static String getQuantity(@NonNull final Context context,
-                                      @PluralsRes final int pluralId,
-                                      @StringRes final int zeroCaseStringId,
-                                      final long count,
-                                      final String formattedCount) {
-        if (count == 0) {
-            return context.getString(zeroCaseStringId);
-        }
-
-        // As we use the already formatted count
-        // is not the responsibility of this method handle long numbers
-        // (it probably will fall in the "other" category,
-        // or some language have some specific rule... then we have to change it)
-        final int safeCount = (int) MathUtils.clamp(count, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
+    private static String getQuantity(@NonNull final Context context, @StringRes final int stringId,
+                                      final long count) {
+        final String formatted = getShortCount(context, count);
+        final var args = Map.of("count", count, "formatted_count", formatted);
+        return MessageFormat.format(context, stringId, args);
     }
 
     // Starting with pull request #12093, NewPipe exclusively uses Android's

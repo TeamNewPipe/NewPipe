@@ -20,34 +20,7 @@
     <string name="pause">Sekinandin</string>
     <string name="start">Destpêkirin</string>
     <string name="no_comments">Şîrove tune</string>
-    <plurals name="videos">
-        <item quantity="one">%s vîdyoya</item>
-        <item quantity="other">%s vîdyoyên</item>
-    </plurals>
-    <string name="infinite_videos">∞ vîdyoyan</string>
-    <string name="more_than_100_videos">100+ vîdyo</string>
     <string name="no_videos">Vîdyo tune</string>
-    <plurals name="listening">
-        <item quantity="one">%s guhdar</item>
-        <item quantity="other">%s guhdarvanan</item>
-    </plurals>
-    <string name="no_one_listening">Kes guh nade</string>
-    <plurals name="watching">
-        <item quantity="one">%s temaşe dike</item>
-        <item quantity="other">%s temaşe dikin</item>
-    </plurals>
-    <string name="no_one_watching">Kes temaşe nake</string>
-    <plurals name="views">
-        <item quantity="one">dîtina % s</item>
-        <item quantity="other">%s dîtin</item>
-    </plurals>
-    <string name="no_views">Nerîn tune</string>
-    <string name="subscribers_count_not_available">Hejmara aboneyan tune</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abone</item>
-        <item quantity="other">%s abonekirin</item>
-    </plurals>
-    <string name="no_subscribers">Ne abone</string>
     <string name="drawer_header_description">Karûbarê veguheztinê, niha hatî hilbijartin:</string>
     <string name="short_billion">B</string>
     <string name="short_million">M</string>

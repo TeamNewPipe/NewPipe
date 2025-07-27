@@ -172,14 +172,6 @@
     <string name="search_no_results">Tidak ada hasil</string>
     <string name="empty_list_subtitle">Tidak ada apa pun di sini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
-    <string name="no_subscribers">Tidak ada pelanggan</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s pelanggan</item>
-    </plurals>
-    <string name="no_views">Belum ditonton</string>
-    <plurals name="views">
-        <item quantity="other">%s ditonton</item>
-    </plurals>
     <string name="no_videos">Tidak ada video</string>
     <string name="create">Buat</string>
     <string name="dismiss">Abaikan</string>
@@ -335,7 +327,6 @@
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
     <string name="restore_defaults">Kembali ke awal</string>
     <string name="restore_defaults_confirmation">Apakah Anda ingin mengembalikan ke bawaan\?</string>
-    <string name="subscribers_count_not_available">Jumlah pelanggan tidak tersedia</string>
     <string name="main_page_content_summary">Tab apa yang ditampilkan di halaman utama</string>
     <string name="conferences">Konferensi</string>
     <string name="updates_setting_title">Pembaruan</string>
@@ -405,18 +396,7 @@
     <string name="clear_playback_states_title">Hapus posisi pemutaran</string>
     <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
-    <plurals name="videos">
-        <item quantity="other">%s video</item>
-    </plurals>
     <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
-    <string name="no_one_watching">Tidak ada yang menonton</string>
-    <plurals name="watching">
-        <item quantity="other">%s menonton</item>
-    </plurals>
-    <string name="no_one_listening">Tidak ada yang mendengarkan</string>
-    <plurals name="listening">
-        <item quantity="other">%s pendengar</item>
-    </plurals>
     <string name="peertube_instance_url_title">Situs PeerTube</string>
     <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
     <string name="peertube_instance_url_help">Temukan situs yang Anda suka di %s</string>
@@ -475,8 +455,6 @@
     <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktifkan mode cepat</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Nonaktifkan mode cepat</string>
-    <string name="infinite_videos">∞ video</string>
-    <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Artis</string>
     <string name="albums">Album</string>
     <string name="songs">Lagu</string>

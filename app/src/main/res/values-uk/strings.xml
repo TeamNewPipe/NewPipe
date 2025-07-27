@@ -138,7 +138,6 @@
     <string name="player_recoverable_failure">Відновлення після помилки програвача</string>
     <string name="video_streams_empty">Відеопотоки не знайдено</string>
     <string name="audio_streams_empty">Аудіопотоки не знайдено</string>
-    <string name="no_subscribers">Немає підписників</string>
     <string name="no_videos">Немає відео</string>
     <string name="msg_popup_permission">Цей дозвіл потрібен для перегляду
 \nу віконному режимі</string>
@@ -179,16 +178,6 @@
     <string name="detail_dislikes_img_view_description">Не сподобалося</string>
     <string name="search_no_results">Нічого не знайдено</string>
     <string name="detail_drag_description">Перетягуйте для впорядкування</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s підписник</item>
-        <item quantity="few">%s підписники</item>
-        <item quantity="many">%s підписників</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s відео</item>
-        <item quantity="few">%s відео</item>
-        <item quantity="many">%s відео</item>
-    </plurals>
     <string name="create">Створити</string>
     <string name="dismiss">Відхилити</string>
     <string name="rename">Перейменувати</string>
@@ -198,12 +187,6 @@
     <string name="contribution_encouragement">Які б не були ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг — будь-яка допомога завжди у пригоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
     <string name="settings_category_debug_title">Налагодження</string>
     <string name="empty_list_subtitle">Нічого немає… чути лише цвіркунів</string>
-    <string name="no_views">Немає переглядів</string>
-    <plurals name="views">
-        <item quantity="one">%s перегляд</item>
-        <item quantity="few">%s перегляди</item>
-        <item quantity="many">%s переглядів</item>
-    </plurals>
     <string name="title_activity_recaptcha">Перевірка reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запит перевірки reCAPTCHA</string>
     <string name="copyright" formatted="true">© %1$s, %2$s під %3$s</string>
@@ -350,7 +333,6 @@
     <string name="download_to_sdcard_error_title">Зовнішнє сховище недоступне</string>
     <string name="restore_defaults">Відновити типові налаштування</string>
     <string name="restore_defaults_confirmation">Відновити типові значення\?</string>
-    <string name="subscribers_count_not_available">Кількість підписників недоступна</string>
     <string name="conferences">Конференції</string>
     <string name="updates_setting_title">Оновлення</string>
     <string name="auto">Автоматично</string>
@@ -416,18 +398,6 @@
     <string name="delete_playback_states_alert">Видалити всі позиції відтворення\?</string>
     <string name="drawer_header_description">Перемкнути службу, наразі обрано:</string>
     <string name="default_kiosk_page_summary">Типовий кіоск</string>
-    <string name="no_one_watching">Немає переглядів</string>
-    <plurals name="watching">
-        <item quantity="one">%s глядач</item>
-        <item quantity="few">%s глядача</item>
-        <item quantity="many">%s глядачів</item>
-    </plurals>
-    <string name="no_one_listening">Ніхто не слухає</string>
-    <plurals name="listening">
-        <item quantity="one">%s слухач</item>
-        <item quantity="few">%s слухача</item>
-        <item quantity="many">%s слухачів</item>
-    </plurals>
     <string name="seek_duration_title">Швидке перемотування</string>
     <string name="peertube_instance_url_title">Екземпляри PeerTube</string>
     <string name="peertube_instance_url_summary">Виберіть сервер PeerTube</string>
@@ -518,8 +488,6 @@
     <string name="remove_watched_popup_title">Видалити переглянуті відео\?</string>
     <string name="remove_watched">Видалити переглянуті</string>
     <string name="playlist_no_uploader">Створено автоматично (автора не знайдено)</string>
-    <string name="infinite_videos">∞ вiдео</string>
-    <string name="more_than_100_videos">100+ вiдео</string>
     <string name="artists">Виконавці</string>
     <string name="albums">Альбоми</string>
     <string name="songs">Пісні</string>

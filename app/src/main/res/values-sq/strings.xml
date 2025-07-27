@@ -278,22 +278,7 @@
     <string name="pause">Ndaloje</string>
     <string name="start">Nis</string>
     <string name="no_comments">Nuk ka komente</string>
-    <string name="infinite_videos">∞ video</string>
-    <string name="more_than_100_videos">100+ video</string>
     <string name="no_videos">Nuk ka video</string>
-    <string name="no_one_listening">Askush nuk po dëgjon</string>
-    <string name="no_one_watching">Askush nuk po e sheh</string>
-    <plurals name="views">
-        <item quantity="one">%s shikim</item>
-        <item quantity="other">%s shikime</item>
-    </plurals>
-    <string name="no_views">Nuk ka shikime</string>
-    <string name="subscribers_count_not_available">Numri i abonentëve është i padisponueshëm</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonent</item>
-        <item quantity="other">%s abonentë</item>
-    </plurals>
-    <string name="no_subscribers">Nuk ka abonues</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
     <string name="short_billion">B</string>
     <string name="short_million">M</string>
@@ -346,21 +331,9 @@
     <string name="controls_download_desc">Shkarko skedarin stream</string>
     <string name="open_in_popup_mode">Hape në modalitetin popup</string>
     <string name="no_player_found">Nuk u gjend lexues për stream. Instalo VLC\?</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video</item>
-    </plurals>
     <plurals name="days">
         <item quantity="one">%d ditë</item>
         <item quantity="other">%d ditë</item>
-    </plurals>
-    <plurals name="listening">
-        <item quantity="one">%s dëgjues</item>
-        <item quantity="other">%s dëgjues</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s duke e parë</item>
-        <item quantity="other">%s duke parë</item>
     </plurals>
     <string name="controls_popup_title">Popup</string>
     <string name="tracks">Pistë</string>

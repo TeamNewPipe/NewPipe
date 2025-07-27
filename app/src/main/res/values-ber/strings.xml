@@ -39,12 +39,6 @@
     <string name="dismiss">ⵙⵙⵔ</string>
     <string name="delete">ⴽⴽⵙ</string>
     <string name="no_comments">ⵓⵔ ⵍⵍⵉⵏ ⵉⵡⴼⴰⵡⴰⵍⵏ</string>
-    <plurals name="videos">
-        <item quantity="one">%s ⵓⴼⵉⴷⵢⵓ</item>
-        <item quantity="other">%s ⵉⴼⵉⴷⵢⵓⵜⵏ</item>
-    </plurals>
-    <string name="infinite_videos">∞ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
-    <string name="more_than_100_videos">100+ ⵉⴼⵉⴷⵢⵓⵜⵏ</string>
     <string name="short_billion">ⴱ</string>
     <string name="short_million">ⵎ</string>
     <string name="short_thousand">ⴽ</string>

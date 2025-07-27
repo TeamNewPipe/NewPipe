@@ -253,10 +253,6 @@
     <string name="auto">自動</string>
     <string name="low_quality_smaller">低畫質 (細格啲)</string>
     <string name="dont_show">唔顯示</string>
-    <string name="no_views">無觀看次數</string>
-    <plurals name="listening">
-        <item quantity="other">%s 個人聽緊</item>
-    </plurals>
     <string name="dismiss">明白</string>
     <string name="queued">排緊隊</string>
     <string name="post_processing">後期處理緊</string>
@@ -267,13 +263,6 @@
     <string name="no_valid_zip_file">個 ZIP 檔無效</string>
     <string name="most_liked">最多讚</string>
     <string name="export_complete_toast">匯出咗</string>
-    <plurals name="views">
-        <item quantity="other">%s 次觀看</item>
-    </plurals>
-    <string name="no_one_watching">無人睇緊</string>
-    <plurals name="videos">
-        <item quantity="other">%s 部影片</item>
-    </plurals>
     <string name="no_comments">無留言</string>
     <string name="msg_calculating_hash">計算緊雜湊</string>
     <string name="settings_file_charset_title">檔名准用啲咩字元</string>
@@ -297,21 +286,9 @@
     <string name="rename_playlist">改過個名</string>
     <string name="playback_pitch">音高</string>
     <string name="missions_header_finished">完成咗</string>
-    <string name="no_videos">無影片</string>
     <string name="video_player">影片播放器</string>
     <string name="wifi_only">淨係用 Wi-Fi 嗰陣</string>
     <string name="high_quality_larger">高畫質 (大格啲)</string>
-    <string name="no_subscribers">無訂閱者</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s 位訂閱者</item>
-    </plurals>
-    <string name="subscribers_count_not_available">訂閱者人數不詳</string>
-    <plurals name="watching">
-        <item quantity="other">%s 個人睇緊</item>
-    </plurals>
-    <string name="no_one_listening">無人聽緊</string>
-    <string name="more_than_100_videos">100+ 部影片</string>
-    <string name="infinite_videos">∞ 部影片</string>
     <string name="comments_are_disabled">未開放留言</string>
     <string name="create">加新</string>
     <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料夾</string>

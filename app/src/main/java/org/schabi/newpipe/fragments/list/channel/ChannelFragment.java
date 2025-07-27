@@ -608,18 +608,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
         binding.channelTitleView.setText(result.getName());
         binding.channelSubscriberView.setVisibility(View.VISIBLE);
-        if (result.getSubscriberCount() >= 0) {
-            binding.channelSubscriberView.setText(Localization
-                    .shortSubscriberCount(activity, result.getSubscriberCount()));
-        } else {
-            binding.channelSubscriberView.setText(R.string.subscribers_count_not_available);
-        }
+        binding.channelSubscriberView.setText(Localization.formatSubscriberCount(activity,
+                result.getSubscriberCount()));
 
         if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
-            binding.subChannelTitleView.setText(String.format(
-                    getString(R.string.channel_created_by),
-                    currentInfo.getParentChannelName())
-            );
+            binding.subChannelTitleView.setText(getString(R.string.channel_created_by,
+                    currentInfo.getParentChannelName()));
             binding.subChannelTitleView.setVisibility(View.VISIBLE);
             binding.subChannelAvatarView.setVisibility(View.VISIBLE);
         }

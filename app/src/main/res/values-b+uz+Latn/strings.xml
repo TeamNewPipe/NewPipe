@@ -238,34 +238,7 @@
     <string name="pause">Pauza</string>
     <string name="start">Boshlash</string>
     <string name="no_comments">Izohlar yo\'q</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videolar</item>
-    </plurals>
-    <string name="infinite_videos">∞ videolar</string>
-    <string name="more_than_100_videos">100+ videolar</string>
     <string name="no_videos">Videolar yo\'q</string>
-    <plurals name="listening">
-        <item quantity="one">%s tinglovchi</item>
-        <item quantity="other">%s tinglovchilar</item>
-    </plurals>
-    <string name="no_one_listening">Hech kim tinglamayapti</string>
-    <plurals name="watching">
-        <item quantity="one">%s ko\'ryapti</item>
-        <item quantity="other">%s ko\'ryaptilar</item>
-    </plurals>
-    <string name="no_one_watching">Hech kim ko\'rmayapti</string>
-    <plurals name="views">
-        <item quantity="one">%s ko\'rish</item>
-        <item quantity="other">%s ko\'rishlar</item>
-    </plurals>
-    <string name="no_views">Ko\'rishlar yo\'q</string>
-    <string name="subscribers_count_not_available">Obunachilar soni mavjud emas</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s bunachisi</item>
-        <item quantity="other">%s obunachilar</item>
-    </plurals>
-    <string name="no_subscribers">Obunachilar yo\'q</string>
     <string name="drawer_header_description">Hozirda tanlangan xizmatni yoqish:</string>
     <string name="short_billion">B</string>
     <string name="short_million">M</string>

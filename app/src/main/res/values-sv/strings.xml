@@ -115,21 +115,7 @@
     <string name="short_thousand">t</string>
     <string name="short_million">mn</string>
     <string name="short_billion">md</string>
-    <string name="no_subscribers">Inga prenumeranter</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s prenumerant</item>
-        <item quantity="other">%s prenumeranter</item>
-    </plurals>
-    <string name="no_views">Inga visningar</string>
-    <plurals name="views">
-        <item quantity="one">%s visning</item>
-        <item quantity="other">%s visningar</item>
-    </plurals>
     <string name="no_videos">Inga videor</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videor</item>
-    </plurals>
     <string name="start">Start</string>
     <string name="pause">Pausa</string>
     <string name="delete">Ta bort</string>
@@ -339,7 +325,6 @@
     <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standardflikar</string>
     <string name="restore_defaults">Återställ standardvärden</string>
     <string name="restore_defaults_confirmation">Vill du återställa till standard\?</string>
-    <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
     <string name="main_page_content_summary">Vilka flikar visas på huvudsidan</string>
     <string name="updates_setting_title">Uppdateringar</string>
     <string name="updates_setting_description">Visa avisering för att uppdatera appen när en ny version finns tillgänglig</string>
@@ -403,20 +388,8 @@
 \nOm du vill visa den aktiverar du \"%1$s\" i inställningarna.</string>
     <string name="no_comments">Inga kommentarer</string>
     <string name="subtitle_activity_recaptcha">Tryck på \"Klar\" när det är löst</string>
-    <string name="infinite_videos">∞ videor</string>
-    <string name="more_than_100_videos">100+ videor</string>
-    <plurals name="listening">
-        <item quantity="one">%s lyssnare</item>
-        <item quantity="other">%s lyssnare</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s tittar</item>
-        <item quantity="other">%s tittar</item>
-    </plurals>
-    <string name="no_one_watching">Ingen tittar</string>
     <string name="drawer_header_description">Växla tjänst, för närvarande vald:</string>
     <string name="permission_display_over_apps">Ge behörighet att visa över andra appar</string>
-    <string name="no_one_listening">Ingen lyssnar</string>
     <string name="default_kiosk_page_summary">Standardkiosk</string>
     <string name="error_path_creation">Destinationsmappen kan inte skapas</string>
     <string name="error_file_creation">Det går inte att skapa filen</string>

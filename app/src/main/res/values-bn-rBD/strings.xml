@@ -120,7 +120,6 @@
     <string name="always">সবসময়</string>
     <string name="just_once">একবার মাত্র</string>
     <string name="unknown_content">[অজানা]</string>
-    <string name="no_views">কোন ভিউ নেই</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="website_title">ওয়েবসাইট</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার নেই (প্লে করতে VLC ইন্সটল করতে পারেন)।</string>
@@ -208,7 +207,6 @@
     <string name="one_item_deleted">একটি আইটেম ডিলিট হয়েছে।</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_videos">কোন ভিডিও নেই</string>
-    <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="search_no_results">কোন রেজাল্ট নেই</string>
     <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
     <string name="restore_defaults_confirmation">আপনি কি ডিফল্ট এ ফিরতে চান\?</string>
@@ -342,7 +340,6 @@
     <string name="metadata_language">ভাষা</string>
     <string name="metadata_age_limit">বয়স সীমা</string>
     <string name="main_page_content">প্রধান পাতার উপাদান সমূহ</string>
-    <string name="no_one_listening">কেউ শুনছে না</string>
     <string name="start_main_player_fullscreen_title">মূল প্লেয়ার পুরো পর্দাজুড়ে চালাও</string>
     <string name="description_tab_description">বর্ণনা</string>
     <string name="settings_category_player_notification_title">প্লেয়ার নোটিফিকেশন</string>
@@ -356,17 +353,6 @@
     <string name="related_items_tab_description">সম্পর্কিত আইটেমসমূহ</string>
     <string name="empty_list_subtitle">ঝিঁঝিঁপোকা ছাড়া এখানে কিছু নেই</string>
     <string name="detail_drag_description">পুনর্বিন্যাস্ত করতে টান দিন</string>
-    <string name="subscribers_count_not_available">গ্রাহকসংখ্যা সুলভ নয়</string>
-    <string name="no_one_watching">কেউ দেখছে না</string>
-    <plurals name="videos">
-        <item quantity="one">%s ভিডিও</item>
-        <item quantity="other">%s ভিডিও</item>
-    </plurals>
-    <plurals name="listening">
-        <item quantity="one">%s জন শ্রোতা</item>
-        <item quantity="other">%s জন শ্রোতা</item>
-    </plurals>
-    <string name="infinite_videos">∞ ভিডিও</string>
     <string name="recaptcha_solve">সমাধান করো</string>
     <string name="enable_streams_notifications_title">নতুন স্ট্রিমের নোটিফিকেশন</string>
     <string name="any_network">যেকোন নেটওয়ার্ক</string>
@@ -384,10 +370,6 @@
     <string name="dont_show">দেখিও না</string>
     <string name="app_update_available_notification_title">নিউ পাইপ আপডেট এসেছে!</string>
     <string name="comments_are_disabled">মন্তব্যসমূহ নিষ্ক্রিয় আছে</string>
-    <plurals name="views">
-        <item quantity="one">%s বার দেখেছে</item>
-        <item quantity="other">%s বার দেখেছে</item>
-    </plurals>
     <string name="overwrite">ওভাররাইট</string>
     <string name="notification_action_2_title">তৃতীয় পদক্ষেপ বোতাম</string>
     <string name="local_search_suggestions">স্থানীয় অনুসন্ধানের পরামর্শ</string>
@@ -402,10 +384,6 @@
     <string name="external_player_unsupported_link_type">বাইরের প্লেয়ারসমূহ এ ধরনের লিঙ্কসমূহ সমর্থন করে না</string>
     <string name="msg_calculating_hash">হ্যাশ হিসাব করা হচ্ছে</string>
     <string name="check_for_updates">আপডেট চেক করো</string>
-    <plurals name="watching">
-        <item quantity="one">%s জন দেখছে</item>
-        <item quantity="other">%s জন দেখছে</item>
-    </plurals>
     <plurals name="new_streams">
         <item quantity="one">%s টি নতুন স্ট্রিম</item>
         <item quantity="other">%s টি নতুন স্ট্রিম</item>
@@ -414,12 +392,7 @@
         <item quantity="one">ডাউনলোড সম্পন্ন</item>
         <item quantity="other">%s ডাউনলোড হয়েছে</item>
     </plurals>
-    <string name="more_than_100_videos">১০০+ ভিডিও</string>
     <string name="users">ব্যবহারকারীগণ</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s জন গ্রাহক</item>
-        <item quantity="other">%s জন গ্রাহক</item>
-    </plurals>
     <string name="show_meta_info_title">আনুষঙ্গিক তথ্য দেখাও</string>
     <string name="streams_notifications_network_title">নেটওয়ার্ক সংযোগ দরকার</string>
     <string name="high_quality_larger">উচ্চ মান (বড় আকারের)</string>

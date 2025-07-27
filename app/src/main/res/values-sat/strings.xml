@@ -218,10 +218,7 @@
     <string name="video">ᱵᱷᱤᱰᱤᱭᱳ</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="subscribers_count_not_available">ᱥᱮᱞᱮᱫᱤᱭᱟᱹ ᱠᱚᱣᱟᱜ ᱞᱮᱠᱷᱟ ᱵᱟᱭ ᱦᱟᱹᱴᱤᱧ ᱟᱠᱟᱱᱟ</string>
-    <string name="no_views">ᱵᱟᱱᱩᱜ ᱧᱮᱞ</string>
     <string name="no_videos">ᱵᱷᱤᱰᱤᱭᱳ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="more_than_100_videos">᱑᱐᱐+ ᱵᱷᱤᱰᱤᱭᱳ</string>
     <string name="no_live_streams">ᱡᱤᱣᱤ ᱥᱴᱨᱤᱢ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="checksum">ᱪᱮᱠᱥᱢ</string>
     <string name="dismiss">ᱵᱚᱫᱚᱞ ᱢᱮ</string>
@@ -480,14 +477,10 @@
     <string name="retry">ᱟᱨᱦᱚᱸ ᱯᱟᱲᱦᱟᱣ ᱢᱮ</string>
     <string name="short_billion">ᱵᱤ</string>
     <string name="drawer_header_description">ᱱᱤᱛᱚᱜ ᱵᱟᱪᱷᱟᱣ ᱟᱠᱟᱱ ᱴᱳᱜᱞ ᱥᱮᱵᱟ:</string>
-    <string name="no_subscribers">ᱚᱵᱷᱤᱱᱮᱛᱟᱨ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="no_one_watching">ᱚᱠᱚᱭ ᱦᱚᱸ ᱵᱟᱝ ᱧᱮᱞᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="done">ᱜᱚᱴᱟ ᱟᱠᱟᱱᱟ</string>
     <string name="title_activity_about">ᱱᱤᱭᱩ ᱯᱟᱭᱯᱮ ᱵᱟᱵᱚᱛ</string>
     <string name="title_licenses">ᱯᱮᱨᱟᱜ ᱞᱟᱭᱥᱮᱱᱥ</string>
     <string name="donation_title">ᱰᱳᱱᱮᱴ ᱢᱮ</string>
-    <string name="no_one_listening">ᱡᱟᱦᱟᱸᱭ ᱜᱮᱭ ᱟᱸᱡᱚᱢᱟ</string>
-    <string name="infinite_videos">∞ ᱵᱷᱤᱰᱤᱭᱳ</string>
     <string name="no_comments">ᱵᱟᱦᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="comments_are_disabled">ᱠᱚᱢᱮᱱᱴ ᱫᱚ ᱵᱚᱫᱚᱞ ᱟᱠᱟᱱᱟ</string>
     <string name="start">ᱮᱛᱚᱦᱚᱵ</string>

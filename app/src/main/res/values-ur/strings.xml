@@ -149,21 +149,7 @@
     <string name="short_thousand">ہزار</string>
     <string name="short_million">دہ لاکھ</string>
     <string name="short_billion">ارب</string>
-    <string name="no_subscribers">کوئی صارفین نہیں</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s صارف</item>
-        <item quantity="other">%s صارفین</item>
-    </plurals>
-    <string name="no_views">کوئی مناظر نہیں</string>
-    <plurals name="views">
-        <item quantity="one">%s منظر</item>
-        <item quantity="other">%s مناظر</item>
-    </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
-    <plurals name="videos">
-        <item quantity="one">%s ویڈیو</item>
-        <item quantity="other">%s ویڈیوز</item>
-    </plurals>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>
     <string name="create">بنانا</string>
@@ -334,7 +320,6 @@
     <string name="saved_tabs_invalid_json">محفوظ شدہ ٹیبز نہیں پڑھ سکے لہذا پہلے سے طے شدہ کا استعمال کر رہے ہیں</string>
     <string name="restore_defaults">طے شدہ بحال کریں</string>
     <string name="restore_defaults_confirmation">کیا آپ پہلے سے طے شدہ کو بحال کرنا چاہتے ہیں؟</string>
-    <string name="subscribers_count_not_available">صارفین کا شمار دستیاب نہیں</string>
     <string name="main_page_content_summary">مرکزی صفحہ پر کون کون سے ٹیبز دکھائے جاہیں</string>
     <string name="updates_setting_title">تازہ کاری</string>
     <string name="updates_setting_description">نیا ورژن دستیاب ہونے پر ایپ کی تازہ کاری کے لیے اجازتی اطلاع دکھائیں</string>
@@ -407,16 +392,6 @@
     <string name="clear_playback_states_summary">تمام پلے بیک پوزیشن حذف کی گئی</string>
     <string name="delete_playback_states_alert">تمام پلے بیک پوزیشنس حذف کریں؟</string>
     <string name="drawer_header_description">ٹوگل خدمت، حالیہ منتخب:</string>
-    <string name="no_one_watching">کوئی نہیں دیکھ رہا ہے</string>
-    <plurals name="watching">
-        <item quantity="one">%s دیکھ رہا</item>
-        <item quantity="other">%s دیکھ رہے</item>
-    </plurals>
-    <string name="no_one_listening">کوئی نہیں سن رہا ہے</string>
-    <plurals name="listening">
-        <item quantity="one">%s سننے والا</item>
-        <item quantity="other">%s سننے والے</item>
-    </plurals>
     <string name="default_kiosk_page_summary">طے شدہ کیوسک</string>
     <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
     <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>
@@ -437,8 +412,6 @@
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
     <string name="msg_calculating_hash">ہیش کا حساب لگا رہے ہیں</string>
-    <string name="infinite_videos">∞ ویڈیوز</string>
-    <string name="more_than_100_videos">100 سے زائد ویڈیو</string>
     <string name="description_tab_description">‪تفصیل</string>
     <string name="related_items_tab_description">متعلقہ سلسلے</string>
     <string name="comments_tab_description">تبصرے</string>

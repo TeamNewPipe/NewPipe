@@ -142,7 +142,7 @@ public final class CommentRepliesFragment
     protected Single<CommentRepliesInfo> loadResult(final boolean forceLoad) {
         return Single.fromCallable(() -> new CommentRepliesInfo(commentsInfoItem,
                 // the reply count string will be shown as the activity title
-                Localization.replyCount(requireContext(), commentsInfoItem.getReplyCount())));
+                Localization.formatReplyCount(requireContext(), commentsInfoItem.getReplyCount())));
     }
 
     @Override

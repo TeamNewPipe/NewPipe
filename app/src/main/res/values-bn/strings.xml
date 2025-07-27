@@ -102,8 +102,6 @@
     <string name="start">শুরু</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_videos">কোন ভিডিও নেই</string>
-    <string name="no_views">কোন ভিউ নেই</string>
-    <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="short_billion">B</string>
     <string name="short_million">M</string>
     <string name="short_thousand">K</string>
@@ -316,10 +314,6 @@
     <string name="playback_tempo">টেম্পো</string>
     <string name="export_ongoing">রপ্তানি করা হচ্ছে…</string>
     <string name="import_ongoing">আমদানি করা হচ্ছে…</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s সদস্যতা</item>
-        <item quantity="other">%s সদস্যতাগণ</item>
-    </plurals>
     <string name="users">ব্যবহারকারীরা</string>
     <string name="resume_on_audio_focus_gain_summary">বাধার পর প্লে চালিয়ে যাও (উদাহরণস্বরূপ ফোনকল)</string>
     <string name="subscriptions_export_unsuccessful">সদস্যতা রপ্তানি করা যায়নি</string>
@@ -332,8 +326,6 @@
     <string name="main_page_content">মূল পৃষ্ঠার বিষয়বস্তু</string>
     <string name="settings_file_charset_title">ফাইলের নামে অনুমোদিত অক্ষরসমূহ</string>
     <string name="subtitle_activity_recaptcha">সমাধান হয়ে গেলে \"সম্পন্ন\" টিপো</string>
-    <string name="no_one_listening">কেউ শুনছে না</string>
-    <string name="no_one_watching">কেউ দেখছে না</string>
     <string name="drawer_header_description">সেবাটি পরিবর্তন করো, বর্তমানে নির্বাচিত:</string>
     <string name="empty_list_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
     <string name="invalid_source">এই ধরনের কোন ফাইল/বিষয়বস্তুর উৎস নেই</string>
@@ -371,24 +363,6 @@
     <string name="default_kiosk_page_summary">ডিফল্ট কিয়স্ক</string>
     <string name="kiosk_page_summary">কিয়স্ক পৃষ্ঠা</string>
     <string name="settings_file_replacement_character_title">প্রতিস্থাপক অক্ষর</string>
-    <plurals name="videos">
-        <item quantity="one">%sটি ভিডিও</item>
-        <item quantity="other">%sটি ভিডিও</item>
-    </plurals>
-    <string name="infinite_videos">∞ ভিডিও</string>
-    <string name="more_than_100_videos">১০০+ ভিডিও</string>
-    <plurals name="listening">
-        <item quantity="one">%s জন শ্রোতা</item>
-        <item quantity="other">%s জন শ্রোতা</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s জন দেখছে</item>
-        <item quantity="other">%s জন দেখছে</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s বার দেখা</item>
-        <item quantity="other">%s বার দেখা</item>
-    </plurals>
     <string name="enqueued">সারিবদ্ধ করা হয়েছে</string>
     <string name="enqueue_stream">এনকুই</string>
     <plurals name="seconds">
@@ -452,7 +426,6 @@
     <string name="hold_to_append">সারিতে ঢুকাতে ধরে রাখো</string>
     <string name="select_a_kiosk">কিয়স্ক নির্বাচন করো</string>
     <string name="charset_most_special_characters">সর্বাধিক বিশেষ অক্ষর</string>
-    <string name="subscribers_count_not_available">সাবস্ক্রাইবার গণনা পাওয়া যায়নি</string>
     <string name="detail_drag_description">সাজাতে টানো</string>
     <string name="copy_for_github">প্রতিবেদন অনুলিপি করো</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র অদলবদ্ধ সদস্যতা দেখাও</string>

@@ -52,11 +52,6 @@
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
     <string name="audio">Àudio</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subscriptor</item>
-        <item quantity="many">%s subscriptors</item>
-        <item quantity="other">%s subscriptors</item>
-    </plurals>
     <string name="ok">D\'acord</string>
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
@@ -166,19 +161,7 @@
     <string name="search_no_results">Cap resultat</string>
     <string name="empty_list_subtitle">No hi ha res aquí</string>
     <string name="retry">Torna a provar</string>
-    <string name="no_subscribers">Cap subscripció</string>
-    <string name="no_views">Cap reproducció</string>
-    <plurals name="views">
-        <item quantity="one">%s reproducció</item>
-        <item quantity="many">%s reproduccions</item>
-        <item quantity="other">%s reproduccions</item>
-    </plurals>
     <string name="no_videos">Cap vídeo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="many">%s vídeos</item>
-        <item quantity="other">%s vídeos</item>
-    </plurals>
     <string name="pause">Pausa</string>
     <string name="create">Crea</string>
     <string name="delete">Elimina</string>
@@ -346,7 +329,6 @@
     <string name="stop">Atura</string>
     <string name="events">Esdeveniments</string>
     <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
-    <string name="subscribers_count_not_available">Nombre de subscriptors no disponible</string>
     <string name="main_page_content_summary">Quines pestanyes es mostren a la pàgina principal</string>
     <string name="conferences">Conferències</string>
     <string name="list_view_mode">Mode de vista de llista</string>
@@ -407,26 +389,12 @@
     <string name="clear_playback_states_summary">Esborra totes les posicions de reproducció</string>
     <string name="delete_playback_states_alert">Voleu suprimir tots els punts de reproducció\?</string>
     <string name="drawer_header_description">In/Habilita el servei; selecció actual:</string>
-    <string name="no_one_watching">Cap visualització</string>
-    <plurals name="watching">
-        <item quantity="one">%s visualització</item>
-        <item quantity="many">%s visualitzacions</item>
-        <item quantity="other">%s visualitzacions</item>
-    </plurals>
-    <string name="no_one_listening">Cap reproducció</string>
-    <plurals name="listening">
-        <item quantity="one">%s escoltant</item>
-        <item quantity="many">%s escoltants</item>
-        <item quantity="other">%s escoltants</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Tendències</string>
     <string name="show_original_time_ago_title">Ensenya el temps passat original sobre els \"items\"</string>
     <string name="playlist_no_uploader">Auto-generat (no es troba cap uploader)</string>
     <string name="unmute">Desactivar Silenci</string>
     <string name="mute">Silenciar</string>
     <string name="subtitle_activity_recaptcha">Prem «Fet» quan estigui resolt</string>
-    <string name="infinite_videos">Vídeos ∞</string>
-    <string name="more_than_100_videos">100+ vídeos</string>
     <string name="permission_display_over_apps">Concedeix permisos per a poder reproduir els continguts a sobre d\'altres aplicacions</string>
     <string name="artists">Artistes</string>
     <string name="albums">Àlbums</string>

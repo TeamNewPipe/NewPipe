@@ -125,12 +125,6 @@
     <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad.
 \nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
     <string name="notification_channel_name">Notipikasyon sa NewPipe</string>
-    <plurals name="listening">
-        <item quantity="one">%s nakikinig</item>
-        <item quantity="other">Mga %s nakikinig</item>
-    </plurals>
-    <string name="more_than_100_videos">100+ na mga video</string>
-    <string name="infinite_videos">∞ na mga video</string>
     <string name="no_comments">Walang Komento</string>
     <string name="play_all">Ipalabas Lahat</string>
     <string name="notifications">Mga Notipikasyon</string>
@@ -172,20 +166,11 @@
     <string name="featured">Tampok</string>
     <string name="title_last_played">Huling Pinanood</string>
     <string name="action_history">Kasaysayan</string>
-    <string name="no_one_listening">Walang nakikinig</string>
     <string name="search_no_results">Walang nahanap</string>
     <string name="switch_to_background">Pumalit sa Likuran</string>
     <string name="clear_views_history_title">Linisin ang kasaysayan ng panonood</string>
-    <plurals name="watching">
-        <item quantity="one">%s nanonood</item>
-        <item quantity="other">Mga %s nanonood</item>
-    </plurals>
     <string name="no_videos">Walang mga video</string>
     <string name="title_most_played">Madalas na Pinanood</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">Mga %s na video</item>
-    </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="other">Mga %d minuto</item>
@@ -259,7 +244,6 @@
     <string name="error_snackbar_message">Paumanhin, mayroon nagkamali.</string>
     <string name="could_not_setup_download_menu">Hindi maisaayos ang download menu</string>
     <string name="search_history_deleted">Ang search history ay tinanggal</string>
-    <string name="no_one_watching">Walang nanonood</string>
     <string name="empty_list_subtitle">Wala dito</string>
     <string name="invalid_directory">Walang folder na ganoon</string>
 </resources>

@@ -45,11 +45,6 @@
     <string name="albums">Mga Album</string>
     <string name="no_comments">Walang puna</string>
     <string name="comments_are_disabled">Hindi pinapahintulot ang pagpuna</string>
-    <string name="no_views">Wala pang nakapanood</string>
-    <plurals name="views">
-        <item quantity="one">%s panonood</item>
-        <item quantity="other">Mga %s panonood</item>
-    </plurals>
     <string name="trending">Mga Patok Ngayon</string>
     <string name="show_comments_title">Ipakita ang mga puna</string>
     <string name="cancel">Ipagpaliban</string>

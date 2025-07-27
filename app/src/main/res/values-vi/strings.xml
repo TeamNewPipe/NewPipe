@@ -190,18 +190,7 @@
     <string name="no_streams_available_download">Không có luồng nào để tải về</string>
     <string name="empty_list_subtitle">Không có gì cả :P</string>
     <string name="detail_drag_description">Kéo để sắp xếp lại</string>
-    <string name="no_subscribers">Không có người đăng ký</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s người đăng ký</item>
-    </plurals>
-    <string name="no_views">Không có lượt xem nào</string>
-    <plurals name="views">
-        <item quantity="other">%s lượt xem</item>
-    </plurals>
     <string name="no_videos">Không có video nào</string>
-    <plurals name="videos">
-        <item quantity="other">%s video</item>
-    </plurals>
     <string name="create">Tạo</string>
     <string name="dismiss">Bỏ qua</string>
     <string name="rename">Đổi tên</string>
@@ -336,7 +325,6 @@
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
     <string name="restore_defaults">Khôi phục về mặc định</string>
     <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định\?</string>
-    <string name="subscribers_count_not_available">Số người đăng ký không khả dụng</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
     <string name="top_50">Top 50 phổ biến</string>
     <string name="import_soundcloud_instructions_hint">Nhập ID SoundCloud hoặc link soundcloud.com/&lt;ID của bạn&gt;</string>
@@ -443,16 +431,6 @@
     <string name="recently_added">Đã thêm gần đây</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
     <string name="done">Đã hoàn thành</string>
-    <string name="infinite_videos">∞ video</string>
-    <string name="more_than_100_videos">100+ video</string>
-    <plurals name="listening">
-        <item quantity="other">%s người nghe</item>
-    </plurals>
-    <string name="no_one_listening">Không có người nghe</string>
-    <string name="no_one_watching">Không có người xem</string>
-    <plurals name="watching">
-        <item quantity="other">%s người xem</item>
-    </plurals>
     <string name="permission_display_over_apps">Cho phép hiển thị trên các ứng dụng khác</string>
     <string name="artists">Nghệ sĩ</string>
     <string name="albums">Album</string>

@@ -138,24 +138,7 @@
     <string name="notification_channel_description">Обавештења за NewPipe плејер</string>
     <string name="search_no_results">Нема резултата</string>
     <string name="empty_list_subtitle">Овде нема ничега осим цврчака</string>
-    <string name="no_subscribers">Нема пратилаца</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s пратилац</item>
-        <item quantity="few">%s пратиоца</item>
-        <item quantity="other">%s пратилаца</item>
-    </plurals>
-    <string name="no_views">Нема прегледа</string>
-    <plurals name="views">
-        <item quantity="one">%s преглед</item>
-        <item quantity="few">%s прегледа</item>
-        <item quantity="other">%s прегледа</item>
-    </plurals>
     <string name="no_videos">Нема видео снимака</string>
-    <plurals name="videos">
-        <item quantity="one">%s видео снимак</item>
-        <item quantity="few">%s видео снимка</item>
-        <item quantity="other">%s видео снимака</item>
-    </plurals>
     <string name="settings_file_replacement_character_summary">Неисправни знакови биће замењени овим вредностима</string>
     <string name="settings_file_replacement_character_title">Заменски знак</string>
     <string name="charset_most_special_characters">Већина посебних знакова</string>
@@ -395,21 +378,6 @@
     <string name="dismiss">Одбаци</string>
     <string name="create">Направи</string>
     <string name="no_comments">Нема коментара</string>
-    <string name="infinite_videos">∞ видео снимака</string>
-    <string name="more_than_100_videos">100+ видео снимака</string>
-    <plurals name="listening">
-        <item quantity="one">%s слушалац</item>
-        <item quantity="few">%s слушаоца</item>
-        <item quantity="other">%s слушалаца</item>
-    </plurals>
-    <string name="no_one_listening">Нико не слуша</string>
-    <plurals name="watching">
-        <item quantity="one">%s гледалац</item>
-        <item quantity="few">%s гледаоца</item>
-        <item quantity="other">%s гледалаца</item>
-    </plurals>
-    <string name="no_one_watching">Нико не гледа</string>
-    <string name="subscribers_count_not_available">Број пратилаца није доступан</string>
     <string name="drawer_header_description">Изаберите услугу, тренутно изабрана:</string>
     <string name="detail_drag_description">Превуците за преуређивање</string>
     <string name="description_tab_description">Опис</string>

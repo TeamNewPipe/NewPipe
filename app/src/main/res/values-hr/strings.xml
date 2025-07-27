@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Počni dodirom na povećalo.</string>
-    <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Nije pronađen nijedan player streamova. Želiš li instalirati VLC\?</string>
     <string name="install">Instaliraj</string>
     <string name="cancel">Odustani</string>
@@ -144,24 +143,7 @@
     <string name="undo">Poništi</string>
     <string name="search_no_results">Nema rezultata</string>
     <string name="empty_list_subtitle">Ovdje nema ništa osim cvrčaka</string>
-    <string name="no_subscribers">Nema pretplatnika</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s pretplatnik</item>
-        <item quantity="few">%s pretplatnika</item>
-        <item quantity="other">%s pretplatnika</item>
-    </plurals>
-    <string name="no_views">Nema pregleda</string>
-    <plurals name="views">
-        <item quantity="one">%s pregled</item>
-        <item quantity="few">%s pregleda</item>
-        <item quantity="other">%s pregleda</item>
-    </plurals>
     <string name="no_videos">Nema videa</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videa</item>
-        <item quantity="other">%s videa</item>
-    </plurals>
     <string name="play_all">Reproduciraj sve</string>
     <string name="player_stream_failure">Nije bilo moguće reproducirati ovaj stream</string>
     <string name="player_unrecoverable_failure">Dogodila se neoporavljiva greška playera</string>
@@ -327,7 +309,6 @@
     <string name="saved_tabs_invalid_json">Nije bilo moguće čitati spremljene kartice, stoga se koriste zadane</string>
     <string name="restore_defaults">Obnovi standardne vrijednosti</string>
     <string name="restore_defaults_confirmation">Želiš li obnoviti standardne vrijednosti\?</string>
-    <string name="subscribers_count_not_available">Broj pretplatnika nije dostupan</string>
     <string name="donation_encouragement">NewPipe razvijaju volonteri koji provode vrijeme kako bi doprinijeli najboljem korisničkom iskustvu. Doprinesi programerima kako bi poboljšali NewPipe dok uživaju u šalici kave.</string>
     <string name="main_page_content_summary">Koje su kartice prikazane na glavnoj stranici</string>
     <string name="conferences">Konferencije</string>
@@ -404,8 +385,6 @@
     <string name="clear_playback_states_title">Izbriši poziciju reprodukcije</string>
     <string name="clear_playback_states_summary">Izbriši sve pozicije reprodukcije</string>
     <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
-    <string name="no_one_watching">Nitko ne gleda</string>
-    <string name="no_one_listening">Nitko ne sluša</string>
     <string name="default_kiosk_page_summary">Standardni kiosk</string>
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalni</string>
@@ -429,8 +408,6 @@
     <string name="most_liked">Najomiljeniji</string>
     <string name="subtitle_activity_recaptcha">Pritisni „Gotovo” kad je riješeno</string>
     <string name="done">Gotovo</string>
-    <string name="infinite_videos">∞ videa</string>
-    <string name="more_than_100_videos">Više od 100 videa</string>
     <string name="error_report_open_issue_button_text">Prijavi grešku na GitHub-u</string>
     <string name="artists">Izvođači</string>
     <string name="albums">Albumi</string>
@@ -481,11 +458,6 @@
     <string name="clear_queue_confirmation_description">Popis izvođenja aktivnog playera će se zamijeniti</string>
     <string name="clear_queue_confirmation_summary">Prebacivanje s jednog playera na drugi može zamijeniti tvoj popis izvođenja</string>
     <string name="clear_queue_confirmation_title">Pitaj prije pražnjenja popisa izvođenja</string>
-    <plurals name="listening">
-        <item quantity="one">%s slušatelj</item>
-        <item quantity="few">%s slušatelja</item>
-        <item quantity="other">%s slušatelja</item>
-    </plurals>
     <string name="overwrite_failed">datoteka se ne može prepisato</string>
     <string name="notification_scale_to_square_image_summary">Odreži prikazane sličice videa u obavijesti iz omjera 16:9 na 1:1</string>
     <string name="notification_actions_at_most_three">U kompaktnom prikazu obavijesti mogu se odabrati najviše 3 radnje!</string>
@@ -521,11 +493,6 @@
     <string name="wifi_only">Samo na Wi-Fi mreži</string>
     <string name="autoplay_summary">Pokreni reprodukciju automatski – %s</string>
     <string name="show_memory_leaks">Prikaži curenje memorije</string>
-    <plurals name="watching">
-        <item quantity="one">%s gledatelj</item>
-        <item quantity="few">%s gledatelja</item>
-        <item quantity="other">%s gledatelja</item>
-    </plurals>
     <string name="drawer_header_description">Uključi/isključi uslugu, trenutačno odabrana:</string>
     <string name="copy_for_github">Kopiraj formatirani izveštaj</string>
     <string name="clear_cookie_summary">Izbriši kolačiće koje NewPipe sprema nakon rješavanja reCAPTCHA</string>

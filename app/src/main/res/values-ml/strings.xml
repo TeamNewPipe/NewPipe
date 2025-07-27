@@ -154,34 +154,7 @@
     <string name="pause">വിരാമം</string>
     <string name="start">തുടങ്ങൂ</string>
     <string name="no_comments">നോ കമെന്റ്സ്</string>
-    <plurals name="videos">
-        <item quantity="one">%s വീഡിയോ</item>
-        <item quantity="other">%s വീഡിയോകൾ</item>
-    </plurals>
-    <string name="infinite_videos">∞ വീഡിയോകൾ</string>
-    <string name="more_than_100_videos">100+ വീഡിയോകൾ</string>
     <string name="no_videos">ഒരു വിഡിയോയും ഇല്ല</string>
-    <plurals name="listening">
-        <item quantity="one">%s കേൾവിക്കാരൻ</item>
-        <item quantity="other">%s കേൾവിക്കാർ</item>
-    </plurals>
-    <string name="no_one_listening">ആരും കേൾക്കുന്നില്ല</string>
-    <plurals name="watching">
-        <item quantity="one">%s കാണുന്നു</item>
-        <item quantity="other">%s പേർ കാണുന്നു</item>
-    </plurals>
-    <string name="no_one_watching">ആരും കാണുന്നില്ല</string>
-    <plurals name="views">
-        <item quantity="one">%s കാഴ്ച</item>
-        <item quantity="other">%s കാഴ്ചകൾ</item>
-    </plurals>
-    <string name="no_views">വ്യൂസ് ഇല്ല</string>
-    <string name="subscribers_count_not_available">സബ്സ്ക്രൈബർ എണ്ണം ലഭ്യമല്ല</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s സബ്ക്രൈബർ</item>
-        <item quantity="other">%s സബ്ക്രൈബറുകൾ</item>
-    </plurals>
-    <string name="no_subscribers">സബ്ക്രൈബേഴ്സ് ഇല്ല</string>
     <string name="drawer_header_description">സേവനം മാറ്റുക, ഇപ്പോൾ തിരഞ്ഞെടുത്തത്:</string>
     <string name="short_billion">B</string>
     <string name="short_thousand">k</string>

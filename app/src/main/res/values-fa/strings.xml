@@ -151,20 +151,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s مشترک</item>
-        <item quantity="other">%s مشترک</item>
-    </plurals>
-    <string name="no_views">بدون بازدید</string>
-    <plurals name="views">
-        <item quantity="one">%s بازدید</item>
-        <item quantity="other">%s بازدید</item>
-    </plurals>
     <string name="no_videos">بدون ویدیو</string>
-    <plurals name="videos">
-        <item quantity="one">%s ویدیو</item>
-        <item quantity="other">%s ویدیو</item>
-    </plurals>
     <string name="create">ایجاد</string>
     <string name="dismiss">صرف نظر</string>
     <string name="rename">تغییر نام</string>
@@ -289,7 +276,6 @@
     <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
     <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ نیوپایپ</string>
     <string name="empty_list_subtitle">چیزی جز کریکت اینجا نیست</string>
-    <string name="no_subscribers">فاقد مشترک</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
     <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>
     <string name="start_here_on_background">شروع پخش در پس‌زمینه</string>
@@ -354,7 +340,6 @@
     <string name="download_to_sdcard_error_title">فضای ذخیره‌سازی خارجی در دسترس نیست</string>
     <string name="download_to_sdcard_error_message">بارگیری روی کارت SD خارجی ممکن نیست. مایلید محل پوشه بارگیری را دوباره تعیین کنید؟</string>
     <string name="saved_tabs_invalid_json">به دلیل ناتوانی در خواندن برگه‌های ذخیره شده، برگه‌های پیش‌فرض استفاده می‌شوند</string>
-    <string name="subscribers_count_not_available">تعداد مشترک‌شدگان دردسترس نیست</string>
     <string name="main_page_content_summary">چه برگه‌هایی در صفحه اصلی نمایش پیدا کنند</string>
     <string name="updates_setting_description">زمانی که نسخه جدید برنامه دردسرس است، اعلانی برای به‌روزرسانی نمایش بده</string>
     <string name="paused">متوقف</string>
@@ -472,18 +457,6 @@
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
     <string name="done">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>
-    <string name="infinite_videos">∞ ویدیو</string>
-    <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>
-    <plurals name="listening">
-        <item quantity="one">%s شنونده</item>
-        <item quantity="other">%s شنونده</item>
-    </plurals>
-    <string name="no_one_listening">کسی در حال شنیدن نیست</string>
-    <plurals name="watching">
-        <item quantity="one">%s بیننده</item>
-        <item quantity="other">%s بیننده</item>
-    </plurals>
-    <string name="no_one_watching">کسی در حال مشاهده نیست</string>
     <string name="drawer_header_description">تغییر خدمت، مورد انتخاب شده:</string>
     <string name="permission_display_over_apps">اجازه نمایش روی دیگر برنامه‌ها را بدهید</string>
     <string name="artists">هنرمندان</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">יש לגעת בזכוכית המגדלת כדי להתחיל.</string>
-    <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני הזרמה, להתקין VLC\?</string>
     <string name="install">התקנה</string>
     <string name="cancel">ביטול</string>
@@ -115,27 +114,7 @@
     <string name="short_thousand">אלפ.</string>
     <string name="short_million">מיל.</string>
     <string name="short_billion">מיליארד</string>
-    <string name="no_subscribers">אין מנויים</string>
-    <plurals name="subscribers">
-        <item quantity="one">מנוי אחד</item>
-        <item quantity="two">שני מנויים</item>
-        <item quantity="many">%s מנויים</item>
-        <item quantity="other">%s מנויים</item>
-    </plurals>
-    <string name="no_views">אין צפיות</string>
-    <plurals name="views">
-        <item quantity="one">צפייה אחת</item>
-        <item quantity="two">שתי צפיות</item>
-        <item quantity="many">%s צפיות</item>
-        <item quantity="other">%s צפיות</item>
-    </plurals>
     <string name="no_videos">אין סרטונים</string>
-    <plurals name="videos">
-        <item quantity="one">סרטון %s</item>
-        <item quantity="two">%s סרטונים</item>
-        <item quantity="many">%s סרטונים</item>
-        <item quantity="other">%s סרטונים</item>
-    </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
     <string name="delete">מחיקה</string>
@@ -221,7 +200,6 @@
     <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
     <string name="detail_drag_description">ניתן לסדר מחדש בגרירה</string>
     <string name="create">יצירה</string>
-    <string name="dismiss">התעלמות</string>
     <string name="rename">שינוי שם</string>
     <string name="one_item_deleted">פריט אחד נמחק.</string>
     <string name="export_complete_toast">הייצוא הסתיים</string>
@@ -333,7 +311,6 @@
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של ברירת המחדל</string>
     <string name="restore_defaults">שחזור ברירת מחדל</string>
     <string name="restore_defaults_confirmation">לשחזר ברירת מחדל\?</string>
-    <string name="subscribers_count_not_available">מספר המנויים אינו זמין</string>
     <string name="main_page_content_summary">אילו לשוניות תופענה בעמוד הראשי</string>
     <string name="events">אירועים</string>
     <string name="conferences">כנסים</string>
@@ -418,20 +395,6 @@
     <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
     <string name="drawer_header_description">הפעלה/כיבוי שירות, בחירה נוכחית:</string>
-    <string name="no_one_watching">אין צופים</string>
-    <plurals name="watching">
-        <item quantity="one">צופה %s</item>
-        <item quantity="two">%s צופים</item>
-        <item quantity="many">%s צופים</item>
-        <item quantity="other">%s צופים</item>
-    </plurals>
-    <string name="no_one_listening">אין מאזינים</string>
-    <plurals name="listening">
-        <item quantity="one">מאזין %s</item>
-        <item quantity="two">%s מאזינים</item>
-        <item quantity="many">%s מאזינים</item>
-        <item quantity="other">%s מאזינים</item>
-    </plurals>
     <string name="default_kiosk_page_summary">קיוסק ברירת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
@@ -522,8 +485,6 @@
     <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי NewPipe.
 \n
 \nאנו מקווים שתתווסף תמיכה בגרסאות עתידיות.</string>
-    <string name="infinite_videos">∞ סרטונים</string>
-    <string name="more_than_100_videos">למעלה מ־100 סרטונים</string>
     <string name="artists">אמנים</string>
     <string name="albums">אלבומים</string>
     <string name="songs">שירים</string>
@@ -712,7 +673,6 @@
     <string name="check_new_streams">הרצת בדיקה על תזרימים חדשים</string>
     <string name="enable_streams_notifications_title">התראות תזרימים חדשים</string>
     <string name="enable_streams_notifications_summary">הודעה על תזרימים חדשים מהמינויים</string>
-    <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_name">תזרימים חדשים</string>
     <string name="settings_category_player_notification_title">התראות נגן</string>
     <string name="any_network">רשת כלשהי</string>
@@ -832,11 +792,6 @@
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">להציג עוד</string>
     <string name="show_less">להציג פחות</string>
-    <plurals name="replies">
-        <item quantity="one">תשובה %s</item>
-        <item quantity="two">%s תשובות</item>
-        <item quantity="other">%s תשובות</item>
-    </plurals>
     <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
     <string name="auto_update_check_description">NewPipe יכול לבדוק אוטומטית אם יש גרסאות חדשות מעת לעת ולהודיע כאשר הן זמינות.
 \nלהפעיל את היכולת הזאת?</string>

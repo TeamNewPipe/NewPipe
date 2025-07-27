@@ -102,39 +102,7 @@
     <string name="pause">Pauzēt</string>
     <string name="start">Sākt</string>
     <string name="no_comments">Nav komentāru</string>
-    <plurals name="videos">
-        <item quantity="zero">%s videoklipi</item>
-        <item quantity="one">%s videoklips</item>
-        <item quantity="other">%s videoklipi</item>
-    </plurals>
-    <string name="infinite_videos">∞ videoklipi</string>
-    <string name="more_than_100_videos">100+ videoklipi</string>
     <string name="no_videos">Nav videoklipi</string>
-    <plurals name="listening">
-        <item quantity="zero">%s klausītāju</item>
-        <item quantity="one">%s klausītājs</item>
-        <item quantity="other">%s klausītāji</item>
-    </plurals>
-    <string name="no_one_listening">Neviens neklausās</string>
-    <plurals name="watching">
-        <item quantity="zero">%s skatītāju</item>
-        <item quantity="one">%s skatītājs</item>
-        <item quantity="other">%s skatītāji</item>
-    </plurals>
-    <string name="no_one_watching">Neviens neskatās</string>
-    <plurals name="views">
-        <item quantity="zero">%s skatījumu</item>
-        <item quantity="one">%s skatījums</item>
-        <item quantity="other">%s skatījumi</item>
-    </plurals>
-    <string name="no_views">Nav skatījumu</string>
-    <string name="subscribers_count_not_available">Abonamentu skaits nav pieejams</string>
-    <plurals name="subscribers">
-        <item quantity="zero">%s abonamentu</item>
-        <item quantity="one">%s abonaments</item>
-        <item quantity="other">%s abonamenti</item>
-    </plurals>
-    <string name="no_subscribers">Nav abonamentu</string>
     <string name="drawer_header_description">Izvēlaties pakalpojumu, šobrīd izvēlēts:</string>
     <string name="short_billion">B</string>
     <string name="short_million">M</string>

@@ -119,16 +119,6 @@
     <string name="short_thousand">ألف</string>
     <string name="short_million">مليون</string>
     <string name="short_billion">بليون</string>
-    <string name="no_subscribers">ليس هناك مشترِكون</string>
-    <plurals name="subscribers">
-        <item quantity="zero">%s مشارك</item>
-        <item quantity="one">%s مشارك</item>
-        <item quantity="two">%s مشاركين</item>
-        <item quantity="few">%s مشترك</item>
-        <item quantity="many">%s مشترك</item>
-        <item quantity="other">%s مشترك</item>
-    </plurals>
-    <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
     <string name="start">ابدأ</string>
     <string name="pause">إيقاف مؤقت</string>
@@ -179,22 +169,6 @@
     <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة</string>
     <string name="title_activity_recaptcha">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
-    <plurals name="views">
-        <item quantity="zero">%s مشاهد</item>
-        <item quantity="one">%s مشاهد</item>
-        <item quantity="two">%s مشاهدة</item>
-        <item quantity="few">%s مشاهدة</item>
-        <item quantity="many">%s مشاهدة</item>
-        <item quantity="other">%s مشاهدة</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="zero">%s فيديو</item>
-        <item quantity="one">%s أشرطة فيديو</item>
-        <item quantity="two">%s أشرطة فيديو</item>
-        <item quantity="few">%s أشرطة فيديو</item>
-        <item quantity="many">%s أشرطة فيديو</item>
-        <item quantity="other">%s أشرطة فيديو</item>
-    </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
     <string name="kiosk_page_summary">صفحة الكشك</string>
@@ -353,7 +327,6 @@
     <string name="saved_tabs_invalid_json">يتم الان استخدام علامات التبويب الافتراضية بعد حدوث خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
-    <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
     <string name="main_page_content_summary">ما هي التبويبات التي تظهر على الصفحة الرئيسية</string>
     <string name="conferences">المؤتمرات</string>
     <string name="updates_setting_title">التحديثات</string>
@@ -425,24 +398,6 @@
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
     <string name="drawer_header_description">تبديل الخدمة، المحدد حاليًا:</string>
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
-    <string name="no_one_watching">لا توجد مشاهدة</string>
-    <string name="no_one_listening">لا أحد يستمع</string>
-    <plurals name="watching">
-        <item quantity="zero">%s مشاهدة</item>
-        <item quantity="one">%s مشاهدة</item>
-        <item quantity="two">%s مشاهدة</item>
-        <item quantity="few">%s مشاهدات</item>
-        <item quantity="many">%s مشاهدات</item>
-        <item quantity="other">%s مشاهدات</item>
-    </plurals>
-    <plurals name="listening">
-        <item quantity="zero">%s الاستماع</item>
-        <item quantity="one">%s الاستماع</item>
-        <item quantity="two">%s مستمعين</item>
-        <item quantity="few">%s مستمعين</item>
-        <item quantity="many">%s مستمعين</item>
-        <item quantity="other">%s مستمعين</item>
-    </plurals>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="peertube_instance_url_summary">حدد مثيلات PeerTube المفضلة لديك</string>
@@ -542,8 +497,6 @@
     <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe.
 \n
 \nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
-    <string name="infinite_videos">∞ فيديو</string>
-    <string name="more_than_100_videos">+100 فيديو</string>
     <string name="artists">الفنانين</string>
     <string name="albums">الالبومات</string>
     <string name="songs">الأغاني</string>

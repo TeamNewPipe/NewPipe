@@ -119,14 +119,6 @@
     <string name="short_thousand">천</string>
     <string name="short_million">백만</string>
     <string name="short_billion">십억</string>
-    <string name="no_subscribers">구독자 없음</string>
-    <plurals name="subscribers">
-        <item quantity="other">구독자 %s명</item>
-    </plurals>
-    <string name="no_views">조회수 없음</string>
-    <plurals name="views">
-        <item quantity="other">조회수 %s회</item>
-    </plurals>
     <string name="no_videos">비디오 없음</string>
     <string name="ok">OK</string>
     <string name="msg_name">파일명</string>
@@ -335,7 +327,6 @@
     <string name="saved_tabs_invalid_json">저장된 탭을 불러올 수 없었으므로, 기본 탭을 사용합니다</string>
     <string name="restore_defaults">기본설정으로 되돌리기</string>
     <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
-    <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
     <string name="main_page_content_summary">메인 화면에 표시할 탭을 설정합니다</string>
     <string name="updates_setting_title">업데이트</string>
     <string name="updates_setting_description">새 버전이 있을 경우 앱을 업데이트하도록 알림 표시</string>
@@ -404,20 +395,9 @@
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
     <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
-    <plurals name="videos">
-        <item quantity="other">%s 동영상</item>
-    </plurals>
     <string name="enable_queue_limit_desc">한 번에 하나씩 다운로드 합니다</string>
     <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
     <string name="default_kiosk_page_summary">기본 키오스크</string>
-    <string name="no_one_watching">시청자 없음</string>
-    <plurals name="watching">
-        <item quantity="other">%s명 시청중</item>
-    </plurals>
-    <string name="no_one_listening">청취자 없음</string>
-    <plurals name="listening">
-        <item quantity="other">%s명 청취중</item>
-    </plurals>
     <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">선호하는 PeerTube 인스턴스 선택</string>
@@ -452,8 +432,6 @@
     <string name="no_playlist_bookmarked_yet">아직 재생목록 책갈피가 없습니다</string>
     <string name="select_a_playlist">재생목록 선택</string>
     <string name="subtitle_activity_recaptcha">해결 되었다면 “완료”를 누르세요</string>
-    <string name="infinite_videos">∞ 비디오</string>
-    <string name="more_than_100_videos">100+ 비디오</string>
     <string name="songs">노래</string>
     <string name="restricted_video">이 비디오는 연령제한이 있습니다.
 \n

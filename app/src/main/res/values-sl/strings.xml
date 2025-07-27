@@ -144,27 +144,7 @@
     <string name="undo">Razveljavi</string>
     <string name="search_no_results">Ni rezultatov iskanja</string>
     <string name="empty_list_subtitle">Tu ni ničesar, razen čričkov</string>
-    <string name="no_subscribers">Ni naročnikov</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s naročnik</item>
-        <item quantity="two">%s naročnika</item>
-        <item quantity="few">%s naročniki</item>
-        <item quantity="other">%s naročnikov</item>
-    </plurals>
-    <string name="no_views">Ni še zabeleženih ogledov</string>
-    <plurals name="views">
-        <item quantity="one">%s ogled</item>
-        <item quantity="two">%s ogleda</item>
-        <item quantity="few">%s ogledi</item>
-        <item quantity="other">%s ogledov</item>
-    </plurals>
     <string name="no_videos">Ni posnetkov</string>
-    <plurals name="videos">
-        <item quantity="one">%s video posnetek</item>
-        <item quantity="two">%s video posnetka</item>
-        <item quantity="few">%s video posnetkov</item>
-        <item quantity="other">%s posnetkov</item>
-    </plurals>
     <string name="delete_item_search_history">Ali želite izbrisati predmet iz zgodovine iskanja?</string>
     <string name="play_all">Predvajaj vse</string>
     <string name="unknown_content">[ Neznano ]</string>
@@ -265,8 +245,6 @@
     <string name="website_encouragement">Obiščite spletno mesto od NewPipe za več informacij in novic.</string>
     <string name="done">Končano</string>
     <string name="no_comments">Ni komantarjev</string>
-    <string name="no_one_listening">Nobeden ne posluša</string>
-    <string name="no_one_watching">Nobeden ne gleda</string>
     <string name="error_occurred_detail">Zgodila se je napaka: %1$s</string>
     <string name="invalid_directory">Ni take mape</string>
     <string name="missing_file">Datoteka premaknjena ali izbrisana</string>
@@ -361,21 +339,6 @@
     <string name="subtitle_activity_recaptcha">Pritisni \"končano\" ko je rešena</string>
     <string name="one_item_deleted">Odstranjen 1 element.</string>
     <string name="msg_calculating_hash">Izračun zgoščevalne funkcije je v teku</string>
-    <string name="infinite_videos">∞ videoposnetkov</string>
-    <string name="more_than_100_videos">100+ videov</string>
-    <plurals name="listening">
-        <item quantity="one">%s poslušalec</item>
-        <item quantity="two">%s poslušalca</item>
-        <item quantity="few">%s poslušalcev</item>
-        <item quantity="other">%s poslušalcev</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s gledalec</item>
-        <item quantity="two">%s gledalca</item>
-        <item quantity="few">%s gledalcev</item>
-        <item quantity="other">%s gledalcev</item>
-    </plurals>
-    <string name="subscribers_count_not_available">Število naročnikov ni na voljo</string>
     <string name="drawer_header_description">Vklop/izklop storitve, trenutno izbrana:</string>
     <string name="detail_drag_description">Povlecite za preureditev</string>
     <string name="description_tab_description">Opis</string>

@@ -136,21 +136,6 @@
     <string name="short_thousand">هەزار</string>
     <string name="short_million">ملیۆن</string>
     <string name="short_billion">بلیۆن</string>
-    <string name="no_subscribers">هیچ بەشداربوویەک نییە</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s بەشداربوو</item>
-        <item quantity="other">%s بەشداربوون</item>
-    </plurals>
-    <string name="no_views">هیچ بینراوێک نییە</string>
-    <plurals name="views">
-        <item quantity="one">%s بینرااو</item>
-        <item quantity="other">%s بینراو</item>
-    </plurals>
-    <string name="no_videos">هیچ ڤیدیۆیەک نییە</string>
-    <plurals name="videos">
-        <item quantity="one">%s ڤیدیۆ</item>
-        <item quantity="other">%s ڤیدیۆکان</item>
-    </plurals>
     <string name="start">دەستپێکردن</string>
     <string name="pause">وەستان</string>
     <string name="create">دروستکردن</string>
@@ -283,7 +268,6 @@
 \nشوێنی فۆڵدەری دابەزاندنەکان دابنرێتەوە؟</string>
     <string name="restore_defaults">گێڕانەوە بۆ بنەڕەت</string>
     <string name="restore_defaults_confirmation">ئایا دەتەوێ بگەڕێنرێتەوە بۆ شێوازی بنەڕەتی؟</string>
-    <string name="subscribers_count_not_available">ژمارەی بەشداربووان نادیارە</string>
     <string name="download_already_running">دابەزاندنێکی تر هەیە بەهەمان ناو</string>
     <string name="show_error">پیشاندانی کێشە</string>
     <string name="error_path_creation">فۆڵدەری مەبەست ناتوانرێ دروست بکرێ</string>
@@ -310,16 +294,6 @@
     <string name="clear_playback_states_summary">شوێنی هەموو کارپێکراوەکان دەسڕێتەوە</string>
     <string name="delete_playback_states_alert">شوێنی هەموو کارپێکراوەکان بسڕدرێتەوە؟</string>
     <string name="drawer_header_description">خزمەتگوزاری چەسپاو، ئێستا هەڵبژێردراو:</string>
-    <string name="no_one_watching">هیچ کەسێک تەماشای ناکات</string>
-    <plurals name="watching">
-        <item quantity="one">%s تەماشا دەکات</item>
-        <item quantity="other">%s تەماشا دەکەن</item>
-    </plurals>
-    <string name="no_one_listening">هیچ کەسێ گوێی لێ ناگرێ</string>
-    <plurals name="listening">
-        <item quantity="one">%s گوێی لێدەگرێ</item>
-        <item quantity="other">%s گوێی لێدەگرن</item>
-    </plurals>
     <string name="use_inexact_seek_summary">بردنەپێشی ناتەواوی خێرا وا لە لێدەرەکە دەکات کە بەخێرایی شوێنەکە بگۆڕێت. بردنەپێشی ٥ یان ١٥ یان ٢٥ چرکەیی لەگەڵ ئەمەدا کارناکات.</string>
     <string name="auto_queue_summary">پاشکۆی خۆکاری پەخشێکی بەستراوە لەکاتی لێدانەوەی کۆتا پەخشدا</string>
     <string name="enable_search_history_summary">کۆگای گەڕانی نێوخۆیی</string>
@@ -497,8 +471,6 @@
     <string name="restricted_video">ئەم ڤیدیۆیە بۆ تەمەن سنوردارە.
 \n
 \n%1$s کارا بکە لە ڕێکخستنەکان گەر دەتەوێت بیبینیت.</string>
-    <string name="infinite_videos">∞ ڤیدیۆ</string>
-    <string name="more_than_100_videos">+١٠٠ ڤیدیۆ</string>
     <string name="artists">هونەرمەندەکان</string>
     <string name="albums">ئەلبوومەکان</string>
     <string name="songs">گۆرانییەکان</string>

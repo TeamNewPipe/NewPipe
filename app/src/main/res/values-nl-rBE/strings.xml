@@ -150,21 +150,7 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">mld.</string>
-    <string name="no_subscribers">Geen abonnees</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonnee</item>
-        <item quantity="other">%s abonnees</item>
-    </plurals>
-    <string name="no_views">Geen weergaven</string>
-    <plurals name="views">
-        <item quantity="one">%s weergave</item>
-        <item quantity="other">%s weergaven</item>
-    </plurals>
     <string name="no_videos">Geen video’s</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video’s</item>
-    </plurals>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
     <string name="create">Aanmaken</string>
@@ -341,7 +327,6 @@
     <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaard tabbladen worden gebruikt</string>
     <string name="restore_defaults">Standaard instellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wil je de standaard instellingen herstellen\?</string>
-    <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen er worden weergegeven op de hoofdpagina</string>
     <string name="conferences">Conferenties</string>
     <string name="updates_setting_title">Updates</string>
@@ -491,18 +476,6 @@
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="done">Klaar</string>
     <string name="subtitle_activity_recaptcha">Tik op ‘Klaar’ zodra opgelost</string>
-    <string name="infinite_videos">∞ video\'s</string>
-    <string name="more_than_100_videos">100+ video\'s</string>
-    <plurals name="listening">
-        <item quantity="one">%s luisteraar</item>
-        <item quantity="other">%s luisteraars</item>
-    </plurals>
-    <string name="no_one_listening">Niemand is aan het luisteren</string>
-    <plurals name="watching">
-        <item quantity="one">%s kijker</item>
-        <item quantity="other">%s kijkers</item>
-    </plurals>
-    <string name="no_one_watching">Niemand is aan het kijken</string>
     <string name="drawer_header_description">Toggle service, momenteel geselecteerd:</string>
     <string name="error_report_open_github_notice">Controleer aub of er al een probleem bestaat dat uw crash beschrijft. Wanneer u dubbele tickets aanmaakt, neemt dit tijd van ons in beslag die we beter kunnen besteden aan het oplossen van het daadwerkelijke probleem.</string>
     <string name="error_report_open_issue_button_text">In GitHub rapporteren</string>

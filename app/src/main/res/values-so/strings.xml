@@ -213,34 +213,7 @@
     <string name="pause">Qabo</string>
     <string name="start">Bilow</string>
     <string name="no_comments">faallooyin ma jiraan</string>
-    <plurals name="videos">
-        <item quantity="one">%s muuqaal</item>
-        <item quantity="other">%s muuqaal</item>
-    </plurals>
-    <string name="infinite_videos">muuqaalo ∞</string>
-    <string name="more_than_100_videos">100+ muuqaal</string>
     <string name="no_videos">muuqaalo ma jiraan</string>
-    <plurals name="listening">
-        <item quantity="one">%s dhagayste</item>
-        <item quantity="other">%s dhagaystayaal</item>
-    </plurals>
-    <string name="no_one_listening">Cidna ma dhagaysanayso</string>
-    <plurals name="watching">
-        <item quantity="one">%s ayaa daawanaya</item>
-        <item quantity="other">%s ayaa daawanaysa</item>
-    </plurals>
-    <string name="no_one_watching">Cidna ma daawanayso</string>
-    <plurals name="views">
-        <item quantity="one">%s ayaa lafuray</item>
-        <item quantity="other">%s ayaa lafuray</item>
-    </plurals>
-    <string name="no_views">Lama furin</string>
-    <string name="subscribers_count_not_available">inta rukumatay lama heli karo</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s ayaa rukuntay</item>
-        <item quantity="other">%s ayaa rukumatay</item>
-    </plurals>
-    <string name="no_subscribers">Dad rukuntay ma jiraan</string>
     <string name="drawer_header_description">Furo adeega, hada waxaa dooran:</string>
     <string name="short_billion">B</string>
     <string name="short_thousand">K</string>

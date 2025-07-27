@@ -144,24 +144,7 @@
     <string name="undo">Vrátiť</string>
     <string name="search_no_results">Žiadne výsledky</string>
     <string name="empty_list_subtitle">Zatiaľ je tu ticho ako v hrobe</string>
-    <string name="no_subscribers">Žiadni odberatelia</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s odberateľ</item>
-        <item quantity="few">%s odberatelia</item>
-        <item quantity="other">%s odberateľov</item>
-    </plurals>
-    <string name="no_views">Žiadne pozretia</string>
-    <plurals name="views">
-        <item quantity="one">%s pozriete</item>
-        <item quantity="few">%s pozretia</item>
-        <item quantity="other">%s pozretí</item>
-    </plurals>
     <string name="no_videos">Žiadne videá</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videá</item>
-        <item quantity="other">%s videí</item>
-    </plurals>
     <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC).</string>
     <string name="controls_download_desc">Stiahnuť súbor streamu</string>
     <string name="show_info">Zobraziť info</string>
@@ -344,7 +327,6 @@
     <string name="saved_tabs_invalid_json">Chyba pri načítavaní uložených kariet, použijú sa predvolené</string>
     <string name="restore_defaults">Obnoviť predvolené nastavenia</string>
     <string name="restore_defaults_confirmation">Chcete obnoviť predvolené hodnoty\?</string>
-    <string name="subscribers_count_not_available">Počet odberateľov nie je k dispozícii</string>
     <string name="main_page_content_summary">Aké karty sa zobrazujú na hlavnej stránke</string>
     <string name="conferences">Konferencie</string>
     <string name="updates_setting_title">Aktualizácie</string>
@@ -416,18 +398,6 @@
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
     <string name="drawer_header_description">Prepnúť službu, práve vybraté:</string>
     <string name="default_kiosk_page_summary">Predvolený kiosk</string>
-    <string name="no_one_watching">Toto nikto nesleduje</string>
-    <plurals name="watching">
-        <item quantity="one">%s sleduje</item>
-        <item quantity="few">%s sledujú</item>
-        <item quantity="other">%s sleduje</item>
-    </plurals>
-    <string name="no_one_listening">Toto nikto nepočúva</string>
-    <plurals name="listening">
-        <item quantity="one">%s poslucháč</item>
-        <item quantity="few">%s poslucháči</item>
-        <item quantity="other">%s poslucháčov</item>
-    </plurals>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
@@ -519,8 +489,6 @@
     <string name="remove_watched">Odstrániť pozreté</string>
     <string name="show_original_time_ago_summary">Pôvodné texty zo služieb budú viditeľné v položkách streamu</string>
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
-    <string name="infinite_videos">∞ videí</string>
-    <string name="more_than_100_videos">100+ videí</string>
     <string name="artists">Umelci</string>
     <string name="songs">Skladby</string>
     <string name="albums">Albumy</string>

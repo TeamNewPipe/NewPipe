@@ -121,10 +121,11 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         repliesButton.setOnClickListener(hasReplies ? v -> openCommentReplies(item) : null);
         repliesButton.setVisibility(hasReplies ? View.VISIBLE : View.GONE);
         repliesButton.setText(hasReplies
-                ? Localization.replyCount(itemBuilder.getContext(), item.getReplyCount()) : "");
-        ((RelativeLayout.LayoutParams) itemThumbsUpView.getLayoutParams()).topMargin =
-                hasReplies ? 0 : DeviceUtils.dpToPx(6, itemBuilder.getContext());
-
+                ? Localization.formatReplyCount(itemBuilder.getContext(), item.getReplyCount())
+                : "");
+        final var params = (RelativeLayout.LayoutParams) itemThumbsUpView.getLayoutParams();
+        params.topMargin = hasReplies ? 0 : DeviceUtils.dpToPx(6, itemBuilder.getContext());
+        itemThumbsUpView.setLayoutParams(params);
 
         // setup comment content and click listeners to expand/ellipsize it
         textEllipsizer.setStreamingService(getServiceById(item.getServiceId()));

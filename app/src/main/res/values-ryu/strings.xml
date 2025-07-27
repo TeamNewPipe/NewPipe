@@ -139,7 +139,6 @@
     <string name="player_stream_failure">ちゃーしがぬさいゆいがなやびらんたん</string>
     <string name="player_unrecoverable_failure">かいふくふのうなエラーぬはっせいさびたん</string>
     <string name="search_no_results">いっちするきっかーあいびらんたん</string>
-    <string name="no_subscribers">チャンネルとぅうるくしゃなし</string>
     <string name="no_videos">ちゃーしががあいびらん</string>
     <string name="settings_category_downloads_title">ふずん</string>
     <string name="settings_file_charset_title">ファイルめいなさなやーぬうなんじ</string>
@@ -256,15 +255,6 @@
     <string name="delete_view_history_alert">まじりぬさいせいりりきさちゅるじょさびーが？</string>
     <string name="delete_search_history_alert">まじりどぅきらんさくりりきさちゅるじょさびーが？</string>
     <string name="invalid_source">くぬファイル/コンテンツーあいびらん</string>
-    <plurals name="subscribers">
-        <item quantity="one">チャンネルとぅうるくしゃすう %sんかいん</item>
-        <item quantity="other">チャンネルとぅうるくしゃすう %sんかいん</item>
-    </plurals>
-    <string name="no_views">さいせいなし</string>
-    <plurals name="views">
-        <item quantity="one">さいせいかいすん %sかい</item>
-        <item quantity="other">さいせいかいすん %sかい</item>
-    </plurals>
     <string name="one_item_deleted">てぃーちぬアイテムぬさちゅるじょさりやびたん。</string>
     <string name="give_back">しーいんすん</string>
     <string name="privacy_policy_encouragement">NewPipeプロジェクトーうんじゅがプライバシーふぃじょうにてーしちなちょーいびーん。うんじゅがちゃーいがねーんかぎり、アプレーいかなるデータんしゅうしゅうさびらん。
@@ -331,7 +321,6 @@
     <string name="download_to_sdcard_error_title">がいぶちうちゅるすうちはりようなやびらん</string>
     <string name="restore_defaults">っちいちんかいむどぅすん</string>
     <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが？</string>
-    <string name="subscribers_count_not_available">とうるくさゃすうはりようでぃきましん</string>
     <string name="conferences">がいぎ</string>
     <string name="start_accept_privacy_policy">ヨーロッパぬいちぱんデータふぐきせい（GDPR）にじゅんきょしーんたみに、NewPipeぬくじんじょうほうふぐほうしんにぐちゅういください。ゆーゆでぃくぃみそーれー。
 \nわったーんかいふぐあいほうくーくうくいんでー、くりうけいりらんだれーなやびらん。</string>
@@ -408,21 +397,7 @@
     <string name="clear_playback_states_summary">まじりぬさいせいいちさちゅるじょさびーん</string>
     <string name="delete_playback_states_alert">まじりぬさいせいいちさちゅるじょさびーが？</string>
     <string name="drawer_header_description">サービスぬきりけーい、ぎんじぇーぬしんたく：</string>
-    <plurals name="videos">
-        <item quantity="one">%sふんぬちゃーしが</item>
-        <item quantity="other">%sふんぬちゃーしが</item>
-    </plurals>
     <string name="default_kiosk_page_summary">デフォルトぬKiosk</string>
-    <string name="no_one_watching">たーんんーじゃびらん</string>
-    <plurals name="watching">
-        <item quantity="one">%sんかいんがしちょうちゅう</item>
-        <item quantity="other">%sんかいんがしちょうちゅう</item>
-    </plurals>
-    <string name="no_one_listening">たーんちちゃびらん</string>
-    <plurals name="listening">
-        <item quantity="one">%sんかいんがちょうしゅちゅう</item>
-        <item quantity="other">%sんかいんがちょうしゅちゅう</item>
-    </plurals>
     <string name="seek_duration_title">こうすくはやうくい/まきむどぅしかんかく</string>
     <string name="peertube_instance_url_title">PeerTubeインスタンス</string>
     <string name="peertube_instance_url_summary">PeerTubeインスタンスさんたくすん</string>
@@ -499,8 +474,6 @@
 \nYouTubeー、くぬこうすくやーゆみくみほうほうRSSフィードっしていきょうするサービスぬてぃーちやいびーん。
 \n
 \nちまり、ゆみくみほうほうぬしんたくはすくどぅあらんでぃゆいかくさぬどぅちらゆーいるしんすが、うんじゅがしちがゆやびーん。</string>
-    <string name="infinite_videos">∞ぬちゃーしが</string>
-    <string name="more_than_100_videos">100いじょうぬちゃーしが</string>
     <string name="content_not_supported">くぬコンテンツーなーらNewPipeっしサポートさりやびらん。
 \n
 \nくんぐぬバージョンっしサポートさりーんかむしりやびらん。</string>

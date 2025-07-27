@@ -137,21 +137,7 @@
     <string name="undo">Angre</string>
     <string name="search_no_results">Ingen resultater</string>
     <string name="empty_list_subtitle">Bare ufisk her</string>
-    <string name="no_subscribers">Ingen abonnenter</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonnent</item>
-        <item quantity="other">%s abonnenter</item>
-    </plurals>
-    <string name="no_views">Ingen visninger</string>
-    <plurals name="views">
-        <item quantity="one">%s visning</item>
-        <item quantity="other">%s visninger</item>
-    </plurals>
     <string name="no_videos">Ingen videoer</string>
-    <plurals name="videos">
-        <item quantity="one">Én video</item>
-        <item quantity="other">%s videoer</item>
-    </plurals>
     <string name="view_on_github">Vis på GitHub</string>
     <string name="app_license_title">NewPipe sin lisens</string>
     <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
@@ -341,7 +327,6 @@
     <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette forvalg\?</string>
-    <string name="subscribers_count_not_available">Abonnementsantall utilgjengelig</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
     <string name="conferences">Konferanser</string>
     <string name="updates_setting_title">Oppdatering</string>
@@ -412,16 +397,6 @@
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
     <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
-    <string name="no_one_watching">Ingen ser på</string>
-    <plurals name="watching">
-        <item quantity="one">%s seer</item>
-        <item quantity="other">%s seere</item>
-    </plurals>
-    <string name="no_one_listening">Ingen lytter</string>
-    <plurals name="listening">
-        <item quantity="one">%s lytter</item>
-        <item quantity="other">%s lyttere</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Standard kiosk</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="local">Lokal</string>
@@ -486,8 +461,6 @@
     <string name="restricted_video">Denne videoen er aldersbegrenset.
 \n
 \nSkru på «%1$s» i innstillingene hvis du vil se den.</string>
-    <string name="infinite_videos">∞ videoer</string>
-    <string name="more_than_100_videos">100+ videoer</string>
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Sanger</string>

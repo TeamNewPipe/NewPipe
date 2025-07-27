@@ -147,25 +147,7 @@
     <string name="undo">Отмена</string>
     <string name="search_no_results">Нет результатов</string>
     <string name="empty_list_subtitle">Ничего нет</string>
-    <string name="no_subscribers">Нет подписчиков</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s подписчик</item>
-        <item quantity="few">%s подписчика</item>
-        <item quantity="many">%s подписчиков</item>
-    </plurals>
-    <string name="no_views">Нет просмотров</string>
-    <plurals name="views">
-        <item quantity="one">%s просмотр</item>
-        <item quantity="few">%s просмотра</item>
-        <item quantity="many">%s просмотров</item>
-    </plurals>
     <string name="no_videos">Нет видео</string>
-    <plurals name="videos">
-        <item quantity="one">%s видео</item>
-        <item quantity="few">%s видео</item>
-        <item quantity="many">%s видео</item>
-        <item quantity="other">%s видео</item>
-    </plurals>
     <plurals name="new_streams">
         <item quantity="one">%s новое видео</item>
         <item quantity="few">%s новых видео</item>
@@ -353,7 +335,6 @@
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
     <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
-    <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
     <string name="tab_choose">Выберите вкладку</string>
     <string name="unsubscribe">Отписаться</string>
     <string name="settings_category_updates_title">Обновления</string>
@@ -422,18 +403,6 @@
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
     <string name="drawer_header_description">Переключение сервисов, сейчас выбрано:</string>
     <string name="default_kiosk_page_summary">Киоск по умолчанию</string>
-    <string name="no_one_watching">Никто не смотрел</string>
-    <plurals name="watching">
-        <item quantity="one">%s зритель</item>
-        <item quantity="few">%s зрителя</item>
-        <item quantity="many">%s зрителей</item>
-    </plurals>
-    <string name="no_one_listening">Нет слушателей</string>
-    <plurals name="listening">
-        <item quantity="one">%s слушатель</item>
-        <item quantity="few">%s слушателя</item>
-        <item quantity="many">%s слушателей</item>
-    </plurals>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
@@ -522,8 +491,6 @@
     <string name="content_not_supported">NewPipe не поддерживает этот контент. 
 \n 
 \nВозможно, поддержка появится в следующих версиях.</string>
-    <string name="infinite_videos">∞ видео</string>
-    <string name="more_than_100_videos">100+ видео</string>
     <string name="songs">Треки</string>
     <string name="artists">Исполнители</string>
     <string name="albums">Альбомы</string>

@@ -18,7 +18,6 @@
     <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
-    <string name="upload_date_text">Publiée le %1$s</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
@@ -143,24 +142,7 @@
     <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_list_subtitle">Aucun contenu</string>
-    <string name="no_subscribers">Aucun abonné</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonné</item>
-        <item quantity="many">%s abonnés</item>
-        <item quantity="other">%s abonnés</item>
-    </plurals>
-    <string name="no_views">Aucune vue</string>
-    <plurals name="views">
-        <item quantity="one">%s vue</item>
-        <item quantity="many">%s vues</item>
-        <item quantity="other">%s vues</item>
-    </plurals>
     <string name="no_videos">Aucune vidéo</string>
-    <plurals name="videos">
-        <item quantity="one">%s vidéo</item>
-        <item quantity="many">%s vidéos</item>
-        <item quantity="other">%s vidéos</item>
-    </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
@@ -222,7 +204,6 @@
     <string name="controls_add_to_playlist_title">Ajouter à</string>
     <string name="detail_drag_description">Glisser pour réordonner</string>
     <string name="create">Créer</string>
-    <string name="dismiss">Rejeter</string>
     <string name="rename">Renommer</string>
     <string name="title_last_played">Dernière lecture</string>
     <string name="title_most_played">Vidéos les plus vues</string>
@@ -341,7 +322,6 @@
     <string name="download_to_sdcard_error_title">Stockage externe indisponible</string>
     <string name="restore_defaults">Restaurer les valeurs par défaut</string>
     <string name="restore_defaults_confirmation">Voulez-vous restaurer les valeurs par défaut \?</string>
-    <string name="subscribers_count_not_available">Compteur du nombre d’abonnés indisponible</string>
     <string name="stop">Arrêter</string>
     <string name="events">Évènements</string>
     <string name="download_to_sdcard_error_message">Impossible de télécharger dans la carte mémoire externe. Voulez-vous réinitialiser l’emplacement du dossier de téléchargement \?</string>
@@ -416,18 +396,6 @@
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
     <string name="drawer_header_description">Basculer le service, actuellement sélectionné :</string>
     <string name="default_kiosk_page_summary">Kiosque par défaut</string>
-    <string name="no_one_watching">Personne ne regarde</string>
-    <plurals name="watching">
-        <item quantity="one">%s spectateur</item>
-        <item quantity="many">%s spectateurs</item>
-        <item quantity="other">%s spectateurs</item>
-    </plurals>
-    <string name="no_one_listening">Personne n’écoute</string>
-    <plurals name="listening">
-        <item quantity="one">%s auditeur</item>
-        <item quantity="many">%s auditeurs</item>
-        <item quantity="other">%s auditeurs</item>
-    </plurals>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
@@ -516,8 +484,6 @@
 \n
 \nNous espérons qu’il le sera dans une future version.</string>
     <string name="albums">Albums</string>
-    <string name="infinite_videos">∞ vidéos</string>
-    <string name="more_than_100_videos">100+ vidéos</string>
     <string name="artists">Artistes</string>
     <string name="songs">Chansons</string>
     <string name="restricted_video">Cette vidéo dispose d’une limite d’âge.
@@ -706,7 +672,6 @@
     <string name="any_network">N\'importe quel réseau</string>
     <string name="streams_notifications_interval_title">Fréquence de vérification</string>
     <string name="enable_streams_notifications_summary">Notifications pour de nouveaux flux des abonnements</string>
-    <string name="enumeration_comma">,</string>
     <string name="toggle_all">Tout basculer</string>
     <string name="percent">Pourcent</string>
     <string name="semitone">Demi-ton</string>
@@ -819,11 +784,6 @@
     <string name="metadata_uploader_avatars">Avatars du téléverseur</string>
     <string name="image_quality_summary">Sélectionnez la qualité des images et si les images doivent être chargées, pour réduire l\'utilisation de la mémoire et de données. Les modifications vident à la fois le cache des images en mémoire et sur le disque — %s</string>
     <string name="play">Lire</string>
-    <plurals name="replies">
-        <item quantity="one">%s réponse</item>
-        <item quantity="many">%s réponses</item>
-        <item quantity="other">%s réponses</item>
-    </plurals>
     <string name="notification_actions_summary_android13">Modifiez chaque action de notification ci-dessous en appuyant dessus. Les trois premières actions (lire/pause, précédent, suivant) sont définies par le système et ne peuvent pas être personnalisées.</string>
     <string name="show_more">Voir plus</string>
     <string name="show_less">Afficher moins</string>

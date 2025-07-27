@@ -96,10 +96,6 @@
     <string name="all">Alle</string>
     <string name="channels">Kanaler</string>
     <string name="playlists">Playlister</string>
-    <plurals name="videos">
-        <item quantity="one">Én video</item>
-        <item quantity="other">%s videoer</item>
-    </plurals>
     <string name="tracks">Numre</string>
     <string name="users">Brugere</string>
     <string name="disabled">Deaktiveret</string>
@@ -172,13 +168,6 @@
     <string name="video">Video</string>
     <string name="audio">Lyd</string>
     <string name="retry">Prøv igen</string>
-    <string name="no_subscribers">Ingen abonnenter</string>
-    <string name="subscribers_count_not_available">Antal abonnenter utilgængeligt</string>
-    <string name="no_views">Ingen visninger</string>
-    <plurals name="views">
-        <item quantity="one">%s visning</item>
-        <item quantity="other">%s visninger</item>
-    </plurals>
     <string name="no_videos">Ingen videoer</string>
     <string name="start">Start</string>
     <string name="create">Opret</string>
@@ -308,10 +297,6 @@
     <string name="short_thousand">t</string>
     <string name="short_million">mio.</string>
     <string name="short_billion">mia.</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonnent</item>
-        <item quantity="other">%s abonnenter</item>
-    </plurals>
     <string name="pause">Pause</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
@@ -558,11 +543,6 @@
     <string name="recently_added">Nyligt tilføjede</string>
     <string name="featured">Fremhævede</string>
     <string name="service_provides_reason">%s giver denne grund:</string>
-    <plurals name="listening">
-        <item quantity="one">%s lytter</item>
-        <item quantity="other">%s lyttere</item>
-    </plurals>
-    <string name="more_than_100_videos">100+ videoer</string>
     <string name="msg_calculating_hash">Udregner hash</string>
     <string name="recaptcha_solve">Løs</string>
     <string name="feed_group_dialog_empty_selection">Ingen abonnementer valgt</string>
@@ -622,13 +602,6 @@
     <string name="done">Færdig</string>
     <string name="subtitle_activity_recaptcha">Tryk på \"Færdig\", når den er løst</string>
     <string name="no_comments">Ingen kommentarer</string>
-    <string name="infinite_videos">∞ videoer</string>
-    <string name="no_one_listening">Ingen lyttere</string>
-    <plurals name="watching">
-        <item quantity="one">%s seer</item>
-        <item quantity="other">%s seere</item>
-    </plurals>
-    <string name="no_one_watching">Ingen seere</string>
     <string name="drawer_header_description">Skift service. Nuværende valg:</string>
     <string name="comments_are_disabled">Kommentarer er slået fra</string>
     <string name="no_app_to_open_intent">Ingen app på din enhed kan åbne dette</string>

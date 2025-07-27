@@ -284,13 +284,7 @@
     <string name="error_report_open_issue_button_text">GitHub ରେ ରିପୋର୍ଟ କରନ୍ତୁ</string>
     <string name="video">ଭିଡିଓ</string>
     <string name="audio">ଅଡିଓ</string>
-    <string name="subscribers_count_not_available">ଗ୍ରାହକ ଗଣନା ଉପଲବ୍ଧ ନାହିଁ</string>
-    <string name="no_views">କୌଣସି ଦର୍ଶନ ନାହିଁ</string>
-    <string name="no_one_watching">କେହି ଦେଖୁ ନାହାଁନ୍ତି</string>
-    <string name="no_one_listening">କେହି ଶୁଣୁ ନାହାଁନ୍ତି</string>
     <string name="no_videos">କୌଣସି ଭିଡିଓ ନାହିଁ</string>
-    <string name="more_than_100_videos">100+ ଭିଡିଓ</string>
-    <string name="infinite_videos">∞ ଭିଡିଓ ଗୁଡିକ</string>
     <string name="start">ଆରମ୍ଭ</string>
     <string name="delete">ବିଲୋପ କରନ୍ତୁ</string>
     <string name="checksum">ଚେକ୍ସମ୍</string>
@@ -529,7 +523,6 @@
     <string name="detail_drag_description">ପୁନଃ ସଯାଇବାକୁ ଡ୍ରାଗ୍ କରନ୍ତୁ</string>
     <string name="pause">ବିରାମ</string>
     <string name="short_billion">ଵୃନ୍ଦ</string>
-    <string name="no_subscribers">କୌଣସି ଗ୍ରାହକ ନାହାଁନ୍ତି</string>
     <string name="create">ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="msg_running_detail">ବିବରଣୀ ପାଇଁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
     <string name="rename">ନାମ ପରିବର୍ତ୍ତନ କରନ୍ତୁ</string>
@@ -611,18 +604,6 @@
     <string name="open_website_license">ୱେବସାଇଟ୍ ଖୋଲନ୍ତୁ</string>
     <string name="short_thousand">ହଜାର</string>
     <string name="preferred_player_fetcher_notification_title">ସୂଚନା ପାଇବା…</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s ଗ୍ରାହକ</item>
-        <item quantity="other">ମୋଟ %s ଗ୍ରାହକ</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s ଦର୍ଶନ</item>
-        <item quantity="other">ମୋଟ %s ଦର୍ଶନ</item>
-    </plurals>
-    <plurals name="watching">
-        <item quantity="one">%s ଜଣ ଦେଖୁଛନ୍ତି</item>
-        <item quantity="other">ମୋଟ %s ଜଣ ଦେଖୁଛନ୍ତି</item>
-    </plurals>
     <string name="tab_about">ବିଷୟରେ &amp; FAQ</string>
     <string name="faq_title">ପ୍ରାୟତଃ ପଚରାଯାଇଥିବା ପ୍ରଶ୍ନ</string>
     <string name="faq_description">ଯଦି ଆପଣ ଆପ୍ ବ୍ୟବହାର କରିବାରେ ଅସୁବିଧାର ସମ୍ମୁଖୀନ ହେଉଛନ୍ତି, ସାଧାରଣ ପ୍ରଶ୍ନର ଏହି ଉତ୍ତରଗୁଡିକ ଯାଞ୍ଚ କରିବାକୁ ନିଶ୍ଚିତ ହୁଅନ୍ତୁ!</string>
@@ -694,14 +675,6 @@
     <string name="get_notified">ସୂଚିତ କର</string>
     <string name="enumeration_comma">,</string>
     <string name="selected_stream_external_player_not_supported">ମନୋନୀତ ଷ୍ଟ୍ରିମ୍ ବହିଃ-ଚାଳକ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
-    <plurals name="listening">
-        <item quantity="one">%s ଜଣ ଶ୍ରୋତା</item>
-        <item quantity="other">ମୋଟ %s ଜଣ ଶ୍ରୋତା</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s ଭିଡିଓ</item>
-        <item quantity="other">ମୋଟ %s ଭିଡିଓ</item>
-    </plurals>
     <plurals name="new_streams">
         <item quantity="one">%s ନୂଆ ଷ୍ଟ୍ରୀମ</item>
         <item quantity="other">ମୋଟ %s ନୂଆ ଷ୍ଟ୍ରୀମ</item>
