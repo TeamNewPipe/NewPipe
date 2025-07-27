@@ -98,8 +98,14 @@
 
         <service android:name=".local.subscription.services.SubscriptionsImportService" />
         <service android:name=".local.subscription.services.SubscriptionsExportService" />
-        <service android:name=".local.feed.service.FeedLoadService"
+        <service
+            android:name=".local.feed.service.FeedLoadService"
             android:foregroundServiceType="dataSync" />
+
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
 
         <activity
             android:name=".PanicResponderActivity"
