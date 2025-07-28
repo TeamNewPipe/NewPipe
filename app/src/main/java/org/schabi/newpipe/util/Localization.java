@@ -127,14 +127,13 @@ public final class Localization {
     }
 
     public static String localizeNumber(final double number) {
-        final NumberFormat nf = NumberFormat.getInstance(getAppLocale());
-        return nf.format(number);
+        return NumberFormat.getInstance(getAppLocale()).format(number);
     }
 
     public static String formatDate(@NonNull final OffsetDateTime offsetDateTime) {
         return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                .withLocale(getAppLocale()).format(offsetDateTime
-                        .atZoneSameInstant(ZoneId.systemDefault()));
+            .withLocale(getAppLocale())
+            .format(offsetDateTime.atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
