@@ -54,7 +54,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
                         .setData(Uri.fromParts("package", requireContext().getPackageName(), null));
                 startActivity(intent);
-                PlayerHelper.resetFormat();
                 return true;
             });
             newAppLanguagePref.setVisible(true);
@@ -66,7 +65,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             final String systemLang = getString(R.string.default_localization_key);
             final String tag = systemLang.equals(language) ? null : language;
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag));
-            PlayerHelper.resetFormat();
             return true;
         });
     }
@@ -110,5 +108,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         NewPipe.setupLocalization(
             Localization.getPreferredLocalization(context),
             Localization.getPreferredContentCountry(context));
+        PlayerHelper.resetFormat();
     }
 }
