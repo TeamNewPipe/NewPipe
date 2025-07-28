@@ -21,7 +21,6 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.DeviceUtils;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -173,7 +172,7 @@ public final class SettingMigrations {
                             && kioskTab.getKioskServiceId() == SoundCloud.getServiceId()
                             && kioskTab.getKioskId().equals("Top 50")))
                     .collect(Collectors.toUnmodifiableList());
-            if (tabs.size() != cleanedTabs.size() || DEBUG) { // TODO: remove debug condition
+            if (tabs.size() != cleanedTabs.size()) {
                 tabsManager.saveTabs(cleanedTabs);
                 // create an AlertDialog to inform the user about the change
                 MigrationManager.addMigrationInfo(uiContext ->
@@ -198,31 +197,19 @@ public final class SettingMigrations {
             // and is thus updated automatically.
             final TabsManager tabsManager = TabsManager.getManager(context);
             final List<Tab> tabs = tabsManager.getTabs();
-            final boolean hadYtTrendingTab = tabs.stream()
-                    .anyMatch(tab -> !(tab instanceof Tab.KioskTab kioskTab
+            final List<Tab> cleanedTabs = tabs.stream()
+                    .filter(tab -> !(tab instanceof Tab.KioskTab kioskTab
                             && kioskTab.getKioskServiceId() == YouTube.getServiceId()
-                            && kioskTab.getKioskId().equals("Trending")));
-            if (hadYtTrendingTab) {
-                final List<Tab> cleanedTabs = new ArrayList<>();
-                for (final Tab tab : tabs) {
-                    if (tab instanceof Tab.KioskTab kioskTab
-                            && kioskTab.getKioskServiceId() == YouTube.getServiceId()
-                            && kioskTab.getKioskId().equals("Trending")) {
-                        // replace the YouTube Trending tab with the new live kiosk tab
-                        // TODO: use the correct kiosk ID for the live kiosk tab
-                        cleanedTabs.add(new Tab.KioskTab(YouTube.getServiceId(), "Live"));
-                    } else {
-                        cleanedTabs.add(tab);
-                    }
-                }
+                            && kioskTab.getKioskId().equals("Trending")))
+                    .collect(Collectors.toUnmodifiableList());
+            if (tabs.size() != cleanedTabs.size()) {
                 tabsManager.saveTabs(cleanedTabs);
             }
 
             final boolean hasDefaultTrendingTab = tabs.stream()
                     .anyMatch(tab -> tab instanceof Tab.DefaultKioskTab);
 
-            // TODO: remove debugging code
-            if (hadYtTrendingTab || hasDefaultTrendingTab || newVersion == VERSION) {
+            if (tabs.size() != cleanedTabs.size() || hasDefaultTrendingTab) {
                 // User is informed about the change
                 MigrationManager.addMigrationInfo(uiContext ->
                         MigrationManager.createMigrationInfoDialog(
@@ -261,14 +248,13 @@ public final class SettingMigrations {
         // setup migrations and check if there is something to do
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String lastPrefVersionKey = context.getString(R.string.last_used_preferences_version);
-        //final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
-        final int lastPrefVersion = 6; // TODO: remove this line after testing
+        final int lastPrefVersion = sp.getInt(lastPrefVersionKey, 0);
 
         // no migration to run, already up to date
         if (App.getApp().isFirstRun()) {
             sp.edit().putInt(lastPrefVersionKey, VERSION).apply();
             return;
-        } else if (lastPrefVersion == VERSION && !DEBUG) { // TODO: remove DEBUG check
+        } else if (lastPrefVersion == VERSION) {
             return;
         }
 
@@ -320,7 +306,7 @@ public final class SettingMigrations {
          * the current settings version.
          */
         private boolean shouldMigrate(final int currentVersion) {
-            return oldVersion >= currentVersion || newVersion == VERSION;
+            return oldVersion >= currentVersion;
         }
 
         protected abstract void migrate(@NonNull Context context);
