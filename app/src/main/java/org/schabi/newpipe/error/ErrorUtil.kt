@@ -156,7 +156,7 @@ class ErrorUtil {
                 // fallback to showing a notification if no root view is available
                 createNotification(context, errorInfo)
             } else {
-                Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+                Snackbar.make(rootView, errorInfo.messageStringId, Snackbar.LENGTH_LONG)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
                         openActivity(context, errorInfo)

@@ -3,14 +3,25 @@ package org.schabi.newpipe.error
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import com.google.android.exoplayer2.ExoPlaybackException
+import com.google.android.exoplayer2.upstream.HttpDataSource
+import com.google.android.exoplayer2.upstream.Loader
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
+import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
+import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException
+import org.schabi.newpipe.extractor.exceptions.PaidContentException
+import org.schabi.newpipe.extractor.exceptions.PrivateContentException
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
+import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
+import org.schabi.newpipe.extractor.exceptions.UnsupportedContentInCountryException
+import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
+import org.schabi.newpipe.extractor.exceptions.YoutubeSignInConfirmNotBotException
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.ServiceHelper
 
@@ -91,11 +102,28 @@ class ErrorInfo(
             action: UserAction
         ): Int {
             return when {
+                // content not available exceptions
                 throwable is AccountTerminatedException -> R.string.account_terminated
+                throwable is AgeRestrictedContentException -> R.string.restricted_video_no_stream
+                throwable is GeographicRestrictionException -> R.string.georestricted_content
+                throwable is PaidContentException -> R.string.paid_content
+                throwable is PrivateContentException -> R.string.private_content
+                throwable is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
+                throwable is UnsupportedContentInCountryException -> R.string.unsupported_content_in_country
+                throwable is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
+                throwable is YoutubeSignInConfirmNotBotException -> R.string.youtube_sign_in_confirm_not_bot_error
                 throwable is ContentNotAvailableException -> R.string.content_not_available
-                throwable != null && throwable.isNetworkRelated -> R.string.network_error
+
+                // ReCaptchas should have already been handled elsewhere,
+                // but return an error message here just in case
+                throwable is ReCaptchaException -> R.string.recaptcha_request_toast
+
+                // other extractor exceptions
                 throwable is ContentNotSupportedException -> R.string.content_not_supported
+                throwable != null && throwable.isNetworkRelated -> R.string.network_error
                 throwable is ExtractionException -> R.string.parsing_error
+
+                // ExoPlayer exceptions
                 throwable is ExoPlaybackException -> {
                     when (throwable.type) {
                         ExoPlaybackException.TYPE_SOURCE -> R.string.player_stream_failure
@@ -103,13 +131,15 @@ class ErrorInfo(
                         else -> R.string.player_unrecoverable_failure
                     }
                 }
+
+                // user actions (in case the exception is unrecognizable)
                 action == UserAction.UI_ERROR -> R.string.app_ui_crash
                 action == UserAction.REQUESTED_COMMENTS -> R.string.error_unable_to_load_comments
                 action == UserAction.SUBSCRIPTION_CHANGE -> R.string.subscription_change_failed
                 action == UserAction.SUBSCRIPTION_UPDATE -> R.string.subscription_update_failed
                 action == UserAction.LOAD_IMAGE -> R.string.could_not_load_thumbnails
                 action == UserAction.DOWNLOAD_OPEN_DIALOG -> R.string.could_not_setup_download_menu
-                else -> R.string.general_error
+                else -> R.string.error_snackbar_message
             }
         }
     }

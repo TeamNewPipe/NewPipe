@@ -15,19 +15,12 @@ import io.reactivex.rxjava3.disposables.Disposable
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
-import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
-import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException
-import org.schabi.newpipe.extractor.exceptions.PaidContentException
-import org.schabi.newpipe.extractor.exceptions.PrivateContentException
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
-import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
-import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.isInterruptedCaused
-import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.util.concurrent.TimeUnit
@@ -127,7 +120,7 @@ class ErrorPanelHelper(
                 ErrorUtil.openActivity(context, errorInfo)
             }
 
-            errorTextView.setText(getExceptionDescription(errorInfo.throwable))
+            errorTextView.setText(errorInfo.messageStringId)
 
             if (errorInfo.throwable !is ContentNotAvailableException &&
                 errorInfo.throwable !is ContentNotSupportedException
@@ -192,27 +185,5 @@ class ErrorPanelHelper(
     companion object {
         val TAG: String = ErrorPanelHelper::class.simpleName!!
         val DEBUG: Boolean = MainActivity.DEBUG
-
-        @StringRes
-        fun getExceptionDescription(throwable: Throwable?): Int {
-            return when (throwable) {
-                is AgeRestrictedContentException -> R.string.restricted_video_no_stream
-                is GeographicRestrictionException -> R.string.georestricted_content
-                is PaidContentException -> R.string.paid_content
-                is PrivateContentException -> R.string.private_content
-                is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
-                is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
-                is ContentNotAvailableException -> R.string.content_not_available
-                is ContentNotSupportedException -> R.string.content_not_supported
-                else -> {
-                    // show retry button only for content which is not unavailable or unsupported
-                    if (throwable != null && throwable.isNetworkRelated) {
-                        R.string.network_error
-                    } else {
-                        R.string.error_snackbar_message
-                    }
-                }
-            }
-        }
     }
 }
