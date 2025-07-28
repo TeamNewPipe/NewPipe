@@ -104,28 +104,8 @@ class ErrorInfo(
             action: UserAction?
         ): Int {
             return when {
-                // content not available exceptions
-                throwable is AccountTerminatedException -> R.string.account_terminated
-                throwable is AgeRestrictedContentException -> R.string.restricted_video_no_stream
-                throwable is GeographicRestrictionException -> R.string.georestricted_content
-                throwable is PaidContentException -> R.string.paid_content
-                throwable is PrivateContentException -> R.string.private_content
-                throwable is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
-                throwable is UnsupportedContentInCountryException -> R.string.unsupported_content_in_country
-                throwable is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
-                throwable is YoutubeSignInConfirmNotBotException -> R.string.youtube_sign_in_confirm_not_bot_error
-                throwable is ContentNotAvailableException -> R.string.content_not_available
-
-                // ReCaptchas should have already been handled elsewhere,
-                // but return an error message here just in case
-                throwable is ReCaptchaException -> R.string.recaptcha_request_toast
-
-                // other extractor exceptions
-                throwable is ContentNotSupportedException -> R.string.content_not_supported
-                throwable != null && throwable.isNetworkRelated -> R.string.network_error
-                throwable is ExtractionException -> R.string.parsing_error
-
                 // player exceptions
+                // some may be IOException, so do these checks before isNetworkRelated!
                 throwable is ExoPlaybackException -> {
                     val cause = throwable.cause
                     when {
@@ -139,7 +119,30 @@ class ErrorInfo(
                 throwable is FailedMediaSource.FailedMediaSourceException -> getMessageStringId(throwable.cause, action)
                 throwable is PlaybackResolver.ResolverException -> R.string.player_stream_failure
 
-                // user actions (in case the exception is unrecognizable)
+                // content not available exceptions
+                throwable is AccountTerminatedException -> R.string.account_terminated
+                throwable is AgeRestrictedContentException -> R.string.restricted_video_no_stream
+                throwable is GeographicRestrictionException -> R.string.georestricted_content
+                throwable is PaidContentException -> R.string.paid_content
+                throwable is PrivateContentException -> R.string.private_content
+                throwable is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
+                throwable is UnsupportedContentInCountryException -> R.string.unsupported_content_in_country
+                throwable is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
+                throwable is YoutubeSignInConfirmNotBotException -> R.string.youtube_sign_in_confirm_not_bot_error
+                throwable is ContentNotAvailableException -> R.string.content_not_available
+
+                // other extractor exceptions
+                throwable is ContentNotSupportedException -> R.string.content_not_supported
+                // ReCaptchas should have already been handled elsewhere,
+                // but return an error message here just in case
+                throwable is ReCaptchaException -> R.string.recaptcha_request_toast
+                // test this at the end as many exceptions could be a subclass of IOException
+                throwable != null && throwable.isNetworkRelated -> R.string.network_error
+                // an extraction exception unrelated to the network
+                // is likely an issue with parsing the website
+                throwable is ExtractionException -> R.string.parsing_error
+
+                // user actions (in case the exception is null or unrecognizable)
                 action == UserAction.UI_ERROR -> R.string.app_ui_crash
                 action == UserAction.REQUESTED_COMMENTS -> R.string.error_unable_to_load_comments
                 action == UserAction.SUBSCRIPTION_CHANGE -> R.string.subscription_change_failed
