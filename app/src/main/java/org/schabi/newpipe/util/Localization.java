@@ -191,14 +191,20 @@ public final class Localization {
 
         final double value = (double) count;
         if (count >= 1000000000) {
+            final double shortenedValue = value / 1000000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
             return context.getString(R.string.short_billion,
-                    localizeNumber(round(value / 1000000000)));
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000000) {
+            final double shortenedValue = value / 1000000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
             return context.getString(R.string.short_million,
-                    localizeNumber(round(value / 1000000)));
+                    localizeNumber(round(shortenedValue, scale)));
         } else if (count >= 1000) {
+            final double shortenedValue = value / 1000;
+            final int scale = shortenedValue >= 100 ? 0 : 1;
             return context.getString(R.string.short_thousand,
-                    localizeNumber(round(value / 1000, 0)));
+                    localizeNumber(round(shortenedValue, scale)));
         } else {
             return localizeNumber(value);
         }
@@ -414,10 +420,6 @@ public final class Localization {
         } else {
             return Locale.forLanguageTag(languageCode);
         }
-    }
-
-    private static double round(final double value) {
-        return round(value, 1);
     }
 
     private static double round(final double value, final int scale) {
