@@ -198,7 +198,7 @@
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>
     <string name="blank_page_summary">空白页</string>
-    <string name="kiosk_page_summary">『时下流行』页-自定义</string>
+    <string name="kiosk_page_summary">Kiosk 页面</string>
     <string name="channel_page_summary">频道页</string>
     <string name="select_a_channel">选择一个频道</string>
     <string name="no_channel_subscribed_yet">尚未订阅频道</string>
@@ -816,4 +816,8 @@
     <string name="select_a_feed_group">选择一个订阅源组</string>
     <string name="no_feed_group_created_yet">尚未创建订阅源组</string>
     <string name="channel_tab_likes">赞</string>
+    <string name="search_with_service_name">搜索%1$s</string>
+    <string name="search_with_service_name_and_filter">搜索 %1$s （%2$s）</string>
+    <string name="migration_info_6_7_title">移除了 SoundCloud Top 50 页面</string>
+    <string name="migration_info_6_7_message">SoundCloud 已停止发布原创 Top 50 榜单。相应的标签页已从你的主页移除。</string>
 </resources>

@@ -1,0 +1,17 @@
+Neu
+• Android Auto
+• Feed-Gruppen als Hauptbildschirm-Tabs
+• [YouTube] Teilen als temporäre Wiedergabeliste
+• [SoundCloud] Gefällt-Kanal-Tab
+
+Verbessert
+• Bessere Suchleisten-Hinweise
+• Anzeige des Downloaddatums
+• App-spezifische Spracheinstellungen (Android 13)
+
+Behoben
+• Fehlerhafte Textfarben im dunklen Modus
+• [YouTube] Wiedergabelisten laden nicht mehr als 100 Einträge
+• [YouTube] Fehlende empfohlene Videos
+• Abstürze in der Verlaufslisten-Ansicht
+• Zeitstempel in Kommentarantworten

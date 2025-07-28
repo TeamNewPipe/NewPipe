@@ -803,4 +803,6 @@
     <string name="search_with_service_name">Keresés %1$s</string>
     <string name="search_with_service_name_and_filter">Keresés %1$s (%2$s)</string>
     <string name="channel_tab_likes">Kedvelések</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 oldal eltávolítva</string>
+    <string name="migration_info_6_7_message">A SoundCloud megszüntette az eredeti Top 50-es listákat. A megfelelő lap el lett távolítva a főoldalról.</string>
 </resources>

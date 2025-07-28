@@ -84,7 +84,7 @@
     <string name="background_player_playing_toast">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="popup_playing_toast">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="content">ਸਮੱਗਰੀ</string>
-    <string name="show_age_restricted_content_title">ਉਮਰ-ਮੁਤਾਬਕ-ਪਾਬੰਦੀਸ਼ੁਦਾ ਸਮੱਗਰੀ ਵਿਖਾਓ</string>
+    <string name="show_age_restricted_content_title">ਉਮਰ ਮੁਤਾਬਕ ਪਾਬੰਦੀਸ਼ੁਦਾ ਸਮੱਗਰੀ ਵਿਖਾਓ</string>
     <string name="duration_live">ਲਾਈਵ</string>
     <string name="downloads">ਡਾਊਨਲੋਡਸ</string>
     <string name="downloads_title">ਡਾਊਨਲੋਡਸ</string>
@@ -824,6 +824,12 @@
     <string name="no">ਨਹੀਂ</string>
     <string name="import_settings_vulnerable_format">ਇੰਪੋਰਟ ਕੀਤੇ ਜਾ ਰਹੇ ਐਕਸਪੋਰਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਇੱਕ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਦੀ ਵਰਤੋਂ ਕਰਦੀਆਂ ਹਨ ਜੋ ਨਿਊਪਾਈਪ 0.27.0 ਤੋਂ ਬਰਤਰਫ਼ ਕੀਤਾ ਗਿਆ ਸੀ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇੰਪੋਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਨਿਰਯਾਤ ਇੱਕ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੋਂ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਨਿਊਪਾਈਪ 0.27.0 ਜਾਂ ਇਸਤੋਂ ਨਵੇਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤੇ ਐਕਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦਿਓ। ਇਸ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਸਮਰਥਨ ਜਲਦੀ ਹੀ ਪੂਰੀ ਤਰ੍ਹਾਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ ਅਤੇ ਫਿਰ ਨਿਊਪਾਈਪ ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਹੁਣ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਐਕਸਪੋਰਟ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।</string>
     <string name="audio_track_type_secondary">ਸੈਕੰਡਰੀ</string>
-    <string name="share_playlist_as_youtube_temporary_playlist">ਟੈਂਪਰੇਰੀ ਯੂਟਿਊਬ ਪਲੇਲਿਸਟ ਵੱਜੋਂ ਸ਼ੇਅਰ ਕਰੋ</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">ਅਸਥਾਈ ਯੂਟਿਊਬ ਪਲੇਲਿਸਟ ਵਜੋਂ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="tab_bookmarks_short">ਪਲੇਲਿਸਟਾਂ</string>
+    <string name="search_with_service_name">%1$s ਦੀ ਖੋਜ ਕਰੋ</string>
+    <string name="search_with_service_name_and_filter">%1$s (%2$s) ٪1$s ਦੀ ਖੋਜ ਕਰੋ</string>
+    <string name="select_a_feed_group">ਫੀਡ ਗਰੁੱਪ ਚੁਣੋ</string>
+    <string name="no_feed_group_created_yet">ਅਜੇ ਤੱਕ ਕੋਈ ਫੀਡ ਗਰੁੱਪ ਨਹੀਂ ਬਣਾਇਆ ਗਿਆ</string>
+    <string name="feed_group_page_summary">ਚੈਨਲ ਗਰੁੱਪ ਪੰਨਾ</string>
+    <string name="channel_tab_likes">ਪਸੰਦ</string>
 </resources>

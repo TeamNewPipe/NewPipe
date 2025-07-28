@@ -164,7 +164,7 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l’historique de recherche \?</string>
     <string name="main_page_content">Contenu de la page principale</string>
-    <string name="blank_page_summary">Page vide</string>
+    <string name="blank_page_summary">Page blanche</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Tendances</string>
@@ -848,4 +848,6 @@
     <string name="search_with_service_name">Rechercher %1$s</string>
     <string name="search_with_service_name_and_filter">Rechercher %1$s (%2$s)</string>
     <string name="channel_tab_likes">Likes</string>
+    <string name="migration_info_6_7_title">Page SoundCloud Top 50 supprimée</string>
+    <string name="migration_info_6_7_message">SoundCloud a abandonné le classement original du Top 50. L\'onglet correspondant a été supprimé de votre page d\'accueil.</string>
 </resources>
