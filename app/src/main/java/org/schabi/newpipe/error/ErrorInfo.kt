@@ -23,6 +23,8 @@ import org.schabi.newpipe.extractor.exceptions.UnsupportedContentInCountryExcept
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
 import org.schabi.newpipe.extractor.exceptions.YoutubeSignInConfirmNotBotException
 import org.schabi.newpipe.ktx.isNetworkRelated
+import org.schabi.newpipe.player.mediasource.FailedMediaSource
+import org.schabi.newpipe.player.resolver.PlaybackResolver
 import org.schabi.newpipe.util.ServiceHelper
 
 @Parcelize
@@ -97,9 +99,9 @@ class ErrorInfo(
             if (info == null) SERVICE_NONE else ServiceHelper.getNameOfServiceById(info.serviceId)
 
         @StringRes
-        private fun getMessageStringId(
+        fun getMessageStringId(
             throwable: Throwable?,
-            action: UserAction
+            action: UserAction?
         ): Int {
             return when {
                 // content not available exceptions
@@ -123,14 +125,19 @@ class ErrorInfo(
                 throwable != null && throwable.isNetworkRelated -> R.string.network_error
                 throwable is ExtractionException -> R.string.parsing_error
 
-                // ExoPlayer exceptions
+                // player exceptions
                 throwable is ExoPlaybackException -> {
-                    when (throwable.type) {
-                        ExoPlaybackException.TYPE_SOURCE -> R.string.player_stream_failure
-                        ExoPlaybackException.TYPE_UNEXPECTED -> R.string.player_recoverable_failure
+                    val cause = throwable.cause
+                    when {
+                        cause is HttpDataSource.InvalidResponseCodeException && cause.responseCode == 403 -> R.string.player_error_403
+                        cause is Loader.UnexpectedLoaderException && cause.cause is ExtractionException -> getMessageStringId(throwable, action)
+                        throwable.type == ExoPlaybackException.TYPE_SOURCE -> R.string.player_stream_failure
+                        throwable.type == ExoPlaybackException.TYPE_UNEXPECTED -> R.string.player_recoverable_failure
                         else -> R.string.player_unrecoverable_failure
                     }
                 }
+                throwable is FailedMediaSource.FailedMediaSourceException -> getMessageStringId(throwable.cause, action)
+                throwable is PlaybackResolver.ResolverException -> R.string.player_stream_failure
 
                 // user actions (in case the exception is unrecognizable)
                 action == UserAction.UI_ERROR -> R.string.app_ui_crash
