@@ -868,4 +868,8 @@
     <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="migration_info_7_8_title">YouTube combined trending removed</string>
     <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. NewPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different ones in the content settings.</string>
+    <string name="gaming">Gaming</string>
+    <string name="music">Music</string>
+    <string name="movies">Movies</string>
+    <string name="podcasts">Podcasts</string>
 </resources>
