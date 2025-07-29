@@ -805,4 +805,12 @@
     <string name="audio_track_type_secondary">auka</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Deila sem YouTube-bráðabirgðaspilunarlista</string>
     <string name="tab_bookmarks_short">Spilunarlistar</string>
+    <string name="search_with_service_name">Leita í %1$s</string>
+    <string name="search_with_service_name_and_filter">Leita í %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Veldu hóp streyma</string>
+    <string name="no_feed_group_created_yet">Enginn hópur streyma útbúinn ennþá</string>
+    <string name="feed_group_page_summary">Síða rásahóps</string>
+    <string name="channel_tab_likes">Líkar við</string>
+    <string name="migration_info_6_7_title">Topp 50 síða SoundCloud fjarlægð</string>
+    <string name="migration_info_6_7_message">SoundCloud er hætt með Topp 50 vinsældalistann. Viðkomandi flipi hefur verið fjarlægður af aðalsíðunni þinni.</string>
 </resources>

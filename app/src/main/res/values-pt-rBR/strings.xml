@@ -843,4 +843,9 @@
     <string name="select_a_feed_group">Selecione um grupo de feeds</string>
     <string name="no_feed_group_created_yet">Nenhum grupo de feeds criado ainda</string>
     <string name="feed_group_page_summary">Página do grupo do canal</string>
+    <string name="search_with_service_name">Pesquisar %1$s</string>
+    <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Curtidas</string>
+    <string name="migration_info_6_7_title">Página Top 50 do SoundCloud removida</string>
+    <string name="migration_info_6_7_message">O SoundCloud descontinuou as paradas originais do Top 50. A aba correspondente foi removida da sua página principal.</string>
 </resources>

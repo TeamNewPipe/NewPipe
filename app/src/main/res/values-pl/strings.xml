@@ -855,4 +855,6 @@
     <string name="search_with_service_name">Szukaj %1$s</string>
     <string name="search_with_service_name_and_filter">Szukaj %1$s (%2$s)</string>
     <string name="channel_tab_likes">Polubienia</string>
+    <string name="migration_info_6_7_title">Usunięto stronę SoundCloud 50 najlepszych</string>
+    <string name="migration_info_6_7_message">SoundCloud wycofał oryginalną listę 50 najlepszych. Odpowiadająca karta została usunięta ze strony głównej.</string>
 </resources>

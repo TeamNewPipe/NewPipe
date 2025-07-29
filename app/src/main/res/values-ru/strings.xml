@@ -848,4 +848,9 @@
     <string name="feed_group_page_summary">Страница группы каналов</string>
     <string name="select_a_feed_group">Выберите группу кормов</string>
     <string name="no_feed_group_created_yet">Группа кормов еще не создана</string>
+    <string name="search_with_service_name">Поиск %1$s</string>
+    <string name="search_with_service_name_and_filter">Поиск %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Лайки</string>
+    <string name="migration_info_6_7_title">Страница SoundCloud Top 50 удалена</string>
+    <string name="migration_info_6_7_message">SoundCloud прекратил поддерживать оригинальные чарты Top 50. Соответствующая вкладка была удалена с вашей главной страницы.</string>
 </resources>
