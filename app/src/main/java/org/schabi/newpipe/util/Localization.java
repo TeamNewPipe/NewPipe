@@ -447,11 +447,6 @@ public final class Localization {
         final String appLanguageKey = context.getString(R.string.app_language_key);
         final String appLanguageValue = sp.getString(appLanguageKey, null);
         if (appLanguageValue != null) {
-            // The app language key is used on Android versions < 33
-            // for more info, see ContentSettingsFragment
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                sp.edit().remove(appLanguageKey).apply();
-            }
             final String appLanguageDefaultValue =
                     context.getString(R.string.default_localization_key);
             if (!appLanguageValue.equals(appLanguageDefaultValue)) {
