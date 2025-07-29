@@ -167,15 +167,16 @@ public final class NotificationUtil {
                 && notificationBuilder.mActions.get(2).actionIntent != null);
     }
 
-    @SuppressLint("NewApi") // ServiceInfo constant is inlined
     public void createNotificationAndStartForeground() {
         if (notificationBuilder == null) {
             notificationBuilder = createNotification();
         }
         updateNotification();
 
+        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
         ServiceCompat.startForeground(player.getService(), NOTIFICATION_ID,
-                notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+                notificationBuilder.build(), serviceType);
     }
 
     public void cancelNotificationAndStopForeground() {
