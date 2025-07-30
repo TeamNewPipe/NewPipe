@@ -1,1 +1,3 @@
-Opraveno nepřehrávání jakéhokoli streamu ve službě YouTube
+Tato verze opravuje problém, kdy YouTube poskytoval stream pouze v rozlišení 360p.
+
+Upozorňujeme, že použité řešení je pravděpodobně dočasné a z dlouhodobého hlediska bude potřeba implementovat video protokol SABR, ale členové týmu TeamNewPipe jsou momentálně zaneprázdnění, takže jakákoli pomoc bude velmi vítána! https://github.com/TeamNewPipe/NewPipe/issues/12248

@@ -363,7 +363,6 @@
     <string name="recaptcha_request_toast">reCAPTCHA సవాలు అభ్యర్థించబడింది</string>
     <string name="select_a_playlist">ప్లేజాబితాను ఎంచుకోండి</string>
     <string name="export_data_title">డాటాబేసుని ఎగుమతిచేయుము</string>
-    <string name="localization_changes_requires_app_restart">యాప్ పునఃప్రారంభించబడిన తర్వాత భాష మారుతుంది</string>
     <string name="show_channel_details">ఛానెల్ వివరాలను చూపు</string>
     <string name="preferred_open_action_settings_summary">కంటెంట్‌ని తెరిచేటప్పుడు డిఫాల్ట్ చర్య — %s</string>
     <string name="preferred_open_action_settings_title">ప్రాధాన్య \'తెరవండి\' చర్య</string>

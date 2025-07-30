@@ -1,0 +1,6 @@
+Uzlabojumi
+• Vienmēr atļauj nomainīt atskaņotāja paziņojumu iestatījumus uz ierīcēm ar Android 13+
+
+Salabots
+• Datubāzes/abonementu izgūšana vairs neapcērp iepriekš eksistējošo datni, kas, iespējams, izraisīja bojātu datni
+• Novērsta atskaņotāja atsākšana no paša sākuma, kad noklikšķina uz laika zīmoga

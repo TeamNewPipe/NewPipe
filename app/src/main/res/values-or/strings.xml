@@ -62,7 +62,6 @@
     <string name="watch_history_deleted">ଇତିହାସ ବିଲୋପ ଦେଖନ୍ତୁ</string>
     <string name="watch_history_states_deleted">ପ୍ଲେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ ହୋଇଛି</string>
     <string name="search_history_deleted">ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ ହେଲା</string>
-    <string name="localization_changes_requires_app_restart">ଆପ୍ ପୁନଃଆରମ୍ଭ ହେବା ପରେ ଭାଷା ପରିବର୍ତ୍ତନ ହେବ</string>
     <string name="set_as_playlist_thumbnail">ପ୍ଲେଲିଷ୍ଟ ଥମ୍ବନେଲ ଭାବରେ ସେଟ୍ କରନ୍ତୁ</string>
     <string name="overwrite_failed">ଫାଇଲ୍ କୁ ନବଲିଖନ କରିପାରିବ ନାହିଁ</string>
     <string name="error_file_creation">ଫାଇଲ୍ ସୃଷ୍ଟି ହୋଇପାରିବ ନାହିଁ</string>

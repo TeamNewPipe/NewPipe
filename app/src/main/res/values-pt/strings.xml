@@ -281,7 +281,7 @@
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes\" da janela popup:</string>
+    <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
@@ -428,7 +428,6 @@
         <item quantity="many">%s ouvintes</item>
         <item quantity="other">%s ouvintes</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">O idioma será alterado assim que reiniciar a aplicação</string>
     <string name="seek_duration_title">Duração de avanço/recuo rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias PeerTube preferidas</string>
@@ -652,7 +651,7 @@
         <item quantity="other">%1$s descargas eliminadas</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="one">Descarga concluída</item>
+        <item quantity="one">%s descarga concluída</item>
         <item quantity="many">%s descargas concluídas</item>
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
@@ -837,4 +836,9 @@
 \nDeseja ativar essa opção?</string>
     <string name="import_settings_vulnerable_format">As configurações na exportação a serem importadas usam um formato vulnerável depreciado desde NewPipe 0.27.0. Certifique-se de que a exportação que é importada é de uma fonte confiável e prefira usar apenas as exportações obtidas do NewPipe 0.27.0 ou mais recentes no futuro. O suporte para importar configurações neste formato vulnerável será removido em breve completamente e, em seguida, versões antigas do NewPipe não serão capazes de importar configurações de exportações de novas versões.</string>
     <string name="audio_track_type_secondary">secundário</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Partilhar como lista de reprodução temporária do YouTube</string>
+    <string name="tab_bookmarks_short">Listas de reprodução</string>
+    <string name="select_a_feed_group">Selecione um grupo de feeds</string>
+    <string name="no_feed_group_created_yet">Ainda nenhum grupo de feeds criado</string>
+    <string name="feed_group_page_summary">Página do grupo do canal</string>
 </resources>

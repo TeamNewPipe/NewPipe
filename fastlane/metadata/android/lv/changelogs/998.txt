@@ -1,0 +1,4 @@
+Salabota YouTube nespēja atskaņot jebkādu straumi HTTP 403 kļūdu dēļ.
+
+Nejaušas HTTP 403 kļūdas YouTube video skatīšanās laikā vēl nav novērstas.
+Konkrētā problēma tiks atrisināta nākamajā labojumfailu laidienā, cik drīz vien iespējams.

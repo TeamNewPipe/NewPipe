@@ -268,7 +268,6 @@
     <string name="title_last_played">Nýlega spilað</string>
     <string name="title_most_played">Mest spilað</string>
     <string name="main_page_content">Aðalsíða</string>
-    <string name="localization_changes_requires_app_restart">Tungumálið breytist þegar forritið er endurræst</string>
     <string name="export_complete_toast">Flutt út</string>
     <string name="import_complete_toast">Flutt inn</string>
     <string name="local">Staðbundið</string>
@@ -802,4 +801,6 @@
     <string name="show_error_snackbar">Sýna villustiku</string>
     <string name="image_quality_summary">Veldu gæði mynda og hvort eigi að hlaða myndum inn yfirhöfuð, til að minnka notun gagna og minnis. Breytingar munu hreinsa bæði vinnsluminni og diskminni - %s</string>
     <string name="audio_track_type_secondary">auka</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Deila sem YouTube-bráðabirgðaspilunarlista</string>
+    <string name="tab_bookmarks_short">Spilunarlistar</string>
 </resources>

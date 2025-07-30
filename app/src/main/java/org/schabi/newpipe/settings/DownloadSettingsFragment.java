@@ -1,7 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -209,8 +207,6 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void requestDownloadPathResult(final ActivityResult result, final String key) {
-        assureCorrectAppLanguage(getContext());
-
         if (result.getResultCode() != Activity.RESULT_OK) {
             return;
         }

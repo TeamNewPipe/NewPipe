@@ -1,25 +1,20 @@
 package org.schabi.newpipe.player.ui
 
 import org.schabi.newpipe.util.GuardedByMutex
-import java.util.Optional
+import kotlin.reflect.KClass
+import kotlin.reflect.safeCast
 
+/**
+ * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
+ * will not be prepared like those passed to [.addAndPrepare], because when
+ * the [PlayerUiList] constructor is called, the player is still not running and it
+ * wouldn't make sense to initialize uis then. Instead the player will initialize them by doing
+ * proper calls to [.call].
+ *
+ * @param initialPlayerUis the player uis this list should start with; the order will be kept
+ */
 class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
-    private val playerUis = GuardedByMutex(mutableListOf<PlayerUi>())
-
-    /**
-     * Creates a [PlayerUiList] starting with the provided player uis. The provided player uis
-     * will not be prepared like those passed to [.addAndPrepare], because when
-     * the [PlayerUiList] constructor is called, the player is still not running and it
-     * wouldn't make sense to initialize uis then. Instead the player will initialize them by doing
-     * proper calls to [.call].
-     *
-     * @param initialPlayerUis the player uis this list should start with; the order will be kept
-     */
-    init {
-        playerUis.runWithLockSync {
-            lockData.addAll(listOf(*initialPlayerUis))
-        }
-    }
+    private val playerUis = GuardedByMutex(mutableListOf(*initialPlayerUis))
 
     /**
      * Adds the provided player ui to the list and calls on it the initialization functions that
@@ -83,30 +78,22 @@ class PlayerUiList(vararg initialPlayerUis: PlayerUi) {
      * @param T the class type parameter
      * @return the first player UI of the required type found in the list, or null
      </T> */
-    fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
+    fun <T : PlayerUi> get(playerUiType: KClass<T>): T? =
         playerUis.runWithLockSync {
             for (ui in lockData) {
                 if (playerUiType.isInstance(ui)) {
-                    when (val r = playerUiType.cast(ui)) {
-                        // try all UIs before returning null
-                        null -> continue
-                        else -> return@runWithLockSync r
-                    }
+                    // try all UIs before returning null
+                    playerUiType.safeCast(ui)?.let { return@runWithLockSync it }
                 }
             }
             return@runWithLockSync null
         }
 
     /**
-     * @param playerUiType the class of the player UI to return;
-     * the [Class.isInstance] method will be used, so even subclasses could be returned
-     * @param T the class type parameter
-     * @return the first player UI of the required type found in the list, or an empty
-     * [Optional] otherwise
-     </T> */
-    @Deprecated("use get", ReplaceWith("get(playerUiType)"))
-    fun <T : PlayerUi> getOpt(playerUiType: Class<T>): Optional<T> =
-        Optional.ofNullable(get(playerUiType))
+     * See [get] above
+     */
+    fun <T : PlayerUi> get(playerUiType: Class<T>): T? =
+        get(playerUiType.kotlin)
 
     /**
      * Calls the provided consumer on all player UIs in the list, in order of addition.

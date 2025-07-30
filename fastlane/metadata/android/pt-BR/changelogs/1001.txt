@@ -1,0 +1,6 @@
+Melhorado
+• Sempre permitir alterar preferências de notificação do player no 13+
+
+Corrigido
+• Corrigido exportar banco de dados/inscrições não truncaria um arquivo já existente, podendo levar a uma exportação corrompida
+• Corrigido o player retomando do início ao clicar em um tempo específico

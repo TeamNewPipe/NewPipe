@@ -159,7 +159,7 @@
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਈਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
         <item quantity="one">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
-        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
+        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰਸ</item>
     </plurals>
     <string name="no_views">ਕੋਈ ਵਿਊ ਨਹੀਂ</string>
     <plurals name="views">
@@ -540,7 +540,6 @@
     <string name="most_liked">ਵਧੇਰੇ ਪਸੰਦ ਕੀਤੇ ਗਏ</string>
     <string name="recently_added">ਹਾਲ ਹੀ ਵਿੱਚ ਸ਼ਾਮਿਲ</string>
     <string name="local">ਸਥਾਨਕ</string>
-    <string name="localization_changes_requires_app_restart">ਭਾਸ਼ਾ ਐਪ ਨੂੰ ਦੋਬਾਰਾ ਚਲਾਉਣ \'ਤੇ ਬਦਲੇਗੀ</string>
     <string name="select_a_playlist">ਪਲੇਲਿਸਟ ਚੁਣੋ</string>
     <string name="done">ਹੋ ਗਿਆ</string>
     <string name="recaptcha_solve">ਹੱਲ ਕਰੋ</string>
@@ -613,8 +612,8 @@
     <string name="on">ਆਨ</string>
     <string name="enumeration_comma">,</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
-        <item quantity="other">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="one">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="other">%s ਡਾਊਨਲੋਡਾਂ ਮੁਕੰਮਲ</item>
     </plurals>
     <string name="off">ਆਫ</string>
     <string name="enqueue_next_stream">ਕਤਾਰ ਵਿੱਚ ਅੱਗੇ ਸ਼ਾਮਿਲ ਕਰੋ</string>
@@ -823,4 +822,6 @@
     <string name="no">ਨਹੀਂ</string>
     <string name="import_settings_vulnerable_format">ਇੰਪੋਰਟ ਕੀਤੇ ਜਾ ਰਹੇ ਐਕਸਪੋਰਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਇੱਕ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਦੀ ਵਰਤੋਂ ਕਰਦੀਆਂ ਹਨ ਜੋ ਨਿਊਪਾਈਪ 0.27.0 ਤੋਂ ਬਰਤਰਫ਼ ਕੀਤਾ ਗਿਆ ਸੀ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇੰਪੋਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਨਿਰਯਾਤ ਇੱਕ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੋਂ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਨਿਊਪਾਈਪ 0.27.0 ਜਾਂ ਇਸਤੋਂ ਨਵੇਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤੇ ਐਕਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦਿਓ। ਇਸ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਸਮਰਥਨ ਜਲਦੀ ਹੀ ਪੂਰੀ ਤਰ੍ਹਾਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ ਅਤੇ ਫਿਰ ਨਿਊਪਾਈਪ ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਹੁਣ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਐਕਸਪੋਰਟ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।</string>
     <string name="audio_track_type_secondary">ਸੈਕੰਡਰੀ</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">ਟੈਂਪਰੇਰੀ ਯੂਟਿਊਬ ਪਲੇਲਿਸਟ ਵੱਜੋਂ ਸ਼ੇਅਰ ਕਰੋ</string>
+    <string name="tab_bookmarks_short">ਪਲੇਲਿਸਟਾਂ</string>
 </resources>

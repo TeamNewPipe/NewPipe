@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit
 class ErrorPanelHelper(
     private val fragment: Fragment,
     rootView: View,
-    onRetry: Runnable
+    onRetry: Runnable?,
 ) {
     private val context: Context = rootView.context!!
 
@@ -56,12 +56,15 @@ class ErrorPanelHelper(
         errorPanelRoot.findViewById(R.id.error_open_in_browser)
 
     private var errorDisposable: Disposable? = null
+    private var retryShouldBeShown: Boolean = (onRetry != null)
 
     init {
-        errorDisposable = errorRetryButton.clicks()
-            .debounce(300, TimeUnit.MILLISECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { onRetry.run() }
+        if (onRetry != null) {
+            errorDisposable = errorRetryButton.clicks()
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { onRetry.run() }
+        }
     }
 
     private fun ensureDefaultVisibility() {
@@ -101,7 +104,7 @@ class ErrorPanelHelper(
                 errorActionButton.setOnClickListener(null)
             }
 
-            errorRetryButton.isVisible = true
+            errorRetryButton.isVisible = retryShouldBeShown
             showAndSetOpenInBrowserButtonAction(errorInfo)
         } else if (errorInfo.throwable is AccountTerminatedException) {
             errorTextView.setText(R.string.account_terminated)
@@ -130,7 +133,7 @@ class ErrorPanelHelper(
                 errorInfo.throwable !is ContentNotSupportedException
             ) {
                 // show retry button only for content which is not unavailable or unsupported
-                errorRetryButton.isVisible = true
+                errorRetryButton.isVisible = retryShouldBeShown
             }
             showAndSetOpenInBrowserButtonAction(errorInfo)
         }

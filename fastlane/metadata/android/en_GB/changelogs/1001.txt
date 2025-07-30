@@ -1,0 +1,6 @@
+Improved
+• Always allow changing player notification preferences on Android 13+
+
+Fixed
+• Fix exporting database/subscriptions would not truncate an already existing file, possibly leading to a corrupted export
+• Fix player resuming from start when clicking on a timestamp

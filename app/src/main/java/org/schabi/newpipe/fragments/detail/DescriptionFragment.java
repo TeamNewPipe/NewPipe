@@ -93,7 +93,7 @@ public class DescriptionFragment extends BaseDescriptionFragment {
 
         if (streamInfo.getLanguageInfo() != null) {
             addMetadataItem(inflater, layout, false, R.string.metadata_language,
-                    streamInfo.getLanguageInfo().getDisplayLanguage(getAppLocale(getContext())));
+                    streamInfo.getLanguageInfo().getDisplayLanguage(getAppLocale()));
         }
 
         addMetadataItem(inflater, layout, true, R.string.metadata_support,

@@ -1,1 +1,3 @@
-Behoben, dass YouTube keinen Stream abspielte
+Behoben, dass YouTube nur einen 360p-Stream bereitstellt.
+
+Beachte, dass die in dieser Version verwendete Lösung wahrscheinlich nur vorübergehend ist und langfristig das SABR-Videoprotokoll implementiert werden muss, aber die Mitglieder von TeamNewPipe sind derzeit sehr beschäftigt, daher wäre jede Hilfe sehr willkommen! https://github.com/TeamNewPipe/NewPipe/issues/12248

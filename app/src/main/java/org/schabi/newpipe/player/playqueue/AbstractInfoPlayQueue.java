@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.playqueue;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -23,6 +24,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<? extends InfoItem>>
 
     final int serviceId;
     final String baseUrl;
+    @Nullable
     Page nextPage;
 
     private transient Disposable fetchReactor;

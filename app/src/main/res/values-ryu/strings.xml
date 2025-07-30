@@ -423,7 +423,6 @@
         <item quantity="one">%sんかいんがちょうしゅちゅう</item>
         <item quantity="other">%sんかいんがちょうしゅちゅう</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">アプリさいきちゃーしーねー、ぎんぐがへいるかんさりやびーん</string>
     <string name="seek_duration_title">こうすくはやうくい/まきむどぅしかんかく</string>
     <string name="peertube_instance_url_title">PeerTubeインスタンス</string>
     <string name="peertube_instance_url_summary">PeerTubeインスタンスさんたくすん</string>

@@ -436,7 +436,6 @@
     <string name="local">Lokala</string>
     <string name="done">Klar</string>
     <string name="youtube_restricted_mode_enabled_title">Slå på YouTubes \"Begränsat läge\"</string>
-    <string name="localization_changes_requires_app_restart">Språket ändras när appen startas om</string>
     <string name="error_unable_to_load_comments">Det gick inte att läsa in kommentarerna</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Inaktivera snabbläge</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktivera snabbläge</string>
@@ -823,4 +822,9 @@
 \nÄr du säker på att du vill fortsätta?</string>
     <string name="import_settings_vulnerable_format">Inställningarna i exporten som importeras använder ett sårbart format som fasades ut i NewPipe 0.27.0. Se till att exporten som importeras är från en betrodd källa, och överväg att endast använda exporter som erhållits från NewPipe 0.27.0 eller nyare i framtiden. Stöd för import av inställningar från detta sårbara format kommer snart att tas bort helt, och sedan kommer gamla versioner av NewPipe inte att kunna importera inställningar av exporter från nya versioner längre.</string>
     <string name="audio_track_type_secondary">sekundär</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Dela som YouTube temporär spellista</string>
+    <string name="tab_bookmarks_short">Spellistor</string>
+    <string name="select_a_feed_group">Välj en flödesgrupp</string>
+    <string name="no_feed_group_created_yet">Ingen flödesgrupp har skapats ännu</string>
+    <string name="feed_group_page_summary">Kanalgruppsida</string>
 </resources>

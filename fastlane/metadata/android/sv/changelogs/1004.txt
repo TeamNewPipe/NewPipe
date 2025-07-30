@@ -1,1 +1,3 @@
-Åtgärdat att YouTube inte spelar någon stream
+Denna version fixar att enbart 360p strömmar var tillgängliga för YouTube.
+
+Observera att den lösning som används i den här versionen är sannolikt tillfällig, och i det långa loppet måste SABR-videoprotokollet implementeras, men TeamNewPipe-medlemmarna är för närvarande upptagna så all hjälp uppskattas! https://github.com/TeamNewPipe/NewPipe/issues/12248

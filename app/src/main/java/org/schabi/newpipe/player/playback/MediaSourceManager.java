@@ -38,9 +38,9 @@ import io.reactivex.rxjava3.internal.subscriptions.EmptySubscription;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
+import static org.schabi.newpipe.BuildConfig.DEBUG;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
-import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
 import static org.schabi.newpipe.util.ServiceHelper.getCacheExpirationMillis;
 
 public class MediaSourceManager {

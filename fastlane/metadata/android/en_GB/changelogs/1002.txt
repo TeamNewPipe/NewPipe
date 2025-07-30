@@ -1,0 +1,4 @@
+Fixed YouTube not playing any stream.
+
+This release only addresses the most pressing error that prevents YouTube video details from loading.
+We are aware there are other problems, and we will soon make a separate release to solve them.

@@ -418,7 +418,6 @@
     <plurals name="listening">
         <item quantity="other">%s 位听众</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">语言更改将在重启应用后生效</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自定义 PeerTube 服务器</string>
     <string name="peertube_instance_url_help">查找你需要的服务器 %s</string>
@@ -809,4 +808,10 @@
     <string name="yes">是</string>
     <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
     <string name="audio_track_type_secondary">第二</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">分享为 YouTube 临时播放列表</string>
+    <string name="tab_bookmarks_short">播放列表</string>
+    <string name="feed_group_page_summary">频道组页面</string>
+    <string name="select_a_feed_group">选择一个订阅源组</string>
+    <string name="no_feed_group_created_yet">尚未创建订阅源组</string>
+    <string name="channel_tab_likes">赞</string>
 </resources>

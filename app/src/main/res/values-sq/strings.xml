@@ -207,7 +207,6 @@
     <string name="new_and_hot">Të rejat dhe të nxehtat</string>
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
-    <string name="localization_changes_requires_app_restart">Gjuha do të ndryshojë sapo aplikacioni të riniset</string>
     <string name="error_unable_to_load_comments">Nuk mundën të ngarkohen komentet</string>
     <string name="import_settings">A dëshironi që të importoni dhe aranzhimet gjithashtu\?</string>
     <string name="override_current_data">Kjo do të mbishkruajë strukturimin tuaj të tanishëm.</string>
