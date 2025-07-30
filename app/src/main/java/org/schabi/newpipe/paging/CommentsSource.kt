@@ -17,7 +17,7 @@ class CommentsSource(private val commentInfo: CommentInfo) : PagingSource<Page, 
     override suspend fun load(params: LoadParams<Page>): LoadResult<Page, CommentsInfoItem> {
         // params.key is null the first time the load() function is called, so we need to return the
         // first batch of already-loaded comments
-        return LoadResult.Error(IOException("💥 forced test error"))
+
         if (params.key == null) {
             return LoadResult.Page(commentInfo.comments, null, commentInfo.nextPage)
         } else {

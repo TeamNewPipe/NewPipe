@@ -571,8 +571,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
 
         ErrorUtil.createNotification(mContext,
-                new ErrorInfo(ErrorInfo.Companion.throwableToStringList(mission.errObject), action,
-                        service, request.toString(), reason));
+                new ErrorInfo(ErrorInfo.Companion.throwableToStringList(mission.errObject),
+                        action,
+                        service,
+                        request.toString(),
+                        reason,
+                        null
+                ));
     }
 
     public void clearFinishedDownloads(boolean delete) {

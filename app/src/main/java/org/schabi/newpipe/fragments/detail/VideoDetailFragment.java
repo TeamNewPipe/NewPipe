@@ -1352,13 +1352,14 @@ public final class VideoDetailFragment
         super.handleError();
         setErrorImage();
 
-        if (binding.relatedItemsLayout != null) { // hide related streams for tablets
+        // hide related streams for tablets
+        if (binding.relatedItemsLayout != null) {
             binding.relatedItemsLayout.setVisibility(View.INVISIBLE);
         }
-
         // hide comments / related streams / description tabs
         binding.viewPager.setVisibility(View.GONE);
         binding.tabLayout.setVisibility(View.GONE);
+
     }
 
     private void hideAgeRestrictedContent() {

@@ -38,6 +38,7 @@ public class AcraReportSender implements ReportSender {
                 UserAction.UI_ERROR,
                 ErrorInfo.SERVICE_NONE,
                 "ACRA report",
-                R.string.app_ui_crash));
+                R.string.app_ui_crash,
+                null));
     }
 }
