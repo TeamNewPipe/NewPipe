@@ -846,4 +846,6 @@
     <string name="search_with_service_name_and_filter">Cerca %1$s (%2$s)</string>
     <string name="search_with_service_name">Cerca su %1$s</string>
     <string name="channel_tab_likes">Mi piace</string>
+    <string name="migration_info_6_7_title">Pagina Top 50 di SoundCloud rimossa</string>
+    <string name="migration_info_6_7_message">SoundCloud ha dismesso i grafici Top 50 originali. La scheda relativa è stata rimossa dalla pagina principale.</string>
 </resources>

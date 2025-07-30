@@ -179,9 +179,9 @@
     <string name="action_history">היסטוריה</string>
     <string name="delete_item_search_history">למחוק את הפריט הזה מהיסטוריית החיפושים\?</string>
     <string name="main_page_content">תוכן הדף הראשי</string>
-    <string name="blank_page_summary">דף ריק</string>
-    <string name="kiosk_page_summary">דף גישה מזדמנת</string>
-    <string name="channel_page_summary">דף ערוצים</string>
+    <string name="blank_page_summary">עמוד ריק</string>
+    <string name="kiosk_page_summary">עמוד גישה מזדמנת</string>
+    <string name="channel_page_summary">עמוד הערוץ</string>
     <string name="select_a_channel">נא לבחור ערוץ</string>
     <string name="no_channel_subscribed_yet">אין עדיין מינויים לערוצים</string>
     <string name="select_a_kiosk">נא לבחור סוג גישה מזדמנת</string>

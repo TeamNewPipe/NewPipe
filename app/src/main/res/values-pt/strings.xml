@@ -843,4 +843,6 @@
     <string name="select_a_feed_group">Selecione um grupo de feeds</string>
     <string name="no_feed_group_created_yet">Ainda nenhum grupo de feeds criado</string>
     <string name="feed_group_page_summary">Página do grupo do canal</string>
+    <string name="search_with_service_name">Pesquisar %1$s</string>
+    <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
 </resources>

@@ -229,7 +229,7 @@
     <string name="main_page_content">Съдържание на главната страница</string>
     <string name="blank_page_summary">Празна страница</string>
     <string name="kiosk_page_summary">Страница-павилион</string>
-    <string name="channel_page_summary">Страница на определен канал</string>
+    <string name="channel_page_summary">Страница на канал</string>
     <string name="select_a_channel">Изберете канал</string>
     <string name="no_channel_subscribed_yet">За момента нямате абонаменти</string>
     <string name="select_a_kiosk">Изберете павилион</string>
@@ -817,4 +817,6 @@
     <string name="search_with_service_name">Търсене %1$s</string>
     <string name="search_with_service_name_and_filter">Търсене %1$s (%2$s)</string>
     <string name="channel_tab_likes">Харесвания</string>
+    <string name="migration_info_6_7_title">Страница SoundCloud Top 50 е премахната</string>
+    <string name="migration_info_6_7_message">SoundCloud преустанови оригиналните класации Топ 50. Съответният раздел е премахнат от главната ви страница.</string>
 </resources>
