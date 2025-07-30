@@ -1,6 +1,8 @@
 package org.schabi.newpipe.ui.components.video.comment
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -11,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -26,11 +29,12 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.schabi.newpipe.R
-import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.extractor.stream.Description
+import org.schabi.newpipe.ui.components.common.ErrorPanel
 import org.schabi.newpipe.ui.components.common.LazyColumnThemedScrollbar
 import org.schabi.newpipe.ui.components.common.LoadingIndicator
 import org.schabi.newpipe.ui.emptystate.EmptyStateComposable
@@ -78,6 +82,7 @@ private fun CommentSection(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = 128.dp)
+
                             )
                         }
                     } else if (count == 0) {
@@ -109,13 +114,25 @@ private fun CommentSection(
                                 }
                             }
                             is LoadState.Error -> {
+                                val error = (comments.loadState.refresh as LoadState.Error).error
+                                val errorInfo = ErrorInfo(
+                                    throwable = error,
+                                    userAction = UserAction.REQUESTED_COMMENTS,
+                                    request = "comments"
+                                )
+
                                 item {
-                                    CommentErrorHandler(
-                                        throwable = (comments.loadState.refresh as LoadState.Error).error,
-                                        userAction = UserAction.REQUESTED_COMMENTS,
-                                        onRetry = { comments.retry() },
-                                        onReport = { info -> ErrorUtil.openActivity(context, info) },
-                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+
+                                    ) {
+                                        ErrorPanel(
+                                            errorInfo = errorInfo,
+                                            onRetry = { comments.retry() },
+                                            modifier = Modifier.align(Alignment.Center)
+                                        )
+                                    }
                                 }
                             }
                             else -> {
@@ -127,13 +144,23 @@ private fun CommentSection(
                     }
                 }
                 is Resource.Error -> {
+                    val errorInfo = ErrorInfo(
+                        throwable = uiState.throwable,
+                        userAction = UserAction.REQUESTED_COMMENTS,
+                        request = "comments"
+                    )
                     item {
-                        CommentErrorHandler(
-                            throwable = uiState.throwable,
-                            userAction = UserAction.REQUESTED_COMMENTS,
-                            onRetry = { comments.retry() },
-                            onReport = { info -> ErrorUtil.openActivity(context, info) },
-                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            ErrorPanel(
+                                errorInfo = errorInfo,
+                                onRetry = { comments.retry() },
+                                modifier = Modifier.align(Alignment.Center)
+                            )
+                        }
                     }
                 }
             }
