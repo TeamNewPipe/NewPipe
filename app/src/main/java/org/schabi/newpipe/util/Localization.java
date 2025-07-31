@@ -388,9 +388,10 @@ public final class Localization {
      *         {@code parsed != null} and the relevant setting is enabled, {@code textual} will
      *         be appended to the returned string for debugging purposes.
      */
+    @Nullable
     public static String relativeTimeOrTextual(@Nullable final Context context,
                                                @Nullable final DateWrapper parsed,
-                                               final String textual) {
+                                               @Nullable final String textual) {
         if (parsed == null) {
             return textual;
         } else if (DEBUG && context != null && PreferenceManager
