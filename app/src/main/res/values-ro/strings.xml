@@ -164,9 +164,9 @@
     <string name="action_history">Istoric</string>
     <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
     <string name="main_page_content">Conținutul pagini principale</string>
-    <string name="blank_page_summary">Pagină Goală</string>
+    <string name="blank_page_summary">Pagină goală</string>
     <string name="kiosk_page_summary">Pagina de chioșc</string>
-    <string name="channel_page_summary">Pagină Canale</string>
+    <string name="channel_page_summary">Pagină canale</string>
     <string name="select_a_channel">Alegeți un canal</string>
     <string name="no_channel_subscribed_yet">Nu v-ați abonat la niciun canal deocamdată</string>
     <string name="select_a_kiosk">Alegeți un chioșc</string>
@@ -559,7 +559,6 @@
     <string name="most_liked">Cele mai apreciate</string>
     <string name="recently_added">Adăugate recent</string>
     <string name="local">Local</string>
-    <string name="localization_changes_requires_app_restart">Limba se va schimba odată ce aplicația este repornită</string>
     <string name="no_playlist_bookmarked_yet">Nu există încă marcaje în playlist</string>
     <string name="select_a_playlist">Selectați un playlist</string>
     <string name="default_kiosk_page_summary">Chioșc implicit</string>
@@ -791,7 +790,6 @@
     <string name="feed_fetch_channel_tabs_summary">File ce vor fi preluate când se actualizează fluxul. Această opțiune nu are niciun efect dacă un canal este actualizat folosind modul rapid.</string>
     <string name="prefer_descriptive_audio_summary">Selectați o coloană sonoră cu descrieri pentru persoane cu deficiențe vizuale, dacă este disponibilă</string>
     <string name="left_gesture_control_title">Acțiunea gestului din stânga</string>
-    <string name="share_playlist_with_titles_message">Distribuiți playlistul cu detalii precum numele playlistului și titlurile videourilor sau ca o simplă listă de URL-uri a videourilor</string>
     <string name="image_quality_medium">Calitate medie</string>
     <string name="prefer_descriptive_audio_title">Preferați audioul descriptiv</string>
     <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare pentru conținuturi progresive (în prezent %s). O valoare mai mică poate accelera încărcarea lor inițială</string>
@@ -840,4 +838,14 @@
 \nSigur doriți să continuați?</string>
     <string name="import_settings_vulnerable_format">Setările din exportul importat folosesc un format vulnerabil care a fost depreciat de la NewPipe 0.27.0. Asigurați-vă că exportul care este importat este dintr-o sursă de încredere și preferați să utilizați numai exporturi obținute din NewPipe 0.27.0 sau mai nou în viitor. Suportul pentru importul setărilor în acest format vulnerabil va fi în curând eliminat complet, iar versiunile vechi ale NewPipe nu vor mai putea importa setările exporturilor din versiunile noi.</string>
     <string name="audio_track_type_secondary">secundar</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Distribuie ca listă de redare temporară YouTube</string>
+    <string name="tab_bookmarks_short">Liste de redare</string>
+    <string name="feed_group_page_summary">Pagina grupului de canale</string>
+    <string name="search_with_service_name">Caută: %1$s</string>
+    <string name="search_with_service_name_and_filter">Caută %1$s (%2$s)</string>
+    <string name="select_a_feed_group">Selectează un grup de fluxuri</string>
+    <string name="no_feed_group_created_yet">Încă nu a fost creat niciun grup de fluxuri</string>
+    <string name="channel_tab_likes">Aprecieri</string>
+    <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
+    <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
 </resources>

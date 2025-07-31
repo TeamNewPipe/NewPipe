@@ -520,7 +520,6 @@
     <string name="select_a_playlist">ᱢᱤᱫ ᱯᱷᱟᱤᱞᱤᱥᱴ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="import_complete_toast">ᱤᱢᱯᱳᱨᱴ</string>
     <string name="no_playlist_bookmarked_yet">ᱱᱤᱛ ᱦᱟᱹᱵᱤᱡ playlist bookmarks ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="localization_changes_requires_app_restart">ᱮᱯ ᱮᱦᱚᱵ ᱞᱮᱠᱷᱟᱱ ᱯᱟᱹᱨᱥᱤ ᱵᱚᱫᱚᱞᱚᱜ-ᱟ</string>
     <string name="export_complete_toast">ᱮᱥᱯᱟᱨᱴ ᱟᱠᱟᱱᱟ</string>
     <string name="trending">ᱴᱨᱮᱱᱰᱤᱝ</string>
     <string name="play_queue_audio_settings">ᱚᱰᱤᱭᱳ ᱥᱮᱴᱤᱝ</string>
@@ -678,7 +677,6 @@
     <string name="image_quality_low">ᱞᱟᱯᱷᱟᱝ ᱥᱤᱠᱷᱱᱟ.</string>
     <string name="image_quality_medium">ᱛᱟᱞᱢᱟ ᱥᱤᱠᱷᱱᱟᱹᱛ</string>
     <string name="image_quality_high">ᱩᱥᱩᱞ ᱥᱤᱠᱷᱱᱟᱹᱛ</string>
-    <string name="share_playlist_with_titles_message">ᱯᱷᱟᱭᱞᱤᱥᱴ ᱧᱩᱛᱩᱢ ᱟᱨ ᱵᱷᱤᱰᱤᱭᱳ ᱧᱩᱛᱩᱢ ᱞᱮᱠᱟᱛᱮ ᱟᱨᱵᱟᱝ ᱵᱷᱤᱰᱤᱭᱳ URL ᱨᱮᱱᱟᱜ ᱢᱤᱫ ᱞᱮᱠᱟᱱ ᱞᱤᱥᱴᱤ ᱞᱮᱠᱟᱛᱮ ᱴᱷᱟᱶ ᱮᱢ ᱢᱮ</string>
     <string name="share_playlist_with_list">URL ᱛᱟᱹᱞᱠᱟᱹ ᱥᱟᱯᱲᱟᱣ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="notification_scale_to_square_image_summary">ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱨᱮ ᱑᱖:᱙ ᱠᱷᱚᱱ ᱑:᱑ ᱟᱥᱯᱮᱠᱴ ᱚᱱᱩᱯᱟᱹᱛ ᱨᱮ ᱵᱷᱤᱰᱤᱭᱳ ᱛᱷᱚᱢᱵᱱᱮᱞ ᱜᱮᱫᱽ ᱢᱮ</string>

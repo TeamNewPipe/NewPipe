@@ -534,7 +534,6 @@
     <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে।
 \nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
-    <string name="localization_changes_requires_app_restart">অ্যাপ আবার শুরু হলে ভাষা পাল্টাবে</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
     <string name="feed_load_error_fast_unknown">দ্রুত ফিড অবস্থা এ বিষয়ে এর বেশি তথ্য দেয় না।</string>
     <string name="no_dir_yet">কোনো ডাউনলোড ফোল্ডার নির্দিষ্ট করা হয়নি, এখনই একটা সহজাত ডাউনলোড ফোল্ডার নির্বাচন করো</string>

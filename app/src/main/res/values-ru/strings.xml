@@ -190,7 +190,7 @@
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">Показать подсказку «Зажмите, чтобы добавить»</string>
-    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на фон или всплывающую кнопку в видео \"Подробнее:\\</string>
+    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии \"В фоне\" или на всплывающую кнопку \"Подробнее:\" в видео</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
@@ -221,7 +221,7 @@
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
     <string name="controls_download_desc">Скачать файл трансляции</string>
     <string name="show_info">Показать сведения</string>
-    <string name="tab_bookmarks">Плейлисты</string>
+    <string name="tab_bookmarks">Плейлисты в закладках</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
@@ -434,7 +434,6 @@
         <item quantity="few">%s слушателя</item>
         <item quantity="many">%s слушателей</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
@@ -535,7 +534,7 @@
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
-    <string name="youtube_restricted_mode_enabled_title">Включите на YouTube \"Ограниченный режим\\</string>
+    <string name="youtube_restricted_mode_enabled_title">Включить \"Ограниченный режим\" YouTube</string>
     <string name="video_detail_by">От %s</string>
     <string name="channel_created_by">Создано %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
@@ -690,7 +689,7 @@
     <string name="get_notified">Уведомлять</string>
     <string name="you_successfully_subscribed">Вы подписались на канал</string>
     <string name="toggle_all">Переключить все</string>
-    <string name="show_crash_the_player_title">Шоу \"Разбей игрока\\</string>
+    <string name="show_crash_the_player_title">Показывать \"Сбой плеера\"</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>
     <string name="error_report_channel_name">Уведомление отчёта об ошибке</string>
@@ -720,7 +719,7 @@
     <string name="no_audio_streams_available_for_external_players">Нет аудиопотоков, доступных внешним плеерам</string>
     <string name="select_quality_external_players">Выберите качество для внешних плееров</string>
     <string name="unknown_quality">Неизвестное качество</string>
-    <string name="progressive_load_interval_title">Размер предварительной загрузки</string>
+    <string name="progressive_load_interval_title">Размер интервала загрузки при воспроизведении</string>
     <string name="faq_title">Ответы на частые вопросы</string>
     <string name="faq_description">Если у вас возникли проблемы с использованием приложения, обязательно ознакомьтесь с ответами на распространённые вопросы!</string>
     <string name="faq">Посмотреть на веб-сайте</string>
@@ -808,7 +807,6 @@
     <string name="rewind">Перемотать назад</string>
     <string name="replay">Повторить</string>
     <string name="feed_fetch_channel_tabs_summary">Получаемые вкладки при обновлении ленты. Эта функция не применяется, если канал обновляется с помощью быстрого режима.</string>
-    <string name="share_playlist_with_titles_message">Поделиться подборкой с подробностями, такими как название подборки и названия видео, или просто списком URL видео</string>
     <string name="image_quality_medium">Среднее качество</string>
     <string name="metadata_uploader_avatars">Загрузчик аватаров</string>
     <string name="metadata_banners">Баннеры</string>
@@ -845,4 +843,14 @@
 \nВы уверены, что хотите продолжить?</string>
     <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
     <string name="audio_track_type_secondary">вторичный</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Поделиться как временным плейлистом YouTube</string>
+    <string name="tab_bookmarks_short">Плейлисты</string>
+    <string name="feed_group_page_summary">Страница группы каналов</string>
+    <string name="select_a_feed_group">Выберите группу кормов</string>
+    <string name="no_feed_group_created_yet">Группа кормов еще не создана</string>
+    <string name="search_with_service_name">Поиск %1$s</string>
+    <string name="search_with_service_name_and_filter">Поиск %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Лайки</string>
+    <string name="migration_info_6_7_title">Страница SoundCloud Top 50 удалена</string>
+    <string name="migration_info_6_7_message">SoundCloud прекратил поддерживать оригинальные чарты Top 50. Соответствующая вкладка была удалена с вашей главной страницы.</string>
 </resources>

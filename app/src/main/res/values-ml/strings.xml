@@ -81,7 +81,6 @@
     <string name="new_and_hot">പുതിയതും ചൂടേറിയതും</string>
     <string name="top_50">മികച്ച 50</string>
     <string name="trending">ട്രെൻഡിങ്ങ്</string>
-    <string name="localization_changes_requires_app_restart">അപ്ലിക്കേഷൻ പുനരാരംഭിച്ചുകഴിഞ്ഞാൽ ഭാഷ മാറും</string>
     <string name="error_unable_to_load_comments">കമെന്റുകൾ ലോഡുചെയ്യാനായില്ല</string>
     <string name="import_settings">ക്രമീകരണങ്ങളും ഇമ്പോർട്ടുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ\?</string>
     <string name="override_current_data">ഇത് നിങ്ങളുടെ നിലവിലെ സജ്ജീകരണത്തെ അസാധുവാക്കും.</string>

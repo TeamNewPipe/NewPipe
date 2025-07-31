@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਵੱਡਦਰਸ਼ੀ ਸ਼ੀਸ਼ੇ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
-    <string name="upload_date_text">%1$s ਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤੀ ਗਈ</string>
+    <string name="upload_date_text">%1$s ਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਹੋਇਆ</string>
     <string name="no_player_found">ਸਟ੍ਰੀਮਿੰਗ ਲਈ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਕੀ ਤੁਸੀਂ VLC ਸਥਾਪਤ ਕਰਨਾ ਚਾਹੋਗੇ?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮਿੰਗ ਲਈ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ ਇਸਨੂੰ ਚਲਾਉਣ ਲਈ VLC ਪਲੇਅਰ ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ)।</string>
     <string name="install">ਇੰਸਟਾਲ ਕਰੋ</string>
@@ -15,9 +15,9 @@
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ ਸੀ \"%1$s\"\?</string>
     <string name="share_dialog_title">ਦੇ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
-    <string name="use_external_video_player_title">ਬਾਹਰੀ ਵੀਡੀਓ ਪਲੇਅਰ ਵਰਤੋ</string>
+    <string name="use_external_video_player_title">ਬਾਹਰੀ ਵੀਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="use_external_video_player_summary">ਕੁਝ ਰੈਜ਼ੋਲਿਊਸ਼ਨਾਂ \'ਤੇ ਆਵਾਜ਼ ਹਟ ਸਕਦੀ ਹੈ</string>
-    <string name="use_external_audio_player_title">ਬਾਹਰੀ ਆਡੀਓ ਪਲੇਅਰ ਵਰਤੋ</string>
+    <string name="use_external_audio_player_title">ਬਾਹਰੀ ਆਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="subscribe_button_title">ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
     <string name="subscribed_button_title">ਸਬਸਕ੍ਰਾਈਬ ਹੈ</string>
     <string name="channel_unsubscribed">ਚੈਨਲ ਅਨ-ਸਬਸਕ੍ਰਾਈਬ ਹੋਇਆ</string>
@@ -27,7 +27,7 @@
     <string name="tab_subscriptions">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ</string>
     <string name="tab_bookmarks">ਬੁੱਕਮਾਰਕ ਕੀਤੀਆਂ ਪਲੇਲਿਸਟਾਂ</string>
     <string name="fragment_feed_title">ਨਵਾਂ ਕੀ ਹੈ</string>
-    <string name="controls_background_title">ਬੈਕਗ੍ਰਾਊਂਡ ਆਡੀਓ</string>
+    <string name="controls_background_title">ਬੈਕਗ੍ਰਾਊਂਡ</string>
     <string name="controls_popup_title">ਪੌਪ-ਅਪ</string>
     <string name="controls_add_to_playlist_title">ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ</string>
     <string name="download_path_title">ਵੀਡੀਓ ਲਈ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ</string>
@@ -52,7 +52,7 @@
     <string name="dark_theme_title">ਗੂੜ੍ਹਾ</string>
     <string name="black_theme_title">ਕਾਲ਼ਾ</string>
     <string name="popup_remember_size_pos_title">ਪੌਪ-ਅਪ ਦਾ ਆਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
-    <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
+    <string name="popup_remember_size_pos_summary">ਪੌਪ-ਅਪ ਦਾ ਆਖਰੀ ਆਕਾਰ ਅਤੇ ਸਥਿਤੀ ਯਾਦ ਰੱਖੋ</string>
     <string name="use_inexact_seek_title">ਤੇਜ਼ ਤੇ ਅਣਸਟੀਕ ਭਾਲ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="use_inexact_seek_summary">ਅਣਸਟੀਕ ਭਾਲ ਨਾਲ ਪਲੇਅਰ ਘੱਟ ਸਟੀਕਤਾ ਦੇ ਪਰ ਅਧਿਕ ਤੇਜ਼ੀ ਨਾਲ ਵੀਡੀਓ ਸਥਿੱਤੀਆਂ ਦੀ ਤਲਾਸ਼ ਕਰ ਸਕਦਾ ਹੈ । ਇਸ ਨਾਲ ਅੱਗੇ-ਪਿੱਛੇ 5, 15 ਜਾਂ 25 ਸਕਿੰਟ ਲਿਜਾਣਾ ਕੰਮ ਨਹੀਂ ਕਰਦਾ ਹੈ</string>
     <string name="thumbnail_cache_wipe_complete_notice">ਚਿੱਤਰ ਕੈਸ਼ ਮਿਟਾਇਆ ਗਿਆ</string>
@@ -84,7 +84,7 @@
     <string name="background_player_playing_toast">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="popup_playing_toast">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="content">ਸਮੱਗਰੀ</string>
-    <string name="show_age_restricted_content_title">ਉਮਰ-ਮੁਤਾਬਕ-ਪਾਬੰਦੀਸ਼ੁਦਾ ਸਮੱਗਰੀ ਵਿਖਾਓ</string>
+    <string name="show_age_restricted_content_title">ਉਮਰ ਮੁਤਾਬਕ ਪਾਬੰਦੀਸ਼ੁਦਾ ਸਮੱਗਰੀ ਵਿਖਾਓ</string>
     <string name="duration_live">ਲਾਈਵ</string>
     <string name="downloads">ਡਾਊਨਲੋਡਸ</string>
     <string name="downloads_title">ਡਾਊਨਲੋਡਸ</string>
@@ -101,8 +101,8 @@
     <string name="notification_channel_name">ਨਿਊਪਾਈਪ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="notification_channel_description">ਨਿਊਪਾਈਪ ਦੇ ਪਲੇਅਰ ਦੇ ਲਈ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="unknown_content">[ਅਣਜਾਣ]</string>
-    <string name="switch_to_background">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਚਲਾਓ</string>
-    <string name="switch_to_popup">ਪੌਪ-ਅਪ ਵਿੱਚ ਚਲਾਓ</string>
+    <string name="switch_to_background">ਬੈਕਗ੍ਰਾਊਂਡ ਮੋਡ ਵਿੱਚ ਚਲਾਓ</string>
+    <string name="switch_to_popup">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਚਲਾਓ</string>
     <string name="switch_to_main">ਮੇਨ ਤੇ ਚਲਾਓ</string>
     <string name="import_data_title">ਡਾਟਾਬੇਸ ਆਯਾਤ ਕਰੋ</string>
     <string name="export_data_title">ਡਾਟਾਬੇਸ ਨਿਰਯਾਤ ਕਰੋ</string>
@@ -159,7 +159,7 @@
     <string name="no_subscribers">ਕੋਈ ਸਬਸਕ੍ਰਾਈਬਰ ਨਹੀਂ</string>
     <plurals name="subscribers">
         <item quantity="one">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
-        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰ</item>
+        <item quantity="other">%s ਸਬਸਕ੍ਰਾਈਬਰਸ</item>
     </plurals>
     <string name="no_views">ਕੋਈ ਵਿਊ ਨਹੀਂ</string>
     <plurals name="views">
@@ -316,7 +316,7 @@
     <string name="limit_data_usage_none_description">ਕੋਈ ਸੀਮਾ ਨਹੀਂ</string>
     <string name="limit_mobile_data_usage_title">ਮੋਬਾਈਲ ਡਾਟਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਸਮੇਂ ਰੈਜ਼ੋਲਿਊਸ਼ਨ ਨੂੰ ਸੀਮਿਤ ਕਰੋ</string>
     <string name="minimize_on_exit_title">ਐਪ ਬਦਲਦੇ ਸਮੇਂ ਉਸਨੂੰ ਮਿਨੀਮਾਈਜ਼ ਕਰੋ</string>
-    <string name="minimize_on_exit_summary">ਮੇਨ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲ਼ੇ ਕਾਰਵਾਈ — %s</string>
+    <string name="minimize_on_exit_summary">ਮੇਨ ਵੀਡੀਓ ਪਲੇਅਰ ਤੋਂ ਦੂਜੇ ਐਪ \'ਤੇ ਜਾਣ ਵੇਲੇ ਕਾਰਵਾਈ — %s</string>
     <string name="minimize_on_exit_none_description">ਕੋਈ ਨਹੀਂ</string>
     <string name="minimize_on_exit_background_description">ਬੈਕਗ੍ਰਾਊਂਡ ਪਲੇਅਰ ਵਿੱਚ ਬਦਲੋ</string>
     <string name="minimize_on_exit_popup_description">ਪੌਪ-ਅਪ ਪਲੇਅਰ ਵਿੱਚ ਬਦਲੋ</string>
@@ -466,7 +466,7 @@
     <string name="no_app_to_open_intent">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਦੀ ਕੋਈ ਵੀ ਐਪ ਇਸ ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਦੀ</string>
     <string name="chapters">ਚੈਪਟਰ</string>
     <string name="recent">ਹਾਲੀਆ</string>
-    <string name="show_thumbnail_summary">ਥੰਮਨੇਲ ਨੂੰ ਤਾਲਾਬੱਧ ਸਕਰੀਨ ਦੇ ਪਿਛੋਕੜ ਅਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੋਵਾਂ ਲਈ ਵਰਤੋ</string>
+    <string name="show_thumbnail_summary">ਥੰਮਨੇਲ ਨੂੰ ਲਾਕ ਸਕਰੀਨ ਦੇ ਬੈਕਗ੍ਰਾਊਂਡ ਅਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੋਵਾਂ ਲਈ ਵਰਤੋ</string>
     <string name="show_thumbnail_title">ਥੰਮਨੇਲ ਵਿਖਾਓ</string>
     <string name="playlist_page_summary">ਪਲੇਲਿਸਟ ਪੰਨਾ</string>
     <string name="video_detail_by">%s ਦੁਆਰਾ</string>
@@ -540,7 +540,6 @@
     <string name="most_liked">ਵਧੇਰੇ ਪਸੰਦ ਕੀਤੇ ਗਏ</string>
     <string name="recently_added">ਹਾਲ ਹੀ ਵਿੱਚ ਸ਼ਾਮਿਲ</string>
     <string name="local">ਸਥਾਨਕ</string>
-    <string name="localization_changes_requires_app_restart">ਭਾਸ਼ਾ ਐਪ ਨੂੰ ਦੋਬਾਰਾ ਚਲਾਉਣ \'ਤੇ ਬਦਲੇਗੀ</string>
     <string name="select_a_playlist">ਪਲੇਲਿਸਟ ਚੁਣੋ</string>
     <string name="done">ਹੋ ਗਿਆ</string>
     <string name="recaptcha_solve">ਹੱਲ ਕਰੋ</string>
@@ -613,8 +612,8 @@
     <string name="on">ਆਨ</string>
     <string name="enumeration_comma">,</string>
     <plurals name="download_finished_notification">
-        <item quantity="one">ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
-        <item quantity="other">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="one">%s ਡਾਉਨਲੋਡ ਮੁਕੰਮਲ</item>
+        <item quantity="other">%s ਡਾਊਨਲੋਡਾਂ ਮੁਕੰਮਲ</item>
     </plurals>
     <string name="off">ਆਫ</string>
     <string name="enqueue_next_stream">ਕਤਾਰ ਵਿੱਚ ਅੱਗੇ ਸ਼ਾਮਿਲ ਕਰੋ</string>
@@ -804,7 +803,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">ਪਲੇਲਿਸਟ ਸਾਂਝੀ ਕਰੋ</string>
-    <string name="share_playlist_with_titles_message">ਪਲੇਲਿਸਟ ਨੂੰ ਪਲੇਲਿਸਟ ਨਾਮ ਅਤੇ ਵੀਡੀਓ ਸਿਰਲੇਖ ਜਿਹੇ ਵੇਰਵਿਆਂ ਸਮੇਤ ਜਾਂ ਵੀਡੀਓ URL ਦੀ ਇੱਕ ਸਰਲ ਸੂਚੀ ਦੇ ਰੂਪ ਵਿੱਚ ਸਾਂਝਾ ਕਰੋ</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s ਜਵਾਬ</item>
@@ -826,4 +824,12 @@
     <string name="no">ਨਹੀਂ</string>
     <string name="import_settings_vulnerable_format">ਇੰਪੋਰਟ ਕੀਤੇ ਜਾ ਰਹੇ ਐਕਸਪੋਰਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਇੱਕ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਦੀ ਵਰਤੋਂ ਕਰਦੀਆਂ ਹਨ ਜੋ ਨਿਊਪਾਈਪ 0.27.0 ਤੋਂ ਬਰਤਰਫ਼ ਕੀਤਾ ਗਿਆ ਸੀ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇੰਪੋਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਨਿਰਯਾਤ ਇੱਕ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੋਂ ਹੈ, ਅਤੇ ਸਿਰਫ਼ ਨਿਊਪਾਈਪ 0.27.0 ਜਾਂ ਇਸਤੋਂ ਨਵੇਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤੇ ਐਕਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦਿਓ। ਇਸ ਕਮਜ਼ੋਰ ਫਾਰਮੈਟ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨ ਲਈ ਸਮਰਥਨ ਜਲਦੀ ਹੀ ਪੂਰੀ ਤਰ੍ਹਾਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ ਅਤੇ ਫਿਰ ਨਿਊਪਾਈਪ ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਹੁਣ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਐਕਸਪੋਰਟ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।</string>
     <string name="audio_track_type_secondary">ਸੈਕੰਡਰੀ</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">ਅਸਥਾਈ ਯੂਟਿਊਬ ਪਲੇਲਿਸਟ ਵਜੋਂ ਸਾਂਝਾ ਕਰੋ</string>
+    <string name="tab_bookmarks_short">ਪਲੇਲਿਸਟਾਂ</string>
+    <string name="search_with_service_name">%1$s ਦੀ ਖੋਜ ਕਰੋ</string>
+    <string name="search_with_service_name_and_filter">%1$s (%2$s) ٪1$s ਦੀ ਖੋਜ ਕਰੋ</string>
+    <string name="select_a_feed_group">ਫੀਡ ਗਰੁੱਪ ਚੁਣੋ</string>
+    <string name="no_feed_group_created_yet">ਅਜੇ ਤੱਕ ਕੋਈ ਫੀਡ ਗਰੁੱਪ ਨਹੀਂ ਬਣਾਇਆ ਗਿਆ</string>
+    <string name="feed_group_page_summary">ਚੈਨਲ ਗਰੁੱਪ ਪੰਨਾ</string>
+    <string name="channel_tab_likes">ਪਸੰਦ</string>
 </resources>

@@ -2,15 +2,22 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un <i>frontend</i> di streaming libero e leggero per Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Scaricalo su F-Droid" height=80/></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Scaricalo su F-Droid" width=206/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Rilascio GitHub"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://github.com/TeamNewPipe/NewPipe-nightly/releases" alt="GitHub NewPipe nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-nightly.svg?labelColor=purple&label=dev%20nightly"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe-refactor-nightly/releases" alt="GitHub NewPipe refactor nightly releases"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe-refactor-nightly.svg?labelColor=purple&label=refactor%20nightly"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Licenza: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Stato <i>Build</i>"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Stato <i>Build</i>"><img src="https://github.com/TeamNewPipe/NewPipe/actions/workflows/ci.yml/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Stato Traduzione"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 </p>
+
+<p align="center">
+<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://matrix.to/#/#newpipe:matrix.newpipe-ev.de" alt="Matrix channel: #newpipe"><img src="https://img.shields.io/badge/Matrix%20chat-%23newpipe-blue"></a>
+</p>
+
 <hr>
 <p align="center"><a href="#screenshot"><i>Screenshot</i></a> &bull; <a href="#servizi-supportati">Servizi Supportati</a> &bull; <a href="#descrizione">Descrizione</a> &bull; <a href="#funzionalità">Funzionalità</a> &bull; <a href="#installazione-e-aggiornamenti">Installazione e aggiornamenti</a> &bull; <a href="#contribuire">Contribuire</a> &bull; <a href="#donare">Donare</a> &bull; <a href="#licenza">Licenza</a></p>
 <p align="center"><a href="https://newpipe.net">Sito</a> &bull; <a href="https://newpipe.net/blog/"><i>Blog</i></a> &bull; <a href="https://newpipe.net/FAQ/"><i>FAQ</i></a> &bull; <a href="https://newpipe.net/press/">Stampa</a></p>

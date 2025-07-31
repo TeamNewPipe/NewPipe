@@ -227,7 +227,6 @@
     <string name="featured">المميزة</string>
     <string name="show_age_restricted_content_summary">عرض المحتوى الذي يُحتمل أن يكون غير مناسب للأطفال لأن له حدًا عمريًا (مثل 18+)</string>
     <string name="start_here_on_background">بدأ التشغيل في الخلفية</string>
-    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
     <string name="channel_tab_shorts">القصيرة</string>
     <string name="playlists">قوائم التشغيل</string>
     <string name="clear">تنظيف</string>
@@ -856,6 +855,5 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">شارِك قائمة التشغيل</string>
-    <string name="share_playlist_with_titles_message">شارِك قائمة التشغيل بتفاصيليها مثل اسم قائمة التشغيل وعناوين الفيديو أو كقائمة بسيطة من عناوين تشعّبيّة للفيديوهات</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
 </resources>

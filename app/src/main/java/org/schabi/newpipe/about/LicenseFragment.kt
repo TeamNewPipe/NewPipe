@@ -19,7 +19,6 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FragmentLicensesBinding
 import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding
 import org.schabi.newpipe.ktx.parcelableArrayList
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 /**
@@ -100,7 +99,6 @@ class LicenseFragment : Fragment() {
                     val webView = WebView(context)
                     webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
 
-                    Localization.assureCorrectAppLanguage(context)
                     val builder = AlertDialog.Builder(requireContext())
                         .setTitle(softwareComponent.name)
                         .setView(webView)

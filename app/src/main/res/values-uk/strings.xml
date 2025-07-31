@@ -170,7 +170,7 @@
     <string name="show_info">Показати інформацію</string>
     <string name="tab_bookmarks">Закладки відтворення</string>
     <string name="controls_add_to_playlist_title">Додати до</string>
-    <string name="show_hold_to_append_summary">Показувати підказку під час натискання фонової або спливної кнопки у відео \"Деталі:\\</string>
+    <string name="show_hold_to_append_summary">Показувати підказку під час натискання фонової або спливної кнопки у відео \"Деталі:\"</string>
     <string name="player_unrecoverable_failure">Сталася невиправна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
     <string name="info_labels">Що:\\nЗапит:\\nМова вмісту:\\nКраїна вмісту:\\nМова застосунку:\\nСлужба:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
@@ -218,8 +218,8 @@
     <string name="title_most_played">Відтворювалося найбільше</string>
     <string name="main_page_content">Вміст на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
-    <string name="kiosk_page_summary">Кіоск-сторінка</string>
-    <string name="channel_page_summary">Канал</string>
+    <string name="kiosk_page_summary">Сторінка кіоску</string>
+    <string name="channel_page_summary">Сторінка каналу</string>
     <string name="select_a_channel">Обрати канал</string>
     <string name="no_channel_subscribed_yet">Немає підписок на канали</string>
     <string name="select_a_kiosk">Обрати кіоск</string>
@@ -428,7 +428,6 @@
         <item quantity="few">%s слухача</item>
         <item quantity="many">%s слухачів</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Мова зміниться після перезапуску застосунку</string>
     <string name="seek_duration_title">Швидке перемотування</string>
     <string name="peertube_instance_url_title">Екземпляри PeerTube</string>
     <string name="peertube_instance_url_summary">Виберіть сервер PeerTube</string>
@@ -529,7 +528,7 @@
 \nЩоб побачити його ввімкніть «%1$s» в налаштуваннях.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
-    <string name="youtube_restricted_mode_enabled_title">Увімкніть \"Обмежений режим\" YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Увімкнути \"Обмежений режим\" YouTube</string>
     <string name="search_showing_result_for">Результати для: %s</string>
     <string name="channel_created_by">Створено %s</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Показати лише незгруповані підписки</string>
@@ -672,7 +671,7 @@
     <string name="manual_update_description">Перевірка нових версій вручну</string>
     <string name="checking_updates_toast">Перевірка оновлень…</string>
     <string name="feed_new_items">Нові записи стрічки</string>
-    <string name="show_crash_the_player_title">Показати \"Збій програвача\\</string>
+    <string name="show_crash_the_player_title">Показати \"Збій програвача\"</string>
     <string name="show_crash_the_player_summary">Показує параметр збою під час використання програвача</string>
     <string name="crash_the_player">Збій програвача</string>
     <string name="error_report_channel_name">Сповіщення про звіт про помилку</string>
@@ -821,7 +820,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Поділитися добіркою</string>
-    <string name="share_playlist_with_titles_message">Поділитися добіркою з подробицями, такими як назва добірки та назви відео, або просто списком URL-адрес відео</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="show_more">Показати більше</string>
     <string name="notification_actions_summary_android13">Відредагуйте кожну дію сповіщення, натиснувши на неї. Перші три дії (відтворення/пауза, попередній і наступний) встановлюються системою і не можуть бути змінені.</string>
@@ -845,4 +843,14 @@
 \nВи впевнені, що хочете продовжити?</string>
     <string name="import_settings_vulnerable_format">Параметри експорту, який імпортується, використовують вразливий формат, який не підтримується з NewPipe 0.27.0. Переконайтеся, що експорт, який імпортується, походить із надійного джерела, і в майбутньому віддайте перевагу використанню лише експорту, отриманого з NewPipe 0.27.0 або новішої версії. Підтримку імпорту налаштувань у цьому вразливому форматі незабаром буде повністю припинено, і тоді старі версії NewPipe більше не зможуть імпортувати налаштування експорту з нових версій.</string>
     <string name="audio_track_type_secondary">вторинний</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Поділитися як тимчасовим списком відтворення YouTube</string>
+    <string name="tab_bookmarks_short">Списки відтворення</string>
+    <string name="feed_group_page_summary">Сторінка групи каналів</string>
+    <string name="select_a_feed_group">Виберіть групу каналів</string>
+    <string name="no_feed_group_created_yet">Групу каналів ще не створено</string>
+    <string name="channel_tab_likes">Вподобання</string>
+    <string name="search_with_service_name">Пошук %1$s</string>
+    <string name="search_with_service_name_and_filter">Пошук %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">Сторінку SoundCloud Top 50 видалено</string>
+    <string name="migration_info_6_7_message">SoundCloud припинив підтримку оригінальних чартів Топ-50. Відповідну вкладку видалено з вашої головної сторінки.</string>
 </resources>

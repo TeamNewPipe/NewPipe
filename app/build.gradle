@@ -23,9 +23,9 @@ android {
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1004
+            versionCode 1005
         }
-        versionName "0.27.7"
+        versionName "0.28.0"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
@@ -95,6 +95,10 @@ android {
 
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    androidResources {
+        generateLocaleConfig = true
     }
 
     buildFeatures {
@@ -205,10 +209,12 @@ dependencies {
     // Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
-    implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
+    implementation 'com.github.TeamNewPipe:nanojson:e9d656ddb49a412a5a0a5d5ef20ca7ef09549996'
     // WORKAROUND: if you get errors with the NewPipeExtractor dependency, replace `v0.24.3` with
-    // the corresponding commit hash, since JitPack is sometimes buggy
-    implementation 'com.github.TeamNewPipe.NewPipeExtractor:NewPipeExtractor:v0.24.6'
+    // the corresponding commit hash, since JitPack sometimes deletes artifacts.
+    // If there’s already a git hash, just add more of it to the end (or remove a letter)
+    // to cause jitpack to regenerate the artifact.
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.8'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/
@@ -219,7 +225,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 
 /** AndroidX **/
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.12.0'

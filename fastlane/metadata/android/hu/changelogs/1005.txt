@@ -1,0 +1,17 @@
+Újdonság
+- Android Auto támogatás hozzáadása
+- A hírfolyamcsoportok főképernyőfülekként való beállítása
+- [YouTube] Megosztás ideiglenes lejátszási listaként
+- [SoundCloud] „Kedvelések” csatorna lap
+
+Továbbfejlesztve
+- Jobb keresősáv-súgók
+- Letöltési dátum megjelenítése a letöltések között
+- Android 13 alkalmazásonkénti nyelv használata
+
+Javítva
+- Törött szövegszínek javítása sötét módban
+- [YouTube] A lejátszási listák 100-nál több elemet nem töltöttek be.
+- [YouTube] Az ajánlott videók hiányának javítása
+- Az előzmények listanézetben bekövetkező összeomlások javítása
+- A hozzászólásválaszok időbélyegeinek javítása

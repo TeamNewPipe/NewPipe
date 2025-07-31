@@ -6,7 +6,7 @@
     <string name="install">Įdiegti</string>
     <string name="cancel">Atšaukti</string>
     <string name="open_in_browser">Atverti naršyklėje</string>
-    <string name="open_in_popup_mode">Atverti iššokančio lango rėžime</string>
+    <string name="open_in_popup_mode">Atverti iššokančio lango režime</string>
     <string name="share">Dalintis</string>
     <string name="download">Atsisiųsti</string>
     <string name="search">Paieška</string>
@@ -494,7 +494,6 @@
     <string name="most_liked">Labiausiai patikę</string>
     <string name="recently_added">Nesenai pridėta</string>
     <string name="local">Vietinė</string>
-    <string name="localization_changes_requires_app_restart">Kalba pasikeis paleidus programą iš naujo</string>
     <string name="error_unable_to_load_comments">Komentarų įkelti nepavyko</string>
     <string name="import_settings">Ar norite importuoti nustatymus\?</string>
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>
@@ -825,7 +824,6 @@
     <string name="channel_tab_videos">Vaizdo įrašai</string>
     <string name="channel_tab_tracks">Takeliai</string>
     <string name="image_quality_summary">Pasirinkite paveikslėlių kokybę ir ar apskritai įkelti paveikslėlius, kad sumažintumėte duomenų ir atminties naudojimą. Pakeitimai išvalo atmintyje ir diske esančių vaizdų talpyklą - %s</string>
-    <string name="share_playlist_with_titles_message">Dalintis grojaraščiu su tokia informacija kaip grojaraščio pavadinimas ir vaizdo įrašo pavadinimas arba paprastas vaizdo įrašų nuorodų sąrašas</string>
     <string name="share_playlist_with_titles">Dalintis su pavadinimais</string>
     <string name="share_playlist">Dalintis grojaraščiu</string>
     <string name="share_playlist_with_list">Dalintis nuorodų sąrašu</string>
@@ -839,4 +837,7 @@
 \n%2$s</string>
     <string name="question_mark">\?</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="tab_bookmarks_short">Grojaraščiai</string>
+    <string name="audio_track_type_secondary">Antrinis</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Dalintis kaip laikinuoju youtube grojaraščiu</string>
 </resources>

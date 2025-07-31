@@ -47,7 +47,7 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toca la lupa para comenzar..</string>
+    <string name="main_bg_subtitle">Toca la lupa para comenzar.</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -78,7 +78,7 @@
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
-    <string name="info_labels">Qué:\\nSolicitar:\\nIntenga de contenido:\\nPaíse de contenido:\\nIdiomaño de la aplicación:\\nServicio:\\nTiempo de GTT:\\nPaquete:\\nVersión:\\nVersion de SO:</string>
+    <string name="info_labels">Qué:\\nSolicitud:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nMarca de tiempo:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="short_thousand">k</string>
@@ -91,7 +91,7 @@
     <string name="recaptcha_request_toast">Reto reCAPTCHA requerido</string>
     <string name="popup_playing_toast">Reproduciendo en modo emergente</string>
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
-    <string name="disabled">Desactivado</string>
+    <string name="disabled">Deshabilitado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
     <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
     <string name="default_popup_resolution_title">Resolución predefinida de emergente</string>
@@ -130,7 +130,7 @@
     <string name="settings_file_replacement_character_title">Carácter de reemplazo</string>
     <string name="charset_letters_and_digits">Letras y dígitos</string>
     <string name="charset_most_special_characters">La mayoría de los caracteres especiales</string>
-    <string name="enable_search_history_title">Historial de búsquedas</string>
+    <string name="enable_search_history_title">Historial de búsqueda</string>
     <string name="enable_search_history_summary">Almacenar búsquedas localmente</string>
     <string name="enable_watch_history_title">Historial de vistas</string>
     <string name="enable_watch_history_summary">Almacenar historial de vídeos vistos</string>
@@ -184,7 +184,7 @@
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
     <string name="show_hold_to_append_title">Mostrar la sugerencia \"Mantener presionado para poner a la cola\"</string>
-    <string name="new_and_hot">Nuevo y lo mejor</string>
+    <string name="new_and_hot">Lo nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
@@ -277,12 +277,7 @@
 \n5. Haga clic en el botón de \"Descargar\" una vez que aparezca
 \n6. Haga clic en el botón IMPORTAR ARCHIVO que se muestra abajo y seleccione el archivo zip descargado
 \n7. [En caso de que la importación falle] Extraiga el archivo .csv (generalmente dentro de \"Youtube y Youtube Music/suscripciones/suscripciones.csv\"), haga clic en IMPORTAR ARCHIVO y seleccione el archivo csv extraído anteriormente</string>
-    <string name="import_soundcloud_instructions">Importe un perfil de SoundCloud escribiendo la URL o su ID:
-\n
-\n1. Active el «modo escritorio» en un navegador web (el sitio no está disponible para dispositivos móviles)
-\n2. Vaya a esta URL: %1$s
-\n3. Inicie sesión cuando se le pida
-\n4. Copie la URL del perfil a la que fue redireccionado.</string>
+    <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud escribiendo la URL o tu ID: \n \n1. Habilita el «modo escritorio» en un navegador web (el sitio no está disponible para dispositivos móviles) \n2. Ve a esta URL: %1$s \n3. Inicia sesión cuando se te pida \n4. Copia la URL del perfil a la que fuiste redireccionado.</string>
     <string name="import_soundcloud_instructions_hint">tuID, soundcloud.com/tuID</string>
     <string name="import_network_expensive_warning">Esta operación puede causar un uso intensivo de la red.
 \n
@@ -381,8 +376,7 @@
     <string name="error_timeout">El tiempo de conexión expiro</string>
     <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
-    <string name="downloads_storage_ask_summary">Se le preguntará dónde guardar cada descarga.
-\nHabilite Elegir carpetas del sistema (SAF) si desea guardar las descargas en una tarjeta SD externa</string>
+    <string name="downloads_storage_ask_summary">Se te preguntará dónde guardar cada descarga. \nHabilita elegir carpetas del sistema (SAF) si quieres guardar las descargas en una tarjeta SD externa</string>
     <string name="downloads_storage_use_saf_title">Usar Elegir carpetas del sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>
@@ -405,7 +399,7 @@
     <string name="auto">Automático</string>
     <string name="app_update_available_notification_title">¡Actualización de NewPipe disponible!</string>
     <string name="show_comments_title">Mostrar comentarios</string>
-    <string name="show_comments_summary">Desactivar para ocultar comentarios</string>
+    <string name="show_comments_summary">Deshabilitar para ocultar comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudieron cargar los comentarios</string>
@@ -433,7 +427,6 @@
         <item quantity="many">%s oyentes</item>
         <item quantity="other">%s oyentes</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación</string>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
@@ -494,14 +487,14 @@
     <string name="feed_group_dialog_empty_name">Nombre de grupo vacío</string>
     <string name="feed_group_dialog_delete_message">¿Quieres borrar este grupo?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
-    <string name="settings_category_feed_title">Fuente</string>
+    <string name="settings_category_feed_title">Contenido</string>
     <string name="feed_update_threshold_title">Velocidad de actualización del contenido</string>
     <string name="feed_update_threshold_summary">Tiempo para que una suscripción se considere desactualizada — %s</string>
     <string name="feed_update_threshold_option_always_update">Actualizar siempre</string>
     <string name="feed_use_dedicated_fetch_method_title">Extraer desde feed dedicado cuando esté disponible</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponible para algunos servicios, suele ser más rápido pero puede mostrar una cantidad limitada de ítems y a menudo información incompleta (por ejemplo falta de duración, tipo de ítem o estado)</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Activar modo rápido</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Habilitar modo rápido</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Deshabilitar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_help_text">¿Piensas que la carga de contenidos es muy lenta\? Entonces intenta habilitar la carga rápida (puedes cambiarlo en los ajustes o pulsando el botón debajo).
 \n
 \nNewpipe ofrece dos formas de cargar los contenidos:
@@ -521,9 +514,7 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbumes</string>
     <string name="songs">Canciones</string>
-    <string name="restricted_video">Este vídeo tiene restricción de edad.
-\n
-\nActivar \"%1$s\" en los ajustes si quieres verlo.</string>
+    <string name="restricted_video">Este vídeo tiene restricción de edad. \n \nHabilitar \"%1$s\" en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también vídeos vistos parcialmente</string>
     <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
@@ -534,7 +525,7 @@
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar del canal</string>
     <string name="show_original_time_ago_summary">Los textos originales de los servicios serán visibles en los ítems de transmisiones</string>
     <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
-    <string name="youtube_restricted_mode_enabled_title">Activar el «Modo restringido» de YouTube</string>
+    <string name="youtube_restricted_mode_enabled_title">Habilitar el «Modo restringido» de YouTube</string>
     <string name="playlist_page_summary">Página de lista de reproducción</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar solo suscripciones desagrupadas</string>
     <string name="no_playlist_bookmarked_yet">Aún no hay marcadores para listas de reproducción</string>
@@ -577,8 +568,8 @@
     <string name="notification_colorize_summary">Hacer que Android personalice el color de la notificación de acuerdo con el color principal de la miniatura (tenga en cuenta que esto no está disponible en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
-    <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión</string>
-    <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo y la información adicional</string>
+    <string name="show_meta_info_summary">Deshabilitar para ocultar información adicional sobre el creador o contenido de la transmisión</string>
+    <string name="show_description_summary">Deshabilitar para ocultar la descripción del vídeo y la información adicional</string>
     <string name="no_app_to_open_intent">Ninguna aplicación en su dispositivo puede abrir esto</string>
     <string name="chapters">Capítulos</string>
     <string name="recent">Reciente</string>
@@ -614,24 +605,24 @@
     <string name="metadata_privacy_unlisted">No listado</string>
     <string name="metadata_privacy_public">Público</string>
     <string name="metadata_support">Soporte</string>
-    <string name="metadata_language">Lenguaje</string>
+    <string name="metadata_language">Idioma</string>
     <string name="metadata_age_limit">Límite de edad</string>
     <string name="metadata_privacy">Privacidad</string>
     <string name="metadata_licence">Licencia</string>
     <string name="metadata_tags">Etiquetas</string>
     <string name="metadata_category">Categoría</string>
-    <string name="description_select_disable">Inhabilitar la selección de texto de la descripción</string>
+    <string name="description_select_disable">Deshabilitar la selección de texto de la descripción</string>
     <string name="description_select_enable">Habilitar la selección de texto de la descripción</string>
     <string name="description_select_note">Ahora puede seleccionar el texto dentro de la descripción. Note que la página puede parpadear y los links no serán cliqueables mientras está en el modo de selección.</string>
     <string name="service_provides_reason">%s da esta razón:</string>
-    <string name="feed_load_error_account_info">No fue posible cargar el muro por \'%s\'.</string>
+    <string name="feed_load_error_account_info">No fue posible cargar el feed por \'%s\'.</string>
     <string name="account_terminated">Cuenta cancelada</string>
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
     <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.\nNewPipe no podrá acceder a ella en el futuro.\n¿Quieres desuscribirte de este canal?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
-    <string name="disable_media_tunneling_summary">Desactiva la tunelización de los medios si experimentas una pantalla negra durante la reproducción o si la visualización de la imagen es intermitente.</string>
+    <string name="disable_media_tunneling_summary">Deshabilita la tunelización de medios si experimentas una pantalla negra durante la reproducción o si la visualización de la imagen es intermitente.</string>
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
     <string name="no_dir_yet">Aún no se ha seleccionado ninguna carpeta de descargas, elija la carpeta de descargas por defecto ahora</string>
     <string name="metadata_host">Anfitrión</string>
@@ -668,7 +659,7 @@
     <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="manual_update_description">Buscar nuevas versiones manualmente</string>
     <string name="checking_updates_toast">Buscando actualizaciones…</string>
-    <string name="feed_new_items">Nuevos elementos en el muro</string>
+    <string name="feed_new_items">Nuevos elementos en el feed</string>
     <string name="crash_the_player">Cerrar abruptamente el reproductor</string>
     <string name="show_crash_the_player_summary">Muestra una opción de cierre abrupto al usar el reproductor</string>
     <string name="show_crash_the_player_title">Mostrar \"Cerrar abruptamente el reproductor\"</string>
@@ -678,8 +669,7 @@
     <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar una barra de error</string>
-    <string name="no_appropriate_file_manager_message">No se ha encontrado un gestor de archivos apropiado para esta acción.
-\nPor favor, instale un gestor de archivos o intente desactivar \'%s\' en los ajustes de la descarga</string>
+    <string name="no_appropriate_file_manager_message">No se ha encontrado un gestor de archivos apropiado para esta acción. \nPor favor, instala un gestor de archivos o intenta deshabilitarlo \'%s\' en los ajustes de la descarga</string>
     <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción. 
 \n Instale un administrador de archivos compatible con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
@@ -697,7 +687,7 @@
     <string name="enable_streams_notifications_summary">Notificar de nuevos directos desde las suscripciones</string>
     <string name="streams_notifications_interval_title">Frecuencia de comprobación</string>
     <string name="delete_downloaded_files_confirm">¿Desea borrar del disco todos los archivos descargados\?</string>
-    <string name="notifications_disabled">Las notificaciones están desactivadas</string>
+    <string name="notifications_disabled">Las notificaciones están deshabilitadas</string>
     <string name="get_notified">Recibir notificaciones</string>
     <string name="toggle_all">Conmutar todo</string>
     <string name="loading_stream_details">Cargando detalles del directo…</string>
@@ -737,7 +727,7 @@
     <string name="remove_duplicates_title">¿Eliminar los duplicados\?</string>
     <string name="remove_duplicates_message">¿Quieres eliminar todas las secuencias duplicadas de esta lista de reproducción?</string>
     <string name="feed_hide_streams_title">Mostrar las siguientes secuencias</string>
-    <string name="feed_show_hide_streams">Mostrar/Ocultar secuencias</string>
+    <string name="feed_show_hide_streams">Mostrar/ocultar secuencias</string>
     <string name="feed_show_upcoming">Próximamente</string>
     <string name="remove_duplicates">Eliminar los duplicados</string>
     <string name="feed_show_watched">Completamente visto</string>
@@ -767,7 +757,7 @@
     <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga en contenidos progresivos (actualmente %s). Un valor más bajo puede acelerar la carga inicial</string>
     <string name="settings_category_exoplayer_title">Ajustes de ExoPlayer</string>
     <string name="settings_category_exoplayer_summary">Gestiona algunos ajustes de ExoPlayer. Estos cambios requieren reiniciar el reproductor para que surtan efecto</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Habilite esta opción si tiene problemas con la inicialización del decodificador recurriendo a decodificadores de menor prioridad si el decodificador principal no se inicializa. Esto puede dar como resultado un rendimiento de reproducción más bajo que cuando se usan decodificadores primarios</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Habilita esta opción si tiene problemas con la inicialización del decodificador recurriendo a decodificadores de menor prioridad si el decodificador principal no se inicializa. Esto puede dar como resultado un rendimiento de reproducción más bajo que cuando se usan decodificadores primarios</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera los códecs de video y los vuelve a instanciar cuando cambia la máscara, en lugar de configurar la máscara directamente en el códec. ExoPlayer ya usa esta configuración en algunos dispositivos con este problema y solo afecta a Android 6 y versiones posteriores
 \n
 \nHabilitar esta opción puede evitar errores de reproducción al cambiar el reproductor de video actual o cambiar al modo de pantalla completa</string>
@@ -778,7 +768,7 @@
     <string name="no_live_streams">Sin transmisiones en directo</string>
     <string name="channel_tab_videos">Vídeos</string>
     <string name="metadata_subscribers">Suscriptores</string>
-    <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas de los canales</string>
+    <string name="show_channel_tabs_summary">Qué pestañas se muestran en las páginas del canal</string>
     <string name="show_channel_tabs">Pestañas del canal</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="loading_metadata_title">Cargando metadatos…</string>
@@ -818,7 +808,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Compartir la lista de reproducción</string>
-    <string name="share_playlist_with_titles_message">Compartir las listas de reproducción con los detalles como el nombre de la lista y los títulos de los vídeos o como una simple lista de una dirección URL con los vídeos</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s respuesta</item>
@@ -832,13 +821,16 @@
     <string name="settings_category_backup_restore_title">Respaldar y restaurar</string>
     <string name="reset_settings_title">Restablecer ajustes</string>
     <string name="reset_settings_summary">Restablecer todos los ajustes a sus valores predeterminados</string>
-    <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación.
-\n
-\n¿Estas seguro que deseas continuar?</string>
+    <string name="reset_all_settings">Restablecer todos los ajustes descartará todos sus ajustes preferidos y reiniciará la aplicación. \n \n¿Estás seguro que quieres continuar?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="auto_update_check_description">NewPipe puede buscar automáticamente nuevas versiones de vez en cuando y notificarle cuando estén disponibles.
 \n¿Quieres habilitar esto?</string>
     <string name="import_settings_vulnerable_format">La configuración de la exportación que se importa utiliza un formato vulnerable que quedó obsoleto desde NewPipe 0.27.0. Asegúrese de que la exportación que se está importando provenga de una fuente confiable y prefiera usar solo exportaciones obtenidas de NewPipe 0.27.0 o posterior en el futuro. La compatibilidad con la importación de configuraciones en este formato vulnerable pronto se eliminará por completo y, luego, las versiones antiguas de NewPipe ya no podrán importar configuraciones de exportaciones desde las nuevas versiones.</string>
     <string name="audio_track_type_secondary">secundaria</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Compartir como lista de reproducción temporal de YouTube</string>
+    <string name="tab_bookmarks_short">Lista de reproducción</string>
+    <string name="select_a_feed_group">Selecciona un grupo de feed</string>
+    <string name="no_feed_group_created_yet">Aún no se ha creado ningún grupo de feed</string>
+    <string name="feed_group_page_summary">Página de grupo de canales</string>
 </resources>

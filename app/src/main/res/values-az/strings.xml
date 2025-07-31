@@ -342,7 +342,6 @@
     <string name="no_valid_zip_file">Etibarlı ZIP faylı yoxdur</string>
     <string name="could_not_import_all_files">Xəbərdarlıq: Bütün faylları idxal etmək mümkün olmadı.</string>
     <string name="import_settings">Tənzimləmələri də idxal etmək istəyirsiniz\?</string>
-    <string name="localization_changes_requires_app_restart">Tətbiq yenidən başladıldıqdan sonra dil dəyişəcəkdir</string>
     <string name="top_50">Ən yaxşı 50</string>
     <string name="new_and_hot">Yeni və populyar</string>
     <string name="local">Yerli</string>
@@ -787,7 +786,6 @@
     <string name="image_quality_high">Yüksək keyfiyyət</string>
     <string name="question_mark">\?</string>
     <string name="share_playlist">Oynatma siyahısın paylaş</string>
-    <string name="share_playlist_with_titles_message">Pleylist adı və video başlıqları kimi təfsilatlar və ya video URL-lərin sadə siyahısı olaraq pleylist paylaş</string>
     <string name="share_playlist_with_titles">Başlıqlarla paylaşın</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="share_playlist_content_details">%1$s
@@ -804,4 +802,9 @@
     <string name="image_quality_summary">Məlumat və yaddaş istifadəsini azaltmaq üçün şəkillərin keyfiyyətini və ya şəkillərin əsla yüklənib-yüklənilməməsini seçin. Dəyişikliklər həm yaddaşdaxili, həm də diskdə olan təsvir qalığın təmizləyir — %s</string>
     <string name="share_playlist_with_list">URL siyahısını paylaşın</string>
     <string name="audio_track_type_secondary">ikinci dərəcəli</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube müvəqqəti pleylisti kimi paylaş</string>
+    <string name="tab_bookmarks_short">Pleylistlər</string>
+    <string name="select_a_feed_group">Axın qrupu seçin</string>
+    <string name="no_feed_group_created_yet">Hələ heç bir axın qrupu yaradılmayıb</string>
+    <string name="feed_group_page_summary">Kanal qrupu səhifəsi</string>
 </resources>

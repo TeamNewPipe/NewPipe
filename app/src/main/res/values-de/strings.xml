@@ -63,7 +63,7 @@
     <string name="error_snackbar_message">Entschuldigung, etwas ist schiefgelaufen.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu beginnen.</string>
+    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu suchen.</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -425,14 +425,13 @@
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
-        <item quantity="other">%s Zuschauende</item>
+        <item quantity="other">%s Zuschauer</item>
     </plurals>
     <string name="no_one_listening">Niemand hört zu</string>
     <plurals name="listening">
         <item quantity="one">%s Zuhörer</item>
         <item quantity="other">%s Zuhörer</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
@@ -587,7 +586,7 @@
     <string name="no_app_to_open_intent">Keine App auf deinem Gerät kann dies öffnen</string>
     <string name="private_content">Dieser Inhalt ist privat, kann also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
     <string name="paid_content">Diese Inhalte sind nur für Benutzer verfügbar, die bezahlt haben, können also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
-    <string name="youtube_music_premium_content">Dieses Video ist nur für YouTube Music Premium-Mitglieder verfügbar und kann daher nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
+    <string name="youtube_music_premium_content">Dieses Video ist nur für YouTube-Music-Premium-Mitglieder verfügbar und kann daher nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
     <string name="soundcloud_go_plus_content">Dies ist ein SoundCloud Go+ Track, zumindest in deinem Land, kann er von NewPipe nicht gestreamt oder heruntergeladen werden.</string>
     <string name="georestricted_content">Dieser Inhalt ist in deinem Land nicht verfügbar.</string>
     <string name="crash_the_app">App abstürzen lassen</string>
@@ -804,7 +803,6 @@
     <string name="share_playlist_content_details">%1$s
 \n%2$s</string>
     <string name="share_playlist">Wiedergabeliste teilen</string>
-    <string name="share_playlist_with_titles_message">Teile die Wiedergabeliste mit Details wie dem Namen der Wiedergabeliste und den Videotiteln oder als einfache Liste von Video-URLs</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <plurals name="replies">
         <item quantity="one">%s Antwort</item>
@@ -826,4 +824,14 @@
 \nMöchtest du wirklich fortfahren?</string>
     <string name="import_settings_vulnerable_format">Die Einstellungen in dem zu importierenden Export verwenden ein angreifbares Format, das seit NewPipe 0.27.0 veraltet ist. Stellen Sie sicher, dass der zu importierende Export aus einer vertrauenswürdigen Quelle stammt, und verwenden Sie in Zukunft nur noch Exporte, die aus NewPipe 0.27.0 oder neuer stammen. Die Unterstützung für den Import von Einstellungen in diesem angreifbaren Format wird bald vollständig entfernt werden, und dann werden alte Versionen von NewPipe nicht mehr in der Lage sein, Einstellungen von Exporten aus neuen Versionen zu importieren.</string>
     <string name="audio_track_type_secondary">Sekundär</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Als temporäre YouTube-Wiedergabeliste teilen</string>
+    <string name="tab_bookmarks_short">Wiedergabelisten</string>
+    <string name="select_a_feed_group">Eine Feed-Gruppe auswählen</string>
+    <string name="feed_group_page_summary">Kanalgruppen-Seite</string>
+    <string name="no_feed_group_created_yet">Es wurde noch keine Feed-Gruppe erstellt</string>
+    <string name="search_with_service_name">Suche %1$s</string>
+    <string name="search_with_service_name_and_filter">Suche %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Gefällt mir</string>
+    <string name="migration_info_6_7_title">SoundCloud-Top-50-Seite entfernt</string>
+    <string name="migration_info_6_7_message">SoundCloud hat die ursprünglichen Top-50-Charts abgeschafft. Der entsprechende Tab wurde von deiner Hauptseite entfernt.</string>
 </resources>

@@ -28,6 +28,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.image.ImageStrategy;
 import org.schabi.newpipe.util.image.PicassoHelper;
 import org.schabi.newpipe.util.text.TextLinkifier;
+import org.schabi.newpipe.util.text.LongPressLinkMovementMethod;
 
 import java.util.Queue;
 import java.util.function.Supplier;
@@ -110,7 +111,7 @@ public final class CommentRepliesFragment
             TextLinkifier.fromDescription(binding.commentContent, item.getCommentText(),
                     HtmlCompat.FROM_HTML_MODE_LEGACY, getServiceById(item.getServiceId()),
                     item.getUrl(), disposables, null);
-
+            binding.commentContent.setMovementMethod(LongPressLinkMovementMethod.getInstance());
             return binding.getRoot();
         };
     }

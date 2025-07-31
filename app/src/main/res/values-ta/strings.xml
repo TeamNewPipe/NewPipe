@@ -145,8 +145,8 @@
         <item quantity="other">%s பார்வைகள்</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">%sகாணொளிகள்</item>
-        <item quantity="other">%sகாணொளிகள்</item>
+        <item quantity="one">%s காணொளி</item>
+        <item quantity="other">%s காணொளிகள்</item>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="video_streams_empty">எந்த காணொலியும் இல்லை</string>
@@ -459,7 +459,7 @@
     <string name="recent">அண்மைக் கால</string>
     <string name="chapters">பாடங்கள்</string>
     <string name="metadata_age_limit">அகவை வரம்பு</string>
-    <string name="import_youtube_instructions">கூகிள் டேக்அவுட்டிலிருந்து YouTube சந்தாக்களை இறக்குமதி செய்க:\n\n 1. இந்த முகவரி க்குச் செல்லுங்கள்: %1$s\n 2. கேட்டபோது உள்நுழைக\n 3. \"அனைத்து தரவுகளும் சேர்க்கப்பட்டுள்ளன\" என்பதைக் சொடுக்கு செய்க, பின்னர் \"அனைத்தையும் தேர்வு செய்யுங்கள்\", பின்னர் \"சந்தாக்கள்\" மட்டுமே தேர்ந்தெடுத்து \"சரி\" என்பதைக் சொடுக்கு செய்க\n 4. \"அடுத்த படி\" என்பதைக் சொடுக்கு செய்து, பின்னர் \"ஏற்றுமதி உருவாக்கு\"\n 5. \"பதிவிறக்கு\" பொத்தானைக் சொடுக்கு செய்த பிறகு சொடுக்கு செய்க\n 6. கீழே உள்ள இறக்குமதி கோப்பைக் சொடுக்கு செய்து பதிவிறக்கம் செய்யப்பட்ட .zip கோப்பைத் தேர்ந்தெடுக்கவும்\n 7.</string>
+    <string name="import_youtube_instructions">கூகிள் டேக்அவுட்டிலிருந்து YouTube சந்தாக்களை இறக்குமதி செய்க:\n\n 1. இந்த முகவரி க்குச் செல்லுங்கள்: %1$s\n 2. கேட்டபோது உள்நுழைக\n 3. \"அனைத்து தரவுகளும் சேர்க்கப்பட்டுள்ளன\" என்பதைக் சொடுக்கு செய்க, பின்னர் \"அனைத்தையும் தேர்வு செய்யுங்கள்\", பின்னர் \"சந்தாக்கள்\" மட்டுமே தேர்ந்தெடுத்து \"சரி\" என்பதைக் சொடுக்கு செய்க\n 4. \"அடுத்த படி\" என்பதைக் சொடுக்கு செய்து, பின்னர் \"ஏற்றுமதி உருவாக்கு\"\n 5. \"பதிவிறக்கு\" பொத்தானைக் சொடுக்கு செய்த பிறகு சொடுக்கு செய்க\n 6. கீழே உள்ள இறக்குமதி கோப்பைக் சொடுக்கு செய்து பதிவிறக்கம் செய்யப்பட்ட .zip கோப்பைத் தேர்ந்தெடுக்கவும்\n 7.[.zip இறக்குமதி தோல்வியடைந்தால்] .csv கோப்பை பிரித்தெடுக்கவும் (வழக்கமாக \"YouTube மற்றும் YouTube Music/subscriptions/subscriptions.csv\" என்பதன் கீழ்), கீழே உள்ள IMPORT FILE என்பதைக் கிளிக் செய்து, பிரித்தெடுக்கப்பட்ட csv கோப்பைத் தேர்ந்தெடு</string>
     <string name="remove_watched_popup_warning">பிளேலிச்ட்டில் சேர்க்கப்படுவதற்கு முன்னும் பின்னும் பார்க்கப்பட்ட வீடியோக்கள் அகற்றப்படும்.\n நீங்கள் உறுதியாக இருக்கிறீர்களா? இதை செயல்தவிர்க்க முடியாது!</string>
     <string name="no_appropriate_file_manager_message_android_10">இந்த செயலுக்கு பொருத்தமான கோப்பு மேலாளர் எதுவும் கிடைக்கவில்லை.\n சேமிப்பக அணுகல் கட்டமைப்பு இணக்கமான கோப்பு மேலாளரை நிறுவவும்</string>
     <string name="audio_track_type_secondary">இரண்டாம் நிலை</string>
@@ -470,7 +470,6 @@
     <string name="forward">முன்னோக்கி</string>
     <string name="image_quality_title">பட தகுதி</string>
     <string name="image_quality_high">உயர் தகுதி</string>
-    <string name="share_playlist_with_titles_message">பிளேலிச்ட் பெயர் மற்றும் வீடியோ தலைப்புகள் போன்ற விவரங்களுடன் அல்லது வீடியோ முகவரி களின் எளிய பட்டியலாக பிளேலிச்ட்டைப் பகிரவும்</string>
     <string name="more_options">மேலும் விருப்பங்கள்</string>
     <string name="duration">காலம்</string>
     <string name="rewind">முன்னாடி</string>
@@ -603,7 +602,7 @@
     <string name="website_encouragement">மேலும் செய்தி மற்றும் செய்திகளுக்கு நியூபைப் வலைத்தளத்தைப் பார்வையிடவும்.</string>
     <string name="privacy_policy_encouragement">நியூபைப் திட்டம் உங்கள் தனியுரிமையை மிகவும் தீவிரமாக எடுத்துக்கொள்கிறது. எனவே, பயன்பாடு உங்கள் அனுமதியின்றி எந்த தரவையும் சேகரிக்காது.\n நீங்கள் ஒரு செயலிழப்பு அறிக்கையை அனுப்பும்போது என்ன தரவு அனுப்பப்படுகிறது மற்றும் சேமிக்கப்படுகிறது என்பதை நியூபிப்பின் தனியுரிமைக் கொள்கை விரிவாக விளக்குகிறது.</string>
     <string name="app_license_title">நியூபைப்பின் உரிமம்</string>
-    <string name="app_license">நியூபைப் என்பது நகலெடுக்கப்பட்ட லிப்ரே மென்பொருள்: நீங்கள் அதைப் பயன்படுத்தலாம், படிக்கலாம், பகிரலாம் மற்றும் மேம்படுத்தலாம். குறிப்பாக நீங்கள் இலவச மென்பொருள் அறக்கட்டளையால் வெளியிடப்பட்ட குனு பொது பொது உரிமத்தின் விதிமுறைகளின் கீழ் மறுபகிர்வு மற்றும்/அல்லது மாற்றியமைக்கலாம், உரிமத்தின் பதிப்பு 3 அல்லது (உங்கள் விருப்பத்தில்) பின்னர் எந்த பதிப்பையும் மாற்றலாம்.</string>
+    <string name="app_license">நியூபைப் என்பது நகலெடுக்கப்பட்ட லிப்ரே மென்பொருள்: நீங்கள் அதைப் பயன்படுத்தலாம், படிக்கலாம், பகிரலாம் மற்றும் மேம்படுத்தலாம். குறிப்பாக நீங்கள் இலவச மென்பொருள் அறக்கட்டளையால் வெளியிடப்பட்ட குனு பொது பொதுமக்கள் உரிமத்தின் விதிமுறைகளின் கீழ் மறுபகிர்வு மற்றும்/அல்லது மாற்றியமைக்கலாம், உரிமத்தின் பதிப்பு 3 அல்லது (உங்கள் விருப்பத்தில்) பின்னர் எந்தப் பதிப்பையும் மாற்றலாம்.</string>
     <string name="faq_description">பயன்பாட்டைப் பயன்படுத்துவதில் சிக்கல் இருந்தால், பொதுவான கேள்விகளுக்கு இந்த பதில்களைப் பார்க்கவும்!</string>
     <string name="faq">இணையதளத்தில் காண்க</string>
     <string name="title_last_played">கடைசியாக விளையாடியது</string>
@@ -617,7 +616,6 @@
     <string name="no_valid_zip_file">செல்லுபடியாகும் சிப் கோப்பு இல்லை</string>
     <string name="override_current_data">இது உங்கள் தற்போதைய அமைப்பை மேலெழுதும்.</string>
     <string name="error_unable_to_load_comments">கருத்துகளை ஏற்ற முடியவில்லை</string>
-    <string name="localization_changes_requires_app_restart">பயன்பாடு மறுதொடக்கம் செய்யப்பட்டவுடன் மொழி மாறும்</string>
     <string name="recently_added">அண்மைக் காலத்தில் சேர்க்கப்பட்டது</string>
     <string name="most_liked">மிகவும் பிடித்தது</string>
     <string name="conferences">மாநாடுகள்</string>
@@ -716,7 +714,7 @@
     <string name="feed_group_dialog_empty_selection">சந்தா எதுவும் தேர்ந்தெடுக்கப்படவில்லை</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d தேர்ந்தெடுக்கப்பட்டது</item>
-        <item quantity="other">%d தேர்ந்தெடுக்கப்பட்டது</item>
+        <item quantity="other">%d தேர்ந்தெடுக்கப்பட்டன</item>
     </plurals>
     <string name="feed_create_new_group_button_title">புதிய</string>
     <string name="feed_update_threshold_option_always_update">எப்போதும் புதுப்பிக்கவும்</string>
@@ -784,4 +782,9 @@
     <string name="next_stream">அடுத்த ச்ட்ரீம்</string>
     <string name="replay">மீண்டும்</string>
     <string name="image_quality_summary">தரவு மற்றும் நினைவக பயன்பாட்டைக் குறைக்க, படங்களின் தகுதி மற்றும் படங்களை ஏற்ற வேண்டுமா என்பதைத் தேர்வுசெய்க. மாற்றங்கள் நினைவகம் மற்றும் ஆன்-வட்டு பட தற்காலிக சேமிப்பு இரண்டையும் அழிக்கின்றன- %s</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTube தற்காலிக பிளேலிச்ட்டாக பகிரவும்</string>
+    <string name="tab_bookmarks_short">பிளேலிச்ட்கள்</string>
+    <string name="select_a_feed_group">தீவனக் குழுவைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="no_feed_group_created_yet">இதுவரை எந்த ஊட்டக் குழுவும் உருவாக்கப்படவில்லை</string>
+    <string name="feed_group_page_summary">சேனல் குழு பக்கம்</string>
 </resources>
