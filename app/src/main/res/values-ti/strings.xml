@@ -5,7 +5,7 @@
     <string name="search_showing_result_for">ውጽኢት ናይ፦ %s</string>
     <string name="main_bg_subtitle">ንኽትጅምር ነቲ ምድላይ ምልክት ጠውቆ።</string>
     <string name="upload_date_text">ዝተሓትመሉ ዕለት %1$s</string>
-    <string name="no_player_found">ናይ ዥረት ተጻዋታይ ኣይተረኽበን። VLC ኣውርድ፧</string>
+    <string name="no_player_found">ናይ ዥረት ተጻዋታይ ኣይተረኽበን። VLC ይውርድ፧</string>
     <string name="ok">ሐራይ</string>
     <string name="settings">ቅጥዕታት</string>
     <string name="did_you_mean">\"%1$s\" ማለቱ ድዩ፧</string>
