@@ -78,8 +78,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.settings.SettingMigrations;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
+import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        SettingMigrations.showUserInfoIfPresent(this);
+        MigrationManager.showUserInfoIfPresent(this);
     }
 
     @Override
@@ -263,19 +263,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
-        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-        final StreamingService service = NewPipe.getService(currentServiceId);
-
-        int kioskMenuItemId = 0;
-
-        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-            drawerLayoutBinding.navigation.getMenu()
-                    .add(R.id.menu_tabs_group, kioskMenuItemId, 0, KioskTranslator
-                            .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks));
-            kioskMenuItemId++;
-        }
-
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
                         R.string.tab_subscriptions)
@@ -292,6 +279,20 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(R.drawable.ic_history);
+
+        //Kiosks
+        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskMenuItemId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerLayoutBinding.navigation.getMenu()
+                    .add(R.id.menu_kiosks_group, kioskMenuItemId, 0, KioskTranslator
+                            .getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
+            kioskMenuItemId++;
+        }
 
         //Settings and About
         drawerLayoutBinding.navigation.getMenu()
@@ -312,10 +313,13 @@ public class MainActivity extends AppCompatActivity {
                 changeService(item);
                 break;
             case R.id.menu_tabs_group:
+                tabSelected(item);
+                break;
+            case R.id.menu_kiosks_group:
                 try {
-                    tabSelected(item);
+                    kioskSelected(item);
                 } catch (final Exception e) {
-                    ErrorUtil.showUiErrorSnackbar(this, "Selecting main page tab", e);
+                    ErrorUtil.showUiErrorSnackbar(this, "Selecting drawer kiosk", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -339,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void tabSelected(final MenuItem item) throws ExtractionException {
+    private void tabSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
@@ -356,18 +360,19 @@ public class MainActivity extends AppCompatActivity {
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
                 break;
-            default:
-                final StreamingService currentService = ServiceHelper.getSelectedService(this);
-                int kioskMenuItemId = 0;
-                for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
-                    if (kioskMenuItemId == item.getItemId()) {
-                        NavigationHelper.openKioskFragment(getSupportFragmentManager(),
-                                currentService.getServiceId(), kioskId);
-                        break;
-                    }
-                    kioskMenuItemId++;
-                }
+        }
+    }
+
+    private void kioskSelected(final MenuItem item) throws ExtractionException {
+        final StreamingService currentService = ServiceHelper.getSelectedService(this);
+        int kioskMenuItemId = 0;
+        for (final String kioskId : currentService.getKioskList().getAvailableKiosks()) {
+            if (kioskMenuItemId == item.getItemId()) {
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(),
+                        currentService.getServiceId(), kioskId);
                 break;
+            }
+            kioskMenuItemId++;
         }
     }
 
@@ -408,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_services_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_tabs_group);
+        drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_kiosks_group);
         drawerLayoutBinding.navigation.getMenu().removeGroup(R.id.menu_options_about_group);
 
         // Show up or down arrow
