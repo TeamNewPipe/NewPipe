@@ -242,9 +242,6 @@
     </plurals>
     <string name="no_subscribers">Dad rukuntay ma jiraan</string>
     <string name="drawer_header_description">Furo adeega, hada waxaa dooran:</string>
-    <string name="short_billion">B</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
     <string name="retry">ku celi</string>
     <string name="audio">Dhagaysi</string>
     <string name="video">Muuqaal</string>

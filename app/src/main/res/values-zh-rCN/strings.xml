@@ -71,8 +71,6 @@
     <plurals name="views">
         <item quantity="other">%s 次观看</item>
     </plurals>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百万</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="delete">删除</string>
@@ -153,7 +151,6 @@
     <string name="error_details_headline">详细信息：</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
     <string name="detail_uploader_thumbnail_view_description">视频上传者的头像缩略图</string>
-    <string name="short_billion">十亿</string>
     <string name="msg_running">NewPipe 正在下载</string>
     <string name="no_available_dir">请稍后在设置中设定下载目录</string>
     <string name="msg_popup_permission">使用悬浮窗模式

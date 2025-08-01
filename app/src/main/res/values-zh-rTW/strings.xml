@@ -82,9 +82,6 @@
     <string name="video">影片</string>
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百萬</string>
-    <string name="short_billion">十億</string>
     <string name="start">開始</string>
     <string name="pause">暫停</string>
     <string name="delete">刪除</string>

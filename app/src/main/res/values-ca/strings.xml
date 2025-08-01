@@ -231,9 +231,6 @@
     <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
     <string name="sorry_string">Bé, és lamentable.</string>
     <string name="detail_drag_description">Arrossegueu per reordenar la llista</string>
-    <string name="short_thousand">mil</string>
-    <string name="short_million">milions</string>
-    <string name="short_billion">mil milions</string>
     <string name="start">Inicia</string>
     <string name="msg_running_detail">Feu un toc aquí per a més detalls</string>
     <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>

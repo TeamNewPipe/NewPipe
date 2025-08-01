@@ -82,9 +82,6 @@
     <string name="video">Video</string>
     <string name="audio">Âm thanh</string>
     <string name="retry">Thử lại</string>
-    <string name="short_thousand">nghìn</string>
-    <string name="short_million">triệu</string>
-    <string name="short_billion">tỉ</string>
     <string name="start">Bắt đầu</string>
     <string name="pause">Dừng</string>
     <string name="delete">Xóa</string>

@@ -183,9 +183,6 @@
     <string name="file_name_empty_error">Името на файла не може да бъде празно</string>
     <string name="error_occurred_detail">Възникна грешка: %1$s</string>
     <string name="no_streams_available_download">Не са налични източници за изтегляне</string>
-    <string name="short_thousand">хил.</string>
-    <string name="short_million">млн.</string>
-    <string name="short_billion">млрд.</string>
     <string name="no_subscribers">Няма абонати</string>
     <string name="create">Създай</string>
     <string name="dismiss">Откажи</string>

@@ -154,9 +154,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
-    <string name="short_thousand">tuh</string>
-    <string name="short_million">mln</string>
-    <string name="short_billion">mld</string>
     <string name="no_subscribers">Tellijaid pole</string>
     <plurals name="subscribers">
         <item quantity="one">%s tellija</item>

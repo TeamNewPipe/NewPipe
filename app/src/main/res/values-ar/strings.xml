@@ -116,9 +116,6 @@
     <string name="empty_list_subtitle">لا شيء هنا سوى الصراصير</string>
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
-    <string name="short_thousand">ألف</string>
-    <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشارك</item>

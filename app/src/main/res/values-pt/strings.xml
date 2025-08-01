@@ -82,9 +82,6 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
     <string name="msg_popup_permission">Esta permissão é necessária
 \npara o modo popup</string>
     <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>

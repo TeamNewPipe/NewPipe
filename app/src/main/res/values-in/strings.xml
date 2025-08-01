@@ -82,9 +82,6 @@
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
-    <string name="short_thousand">r</string>
-    <string name="short_million">J</string>
-    <string name="short_billion">T</string>
     <string name="open_in_popup_mode">Buka pada mode sembulan</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>

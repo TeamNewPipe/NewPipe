@@ -49,9 +49,6 @@
     </plurals>
     <string name="no_subscribers">Ne abone</string>
     <string name="drawer_header_description">Karûbarê veguheztinê, niha hatî hilbijartin:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Dîsa biceribîne</string>
     <string name="audio">Deng</string>
     <string name="video">Vîdyo</string>

@@ -166,9 +166,6 @@
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
     <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
-    <string name="short_thousand">e</string>
-    <string name="short_million">m</string>
-    <string name="short_billion">M</string>
     <string name="no_subscribers">Nincs feliratkozó</string>
     <plurals name="subscribers">
         <item quantity="one">%s feliratkozó</item>

@@ -159,9 +159,6 @@
     <string name="video">Відэа</string>
     <string name="audio">Аўдыя</string>
     <string name="retry">Паспрабаваць зноў</string>
-    <string name="short_thousand">тыс.</string>
-    <string name="short_million">млн</string>
-    <string name="short_billion">млрд</string>
     <string name="no_subscribers">Няма падпісчыкаў</string>
     <plurals name="subscribers">
         <item quantity="one">%s падпісчык</item>
