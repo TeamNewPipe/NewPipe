@@ -84,9 +84,6 @@
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
     <string name="all">Alles</string>
-    <string name="short_thousand">dznd.</string>
-    <string name="short_million">mln.</string>
-    <string name="short_billion">mld.</string>
     <string name="msg_popup_permission">Deze machtiging is vereist om te
 \nopenen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>

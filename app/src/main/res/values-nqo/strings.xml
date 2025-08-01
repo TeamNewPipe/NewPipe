@@ -178,9 +178,6 @@
     <string name="search_no_results">ߞߐߝߟߌ߫ ߕߍ߫ ߦߋ߲߬</string>
     <string name="audio">ߡߍ߲ߕߊ</string>
     <string name="retry">ߞߵߊ߬ ߡߊߛߊ߬ߦߌ߬</string>
-    <string name="short_thousand">ߥߊ߯</string>
-    <string name="short_million">ߞߋ߲߬</string>
-    <string name="short_billion">ߥߟߡ</string>
     <string name="auto_queue_title">ߞߊ߬ ߥߏ߬ߦߏ߫ ߣߊ߬ߕߊ ߝߙߊ߬ ߕߎ߲߰ߠߌ߲ ߠߊ߫ ߞߍ߲ߖߘߍߡߊߓߟߏ ߡߊ߬</string>
     <string name="auto_queue_summary">ߞߊ߬ ߕߎ߲߰ߠߌ߲ ߘߐߞߊ߬ߙߊ߲ ߓߟߏߕߎ߰ (ߞߊߣߊ߬ ߡߊߛߊ߬ߦߌ߬) ߥߏ߬ߦߏ߫ ߢߐ߲߰ߘߐ ߟߎ߫ ߟߊ߫</string>
     <string name="left_gesture_control_summary">ߕߏߟߏ߲ߟߊ߲߫ ߥߊ߲߬ߥߊ߲ ߣߎߡߊ߲߫ ߕߟߊ ߖߍ߰ߙߍ ߛߎߥߊ߲ߘߌ߫</string>

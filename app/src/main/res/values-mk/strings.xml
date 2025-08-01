@@ -146,9 +146,6 @@
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
-    <string name="short_thousand">илјади</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">милијарди</string>
     <string name="no_videos">Нема видеа</string>
     <string name="start">Започни</string>
     <string name="pause">Пауза</string>

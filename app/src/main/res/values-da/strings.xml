@@ -294,9 +294,6 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_list_subtitle">Ikke andet end fårekyllinger her</string>
-    <string name="short_thousand">t</string>
-    <string name="short_million">mio.</string>
-    <string name="short_billion">mia.</string>
     <string name="pause">Pause</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>

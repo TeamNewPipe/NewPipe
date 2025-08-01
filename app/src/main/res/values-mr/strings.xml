@@ -137,11 +137,8 @@
     <string name="settings_category_debug_title">डेबग</string>
     <string name="settings_category_updates_title">अपडेट</string>
     <string name="duration_live">थेट</string>
-    <string name="short_billion">ब</string>
     <string name="playlists">प्लेलिस्ट</string>
-    <string name="short_million">म</string>
     <string name="file">फाईल</string>
-    <string name="short_thousand">के</string>
     <string name="tab_licenses">परवाना</string>
     <string name="checksum">चेकसम</string>
     <string name="action_history">इतिहास</string>

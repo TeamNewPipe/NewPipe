@@ -102,9 +102,6 @@
     <string name="start">শুরু</string>
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_videos">কোন ভিডিও নেই</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">K</string>
     <string name="retry">পুনরায় চেষ্টা করো</string>
     <string name="audio">অডিও</string>
     <string name="video">ভিডিও</string>

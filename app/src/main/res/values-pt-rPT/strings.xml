@@ -214,7 +214,6 @@
     <string name="ok">OK</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sim e também os vídeos parcialmente vistos</string>
-    <string name="short_million">M</string>
     <string name="no_playlist_bookmarked_yet">Ainda não há listas de reprodução favoritas</string>
     <string name="delete_search_history_alert">Remover todo o histórico de pesquisas\?</string>
     <string name="error_report_button_text">Reportar por e-mail</string>
@@ -392,8 +391,6 @@
     <string name="import_complete_toast">Importado</string>
     <string name="auto">Automático</string>
     <string name="import_data_summary">Substitui o seu histórico, subscrições, listas de reprodução e (opcionalmente) definições</string>
-    <string name="short_thousand">k</string>
-    <string name="short_billion">MM</string>
     <string name="unbookmark_playlist">Remover marcador</string>
     <string name="pause_downloads_on_mobile_desc">Útil ao trocar para dados móveis, mas algumas transferências não podem ser suspensas</string>
     <string name="hold_to_append">Toque longo para colocar na fila</string>
@@ -811,4 +808,6 @@
     <string name="select_a_feed_group">Selecione um grupo de feeds</string>
     <string name="no_feed_group_created_yet">Ainda nenhum grupo de feeds criado</string>
     <string name="feed_group_page_summary">Página do grupo do canal</string>
+    <string name="search_with_service_name">Pesquisar %1$s</string>
+    <string name="search_with_service_name_and_filter">Pesquisar %1$s (%2$s)</string>
 </resources>

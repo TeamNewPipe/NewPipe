@@ -24,7 +24,7 @@
     <string name="error_insufficient_storage_left">بیرگەی ناوەکیت پڕ بووە</string>
     <string name="overwrite_failed">ناتوانرێت لەسەر ئەو فایله‌وه‌ جێگیر بکرێت</string>
     <string name="tab_choose">په‌ڕه‌ هەڵبژێرە</string>
-    <string name="short_million">ملیۆن</string>
+    <string name="more_than_100_videos">+١٠٠ ڤیدیۆیان</string>
     <string name="settings_category_player_title">لێده‌ر</string>
     <string name="import_title">هاوردە</string>
     <string name="error_report_button_text">سکاڵا لەسەر کێشە لەڕێگای ئیمێڵ</string>
@@ -44,7 +44,6 @@
     <string name="override_current_data">ئەمە لەسەر ڕێکخستنەکانی ئێستات جێگیر دەبێت.</string>
     <string name="notification_channel_name">پەیامەکانی نیوپایپ</string>
     <string name="donation_encouragement">نیوپایپ لەلایەن چەند خۆبەخشێکەوە دروستکراوە کە کاته‌كانی خۆیان پێ بەخشیووە تاکو باشترین خزمەتگوزاریت پێشکەش بکەن. هیچ نەبێت بە کڕینی کوپێک قاوە یارمەتی گەشەپێدەرەکانمان بدە بۆ ئەوەی کاتی زیاتر تەرخان بکەین بۆ بەرەوپێشبردنی نیوپایپ.</string>
-    <string name="short_billion">ملیار</string>
     <string name="show_search_suggestions_title">گەڕانی پێشنیارکراوەکان</string>
     <string name="playback_tempo">خێرا</string>
     <string name="file_deleted">فایل سڕایەوە</string>
@@ -352,7 +351,6 @@
     <string name="download_failed">ناتوانرێت داببه‌زێنرێت</string>
     <string name="error_connect_host">ناتوانرێت بە ڕاژەكه‌وە پەیوەست ببیت</string>
     <string name="detail_thumbnail_view_description">لێدانی ڤیدیۆ، مه‌ودا:</string>
-    <string name="short_thousand">هەزار</string>
     <string name="most_liked">زۆرترین بەدڵ</string>
     <string name="delete">سڕینەوە</string>
     <string name="default_video_format_title">جۆری بنەڕەتی ڤیدیۆ</string>

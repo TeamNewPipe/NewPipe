@@ -172,9 +172,6 @@
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
     <string name="retry">पुन: प्रयास</string>
-    <string name="short_thousand">हजार</string>
-    <string name="short_million">करोड</string>
-    <string name="short_billion">अर्ब</string>
     <string name="no_videos">कुनै भिडियो छैन</string>
     <string name="no_comments">प्रत्रिक्रिया छैन</string>
     <string name="start">मिशन</string>

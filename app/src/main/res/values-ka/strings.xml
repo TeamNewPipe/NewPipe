@@ -237,9 +237,6 @@
     <string name="video">ვიდეო</string>
     <string name="audio">აუდიო</string>
     <string name="retry">ხელახლა სცადეთ</string>
-    <string name="short_thousand">ათასი</string>
-    <string name="short_million">მლნ</string>
-    <string name="short_billion">ბლნ</string>
     <string name="drawer_header_description">სერვისის გადართვა, ამჟამად არჩეულია:</string>
     <string name="no_videos">ვიდეოები არ არის</string>
     <string name="no_comments">კომენტარი არ არის</string>

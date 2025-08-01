@@ -133,9 +133,6 @@
     <string name="video">ڤیدیۆ</string>
     <string name="audio">دەنگ</string>
     <string name="retry">هەوڵدانەوە</string>
-    <string name="short_thousand">هەزار</string>
-    <string name="short_million">ملیۆن</string>
-    <string name="short_billion">بلیۆن</string>
     <string name="start">دەستپێکردن</string>
     <string name="pause">وەستان</string>
     <string name="create">دروستکردن</string>

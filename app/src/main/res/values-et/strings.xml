@@ -154,9 +154,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
-    <string name="short_thousand">tuh</string>
-    <string name="short_million">mln</string>
-    <string name="short_billion">mld</string>
     <string name="no_videos">Videoid pole</string>
     <string name="start">Start</string>
     <string name="pause">Paus</string>
@@ -203,7 +200,7 @@
     <string name="title_most_played">Enim esitatud</string>
     <string name="main_page_content">Avalehe sisu</string>
     <string name="blank_page_summary">Tühi leht</string>
-    <string name="kiosk_page_summary">Kioski leht</string>
+    <string name="kiosk_page_summary">Kioskivaade</string>
     <string name="channel_page_summary">Kanali leht</string>
     <string name="select_a_channel">Vali kanal</string>
     <string name="no_channel_subscribed_yet">Kanaleid pole veel tellitud</string>
@@ -790,4 +787,6 @@
     <string name="search_with_service_name">Otsi: %1$s</string>
     <string name="search_with_service_name_and_filter">Otsi: %1$s (%2$s)</string>
     <string name="channel_tab_likes">Meeldimisi</string>
+    <string name="migration_info_6_7_title">SoundCloudi „Top 50“ leht on eemaldatud</string>
+    <string name="migration_info_6_7_message">SoundCloud on lõpetanud oma algse „Top 50“ edetabeli pidamise. Seega on ka vastav vahekaart meie rakenduse põhivaatest eemaldatud.</string>
 </resources>

@@ -146,9 +146,6 @@
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
-    <string name="short_thousand">ہزار</string>
-    <string name="short_million">دہ لاکھ</string>
-    <string name="short_billion">ارب</string>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>

@@ -253,9 +253,6 @@
     <string name="msg_wait">Bonvolu atendi…</string>
     <string name="msg_copied">Enpoŝigita</string>
     <string name="no_available_dir">Bonvolu difini elŝutan dosierujon poste en agordoj</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">Mrd</string>
     <string name="title_activity_about">Pri NewPipe</string>
     <string name="title_licenses">Eksteraj permesiloj</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>

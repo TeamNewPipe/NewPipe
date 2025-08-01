@@ -157,9 +157,6 @@
     <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
     <string name="no_videos">Ningún vídeo</string>
     <string name="start">Comezar</string>
     <string name="pause">Pausar</string>

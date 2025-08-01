@@ -280,9 +280,6 @@
     <string name="no_comments">Nuk ka komente</string>
     <string name="no_videos">Nuk ka video</string>
     <string name="drawer_header_description">Aktivizoje shërbimin, momentalisht e zgjedhur:</string>
-    <string name="short_billion">B</string>
-    <string name="short_million">M</string>
-    <string name="short_thousand">k</string>
     <string name="retry">Riprovo</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>

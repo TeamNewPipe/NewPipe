@@ -129,9 +129,6 @@
     <string name="player_recoverable_failure">Atstatoma po grotuvo klaidos</string>
     <string name="search_no_results">Nėra rezultatų</string>
     <string name="empty_list_subtitle">Čia nieko nėra išskyrus svirplius</string>
-    <string name="short_thousand">Tūkst.</string>
-    <string name="short_million">Mln.</string>
-    <string name="short_billion">Mlrd.</string>
     <string name="no_videos">Nėra vaizdo įrašų</string>
     <string name="settings_category_downloads_title">Parsisiuntimai</string>
     <string name="settings_file_charset_title">Leidžiami simboliai failų varduose</string>

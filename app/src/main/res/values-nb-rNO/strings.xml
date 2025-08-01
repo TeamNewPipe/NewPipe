@@ -89,9 +89,6 @@
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 \nåpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>

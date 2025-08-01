@@ -165,9 +165,6 @@
     <string name="video">วิดีโอ</string>
     <string name="audio">เสียง</string>
     <string name="retry">ลองอีกครั้ง</string>
-    <string name="short_thousand">พัน</string>
-    <string name="short_million">ล้าน</string>
-    <string name="short_billion">พันล้าน</string>
     <string name="no_videos">ไม่มีวิดีโอ</string>
     <string name="no_comments">ไม่มีความคิดเห็น</string>
     <string name="start">เริ่ม</string>

@@ -84,9 +84,6 @@
     <string name="video">Bideoa</string>
     <string name="audio">Audioa</string>
     <string name="retry">Saiatu berriro</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
     <string name="start">Hasi</string>
     <string name="pause">Pausatu</string>
     <string name="delete">Ezabatu</string>

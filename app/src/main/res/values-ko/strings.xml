@@ -116,9 +116,6 @@
     <string name="info_labels">무엇:\\n요청:\\n콘텐츠 언어:\\n콘텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 시간:\\n패키지:\\n버전:\\nOS 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_list_subtitle">구독할 항목을 추가하세요</string>
-    <string name="short_thousand">천</string>
-    <string name="short_million">백만</string>
-    <string name="short_billion">십억</string>
     <string name="no_videos">비디오 없음</string>
     <string name="ok">OK</string>
     <string name="msg_name">파일명</string>

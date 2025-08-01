@@ -77,9 +77,6 @@
     <string name="video">వీడియో</string>
     <string name="audio">ఆడియో</string>
     <string name="retry">మళ్ళీ ప్రయత్నించు</string>
-    <string name="short_thousand">కి</string>
-    <string name="short_million">ఎం</string>
-    <string name="short_billion">బిలియన్</string>
     <string name="no_videos">వీడియోలు లేవు</string>
     <string name="start">ప్రారంభం</string>
     <string name="pause">విరామం</string>

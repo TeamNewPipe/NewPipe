@@ -96,9 +96,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Pokušaj ponovo</string>
-    <string name="short_thousand">tis.</string>
-    <string name="short_million">mil</string>
-    <string name="short_billion">mlrd.</string>
     <string name="start">Počni</string>
     <string name="pause">Pauziraj</string>
     <string name="delete">Izbriši</string>

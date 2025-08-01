@@ -166,9 +166,6 @@
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
     <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
-    <string name="short_thousand">e</string>
-    <string name="short_million">m</string>
-    <string name="short_billion">M</string>
     <string name="no_videos">Nincs videó</string>
     <string name="create">Létrehozás</string>
     <string name="rename">Átnevezés</string>
@@ -776,4 +773,6 @@
     <string name="search_with_service_name">Keresés %1$s</string>
     <string name="search_with_service_name_and_filter">Keresés %1$s (%2$s)</string>
     <string name="channel_tab_likes">Kedvelések</string>
+    <string name="migration_info_6_7_title">SoundCloud Top 50 oldal eltávolítva</string>
+    <string name="migration_info_6_7_message">A SoundCloud megszüntette az eredeti Top 50-es listákat. A megfelelő lap el lett távolítva a főoldalról.</string>
 </resources>

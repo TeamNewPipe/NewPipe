@@ -23,9 +23,9 @@ android {
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
-            versionCode 1004
+            versionCode 1005
         }
-        versionName "0.27.7"
+        versionName "0.28.0"
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
@@ -214,7 +214,7 @@ dependencies {
     // the corresponding commit hash, since JitPack sometimes deletes artifacts.
     // If there’s already a git hash, just add more of it to the end (or remove a letter)
     // to cause jitpack to regenerate the artifact.
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:7adbc48a0aa872c016b8ec089e278d5e12772054'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.8'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/

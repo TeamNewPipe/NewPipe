@@ -147,9 +147,6 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="short_thousand">k</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">mld.</string>
     <string name="no_videos">Geen video’s</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>

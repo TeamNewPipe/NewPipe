@@ -82,9 +82,6 @@
     <string name="video">影片</string>
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
-    <string name="short_thousand">千</string>
-    <string name="short_million">百萬</string>
-    <string name="short_billion">十億</string>
     <string name="start">開始</string>
     <string name="pause">暫停</string>
     <string name="delete">刪除</string>
@@ -793,4 +790,8 @@
     <string name="select_a_feed_group">選取 feed 群組</string>
     <string name="no_feed_group_created_yet">尚未建立 feed 群組</string>
     <string name="channel_tab_likes">喜歡</string>
+    <string name="search_with_service_name">搜尋 %1$s</string>
+    <string name="search_with_service_name_and_filter">搜尋 %1$s (%2$s)</string>
+    <string name="migration_info_6_7_title">已移除 SoundCloud Top 50 頁面</string>
+    <string name="migration_info_6_7_message">SoundCloud 已停止原有的 Top 50 排行榜。對應的標籤已從您的首頁移除。</string>
 </resources>
