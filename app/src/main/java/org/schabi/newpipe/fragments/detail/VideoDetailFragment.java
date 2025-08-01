@@ -1509,14 +1509,14 @@ public final class VideoDetailFragment
 
         if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
-                binding.detailViewCountView.setText(Localization.listeningCount(activity,
+                binding.detailViewCountView.setText(Localization.formatListeningCount(activity,
                         info.getViewCount()));
             } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization
-                        .localizeWatchingCount(activity, info.getViewCount()));
+                        .formatWatchingCount(activity, info.getViewCount()));
             } else {
                 binding.detailViewCountView.setText(Localization
-                        .localizeViewCount(activity, info.getViewCount()));
+                        .formatViewCount(activity, info.getViewCount()));
             }
             binding.detailViewCountView.setVisibility(View.VISIBLE);
         } else {
@@ -1533,7 +1533,7 @@ public final class VideoDetailFragment
         } else {
             if (info.getDislikeCount() >= 0) {
                 binding.detailThumbsDownCountView.setText(Localization
-                        .shortCount(activity, info.getDislikeCount()));
+                        .getShortCount(activity, info.getDislikeCount()));
                 binding.detailThumbsDownCountView.setVisibility(View.VISIBLE);
                 binding.detailThumbsDownImgView.setVisibility(View.VISIBLE);
             } else {
@@ -1542,7 +1542,7 @@ public final class VideoDetailFragment
             }
 
             if (info.getLikeCount() >= 0) {
-                binding.detailThumbsUpCountView.setText(Localization.shortCount(activity,
+                binding.detailThumbsUpCountView.setText(Localization.getShortCount(activity,
                         info.getLikeCount()));
                 binding.detailThumbsUpCountView.setVisibility(View.VISIBLE);
                 binding.detailThumbsUpImgView.setVisibility(View.VISIBLE);
@@ -1617,8 +1617,8 @@ public final class VideoDetailFragment
         binding.detailSubChannelTextView.setSelected(true);
 
         if (info.getUploaderSubscriberCount() > -1) {
-            binding.detailUploaderTextView.setText(
-                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
+            binding.detailUploaderTextView.setText(Localization.formatSubscriberCount(activity,
+                    info.getUploaderSubscriberCount()));
             binding.detailUploaderTextView.setVisibility(View.VISIBLE);
         } else {
             binding.detailUploaderTextView.setVisibility(View.GONE);
@@ -1637,18 +1637,17 @@ public final class VideoDetailFragment
 
         final StringBuilder subText = new StringBuilder();
         if (!isEmpty(info.getUploaderName())) {
-            subText.append(
-                    String.format(getString(R.string.video_detail_by), info.getUploaderName()));
+            subText.append(getString(R.string.video_detail_by, info.getUploaderName()));
         }
         if (info.getUploaderSubscriberCount() > -1) {
-            if (subText.length() > 0) {
+            if (!isEmpty(subText)) {
                 subText.append(Localization.DOT_SEPARATOR);
             }
-            subText.append(
-                    Localization.shortSubscriberCount(activity, info.getUploaderSubscriberCount()));
+            subText.append(Localization.formatSubscriberCount(activity,
+                    info.getUploaderSubscriberCount()));
         }
 
-        if (subText.length() > 0) {
+        if (!isEmpty(subText)) {
             binding.detailUploaderTextView.setText(subText);
             binding.detailUploaderTextView.setVisibility(View.VISIBLE);
             binding.detailUploaderTextView.setSelected(true);

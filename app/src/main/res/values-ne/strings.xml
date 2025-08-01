@@ -98,10 +98,6 @@
     <string name="all">सबै</string>
     <string name="channels">च्यानलहरू</string>
     <string name="playlists">प्लेसूचीहरू</string>
-    <plurals name="videos">
-        <item quantity="one">%s भिडियो</item>
-        <item quantity="other">%s भिडियोहरू</item>
-    </plurals>
     <string name="tracks">ट्रयाकहरु</string>
     <string name="users">प्रयोगकर्ताहरु</string>
     <string name="events">घटनाहरू</string>
@@ -176,17 +172,6 @@
     <string name="video">भिडियो</string>
     <string name="audio">अडियो</string>
     <string name="retry">पुन: प्रयास</string>
-    <string name="no_subscribers">कुनै सदस्यहरू छैनन्</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s सदस्य</item>
-        <item quantity="other">%s सदस्यहरू</item>
-    </plurals>
-    <string name="subscribers_count_not_available">सदस्य संख्या उपलब्ध छैन</string>
-    <string name="no_views">कसैले हेर्नुभएको छैन</string>
-    <plurals name="views">
-        <item quantity="one">%s पटक हेरिएको</item>
-        <item quantity="other">%s पटक हेरिएको</item>
-    </plurals>
     <string name="no_videos">कुनै भिडियो छैन</string>
     <string name="no_comments">प्रत्रिक्रिया छैन</string>
     <string name="start">मिशन</string>
@@ -403,16 +388,6 @@
     <string name="clear_playback_states_summary">सबै प्लेब्याक स्थानहरु मेटाउँछ</string>
     <string name="delete_playback_states_alert">सबै प्लेब्याक स्थान मेटाउने\?</string>
     <string name="drawer_header_description">सेवा टगल गर्नुहोस्, हाल चयन गरिएको:</string>
-    <string name="no_one_watching">कसैले हेर्दै हुनुहुँदैन</string>
-    <plurals name="watching">
-        <item quantity="one">%s जना हेर्दै हुनुहुन्छ</item>
-        <item quantity="other">%s जना हेर्दै हुनुहुन्छ</item>
-    </plurals>
-    <string name="no_one_listening">कसैले सुन्दै हुनुहुन्न</string>
-    <plurals name="listening">
-        <item quantity="one">%s श्रोता</item>
-        <item quantity="other">%s श्रोताहरु</item>
-    </plurals>
     <string name="default_kiosk_page_summary">पूर्वनिर्धारित किओस्क (Kiosk)</string>
     <string name="seek_duration_title">छिटो-अगाडि /-पछाडी खोज्न अवधि</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
@@ -500,8 +475,6 @@
     <string name="remove_watched">हेरिसकेको हटाउनुहोस</string>
     <string name="show_original_time_ago_summary">सेवाहरूबाट मूल पाठहरू स्ट्रिम वस्तुहरूमा देखिने छन्</string>
     <string name="show_original_time_ago_title">आईटमहरूमा मूल समय पहिले देखाउनुहोस्</string>
-    <string name="infinite_videos">अनगिन्ति भिडियोहरू</string>
-    <string name="more_than_100_videos">१००+ भिडियोहरू</string>
     <string name="artists">कलाकारहरू</string>
     <string name="albums">एल्बमहरू</string>
     <string name="songs">गित</string>

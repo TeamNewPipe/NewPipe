@@ -23,8 +23,6 @@
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैश</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
-    <string name="no_views">कोई विऊ नहीं</string>
-    <string name="no_videos">कोई वीडियो नहीं</string>
     <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
     <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
     <string name="tab_about">ऐप के बारे में और सामान्य प्रश्न</string>
@@ -126,19 +124,6 @@
     <string name="video">वीडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करें</string>
-    <string name="no_subscribers">कोई सब्सक्राइबर नहीं</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s सब्सक्राइबर</item>
-        <item quantity="other">%s सब्सक्राइबर्स</item>
-    </plurals>
-    <plurals name="views">
-        <item quantity="one">%s विऊ</item>
-        <item quantity="other">%s विऊज़</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s वीडियो</item>
-        <item quantity="other">%s वीडियोज़</item>
-    </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोकें</string>
     <string name="delete">मिटाएँ</string>
@@ -328,7 +313,6 @@
     <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें\?</string>
     <string name="restore_defaults">डिफ़ॉल्टस पुन: स्थापित करें</string>
     <string name="restore_defaults_confirmation">क्या आप डिफ़ॉल्टस पर लौटना चाहते है\?</string>
-    <string name="subscribers_count_not_available">सब्सक्राइबर संख्या अनुपलब्ध</string>
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
     <string name="updates_setting_title">अपडेटस</string>
     <string name="list">सूची</string>
@@ -410,16 +394,6 @@
     <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुनें, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">डिफ़ॉल्ट कियोस्क</string>
-    <string name="no_one_watching">कोई दर्शक नहीं देख रहा</string>
-    <plurals name="watching">
-        <item quantity="one">%s दर्शक है</item>
-        <item quantity="other">%s दर्शक हैं</item>
-    </plurals>
-    <string name="no_one_listening">कोई श्रोता नहीं सुन रहा</string>
-    <plurals name="listening">
-        <item quantity="one">%s श्रोता</item>
-        <item quantity="other">%s श्रोता</item>
-    </plurals>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है\? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)।
@@ -499,8 +473,6 @@
     <string name="local">स्थानीय</string>
     <string name="no_playlist_bookmarked_yet">अभी कोई प्लेलिस्ट बुक्मार्क नहीं की हुई</string>
     <string name="select_a_playlist">प्लेलिस्ट चुनें</string>
-    <string name="infinite_videos">अनगिनत विडीओज़</string>
-    <string name="more_than_100_videos">100+ विडीओज़</string>
     <string name="description_tab_description">विवरण</string>
     <string name="related_items_tab_description">संबंधित स्ट्रीमस</string>
     <string name="comments_tab_description">टिप्पणियाँ</string>

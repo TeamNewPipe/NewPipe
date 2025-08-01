@@ -272,26 +272,8 @@
     <string name="video">ߦߋߡߍ߲ߕߊ</string>
     <string name="error_report_open_github_notice">ߊ߬ ߡߊߝߍߣߍ߲߫ ߣߴߌ ߟߊ߫ ߝߙߋߞߋ߫ ߛߎ߮ ߣߌ߲߬ ߘߊ߲߭ߕߍ߰ߣߍ߲߫ ߞߘߐ߬ߡߊ߲߫. ߝߙߋߞߋ߫ ߞߋߟߋ߲ ߓߊ߫ ߞߏߝߐ߫ ߞߏ߫ ߝߌ߲߬߸ ߏ߬ ߦߋ߫ ߊ߲ ߠߊ߫ ߕߎ߬ߡߊ ߟߋ߬ ߘߐߕߌߢߍ߫ ߟߊ߫߸ ߞߊ߬ ߞߏ߫ ߜߘߍ߫ ߟߎ߫ ߞߍ ߘߐߛߊ߬ ߊ߲ ߡߊ߬.</string>
     <string name="description_tab_description">ߞߊ߲߬ߛߓߍ</string>
-    <string name="subscribers_count_not_available">ߝߊ߬ߝߘߎ߬ߓߊ߯ ߖߊ߬ߕߋ ߡߊ߬ߛߐ߬ߘߐ߲߬ߣߍ߲߬ ߕߍ߫</string>
     <string name="drawer_header_description">ߞߊ߬ ߗߋߢߊ߫ ߟߎ߬ ߟߊߦߟߍ߬ߡߊ߲߬߸ ߡߍ߲ ߠߎ߬ ߓߊߕߐߡߐ߲ߣߍ߲߫ ߕߋ߲߬:</string>
-    <string name="no_subscribers">ߡߊ߬ߝߘߎ߬ߓߊ߰ ߝߏߛߌ߬</string>
-    <plurals name="subscribers">
-        <item quantity="other">ߡߊ߬ߝߘߎ߬ߓߊ߰ %s</item>
-    </plurals>
-    <string name="no_views">ߦߋߟߌ߫ ߕߍ߫ ߦߋ߲߬</string>
-    <plurals name="views">
-        <item quantity="other">ߦߋߞߏ߫ %s</item>
-    </plurals>
-    <string name="no_one_watching">ߡߐ߰ ߛߌ߫ ߕߴߊ߬ ߘߐߜߍ߫ ߠߊ߫</string>
-    <plurals name="watching">
-        <item quantity="other">ߘߐߜߍߓߊ߯ %s</item>
-    </plurals>
-    <string name="no_one_listening">ߡߐ߰ ߛߌ߫ ߕߴߊ߬ ߟߊߡߍ߲߫ ߠߊ߫</string>
-    <plurals name="listening">
-        <item quantity="other">ߟߊ߬ߡߍ߲߬ߓߊ߰ %s</item>
-    </plurals>
     <string name="no_videos">ߦߋߡߍ߲ߕߊ߫ ߕߍ߫ ߦߋ߲߬</string>
-    <string name="more_than_100_videos">ߦߋߡߍ߲ߕߊ߫ ߁߀߀+</string>
     <string name="no_comments">ߞߊ߲߬ߞߎ߬ߡߊ߬ ߕߍ߫ ߦߋ߲߬</string>
     <plurals name="new_streams">
         <item quantity="other">ߥߦߏ߬ ߞߎߘߊ߫ %s</item>
@@ -362,10 +344,6 @@
     <string name="import_file_title">ߞߊ߬ ߞߐߕߐ߮ ߟߊߛߣߍ߫</string>
     <string name="previous_export">ߟߊ߬ߓߐ߬ߟߌ߫ ߕߊ߬ߡߌ߲߬ߣߍ߲</string>
     <string name="enable_streams_notifications_title">ߦߋߡߍ߲ߕߊ߫ ߞߎߘߊ</string>
-    <string name="infinite_videos">ߦߋߡߍ߲ߕߊ߫ ∞</string>
-    <plurals name="videos">
-        <item quantity="other">ߦߋߡߍ߲ߕߊ߫ %s</item>
-    </plurals>
     <string name="msg_wait">ߘߌ߬ߢߍ߬ ߦߴߊ߬ ߡߊߞߐ߬ߣߐ߲߬…</string>
     <string name="msg_copied">ߊ߬ ߓߘߊ߫ ߓߊߓߌߟߊ߫ ߞߓߊ߬ߞߘߐ߬ߘߏ߲ ߘߐ߫</string>
     <string name="msg_failed_to_copy">ߊ߬ ߡߊ߫ ߛߋ߫ ߓߊߓߌߟߊ߫ ߟߊ߫ ߞߓߊ߬ߞߘߐ߬ߘߏ߲ ߘߐ߫</string>

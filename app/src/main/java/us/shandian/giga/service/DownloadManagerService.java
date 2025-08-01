@@ -429,7 +429,8 @@ public class DownloadManagerService extends Service {
         if (downloadDoneNotification == null) {
             downloadDoneList = new StringBuilder(name.length());
 
-            icDownloadDone = BitmapFactory.decodeResource(this.getResources(), android.R.drawable.stat_sys_download_done);
+            icDownloadDone = BitmapFactory.decodeResource(this.getResources(),
+                    android.R.drawable.stat_sys_download_done);
             downloadDoneNotification = new Builder(this, getString(R.string.notification_channel_id))
                     .setAutoCancel(true)
                     .setLargeIcon(icDownloadDone)
@@ -438,23 +439,24 @@ public class DownloadManagerService extends Service {
                     .setContentIntent(makePendingIntent(ACTION_OPEN_DOWNLOADS_FINISHED));
         }
 
-        downloadDoneCount++;
+        final String formattedCount = Localization.formatDownloadCount(this, ++downloadDoneCount);
         if (downloadDoneCount == 1) {
             downloadDoneList.append(name);
 
-            downloadDoneNotification.setContentTitle(null);
-            downloadDoneNotification.setContentText(Localization.downloadCount(this, downloadDoneCount));
-            downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle()
-                    .setBigContentTitle(Localization.downloadCount(this, downloadDoneCount))
+            downloadDoneNotification.setContentTitle(null)
+                    .setContentText(formattedCount)
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                    .setBigContentTitle(formattedCount)
                     .bigText(name)
             );
         } else {
             downloadDoneList.append('\n');
             downloadDoneList.append(name);
 
-            downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle().bigText(downloadDoneList));
-            downloadDoneNotification.setContentTitle(Localization.downloadCount(this, downloadDoneCount));
-            downloadDoneNotification.setContentText(downloadDoneList);
+            downloadDoneNotification
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(downloadDoneList))
+                    .setContentTitle(formattedCount)
+                    .setContentText(downloadDoneList);
         }
 
         mNotificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());

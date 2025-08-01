@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DescriptionFragment extends BaseDescriptionFragment {
 
@@ -67,12 +68,13 @@ public class DescriptionFragment extends BaseDescriptionFragment {
     @Override
     protected void setupMetadata(final LayoutInflater inflater,
                                  final LinearLayout layout) {
-        if (streamInfo != null && streamInfo.getUploadDate() != null) {
-            binding.detailUploadDateView.setText(Localization
-                    .localizeUploadDate(activity, streamInfo.getUploadDate().offsetDateTime()));
-        } else {
-            binding.detailUploadDateView.setVisibility(View.GONE);
-        }
+        Optional.ofNullable(streamInfo)
+                .map(StreamInfo::getUploadDate)
+                .ifPresentOrElse(
+                        wrapper -> binding.detailUploadDateView
+                                .setText(Localization.formatDate(wrapper.offsetDateTime())),
+                        () -> binding.detailUploadDateView.setVisibility(View.GONE)
+                );
 
         if (streamInfo == null) {
             return;

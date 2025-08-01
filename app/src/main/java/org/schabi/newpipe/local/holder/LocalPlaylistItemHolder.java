@@ -30,13 +30,12 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
                                final DateTimeFormatter dateTimeFormatter) {
-        if (!(localItem instanceof PlaylistMetadataEntry)) {
+        if (!(localItem instanceof PlaylistMetadataEntry item)) {
             return;
         }
-        final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
         itemTitleView.setText(item.name);
-        itemStreamCountView.setText(Localization.localizeStreamCountMini(
+        itemStreamCountView.setText(Localization.formatStreamCountMini(
                 itemStreamCountView.getContext(), item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 

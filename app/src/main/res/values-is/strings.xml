@@ -73,12 +73,6 @@
     <string name="popup_remember_size_pos_summary">Muna síðustu stærð og stöðu sprettiglugga</string>
     <string name="show_description_title">Sýna lýsingu</string>
     <string name="subtitle_activity_recaptcha">Pikkaðu á \"Lokið\" þegar það er leyst</string>
-    <plurals name="watching">
-        <item quantity="one">%s að horfa</item>
-        <item quantity="other">%s að horfa</item>
-    </plurals>
-    <string name="no_one_watching">Еnginn еr að horfa</string>
-    <string name="infinite_videos">∞ myndskeið</string>
     <string name="settings_file_charset_title">Leyfðir stafir í skráarnöfnum</string>
     <string name="charset_letters_and_digits">Bókstafir og tölustafir</string>
     <string name="main_page_content_summary">Hvaða flipar eru sýndir á aðalsíðunni</string>
@@ -216,28 +210,8 @@
     <string name="your_comment">Athugasemd þín (á ensku):</string>
     <string name="search_no_results">Engar niðurstöður</string>
     <string name="video">Myndskeið</string>
-    <string name="no_views">Engin áhorf</string>
-    <plurals name="views">
-        <item quantity="one">%s áhorf</item>
-        <item quantity="other">%s áhorf</item>
-    </plurals>
     <string name="detail_drag_description">Dragðu til að endurraða</string>
-    <string name="no_subscribers">Engir áskrifendur</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s áskrifandi</item>
-        <item quantity="other">%s áskrifendur</item>
-    </plurals>
-    <string name="no_one_listening">Engin er að hlusta</string>
-    <plurals name="listening">
-        <item quantity="one">%s að hlusta</item>
-        <item quantity="other">%s að hlusta</item>
-    </plurals>
     <string name="no_videos">Engin myndskeið</string>
-    <string name="more_than_100_videos">100+ myndskeið</string>
-    <plurals name="videos">
-        <item quantity="one">%s myndskeið</item>
-        <item quantity="other">%s myndskeið</item>
-    </plurals>
     <string name="no_comments">Engin ummæli</string>
     <string name="comments_are_disabled">Ummæli eru óvirk</string>
     <string name="checksum">Gátsumma</string>
@@ -353,7 +327,6 @@
     <string name="show_description_summary">Slökktu á til að fela lýsingu og viðbótarupplýsingar myndskeiðs</string>
     <string name="error_occurred_detail">Villa kom upp: %1$s</string>
     <string name="title_activity_recaptcha">Þraut reCAPTCHA</string>
-    <string name="subscribers_count_not_available">Fjöldi áskrifenda ekki tiltækur</string>
     <string name="playlist_page_summary">Spilunarlistasíða</string>
     <string name="show_thumbnail_title">Sýna smámynd</string>
     <string name="feed_processing_message">Í vinnslu…</string>

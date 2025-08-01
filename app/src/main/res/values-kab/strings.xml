@@ -24,7 +24,6 @@
     <string name="search">Nadi</string>
     <string name="start">Bdu</string>
     <string name="pause">Seṛǧu</string>
-    <string name="more_than_100_videos">100+Tividyutin</string>
     <string name="subscribe_button_title">Jerred</string>
     <string name="export_to">Sifeḍ ɣer</string>
     <string name="controls_add_to_playlist_title">Rnu ɣer</string>
@@ -135,11 +134,6 @@
     <string name="open_in_browser">Ldi deg uminig</string>
     <string name="upload_date_text">Teffeɣ-d deg %1$s</string>
     <string name="main_bg_subtitle">Senned ɣef «Nadi» akken ad tebduḍ</string>
-    <string name="no_views">Ula d yiwet n tmeẓriwt</string>
-    <plurals name="views">
-        <item quantity="one">%s n tmeẓriwt</item>
-        <item quantity="other">%s n tmeẓriyin</item>
-    </plurals>
     <string name="metadata_category">Taggayt</string>
     <string name="metadata_privacy">Tabaḍnit</string>
     <string name="metadata_licence">Turagt</string>
@@ -153,7 +147,6 @@
     <string name="show_description_title">Sken-d aglam</string>
     <string name="content_language_title">Tutlayt n ugbur amezwaru</string>
     <string name="network_error">Tuccḍa deg uẓeṭṭa</string>
-    <string name="infinite_videos">∞ tividyutin</string>
     <string name="msg_wait">Ttxil arǧu…</string>
     <string name="title_activity_about">Ɣef NewPipe</string>
     <string name="video_player">Imeɣri n uvidyu</string>

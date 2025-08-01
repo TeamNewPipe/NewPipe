@@ -117,7 +117,6 @@
     <string name="your_comment">Tu commento (in anglese):</string>
     <string name="error_details_headline">Detalios:</string>
     <string name="retry">Retentar</string>
-    <string name="no_views">Nulle reproductiones</string>
     <string name="no_videos">Nulle videos</string>
     <string name="no_comments">Nulle commentos</string>
     <string name="start">Initiar</string>
@@ -143,10 +142,6 @@
     <string name="done">Preste</string>
     <string name="popup_remember_size_pos_summary">Rememorar ultime grandor e position del reproductor emergente</string>
     <string name="popup_remember_size_pos_title">Rememorar grandor e position del fenestra emergente</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videos</item>
-    </plurals>
     <string name="systems_language">Predefinite del systema</string>
     <string name="app_language_title">Lingua del application</string>
     <string name="feed_update_threshold_option_always_update">Actualisar sempre</string>
@@ -168,11 +163,6 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e le videos partialmente observate</string>
     <string name="remove_watched_popup_title">Deler le videos observate\?</string>
     <string name="remove_watched">Deler le videos observate</string>
-    <plurals name="watching">
-        <item quantity="one">%s visualisation</item>
-        <item quantity="other">%s visualisationes</item>
-    </plurals>
-    <string name="no_one_watching">Nemo is observante</string>
     <string name="watch_history_deleted">Chronologia de reproductiones vacuate</string>
     <string name="delete_view_history_alert">Deler omne chronologia de reproductiones\?</string>
     <string name="error_snackbar_message">Pardono, qualcosa vadeva incorrecte.</string>
@@ -182,18 +172,6 @@
     <string name="playlists">Listas de reproduction</string>
     <string name="error_report_title">Reporto de error</string>
     <string name="youtube_restricted_mode_enabled_title">Activar el \"Modo restricte\" de YouTube</string>
-    <string name="more_than_100_videos">Plus de 100 videos</string>
-    <string name="no_one_listening">Nemo es ascoltante</string>
-    <plurals name="views">
-        <item quantity="one">%s reproduction</item>
-        <item quantity="other">%s reproductiones</item>
-    </plurals>
-    <string name="subscribers_count_not_available">Le numero de subscriptores non es disponibile</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s subscriptor</item>
-        <item quantity="other">%s subscriptores</item>
-    </plurals>
-    <string name="no_subscribers">Nulle subscriptores</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="empty_list_subtitle">Nihil contentos ci</string>

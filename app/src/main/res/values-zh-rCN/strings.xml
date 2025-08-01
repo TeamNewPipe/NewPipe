@@ -29,9 +29,6 @@
     <string name="settings_category_appearance_title">外观</string>
     <string name="all">全部</string>
     <string name="network_error">网络错误</string>
-    <plurals name="videos">
-        <item quantity="other">%s 个视频</item>
-    </plurals>
     <string name="disabled">已停用</string>
     <string name="controls_background_title">后台</string>
     <string name="show_search_suggestions_title">显示搜索建议</string>
@@ -55,7 +52,6 @@
     <string name="unsubscribe">取消订阅</string>
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">文件已删除</string>
-    <string name="subscribers_count_not_available">无法得知订阅人数</string>
     <string name="updates_setting_description">有新版本时，显示通知提示更新应用</string>
     <string name="grid">网格</string>
     <string name="app_update_available_notification_title">NewPipe 可更新！</string>
@@ -68,9 +64,6 @@
     <string name="video">视频</string>
     <string name="audio">音频</string>
     <string name="retry">重试</string>
-    <plurals name="views">
-        <item quantity="other">%s 次观看</item>
-    </plurals>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="delete">删除</string>
@@ -94,10 +87,6 @@
     <string name="charset_letters_and_digits">字母和数字</string>
     <string name="charset_most_special_characters">特殊字符</string>
     <string name="search_no_results">没有结果</string>
-    <string name="no_subscribers">无人订阅</string>
-    <plurals name="subscribers">
-        <item quantity="other">%s 位订阅者</item>
-    </plurals>
     <string name="no_videos">无视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
     <string name="create">新建</string>
@@ -191,7 +180,6 @@
     <string name="default_video_format_title">默认视频格式</string>
     <string name="settings_category_player_behavior_title">行为</string>
     <string name="empty_list_subtitle">空空如也</string>
-    <string name="no_views">无人观看过</string>
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
     <string name="main_page_content">主页面的显示内容</string>
     <string name="blank_page_summary">空白页</string>
@@ -407,14 +395,6 @@
     <string name="clear_playback_states_summary">删除所有播放痕迹历史</string>
     <string name="delete_playback_states_alert">是否删除全部播放痕迹历史？</string>
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
-    <string name="no_one_watching">没有人在观看</string>
-    <plurals name="watching">
-        <item quantity="other">%s 人在观看</item>
-    </plurals>
-    <string name="no_one_listening">没有人在听</string>
-    <plurals name="listening">
-        <item quantity="other">%s 位听众</item>
-    </plurals>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自定义 PeerTube 服务器</string>
     <string name="peertube_instance_url_help">查找你需要的服务器 %s</string>
@@ -489,8 +469,6 @@
     <string name="content_not_supported">NewPipe 尚不支持该内容。
 \n
 \n也许未来版本会支持它。</string>
-    <string name="infinite_videos">∞ 部视频</string>
-    <string name="more_than_100_videos">100+ 部视频</string>
     <string name="artists">艺术家</string>
     <string name="albums">专辑</string>
     <string name="songs">歌曲</string>

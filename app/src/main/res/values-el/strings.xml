@@ -168,21 +168,7 @@
     <string name="empty_list_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
-    <string name="no_subscribers">Κανένας συνδρομητής</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s συνδρομητής</item>
-        <item quantity="other">%s συνδρομητές</item>
-    </plurals>
-    <string name="no_views">Καμία προβολή</string>
-    <plurals name="views">
-        <item quantity="one">%s προβολή</item>
-        <item quantity="other">%s προβολές</item>
-    </plurals>
     <string name="no_videos">Κανένα βίντεο</string>
-    <plurals name="videos">
-        <item quantity="one">%s βίντεο</item>
-        <item quantity="other">%s βίντεο(πολλά)</item>
-    </plurals>
     <string name="start">Εκκίνηση</string>
     <string name="create">Δημιουργία</string>
     <string name="checksum">Άθροισμα ελέγχου</string>
@@ -338,7 +324,6 @@
     <string name="saved_tabs_invalid_json">Δεν ήταν δυνατή η ανάγνωση των αποθηκευμένων καρτελών. Θα γίνει χρήση των προεπιλεγμένων</string>
     <string name="restore_defaults">Επαναφορά προεπιλεγμένων ρυθμίσεων</string>
     <string name="restore_defaults_confirmation">Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;</string>
-    <string name="subscribers_count_not_available">Το πλήθος των συνδρομητών δεν είναι διαθέσιμο</string>
     <string name="main_page_content_summary">Ποιές καρτέλες θα εμφανίζονται στην αρχική σελίδα</string>
     <string name="conferences">Συνέδρια</string>
     <string name="updates_setting_title">Ενημερώσεις</string>
@@ -409,16 +394,6 @@
     <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
     <string name="delete_playback_states_alert">Να διαγραφούν όλες οι θέσεις αναπαραγωγής;</string>
     <string name="drawer_header_description">Εναλλαγή υπηρεσιών, επιλεγμένη αυτή τη στιγμή:</string>
-    <string name="no_one_watching">Κανείς δεν παρακολουθεί</string>
-    <plurals name="watching">
-        <item quantity="one">%s παρακολουθεί</item>
-        <item quantity="other">%s παρακολουθούν</item>
-    </plurals>
-    <string name="no_one_listening">Κανείς δεν ακούει</string>
-    <plurals name="listening">
-        <item quantity="one">%s ακροατής</item>
-        <item quantity="other">%s ακροατές</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
     <string name="peertube_instance_add_https_only">Μόνο HTTPS σύνδεσμοι υποστηρίζονται</string>
     <string name="local">Τοπικά</string>
@@ -457,8 +432,6 @@
     <string name="select_a_playlist">Επιλέξτε μια λίστα αναπαραγωγής</string>
     <string name="done">Τέλος</string>
     <string name="subtitle_activity_recaptcha">Πατήστε «Τέλος» όταν επιλυθεί</string>
-    <string name="infinite_videos">∞ βίντεο</string>
-    <string name="more_than_100_videos">100+ βίντεο</string>
     <string name="error_report_open_issue_button_text">Αναφορά στο GitHub</string>
     <string name="copy_for_github">Αντιγραφή μορφοποιημένης αναφοράς</string>
     <string name="permission_display_over_apps">Δώστε άδεια για προβολή πάνω από άλλες εφαρμογές</string>

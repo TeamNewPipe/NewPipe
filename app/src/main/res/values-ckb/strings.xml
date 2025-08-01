@@ -22,7 +22,6 @@
     <string name="auto_queue_summary">به‌رده‌وامبوون له‌ (به‌بێ دووباره‌كردنه‌وه‌) نۆبه‌تی کارپێکەر به‌پێی په‌خشی هاوشێوه‌</string>
     <string name="enable_queue_limit">سنووردانانی نۆرەی دابەزاندن</string>
     <string name="error_insufficient_storage_left">بیرگەی ناوەکیت پڕ بووە</string>
-    <string name="subscribers_count_not_available">ژمارەی بەژداری نادیارە</string>
     <string name="overwrite_failed">ناتوانرێت لەسەر ئەو فایله‌وه‌ جێگیر بکرێت</string>
     <string name="tab_choose">په‌ڕه‌ هەڵبژێرە</string>
     <string name="more_than_100_videos">+١٠٠ ڤیدیۆیان</string>
@@ -58,10 +57,6 @@
     <string name="metadata_cache_wipe_complete_notice">پاشماوەی مێتاداتا سڕانەوە</string>
     <string name="default_kiosk_page_summary">کیۆسکی بنەڕەتی</string>
     <string name="best_resolution">باشترین قه‌باره‌</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s بەژداری</item>
-        <item quantity="other">%s بەژدارییان</item>
-    </plurals>
     <string name="show_higher_resolutions_title">پیشاندانی قه‌باره‌ی به‌رزتر</string>
     <string name="queued">نۆبه‌تكراو</string>
     <string name="generate_unique_name">دانانی ناوی نوێ</string>
@@ -117,18 +112,10 @@
     <string name="error_unknown_host">ناتوانرێت ڕاژەكه‌ بدۆزرێتەوە</string>
     <string name="settings_category_history_title">مێژوو و پاشماوه‌</string>
     <string name="settings_category_feed_title">فیید</string>
-    <plurals name="listening">
-        <item quantity="one">%s گوێبیست</item>
-        <item quantity="other">%s گوێبیستان</item>
-    </plurals>
     <string name="msg_running">نیوپایپ داده‌به‌زێنێت</string>
     <string name="channels">کەناڵەکان</string>
     <string name="action_history">مێژوو</string>
     <string name="subscriptions_export_unsuccessful">ناتوانرێت بەژدارییەکان هه‌نارده‌ بکرێن</string>
-    <plurals name="views">
-        <item quantity="one">‫%s بینراو</item>
-        <item quantity="other">‫%s بینراوان</item>
-    </plurals>
     <string name="pause">وەستاندن</string>
     <string name="download_path_audio_dialog_title">فۆڵدەری داگرتنی فایله‌ دەنگییەکان هەڵبژێرە</string>
     <string name="feed_create_new_group_button_title">نوێ</string>
@@ -180,7 +167,6 @@
     <string name="start_downloads">دەستپێکردنەوەی دابەزاندنەکان</string>
     <string name="caption_none">ژێرنووس نییە</string>
     <string name="popup_playing_toast">لێدان لە پەنجەرە</string>
-    <string name="no_views">بینراو نییە</string>
     <string name="invalid_file">ئەو فایله‌ بوونی نییە یان دەسەڵاتی خوێندنەوە و نوسینی لاوازە</string>
     <string name="parsing_error">ناتوانرێت ماڵپەڕ شیبکرێتەوە</string>
     <string name="settings_file_charset_title">ڕه‌نووسه‌ ڕێپێدراوه‌كان له‌ فایله‌ ناوییه‌كاندا</string>
@@ -202,13 +188,11 @@
     <string name="show_search_suggestions_summary">ئەو پێشنیازکراوانە هەڵبژێرە کە پیشان دەدرێن لەکاتی گەڕاندا</string>
     <string name="error_progress_lost">کردارەکە هه‌ره‌سی هێنا, چونکە ئەو فایله‌ سڕاوەتەوە</string>
     <string name="controls_add_to_playlist_title">زیادی بکە بۆ</string>
-    <string name="no_subscribers">به‌ژداری نییه‌</string>
     <string name="peertube_instance_url_title">دۆخی پێرتووب</string>
     <string name="playlist_creation_success">خشتەلێدان سازکرا</string>
     <string name="unhook_checkbox">سڕینەوەی بەستەر (ڕەنگە ببێتە هۆی تێکدان)</string>
     <string name="channel_page_summary">پەڕەی کەناڵەکان</string>
     <string name="switch_to_background">گۆڕین بۆ پاشبنەما</string>
-    <string name="infinite_videos">∞ ڤیدیۆ</string>
     <string name="use_inexact_seek_title">بەکارهێنانی بردنەپێشی ناتەواوی خێرا</string>
     <string name="error_occurred_detail">هەڵەیەک ڕوویدا : %1$s</string>
     <string name="download_path_dialog_title">فۆڵده‌ری داگرتن بۆ فایلی ڤیدیۆکان هەڵبژێرە</string>
@@ -241,10 +225,6 @@
     <string name="max_retry_msg">زیاترین هەوڵدانه‌وه‌</string>
     <string name="new_and_hot">نوێ و چالاک</string>
     <string name="download_already_running">دابه‌زاندنێكی دیكه‌ت هەیە بەهەمان ناو</string>
-    <plurals name="videos">
-        <item quantity="one">%s ڤیدیۆ</item>
-        <item quantity="other">%s ڤیدیۆیان</item>
-    </plurals>
     <string name="retry">هەوڵدانەوە</string>
     <string name="remove_watched_popup_title">ڤیدیۆ سەیر کراوەکان لابدرێن؟</string>
     <string name="playlists">خشته‌لێدانه‌كان</string>
@@ -427,7 +407,6 @@
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
     <string name="artists">هونەرمەندەکان</string>
-    <string name="no_one_watching">کەس سه‌یری ناکات</string>
     <string name="no_available_dir">تکایە دواتر فۆڵده‌رێك بۆ شوێنی دابه‌زاندن دیاری بکە لە ڕێکخستنەکاندا</string>
     <string name="feed_notification_loading">فیید بارده‌كرێت…</string>
     <string name="new_seek_duration_toast">بەهۆی ExoPlayer ەوە ماوەی بردنەپێش و بردنەپاش لە %d چرکەدا دیاریکرا</string>
@@ -457,10 +436,6 @@
 \n6. له‌ فایلی دابه‌زێنراودا فایلی .json ئێكستراكت بكه‌ و لێره‌دا هاورده‌ی بكه‌.</string>
     <string name="systems_language">به‌پێی سیستەم</string>
     <string name="network_error">کێشە لە هێڵەکەتدا هەیە</string>
-    <plurals name="watching">
-        <item quantity="one">%s سه‌یر دەکات</item>
-        <item quantity="other">%s سه‌یر دەکەن</item>
-    </plurals>
     <string name="error_report_title">هەڵە لە سكاڵا</string>
     <string name="metadata_cache_wipe_summary">سڕینەوەی پاشماوەی هەموو ماڵپه‌ڕه‌كان</string>
     <string name="kore_not_found">بەرنامەکە نه‌دۆزرایه‌وه‌. دابمه‌زرێت؟</string>
@@ -488,7 +463,6 @@
 \n
 \nخوازیارین کە بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
     <string name="donation_title">بەخشین</string>
-    <string name="no_one_listening">كه‌س گوێبیستی نییه‌</string>
     <string name="search_history_deleted">مێژووی گەڕانەکانت سڕانەوە</string>
     <string name="video">ڤیدیۆ</string>
     <string name="error_postprocessing_stopped">نیوپایپ داخرا لەکاتی کارکردن لەسەر ئەو فایله‌دا</string>

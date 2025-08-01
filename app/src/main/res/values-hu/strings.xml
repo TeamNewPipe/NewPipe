@@ -166,21 +166,7 @@
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
     <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
-    <string name="no_subscribers">Nincs feliratkozó</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s feliratkozó</item>
-        <item quantity="other">%s feliratkozó</item>
-    </plurals>
-    <string name="no_views">Nincs megtekintés</string>
-    <plurals name="views">
-        <item quantity="one">%s megtekintés</item>
-        <item quantity="other">%s megtekintés</item>
-    </plurals>
     <string name="no_videos">Nincs videó</string>
-    <plurals name="videos">
-        <item quantity="one">%s videó</item>
-        <item quantity="other">%s videó</item>
-    </plurals>
     <string name="create">Létrehozás</string>
     <string name="rename">Átnevezés</string>
     <string name="msg_popup_permission">Ez az engedély szükséges
@@ -413,17 +399,6 @@
     <string name="conferences">Konferenciák</string>
     <string name="most_liked">Legkedveltebb</string>
     <string name="main_page_content_summary">Mely oldalak jelennek meg a főoldalon</string>
-    <plurals name="listening">
-        <item quantity="one">%s hallgató</item>
-        <item quantity="other">%s hallgató</item>
-    </plurals>
-    <string name="no_one_listening">Senki sem hallgatja</string>
-    <plurals name="watching">
-        <item quantity="one">%s néző</item>
-        <item quantity="other">%s néző</item>
-    </plurals>
-    <string name="no_one_watching">Senki sem nézi</string>
-    <string name="subscribers_count_not_available">A feliratkozók száma nem érhető el</string>
     <string name="local">Helyi</string>
     <string name="error_unable_to_load_comments">A megjegyzések betöltése sikertelen</string>
     <string name="select_a_playlist">Válasszon egy lejátszási listát</string>
@@ -440,8 +415,6 @@
     <string name="title_licenses">Harmadik féltől származó licencek</string>
     <string name="done">Kész</string>
     <string name="no_comments">Nincsenek hozzászólások</string>
-    <string name="infinite_videos">∞ videó</string>
-    <string name="more_than_100_videos">100+ videó</string>
     <string name="error_report_open_issue_button_text">Jelentés a GitHubon</string>
     <string name="restore_defaults">Alapértelmezések visszaállítása</string>
     <string name="clear_cookie_summary">Sütik törlése, amelyeket a NewPipe akkor ment, amikor megold egy reCAPTCHA-t</string>

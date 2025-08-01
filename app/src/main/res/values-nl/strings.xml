@@ -141,21 +141,7 @@
     <string name="undo">Ongedaan maken</string>
     <string name="search_no_results">Geen resultaten</string>
     <string name="empty_list_subtitle">Enkel krekels hier</string>
-    <string name="no_subscribers">Geen abonnees</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s abonnee</item>
-        <item quantity="other">%s abonnees</item>
-    </plurals>
-    <string name="no_views">Geen weergaven</string>
-    <plurals name="views">
-        <item quantity="one">%s weergave</item>
-        <item quantity="other">%s weergaven</item>
-    </plurals>
     <string name="no_videos">Geen video\'s</string>
-    <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video’s</item>
-    </plurals>
     <string name="delete_item_search_history">Wil je dit item verwijderen uit je zoekgeschiedenis?</string>
     <string name="show_hold_to_append_title">Tip ‘Ingedrukt houden om toe te voegen’ tonen</string>
     <string name="show_hold_to_append_summary">Toon tip als de achtergrond- of pop-upknop wordt ingedrukt op de videogegevenspagina</string>
@@ -337,7 +323,6 @@
     <string name="saved_tabs_invalid_json">Fout bij lezen van opgeslagen tabbladen, standaard­tabbladen worden gebruikt</string>
     <string name="restore_defaults">Standaardinstellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wil je de standaardinstellingen herstellen\?</string>
-    <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
     <string name="updates_setting_title">Bijwerken</string>
     <string name="updates_setting_description">Toon een melding om de app bij te werken wanneer een nieuwe versie beschikbaar is</string>
@@ -407,16 +392,6 @@
     <string name="clear_playback_states_title">Afspeelposities verwijderen</string>
     <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
-    <string name="no_one_watching">Niemand is aan het kijken</string>
-    <plurals name="watching">
-        <item quantity="one">%s kijker</item>
-        <item quantity="other">%s kijkers</item>
-    </plurals>
-    <string name="no_one_listening">Niemand is aan het luisteren</string>
-    <plurals name="listening">
-        <item quantity="one">%s luisteraar</item>
-        <item quantity="other">%s luisteraars</item>
-    </plurals>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube-instanties</string>
@@ -506,8 +481,6 @@
     <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd.
 \nWeet u dit zeker\? Deze actie kan niet ongedaan gemaakt worden!</string>
     <string name="remove_watched_popup_title">Bekeken video\'s verwijderen\?</string>
-    <string name="infinite_videos">∞ video\'s</string>
-    <string name="more_than_100_videos">100+ video\'s</string>
     <string name="restricted_video">Deze video heeft een leeftijdsbeperking.
 \n
 \nSchakel ‘%1$s’ in onder instellingen als u het wilt zien.</string>

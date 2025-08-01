@@ -84,16 +84,6 @@
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
     <string name="retry">Bandyti iš naujo</string>
-    <plurals name="subscribers">
-        <item quantity="one">%s prenumeratorius</item>
-        <item quantity="few">%s prenumeratoriai</item>
-        <item quantity="other">%s prenumeratorių</item>
-    </plurals>
-    <plurals name="videos">
-        <item quantity="one">%s vaizdo įrašas</item>
-        <item quantity="few">%s vaizdo įrašai</item>
-        <item quantity="other">%s vaizdo įrašų</item>
-    </plurals>
     <string name="start">Pradėti</string>
     <string name="pause">Pauzė</string>
     <string name="delete">Naikinti</string>
@@ -139,13 +129,6 @@
     <string name="player_recoverable_failure">Atstatoma po grotuvo klaidos</string>
     <string name="search_no_results">Nėra rezultatų</string>
     <string name="empty_list_subtitle">Čia nieko nėra išskyrus svirplius</string>
-    <string name="no_subscribers">Nėra prenumeratorių</string>
-    <string name="no_views">Nėra peržiūrų</string>
-    <plurals name="views">
-        <item quantity="one">%s peržiūra</item>
-        <item quantity="few">%s peržiūros</item>
-        <item quantity="other">%s peržiūrų</item>
-    </plurals>
     <string name="no_videos">Nėra vaizdo įrašų</string>
     <string name="settings_category_downloads_title">Parsisiuntimai</string>
     <string name="settings_file_charset_title">Leidžiami simboliai failų varduose</string>
@@ -255,21 +238,6 @@
     <string name="one_item_deleted">1 elementas pašalintas.</string>
     <string name="msg_calculating_hash">Skaičiuojama maišos suma</string>
     <string name="no_comments">Komentarų nėra</string>
-    <string name="infinite_videos">∞ vaizdo įrašų</string>
-    <string name="more_than_100_videos">100+ vaizdo įrašų</string>
-    <plurals name="listening">
-        <item quantity="one">%s klausytojas</item>
-        <item quantity="few">%s klausytojai</item>
-        <item quantity="other">%s klausytojų</item>
-    </plurals>
-    <string name="no_one_listening">Niekas neklauso</string>
-    <plurals name="watching">
-        <item quantity="one">%s žiūri</item>
-        <item quantity="few">%s žiūri</item>
-        <item quantity="other">%s žiūri</item>
-    </plurals>
-    <string name="no_one_watching">Niekas nežiūri</string>
-    <string name="subscribers_count_not_available">Sekėjų skaičius neprieinamas</string>
     <string name="drawer_header_description">Perjungti paslaugą, dabar pasirinkta:</string>
     <string name="description_tab_description">Aprašymas</string>
     <string name="related_items_tab_description">Susiję įrašai</string>
