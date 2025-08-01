@@ -214,7 +214,7 @@ public final class Localization {
      * @return if {@code likeCount} is smaller than {@code 0}, the string {@code "-"}, otherwise
      *         the result of calling {@link #getShortCount(Context, long)} on the like count
      */
-    public static String likeCount(@NonNull final Context context, final int likeCount) {
+    public static String formatLikeCount(@NonNull final Context context, final int likeCount) {
         if (likeCount < 0) {
             return "-";
         } else {

@@ -113,7 +113,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
 
         // setup bottom row, with likes, heart and replies button
         itemLikesCountView.setText(
-                Localization.likeCount(itemBuilder.getContext(), item.getLikeCount()));
+                Localization.formatLikeCount(itemBuilder.getContext(), item.getLikeCount()));
 
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
 

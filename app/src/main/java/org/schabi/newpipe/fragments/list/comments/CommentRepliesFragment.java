@@ -97,7 +97,7 @@ public final class CommentRepliesFragment
 
             // setup like count, hearted and pinned
             binding.thumbsUpCount.setText(
-                    Localization.likeCount(requireContext(), item.getLikeCount()));
+                    Localization.formatLikeCount(requireContext(), item.getLikeCount()));
             // for heartImage goneMarginEnd was used, but there is no way to tell ConstraintLayout
             // not to use a different margin only when both the next two views are gone
             ((ConstraintLayout.LayoutParams) binding.thumbsUpCount.getLayoutParams())
