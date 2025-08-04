@@ -439,7 +439,6 @@
     <string name="mute">Tắt tiếng</string>
     <string name="most_liked">Được yêu thích nhất</string>
     <string name="recently_added">Đã thêm gần đây</string>
-    <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
     <string name="done">Đã hoàn thành</string>
     <string name="infinite_videos">∞ video</string>

@@ -221,7 +221,7 @@
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
     <string name="controls_download_desc">Скачать файл трансляции</string>
     <string name="show_info">Показать сведения</string>
-    <string name="tab_bookmarks">Плейлисты</string>
+    <string name="tab_bookmarks">Плейлисты в закладках</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
@@ -432,7 +432,6 @@
         <item quantity="few">%s слушателя</item>
         <item quantity="many">%s слушателей</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
@@ -840,4 +839,9 @@
 \nВы уверены, что хотите продолжить?</string>
     <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
     <string name="audio_track_type_secondary">вторичный</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Поделиться как временным плейлистом YouTube</string>
+    <string name="tab_bookmarks_short">Плейлисты</string>
+    <string name="feed_group_page_summary">Страница группы каналов</string>
+    <string name="select_a_feed_group">Выберите группу кормов</string>
+    <string name="no_feed_group_created_yet">Группа кормов еще не создана</string>
 </resources>

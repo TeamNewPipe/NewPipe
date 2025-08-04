@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/main_bg" />
+    <include
+        android:id="@+id/blank_page_content"
+        layout="@layout/main_bg" />
 
     <include
         android:id="@+id/error_panel"

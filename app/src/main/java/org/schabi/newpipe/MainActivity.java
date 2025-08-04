@@ -20,8 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,6 +47,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -76,6 +75,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.settings.SettingMigrations;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
+        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -153,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefEditor = sharedPreferences.edit();
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
+        SettingMigrations.showUserInfoIfPresent(this);
     }
 
     @Override
@@ -498,9 +498,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+        Localization.initPrettyTime(Localization.resolvePrettyTime());
         super.onResume();
 
         // Close drawer on return, and don't show animation,
@@ -870,7 +869,8 @@ public class MainActivity extends AppCompatActivity {
             };
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-            registerReceiver(broadcastReceiver, intentFilter);
+            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
+                    ContextCompat.RECEIVER_EXPORTED);
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.

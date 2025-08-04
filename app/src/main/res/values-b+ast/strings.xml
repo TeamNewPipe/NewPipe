@@ -223,7 +223,6 @@
     <string name="privacy_policy_title">Política de privacidá de NewPipe</string>
     <string name="error_file_creation">El ficheru nun pue crease</string>
     <string name="error_http_no_content">El sirvidor nun unvia datos</string>
-    <string name="localization_changes_requires_app_restart">La llingua va camudar namás que se reanicie l\'aplicación.</string>
     <string name="search">Buscar</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="subscribed_button_title">Soscribiéstite</string>

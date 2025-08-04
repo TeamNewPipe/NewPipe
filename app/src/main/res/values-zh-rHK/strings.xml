@@ -324,7 +324,6 @@
     <string name="main_page_content_summary">頭版要擺放邊啲分頁</string>
     <string name="main_page_content_swipe_remove">打橫掃走啲項目去剷走佢</string>
     <string name="blank_page_summary">空白頁</string>
-    <string name="localization_changes_requires_app_restart">重新開過個 app 之後就會轉新語言</string>
     <string name="trending">時興</string>
     <string name="top_50">頭 50 位</string>
     <string name="new_and_hot">最新同大熱</string>

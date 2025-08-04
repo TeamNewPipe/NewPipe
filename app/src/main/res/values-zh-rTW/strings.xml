@@ -416,7 +416,6 @@
     <plurals name="listening">
         <item quantity="other">%s 位聽眾</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更</string>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
@@ -807,4 +806,10 @@
 \n您想要啟用此功能嗎？</string>
     <string name="import_settings_vulnerable_format">匯入的匯出中的設定使用自 NewPipe 0.27.0 起已廢棄的脆弱格式。請確定匯入的匯出是來自可信賴的來源，並在未來只使用從 NewPipe 0.27.0 或更新版本取得的匯出。對於匯入此脆弱格式設定的支援即將完全移除，屆時舊版本的 NewPipe 將無法再匯入新版本匯出的設定。</string>
     <string name="audio_track_type_secondary">次要</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">分享為 YouTube 臨時播放清單</string>
+    <string name="tab_bookmarks_short">播放清單</string>
+    <string name="feed_group_page_summary">頻道群組頁面</string>
+    <string name="select_a_feed_group">選取 feed 群組</string>
+    <string name="no_feed_group_created_yet">尚未建立 feed 群組</string>
+    <string name="channel_tab_likes">喜歡</string>
 </resources>

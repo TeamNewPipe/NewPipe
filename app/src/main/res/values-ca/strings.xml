@@ -54,6 +54,7 @@
     <string name="audio">Àudio</string>
     <plurals name="subscribers">
         <item quantity="one">%s subscriptor</item>
+        <item quantity="many">%s subscriptors</item>
         <item quantity="other">%s subscriptors</item>
     </plurals>
     <string name="ok">D\'acord</string>
@@ -169,11 +170,13 @@
     <string name="no_views">Cap reproducció</string>
     <plurals name="views">
         <item quantity="one">%s reproducció</item>
+        <item quantity="many">%s reproduccions</item>
         <item quantity="other">%s reproduccions</item>
     </plurals>
     <string name="no_videos">Cap vídeo</string>
     <plurals name="videos">
         <item quantity="one">%s vídeo</item>
+        <item quantity="many">%s vídeos</item>
         <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="pause">Pausa</string>
@@ -272,15 +275,7 @@
     <string name="enable_leak_canary_summary">La supervisió de fugues de memòria pot fer que l\'aplicació deixi de respondre mentre es bolca la memòria</string>
     <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
     <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
-    <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant la còpia de contingut de Google Takeout:
-\n
-\n1. Aneu a : %1$s
-\n2. Inicieu la sessió si se us demana
-\n3. Premeu \"Totes les dades incloses\", després \"Dessel·lecciona-ho tot\", llavors sel·leccioneu només \"Subscripcions\" i finalment premeu \"D\'acord\".
-\n4. Premeu \"Pas següent\" i llavors a \"Crea una exportació\"
-\n5. Premeu el botó \"Baixa\" un cop hagi aparegut
-\n6. Premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .zip descarregat
-\n7. [En cas que la importació del fitxer .zip hagi fallat] extreieu-ne el fitxer subscripcions.csv (es troba generalment a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.csv\"), premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .csv extret.</string>
+    <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant la còpia de contingut de Google Takeout: \n \n1. Aneu a : %1$s \n2. Inicieu la sessió si se us demana \n3. Premeu \"Totes les dades incloses\", després \"Dessel·lecciona-ho tot\", llavors sel·leccioneu només \"Subscripcions\" i finalment premeu \"D\'acord\". \n4. Premeu \"Pas següent\" i llavors a \"Crea una exportació\" \n5. Premeu el botó \"Baixa\" un cop hagi aparegut \n6. Premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .zip descarregat \n7. [En cas que la importació del fitxer .zip hagi fallat] extreieu-ne el fitxer subscripcions.csv (es troba generalment a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.csv\"), premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .csv extret</string>
     <string name="import_soundcloud_instructions">Importeu un perfil del SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
 \n 
 \n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
@@ -405,7 +400,7 @@
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
     <string name="downloads_storage_use_saf_title">Fes servir el SAF</string>
-    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.</string>
+    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD</string>
     <string name="clear_playback_states_title">Esborra les posicions de reproducció</string>
     <string name="clear_playback_states_summary">Esborra totes les posicions de reproducció</string>
     <string name="delete_playback_states_alert">Voleu suprimir tots els punts de reproducció\?</string>
@@ -413,14 +408,15 @@
     <string name="no_one_watching">Cap visualització</string>
     <plurals name="watching">
         <item quantity="one">%s visualització</item>
+        <item quantity="many">%s visualitzacions</item>
         <item quantity="other">%s visualitzacions</item>
     </plurals>
     <string name="no_one_listening">Cap reproducció</string>
     <plurals name="listening">
         <item quantity="one">%s escoltant</item>
+        <item quantity="many">%s escoltants</item>
         <item quantity="other">%s escoltants</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Es canviarà l\'idioma en reiniciar l\'aplicació</string>
     <string name="default_kiosk_page_summary">Tendències</string>
     <string name="show_original_time_ago_title">Ensenya el temps passat original sobre els \"items\"</string>
     <string name="playlist_no_uploader">Auto-generat (no es troba cap uploader)</string>
@@ -475,17 +471,18 @@
     <string name="feed_update_threshold_option_always_update">Actualitza sempre</string>
     <string name="feed_update_threshold_summary">Temps que ha de passar perquè una subscripció es consideri obsoleta — %s</string>
     <string name="feed_update_threshold_title">Llindar d\'actualització del contingut</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">Flux</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostra només les subscripcions sense grup</string>
     <string name="feed_create_new_group_button_title">Nou</string>
     <string name="feed_group_dialog_delete_message">Esteu segurs de voler suprimir aquest grup\?</string>
     <string name="feed_group_dialog_empty_name">Nom de grup buit</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d de sel·leccionat</item>
-        <item quantity="other">%d de sel·leccionats</item>
+        <item quantity="one">%d de seleccionat</item>
+        <item quantity="many">%d de seleccionats</item>
+        <item quantity="other">%d de seleccionats</item>
     </plurals>
-    <string name="feed_group_dialog_empty_selection">Cap subscripció sel·leccionada</string>
-    <string name="feed_group_dialog_select_subscriptions">Sel·leccioneu les subscripcions</string>
+    <string name="feed_group_dialog_empty_selection">Cap subscripció seleccionada</string>
+    <string name="feed_group_dialog_select_subscriptions">Selecciona subscripcions</string>
     <string name="feed_processing_message">Processant el contingut…</string>
     <string name="feed_notification_loading">Carregant el contingut…</string>
     <string name="feed_subscription_not_loaded_count">No carregat: %d</string>
@@ -493,18 +490,22 @@
     <string name="feed_groups_header_title">Grups de canals</string>
     <plurals name="days">
         <item quantity="one">%d dia</item>
+        <item quantity="many">%d dies</item>
         <item quantity="other">%d dies</item>
     </plurals>
     <plurals name="hours">
         <item quantity="one">%d hora</item>
+        <item quantity="many">%d hores</item>
         <item quantity="other">%d hores</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="one">%d minut</item>
+        <item quantity="many">%d minuts</item>
         <item quantity="other">%d minuts</item>
     </plurals>
     <plurals name="seconds">
         <item quantity="one">%d segon</item>
+        <item quantity="many">%d segons</item>
         <item quantity="other">%d segons</item>
     </plurals>
     <string name="new_seek_duration_toast">A causa de les limitacions d\'ExoPlayer, la durada de cerca és de %d segons</string>
@@ -641,13 +642,12 @@
     <string name="manual_update_description">Comprovar manualment si hi ha noves versions</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Baixada finalitzada</item>
+        <item quantity="many">%s baixades finalitzades</item>
         <item quantity="other">%s baixades finalitzades</item>
     </plurals>
     <string name="seekbar_preview_thumbnail_title">Vista prèvia de les miniatures de la barra de cerca</string>
-    <string name="no_appropriate_file_manager_message_android_10">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
-\nInstal·leu un gestor de fitxers compatible amb l\'entorn d\'accés d\'emmagatzematge.</string>
-    <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
-\nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada.</string>
+    <string name="no_appropriate_file_manager_message_android_10">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció. \nInstal·leu un gestor de fitxers compatible amb l\'entorn d\'accés d\'emmagatzematge</string>
+    <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció. \nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada</string>
     <string name="error_report_notification_toast">S\'ha produït un error, consulteu la notificació</string>
     <string name="enqueued_next">Afegit el següent vídeo a la cua</string>
     <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
@@ -658,6 +658,7 @@
     <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">S\'ha suprimit %1$s baixada</item>
+        <item quantity="many">S\'han suprimit %1$s baixades</item>
         <item quantity="other">S\'han suprimit %1$s baixades</item>
     </plurals>
     <string name="downloads_storage_use_saf_summary_api_29">A partir de l\'Android 10 només s\'admet el \"Sistema d\'Accés a l\'Emmagatzematge\"</string>
@@ -687,8 +688,8 @@
     <string name="unknown_format">Format desconegut</string>
     <string name="unknown_quality">Cualitat desconeguda</string>
     <string name="sort">Ordenar</string>
-    <string name="settings_category_player_notification_summary">Configura la notificació de reproducció actual.</string>
-    <string name="progressive_load_interval_summary">Canvia la mida de l\'interval de càrrega en continguts progressius (actualment %s). Un valor inferior pot accelerar la càrrega inicial del vídeo.</string>
+    <string name="settings_category_player_notification_summary">Configura la notificació de reproducció actual</string>
+    <string name="progressive_load_interval_summary">Canvia la mida de l\'interval de càrrega en continguts progressius (actualment %s). Un valor inferior pot accelerar la càrrega inicial del vídeo</string>
     <string name="ignore_hardware_media_buttons_title">Ignora els esdeveniments dels botons de reproducció físics</string>
     <string name="ignore_hardware_media_buttons_summary">Útil, per exemple, si feu servir uns auriculars amb els botons físicament trencats</string>
     <string name="left_gesture_control_summary">Trieu un gest per la part esquerra de la pantalla</string>
@@ -731,4 +732,95 @@
     <string name="playlist_add_stream_success_duplicate">Duplicat afegit/s %d vegada/es</string>
     <string name="disable_media_tunneling_automatic_info">El túnel multimèdia s\'ha desactivat de manera predeterminada al dispositiu perquè se sap que el vostre model de dispositiu no ho permet.</string>
     <string name="semitone">Semiton</string>
+    <string name="app_update_unavailable_toast">Estàs fent servir la darrera versió de NewPipe</string>
+    <string name="error_insufficient_storage">No hi ha prou espai lliure al dispositiu</string>
+    <string name="tab_bookmarks_short">Llistes de reproducció</string>
+    <string name="card">Targeta</string>
+    <string name="remove_duplicates_message">Vols suprimir tots els elements duplicats d\'aquesta llista de reproducció?</string>
+    <string name="channel_tab_playlists">Llistes de reproducció</string>
+    <string name="remove_duplicates">Suprimeix els duplicats</string>
+    <string name="reset_settings_title">Restableix la configuració</string>
+    <string name="auto_update_check_description">NewPipe pot cercar automàticament actualitzacions i fer-t\'ho saber en estar disponibles.\nVols habilitar-ho?</string>
+    <string name="remove_duplicates_title">Suprimeixo els duplicats?</string>
+    <string name="reset_settings_summary">Restableix tots els paràmetres als valors per defecte</string>
+    <string name="reset_all_settings">Restablir tots els paràmetres descartarà els teus paràmetres preferits i reiniciarà l\'aplicació.\n\nN\'estàs segur?</string>
+    <string name="app_update_available_notification_text">Clica per descarregar%s</string>
+    <string name="audio_track_type_dubbed">doblat</string>
+    <string name="toggle_all">Commuta-ho tot</string>
+    <string name="feed_show_upcoming">Pròximament</string>
+    <string name="channel_tab_livestreams">En directe</string>
+    <string name="play">Reprodueix</string>
+    <string name="replay">Torna a reproduir</string>
+    <string name="more_options">Més opcions</string>
+    <string name="share_playlist_with_list">Comparteix la llista dels URLs</string>
+    <string name="video_details_list_item">- %1$s: %2$s</string>
+    <string name="metadata_uploader_avatars">Avatars de l\'autor</string>
+    <string name="metadata_subchannel_avatars">Avatars del sots-canal</string>
+    <string name="metadata_subscribers">Subscriptors</string>
+    <string name="audio_track_present_in_video">Ja hi hauria d\'haver una pista d\'àudio en aquest flux</string>
+    <string name="selected_stream_external_player_not_supported">El contingut escollit no és suportat per cap reproductor extern</string>
+    <string name="no_video_streams_available_for_external_players">No hi ha cap flux de vídeo disponible per a reproductors externs</string>
+    <string name="select_audio_track_external_players">Escull la pista d\'àudio per a reproductors externs</string>
+    <string name="unknown_audio_track">Desconegut</string>
+    <string name="audio_track_name">%1$s%2$s</string>
+    <string name="audio_track_type_original">original</string>
+    <string name="audio_track_type_descriptive">descriptiu</string>
+    <string name="channel_tab_videos">Vídeos</string>
+    <string name="show_channel_tabs_summary">Quines pestanyes es mostren a les pàgines del canal</string>
+    <string name="open_play_queue">Obre la cua de reproducció</string>
+    <string name="toggle_screen_orientation">Canvia l\'orientació de la pantalla</string>
+    <string name="previous_stream">Vídeo anterior</string>
+    <string name="forward">Avança</string>
+    <string name="image_quality_title">Qualitat de la imatge</string>
+    <string name="image_quality_none">No carregues les imatges</string>
+    <string name="image_quality_medium">Qualitat mitjana</string>
+    <string name="image_quality_low">Qualitat baixa</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Comparteix com a llista de reproducció temporal de Youtube</string>
+    <string name="share_playlist_content_details">%1$s\n%2$s</string>
+    <string name="show_more">Mostra més</string>
+    <string name="metadata_avatars">Avatars</string>
+    <string name="metadata_banners">Bàners</string>
+    <string name="duration">Durada</string>
+    <string name="rewind">Rebobina</string>
+    <string name="share_playlist_with_titles">Comparteix amb els títols</string>
+    <string name="streams_not_yet_supported_removed">No es mostren els contiguts que no suporten descàrrega</string>
+    <string name="feed_hide_streams_title">Mostra els vídeos següents</string>
+    <string name="no_audio_streams_available_for_external_players">No hi ha cap flux d\'àudio disponible per a reproductors externs</string>
+    <string name="feed_show_hide_streams">Mostra/Amaga els vídeos</string>
+    <string name="night_theme_available">Aquesta opció només està disponible si%ss\'ha seleccionat per al tema</string>
+    <string name="next_stream">Vídeo següent</string>
+    <plurals name="replies">
+        <item quantity="one">%sresposta</item>
+        <item quantity="many">%srespostes</item>
+        <item quantity="other">%srespostes</item>
+    </plurals>
+    <string name="feed_fetch_channel_tabs">Recupera les pestanyes del canal</string>
+    <string name="progressive_load_interval_exoplayer_default">Valor per defecte d\'ExoPlayer</string>
+    <string name="metadata_thumbnails">Miniatures</string>
+    <string name="channel_tab_about">Quant a</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_title">Usa sempre la sortida de vídeo d\'ExoPlayer com a solució de contingència</string>
+    <string name="import_settings_vulnerable_format">La configuració exportada que vols importar té un format vulnerable que és obsolet des de NewPipe 0.27.0. Assegura\'t que l\'exportació que vols importar prové d\'una font de confiança i prefereix només les exportacions fetes amb NewPipe 0.27.0 o posterior d\'ara endavant. El suport a la importació de configuracions en aquest format vulnerable aviat serà suprimit completament i aleshores les antigues versions de NewPipe ja no podran importar les exportacions de les configuracions des de les noves versions.</string>
+    <string name="channel_tab_albums">Àlbums</string>
+    <string name="show_channel_tabs">Pestanyes del canal</string>
+    <string name="image_quality_high">Qualitat alta</string>
+    <string name="image_quality_summary">Tria la qualitat de les imatges i si carregar-les totalment o no per reduir l\'ús de les dades i la memòria. Els canvis suprimiran la memòria cau de les imatges a la memòria i al disc — %s</string>
+    <string name="feed_fetch_channel_tabs_summary">Pestanyes que es recuperaran en actualitzar el contingut. Aquesta opció no s\'aplica si el canal s\'actualitza en mode ràpid.</string>
+    <string name="feed_show_partially_watched">Vist parcialment</string>
+    <string name="feed_show_watched">Vist completament</string>
+    <string name="settings_category_exoplayer_title">Paràmetres d\'ExoPlayer</string>
+    <string name="settings_category_exoplayer_summary">Gestiona alguns paràmetres d\'ExoPlayer. Caldrà reinciciar el reproductor per activar-los</string>
+    <string name="use_exoplayer_decoder_fallback_title">Usa la funció de suport de decodificació d\'ExoPlayer</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Habilita aquesta opció si tens problemes en iniciar el decodificador. S\'usaran decodificadors alternatius de baixa prioritat si falla el decodificador primari. Això pot provocar una disminució de la qualitat de la reproducció en relació a l\'ús del decodificador primari</string>
+    <string name="always_use_exoplayer_set_output_surface_workaround_summary">Aquesta alternativa allibera i reinstancia els còdecs de vídeo si hi ha un canvi de màscara en lloc de configurar-la directament al còdec. ExoPlayer ja ho aplica en alguns dispositius amb aquest problema. Aquesta configuració només té efecte en Android 6 i posteriors\n\nHabilitar aquest opció pot prevenir errors de reproducció en canviar el reproductor actual o en passar a pantalla completa</string>
+    <string name="channel_tab_tracks">Pistes</string>
+    <string name="channel_tab_shorts">Curts</string>
+    <string name="toggle_fullscreen">Canvia a pantalla completa</string>
+    <string name="question_mark">\?</string>
+    <string name="share_playlist">Comparteix la llista de reproducció</string>
+    <string name="show_less">Mostra menys</string>
+    <string name="audio_track_type_secondary">secundària</string>
+    <string name="channel_tab_channels">Canals</string>
+    <string name="no_feed_group_created_yet">Encara no s\'ha creat cap grup de continguts</string>
+    <string name="select_a_feed_group">Tria un grup de continguts</string>
+    <string name="feed_group_page_summary">Pàgina del grup de canals</string>
 </resources>

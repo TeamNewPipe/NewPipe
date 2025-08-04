@@ -404,7 +404,6 @@
     <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
     <string name="no_one_watching">Nitko ne gleda</string>
     <string name="no_one_listening">Nitko ne sluša</string>
-    <string name="localization_changes_requires_app_restart">Jezik će se promijeniti nakon ponovnog pokretanja aplikcije</string>
     <string name="default_kiosk_page_summary">Standardni kiosk</string>
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalni</string>

@@ -253,7 +253,6 @@
     <string name="most_liked">Najbolj všečkan</string>
     <string name="recently_added">Dodano nedolgo nazaj</string>
     <string name="local">Lokalno</string>
-    <string name="localization_changes_requires_app_restart">Jezik bo spremenjen ob ponovnem zagonu aplikacije</string>
     <string name="error_unable_to_load_comments">Ni mogoče naložiti komentarjev</string>
     <string name="no_valid_zip_file">Ni veljavne ZIP datoteke</string>
     <string name="import_complete_toast">Uvoženo</string>

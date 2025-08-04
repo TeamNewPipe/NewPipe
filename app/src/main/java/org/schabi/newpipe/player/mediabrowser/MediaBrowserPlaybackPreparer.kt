@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.ResultReceiver
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector.PlaybackPreparer
@@ -109,14 +110,14 @@ class MediaBrowserPlaybackPreparer(
     //region Errors
     private fun onUnsupportedError() {
         setMediaSessionError.accept(
-            context.getString(R.string.content_not_supported),
+            ContextCompat.getString(context, R.string.content_not_supported),
             PlaybackStateCompat.ERROR_CODE_NOT_SUPPORTED
         )
     }
 
     private fun onPrepareError() {
         setMediaSessionError.accept(
-            context.getString(R.string.error_snackbar_message),
+            ContextCompat.getString(context, R.string.error_snackbar_message),
             PlaybackStateCompat.ERROR_CODE_APP_ERROR
         )
     }

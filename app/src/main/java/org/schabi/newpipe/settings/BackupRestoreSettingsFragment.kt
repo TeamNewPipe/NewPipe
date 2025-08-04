@@ -27,7 +27,6 @@ import org.schabi.newpipe.settings.export.BackupFileLocator
 import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
-import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ZipHelper
 import java.io.IOException
@@ -86,7 +85,6 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
         val context = requireContext()
         val lastExportDataUri = result.data?.data
 
-        Localization.assureCorrectAppLanguage(context)
         if (result.resultCode == Activity.RESULT_OK && lastExportDataUri != null) {
             // will be saved only on success
             val file = StoredFileHelper(context, lastExportDataUri, ZIP_MIME_TYPE)
@@ -98,7 +96,6 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
         val context = requireContext()
         val lastImportDataUri = result.data?.data
 
-        Localization.assureCorrectAppLanguage(context)
         if (result.resultCode == Activity.RESULT_OK && lastImportDataUri != null) {
             // will be saved only on success
             val file = StoredFileHelper(context, lastImportDataUri, ZIP_MIME_TYPE)

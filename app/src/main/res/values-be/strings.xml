@@ -92,7 +92,7 @@
     <string name="error_report_title">Справаздача пра памылку</string>
     <string name="all">Усе</string>
     <string name="channels">Каналы</string>
-    <string name="playlists">Плэйлісты</string>
+    <string name="playlists">Плэй-лісты</string>
     <string name="tracks">Трэкі</string>
     <string name="users">Карыстальнікі</string>
     <string name="disabled">Адключана</string>
@@ -111,8 +111,8 @@
     <string name="switch_to_main">Перайсці ў галоўнае акно</string>
     <string name="import_data_title">Імпартаваць даныя</string>
     <string name="export_data_title">Экспартаваць даныя</string>
-    <string name="import_data_summary">Перавызначае вашу бягучую гісторыю, падпіскі, плэйлісты і (неабавязкова) налады</string>
-    <string name="export_data_summary">Экспарт гісторыі, падпісак, плэйлістоў і налад</string>
+    <string name="import_data_summary">Перавызначае вашу бягучую гісторыю, падпіскі, плэй-лісты і (неабавязкова) налады</string>
+    <string name="export_data_summary">Экспарт гісторыі, падпісак, плэй-лістоў і налад</string>
     <string name="clear_views_history_title">Ачысціць гісторыю праглядаў</string>
     <string name="clear_views_history_summary">Выдаліць гісторыю прайграных патокаў і пазіцыі прайгравання</string>
     <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў\?</string>
@@ -135,7 +135,7 @@
     <string name="video_streams_empty">Відэапатокі не знойдзены</string>
     <string name="audio_streams_empty">Аўдыяпатокі не знойдзены</string>
     <string name="invalid_directory">Такой папкі не існуе</string>
-    <string name="invalid_source">Крыніца кантэнту або файла не існуе</string>
+    <string name="invalid_source">Такога файла або крыніцы кантэнту не існуе</string>
     <string name="invalid_file">Файл не існуе або няма дазволу на яго чытанне ці запіс</string>
     <string name="file_name_empty_error">Імя файла не можа быць пустым</string>
     <string name="error_occurred_detail">Адбылася памылка: %1$s</string>
@@ -147,7 +147,7 @@
     <string name="what_device_headline">Інфармацыя:</string>
     <string name="what_happened_headline">Што адбылося:</string>
     <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nКраіна кантэнту:\\nМова праграмы:\\nСэрвіс:\\nЧас GMT:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
-    <string name="your_comment">Ваш каментарый (на англійскай):</string>
+    <string name="your_comment">Ваш каментарый (па-англійску):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
     <string name="detail_thumbnail_view_description">Прайграць відэа, працягласць:</string>
     <string name="detail_uploader_thumbnail_view_description">Мініяцюра аватара карыстальніка</string>
@@ -264,17 +264,17 @@
     <string name="always_ask_open_action">Заўсёды пытаць</string>
     <string name="preferred_player_fetcher_notification_title">Атрыманне звестак…</string>
     <string name="preferred_player_fetcher_notification_message">Загрузка запытанага кантэнту</string>
-    <string name="create_playlist">Стварыць плэйліст</string>
+    <string name="create_playlist">Стварыць плэй-ліст</string>
     <string name="rename_playlist">Перайменаваць</string>
     <string name="name">Імя</string>
-    <string name="add_to_playlist">Дадаць у плэйліст</string>
-    <string name="set_as_playlist_thumbnail">Зрабіць мініяцюрай плэйліста</string>
-    <string name="bookmark_playlist">Дадаць плэйліст у закладкі</string>
+    <string name="add_to_playlist">Дадаць у плэй-ліст</string>
+    <string name="set_as_playlist_thumbnail">Зрабіць мініяцюрай плэй-ліста</string>
+    <string name="bookmark_playlist">Дадаць плэй-ліст у закладкі</string>
     <string name="unbookmark_playlist">Выдаліць закладку</string>
-    <string name="delete_playlist_prompt">Выдаліць плэйліст\?</string>
-    <string name="playlist_creation_success">Плэйліст створаны</string>
-    <string name="playlist_add_stream_success">Дададзена ў плэйліст</string>
-    <string name="playlist_thumbnail_change_success">Мініяцюра плэйліста зменена.</string>
+    <string name="delete_playlist_prompt">Выдаліць плэй-ліст?</string>
+    <string name="playlist_creation_success">Плэй-ліст створаны</string>
+    <string name="playlist_add_stream_success">Дададзена ў плэй-ліст</string>
+    <string name="playlist_thumbnail_change_success">Мініяцюра плэй-ліста зменена.</string>
     <string name="caption_none">Без субцітраў</string>
     <string name="resize_fit">Падагнаць</string>
     <string name="resize_fill">Запоўніць</string>
@@ -328,7 +328,7 @@
     <string name="saved_tabs_invalid_json">Памылка чытання захаваных укладак. Выкарыстоўваюцца ўкладкі па змаўчанні</string>
     <string name="restore_defaults">Аднавіць прадвызначаныя значэнні</string>
     <string name="restore_defaults_confirmation">Аднавіць прадвызначаныя значэнні?</string>
-    <string name="subscribers_count_not_available">Колькасць падпісчыкаў недаступная</string>
+    <string name="subscribers_count_not_available">Колькасць падпісчыкаў недаступна</string>
     <string name="main_page_content_summary">Укладкі, бачныя на галоўнай старонцы</string>
     <string name="updates_setting_title">Абнаўленні</string>
     <string name="updates_setting_description">Паказваць апавяшчэнне пры наяўнасці новай версіі</string>
@@ -377,7 +377,7 @@
     <string name="enable_playback_state_lists_summary">Адлюстроўваць індыкатары пазіцый прагляду ў спісах</string>
     <string name="settings_category_clear_data_title">Ачыстка даных</string>
     <string name="watch_history_states_deleted">Пазіцыі прайгравання выдалены</string>
-    <string name="missing_file">Файл перамешчаны ці выдалены</string>
+    <string name="missing_file">Файл перамешчаны або выдалены</string>
     <string name="overwrite_unrelated_warning">Файл з такім імем ужо існуе</string>
     <string name="overwrite_finished_warning">Файл з такім імем ужо існуе</string>
     <string name="overwrite_failed">немагчыма перазапісаць файл</string>
@@ -386,7 +386,7 @@
     <string name="error_insufficient_storage_left">На прыладзе скончылася вольнае месца</string>
     <string name="error_progress_lost">Прагрэс страчаны, бо файл быў выдалены</string>
     <string name="error_timeout">Скончыўся час злучэння</string>
-    <string name="confirm_prompt">Вы хочаце ачысціць гісторыю спампоўвання ці выдаліць спампаваныя файлы?</string>
+    <string name="confirm_prompt">Ачысціць гісторыю спампоўвання або выдаліць спампаваныя файлы?</string>
     <string name="enable_queue_limit">Абмежаваць чаргу спампоўвання</string>
     <string name="enable_queue_limit_desc">Толькі адно адначасовае спампоўванне</string>
     <string name="start_downloads">Пачаць спампоўванне</string>
@@ -395,7 +395,7 @@
     <string name="downloads_storage_ask_summary">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання. \nУключыце сістэмны сродак выбару папак (SAF), калі хочаце спампоўваць файлы на знешнюю SD-карту</string>
     <string name="downloads_storage_use_saf_title">Выкарыстоўваць сістэмны сродак выбару папак (SAF)</string>
     <string name="downloads_storage_use_saf_summary">«Storage Access Framework» дазваляе выконваць спампоўванне на знешнюю SD-карту</string>
-    <string name="drawer_header_description">Пераключыць службу, выбраную ў дадзены момант:</string>
+    <string name="drawer_header_description">Пераключэнне сэрвісу, зараз выбраны:</string>
     <string name="clear_playback_states_summary">Выдаліць усе пазіцыі прайгравання</string>
     <string name="youtube_restricted_mode_enabled_title">Уключыць «Абмежаваны рэжым» YouTube</string>
     <string name="peertube_instance_add_https_only">Падтрымліваюцца толькі URL-адрасы HTTPS</string>
@@ -433,15 +433,15 @@
     <string name="most_liked">Найбольш папулярнае</string>
     <string name="local">Лакальнае</string>
     <string name="recently_added">Нядаўна дададзенае</string>
-    <string name="no_playlist_bookmarked_yet">Плэйлісты яшчэ не дададзены</string>
-    <string name="select_a_playlist">Выберыце плэйліст</string>
+    <string name="no_playlist_bookmarked_yet">Плэй-лісты яшчэ не дададзены</string>
+    <string name="select_a_playlist">Выберыце плэй-ліст</string>
     <string name="default_kiosk_page_summary">Прадвызначаны кіёск</string>
     <string name="done">Так</string>
     <string name="subtitle_activity_recaptcha">Па завяршэнні націсніце «Гатова»</string>
     <string name="infinite_videos">∞ відэа</string>
     <string name="more_than_100_videos">100+ відэа</string>
-    <string name="error_report_open_issue_button_text">Багрэпарт на GitHub</string>
-    <string name="copy_for_github">Скапіруйце адфарматаваны багрэпарт</string>
+    <string name="error_report_open_issue_button_text">Паведаміць на GitHub</string>
+    <string name="copy_for_github">Скапіяваць адфарматаваную справаздачу</string>
     <string name="permission_display_over_apps">Дайце дазвол на адлюстраванне паверх іншых праграм</string>
     <string name="delete_playback_states_alert">Выдаліць усе пазіцыі прайгравання\?</string>
     <string name="clear_playback_states_title">Выдаліць пазіцыі прайгравання</string>
@@ -483,7 +483,7 @@
     <string name="night_theme_summary">Выберыце любімую начную тэму - %s</string>
     <string name="description_select_enable">Дазвол вылучэння тэксту ў апісанні</string>
     <string name="select_night_theme_toast">Вы можаце выбраць сваю любімую начную тэму ніжэй</string>
-    <string name="night_theme_available">Гэта опцыя даступна толькі тады, калі %s будзе выбранай тэмаю</string>
+    <string name="night_theme_available">Параметр даступны, толькі калі выбрана тэма %s</string>
     <string name="download_has_started">Спампоўванне пачалося</string>
     <string name="notifications_disabled">Апавяшчэнні адключаны</string>
     <string name="tablet_mode_title">Рэжым планшэта</string>
@@ -503,7 +503,7 @@
     <string name="night_theme_title">Начная тэма</string>
     <string name="open_website_license">Адкрыць вэб-сайт</string>
     <string name="description_select_note">Цяпер можна вылучаць тэкст у апісанні. Звярніце ўвагу, што ў рэжыме вылучэння старонка можа мільгаць, а спасылкі не націскацца.</string>
-    <string name="start_main_player_fullscreen_title">Запускаць галоўны прайгравальнік у поўнаэкранным рэжыме</string>
+    <string name="start_main_player_fullscreen_title">Запускаць асноўны прайгравальнік у поўнаэкранным рэжыме</string>
     <string name="show_channel_details">Паказаць дэталі канала</string>
     <string name="low_quality_smaller">Нізкая якасць (менш)</string>
     <string name="hash_channel_name">Апавяшчэнне пра відэахэшаванне</string>
@@ -535,7 +535,6 @@
         <item quantity="other">%d дзён</item>
     </plurals>
     <string name="clear_download_history">Ачысціць гісторыю спампоўвання</string>
-    <string name="localization_changes_requires_app_restart">Мова зменіцца пасля перазапуску праграмы</string>
     <string name="no_one_listening">Ніхто не слухае</string>
     <string name="on">Уключыць</string>
     <string name="hash_channel_description">Апавяшчэнні пра ход відэахэшавання</string>
@@ -574,12 +573,12 @@
     <string name="error_report_channel_name">Апавяшчэнне аб памылцы</string>
     <string name="error_report_channel_description">Апавяшчэнні для паведамлення аб памылках</string>
     <string name="error_report_notification_title">Адбылася памылка NewPipe, націсніце, каб адправіць справаздачу</string>
-    <string name="start_main_player_fullscreen_summary">Запускаць відэа ва ўвесь экран, калі адключаны аўтапаварот. Міні-плэер даступны пры выхадзе з поўнаэкраннага рэжыму</string>
+    <string name="start_main_player_fullscreen_summary">Калі аўтапаварот адключаны, відэа адразу запускаецца ў поўнаэкранным рэжыме. Міні-плэер застаецца даступным, трэба толькі выйсці з поўнаэкраннага рэжыму</string>
     <string name="peertube_instance_url_help">Шукайце серверы, якія вам даспадобы, на %s</string>
     <string name="show_meta_info_title">Паказваць метаданыя</string>
     <string name="ignore_hardware_media_buttons_title">Ігнараваць падзеі апаратных медыякнопак</string>
     <string name="show_age_restricted_content_summary">Паказваць змесціва, магчыма непрыдатнае для дзяцей, таму што яно мае ўзроставыя абмежаванні (напрыклад, 18+)</string>
-    <string name="error_report_open_github_notice">Калі ласка, праверце, ці існуе ўжо праблема з абмеркаваннем вашага збою. Пры стварэнні дублікатаў тыкетаў вы забіраеце ў нас час, які мы маглі б патраціць на выпраўленне фактычнай памылкі.</string>
+    <string name="error_report_open_github_notice">Праверце, ці не існуе заяўкі з абмеркаваннем вашай праблемы. Дублікаты марнуюць наш час і праз гэта адцягваецца вырашэнне сапраўдных задач.</string>
     <string name="error_report_notification_toast">Адбылася памылка, глядзіце апавяшчэнне</string>
     <string name="crash_the_player">Збой плэера</string>
     <string name="ignore_hardware_media_buttons_summary">Карысна, напрыклад, калі вы карыстаецеся гарнітурай са зламанымі фізічнымі кнопкамі</string>
@@ -591,7 +590,7 @@
     <string name="msg_calculating_hash">Разлік хэша</string>
     <string name="recaptcha_solve">Вырашана</string>
     <string name="playlist_no_uploader">Створана аўтаматычна (запампавальнік не знойдзены)</string>
-    <string name="duplicate_in_playlist">Плэйлісты, якія пазначаны шэрым, ужо ўтрымліваюць гэты элемент.</string>
+    <string name="duplicate_in_playlist">Плэй-лісты, якія пазначаны шэрым, ужо ўтрымліваюць гэты элемент.</string>
     <plurals name="new_streams">
         <item quantity="one">%s новая трансляцыя</item>
         <item quantity="few">%s новыя трансляцыі</item>
@@ -665,13 +664,13 @@
     </plurals>
     <string name="feed_update_threshold_option_always_update">Заўсёды абнаўляць</string>
     <string name="feed_update_threshold_title">Парог абнаўлення стужкі</string>
-    <string name="feed_load_error_account_info">Немагчыма загрузіць канал для «%s».</string>
+    <string name="feed_load_error_account_info">Не ўдалося загрузіць канал для «%s».</string>
     <string name="settings_category_feed_title">Стужка</string>
     <string name="feed_update_threshold_summary">Час пасля апошняга абнаўлення, перш чым падпіска лічыцца састарэлай — %s</string>
     <string name="feed_load_error">Памылка загрузкі канала</string>
     <string name="feed_load_error_terminated">Уліковы запіс аўтара быў спынены. \nNewPipe не зможа загрузіць гэты канал у будучыні. \nАдпісацца ад канала?</string>
     <string name="feed_load_error_fast_unknown">Рэжым хуткай загрузкі стужкі не дае дадатковай інфармацыі аб гэтым.</string>
-    <string name="feed_use_dedicated_fetch_method_title">Атрымлівайце са спецыяльнага канала, калі ён даступны</string>
+    <string name="feed_use_dedicated_fetch_method_title">Атрыманне даных са спецыяльнага канала, калі ён ёсць</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Уключыць хуткі рэжым</string>
     <string name="metadata_category">Катэгорыя</string>
     <string name="metadata_tags">Тэгі</string>
@@ -684,7 +683,7 @@
     <string name="streams_not_yet_supported_removed">Трансляцыі, спампоўванне якіх яшчэ не падтрымліваецца, не паказваюцца</string>
     <string name="detail_sub_channel_thumbnail_view_description">Мініяцюра аватара канала</string>
     <string name="video_detail_by">Аўтар: %s</string>
-    <string name="detail_heart_img_view_description">Аўтару відэа спадабалася гэта</string>
+    <string name="detail_heart_img_view_description">Спадабалася аўтару відэа</string>
     <string name="channel_created_by">Створана %s</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Адключыць хуткі рэжым</string>
     <string name="metadata_privacy_public">Публічная</string>
@@ -697,7 +696,7 @@
     <string name="content_not_supported">Гэты кантэнт яшчэ не падтрымліваецца NewPipe.
 \n
 \nСпадзяюся, ён будзе падтрымлівацца ў наступных версіях.</string>
-    <string name="playlist_page_summary">Старонка плэйліста</string>
+    <string name="playlist_page_summary">Старонка плэй-ліста</string>
     <string name="show_thumbnail_title">Паказваць мініяцюру</string>
     <string name="show_thumbnail_summary">Выкарыстоўваць мініяцюру як фон для экрана блакіроўкі і апавяшчэнняў</string>
     <string name="no_appropriate_file_manager_message">Для гэтага дзеяння не знойдзены прыдатны файлавы менеджар. \nУсталюйце файлавы менеджар або паспрабуйце адключыць «%s» у наладах спампоўвання</string>
@@ -711,7 +710,7 @@
     <string name="metadata_privacy_internal">Унутраная</string>
     <string name="feed_show_watched">Прагледжаныя цалкам</string>
     <string name="paid_content">Гэты кантэнт даступны толькі для аплачаных карыстальнікаў, таму NewPipe не можа яго трансляваць або спампоўваць.</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Даступны ў некаторых службах, звычайна нашмат хутчэй, але можа вяртаць абмежаваную колькасць элементаў і часта няпоўную інфармацыю (напрыклад, без працягласці, тыпу элемента, без актыўнага стану)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Даступна для некаторых сэрвісаў, звычайна значна хутчэй, але можа перадаваць абмежаваную колькасць элементаў і не ўсю інфармацыю (можа адсутнічаць працягласць, тып элемента, паказчык трансляцыі)</string>
     <string name="metadata_age_limit">Узроставае абмежаванне</string>
     <string name="no_appropriate_file_manager_message_android_10">Для гэтага дзеяння не знойдзены прыдатны файлавы менеджар. \nУсталюйце файлавы менеджар, сумяшчальны з Storage Access Framework</string>
     <string name="no_app_to_open_intent">Ніякая праграма на вашай прыладзе не можа адкрыць гэта</string>
@@ -772,16 +771,16 @@
     <string name="image_quality_none">Не загружаць выявы</string>
     <string name="image_quality_high">Высокая якасць</string>
     <string name="channel_tab_about">Аб канале</string>
-    <string name="share_playlist">Абагуліць плэйліст</string>
+    <string name="share_playlist">Абагуліць плэй-ліст</string>
     <string name="forward">Пераматаць наперад</string>
     <string name="channel_tab_albums">Альбомы</string>
     <string name="rewind">Пераматаць назад</string>
     <string name="replay">Паўтарыць</string>
-    <string name="feed_fetch_channel_tabs_summary">Атрыманыя ўкладкі пры абнаўленні стужкі. Гэты параметр не прымяняецца, калі канал абнаўляецца ў хуткім рэжыме.</string>
+    <string name="feed_fetch_channel_tabs_summary">Укладкі, для якіх атрымліваюцца даныя пры абнаўленні стужкі. Гэты параметр не дзейнічае, калі канал абнаўляецца з выкарыстаннем хуткага рэжыму.</string>
     <string name="image_quality_medium">Сярэдняя якасць</string>
     <string name="metadata_uploader_avatars">Загрузнік аватараў</string>
     <string name="metadata_banners">Банеры</string>
-    <string name="channel_tab_playlists">Плэйлісты</string>
+    <string name="channel_tab_playlists">Плэй-лісты</string>
     <string name="video_details_list_item">- %1$s: %2$s</string>
     <string name="main_tabs_position_summary">Перамясціць панэль укладак уніз</string>
     <string name="no_live_streams">Няма жывых трансляцый</string>
@@ -814,4 +813,9 @@
     <string name="reset_settings_summary">Скінуць усе налады на іх прадвызначаныя значэнні</string>
     <string name="reset_all_settings">Пры скіданні ўсіх налад будуць адхілены ўсе вашы змены налад і праграма перазапусціцца. \n \nСапраўды хочаце працягнуць?</string>
     <string name="audio_track_type_secondary">другасны</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Абагуліць як часовы плэйліст YouTube</string>
+    <string name="tab_bookmarks_short">Плэй-лісты</string>
+    <string name="select_a_feed_group">Выберыце групу каналаў</string>
+    <string name="no_feed_group_created_yet">Група каналаў яшчэ не створана</string>
+    <string name="feed_group_page_summary">Старонка групы каналаў</string>
 </resources>

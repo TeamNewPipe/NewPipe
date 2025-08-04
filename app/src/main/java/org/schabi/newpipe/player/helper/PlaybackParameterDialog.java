@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.helper;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.Player.DEBUG;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.ThemeHelper.resolveDrawable;
 
 import android.app.Dialog;
@@ -145,7 +144,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
-        assureCorrectAppLanguage(getContext());
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         binding = DialogPlaybackParameterBinding.inflate(getLayoutInflater());

@@ -106,7 +106,6 @@
     <string name="subscription_update_failed">ناتوانرێت به‌ژداریكردنه‌كه‌ نوێبكرێته‌وه‌</string>
     <string name="controls_background_title">پشت شاشە</string>
     <string name="search_no_results">بێ ئەنجامه‌</string>
-    <string name="localization_changes_requires_app_restart">زمان دەگۆڕدرێت لەدوای داگیرساندنەوەی به‌رنامه‌كه‌</string>
     <string name="remove_watched">لادانی سەیرکراو</string>
     <string name="enable_playback_state_lists_summary">پیشاندانی نیشانەکەری شوێنی کارپێکەر لە خشتەکاندا</string>
     <string name="enable_playback_state_lists_title">شوێنەکان لە خشتەکاندا</string>

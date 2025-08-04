@@ -416,7 +416,6 @@
     <plurals name="listening">
         <item quantity="other">%s 人が聴取中</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます</string>
     <string name="seek_duration_title">高速早送り/巻き戻し間隔</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
@@ -806,4 +805,6 @@
 \n
 \n続行しますか？</string>
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
+    <string name="audio_track_type_secondary">二次的</string>
 </resources>

@@ -549,7 +549,6 @@
     <string name="new_and_hot">Yangi va qaynoqlari</string>
     <string name="top_50">Top 50</string>
     <string name="trending">Ommabop</string>
-    <string name="localization_changes_requires_app_restart">Ilova qayta ishga tushirilgandan so\'ng til o\'zgaradi.</string>
     <string name="error_unable_to_load_comments">Fikrlarni yuklab bo‘lmadi</string>
     <string name="import_settings">Sozlamalarni ham import qilmoqchimisiz\?</string>
     <string name="override_current_data">Bu sizning joriy sozlamangizni bekor qiladi.</string>
