@@ -107,7 +107,7 @@ private fun CommentSection(
                                 )
                             }
                         }
-                        when (comments.loadState.refresh) {
+                        when (val refresh = comments.loadState.refresh) {
                             is LoadState.Loading -> {
                                 item {
                                     LoadingIndicator(modifier = Modifier.padding(top = 8.dp))
