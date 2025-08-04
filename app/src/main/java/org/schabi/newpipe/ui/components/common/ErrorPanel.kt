@@ -90,13 +90,12 @@ fun ErrorPanel(
             ErrorAction.SOLVE_CAPTCHA -> {
                 ServiceColoredButton(onClick = {
                     // Starting ReCaptcha Challenge Activity
-                    val intent = Intent(context, ReCaptchaActivity::class.java).apply {
-                        putExtra(
+                    val intent = Intent(context, ReCaptchaActivity::class.java)
+                        .putExtra(
                             ReCaptchaActivity.RECAPTCHA_URL_EXTRA,
                             (errorInfo.throwable as ReCaptchaException).url
                         )
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(intent)
                 }) {
                     Text(stringResource(errorActionType.actionStringId).uppercase())
