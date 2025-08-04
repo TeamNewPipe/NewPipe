@@ -114,9 +114,8 @@ private fun CommentSection(
                                 }
                             }
                             is LoadState.Error -> {
-                                val error = (comments.loadState.refresh as LoadState.Error).error
                                 val errorInfo = ErrorInfo(
-                                    throwable = error,
+                                    throwable = refresh.error,
                                     userAction = UserAction.REQUESTED_COMMENTS,
                                     request = "comments"
                                 )
