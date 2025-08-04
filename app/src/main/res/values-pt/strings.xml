@@ -230,8 +230,6 @@
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="metadata_cache_wipe_complete_notice">Meta-dados em cache limpos</string>
     <string name="file">Ficheiro</string>
-    <string name="title_last_played">Última reprodução</string>
-    <string name="title_most_played">Mais reproduzido</string>
     <string name="video_player">Reprodutor de vídeo</string>
     <string name="background_player">Reprodutor em segundo plano</string>
     <string name="popup_player">Reprodutor \'popup\'</string>

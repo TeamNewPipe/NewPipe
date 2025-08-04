@@ -214,8 +214,6 @@
     <string name="read_full_license">Прочитати ліцензію</string>
     <string name="action_history">Історія</string>
     <string name="delete_item_search_history">Видалити цей елемент з історії пошуку\?</string>
-    <string name="title_last_played">Відтворювалося останнім</string>
-    <string name="title_most_played">Відтворювалося найбільше</string>
     <string name="main_page_content">Вміст на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
     <string name="kiosk_page_summary">Кіоск-сторінка</string>

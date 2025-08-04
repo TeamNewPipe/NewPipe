@@ -214,8 +214,6 @@
     <string name="create">Kurti</string>
     <string name="dismiss">Nutraukti</string>
     <string name="rename">Pervardyti</string>
-    <string name="title_last_played">Vėliausiai žiūrėta</string>
-    <string name="title_most_played">Dažniausiai žiūrėta</string>
     <string name="export_complete_toast">Eksportavimas baigtas</string>
     <string name="import_complete_toast">Importavimas baigtas</string>
     <string name="no_valid_zip_file">Netinkamas ZIP failas</string>

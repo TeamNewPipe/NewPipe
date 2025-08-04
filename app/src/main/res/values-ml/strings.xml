@@ -97,8 +97,6 @@
     <string name="blank_page_summary">ശൂന്യമായ പേജ്</string>
     <string name="main_page_content_summary">പ്രധാന പേജിൽ കാണിക്കേണ്ട ടാബുകൾ</string>
     <string name="main_page_content">പ്രധാന പേജ് ഉള്ളടക്കം</string>
-    <string name="title_most_played">ഏറ്റവും കൂടുതൽ തവണ പ്ലേ ചെയ്തത്</string>
-    <string name="title_last_played">അവസാനം പ്ലേ ചെയ്തത്</string>
     <string name="delete_item_search_history">സെർച്ച് ചരിത്രത്തിൽനിന്ന് ഈ item നീക്കം ചെയ്യട്ടെയോ\?</string>
     <string name="action_history">ചരിത്രം</string>
     <string name="title_activity_history">ചരിത്രം</string>

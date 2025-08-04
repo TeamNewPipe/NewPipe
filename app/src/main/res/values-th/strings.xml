@@ -222,8 +222,6 @@
     <string name="title_activity_history">ประวัติ</string>
     <string name="action_history">ประวัติ</string>
     <string name="delete_item_search_history">คุณต้องการลบรายการนี้ออกจากประวัติการค้นหาหรือไม่\?</string>
-    <string name="title_last_played">เล่นครั้งล่าสุด</string>
-    <string name="title_most_played">เล่นมากที่สุด</string>
     <string name="main_page_content">เนื้อหาของหน้าหลัก</string>
     <string name="main_page_content_summary">แท็บใดบ้างที่ต้องการให้แสดงบนหน้าหลัก</string>
     <string name="blank_page_summary">หน้าว่าง</string>

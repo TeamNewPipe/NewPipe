@@ -252,8 +252,6 @@
     <string name="website_encouragement">Posjeti NewPipe web-stranicu za više informacija i vijesti.</string>
     <string name="privacy_policy_title">NewPipe pravila o privatnosti</string>
     <string name="read_privacy_policy">Pročitaj pravila o privatnosti</string>
-    <string name="title_last_played">Zadnje svirano</string>
-    <string name="title_most_played">Najviše reproducirano</string>
     <string name="export_complete_toast">Izvezeno</string>
     <string name="import_complete_toast">Uvezeno</string>
     <string name="no_valid_zip_file">Nema važeće ZIP datoteke</string>
