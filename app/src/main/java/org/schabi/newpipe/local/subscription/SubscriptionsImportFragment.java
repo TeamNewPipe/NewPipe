@@ -87,7 +87,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
                             ServiceHelper.getNameOfServiceById(currentServiceId),
                             "Service does not support importing subscriptions",
-                            R.string.general_error));
+                            R.string.general_error,
+                            null));
             activity.finish();
         }
     }
