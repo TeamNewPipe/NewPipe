@@ -1,7 +1,5 @@
 package org.schabi.newpipe.local.subscription;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.app.Dialog;
 import android.os.Bundle;
 
@@ -39,7 +37,6 @@ public class ImportConfirmationDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         final var context = requireContext();
-        assureCorrectAppLanguage(context);
         return new AlertDialog.Builder(context)
                 .setMessage(R.string.import_network_expensive_warning)
                 .setCancelable(true)

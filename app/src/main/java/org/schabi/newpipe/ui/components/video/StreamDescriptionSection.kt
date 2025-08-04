@@ -35,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.painterResource
@@ -79,7 +78,7 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
                     horizontalArrangement = if (streamInfo.uploadDate != null) Arrangement.SpaceBetween else Arrangement.End,
                 ) {
                     streamInfo.uploadDate?.let {
-                        val date = Localization.formatDate(LocalContext.current, it.offsetDateTime())
+                        val date = Localization.formatDate(it.offsetDateTime())
                         Text(
                             text = stringResource(R.string.upload_date_text, date),
                             style = MaterialTheme.typography.titleMedium
@@ -169,10 +168,9 @@ fun StreamDescriptionSection(streamInfo: StreamInfo) {
 
             streamInfo.languageInfo?.let {
                 item {
-                    val locale = Localization.getAppLocale(LocalContext.current)
                     MetadataItem(
                         title = R.string.metadata_language,
-                        value = it.getDisplayLanguage(locale)
+                        value = it.getDisplayLanguage(Localization.getAppLocale())
                     )
                 }
             }

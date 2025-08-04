@@ -1,0 +1,3 @@
+• [YouTube] Novērsta bezgalīgā video ielāde pie jebkuru video atskaņošanu
+• [YouTube] Novērsta dažu videoklipu lēnā ielāde (straumēšanas ierobežošanas problēma)
+• Atjaunināta jsoup bibliotēka uz 1.15.3 versiju, kas ietver drošības labojumus

@@ -20,8 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,6 +47,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -76,6 +75,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.settings.SettingMigrations;
 import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_ABOUT = 2;
 
     private static final int ORDER = 0;
+    public static final String KEY_IS_IN_BACKGROUND = "is_in_background";
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPrefEditor;
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
+        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -150,8 +154,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefEditor = sharedPreferences.edit();
 
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         drawerLayoutBinding = mainBinding.drawerLayout;
@@ -187,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateSettingsFragment.askForConsentToUpdateChecks(this);
         }
 
-        Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
+        SettingMigrations.showUserInfoIfPresent(this);
     }
 
     @Override
@@ -195,16 +200,29 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         final App app = App.getInstance();
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
-        if (prefs.getBoolean(app.getString(R.string.update_app_key), false)
-                && prefs.getBoolean(app.getString(R.string.update_check_consent_key), false)) {
+        if (sharedPreferences.getBoolean(app.getString(R.string.update_app_key), false)
+                && sharedPreferences
+                .getBoolean(app.getString(R.string.update_check_consent_key), false)) {
             // Start the worker which is checking all conditions
             // and eventually searching for a new version.
             NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, false).apply();
+        Log.d(TAG, "App moved to foreground");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sharedPrefEditor.putBoolean(KEY_IS_IN_BACKGROUND, true).apply();
+        Log.d(TAG, "App moved to background");
+    }
     private void setupDrawer() throws ExtractionException {
         addDrawerMenuForCurrentService();
 
@@ -480,9 +498,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
+        Localization.initPrettyTime(Localization.resolvePrettyTime());
         super.onResume();
 
         // Close drawer on return, and don't show animation,
@@ -504,13 +521,11 @@ public class MainActivity extends AppCompatActivity {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
             }
-            sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
+            sharedPrefEditor.putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             ActivityCompat.recreate(this);
         }
 
@@ -518,7 +533,7 @@ public class MainActivity extends AppCompatActivity {
             if (DEBUG) {
                 Log.d(TAG, "main page has changed, recreating main fragment...");
             }
-            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            sharedPrefEditor.putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
 
@@ -833,7 +848,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.INSTANCE.isPlayerOpen()) {
             // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {
@@ -843,7 +858,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onReceive(final Context context, final Intent intent) {
                     if (Objects.equals(intent.getAction(),
                             VideoDetailFragment.ACTION_PLAYER_STARTED)
-                            && PlayerHolder.getInstance().isPlayerOpen()) {
+                            && PlayerHolder.INSTANCE.isPlayerOpen()) {
                         openMiniPlayerIfMissing();
                         // At this point the player is added 100%, we can unregister. Other actions
                         // are useless since the fragment will not be removed after that.
@@ -854,11 +869,12 @@ public class MainActivity extends AppCompatActivity {
             };
             final IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(VideoDetailFragment.ACTION_PLAYER_STARTED);
-            registerReceiver(broadcastReceiver, intentFilter);
+            ContextCompat.registerReceiver(this, broadcastReceiver, intentFilter,
+                    ContextCompat.RECEIVER_EXPORTED);
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
-            PlayerHolder.getInstance().tryBindIfNeeded(this);
+            PlayerHolder.INSTANCE.tryBindIfNeeded(this);
         }
     }
 

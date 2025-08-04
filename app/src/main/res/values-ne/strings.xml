@@ -416,7 +416,6 @@
         <item quantity="one">%s श्रोता</item>
         <item quantity="other">%s श्रोताहरु</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">भाषा परिवर्तन एप पून:सुरु हुदा लागु हुनेछ।</string>
     <string name="default_kiosk_page_summary">पूर्वनिर्धारित किओस्क (Kiosk)</string>
     <string name="seek_duration_title">छिटो-अगाडि /-पछाडी खोज्न अवधि</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>

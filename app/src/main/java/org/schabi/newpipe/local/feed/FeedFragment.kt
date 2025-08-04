@@ -274,7 +274,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     @Deprecated("Deprecated in Java")
     override fun onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu()
-        activity?.supportActionBar?.subtitle = null
+        if (
+            (groupName != "") &&
+            (activity?.supportActionBar?.subtitle == groupName)
+        ) {
+            activity?.supportActionBar?.subtitle = null
+        }
     }
 
     override fun onDestroy() {
@@ -286,7 +291,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         super.onDestroy()
-        activity?.supportActionBar?.subtitle = null
+
+        if (
+            (groupName != "") &&
+            (activity?.supportActionBar?.subtitle == groupName)
+        ) {
+            activity?.supportActionBar?.subtitle = null
+        }
     }
 
     override fun onDestroyView() {

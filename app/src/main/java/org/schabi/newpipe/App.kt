@@ -97,7 +97,7 @@ open class App :
             Localization.getPreferredLocalization(this),
             Localization.getPreferredContentCountry(this),
         )
-        Localization.initPrettyTime(Localization.resolvePrettyTime(this))
+        Localization.initPrettyTime(Localization.resolvePrettyTime())
 
         BridgeStateSaverInitializer.init(this)
         StateSaver.init(this)

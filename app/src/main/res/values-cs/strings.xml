@@ -139,9 +139,9 @@
     </plurals>
     <string name="no_videos">Žádná videa</string>
     <plurals name="videos">
-        <item quantity="one">%s Video</item>
-        <item quantity="few">%s Videa</item>
-        <item quantity="other">%s Videí</item>
+        <item quantity="one">%s video</item>
+        <item quantity="few">%s videa</item>
+        <item quantity="other">%s videí</item>
     </plurals>
     <string name="settings_category_downloads_title">Stahování</string>
     <string name="settings_file_charset_title">Povolené znaky v názvech souborů</string>
@@ -427,7 +427,6 @@
         <item quantity="few">%s posluchači</item>
         <item quantity="other">%s posluchačů</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace</string>
     <string name="default_kiosk_page_summary">Výchozí kiosek</string>
     <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
@@ -837,4 +836,12 @@
 \nChcete tuto funkci povolit?</string>
     <string name="import_settings_vulnerable_format">Nastavení v importovaném exportu používají zranitelný formát. NewPipe používá nový formát od verze 0.27.0. Ujistěte se, že export importujete z důvěryhodného zdroje a v budoucnu upřednostňujte používání exportů získaných z NewPipe 0.27.0 nebo novějších. Podpora importu nastavení v tomto zranitelném formátu bude brzy kompletně odstraněna, kvůli čemuž staré verze NewPipe nebudou moci importovat nastavení z exportů z nových verzí.</string>
     <string name="audio_track_type_secondary">sekundární</string>
+    <string name="share_playlist_as_youtube_temporary_playlist">Sdílet jako dočasný playlist YouTube</string>
+    <string name="tab_bookmarks_short">Playlisty</string>
+    <string name="select_a_feed_group">Vybrat skupinu kanálů</string>
+    <string name="no_feed_group_created_yet">Zatím nebyla vytvořena žádná skupina kanálů</string>
+    <string name="feed_group_page_summary">Stránka skupiny kanálů</string>
+    <string name="search_with_service_name">Hledat %1$s</string>
+    <string name="search_with_service_name_and_filter">Hledat %1$s (%2$s)</string>
+    <string name="channel_tab_likes">Líbí se</string>
 </resources>
