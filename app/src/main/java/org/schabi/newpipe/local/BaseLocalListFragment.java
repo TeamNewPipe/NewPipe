@@ -28,6 +28,8 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 import static org.schabi.newpipe.util.ThemeHelper.getItemViewMode;
 
+import java.util.function.Supplier;
+
 /**
  * This fragment is design to be used with persistent data such as
  * {@link org.schabi.newpipe.database.LocalItem}, and does not cache the data contained
@@ -100,7 +102,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Nullable
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         return null;
     }
 
@@ -131,9 +133,9 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         itemsList = rootView.findViewById(R.id.items_list);
         refreshItemViewMode();
 
-        headerRootBinding = getListHeader();
-        if (headerRootBinding != null) {
-            itemListAdapter.setHeader(headerRootBinding.getRoot());
+        final Supplier<View> listHeaderSupplier = getListHeaderSupplier();
+        if (listHeaderSupplier != null) {
+            itemListAdapter.setHeaderSupplier(listHeaderSupplier);
         }
         footerRootBinding = getListFooter();
         itemListAdapter.setFooter(footerRootBinding.getRoot());

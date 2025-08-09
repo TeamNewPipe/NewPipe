@@ -2,6 +2,7 @@ package org.schabi.newpipe.local;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -37,6 +38,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -82,13 +84,14 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int REMOTE_PLAYLIST_CARD_HOLDER_TYPE = 0x3002;
     private static final int REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE = 0x3003;
 
+    private final LayoutInflater layoutInflater;
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
     private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
-    private View header = null;
+    private Supplier<View> headerSupplier = null;
     private View footer = null;
     private ItemViewMode itemViewMode = ItemViewMode.LIST;
     private boolean useItemHandle = false;
@@ -97,6 +100,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
+        layoutInflater = LayoutInflater.from(context);
+
         dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
                 .withLocale(Localization.getPreferredLocale(context));
     }
@@ -124,7 +129,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (DEBUG) {
             Log.d(TAG, "addItems() after > offsetStart = " + offsetStart + ", "
                     + "localItems.size() = " + localItems.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
+                    + "header = " + hasHeader() + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
         notifyItemRangeInserted(offsetStart, data.size());
@@ -144,7 +149,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         final int index = localItems.indexOf(data);
         if (index != -1) {
             localItems.remove(index);
-            notifyItemRemoved(index + (header != null ? 1 : 0));
+            notifyItemRemoved(index + (hasHeader() ? 1 : 0));
         } else {
             // this happens when
             // 1) removeItem is called on infoItemDuplicate as in showStreamItemDialog of
@@ -189,9 +194,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.useItemHandle = useItemHandle;
     }
 
-    public void setHeader(final View header) {
-        final boolean changed = header != this.header;
-        this.header = header;
+    public void setHeaderSupplier(@Nullable final Supplier<View> headerSupplier) {
+        final boolean changed = headerSupplier != this.headerSupplier;
+        this.headerSupplier = headerSupplier;
         if (changed) {
             notifyDataSetChanged();
         }
@@ -199,6 +204,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void setFooter(final View view) {
         this.footer = view;
+    }
+
+    protected boolean hasHeader() {
+        return this.headerSupplier != null;
     }
 
     public void showFooter(final boolean show) {
@@ -218,11 +227,11 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private int adapterOffsetWithoutHeader(final int offset) {
-        return offset - (header != null ? 1 : 0);
+        return offset - (hasHeader() ? 1 : 0);
     }
 
     private int sizeConsideringHeader() {
-        return localItems.size() + (header != null ? 1 : 0);
+        return localItems.size() + (hasHeader() ? 1 : 0);
     }
 
     public ArrayList<LocalItem> getItemsList() {
@@ -232,7 +241,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public int getItemCount() {
         int count = localItems.size();
-        if (header != null) {
+        if (hasHeader()) {
             count++;
         }
         if (footer != null && showFooter) {
@@ -242,7 +251,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (DEBUG) {
             Log.d(TAG, "getItemCount() called, count = " + count + ", "
                     + "localItems.size() = " + localItems.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
+                    + "header = " + hasHeader() + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
         return count;
@@ -255,9 +264,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.d(TAG, "getItemViewType() called with: position = [" + position + "]");
         }
 
-        if (header != null && position == 0) {
+        if (hasHeader() && position == 0) {
             return HEADER_TYPE;
-        } else if (header != null) {
+        } else if (hasHeader()) {
             position--;
         }
         if (footer != null && position == localItems.size() && showFooter) {
@@ -318,7 +327,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         switch (type) {
             case HEADER_TYPE:
-                return new HeaderFooterHolder(header);
+                return new HeaderFooterHolder(headerSupplier.get());
             case FOOTER_TYPE:
                 return new HeaderFooterHolder(footer);
             case LOCAL_PLAYLIST_HOLDER_TYPE:
@@ -366,14 +375,14 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         if (holder instanceof LocalItemHolder) {
             // If header isn't null, offset the items by -1
-            if (header != null) {
+            if (hasHeader()) {
                 position--;
             }
 
             ((LocalItemHolder) holder)
                     .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
-        } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
-            ((HeaderFooterHolder) holder).view = header;
+        } else if (holder instanceof HeaderFooterHolder && position == 0 && hasHeader()) {
+            ((HeaderFooterHolder) holder).view = headerSupplier.get();
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
                 && footer != null && showFooter) {
             ((HeaderFooterHolder) holder).view = footer;
@@ -387,10 +396,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((LocalItemHolder) holder).updateState(localItems
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(hasHeader() ? position - 1 : position), recordManager);
                 } else if (payload instanceof Boolean) {
                     ((LocalItemHolder) holder).updateState(localItems
-                            .get(header == null ? position : position - 1), recordManager);
+                            .get(hasHeader() ? position - 1 : position), recordManager);
                 }
             }
         } else {
