@@ -9,7 +9,6 @@ import org.schabi.newpipe.extractor.Page
 import org.schabi.newpipe.extractor.comments.CommentsInfo
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.ui.components.video.comment.CommentInfo
-import java.io.IOException
 
 class CommentsSource(private val commentInfo: CommentInfo) : PagingSource<Page, CommentsInfoItem>() {
     private val service = NewPipe.getService(commentInfo.serviceId)

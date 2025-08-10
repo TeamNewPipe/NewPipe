@@ -21,7 +21,6 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.ReCaptchaActivity
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
-import org.schabi.newpipe.extractor.timeago.patterns.it
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.ui.theme.SizeTokens.SpacingExtraLarge
 import org.schabi.newpipe.ui.theme.SizeTokens.SpacingMedium
@@ -48,8 +47,8 @@ fun determineErrorAction(errorInfo: ErrorInfo): ErrorAction {
 @Composable
 fun ErrorPanel(
     errorInfo: ErrorInfo,
+    modifier: Modifier = Modifier,
     onRetry: (() -> Unit)? = null,
-    modifier: Modifier = Modifier
 
 ) {
     val explanation = errorInfo.getExplanation()
