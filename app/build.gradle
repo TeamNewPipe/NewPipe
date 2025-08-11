@@ -280,7 +280,7 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
     // Image loading
-    //noinspection GradleDependency --> 2.8 is the last version, not 2.71828!
+    //noinspection NewerVersionAvailable,GradleDependency --> 2.8 is the last version, not 2.71828!
     implementation "com.squareup.picasso:picasso:2.8"
 
     // Markdown library for Android
